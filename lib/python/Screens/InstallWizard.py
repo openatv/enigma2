@@ -26,8 +26,8 @@ class InstallWizard(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list)
 
 		if self.index == self.STATE_UPDATE:
-			config.misc.installwizard.hasnetwork.setValue(False)
-			config.misc.installwizard.ipkgloaded.setValue(False)
+			config.misc.installwizard.hasnetwork.value = False
+			config.misc.installwizard.ipkgloaded.value = False
 			modes = {0: " "}
 			self.enabled = ConfigSelection(choices = modes, default = 0)
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
@@ -45,8 +45,8 @@ class InstallWizard(Screen, ConfigListScreen):
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.enabled = ConfigYesNo(default = True)
-			modes = {"AAF": "AAF default(13e-19e)", "19e": "Astra 1", "23e": "Astra 3", "19e-23e": "Astra 1 Astra 3", "19e-23e-28e": "Astra 1 Astra 2 Astra 3", "13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
-			self.channellist_type = ConfigSelection(choices = modes, default = "AAF")
+			modes = {"ATV": "ATV default(13e-19e)", "19e": "Astra 1", "23e": "Astra 3", "19e-23e": "Astra 1 Astra 3", "19e-23e-28e": "Astra 1 Astra 2 Astra 3", "13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
+			self.channellist_type = ConfigSelection(choices = modes, default = "ATV")
 			self.createMenu()
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 # 			self.enabled = ConfigYesNo(default = True)
@@ -56,7 +56,7 @@ class InstallWizard(Screen, ConfigListScreen):
 
 	def checkNetworkCB(self, data):
 		if data < 3:
-			config.misc.installwizard.hasnetwork.setValue(True)
+			config.misc.installwizard.hasnetwork.value = True
 		self.createMenu()
 
 	def checkNetworkLinkCB(self, retval):
@@ -72,13 +72,13 @@ class InstallWizard(Screen, ConfigListScreen):
 			return
 		self.list = []
 		if self.index == self.STATE_UPDATE:
-			if config.misc.installwizard.hasnetwork.getValue():
+			if config.misc.installwizard.hasnetwork.value:
 				self.list.append(getConfigListEntry(_("Your internet connection is working (ip: %s)") % (self.ipConfigEntry.getText()), self.enabled))
 			else:
 				self.list.append(getConfigListEntry(_("Your receiver does not have an internet connection"), self.enabled))
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.list.append(getConfigListEntry(_("Install channel list"), self.enabled))
-			if self.enabled.getValue():
+			if self.enabled.value:
 				self.list.append(getConfigListEntry(_("Channel list type"), self.channellist_type))
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 # 			self.list.append(getConfigListEntry(_("Install softcam"), self.enabled))
@@ -101,10 +101,10 @@ class InstallWizard(Screen, ConfigListScreen):
 
 	def run(self):
 		if self.index == self.STATE_UPDATE:
-			if config.misc.installwizard.hasnetwork.getValue():
+			if config.misc.installwizard.hasnetwork.value:
 				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), IpkgComponent.CMD_UPDATE)
-		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.getValue() and self.channellist_type.getValue() != "AAF":
-			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.getValue()})
+		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value != "ATV":
+			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.value:
 # 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading softcam)'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
 		return
@@ -131,14 +131,14 @@ class InstallWizardIpkgUpdater(Screen):
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DONE:
 			if self.index == InstallWizard.STATE_UPDATE:
-				config.misc.installwizard.ipkgloaded.setValue(True)
+				config.misc.installwizard.ipkgloaded.value = True
 			elif self.index == InstallWizard.STATE_CHOISE_CHANNELLIST:
 				if self.state == 0:
 					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, self.pkg)
 					self.state = 1
 					return
 				else:
-					config.misc.installwizard.channellistdownloaded.setValue(True)
+					config.misc.installwizard.channellistdownloaded.value = True
 					eDVBDB.getInstance().reloadBouquets()
 					eDVBDB.getInstance().reloadServicelist()
 			self.close()

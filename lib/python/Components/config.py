@@ -1216,15 +1216,32 @@ class ConfigSelectionNumber(ConfigSelection):
 	def setValue(self, val):
 		ConfigSelection.setValue(self, str(val))
 
+	value = property(getValue, setValue)
+
+	def getIndex(self):
+		return self.choices.index(self.value)
+
+	index = property(getIndex)
+
 	def handleKey(self, key):
 		if not self.wraparound:
 			if key == KEY_RIGHT:
-				if len(self.choices) == (self.choices.index(self.value) + 1):
+				if len(self.choices) == (self.choices.index(str(self.value)) + 1):
 					return
 			if key == KEY_LEFT:
-				if self.choices.index(self.value) == 0:
+				if self.choices.index(str(self.value)) == 0:
 					return
-		ConfigSelection.handleKey(self, key)
+		nchoices = len(self.choices)
+		if nchoices > 1:
+			i = self.choices.index(str(self.value))
+			if key == KEY_LEFT:
+				self.value = self.choices[(i + nchoices - 1) % nchoices]
+			elif key == KEY_RIGHT:
+				self.value = self.choices[(i + 1) % nchoices]
+			elif key == KEY_HOME:
+				self.value = self.choices[0]
+			elif key == KEY_END:
+				self.value = self.choices[nchoices - 1]
 
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
@@ -1791,9 +1808,9 @@ class Config(ConfigSubsection):
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)
 			elif isinstance(val, tuple):
-				result += [name, '=', val[0], '\n']
+				result += [name, '=', str(val[0]), '\n']
 			else:
-				result += [name, '=', val, '\n']
+				result += [name, '=', str(val), '\n']
 
 	def pickle(self):
 		result = []
@@ -1822,7 +1839,7 @@ class Config(ConfigSubsection):
 			base[names[-1]] = val
 
 			if not base_file: # not the initial config file..
-				#update config.x.y.getValue() when exist
+				#update config.x.y.value when exist
 				try:
 					configEntry = eval(name)
 					if configEntry is not None:

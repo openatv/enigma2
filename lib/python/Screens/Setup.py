@@ -135,7 +135,7 @@ class Setup(ConfigListScreen, Screen):
 		list = []
 		self.refill(list)
 		self["config"].setList(list)
-		if config.usage.sort_settings.getValue():
+		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 		self.moveToItem(self.item)
 
@@ -191,7 +191,7 @@ class Setup(ConfigListScreen, Screen):
 			if self["config"].getCurrent()[1].help_window.instance is not None:
 				self["config"].getCurrent()[1].help_window.hide()
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -227,7 +227,7 @@ class Setup(ConfigListScreen, Screen):
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
-					if item.getValue() and not item.getValue() == "0":
+					if item.value and not item.value == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False

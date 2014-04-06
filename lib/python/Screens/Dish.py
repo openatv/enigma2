@@ -35,11 +35,11 @@ class Dish(Screen):
 		self.timeoutTimer = eTimer()
 		self.timeoutTimer.callback.append(self.testIsTuned)
 
-		self.showdish = config.usage.showdish.getValue()
+		self.showdish = config.usage.showdish.value
 		config.usage.showdish.addNotifier(self.configChanged)
 		self.configChanged(config.usage.showdish)
 
-		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.getValue()
+		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
 		self.turn_time = self.total_time = self.pmt_timeout = self.close_timeout = None
 		self.cur_polar = 0
 		self.__state = self.STATE_HIDDEN

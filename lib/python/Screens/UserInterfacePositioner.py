@@ -24,47 +24,47 @@ def InitOsd():
 	def setOSDLeft(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_left", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_width", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_top", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_height", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_height.addNotifier(setOSDHeight)
-	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
+	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def setOSDAlpha(configElement):
 		if SystemInfo["CanChangeOsdAlpha"]:
-			print 'Setting OSD alpha:', str(configElement.getValue())
-			config.av.osd_alpha.setValue(configElement.getValue())
+			print 'Setting OSD alpha:', str(configElement.value)
+			config.av.osd_alpha.setValue(configElement.value)
 			f = open("/proc/stb/video/alpha", "w")
-			f.write(str(configElement.getValue()))
+			f.write(str(configElement.value))
 			f.close()
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D mode:',configElement.getValue()
+			print 'Setting 3D mode:',configElement.value
 			try:
 				f = open("/proc/stb/fb/3dmode", "w")
-				f.write(configElement.getValue())
+				f.write(configElement.value)
 				f.close()
 			except:
 				pass
@@ -72,10 +72,10 @@ def InitOsd():
 
 	def set3DZnorm(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D depth:',configElement.getValue()
+			print 'Setting 3D depth:',configElement.value
 			try:
 				f = open("/proc/stb/fb/znorm", "w")
-				f.write('%d' % int(configElement.getValue()))
+				f.write('%d' % int(configElement.value))
 				f.close()
 			except:
 				pass	
@@ -273,10 +273,10 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
 		dsk_h = int(float(size_h)) / float(576)
-		dst_left = int(config.osd.dst_left.getValue())
-		dst_width = int(config.osd.dst_width.getValue())
-		dst_top = int(config.osd.dst_top.getValue())
-		dst_height = int(config.osd.dst_height.getValue())
+		dst_left = int(config.osd.dst_left.value)
+		dst_width = int(config.osd.dst_width.value)
+		dst_top = int(config.osd.dst_top.value)
+		dst_height = int(config.osd.dst_height.value)
 		while dst_width + (dst_left / float(dsk_w)) >= 720.5 or dst_width + dst_left > 720:
 			dst_width = int(dst_width) - 1
 		while dst_height + (dst_top / float(dsk_h)) >= 576.5 or dst_height + dst_top > 576:
@@ -286,7 +286,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
+		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -406,10 +406,10 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
 		dsk_h = int(float(size_h)) / float(576)
-		dst_left = int(config.osd.dst_left.getValue())
-		dst_width = int(config.osd.dst_width.getValue())
-		dst_top = int(config.osd.dst_top.getValue())
-		dst_height = int(config.osd.dst_height.getValue())
+		dst_left = int(config.osd.dst_left.value)
+		dst_width = int(config.osd.dst_width.value)
+		dst_top = int(config.osd.dst_top.value)
+		dst_height = int(config.osd.dst_height.value)
 		while dst_width + (dst_left / float(dsk_w)) >= 720.5 or dst_width + dst_left > 720:
 			dst_width = int(dst_width) - 1
 		while dst_height + (dst_top / float(dsk_h)) >= 576.5 or dst_height + dst_top > 576:
@@ -419,7 +419,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
+		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def saveAll(self):
 		for x in self["config"].list:

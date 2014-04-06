@@ -36,14 +36,14 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																		 eEnv.resolve("${datadir}/enigma2/keymap.usr")])
 
 def getBackupPath():
-	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
+	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
 		return backuppath + 'backup_' + boxtype
 	else:
 		return backuppath + '/backup_' + boxtype
 
 def getOldBackupPath():
-	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
+	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
 		return backuppath + 'backup'
 	else:
@@ -97,7 +97,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
+			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 			if not "/tmp/installed-list.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
@@ -152,7 +152,7 @@ class BackupSelection(Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
 
-		self.selectedFiles = config.plugins.configurationbackup.backupdirs.getValue()
+		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs = inhibitDirs )

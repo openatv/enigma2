@@ -29,7 +29,7 @@ class VolumeControl:
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.callback.append(self.volHide)
 
-		vol = config.audio.volume.getValue()
+		vol = config.audio.volume.value
 		self.volumeDialog.setValue(vol)
 		self.volctrl = eDVBVolumecontrol.getInstance()
 		self.volctrl.setVolume(vol, vol)

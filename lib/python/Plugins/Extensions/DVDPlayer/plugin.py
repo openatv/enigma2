@@ -241,12 +241,12 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	</screen>"""
 
 	def save_infobar_seek_config(self):
-		self.saved_config_speeds_forward = config.seek.speeds_forward.getValue()
-		self.saved_config_speeds_backward = config.seek.speeds_backward.getValue()
-		self.saved_config_enter_forward = config.seek.enter_forward.getValue()
-		self.saved_config_enter_backward = config.seek.enter_backward.getValue()
-		self.saved_config_seek_on_pause = config.seek.on_pause.getValue()
-		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.getValue()
+		self.saved_config_speeds_forward = config.seek.speeds_forward.value
+		self.saved_config_speeds_backward = config.seek.speeds_backward.value
+		self.saved_config_enter_forward = config.seek.enter_forward.value
+		self.saved_config_enter_backward = config.seek.enter_backward.value
+		self.saved_config_seek_on_pause = config.seek.on_pause.value
+		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.value
 
 	def change_infobar_seek_config(self):
 		config.seek.speeds_forward.setValue([2, 4, 8, 16, 32, 64])
@@ -758,7 +758,7 @@ def onPartitionChange(action, partition):
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		global detected_DVD
-		if config.usage.show_dvdplayer.getValue():
+		if config.usage.show_dvdplayer.value:
 			return [(_("DVD Player"), main, "dvd_player", 46)]
 		elif detected_DVD is None:
 			cd = harddiskmanager.getCD()

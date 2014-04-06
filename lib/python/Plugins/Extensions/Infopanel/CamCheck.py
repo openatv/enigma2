@@ -9,7 +9,7 @@ CFG = "/usr/keys/CCcam.cfg"
 
 def CamCheck():
     global campoller, POLLTIME
-    POLLTIME = int(config.plugins.infopanel_frozencheck.list.getValue()) * 60
+    POLLTIME = int(config.plugins.infopanel_frozencheck.list.value) * 60
     if campoller is None:
         campoller = CamCheckPoller()
     campoller.start()
@@ -131,8 +131,8 @@ class CamCheckPoller:
         self.emuStart = []
         self.emuStop = []
         self.emuDirlist = listdir(emuDir)
-        cam_name = config.softcam.actCam.getValue()
-        cam_name2 = config.softcam.actCam2.getValue()
+        cam_name = config.softcam.actCam.value
+        cam_name2 = config.softcam.actCam2.value
         if (cam_name == "no CAM 1 active" or cam_name == "") and (cam_name2 == "no CAM 2 active" or cam_name2 == ""):
             print "[CAMSCHECK] No Cam to Check, Exit"
             global isBusy
@@ -237,7 +237,7 @@ class CamCheckPoller:
                             self.container.execute(stop)
                             
                             import time
-                            time.sleep (int(config.softcam.waittime.getValue()))
+                            time.sleep (int(config.softcam.waittime.value))
                             start = self.emuStart[indexcam2]
                             print "[CAMSTARTER] no CAM 2 active, starting " + start
                             system("echo %s Started cam 2 at: %s >> /tmp/camcheck.txt" % (start, datetime.now()))

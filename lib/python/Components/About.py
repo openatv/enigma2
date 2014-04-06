@@ -48,7 +48,7 @@ def getCPUString():
 				elif splitted[0].startswith("Processor"):
 					system = splitted[1].split(' ')[0]
 		file.close()
-		return system 
+		return system
 	except IOError:
 		return "unavailable"
 

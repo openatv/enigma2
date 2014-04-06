@@ -643,7 +643,7 @@ class Wizard(Screen):
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.currentConfigIndex = self["config"].getCurrentIndex()
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):

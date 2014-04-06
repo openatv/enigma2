@@ -4,7 +4,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport, InfoBarLongKeyDetection
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -88,17 +88,17 @@ class ChapterZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
 
-class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport):
+class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport, InfoBarLongKeyDetection):
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 	ENABLE_RESUME_SUPPORT = True
 
 	def save_infobar_seek_config(self):
-		self.saved_config_speeds_forward = config.seek.speeds_forward.getValue()
-		self.saved_config_speeds_backward = config.seek.speeds_backward.getValue()
-		self.saved_config_enter_forward = config.seek.enter_forward.getValue()
-		self.saved_config_enter_backward = config.seek.enter_backward.getValue()
-		self.saved_config_seek_on_pause = config.seek.on_pause.getValue()
-		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.getValue()
+		self.saved_config_speeds_forward = config.seek.speeds_forward.value
+		self.saved_config_speeds_backward = config.seek.speeds_backward.value
+		self.saved_config_enter_forward = config.seek.enter_forward.value
+		self.saved_config_enter_backward = config.seek.enter_backward.value
+		self.saved_config_seek_on_pause = config.seek.on_pause.value
+		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.value
 
 	def change_infobar_seek_config(self):
 		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
@@ -130,6 +130,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.change_infobar_seek_config()
 		InfoBarSeek.__init__(self)
 		InfoBarPVRState.__init__(self)
+		InfoBarLongKeyDetection.__init__(self)
 
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()

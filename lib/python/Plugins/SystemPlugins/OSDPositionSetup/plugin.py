@@ -41,10 +41,10 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		left = config.plugins.OSDPositionSetup.dst_left.getValue()
-		width = config.plugins.OSDPositionSetup.dst_width.getValue()
-		top = config.plugins.OSDPositionSetup.dst_top.getValue()
-		height = config.plugins.OSDPositionSetup.dst_height.getValue()
+		left = config.plugins.OSDPositionSetup.dst_left.value
+		width = config.plugins.OSDPositionSetup.dst_width.value
+		top = config.plugins.OSDPositionSetup.dst_top.value
+		height = config.plugins.OSDPositionSetup.dst_height.value
 
 		self.dst_left = ConfigSlider(default = left, increment = 1, limits = (0, 720))
 		self.dst_width = ConfigSlider(default = width, increment = 1, limits = (0, 720))
@@ -66,13 +66,13 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		self.setPreviewPosition()
 
 	def setPreviewPosition(self):
-		setPosition(int(self.dst_left.getValue()), int(self.dst_width.getValue()), int(self.dst_top.getValue()), int(self.dst_height.getValue()))
+		setPosition(int(self.dst_left.value), int(self.dst_width.value), int(self.dst_top.value), int(self.dst_height.value))
 
 	def keyGo(self):
-		config.plugins.OSDPositionSetup.dst_left.value = self.dst_left.getValue()
-		config.plugins.OSDPositionSetup.dst_width.value = self.dst_width.getValue()
-		config.plugins.OSDPositionSetup.dst_top.value = self.dst_top.getValue()
-		config.plugins.OSDPositionSetup.dst_height.value = self.dst_height.getValue()
+		config.plugins.OSDPositionSetup.dst_left.value = self.dst_left.value
+		config.plugins.OSDPositionSetup.dst_width.value = self.dst_width.value
+		config.plugins.OSDPositionSetup.dst_top.value = self.dst_top.value
+		config.plugins.OSDPositionSetup.dst_height.value = self.dst_height.value
 		config.plugins.OSDPositionSetup.save()
 		self.close()
 
@@ -102,7 +102,7 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 		return
 
 def setConfiguredPosition():
-	setPosition(int(config.plugins.OSDPositionSetup.dst_left.getValue()), int(config.plugins.OSDPositionSetup.dst_width.getValue()), int(config.plugins.OSDPositionSetup.dst_top.getValue()), int(config.plugins.OSDPositionSetup.dst_height.getValue()))
+	setPosition(int(config.plugins.OSDPositionSetup.dst_left.value), int(config.plugins.OSDPositionSetup.dst_width.value), int(config.plugins.OSDPositionSetup.dst_top.value), int(config.plugins.OSDPositionSetup.dst_height.value))
 
 def main(session, **kwargs):
 	session.open(OSDScreenPosition)

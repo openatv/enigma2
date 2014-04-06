@@ -351,7 +351,7 @@ class pliExpertInfo(Poll, Converter, object):
 			Sec_Text = ""
 			if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
 				data = self.ecmdata.getEcmData()
-				if not config.usage.show_cryptoinfo.getValue():
+				if not config.usage.show_cryptoinfo.value:
 					showCryptoInfo = True
 					Sec_Text = data[0] + "\n"
 				decCI = data[1]
@@ -372,7 +372,7 @@ class pliExpertInfo(Poll, Converter, object):
 					if pid != '0':
 						Sec_Text += ":%04x:%04x" % (info.getInfo(iServiceInformation.sSID),int(pid, 16))
 
-			elif not config.usage.show_cryptoinfo.getValue():
+			elif not config.usage.show_cryptoinfo.value:
 				showCryptoInfo = True
 				Sec_Text = "FTA"
 			res = ""

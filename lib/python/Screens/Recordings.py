@@ -87,12 +87,12 @@ class RecordingSettings(Screen,ConfigListScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def checkReadWriteDir(self, configele):
-# 		print "checkReadWrite: ", configele.getValue()
-		if configele.getValue() in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
-			configele.last_value = configele.getValue()
+# 		print "checkReadWrite: ", configele.value
+		if configele.value in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
+			configele.last_value = configele.value
 			return True
 		else:
-			dir = configele.getValue()
+			dir = configele.value
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
@@ -104,22 +104,22 @@ class RecordingSettings(Screen,ConfigListScreen):
 	def createSetup(self):
 		self.styles = [ ("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>")) ]
 		styles_keys = [x[0] for x in self.styles]
-		tmp = config.movielist.videodirs.getValue()
-		default = config.usage.default_path.getValue()
+		tmp = config.movielist.videodirs.value
+		default = config.usage.default_path.value
 		if default not in tmp:
 			tmp = tmp[:]
 			tmp.append(default)
 # 		print "DefaultPath: ", default, tmp
 		self.default_dirname = ConfigSelection(default = default, choices = tmp)
-		tmp = config.movielist.videodirs.getValue()
-		default = config.usage.timer_path.getValue()
+		tmp = config.movielist.videodirs.value
+		default = config.usage.timer_path.value
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
 # 		print "TimerPath: ", default, tmp
 		self.timer_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
-		tmp = config.movielist.videodirs.getValue()
-		default = config.usage.instantrec_path.getValue()
+		tmp = config.movielist.videodirs.value
+		default = config.usage.instantrec_path.value
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
@@ -144,7 +144,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 		self.refill(list)
 		self["config"].setList(list)
-		if config.usage.sort_settings.getValue():
+		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 
 	def layoutFinished(self):
@@ -174,9 +174,9 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
-		self.lastvideodirs = config.movielist.videodirs.getValue()
-		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.getValue()
-		self.lastautorecorddirs = config.usage.allowed_autorecord_paths.getValue()
+		self.lastvideodirs = config.movielist.videodirs.value
+		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.value
+		self.lastautorecorddirs = config.usage.allowed_autorecord_paths.value
 		if config.usage.setup_level.index >= 2:
 			txt = _("Default movie location")
 		else:
@@ -187,7 +187,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				txt,
-				preferredPath(self.default_dirname.getValue())
+				preferredPath(self.default_dirname.value)
 			)
 		elif currentry == self.timer_entry:
 			self.entrydirname = self.timer_dirname
@@ -195,7 +195,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				_("New timers location"),
-				preferredPath(self.timer_dirname.getValue())
+				preferredPath(self.timer_dirname.value)
 			)
 		elif currentry == self.instantrec_entry:
 			self.entrydirname = self.instantrec_dirname
@@ -203,28 +203,28 @@ class RecordingSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				_("Instant recordings location"),
-				preferredPath(self.instantrec_dirname.getValue())
+				preferredPath(self.instantrec_dirname.value)
 			)
 
 	def dirnameSelected(self, res):
 		if res is not None:
 			self.entrydirname.value = res
-			if config.movielist.videodirs.getValue() != self.lastvideodirs:
+			if config.movielist.videodirs.value != self.lastvideodirs:
 				styles_keys = [x[0] for x in self.styles]
-				tmp = config.movielist.videodirs.getValue()
-				default = self.default_dirname.getValue()
+				tmp = config.movielist.videodirs.value
+				default = self.default_dirname.value
 				if default not in tmp:
 					tmp = tmp[:]
 					tmp.append(default)
 				self.default_dirname.setChoices(tmp, default=default)
-				tmp = config.movielist.videodirs.getValue()
-				default = self.timer_dirname.getValue()
+				tmp = config.movielist.videodirs.value
+				default = self.timer_dirname.value
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
 				self.timer_dirname.setChoices(self.styles+tmp, default=default)
-				tmp = config.movielist.videodirs.getValue()
-				default = self.instantrec_dirname.getValue()
+				tmp = config.movielist.videodirs.value
+				default = self.instantrec_dirname.value
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
@@ -235,9 +235,9 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 	def saveAll(self):
 		currentry = self["config"].getCurrent()
-		config.usage.default_path.value = self.default_dirname.getValue()
-		config.usage.timer_path.value = self.timer_dirname.getValue()
-		config.usage.instantrec_path.value = self.instantrec_dirname.getValue()
+		config.usage.default_path.value = self.default_dirname.value
+		config.usage.timer_path.value = self.timer_dirname.value
+		config.usage.instantrec_path.value = self.instantrec_dirname.value
 		config.usage.default_path.save()
 		config.usage.timer_path.save()
 		config.usage.instantrec_path.save()
@@ -284,7 +284,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
-					if item.getValue() and not item.getValue() == "0":
+					if item.value and not item.value == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False

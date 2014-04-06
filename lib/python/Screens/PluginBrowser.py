@@ -55,7 +55,7 @@ def Check_Softcam():
 
 def CreateFeedConfig():
 	fileconf = "/etc/opkg/user-feed.conf"
-	feedurl = "src/gz user-feeds %s\n" % config.pluginfilter.userfeed.getValue()
+	feedurl = "src/gz user-feeds %s\n" % config.pluginfilter.userfeed.value
 	f = open(fileconf, "w")
 	f.write(feedurl)
 	f.close()
@@ -93,7 +93,7 @@ class PluginBrowser(Screen):
 
 		self.list = []
 		self["list"] = PluginList(self.list)
-		if config.usage.sort_pluginlist.getValue():
+		if config.usage.sort_pluginlist.value:
 			self["list"].list.sort()
 
 		self["actions"] = ActionMap(["SetupActions","WizardActions"],
@@ -113,7 +113,7 @@ class PluginBrowser(Screen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
-		if config.pluginfilter.userfeed.getValue() != "http://":
+		if config.pluginfilter.userfeed.value != "http://":
 				if not os.path.exists("/etc/opkg/user-feed.conf"):
 					CreateFeedConfig()
 
@@ -239,33 +239,33 @@ class PluginDownloadBrowser(Screen):
 	def createPluginFilter(self):
 		#Create Plugin Filter
 		self.PLUGIN_PREFIX2 = []
-		if config.pluginfilter.drivers.getValue():
+		if config.pluginfilter.drivers.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
-		if config.pluginfilter.extensions.getValue():
+		if config.pluginfilter.extensions.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
-		if config.pluginfilter.m2k.getValue():
+		if config.pluginfilter.m2k.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'm2k')
-		if config.pluginfilter.picons.getValue():
+		if config.pluginfilter.picons.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'picons')
-		if config.pluginfilter.pli.getValue():
+		if config.pluginfilter.pli.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'pli')
-		if config.pluginfilter.security.getValue():
+		if config.pluginfilter.security.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'security')
-		if config.pluginfilter.settings.getValue():
+		if config.pluginfilter.settings.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'settings')
-		if config.pluginfilter.skins.getValue():
+		if config.pluginfilter.skins.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
-		if config.pluginfilter.display.getValue():
+		if config.pluginfilter.display.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'display')
-		if config.pluginfilter.softcams.getValue():
+		if config.pluginfilter.softcams.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'softcams')
-		if config.pluginfilter.systemplugins.getValue():
+		if config.pluginfilter.systemplugins.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'systemplugins')
-		if config.pluginfilter.vix.getValue():
+		if config.pluginfilter.vix.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'vix')
-		if config.pluginfilter.weblinks.getValue():
+		if config.pluginfilter.weblinks.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'weblinks')
-		if config.pluginfilter.kernel.getValue():
+		if config.pluginfilter.kernel.value:
 			self.PLUGIN_PREFIX2.append('kernel-module-')
 
 	def go(self):
@@ -539,7 +539,7 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		temp = self.plugins.keys()
-		if config.usage.sort_pluginlist.getValue():
+		if config.usage.sort_pluginlist.value:
 			temp.sort()
 		for x in temp:
 			if x in self.expanded:
@@ -604,7 +604,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		if config.usage.sort_settings.getValue():
+		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 
 	def selectionChanged(self):
@@ -625,7 +625,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
-		if config.pluginfilter.userfeed.getValue() != "http://":
+		if config.pluginfilter.userfeed.value != "http://":
 			CreateFeedConfig()
 
 	def keySave(self):
@@ -648,11 +648,11 @@ class PluginFilter(ConfigListScreen, Screen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].getCurrent()[1].value = callback
 			self["config"].invalidate(self["config"].getCurrent())
 
 language.addCallback(languageChanged)

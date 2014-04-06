@@ -24,7 +24,7 @@ startswap = None
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
-		if config.plugins.infopanel.swapautostart.getValue():
+		if config.plugins.infopanel.swapautostart.value:
 			print "[SwapManager] autostart"
 			startswap = StartSwap()
 			startswap.start()
@@ -132,7 +132,7 @@ class Swap(Screen):
 		self.activityTimer.stop()
 		if path.exists('/etc/rcS.d/S98SwapManager'):
 			remove('/etc/rcS.d/S98SwapManager')
-			config.plugins.infopanel.swapautostart.setValue(True)
+			config.plugins.infopanel.swapautostart.value = True
 			config.plugins.infopanel.swapautostart.save()
 		if path.exists('/tmp/swapdevices.tmp'):
 			remove('/tmp/swapdevices.tmp')
@@ -176,11 +176,11 @@ class Swap(Screen):
 						self.swapsize = info[stat.ST_SIZE]
 						continue
 
-		if config.plugins.infopanel.swapautostart.getValue() and self.swap_place:
+		if config.plugins.infopanel.swapautostart.value and self.swap_place:
 			self['autostart_off'].hide()
 			self['autostart_on'].show()
 		else:
-			config.plugins.infopanel.swapautostart.setValue(False)
+			config.plugins.infopanel.swapautostart.value = False
 			config.plugins.infopanel.swapautostart.save()
 			configfile.save()
 			self['autostart_on'].hide()
@@ -258,8 +258,8 @@ class Swap(Screen):
 	def createDel2(self, result, retval, extra_args = None):
 		if retval == 0:
 			remove(self.swap_place)
-			if config.plugins.infopanel.swapautostart.getValue():
-				config.plugins.infopanel.swapautostart.setValue(False)
+			if config.plugins.infopanel.swapautostart.value:
+				config.plugins.infopanel.swapautostart.value = False
 				config.plugins.infopanel.swapautostart.save()
 				configfile.save()
 			self.updateSwap()
@@ -298,11 +298,11 @@ class Swap(Screen):
 		
 	def autoSsWap(self):
 		if self.swap_place:
-			if config.plugins.infopanel.swapautostart.getValue():
-				config.plugins.infopanel.swapautostart.setValue(False)
+			if config.plugins.infopanel.swapautostart.value:
+				config.plugins.infopanel.swapautostart.value = False
 				config.plugins.infopanel.swapautostart.save()
 			else:
-				config.plugins.infopanel.swapautostart.setValue(True)
+				config.plugins.infopanel.swapautostart.value = True
 				config.plugins.infopanel.swapautostart.save()
 			configfile.save()
 		else:

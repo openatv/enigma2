@@ -62,18 +62,19 @@ keyDescriptions = [{
 		KEYIDS["KEY_RIGHT"]: ("RIGHT",),
 		KEYIDS["KEY_VIDEO"]: ("VIDEO",),
 		KEYIDS["KEY_INFO"]: ("INFO",),
+		KEYIDS["KEY_EPG"]: ("EPG",),
 		KEYIDS["KEY_AUDIO"]: ("AUDIO",),
 		KEYIDS["KEY_TV"]: ("TV",),
 		KEYIDS["KEY_RADIO"]: ("RADIO",),
 		KEYIDS["KEY_TEXT"]: ("TEXT",),
 		KEYIDS["KEY_NEXT"]: ("ARROWRIGHT",),
 		KEYIDS["KEY_PREVIOUS"]: ("ARROWLEFT",),
-		KEYIDS["KEY_PREVIOUSSONG"]: ("RED", "SHIFT"),
-		KEYIDS["KEY_PLAYPAUSE"]: ("YELLOW", "SHIFT"),
-		KEYIDS["KEY_PLAY"]: ("GREEN", "SHIFT"),
-		KEYIDS["KEY_NEXTSONG"]: ("BLUE", "SHIFT"),
-		KEYIDS["KEY_CHANNELUP"]: ("BOUQUET+",),
-		KEYIDS["KEY_CHANNELDOWN"]: ("BOUQUET-",),
+		KEYIDS["KEY_PREVIOUSSONG"]: ("PREVIOUSSKIP"),
+		KEYIDS["KEY_PLAYPAUSE"]: ("PLAYPAUSE"),
+		KEYIDS["KEY_PLAY"]: ("PLAY"),
+		KEYIDS["KEY_NEXTSONG"]: ("NEXTSKIP"),
+		KEYIDS["KEY_CHANNELUP"]: ("CH+",),
+		KEYIDS["KEY_CHANNELDOWN"]: ("CH-",),
 		KEYIDS["KEY_0"]: ("0",),
 		KEYIDS["KEY_1"]: ("1",),
 		KEYIDS["KEY_2"]: ("2",),
@@ -144,7 +145,7 @@ def queryKeyBinding(context, action):
 
 def getKeyDescription(key):
 	if rc_model.rcIsDefault():
-		idx = config.misc.rcused.getValue()
+		idx = config.misc.rcused.value
 	else:
 		idx = 2
 	if key in keyDescriptions[idx]:

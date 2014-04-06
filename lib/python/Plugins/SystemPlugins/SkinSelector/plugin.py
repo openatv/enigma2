@@ -49,9 +49,9 @@ class SkinSelector(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		tmp = config.skin.primary_skin.getValue().find('/skin.xml')
+		tmp = config.skin.primary_skin.value.find('/skin.xml')
 		if tmp != -1:
-			tmp = config.skin.primary_skin.getValue()[:tmp]
+			tmp = config.skin.primary_skin.value[:tmp]
 			idx = 0
 			for skin in self.skinlist:
 				if skin == tmp:

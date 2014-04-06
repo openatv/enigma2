@@ -296,10 +296,10 @@ class TimerEditList(Screen):
 			self.removeTimer(True)
 		elif answer[1] == 'yesremove':
 			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
-				if config.EMC.movie_trashcan_enable.getValue():
-					trashpath = config.EMC.movie_trashcan_path.getValue()
+				if config.EMC.movie_trashcan_enable.value:
+					trashpath = config.EMC.movie_trashcan_path.value
 					self.MoveToTrash(trashpath)
-			elif config.usage.movielist_trashcan.getValue():
+			elif config.usage.movielist_trashcan.value:
 				trashpath = resolveFilename(SCOPE_HDD) + '.Trash'
 				self.MoveToTrash(trashpath)
 			else:

@@ -1,4 +1,5 @@
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
+from Components.About import about
 
 class HardwareInfo:
 	device_name = None
@@ -14,7 +15,7 @@ class HardwareInfo:
 			file = open("/proc/stb/info/model", "r")
 			HardwareInfo.device_name = file.readline().strip()
 			file.close()
-			if getBoxType().startswith('tm') or getBoxType().startswith('iqon') or getBoxType().startswith('media') or getBoxType().startswith('opti'):
+			if getBrandOEM() == "dags":
 				HardwareInfo.device_name = "dm800se"
 			try:
 				file = open("/proc/stb/info/version", "r")
@@ -58,3 +59,8 @@ class HardwareInfo:
 
 	def has_deepstandby(self):
 		return getBoxType() != 'dm800'
+
+	def is_nextgen(self):
+		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2', 'BCM7429B0'):
+			return True
+		return False

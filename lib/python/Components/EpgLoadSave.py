@@ -8,7 +8,7 @@ from Components.config import config
 def EpgCacheLoadCheck(session=None, **kwargs):
 	global epgcacheloadcheckpoller
 	epgcacheloadcheckpoller = EpgCacheLoadCheckPoller()
-	if config.epg.cacheloadsched.getValue():
+	if config.epg.cacheloadsched.value:
 		epgcacheloadcheckpoller.start()
 	else:
 		epgcacheloadcheckpoller.stop()
@@ -16,7 +16,7 @@ def EpgCacheLoadCheck(session=None, **kwargs):
 def EpgCacheSaveCheck(session=None, **kwargs):
 	global epgcachesavecheckpoller
 	epgcachesavecheckpoller = EpgCacheSaveCheckPoller()
-	if config.epg.cachesavesched.getValue():
+	if config.epg.cachesavesched.value:
 		epgcachesavecheckpoller.start()
 	else:
 		epgcachesavecheckpoller.stop()
@@ -42,7 +42,7 @@ class EpgCacheLoadCheckPoller:
 
 	def createLoadCheckJob(self):
 		job = Components.Task.Job(_("EPG Cache Check"))
-		if config.epg.cacheloadsched.getValue():
+		if config.epg.cacheloadsched.value:
 			task = Components.Task.PythonTask(job, _("Reloading EPG Cache..."))
 			task.work = self.JobEpgCacheLoad
 			task.weighting = 1
@@ -58,7 +58,7 @@ class EpgCacheLoadCheckPoller:
 		epgcache.load()
 
 	def JobSched(self):
-		self.timer.startLongTimer(int(config.epg.cacheloadtimer.getValue()) * 3600)
+		self.timer.startLongTimer(int(config.epg.cacheloadtimer.value) * 3600)
 
 class EpgCacheSaveCheckPoller:
 	def __init__(self):
@@ -81,7 +81,7 @@ class EpgCacheSaveCheckPoller:
 
 	def createSaveCheckJob(self):
 		job = Components.Task.Job(_("EPG Cache Check"))
-		if config.epg.cachesavesched.getValue():
+		if config.epg.cachesavesched.value:
 			task = Components.Task.PythonTask(job, _("Saving EPG Cache..."))
 			task.work = self.JobEpgCacheSave
 			task.weighting = 1
@@ -97,14 +97,14 @@ class EpgCacheSaveCheckPoller:
 		epgcache.save()
 
 	def JobSched(self):
-		self.timer.startLongTimer(int(config.epg.cachesavetimer.getValue()) * 3600)
+		self.timer.startLongTimer(int(config.epg.cachesavetimer.value) * 3600)
 
 class EpgSaveMsg(MessageBox):
 	def __init__(self, session):
-		MessageBox.__init__(self, session, _("Are you sure you want to save the EPG Cache to:\n") + config.misc.epgcache_filename.getValue(), MessageBox.TYPE_YESNO)
+		MessageBox.__init__(self, session, _("Are you sure you want to save the EPG Cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		self.skinName = "MessageBox"
 
 class EpgLoadMsg(MessageBox):
 	def __init__(self, session):
-		MessageBox.__init__(self, session, _("Are you sure you want to reload the EPG data from:\n") + config.misc.epgcache_filename.getValue(), MessageBox.TYPE_YESNO)
+		MessageBox.__init__(self, session, _("Are you sure you want to reload the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		self.skinName = "MessageBox"

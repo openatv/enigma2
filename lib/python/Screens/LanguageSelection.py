@@ -124,7 +124,7 @@ class LanguageSelection(Screen):
 			self["summarylangname"].setText("Updating cache")
 			return
 
-		if lang != config.osd.language.getValue():
+		if lang != config.osd.language.value:
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
 
@@ -140,7 +140,7 @@ class LanguageSelection(Screen):
 			return
 
 		language.activateLanguage(lang)
-		config.misc.languageselected.setValue(0)
+		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()
 		print "ok"
 

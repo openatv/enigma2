@@ -67,7 +67,7 @@ def checkConfigBackup():
 		return None		
 
 def checkBackupFile():
-	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
+	backuplocation = config.plugins.configurationbackup.backuplocation.value
 	if backuplocation.endswith('/'):
 		fullbackupfile =  backuplocation + 'backup_' + boxtype + '/' + backupfile
 		if fileExists(fullbackupfile):
@@ -147,6 +147,6 @@ class ImageWizard(WizardLanguage, Rc):
 		config.plugins.configurationbackup.save()
 
 	
-if config.misc.firstrun.getValue():
+if config.misc.firstrun.value:
 	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
 

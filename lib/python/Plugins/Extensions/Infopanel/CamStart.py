@@ -72,9 +72,9 @@ class CamStart:
 			self.service = None
 
 	def timerEvent(self):
-		if config.softcam.restartAttempts.getValue() == "0":
+		if config.softcam.restartAttempts.value == "0":
 			return
-		self.timerTime = int(config.softcam.restartTime.getValue())
+		self.timerTime = int(config.softcam.restartTime.value)
 		emuDir = "/etc/"
 		self.emuList = []
 		self.mlist = []
@@ -82,8 +82,8 @@ class CamStart:
 		self.emuBin = []
 		self.emuStart = []
 		self.emuDirlist = os.listdir(emuDir)
-		cam_name = config.softcam.actCam.getValue()
-		cam_name2 = config.softcam.actCam2.getValue()
+		cam_name = config.softcam.actCam.value
+		cam_name2 = config.softcam.actCam2.value
 		if (cam_name == "no CAM 1 active" or cam_name == "") and (cam_name2 == "no CAM 1 active" or cam_name2 == ""):
 			self.timer.stop()
 			self.service = None
@@ -166,7 +166,7 @@ class CamStart:
 							#// AND CAM IN LIST
 							if camfound2 == 1:
 								import time
-								time.sleep (int(config.softcam.waittime.getValue()))
+								time.sleep (int(config.softcam.waittime.value))
 								start = self.emuStart[indexcam2]
 								print "[CAMSTARTER] no CAM active, starting " + start
 								os.system("echo Start attempts cam 2: " + str(self.count) + " cmd=" + start + " >> " + "/tmp/camstarter.txt")
@@ -177,7 +177,7 @@ class CamStart:
 						print "[CAMSTARTER] No Cam found to start"
 				
 				# If Cam is running don't check anymore
-				if config.softcam.restartRunning.getValue() and camrunning == 1:
+				if config.softcam.restartRunning.value and camrunning == 1:
 					if camfound2 == 1:
 						if camrunning2 == 1:
 							print "[CAMSTARTER] Cam is running, exit camstarter"
@@ -191,7 +191,7 @@ class CamStart:
 			except:
 				pass
 
-			if self.count < int(config.softcam.restartAttempts.getValue()):
+			if self.count < int(config.softcam.restartAttempts.value):
 				self.startTimer()
 			else:
 				self.count = 0

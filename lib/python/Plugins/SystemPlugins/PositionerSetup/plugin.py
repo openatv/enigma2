@@ -93,17 +93,18 @@ class PositionerSetup(Screen):
 					service = self.session.pip.pipservice
 					feInfo = service and service.frontendInfo()
 					if feInfo:
-						cur = feInfo.getTransponderData()
+						cur = feInfo.getTransponderData(True)
 					del feInfo
 					del service
 					if hasattr(session, 'infobar'):
-						if session.infobar.servicelist.dopipzap:
+						if session.infobar.servicelist and session.infobar.servicelist.dopipzap:
 							session.infobar.servicelist.togglePipzap()
 					if hasattr(session, 'pip'):
 						del session.pip
 					session.pipshown = False
-					if not self.openFrontend():
-						self.frontend = None # in normal case this should not happen
+				if not self.openFrontend():
+					self.frontend = None # in normal case this should not happen
+					if hasattr(self, 'raw_channel'):
 						del self.raw_channel
 
 		self.frontendStatus = { }
@@ -245,7 +246,7 @@ class PositionerSetup(Screen):
 			self.sitelat = 50.767
 			self.latitudeOrientation = 'north'
 			self.tuningstepsize = 0.36
-			self.rotorPositions = 49
+			self.rotorPositions = 99
 			self.turningspeedH = 2.3
 			self.turningspeedV = 1.7
 		self.sitelat = PositionerSetup.orbital2metric(self.sitelat, self.latitudeOrientation)
@@ -1016,7 +1017,7 @@ class PositionerSetupLog(Screen):
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button(_("Save"))
-		self["list"] = ScrollLabel(log.getvalue())
+		self["list"] = ScrollLabel(log.value)
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ColorActions"],
 		{
 			"red": self.clear,
@@ -1037,7 +1038,7 @@ class PositionerSetupLog(Screen):
 	def save(self):
 		try:
 			f = open('/tmp/positionersetup.log', 'w')
-			f.write(log.getvalue())
+			f.write(log.value)
 			f.close()
 		except Exception, e:
 			self["list"].setText(_("Failed to write /tmp/positionersetup.log: ") + str(e))

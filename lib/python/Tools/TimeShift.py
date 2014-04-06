@@ -15,7 +15,7 @@ class AddCopyTimeshiftTask(Task):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
-		self.srcfile = config.usage.timeshift_path.getValue() + srcfile + ".copy"
+		self.srcfile = config.usage.timeshift_path.value + srcfile + ".copy"
 		self.destfile = destfile + ".ts"
 
 		self.ProgressTimer = eTimer()
@@ -52,8 +52,8 @@ class AddMergeTimeshiftTask(Task):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
-		self.srcfile = config.usage.default_path.getValue() + srcfile
-		self.destfile = config.usage.default_path.getValue() + destfile
+		self.srcfile = config.usage.default_path.value + srcfile
+		self.destfile = config.usage.default_path.value + destfile
 
 		self.ProgressTimer = eTimer()
 		self.ProgressTimer.callback.append(self.ProgressUpdate)

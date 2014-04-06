@@ -211,7 +211,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 
 	def whichCam(self):
 		#// check for active cam 1
-		cam = config.softcam.actCam.getValue()
+		cam = config.softcam.actCam.value
 		self.curcam = None
 		self.curcamIndex = None
 		if cam in self.mlist:
@@ -222,7 +222,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 				self.curcamIndex = index
 
 		#// check for active cam 2		
-		cam = config.softcam.actCam2.getValue()
+		cam = config.softcam.actCam2.value
 		self.curcam2 = None
 		self.curcam2Index = None
 		if cam in self.mlist:
@@ -250,9 +250,9 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Select Cam 1"), self.cam1sel))
 		if len(self.emuStart) > 1:
 			self["actifcam2"].show()
-			if self.cam1sel.getValue() != _('no cam') or config.softcam.actCam.getValue() != _("no CAM 1 active"):
+			if self.cam1sel.value != _('no cam') or config.softcam.actCam.value != _("no CAM 1 active"):
 				self.list.append(getConfigListEntry(_("Select Cam 2"), self.cam2sel))
-				if self.cam2sel.getValue() != _('no cam'):
+				if self.cam2sel.value != _('no cam'):
 					self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
 		else:
 			self["actifcam2"].hide()
@@ -468,7 +468,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		import time
 		self.container = eConsoleAppContainer()
 
-		if config.softcam.camstartMode.getValue() == "0" or not fileExists('/etc/init.d/softcam'):
+		if config.softcam.camstartMode.value == "0" or not fileExists('/etc/init.d/softcam'):
 			if oldcam:
 				print '[SOFTCAM] Python stop cam 1: ' + oldcam
 				self.container.execute(self.emuStop[oldcamIndex])
@@ -522,23 +522,23 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		#// Starting the CAM
 		try:
 			if count > 0:
-				if self.cam1sel.getValue() == self.cam2sel.getValue():
+				if self.cam1sel.value == self.cam2sel.value:
 					self.session.openWithCallback(self.doNothing, MessageBox, _("No Cam started !!\n\nCam 1 must be different from Cam 2"), MessageBox.TYPE_ERROR, simple=True)
 					return
-				if config.softcam.camstartMode.getValue() == "0":
+				if config.softcam.camstartMode.value == "0":
 					self.Stopcam()
 
 				self.camIndex = self.cam1sel.getIndex() -1
 				self.cam2Index = self.cam2sel.getIndex() - 1
 				if self.camIndex >= 0:
-					actcam = self.cam1sel.getValue()
+					actcam = self.cam1sel.value
 					self["actifcam"].setText(_("active CAM 1: ") + actcam)
 					self.Save_Settings(actcam)
 					start = self.emuStart[self.camIndex]
 					if self.checkBinName(self.emuBin[self.camIndex], start):
 						self.session.openWithCallback(self.startcam2, MessageBox, actcam + _(" Not Started !!\n\nCam binname must be in the start command line\nCheck your emu config file"), MessageBox.TYPE_ERROR, simple=True)
 						return
-					if config.softcam.camstartMode.getValue() == "0":
+					if config.softcam.camstartMode.value == "0":
 						print '[SOFTCAM] Python start cam 1: ' + actcam
 						self.session.openWithCallback(self.waitTime, MessageBox, _("Starting Cam 1: ") + actcam, MessageBox.TYPE_WARNING, timeout=5, simple=True)
 						self.container = eConsoleAppContainer()
@@ -546,7 +546,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 					else:
 						# Create INIT.D start
 						self.session.openWithCallback(self.doNothing, MessageBox, _("Creating start scripts and starting the cam"), MessageBox.TYPE_WARNING, timeout=10, simple=True)
-						self.Save_Settings2(self.cam2sel.getValue())
+						self.Save_Settings2(self.cam2sel.value)
 
 						camname1 = self.emuBin[self.camIndex]
 						camname2 = self.emuBin[self.cam2Index]
@@ -559,7 +559,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 							camname = "/usr/bin/" + camname2
 							startcmd = self.emuStart[self.cam2Index]
 							stopcmd = self.emuStop[self.cam2Index]							
-							self.createInitdscript("cam2", camname, startcmd, stopcmd, config.softcam.waittime.getValue())
+							self.createInitdscript("cam2", camname, startcmd, stopcmd, config.softcam.waittime.value)
 
 					self["key_green"].setText(_("Restart"))
 
@@ -568,10 +568,10 @@ class SoftcamPanel(ConfigListScreen, Screen):
 
 	def waitTime(self, ret):
 		if self.cam2Index >= 0:
-			if config.softcam.waittime.getValue() == '0':
+			if config.softcam.waittime.value == '0':
 				self.startcam2(None)
 			else:
-				self.session.openWithCallback(self.startcam2, MessageBox, _("Waiting..."), MessageBox.TYPE_WARNING, timeout=int(config.softcam.waittime.getValue()), simple=True)
+				self.session.openWithCallback(self.startcam2, MessageBox, _("Waiting..."), MessageBox.TYPE_WARNING, timeout=int(config.softcam.waittime.value), simple=True)
 
 	def doNothing(self, ret):
 		pass
@@ -579,7 +579,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 	def startcam2(self, ret):
 		camIndex = self.cam2Index
 		if camIndex >= 0:
-			actcam = self.cam2sel.getValue()
+			actcam = self.cam2sel.value
 			self["actifcam2"].setText(_("active CAM 2: ") + actcam)
 			self.Save_Settings2(actcam)
 			start = self.emuStart[camIndex]

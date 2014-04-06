@@ -4,11 +4,13 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol
+from enigma import eDVBVolumecontrol, eTimer
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 from Tools import Notifications
+from time import localtime, time
 import Screens.InfoBar
 from gettext import dgettext
-from boxbranding import getMachineBrand, getMachineName, getBoxType
+
 
 inStandby = None
 
@@ -30,7 +32,7 @@ class Standby2(Screen):
 		self.leaveMute()
 		# set LCDminiTV 
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
+			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#kill me
 		self.close(True)
 
@@ -61,21 +63,26 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
+		self.standbyTimeUnknownTimer = eTimer()
+
 		#mute adc
 		self.setMute()
-		
+	
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			# set LCDminiTV off
 			setLCDModeMinitTV("0")
 
 		self.paused_service = None
 		self.prev_running_service = None
+
 		if self.session.current_dialog:
 			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				#get currently playing service reference
-				self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				#stop actual played dvb-service
-				self.session.nav.stopService()
+				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					self.session.nav.stopService()
+				else:
+					self.standbyTimeUnknownTimer.callback.append(self.stopService)
+					self.standbyTimeUnknownTimer.startLongTimer(60)
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
@@ -91,6 +98,7 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
+		self.standbyTimeUnknownTimer.stop()
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
 		elif self.paused_service:
@@ -106,6 +114,10 @@ class Standby2(Screen):
 
 	def createSummary(self):
 		return StandbySummary
+
+	def stopService(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.nav.stopService()
 
 class Standby(Standby2):
 	def __init__(self, session):
@@ -126,7 +138,7 @@ class Standby(Standby2):
 			self.onClose.append(self.doStandby)
 
 	def doStandby(self):
-			Notifications.AddNotification(Screens.Standby.Standby2)
+		Notifications.AddNotification(Screens.Standby.Standby2)
 
 class StandbySummary(Screen):
 	skin = """
@@ -219,7 +231,7 @@ class TryQuitMainloop(MessageBox):
 		self.close(True)
 
 	def getRecordEvent(self, recservice, event):
-		if event == iRecordableService.evEnd and config.timeshift.isRecording.getValue():
+		if event == iRecordableService.evEnd and config.timeshift.isRecording.value:
 			return
 		else:
 			if event == iRecordableService.evEnd:

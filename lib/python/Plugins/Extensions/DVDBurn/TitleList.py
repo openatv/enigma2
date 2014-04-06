@@ -122,10 +122,10 @@ class TitleList(Screen, HelpableScreen):
 			j = self.backgroundJob
 			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
 		menu.append((_("DVD media toolbox"), self.toolbox))
-		if self.project.settings.output.getValue() == "dvd":
+		if self.project.settings.output.value == "dvd":
 			if len(self["titles"].list):
 				menu.append((_("Burn DVD"), self.burnProject))
-		elif self.project.settings.output.getValue() == "iso":
+		elif self.project.settings.output.value == "iso":
 			menu.append((_("Create DVD-ISO"), self.burnProject))
 		menu.append((_("Burn existing image to DVD"), self.selectImage))
 		if len(self["titles"].list):
@@ -265,7 +265,7 @@ class TitleList(Screen, HelpableScreen):
 	def burnProject(self, answer=True):
 		if not answer:
 			return
-		if self.project.settings.authormode.getValue() == "data_ts":
+		if self.project.settings.authormode.value == "data_ts":
 			job = Process.DVDdataJob(self.project)
 			job_manager.AddJob(job)
 			job_manager.in_background = False
@@ -294,13 +294,13 @@ class TitleList(Screen, HelpableScreen):
 	def updateTitleList(self):
 		list = [ ]
 		for title in self.project.titles:
-			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
+			list.append((title, title.properties.menutitle.value, title.properties.menusubtitle.value, title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
 		self["titles"].list = list
 		self.updateSize()
 		if len(list):
 			self["key_red"].text = _("Remove title")
 			self["key_yellow"].text = _("Title properties")
-			self["title_label"].text = _("Table of contents for collection") + " \"" + self.project.settings.name.getValue() + "\":"
+			self["title_label"].text = _("Table of contents for collection") + " \"" + self.project.settings.name.value + "\":"
 		else:
 			self["key_red"].text = ""
 			self["key_yellow"].text = ""

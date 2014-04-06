@@ -100,7 +100,7 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 		list.append(getConfigListEntry(_("DVB Transmission Way"), config.plugins.SundtekControlCenter.dvbtransmission))
 		list.append(getConfigListEntry(_("USB/Network"), config.plugins.SundtekControlCenter.usbnet.selection))
 		
-		if config.plugins.SundtekControlCenter.usbnet.selection.getValue() == "1": ## if networking then add ip mask to list
+		if config.plugins.SundtekControlCenter.usbnet.selection.value == "1": ## if networking then add ip mask to list
 			sublist = [
 				getConfigListEntry(_("Network IP"), config.plugins.SundtekControlCenter.usbnet.networkip)
 			]
@@ -143,35 +143,35 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 			
 		else: # driver is installed
 			### disable autostart
-			if config.plugins.SundtekControlCenter.autostart.getValue() == False:
+			if config.plugins.SundtekControlCenter.autostart.value == False:
 				self.prompt("/usr/sundtek/sun_dvb.sh noautostart")
 				
-			if config.plugins.SundtekControlCenter.usbnet.selection.getValue() == "1":
+			if config.plugins.SundtekControlCenter.usbnet.selection.value == "1":
 				### save the IP for networking
 				f=open("/etc/sundtek.net", "w")
-				networkingip=config.plugins.SundtekControlCenter.usbnet.networkip.getValue()+"\n"
+				networkingip=config.plugins.SundtekControlCenter.usbnet.networkip.value+"\n"
 				networkingip.lstrip().rstrip()
 				f.writelines('REMOTE_IPTV_SERVER='+networkingip)
 				f.close()
 				
-				if config.plugins.SundtekControlCenter.autostart.getValue() == True:
+				if config.plugins.SundtekControlCenter.autostart.value == True:
 					self.prompt("/usr/sundtek/sun_dvb.sh enable_net")
 				
 			else:
-				if config.plugins.SundtekControlCenter.dvbtransmission.getValue() == "0":
+				if config.plugins.SundtekControlCenter.dvbtransmission.value == "0":
 					### dvb-s/ dvb-s2
-					if config.plugins.SundtekControlCenter.autostart.getValue() == True:
+					if config.plugins.SundtekControlCenter.autostart.value == True:
 						### enable autostart
 						self.prompt("/usr/sundtek/sun_dvb.sh enable_s2")
 						
-				elif config.plugins.SundtekControlCenter.dvbtransmission.getValue() == "1":
+				elif config.plugins.SundtekControlCenter.dvbtransmission.value == "1":
 					### dvb-c
-					if config.plugins.SundtekControlCenter.autostart.getValue() == True:
+					if config.plugins.SundtekControlCenter.autostart.value == True:
 						### enable autostart
 						self.prompt("/usr/sundtek/sun_dvb.sh enable_c")
 				else:
 					### dvb-t
-					if config.plugins.SundtekControlCenter.autostart.getValue() == True:
+					if config.plugins.SundtekControlCenter.autostart.value == True:
 						### enable autostart
 						self.prompt("/usr/sundtek/sun_dvb.sh enable_t")
 	
@@ -182,16 +182,16 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 		self.setsettings()
 		
 		if (os.path.exists("/usr/sundtek/mediasrv")) and (os.path.exists("/usr/sundtek/mediaclient")) and (os.path.exists("/usr/sundtek/sun_dvb.sh")):
-			if config.plugins.SundtekControlCenter.dvbtransmission.getValue() == "0":
+			if config.plugins.SundtekControlCenter.dvbtransmission.value == "0":
 				### dvb-s/ dvb-s2
 				self.prompt("/usr/sundtek/sun_dvb.sh start_s2")
-			elif config.plugins.SundtekControlCenter.dvbtransmission.getValue() == "1":
+			elif config.plugins.SundtekControlCenter.dvbtransmission.value == "1":
 				### dvb-c
 				self.prompt("/usr/sundtek/sun_dvb.sh start_c")
 			else:
 				### dvb-t
 				self.prompt("/usr/sundtek/sun_dvb.sh start_t")
-			if config.plugins.SundtekControlCenter.usbnet.selection.getValue() == "1":
+			if config.plugins.SundtekControlCenter.usbnet.selection.value == "1":
 				### networking
 				self.prompt("/usr/sundtek/sun_dvb.sh start_net")
 			
@@ -213,8 +213,8 @@ class SundtekControlCenter(Screen, ConfigListScreen):
 
 	def usenetip(self, result): 
 		if result:
-			config.plugins.SundtekControlCenter.usbnet.selection.setValue("1")
-			config.plugins.SundtekControlCenter.usbnet.networkip.setValue(os.popen("/usr/sundtek/mediaclient --scan-network", "r").read().split()[20])
+			config.plugins.SundtekControlCenter.usbnet.selection.value = "1"
+			config.plugins.SundtekControlCenter.usbnet.networkip.value = os.popen("/usr/sundtek/mediaclient --scan-network", "r").read().split()[20]
 			self.updateSettingList()
 
 	def installdriverrequest(self, result):

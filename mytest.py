@@ -69,7 +69,7 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 ####################################################
 
 def useSyncUsingChanged(configelement):
-	if config.misc.SyncTimeUsing.getValue() == "0":
+	if config.misc.SyncTimeUsing.value == "0":
 		print "[Time By]: Transponder"
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
@@ -80,16 +80,16 @@ def useSyncUsingChanged(configelement):
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if config.misc.NTPserver.getValue() == "pool.ntp.org":
+	if config.misc.NTPserver.value == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
 	f = open("/etc/default/ntpdate", "w")
-	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
+	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
 	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
-	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
+	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.value)
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback = True)
 
 profile("Twisted")
@@ -418,7 +418,7 @@ class PowerKey:
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
-		self.doAction(action = config.usage.on_long_powerpress.getValue())
+		self.doAction(action = config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
 		self.standbyblocked = 1
@@ -444,7 +444,7 @@ class PowerKey:
 
 	def powerup(self):
 		if self.standbyblocked == 0:
-			self.doAction(action = config.usage.on_short_powerpress.getValue())
+			self.doAction(action = config.usage.on_short_powerpress.value)
 
 	def gotoStandby(self, ret):
 		self.standby()
@@ -460,7 +460,7 @@ class AutoScartControl:
 	def __init__(self, session):
 		self.force = False
 		self.current_vcr_sb = enigma.eAVSwitch.getInstance().getVCRSlowBlanking()
-		if self.current_vcr_sb and config.av.vcrswitch.getValue():
+		if self.current_vcr_sb and config.av.vcrswitch.value:
 			self.scartDialog = session.instantiateDialog(Scart, True)
 		else:
 			self.scartDialog = session.instantiateDialog(Scart, False)
@@ -473,7 +473,7 @@ class AutoScartControl:
 	def VCRSbChanged(self, value):
 		#print "vcr sb changed to", value
 		self.current_vcr_sb = value
-		if config.av.vcrswitch.getValue() or value > 2:
+		if config.av.vcrswitch.value or value > 2:
 			if value:
 				self.scartDialog.showMessageBox()
 			else:
@@ -495,7 +495,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue(), config.misc.isNextPowerTimerAfterEventActionAuto.getValue())
+	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value, config.misc.isNextPowerTimerAfterEventActionAuto.value)
 	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
@@ -562,11 +562,11 @@ def runScreenTest():
 		f.write('-E2-')
 		f.close()
 		
-	print "lastshutdown=%s		(True = last shutdown was OK)" % config.usage.shutdownOK.getValue()
-	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
-	print "bootup action=%s" % config.usage.boot_action.getValue()
-	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal' or not config.usage.boot_action.getValue() == 'normal':
-		print "last shutdown = %s" % config.usage.shutdownOK.getValue()
+	print "lastshutdown=%s		(True = last shutdown was OK)" % config.usage.shutdownOK.value
+	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.value
+	print "bootup action=%s" % config.usage.boot_action.value
+	if not config.usage.shutdownOK.value and not config.usage.shutdownNOK_action.value == 'normal' or not config.usage.boot_action.value == 'normal':
+		print "last shutdown = %s" % config.usage.shutdownOK.value
 		import Screens.PowerLost
 		Screens.PowerLost.PowerLost(session)
 
@@ -585,7 +585,7 @@ def runScreenTest():
 
 	#get currentTime
 	nowTime = time()
-	if not config.misc.SyncTimeUsing.getValue() == "0" or boxtype.startswith('gb') or getBrandOEM().startswith('ini'):
+	if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb') or getBrandOEM().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
@@ -607,7 +607,7 @@ def runScreenTest():
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-#		if not config.misc.SyncTimeUsing.getValue() == "0" or boxtype.startswith('gb'):
+#		if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -624,11 +624,11 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if config.workaround.deeprecord.getValue():
+			if config.workaround.deeprecord.value:
 				wptime = startTime[0] - 240 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-#		if not config.misc.SyncTimeUsing.getValue() == "0" or boxtype.startswith('gb'):
+#		if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
@@ -690,7 +690,7 @@ Components.NetworkTime.AutoNTPSync()
 
 profile("keymapparser")
 import keymapparser
-keymapparser.readKeymap(config.usage.keymap.getValue())
+keymapparser.readKeymap(config.usage.keymap.value)
 
 profile("Network")
 import Components.Network, Components.Wol

@@ -44,18 +44,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if SystemInfo["CanMeasureFrontendInputPower"]:
 			self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), nim.powerMeasurement)
 			list.append(self.advancedPowerMeasurement)
-			if nim.powerMeasurement.getValue():
+			if nim.powerMeasurement.value:
 				list.append(getConfigListEntry(_("Power threshold in mA"), nim.powerThreshold))
 				self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), nim.turningSpeed)
 				list.append(self.turningSpeed)
-				if nim.turningSpeed.getValue() == "fast epoch":
+				if nim.turningSpeed.value == "fast epoch":
 					self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), nim.fastTurningBegin)
 					self.turnFastEpochEnd = getConfigListEntry(_("End time"), nim.fastTurningEnd)
 					list.append(self.turnFastEpochBegin)
 					list.append(self.turnFastEpochEnd)
 		else:
-			if nim.powerMeasurement.getValue():
-				nim.powerMeasurement.setValue(False)
+			if nim.powerMeasurement.value:
+				nim.powerMeasurement.value = False
 				nim.powerMeasurement.save()
 		list.append(getConfigListEntry(_("Tuning step size") + " [" + chr(176) + "]", nim.tuningstepsize))
 		list.append(getConfigListEntry(_("Memory positions"), nim.rotorPositions))
@@ -112,28 +112,28 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 
-			if self.nimConfig.configMode.getValue() == "simple":			#simple setup
+			if self.nimConfig.configMode.value == "simple":			#simple setup
 				self.diseqcModeEntry = getConfigListEntry(pgettext("Satellite configuration mode", "Mode"), self.nimConfig.diseqcMode)
 				self.list.append(self.diseqcModeEntry)
-				if self.nimConfig.diseqcMode.getValue() in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.getValue())
-				if self.nimConfig.diseqcMode.getValue() == "positioner":
+				if self.nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
+					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
+				if self.nimConfig.diseqcMode.value == "positioner":
 					self.createPositionerSetup(self.list)
-			elif self.nimConfig.configMode.getValue() == "equal":
+			elif self.nimConfig.configMode.value == "equal":
 				choices = []
 				nimlist = nimmanager.canEqualTo(self.nim.slot)
 				for id in nimlist:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
-			elif self.nimConfig.configMode.getValue() == "satposdepends":
+			elif self.nimConfig.configMode.value == "satposdepends":
 				choices = []
 				nimlist = nimmanager.canDependOn(self.nim.slot)
 				for id in nimlist:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
-			elif self.nimConfig.configMode.getValue() == "loopthrough":
+			elif self.nimConfig.configMode.value == "loopthrough":
 				choices = []
 				print "connectable to:", nimmanager.canConnectTo(self.slotid)
 				connectable = nimmanager.canConnectTo(self.slotid)
@@ -141,9 +141,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
 				self.list.append(getConfigListEntry(_("Connected to"), self.nimConfig.connectedTo))
-			elif self.nimConfig.configMode.getValue() == "nothing":
+			elif self.nimConfig.configMode.value == "nothing":
 				pass
-			elif self.nimConfig.configMode.getValue() == "advanced": # advanced
+			elif self.nimConfig.configMode.value == "advanced": # advanced
 				# SATs
 				self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.advanced.sats)
 				self.list.append(self.advancedSatsEntry)
@@ -160,14 +160,14 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
-			if self.nimConfig.configMode.getValue() == "enabled":
+			if self.nimConfig.configMode.value == "enabled":
 				self.list.append(getConfigListEntry(_("Network ID"), self.nimConfig.cable.scan_networkid))
 				self.cableScanType=getConfigListEntry(_("Used service scan type"), self.nimConfig.cable.scan_type)
 				self.list.append(self.cableScanType)
-				if self.nimConfig.cable.scan_type.getValue() == "provider":
+				if self.nimConfig.cable.scan_type.value == "provider":
 					self.list.append(getConfigListEntry(_("Provider to scan"), self.nimConfig.cable.scan_provider))
 				else:
-					if self.nimConfig.cable.scan_type.getValue() == "bands":
+					if self.nimConfig.cable.scan_type.value == "bands":
 						# TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
 						self.list.append(getConfigListEntry(_("Scan %s band") % "EU VHF I", self.nimConfig.cable.scan_band_EU_VHF_I))
 						self.list.append(getConfigListEntry(_("Scan %s band") % "EU MID", self.nimConfig.cable.scan_band_EU_MID))
@@ -181,7 +181,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.list.append(getConfigListEntry(_("Scan %s band") % "US HIGH", self.nimConfig.cable.scan_band_US_HIGH))
 						self.list.append(getConfigListEntry(_("Scan %s band") % "US SUPER", self.nimConfig.cable.scan_band_US_SUPER))
 						self.list.append(getConfigListEntry(_("Scan %s band") % "US HYPER", self.nimConfig.cable.scan_band_US_HYPER))
-					elif self.nimConfig.cable.scan_type.getValue() == "steps":
+					elif self.nimConfig.cable.scan_type.value == "steps":
 						self.list.append(getConfigListEntry(_("Frequency scan step size(khz)"), self.nimConfig.cable.scan_frequency_steps))
 					# TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
 					self.list.append(getConfigListEntry(_("Scan %s") % "QAM16", self.nimConfig.cable.scan_mod_qam16))
@@ -198,7 +198,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 			self.have_advanced = False
-			if self.nimConfig.configMode.getValue() == "enabled":
+			if self.nimConfig.configMode.value == "enabled":
 				self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
 				self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.terrestrial_5V))
 		else:
@@ -224,15 +224,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				break
 
 	def run(self):
-		if self.nimConfig.configMode.getValue() == "simple":
+		if self.nimConfig.configMode.value == "simple":
 			autodiseqc_ports = 0
-			if self.nimConfig.diseqcMode.getValue() == "single":
+			if self.nimConfig.diseqcMode.value == "single":
 				if self.nimConfig.diseqcA.orbital_position == 3600:
 					autodiseqc_ports = 1
-			elif self.nimConfig.diseqcMode.getValue() == "diseqc_a_b":
+			elif self.nimConfig.diseqcMode.value == "diseqc_a_b":
 				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600:
 					autodiseqc_ports = 2
-			elif self.nimConfig.diseqcMode.getValue() == "diseqc_a_b_c_d":
+			elif self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
 				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600 or self.nimConfig.diseqcC.orbital_position == 3600 or self.nimConfig.diseqcD.orbital_position == 3600:
 					autodiseqc_ports = 4
 			if autodiseqc_ports:
@@ -244,9 +244,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if x in (self.turnFastEpochBegin, self.turnFastEpochEnd):
 				# workaround for storing only hour*3600+min*60 value in configfile
 				# not really needed.. just for cosmetics..
-				tm = localtime(x[1].getValue())
+				tm = localtime(x[1].value)
 				dt = datetime(1970, 1, 1, tm.tm_hour, tm.tm_min)
-				x[1].setValue(int(mktime(dt.timetuple())))
+				x[1].value = int(mktime(dt.timetuple()))
 			x[1].save()
 		nimmanager.sec.update()
 		self.saveAll()
@@ -263,7 +263,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.createSetup()
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
-		lnbnum = int(Sat.lnb.getValue())
+		lnbnum = int(Sat.lnb.value)
 		currLnb = self.nimConfig.advanced.lnb[lnbnum]
 
 		if isinstance(currLnb, ConfigNothing):
@@ -277,25 +277,25 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
 			self.advancedLof = getConfigListEntry("LOF", currLnb.lof)
 			self.list.append(self.advancedLof)
-			if currLnb.lof.getValue() == "user_defined":
+			if currLnb.lof.value == "user_defined":
 				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
 				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
-			if currLnb.lof.getValue() == "unicable" or currLnb.lof.getValue() == "jess":
+			if currLnb.lof.value == "unicable" or currLnb.lof.value == "jess":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
-				if currLnb.unicable.getValue() == "unicable_user":
+				if currLnb.unicable.value == "unicable_user":
 					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
 					self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
 					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
-				elif currLnb.unicable.getValue() == "unicable_matrix":
-					manufacturer_name = currLnb.unicableMatrixManufacturer.getValue()
+				elif currLnb.unicable.value == "unicable_matrix":
+					manufacturer_name = currLnb.unicableMatrixManufacturer.value
 					manufacturer = currLnb.unicableMatrix[manufacturer_name]
-					product_name = manufacturer.product.getValue()
+					product_name = manufacturer.product.value
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableMatrixManufacturer)
 					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
 					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
@@ -303,10 +303,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedType)
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
-				elif currLnb.unicable.getValue() == "unicable_lnb":
-					manufacturer_name = currLnb.unicableLnbManufacturer.getValue()
+				elif currLnb.unicable.value == "unicable_lnb":
+					manufacturer_name = currLnb.unicableLnbManufacturer.value
 					manufacturer = currLnb.unicableLnb[manufacturer_name]
-					product_name = manufacturer.product.getValue()
+					product_name = manufacturer.product.value
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableLnbManufacturer)
 					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
 					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
@@ -322,7 +322,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if len(choices):
 					self.advancedConnected = getConfigListEntry(_("connected"), self.nimConfig.advanced.unicableconnected)
 					self.list.append(self.advancedConnected)
-					if self.nimConfig.advanced.unicableconnected.getValue():
+					if self.nimConfig.advanced.unicableconnected.value:
 						self.nimConfig.advanced.unicableconnectedTo.setChoices(choices)
 						self.list.append(getConfigListEntry(_("Connected to"),self.nimConfig.advanced.unicableconnectedTo))
 
@@ -331,32 +331,32 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
 				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
 
-			if lnbnum < 33 and not currLnb.lof.getValue() == "unicable" and not currLnb.lof.getValue() == "jess":
+			if lnbnum < 33 and not currLnb.lof.value == "unicable" and not currLnb.lof.value == "jess":
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
-			if currLnb.diseqcMode.getValue() != "none":
+			if currLnb.diseqcMode.value != "none":
 				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
 				self.list.append(getConfigListEntry(_("Committed DiSEqC command"), currLnb.commitedDiseqcCommand))
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
-				if currLnb.diseqcMode.getValue() == "1_0":
+				if currLnb.diseqcMode.value == "1_0":
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
 					if currLnb.uncommittedDiseqcCommand.index:
-						if currLnb.commandOrder.getValue() == "ct":
-							currLnb.commandOrder.setValue("cut")
-						elif currLnb.commandOrder.getValue() == "tc":
-							currLnb.commandOrder.setValue("tcu")
+						if currLnb.commandOrder.value == "ct":
+							currLnb.commandOrder.value = "cut"
+						elif currLnb.commandOrder.value == "tc":
+							currLnb.commandOrder.value = "tcu"
 					else:
 						if currLnb.commandOrder.index & 1:
-							currLnb.commandOrder.setValue("tc")
+							currLnb.commandOrder.value = "tc"
 						else:
-							currLnb.commandOrder.setValue("ct")
+							currLnb.commandOrder.value = "ct"
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
 					self.uncommittedDiseqcCommand = getConfigListEntry(_("Uncommitted DiSEqC command"), currLnb.uncommittedDiseqcCommand)
 					self.list.append(self.uncommittedDiseqcCommand)
 					self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
-				if currLnb.diseqcMode.getValue() == "1_2":
+				if currLnb.diseqcMode.value == "1_2":
 					self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
 					self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
 					self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
@@ -364,22 +364,22 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					if SystemInfo["CanMeasureFrontendInputPower"]:
 						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement)
 						self.list.append(self.advancedPowerMeasurement)
-						if currLnb.powerMeasurement.getValue():
+						if currLnb.powerMeasurement.value:
 							self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold))
 							self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), currLnb.turningSpeed)
 							self.list.append(self.turningSpeed)
-							if currLnb.turningSpeed.getValue() == "fast epoch":
+							if currLnb.turningSpeed.value == "fast epoch":
 								self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), currLnb.fastTurningBegin)
 								self.turnFastEpochEnd = getConfigListEntry(_("End time"), currLnb.fastTurningEnd)
 								self.list.append(self.turnFastEpochBegin)
 								self.list.append(self.turnFastEpochEnd)
 					else:
-						if currLnb.powerMeasurement.getValue():
-							currLnb.powerMeasurement.setValue(False)
+						if currLnb.powerMeasurement.value:
+							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
 					self.advancedUsalsEntry = getConfigListEntry(_("Use USALS for this sat"), Sat.usals)
 					self.list.append(self.advancedUsalsEntry)
-					if not Sat.usals.getValue():
+					if not Sat.usals.value:
 						self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
 					self.list.append(getConfigListEntry(_("Tuning step size") + " [" + chr(176) + "]", currLnb.tuningstepsize))
 					self.list.append(getConfigListEntry(_("Memory positions"), currLnb.rotorPositions))
@@ -585,51 +585,51 @@ class NimSelection(Screen):
 		for x in nimmanager.nim_slots:
 			slotid = x.slot
 			nimConfig = nimmanager.getNimConfig(x.slot)
-			text = nimConfig.configMode.getValue()
+			text = nimConfig.configMode.value
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
-					if nimConfig.configMode.getValue() in ("loopthrough", "equal", "satposdepends"):
+					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
 						text = { "loopthrough": _("loopthrough to"),
 								 "equal": _("equal to"),
-								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.getValue()]
-						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.getValue())]
-					elif nimConfig.configMode.getValue() == "nothing":
+								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
+						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
+					elif nimConfig.configMode.value == "nothing":
 						text = _("not configured")
-					elif nimConfig.configMode.getValue() == "simple":
-						if nimConfig.diseqcMode.getValue() in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.getValue()] + "\n"
+					elif nimConfig.configMode.value == "simple":
+						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
+							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
 							text += _("Sats") + ": "
 							satnames = []
 							if nimConfig.diseqcA.orbital_position < 3600:
-								satnames.append(nimmanager.getSatName(int(nimConfig.diseqcA.getValue())))
-							if nimConfig.diseqcMode.getValue() in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
+								satnames.append(nimmanager.getSatName(int(nimConfig.diseqcA.value)))
+							if nimConfig.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 								if nimConfig.diseqcB.orbital_position < 3600:
-									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcB.getValue())))
-							if nimConfig.diseqcMode.getValue() == "diseqc_a_b_c_d":
+									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcB.value)))
+							if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
 								if nimConfig.diseqcC.orbital_position < 3600:
-									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcC.getValue())))
+									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcC.value)))
 								if nimConfig.diseqcD.orbital_position < 3600:
-									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcD.getValue())))
+									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcD.value)))
 							if len(satnames) <= 2:
 								text += ", ".join(satnames)
 							elif len(satnames) > 2:
 								# we need a newline here, since multi content lists don't support automtic line wrapping
 								text += ", ".join(satnames[:2]) + ",\n"
 								text += "         " + ", ".join(satnames[2:])
-						elif nimConfig.diseqcMode.getValue() == "positioner":
+						elif nimConfig.diseqcMode.value == "positioner":
 							text = _("Positioner") + ":"
-							if nimConfig.positionerMode.getValue() == "usals":
+							if nimConfig.positionerMode.value == "usals":
 								text += "USALS"
-							elif nimConfig.positionerMode.getValue() == "manual":
+							elif nimConfig.positionerMode.value == "manual":
 								text += _("manual")
 						else:
 							text = _("simple")
-					elif nimConfig.configMode.getValue() == "advanced":
+					elif nimConfig.configMode.value == "advanced":
 						text = _("advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
-					if nimConfig.configMode.getValue() == "nothing":
+					if nimConfig.configMode.value == "nothing":
 						text = _("nothing connected")
-					elif nimConfig.configMode.getValue() == "enabled":
+					elif nimConfig.configMode.value == "enabled":
 						text = _("enabled")
 				if x.isMultiType():
 					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text

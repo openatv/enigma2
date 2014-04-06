@@ -301,15 +301,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		global listscreen
 		if self.listHeight > 0:
 			if listscreen:
-				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page_listscreen.getValue()
+				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page_listscreen.value
 			else:
-				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.getValue()
+				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.value
 		else:
 			itemHeight = 54 # some default (270/5)
 		if listscreen:
-			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page_listscreen.getValue()))
+			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page_listscreen.value))
 		else:
-			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
+			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.value))
 		self.l.setItemHeight(itemHeight)
 
 		self.nowEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
@@ -319,7 +319,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.curSerPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
 
 	def setEventFontsize(self):
-		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
+		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.value))
 
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
@@ -750,8 +750,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
-		now = time() - config.epg.histminutes.getValue() * 60
-		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
+		now = time() - config.epg.histminutes.value * 60
+		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.value)
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
 
@@ -907,9 +907,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				now = time() - config.epg.histminutes.getValue() * 60
+				now = time() - config.epg.histminutes.value * 60
 				self.ask_time = ret[1] if ret[1] >= now else now
-				self.ask_time = self.ask_time - self.ask_time % int(config.misc.graph_mepg.roundTo.getValue())
+				self.ask_time = self.ask_time - self.ask_time % int(config.misc.graph_mepg.roundTo.value)
 				l = self["list"]
 				l.resetOffset()
 				l.fillMultiEPG(None, self.ask_time)
@@ -925,8 +925,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
 		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
-		now = time() - config.epg.histminutes.getValue() * 60
-		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
+		now = time() - config.epg.histminutes.value * 60
+		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.value)
 		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines(True)
@@ -1058,7 +1058,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 						self.session.nav.RecordTimer.timeChanged(x)
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
-					if not entry.repeated and not config.recording.margin_before.getValue() and not config.recording.margin_after.getValue() and len(simulTimerList) > 1:
+					if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
 						change_time = False
 						conflict_begin = simulTimerList[1].begin
 						conflict_end = simulTimerList[1].end

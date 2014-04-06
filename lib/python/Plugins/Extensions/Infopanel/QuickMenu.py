@@ -570,7 +570,7 @@ class QuickMenu(Screen):
 
 		nimList = []
 		for x in nims:
-			if not nimmanager.getNimConfig(x).configMode.getValue() in ("loopthrough", "satposdepends", "nothing"):
+			if not nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
 				nimList.append(x)
 
 		if len(nimList) == 0:

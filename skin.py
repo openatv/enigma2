@@ -39,13 +39,13 @@ class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.getValue(), self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
 
 class DisplaySkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.getValue(), self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.value, self.msg)
 
 dom_skins = [ ]
 
@@ -109,12 +109,12 @@ display_skin_id = 1
 if getBoxType().startswith('dm'):
 	display_skin_id = 2
 try:
-	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+	if not addSkin(os.path.join('display', config.skin.display_skin.value)):
 		raise DisplaySkinError, "display skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_DISPLAY_SKIN
-	if config.skin.display_skin.getValue() == skin:
+	if config.skin.display_skin.value == skin:
 		skin = 'skin_display.xml'
 	print "defaulting to standard display skin...", skin
 	config.skin.display_skin.value = skin
@@ -131,12 +131,12 @@ except:
 addSkin('skin_subtitles.xml')
 
 try:
-	if not addSkin(config.skin.primary_skin.getValue()):
+	if not addSkin(config.skin.primary_skin.value):
 		raise SkinError, "primary skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
-	if config.skin.primary_skin.getValue() == skin:
+	if config.skin.primary_skin.value == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
 	config.skin.primary_skin.value = skin

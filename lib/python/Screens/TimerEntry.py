@@ -142,7 +142,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
 		default = self.timer.dirname or defaultMoviePath()
-		tmp = config.movielist.videodirs.getValue()
+		tmp = config.movielist.videodirs.value
 		if default not in tmp:
 			tmp.append(default)
 		self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
@@ -173,21 +173,21 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
 		self.list.append(self.timerTypeEntry)
 
-		if self.timerentry_type.getValue() == "once":
+		if self.timerentry_type.value == "once":
 			self.frequencyEntry = None
 		else: # repeated
 			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("Choose between Daily, Weekly, Weekdays or user defined."))
 			self.list.append(self.frequencyEntry)
 			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate, _("Set the date the timer must start."))
 			self.list.append(self.repeatedbegindateEntry)
-			if self.timerentry_repeated.getValue() == "daily":
+			if self.timerentry_repeated.value == "daily":
 				pass
-			if self.timerentry_repeated.getValue() == "weekdays":
+			if self.timerentry_repeated.value == "weekdays":
 				pass
-			if self.timerentry_repeated.getValue() == "weekly":
+			if self.timerentry_repeated.value == "weekly":
 				self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
 
-			if self.timerentry_repeated.getValue() == "user":
+			if self.timerentry_repeated.value == "user":
 				self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
 				self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
 				self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
@@ -197,17 +197,17 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
 
 		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date, _("Set the date the timer must start."))
-		if self.timerentry_type.getValue() == "once":
+		if self.timerentry_type.value == "once":
 			self.list.append(self.entryDate)
 
 		self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime, _("Set the time the timer must start."))
 		self.list.append(self.entryStartTime)
 
 		self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Set the time the timer must stop."))
-		if self.timerentry_justplay.getValue() == "zap":
+		if self.timerentry_justplay.value == "zap":
 			self.list.append(self.entryShowEndTime)
 		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime, _("Set the time the timer must stop."))
-		if self.timerentry_justplay.getValue() != "zap" or self.timerentry_showendtime.getValue():
+		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
 			self.list.append(self.entryEndTime)
 
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service, _("Set the channel for this timer."))
@@ -215,7 +215,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
 		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag for easy finding a recording."))
-		if self.timerentry_justplay.getValue() != "zap":
+		if self.timerentry_justplay.value != "zap":
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(self.dirname)
 			if getPreferredTagEditor():
@@ -285,7 +285,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.pathSelected,
 				MovieLocationBox,
 				_("Select target folder"),
-				self.timerentry_dirname.getValue(),
+				self.timerentry_dirname.value,
 				minFree = 100 # We require at least 100MB free space
 			)
 		elif getPreferredTagEditor() and cur == self.tagsSet:
@@ -309,9 +309,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		return int(mktime(dt.timetuple()))
 
 	def getBeginEnd(self):
-		date = self.timerentry_date.getValue()
-		endtime = self.timerentry_endtime.getValue()
-		starttime = self.timerentry_starttime.getValue()
+		date = self.timerentry_date.value
+		endtime = self.timerentry_endtime.value
+		starttime = self.timerentry_starttime.value
 
 		begin = self.getTimestamp(date, starttime)
 		end = self.getTimestamp(date, endtime)
@@ -321,9 +321,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			end += 86400
 
 		# if the timer type is a Zap and no end is set, set duration to 1 second so time is shown in EPG's.
-		if self.timerentry_justplay.getValue() == "zap":
-			if not self.timerentry_showendtime.getValue():
-				end = begin + (config.recording.margin_before.getValue()*60) + 1
+		if self.timerentry_justplay.value == "zap":
+			if not self.timerentry_showendtime.value:
+				end = begin + (config.recording.margin_before.value*60) + 1
 
 		return begin, end
 
@@ -343,13 +343,13 @@ class TimerEntry(Screen, ConfigListScreen):
 		if not self.timerentry_service_ref.isRecordable():
 			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
 			return
-		self.timer.name = self.timerentry_name.getValue()
-		self.timer.description = self.timerentry_description.getValue()
-		self.timer.justplay = self.timerentry_justplay.getValue() == "zap"
+		self.timer.name = self.timerentry_name.value
+		self.timer.description = self.timerentry_description.value
+		self.timer.justplay = self.timerentry_justplay.value == "zap"
 		self.timer.always_zap = self.timerentry_justplay.value == "zap+record"
-		if self.timerentry_justplay.getValue() == "zap":
-			if not self.timerentry_showendtime.getValue():
-				self.timerentry_endtime.value = self.timerentry_starttime.getValue()
+		if self.timerentry_justplay.value == "zap":
+			if not self.timerentry_showendtime.value:
+				self.timerentry_endtime.value = self.timerentry_starttime.value
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
@@ -370,37 +370,37 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 
-		if self.timer.dirname or self.timerentry_dirname.getValue() != defaultMoviePath():
-			self.timer.dirname = self.timerentry_dirname.getValue()
+		if self.timer.dirname or self.timerentry_dirname.value != defaultMoviePath():
+			self.timer.dirname = self.timerentry_dirname.value
 			config.movielist.last_timer_videodir.value = self.timer.dirname
 			config.movielist.last_timer_videodir.save()
 
-		if self.timerentry_type.getValue() == "once":
+		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
-		if self.timerentry_type.getValue() == "repeated":
-			if self.timerentry_repeated.getValue() == "daily":
+		if self.timerentry_type.value == "repeated":
+			if self.timerentry_repeated.value == "daily":
 				for x in (0, 1, 2, 3, 4, 5, 6):
 					self.timer.setRepeated(x)
 
-			if self.timerentry_repeated.getValue() == "weekly":
+			if self.timerentry_repeated.value == "weekly":
 				self.timer.setRepeated(self.timerentry_weekday.index)
 
-			if self.timerentry_repeated.getValue() == "weekdays":
+			if self.timerentry_repeated.value == "weekdays":
 				for x in (0, 1, 2, 3, 4):
 					self.timer.setRepeated(x)
 
-			if self.timerentry_repeated.getValue() == "user":
+			if self.timerentry_repeated.value == "user":
 				for x in (0, 1, 2, 3, 4, 5, 6):
-					if self.timerentry_day[x].getValue():
+					if self.timerentry_day[x].value:
 						self.timer.setRepeated(x)
 
-			self.timer.repeatedbegindate = self.getTimestamp(self.timerentry_repeatedbegindate.getValue(), self.timerentry_starttime.getValue())
+			self.timer.repeatedbegindate = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
 			if self.timer.repeated:
-				self.timer.begin = self.getTimestamp(self.timerentry_repeatedbegindate.getValue(), self.timerentry_starttime.getValue())
-				self.timer.end = self.getTimestamp(self.timerentry_repeatedbegindate.getValue(), self.timerentry_endtime.getValue())
+				self.timer.begin = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
+				self.timer.end = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_endtime.value)
 			else:
-				self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.getValue())
-				self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.getValue())
+				self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.value)
+				self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.value)
 
 			# when a timer end is set before the start, add 1 day
 			if self.timer.end < self.timer.begin:
@@ -471,8 +471,8 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def pathSelected(self, res):
 		if res is not None:
-			if config.movielist.videodirs.getValue() != self.timerentry_dirname.choices:
-				self.timerentry_dirname.setChoices(config.movielist.videodirs.getValue(), default=res)
+			if config.movielist.videodirs.value != self.timerentry_dirname.choices:
+				self.timerentry_dirname.setChoices(config.movielist.videodirs.value, default=res)
 			self.timerentry_dirname.value = res
 
 	def tagEditFinished(self, ret):
@@ -571,7 +571,7 @@ class InstantRecordTimerEntry(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.end = self.timer.begin + (config.recording.margin_before.getValue() * 60) + 1
+			self.timer.end = self.timer.begin + (config.recording.margin_before.value * 60) + 1
 		self.timer.resetRepeated()
 		self.saveTimer()
 

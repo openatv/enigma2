@@ -4,6 +4,7 @@ from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
+from Tools.HardwareInfo import HardwareInfo
 from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap
@@ -66,7 +67,7 @@ class picshow(Screen):
 		self["label"] = StaticText("")
 		self["thn"] = Pixmap()
 
-		currDir = config.pic.lastDir.getValue()
+		currDir = config.pic.lastDir.value
 		if not pathExists(currDir):
 			currDir = "/"
 
@@ -127,7 +128,7 @@ class picshow(Screen):
 		self.setTitle(_("Picture player"))
 		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.getValue(), int(config.pic.resize.getValue()), "#00000000"))
+		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#00000000"))
 
 	def callbackView(self, val=0):
 		if val > 0:
@@ -264,8 +265,8 @@ T_FULL = 4
 class Pic_Thumb(Screen):
 	def __init__(self, session, piclist, lastindex, path):
 
-		self.textcolor = config.pic.textcolor.getValue()
-		self.color = config.pic.bgcolor.getValue()
+		self.textcolor = config.pic.textcolor.value
+		self.color = config.pic.bgcolor.value
 		textsize = 20
 		self.spaceX = 35
 		self.picX = 190
@@ -351,7 +352,7 @@ class Pic_Thumb(Screen):
 
 	def setPicloadConf(self):
 		sc = getScale()
-		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.getValue(), int(config.pic.resize.getValue()), self.color])
+		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), self.color])
 		self.paintFrame()
 
 	def paintFrame(self):
@@ -445,9 +446,9 @@ class Pic_Thumb(Screen):
 class Pic_Full_View(Screen):
 	def __init__(self, session, filelist, index, path):
 
-		self.textcolor = config.pic.textcolor.getValue()
-		self.bgcolor = config.pic.bgcolor.getValue()
-		space = config.pic.framesize.getValue()
+		self.textcolor = config.pic.textcolor.value
+		self.bgcolor = config.pic.bgcolor.value
+		space = config.pic.framesize.value
 
 		self.size_w = getDesktop(0).size().width()
 		self.size_h = getDesktop(0).size().height()
@@ -455,8 +456,8 @@ class Pic_Full_View(Screen):
 		print 'A:',self.size_w
 		print 'B:',self.size_h
 
-		if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
-			(size_w, size_h) = eval(config.pic.fullview_resolution.getValue())
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+			(size_w, size_h) = eval(config.pic.fullview_resolution.value)
 			print 'C:',size_w
 			print 'D:',size_h
 			gMainDC.getInstance().setResolution(size_w, size_h)
@@ -521,7 +522,7 @@ class Pic_Full_View(Screen):
 
 		if self.maxentry >= 0:
 			# self.onLayoutFinish.append(self.setPicloadConf)
-			if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
+			if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
 				self.createTimer = eTimer()
 				self.createTimer.callback.append(self.setPicloadConf)
 				self.onLayoutFinish.append(self.LayoutFinish)
@@ -529,26 +530,26 @@ class Pic_Full_View(Screen):
 				self.onLayoutFinish.append(self.setPicloadConf)
 
 	def LayoutFinish(self):
-		if about.getCPUString() != 'BCM7346B2' and about.getCPUString() != 'BCM7425B2':
+		if not HardwareInfo().is_nextgen():
 			self.createTimer.start(800)
 		else:
 			self.createTimer.start(1600)
 
 	def setPicloadConf(self):
-		if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
 			self.createTimer.stop()
 		sc = getScale()
-		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.getValue()), self.bgcolor])
+		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
 
 		self["play_icon"].hide()
-		if not config.pic.infoline.getValue():
+		if not config.pic.infoline.value:
 			self["file"].setText("")
 		self.start_decode()
 
 	def ShowPicture(self):
 		if self.shownow and len(self.currPic):
 			self.shownow = False
-			if config.pic.infoline.getValue():
+			if config.pic.infoline.value:
 				self["file"].setText(self.currPic[0])
 			else:
 				self["file"].setText("")
@@ -591,7 +592,7 @@ class Pic_Full_View(Screen):
 
 	def slidePic(self):
 		print "slide to next Picture index=" + str(self.lastindex)
-		if config.pic.loop.getValue() == False and self.lastindex == self.maxentry:
+		if config.pic.loop.value == False and self.lastindex == self.maxentry:
 			self.PlayPause()
 		self.shownow = True
 		self.ShowPicture()
@@ -601,7 +602,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.getValue() * 1000)
+			self.slideTimer.start(config.pic.slidetime.value * 1000)
 			self["play_icon"].show()
 			self.nextPic()
 
@@ -624,7 +625,7 @@ class Pic_Full_View(Screen):
 	def Exit(self):
 		del self.picload
 
-		if config.pic.fullview_resolution.getValue() and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.getValue()):
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
 			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 
