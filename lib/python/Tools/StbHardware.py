@@ -46,7 +46,7 @@ def setRTCoffset():
 		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if getBoxType().startswith('gb')or getBoxType().startswith('ini'):
+	if getBoxType().startswith('gb')or getBrandOEM().startswith('ini'):
 		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")
