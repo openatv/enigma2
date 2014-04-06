@@ -175,6 +175,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		
 	}
 #endif
+
+#if KEY_HOME_TO_KEY_HOMEPAGE
+	if (ev->code == KEY_HOME)
+	{
+		/* DAGS map HOME Key to show Mediaportal */
+		ev->code = KEY_HOMEPAGE;
+		
+	}
+#endif
+
+#if KEY_MEDIA_TO_KEY_KEY_F2
+	if (ev->code == KEY_MEDIA)
+	{
+		/* DAGS map Media to F2 to show MediaCenter */
+		ev->code = KEY_F2;
+		
+	}
+#endif
 	
 #if KEY_TV_TO_KEY_VIDEO
 	if (ev->code == KEY_TV)
