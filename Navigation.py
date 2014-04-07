@@ -40,7 +40,7 @@ class Navigation:
 			config.misc.RestartUI.value = False
 			config.misc.RestartUI.save()
 			configfile.save()
-		elif config.usage.startup_to_standby.value:
+		elif config.usage.startup_to_standby.value or self.__wasTimerWakeup:
 			Notifications.AddNotification(Screens.Standby.Standby)
 
 	def wasTimerWakeup(self):
