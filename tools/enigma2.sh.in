@@ -19,8 +19,10 @@ fi
 #check if factory mode is present
 if [ ! -f /etc/enigma2/settings ]; then
 	cp -a /usr/share/enigma2/defaults/* /etc/enigma2/
-	cp -a /usr/share/enigma2/defaults/terrestrial.xml /etc/tuxbox/
 fi
+
+# Better to copy it alwways, as australia does not use own terrestrial.xml
+cp -a /usr/share/enigma2/defaults/terrestrial.xml /etc/tuxbox/
 
 #check if Timezone for Australia is present
 if [ ! -f /etc/tuxbox/timezone-aus.xml ]; then
