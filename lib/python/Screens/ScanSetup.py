@@ -566,7 +566,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			for slot in nimmanager.nim_slots:
 				if slot.isCompatible("DVB-T"):
 					self.ter_tnumber = slot.slot
-			if self.ter_tnumber:
+			if self.ter_tnumber is not None:
 				self.ter_channel_input = channelnumbers.supportedChannels(self.ter_tnumber)
 
 			# status
