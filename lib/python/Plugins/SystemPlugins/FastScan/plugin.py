@@ -249,18 +249,14 @@ class FastScanAutoScreen(FastScanScreen):
 		}, -1)
 
 		self.onClose.append(self.__onClose)
+
+		parameters = tuple(x[1] for x in self.providers if x[0] == lastConfiguration[1])[0]
+		pid = parameters[1]
+		if lastConfiguration[2] and parameters[2]:
+			pid += 1
 		self.scan = eFastScan(pid, lastConfiguration[1], self.getTransponderParameters(parameters[0]), lastConfiguration[3], lastConfiguration[4])
 		self.scan.scanCompleted.get().append(self.scanCompleted)
-
-		parameters = tuple(x[1] for x in self.providers if x[0] == lastConfiguration[1])
-		if parameters:
-			parameters = parameters[0]
-			pid = parameters[1]
-			if lastConfiguration[2] and parameters[2]:
-				pid += 1
-			self.scan.start(int(lastConfiguration[0]))
-		else:
-			self.close(True)
+		self.scan.start(int(lastConfiguration[0]))
 
 	def __onClose(self):
 		self.scan.scanCompleted.get().remove(self.scanCompleted)
