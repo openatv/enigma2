@@ -310,6 +310,12 @@
 	</map>
 
 	<map context="InfobarSeekActions">
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
+			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
+			<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
+			<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
+		</device>
 		<device name="dreambox remote control (native)">
 			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
 			<key id="KEY_GREEN" mapto="playpauseService" flags="b" />
@@ -455,13 +461,13 @@
 
 	<map context="InfobarCueSheetActions">
 		<device name="dreambox ir keyboard">
+			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
 			<key id="KEY_TAB" mapto="toggleMark" flags="m" />
+			<key id="KEY_NEXTSONG" mapto="jumpNextMark" flags="m" />
 		</device>
 		<key id="KEY_PREVIOUS" mapto="jumpPreviousMark" flags="m" />
 		<key id="KEY_0" mapto="toggleMark" flags="m" />
 		<key id="KEY_NEXT" mapto="jumpNextMark" flags="m" />
-		<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
-		<key id="KEY_NEXTSONG" mapto="jumpNextMark" flags="m" />
 	</map>
 
 	<map context="MediaPlayerCueSheetActions">
