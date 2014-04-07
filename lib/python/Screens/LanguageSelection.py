@@ -77,7 +77,7 @@ class LanguageSelection(Screen):
 	def save(self):
 		self.run()
 		self.close()
-
+		
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
 		config.osd.language.setValue(self.oldActiveLanguage)
@@ -87,13 +87,13 @@ class LanguageSelection(Screen):
 	def run(self, justlocal = False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
-
+		
 		if lang == 'update cache':
 			self.setTitle("Updating cache")
 			self["summarylangname"].setText("Updating cache")
 			return
 
-		if lang != config.osd.language.getValue():
+		if lang != config.osd.language.value:
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
 

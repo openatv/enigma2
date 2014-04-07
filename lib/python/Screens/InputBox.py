@@ -45,7 +45,7 @@ class InputBox(Screen):
 		}, -1)
 
 		if self["input"].type == Input.TEXT:
-			if config.misc.remotecontrol_text_support.getValue():
+			if config.misc.remotecontrol_text_support.value:
 				self.onExecBegin.append(self.setKeyboardModeNone)
 			else:
 				self.onExecBegin.append(self.setKeyboardModeAscii)
@@ -102,8 +102,8 @@ class PinInput(InputBox):
 			self.skinName = "PinInputPopup"
 
 		if self.getTries() == 0:
-			if (self.triesEntry.time.getValue() + (self.waitTime * 60)) > time():
-				remaining = (self.triesEntry.time.getValue() + (self.waitTime * 60)) - time()
+			if (self.triesEntry.time.value + (self.waitTime * 60)) > time():
+				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
 				remainingMinutes = int(remaining / 60)
 				remainingSeconds = int(remaining % 60)
 				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
@@ -166,10 +166,10 @@ class PinInput(InputBox):
 		self.closePinCancel()
 
 	def getTries(self):
-		return self.triesEntry.tries.getValue()
+		return self.triesEntry.tries.value
 
 	def decTries(self):
-		self.setTries(self.triesEntry.tries.getValue() - 1)
+		self.setTries(self.triesEntry.tries.value - 1)
 		self.showTries()
 
 	def setTries(self, tries):

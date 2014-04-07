@@ -1,10 +1,11 @@
-# -*- coding: utf-8 -*-
-from subprocess import Popen, PIPE
-import os, xml.dom.minidom, re
+import os, xml.dom.minidom
+from enigma import iServiceInformation
 
 DUMPBIN = "/usr/lib/enigma2/python/Plugins/Extensions/IniHbbTV/dumpait"
 class eAITSectionReader:
 	def __init__(self, demux, pmtid, sid):
+		self.mVuplusBox = False
+		self.mInfo = None
 		self.mAppList  = []
 		self.mDocument = None
 		self.mCommand  = "%s --demux=%s --pmtid=%x --serviceid=%x"%(DUMPBIN, demux, pmtid, sid)
@@ -23,37 +24,56 @@ class eAITSectionReader:
 
 	def __application(self, application):
 		item = {}
-		item["name"]    = str(self.__item(application, "name"))
-		item["url"]     = str(self.__item(application, "url"))
-		item["control"] = int(self.__item(application, "control"))
-		item["orgid"]   = int(self.__item(application, "orgid"))
-		item["appid"]   = int(self.__item(application, "appid"))
-		item["profile"] = int(self.__item(application, "profile"))
+
+		if self.mVuplusBox:
+			item["name"]    = str(application[1])
+			item["url"]     = str(application[2])
+			item["control"] = int(application[0])
+			item["orgid"]   = int(application[3])
+			item["appid"]   = int(application[4])
+			item["profile"] = int(application[5])
+		else:
+			item["name"]    = str(self.__item(application, "name"))
+			item["url"]     = str(self.__item(application, "url"))
+			item["control"] = int(self.__item(application, "control"))
+			item["orgid"]   = int(self.__item(application, "orgid"))
+			item["appid"]   = int(self.__item(application, "appid"))
+			item["profile"] = int(self.__item(application, "profile"))
 		#print item
 		return item
 
 	def doParseApplications(self):
 		l = []
-		for application in self.mDocument.getElementsByTagName("application"):
-			item = self.__application(application)
-			l.append(item)
+
+		if self.mVuplusBox:
+			for application in self.mInfo.getInfoObject(iServiceInformation.sHBBTVUrl):
+				item = self.__application(application)
+				l.append(item)
+		else:
+			for application in self.mDocument.getElementsByTagName("application"):
+				item = self.__application(application)
+				l.append(item)
 		self.mAppList = l
 
 	def getApplicationList(self):
 		return self.mAppList
 
-	def doOpen(self):
-		p1 = Popen(self.mCommand, shell=True, stdout=PIPE)
-		document = p1.communicate()[0]
+	def doOpen(self, info, is_vuplusbox):
+		if is_vuplusbox:
+			self.mVuplusBox = is_vuplusbox
+			self.mInfo = info
+			return True
 
-		# strip all none printable charators from data grabed from stream.
-		control_chars = ''.join(map(unichr, range(0,32) + range(127,160)))
-		control_char_re = re.compile('[%s]' % re.escape(control_chars))
-		document = control_char_re.sub('', document)
-
+		document = ""
+		try:	document = os.popen(self.mCommand).read()
+		except Exception, ErrMsg:
+			print ErrMsg
+			return False
 		if len(document) == 0:
 			return False
-		self.mDocument = xml.dom.minidom.parseString(document.encode("utf-8"))
+		document = document.decode("cp1252").encode("utf-8")
+		#print document
+		self.mDocument = xml.dom.minidom.parseString(document)
 		return True
 
 	def doDump(self):

@@ -38,7 +38,7 @@ class Rc:
 
 	def initRc(self):
 		if self.isDefaultRc:
-			self["rc"].setPixmapNum(config.misc.rcused.getValue())
+			self["rc"].setPixmapNum(config.misc.rcused.value)
 		else:
 			self["rc"].setPixmapNum(0)
 			
