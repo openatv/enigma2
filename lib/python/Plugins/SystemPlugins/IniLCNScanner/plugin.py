@@ -17,6 +17,7 @@ import xml.etree.cElementTree
 
 class LCN():
 	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+	service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
 	
 	def __init__(self, dbfile, rulefile, rulename, bouquetfile):
 		self.dbfile = dbfile
@@ -82,8 +83,8 @@ class LCN():
 	def addMarker(self, position, text):
 		self.markers.append([position, text])
 		
-	def read(self):
-		self.readE2Services()
+	def read(self, serviceType):
+		self.readE2Services(serviceType)
 		
 		try:
 			f = open(self.dbfile)
@@ -117,25 +118,13 @@ class LCN():
 						self.addMarker(int(x.get("position")), x.text)
 
 		self.markers.sort(key=lambda z: int(z[0]))
-
-	def getBouquetName(self):
-		try:
-			f = open(self.bouquetfile, "r")
-		except Exception, e:
-			print e
-			return "Terrestrial"
-			
-		line = f.readline().strip()
-		f.close()
 		
-		if line[:5] != "#NAME":
-			return "Terrestrial"
-			
-		return line[6:]
-	
-	def readE2Services(self):
+	def readE2Services(self, serviceType):
 		self.e2services = []
-		refstr = '%s ORDER BY name'%(self.service_types_tv)
+		if serviceType == "TV":
+			refstr = '%s ORDER BY name'%(self.service_types_tv)
+		elif serviceType == "RADIO":
+			refstr = '%s ORDER BY name'%(self.service_types_radio)
 		ref = eServiceReference(refstr)
 		serviceHandler = eServiceCenter.getInstance()
 		servicelist = serviceHandler.list(ref)
@@ -149,7 +138,7 @@ class LCN():
 				if unsigned_orbpos == 0xEEEE: #Terrestrial
 					self.e2services.append(service.toString())
 					
-	def writeBouquet(self):
+	def writeTVBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.tv', "w")
 		except Exception, e:
@@ -159,7 +148,7 @@ class LCN():
 		self.newlist = []
 		count = 0
 		#for x in self.lcnlist:
-		#	print " LISTA LCN:", x
+			#print " LISTA LCN:", x
 			
 		for x in self.lcnlist:
 			count += 1
@@ -170,15 +159,15 @@ class LCN():
 				self.newlist.append(x)
 
 		#for x in self.e2services:
-		#	print " self.e2services:", x
+			#print " self.e2services:", x
 
 
 		#for x in self.newlist:
-		#	print " NEW LIST LCN :", x
+			#print " NEW LIST LCN :", x
 			
 		#print " New LIST LEN: " , len(self.newlist)
 			
-		f.write("#NAME Terrestrial LCN\n")
+		f.write("#NAME Terrestrial TV LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
 				#print x[0], " Detected 111111111111 service"
@@ -204,9 +193,9 @@ class LCN():
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
 
 		f.close()
-		self.addInBouquets()
+		self.addInTVBouquets()
 
-	def addInBouquets(self):
+	def addInTVBouquets(self):
 		f = open('/etc/enigma2/bouquets.tv', 'r')
 		ret = f.read().split("\n")
 		f.close()
@@ -220,6 +209,82 @@ class LCN():
 		f = open('/etc/enigma2/bouquets.tv', 'w')
 		f.write(ret[0]+"\n")
 		f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.terrestrial_lcn.tv" ORDER BY bouquet\n')
+		i = 1
+		while i < len(ret):
+			f.write(ret[i]+"\n")
+			i += 1
+
+	def writeRadioBouquet(self):
+		try:
+			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.radio', "w")
+		except Exception, e:
+			print e
+			return
+
+		self.newlist = []
+		count = 0
+		#for x in self.lcnlist:
+			#print " LISTA LCN:", x
+			
+		for x in self.lcnlist:
+			count += 1
+			while x[0] != count:
+				self.newlist.append([count, 11111111, 11111, 111, 111, 111111])
+				count += 1
+			if x[0] == count:
+				self.newlist.append(x)
+
+		#for x in self.e2services:
+			#print " self.e2services:", x
+
+
+		#for x in self.newlist:
+			#print " NEW LIST LCN :", x
+			
+		#print " New LIST LEN: " , len(self.newlist)
+			
+		f.write("#NAME Terrestrial Radio LCN\n")
+		for x in self.newlist:
+			if int(x[1]) == 11111111:
+				#print x[0], " Detected 111111111111 service"
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
+				continue
+				
+			if len(self.markers) > 0:
+				if x[0] > self.markers[0][0]:
+					f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0:\n")
+					f.write("#DESCRIPTION ------- " + self.markers[0][1] + " -------\n")
+					self.markers.remove(self.markers[0])
+			refstr = "1:0:2:%x:%x:%x:%x:0:0:0:" % (x[4],x[3],x[2],x[1]) # temporary ref
+			refsplit = eServiceReference(refstr).toString().split(":")
+			added = False
+			for tref in self.e2services:
+				tmp = tref.split(":")
+				if tmp[3] == refsplit[3] and tmp[4] == refsplit[4] and tmp[5] == refsplit[5] and tmp[6] == refsplit[6]:
+					f.write("#SERVICE " + tref + "\n")
+					added = True
+					break
+
+			if not added: # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
+				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
+
+		f.close()
+		self.addInRadioBouquets()
+		
+	def addInRadioBouquets(self):
+		f = open('/etc/enigma2/bouquets.radio', 'r')
+		ret = f.read().split("\n")
+		f.close()
+		
+		i = 0
+		while i < len(ret):
+			if ret[i].find("userbouquet.terrestrial_lcn.radio") >= 0:
+				return
+			i += 1
+			
+		f = open('/etc/enigma2/bouquets.radio', 'w')
+		f.write(ret[0]+"\n")
+		f.write('#SERVICE 1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.terrestrial_lcn.radio" ORDER BY bouquet\n')
 		i = 1
 		while i < len(ret):
 			f.write(ret[i]+"\n")
@@ -312,13 +377,21 @@ class LCNBuildHelper():
 				break
 
 		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml", rule, resolveFilename(SCOPE_CONFIG, bouquet))
-		lcn.read()
+		lcn.read("TV")
 		if len(lcn.lcnlist) > 0:
-			lcn.writeBouquet()
-			lcn.reloadBouquets()
+			lcn.writeTVBouquet()
 		else:
 			if not suppressmessages:
 				self.session.open(MessageBox, _("No entry in lcn db. Please do a service scan."), MessageBox.TYPE_INFO)
+				
+		lcn.read("RADIO")
+		if len(lcn.lcnlist) > 0:
+			lcn.writeRadioBouquet()
+		else:
+			if not suppressmessages:
+				self.session.open(MessageBox, _("No entry in lcn db. Please do a service scan."), MessageBox.TYPE_INFO)
+				
+		lcn.reloadBouquets()
 
 class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 	skin = """
