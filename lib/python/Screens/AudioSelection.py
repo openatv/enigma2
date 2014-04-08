@@ -99,17 +99,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call = False)
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
 
-			if SystemInfo["CanDownmixAAC"]:
-				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
-				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call = False)
-				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac))
-
-			if SystemInfo["Can3DSurround"]:
-				surround_choicelist = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-				self.settings.surround_3d = ConfigSelection(choices = surround_choicelist, default = config.av.surround_3d.value)
-				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
-				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d))
-				
 			if n > 0:
 				self.audioChannel = service.audioChannel()
 				if self.audioChannel:
@@ -186,6 +175,16 @@ class AudioSelection(Screen, ConfigListScreen):
 				self["key_blue"].setBoolean(False)
 				conflist.append(('',))
 
+			if SystemInfo["CanDownmixAAC"]:
+				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
+				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call = False)
+				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac))
+
+			if SystemInfo["Can3DSurround"]:
+				surround_choicelist = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.surround_3d = ConfigSelection(choices = surround_choicelist, default = config.av.surround_3d.value)
+				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
+				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d))
 		
 			edid_bypass_choicelist = [("00000000", _("off")), ("00000001", _("on"))]
 			self.settings.edid_bypass = ConfigSelection(choices = edid_bypass_choicelist, default = config.av.bypass_edid_checking.value)
