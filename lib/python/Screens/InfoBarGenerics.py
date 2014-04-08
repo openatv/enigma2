@@ -520,6 +520,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
 				"LongOKPressed": self.toggleShowLong,
+				"InfoPressed": self.InfoBPressed,
 				"toggleShow": self.OkPressed,
 				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
@@ -560,6 +561,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 		except:
 			self.pvrStateDialog = None
+
+	def InfoBPressed(self):
+		if config.plisettings.PLIINFO_mode.getValue() == "infobar":
+			self.toggleShow()
 
 	def OkPressed(self):
 		if config.usage.okbutton_mode.value == "0":
@@ -1582,7 +1587,8 @@ class InfoBarEPG:
 				if self.isInfo:
 					self.showCoolTVGuide()
 			else:
-				self.showDefaultEPG()
+				if config.plisettings.PLIINFO_mode.getValue() != "infobar":
+					self.showDefaultEPG()
 
 	def IPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
