@@ -355,7 +355,6 @@ if test "$BOXTYPE" == "dags1" -o "$BOXTYPE" == "dags2" -o "$BOXTYPE" == "dags3";
 	AC_DEFINE(KEY_DOT_TO_KEY_HOMEPAGE, 1,[define when rc sends a KEY_DOT event for its KEY_KEY_HOMEPAGE key])
 	AC_DEFINE(KEY_HOME_TO_KEY_HOMEPAGE, 1,[define when rc sends a KEY_HOME event for its KEY_KEY_HOMEPAGE key])
 	AC_DEFINE(KEY_MEDIA_TO_KEY_KEY_F2, 1,[define when rc sends a KEY_MEDIA event for its KEY_KEY_F1 key])
-	AC_DEFINE(HAVE_LINUXSOCKADDR, 1,[define it use sockaddr_un instead of sockaddr_in on linux domain socket.])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi

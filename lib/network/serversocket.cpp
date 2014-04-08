@@ -1,8 +1,6 @@
 #include <errno.h>
 #include <lib/network/serversocket.h>
 #include <arpa/inet.h>
-#include <sys/types.h>
-#include <sys/socket.h>
 
 bool eServerSocket::ok()
 {
