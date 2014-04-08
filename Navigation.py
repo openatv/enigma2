@@ -45,7 +45,7 @@ class Navigation:
 
 		wasTimerWakeup = getFPWasTimerWakeup()
 		thisBox = getBoxType()
-		if thisBox in ('gbquad', 'ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin') or getBrandOEM() in ('dags', 'ebox', 'azbox', 'xp'):
+		if thisBox in ('gbquad', 'ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin') or getBrandOEM() in ('dags', 'ebox', 'azbox', 'xp', 'ini'):
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
 			config.save()
