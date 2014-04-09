@@ -311,6 +311,8 @@ def restartScanAutoStartTimer(reply=False):
 	if not reply:
 		print "[AutoFastScan] Scan was not succesfully retry in one hour"
 		FastScanAutoStartTimer.startLongTimer(3600)
+	else:
+		FastScanAutoStartTimer.startLongTimer(86400)
 
 def FastScanAuto():
 	lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
