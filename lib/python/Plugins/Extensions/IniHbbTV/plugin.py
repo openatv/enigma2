@@ -916,8 +916,7 @@ class HbbTVHelper(Screen, InfoBarNotifications):
 		__gval__.hbbtv_handelr = HandlerHbbTV(session)
 		__gval__.command_server = ServerFactory().doListenUnixTCP('/tmp/.sock.hbbtv.url', __gval__.hbbtv_handelr)
 
-		if config.usage.enable_hbbtv_autostart.value == True:
-			self._restart_opera()
+		self._restart_opera()
 
 		Screen.__init__(self, session)
 		InfoBarNotifications.__init__(self)
