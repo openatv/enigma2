@@ -50,7 +50,7 @@ from Tools.Directories import pathExists, fileExists
 from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
-from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineProcModel
+from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -367,7 +367,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.start(idx*1000, True)
-		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self)) and self.EventViewIsShown):
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self))):
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
@@ -3558,7 +3558,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 		
-		if getMachineProcModel().startswith('ini-90'):
+		if getMachineBuild() == 'inihdp':
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
@@ -3613,6 +3613,7 @@ class InfoBarHdmi:
 			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
 			self.session.pip.show()
 			self.session.pipshown = True
+			self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 		else:
 			curref = self.session.pip.getCurrentService()
 			if curref and curref.type != 8192:
@@ -3633,4 +3634,3 @@ class InfoBarHdmi:
 			self.hdmi_enabled_full = False
 			self.session.nav.playService(slist.servicelist.getCurrent())
 			
-				
