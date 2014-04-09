@@ -82,7 +82,8 @@ class IpkgComponent:
 
 	def startCmd(self, cmd, args = None):
 		if cmd == self.CMD_UPDATE:
-			rmtree('/var/lib/opkg/lists')
+			if os.path.exists()'/var/lib/opkg/lists'):
+				rmtree('/var/lib/opkg/lists')
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
 			append = ""
