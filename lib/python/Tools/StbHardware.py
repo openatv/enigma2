@@ -6,7 +6,12 @@ from boxbranding import getBoxType, getBrandOEM
 def getFPVersion():
 	ret = None
 	try:
-		ret = long(open("/proc/stb/fp/version", "r").read())
+		if getBrandOEM() == "blackbox":
+			file = open("/proc/stb/info/micomver", "r")
+			ret = file.readline().strip()
+			file.close()
+		else:	
+			ret = long(open("/proc/stb/fp/version", "r").read())
 	except IOError:
 		try:
 			fp = open("/dev/dbox/fp0")
