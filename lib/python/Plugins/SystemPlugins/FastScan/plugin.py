@@ -330,7 +330,7 @@ def standbyCountChanged(value):
 	if config.misc.fastscan.auto.value:
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(leaveStandby)
-		FastScanAutoStartTimer.startLongTimer(600)
+		FastScanAutoStartTimer.startLongTimer(90)
 
 def startSession(session, **kwargs):
 	global Session
