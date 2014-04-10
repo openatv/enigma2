@@ -10,29 +10,29 @@ class ChannelNumbers:
 		f = self.getMHz(frequency)
 		descr = self.getTunerDescription(region)
 
-		if "Europe" in descr:
-			if "DVB-T" in descr:
-				if 174 < f < 230: 	# III
-					d = (f + 1) % 7
-					return str(int(f - 174)/7 + 5) + (d < 3 and "-" or d > 4 and "+" or "")
-				elif 470 <= f < 863: 	# IV,V
-					d = (f + 2) % 8
-					return str(int(f - 470) / 8 + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
+		#if "Europe" in descr:
+			#if "DVB-T" in descr:
+				#if 174 < f < 230: 	# III
+					#d = (f + 1) % 7
+					#return str(int(f - 174)/7 + 5) + (d < 3 and "-" or d > 4 and "+" or "")
+				#elif 470 <= f < 863: 	# IV,V
+					#d = (f + 2) % 8
+					#return str(int(f - 470) / 8 + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
 
-		elif "Australia" in descr:
-			d = (f + 1) % 7
-			ds = (d < 3 and "-" or d > 4 and "+" or "")
-			if 174 < f < 202: 	# CH6-CH9
-				return str(int(f - 174)/7 + 6) + ds
-			elif 202 <= f < 209: 	# CH9A
-				return "9A" + ds
-			elif 209 <= f < 230: 	# CH10-CH12
-				return str(int(f - 209)/7 + 10) + ds
-			elif 526 < f < 820: 	# CH28-CH69
-				d = (f - 1) % 7
-				return str(int(f - 526)/7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
+		#elif "Australia" in descr:
+		d = (f + 1) % 7
+		ds = (d < 3 and "-" or d > 4 and "+" or "")
+		if 174 < f < 202: 	# CH6-CH9
+			return str(int(f - 174)/7 + 6) + ds
+		elif 202 <= f < 209: 	# CH9A
+			return "9A" + ds
+		elif 209 <= f < 230: 	# CH10-CH12
+			return str(int(f - 209)/7 + 10) + ds
+		elif 526 < f < 820: 	# CH28-CH69
+			d = (f - 1) % 7
+			return str(int(f - 526)/7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
 
-		return None
+		return ""
 
 	def getMHz(self, frequency):
 		if str(frequency).endswith('Mhz'):
