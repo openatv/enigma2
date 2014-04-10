@@ -34,7 +34,7 @@ class LCN():
 
 	def addLcnToList(self, namespace, nid, tsid, sid, lcn, signal):
 		for x in self.lcnlist:
-			if x[0] == lcn and x[1] == namespace and x[2] == nid and x[3] == tsid and x[4] == sid:
+			if x[0] == lcn and x[1] == namespace and x[2] == nid and x[3] == tsid and x[4] == sid and x[5] == signal:
 				return
 		
 		if lcn == 0:
@@ -43,7 +43,7 @@ class LCN():
 		for i in range(0, len(self.lcnlist)):
 			if self.lcnlist[i][0] == lcn:
 				if self.lcnlist[i][5] > signal:
-					self.addLcnToList(namespace, nid, tsid, sid, lcn + 16536, signal)
+					self.addLcnToList(namespace, nid, tsid, sid, lcn + 350, signal)
 				else:
 					znamespace = self.lcnlist[i][1]
 					znid = self.lcnlist[i][2]
@@ -55,7 +55,7 @@ class LCN():
 					self.lcnlist[i][3] = tsid
 					self.lcnlist[i][4] = sid
 					self.lcnlist[i][5] = signal
-					self.addLcnToList(znamespace, znid, ztsid, zsid, lcn + 16536, zsignal)
+					self.addLcnToList(znamespace, znid, ztsid, zsid, lcn + 350, zsignal)
 				return
 			elif self.lcnlist[i][0] > lcn:
 				self.lcnlist.insert(i, [lcn, namespace, nid, tsid, sid, signal])
