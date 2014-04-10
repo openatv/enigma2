@@ -42,4 +42,4 @@ from Screens.IniTerrestrialLocation import IniTerrestrialLocation, IniEndWizard,
 
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 0)
 wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
-wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.value, priority = 2)
+wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.value, priority = 10) # It always should show as last one
