@@ -400,12 +400,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.list.append(self.typeOfScanEntry)
 		elif nim.isCompatible("DVB-T"):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
-			self.typeOfInputEntry = getConfigListEntry(_("Use frequency or channel"), self.scan_input_as)
 			self.list.append(self.typeOfScanEntry)
-			if self.ter_channel_input:
-				self.list.append(self.typeOfInputEntry)
-			else:
-				self.scan_input_as.value = self.scan_input_as.choices[0]
 
 		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S"):
@@ -470,10 +465,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(self.systemEntry)
 				else:
 					self.scan_ter.system.value = eDVBFrontendParametersTerrestrial.System_DVB_T
+				self.typeOfInputEntry = getConfigListEntry(_("Use frequency or channel"), self.scan_input_as)
+				if self.ter_channel_input:
+					self.list.append(self.typeOfInputEntry)
+				else:
+					self.scan_input_as.value = self.scan_input_as.choices[0]
 				if self.ter_channel_input and self.scan_input_as.value == "channel":
 					channel = channelnumbers.getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
 					if channel:
-						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
+						self.scan_ter.channel.value = channel
 					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
 				else:
 					self.scan_ter.frequency.value = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
@@ -686,8 +686,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(eDVBFrontendParametersCable.System_DVB_C_ANNEX_C, _("DVB-C ANNEX C"))])
 
 		# terrestial
-		self.scan_ter.frequency = ConfigInteger(default = 474000, limits = (50000, 999000))
-		self.scan_ter.channel = ConfigInteger(default = 21, limits = (1, 99))
+		self.scan_ter.frequency = ConfigInteger(default = 177500000, limits = (50000, 999000))
+		chlist = ["6", "7", "8", "9", "9A", "10", "11", "12"] + [str(i) for i in range(28, 70)]
+		self.scan_ter.channel = ConfigSelection(choices = chlist)
 		self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
 			(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
 			(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
