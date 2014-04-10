@@ -111,7 +111,7 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 		
 		ConfigListScreen.__init__(self, self.list)
 #		self["help"] = Label(_("Help:\nKey [0] refresh screen. Key [1] new folder.\nKey [2] new symlink wit name. Key [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder. Key [EPG] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files."))
-		self["help"] = Label(_("Help:\nKey [0] refresh screen.\nKey [1] new folder.\nKey [2] new symlink wit name.\nKey [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder.\nKey [INFO] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
+		self["help"] = Label(_("Help:\nKey [0] refresh screen.\nKey [1] new folder.\nKey [2] new symlink wit name.\nKey [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder.\nKey [INFO] shows tasklist. Check copy/move progress in extensions menu.\nKey [MEDIA] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["setupActions"] = ActionMap(["SetupActions"],

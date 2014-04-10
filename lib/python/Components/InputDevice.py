@@ -220,8 +220,8 @@ class RcTypeControl():
 			self.boxType = fd.read()
 			fd.close()
 
-			if config.plugins.remotecontroltype.rctype.getValue() != 0:
-				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
+			if config.plugins.remotecontroltype.rctype.value != 0:
+				self.writeRcType(config.plugins.remotecontroltype.rctype.value)
 		else:
 			self.isSupported = False
 		if boxtype.startswith('gb'):

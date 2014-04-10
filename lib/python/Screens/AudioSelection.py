@@ -86,23 +86,23 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		subtitlelist = self.getSubtitleList()
 
-		if self.settings.menupage.getValue() == PAGE_AUDIO:
+		if self.settings.menupage.value == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
 			service = self.session.nav.getCurrentService()
 			self.audioTracks = audio = service and service.audioTracks()
 			n = audio and audio.getNumberOfTracks() or 0
 			if SystemInfo["CanDownmixAC3"]:
-				self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.getValue())
+				self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call = False)
 				conflist.append(getConfigListEntry(_("Digital downmix"), self.settings.downmix_ac3, None))
 
 			if SystemInfo["CanDownmixAAC"]:
-				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.getValue())
+				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
 				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call = False)
 				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
 
 			if SystemInfo["CanPcmMultichannel"]:
-				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.getValue())
+				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.value)
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call = False)
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
 
@@ -162,7 +162,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					for x in Plugins:
 						conflist.append(getConfigListEntry(x[0], ConfigNothing(),x[1]))
 
-		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
+		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
 			self.setTitle(_("Subtitle selection"))
 
@@ -252,12 +252,12 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.infobar.enableSubtitle(subtitle)
 
 	def change3DSurround(self, surround_3d):
-		if surround_3d.getValue():
-			config.av.surround_3d.value = surround_3d.getValue()
+		if surround_3d.value:
+			config.av.surround_3d.value = surround_3d.value
 		config.av.surround_3d.save()
 
 	def changeAC3Downmix(self, downmix):
-		if downmix.getValue():
+		if downmix.value:
 			config.av.downmix_ac3.setValue(True)
 			if SystemInfo["supportPcmMultichannel"]:
 				config.av.pcm_multichannel.setValue(False)
@@ -269,7 +269,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def changePCMMultichannel(self, multichan):
-		if multichan.getValue():
+		if multichan.value:
 			config.av.pcm_multichannel.setValue(True)
 		else:
 			config.av.pcm_multichannel.setValue(False)
@@ -277,7 +277,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if downmix.getValue():
+		if downmix.value:
 			config.av.downmix_aac.setValue(True)
 		else:
 			config.av.downmix_aac.setValue(False)
@@ -285,7 +285,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
-			self.audioChannel.selectChannel(int(mode.getValue()))
+			self.audioChannel.selectChannel(int(mode.value))
 
 	def changeAudio(self, audio):
 		track = int(audio)
@@ -301,9 +301,9 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def keyRight(self, config = False):
 		if config or self.focus == FOCUS_CONFIG:
-			if self.settings.menupage.getValue() == PAGE_AUDIO and self["config"].getCurrent()[2]:
+			if self.settings.menupage.value == PAGE_AUDIO and self["config"].getCurrent()[2]:
 				self["config"].getCurrent()[2]()
-			elif self.settings.menupage.getValue() == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
+			elif self.settings.menupage.value == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
 				self.session.open(QuickSubtitlesConfigMenu, self.infobar)
 			else:
 				ConfigListScreen.keyRight(self)
@@ -336,7 +336,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			return 0
 
 	def keyAudioSubtitle(self):
-		if self.settings.menupage.getValue() == PAGE_AUDIO:
+		if self.settings.menupage.value == PAGE_AUDIO:
 			self.settings.menupage.setValue('subtitles')
 		else:
 			self.settings.menupage.setValue('audio')
@@ -376,10 +376,10 @@ class AudioSelection(Screen, ConfigListScreen):
 	def keyOk(self):
 		if self.focus == FOCUS_STREAMS and self["streams"].list:
 			cur = self["streams"].getCurrent()
-			if self.settings.menupage.getValue() == PAGE_AUDIO and cur[0] is not None:
+			if self.settings.menupage.value == PAGE_AUDIO and cur[0] is not None:
 				self.changeAudio(cur[0])
 				self.__updatedInfo()
-			if self.settings.menupage.getValue() == PAGE_SUBTITLES and cur[0] is not None:
+			if self.settings.menupage.value == PAGE_SUBTITLES and cur[0] is not None:
 				if self.infobar.selected_subtitle and self.infobar.selected_subtitle[:4] == cur[0][:4]:
 					self.enableSubtitle(None)
 					selectedidx = self["streams"].getIndex()

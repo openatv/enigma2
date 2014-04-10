@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getMachineProcModel
+from boxbranding import getBoxType, getMachineBuild
 
 from os import path
 
@@ -33,15 +33,16 @@ def countFrontpanelLEDs():
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0")
-SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0") or getMachineProcModel().startswith("ini-10") or getMachineProcModel().startswith("ini-30") or getMachineProcModel().startswith("ini-50") or getMachineProcModel().startswith("ini-70")
+SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0") or getMachineBuild() in ('inihde', 'inihdx')
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
 SystemInfo["WOL"] = fileExists("/proc/stb/fp/wol")
 SystemInfo["HDMICEC"] = (path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
 SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")
 SystemInfo["SeekStatePlay"] = False
-SystemInfo["GraphicLCD"] = getMachineProcModel().startswith("ini-90") or getBoxType() == "vuultimo"
+SystemInfo["GraphicLCD"] = getMachineBuild() == "inihdp" or getBoxType() == "vuultimo"
 SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo")
 SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
 SystemInfo["Fan"] = fileExists("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileExists("/proc/stb/fp/fan_pwm")
+SystemInfo["HasHbbTV"] = fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IniHbbTV/plugin.py") or fileExists("/usr/lib/enigma2/python/Plugins/Extensions/IniHbbTV/plugin.pyo")

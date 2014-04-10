@@ -4,7 +4,7 @@
 		<condition>
 from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkConfigBackup
 self.backuppath = checkConfigBackup()
-self.condition = (self.backuppath is not None and config.misc.firstrun.getValue())
+self.condition = (self.backuppath is not None and config.misc.firstrun.value)
 		</condition>
 		<text value="Do you want to restore your settings?" />
 		<list>

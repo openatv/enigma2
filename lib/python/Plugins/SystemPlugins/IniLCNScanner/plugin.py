@@ -168,6 +168,8 @@ class LCN():
 		#print " New LIST LEN: " , len(self.newlist)
 			
 		f.write("#NAME Terrestrial TV LCN\n")
+		f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0::Terrestrial TV LCN\n")
+		f.write("##DESCRIPTION Terrestrial TV LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
 				#print x[0], " Detected 111111111111 service"
@@ -244,6 +246,8 @@ class LCN():
 		#print " New LIST LEN: " , len(self.newlist)
 			
 		f.write("#NAME Terrestrial Radio LCN\n")
+		f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0::Terrestrial RADIO LCN\n")
+		f.write("##DESCRIPTION Terrestrial RADIO LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
 				#print x[0], " Detected 111111111111 service"
@@ -443,9 +447,9 @@ def LCNScannerMain(session, **kwargs):
 	session.open(LCNScannerPlugin)
 	
 def LCNScannerSetup(menuid, **kwargs):
-	if menuid == "scan":
-		return [("LCN Scanner", LCNScannerMain, "lcnscanner", None)]
-	else:
+	#if menuid == "scan":
+	#	return [("LCN Scanner", LCNScannerMain, "lcnscanner", None)]
+	#else:
 		return []
 
 def Plugins(**kwargs):

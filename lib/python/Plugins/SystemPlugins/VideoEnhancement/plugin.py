@@ -54,23 +54,23 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.setTitle(self.setup_title)
 
 	def rememberOldSettings(self):
-		self.oldContrast = config.pep.contrast.getValue()
-		self.oldSaturation = config.pep.saturation.getValue()
-		self.oldHue = config.pep.hue.getValue()
-		self.oldBrightness = config.pep.brightness.getValue()
-		self.oldBlock_noise = config.pep.block_noise_reduction.getValue()
-		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.getValue()
-		self.oldDigital_contour = config.pep.digital_contour_removal.getValue()
-		self.oldScaler_sharpness = config.av.scaler_sharpness.getValue()
+		self.oldContrast = config.pep.contrast.value
+		self.oldSaturation = config.pep.saturation.value
+		self.oldHue = config.pep.hue.value
+		self.oldBrightness = config.pep.brightness.value
+		self.oldBlock_noise = config.pep.block_noise_reduction.value
+		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.value
+		self.oldDigital_contour = config.pep.digital_contour_removal.value
+		self.oldScaler_sharpness = config.av.scaler_sharpness.value
 		self.oldScaler_vertical_dejagging = config.pep.scaler_vertical_dejagging.value
-		self.oldSmooth = config.pep.smooth.getValue()
-		self.oldSplit = config.pep.split.getValue()
-		self.oldSharpness = config.pep.sharpness.getValue()
-		self.oldAuto_flesh = config.pep.auto_flesh.getValue()
-		self.oldGreen_boost = config.pep.green_boost.getValue()
-		self.oldBlue_boost = config.pep.blue_boost.getValue()
-		self.oldDynamic_contrast = config.pep.dynamic_contrast.getValue()
-		self.oldColor_space = config.pep.color_space.getValue()
+		self.oldSmooth = config.pep.smooth.value
+		self.oldSplit = config.pep.split.value
+		self.oldSharpness = config.pep.sharpness.value
+		self.oldAuto_flesh = config.pep.auto_flesh.value
+		self.oldGreen_boost = config.pep.green_boost.value
+		self.oldBlue_boost = config.pep.blue_boost.value
+		self.oldDynamic_contrast = config.pep.dynamic_contrast.value
+		self.oldColor_space = config.pep.color_space.value
 
 	def addToConfigList(self, description, configEntry, hinttext, add_to_xtdlist=False):
 		if isinstance(configEntry, ConfigNothing):
@@ -105,7 +105,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.color_spaceEntry = addToConfigList(_("Color space"), config.pep.color_space, _("This option sets the picture color space."))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.getValue():
+		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 
 	def SelectionChanged(self):
@@ -127,7 +127,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.getValue(), maxValue = maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue)
 		else:
 			self.previewlist = [
 				current
@@ -147,7 +147,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.getValue(), maxValue = maxvalue )
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue )
 		else:
 			self.previewlist = [
 				current
@@ -355,17 +355,17 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		if self.isStepSlider is True:
-			self["config"].getCurrent()[1].increment = config.pep.configsteps.getValue()
+			self["config"].getCurrent()[1].increment = config.pep.configsteps.value
 		ConfigListScreen.keyLeft(self)
 
 	def keyRight(self):
 		if self.isStepSlider is True:
-			self["config"].getCurrent()[1].increment = config.pep.configsteps.getValue()
+			self["config"].getCurrent()[1].increment = config.pep.configsteps.value
 		ConfigListScreen.keyRight(self)
 
 	def keySave(self):
 		if self.oldSplitMode is not None:
-			currentSplitMode = config.pep.split.getValue()
+			currentSplitMode = config.pep.split.value
 			if self.oldSplitMode == 'off' and currentSplitMode != 'off':
 				config.pep.split.setValue('off')
 			else:
@@ -376,7 +376,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		for x in self["config"].list:
 			x[1].cancel()
 		if self.oldSplitMode is not None:
-			currentSplitMode = config.pep.split.getValue()
+			currentSplitMode = config.pep.split.value
 			if self.oldSplitMode == 'off' and currentSplitMode != 'off':
 				config.pep.split.setValue('off')
 			else:

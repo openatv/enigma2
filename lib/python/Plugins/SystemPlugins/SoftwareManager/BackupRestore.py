@@ -19,7 +19,7 @@ config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 def getBackupPath():
-	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
+	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
 		return backuppath + 'backup'
 	else:
@@ -66,7 +66,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if not path.exists(self.backuppath):
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
+			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
@@ -112,7 +112,7 @@ class BackupSelection(Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
 
-		self.selectedFiles = config.plugins.configurationbackup.backupdirs.getValue()
+		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs = inhibitDirs )

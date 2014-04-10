@@ -609,15 +609,15 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 	def keyOK(self):
-		print self.testtype.getValue()
+		print self.testtype.value
 		testtype = DiseqcTester.TEST_TYPE_QUICK
-		if self.testtype.getValue() == "quick":
+		if self.testtype.value == "quick":
 			testtype = DiseqcTester.TEST_TYPE_QUICK
-		elif self.testtype.getValue() == "random":
+		elif self.testtype.value == "random":
 			testtype = DiseqcTester.TEST_TYPE_RANDOM
-		elif self.testtype.getValue() == "complete":
+		elif self.testtype.value == "complete":
 			testtype = DiseqcTester.TEST_TYPE_COMPLETE
-		self.session.open(DiseqcTester, feid = self.feid, test_type = testtype, loopsfailed = int(self.loopsfailed.getValue()), loopssuccessful = int(self.loopssuccessful.getValue()), log = self.log.getValue())
+		self.session.open(DiseqcTester, feid = self.feid, test_type = testtype, loopsfailed = int(self.loopsfailed.value), loopssuccessful = int(self.loopssuccessful.value), log = self.log.value)
 
 	def keyCancel(self):
 		self.close()
@@ -663,10 +663,10 @@ class DiseqcTesterNimSelection(NimSelection):
 	def showNim(self, nim):
 		nimConfig = nimmanager.getNimConfig(nim.slot)
 		if nim.isCompatible("DVB-S"):
-			if nimConfig.configMode.getValue() in ("loopthrough", "equal", "satposdepends", "nothing"):
+			if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends", "nothing"):
 				return False
-			if nimConfig.configMode.getValue() == "simple":
-				if nimConfig.diseqcMode.getValue() == "positioner":
+			if nimConfig.configMode.value == "simple":
+				if nimConfig.diseqcMode.value == "positioner":
 					return True
 			return True
 		return False

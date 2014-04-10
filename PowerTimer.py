@@ -403,7 +403,7 @@ class PowerTimer(timer.Timer):
 				self.addTimerEntry(w)
 			else:
 				# Remove old timers as set in config
-				self.cleanupDaily(config.recording.keep_timers.getValue())
+				self.cleanupDaily(config.recording.keep_timers.value)
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
 
@@ -517,7 +517,7 @@ class PowerTimer(timer.Timer):
 	def getNextPowerManagerTime(self):
 		nextrectime = self.getNextPowerManagerTimeOld()
 		faketime = time()+300
-		if config.timeshift.isRecording.getValue():
+		if config.timeshift.isRecording.value:
 			if 0 < nextrectime < faketime:
 				return nextrectime
 			else:

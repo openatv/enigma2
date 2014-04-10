@@ -210,6 +210,8 @@ class key_actions():
 		self.SOURCELIST = dirsource
 		self.TARGETLIST = dirtarget
 		sourceDir = dirsource.getCurrentDirectory()
+		if not sourceDir.endswith("/"):
+			sourceDir = sourceDir + "/"
 		testFileName = filename.lower()
 		filetype = testFileName.split('.')
 		filetype = "." + filetype[-1]

@@ -41,7 +41,7 @@ class PictureInPicture(Screen):
 		if x != -1 and y != -1 and w != -1 and h != -1:
 			self.move(x, y)
 			self.resize(w, h)
-		self.setExternalPiP(config.av.external_pip.getValue())
+		self.setExternalPiP(config.av.external_pip.value)
 
 	def move(self, x, y):
 		config.av.pip.value[0] = x
@@ -65,9 +65,9 @@ class PictureInPicture(Screen):
 				procentry.write("off")
 
 	def toggleExternalPiP(self):
-		config.av.external_pip.setValue(not config.av.external_pip.getValue())
+		config.av.external_pip.value = not config.av.external_pip.value
 		config.av.external_pip.save()
-		self.setExternalPiP(config.av.external_pip.getValue())
+		self.setExternalPiP(config.av.external_pip.value)
 
 	def active(self):
 		self.pipActive.show()
