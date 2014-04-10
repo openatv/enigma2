@@ -10,7 +10,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBoxType, getMachineProcModel
+from boxbranding import getBoxType, getMachineProcModel, getMachineBuild
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -526,7 +526,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if getBoxType() == 'odinm9' or getBoxType() == 'ebox5000' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getMachineProcModel().startswith('ini-10') or getMachineProcModel().startswith('ini-50') or getMachineProcModel().startswith('ini-70'):
+	if getBoxType() in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone') or getMachineBuild() in ('inihde', 'inihdx'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
