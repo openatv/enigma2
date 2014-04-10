@@ -299,7 +299,7 @@ class MovieMenuList(MenuList):
 def MovieMenuEntryComponent(name, item):
 	return [
 		(item),
-		MultiContentEntryText(pos=(20, 8), size=(400, 50), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 8), size=(575, 50), font=0, text = _(name)),
 	]
 	
 class MovieContextMenu(Screen):
