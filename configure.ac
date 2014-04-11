@@ -435,7 +435,6 @@ lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
 lib/python/Plugins/Extensions/AccuWeather/xbmcweather/Makefile
 lib/python/Plugins/Extensions/AccuWeather/xbmcweather/small/Makefile
 lib/python/Plugins/Extensions/GmailReader/Makefile
-lib/python/Plugins/Extensions/IniHbbTV/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Makefile
 lib/python/Plugins/Extensions/AirPlayer/lib/Makefile
 lib/python/Plugins/Extensions/AirPlayer/lib/biplist/Makefile
@@ -447,6 +446,7 @@ lib/python/Plugins/Extensions/IniEcasa/Makefile
 lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
 lib/python/Plugins/Extensions/GoogleNews/Makefile
 lib/python/Plugins/Extensions/GoogleNews/images/Makefile
+lib/python/Plugins/Extensions/IniHbbTV/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
