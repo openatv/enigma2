@@ -240,8 +240,9 @@ class GeneralSetup(Screen):
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Front Panel Settings",_("Front Panel Setup"),_("Setup your front panel")))
 		if SystemInfo["GraphicLCD"]: 
-			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
-		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
+			self.sublist.append(QuickSubMenuEntryComponent("Display Skin Setup",_("Skin Setup"),_("Setup your display skin")))
+		if SystemInfo["Fan"]: 
+			self.sublist.append(QuickSubMenuEntryComponent("FAN Setup",_("FAN Setup"),_("Setup your FAN")))
 		self.sublist.append(QuickSubMenuEntryComponent("Factory Reset",_("Load default"),_("Reset all settings to defaults one")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -308,6 +309,7 @@ class GeneralSetup(Screen):
 		if SystemInfo["CanChange3DOsd"]:
 			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("3D Setup side by side"),_("3D Setup side by side")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Choose menu skin"),_("Choose menu skin")))
+		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
 
 		self["sublist"].l.setList(self.sublist)
 
@@ -458,7 +460,7 @@ class GeneralSetup(Screen):
 			self.openSetup("display")
 		elif item[0] == _("Skin Setup"):
 			self.session.open(SkinSelector)
-		elif item[0] == _("LCD Skin Setup"):
+		elif item[0] == _("Display Skin Setup"):
 			self.session.open(LcdSkinSelector)
 		elif item[0] == _("OSD Settings"):
 			self.openSetup("userinterface")
@@ -467,6 +469,9 @@ class GeneralSetup(Screen):
 		elif item[0] == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 			self.session.open(HdmiCECSetupScreen)  
+		elif item[0] == _("FAN Setup"):
+			from Plugins.SystemPlugins.FanControl.plugin import FanSetupScreen
+			self.session.open(FanSetupScreen)
 		elif item[0] == _("Factory Reset"):
 			from Screens.FactoryReset import FactoryReset
 
