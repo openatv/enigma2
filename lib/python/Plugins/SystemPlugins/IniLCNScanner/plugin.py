@@ -107,6 +107,7 @@ class LCN():
 				continue
 			
 			self.addLcnToList(int(tmp[0], 16), int(tmp[1], 16), int(tmp[2], 16), int(tmp[3], 16), int(tmp[4]), int(tmp[5]))
+		f.close()
 		
 		if self.root is not None:
 			for x in self.root:
