@@ -960,28 +960,26 @@ void eDVBScan::channelDone()
 	{
 		SCAN_eDebug("[eDVBScan] channel good - adding");
 		addKnownGoodChannel(m_chid_current, m_ch_current);
-		if (m_chid_current)
+		switch(type)
 		{
-			switch(type)
+			case iDVBFrontend::feSatellite:
+			case iDVBFrontend::feTerrestrial:
+			case iDVBFrontend::feCable:
 			{
-				case iDVBFrontend::feSatellite:
-				case iDVBFrontend::feTerrestrial:
-				case iDVBFrontend::feCable:
+				ePtr<iDVBFrontend> fe;
+				if (!m_channel->getFrontend(fe))
 				{
-					ePtr<iDVBFrontend> fe;
-					if (!m_channel->getFrontend(fe))
-					{
-						int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
-//						eDebug("add tuner data for tsid %04x, onid %04x, ns %08x",
-//							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
-//							m_chid_current.dvbnamespace.get());
-						m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
-					}
+					int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
+					eDebug("[eDVBScan] add tuner data for tsid %04x, onid %04x, ns %08x, freq %d",
+						m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
+						m_chid_current.dvbnamespace.get(), frequency);
+					m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
 				}
-				default:
-					break;
 			}
-		}
+			break;
+			default:
+				break;
+			}
 	}
 
 	m_ch_scanned.push_back(m_ch_current);
