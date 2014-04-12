@@ -508,6 +508,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 			fseek(m_lcn_file, 0, SEEK_END);
 			fwrite(row, 1, 39, m_lcn_file);
 		}
+		fflush(m_lcn_file);
 	} else
 	{
 		SCAN_eDebug("[eDVBScan] [LCN] File is not present, will NOT add %s", row);
