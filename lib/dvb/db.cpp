@@ -850,6 +850,7 @@ void eDVBDB::setNumberingMode(bool numberingMode)
 
 int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 {
+	eDebug("[eDVBDB] Renumber %s, starting at %d", bouquet.m_bouquet_name.c_str(), startChannelNum);
 	std::list<eServiceReference> &list = bouquet.m_services;
 	for (std::list<eServiceReference>::iterator it = list.begin(); it != list.end(); ++it)
 	{
@@ -904,7 +905,11 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 
 		if( !(tmp.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
 		   (tmp.flags & eServiceReference::isNumberedMarker) )
+		{
+			if (tmp.number != startChannelNum)
+				eDebug("[eDVBDB] renumbering %s from %d to %d", tmp.toString().c_str(), tmp.number, startChannelNum);
 			tmp.number = startChannelNum++;
+		}
 
 	}
 	return startChannelNum;

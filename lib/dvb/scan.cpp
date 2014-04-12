@@ -476,13 +476,13 @@ void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParame
 
 void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportStreamID tsid, eServiceID sid, uint16_t lcn, uint32_t signal)
 {
+	char row[40];
+	sprintf(row, "%08x:%04x:%04x:%04x:%05d:%08d\n", ns.get(), onid.get(), tsid.get(), sid.get(), lcn, signal);
 	if (m_lcn_file)
 	{
 		SCAN_eDebug("[eDVBScan] [LCN] File is present, trying to write...");
 		int size = 0;
-		char row[40];
 		bool added = false;
-		sprintf(row, "%08x:%04x:%04x:%04x:%05d:%08d\n", ns.get(), onid.get(), tsid.get(), sid.get(), lcn, signal);
 		fseek(m_lcn_file, 0, SEEK_END);
 		size = ftell(m_lcn_file);
 		
@@ -493,6 +493,8 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 			fread (tmp, 1, 39, m_lcn_file);
 			if (memcmp(tmp, row, 23) == 0)
 			{
+				tmp[38] = 0;
+				SCAN_eDebugNoNewLine("[eDVBScan] [LCN] replacing %s with %s", tmp, row);
 				fseek(m_lcn_file, i*39, SEEK_SET);
 				fwrite(row, 1, 39, m_lcn_file);
 				added = true;
@@ -502,9 +504,13 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 			
 		if (!added)
 		{
+			SCAN_eDebug("[eDVBScan] [LCN] adding %s", row);
 			fseek(m_lcn_file, 0, SEEK_END);
 			fwrite(row, 1, 39, m_lcn_file);
 		}
+	} else
+	{
+		SCAN_eDebug("[eDVBScan] [LCN] File is not present, will NOT add %s", row);
 	}
 }
 
@@ -612,7 +618,8 @@ int eDVBScan::sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *c
 
 void eDVBScan::channelDone()
 {
-	if (m_ready & validSDT && (!(m_flags & scanOnlyFree) || !m_pmt_running))
+	SCAN_eDebug("[eDVBScan] channelDone with m_ready=0x%02x", m_ready);
+	if ((m_ready & validSDT) && (!(m_flags & scanOnlyFree) || !m_pmt_running))
 	{
 		unsigned long hash = 0;
 
@@ -813,7 +820,8 @@ void eDVBScan::channelDone()
 	 			m_flags &= ~clearToScanOnFirstNIT;
  		}
 		m_ready &= ~validNIT;
-	}
+	} else
+		SCAN_eDebug("[eDVBScan] no valid NIT");
 
 	if (m_pmt_running || (m_ready & m_ready_all) != m_ready_all)
 	{
@@ -950,6 +958,7 @@ void eDVBScan::channelDone()
 		eWarning("[eDVBScan] SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
 	{
+		SCAN_eDebug("[eDVBScan] channel good - adding");
 		addKnownGoodChannel(m_chid_current, m_ch_current);
 		if (m_chid_current)
 		{
@@ -1008,6 +1017,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 		
 	if (m_flags & scanRemoveServices)
 	{
+		SCAN_eDebug("[eDVBScan] clearing lcndb");
 		m_lcn_file = fopen(eEnv::resolve("${sysconfdir}/enigma2/lcndb").c_str(), "w");
 		if (!m_lcn_file)
 			eDebug("[eDVBScan] couldn't open file lcndb");
@@ -1116,6 +1126,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 		{
 			eDVBChannelID chid;
 			chid.dvbnamespace=0xEEEE0000;
+			eDebug("[eDVBScan] remove service %08x, %d, %d", chid.dvbnamespace.get(), chid.original_network_id.get(), chid.transport_stream_id.get());
 			db->removeServices(chid);
 		}
 		if (clearCable)
@@ -1278,6 +1289,8 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				add = false;
 			}
 		}
+		else
+			SCAN_eDebug(".");
 
 		if (add)
 		{

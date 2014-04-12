@@ -2074,6 +2074,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			res = -EINVAL;
 			goto tune_error;
 		}
+		eDebug("[FE] T freq %d", feparm.frequency);
 		res=prepare_terrestrial(feparm);
 		if (res)
 			goto tune_error;
@@ -2127,6 +2128,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	return res;
 
 tune_error:
+	eDebug("[FE] tune_error");
 	m_tuneTimer->stop();
 	return res;
 }

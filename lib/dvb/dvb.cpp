@@ -1550,6 +1550,7 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 
 	if (ourstate != m_state)
 	{
+		eDebug("[eDVBChannel] state change %d -> %d", m_state, ourstate);
 		m_state = ourstate;
 		m_stateChanged(this);
 	}
