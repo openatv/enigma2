@@ -11,27 +11,33 @@
 #define FP_IOCTL_SET_RTC         0x101
 #define FP_IOCTL_GET_RTC         0x102
 
-#define TIME_UPDATE_INTERVAL (30*60*1000)
+#define TIME_UPDATE_INTERVAL (15*60*1000)
 
-static char mybox[256];
+static char mybox[20];
+
+int fileExist(const char* filename){
+	struct stat buffer;
+	int exist = stat(filename,&buffer);
+	if(exist == 0)
+	    return 1;
+	else // -1
+	    return 0;
+}
 
 void noRTC()
 {
-	char buf[256];
-	FILE *fb = fopen("/etc/image-version","r");
-	if (fb)
+	mybox[0] = NULL;
+	if(fileExist("/proc/stb/info/gbmodel"))
 	{
-		while (fgets(buf, 256, fb))
+		FILE *fb = fopen("/proc/stb/info/gbmodel","r");
+		if (fb)
 		{
-			if (strstr(buf, "box_type="))
-			{
-				char * pch;
-				pch = strtok(buf,"=");
-				pch = strtok(NULL,"=");
-				strncpy(mybox, pch,5);
-			}
+			char buf[20];
+			fgets(buf, 20, fb);
+			strncpy(mybox, buf, 20);
+			fclose(fb);
+			eDebug("[eDVBLocalTimerHandler] Boxtype = %s", mybox);
 		}
-		fclose(fb);
 	}
 }
 
@@ -46,7 +52,7 @@ void setRTC(time_t time)
 	{
 		if (fprintf(f, "%u", (unsigned int)time))
 		{
-			if (!strncmp(mybox,"gb800",sizeof(mybox)))
+			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
 				prev_time = 0; //sorry no RTC
 			else
 				prev_time = time;
@@ -81,7 +87,7 @@ time_t getRTC()
 		if (fscanf(f, "%u", &tmp) != 1)
 			eDebug("read /proc/stb/fp/rtc failed (%m)");
 		else
-			if (!strncmp(mybox,"gb800",sizeof(mybox)))
+			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
 				rtc_time=0; // sorry no RTC
 			else
 				rtc_time=tmp;
@@ -204,7 +210,7 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 		{
 			eDebug("Use valid Linux Time :) (RTC?)");
 			noRTC();
-			if (!strncmp(mybox,"gb800",sizeof(mybox)))
+			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
 				m_time_ready = false; //sorry no RTC
 			else
 			    m_time_ready = true;
@@ -220,7 +226,7 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
-		if (!strncmp(mybox,"gb800",sizeof(mybox)))
+		if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
 				eDebug("Dont set RTC to previous valid time, giga box");
 			else
 				setRTC(::time(0));
