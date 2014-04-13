@@ -51,7 +51,7 @@ class SwapCheck:
 			f.close()
 			TotalFree = memfree + swapfree
 			print "[SwapCheck] Free Mem",TotalFree
-			if int(TotalFree) < 50000:
+			if int(TotalFree) < 5000:
 				print "[SwapCheck] Not Enough Ram"
 				self.MemCheck2()
 			else:

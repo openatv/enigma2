@@ -193,7 +193,6 @@ class InfoBarTimeshift:
 		# print '__serviceStarted'
 		self.service_changed = 1
 		self.pts_service_changed = True
-		self.ptsCleanTimeshiftFolder()
 		# print 'self.timeshiftEnabled1',self.timeshiftEnabled()
 		if self.pts_delay_timer.isActive():
 			# print 'TS AUTO START TEST1'
@@ -478,6 +477,7 @@ class InfoBarTimeshift:
 
 	def activateAutorecordTimeshift(self):
 		self.createTimeshiftFolder()
+		self.ptsCleanTimeshiftFolder()
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
