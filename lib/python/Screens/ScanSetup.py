@@ -459,6 +459,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.value
 				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-T"):
+			self.scan_networkScan.value = True	# Required for LCNs
 			if self.scan_typeterrestrial.value == "single_transponder":
 				if nim.isCompatible("DVB-T2"):
 					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system)
@@ -530,9 +531,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			"symbolrate": 6900,
 			"system": eDVBFrontendParametersCable.System_DVB_C_ANNEX_A }
 		defaultTer = {
-			"frequency" : 474000,
+			"frequency" : 177500,
 			"inversion" : eDVBFrontendParametersTerrestrial.Inversion_Unknown,
-			"bandwidth" : 8000000,
+			"bandwidth" : 7000000,
 			"fechigh" : eDVBFrontendParametersTerrestrial.FEC_Auto,
 			"feclow" : eDVBFrontendParametersTerrestrial.FEC_Auto,
 			"modulation" : eDVBFrontendParametersTerrestrial.Modulation_Auto,
@@ -568,7 +569,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			elif ttype == "DVB-T":
 				defaultTer["frequency"] = frontendData.get("frequency", 0)
 				defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
-				defaultTer["bandwidth"] = frontendData.get("bandwidth", 8000000)
+				defaultTer["bandwidth"] = frontendData.get("bandwidth", 7000000)
 				defaultTer["fechigh"] = frontendData.get("code_rate_hp", eDVBFrontendParametersTerrestrial.FEC_Auto)
 				defaultTer["feclow"] = frontendData.get("code_rate_lp", eDVBFrontendParametersTerrestrial.FEC_Auto)
 				defaultTer["modulation"] = frontendData.get("constellation", eDVBFrontendParametersTerrestrial.Modulation_Auto)
@@ -766,7 +767,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.scan_input_as = ConfigSelection(default = "frequency", choices = [("frequency", _("Frequency")), ("channel", _("Channel"))])
 		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 		self.scan_onlyfree = ConfigYesNo(default = False)
-		self.scan_networkScan = ConfigYesNo(default = False)
+		self.scan_networkScan = ConfigYesNo(default = True)
 
 		self.scan_scansat = {}
 		for sat in nimmanager.satList:

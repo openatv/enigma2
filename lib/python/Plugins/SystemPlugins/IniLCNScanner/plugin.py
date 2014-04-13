@@ -78,7 +78,7 @@ class LCN():
 				try:
 					exec cmd
 				except Exception, e:
-					print e
+					print "[LCNScanner]", e
 
 	def addMarker(self, position, text):
 		self.markers.append([position, text])
@@ -89,7 +89,7 @@ class LCN():
 		try:
 			f = open(self.dbfile)
 		except Exception, e:
-			print e
+			print "[LCNScanner]", e
 			return
 		
 		while True:
@@ -98,7 +98,7 @@ class LCN():
 				break
 				
 			line = line.strip()
-			#print line
+			#print "[LCNScanner]", line
 			if len(line) != 38:
 				continue
 			
@@ -107,6 +107,7 @@ class LCN():
 				continue
 			
 			self.addLcnToList(int(tmp[0], 16), int(tmp[1], 16), int(tmp[2], 16), int(tmp[3], 16), int(tmp[4]), int(tmp[5]))
+		f.close()
 		
 		if self.root is not None:
 			for x in self.root:
@@ -142,13 +143,13 @@ class LCN():
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.tv', "w")
 		except Exception, e:
-			print e
+			print "[LCNScanner]", e
 			return
 
 		self.newlist = []
 		count = 0
 		#for x in self.lcnlist:
-			#print " LISTA LCN:", x
+			#print "[LCNScanner]", " LISTA LCN:", x
 			
 		for x in self.lcnlist:
 			count += 1
@@ -159,20 +160,20 @@ class LCN():
 				self.newlist.append(x)
 
 		#for x in self.e2services:
-			#print " self.e2services:", x
+			#print "[LCNScanner]", " self.e2services:", x
 
 
 		#for x in self.newlist:
-			#print " NEW LIST LCN :", x
+			#print "[LCNScanner]", " NEW LIST LCN :", x
 			
-		#print " New LIST LEN: " , len(self.newlist)
+		#print "[LCNScanner]", " New LIST LEN: " , len(self.newlist)
 			
 		f.write("#NAME Terrestrial TV LCN\n")
 		f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0::Terrestrial TV LCN\n")
 		f.write("##DESCRIPTION Terrestrial TV LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
-				#print x[0], " Detected 111111111111 service"
+				#print "[LCNScanner]", x[0], " Detected 111111111111 service"
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
 				continue
 				
@@ -220,13 +221,13 @@ class LCN():
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.radio', "w")
 		except Exception, e:
-			print e
+			print "[LCNScanner]", e
 			return
 
 		self.newlist = []
 		count = 0
 		#for x in self.lcnlist:
-			#print " LISTA LCN:", x
+			#print "[LCNScanner]", " LISTA LCN:", x
 			
 		for x in self.lcnlist:
 			count += 1
@@ -237,20 +238,20 @@ class LCN():
 				self.newlist.append(x)
 
 		#for x in self.e2services:
-			#print " self.e2services:", x
+			#print "[LCNScanner]", " self.e2services:", x
 
 
 		#for x in self.newlist:
-			#print " NEW LIST LCN :", x
+			#print "[LCNScanner]", " NEW LIST LCN :", x
 			
-		#print " New LIST LEN: " , len(self.newlist)
+		#print "[LCNScanner]", " New LIST LEN: " , len(self.newlist)
 			
 		f.write("#NAME Terrestrial Radio LCN\n")
 		f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0::Terrestrial RADIO LCN\n")
 		f.write("##DESCRIPTION Terrestrial RADIO LCN\n")
 		for x in self.newlist:
 			if int(x[1]) == 11111111:
-				#print x[0], " Detected 111111111111 service"
+				#print "[LCNScanner]", x[0], " Detected 111111111111 service"
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
 				continue
 				
@@ -324,7 +325,7 @@ class LCNBuildHelper():
 		try:
 			f = open(pwd + "/" + bouquetname)
 		except Exception, e:
-			print e
+			print "[LCNScanner]", e
 			return
 			
 		ret = []
@@ -351,7 +352,7 @@ class LCNBuildHelper():
 				try:
 					fb = open(pwd + "/" + filename)
 				except Exception, e:
-					print e
+					print "[LCNScanner]", e
 					continue
 					
 				tmp = fb.readline().strip()
