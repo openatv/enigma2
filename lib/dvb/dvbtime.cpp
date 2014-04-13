@@ -36,6 +36,7 @@ void noRTC()
 			fgets(buf, 20, fb);
 			strncpy(mybox, buf, 20);
 			fclose(fb);
+			strtok(mybox, "\n");
 			eDebug("[eDVBLocalTimerHandler] Boxtype = %s", mybox);
 		}
 	}
