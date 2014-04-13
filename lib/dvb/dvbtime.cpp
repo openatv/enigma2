@@ -38,7 +38,6 @@ void noRTC()
 			fclose(fb);
 			eDebug("[eDVBLocalTimerHandler] Boxtype = %s", mybox);
 		}
-		fclose(fb);
 	}
 }
 
