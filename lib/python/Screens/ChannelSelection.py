@@ -1099,6 +1099,8 @@ class ChannelSelectionBase(Screen):
 
 		self.mode = MODE_TV
 		self.dopipzap = False
+		self.bouquet_mark_edit = OFF
+
 
 		self.pathChangeDisabled = False
 
@@ -2365,7 +2367,6 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			})
 		self.bouquet_mark_edit = OFF
 		self.title = title
-		self.bouquet_mark_edit = OFF
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
