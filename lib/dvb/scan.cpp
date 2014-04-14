@@ -583,7 +583,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
 		if (sameChannel(*i, feparm))
 		{
-			SCAN_eDebug("[eDVBScan] successfully scanned");
+			SCAN_eDebug("[eDVBScan] already successfully scanned");
 			return;
 		}
 
@@ -598,7 +598,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 		/* ... on the current channel */
 	if (sameChannel(m_ch_current, feparm))
 	{
-		SCAN_eDebug("[eDVBScan] is current");
+		SCAN_eDebug("[eDVBScan] is same as current");
 		return;
 	}
 

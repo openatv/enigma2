@@ -698,6 +698,7 @@ void eDVBFrontend::feEvent(int w)
 		eDebug("[FE] (%d)fe event: status %x, inversion %s, m_tuning %d", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off", m_tuning);
 		if (event.status & FE_HAS_LOCK)
 		{
+			eDebug("[FE] have lock");
 			state = stateLock;
 		}
 		else
@@ -2074,7 +2075,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			res = -EINVAL;
 			goto tune_error;
 		}
-		eDebug("[FE] T freq %d", feparm.frequency);
+		eDebug("[FE] [tune] freq %d", feparm.frequency);
 		res=prepare_terrestrial(feparm);
 		if (res)
 			goto tune_error;

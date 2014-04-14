@@ -8,12 +8,11 @@ DEFINE_REF(eComponentScan);
 
 void eComponentScan::scanEvent(int evt)
 {
-	eDebug("[eComponentScan] scan event %d!", evt);
-	
 	switch(evt)
 	{
 		case eDVBScan::evtFinish:
 		{
+			eDebug("[eComponentScan] scan event finish");
 			m_done = 1;
 			ePtr<iDVBChannelList> db;
 			ePtr<eDVBResourceManager> res;
@@ -36,14 +35,16 @@ void eComponentScan::scanEvent(int evt)
 			break;
 		}
 		case eDVBScan::evtNewService:
+			eDebug("[eComponentScan] scan event new service");
 			newService();
 			return;
 		case eDVBScan::evtFail:
-			eDebug("[eComponentScan] scan failed.");
+			eDebug("[eComponentScan] scan event fail");
 			m_failed = 1;
 			m_done = 1;
 			break;
 		case eDVBScan::evtUpdate:
+			eDebug("[eComponentScan] scan event update");
 			break;
 	}
 	statusChanged();
