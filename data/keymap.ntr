@@ -224,34 +224,36 @@
 
 	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
-		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
-		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
-		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
-		<key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
-		<key id="KEY_BOOKMARKS" mapto="showWWW" flags="b" />
-		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
-		<key id="KEY_TV" mapto="showTv" flags="b" />
-		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
-		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="b" />
-		<key id="KEY_FILE" mapto="showMovies" flags="m" />
-		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
-		<key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
-		<key id="KEY_SLOW" mapto="openTimerList" flags="b" />
-		<key id="KEY_F5" mapto="openTimerList" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
-		<key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
-		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
-		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
-		<key id="KEY_CONNECT" mapto="HarddiskSetup" flags="b" />
-		<key id="KEY_WWW" mapto="showWWW" flags="m" />
-		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
-		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" />
-		<key id="KEY_PVR" mapto="showMovies" flags="m" />
-		<key id="KEY_PROG1" mapto="HarddiskSetup" flags="b" />
-		<key id="KEY_F1" mapto="showWWW" flags="b" />
+        <key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
+        <key id="KEY_PLAY" mapto="showMovies" flags="m" />
+        <key id="KEY_RADIO" mapto="showRadio" flags="b" />
+        <key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
+        <key id="KEY_BOOKMARKS" mapto="showWWW" flags="b" />
+        <key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
+        <key id="KEY_TV" mapto="showTv" flags="b" />
+        <key id="KEY_TV" mapto="openBouquetList" flags="l" />
+        <key id="KEY_FAVORITES" mapto="openBouquetList" flags="b" />
+        <key id="KEY_FILE" mapto="showMovies" flags="m" />
+        <key id="KEY_MEDIA" mapto="showMovies" flags="m" />
+        <key id="KEY_LIST" mapto="showMediaPlayer" flags="b" />
+        <key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
+        <key id="KEY_SLOW" mapto="openTimerList" flags="b" />
+        <key id="KEY_F5" mapto="openTimerList" flags="b" />
+        <key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
+        <key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
+        <key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
+        <key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
+        <key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
+        <key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
+        <key id="KEY_CONNECT" mapto="HarddiskSetup" flags="b" />
+        <key id="KEY_WWW" mapto="showWWW" flags="m" />
+        <key id="KEY_SETUP" mapto="showSetup" flags="m" />
+        <key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" />
+        <key id="KEY_PVR" mapto="showMovies" flags="m" />
+        <key id="KEY_PROG1" mapto="HarddiskSetup" flags="b" />
+        <key id="KEY_OPEN" mapto="showBoxPortal" flags="b" />
+        <key id="KEY_F1" mapto="showWWW" flags="b" />
+        <key id="KEY_F2" mapto="showMC" flags="b" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
