@@ -311,6 +311,8 @@ def restartScanAutoStartTimer(reply=False):
 	if not reply:
 		print "[AutoFastScan] Scan was not succesfully retry in one hour"
 		FastScanAutoStartTimer.startLongTimer(3600)
+	else:
+		FastScanAutoStartTimer.startLongTimer(86400)
 
 def FastScanAuto():
 	lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
@@ -328,7 +330,7 @@ def standbyCountChanged(value):
 	if config.misc.fastscan.auto.value:
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(leaveStandby)
-		FastScanAutoStartTimer.startLongTimer(600)
+		FastScanAutoStartTimer.startLongTimer(90)
 
 def startSession(session, **kwargs):
 	global Session

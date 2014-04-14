@@ -445,14 +445,18 @@ class InfoBarNumberZap:
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			else:
-				self.servicelist.recallPrevService()
+			elif len(self.servicelist.history) > 1:
+				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
 			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+
+	def recallPrevService(self, reply):
+		if reply:
+			self.servicelist.recallPrevService()
 
 	def numberEntered(self, service = None, bouquet = None):
 		if service:

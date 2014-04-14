@@ -29,7 +29,7 @@ class ChannelNumbers:
 				d = (f - 1) % 7
 				return str(int(f - 526)/7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
 
-		return None
+		return ""
 
 	def getMHz(self, frequency):
 		return (frequency+50000)/100000/10.
