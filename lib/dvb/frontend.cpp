@@ -443,7 +443,7 @@ RESULT eDVBFrontendParameters::calcLockTimeout(unsigned int &timeout) const
 		}
 		case iDVBFrontend::feTerrestrial:
 		{
-			timeout = 5000;
+			timeout = 1500;
 			return 0;
 		}
 		case iDVBFrontend::feATSC:
@@ -1989,7 +1989,7 @@ RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 
 RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
-	unsigned int timeout = 5000;
+	unsigned int timeout;
 	int type;
 	eDebugNoSimulate("[FE] (%d) tune", m_dvbid);
 

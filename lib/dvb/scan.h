@@ -30,7 +30,21 @@ struct tunerstate
 	}
 	bool operator<=(const tunerstate &rhs) const
 	{
-		return (ber >= rhs.ber) || (snr <= rhs.snr) || (pwr <= rhs.pwr);
+#if 1
+		return pwr <= rhs.pwr;
+		/* It turns out that only taking signal power into account is the
+		 * most reliable method. BER and SNR figures tend to fluctuate all
+		 * over the place so taking an instantaneous reading is not good
+		 * enough. */
+#else
+		if (ber > rhs.ber) return true;	// Error rate: lower is better
+		if (ber == rhs.ber)
+		{
+			if (snr < rhs.snr) return true;
+			if (snr == rhs.snr) return pwr <= rhs.pwr;
+		}
+		return false;
+#endif
 	}
 	int freq;
 	int ber;
