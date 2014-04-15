@@ -488,7 +488,6 @@ void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParame
 			}
 			else
 				SCAN_eDebug("[eDVBScan] old signal was better - not updating");
-
 		}
 	}
 }
