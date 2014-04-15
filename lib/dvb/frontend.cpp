@@ -508,17 +508,17 @@ int eDVBFrontend::openFrontend()
 			m_fd = ::open(m_filename.c_str(), O_RDWR|O_NONBLOCK);
 			if (m_fd < 0)
 			{
-				eWarning("failed! (%s) %m", m_filename.c_str());
+				eWarning("[FE] open failed! (%s) %m", m_filename.c_str());
 				return -1;
 			}
 		}
 		else
-			eWarning("frontend %d already opened", m_dvbid);
+			eWarning("[FE] frontend %d already opened", m_dvbid);
 		if (m_delsys.empty())
 		{
 			if (::ioctl(m_fd, FE_GET_INFO, &fe_info) < 0)
 			{
-				eWarning("ioctl FE_GET_INFO failed");
+				eWarning("[FE] ioctl FE_GET_INFO failed");
 				::close(m_fd);
 				m_fd = -1;
 				return -1;
@@ -652,7 +652,7 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 		if (!::close(m_fd))
 			m_fd=-1;
 		else
-			eWarning("couldnt close frontend %d", m_dvbid);
+			eWarning("[FE] couldnt close frontend %d", m_dvbid);
 	}
 	else if (m_simulate)
 	{
@@ -698,6 +698,7 @@ void eDVBFrontend::feEvent(int w)
 		eDebug("[FE] (%d)fe event: status %x, inversion %s, m_tuning %d", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off", m_tuning);
 		if (event.status & FE_HAS_LOCK)
 		{
+			eDebug("[FE] have lock");
 			state = stateLock;
 		}
 		else
@@ -1326,7 +1327,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::SET_FRONTEND:
 			{
 				int enableEvents = (m_sec_sequence.current()++)->val;
-				eDebugNoSimulate("[FE] [SEC] setFrontend %d", enableEvents);
+				eDebugNoSimulate("[FE] [SEC] setFrontend enableEvents %s", enableEvents ? "on" : "off");
 				setFrontend(enableEvents);
 				break;
 			}
@@ -2074,7 +2075,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			res = -EINVAL;
 			goto tune_error;
 		}
-		eDebug("[FE] T freq %d", feparm.frequency);
+		eDebug("[FE] [tune] freq %d", feparm.frequency);
 		res=prepare_terrestrial(feparm);
 		if (res)
 			goto tune_error;
