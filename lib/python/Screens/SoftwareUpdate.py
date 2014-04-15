@@ -99,7 +99,7 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					imagever = int(getImageBuild())
 			else:
-				imagever = int(getImageBuild())+865
+				imagever = int(getImageBuild())+887
 			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
