@@ -18,7 +18,7 @@ def enumPlugins(filter_start=''):
 	for feed in enumFeeds():
 		package = None
 		try:
-			file = open('/var/lib/opkg/lists/%s' % feed, 'r')
+			file = open('/var/lib/opkg/%s' % feed, 'r')
 			for line in file:
 				if line.startswith('Package:'):
 					package = line.split(":",1)[1].strip()

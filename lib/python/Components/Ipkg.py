@@ -1,7 +1,7 @@
 import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
-from shutil import rmtree
+from boxbranding import getImageDistro
 
 opkgDestinations = []
 opkgStatusPath = ''
@@ -82,8 +82,9 @@ class IpkgComponent:
 
 	def startCmd(self, cmd, args = None):
 		if cmd == self.CMD_UPDATE:
-			if os.path.exists('/var/lib/opkg/lists'):
-				rmtree('/var/lib/opkg/lists')
+			for fn in os.listdir('/var/lib/opkg'):
+				if fn.startswith(getImageDistro()):
+					os.remove('/var/lib/opkg/'+fn)
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
 			append = ""
