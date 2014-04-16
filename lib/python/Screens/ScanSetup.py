@@ -687,7 +687,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(eDVBFrontendParametersCable.System_DVB_C_ANNEX_C, _("DVB-C ANNEX C"))])
 
 		# terrestial
-		self.scan_ter.frequency = ConfigInteger(default = 177500000, limits = (50000, 999000))
+		self.scan_ter.frequency = ConfigInteger(default = 177500, limits = (50000, 999000))
 		chlist = ["6", "7", "8", "9", "9A", "10", "11", "12"] + [str(i) for i in range(28, 70)]
 		self.scan_ter.channel = ConfigSelection(choices = chlist)
 		self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
