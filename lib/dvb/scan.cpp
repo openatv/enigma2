@@ -4,6 +4,7 @@
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
+#include <dvbsi++/frequency_list_descriptor.h>
 #include <dvbsi++/logical_channel_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/ca_identifier_descriptor.h>
@@ -720,11 +721,41 @@ void eDVBScan::channelDone()
 						feparm->getHash(hash);
 						ns = buildNamespace(onid, tsid, hash);
 
-						addChannelToScan(
-							eDVBChannelID(ns, tsid, onid),
-							feparm);
+						addChannelToScan(eDVBChannelID(ns, tsid, onid), feparm);
 						break;
 					}
+					case FREQUENCY_LIST_DESCRIPTOR:
+					{
+						FrequencyListDescriptor &d = (FrequencyListDescriptor&)**desc;
+						if (d.getCodingType() == 3)
+						{
+							const CentreFrequencyList *fl = d.getCentreFrequencies();
+							for (CentreFrequencyConstIterator fi = fl->begin(); fi != fl->end(); ++fi)
+							{
+								SCAN_eDebug("[eDVBScan] frequency list descriptor found %d", *fi * 10);
+
+								eDVBFrontendParametersTerrestrial terr;
+								m_ch_current->getDVBT(terr);
+								terr.frequency = *fi * 10;
+								// Alternate frequencies don't have to use the same coding params - prefer auto
+								terr.code_rate_HP = terr.FEC_Auto;
+								terr.code_rate_LP = terr.FEC_Auto;
+								terr.modulation = terr.Modulation_Auto;
+								terr.transmission_mode = terr.TransmissionMode_Auto;
+								terr.guard_interval = terr.GuardInterval_Auto;
+								terr.hierarchy = terr.Hierarchy_Auto;
+								terr.inversion = terr.Inversion_Unknown;
+								ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters();
+								feparm->setDVBT(terr);
+								unsigned long hash=0;
+								feparm->getHash(hash);
+								ns = buildNamespace(onid, tsid, hash);
+								addChannelToScan(eDVBChannelID(ns, tsid, onid), feparm);
+							}
+						}
+						break;
+					}
+
 					case LOGICAL_CHANNEL_DESCRIPTOR:
 					{
 						// we handle it later
