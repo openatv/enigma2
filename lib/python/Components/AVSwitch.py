@@ -148,11 +148,11 @@ class AVSwitch:
 			mode_60 = mode_50
 
 		mode_etc = None
-		if os.path.exists('/proc/stb/video/videomode_50hz') and not getBoxType() in ('gb800solo', 'gb800se', 'gb800ue'):
+		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
 			f = open("/proc/stb/video/videomode_50hz", "w")
 			f.write(mode_50)
 			f.close()
-		if os.path.exists('/proc/stb/video/videomode_60hz') and not getBoxType() in ('gb800solo', 'gb800se', 'gb800ue'):
+		if os.path.exists('/proc/stb/video/videomode_60hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
 			f = open("/proc/stb/video/videomode_60hz", "w")
 			f.write(mode_60)
 			f.close()
