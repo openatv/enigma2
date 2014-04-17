@@ -1,3 +1,5 @@
+from boxbranding import getMachineBrand
+
 from Components.Sources.List import List 
 
 from Screens.Screen import Screen
@@ -1012,6 +1014,14 @@ class GeneralMenu(Screen):
 				else:
 					menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),60]
 				list.append(tuple(menuitem))
+		if getMachineBrand() == "GI":
+			if l.name == _("MediaPortal"): 
+				if menuID == "id_mainmenu_movies":
+					if isinstance(l.iconstr, str):
+						menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),60]
+					else:
+						menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),60]
+					list.append(tuple(menuitem))
         try:
             list.sort(key=lambda x: int(x[3]))
         except:
