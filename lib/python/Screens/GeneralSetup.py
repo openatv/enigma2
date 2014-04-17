@@ -100,7 +100,9 @@ class GeneralSetup(Screen):
 		<eLabel name="new eLabel" position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
 		<eLabel name="new eLabel" position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
 		</screen> """
-
+	
+	ALLOW_SUSPEND = True
+	
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Setup"))

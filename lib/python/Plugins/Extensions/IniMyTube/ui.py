@@ -296,14 +296,14 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"ok": self.keyOK,
 			"back": self.leavePlayer,
 			"red": self.leavePlayer,
-			#"blue": self.openKeyboard,
+			"showVirtualKeyboard": self.openKeyboard,
 			"yellow": self.handleHistory,
 			"up": self.keyUp,
 			"down": self.handleSuggestions,
 			"left": self.keyLeft,
 			"right": self.keyRight,
 			"prevBouquet": self.switchToFeedList,
-			#"nextBouquet": self.switchToConfigList,
+			"nextBouquet": self.switchToConfigList,
 			"nextBouquet": self.openKeyboard,
 			"displayHelp": self.handleHelpWindow,
 			"menu" : self.handleMenu,
@@ -314,8 +314,8 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"ok": self.keyOK,
 			"back": self.switchToConfigList,
 			"red": self.switchToConfigList,
-			#"nextBouquet": self.switchToConfigList,
-			"nextBouquet": self.openKeyboard,
+			"nextBouquet": self.switchToConfigList,
+			"showVirtualKeyboard": self.openKeyboard,
 			"prevBouquet": self.switchToFeedList,
 			"up": self.keyUp,
 			"down": self.keyDown,
@@ -333,8 +333,8 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"yellow": self.handleHistory,
 			"up": self.keyUp,
 			"down": self.keyDown,
-			#"nextBouquet": self.switchToConfigList,
-			"nextBouquet": self.openKeyboard,
+			"nextBouquet": self.switchToConfigList,
+			"showVirtualKeyboard": self.openKeyboard,
 			"green": self.keyStdFeed,
 			"blue": self.showVideoInfo,
 			"displayHelp": self.handleHelpWindow,
@@ -345,8 +345,8 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		{
 			"back": self.leavePlayer,
 			"red": self.leavePlayer,
-			#"nextBouquet": self.switchToConfigList,
-			"nextBouquet": self.openKeyboard,
+			"nextBouquet": self.switchToConfigList,
+			"showVirtualKeyboard": self.openKeyboard,
 			"green": self.keyStdFeed,
 			"yellow": self.handleHistory,
 			"menu": self.handleMenu
@@ -589,17 +589,17 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		if callback is not None and len(callback):
 			config.plugins.mytube.search.searchTerm.value = callback
 			#ConfigListScreen.keyOK(self)
-		#	self["config"].getCurrent()[1].getSuggestions()
+			self["config"].getCurrent()[1].getSuggestions()
 			self.switchToConfigList()
 			self.keyOK()
 		
 		if current[1].help_window.instance is not None:
 			current[1].help_window.instance.show()	
-		#if current[1].suggestionsWindow.instance is not None:
-		#	current[1].suggestionsWindow.instance.show()
+		if current[1].suggestionsWindow.instance is not None:
+			current[1].suggestionsWindow.instance.show()
 
-		#self.switchToFeedList()
-		#current[1].suggestionsWindow.instance.hide()
+		self.switchToFeedList()
+		current[1].suggestionsWindow.instance.hide()
 		self.propagateUpDownNormally = True
 
 	def openStandardFeedClosed(self, answer):
@@ -700,9 +700,9 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 				self.add2History()
 				searchContext = config.plugins.mytube.search.searchTerm.value
 				print "Search searchcontext",searchContext
-				#if isinstance(self["config"].getCurrent()[1], ConfigTextWithGoogleSuggestions) and not self.propagateUpDownNormally:
-				#	self.propagateUpDownNormally = True
-				#	self["config"].getCurrent()[1].deactivateSuggestionList()
+				if isinstance(self["config"].getCurrent()[1], ConfigTextWithGoogleSuggestions) and not self.propagateUpDownNormally:
+					self.propagateUpDownNormally = True
+					self["config"].getCurrent()[1].deactivateSuggestionList()
 				self.setState('getSearchFeed')
 				self.runSearch(searchContext)
 		elif self.currList == "feedlist":
@@ -867,15 +867,15 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self["key_green"].hide()
 		self["ButtonBlue"].show()
 		self["VKeyIcon"].show()
-		#self["config"].invalidateCurrent()
+		self["config"].invalidateCurrent()
 		helpwindowpos = self["HelpWindow"].getPosition()
 		current = self["config"].getCurrent()
 		if current[1].help_window.instance is not None:
 			current[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 			current[1].help_window.instance.show()
-		#if current[1].suggestionsWindow.instance is not None:
-		#	current[1].suggestionsWindow.instance.show()
-		#	self["config"].getCurrent()[1].getSuggestions()
+		if current[1].suggestionsWindow.instance is not None:
+			current[1].suggestionsWindow.instance.show()
+			self["config"].getCurrent()[1].getSuggestions()
 		self.propagateUpDownNormally = True
 		if self.HistoryWindow is not None and self.HistoryWindow.shown:
 			self.HistoryWindow.deactivate()
