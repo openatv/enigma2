@@ -118,7 +118,10 @@ class SkinSelectorBase:
 			pngpath = os.path.join(os.path.join(self.root, pngpath), "piconprev.png")
 		else:
 			pngpath = self["SkinList"].getCurrent()
-			pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
+			try:
+				pngpath = os.path.join(os.path.join(self.root, pngpath), "prev.png")
+			except:
+				pass
 
 		if not os.path.exists(pngpath):
 			pngpath = resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")
