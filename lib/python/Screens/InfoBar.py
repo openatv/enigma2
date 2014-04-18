@@ -179,7 +179,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showMovies()
 		elif config.usage.tvradiobutton_mode.value == "BouquetList":
 			self.showTvChannelList(True)
-			self.servicelist.showFavourites()
+			if config.usage.show_servicelist.value:
+				self.servicelist.showFavourites()
 		else:
 			self.showTvChannelList(True)
 
@@ -193,7 +194,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.usage.e1like_radio_mode.value:
 			if config.usage.tvradiobutton_mode.value == "BouquetList":
 				self.showRadioChannelList(True)
-				self.servicelist.showFavourites()
+				if config.usage.show_servicelist.value:
+					self.servicelist.showFavourites()
 			else:
 				self.showRadioChannelList(True)
 		else:
