@@ -7,6 +7,11 @@ libexecdir=@libexecdir@
 sysconfdir=@sysconfdir@
 bindir=@bindir@
 
+# The enigma2 config directory will not exist on first boot
+if [ ! -d ${sysconfdir}/enigma2 ]; then
+	mkdir -p -m 755 ${sysconfdir}/enigma2
+	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
+fi
 
 if [ -x ${bindir}/showiframe ]; then
 	if [ -f ${sysconfdir}/enigma2/backdrop.mvi ]; then
