@@ -2201,7 +2201,7 @@ class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
-		self.skinName = "NetworkServiceSetup"
+		self.skinName = ["NetworkSamba", "NetworkServiceSetup"]
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2215,7 +2215,7 @@ class NetworkSamba(Screen):
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.close, 'back': self.close, 'menu': self.setupsamba, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
 		self.service_name = basegroup + '-smbfs'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -2359,7 +2359,10 @@ class NetworkSamba(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
+			
+	def setupsamba(self):
+		self.session.openWithCallback(self.updateService, NetworkSambaSetup)
+		
 class NetworkSambaLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2379,6 +2382,95 @@ class NetworkSambaLog(Screen):
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
 
+class NetworkSambaSetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
+		Screen.setTitle(self, _("Samba Setup"))
+		self['key_red'] = Label(_("Exit"))
+		self['key_green'] = Label(_("Save"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.close, 'green': self.saveSmb, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self.updateList()
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		if item:
+			name = str(item[0])
+			desc = str(item[1].value)
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+
+	def updateList(self):
+		self.smb_server_string = NoSave(ConfigText(fixed_size=False))
+		self.smb_workgroup = NoSave(ConfigText(fixed_size=False))
+
+		if fileExists('/etc/samba/smb.conf'):
+			f = open('/etc/samba/smb.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('server string = '):
+					line = line[16:]
+					self.smb_server_string.value = line
+					smb_server_string1 = getConfigListEntry(_("Server Name") + ":", self.smb_server_string)
+					self.list.append(smb_server_string1)
+				elif line.startswith('workgroup = '):
+					line = line[12:]
+					self.smb_workgroup.value = line
+					smb_workgroup1 = getConfigListEntry(_("Workgroup Name") + ":", self.smb_workgroup)
+					self.list.append(smb_workgroup1)
+			f.close()
+		self['config'].list = self.list
+		self['config'].l.setList(self.list)
+
+	def KeyText(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.vkvar = sel[0]
+			if self.vkvar == _("Server Name") + ':' or self.vkvar == _("Workgroup Name") + ':':
+				from Screens.VirtualKeyBoard import VirtualKeyBoard
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+
+	def saveSmb(self):
+		if fileExists('/etc/samba/smb.conf'):
+			inme = open('/etc/samba/smb.conf', 'r')
+			out = open('/etc/samba/smb.conf.tmp', 'w')
+			for line in inme.readlines():
+				line = line.strip()
+				if line.startswith('server string'):
+					line = ('server string = ' + self.smb_server_string.value.strip())
+				elif line.startswith('workgroup'):
+					line = ('workgroup = ' + self.smb_workgroup.value.strip())
+				out.write((line + '\n'))
+			out.close()
+			inme.close()
+		else:
+			self.session.open(MessageBox, _("Sorry Samba Config is Missing"), MessageBox.TYPE_INFO)
+			self.close()
+		if fileExists('/etc/samba/smb.conf.tmp'):
+			rename('/etc/samba/smb.conf.tmp', '/etc/samba/smb.conf')
+		self.myStop()
+
+	def myStop(self):
+		self.close()
+		
 class NetworkTelnet(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
