@@ -245,6 +245,14 @@ def InitUsageConfig():
 		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
 		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
+	if SystemInfo["StandbyLED"]:
+		def standbyLEDChanged(configElement):
+			file = open("/proc/stb/power/standbyled", "w")
+			file.write(configElement.value and "yes" or "no")
+			file.close()
+		config.usage.standbyLED = ConfigYesNo(default = True)
+		config.usage.standbyLED.addNotifier(standbyLEDChanged)
+
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
