@@ -571,11 +571,11 @@ def InitAVSwitch():
 		can_aactransode = f.read().strip().split(" ")
 		f.close()
 	else:
-		can_aactransode = False
+		can_aactranscode = False
 
-	SystemInfo["CanAACTranscode"] = can_aactransode
+	SystemInfo["CanAACTranscode"] = can_aactranscode
 
-	if can_aactransode:
+	if can_aactranscode:
 		def setAACTranscode(configElement):
 			f = open("/proc/stb/audio/aac_transcode", "w")
 			f.write(configElement.value)
