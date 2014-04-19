@@ -514,6 +514,26 @@ def InitAVSwitch():
 		config.av.downmix_aac = ConfigYesNo(default = True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
+	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
+		f = open("/proc/stb/audio/aac_transcode_choices", "r")
+		can_aactransode = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_aactranscode = False
+
+	SystemInfo["CanAACTranscode"] = can_aactranscode
+
+	if can_aactranscode:
+		def setAACTranscode(configElement):
+			f = open("/proc/stb/audio/aac_transcode", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+		config.av.transcodeaac = ConfigSelection(choices = choice_list, default = "off")
+		config.av.transcodeaac.addNotifier(setAACTranscode)
+	else:
+		config.av.transcodeaac = ConfigNothing()
+
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
 			myval = int(config.value)
@@ -528,7 +548,7 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() == 'gbquad':
+		if getBoxType() in ('gbquad', 'gbquadplus'):
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
