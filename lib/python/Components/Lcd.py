@@ -305,14 +305,14 @@ def InitLcd():
 		def setLEDblinkingtime(configElement):
 			ilcd.setLEDBlinkingTime(configElement.value);
 
-		def setLEDstanbystate(configElement):
+		def setPowerLEDstanbystate(configElement):
 			if fileExists("/proc/stb/power/standbyled"):
 				f = open("/proc/stb/power/standbyled", "w")
 				f.write(configElement.value)
 				f.close()
 
-		config.usage.lcd_standbyled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
-		config.usage.lcd_standbyled.addNotifier(setLEDstanbystate)
+		config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 
 		standby_default = 0
 
