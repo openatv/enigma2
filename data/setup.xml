@@ -202,6 +202,7 @@
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during standby.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" text="LED Deep Standby" description="LED brightness during deep standby.">config.lcd.ledbrightnessdeepstandby</item>
+		<item level="0" requires="StandbyLed" text="Power LED State in Deep-Standby/Standby" description="LED state during deep-standby/standby.">config.usage.lcd_standbyled</item>
 		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.lcd.repeat</item>
 		<item level="1" text="Scrolling Speed" description="Set the scrolling speed of text on the front display.">config.lcd.scrollspeed</item>
 		<item level="1" requires="GraphicLCD" text="LCD scroll speed" description="Set the scrolling speed of text on the front display.">config.usage.lcd_scroll_speed</item>
