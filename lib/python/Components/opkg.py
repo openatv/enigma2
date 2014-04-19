@@ -18,7 +18,7 @@ def enumPlugins(filter_start=''):
 		try:
 			if getImageVersion() == '4.0':
 				file = open('/var/lib/opkg/lists/%s' % feed, 'r')
-			if getImageVersion() == '4.1':
+			else:
 				file = open('/var/lib/opkg/%s' % feed, 'r')
 			for line in file:
 				if line.startswith('Package:'):
