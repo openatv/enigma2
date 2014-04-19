@@ -84,7 +84,7 @@ freesatHuffmanDecoder::~freesatHuffmanDecoder()
 */
 static unsigned char resolveChar(const char *str)
 {
-	const unsigned char*p = str;
+	const char *p = str;
 	unsigned c0 = *p++, c1 = *p++;
 	if (c1)
 		switch(c0|c1<<8)
