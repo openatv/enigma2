@@ -568,7 +568,7 @@ def InitAVSwitch():
 
 	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
 		f = open("/proc/stb/audio/aac_transcode_choices", "r")
-		can_aactransode = f.read().strip().split(" ")
+		can_aactranscode = f.read().strip().split(" ")
 		f.close()
 	else:
 		can_aactranscode = False
