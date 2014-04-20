@@ -269,7 +269,7 @@ class SecConfigure:
 			pass
 
 		lnbSat = {}
-		for x in range(1,69):
+		for x in range(1, 69):
 			lnbSat[x] = []
 
 		#wildcard for all satellites ( for rotor )
@@ -286,7 +286,7 @@ class SecConfigure:
 				print "add", x[0], "to", lnb
 				lnbSat[lnb].append(x[0])
 
-		for x in range(1,37):
+		for x in range(1, 69):
 			if len(lnbSat[x]) > 0:
 				currLnb = config.Nims[slotid].advanced.lnb[x]
 				sec.addLNB()
