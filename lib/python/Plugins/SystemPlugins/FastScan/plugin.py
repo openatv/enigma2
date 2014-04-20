@@ -18,7 +18,7 @@ from enigma import eFastScan, eDVBFrontendParametersSatellite, eTimer
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
-config.misc.fastscan.auto = ConfigYesNo(default = True)
+config.misc.fastscan.auto = ConfigYesNo(default = False)
 
 class FastScanStatus(Screen):
 	skin = """
