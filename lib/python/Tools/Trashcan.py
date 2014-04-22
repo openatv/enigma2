@@ -26,7 +26,10 @@ def getTrashFolder(path=None):
 def createTrashFolder(path=None):
 	trash = getTrashFolder(path)
 	if not os.path.isdir(trash):
-		os.mkdir(trash)
+		try:
+			os.mkdir(trash)
+		except:
+			pass
 	return trash
 
 def get_size(start_path = '.'):
