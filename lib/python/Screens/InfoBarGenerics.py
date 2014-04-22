@@ -1071,7 +1071,7 @@ class SimpleServicelist:
 		if not self.length or self.current >= self.length:
 			return None
 		return self.services[self.current]
-	      
+
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -3537,22 +3537,22 @@ class InfoBarZoom:
 		print "zoomRate:", self.zoomrate
 		print "zoomval:", zoomval
 		try:
-		  file = open("/proc/stb/vmpeg/0/zoomrate", "w")
-		  file.write('%d' % int(zoomval))
-		  file.close()
+			file = open("/proc/stb/vmpeg/0/zoomrate", "w")
+			file.write('%d' % int(zoomval))
+			file.close()
 		except:
-		  pass
+			pass
 
 	def ZoomOff(self):
 		self.zoomrate = 0
 		self.zoomin = 1
 
 		try:
-		  f = open("/proc/stb/vmpeg/0/zoomrate", "w")
-		  f.write(str(0))
-		  f.close()
+			f = open("/proc/stb/vmpeg/0/zoomrate", "w")
+			f.write(str(0))
+			f.close()
 		except:
-		  pass
+			pass
 		
 class InfoBarHdmi:
 	def __init__(self):
@@ -3600,7 +3600,7 @@ class InfoBarHdmi:
 			return _("Turn on HDMI-IN Full screen mode")
 		else:
 			return _("Turn off HDMI-IN Full screen mode")
-	      
+
 	def getHDMIInPiPScreen(self):
 		if not self.hdmi_enabled_pip:
 			return _("Turn on HDMI-IN PiP mode")
