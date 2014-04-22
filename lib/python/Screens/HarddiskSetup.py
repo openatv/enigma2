@@ -36,11 +36,11 @@ class HarddiskSetup(Screen):
 	def hddQuestion(self, answer=False):
 		print 'answer:',answer
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-			message = self.question + "\n\n" + _("You seem to be in timeshft, the service wil breifly stop as timeshfit stops.")
+			message = self.question + "\n" + _("You seem to be in timeshift. The service will briefly stop as timeshift stops.")
 			message += '\n' + _("Do you want to continue?")
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:
-			message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
+			message = self.question + "\n" + _("You can continue watching while this is running.")
 			self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def stopTimeshift(self, confirmed):
