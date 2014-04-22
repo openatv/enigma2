@@ -32,6 +32,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
 		self["key_yellow"] = Label(_("Timer type"))
+		self["key_blue"] = Label()
 
 		self.createConfig()
 
@@ -44,7 +45,8 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
 			"size-": self.decrementEnd,
-			"yellow": self.changeTimerType
+			"yellow": self.changeTimerType,
+			"blue": self.changeZapWakeupType
 		}, -2)
 
 		self.list = []
@@ -198,6 +200,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_justplay.value == "zap":
 			self.list.append(self.entryZapWakeup)
 			self.list.append(self.entryShowEndTime)
+			self["key_blue"].setText(_("Wakeup type"))
+		else:
+			self["key_blue"].setText("")
 		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime)
 		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
 			self.list.append(self.entryEndTime)
@@ -400,6 +405,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_justplay.selectNext()
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay)
 		self["config"].invalidate(self.timerJustplayEntry)
+		self.createSetup("config")
+
+	def changeZapWakeupType(self):
+		if self.timerentry_justplay.value == "zap":
+			self.timerentry_zapwakeup.selectNext()
+			self["config"].invalidate(self.entryZapWakeup)
 
 	def incrementStart(self):
 		self.timerentry_starttime.increment()
