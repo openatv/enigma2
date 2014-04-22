@@ -519,7 +519,7 @@ class FileCommanderScreen(Screen, key_actions):
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			#self.session.openWithCallback(self.doMakedirCB,Console, title = _("create folder"), cmdlist = ["mkdir \""+sourceDir+newname+"\""])
-			mkdir(sourceDir+newname)
+			os.mkdir(sourceDir+newname)
 			self.doRefresh()
 			
 	def doMakedirCB(self):
