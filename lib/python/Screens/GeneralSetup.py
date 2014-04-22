@@ -22,8 +22,6 @@ from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, Hard
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
 
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
-from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
@@ -42,6 +40,18 @@ from re import search
 import NavigationInstance
 
 plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
+
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup"):
+	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
+	HAVE_POSITIONERSETUP = True
+else:
+	HAVE_POSITIONERSETUP = False
+
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SatFinder"):
+	from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
+	HAVE_SATFINDER = True
+else:
+	HAVE_SATFINDER = False
 
 if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
 	from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
@@ -212,7 +222,7 @@ class GeneralSetup(Screen):
 		self.list.append(GeneralSetupEntryComponent("Antenna Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels"), ">"))
 		self.list.append(GeneralSetupEntryComponent("TV",_("Setup basic TV options"),_("Setup Your TV options"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Media",_("Setup Pictures / music / movies"),_("Setup picture, music and movie player"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Plugins",_("Download plugins"),_("Shows available pluigns. Here you can download and install them"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Plugins",_("Download plugins"),_("Shows available plugins. Here you can download and install them"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Storage",_("Harddisk Setup"),_("Setup your Harddisk"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings"), ">"))		
 		self["list"].l.setList(self.list)
@@ -320,13 +330,13 @@ class GeneralSetup(Screen):
 		nimList = nimmanager.getNimListOfType("DVB-S")
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services")))
-		if len(nimList) != 0:
+		if HAVE_POSITIONERSETUP and len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
 		#self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
 		if BLINDSCAN == True and len(nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))  
-		if len(nimList) != 0:
+			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
+		if HAVE_SATFINDER and len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -576,8 +586,8 @@ class GeneralSetup(Screen):
 		elif item[0] == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
-			#self.session.open(NimSelection)
-		elif item[0] == _("Positioner Setup"):
+			# self.session.open(NimSelection)
+		elif HAVE_POSITIONERSETUP and item[0] == _("Positioner Setup"):
 			self.PositionerMain()
 		elif item[0] == _("Automatic Scan"):
 			self.session.open(ScanSimple)
@@ -585,7 +595,7 @@ class GeneralSetup(Screen):
 			self.session.open(ScanSetup)
 		elif item[0] == _("Blind Scan"):
 			self.session.open(Blindscan)
-		elif item[0] == _("Sat Finder"):
+		elif HAVE_SATFINDER and item[0] == _("Sat Finder"):
 			self.SatfinderMain()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Update"):
@@ -661,48 +671,50 @@ class GeneralSetup(Screen):
 				self.activeInterface = x[1]
 				return
 
-    
+
 ######## TUNER TOOLS #######################
-	def PositionerMain(self):
-		nimList = nimmanager.getNimListOfType("DVB-S")
-		if len(nimList) == 0:
-			self.session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
-		else:
-			if len(NavigationInstance.instance.getRecordings()) > 0:
-				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
+	if HAVE_POSITIONERSETUP:
+		def PositionerMain(self):
+			nimList = nimmanager.getNimListOfType("DVB-S")
+			if len(nimList) == 0:
+				self.session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 			else:
-				usableNims = []
-				for x in nimList:
-					configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
-					if len(configured_rotor_sats) != 0:
-						usableNims.append(x)
-				if len(usableNims) == 1:
-					self.session.open(PositionerSetup, usableNims[0])
-				elif len(usableNims) > 1:
-					self.session.open(RotorNimSelection)
+				if len(NavigationInstance.instance.getRecordings()) > 0:
+					self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
 				else:
-					self.session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+					usableNims = []
+					for x in nimList:
+						configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
+						if len(configured_rotor_sats) != 0:
+							usableNims.append(x)
+					if len(usableNims) == 1:
+						self.session.open(PositionerSetup, usableNims[0])
+					elif len(usableNims) > 1:
+						self.session.open(RotorNimSelection)
+					else:
+						self.session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
-	def SatfinderMain(self):
-		nims = nimmanager.getNimListOfType("DVB-S")
-
-		nimList = []
-		for x in nims:
-			if nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
-				continue
-			if nimmanager.getNimConfig(x).configMode.value == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
-				continue
-			nimList.append(x)
-
-		if len(nimList) == 0:
-			self.session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
-		else:
-			if self.session.nav.RecordTimer.isRecording():
-				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
+	if HAVE_SATFINDER:
+		def SatfinderMain(self):
+			nims = nimmanager.getNimListOfType("DVB-S")
+	
+			nimList = []
+			for x in nims:
+				if nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
+					continue
+				if nimmanager.getNimConfig(x).configMode.value == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
+					continue
+				nimList.append(x)
+	
+			if len(nimList) == 0:
+				self.session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
 			else:
-				self.session.open(Satfinder)
+				if self.session.nav.RecordTimer.isRecording():
+					self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
+				else:
+					self.session.open(Satfinder)
 
-		    
+
 ######## SOFTWARE MANAGER TOOLS #######################
 	def backupfiles_choosen(self, ret):
 		config.plugins.configurationbackup.backupdirs.save()
