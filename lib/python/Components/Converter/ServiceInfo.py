@@ -75,6 +75,11 @@ class ServiceInfo(Converter, object):
 
 	@cached
 	def getBoolean(self):
+		service = self.source.service
+		info = service and service.info()
+		if not info:
+			return False
+
 		video_height = None
 		video_aspect = None
 		if self.type in (self.IS_SD, self.IS_HD, self.IS_SD_AND_WIDESCREEN, self.IS_SD_AND_NOT_WIDESCREEN):
@@ -87,10 +92,10 @@ class ServiceInfo(Converter, object):
 				video_aspect = int(f.read())
 				f.close()
 
-		service = self.source.service
-		info = service and service.info()
-		if not info:
-			return False
+			if not video_height:
+				video_height = info.getInfo(iServiceInformation.sVideoHeight)
+			if not video_aspect:
+				video_aspect = info.getInfo(iServiceInformation.sAspect)
 
 		if self.type == self.HAS_TELETEXT:
 			tpid = info.getInfo(iServiceInformation.sTXTPID)
@@ -131,24 +136,12 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_STREAM:
 			return service.streamed() is not None
 		elif self.type == self.IS_SD:
-			if not video_height:
-				video_height = info.getInfo(iServiceInformation.sVideoHeight)
 			return video_height < 720
 		elif self.type == self.IS_HD:
-			if not video_height:
-				video_height = info.getInfo(iServiceInformation.sVideoHeight)
-			return info.getInfo(iServiceInformation.sVideoHeight) >= 720
+			return video_height >= 720
 		elif self.type == self.IS_SD_AND_WIDESCREEN:
-			if not video_height:
-				video_height = info.getInfo(iServiceInformation.sVideoHeight)
-			if not video_aspect:
-				video_aspect = info.getInfo(iServiceInformation.sAspect)
 			return video_height < 720 and video_aspect in WIDESCREEN
 		elif self.type == self.IS_SD_AND_NOT_WIDESCREEN:
-			if not video_height:
-				video_height = info.getInfo(iServiceInformation.sVideoHeight)
-			if not video_aspect:
-				video_aspect = info.getInfo(iServiceInformation.sAspect)
 			return video_height < 720 and video_aspect not in WIDESCREEN
 		return False
 
@@ -169,7 +162,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_width:
 				video_width = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
-			return video_width
+			return "%d" % video_width
 		elif self.type == self.YRES:
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
@@ -178,7 +171,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_height:
 				video_height = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
-			return video_height
+			return "%d" % video_height
 		elif self.type == self.APID:
 			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
 		elif self.type == self.VPID:
@@ -202,7 +195,7 @@ class ServiceInfo(Converter, object):
 				video_rate = int(f.read())
 				f.close()
 			if not video_rate:
-				video_rate = video_rateself.getServiceInfoString(info, iServiceInformation.sFrameRate)
+				video_rate = self.getServiceInfoString(info, iServiceInformation.sFrameRate)
 			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
@@ -226,8 +219,8 @@ class ServiceInfo(Converter, object):
 				video_width = int(f.read(),16)
 				f.close()
 			if not video_width:
-				video_width = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
-			return video_width
+				video_width = info.getInfo(iServiceInformation.sVideoWidth)
+			return str(video_width)
 		elif self.type == self.YRES:
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
@@ -235,8 +228,8 @@ class ServiceInfo(Converter, object):
 				video_height = int(f.read(),16)
 				f.close()
 			if not video_height:
-				video_height = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
-			return video_height
+				video_height = info.getInfo(iServiceInformation.sVideoHeight)
+			return str(video_height)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
@@ -244,8 +237,8 @@ class ServiceInfo(Converter, object):
 				video_rate = int(f.read())
 				f.close()
 			if not video_rate:
-				video_rate = video_rateself.getServiceInfoString(info, iServiceInformation.sFrameRate)
-			return video_rate
+				video_rate = info.getInfo(iServiceInformation.sFrameRate)
+			return str(video_rate)
 
 		return -1
 
