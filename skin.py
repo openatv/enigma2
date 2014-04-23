@@ -325,11 +325,14 @@ class AttributeParser:
 		ptr = loadPixmap(value, self.desktop)
 		self.guiObject.setScrollbarBackgroundPicture(ptr)
 	def alphatest(self, value):
-		self.guiObject.setAlphatest(
-			{ "on": 1,
-			  "off": 0,
-			  "blend": 2,
-			}[value])
+		try:
+			self.guiObject.setAlphatest(
+				{ "on": 1,
+				  "off": 0,
+				  "blend": 2,
+				}[value])
+		except KeyError:
+			print "alphatest must be one of on, off, blend, not %s. Please contact the skin's author!" % value
 	def scale(self, value):
 		self.guiObject.setScale(1)
 	def orientation(self, value): # used by eSlider
