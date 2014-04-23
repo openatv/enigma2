@@ -16,12 +16,13 @@ from Components.ConfigList import ConfigList,ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
+from Plugins.Extensions.MyMetrixLite.MainSettingsView import MainSettingsView
 from enigma import eTimer, eEnv, eConsoleAppContainer
 from Tools.Directories import *
 from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 boxtype = getBoxType()
 
@@ -363,13 +364,20 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def checkPlugins(self):
 		if path.exists("/tmp/installed-list.txt"):
-			self.session.openWithCallback(self.restartGUI, installedPlugins)
+			self.session.openWithCallback(self.restoreMetrixSkin, installedPlugins)
 		else:
-			self.restartGUI()
+			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret = None):
-		self.console = eConsoleAppContainer()
-		self.console.execute("init 4;reboot")
+		self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["init 4;reboot"])
+
+	def restoreMetrixSkin(self, ret = None):
+		mainsettingsview_py = "/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MainSettingsView.py"
+		mainsettingsview_pyo = "/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MainSettingsView.pyo"
+		if path.exists(mainsettingsview_py) or path.exists(mainsettingsview_pyo):
+			print"Restoring MyMetrixLite..."
+			MainSettingsView(None,True)
+		self.restartGUI()
 
 	def runAsync(self, finished_cb):
 		self.doRestore()
