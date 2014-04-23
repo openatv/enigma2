@@ -18,7 +18,7 @@ PACKAGES =+ "${PN}-src"
 PACKAGES += "${PN}-meta"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-inherit autotools pkgconfig
+inherit autotools pkgconfig pythonnative
 
 bindir = "/usr/bin"
 sbindir = "/usr/sbin"
