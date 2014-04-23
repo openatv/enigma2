@@ -476,6 +476,7 @@ public:
 	virtual int getTransmissionMode() const = 0;
 	virtual int getGuardInterval() const = 0;
 	virtual int getHierarchyInformation() const = 0;
+	virtual int getPlpId() const = 0;
 };
 
 class iDVBFrontendData: public iDVBFrontend_ENUMS, public iObject
