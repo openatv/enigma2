@@ -30,9 +30,9 @@ elif distro.lower() == "openatv":
 feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/3.0'
 feedurl_om = 'http://image.openmips.com/4.0'
-imagePath = '/hdd/images'
-flashPath = '/hdd/images/flash'
-flashTmp = '/hdd/images/tmp'
+imagePath = '/media/hdd/images'
+flashPath = '/media/hdd/images/flash'
+flashTmp = '/media/hdd/images/tmp'
 ofgwritePath = '/usr/bin/ofgwrite'
 #############################################################################################################
 
