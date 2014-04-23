@@ -354,6 +354,8 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 				oterrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto &&
 				terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto)
 				diff = 1 << 30;
+			else if (exact && oterrestrial.plpid != terrestrial.plpid)
+				diff = 1 << 27;
 			else
 				diff = abs(terrestrial.frequency - oterrestrial.frequency) / 1000;
 			return 0;
