@@ -477,8 +477,7 @@ class SecConfigure:
 						sec.setToneMode(switchParam.ON)
 					elif currSat.tonemode.value == "off":
 						sec.setToneMode(switchParam.OFF)
-
-					if not currSat.usals.value and x < 66:
+					if not currSat.usals.value and x < 65:
 						sec.setRotorPosNum(currSat.rotorposition.value)
 					else:
 						sec.setRotorPosNum(0) #USALS
@@ -1182,7 +1181,17 @@ def InitNimManager(nimmgr):
 					("5", "SatCR 5"), ("6", "SatCR 6"), ("7", "SatCR 7"), ("8", "SatCR 8")]
 
 	prio_list = [ ("-1", _("Auto")) ]
-	prio_list += [(str(prio), str(prio)) for prio in range(65)+range(14000,14065)+range(19000,19065)]
+	for prio in range(65)+range(14000,14065)+range(19000,19065):
+		description = ""
+		if prio == 0:
+			description = _(" (disabled)")
+		elif 0 < prio < 65:
+			description = _(" (lower than any auto)")
+		elif 13999 < prio < 14066:
+			description = _(" (higher than rotor any auto)")
+		elif 18999 < prio < 19066:
+			description = _(" (higher than any auto)")
+		prio_list.append((str(prio), str(prio) + description))
 
 	advanced_lnb_csw_choices = [("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))]
 	advanced_lnb_csw_choices += [(str(0xF0|y), "Input " + str(y+1)) for y in range(0, 16)]
@@ -1203,8 +1212,8 @@ def InitNimManager(nimmgr):
 	turning_speed_choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch"))]
 
 	advanced_satlist_choices = nimmgr.satList + [
-		(3601, _('All satellites')+' 1', 1), (3602, _('All satellites')+' 2', 1),
-		(3603, _('All satellites')+' 3', 1), (3604, _('All satellites')+' 4', 1)]
+		(3601, _('All satellites 1 (DiSEqC mode 1.2)'), 1), (3602, _('All satellites 2 (DiSEqC mode 1.2)'), 1),
+		(3603, _('All satellites 3 (DiSEqC mode 1.2)'), 1), (3604, _('All satellites 4 (DiSEqC mode 1.2)'), 1)]
 	advanced_lnb_choices = [("0", _("not available"))] + [(str(y), "LNB " + str(y)) for y in range(1, 65)]
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
