@@ -478,7 +478,7 @@ class SecConfigure:
 					elif currSat.tonemode.value == "off":
 						sec.setToneMode(switchParam.OFF)
 
-					if not currSat.usals.value and x < 34:
+					if not currSat.usals.value and x < 66:
 						sec.setRotorPosNum(currSat.rotorposition.value)
 					else:
 						sec.setRotorPosNum(0) #USALS
