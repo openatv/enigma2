@@ -21,13 +21,18 @@ def getTrashFolder(path=None):
 				trashcan = Harddisk.findMountPoint(os.path.realpath(path))
 			return os.path.realpath(os.path.join(trashcan, ".Trash"))
 	except:
-		return ""
+		return None
 
 def createTrashFolder(path=None):
+	print '[TRASHCAN DeBug path]', path
 	trash = getTrashFolder(path)
-	if trash and not os.path.isdir(trash):
-		os.mkdir(trash)
-	return trash
+	print '[TRASHCAN DeBug]', trash
+	if trash and os.access(trash, os.W_OK):
+		if not os.path.isdir(trash):
+			os.mkdir(trash)
+		return trash
+	else:
+		return None
 
 def get_size(start_path = '.'):
 	total_size = 0

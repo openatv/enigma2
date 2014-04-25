@@ -354,10 +354,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.uncommittedDiseqcCommand)
 					self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
 				if currLnb.diseqcMode.value == "1_2":
-					self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
-					self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
-					self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
-					self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
 					if SystemInfo["CanMeasureFrontendInputPower"]:
 						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement)
 						self.list.append(self.advancedPowerMeasurement)
@@ -375,8 +371,14 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
 					self.advancedUsalsEntry = getConfigListEntry(_("Use USALS for this sat"), Sat.usals)
-					self.list.append(self.advancedUsalsEntry)
-					if not Sat.usals.value:
+					if lnbnum < 65:
+						self.list.append(self.advancedUsalsEntry)
+					if Sat.usals.value:
+						self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
+						self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
+						self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
+						self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
+					else:
 						self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
 					self.list.append(getConfigListEntry(_("Tuning step size") + " [" + chr(176) + "]", currLnb.tuningstepsize))
 					self.list.append(getConfigListEntry(_("Memory positions"), currLnb.rotorPositions))
