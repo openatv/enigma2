@@ -371,7 +371,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
 					self.advancedUsalsEntry = getConfigListEntry(_("Use USALS for this sat"), Sat.usals)
-					self.list.append(self.advancedUsalsEntry)
+					if lnbnum < 65:
+						self.list.append(self.advancedUsalsEntry)
 					if Sat.usals.value:
 						self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
 						self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
