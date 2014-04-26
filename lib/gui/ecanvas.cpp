@@ -1,4 +1,5 @@
 #include <lib/gui/ecanvas.h>
+#include <math.h>
 
 eCanvas::eCanvas(eWidget *parent): ePixmap(parent)
 {
@@ -67,4 +68,22 @@ void eCanvas::writeText(eRect rect, gRGB fg, gRGB bg, gFont *font, const char *s
 	p.renderText(rect, string, flags);
 
 	invalidate(rect);
+}
+
+void eCanvas::drawRotatedLine(int ox, int oy, int x0, int y0, int x1, int y1, float angle, bool cw, gRGB color)
+{
+	if (!m_pixmap)
+		return;
+
+	float a;
+	int x_0, y_0, x_1, y_1, c;
+	c = cw ? 1 : -1;
+	a = angle * 0.017453292519943295769;
+
+	x_0 = ox - (-x0 * cos(a) + y0 * sin(a) * c);
+	y_0 = oy - (-x0 * sin(a) * c - y0 * cos(a));
+	x_1 = ox - (-x1 * cos(a) + y1 * sin(a) * c);
+	y_1 = oy - (-x1 * sin(a) * c - y1 * cos(a));
+
+	eCanvas::drawLine(x_0, y_0, x_1, y_1, color);
 }

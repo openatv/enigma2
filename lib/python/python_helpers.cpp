@@ -117,6 +117,8 @@ void transponderDataToDict(ePyObject &dest, ePtr<iDVBTransponderData> data)
 		if (value >= 0) PutToDict(dest, "guard_interval", value);
 		value = data->getHierarchyInformation();
 		if (value >= 0) PutToDict(dest, "hierarchy_information", value);
+		value = data->getPlpId();
+		if (value >= 0) PutToDict(dest, "plp_id", value);
 	}
 }
 
