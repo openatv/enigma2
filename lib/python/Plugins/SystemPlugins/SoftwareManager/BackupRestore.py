@@ -364,9 +364,16 @@ class RestoreScreen(Screen, ConfigListScreen):
 	def checkPlugins(self):
 		if path.exists("/tmp/installed-list.txt"):
 			if os.path.exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
-				self.restoreMetrixSkin()
+				self.userRestoreScript()
 			else:
-				self.session.openWithCallback(self.restoreMetrixSkin, installedPlugins)
+				self.session.openWithCallback(self.userRestoreScript, installedPlugins)
+		else:
+			self.userRestoreScript()
+
+	def userRestoreScript(self, ret = None):
+		startSH = '/media/hdd/images/config/myrestore.sh'
+		if path.exists(startSH):
+			self.session.openWithCallback(self.restoreMetrixSkin, Console, title = _("Running Myrestore script, Please wait ..."), cmdlist = [startSH], closeOnSuccess = True)
 		else:
 			self.restoreMetrixSkin()
 
