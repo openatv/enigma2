@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <iostream>
+#include <fstream>
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -123,6 +125,48 @@ public:
 	}
 };
 
+bool replace(std::string& str, const std::string& from, const std::string& to) 
+{
+	size_t start_pos = str.find(from);
+	if(start_pos == std::string::npos)
+		return false;
+	str.replace(start_pos, from.length(), to);
+	return true;
+}
+
+static const std::string getConfigCurrentSpinner(const std::string &key)
+{
+	std::string value = "spinner";
+	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
+	
+	if (in.good()) {
+		do {
+			std::string line;
+			std::getline(in, line);
+			size_t size = key.size();
+			if (line.compare(0, size, key)== 0) {
+				value = line.substr(size + 1);
+				replace(value, "skin.xml", "spinner");
+				break;
+			}
+		} while (in.good());
+		in.close();
+	}
+	// if value is empty, means no config.skin.primary_skin exist in settings file, so return just default spinner ( /usr/share/enigma2/spinner )
+	if (value.empty()) 
+		return value;
+	
+	 //  if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_CURRENT_SKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner ) BUT check if /usr/share/enigma2/MYSKIN/spinner/wait1.png exist
+	std::string png_location = "/usr/share/enigma2/" + value + "/wait1.png";
+	std::ifstream png(png_location.c_str());
+	if (png.good()) {
+		png.close();
+		return value; // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_CURRENT_SKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png exist )
+	}
+	else
+		return "spinner";  // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return "spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png DOES NOT exist )
+} 
+
 int exit_code;
 
 int main(int argc, char **argv)
@@ -179,20 +223,21 @@ int main(int argc, char **argv)
 
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
-
+	
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
-
+	
 	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
 #endif
-
+	
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
-
-
+	
+	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
+	
 	eDebug("Loading spinners...");
-
+	
 	{
 		int i;
 #define MAX_SPINNER 64
@@ -201,7 +246,7 @@ int main(int argc, char **argv)
 		{
 			char filename[64];
 			std::string rfilename;
-			snprintf(filename, sizeof(filename), "${datadir}/enigma2/spinner/wait%d.png", i + 1);
+			snprintf(filename, sizeof(filename), "${datadir}/enigma2/%s/wait%d.png", active_skin.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
 			loadPNG(wait[i], rfilename.c_str());
 
