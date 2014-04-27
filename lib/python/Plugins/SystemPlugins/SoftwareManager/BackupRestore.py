@@ -363,7 +363,10 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def checkPlugins(self):
 		if path.exists("/tmp/installed-list.txt"):
-			self.session.openWithCallback(self.restoreMetrixSkin, installedPlugins)
+			if os.path.exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
+				self.restoreMetrixSkin()
+			else:
+				self.session.openWithCallback(self.restoreMetrixSkin, installedPlugins)
 		else:
 			self.restoreMetrixSkin()
 
@@ -474,7 +477,10 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
-			self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
+			if os.path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+				self.startInstall(True)
+			else:
+				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
 
 	def startInstall(self, ret = None):
 		if ret:
@@ -513,6 +519,8 @@ class RestorePlugins(Screen):
 
 	def setWindowTitle(self):
 		self.setTitle(_("Restore Plugins"))
+		if os.path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+			self.green()
 
 	def exit(self):
 		self.close()

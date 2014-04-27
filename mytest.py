@@ -503,12 +503,20 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
-	screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
-
 	profile("wizards")
-	screensToRun += wizardManager.getWizards()
+	screensToRun = []
+	RestoreSettings = None
+	if os.path.exists("/media/hdd/images/config/settings") and config.misc.firstrun.value:
+		RestoreSettings = True
+		from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
+		session.open(RestoreScreen, runRestore = True)
+	else:
+		screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+		screensToRun += wizardManager.getWizards()
+	
 	screensToRun.append((100, InfoBar.InfoBar))
 	screensToRun.sort()
+	print screensToRun
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
@@ -524,7 +532,8 @@ def runScreenTest():
 		else:
 			session.open(screen, *args)
 
-	runNextScreen(session, screensToRun)
+	if not RestoreSettings:
+		runNextScreen(session, screensToRun)
 
 	profile("Init:VolumeControl")
 	vol = VolumeControl(session)
@@ -575,7 +584,8 @@ def runScreenTest():
 
 	config.usage.shutdownOK.setValue(False)
 	config.usage.shutdownOK.save()
-	configfile.save()
+	if not RestoreSettings:
+		configfile.save()
 	
 	runReactor()
 
