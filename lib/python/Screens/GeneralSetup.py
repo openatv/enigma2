@@ -522,7 +522,7 @@ class GeneralSetup(Screen):
 					iNetwork.setAdapterAttribute("eth0", "dhcp", True)
 					iNetwork.activateInterface("eth0", deactivateInterfaceCB)
 					iNetwork.writeNetworkConfig()
-					_exit(0)
+					_exit(2)	# Want a full reboot to ensure new hostname is picked up 
 			self.session.openWithCallback(msgClosed, FactoryReset)  
 ######## Select TV Setup Menu ##############################
 		elif item[0] == _("Channel selection"):
