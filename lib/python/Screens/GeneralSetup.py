@@ -15,7 +15,6 @@ from Screens.NetworkSetup import *
 from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
-from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup, getSetupTitle
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
@@ -734,12 +733,6 @@ class GeneralSetup(Screen):
 		if (ret == True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore = True)
-
-
-from Components.Network import iNetwork
-from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
-from Components.Label import Label
 
 class RestartNetwork(Screen):
 	def __init__(self, session):
