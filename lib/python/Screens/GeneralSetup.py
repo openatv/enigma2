@@ -118,6 +118,9 @@ class GeneralSetup(Screen):
 		Screen.setTitle(self, _("Setup"))
 
 		self["key_red"] = Label(_("Exit"))
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		#self["key_green"] = Label(_("System Info"))
 		#self["key_yellow"] = Label(_("Service Info"))
 		#self["key_blue"] = Label(_("Memory Info"))
