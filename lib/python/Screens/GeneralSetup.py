@@ -200,7 +200,10 @@ class GeneralSetup(Screen):
 		self.selectedList.down()
 		
 	def keyred(self):
-		self.close()
+		if self.menu <> 0:
+			self.goLeft()
+		else:
+			self.close()
 
 	def keygreen(self):
 		self.session.open(About)
