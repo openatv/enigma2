@@ -511,12 +511,12 @@ class GeneralSetup(Screen):
 			def msgClosed(ret):
 				if ret:
 					from os import system, _exit
-					system("rm -R /etc/enigma2")
-					system("rm -R /etc/network/interfaces")
-					system("rm -R /etc/wpa_supplicant.ath0.conf")
-					system("rm -R /etc/wpa_supplicant.wlan0.conf")
-					system("rm -R /etc/wpa_supplicant.conf")
-					system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
+					system("rm -rf /etc/enigma2")
+					system("rm -rf /etc/network/interfaces")
+					system("rm -rf /etc/wpa_supplicant.ath0.conf")
+					system("rm -rf /etc/wpa_supplicant.wlan0.conf")
+					system("rm -rf /etc/wpa_supplicant.conf")
+					system("cp -a /usr/share/enigma2/defaults /etc/enigma2")
 					system("/usr/bin/showiframe /usr/share/backdrop.mvi")
 					iNetwork.setAdapterAttribute("eth0", "up", True)
 					iNetwork.setAdapterAttribute("eth0", "dhcp", True)
