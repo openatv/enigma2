@@ -845,11 +845,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 
 	def OpenSingleEPG(self):
-		cur = self['list'].getCurrent()
-		event = cur[0]
-		serviceref = cur[1].ref
-		if serviceref is not None:
-			self.session.open(SingleEPG, serviceref)
+		event, service = self['list'].getCurrent()
+		if service is not None:
+			self.session.open(SingleEPG, service.ref)
 
 	def openIMDb(self):
 		try:
