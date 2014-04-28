@@ -331,13 +331,14 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
-				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
-				self.list.append(getConfigListEntry(_("DiSEqC 1.0 command (committed)"), currLnb.commitedDiseqcCommand))
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
-				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
+				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
+				self.list.append(getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand))
 				if currLnb.diseqcMode.value == "1_0":
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
+					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command"), currLnb.uncommittedDiseqcCommand)
+					self.list.append(self.uncommittedDiseqcCommand)
 					if currLnb.uncommittedDiseqcCommand.index:
 						if currLnb.commandOrder.value == "ct":
 							currLnb.commandOrder.value = "cut"
@@ -349,9 +350,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						else:
 							currLnb.commandOrder.value = "ct"
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
-					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command (uncommitted)"), currLnb.uncommittedDiseqcCommand)
-					self.list.append(self.uncommittedDiseqcCommand)
-					self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
+					self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
+				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
 				if currLnb.diseqcMode.value == "1_2":
 					if SystemInfo["CanMeasureFrontendInputPower"]:
 						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement)
