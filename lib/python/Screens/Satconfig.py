@@ -350,7 +350,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						else:
 							currLnb.commandOrder.value = "ct"
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
-					self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
+					if currLnb.uncommittedDiseqcCommand.value != "0":
+						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
 				if currLnb.diseqcMode.value == "1_2":
 					if SystemInfo["CanMeasureFrontendInputPower"]:
