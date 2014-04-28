@@ -234,13 +234,14 @@ class doFlashImage(Screen):
 			box = 'maram9'
 		return box
 
-	def green(self):
+	def green(self, ret = None):
 		sel = self["imageList"].l.getCurrentSelection()
 		if sel == None:
 			print"Nothing to select !!"
 			return
 		file_name = self.imagePath + "/" + sel
 		self.filename = file_name
+		self.sel = sel
 		box = self.box()
 		self.hide()
 		if self.Online:
@@ -278,10 +279,8 @@ class doFlashImage(Screen):
 				job_manager.failed_jobs = []
 				self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
 		else:
-			if sel == str(flashTmp):
-				self.Start_Flashing()
-			else:
-				self.unzip_image(self.filename, flashPath)
+			self.session.openWithCallback(self.startInstallLocal, MessageBox, _("Do you want to backup your settings now?"), default=False)
+			
 
 	def ImageDownloadCB(self, ret):
 		if ret:
@@ -359,6 +358,22 @@ class doFlashImage(Screen):
 	def yellow(self):
 		if not self.Online:
 			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
+		else:
+			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+			self.session.openWithCallback(self.green,BackupScreen, runBackup = True)
+
+	def startInstallLocal(self, ret = None):
+		if ret:
+			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+			self.session.openWithCallback(self.startInstallLocalCB,BackupScreen, runBackup = True)
+		else:
+			self.startInstallLocalCB()
+
+	def startInstallLocalCB(self, ret = None):
+		if self.sel == str(flashTmp):
+			self.Start_Flashing()
+		else:
+			self.unzip_image(self.filename, flashPath)
 
 	def DeviceBrowserClosed(self, path, filename, binorzip):
 		if path:
@@ -388,7 +403,7 @@ class doFlashImage(Screen):
 		box = self.box()
 		self.imagelist = []
 		if self.Online:
-			self["key_yellow"].setText("")
+			self["key_yellow"].setText("Backup&Flash")
 			if image == 1:
 				if self.feed == "atv":
 					self.feedurl = feedurl_atv
