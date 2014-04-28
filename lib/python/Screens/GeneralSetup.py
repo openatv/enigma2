@@ -288,7 +288,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("DYN-DNS",_("Setup Inadyn"),_("Setup Inadyn")))
 		#self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
 		#self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
-		#self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
+		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
