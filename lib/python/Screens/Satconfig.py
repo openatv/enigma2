@@ -71,7 +71,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
 				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
-				choices["loopthrough"] = _("Loopthrough to")
+				choices["loopthrough"] = _("Loop through to")
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
@@ -588,9 +588,9 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
-						text = { "loopthrough": _("loopthrough to"),
-								 "equal": _("equal to"),
-								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
+						text = { "loopthrough": _("Loop through to"),
+								 "equal": _("Equal to"),
+								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
 						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
 					elif nimConfig.configMode.value == "nothing":
 						text = _("not configured")
@@ -620,20 +620,20 @@ class NimSelection(Screen):
 							if nimConfig.positionerMode.value == "usals":
 								text += "USALS"
 							elif nimConfig.positionerMode.value == "manual":
-								text += _("manual")
+								text += _("Manual")
 						else:
-							text = _("simple")
+							text = _("Simple")
 					elif nimConfig.configMode.value == "advanced":
-						text = _("advanced")
+						text = _("Advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
-						text = _("nothing connected")
+						text = _("Nothing connected")
 					elif nimConfig.configMode.value == "enabled":
-						text = _("enabled")
+						text = _("Enabled")
 				if x.isMultiType():
 					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
 				if not x.isSupported():
-					text = _("tuner is not supported")
+					text = _("Tuner is not supported")
 
 				self.list.append((slotid, x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
