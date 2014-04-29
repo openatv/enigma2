@@ -21,22 +21,9 @@ if [ -x ${bindir}/showiframe ]; then
 	fi
 fi
 
-# if [ ! -f ${sysconfdir}/enigma2/pm_timers.xml ]; then
-# 	cp -a ${datadir}/enigma2/defaults/pm_timers.xml ${sysconfdir}/enigma2/pm_timers.xml
-# fi
-
 #check if factory mode is present
 if [ ! -f ${sysconfdir}/enigma2/settings ]; then
 	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
-fi
-
-if [ ! -f ${sysconfdir}/tuxbox/terrestrial.xml ]; then
-	cp -a ${datadir}/enigma2/defaults/terrestrial.xml ${sysconfdir}/tuxbox/
-fi
-
-#check if Timezone for Australia is present
-if [ ! -f ${sysconfdir}/tuxbox/timezone-aus.xml ]; then
-	cp -a ${datadir}/enigma2/defaults/timezone-aus.xml ${sysconfdir}/tuxbox/timezone-aus.xml
 fi
 
 # hook to execute scripts always before enigma2 start
