@@ -22,6 +22,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
+			# deleted by Huevos please keep
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
@@ -63,14 +64,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
+			# changed by Huevos please keep
 			choices = {"nothing": _("Not configured"),
 						"simple": _("Simple"),
 						"advanced": _("Advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
+				# changed by Huevos please keep
 				choices["equal"] = _("Equal to")
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
+				# changed by Huevos please keep
 				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
+				# changed by Huevos please keep
 				choices["loopthrough"] = _("Loop through to")
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
@@ -331,13 +336,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
+				# changed by Huevos please keep
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
+				# changed by Huevos please keep
 				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
+				# changed by Huevos please keep
 				self.list.append(getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand))
 				if currLnb.diseqcMode.value == "1_0":
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
+					# changed by Huevos please keep
 					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command"), currLnb.uncommittedDiseqcCommand)
+					# changed by Huevos please keep
 					self.list.append(self.uncommittedDiseqcCommand)
 					if currLnb.uncommittedDiseqcCommand.index:
 						if currLnb.commandOrder.value == "ct":
@@ -350,8 +360,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						else:
 							currLnb.commandOrder.value = "ct"
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
+					# changed by Huevos please keep
 					if currLnb.uncommittedDiseqcCommand.value != "0":
+						# changed by Huevos please keep
 						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
+				# changed by Huevos please keep
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
 				if currLnb.diseqcMode.value == "1_2":
 					if SystemInfo["CanMeasureFrontendInputPower"]:
@@ -465,6 +478,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 			if confirmed[1] == "yes" or confirmed[1] == "no":
 				# TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
+				# changed by Huevos please keep
 				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("%s is no longer used. Should it be deleted?") % sat_name, [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")], None, 1)
 			if confirmed[1] == "yestoall" or confirmed[1] == "notoall":
 				self.deleteConfirmed(confirmed)
@@ -588,6 +602,7 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
+						# changed by Huevos please keep
 						text = { "loopthrough": _("Loop through to"),
 								 "equal": _("Equal to"),
 								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
@@ -620,19 +635,26 @@ class NimSelection(Screen):
 							if nimConfig.positionerMode.value == "usals":
 								text += "USALS"
 							elif nimConfig.positionerMode.value == "manual":
+								# changed by Huevos please keep
 								text += _("Manual")
 						else:
+							# changed by Huevos please keep
 							text = _("Simple")
 					elif nimConfig.configMode.value == "advanced":
+						# changed by Huevos please keep
 						text = _("Advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
+						# changed by Huevos please keep
 						text = _("Nothing connected")
 					elif nimConfig.configMode.value == "enabled":
+						# changed by Huevos please keep
 						text = _("Enabled")
 				if x.isMultiType():
+					# changed by Huevos please keep
 					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
 				if not x.isSupported():
+					# changed by Huevos please keep
 					text = _("Tuner is not supported")
 
 				self.list.append((slotid, x.friendly_full_description, text, x))
