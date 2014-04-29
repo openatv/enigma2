@@ -63,15 +63,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = {"nothing": _("not configured"),
-						"simple": _("simple"),
-						"advanced": _("advanced")}
+			choices = {"nothing": _("Not configured"),
+						"simple": _("Simple"),
+						"advanced": _("Advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
-				choices["equal"] = _("equal to")
+				choices["equal"] = _("Equal to")
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
-				choices["satposdepends"] = _("second cable of motorized LNB")
+				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
-				choices["loopthrough"] = _("loopthrough to")
+				choices["loopthrough"] = _("Loopthrough to")
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
