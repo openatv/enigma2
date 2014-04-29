@@ -71,12 +71,6 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/AutoResolution/plu
 else:
 	AUTORES = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
-	from Plugins.Extensions.dFlash.plugin import dFlash
-	DFLASH = True
-else:
-	DFLASH = False
-
 if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo"):
 	from Plugins.SystemPlugins.Blindscan.plugin import Blindscan
 	BLINDSCAN = True
@@ -104,10 +98,10 @@ class GeneralSetup(Screen):
 		<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
 		<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
 		<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<eLabel name="new eLabel" position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
-		<eLabel name="new eLabel" position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
-		<eLabel name="new eLabel" position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
-		<eLabel name="new eLabel" position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
+		<eLabel position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
+		<eLabel position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
+		<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
+		<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
 		</screen> """
 	
 	ALLOW_SUSPEND = True
@@ -120,9 +114,6 @@ class GeneralSetup(Screen):
 		self["key_green"] = Label()
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
-		#self["key_green"] = Label(_("System Info"))
-		#self["key_yellow"] = Label(_("Service Info"))
-		#self["key_blue"] = Label(_("Memory Info"))
 		self["description"] = Label()
 
 		self.menu = 0
@@ -306,8 +297,6 @@ class GeneralSetup(Screen):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Picture Player",_("Set up picture player"),_("Configure timeout, thumbnails, etc. for picture slide show")))
 		self.sublist.append(QuickSubMenuEntryComponent("Media Player",_("Set up media player"),_("Manage play lists, sorting, repeat")))
-		self.sublist.append(QuickSubMenuEntryComponent("Movie Browser",_("Set up movie player"),_("Set up database, covers, and style of Movie Browser")))
-		self.sublist.append(QuickSubMenuEntryComponent("Music Browser",_("Set up music player"),_("Set up database, covers, and style of MP3 Browser")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## A/V Settings Menu ##############################
@@ -353,7 +342,6 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
 		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to the backup option above. (default: setup, channels, network")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings from a backup. After restore the box will reboot in order to activate the new settings")))
-		#self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup",_("Manage your online update files"),_("Here you can select which files should be updated with an online update")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
@@ -530,11 +518,9 @@ class GeneralSetup(Screen):
 		elif selected == _("Recording settings"):
 			from Screens.Recordings import RecordingSettings
 			self.session.open(RecordingSettings)
-			#self.openSetup("recording")
 		elif selected == _("Timeshift settings"):
 			from Screens.Timershift import TimeshiftSettings
 			self.session.open(TimeshiftSettings)
-			#self.openSetup("timeshift")
 		elif selected == _("Subtitle settings"):
 			self.openSetup("subtitlesetup")
 		elif selected == _("EPG settings"):
@@ -562,14 +548,6 @@ class GeneralSetup(Screen):
 		elif selected == _("Media Player"):
 			from Plugins.Extensions.MediaPlayer.settings import MediaPlayerSettings
 			self.session.open(MediaPlayerSettings, self)
-		elif selected == _("Movie Browser"):
-			from Plugins.Extensions.MovieBrowser.plugin import movieBrowserConfig
-			self.session.open(movieBrowserConfig)  
-		elif selected == _("Music Browser"):
-			from Plugins.Extensions.MP3Browser.plugin import mp3BrowserConfig
-			self.session.open(mp3BrowserConfig)  
-		#elif selected == _("Download Softcams"):
-		#	self.session.open(ShowSoftcamPackages)
 ######## Select AV Setup Menu ##############################
 		elif selected == _("AV Settings"):
 			self.session.open(VideoSetup)
@@ -604,12 +582,6 @@ class GeneralSetup(Screen):
 ######## Select Software Manager Menu ##############################
 		elif selected == _("Software Update"):
 			self.session.open(UpdatePlugin)
-			#self.session.open(SoftwarePanel)
-		#elif selected == _("Complete Backup"):
-		#	if DFLASH == True:
-		#		self.session.open(dFlash)
-		#	else:
-		#		self.session.open(ImageBackup)
 		elif selected == _("Backup Settings"):
 			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 		elif selected == _("Restore Settings"):
