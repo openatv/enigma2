@@ -522,7 +522,7 @@ class GeneralSetup(Screen):
 					iNetwork.setAdapterAttribute("eth0", "dhcp", True)
 					iNetwork.activateInterface("eth0", deactivateInterfaceCB)
 					iNetwork.writeNetworkConfig()
-					_exit(2)	# Want a full reboot to ensure new hostname is picked up 
+					_exit(2)	# We want a full reboot to ensure new hostname is picked up 
 			self.session.openWithCallback(msgClosed, FactoryReset)  
 ######## Select TV Setup Menu ##############################
 		elif selected == _("Channel selection"):
@@ -619,7 +619,8 @@ class GeneralSetup(Screen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\n%s %s will restart after the restore") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()) )
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\n"
+					"Your %s %s will reboot after the restore") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 		elif selected == _("Select Backup files"):
