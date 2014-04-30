@@ -360,6 +360,7 @@ class MovieContextMenu(Screen):
 
 		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("create directory"), csel.do_createdir))
+		menu.append((_("Sort by") + "...", csel.selectSortby))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
@@ -608,6 +609,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
+				'sortby': _("Sort by"),
 				'listtype': _("List type"),
 				'preview': _("Preview"),
 				'movieoff': _("On end of movie")
@@ -1131,6 +1133,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.saveLocalSettings()
 			self._updateButtonTexts()
 			self.reloadList()
+
+	def do_sortby(self):
+		self.selectSortby()
+
+	def selectSortby(self):
+		menu = []
+		index = 0
+		for x in l_moviesort:
+			menu.append((_(x[1]), x[0], "%d" % index))
+			index += 1
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu)
+
+	def sortbyMenuCallback(self, choice):
+		if choice is None:
+			return
+		config.movielist.moviesort.value = int(choice[2])
+		self._updateButtonTexts()
+		self.sortBy(int(choice[1]))
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
