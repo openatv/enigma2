@@ -2955,7 +2955,7 @@ class InfoBarPowersaver:
 			else:
 				message = _("Your receiver will got to standby due to inactivity.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)	
+			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple=True, default=False, timeout_default=True)	
 
 	def inactivityTimeoutCallback(self, answer):
 		if answer:
@@ -2989,7 +2989,7 @@ class InfoBarPowersaver:
 			elif self.sleepTimerSetting > 0:
 				message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)	
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=list, default=False, timeout_default=True)	
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
