@@ -484,19 +484,18 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				loadSkin(skinfile)
 
 	for c in skin.findall('switchpixmap'):
-	    for pixmap in c.findall('pixmap'):
-		get_attr = pixmap.attrib.get
-		name = get_attr('name')
-		filename = get_attr('filename')
-		if name and filename:
-		    resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-		    if fileExists(resolved_png):
-			switchPixmap[name] = resolved_png
-		    else:
-			raise SkinError('need filename, got', filename)
-		else:
-		    raise SkinError('need filename and name, got %s %s' % (name, filename))
-	      
+		for pixmap in c.findall('pixmap'):
+			get_attr = pixmap.attrib.get
+			name = get_attr('name')
+			filename = get_attr('filename')
+			if name and filename:
+				resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+				if fileExists(resolved_png):
+					switchPixmap[name] = resolved_png
+				else:
+					raise SkinError('need filename, got', filename)
+			else:
+				raise SkinError('need filename and name, got %s %s' % (name, filename))
 
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
