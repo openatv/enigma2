@@ -1292,6 +1292,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.time_epoch = 0
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
+		self.timelineAlign = 'left'
 		self.datefmt = ""
 
 	GUI_WIDGET = eListbox
@@ -1314,6 +1315,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.timelineFontName = font.family
 					self.timelineFontSize = font.pointSize
+				elif attrib == "TimelineAlignment":
+					self.timelineAlign = value
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -1340,6 +1343,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 		time_epoch = l.getTimeEpoch()
 		time_base = l.getTimeBase()
 
+		if self.timelineAlign.lower() == 'right':
+			alignnment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
+		else:
+			alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
+
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
 
@@ -1358,17 +1366,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
-			self.ServiceWidth = service_rect.width()
+			ServiceWidth = service_rect.width()
 			if nowTime[2] != begTime[2]:
-				if self.ServiceWidth > 179:
+				if ServiceWidth > 179:
 					datestr = strftime("%A %d %B", localtime(time_base))
-				elif self.ServiceWidth > 139:
+				elif ServiceWidth > 139:
 					datestr = strftime("%a %d %B", localtime(time_base))
-				elif self.ServiceWidth > 129:
+				elif ServiceWidth > 129:
 					datestr = strftime("%a %d %b", localtime(time_base))
-				elif self.ServiceWidth > 119:
+				elif ServiceWidth > 119:
 					datestr = strftime("%a %d", localtime(time_base))
-				elif self.ServiceWidth > 109:
+				elif ServiceWidth > 109:
 					datestr = strftime("%A", localtime(time_base))
 				else:
 					datestr = strftime("%a", localtime(time_base))
@@ -1396,8 +1404,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			res.append(MultiContentEntryText(
 				pos = (5, 0),
-				size = (service_rect.width(), self.listHeight),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
+				size = (service_rect.width()-15, self.listHeight),
+				font = 0, flags = alignnment,
 				text = _(datestr),
 				color = foreColor,
 				backcolor = backColor))
