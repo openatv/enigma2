@@ -12,9 +12,7 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 
 from Tools.HardwareInfo import HardwareInfo
 from Components.About import about
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
-	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
-	ConfigSubDict, ConfigOnOff, ConfigDateTime
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime
 from Tools.BoundFunction import boundFunction
 
 def getConfigSatlist(orbpos, satlist):
@@ -201,7 +199,6 @@ class SecConfigure:
 					elif nim.configMode.value == "simple":		#simple config
 						print "diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
-							# changed by Huevos, please keep
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
 						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
@@ -1190,9 +1187,7 @@ def InitNimManager(nimmgr):
 			description = _(" (higher than any auto)")
 		prio_list.append((str(prio), str(prio) + description))
 
-	# changed by Huevos, please keep
 	advanced_lnb_csw_choices = [("none", _("None")), ("AA", _("Port A")), ("AB", _("Port B")), ("BA", _("Port C")), ("BB", _("Port D"))]
-	# deleted by Huevos, please keep
 
 	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), "Input " + str(y)) for y in range(1, 17)]
 
@@ -1219,7 +1214,6 @@ def InitNimManager(nimmgr):
 	advanced_lnb_allsat_diseqcmode_choices = [("1_2", _("1.2"))]
 	advanced_lnb_diseqcmode_choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))]
 	advanced_lnb_commandOrder1_0_choices = [("ct", "committed, toneburst"), ("tc", "toneburst, committed")]
-	# changed by Huevos, please keep
 	advanced_lnb_commandOrder_choices = [
 		("ct", "DiSEqC 1.0, toneburst"), ("tc", "toneburst, DiSEqC 1.0"),
 		("cut", "DiSEqC 1.0, DiSEqC 1.1, toneburst"), ("tcu", "toneburst, DiSEqC 1.0, DiSEqC 1.1"),
@@ -1424,7 +1418,6 @@ def InitNimManager(nimmgr):
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
-			# deleted by Huevos, please keep
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
 			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
