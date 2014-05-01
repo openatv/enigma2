@@ -22,7 +22,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
-			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
