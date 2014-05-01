@@ -274,7 +274,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false), m_servicetype_icon_mode(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false), m_servicetype_icon_mode(0), m_crypto_icon_mode(0)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -510,6 +510,11 @@ void eListboxServiceContent::setHideNumberMarker(bool doHide)
 void eListboxServiceContent::setServiceTypeIconMode(int mode)
 {
 	m_servicetype_icon_mode = mode;
+}
+
+void eListboxServiceContent::setCryptoIconMode(int mode)
+{
+	m_crypto_icon_mode = mode;
 }
 
 void eListboxServiceContent::setGetPiconNameFunc(ePyObject func)
@@ -778,10 +783,36 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									offs = xoffs;
 									xoffs += pixmap_size.width() + 8;
 								}
+								else if (m_crypto_icon_mode == 1 && m_pixmaps[picCrypto])
+									offs = offs + m_pixmaps[picCrypto]->size().width() + 8;
 								int correction = (area.height() - pixmap_size.height()) / 2;
 								area.moveBy(offset);
 								painter.clip(area);
 								painter.blit(pixmap, offset+ePoint(area.left() + offs, correction), area, gPainter::BT_ALPHATEST);
+								painter.clippop();
+							}
+						}
+
+						//crypto icon stuff
+						if (m_crypto_icon_mode && m_pixmaps[picCrypto])
+						{
+							eSize pixmap_size = m_pixmaps[picCrypto]->size();
+							eRect area = m_element_position[celServiceInfo];
+							m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+							m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+							int offs = 0;
+							if (m_crypto_icon_mode == 1)
+							{
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + 8;
+							}
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (service_info->isCrypted(*m_cursor))
+							{
+								painter.clip(area);
+								painter.blit(m_pixmaps[picCrypto], offset+ePoint(area.left() + offs, correction), area, gPainter::BT_ALPHATEST);
 								painter.clippop();
 							}
 						}
