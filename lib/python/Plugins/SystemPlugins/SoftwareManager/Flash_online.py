@@ -8,6 +8,7 @@ from Components.Task import Task, Job, job_manager, Condition
 from Components.Sources.StaticText import StaticText
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
@@ -290,13 +291,52 @@ class doFlashImage(Screen):
 			self.close()
 			return
 		if len(job_manager.failed_jobs) == 0:
-			self.session.openWithCallback(self.askUnzipCB, MessageBox, _("The image is downloaded. Do you want to flash now?"), MessageBox.TYPE_YESNO)
+			self.flashWithPostFlashActionMode = 'online'
+			self.flashWithPostFlashAction()
 		else:
 			self.session.open(MessageBox, _("Download Failed !!"), type = MessageBox.TYPE_ERROR)
 
-	def askUnzipCB(self, ret):
-		if ret:
-			self.unzip_image(self.filename, flashPath)
+	def flashWithPostFlashAction(self):
+		print "flashWithPostFlashAction"
+		title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
+		list = ((_("Flash and start installation wizart"), "wizart"),
+		 (_("Flash and restore settings only"), "restoresettings"),
+		 (_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
+		 (_("Do not flash image"), "abort"))
+		self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=list)
+
+	def postFlashActionCallback(self, answer):
+		print "postFlashActionCallback"
+		restoreSettings   = False
+		restoreAllPlugins = False
+		if answer[1] == "restoresettings":
+			restoreSettings   = True
+		if answer[1] == "restoresettingsandallplugins":
+			restoreSettings   = True
+			restoreAllPlugins = True
+		if answer[1] != "abort":
+			if restoreSettings:
+				try:
+					os.system('mkdir -p /media/hdd/images/config')
+					os.system('touch /media/hdd/images/config/settings')
+				except:
+					print "postFlashActionCallback: failed to create /media/hdd/images/config/settings"
+			else:
+				if os.path.exists('/media/hdd/images/config/settings'):
+					os.system('rm -f /media/hdd/images/config/settings')
+			if restoreAllPlugins:
+				try:
+					os.system('mkdir -p /media/hdd/images/config')
+					os.system('touch /media/hdd/images/config/plugins')
+				except:
+					print "postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
+			else:
+				if os.path.exists('/media/hdd/images/config/plugins'):
+					os.system('rm -f /media/hdd/images/config/plugins')
+			if self.flashWithPostFlashActionMode == 'online':
+				self.unzip_image(self.filename, flashPath)
+			else:
+				self.startInstallLocalCB()
 		else:
 			self.show()
 
@@ -365,9 +405,11 @@ class doFlashImage(Screen):
 	def startInstallLocal(self, ret = None):
 		if ret:
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
-			self.session.openWithCallback(self.startInstallLocalCB,BackupScreen, runBackup = True)
+			self.flashWithPostFlashActionMode = 'local'
+			self.session.openWithCallback(self.flashWithPostFlashAction,BackupScreen, runBackup = True)
 		else:
-			self.startInstallLocalCB()
+			self.flashWithPostFlashActionMode = 'local'
+			self.flashWithPostFlashAction()
 
 	def startInstallLocalCB(self, ret = None):
 		if self.sel == str(flashTmp):
