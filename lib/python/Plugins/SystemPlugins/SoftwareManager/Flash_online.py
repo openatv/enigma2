@@ -299,7 +299,7 @@ class doFlashImage(Screen):
 	def flashWithPostFlashAction(self):
 		print "flashWithPostFlashAction"
 		title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
-		list = ((_("Flash and start installation wizart"), "wizart"),
+		list = ((_("Flash and start installation wizard"), "wizard"),
 		 (_("Flash and restore settings only"), "restoresettings"),
 		 (_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
 		 (_("Do not flash image"), "abort"))
