@@ -309,34 +309,37 @@ class doFlashImage(Screen):
 		print "postFlashActionCallback"
 		restoreSettings   = False
 		restoreAllPlugins = False
-		if answer[1] == "restoresettings":
-			restoreSettings   = True
-		if answer[1] == "restoresettingsandallplugins":
-			restoreSettings   = True
-			restoreAllPlugins = True
-		if answer[1] != "abort":
-			if restoreSettings:
-				try:
-					os.system('mkdir -p /media/hdd/images/config')
-					os.system('touch /media/hdd/images/config/settings')
-				except:
-					print "postFlashActionCallback: failed to create /media/hdd/images/config/settings"
+		if answer is not None:
+			if answer[1] == "restoresettings":
+				restoreSettings   = True
+			if answer[1] == "restoresettingsandallplugins":
+				restoreSettings   = True
+				restoreAllPlugins = True
+			if answer[1] != "abort":
+				if restoreSettings:
+					try:
+						os.system('mkdir -p /media/hdd/images/config')
+						os.system('touch /media/hdd/images/config/settings')
+					except:
+						print "postFlashActionCallback: failed to create /media/hdd/images/config/settings"
+				else:
+					if os.path.exists('/media/hdd/images/config/settings'):
+						os.system('rm -f /media/hdd/images/config/settings')
+				if restoreAllPlugins:
+					try:
+						os.system('mkdir -p /media/hdd/images/config')
+						os.system('touch /media/hdd/images/config/plugins')
+					except:
+						print "postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
+				else:
+					if os.path.exists('/media/hdd/images/config/plugins'):
+						os.system('rm -f /media/hdd/images/config/plugins')
+				if self.flashWithPostFlashActionMode == 'online':
+					self.unzip_image(self.filename, flashPath)
+				else:
+					self.startInstallLocalCB()
 			else:
-				if os.path.exists('/media/hdd/images/config/settings'):
-					os.system('rm -f /media/hdd/images/config/settings')
-			if restoreAllPlugins:
-				try:
-					os.system('mkdir -p /media/hdd/images/config')
-					os.system('touch /media/hdd/images/config/plugins')
-				except:
-					print "postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
-			else:
-				if os.path.exists('/media/hdd/images/config/plugins'):
-					os.system('rm -f /media/hdd/images/config/plugins')
-			if self.flashWithPostFlashActionMode == 'online':
-				self.unzip_image(self.filename, flashPath)
-			else:
-				self.startInstallLocalCB()
+				self.show()
 		else:
 			self.show()
 
