@@ -22,7 +22,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
-			# deleted by Huevos please keep
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
@@ -91,7 +90,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.turningSpeed = None
 		self.turnFastEpochBegin = None
 		self.turnFastEpochEnd = None
+		self.toneburst = None
+		self.committedDiseqcCommand = None
 		self.uncommittedDiseqcCommand = None
+		self.commandOrder = None
 		self.cableScanType = None
 		self.have_advanced = False
 		self.advancedUnicable = None
@@ -208,7 +210,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
-					 self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.commandOrder, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -333,10 +335,14 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
-				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
-				self.list.append(getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand))
+				self.toneburst = getConfigListEntry(_("Toneburst"), currLnb.toneburst)
+				self.list.append(self.toneburst)
+				self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand)
+				self.list.append(self.committedDiseqcCommand)
+				
 				if currLnb.diseqcMode.value == "1_0":
-					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
+					if currLnb.toneburst.index and currLnb.commitedDiseqcCommand.index:
+						self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
 					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command"), currLnb.uncommittedDiseqcCommand)
 					self.list.append(self.uncommittedDiseqcCommand)
@@ -350,8 +356,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							currLnb.commandOrder.value = "tc"
 						else:
 							currLnb.commandOrder.value = "ct"
-					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
-					if currLnb.uncommittedDiseqcCommand.value != "0":
+					self.commandOrder = getConfigListEntry(_("Command order"), currLnb.commandOrder)
+					if 1 < ((1 if currLnb.uncommittedDiseqcCommand.index else 0) + (1 if currLnb.commitedDiseqcCommand.index else 0) + (1 if currLnb.toneburst.index else 0)):
+						self.list.append(self.commandOrder)
+					if currLnb.uncommittedDiseqcCommand.index:
 						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
 				if currLnb.diseqcMode.value == "1_2":
