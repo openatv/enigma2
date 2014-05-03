@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-24 19:47+0100\n"
-"PO-Revision-Date: 2014-04-25 10:04+0100\n"
+"POT-Creation-Date: 2014-05-01 16:26+0100\n"
+"PO-Revision-Date: 2014-05-01 20:18+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -120,6 +120,18 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+msgid " (disabled)"
+msgstr "(deaktiviert)"
+
+msgid " (higher than any auto)"
+msgstr ""
+
+msgid " (higher than rotor any auto)"
+msgstr ""
+
+msgid " (lower than any auto)"
+msgstr ""
 
 msgid " and"
 msgstr "und"
@@ -622,17 +634,11 @@ msgstr ""
 msgid "A/V settings"
 msgstr "A/V Einstellungen"
 
-msgid "AA"
-msgstr "AA"
-
 msgid "AAC downmix"
 msgstr "AAC Downmix"
 
 msgid "AAC transcoding"
 msgstr "AAC Transkodierung"
-
-msgid "AB"
-msgstr "AB"
 
 msgid "AC3"
 msgstr ""
@@ -797,6 +803,9 @@ msgstr ""
 "Feineinstellungen zu beenden. Mit den Zahlentasten können weitere Testbilder "
 "gewählt werden."
 
+msgid "Advanced"
+msgstr "erweitert"
+
 msgid "Advanced options"
 msgstr "Erweiterte Optionen"
 
@@ -830,8 +839,17 @@ msgstr "Alle Alter"
 msgid "All resolutions"
 msgstr "Alle Auflösungen"
 
-msgid "All satellites"
-msgstr "Alle Satelliten"
+msgid "All satellites 1 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 1 (DiSEqC Modus 1.2)"
+
+msgid "All satellites 2 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 2 (DiSEqC Modus 1.2)"
+
+msgid "All satellites 3 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 3 (DiSEqC Modus 1.2)"
+
+msgid "All satellites 4 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 4 (DiSEqC Modus 1.2)"
 
 msgid "Allocate"
 msgstr "Reservieren"
@@ -1152,12 +1170,6 @@ msgstr "Vorhandene Freigaben:"
 
 msgid "B"
 msgstr "B"
-
-msgid "BA"
-msgstr "BA"
-
-msgid "BB"
-msgstr "BB"
 
 msgid "Back"
 msgstr "Zurück"
@@ -1739,9 +1751,6 @@ msgstr "Befehlsfolge"
 
 msgid "Command type"
 msgstr ""
-
-msgid "Committed DiSEqC command"
-msgstr "DiSEqC-Befehl übertragen"
 
 msgid "Common Interface"
 msgstr "Common Interface"
@@ -2554,6 +2563,15 @@ msgstr "Geräte"
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
+msgid "DiSEqC 1.0 command"
+msgstr "DiSEqC 1.0 Befehl übertragen"
+
+msgid "DiSEqC 1.1 command"
+msgstr "DiSEqC 1.1 Befehl übertragen"
+
+msgid "DiSEqC 1.1 repeats"
+msgstr "DiSEqC 1.1 Wiederholungen"
+
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
@@ -2566,9 +2584,6 @@ msgstr "DiSEqC-Modus"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC Port %s: %s"
-
-msgid "DiSEqC repeats"
-msgstr "DiSEqC-Wiederholungen"
 
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-Tester Einstellungen"
@@ -3048,6 +3063,9 @@ msgstr ""
 
 msgid "Entitlements"
 msgstr "Berechtigungen"
+
+msgid "Equal to"
+msgstr "Gleich wie"
 
 msgid "Error"
 msgstr "Fehler"
@@ -4258,6 +4276,9 @@ msgstr "langer Tastendruck"
 msgid "Longitude"
 msgstr "Längengrad"
 
+msgid "Loop through to"
+msgstr "Verbunden mit"
+
 msgid "Luxembourgish"
 msgstr ""
 
@@ -4297,6 +4318,9 @@ msgstr "Erweiterungen verwalten"
 #, python-format
 msgid "Manage your %s %s's software"
 msgstr "Verwaltung der Software der %s %s."
+
+msgid "Manual"
+msgstr "manuell"
 
 msgid "Manual Scan"
 msgstr "Manuelle Suche"
@@ -4880,6 +4904,9 @@ msgstr "Nicht zeigen"
 msgid "Not associated"
 msgstr "Nicht verknüpft"
 
+msgid "Not configured"
+msgstr "nicht Konfiguriert"
+
 #, python-format
 msgid ""
 "Not enough disk space. Please free up some disk space and try again. (%d MB "
@@ -4910,6 +4937,9 @@ msgstr "Nicht verbunden"
 
 msgid "Nothing"
 msgstr "Nichts"
+
+msgid "Nothing connected"
+msgstr "Nichts angeschlossen"
 
 msgid ""
 "Nothing to scan!\n"
@@ -6327,6 +6357,9 @@ msgstr ""
 msgid "Searching west ..."
 msgstr "Westlich suchen"
 
+msgid "Second cable of motorized LNB"
+msgstr "Zweites Kabel vom Rotor"
+
 msgid "Secondary DNS"
 msgstr "Zweiter DNS"
 
@@ -6481,9 +6514,6 @@ msgstr "Senden"
 
 msgid "Send Confirmation"
 msgstr "Sendebestätigung"
-
-msgid "Send DiSEqC"
-msgstr "DiSEqC senden"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "DiSEqC nur bei Sat-Wechsel senden"
@@ -7222,11 +7252,17 @@ msgstr "Sortieren"
 msgid "Sort EPG List"
 msgstr "Sortiere das EPG"
 
+msgid "Sort by"
+msgstr "Sortiere Liste nach"
+
 msgid "Sort by default"
 msgstr "Standardsortierung"
 
 msgid "Sort list by"
 msgstr "Sortiere Liste nach"
+
+msgid "Sort list:"
+msgstr "Sortiere Liste:"
 
 msgid "Sort menu screens alphabetically"
 msgstr "Sortiere Menüs alphabetisch"
@@ -8477,6 +8513,9 @@ msgstr "Tuner:"
 msgid "Tuner configuration"
 msgstr "Tuner-Konfiguration"
 
+msgid "Tuner is not supported"
+msgstr "nicht unterstützter Tuner"
+
 msgid "Tuner settings"
 msgstr "Tuner Einstellungen"
 
@@ -8527,9 +8566,6 @@ msgstr "USB-Stick-Assistent"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Stille Aktualisierung ohne Benutzeroberfläche (automatischer Neustart)"
-
-msgid "Uncommitted DiSEqC command"
-msgstr "Uncommitted DiSEqC-Befehl"
 
 msgid "Undetermined"
 msgstr "Unbestimmt"
@@ -10896,9 +10932,6 @@ msgstr "Tourismus/Reise"
 msgid "true"
 msgstr "ja"
 
-msgid "tuner is not supported"
-msgstr "nicht unterstützter Tuner"
-
 msgid "uShare Log"
 msgstr "uShare Log"
 
@@ -11040,11 +11073,26 @@ msgstr "umgeschaltet"
 #~ msgid "3d mode"
 #~ msgstr "3D Betriebsart"
 
+#~ msgid "AA"
+#~ msgstr "AA"
+
+#~ msgid "AB"
+#~ msgstr "AB"
+
 #~ msgid "Adjust 3D settings"
 #~ msgstr "3D Einstellungen"
 
 #~ msgid "Advanced video setup"
 #~ msgstr "Erweiterte Bildeinstellungen"
+
+#~ msgid "All satellites"
+#~ msgstr "Alle Satelliten"
+
+#~ msgid "BA"
+#~ msgstr "BA"
+
+#~ msgid "BB"
+#~ msgstr "BB"
 
 #~ msgid ""
 #~ "Configure which tuner for recordings will be preferred, when more than "
@@ -11056,6 +11104,9 @@ msgstr "umgeschaltet"
 #~ msgid "Display"
 #~ msgstr "Display (VFD/LCD)"
 
+#~ msgid "Send DiSEqC"
+#~ msgstr "DiSEqC senden"
+
 #~ msgid "Show tag menu"
 #~ msgstr "Zeige Tag-Menü"
 
@@ -11064,6 +11115,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Top and bottom"
 #~ msgstr "Oben und Unten"
+
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "Uncommitted DiSEqC-Befehl"
 
 #~ msgid "Video setup"
 #~ msgstr "Bild Einstellungen"

@@ -332,11 +332,12 @@ class MovieContextMenu(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		menu = []
-		menu.append(MovieMenuEntryComponent((_("Settings") + "..."), csel.configure))
-		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
-		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
-		
+		menu = [(_("Settings") + "...", csel.configure),
+				(_("Device mounts") + "...", csel.showDeviceMounts),
+				(_("Network mounts") + "...", csel.showNetworkMounts),
+				(_("Add bookmark"), csel.do_addbookmark),
+				(_("Create directory"), csel.do_createdir),
+				(_("Sort by") + "...", csel.selectSortby)]
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
@@ -618,6 +619,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
+				'sortby': _("Sort by"),
 				'sortdefault': _("Sort by default"),
 				'preview': _("Preview"),
 				'movieoff': _("On end of movie")
@@ -1265,6 +1267,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].setFontsize()
 			self.reloadList()
 			self.updateDescription()
+
+	def do_sortby(self):
+		self.selectSortby()
+
+	def selectSortby(self):
+		menu = []
+		index = 0
+		for x in l_moviesort:
+			menu.append((_(x[1]), x[0], "%d" % index))
+			index += 1
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu)
+
+	def sortbyMenuCallback(self, choice):
+		if choice is None:
+			return
+		config.movielist.moviesort.value = int(choice[2])
+		self._updateButtonTexts()
+		self.sortBy(int(choice[1]))
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database

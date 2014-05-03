@@ -267,14 +267,14 @@ class CIconfigMenu(Screen):
 			Len = len(definitions)
 			return Len > 0 and definitions[Len-1].text or default
 
+		self.read_services=[]
+		self.read_providers=[]
+		self.usingcaid=[]
+		self.ci_config=[]
 		try:
-			fp = opens(self.filename, 'r')
+			fp = open(self.filename, 'r')
 			tree = ci_parse(fp).getroot()
 			fp.close()
-			self.read_services=[]
-			self.read_providers=[]
-			self.usingcaid=[]
-			self.ci_config=[]
 			for slot in tree.findall("slot"):
 				read_slot = getValue(slot.findall("id"), False).encode("UTF-8")
 				print "ci " + read_slot
