@@ -1140,17 +1140,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def selectSortby(self):
 		menu = []
 		index = 0
+		used = 0
 		for x in l_moviesort:
+			if int(x[0]) == int(config.movielist.moviesort.value):
+				used = index
 			menu.append((_(x[1]), x[0], "%d" % index))
 			index += 1
-		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu)
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu, selection = used)
 
 	def sortbyMenuCallback(self, choice):
 		if choice is None:
 			return
-		config.movielist.moviesort.value = int(choice[2])
-		self._updateButtonTexts()
 		self.sortBy(int(choice[1]))
+		self["movie_sort"].setPixmapNum(int(choice[1])-1)
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
