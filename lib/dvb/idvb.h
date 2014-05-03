@@ -303,6 +303,7 @@ public:
 	// iStaticServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
+	bool isCrypted(const eServiceReference &ref);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate=false);
 	ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
 
