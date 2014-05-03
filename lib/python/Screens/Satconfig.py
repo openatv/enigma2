@@ -22,7 +22,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
-			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
@@ -64,15 +63,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = {"nothing": _("not configured"),
-						"simple": _("simple"),
-						"advanced": _("advanced")}
+			choices = {"nothing": _("Not configured"),
+						"simple": _("Simple"),
+						"advanced": _("Advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
-				choices["equal"] = _("equal to")
+				choices["equal"] = _("Equal to")
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
-				choices["satposdepends"] = _("second cable of motorized LNB")
+				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
-				choices["loopthrough"] = _("loopthrough to")
+				choices["loopthrough"] = _("Loop through to")
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
@@ -91,7 +90,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.turningSpeed = None
 		self.turnFastEpochBegin = None
 		self.turnFastEpochEnd = None
+		self.toneburst = None
+		self.committedDiseqcCommand = None
 		self.uncommittedDiseqcCommand = None
+		self.commandOrder = None
 		self.cableScanType = None
 		self.have_advanced = False
 		self.advancedUnicable = None
@@ -208,7 +210,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
-					 self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.commandOrder, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -332,13 +334,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
-				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
-				self.list.append(getConfigListEntry(_("Committed DiSEqC command"), currLnb.commitedDiseqcCommand))
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
-				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
+				self.toneburst = getConfigListEntry(_("Toneburst"), currLnb.toneburst)
+				self.list.append(self.toneburst)
+				self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand)
+				self.list.append(self.committedDiseqcCommand)
+				
 				if currLnb.diseqcMode.value == "1_0":
-					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
+					if currLnb.toneburst.index and currLnb.commitedDiseqcCommand.index:
+						self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
+					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command"), currLnb.uncommittedDiseqcCommand)
+					self.list.append(self.uncommittedDiseqcCommand)
 					if currLnb.uncommittedDiseqcCommand.index:
 						if currLnb.commandOrder.value == "ct":
 							currLnb.commandOrder.value = "cut"
@@ -349,10 +356,12 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							currLnb.commandOrder.value = "tc"
 						else:
 							currLnb.commandOrder.value = "ct"
-					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
-					self.uncommittedDiseqcCommand = getConfigListEntry(_("Uncommitted DiSEqC command"), currLnb.uncommittedDiseqcCommand)
-					self.list.append(self.uncommittedDiseqcCommand)
-					self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
+					self.commandOrder = getConfigListEntry(_("Command order"), currLnb.commandOrder)
+					if 1 < ((1 if currLnb.uncommittedDiseqcCommand.index else 0) + (1 if currLnb.commitedDiseqcCommand.index else 0) + (1 if currLnb.toneburst.index else 0)):
+						self.list.append(self.commandOrder)
+					if currLnb.uncommittedDiseqcCommand.index:
+						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
+				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
 				if currLnb.diseqcMode.value == "1_2":
 					if SystemInfo["CanMeasureFrontendInputPower"]:
 						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement)
@@ -465,7 +474,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 			if confirmed[1] == "yes" or confirmed[1] == "no":
 				# TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
-				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("%s is no longer used. Should it be deleted?") % sat_name, [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")])
+				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("%s is no longer used. Should it be deleted?") % sat_name, [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")], None, 1)
 			if confirmed[1] == "yestoall" or confirmed[1] == "notoall":
 				self.deleteConfirmed(confirmed)
 			break
@@ -588,9 +597,9 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
-						text = { "loopthrough": _("loopthrough to"),
-								 "equal": _("equal to"),
-								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
+						text = { "loopthrough": _("Loop through to"),
+								 "equal": _("Equal to"),
+								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
 						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
 					elif nimConfig.configMode.value == "nothing":
 						text = _("not configured")
@@ -620,20 +629,20 @@ class NimSelection(Screen):
 							if nimConfig.positionerMode.value == "usals":
 								text += "USALS"
 							elif nimConfig.positionerMode.value == "manual":
-								text += _("manual")
+								text += _("Manual")
 						else:
-							text = _("simple")
+							text = _("Simple")
 					elif nimConfig.configMode.value == "advanced":
-						text = _("advanced")
+						text = _("Advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
-						text = _("nothing connected")
+						text = _("Nothing connected")
 					elif nimConfig.configMode.value == "enabled":
-						text = _("enabled")
+						text = _("Enabled")
 				if x.isMultiType():
 					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
 				if not x.isSupported():
-					text = _("tuner is not supported")
+					text = _("Tuner is not supported")
 
 				self.list.append((slotid, x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
