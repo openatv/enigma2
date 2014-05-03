@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-04-28 22:05+0100\n"
+"PO-Revision-Date: 2014-05-03 16:43+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -15339,3 +15339,29 @@ msgstr "Info-Icon anzeigen Breite"
 
 msgid "Do you want to backup your settings now?"
 msgstr "Wollen Sie ihre Einstellungen sichern?"
+
+#: Flash_online.py
+msgid ""
+"Please select what to do after flashing the image:\n"
+"(In addition, if it exists, a local script will be executed as well at /"
+"media/hdd/images/config/myrestore.sh)"
+msgstr ""
+"Wählen Sie was geschehen soll:\n"
+"Darüber hinaus, wenn ein Skript unter /hdd/images/config/myrestore.sh\n"
+"vorhanden ist, wird es ausgeführt."
+
+#: Flash_online.py
+msgid "Flash and start installation wizard"
+msgstr "Flashen und Assistenten für die Grundeinstellung benutzen"
+
+#: Flash_online.py
+msgid "Flash and restore settings only"
+msgstr "Flashen und Wiederherstellen der Einstellungen"
+
+#: Flash_online.py
+msgid "Flash and restore settings and all saved plugins"
+msgstr "Flashen und Wiederherstellen der Einstellungen und Plugins "
+
+#: Flash_online.py
+msgid "Do not flash image"
+msgstr "Jetzt nicht Flashen"
