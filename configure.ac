@@ -424,9 +424,7 @@ lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
 lib/python/Plugins/Extensions/AccuWeather/xbmcweather/Makefile
 lib/python/Plugins/Extensions/AccuWeather/xbmcweather/small/Makefile
-lib/python/Plugins/Extensions/GmailReader/Makefile
-lib/python/Plugins/Extensions/GoogleNews/Makefile
-lib/python/Plugins/Extensions/GoogleNews/images/Makefile
+lib/python/Plugins/Extensions/IniGmailReader/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/lib/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/lib/biplist/Makefile

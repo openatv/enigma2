@@ -36,7 +36,7 @@ config.plugins.gmail.label = ConfigSelection(default = 'inbox',choices=(labels))
 checkgmailtimes=(["disabled","2","5","10","30","60","120","240","480"])
 config.plugins.gmail.checktimes = ConfigSelection(default = 'disabled',choices=(checkgmailtimes))
 
-sliderfile="/usr/lib/enigma2/python/Plugins/Extensions/GmailReader/slider.png"
+sliderfile="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png"
 c7color=0xADFF2F
 c2color=0xFFA500
 c1color=0xFFFF00
@@ -47,7 +47,7 @@ c6color=0x00FF7F
 c8color=0xC71585
 c9color=0xD2691E
 
-pluginfolder="/usr/lib/enigma2/python/Plugins/Extensions/GmailReader/"
+pluginfolder="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/"
 
 def wfile(st):
 	fp=open("/tmp/lf.txt","w")
@@ -474,9 +474,9 @@ class Gmailbodyviewer(Screen):
 			<widget name="titel" position="20,0" zPosition="1" size="880,30" font="Regular;20" transparent="1"  backgroundColor="#00000000" foregroundColor="yellow" valign="center" halign="left" />
 			<widget name="author" position="20,60" size="600,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
 			<widget name="tdate" position="620,60" size="300,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
-			<ePixmap position="15,88" size="890,12" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/GmailReader/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
+			<ePixmap position="15,88" size="890,12" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
 			<widget name="text" position="20,100" size="880,400" font="Regular;22" />
-			<ePixmap position="15,510" size="890,5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/GmailReader/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
+			<ePixmap position="15,510" size="890,5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
 		</screen>"""
 
 	def __init__(self, session, title=None,body=None,tdate=None,author=None):
