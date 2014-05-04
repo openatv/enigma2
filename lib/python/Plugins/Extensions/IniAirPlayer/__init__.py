@@ -46,6 +46,13 @@ try:
 except Exception as e:
     print '[AirPlayer] error reading skin ', e
 
+# new oe-a have some kind of issues in libcrypto-compat
+from Tools.Directories import fileExists
+if  not fileExists("/usr/lib/libssl.so.0.9.8"):
+	os.system("ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8")
+if not fileExists("/usr/lib/libcrypto.so.0.9.8"):
+	os.system("cp /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/lib.so /usr/lib/libcrypto.so.0.9.8")
+	
 print '[AirPlayer] using skin ', skinPath
 loadSkin(skinPath)
 print '[AirPlayer] running python ', version_info
