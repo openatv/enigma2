@@ -1,5 +1,5 @@
 # 2013.05.22 09:49:34 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/mediabackends/AirPlayMoviePlayer.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/mediabackends/AirPlayMoviePlayer.py
 """
 Created on 17.04.2013
 
@@ -24,7 +24,7 @@ import os
 import subprocess
 from helper import blockingCallFromMainThread
 import traceback
-PROXY_BINARY = '/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/proxy'
+PROXY_BINARY = '/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/proxy'
 
 class AirPlayMoviePlayer(MoviePlayer):
 
@@ -102,7 +102,7 @@ class AirPlayMoviePlayer(MoviePlayer):
         if not os.path.exists(PROXY_BINARY):
             return False
         try:
-            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/libairtunes.so.0')
+            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/libairtunes.so.0')
             print '[AirPlayMoviePlayer] loading lib done'
             self.validationMessage = ''
             response = create_string_buffer(1024)

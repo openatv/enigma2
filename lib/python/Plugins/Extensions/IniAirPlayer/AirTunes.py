@@ -1,5 +1,5 @@
 # 2013.05.22 08:34:12 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/AirTunes.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/AirTunes.py
 from rtsp import RTSPSite, RTSPResource
 from twisted.internet import reactor
 import os
@@ -13,8 +13,8 @@ from enigma import eTimer
 from thread import start_new_thread
 import time
 from mediabackends.helper import blockingCallFromMainThread
-HAIRTUNES_BINARY = '/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/hairtunes'
-AIRTUNES_PROXY_BINARY = '/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/atproxy'
+HAIRTUNES_BINARY = '/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/hairtunes'
+AIRTUNES_PROXY_BINARY = '/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/atproxy'
 
 class AirtunesProtocolHandler(RTSPResource):
 
@@ -27,7 +27,7 @@ class AirtunesProtocolHandler(RTSPResource):
         self.process = None
         self.validationMessage = ''
         try:
-            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/libairtunes.so.0')
+            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/libairtunes.so.0')
             print '[AirTunes] loading lib done'
         except Exception as e:
             print '[AirTunes] loading lib failed'

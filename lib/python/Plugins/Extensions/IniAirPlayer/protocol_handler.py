@@ -1,5 +1,5 @@
 # 2013.05.22 08:34:42 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/protocol_handler.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/protocol_handler.py
 import appletv
 import lib.biplist
 from twisted.web.resource import Resource
@@ -147,7 +147,7 @@ class PremiumHandler(BaseHandler):
 
     def getStatusText(self):
         try:
-            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/libairtunes.so.0')
+            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/libairtunes.so.0')
             print '[AirPlayer] loading lib done'
             response = create_string_buffer(1024)
             if self.libairtunes.checkValidation(config.plugins.airplayer.validationKey.value, response) < 0:

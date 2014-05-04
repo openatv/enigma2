@@ -1,6 +1,6 @@
 SUBDIRS = biplist
 
-installdir = $(pkglibdir)/python/Plugins/Extensions/AirPlayer/lib
+installdir = $(pkglibdir)/python/Plugins/Extensions/IniAirPlayer/lib
 
 install_PYTHON = \
 	*.py 

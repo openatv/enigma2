@@ -1,5 +1,5 @@
 # 2013.05.22 08:35:25 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/plugin.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/plugin.py
 import os
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -71,7 +71,17 @@ global_media_backend = None
 global_airtunes_protocol_handler = None
 
 class AP_MainMenu(Screen, ConfigListScreen):
-    skin = '<screen name="AP_MainMenu" title="AirPlayer Settings" position="center,center" size="565,370">\n\t\t<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />\n\t\t<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />\n\t\t<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />\n\t\t<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />\n\t\t<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />\n\t\t<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />\n\t\t<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />\n\t\t<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />\n\t\t<widget name="text" position="5,50" size="555,250" halign="center" valign="center" font="Regular;20" />\n\t</screen>'
+    skin = '''<screen name="AP_MainMenu" title="AirPlayer Settings" position="center,center" size="565,370">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="text" position="5,50" size="555,250" halign="center" valign="center" font="Regular;20" />
+	      </screen>'''
 
     def __init__(self, session, args = None):
         self.skin = AP_MainMenu.skin
@@ -235,22 +245,22 @@ def startWebserver(session):
     global_protocol_handler = protocol_handler
     global_media_backend = media_backend
     global_airtunes_protocol_handler = aitrunes_ph
-    if config.plugins.airplayer.autoUpdate.value:
-        print '[AirPlayer] check for updates'
-        link = media_backend.updater.checkForUpdate('', 0)
-        print '[AirPlayer] update: ', link
-        if link != '' and link != 'up to date':
-            Notifications.AddNotificationWithCallback(media_backend.updater.startUpdateCallback, MessageBox, _('A new Version of AirPlayer is available! Update AirPlayer now?'), MessageBox.TYPE_YESNO, timeout=10)
+    #if config.plugins.airplayer.autoUpdate.value:
+        #print '[AirPlayer] check for updates'
+        #link = media_backend.updater.checkForUpdate('', 0)
+        #print '[AirPlayer] update: ', link
+        #if link != '' and link != 'up to date':
+            #Notifications.AddNotificationWithCallback(media_backend.updater.startUpdateCallback, MessageBox, _('A new Version of AirPlayer is available! Update AirPlayer now?'), MessageBox.TYPE_YESNO, timeout=10)
     print '[AirPlayer] starting protocol hadler'
     protocol_handler.start()
     aitrunes_ph.start()
     print '[AirPlayer] starting webserver done'
     print '[AirPlayer] starting zeroconf'
     os.system('killall zeroconfig')
-    os.system('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/zeroconfig "' + config.plugins.airplayer.name.value + '" ' + config.plugins.airplayer.interface.value + ' &')
+    os.system('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/zeroconfig "' + config.plugins.airplayer.name.value + '" ' + config.plugins.airplayer.interface.value + ' &')
     print '[AirPlayer] starting zeroconf done'
-    if config.plugins.airplayer.showStartUpInfo.value:
-        Notifications.AddNotification(MessageBox, _('AirPlayer %s started!\nIf you have any problems with this plugin, please visit the Support-Board at www.airplayer.biz') % config.plugins.airplayer.version.value, type=MessageBox.TYPE_INFO, timeout=20)
+    #if config.plugins.airplayer.showStartUpInfo.value:
+        #Notifications.AddNotification(MessageBox, _('AirPlayer %s started!\nIf you have any problems with this plugin, please visit the Support-Board at www.airplayer.biz') % config.plugins.airplayer.version.value, type=MessageBox.TYPE_INFO, timeout=20)
 
 
 def sessionstart(reason, session):

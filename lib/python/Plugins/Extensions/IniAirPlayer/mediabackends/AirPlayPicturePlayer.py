@@ -1,5 +1,5 @@
 # 2013.05.22 09:49:50 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/mediabackends/AirPlayPicturePlayer.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/mediabackends/AirPlayPicturePlayer.py
 """
 Created on 17.04.2013
 

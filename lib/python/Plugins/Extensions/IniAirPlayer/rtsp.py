@@ -1,5 +1,5 @@
 # 2013.05.22 08:34:50 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/rtsp.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/rtsp.py
 """
 RTSP - Real Time Streaming Protocol.
 

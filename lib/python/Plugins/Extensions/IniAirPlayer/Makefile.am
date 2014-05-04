@@ -1,6 +1,6 @@
 SUBDIRS = lib mediabackends Skins
 
-installdir = $(pkglibdir)/python/Plugins/Extensions/AirPlayer
+installdir = $(pkglibdir)/python/Plugins/Extensions/IniAirPlayer
 
 install_PYTHON = \
 	*.py *.png

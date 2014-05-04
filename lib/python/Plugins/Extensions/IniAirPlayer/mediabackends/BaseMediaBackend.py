@@ -1,5 +1,5 @@
 # 2013.05.22 09:49:57 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/mediabackends/BaseMediaBackend.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/mediabackends/BaseMediaBackend.py
 import base64
 import urllib2
 

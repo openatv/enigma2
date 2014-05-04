@@ -1,5 +1,5 @@
 # 2013.05.22 09:50:14 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/mediabackends/helper.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/mediabackends/helper.py
 """
 Created on 06.05.2013
 

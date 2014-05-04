@@ -1,5 +1,5 @@
 # 2013.05.22 09:49:41 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/mediabackends/AirPlayMusicPlayer.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/mediabackends/AirPlayMusicPlayer.py
 """
 Created on 17.04.2013
 
@@ -109,7 +109,7 @@ class AirPlayMusicPlayer(Screen):
                 print '[AirPlayMusicPlayer] No Metadata found'
                 return
             if self.libairtunes is None:
-                self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/libairtunes.so.0')
+                self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/libairtunes.so.0')
                 print '[AirPlayMusicPlayer] loading lib done'
             response = create_string_buffer(1024)
             self.libairtunes.getMetadata('asal', config.plugins.airplayer.path.value + '/metadata.bin', response)
@@ -157,7 +157,7 @@ class AirPlayMusicPlayer(Screen):
         if os.path.exists(config.plugins.airplayer.path.value + '/cover.jpg'):
             self.start_decode()
         else:
-            self.start_decode('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/cover.png')
+            self.start_decode('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/cover.png')
 
     def ShowCover(self):
         if self.currPic != None:

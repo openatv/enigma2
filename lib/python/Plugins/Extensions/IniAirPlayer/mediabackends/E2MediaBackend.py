@@ -1,7 +1,7 @@
 # 2013.05.22 09:50:06 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/mediabackends/E2MediaBackend.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/mediabackends/E2MediaBackend.py
 from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config
-from Plugins.Extensions.AirPlayer.updater import Updater
+from Plugins.Extensions.IniAirPlayer.updater import Updater
 from Screens.MessageBox import MessageBox
 from BaseMediaBackend import BaseMediaBackend
 from enigma import eServiceCenter, eDVBVolumecontrol, eServiceReference, eTimer

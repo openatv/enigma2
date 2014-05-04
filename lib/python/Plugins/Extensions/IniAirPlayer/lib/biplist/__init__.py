@@ -1,5 +1,5 @@
 # 2013.05.22 09:52:46 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/lib/biplist/__init__.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/lib/biplist/__init__.py
 """biplist -- a library for reading and writing binary property list files.
 
 Binary Property List (plist) files provide a faster and smaller serialization

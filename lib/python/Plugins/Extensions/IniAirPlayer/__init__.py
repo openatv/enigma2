@@ -1,5 +1,5 @@
 # 2013.05.22 08:34:34 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/__init__.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/__init__.py
 from enigma import getDesktop
 from skin import loadSkin
 import os
@@ -9,7 +9,7 @@ from Components.config import config, ConfigSubsection, ConfigSelection
 def getSkins():
     print '[AirPlayer] search for Skins'
     skins = []
-    skindir = '/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/Skins/'
+    skindir = '/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/Skins/'
     for o in os.listdir(skindir):
         if os.path.isdir(skindir + o):
             print '[AirPlayer] found Skin', o
@@ -23,7 +23,7 @@ currentArch = 'mips32el'
 def getSkinPath(name):
     skinName = name
     dSize = getDesktop(0).size()
-    skinpath = '/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/Skins/%s/%sx%s/skin.xml' % (skinName, str(dSize.width()), str(dSize.height()))
+    skinpath = '/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/Skins/%s/%sx%s/skin.xml' % (skinName, str(dSize.width()), str(dSize.height()))
     if os.path.exists(skinpath):
         return skinpath
     else:

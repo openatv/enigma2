@@ -1,5 +1,5 @@
 # 2013.05.22 08:35:32 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/websocket.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/websocket.py
 """
 WebSocket server protocol.
 

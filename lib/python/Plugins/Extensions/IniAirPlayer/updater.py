@@ -1,5 +1,5 @@
 # 2013.05.22 08:34:58 UTC
-#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/updater.py
+#Embedded file name: /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/updater.py
 from urllib2 import urlopen
 import urllib2
 from Components.config import config
@@ -35,7 +35,7 @@ def getBoxType():
         pass
 
     print '[AirPlayUpdater] model:', model
-    return model
+    return "duo2"#model
 
 
 class Updater(object):
@@ -59,7 +59,7 @@ class Updater(object):
 
     def readMacFromLib(self):
         try:
-            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/AirPlayer/libairtunes.so.0')
+            self.libairtunes = cdll.LoadLibrary('/usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/libairtunes.so.0')
             print '[AirPlayUpdater] loading lib done'
             response = create_string_buffer(1024)
             self.libairtunes.getMACAddr('eth0', response)
