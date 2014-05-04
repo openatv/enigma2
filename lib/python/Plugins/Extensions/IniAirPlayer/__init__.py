@@ -50,8 +50,6 @@ except Exception as e:
 from Tools.Directories import fileExists
 if  not fileExists("/usr/lib/libssl.so.0.9.8"):
 	os.system("ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8")
-if not fileExists("/usr/lib/libcrypto.so.0.9.8"):
-	os.system("cp /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/lib/lib.so /usr/lib/libcrypto.so.0.9.8")
 	
 print '[AirPlayer] using skin ', skinPath
 loadSkin(skinPath)
