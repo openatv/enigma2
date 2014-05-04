@@ -51,7 +51,7 @@ from Tools.Directories import fileExists
 if  not fileExists("/usr/lib/libssl.so.0.9.8"):
 	os.system("ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8")
 if not fileExists("/usr/lib/libcrypto.so.0.9.8"):
-	os.system("cp /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/lib.so /usr/lib/libcrypto.so.0.9.8")
+	os.system("cp /usr/lib/enigma2/python/Plugins/Extensions/IniAirPlayer/lib/lib.so /usr/lib/libcrypto.so.0.9.8")
 	
 print '[AirPlayer] using skin ', skinPath
 loadSkin(skinPath)
@@ -60,52 +60,29 @@ try:
     import ctypes
 except Exception as e:
     print '[AirPlayer] ctypes missing'
-    if currentArch == 'sh4' or currentArch == 'sh4p27':
-        if version_info < (2, 7):
-            print '[AirPlayer] inst python-ctypes for sh4'
-            installIpk('http://airplayer.googlecode.com/files/python-ctypes_0.1_sh4.ipk')
-        else:
-            print '[AirPlayer] inst python-ctypes for sh4 for python 2.7'
-            installIpk('http://airplayer.googlecode.com/files/python-ctypes_0.1_sh4_python2.7.ipk')
-    elif version_info < (2, 7):
-        print '[AirPlayer] inst python-ctypes 2.6'
-        installIpk('http://airplayer.googlecode.com/files/python-ctypes_2.6_mipsel.ipk')
-    else:
-        print '[AirPlayer] inst python-ctypes 2.7'
-        installIpk('http://airplayer.googlecode.com/files/python-ctypes_2.7_mips32el.ipk')
+    print '[AirPlayer] inst python-ctypes 2.7'
+    installIpk('http://airplayer.googlecode.com/files/python-ctypes_2.7_mips32el.ipk')
 
 try:
     import plistlib
 except Exception as e:
     print '[AirPlayer] python-plistlibb missing'
-    if version_info < (2, 7):
-        print '[AirPlayer] install python-plistlibb 2.6'
-        installIpk('http://airplayer.googlecode.com/files/python-plistlibb_2.6_all.ipk')
-    else:
-        print '[AirPlayer] install python-plistb 2.7'
-        installIpk('http://airplayer.googlecode.com/files/python-plistlibb_2.7_all.ipk')
+    print '[AirPlayer] install python-plistb 2.7'
+    installIpk('http://airplayer.googlecode.com/files/python-plistlibb_2.7_all.ipk')
 
 try:
     import shutil
 except Exception as e:
     print '[AirPlayer] python-shell missing'
-    if version_info < (2, 7):
-        print '[AirPlayer] install python-shell 2.6'
-        installIpk('http://airplayer.googlecode.com/files/python-shell_2.6_all.ipk')
-    else:
-        print '[AirPlayer] install python-shell 2.7'
-        installIpk('http://airplayer.googlecode.com/files/python-shell_2.7_all.ipk')
+    print '[AirPlayer] install python-shell 2.7'
+    installIpk('http://airplayer.googlecode.com/files/python-shell_2.7_all.ipk')
 
 try:
     import subprocess
 except Exception as e:
     print '[AirPlayer] python-subprocess missing'
-    if version_info < (2, 7):
-        print '[AirPlayer] install python-subprocess 2.6'
-        installIpk('http://airplayer.googlecode.com/files/python-subprocess_2.6_all.ipk')
-    else:
-        print '[AirPlayer] install python-subprocess 2.7'
-        installIpk('http://airplayer.googlecode.com/files/python-subprocess_2.7_all.ipk')
+    print '[AirPlayer] install python-subprocess 2.7'
+    installIpk('http://airplayer.googlecode.com/files/python-subprocess_2.7_all.ipk')
 
 if currentArch != 'sh4' and currentArch != 'sh4p27':
     if not os.path.isfile('/usr/lib/gstreamer-0.10/libgstfragmented.so'):

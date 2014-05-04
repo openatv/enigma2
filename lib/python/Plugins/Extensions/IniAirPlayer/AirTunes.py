@@ -114,15 +114,6 @@ class AirtunesProtocolHandler(RTSPResource):
             timing_port = 59010
             control_port = 59012
             response = create_string_buffer(1024)
-            #if self.libairtunes is not None:
-                #self.validationMessage = ''
-                #if self.libairtunes.checkValidation(config.plugins.airplayer.validationKey.value, response) < 0:
-                    #request.setHeader('transport', request.received_headers['transport'] + ';server_port=' + str(9999))
-                    #request.setHeader('session', 'DEADBEEF')
-                    #print '[AirTunes] Premium-Key Invalid'
-                    #self.validationMessage = response.value
-                    ##blockingCallFromMainThread(self.backend.setValidationMessage, self.validationMessage)
-                    #return ''
             if not os.path.exists(HAIRTUNES_BINARY) and not os.path.exists(AIRTUNES_PROXY_BINARY):
                 Notifications.AddNotification(MessageBox, _('AirTunes Audio-Streaming is not available on this Boxtype'), type=MessageBox.TYPE_INFO, timeout=10)
                 return
@@ -145,7 +136,7 @@ class AirtunesProtocolHandler(RTSPResource):
 
             try:
                 print '[AirTunes] setting downmix'
-                #blockingCallFromMainThread(self.backend.setDownmix)
+                blockingCallFromMainThread(self.backend.setDownmix)
             except Exception as e:
                 print '[AirTunes] setting downmix failed: ', e
 
@@ -186,7 +177,6 @@ class AirtunesProtocolHandler(RTSPResource):
                     start_new_thread(self.playerStarter, (self,))
                 else:
                     print '[AirTunes] starting AudioPlayer now'
-                    #blockingCallFromMainThread(self.backend.play_airtunes, self.validationMessage)
                 print 'player started: '
             else:
                 request.setHeader('transport', request.received_headers['transport'] + ';server_port=' + str(9999))
@@ -207,7 +197,6 @@ class AirtunesProtocolHandler(RTSPResource):
 
     def playerStarter(self, *args):
         time.sleep(1)
-        #blockingCallFromMainThread(self.backend.play_airtunes, self.validationMessage)
 
     def render_RECORD(self, request):
         self.render_startCSeqDate(request, request.method)
@@ -226,11 +215,11 @@ class AirtunesProtocolHandler(RTSPResource):
                 print '[AirTunes] Got Cover'
                 request.content.seek(0)
                 file(config.plugins.airplayer.path.value + '/cover.jpg', 'wb').write(request.content.read())
-                #blockingCallFromMainThread(self.backend.updateAirTunesCover)
+                blockingCallFromMainThread(self.backend.updateAirTunesCover)
             elif contentType == 'application/x-dmap-tagged':
                 print '[AirTunes] Got MetaData'
                 file(config.plugins.airplayer.path.value + '/metadata.bin', 'wb').write(request.content.read())
-                #blockingCallFromMainThread(self.backend.updateAirTunesMetadata)
+                blockingCallFromMainThread(self.backend.updateAirTunesMetadata)
             else:
                 content = request.content.read()
                 if content[:7] == 'volume:':
@@ -239,7 +228,7 @@ class AirtunesProtocolHandler(RTSPResource):
                     vol = 100 - int(float(value) * -3.3333333333)
                     if vol < 0:
                         vol = 0
-                    #blockingCallFromMainThread(self.backend.setVolume, vol)
+                    blockingCallFromMainThread(self.backend.setVolume, vol)
                 elif content[:9] == 'progress:':
                     value = content[9:]
                     print '[AirTunes] Got Progress: ', value
@@ -248,7 +237,7 @@ class AirtunesProtocolHandler(RTSPResource):
                         start = int(nums[0])
                         runtime = (int(nums[2]) - start) / 44100
                         seconds = (int(nums[1]) - start) / 44100
-                        #blockingCallFromMainThread(self.backend.updateAirTunesProgress, seconds, runtime)
+                        blockingCallFromMainThread(self.backend.updateAirTunesProgress, seconds, runtime)
                     except Exception as ex:
                         print ('Exception during progress calc: ' + str(ex), __name__, 'W')
 
@@ -284,5 +273,5 @@ class AirtunesProtocolHandler(RTSPResource):
             self.process.wait()
         self.process = None
         request.setHeader('connection', 'close')
-        #blockingCallFromMainThread(self.backend.stop_airtunes)
+        blockingCallFromMainThread(self.backend.stop_airtunes)
         return ''

@@ -35,7 +35,7 @@ def getBoxType():
         pass
 
     print '[AirPlayUpdater] model:', model
-    return "duo2"#model
+    return model
 
 
 class Updater(object):
