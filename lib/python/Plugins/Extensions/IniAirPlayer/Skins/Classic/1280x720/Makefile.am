@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/IniAirPlayer/kins/Classic/1280x720
+installdir = $(pkglibdir)/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/1280x720
 
 install_PYTHON = \
 	*.png
