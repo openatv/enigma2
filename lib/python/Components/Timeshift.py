@@ -445,6 +445,12 @@ class InfoBarTimeshift:
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
 					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
+		elif self.save_current_timeshift:
+			# the user has chosen "no warning" when timeshift is stopped (config.usage.check_timeshift=False)
+			# but the user has previously activated "Timeshift save recording" of current event
+			# so we silently do "favoriteSaveAction" when switching channel
+			# (recommended setting config.timeshift.favoriteSaveAction=savetimeshiftandrecord)
+			InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
 		else:
 			returnFunction(True)
 
@@ -477,7 +483,8 @@ class InfoBarTimeshift:
 
 	def activateAutorecordTimeshift(self):
 		self.createTimeshiftFolder()
-		self.ptsCleanTimeshiftFolder()
+		if self.pts_eventcount == 0: #only cleanup folder after switching channels, not when a new event starts, to allow saving old events from timeshift buffer
+			self.ptsCleanTimeshiftFolder()
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
@@ -591,7 +598,7 @@ class InfoBarTimeshift:
 			# print 'TEST1'
 			for filename in os.listdir(config.usage.timeshift_path.value):
 				# print 'filename',filename
-				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
+				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".sc"):
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename))
 					if statinfo.st_mtime > (time()-5.0):
 						savefilename=filename
