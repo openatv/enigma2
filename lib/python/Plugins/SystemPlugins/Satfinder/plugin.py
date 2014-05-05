@@ -151,7 +151,7 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def createConfig(self, foo):
 		self.preDefTransponders = None
-		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))])
+		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))], default = "predefined_transponder")
 		self.orbital_position = 192
 		if self.frontendData and self.frontendData.has_key('orbital_position'):
 			self.orbital_position = self.frontendData['orbital_position']
