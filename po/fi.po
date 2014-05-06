@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-06 03:23+0100\n"
-"PO-Revision-Date: 2014-04-06 09:06+0200\n"
+"POT-Creation-Date: 2014-05-04 15:43+0100\n"
+"PO-Revision-Date: 2014-05-06 22:02+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: AndyBlac/TimoJ\n"
 "Language: fi\n"
@@ -137,6 +137,19 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+#
+msgid " (disabled)"
+msgstr " (ei käytössä)"
+
+msgid " (higher than any auto)"
+msgstr " (korkeampi kuin mikä tahansa autom.)"
+
+msgid " (higher than rotor any auto)"
+msgstr " (korkeampi kuin kääntömoottori mikä tahansa autom.)"
+
+msgid " (lower than any auto)"
+msgstr " (alhaisempi kuin mikä tahansa autom.)"
 
 msgid " and"
 msgstr " ja"
@@ -676,16 +689,14 @@ msgstr ""
 msgid "A/V settings"
 msgstr "A/V-asetukset"
 
-#
-msgid "AA"
-msgstr "AA"
-
 msgid "AAC downmix"
 msgstr "AAC:n muunto stereoksi"
 
-#
-msgid "AB"
-msgstr "AB"
+msgid "AAC transcoding"
+msgstr "AAC-uudelleenpakkaus"
+
+msgid "AC3"
+msgstr "AC3"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "HAETAAN TSID/ONID"
@@ -869,6 +880,10 @@ msgstr ""
 "Kun olet tyytyväinen tulokseen, sulje testikuva painamalla OK tai valitse numeronäppäimillä 1-6 joku muu testikuva."
 
 #
+msgid "Advanced"
+msgstr "Laaja"
+
+#
 msgid "Advanced options"
 msgstr "Laajennetut valinnat"
 
@@ -907,8 +922,17 @@ msgstr "Kaikenikäisille"
 msgid "All resolutions"
 msgstr "Kaikki resoluutiot"
 
-msgid "All satellites"
-msgstr "Kaikki satelliitit"
+msgid "All satellites 1 (DiSEqC mode 1.2)"
+msgstr "Kaikki satelliitit 1 (DiSEqC-tila 1.2)"
+
+msgid "All satellites 2 (DiSEqC mode 1.2)"
+msgstr "Kaikki satelliitit 2 (DiSEqC-tila 1.2)"
+
+msgid "All satellites 3 (DiSEqC mode 1.2)"
+msgstr "Kaikki satelliitit 3 (DiSEqC-tila 1.2)"
+
+msgid "All satellites 4 (DiSEqC mode 1.2)"
+msgstr "Kaikki satelliitit 4 (DiSEqC-tila 1.2)"
 
 msgid "Allocate"
 msgstr "Varaa"
@@ -1240,14 +1264,6 @@ msgstr "Käytettävissä olevat jaot:"
 #
 msgid "B"
 msgstr "B"
-
-#
-msgid "BA"
-msgstr "BA"
-
-#
-msgid "BB"
-msgstr "BB"
 
 #
 msgid "Back"
@@ -1758,6 +1774,9 @@ msgstr "Valitse aikaväli johon grafiikat pyöristetään."
 msgid "Choose what you want the '0' button to do when PIP is active."
 msgstr "Valitse '0'-näppäimen toiminto, kun PiP-kuva on käytössä."
 
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Valitse tehdäänkö AAC-ääniraidoille uudelleenpakkaus (transcoding)."
+
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Valitse muunnetaanko monikanavaiset ääniraidat stereoksi."
 
@@ -1884,10 +1903,6 @@ msgid "Command type"
 msgstr "Käskyn tyyppi"
 
 #
-msgid "Committed DiSEqC command"
-msgstr "Committed DiSEqC-käsky"
-
-#
 msgid "Common Interface"
 msgstr "CI-liitäntä/CAM"
 
@@ -1942,6 +1957,9 @@ msgstr "Määrittää kuinka monta minuuttia päättyneiden ohjelmien ohjelmatie
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Määritä tallenteiden tiedostonimien rakenne."
+
+msgid "Configure if and how crypto icons will be shown in the channel selection list."
+msgstr "Määrittää näytetäänkö/miten näytetään salauksen kuvakkeet kanavalistassa."
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Määritä näytetäänkö/miten näytetään kanavatyypin kuvakkeet."
@@ -2432,6 +2450,9 @@ msgstr "DMM laaja"
 msgid "DMM normal"
 msgstr "DMM normaali"
 
+msgid "DTS"
+msgstr "DTS"
+
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
@@ -2633,6 +2654,18 @@ msgid "DiSEqC"
 msgstr "DiSEqC"
 
 #
+msgid "DiSEqC 1.0 command"
+msgstr "DiSEqC 1.0 käsky"
+
+#
+msgid "DiSEqC 1.1 command"
+msgstr "DiSEqC 1.1 käsky"
+
+#
+msgid "DiSEqC 1.1 repeats"
+msgstr "DiSEqC 1.1 toistot"
+
+#
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
@@ -2647,10 +2680,6 @@ msgstr "DiSEqC-tila"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC portti %s: %s"
-
-#
-msgid "DiSEqC repeats"
-msgstr "DiSEqC-toistoja"
 
 #
 msgid "DiSEqC-tester settings"
@@ -2785,6 +2814,9 @@ msgid ""
 msgstr ""
 "Haluatko varmasti alustaa tämän laitteen?\n"
 "Kaikki tieto katoaa!"
+
+msgid "Do you really want to move to trashcan ?"
+msgstr "Haluatko varmasti siirtää roskakoriin?"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
@@ -3189,6 +3221,10 @@ msgstr "Syötä foorumin käyttäjänimesi, jotta lokien jäljitys on helpompaa.
 
 msgid "Entitlements"
 msgstr "Valtuutukset"
+
+#
+msgid "Equal to"
+msgstr "Sama kuin"
 
 #
 msgid "Error"
@@ -4486,6 +4522,10 @@ msgstr "Pitkä painallus"
 msgid "Longitude"
 msgstr "Pituusaste"
 
+#
+msgid "Loop through to"
+msgstr "Läpisyöttö"
+
 msgid "Luxembourgish"
 msgstr "Luxemburg"
 
@@ -4532,6 +4572,10 @@ msgstr "Hallitse laajennuksia"
 #, python-format
 msgid "Manage your %s %s's software"
 msgstr "Hallitse %s %s:n ohjelmistoa"
+
+#
+msgid "Manual"
+msgstr "Manuaalinen"
 
 #
 msgid "Manual Scan"
@@ -5195,6 +5239,10 @@ msgid "Not associated"
 msgstr "Ei assosioitu"
 
 #
+msgid "Not configured"
+msgstr "Ei määritetty"
+
+#
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Liian vähän levytilaa. Vapauta levytilaa ja yritä uudelleen. (%d Mt tarvitaan, %d Mt vapaana)"
@@ -5222,6 +5270,10 @@ msgstr "Ei assosioitu"
 #
 msgid "Nothing"
 msgstr "älä tee mitään"
+
+#
+msgid "Nothing connected"
+msgstr "Ei kytketty"
 
 #
 msgid ""
@@ -6814,6 +6866,10 @@ msgid "Searching west ..."
 msgstr "Etsitään länteen..."
 
 #
+msgid "Second cable of motorized LNB"
+msgstr "Kääntyvän antennin LNB:n toinen kaapeli"
+
+#
 msgid "Secondary DNS"
 msgstr "Toissijainen DNS"
 
@@ -6983,10 +7039,6 @@ msgstr "Lähetä"
 
 msgid "Send Confirmation"
 msgstr "Lähetä vahvistus"
-
-#
-msgid "Send DiSEqC"
-msgstr "Lähetä DiSEqC"
 
 #
 msgid "Send DiSEqC only on satellite change"
@@ -7363,6 +7415,10 @@ msgstr "Näytä kanavanumero tietopalkissa"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Näytä kanavanumerot kanavalistassa"
+
+#
+msgid "Show crypto icons"
+msgstr "Näytä salauksen kuvakkeet"
 
 msgid "Show crypto info in infobar"
 msgstr "Näytä salaustyyppi tietopalkissa"
@@ -7751,10 +7807,16 @@ msgstr "Järjestys"
 msgid "Sort EPG List"
 msgstr "Järjestä EPG-lista"
 
+msgid "Sort by"
+msgstr "Listan järjestystapa:"
+
 msgid "Sort by default"
 msgstr "Oletusjärjestys"
 
 msgid "Sort list by"
+msgstr "Listan järjestystapa:"
+
+msgid "Sort list:"
 msgstr "Listan järjestystapa:"
 
 msgid "Sort menu screens alphabetically"
@@ -7809,6 +7871,10 @@ msgstr "Sammutusvalikko"
 #
 msgid "Standby / restart"
 msgstr "Sammutusvalikko"
+
+#
+msgid "StandbyLED"
+msgstr "Valmiustilan LED"
 
 msgid "Start"
 msgstr "Käynnistä"
@@ -8978,6 +9044,9 @@ msgstr "Viritin:"
 msgid "Tuner configuration"
 msgstr "Virittimien asetukset"
 
+msgid "Tuner is not supported"
+msgstr "Viritin ei ole tuettu"
+
 msgid "Tuner settings"
 msgstr "Virittimen asetukset"
 
@@ -9001,6 +9070,9 @@ msgstr "Virityksen askelkoko"
 #
 msgid "Turkish"
 msgstr "Turkki"
+
+msgid "Turn on the power LED during standby."
+msgstr "Kytke virta-LED päälle valmiustilassa."
 
 #
 msgid "Two"
@@ -9033,10 +9105,6 @@ msgstr "USB-muistiavustaja"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Automaattinen päivitys ilman käyttöliittymää ja uudelleenkäynnistys"
-
-#
-msgid "Uncommitted DiSEqC command"
-msgstr "Uncommitted DiSEqC-käsky"
 
 msgid "Undetermined"
 msgstr "Määrittämätön"
@@ -10996,6 +11064,9 @@ msgstr "ei mitään"
 msgid "normal"
 msgstr "normaali"
 
+msgid "not available"
+msgstr "ei saatavilla"
+
 #
 msgid "not configured"
 msgstr "ei määritetty"
@@ -11475,9 +11546,6 @@ msgstr "turismi/matkailu"
 msgid "true"
 msgstr "tosi"
 
-msgid "tuner is not supported"
-msgstr "viritin ei ole tuettu"
-
 msgid "uShare Log"
 msgstr "uShare-loki"
 
@@ -11639,15 +11707,3 @@ msgstr "vaihdettu"
 
 #~ msgid "3d mode"
 #~ msgstr "3D-tila"
-
-#~ msgid "Adjust 3D settings"
-#~ msgstr "Säädä 3D-asetuksia"
-
-#~ msgid "Advanced video setup"
-#~ msgstr "Laajennetut video-asetukset"
-
-#~ msgid "Display"
-#~ msgstr "Näyttö"
-
-#~ msgid "No free tuner, could not open Picture in Picture"
-#~ msgstr "Ei vapaata viritintä, PIP-kuvaa ei voitu avata"
