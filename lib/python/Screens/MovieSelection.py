@@ -331,13 +331,13 @@ class MovieContextMenu(Screen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-
-		menu = [(_("Settings") + "...", csel.configure),
-				(_("Device mounts") + "...", csel.showDeviceMounts),
-				(_("Network mounts") + "...", csel.showNetworkMounts),
-				(_("Add bookmark"), csel.do_addbookmark),
-				(_("Create directory"), csel.do_createdir),
-				(_("Sort by") + "...", csel.selectSortby)]
+		
+		menu = []
+		menu.append(MovieMenuEntryComponent((_("Settings") + "..."), csel.configure))
+		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
+		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
+		menu.append(MovieMenuEntryComponent((_("Sort by") + "..."), csel.selectSortby))
+		
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
