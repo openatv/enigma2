@@ -12,8 +12,9 @@ class ServiceName(Converter, object):
 	PROVIDER = 3
 	REFERENCE = 4
 	EDITREFERENCE = 5
-	SID = 6	
-
+	SID = 6
+	NUMBER = 7
+	
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime
@@ -28,7 +29,9 @@ class ServiceName(Converter, object):
 		elif type == "NameAndEvent":
 			self.type = self.NAME_EVENT
 		elif type == "Sid":
-			self.type = self.SID			
+			self.type = self.SID
+		elif type == "ServiceNumber":
+			self.type = self.NUMBER
 		else:
 			self.type = self.NAME
 
@@ -58,15 +61,15 @@ class ServiceName(Converter, object):
 					return "%s - " % name
 				else:
 					return "%s - %s" % (name, act_event.getEventName())
-			elif self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.getValue() and hasattr(self.source, "serviceref") and '0:0:0:0:0:0:0:0:0' not in self.source.serviceref.toString():
+			else:
+				return name
+		elif self.type == self.NUMBER and hasattr(self.source, "serviceref") and '0:0:0:0:0:0:0:0:0' not in self.source.serviceref.toString():
 				numservice = self.source.serviceref
 				num = numservice and numservice.getChannelNum() or None
 				if num is not None:
-					return str(num) + '   ' + name
+					return str(num)
 				else:
-					return name
-			else:
-				return name
+					return "  "      
 		elif self.type == self.PROVIDER:
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE or self.type == self.EDITREFERENCE and hasattr(self.source, "editmode") and self.source.editmode:

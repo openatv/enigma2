@@ -10,8 +10,7 @@ import enigma
 def getTrashFolder(path=None):
 	# Returns trash folder without symlinks
 	try:
-		print 'PATH:',path
-		if path is None or os.path.realpath(path) == '/media/autofs':
+		if path is None or os.path.realpath(path) == '/media/autofs/':
 			print 'path is none'
 			return ""
 		else:
@@ -32,13 +31,14 @@ def createTrashFolder(path=None):
 
 def get_size(start_path = '.'):
 	total_size = 0
-	for dirpath, dirnames, filenames in os.walk(start_path):
-		for f in filenames:
-			try:
-				fp = os.path.join(dirpath, f)
-				total_size += os.path.getsize(fp)
-			except:
-				pass
+	if start_path:
+		for dirpath, dirnames, filenames in os.walk(start_path):
+			for f in filenames:
+				try:
+					fp = os.path.join(dirpath, f)
+					total_size += os.path.getsize(fp)
+				except:
+					pass
 	return total_size
 
 class Trashcan:
@@ -66,8 +66,8 @@ class Trashcan:
 		if self.recordings:
 			print "[Trashcan] Recording in progress", self.recordings
 			return
-		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.getValue() * 3600 * 24)
-		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.getValue())
+		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
+		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
 		clean(ctimeLimit, reserveBytes)
 
 def clean(ctimeLimit, reserveBytes):
@@ -78,7 +78,7 @@ def clean(ctimeLimit, reserveBytes):
 			isCleaning = True
 			break
 
-	if config.usage.movielist_trashcan.getValue() and not isCleaning:
+	if config.usage.movielist_trashcan.value and not isCleaning:
 		name = _("Cleaning Trashes")
 		job = Components.Task.Job(name)
 		task = CleanTrashTask(job, name)
@@ -126,9 +126,11 @@ class CleanTrashTask(Components.Task.PythonTask):
 			parts = line.strip().split()
 			if parts[1] == '/media/autofs':
 				continue
-			if config.usage.movielist_trashcan_network_clean.getValue() and parts[1].startswith('/media/net'):
+			if config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/net'):
 				mounts.append(parts[1])
-			elif not parts[1].startswith('/media/net'):
+			elif config.usage.movielist_trashcan_network_clean.value and parts[1].startswith('/media/autofs'):
+				mounts.append(parts[1])
+			elif not parts[1].startswith('/media/net') and not parts[1].startswith('/media/autofs'):
 				mounts.append(parts[1])
 		f.close()
 
@@ -191,7 +193,7 @@ class TrashInfo(VariableText, GUIComponent):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
-		if update:
+		if update and path != '/media/autofs/':
 			self.update(path)
 
 	def update(self, path):

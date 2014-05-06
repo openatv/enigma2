@@ -111,7 +111,7 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 		
 		ConfigListScreen.__init__(self, self.list)
 #		self["help"] = Label(_("Help:\nKey [0] refresh screen. Key [1] new folder.\nKey [2] new symlink wit name. Key [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder. Key [EPG] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files."))
-		self["help"] = Label(_("Help:\nKey [0] refresh screen.\nKey [1] new folder.\nKey [2] new symlink wit name.\nKey [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder.\nKey [INFO] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
+		self["help"] = Label(_("Help:\nKey [0] refresh screen.\nKey [1] new folder.\nKey [2] new symlink wit name.\nKey [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder.\nKey [INFO] shows tasklist. Check copy/move progress in extensions menu.\nKey [MEDIA] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["setupActions"] = ActionMap(["SetupActions"],
@@ -248,7 +248,7 @@ class FileCommanderScreen(Screen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None):
-		  return
+			return
 		longname = sourceDir + filename
 		try:
 			xfile=os_stat(longname)
@@ -292,18 +292,18 @@ class FileCommanderScreen(Screen, key_actions):
 		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
 		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
 		self.session.openWithCallback(self.goRestart, FileCommanderConfigScreen)
-	
+
 	def goDefaultfolder(self):
 		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value)
 		self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
-		
+
 	def goRestart(self, answer):
 		config.plugins.filecommander.path_left.value = config.plugins.filecommander.path_left_tmp.value
 		config.plugins.filecommander.path_right.value = config.plugins.filecommander.path_right_tmp.value
 		#self.close(self.session, False)
 		self.doRefresh()
-		 
+
 	def goLeft(self):
 		self.SOURCELIST.pageUp()
 		self.updateHead()
@@ -345,11 +345,11 @@ class FileCommanderScreen(Screen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None) or (targetDir == None):
-		  return
+			return
 		if not sourceDir in filename:
-		   copytext = _("copy file - existing file will be overwritten !")
+			copytext = _("copy file - existing file will be overwritten !")
 		else:
-		   copytext = _("copy folder - existing folders/files will be overwritten !")
+			copytext = _("copy folder - existing folders/files will be overwritten !")
 		self.session.openWithCallback(self.doCopy,ChoiceBox, title = copytext+"?\n%s\nfrom\n%s\n%s"%(filename,sourceDir,targetDir),list=[(_("yes"), True ),(_("no"), False )])
 
 	def doCopy(self,result):
@@ -360,13 +360,13 @@ class FileCommanderScreen(Screen, key_actions):
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				dst_file = targetDir
 				if dst_file.endswith("/"):
-				  targetDir = dst_file[:-1]
+					targetDir = dst_file[:-1]
 				if not sourceDir in filename:
-				  job_manager.AddJob(FileTransferJob(sourceDir+filename, targetDir, False, True,  "%s : %s" % (_("copy file"), sourceDir+filename)))
-				  self.doCopyCB()
+					job_manager.AddJob(FileTransferJob(sourceDir+filename, targetDir, False, True,  "%s : %s" % (_("copy file"), sourceDir+filename)))
+					self.doCopyCB()
 				else:
-				  job_manager.AddJob(FileTransferJob(filename, targetDir, True, True,  "%s : %s" % (_("copy folder"), filename)))
-				  self.doCopyCB()
+					job_manager.AddJob(FileTransferJob(filename, targetDir, True, True,  "%s : %s" % (_("copy folder"), filename)))
+					self.doCopyCB()
 
 	def doCopyCB(self):
 		self.doRefresh()
@@ -376,11 +376,11 @@ class FileCommanderScreen(Screen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None):
-		  return
+			return
 		if not sourceDir in filename:
-		   deltext = _("delete file")
+			deltext = _("delete file")
 		else:
-		   deltext = _("delete folder")
+			deltext = _("delete folder")
 		self.session.openWithCallback(self.doDelete,ChoiceBox, title = deltext+"?\n%s\nfrom dir\n%s"%(filename,sourceDir),list=[(_("yes"), True ),(_("no"), False )])
 
 	def doDelete(self,result):
@@ -389,9 +389,9 @@ class FileCommanderScreen(Screen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				if not sourceDir in filename:
-				  self.session.openWithCallback(self.doDeleteCB,Console, title = _("deleting file ..."), cmdlist = ["rm \""+sourceDir+filename+"\""])
+					self.session.openWithCallback(self.doDeleteCB,Console, title = _("deleting file ..."), cmdlist = ["rm \""+sourceDir+filename+"\""])
 				else:
-				  self.session.openWithCallback(self.doDeleteCB,Console, title = _("deleting folder ..."), cmdlist = ["rm -rf \""+filename+"\""])
+					self.session.openWithCallback(self.doDeleteCB,Console, title = _("deleting folder ..."), cmdlist = ["rm -rf \""+filename+"\""])
 
 	def doDeleteCB(self):
 		self.doRefresh()
@@ -402,11 +402,11 @@ class FileCommanderScreen(Screen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None) or (targetDir == None):
-		  return
+			return
 		if not sourceDir in filename:
-		   movetext = _("move file")
+			movetext = _("move file")
 		else:
-		   movetext = _("move folder")
+			movetext = _("move folder")
 		self.session.openWithCallback(self.doMove,ChoiceBox, title = movetext+"?\n%s\nfrom dir\n%s\nto dir\n%s"%(filename,sourceDir,targetDir),list=[(_("yes"), True ),(_("no"), False )])
 
 	def doMove(self,result):
@@ -417,13 +417,13 @@ class FileCommanderScreen(Screen, key_actions):
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				dst_file = targetDir
 				if dst_file.endswith("/"):
-				  targetDir = dst_file[:-1]
+					targetDir = dst_file[:-1]
 				if not sourceDir in filename:
-				  job_manager.AddJob(FileTransferJob(sourceDir+filename, targetDir, False, False,  "%s : %s" % (_("move file"), sourceDir+filename)))
-				  self.doMoveCB()
+					job_manager.AddJob(FileTransferJob(sourceDir+filename, targetDir, False, False,  "%s : %s" % (_("move file"), sourceDir+filename)))
+					self.doMoveCB()
 				else:
-				  job_manager.AddJob(FileTransferJob(filename, targetDir, True, False,  "%s : %s" % (_("move folder"), filename)))
-				  self.doMoveCB()
+					job_manager.AddJob(FileTransferJob(filename, targetDir, True, False,  "%s : %s" % (_("move folder"), filename)))
+					self.doMoveCB()
 
 	def doMoveCB(self):
 #		os.system('echo %s > /tmp/test.log' % ("refresh move"))
@@ -435,7 +435,7 @@ class FileCommanderScreen(Screen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		length = config.plugins.filecommander.input_length.value
 		if (filename == None) or (sourceDir == None):
-		  return
+			return
 		self.session.openWithCallback(self.doRename,InputBox,text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title = _("Please enter file/folder name"), windowTitle=_("rename file"))
 		#overwrite : False = Einfügemodus beim Aufruf der Inputbox
 		#firstpos_end : True = Cursor beim Aufruf am Textende - False = Cursor am Textanfang
@@ -447,32 +447,32 @@ class FileCommanderScreen(Screen, key_actions):
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			if not sourceDir in filename:
-			  self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming file ..."), cmdlist = ["mv \""+sourceDir+filename+"\" \""+sourceDir+newname+"\""])
+				self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming file ..."), cmdlist = ["mv \""+sourceDir+filename+"\" \""+sourceDir+newname+"\""])
 			else:
-			  self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming folder ..."), cmdlist = ["mv \""+filename+"\" \""+newname+"\""])
+				self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming folder ..."), cmdlist = ["mv \""+filename+"\" \""+newname+"\""])
 
 	def doRenameCB(self):
 		self.doRefresh()
 
 ### symlink by name ###
 	def gomakeSym(self):
-	  filename = self.SOURCELIST.getFilename()
-	  sourceDir = self.SOURCELIST.getCurrentDirectory()
-	  if (filename == None) or (sourceDir == None):
-		return
-	  self.session.openWithCallback(self.doMakesym,InputBox,text="", title =  _("Please enter name of the new symlink"), windowTitle =_("New symlink"))
-
-	def doMakesym(self,newname):
-	  if newname:
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		targetDir = self.TARGETLIST.getCurrentDirectory()
-		#self.session.openWithCallback(self.doMakesymCB,Console, title = _("create symlink"), cmdlist = ["ln -s \""+sourceDir+"\" \""+targetDir+newname+"\""])
-		symlink(sourceDir, targetDir+newname)
-		self.doRefresh()
+		if (filename == None) or (sourceDir == None):
+			return
+		self.session.openWithCallback(self.doMakesym,InputBox,text="", title =  _("Please enter name of the new symlink"), windowTitle =_("New symlink"))
+
+	def doMakesym(self,newname):
+		if newname:
+			filename = self.SOURCELIST.getFilename()
+			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			targetDir = self.TARGETLIST.getCurrentDirectory()
+			#self.session.openWithCallback(self.doMakesymCB,Console, title = _("create symlink"), cmdlist = ["ln -s \""+sourceDir+"\" \""+targetDir+newname+"\""])
+			symlink(sourceDir, targetDir+newname)
+			self.doRefresh()
 		
 	def doMakesymCB(self):
-	  self.doRefresh()
+		self.doRefresh()
 
 ### symlink by folder ###
 	def gomakeSymlink(self):
@@ -480,9 +480,9 @@ class FileCommanderScreen(Screen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if not sourceDir in filename:
-		   movetext = _("create symlink to file")
+			movetext = _("create symlink to file")
 		else:
-		   movetext = _("symlink to ")
+			movetext = _("symlink to ")
 		testfile = filename[:-1]
 		test = path.islink(testfile)
 		if (filename == None) or (sourceDir == None):
@@ -493,16 +493,16 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def domakeSymlink(self,result):
 		if result is not None:
-		  if result[1]:
-			filename = self.SOURCELIST.getFilename()
-			sourceDir = self.SOURCELIST.getCurrentDirectory()
-			targetDir = self.TARGETLIST.getCurrentDirectory()
-			if not sourceDir in filename:
-				return
-				self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming file ..."), cmdlist = ["mv \""+sourceDir+filename+"\" \""+sourceDir+newname+"\""])
-				symlink(sourceDir, targetDir+newname)
-			else:
-				self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming folder ..."), cmdlist = ["ln -s \""+filename+"\" \""+targetDir+"\""])
+			if result[1]:
+				filename = self.SOURCELIST.getFilename()
+				sourceDir = self.SOURCELIST.getCurrentDirectory()
+				targetDir = self.TARGETLIST.getCurrentDirectory()
+				if not sourceDir in filename:
+					return
+					self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming file ..."), cmdlist = ["mv \""+sourceDir+filename+"\" \""+sourceDir+newname+"\""])
+					symlink(sourceDir, targetDir+newname)
+				else:
+					self.session.openWithCallback(self.doRenameCB,Console, title = _("renaming folder ..."), cmdlist = ["ln -s \""+filename+"\" \""+targetDir+"\""])
 
 		self.doRefresh()
 		
@@ -511,7 +511,7 @@ class FileCommanderScreen(Screen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None):
-		  return
+			return
 		self.session.openWithCallback(self.doMakedir,InputBox,text="", title =  _("Please enter name of the new directory"), windowTitle =_("new folder"))
 
 	def doMakedir(self,newname):
@@ -519,7 +519,7 @@ class FileCommanderScreen(Screen, key_actions):
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			#self.session.openWithCallback(self.doMakedirCB,Console, title = _("create folder"), cmdlist = ["mkdir \""+sourceDir+newname+"\""])
-			mkdir(sourceDir+newname)
+			os.mkdir(sourceDir+newname)
 			self.doRefresh()
 			
 	def doMakedirCB(self):

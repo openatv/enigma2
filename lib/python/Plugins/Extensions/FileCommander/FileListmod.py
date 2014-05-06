@@ -329,7 +329,7 @@ class MultiFileSelectList(FileList):
 		if self.selectedFiles is None:
 			self.selectedFiles = []
 		FileList.__init__(self, directory, showMountpoints = showMountpoints, matchingPattern = matchingPattern, showDirectories = showDirectories, showFiles = showFiles,  useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
-		self.changeDir(directory)			
+		self.changeDir(directory)
 		self.l.setItemHeight(25)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.onSelectionChanged = [ ]
@@ -361,7 +361,7 @@ class MultiFileSelectList(FileList):
 	
 					else:
 						SelectState = True
-						alreadyinList = False	
+						alreadyinList = False
 						for entry in self.selectedFiles:
 							if entry == realPathname:
 								alreadyinList = True
@@ -451,7 +451,7 @@ class MultiFileSelectList(FileList):
 						my_isLink = False
 					for entry in self.selectedFiles:
 						if entry  == x:
-							alreadySelected = True					
+							alreadySelected = True
 					if alreadySelected:		
 						self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x, isDir = True, isLink = my_isLink, selected = True))
 					else:
@@ -470,7 +470,7 @@ class MultiFileSelectList(FileList):
 					alreadySelected = False
 					for entry in self.selectedFiles:
 						if os_path.basename(entry)  == x:
-							alreadySelected = True	
+							alreadySelected = True
 					if alreadySelected:
 						self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x , isDir = False, selected = True))
 					else:
@@ -490,4 +490,3 @@ class MultiFileSelectList(FileList):
 				if p == select:
 					self.moveToIndex(i)
 				i += 1
-

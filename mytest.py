@@ -10,7 +10,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBoxType, getMachineProcModel
+from boxbranding import getBoxType, getMachineProcModel, getMachineBuild
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -67,7 +67,7 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 ####################################################
 
 def useSyncUsingChanged(configelement):
-	if configelement.getValue() == "0":
+	if configelement.value == "0":
 		print "[Time By]: Transponder"
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
@@ -78,15 +78,15 @@ def useSyncUsingChanged(configelement):
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if configelement.getValue() == "au.pool.ntp.org":
+	if configelement.value == "au.pool.ntp.org":
 		return
 	f = open("/etc/default/ntpdate", "w")
-	f.write('NTPSERVERS="' + configelement.getValue() + '"\n')
+	f.write('NTPSERVERS="' + configelement.value + '"\n')
 	f.close()
 	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
-	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
+	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.value)
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback = True)
 
 profile("Twisted")
@@ -416,7 +416,7 @@ class PowerKey:
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
-		self.doAction(action = config.usage.on_long_powerpress.getValue())
+		self.doAction(action = config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
 		self.standbyblocked = 1
@@ -442,13 +442,14 @@ class PowerKey:
 
 	def powerup(self):
 		if self.standbyblocked == 0:
-			self.doAction(action = config.usage.on_short_powerpress.getValue())
+			self.doAction(action = config.usage.on_short_powerpress.value)
 	
 	def gotoStandby(self, ret):
 		self.standby()
-	
+		
 	def standby(self):
-		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
+		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec: #I am still not sure if it is good idea...
+		#if not Screens.Standby.inStandby and self.session.current_dialog and self.session.in_exec:
 			self.session.open(Screens.Standby.Standby)
 
 profile("Scart")
@@ -458,7 +459,7 @@ class AutoScartControl:
 	def __init__(self, session):
 		self.force = False
 		self.current_vcr_sb = enigma.eAVSwitch.getInstance().getVCRSlowBlanking()
-		if self.current_vcr_sb and config.av.vcrswitch.getValue():
+		if self.current_vcr_sb and config.av.vcrswitch.value:
 			self.scartDialog = session.instantiateDialog(Scart, True)
 		else:
 			self.scartDialog = session.instantiateDialog(Scart, False)
@@ -471,7 +472,7 @@ class AutoScartControl:
 	def VCRSbChanged(self, value):
 		#print "vcr sb changed to", value
 		self.current_vcr_sb = value
-		if config.av.vcrswitch.getValue() or value > 2:
+		if config.av.vcrswitch.value or value > 2:
 			if value:
 				self.scartDialog.showMessageBox()
 			else:
@@ -493,7 +494,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue(), config.misc.isNextPowerTimerAfterEventActionAuto.getValue())
+	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value, config.misc.isNextPowerTimerAfterEventActionAuto.value)
 	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
@@ -526,7 +527,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if getBoxType() == 'odinm9' or getBoxType() == 'ebox5000' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getMachineProcModel().startswith('ini-10') or getMachineProcModel().startswith('ini-50') or getMachineProcModel().startswith('ini-70'):
+	if getBoxType() in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone') or getMachineBuild() in ('inihde', 'inihdx'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -574,8 +575,8 @@ def runScreenTest():
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-				
-		#if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
+
+		#if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 		#	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		#	setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
@@ -596,7 +597,8 @@ def runScreenTest():
 				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-		#if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb'):
+
+		#if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 		#	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		#	setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
@@ -658,7 +660,7 @@ Components.NetworkTime.AutoNTPSync()
 
 profile("keymapparser")
 import keymapparser
-keymapparser.readKeymap(config.usage.keymap.getValue())
+keymapparser.readKeymap(config.usage.keymap.value)
 
 profile("Network")
 import Components.Network, Components.Wol

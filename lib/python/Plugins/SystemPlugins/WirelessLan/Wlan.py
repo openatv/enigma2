@@ -125,11 +125,11 @@ class wpaSupplicant:
 		pass
 
 	def writeConfig(self, iface):
-		essid = config.plugins.wlan.essid.getValue()
-		hiddenessid = config.plugins.wlan.hiddenessid.getValue()
-		encryption = config.plugins.wlan.encryption.getValue()
-		wepkeytype = config.plugins.wlan.wepkeytype.getValue()
-		psk = config.plugins.wlan.psk.getValue()
+		essid = config.plugins.wlan.essid.value
+		hiddenessid = config.plugins.wlan.hiddenessid.value
+		encryption = config.plugins.wlan.encryption.value
+		wepkeytype = config.plugins.wlan.wepkeytype.value
+		psk = config.plugins.wlan.psk.value
 		fp = file(getWlanConfigName(iface), 'w')
 		fp.write('#WPA Supplicant Configuration by enigma2\n')
 		fp.write('ctrl_interface=/var/run/wpa_supplicant\n')
@@ -221,11 +221,11 @@ class wpaSupplicant:
 			config.plugins.wlan.encryption.value = encryption
 
 			wsconfig = {
-					'hiddenessid': config.plugins.wlan.hiddenessid.getValue(),
-					'ssid': config.plugins.wlan.essid.getValue(),
-					'encryption': config.plugins.wlan.encryption.getValue(),
-					'wepkeytype': config.plugins.wlan.wepkeytype.getValue(),
-					'key': config.plugins.wlan.psk.getValue(),
+					'hiddenessid': config.plugins.wlan.hiddenessid.value,
+					'ssid': config.plugins.wlan.essid.value,
+					'encryption': config.plugins.wlan.encryption.value,
+					'wepkeytype': config.plugins.wlan.wepkeytype.value,
+					'key': config.plugins.wlan.psk.value,
 				}
 
 			for (key, item) in wsconfig.items():

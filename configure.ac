@@ -304,12 +304,7 @@ if test `echo "$BOXTYPE" | cut -b 1-3` == "ini"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test `echo "$BOXTYPE" | cut -b 1-2` == "tm"; then
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
-fi
-
-if test `echo "$BOXTYPE" | cut -b 1-4` == "iqon"; then
+if test `echo "$BOXTYPE" | cut -b 1-4` == "dags"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
@@ -420,16 +415,6 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
-lib/python/Plugins/Extensions/IniMyTube/Makefile
-lib/python/Plugins/Extensions/IPTVStreams/Makefile
-lib/python/Plugins/Extensions/IPTVStreams/url/Makefile
-lib/python/Plugins/Extensions/MP3Browser/Makefile
-lib/python/Plugins/Extensions/MP3Browser/pic/Makefile
-lib/python/Plugins/Extensions/MovieBrowser/Makefile
-lib/python/Plugins/Extensions/MovieBrowser/pic/Makefile
-lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
-lib/python/Plugins/Extensions/IniLastFM/Makefile
-lib/python/Plugins/Extensions/IniSHOUTcast/Makefile
 lib/python/Plugins/Extensions/AccuWeather/Makefile
 lib/python/Plugins/Extensions/AccuWeather/acuwheathericons/Makefile
 lib/python/Plugins/Extensions/AccuWeather/image/Makefile
@@ -439,19 +424,25 @@ lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
 lib/python/Plugins/Extensions/AccuWeather/xbmcweather/Makefile
 lib/python/Plugins/Extensions/AccuWeather/xbmcweather/small/Makefile
-lib/python/Plugins/Extensions/GmailReader/Makefile
-lib/python/Plugins/Extensions/IniHbbTV/Makefile
-lib/python/Plugins/Extensions/AirPlayer/Makefile
-lib/python/Plugins/Extensions/AirPlayer/lib/Makefile
-lib/python/Plugins/Extensions/AirPlayer/lib/biplist/Makefile
-lib/python/Plugins/Extensions/AirPlayer/mediabackends/Makefile
-lib/python/Plugins/Extensions/AirPlayer/Skins/Makefile
-lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/Makefile
-lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/1280x720/Makefile
+lib/python/Plugins/Extensions/IniGmailReader/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/lib/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/lib/biplist/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/mediabackends/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/Skins/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/Makefile
+lib/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/1280x720/Makefile
 lib/python/Plugins/Extensions/IniEcasa/Makefile
 lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
-lib/python/Plugins/Extensions/GoogleNews/Makefile
-lib/python/Plugins/Extensions/GoogleNews/images/Makefile
+lib/python/Plugins/Extensions/IniHbbTV/Makefile
+lib/python/Plugins/Extensions/IniMyTube/Makefile
+lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
+lib/python/Plugins/Extensions/IniLastFM/Makefile
+lib/python/Plugins/Extensions/IniSHOUTcast/Makefile
+lib/python/Plugins/Extensions/FileCommander/Makefile
+lib/python/Plugins/Extensions/FileCommander/addons/Makefile
+lib/python/Plugins/Extensions/FileCommander/pic/Makefile
+lib/python/Plugins/Extensions/FileCommander/images/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
@@ -481,12 +472,7 @@ lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
-lib/python/Plugins/SystemPlugins/IniFanSetup/Makefile
 lib/python/Plugins/SystemPlugins/IniLCNScanner/Makefile
-lib/python/Plugins/Extensions/FileCommander/Makefile
-lib/python/Plugins/Extensions/FileCommander/addons/Makefile
-lib/python/Plugins/Extensions/FileCommander/pic/Makefile
-lib/python/Plugins/Extensions/FileCommander/images/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile

@@ -99,7 +99,7 @@ class MediaPlayerSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("repeat playlist"), config.mediaplayer.repeat))
 			self.list.append(getConfigListEntry(_("save playlist on exit"), config.mediaplayer.savePlaylistOnExit))
 			self.list.append(getConfigListEntry(_("save last directory on exit"), config.mediaplayer.saveDirOnExit))
-			if not config.mediaplayer.saveDirOnExit.getValue():
+			if not config.mediaplayer.saveDirOnExit.value:
 				self.list.append(getConfigListEntry(_("start directory"), config.mediaplayer.defaultDir))
 			self.list.append(getConfigListEntry(_("sorting of playlists"), config.mediaplayer.sortPlaylists))
 			#self.list.append(getConfigListEntry(_("Always hide infobar"), config.mediaplayer.alwaysHideInfoBar))

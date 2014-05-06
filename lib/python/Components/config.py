@@ -975,6 +975,90 @@ class ConfigFloat(ConfigSequence):
 
 	float = property(getFloat)
 
+#### EGAMI
+#Normal, LShift(42), RAlt(100), LShift+RAlt(100+42)/LArt(56)
+egkeymap_us_de = {
+	  2:[u"1", u"!", None, None]
+	, 3:[u"2", u"@", None, None]
+	, 4:[u"3", u"#", None, '\xc2\xa3']
+	, 5:[u"4", u"$", '\xc3\xa7', None]
+	, 6:[u"5", u"%", '\xc3\xbc', '\xe2\x82\xac']
+	, 7:[u"6", u"^", '\xc3\xb6', None]
+	, 8:[u"7", u"&", '\xc3\xa4', None]
+	, 9:[u"8", u"*", '\xc3\xa0', None]
+	,10:[u"9", u"(", '\xc3\xa8', None]
+	,11:[u"0", u")", '\xc3\xa9', None]
+	,12:[u"-", u"_", None, None]
+	,13:[u"=", u"+", "~", None]
+	,16:[u"q", u"Q", None, None]
+	,17:[u"w", u"W", None, None]
+	,18:[u"e", u"E", '\xe2\x82\xac', None]
+	,19:[u"r", u"R", None, None]
+	,20:[u"t", u"T", None, None]
+	,21:[u"y", u"Y", None, None]
+	,22:[u"u", u"U", None, None]
+	,23:[u"i", u"I", None, None]
+	,24:[u"o", u"O", None, None]
+	,25:[u"p", u"P", None, None]
+	,26:[u"[", u"{", None, None]
+	,27:[u"]", u"}", None, None]
+	,30:[u"a", u"A", None, None]
+	,31:[u"s", u"S", '\xc3\x9f', None]
+	,32:[u"d", u"D", None, None]
+	,33:[u"f", u"F", None, None]
+	,34:[u"g", u"G", None, None]
+	,35:[u"h", u"H", None, None]
+	,36:[u"j", u"J", None, None]
+	,37:[u"k", u"K", None, None]
+	,38:[u"l", u"L", None, None]
+	,39:[u";", u":", None, None]
+	,40:[u"\'", u"\"", None, None]
+	,41:['\xc2\xa7', '\xc2\xb0', '\xc2\xac', None]
+	,43:[u"\\", u"|", None, None]
+	,44:[u"z", u"Z", None, u"<"]
+	,45:[u"x", u"X", None, u">"]
+	,46:[u"c", u"C", '\xc2\xa2', None]
+	,47:[u"v", u"V", None, None]
+	,48:[u"b", u"B", None, None]
+	,49:[u"n", u"N", None, None]
+	,50:[u"m", u"M", '\xc2\xb5', None]
+	,51:[u",", "<", None, None]
+	,52:[u".", ">", None, None]
+	,53:[u"/", u"?", None, None]
+	,57:[u" ", None, None, None]
+}
+egmapidx = 0
+egkeymap = egkeymap_us_de
+rckeyboard_enable = False
+#if file("/proc/stb/info/boxmodel").read().strip() in ["we will add someday keyboard rcusupport for boxtype"]:
+#	rckeyboard_enable = True
+
+def getCharValue(code):
+	global egmapidx
+	global egkeymap
+	global rckeyboard_enable
+	print "got ascii code : %d [%d]"%(code, egmapidx)
+	if rckeyboard_enable:
+		if code == 0:
+			egmapidx = 0
+			return None
+		elif code == 42:
+			egmapidx += 1
+			return None
+		elif code == 56:
+			egmapidx += 3
+			return None
+		elif code == 100:
+			egmapidx += 2
+			return None
+		try:
+			return egkeymap[code][egmapidx]
+		except:
+			return None
+	else:
+		return unichr(getPrevAsciiCode())
+#### EGAMI
+
 # an editable text...
 class ConfigText(ConfigElement, NumericalTextInput):
 	def __init__(self, default = "", fixed_size = True, visible_width = False):
@@ -1214,15 +1298,32 @@ class ConfigSelectionNumber(ConfigSelection):
 	def setValue(self, val):
 		ConfigSelection.setValue(self, str(val))
 
+	value = property(getValue, setValue)
+
+	def getIndex(self):
+		return self.choices.index(self.value)
+
+	index = property(getIndex)
+
 	def handleKey(self, key):
 		if not self.wraparound:
 			if key == KEY_RIGHT:
-				if len(self.choices) == (self.choices.index(self.value) + 1):
+				if len(self.choices) == (self.choices.index(str(self.value)) + 1):
 					return
 			if key == KEY_LEFT:
-				if self.choices.index(self.value) == 0:
+				if self.choices.index(str(self.value)) == 0:
 					return
-		ConfigSelection.handleKey(self, key)
+		nchoices = len(self.choices)
+		if nchoices > 1:
+			i = self.choices.index(str(self.value))
+			if key == KEY_LEFT:
+				self.value = self.choices[(i + nchoices - 1) % nchoices]
+			elif key == KEY_RIGHT:
+				self.value = self.choices[(i + 1) % nchoices]
+			elif key == KEY_HOME:
+				self.value = self.choices[0]
+			elif key == KEY_END:
+				self.value = self.choices[nchoices - 1]
 
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
@@ -1789,9 +1890,9 @@ class Config(ConfigSubsection):
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)
 			elif isinstance(val, tuple):
-				result += [name, '=', val[0], '\n']
+				result += [name, '=', str(val[0]), '\n']
 			else:
-				result += [name, '=', val, '\n']
+				result += [name, '=', str(val), '\n']
 
 	def pickle(self):
 		result = []
@@ -1820,7 +1921,7 @@ class Config(ConfigSubsection):
 			base[names[-1]] = val
 
 			if not base_file: # not the initial config file..
-				#update config.x.y.getValue() when exist
+				#update config.x.y.value when exist
 				try:
 					configEntry = eval(name)
 					if configEntry is not None:

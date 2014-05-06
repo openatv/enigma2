@@ -34,13 +34,13 @@ class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.getValue(), self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
 
 class DisplaySkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.getValue(), self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.value, self.msg)
 
 dom_skins = [ ]
 
@@ -77,7 +77,7 @@ def skin_user_skinname():
 config.skin = ConfigSubsection()
 
 # on SD hardware, ViX Night HD will not be available
-DEFAULT_SKIN = "easy-skin-hd/skin.xml"
+DEFAULT_SKIN = "easy-skin-aus-hd/skin.xml"
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "skin.xml"
@@ -104,12 +104,12 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 display_skin_id = 1
 try:
-	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+	if not addSkin(os.path.join('display', config.skin.display_skin.value)):
 		raise DisplaySkinError, "display skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_DISPLAY_SKIN
-	if config.skin.display_skin.getValue() == skin:
+	if config.skin.display_skin.value == skin:
 		skin = 'skin_display.xml'
 	print "defaulting to standard display skin...", skin
 	config.skin.display_skin.value = skin
@@ -120,12 +120,12 @@ except Exception, err:
 addSkin('skin_subtitles.xml')
 
 try:
-	if not addSkin(config.skin.primary_skin.getValue()):
+	if not addSkin(config.skin.primary_skin.value):
 		raise SkinError, "primary skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
-	if config.skin.primary_skin.getValue() == skin:
+	if config.skin.primary_skin.value == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
 	config.skin.primary_skin.value = skin
@@ -325,11 +325,14 @@ class AttributeParser:
 		ptr = loadPixmap(value, self.desktop)
 		self.guiObject.setScrollbarBackgroundPicture(ptr)
 	def alphatest(self, value):
-		self.guiObject.setAlphatest(
-			{ "on": 1,
-			  "off": 0,
-			  "blend": 2,
-			}[value])
+		try:
+			self.guiObject.setAlphatest(
+				{ "on": 1,
+				  "off": 0,
+				  "blend": 2,
+				}[value])
+		except KeyError:
+			print "alphatest must be one of on, off, blend, not %s. Please contact the skin's author!" % value
 	def scale(self, value):
 		self.guiObject.setScale(1)
 	def orientation(self, value): # used by eSlider
@@ -481,19 +484,18 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				loadSkin(skinfile)
 
 	for c in skin.findall('switchpixmap'):
-	    for pixmap in c.findall('pixmap'):
-		get_attr = pixmap.attrib.get
-		name = get_attr('name')
-		filename = get_attr('filename')
-		if name and filename:
-		    resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-		    if fileExists(resolved_png):
-			switchPixmap[name] = resolved_png
-		    else:
-			raise SkinError('need filename, got', filename)
-		else:
-		    raise SkinError('need filename and name, got %s %s' % (name, filename))
-	      
+		for pixmap in c.findall('pixmap'):
+			get_attr = pixmap.attrib.get
+			name = get_attr('name')
+			filename = get_attr('filename')
+			if name and filename:
+				resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+				if fileExists(resolved_png):
+					switchPixmap[name] = resolved_png
+				else:
+					raise SkinError('need filename, got', filename)
+			else:
+				raise SkinError('need filename and name, got %s %s' % (name, filename))
 
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):

@@ -1,35 +1,34 @@
 #!/bin/sh
 
 prefix=@prefix@
-exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
+datadir=@datadir@
+libexecdir=@libexecdir@
+sysconfdir=@sysconfdir@
+bindir=@bindir@
 
-if [ -x @bindir@/showiframe ]; then
-	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-	elif [ -f @datadir@/backdrop.mvi ]; then
-		@bindir@/showiframe @datadir@/backdrop.mvi
+# The enigma2 config directory will not exist on first boot
+if [ ! -d ${sysconfdir}/enigma2 ]; then
+	mkdir -p -m 755 ${sysconfdir}/enigma2
+	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
+fi
+
+if [ -x ${bindir}/showiframe ]; then
+	if [ -f ${sysconfdir}/enigma2/backdrop.mvi ]; then
+		${bindir}/showiframe ${sysconfdir}/enigma2/backdrop.mvi
+	elif [ -f ${datadir}/backdrop.mvi ]; then
+		${bindir}/showiframe ${datadir}/backdrop.mvi
 	fi
 fi
 
-# if [ ! -f /etc/enigma2/pm_timers.xml ]; then
-# 	cp -a /usr/share/enigma2/defaults/pm_timers.xml /etc/enigma2/pm_timers.xml
-# fi
-
 #check if factory mode is present
-if [ ! -f /etc/enigma2/settings ]; then
-	cp -a /usr/share/enigma2/defaults/* /etc/enigma2/
-	cp -a /usr/share/enigma2/defaults/terrestrial.xml /etc/tuxbox/
-fi
-
-#check if Timezone for Australia is present
-if [ ! -f /etc/tuxbox/timezone-aus.xml ]; then
-	cp -a /usr/share/enigma2/defaults/timezone-aus.xml /etc/tuxbox/timezone-aus.xml
+if [ ! -f ${sysconfdir}/enigma2/settings ]; then
+	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
 fi
 
 # hook to execute scripts always before enigma2 start
-if [ -x @bindir@/enigma2_pre_start.sh ]; then
-	@bindir@/enigma2_pre_start.sh
+if [ -x ${bindir}/enigma2_pre_start.sh ]; then
+	${bindir}/enigma2_pre_start.sh
 fi
 
 if [ -d /home/root ]; then
@@ -38,20 +37,20 @@ fi
 
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
-	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
+	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
 else
-	LIBS="/usr/lib/libopen.so.0.0.0"
+	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
 sync
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+if [ "$(grep config.crash.enabledebug ${sysconfdir}/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+	if [ "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+		LD_PRELOAD=$LIBS ${bindir}/enigma2 &> $(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+		LD_PRELOAD=$LIBS ${bindir}/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
 	fi
 else
-	LD_PRELOAD=$LIBS @bindir@/enigma2
+	LD_PRELOAD=$LIBS ${bindir}/enigma2
 fi
 
 # enigma2 exit codes:
@@ -83,14 +82,14 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		python /usr/lib/enigma2/python/upgrade.pyo
+		python ${libexecdir}/python/upgrade.pyo
 		;;
 	43)
 		init 1
 		;;
 	44)
 		# little hack but it will be fixed soon in drivers
-		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 3 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
+		${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 3 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
 		;;
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore

@@ -19,7 +19,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		if not config.misc.remotecontrol_text_support.getValue():
+		if not config.misc.remotecontrol_text_support.value:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmNone)
@@ -209,7 +209,7 @@ class ConfigListScreen:
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):

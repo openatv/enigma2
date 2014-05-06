@@ -1,3 +1,5 @@
+from boxbranding import getMachineBrand
+
 from Components.Sources.List import List 
 
 from Screens.Screen import Screen
@@ -233,7 +235,7 @@ class GeneralMenu(Screen):
          (_('Photos'), 'id_mainmenu_photos', boundFunction(self.openPicturePlayer)),
          (_('Music'), 'id_mainmenu_music', boundFunction(self.openMediaPlayer)),
          (_('TV / RADIO'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
-         (_('Videos'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
+         (_('Videos'), 'id_mainmenu_movies', boundFunction(self.openRecordings)),
          (_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
          (_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup))]
         self.pos = {}
@@ -748,24 +750,15 @@ class GeneralMenu(Screen):
          #,(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100)
          ])
           
-        subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [(_('Albums'), 'mainmenu_music_playlists', boundFunction(self.openMp3Browser), 50)
-         #,(_('Setup'), 'mainmenu_music_setup', boundFunction(self.openMediaPlayerSetup), 100)
-         ])
+        subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [])
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
-	#(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
         (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
          (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
-        # ,(_('Cross EPG'),'mainmenu_tv_timer',boundFunction(self.openCrossEPG),80)
-        #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
         subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [
-	  #(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
-        # (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
          (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50)
-         #,(_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
-         #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
          ])
  
         subentrys['id_mainmenu_source'] = self.getSubEntry('id_mainmenu_source', self.getScart(None, []))
@@ -841,10 +834,6 @@ class GeneralMenu(Screen):
     def openProgramGuide(self):
 	#InfoBar.instance.openMultiServiceEPG()
 	InfoBar.instance.openGraphEPG()
-	
-    #def openCrossEPG(self):
-	#from Plugins.SystemPlugins.CrossEPG.crossepg_menu import CrossEPG_Menu
-	#self.session.open(CrossEPG_Menu)   
 	
     # Photos
     def openPicturePlayer(self):
@@ -944,39 +933,11 @@ class GeneralMenu(Screen):
     def openMediaPlayer(self):
  	from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 	self.session.open(MediaPlayer)
-
-    def openMp3Browser(self):
- 	from Plugins.Extensions.MP3Browser.plugin import mp3Browser
-	self.session.open(mp3Browser)
 	
     def openMediaPlayerSetup(self):
  	from Plugins.Extensions.MediaPlayer.settings import MediaPlayerSettings
 	self.session.open(MediaPlayerSettings, self)
 
-    # Movies
-    #def openMediaPortal(self):
-	#from Plugins.Extensions.MediaPortal.plugin import haupt_Screen, haupt_Screen_Wall, config
-	#if config.mediaportal.ansicht.value == "liste":
-		#self.session.open(haupt_Screen)
-	#else:
-		#self.session.open(haupt_Screen_Wall, config.mediaportal.filter.value)
-		
-    def openMovieBrowserAll(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
-	self.session.open(movieBrowserBackdrop, 0, ":::", ":::")
-
-    def openMovieBrowserMovies(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
-	self.session.open(movieBrowserBackdrop, 0, ":::Movie:::", ":::Movie:::")
-
-    def openMovieBrowserSeries(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
-	self.session.open(movieBrowserBackdrop, 0, ":::Series:::", ":::Series:::")
-	
-    def openMovieBrowserSetup(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserConfig
-	self.session.open(movieBrowserConfig)
-	
     # Sources
     def openMediaScanner(self):
 	from Plugins.Extensions.MediaScanner.plugin import main

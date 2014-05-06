@@ -54,7 +54,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		else:
 			shutdownString = _("shut down")
 		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default = self.job.afterEvent or "nothing")
-		self.job.afterEvent = self.settings.afterEvent.getValue()
+		self.job.afterEvent = self.settings.afterEvent.value
 		self.afterEventChangeable = afterEventChangeable
 		self.setupList()
 		self.state_changed()
@@ -64,7 +64,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			self["config"].setList( [ getConfigListEntry(_("After event"), self.settings.afterEvent) ])
 		else:
 			self["config"].hide()
-		self.job.afterEvent = self.settings.afterEvent.getValue()
+		self.job.afterEvent = self.settings.afterEvent.value
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -127,22 +127,22 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 
 	def performAfterEvent(self):
 		self["config"].hide()
-		if self.settings.afterEvent.getValue() == "nothing":
+		if self.settings.afterEvent.value == "nothing":
 			return
-		elif self.settings.afterEvent.getValue() == "close" and self.job.status == self.job.FINISHED:
+		elif self.settings.afterEvent.value == "close" and self.job.status == self.job.FINISHED:
 			self.close(False)
 		from Screens.MessageBox import MessageBox
-		if self.settings.afterEvent.getValue() == "deepstandby":
+		if self.settings.afterEvent.value == "deepstandby":
 			if not Screens.Standby.inTryQuitMainloop:
 				Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A sleep timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout = 20)
-		elif self.settings.afterEvent.getValue() == "standby":
+		elif self.settings.afterEvent.value == "standby":
 			if not Screens.Standby.inStandby:
 				Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A sleep timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 20)
 
 	def checkNotifications(self):
 		InfoBarNotifications.checkNotifications(self)
 		if not Notifications.notifications:
-			if self.settings.afterEvent.getValue() == "close" and self.job.status == self.job.FAILED:
+			if self.settings.afterEvent.value == "close" and self.job.status == self.job.FAILED:
 				self.close(False)
 
 	def sendStandbyNotification(self, answer):
