@@ -52,7 +52,7 @@
 				<menu level="0" text="Display" entryID="display_selection" requires="Display">
 					<id val="display" />
 					<item level="0" entryID="display_setup"><setup id="display" /></item>
-					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
+					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector" requires="LCDSKINSetup"/></item>
 				</menu>
 				<item level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item>
 				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
