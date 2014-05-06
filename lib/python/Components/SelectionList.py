@@ -8,7 +8,7 @@ selectionpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 
 def SelectionEntryComponent(description, value, index, selected):
 	res = [
 		(description, value, index, selected),
-		(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 505, 30, 0, RT_HALIGN_LEFT, description)
+		(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 650, 30, 0, RT_HALIGN_LEFT, description)
 	]
 	if selected:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectionpng))
@@ -39,3 +39,11 @@ class SelectionList(MenuList):
 			self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
 		self.setList(self.list)
 
+	def sort(self, sortType=False, flag=False):
+		# sorting by sortType:
+		# 0 - description
+		# 1 - value
+		# 2 - index
+		# 3 - selected
+		self.list.sort(key=lambda x: x[0][sortType],reverse=flag)
+		self.setList(self.list)
