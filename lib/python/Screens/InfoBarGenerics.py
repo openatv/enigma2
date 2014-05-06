@@ -51,6 +51,7 @@ from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
+from keyids import KEYFLAGS
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -174,9 +175,9 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+			print 'KEY: %s %s %s' % (key, KEYFLAGS[flag], getKeyDescription(key)[0])
 		except:
-			print 'KEY: %s' % key
+			print 'KEY: %s %s' % (key, KEYFLAGS[flag])
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
