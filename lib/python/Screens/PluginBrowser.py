@@ -283,9 +283,9 @@ class PluginDownloadBrowser(Screen):
 				if self["list"].l.getCurrentSelection()[0].name.startswith('settings-'):
 					self.check_settings = True
 					self.startIpkgListInstalled(self.PLUGIN_PREFIX + 'settings-*')
-				elif self["list"].l.getCurrentSelection()[0].name.startswith('bootlogo-'):
+				elif self["list"].l.getCurrentSelection()[0].name.startswith('bootlogos-'):
 					self.check_bootlogo = True
-					self.startIpkgListInstalled(self.PLUGIN_PREFIX + 'bootlogo-*')
+					self.startIpkgListInstalled(self.PLUGIN_PREFIX + 'bootlogos-*')
 				else:
 					self.runSettingsInstall()
 			elif self.type == self.REMOVE:
@@ -373,7 +373,7 @@ class PluginDownloadBrowser(Screen):
 			pluginlist = []
 			self.pluginlist = pluginlist
 			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
-				if plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
+				if not plugin[0].endswith('-meta') and plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
 					pluginlist.append(plugin + (plugin[0][15:],))
 			if pluginlist:
 				pluginlist.sort()
@@ -423,7 +423,7 @@ class PluginDownloadBrowser(Screen):
 				plugin = x.split(" - ", 2)
 				# 'opkg list_installed' only returns name + version, no description field
 				if len(plugin) >= 2:
-					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc'):
+					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and not plugin[0].endswith('-meta'):
 						if plugin[0] not in self.installedplugins:
 							if self.type == self.DOWNLOAD and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
 								self.installedplugins.append(plugin[0])

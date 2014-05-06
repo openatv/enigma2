@@ -191,6 +191,7 @@ class InfoBarTimeshift:
 
 	def __serviceStarted(self):
 		# print '__serviceStarted'
+		self.createTimeshiftFolder()
 		self.service_changed = 1
 		self.pts_service_changed = True
 		self.ptsCleanTimeshiftFolder()
@@ -477,7 +478,6 @@ class InfoBarTimeshift:
 			self.activatePermanentTimeshift()
 
 	def activatePermanentTimeshift(self):
-		self.createTimeshiftFolder()
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 

@@ -18,7 +18,7 @@ from enigma import eFastScan, eDVBFrontendParametersSatellite, eTimer
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
-config.misc.fastscan.auto = ConfigYesNo(default = True)
+config.misc.fastscan.auto = ConfigYesNo(default = False)
 
 class FastScanStatus(Screen):
 	skin = """
@@ -165,7 +165,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		providerList = list(x[0] for x in self.providers)
 
 		lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
-		if not lastConfiguration:
+		if not lastConfiguration or not tuple(x for x in self.providers if x[0] == lastConfiguration[1]):
 			lastConfiguration = (nimList[0][0], providerList[0], True, True, False)
 
 		self.scan_nims = ConfigSelection(default = lastConfiguration[0], choices = nimList)
@@ -251,17 +251,23 @@ class FastScanAutoScreen(FastScanScreen):
 
 		self.onClose.append(self.__onClose)
 
-		parameters = tuple(x[1] for x in self.providers if x[0] == lastConfiguration[1])[0]
-		pid = parameters[1]
-		if lastConfiguration[2] and parameters[2]:
-			pid += 1
-		self.scan = eFastScan(pid, lastConfiguration[1], self.getTransponderParameters(parameters[0]), lastConfiguration[3], lastConfiguration[4])
-		self.scan.scanCompleted.get().append(self.scanCompleted)
-		self.scan.start(int(lastConfiguration[0]))
+		parameters = tuple(x[1] for x in self.providers if x[0] == lastConfiguration[1])
+		if parameters:
+			parameters = parameters[0]
+			pid = parameters[1]
+			if lastConfiguration[2] and parameters[2]:
+				pid += 1
+			self.scan = eFastScan(pid, lastConfiguration[1], self.getTransponderParameters(parameters[0]), lastConfiguration[3], lastConfiguration[4])
+			self.scan.scanCompleted.get().append(self.scanCompleted)
+			self.scan.start(int(lastConfiguration[0]))
+		else:
+			self.scan = None
+			self.close(True)
 
 	def __onClose(self):
-		self.scan.scanCompleted.get().remove(self.scanCompleted)
-		del self.scan
+		if self.scan:
+			self.scan.scanCompleted.get().remove(self.scanCompleted)
+			del self.scan
 
 	def scanCompleted(self, result):
 		print "[AutoFastScan] completed result = ", result
@@ -306,6 +312,8 @@ def restartScanAutoStartTimer(reply=False):
 	if not reply:
 		print "[AutoFastScan] Scan was not succesfully retry in one hour"
 		FastScanAutoStartTimer.startLongTimer(3600)
+	else:
+		FastScanAutoStartTimer.startLongTimer(86400)
 
 def FastScanAuto():
 	lastConfiguration = eval(config.misc.fastscan.last_configuration.value)
@@ -323,7 +331,7 @@ def standbyCountChanged(value):
 	if config.misc.fastscan.auto.value:
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(leaveStandby)
-		FastScanAutoStartTimer.startLongTimer(600)
+		FastScanAutoStartTimer.startLongTimer(90)
 
 def startSession(session, **kwargs):
 	global Session
