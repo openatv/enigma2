@@ -560,15 +560,15 @@ class MovieList(GUIComponent):
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
 		elif self.sort_type == MovieList.SORT_RECORDED:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey)
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
 		elif self.sort_type == MovieList.SHUFFLE:
 			dirlist = self.list[:numberOfDirs]
 			shufflelist = self.list[numberOfDirs:]
 			random.shuffle(shufflelist)
 			self.list = dirlist + shufflelist
-		
+
 		for x in self.list:
 			if x[1]:
 				tmppath = x[1].getName(x[0])[:-1] if x[1].getName(x[0]).endswith('/') else x[1].getName(x[0])
