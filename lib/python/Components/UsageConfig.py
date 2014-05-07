@@ -1,5 +1,6 @@
 import os
 from time import time
+from boxbranding import getBrandOEM
 
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent
 
@@ -14,8 +15,11 @@ from Tools.HardwareInfo import HardwareInfo
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
-	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
-
+	if getBrandOEM() == 'vuplus':
+		config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
+	else:
+		config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
+		
 	config.usage = ConfigSubsection()
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
@@ -28,6 +32,8 @@ def InitUsageConfig():
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
+	config.usage.crypto_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)

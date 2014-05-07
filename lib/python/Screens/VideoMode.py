@@ -127,6 +127,8 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
 			if SystemInfo["CanDownmixAAC"]:
 				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanAACTranscode"]:
+				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
 			self.list.extend((
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
@@ -409,7 +411,7 @@ class AutoVideoMode(Screen):
 						write_mode = config_mode+new_rate
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
-				if config.av.autores_label_timeout.value != '0':
+				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':
 					resolutionlabel.show()
 				print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
 				f = open("/proc/stb/video/videomode", "w")

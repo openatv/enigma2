@@ -175,7 +175,7 @@ public:
 	{
 		// added a new item to the list... in order
 		// returns a iterator to the new item
-		return std::list<T*>::insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
+		return this->insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
 	}
 
 };

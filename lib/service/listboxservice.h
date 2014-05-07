@@ -67,6 +67,7 @@ public:
 		picFolder,
 		picMarker,
 		picServiceEventProgressbar,
+		picCrypto,
 		picElements
 	};
 
@@ -81,6 +82,8 @@ public:
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
 	void setServiceTypeIconMode(int mode);
+	void setCryptoIconMode(int mode);
+
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
 	enum {
@@ -155,6 +158,7 @@ private:
 
 	int m_itemheight;
 	int m_servicetype_icon_mode;
+	int m_crypto_icon_mode;
 };
 
 #endif
