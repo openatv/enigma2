@@ -5,8 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement,\
-	ConfigSatlist
+from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement, ConfigSatlist, ConfigYesNo
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -56,10 +55,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if nim.powerMeasurement.value:
 				nim.powerMeasurement.value = False
 				nim.powerMeasurement.save()
-		list.append(getConfigListEntry(_("Tuning step size") + " [" + chr(176) + "]", nim.tuningstepsize))
-		list.append(getConfigListEntry(_("Memory positions"), nim.rotorPositions))
-		list.append(getConfigListEntry(_("Horizontal turning speed") + " [" + chr(176) + "/sec]", nim.turningspeedH))
-		list.append(getConfigListEntry(_("Vertical turning speed") + " [" + chr(176) + "/sec]", nim.turningspeedV))
+		if not hasattr(self, 'additionalMotorOptions'):
+			self.additionalMotorOptions = ConfigYesNo(False)
+		self.showAdditionalMotorOptions = getConfigListEntry(_("Extra motor options"), self.additionalMotorOptions)
+		self.list.append(self.showAdditionalMotorOptions)
+		if self.additionalMotorOptions.value:
+			self.list.append(getConfigListEntry("   " + _("Horizontal turning speed") + " [" + chr(176) + "/sec]", nim.turningspeedH))
+			self.list.append(getConfigListEntry("   " + _("Vertical turning speed") + " [" + chr(176) + "/sec]", nim.turningspeedV))
+			self.list.append(getConfigListEntry("   " + _("Turning step size") + " [" + chr(176) + "]", nim.tuningstepsize))
+			self.list.append(getConfigListEntry("   " + _("Max memory positions"), nim.rotorPositions))
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
@@ -90,7 +94,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.turningSpeed = None
 		self.turnFastEpochBegin = None
 		self.turnFastEpochEnd = None
+		self.toneburst = None
+		self.committedDiseqcCommand = None
 		self.uncommittedDiseqcCommand = None
+		self.commandOrder = None
 		self.cableScanType = None
 		self.have_advanced = False
 		self.advancedUnicable = None
@@ -98,6 +105,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedManufacturer = None
 		self.advancedSCR = None
 		self.advancedConnected = None
+		self.showAdditionalMotorOptions = None
 
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
@@ -207,7 +215,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
 			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, \
-			self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+			self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, \
+			self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -332,10 +341,13 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
-				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
-				self.list.append(getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand))
+				self.toneburst = getConfigListEntry(_("Toneburst"), currLnb.toneburst)
+				self.list.append(self.toneburst)
+				self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand)
+				self.list.append(self.committedDiseqcCommand)
 				if currLnb.diseqcMode.value == "1_0":
-					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
+					if currLnb.toneburst.index and currLnb.commitedDiseqcCommand.index:
+						self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
 					self.uncommittedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.1 command"), currLnb.uncommittedDiseqcCommand)
 					self.list.append(self.uncommittedDiseqcCommand)
@@ -349,8 +361,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							currLnb.commandOrder.value = "tc"
 						else:
 							currLnb.commandOrder.value = "ct"
-					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
-					if currLnb.uncommittedDiseqcCommand.value != "0":
+					self.commandOrder = getConfigListEntry(_("Command order"), currLnb.commandOrder)
+					if 1 < ((1 if currLnb.uncommittedDiseqcCommand.index else 0) + (1 if currLnb.commitedDiseqcCommand.index else 0) + (1 if currLnb.toneburst.index else 0)):
+						self.list.append(self.commandOrder)
+					if currLnb.uncommittedDiseqcCommand.index:
 						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats))
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
 				if currLnb.diseqcMode.value == "1_2":
@@ -380,10 +394,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
 					else:
 						self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
-					self.list.append(getConfigListEntry(_("Tuning step size") + " [" + chr(176) + "]", currLnb.tuningstepsize))
-					self.list.append(getConfigListEntry(_("Memory positions"), currLnb.rotorPositions))
-					self.list.append(getConfigListEntry(_("Horizontal turning speed") + " [" + chr(176) + "/sec]", currLnb.turningspeedH))
-					self.list.append(getConfigListEntry(_("Vertical turning speed") + " [" + chr(176) + "/sec]", currLnb.turningspeedV))
+					if not hasattr(self, 'additionalMotorOptions'):
+						self.additionalMotorOptions = ConfigYesNo(False)
+					self.showAdditionalMotorOptions = getConfigListEntry(_("Extra motor options"), self.additionalMotorOptions)
+					self.list.append(self.showAdditionalMotorOptions)
+					if self.additionalMotorOptions.value:
+						self.list.append(getConfigListEntry("   " + _("Horizontal turning speed") + " [" + chr(176) + "/sec]", currLnb.turningspeedH))
+						self.list.append(getConfigListEntry("   " + _("Vertical turning speed") + " [" + chr(176) + "/sec]", currLnb.turningspeedV))
+						self.list.append(getConfigListEntry("   " + _("Turning step size") + " [" + chr(176) + "]", currLnb.tuningstepsize))
+						self.list.append(getConfigListEntry("   " + _("Max memory positions"), currLnb.rotorPositions))
 
 	def fillAdvancedList(self):
 		self.list = [ ]
