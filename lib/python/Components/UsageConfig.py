@@ -520,7 +520,7 @@ def InitUsageConfig():
 			subtitle_delay_choicelist.append(("0", _("No delay")))
 		else:
 			subtitle_delay_choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
-	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = subtitle_delay_choicelist)
+	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
