@@ -18,7 +18,7 @@
 
 /************************************************/
 
-#define CRASH_EMAILADDR "crash@crash.com"
+#define CRASH_EMAILADDR "t3.crash@beyonwiz.com.au"
 #define INFOFILE "/maintainer.info"
 
 #define RINGBUFFER_SIZE 16384
