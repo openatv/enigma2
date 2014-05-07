@@ -159,6 +159,15 @@ def InitLcd():
 		detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection()
+
+	if SystemInfo["StandbyLED"]:
+		def standbyLEDChanged(configElement):
+			file = open("/proc/stb/power/standbyled", "w")
+			file.write(configElement.value and "on" or "off")
+			file.close()
+		config.usage.standbyLED = ConfigYesNo(default = True)
+		config.usage.standbyLED.addNotifier(standbyLEDChanged)
+
 	if detected:
 		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
 			("500", _("slow")),

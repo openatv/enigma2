@@ -51,6 +51,7 @@ from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
+from keyids import KEYFLAGS
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -174,9 +175,9 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+			print 'KEY: %s %s %s' % (key, KEYFLAGS[flag], getKeyDescription(key)[0])
 		except:
-			print 'KEY: %s' % key
+			print 'KEY: %s %s' % (key, KEYFLAGS[flag])
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -219,17 +220,17 @@ class InfoBarScreenSaver:
 		self.screensaver.hide()
 
 	def __onExecBegin(self):
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
 		self.ScreenSaverTimerStart()
 
 	def __onExecEnd(self):
-		if self.screensaver.shown:
-			self.screensaver.hide()
-			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 		self.screenSaverTimer.stop()
+		self.screensaver.hide()
+		eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 	def ScreenSaverTimerStart(self):
 		time = int(config.usage.screen_saver.value)
-		flag = self.seekstate[0]
+		flag = hasattr(self, "seekstate") and self.seekstate[0]
 		if not flag:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref:
@@ -246,14 +247,13 @@ class InfoBarScreenSaver:
 			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
 			self.screensaver.show()
-			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
 
 	def keypressScreenSaver(self, key, flag):
 		if flag:
-			self.screensaver.hide()
-			self.show()
+			if self.screensaver.shown:
+				self.screensaver.hide()
+				self.show()
 			self.ScreenSaverTimerStart()
-			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class SecondInfoBar(Screen):
 	def __init__(self, session):
@@ -580,56 +580,60 @@ class InfoBarNumberZap:
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			else:
-				if config.usage.panicbutton.value:
-					if self.session.pipshown:
-						del self.session.pip
-						self.session.pipshown = False
-					self.servicelist.history_tv = []
-					self.servicelist.history_radio = []
-					self.servicelist.history = self.servicelist.history_tv
-					self.servicelist.history_pos = 0
-					self.servicelist2.history_tv = []
-					self.servicelist2.history_radio = []
-					self.servicelist2.history = self.servicelist.history_tv
-					self.servicelist2.history_pos = 0
-					if config.usage.multibouquet.value:
-						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-					else:
-						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
-					serviceHandler = eServiceCenter.getInstance()
-					rootbouquet = eServiceReference(bqrootstr)
-					bouquet = eServiceReference(bqrootstr)
-					bouquetlist = serviceHandler.list(bouquet)
-					if not bouquetlist is None:
-						while True:
-							bouquet = bouquetlist.getNext()
-							if bouquet.flags & eServiceReference.isDirectory:
-								self.servicelist.clearPath()
-								self.servicelist.setRoot(bouquet)
-								servicelist = serviceHandler.list(bouquet)
-								if not servicelist is None:
-									serviceIterator = servicelist.getNext()
-									while serviceIterator.valid():
-										service, bouquet2 = self.searchNumber(1)
-										if service == serviceIterator: break
-										serviceIterator = servicelist.getNext()
-									if serviceIterator.valid() and service == serviceIterator: break
-						self.servicelist.enterPath(rootbouquet)
-						self.servicelist.enterPath(bouquet)
-						self.servicelist.saveRoot()
-						self.servicelist2.enterPath(rootbouquet)
-						self.servicelist2.enterPath(bouquet)
-						self.servicelist2.saveRoot()
-					self.selectAndStartService(service, bouquet)
-				else:
-					self.servicelist.recallPrevService()
+			elif len(self.servicelist.history) > 1:
+				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
 			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+
+	def recallPrevService(self, reply):
+		if reply:
+			if config.usage.panicbutton.value:
+				if self.session.pipshown:
+					del self.session.pip
+					self.session.pipshown = False
+				self.servicelist.history_tv = []
+				self.servicelist.history_radio = []
+				self.servicelist.history = self.servicelist.history_tv
+				self.servicelist.history_pos = 0
+				self.servicelist2.history_tv = []
+				self.servicelist2.history_radio = []
+				self.servicelist2.history = self.servicelist.history_tv
+				self.servicelist2.history_pos = 0
+				if config.usage.multibouquet.value:
+					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+				else:
+					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
+				serviceHandler = eServiceCenter.getInstance()
+				rootbouquet = eServiceReference(bqrootstr)
+				bouquet = eServiceReference(bqrootstr)
+				bouquetlist = serviceHandler.list(bouquet)
+				if not bouquetlist is None:
+					while True:
+						bouquet = bouquetlist.getNext()
+						if bouquet.flags & eServiceReference.isDirectory:
+							self.servicelist.clearPath()
+							self.servicelist.setRoot(bouquet)
+							servicelist = serviceHandler.list(bouquet)
+							if not servicelist is None:
+								serviceIterator = servicelist.getNext()
+								while serviceIterator.valid():
+									service, bouquet2 = self.searchNumber(1)
+									if service == serviceIterator: break
+									serviceIterator = servicelist.getNext()
+								if serviceIterator.valid() and service == serviceIterator: break
+					self.servicelist.enterPath(rootbouquet)
+					self.servicelist.enterPath(bouquet)
+					self.servicelist.saveRoot()
+					self.servicelist2.enterPath(rootbouquet)
+					self.servicelist2.enterPath(bouquet)
+					self.servicelist2.saveRoot()
+				self.selectAndStartService(service, bouquet)
+			else:
+				self.servicelist.recallPrevService()
 
 	def numberEntered(self, service = None, bouquet = None):
 		if service:

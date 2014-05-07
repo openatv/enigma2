@@ -79,7 +79,10 @@ class ConfigElement(object):
 		if sv is None:
 			self.value = self.default
 		else:
-			self.value = self.fromstring(sv)
+			try:
+				self.value = self.fromstring(sv)
+			except:
+				self.value = self.default
 
 	def tostring(self, value):
 		return str(value)

@@ -94,9 +94,12 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					releasever = releasever[0].replace(':',"")
 			if self.logtype == 'oe':
-				imagever = getImageBuild()
+				if int(getImageBuild()) == 1:
+					imagever = int(getImageBuild())-1
+				else:
+					imagever = int(getImageBuild())
 			else:
-				imagever = int(getImageBuild())+865
+				imagever = int(getImageBuild())+887
 			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
@@ -251,15 +254,15 @@ class UpdatePlugin(Screen):
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
 				try:
-					config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersion() + "/status").read())
+					config.softwareupdate.updateisunstable.value = int(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersion() + "/status").read())
 				except:
-					config.softwareupdate.updateisunstable.setValue('1')
+					config.softwareupdate.updateisunstable.value = 1
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
-				#if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+				#if config.softwareupdate.updateisunstable.value == 1 and config.softwareupdate.updatebeta.value:
 				#	self.total_packages = len(self.ipkg.getFetchedList())
 				#	message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
-				#elif config.softwareupdate.updateisunstable.value == '0':
+				#elif config.softwareupdate.updateisunstable.value == 0:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
