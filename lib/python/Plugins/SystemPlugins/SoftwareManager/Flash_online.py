@@ -296,22 +296,30 @@ class doFlashImage(Screen):
 		else:
 			self.session.open(MessageBox, _("Download Failed !!"), type = MessageBox.TYPE_ERROR)
 
-	def flashWithPostFlashAction(self):
-		print "flashWithPostFlashAction"
-		title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
-		list = ((_("Flash and start installation wizard"), "wizard"),
-		 (_("Flash and restore settings only"), "restoresettings"),
-		 (_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
-		 (_("Do not flash image"), "abort"))
-		self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=list)
+	def flashWithPostFlashAction(self, ret = True):
+		if ret:
+			print "flashWithPostFlashAction"
+			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
+			list = ((_("Flash and start installation wizard"), "wizard"),
+			(_("Flash and restore settings and no plugins"), "restoresettingsnoplugin"),
+			(_("Flash and restore settings and selected plugins (ask user)"), "restoresettings"),
+			(_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
+			(_("Do not flash image"), "abort"))
+			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=list)
+		else:
+			self.show()
 
 	def postFlashActionCallback(self, answer):
 		print "postFlashActionCallback"
 		restoreSettings   = False
 		restoreAllPlugins = False
+		restoreSettingsnoPlugin = False
 		if answer is not None:
 			if answer[1] == "restoresettings":
 				restoreSettings   = True
+			if answer[1] == "restoresettingsnoplugin":
+				restoreSettings = True
+				restoreSettingsnoPlugin = True
 			if answer[1] == "restoresettingsandallplugins":
 				restoreSettings   = True
 				restoreAllPlugins = True
@@ -334,6 +342,15 @@ class doFlashImage(Screen):
 				else:
 					if os.path.exists('/media/hdd/images/config/plugins'):
 						os.system('rm -f /media/hdd/images/config/plugins')
+				if restoreSettingsnoPlugin:
+					try:
+						os.system('mkdir -p /media/hdd/images/config')
+						os.system('touch /media/hdd/images/config/noplugins')
+					except:
+						print "postFlashActionCallback: failed to create /media/hdd/images/config/noplugins"
+				else:
+					if os.path.exists('/media/hdd/images/config/noplugins'):
+						os.system('rm -f /media/hdd/images/config/noplugins')
 				if self.flashWithPostFlashActionMode == 'online':
 					self.unzip_image(self.filename, flashPath)
 				else:
