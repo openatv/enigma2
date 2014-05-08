@@ -609,7 +609,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'sortby': _("Sort by"),
 				'sortdefault': _("Sort by default"),
 				'preview': _("Preview"),
-				'movieoff': _("On end of movie")
+				'movieoff': _("On end of movie"),
+				'movieoff_menu': _("On end of movie (as menu)")
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
@@ -1261,17 +1262,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def selectSortby(self):
 		menu = []
 		index = 0
+		used = 0
 		for x in l_moviesort:
+			if int(x[0]) == int(config.movielist.moviesort.value):
+				used = index
 			menu.append((_(x[1]), x[0], "%d" % index))
 			index += 1
-		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu)
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu, selection = used)
 
 	def sortbyMenuCallback(self, choice):
 		if choice is None:
 			return
-		config.movielist.moviesort.value = int(choice[2])
-		self._updateButtonTexts()
 		self.sortBy(int(choice[1]))
+		self["movie_sort"].setPixmapNum(int(choice[1])-1)
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
@@ -1994,6 +1997,23 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.settings["movieoff"] = config.usage.on_movie_eof.value
 		if config.movielist.settings_per_directory.value:
 			self.saveLocalSettings()
+
+	def do_movieoff_menu(self):
+		current_movie_eof = config.usage.on_movie_eof.value
+		menu = []
+		for x in config.usage.on_movie_eof.choices:
+			config.usage.on_movie_eof.value = x
+			menu.append((config.usage.on_movie_eof.getText(), x))
+		config.usage.on_movie_eof.value = current_movie_eof
+		used = config.usage.on_movie_eof.getIndex()
+		self.session.openWithCallback(self.movieoffMenuCallback, ChoiceBox, title = _("On end of movie"), list = menu, selection = used)
+
+	def movieoffMenuCallback(self, choice):
+		if choice is None:
+			return
+		self.settings["movieoff"] = choice[1]
+		self.saveLocalSettings()
+		self.displayMovieOffStatus()
 
 	def createPlaylist(self):
 		global playlist

@@ -65,7 +65,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(getConfigListEntry("   " + _("Vertical turning speed") + " [" + chr(176) + "/sec]", nim.turningspeedV))
 			self.list.append(getConfigListEntry("   " + _("Turning step size") + " [" + chr(176) + "]", nim.tuningstepsize))
 			self.list.append(getConfigListEntry("   " + _("Max memory positions"), nim.rotorPositions))
-		
+
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
 			choices = {"nothing": _("Not configured"),
@@ -346,7 +346,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(self.toneburst)
 				self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand)
 				self.list.append(self.committedDiseqcCommand)
-				
+
 				if currLnb.diseqcMode.value == "1_0":
 					if currLnb.toneburst.index and currLnb.commitedDiseqcCommand.index:
 						self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
