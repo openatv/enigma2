@@ -10,8 +10,8 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 class TimerList(HTMLComponent, GUIComponent, object):
 #
-#  | <Service>     <Name of the Timer>  |
-#  | <start, end>              <state>  |
+#  | <Name of the Timer>     <Service>  |
+#  | <state>  <orb.pos.>  <start, end>  |
 #
 	def buildTimerEntry(self, timer, processed):
 		height = self.l.getItemSize().height()
@@ -74,6 +74,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			icon = self.iconFailed
 
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 200,27, 100, 18, 2, RT_HALIGN_RIGHT|RT_VALIGN_TOP, self.getOrbitalPos(timer.service_ref)))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, icon))
 
@@ -90,6 +91,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.setBuildFunc(self.buildTimerEntry)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
+		self.l.setFont(2, gFont("Regular", 16))
 		self.l.setItemHeight(50)
 		self.l.setList(list)
 		self.iconWait = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_wait.png"))
@@ -128,4 +130,16 @@ class TimerList(HTMLComponent, GUIComponent, object):
 
 	def entryRemoved(self, idx):
 		self.l.entryRemoved(idx)
+
+	def getOrbitalPos(self, ref):
+		op = int(str(ref).split(':', 10)[6][:-4] or "0",16)
+		if op == 0xeeee:
+			return "%s" % _("DVB-T")
+		if op == 0xffff:
+			return "%s" % _("DVB_C")
+		direction = 'E'
+		if op > 1800:
+			op = 3600 - op
+			direction = 'W'
+		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
 
