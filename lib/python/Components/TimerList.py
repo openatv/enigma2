@@ -92,13 +92,13 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rep.png"))
 		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_zap.png"))
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_off.png"))
-	
+
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()
 		return cur and cur[0]
-	
+
 	GUI_WIDGET = eListbox
-	
+
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 
