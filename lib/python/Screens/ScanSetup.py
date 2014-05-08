@@ -338,6 +338,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.ter_channel_input = False
 		self.ter_tnumber = None
 		self.createConfig(frontendData)
+		self.updatingFrequency = False;
 
 		del self.feinfo
 		del self.service
@@ -410,12 +411,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		elif nim.isCompatible("DVB-T"):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
 			self.list.append(self.typeOfScanEntry)
-			if self.scan_typeterrestrial.value == "single_transponder":
-				self.typeOfInputEntry = getConfigListEntry(_("Use frequency or channel"), self.scan_input_as)
-				if self.ter_channel_input:
-					self.list.append(self.typeOfInputEntry)
-				else:
-					self.scan_input_as.value = self.scan_input_as.choices[0]
 
 		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S"):
@@ -474,23 +469,32 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.value
 				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-T"):
+			self.scan_networkScan.value = True	# Required for LCNs
 			if self.scan_typeterrestrial.value == "single_transponder":
 				if nim.isCompatible("DVB-T2"):
 					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system)
 					self.list.append(self.systemEntry)
 				else:
 					self.scan_ter.system.value = eDVBFrontendParametersTerrestrial.System_DVB_T
-				if self.ter_channel_input and self.scan_input_as.value == "channel":
-					channel = channelnumbers.getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
-					if channel:
-						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
-					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
-				else:
-					prev_val = self.scan_ter.frequency.value
-					self.scan_ter.frequency.value = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
-					if self.scan_ter.frequency.value == 474000:
-						self.scan_ter.frequency.value = prev_val
-					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
+				freq_entry = getConfigListEntry(_("Frequency"), self.scan_ter.frequency)
+				if self.ter_channel_input:
+					ch_entry = getConfigListEntry(_("Channel"), self.scan_ter.channel)
+					self.list.append(ch_entry)
+					def ChannelChanged(configElement):
+						f = channelnumbers.channel2frequency(configElement.value, self.ter_tnumber) / 1000
+						if not self.updatingFrequency and f != self.scan_ter.frequency.value:
+							self.scan_ter.frequency.value = f
+							self["config"].invalidate(freq_entry)
+					self.scan_ter.channel.addNotifier(ChannelChanged)
+					def FrequencyChanged(configElement):
+						self.updatingFrequency = True;
+						channel = channelnumbers.getChannelNumber(configElement.value*1000, self.ter_tnumber)
+						if channel != self.scan_ter.channel.value:
+							self.scan_ter.channel.value = channel
+							self["config"].invalidate(ch_entry)
+						self.updatingFrequency = False;
+					self.scan_ter.frequency.addNotifier(FrequencyChanged)
+				self.list.append(freq_entry)
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
 				self.list.append(getConfigListEntry(_("Code rate HP"), self.scan_ter.fechigh))
@@ -548,9 +552,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			"symbolrate": 6900,
 			"system": eDVBFrontendParametersCable.System_DVB_C_ANNEX_A }
 		defaultTer = {
-			"frequency" : 474000,
+			"frequency" : 177500,
 			"inversion" : eDVBFrontendParametersTerrestrial.Inversion_Unknown,
-			"bandwidth" : 8000000,
+			"bandwidth" : 7000000,
 			"fechigh" : eDVBFrontendParametersTerrestrial.FEC_Auto,
 			"feclow" : eDVBFrontendParametersTerrestrial.FEC_Auto,
 			"modulation" : eDVBFrontendParametersTerrestrial.Modulation_Auto,
@@ -584,9 +588,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
 				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
 			elif ttype == "DVB-T":
-				defaultTer["frequency"] = frontendData.get("frequency", 47400000) / 1000
+				defaultTer["frequency"] = frontendData.get("frequency", 177500000) / 1000
 				defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
-				defaultTer["bandwidth"] = frontendData.get("bandwidth", 8000000)
+				defaultTer["bandwidth"] = frontendData.get("bandwidth", 7000000)
 				defaultTer["fechigh"] = frontendData.get("code_rate_hp", eDVBFrontendParametersTerrestrial.FEC_Auto)
 				defaultTer["feclow"] = frontendData.get("code_rate_lp", eDVBFrontendParametersTerrestrial.FEC_Auto)
 				defaultTer["modulation"] = frontendData.get("constellation", eDVBFrontendParametersTerrestrial.Modulation_Auto)
@@ -706,7 +710,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		# terrestial
 		self.scan_ter.frequency = ConfigInteger(default = defaultTer["frequency"], limits = (50000, 999000))
-		self.scan_ter.channel = ConfigInteger(default = 21, limits = (1, 99))
+		if self.ter_channel_input:
+			chlist = ["6", "7", "8", "9", "9A", "10", "11", "12"] + [str(i) for i in range(28, 70)]
+			self.scan_ter.channel = ConfigSelection(choices = chlist)
+
 		self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
 			(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
 			(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
@@ -780,11 +787,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.scan_type = ConfigSelection(default = defaultSatSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
 		self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
-		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
-		self.scan_input_as = ConfigSelection(default = "frequency", choices = [("frequency", _("Frequency")), ("channel", _("Channel"))])
+		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 		self.scan_onlyfree = ConfigYesNo(default = False)
-		self.scan_networkScan = ConfigYesNo(default = False)
+		self.scan_networkScan = ConfigYesNo(default = True)
 
 		self.scan_scansat = {}
 		for sat in nimmanager.satList:
@@ -901,7 +907,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				if len(nimsats):
 					orbpos = nimsats[selsatidx][0]
 					tps = nimmanager.getTransponders(orbpos)
-					if len(tps) and len(tps) > self.preDefTransponders.index :
+					if len(tps) and len(tps) > self.preDefTransponders.index:
 						tp = tps[self.preDefTransponders.index]
 						self.addSatTransponder(tlist, tp[1] / 1000, tp[2] / 1000, tp[3], tp[4], tp[7], orbpos, tp[5], tp[6], tp[8], tp[9])
 				removeAll = False
@@ -931,10 +937,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.value == "single_transponder":
-				if self.scan_input_as.value == "channel":
-					frequency = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
-				else:
-					frequency = self.scan_ter.frequency.value * 1000
+				frequency = self.scan_ter.frequency.value * 1000
 				self.addTerTransponder(tlist,
 						frequency,
 						inversion = self.scan_ter.inversion.value,
@@ -1070,9 +1073,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			"ok": self.keyGo,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
-			"menu": self.doCloseRecursive,
 			"red": self.keyCancel,
 			"green": self.keyGo,
+			"menu": self.doCloseRecursive,
 		}, -2)
 
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -1233,3 +1236,4 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			if x == pos:
 				return 1
 		return 0
+ 
