@@ -360,11 +360,11 @@ class UpdatePlugin(Screen):
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "cold":
-			if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
-				self.doAutoBackup()
-			else:
-				self.session.open(TryQuitMainloop,retvalue=42)
-				self.close()
+			#if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
+				#self.doAutoBackup()
+			#else:
+			self.session.open(TryQuitMainloop,retvalue=42)
+			self.close()
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
