@@ -40,6 +40,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 24, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 118, 24, 100, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, self.getOrbitalPos(timer.service_ref)))
 		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
@@ -73,8 +74,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			state = _("failed")
 			icon = self.iconFailed
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 200,27, 100, 18, 2, RT_HALIGN_RIGHT|RT_VALIGN_TOP, self.getOrbitalPos(timer.service_ref)))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 90, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, icon))
 
