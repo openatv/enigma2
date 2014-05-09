@@ -445,7 +445,7 @@ RESULT eDVBFrontendParameters::calcLockTimeout(unsigned int &timeout) const
 		}
 		case iDVBFrontend::feTerrestrial:
 		{
-			timeout = 2000;
+			timeout = 2500;
 			return 0;
 		}
 		case iDVBFrontend::feATSC:
