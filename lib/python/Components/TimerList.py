@@ -132,20 +132,22 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.entryRemoved(idx)
 
 	def getOrbitalPos(self, ref):
-		try: refstr = str(ref.sref)
-		except: refstr = str(ref)
+		refstr = None
+		if hasattr(ref, 'sref'):
+			refstr = str(ref.sref)
+		else:
+			refstr = str(ref)
+
 		if '%3a//' in refstr:
 			return "%s" % _("Stream")
-		try:
-			op = int(refstr.split(':', 10)[6][:-4] or "0",16)
-			if op == 0xeeee:
-				return "%s" % _("DVB-T")
-			if op == 0xffff:
-				return "%s" % _("DVB_C")
-			direction = 'E'
-			if op > 1800:
-				op = 3600 - op
-				direction = 'W'
-			return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
-		except: return "ERROR"
+		op = int(refstr.split(':', 10)[6][:-4] or "0",16)
+		if op == 0xeeee:
+			return "%s" % _("DVB-T")
+		if op == 0xffff:
+			return "%s" % _("DVB_C")
+		direction = 'E'
+		if op > 1800:
+			op = 3600 - op
+			direction = 'W'
+		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
 
