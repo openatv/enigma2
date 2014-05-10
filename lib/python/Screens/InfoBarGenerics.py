@@ -187,7 +187,7 @@ class InfoBarUnhandledKey:
 		return 0
 
 	def closeSIB(self, key):
-		if key >= 12 and key not in (352, 103, 108, 402, 403, 407, 412):
+		if key >= 12 and key not in (114, 115, 352, 103, 108, 402, 403, 407, 412):
 			return True
 		else:
 			return False
