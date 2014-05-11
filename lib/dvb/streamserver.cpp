@@ -97,6 +97,7 @@ void eStreamClient::notifier(int what)
 									if (pwdresult)
 									{
 										struct crypt_data cryptdata;
+										cryptdata.initialized = 0;
 										crypt = pwd.pw_passwd;
 										if (crypt == "*" || crypt == "x")
 										{
