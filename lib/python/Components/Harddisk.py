@@ -393,10 +393,16 @@ class Harddisk:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
 		task = Task.LoggingTask(job, "fsck")
-		task.setTool('fsck.ext3')
-		task.args.append('-f')
-		task.args.append('-p')
-		task.args.append(dev)
+		if isFileSystemSupported("ext4"):
+			task.setTool("fsck.ext4")
+		else:
+			task.setTool('fsck.ext3')
+		# fsck.ext? return codes less than 4 are not real errors
+		class FsckReturncodePostCondition(Task.ReturncodePostcondition):
+			def check(self, task):
+				return task.returncode < 4
+		task.postconditions = [FsckReturncodePostCondition()]
+		task.args += ["-D", "-f", "-p", dev]
 		MountTask(job, self)
 		task = Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
