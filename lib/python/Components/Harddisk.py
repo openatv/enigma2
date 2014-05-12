@@ -346,20 +346,10 @@ class Harddisk:
 		task.weighting = 1
 
 		task = MkfsTask(job, _("Creating file system"))
-		big_o_options = ["dir_index"]
+		big_o_options = ["dir_index", "filetype"]
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
-			if size > 20000:
-				try:
-					file = open("/proc/version","r")
-					version = map(int, file.read().split(' ', 4)[2].split('.',2)[:2])
-					file.close()
-					if (version[0] > 3) or (version[0] > 2 and version[1] >= 2):
-						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
-						task.args += ["-C", "262144"]
-						big_o_options.append("bigalloc")
-				except Exception, ex:
-					print "Failed to detect Linux version:", ex
+			big_o_options +=["extent", "flex_bg", "uninit_bg"]
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
@@ -431,7 +421,7 @@ class Harddisk:
 		task = Task.LoggingTask(job, "tune2fs")
 		task.setTool('tune2fs')
 		task.args.append('-O')
-		task.args.append('extents,uninit_bg,dir_index')
+		task.args.append('extent,flex_bg,uninit_bg,dir_index,filetype')
 		task.args.append('-o')
 		task.args.append('journal_data_writeback')
 		task.args.append(dev)
