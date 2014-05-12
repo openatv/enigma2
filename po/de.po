@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-05-05 13:19+0100\n"
+"PO-Revision-Date: 2014-05-08 20:12+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -15356,8 +15356,12 @@ msgid "Flash and start installation wizard"
 msgstr "Flashen und Assistenten für die Grundeinstellung benutzen"
 
 #: Flash_online.py
-msgid "Flash and restore settings only"
-msgstr "Flashen und Wiederherstellen der Einstellungen"
+msgid "Flash and restore settings and no plugins"
+msgstr "Flashen und Wiederherstellen der Einstellungen, ohne Plugins"
+
+#: Flash_online.py
+msgid "Flash and restore settings and selected plugins (ask user)"
+msgstr "Flashen und Wiederherstellen der Einstellungen, Plugins abfragen"
 
 #: Flash_online.py
 msgid "Flash and restore settings and all saved plugins"
