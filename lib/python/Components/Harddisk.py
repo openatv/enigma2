@@ -4,6 +4,7 @@ from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
 import Task
+from boxbranding import getMachineName
 
 def readFile(filename):
 	file = open(filename)
@@ -363,7 +364,7 @@ class Harddisk:
 		elif size > 2048:
 			# Over 2GB: 32 i-nodes per megabyte
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
-		task.args += ["-m0", "-O", ",".join(big_o_options), self.partitionPath("1")]
+		task.args += ["-L", getMachineName(), "-m0", "-O", ",".join(big_o_options), self.partitionPath("1")]
 
 		task = MountTask(job, self)
 		task.weighting = 3
