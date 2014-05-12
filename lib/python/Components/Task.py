@@ -427,7 +427,7 @@ class JobManager:
 #
 #class CreateFilesystemTask(Task):
 #	def __init__(self, device, partition = 1, largefile = True):
-#		Task.__init__(self, "Creating filesystem")
+#		Task.__init__(self, "Creating file system")
 #		self.setTool("/sbin/mkfs.ext")
 #		if largefile:
 #			self.args += ["-T", "largefile"]
@@ -436,7 +436,7 @@ class JobManager:
 #
 #class FilesystemMountTask(Task):
 #	def __init__(self, device, partition = 1, filesystem = "ext3"):
-#		Task.__init__(self, "Mounting filesystem")
+#		Task.__init__(self, "Mounting file system")
 #		self.setTool("/bin/mount")
 #		if filesystem is not None:
 #			self.args += ["-t", filesystem]

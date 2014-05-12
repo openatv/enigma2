@@ -345,7 +345,7 @@ class Harddisk:
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
-		task = MkfsTask(job, _("Creating filesystem"))
+		task = MkfsTask(job, _("Creating file system"))
 		big_o_options = ["dir_index"]
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
@@ -393,7 +393,7 @@ class Harddisk:
 		return -5
 
 	def createCheckJob(self):
-		job = Task.Job(_("Checking filesystem..."))
+		job = Task.Job(_("Checking file system..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
