@@ -120,6 +120,11 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.feid = int(self.satfinder_scan_nims.value)
 			self.prepareFrontend()
 			self.createSetup()
+			if self.frontend == None:
+				msg = _("Sorry that tuner is not available.")
+				if self.session.nav.RecordTimer.isRecording():
+					msg += _("\nA recording is in progress.")
+				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		elif cur == self.satEntry:
 			self.createSetup()
 
@@ -265,10 +270,7 @@ def SatfinderMain(session, close=None, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
 	else:
-		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
-		else:
-			session.openWithCallback(close, Satfinder)
+		session.openWithCallback(close, Satfinder)
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":

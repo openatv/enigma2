@@ -1236,3 +1236,4 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			if x == pos:
 				return 1
 		return 0
+ 

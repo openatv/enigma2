@@ -1247,8 +1247,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 				dvb_service->m_service_name_sort = service->second->m_service_name_sort;
 			}
 			dvb_service->m_provider_name = service->second->m_provider_name;
-			if (service->second->m_ca.size())
-				dvb_service->m_ca = service->second->m_ca;
+			dvb_service->m_ca = service->second->m_ca;
 			if (!backgroundscanresult) // do not remove new found flags when this is the result of a 'background scan'
 				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
@@ -1321,30 +1320,28 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		unsigned short service_id = (*s)->getServiceId();
 		SCAN_eDebugNoNewLine("[eDVBScan] SID %04x: ", service_id);
 		bool add = true;
-
-		if (m_flags & scanOnlyFree)
+		bool is_crypted = false;
+		
+		std::map<unsigned short, service>::iterator it =
+			m_pmts_to_read.find(service_id);
+		if (it != m_pmts_to_read.end())
 		{
-			std::map<unsigned short, service>::iterator it =
-				m_pmts_to_read.find(service_id);
-			if (it != m_pmts_to_read.end())
+			if (it->second.scrambled)
 			{
-				if (it->second.scrambled)
-				{
-					SCAN_eDebug("is scrambled!");
-					add = false;
-				}
-				else
-					SCAN_eDebug("is free");
+				SCAN_eDebug("is scrambled!");
+				is_crypted = true;
 			}
-			else {
-				SCAN_eDebug("not found in PAT.. so we assume it is scrambled!!");
-				add = false;
-			}
+			else
+				SCAN_eDebug("is free");
+		}
+		else {
+			SCAN_eDebug("not found in PAT.. so we assume it is scrambled!!");
+			is_crypted = true;
 		}
 		else
 			SCAN_eDebug(".");
 
-		if (add)
+		if (!(m_flags & scanOnlyFree) || !is_crypted)
 		{
 			eServiceReferenceDVB ref;
 			ePtr<eDVBService> service = new eDVBService;
@@ -1409,6 +1406,9 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 					break;
 				}
 			}
+
+			if (is_crypted and !service->m_ca.size())
+				service->m_ca.push_front(0);
 
 			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i =
 				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));

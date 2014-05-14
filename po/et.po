@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-06 04:02+0100\n"
+"POT-Creation-Date: 2014-05-08 14:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: rimas\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.4\n"
 
 msgid ""
 "\n"
@@ -119,6 +119,18 @@ msgstr " (Raadio)"
 
 msgid " (TV)"
 msgstr " (TV)"
+
+msgid " (disabled)"
+msgstr " (keelatud)"
+
+msgid " (higher than any auto)"
+msgstr " (kõrgem igast autom.)"
+
+msgid " (higher than rotor any auto)"
+msgstr " (kõrgem igast mootori autom.)"
+
+msgid " (lower than any auto)"
+msgstr " (madalam igast autom.)"
 
 msgid " and"
 msgstr "ja"
@@ -615,14 +627,14 @@ msgstr ""
 msgid "A/V settings"
 msgstr "Heli ja pildi seaded"
 
-msgid "AA"
-msgstr "AA"
-
 msgid "AAC downmix"
 msgstr "AAC > stereo"
 
-msgid "AB"
-msgstr "AB"
+msgid "AAC transcoding"
+msgstr "AAC trankodeerimine"
+
+msgid "AC3"
+msgstr "AC3"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "TSID/ONID SAAMINE"
@@ -641,10 +653,10 @@ msgid "Abort"
 msgstr "Katkesta"
 
 msgid "About"
-msgstr "Info"
+msgstr "Andmed"
 
 msgid "About..."
-msgstr "Vastuvõtjast..."
+msgstr "Andmed..."
 
 msgid "Accesspoint:"
 msgstr "Tugijaam:"
@@ -668,7 +680,7 @@ msgid "Activate Picture in Picture"
 msgstr "Ava pilt-pildis"
 
 msgid "Activate current configuration"
-msgstr "Aktiveeri muudatused"
+msgstr "Jõusta muudatused"
 
 msgid "Activate network settings"
 msgstr "Aktiveeri võrguseaded"
@@ -740,7 +752,7 @@ msgid "Add recording (enter recording endtime)"
 msgstr "Salvesta (sisesta salvestuse lõppaeg)"
 
 msgid "Add recording (indefinitely)"
-msgstr "Salvesta (määramata ajaks)"
+msgstr "Salvesta (pidev salvestamine)"
 
 msgid "Add recording (stop after current event)"
 msgstr "Salvesta (lõpeta peale praegust saadet)"
@@ -783,6 +795,9 @@ msgstr ""
 "video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testipiltide "
 "valikuks."
 
+msgid "Advanced"
+msgstr "Lisavalikud"
+
 msgid "Advanced options"
 msgstr "Lisavalikud"
 
@@ -816,8 +831,17 @@ msgstr "Igas vanuses"
 msgid "All resolutions"
 msgstr "Kõik ekraanilahutused"
 
-msgid "All satellites"
-msgstr "Kõik satelliidid"
+msgid "All satellites 1 (USALS)"
+msgstr "Kõik satelliidid 1 (USALS)"
+
+msgid "All satellites 2 (USALS)"
+msgstr "Kõik satelliidid 2 (USALS)"
+
+msgid "All satellites 3 (USALS)"
+msgstr "Kõik satelliidid 3 (USALS)"
+
+msgid "All satellites 4 (USALS)"
+msgstr "Kõik satelliidid 4 (USALS)"
 
 msgid "Allocate"
 msgstr "Jaota"
@@ -1134,12 +1158,6 @@ msgstr "Saadaolevad jaod:"
 msgid "B"
 msgstr "B"
 
-msgid "BA"
-msgstr "BA"
-
-msgid "BB"
-msgstr "BB"
-
 msgid "Back"
 msgstr "Tagasi"
 
@@ -1159,7 +1177,7 @@ msgid "Background delete speed"
 msgstr "Taustal kustutamise kiirus"
 
 msgid "Backup Manager"
-msgstr "Varukoopia haldur"
+msgstr "Varukoopiahaldur"
 
 msgid "Backup completed."
 msgstr "Varukoopia on tehtud."
@@ -1391,7 +1409,8 @@ msgid "Calibrate"
 msgstr "Kalibreeri"
 
 msgid "Can be used for different fps between external subtitles and video."
-msgstr "Saab kasutada väliste subtiitrite ja video erineva fps korral."
+msgstr ""
+"Saab kasutada väliste subtiitrite ja video erineva kaadrisageduse korral."
 
 msgid "Cancel"
 msgstr "Tühista"
@@ -1442,7 +1461,7 @@ msgid "Change pin code"
 msgstr "Vaheta PIN"
 
 msgid "Change recording (duration)"
-msgstr "Muuda salvestuse pikkust"
+msgstr "Muuda salvestuse kestust"
 
 msgid "Change recording (endtime)"
 msgstr "Muuda salvestuse lõppaega"
@@ -1472,7 +1491,7 @@ msgid "Change to bouquet"
 msgstr "Vaheta lemmiknimekirja"
 
 msgid "Changelog"
-msgstr "Muutuste logi"
+msgstr "Muudatused"
 
 msgid "Channel"
 msgstr "Kanal"
@@ -1613,6 +1632,9 @@ msgstr "Vali ajavahemik, mille jaoks graafika ümardatakse"
 msgid "Choose what you want the '0' button to do when PIP is active."
 msgstr "Vali, mida '0' nupp PIP- režiimis teeb."
 
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Määra, kas AAC heli tuleks transkodeerida."
+
 msgid ""
 "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Määra, kas mitmekanaline heli taandatakse stereoks."
@@ -1717,9 +1739,6 @@ msgstr "Käskude järjekord"
 msgid "Command type"
 msgstr "Käskluse tüüp"
 
-msgid "Committed DiSEqC command"
-msgstr "Committed DiSEqC-käsk"
-
 msgid "Common Interface"
 msgstr "CI liides"
 
@@ -1777,6 +1796,11 @@ msgstr ""
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Määra, millisel kujul salvestuste nimed luuakse"
+
+msgid ""
+"Configure if and how crypto icons will be shown in the channel selection "
+"list."
+msgstr "Määra, kas ja kuidas tähistatakse kanalinimekirjas salastatud kanalid."
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Määra, kas ja kuidas näidatakse edastuse liigi ikoone."
@@ -2163,7 +2187,7 @@ msgid "Convert filesystem ext3 to ext4"
 msgstr "Teisenda ext3 > ext4"
 
 msgid "Converting ext3 to ext4..."
-msgstr "Teisendatakse ext3 > ext4..."
+msgstr "Ext3 > ext4 teisendamine..."
 
 msgid "Cool TV Guide"
 msgstr "Cool TV Guide"
@@ -2281,13 +2305,13 @@ msgid "Custom"
 msgstr "Kohandatud"
 
 msgid "Custom skip time for '1''3' buttons"
-msgstr "'1'/'3'-klahvide ülehüppe kohandatud pikkus"
+msgstr "'1'/'3'-nuppude ülehüppe kohandatud pikkus"
 
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "'4'/'6'-klahvide ülehüppe kohandatud pikkus"
+msgstr "'4'/'6'-nuppude ülehüppe kohandatud pikkus"
 
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "'7'/'9'-klahvide ülehüppe kohandatud pikkus"
+msgstr "'7'/'9'-nuppude ülehüppe kohandatud pikkus"
 
 msgid "Customize"
 msgstr "Kasutaja eelistused"
@@ -2319,6 +2343,9 @@ msgstr "DMM täpne"
 msgid "DMM normal"
 msgstr "DMM tavaline"
 
+msgid "DTS"
+msgstr "DTS"
+
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
 
@@ -2342,6 +2369,9 @@ msgstr "DVB-T"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
+
+msgid "DVB_C"
+msgstr "DVB-C"
 
 msgid "DVD data format"
 msgstr "DVD vorming"
@@ -2498,6 +2528,15 @@ msgstr "Seadmed"
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
+msgid "DiSEqC 1.0 command"
+msgstr "DiSEqC 1.0 käsk"
+
+msgid "DiSEqC 1.1 command"
+msgstr "DiSEqC 1.1 kordused"
+
+msgid "DiSEqC 1.1 repeats"
+msgstr "DiSEqC 1.1 kordused"
+
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
@@ -2510,9 +2549,6 @@ msgstr "DiSEqC olek"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC port %s: %s"
-
-msgid "DiSEqC repeats"
-msgstr "DiSEqC-kordused"
 
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-testeri seadistused"
@@ -2625,6 +2661,9 @@ msgid ""
 msgstr ""
 "Kas vormindad andmekandja?\n"
 "Kogu ketta sisu läheb kaduma!"
+
+msgid "Do you really want to move to trashcan ?"
+msgstr "Kas liigutad prügikasti?"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
@@ -2805,7 +2844,7 @@ msgid "ECM-Time"
 msgstr "ECM aeg"
 
 msgid "EPG"
-msgstr "Saatekava "
+msgstr "Saatekava"
 
 msgid "EPG Cache Check"
 msgstr "EPG vahemälu kontroll"
@@ -2916,10 +2955,10 @@ msgid "Enable debug logs"
 msgstr "Luba silumislogid"
 
 msgid "Enable multiple bouquets"
-msgstr "Luba lemmiknimekirjad"
+msgstr "Lemmiknimekirjade lubamine"
 
 msgid "Enable panic button"
-msgstr "Luba paanika nupp"
+msgstr "Paanika nupu lubamine"
 
 msgid "Enable parental control"
 msgstr "Luba lapselukk"
@@ -2962,7 +3001,7 @@ msgid "Enigma2 Changes"
 msgstr "Enigma2 muudatused"
 
 msgid "Enigma2 skin selector"
-msgstr "Enigma2 teema valik"
+msgstr "Enigma2 kujunduse valik"
 
 msgid "Enimga2 Changes"
 msgstr "Enigma2 muudatused"
@@ -2984,6 +3023,9 @@ msgstr "Sisesta foorumi kasutajanimi logide jälgimise hõlbustamiseks."
 
 msgid "Entitlements"
 msgstr "Õigused"
+
+msgid "Equal to"
+msgstr "On võrdne"
 
 msgid "Error"
 msgstr "Viga"
@@ -3123,6 +3165,9 @@ msgstr "Väline (CF)"
 
 msgid "External subtitle color"
 msgstr "Väliste subtiitrite värv"
+
+msgid "Extra motor options"
+msgstr "Mootori lisavalikud"
 
 msgid "FAILED"
 msgstr "NURJUS"
@@ -3801,6 +3846,9 @@ msgstr "Paigalda uus image veebisirvijaga"
 msgid "Install channel list"
 msgstr "Paigalda kanalinimekiri"
 
+msgid "Install extensions"
+msgstr "Paigalda laiendusi"
+
 msgid "Install extensions."
 msgstr "Paigalda laiendusi."
 
@@ -4151,7 +4199,7 @@ msgid "Logs location"
 msgstr "Logide asukoht"
 
 msgid "Logs manager"
-msgstr "Logi haldur"
+msgstr "Logihaldur"
 
 msgid "Logs older than the specified no of days will be deleted."
 msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
@@ -4169,10 +4217,13 @@ msgid "Long filenames"
 msgstr "Pikad failinimed"
 
 msgid "Long key press"
-msgstr "Pikk klahvivajutus"
+msgstr "Pikk nupuvajutus"
 
 msgid "Longitude"
 msgstr "Pikkuskraad"
+
+msgid "Loop through to"
+msgstr "Läbiviik kuni"
 
 msgid "Luxembourgish"
 msgstr "Luksemburgi"
@@ -4214,6 +4265,9 @@ msgstr "Laienduste haldamine"
 msgid "Manage your %s %s's software"
 msgstr "Halda %s %s tarkvara"
 
+msgid "Manual"
+msgstr "Käsitsi"
+
 msgid "Manual Scan"
 msgstr "Käsiotsing"
 
@@ -4234,6 +4288,9 @@ msgstr "Salvestuse lõppu lisatakse (min)"
 
 msgid "Margin before recording (minutes)"
 msgstr "Salvestuse algusesse lisatakse (min)"
+
+msgid "Max memory positions"
+msgstr "Mälukohtade suurim arv"
 
 msgid "Max. bitrate: "
 msgstr "Max. bitikiirus: "
@@ -4276,9 +4333,6 @@ msgstr "Mälu andmed"
 
 msgid "Memory index"
 msgstr "Mälu indeks"
-
-msgid "Memory positions"
-msgstr "Mälukoht"
 
 msgid "Menu"
 msgstr "Menüü"
@@ -4787,6 +4841,9 @@ msgstr "Ei näidata"
 msgid "Not associated"
 msgstr "Määramata"
 
+msgid "Not configured"
+msgstr "Ei ole häälestatud"
+
 #, python-format
 msgid ""
 "Not enough disk space. Please free up some disk space and try again. (%d MB "
@@ -4817,6 +4874,9 @@ msgstr "Määramata"
 
 msgid "Nothing"
 msgstr "Mitte midagi"
+
+msgid "Nothing connected"
+msgstr "Midagi pole ühendatud"
 
 msgid ""
 "Nothing to scan!\n"
@@ -4894,6 +4954,9 @@ msgstr "Sees"
 
 msgid "On end of movie"
 msgstr "Filmi lõppu"
+
+msgid "On end of movie (as menu)"
+msgstr "Filmi lõpus (menüüna)"
 
 msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
@@ -5909,7 +5972,7 @@ msgid "Reset and renumerate title names"
 msgstr "Sisesta uued nimed nummerda need"
 
 msgid "Reset playback position"
-msgstr "Lähtesta taasesituse algpunkt"
+msgstr "Lähtesta taasesituskoht"
 
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Kas taastad pildiparanduste vaikeväärtused?"
@@ -6179,9 +6242,7 @@ msgstr "Otsing..."
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr ""
-"Otsib algsed lamedb-d järjestatud satelliitide järgi ühendatud "
-"positsioneeriga"
+msgstr "Skaneerib mootoriga ühendatud antennile määratud kanalinimekirjad"
 
 msgid "Scrolling Speed"
 msgstr "Kerimise kiirus"
@@ -6224,6 +6285,9 @@ msgstr "Otsin uusi paigaldatud või kustutatud pakette. Oota..."
 
 msgid "Searching west ..."
 msgstr "Otsitakse läände..."
+
+msgid "Second cable of motorized LNB"
+msgstr "Mootoriga LNB teine kaabel"
 
 msgid "Secondary DNS"
 msgstr "Teine nimeserver"
@@ -6381,9 +6445,6 @@ msgstr "Saada"
 msgid "Send Confirmation"
 msgstr "Saada kinnitus"
 
-msgid "Send DiSEqC"
-msgstr "Saada DiSEqC"
-
 msgid "Send DiSEqC only on satellite change"
 msgstr "Saada DiSEqC ainult satelliidi vahetamisel"
 
@@ -6497,7 +6558,7 @@ msgid "Set fixed"
 msgstr "Määra püsiaadress"
 
 msgid "Set fps for external subtitles"
-msgstr "Väliste subtiitrite fps"
+msgstr "Väliste subtiitrite kaadrisagedus"
 
 msgid "Set interface as default Interface"
 msgstr "Määra vaikimisi võrguliideseks"
@@ -6766,7 +6827,10 @@ msgid "Show channel number in infobar"
 msgstr "Näita inforibal kanalinumbreid"
 
 msgid "Show channel numbers in channel selection"
-msgstr "Näita lemmiknimekirjas kanalinumbreid"
+msgstr "Kanalinumbrite kuvamine lemmiknimekirjas"
+
+msgid "Show crypto icons"
+msgstr "Salastatud kanalite tähistamine"
 
 msgid "Show crypto info in infobar"
 msgstr "Salastatus inforibal"
@@ -6784,7 +6848,7 @@ msgid "Show event details"
 msgstr "Näita saateinfot"
 
 msgid "Show event-progress in channel selection"
-msgstr "Näita saate edenemist kanalinimekirjas"
+msgstr "Saate edenemise kuvamine kanalinimekirjas"
 
 msgid "Show extended description"
 msgstr "Näita täpsemat sisututvustust"
@@ -6847,7 +6911,7 @@ msgid "Show second infobar"
 msgstr "Teise inforiba näitamine"
 
 msgid "Show service type icons"
-msgstr "Näita edastuse liigi ikoone"
+msgstr "Edastusmooduse tähistamine"
 
 msgid "Show services beginning with"
 msgstr "Näita kanalid mis algavad"
@@ -7111,11 +7175,17 @@ msgstr "Järjesta"
 msgid "Sort EPG List"
 msgstr "Saatekava järjestamine"
 
+msgid "Sort by"
+msgstr "Järjestuse aluseks"
+
 msgid "Sort by default"
 msgstr "Vaikejärjestus"
 
 msgid "Sort list by"
 msgstr "Järjestuse aluseks"
+
+msgid "Sort list:"
+msgstr "Järjesta loend"
 
 msgid "Sort menu screens alphabetically"
 msgstr "Järjesta menüüd tähestiku järgi"
@@ -7161,6 +7231,9 @@ msgstr "Seiskamine"
 
 msgid "Standby / restart"
 msgstr "Seiskamine"
+
+msgid "StandbyLED"
+msgstr "StandbyLED"
 
 msgid "Start"
 msgstr "Käivita"
@@ -8320,6 +8393,9 @@ msgstr "Tuuner:"
 msgid "Tuner configuration"
 msgstr "Tuuneri seaded"
 
+msgid "Tuner is not supported"
+msgstr "Tuuner pole toetatud"
+
 msgid "Tuner settings"
 msgstr "Tuuneri seaded"
 
@@ -8335,11 +8411,14 @@ msgstr "Tuuneri olek:"
 msgid "Tuner type"
 msgstr "Tuuneri tüüp"
 
-msgid "Tuning step size"
-msgstr "Häälestamise sammu suurus"
-
 msgid "Turkish"
 msgstr "Türgi"
+
+msgid "Turn on the power LED during standby."
+msgstr "Toite LED on ooterežiimil sees."
+
+msgid "Turning step size"
+msgstr "Pööramise sammu suurus"
 
 msgid "Two"
 msgstr "Kaks"
@@ -8367,9 +8446,6 @@ msgstr "USB juhend"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Automatiseeritud uuendamine ja taaskäivitus"
-
-msgid "Uncommitted DiSEqC command"
-msgstr "Uncommitted DiSEqC-käsk"
 
 msgid "Undetermined"
 msgstr "Määratlemata"
@@ -8509,7 +8585,7 @@ msgid "Use frequency or channel"
 msgstr "Kasuta sagedust või kanalit"
 
 msgid "Use individual settings for each directory"
-msgstr "Igal kataloogil võivad olla oma seadistused"
+msgstr "Omadused jäetakse iga kataloogi puhul meelde"
 
 msgid "Use interface"
 msgstr "Kasutajaliides"
@@ -9720,7 +9796,7 @@ msgid "advertisement/shopping"
 msgstr "reklaam/ostukanal"
 
 msgid "alphabetic"
-msgstr "tähestikuline"
+msgstr "tähestikujärjekord"
 
 msgid "alphabetic reverse"
 msgstr "tagurpidi tähestikujärjekord"
@@ -10037,10 +10113,10 @@ msgid "fitness & health"
 msgstr "trenn ja tervis"
 
 msgid "flat alphabetic"
-msgstr "tähestikujärjekord"
+msgstr "lame tähestikujärjekord"
 
 msgid "flat alphabetic reverse"
-msgstr "pööratud tähestikujärjekord"
+msgstr "lame pööratud tähestikujärjekord"
 
 msgid "folk/traditional music"
 msgstr "folk/rahvamuusika"
@@ -10059,6 +10135,9 @@ msgstr "vaba"
 
 msgid "free diskspace"
 msgstr "vaba kettaruumi"
+
+msgid "from"
+msgstr "asukohast"
 
 msgid "full"
 msgstr "täielik"
@@ -10554,7 +10633,7 @@ msgid "show mediaplayer on mainmenu"
 msgstr "näita meediaesitajat peamenüüs"
 
 msgid "show picons in service list"
-msgstr "Näita kanalinimekirjas kanalilogosi"
+msgstr "Kanalilogode kuvamine lemmiknimekirjas"
 
 msgid "show program information..."
 msgstr "näita saate sisututvustust..."
@@ -10687,9 +10766,6 @@ msgstr "turism/reisimine"
 
 msgid "true"
 msgstr "tõene"
-
-msgid "tuner is not supported"
-msgstr "tuuner pole toetatud"
 
 msgid "uShare Log"
 msgstr "uShare logi"
@@ -10829,5 +10905,38 @@ msgstr "mine kanalile ja salvesta"
 msgid "zapped"
 msgstr "vahetatud"
 
+#~ msgid "AA"
+#~ msgstr "AA"
+
+#~ msgid "AB"
+#~ msgstr "AB"
+
+#~ msgid "BA"
+#~ msgstr "BA"
+
+#~ msgid "BB"
+#~ msgstr "BB"
+
+#~ msgid "Send DiSEqC"
+#~ msgstr "Saada DiSEqC"
+
 #~ msgid "Show tag menu"
 #~ msgstr "Näita märksõnade menüüd"
+
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "Uncommitted DiSEqC-käsk"
+
+#~ msgid "All satellites 1 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 1 (DiSEqC 1.2)"
+
+#~ msgid "All satellites 2 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 2 (DiSEqC 1.2)"
+
+#~ msgid "All satellites 3 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 3 (DiSEqC 1.2)"
+
+#~ msgid "All satellites 4 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 4 (DiSEqC 1.2)"
+
+#~ msgid "not available"
+#~ msgstr "pole saadaval"
