@@ -350,6 +350,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			old_service = self.cur_service  #(service, service_name, events, picon)
 			events = self.cur_service[2]
 			refstr = self.cur_service[0]
+			print '[EPG DEBUG] self.cur_event:',self.cur_event
+			print '[EPG DEBUG] len(events):',events and len(events)
 			if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events)-1):
 				return None, ServiceReference(refstr)
 			event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
@@ -369,11 +371,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.getEventFromId(service, eventid)
 			return event, service
 
-	def connectSelectionChanged(func):
+	def connectSelectionChanged(self, func):
 		if not self.onSelChanged.count(func):
 			self.onSelChanged.append(func)
 
-	def disconnectSelectionChanged(func):
+	def disconnectSelectionChanged(self, func):
 		self.onSelChanged.remove(func)
 
 	def serviceChanged(self):
@@ -915,6 +917,10 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.nowSelEvPix
 					else:
 						bgpng = self.selEvPix
+						if clock_types is not None and clock_types == 2:
+							bgpng = self.recSelEvPix
+						elif clock_types is not None and clock_types == 7:
+							bgpng = self.zapSelEvPix
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]

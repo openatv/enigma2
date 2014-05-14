@@ -329,12 +329,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = self.ADD_TIMER
 
-		# Background for Buttons
-		self["red"] = Pixmap()
-		self["green"] = Pixmap()
-		self["yellow"] = Pixmap()
-		self["blue"] = Pixmap()
-
 		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 
@@ -355,7 +349,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				})
 		else:
 			self["key_yellow"] = Button("")
-			self["yellow"].hide()
 			
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
@@ -366,4 +359,3 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				})
 		else:
 			self["key_blue"] = Button("")
-			self["blue"].hide()

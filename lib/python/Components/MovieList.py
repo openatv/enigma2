@@ -343,6 +343,8 @@ class MovieList(GUIComponent):
 				data.icon = self.iconMoviePlay
 			else:
 				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
+				if data.part is not None and data.part <= 3: data.part = 0
+				if data.part is not None and data.part >= 97: data.part = 100
 				if switch == 'i':
 					if data.part is not None and data.part > 0:
 						data.icon = self.iconPart[data.part // 25]
