@@ -93,9 +93,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.onShown.append(self.showMenu)
 			
 	def openChannelSelection(self):
-	    if InfoBar.instance.servicelist is None:
-		    InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelection)
-	    InfoBar.instance.showTv()
+		if InfoBar.instance.servicelist is None:
+			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelection)
+		InfoBar.instance.showTv()
 	
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
@@ -538,7 +538,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (enigma.getMachineBrand(), enigma.getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 		except:
 			pass
-		      
+
 	def movePiP(self):
 		if self.session.pipshown:
 			InfoBarPiP.movePiP(self)

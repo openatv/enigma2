@@ -128,14 +128,14 @@ class FileManagerConfig(ConfigListScreen,Screen):
         Screen.__init__(self, session)
         self.skinName = ["Setup"]
         self.list = []
-        self.list.append(getConfigListEntry(_("Save Filesystemposition on exit"), config.plugins.filemanager.savedirs))
-        self.list.append(getConfigListEntry(_("Filesystemposition list left"), config.plugins.filemanager.path_left))
-        self.list.append(getConfigListEntry(_("Filesystemposition list right"), config.plugins.filemanager.path_right))
+        self.list.append(getConfigListEntry(_("Save file system position on exit"), config.plugins.filemanager.savedirs))
+        self.list.append(getConfigListEntry(_("File system position list left"), config.plugins.filemanager.path_left))
+        self.list.append(getConfigListEntry(_("File system position list right"), config.plugins.filemanager.path_right))
 	self.list.append(getConfigListEntry(_("Enable only media filter ?"), config.plugins.filemanager.media_filter))
 	self.list.append(getConfigListEntry(_("Show table with all pictures ?"), config.plugins.filemanager.pic_filter))
 	self.list.append(getConfigListEntry(_("Show hidden files ?"), config.plugins.filemanager.hidden_filter))
 	self.list.append(getConfigListEntry(_("Sort files by"), config.plugins.filemanager.sort_by))
-	self.list.append(getConfigListEntry(_("Exit mediaplayer on the end of file ?"), config.plugins.filemanager.exit_eop))
+	self.list.append(getConfigListEntry(_("Exit media player on the end of file ?"), config.plugins.filemanager.exit_eop))
 
         ConfigListScreen.__init__(self, self.list)
         self["key_red"] = Label(_("Save"))

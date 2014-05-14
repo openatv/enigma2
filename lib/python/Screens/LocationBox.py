@@ -174,6 +174,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self["booklist"].moveToIndex(self.bookmarks.index(currDir))
 		else:
 			self.switchToFileList()
+		self.currList = "filelist"
+		self.up()
 
 	def disableTimer(self):
 		self.qs_timer.callback.remove(self.timeout)

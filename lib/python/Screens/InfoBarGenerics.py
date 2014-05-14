@@ -51,6 +51,7 @@ from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
+from keyids import KEYFLAGS
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -174,9 +175,9 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+			print 'KEY: %s %s %s' % (key, KEYFLAGS[flag], getKeyDescription(key)[0])
 		except:
-			print 'KEY: %s' % key
+			print 'KEY: %s %s' % (key, KEYFLAGS[flag])
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -704,8 +705,8 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": (self.switchChannelUp, _("Open service list and select previous channel for PiP")),
-				"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next channel for PiP")),
+				"switchChannelUpLong": self.switchChannelUp,
+				"switchChannelDownLong": self.switchChannelDown,
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
@@ -1075,7 +1076,7 @@ class SimpleServicelist:
 		if not self.length or self.current >= self.length:
 			return None
 		return self.services[self.current]
-	      
+
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -1542,6 +1543,7 @@ class Seekbar(Screen):
 			self.percent = float(number) * 10.0
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
+			
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 
@@ -2760,24 +2762,24 @@ class InfoBarInstantRecord:
 			common = ()
 			timeshiftcommon = ()
 
-		if self.isInstantRecordRunning():
-			title =_("A recording is currently running.\nWhat do you want to do?")
-			list = ((_("Stop recording"), "stop"),) + common + \
-				((_("Change recording (duration)"), "changeduration"),
-				(_("Change recording (endtime)"), "changeendtime"),)
-			if self.isTimerRecordRunning():
-				list += ((_("Stop timer recording"), "timer"),)
-		else:
-			title=_("Start recording?")
-			list = common
+		list = common
 
-			if self.isTimerRecordRunning():
-				list += ((_("Stop timer recording"), "timer"),)
+		if self.isInstantRecordRunning():
+			title = _("A recording is currently running.\nWhat do you want to do?")
+			list += ((_("Change recording (duration)"), "changeduration"),
+				(_("Change recording (endtime)"), "changeendtime"),
+				(_("Stop recording"), "stop"),)
+		else:
+			title = _("Start recording?")
+
+		if self.isTimerRecordRunning():
+			list += ((_("Stop timer recording"), "timer"),)
+
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
-			list = list + timeshiftcommon
+			list += timeshiftcommon
 
 		if isStandardInfoBar(self):
-			list = list + ((_("Do not record"), "no"),)
+			list += ((_("Do not record"), "no"),)
 
 		if list:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
@@ -3540,22 +3542,22 @@ class InfoBarZoom:
 		print "zoomRate:", self.zoomrate
 		print "zoomval:", zoomval
 		try:
-		  file = open("/proc/stb/vmpeg/0/zoomrate", "w")
-		  file.write('%d' % int(zoomval))
-		  file.close()
+			file = open("/proc/stb/vmpeg/0/zoomrate", "w")
+			file.write('%d' % int(zoomval))
+			file.close()
 		except:
-		  pass
+			pass
 
 	def ZoomOff(self):
 		self.zoomrate = 0
 		self.zoomin = 1
 
 		try:
-		  f = open("/proc/stb/vmpeg/0/zoomrate", "w")
-		  f.write(str(0))
-		  f.close()
+			f = open("/proc/stb/vmpeg/0/zoomrate", "w")
+			f.write(str(0))
+			f.close()
 		except:
-		  pass
+			pass
 		
 class InfoBarHdmi:
 	def __init__(self):
@@ -3603,7 +3605,7 @@ class InfoBarHdmi:
 			return _("Turn on HDMI-IN Full screen mode")
 		else:
 			return _("Turn off HDMI-IN Full screen mode")
-	      
+
 	def getHDMIInPiPScreen(self):
 		if not self.hdmi_enabled_pip:
 			return _("Turn on HDMI-IN PiP mode")

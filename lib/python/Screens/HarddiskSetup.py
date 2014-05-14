@@ -36,11 +36,11 @@ class HarddiskSetup(Screen):
 	def hddQuestion(self, answer=False):
 		print 'answer:',answer
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-			message = self.question + "\n\n" + _("You seem to be in timeshft, the service wil breifly stop as timeshfit stops.")
+			message = self.question + "\n" + _("You seem to be in time shift. In order to proceed, time shift needs to stop.")
 			message += '\n' + _("Do you want to continue?")
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:
-			message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
+			message = self.question + "\n" + _("You can continue watching while this is running.")
 			self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def stopTimeshift(self, confirmed):
@@ -56,7 +56,7 @@ class HarddiskSetup(Screen):
 		try:
 			job_manager.AddJob(self.action())
 			for job in job_manager.getPendingJobs():
-				if job.name in (_("Initializing storage device..."), _("Checking filesystem..."),_("Converting ext3 to ext4...")):
+				if job.name in (_("Initializing storage device..."), _("Checking file system..."),_("Converting ext3 to ext4...")):
 					self.showJobView(job)
 					break
 		except Exception, ex:
@@ -77,14 +77,14 @@ class HarddiskSetup(Screen):
 class HarddiskMenuList(MenuList):
 	def __init__(self, list, enableWrapAround = False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
 	
 def SubHarddiskMenuEntryComponent(name, item):
 	return [
 		_(item),
-		MultiContentEntryText(pos=(20, 8), size=(540, 50), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 10), size=(540, 50), font=0, text = _(name)),
 	]
 	
 class HarddiskSelection(Screen):
@@ -128,23 +128,23 @@ class HarddiskSelection(Screen):
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Filesystem Check"))
+		Screen.setTitle(self, _("File system check"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createCheckJob,
 			 text=_("Check"),
-			 question=_("Do you really want to check the filesystem?\nThis could take a long time!"))
+			 question=_("Do you really want to check the file system?\nThis could take a long time!"))
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Convert filesystem ext3 to ext4"))
+		Screen.setTitle(self, _("Convert file system"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createExt4ConversionJob,
 			 text=_("Convert ext3 to ext4"),
-			 question=_("Do you really want to convert the filesystem?\nYou cannot go back!"))
+			 question=_("Do you really want to convert the file system?\nYou cannot go back!"))
