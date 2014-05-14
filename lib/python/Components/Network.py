@@ -28,6 +28,10 @@ class Network:
 		self.remoteRootFS = None
 		self.getInterfaces()
 
+	# Some well connected hosts that have proper DNS and respond to pings.
+	# These are selected because they tend to be very low latency systems.
+	testhosts = ["au.pool.ntp.org", "www.google.com", "pool.ntp.org"]
+
 	def onRemoteRootFS(self):
 		if self.remoteRootFS is None:
 			import Harddisk
@@ -150,6 +154,7 @@ class Network:
 # 					print tuple(iface['ip'])
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
 					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
+					fp.write("	broadcast +\n")
 					if iface.has_key('gateway'):
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
 			if iface.has_key("configStrings"):
@@ -406,9 +411,9 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 www.openpli.org"
-		cmd2 = "ping -c 1 www.google.nl"
-		cmd3 = "ping -c 1 www.google.com"
+		cmd1 = "ping -c 1 " + self.testhosts[0]
+		cmd2 = "ping -c 1 " + self.testhosts[1]
+		cmd3 = "ping -c 1 " + self.testhosts[2]
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
@@ -511,9 +516,9 @@ class Network:
 				return False
 
 	def checkDNSLookup(self,statecallback):
-		cmd1 = "nslookup www.dream-multimedia-tv.de"
-		cmd2 = "nslookup www.heise.de"
-		cmd3 = "nslookup www.google.de"
+		cmd1 = "nslookup " + self.testhosts[0]
+		cmd2 = "nslookup " + self.testhosts[1]
+		cmd3 = "nslookup " + self.testhosts[2]
 		self.DnsConsole = Console()
 		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
 		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)

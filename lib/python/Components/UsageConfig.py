@@ -151,7 +151,7 @@ def InitUsageConfig():
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default = "no", choices = [
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 
-	config.usage.setup_level = ConfigSelection(default = "intermediate", choices = [
+	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
