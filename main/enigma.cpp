@@ -194,6 +194,7 @@ int main(int argc, char **argv)
 #if 1
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
+	my_dc->setResolution(1280, 720, 32);
 
 	//int double_buffer = my_dc->haveDoubleBuffering();
 
@@ -260,9 +261,9 @@ int main(int argc, char **argv)
 			}
 		}
 		if (i)
-			my_dc->setSpinner(eRect(ePoint(608, 328), wait[0]->size()), wait, i);
+			my_dc->setSpinner(eRect(ePoint(608, 392), wait[0]->size()), wait, i);
 		else
-			my_dc->setSpinner(eRect(608, 328, 0, 0), wait, 1);
+			my_dc->setSpinner(eRect(608, 392, 0, 0), wait, 1);
 		/*if (i)
 			my_dc->setSpinner(eRect(ePoint(25, 25), wait[0]->size()), wait, i);
 		else
