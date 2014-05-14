@@ -10,8 +10,8 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 class TimerList(HTMLComponent, GUIComponent, object):
 #
-#  | <Name of the Timer>     <Service>  |
-#  | <state>  <orb.pos.>  <start, end>  |
+#  | <Name of the Timer>     <Service>  <orb.pos>|
+#  | <state>  <start, end>  |
 #
 	def buildTimerEntry(self, timer, processed):
 		height = self.l.getItemSize().height()
@@ -19,7 +19,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res = [ None ]
 		x = (2*width) // 3
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 2, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, timer.name))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x-2, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_TOP, timer.service_ref.getServiceName()))
+		text = ("%s  %s") % (timer.service_ref.getServiceName(), self.getOrbitalPos(timer.service_ref))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x-2, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 
 		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 		begin = FuzzyTime(timer.begin)
@@ -73,8 +74,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			state = _("failed")
 			icon = self.iconFailed
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 200,27, 100, 18, 2, RT_HALIGN_RIGHT|RT_VALIGN_TOP, self.getOrbitalPos(timer.service_ref)))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 90, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, icon))
 
@@ -132,7 +132,15 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.entryRemoved(idx)
 
 	def getOrbitalPos(self, ref):
-		op = int(str(ref).split(':', 10)[6][:-4] or "0",16)
+		refstr = None
+		if hasattr(ref, 'sref'):
+			refstr = str(ref.sref)
+		else:
+			refstr = str(ref)
+
+		if '%3a//' in refstr:
+			return "%s" % _("Stream")
+		op = int(refstr.split(':', 10)[6][:-4] or "0",16)
 		if op == 0xeeee:
 			return "%s" % _("DVB-T")
 		if op == 0xffff:

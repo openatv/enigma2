@@ -1073,8 +1073,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 				dvb_service->m_service_name_sort = service->second->m_service_name_sort;
 			}
 			dvb_service->m_provider_name = service->second->m_provider_name;
-			if (service->second->m_ca.size())
-				dvb_service->m_ca = service->second->m_ca;
+			dvb_service->m_ca = service->second->m_ca;
 			if (!backgroundscanresult) // do not remove new found flags when this is the result of a 'background scan'
 				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
