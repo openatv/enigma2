@@ -154,6 +154,7 @@ class Network:
 # 					print tuple(iface['ip'])
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
 					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
+					fp.write("	broadcast +\n")
 					if iface.has_key('gateway'):
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
 			if iface.has_key("configStrings"):

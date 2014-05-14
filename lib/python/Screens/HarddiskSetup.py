@@ -77,14 +77,14 @@ class HarddiskSetup(Screen):
 class HarddiskMenuList(MenuList):
 	def __init__(self, list, enableWrapAround = False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
 	
 def SubHarddiskMenuEntryComponent(name, item):
 	return [
 		_(item),
-		MultiContentEntryText(pos=(20, 8), size=(540, 50), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 10), size=(540, 50), font=0, text = _(name)),
 	]
 	
 class HarddiskSelection(Screen):
@@ -128,7 +128,7 @@ class HarddiskSelection(Screen):
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Filesystem Check"))
+		Screen.setTitle(self, _("File system check"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
