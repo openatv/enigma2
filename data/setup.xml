@@ -182,7 +182,7 @@
 	<setup key="keyboard" title="Keyboard setup">
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
-	<setup key="display" title="Settings..." requires="FrontpanelDisplay">
+	<setup key="display" title="Front Panel Settings" requires="FrontpanelDisplay">
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
 		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for standby.">config.lcd.standby</item>
 		<item level="0" requires="LcdDisplay" text="Contrast" description="Configure the contrast level of the front panel display.">config.lcd.contrast</item>
