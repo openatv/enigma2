@@ -19,10 +19,10 @@ def enumPlugins(filter_start=''):
 	for feed in enumFeeds():
 		package = None
 		try:
-			if getImageVersion() == '4.1':
-				file = open('/var/lib/opkg/%s' % feed, 'r')
-			else:
+			if getImageVersion() == '4.0':
 				file = open('/var/lib/opkg/lists/%s' % feed, 'r')
+			else:
+				file = open('/var/lib/opkg/%s' % feed, 'r')
 			for line in file:
 				if line.startswith('Package:'):
 					package = line.split(":",1)[1].strip()
