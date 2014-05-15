@@ -16,10 +16,10 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_OPENMP()
 
 AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
-AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
-AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
-AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
-AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
+# AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
+# AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
+# AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
+# AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -178,17 +178,6 @@ if test x"$withcolorlcd220" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_COLORLCD220, test x"$withcolorlcd220" != xno)
 
-AC_ARG_WITH(colorlcd400,
-	AC_HELP_STRING([--with-colorlcd400], [use 400x240 16bpp color display, yes or no]),
-	[[withcolorlcd400=$withval]],
-	[[withcolorlcd400=no]]
-)
-if test x"$withcolorlcd400" != xno ; then
-	AC_DEFINE(HAVE_COLORLCD400, 1,[Define when using a 400x240 color display device])
-fi
-
-AM_CONDITIONAL(HAVE_COLORLCD400, test x"$withcolorlcd400" != xno)
-
 AC_ARG_WITH(bwlcd255,
 	AC_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
 	[[withbwlcd255=$withval]],
@@ -229,15 +218,6 @@ if test x"$witholdpvr" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 
-if test `echo "$BOXTYPE" | cut -b 1-2` == "et" ; then
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-fi
-
-if test `echo "$BOXTYPE" | cut -b 1-4` == "odin"; then
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-fi
-
 if test "$BOXTYPE" == "azboxme" -o "$BOXTYPE" == "azboxminime"; then
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
@@ -265,33 +245,35 @@ if test "$BOXTYPE" == "ebox5000" -o "$BOXTYPE" == "ebox7358" -o "$BOXTYPE" == "e
 	AC_DEFINE(KEY_TIME_TO_KEY_SLEEP, 1,[define when rc sends a KEY_TIME event for its KEY_SLEEP])
 fi
 
-if test `echo "$BOXTYPE" | cut -b 1-2` == "et" ; then
+if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00" -o "$BOXTYPE" == "et9x00" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test `echo "$BOXTYPE" | cut -b 1-4` == "odin"; then
+if test "$BOXTYPE" == "odinm9"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test `echo "$BOXTYPE" | cut -b 1-2` == "vu"; then
+if test "$BOXTYPE" == "odinm7" -o "$BOXTYPE" == "odinm6" -o "$BOXTYPE" == "e3hd"; then
+	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+	AC_DEFINE(KEY_POWER2_TO_KEY_WWW, 1,[define when rc sends a KEY_POWER2 event for its KEY_WWW key])
+	AC_DEFINE(KEY_DIRECTORY_TO_KEY_FILE, 1,[define when rc sends a KEY_DIRECTORY event for its KEY_FILE key])		
+fi
+
+if test "$BOXTYPE" == "vuduo" -o "$BOXTYPE" == "vusolo" -o "$BOXTYPE" == "vuduo2" -o "$BOXTYPE" == "vusolo2" -o "$BOXTYPE" == "vuuno" -o "$BOXTYPE" == "vuultimo"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
-if test `echo "$BOXTYPE" | cut -b 1-2` == "gb"; then
+if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "gb800ue" -o "$BOXTYPE" == "gbquad" -o "$BOXTYPE" == "gb800seplus" -o "$BOXTYPE" == "gb800ueplus" -o "$BOXTYPE" == "gbquadplus"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
+	AC_DEFINE(KEY_F2_TO_KEY_F6, 1,[define when rc sends a KEY_F2 event for its KEY_F6 key])	
 fi
 
 if test `echo "$BOXTYPE" | cut -b 1-3` == "ini"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-fi
-
-if test `echo "$BOXTYPE" | cut -b 1-4` == "dags"; then
-	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
 if test "$BOXTYPE" == "sogno8800hd"; then
@@ -300,6 +282,10 @@ if test "$BOXTYPE" == "sogno8800hd"; then
 	AC_DEFINE(KEY_MEDIA_TO_KEY_BOOKMARKS, 1,[define when rc sends a KEY_MEDIA event for its KEY_BOOKMARKS key])
 fi
 
+if test `echo "$BOXTYPE" | cut -b 1-4` == "dags"; then
+	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+fi
 
 AC_ARG_WITH(libsdl,
 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
@@ -333,6 +319,19 @@ if test "$with_memcheck" = "yes"; then
 	AC_DEFINE([MEMLEAK_CHECK],[1],[Define to 1 to enable memory leak checks])
 fi
 
+AC_ARG_WITH(po,
+	AS_HELP_STRING([--with-po],[enable updating of po files]),
+	[with_po="$withval"],[with_po="no"])
+if test "$with_po" = "yes"; then
+	AC_PATH_PROG(MSGINIT, msginit)
+	AC_PATH_PROG(MSGMERGE, msgmerge)
+	AC_PATH_PROG(MSGUNIQ, msguniq)
+	AC_PATH_PROG(XGETTEXT, xgettext)
+	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
+		AC_MSG_ERROR([Could not find required gettext tools])
+	fi
+fi
+AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "no")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
 AC_SUBST(ENIGMA2_CFLAGS)
@@ -352,11 +351,9 @@ data/displaytext/Makefile
 data/display96/Makefile
 data/display128/Makefile
 data/display220/Makefile
-data/display400/Makefile
 data/vfd128/Makefile
 data/vfd140/Makefile
 data/vfd255/Makefile
-data/spinner/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
@@ -374,10 +371,10 @@ lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
-lib/python/Plugins/Extensions/MediaScanner/Makefile
-lib/python/Plugins/Extensions/MediaScanner/meta/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
+lib/python/Plugins/Extensions/MediaScanner/Makefile
+lib/python/Plugins/Extensions/MediaScanner/meta/Makefile
 lib/python/Plugins/Extensions/Modem/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/meta/Makefile
@@ -388,25 +385,8 @@ lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/IniMyTube/Makefile
-lib/python/Plugins/Extensions/IPTVStreams/Makefile
-lib/python/Plugins/Extensions/IPTVStreams/url/Makefile
-lib/python/Plugins/Extensions/MP3Browser/Makefile
-lib/python/Plugins/Extensions/MP3Browser/pic/Makefile
-lib/python/Plugins/Extensions/MovieBrowser/Makefile
-lib/python/Plugins/Extensions/MovieBrowser/pic/Makefile
-lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
-lib/python/Plugins/Extensions/IniLastFM/Makefile
-lib/python/Plugins/Extensions/IniSHOUTcast/Makefile
-lib/python/Plugins/Extensions/AccuWeather/Makefile
-lib/python/Plugins/Extensions/AccuWeather/acuwheathericons/Makefile
-lib/python/Plugins/Extensions/AccuWeather/image/Makefile
-lib/python/Plugins/Extensions/AccuWeather/locale/Makefile
-lib/python/Plugins/Extensions/AccuWeather/locale/es/Makefile
-lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
-lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
-lib/python/Plugins/Extensions/AccuWeather/xbmcweather/Makefile
-lib/python/Plugins/Extensions/AccuWeather/xbmcweather/small/Makefile
-lib/python/Plugins/Extensions/GmailReader/Makefile
+lib/python/Plugins/Extensions/MBHbbTV/Makefile
+lib/python/Plugins/Extensions/MBDLNABrowser/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Makefile
 lib/python/Plugins/Extensions/AirPlayer/lib/Makefile
 lib/python/Plugins/Extensions/AirPlayer/lib/biplist/Makefile
@@ -414,23 +394,25 @@ lib/python/Plugins/Extensions/AirPlayer/mediabackends/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Skins/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/Makefile
 lib/python/Plugins/Extensions/AirPlayer/Skins/Classic/1280x720/Makefile
-lib/python/Plugins/Extensions/IniEcasa/Makefile
-lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
-lib/python/Plugins/Extensions/GoogleNews/Makefile
-lib/python/Plugins/Extensions/GoogleNews/images/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
+lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
+lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/xml/Makefile
+lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
+lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/meta/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
+lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
+lib/python/Plugins/SystemPlugins/NFIFlash/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
 lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
@@ -447,7 +429,6 @@ lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
-lib/python/Plugins/SystemPlugins/IniFanSetup/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile
