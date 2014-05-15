@@ -132,7 +132,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 #endif	
 
 #if KEY_CONTEXT_TO_KEY_MENU
-	if (ev->code == CONTEXT)
+	if (ev->code == KEY_CONTEXT)
 	{
 		/* HD2400 rc has a KEY_CONTEXT key, we need KEY_MENU. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_MENU;
