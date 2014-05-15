@@ -19,6 +19,7 @@
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 		<item level="2" text="Include ECM in http streams" description="When enabled, ECM data will be included in http streams. This allows a client receiver to do the descrambling.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling.">config.streaming.descramble</item>
+		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 		<item level="2" text="Fan operation" description="Configure how the fan should operate" requires="Fan">config.usage.fan</item>
 		<item level="2" text="Fan speed" description="Configure the speed of the fan" requires="FanPWM">config.usage.fanspeed</item>
 		<item level="2" text="Startup to Standby" description="Startup the set top box in standby">config.usage.startup_to_standby</item>
