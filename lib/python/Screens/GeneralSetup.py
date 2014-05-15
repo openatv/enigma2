@@ -231,7 +231,8 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Timeshift settings",_("Timeshift Setup"),_("Set up your timeshift configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Subtitle settings",_("Subtitle Setup"),_("Set up subtitle behaviour")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Set up your EPG configuration")))
-#		self.sublist.append(QuickSubMenuEntryComponent("Common Interface",_("Common Interface configuration"),_("Active/reset and manage your CI")))
+		if not getMachineBrand() == "Beyonwiz":
+			self.sublist.append(QuickSubMenuEntryComponent("Common Interface",_("Common Interface configuration"),_("Active/reset and manage your CI")))
 		self.sublist.append(QuickSubMenuEntryComponent("Parental control",_("Lock/unlock channels"),_("Set up parental controls")))
 		self.sublist.append(QuickSubMenuEntryComponent("Zap history",_("List of last zapped channels"),_("Set up zap (channel change) history")))
 		self["sublist"].l.setList(self.sublist)
@@ -243,7 +244,8 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("GUI setup",_("Set up GUI"),_("Customize UI personal settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("On screen display"),_("Configure your OSD (on screen display) settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button settings",_("Button assignment"),_("Set up your buttons")))
-#		self.sublist.append(QuickSubMenuEntryComponent("Language settings",_("Setup your language"),_("Set up menu language")))
+		if not getMachineBrand() == "Beyonwiz":
+			self.sublist.append(QuickSubMenuEntryComponent("Language settings",_("Setup your language"),_("Set up menu language")))
 		self.sublist.append(QuickSubMenuEntryComponent("Time settings",_("Time settings"),_("Set up date and time")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Front panel settings",_("Front panel setup"),_("Set up your front panel")))
