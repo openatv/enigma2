@@ -299,3 +299,10 @@ KEYIDS = {
 "BTN_0": 256, 
 "BTN_1": 257, 
 }
+
+KEYFLAGS = {
+0: "make",
+1: "break",
+2: "repeat",
+3: "long"
+}
