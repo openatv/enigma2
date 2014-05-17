@@ -286,11 +286,11 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et9200", 11),
 			("et9500", 11),
 			("et10000", 9),
-			("hd1100",16)
-			("hd2400",19)
-			("formuler1",18)
-			("formuler3",18)
-			("xp1000", 14)
+			("hd1100",16),
+			("hd2400",19),
+			("formuler1",18),
+			("formuler3",18),
+			("xp1000", 14),
 			("xp3000", 17)
 			]
 
