@@ -97,6 +97,7 @@ void eStreamClient::notifier(int what)
 									if (pwdresult)
 									{
 										struct crypt_data cryptdata;
+										char *cryptresult = NULL;
 										cryptdata.initialized = 0;
 										crypt = pwd.pw_passwd;
 										if (crypt == "*" || crypt == "x")
@@ -109,7 +110,8 @@ void eStreamClient::notifier(int what)
 												crypt = spwd.sp_pwdp;
 											}
 										}
-										authenticated = crypt_r(password.c_str(), crypt.c_str(), &cryptdata) == crypt;
+										cryptresult = crypt_r(password.c_str(), crypt.c_str(), &cryptdata);
+										authenticated = cryptresult && cryptresult == crypt;
 									}
 									free(buffer);
 								}
