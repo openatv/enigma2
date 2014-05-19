@@ -25,6 +25,6 @@ if MUTANT2400
 dist_install_DATA += analog.ttf MyriadPro-Regular.otf MyriadPro-Semibold.otf MyriadPro-SemiboldIt.otf
 endif
 
-if XPEEDLX3
+if INIHDP
 dist_install_DATA += analog.ttf MyriadPro-Regular.otf MyriadPro-Semibold.otf MyriadPro-SemiboldIt.otf
 endif
