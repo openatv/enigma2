@@ -1032,7 +1032,7 @@ void eDVBScan::channelDone()
 			break;
 			default:
 				break;
-			}
+		}
 		addKnownGoodChannel(m_chid_current, m_ch_current, tstate);
 	}
 
@@ -1319,7 +1319,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 	{
 		unsigned short service_id = (*s)->getServiceId();
 		SCAN_eDebugNoNewLine("[eDVBScan] SID %04x: ", service_id);
-		bool add = true;
 		bool is_crypted = false;
 		
 		std::map<unsigned short, service>::iterator it =
@@ -1338,8 +1337,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			SCAN_eDebug("not found in PAT.. so we assume it is scrambled!!");
 			is_crypted = true;
 		}
-		else
-			SCAN_eDebug(".");
 
 		if (!(m_flags & scanOnlyFree) || !is_crypted)
 		{
