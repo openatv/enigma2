@@ -1771,21 +1771,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					args = True
 				if args:
-					try:
-						# Move the files to the trash can in a way that their CTIME is
-						# set to "now". A simple move would not correctly update the
-						# ctime, and hence trigger a very early purge.
-						trash = Tools.Trashcan.createTrashFolder(cur_path)
+					trash = Tools.Trashcan.createTrashFolder(cur_path)
+					if trash:
 						moveServiceFiles(current, trash, name, allowCopy=True)
 						self["list"].removeService(current)
 						self.showActionFeedback(_("Deleted") + " " + name)
-						# Files were moved to .Trash, ok.
 						return
-					except Exception, e:
-						print "[MovieSelection] Weird error moving to trash", e
-						# Failed to create trash or move files.
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
-						return
+					else:
+						msg = _("Cannot move to trash can") + "\n"
+						are_you_sure = _("Do you really want to delete %s ?") % name
 				for fn in os.listdir(cur_path):
 					if (fn != '.') and (fn != '..'):
 						ffn = os.path.join(cur_path, fn)
@@ -1805,8 +1799,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					are_you_sure = _("Do you really want to delete ?")
 				if args:
 					try:
-						# already confirmed...
-						# but not implemented yet...
 						msg = ''
 						Tools.CopyFiles.deleteFiles(cur_path, name)
 						self["list"].removeService(current)
@@ -1814,7 +1806,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						return
 					except Exception, e:
 						print "[MovieSelection] Weird error moving to trash", e
-						# Failed to create trash or move files.
 						msg = _("Cannot delete file") + "\n" + str(e) + "\n"
 						return
 				for fn in os.listdir(cur_path):
@@ -1857,8 +1848,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						mbox.setTitle(self.getTitle())
 						return
 			if '.Trash' not in cur_path and config.usage.movielist_trashcan.value:
-				try:
-					trash = Tools.Trashcan.createTrashFolder(cur_path)
+				trash = Tools.Trashcan.createTrashFolder(cur_path)
+				if trash:
 					moveServiceFiles(current, trash, name, allowCopy=True)
 					self["list"].removeService(current)
 					# Files were moved to .Trash, ok.
@@ -1866,10 +1857,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					delResumePoint(current)
 					self.showActionFeedback(_("Deleted") + " " + name)
 					return
-				except Exception, e:
-					print "[MovieSelection] Weird error moving to trash", e
-					# Failed to create trash or move files.
-					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+				else:
+					msg = _("Cannot move to trash can") + "\n"
+					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
