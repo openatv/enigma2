@@ -20,7 +20,7 @@ def initLcdPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		if getBoxType() == 'vuultimo':
+		if getBoxType() in ('vuultimo', 'et10000', 'et8000'):
 			path = os.path.join(mountpoint, 'piconlcd') + '/'
 		else:
 			path = os.path.join(mountpoint, 'picon') + '/'
@@ -35,7 +35,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	if getBoxType() == 'vuultimo':
+	if getBoxType() in ('vuultimo', 'et10000', 'et8000'):
 		path = os.path.join(mountpoint, 'piconlcd') + '/'
 	else:
 		path = os.path.join(mountpoint, 'picon') + '/'
@@ -99,20 +99,20 @@ class LcdPicon(Renderer):
 		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
-		if getBoxType() == 'vuultimo':
+		if getBoxType() in ('vuultimo', 'et10000', 'et8000'):
 			pngname = findLcdPicon("lcd_picon_default")
 		else:
 			pngname = findLcdPicon("picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			if getBoxType() == 'vuultimo':
+			if getBoxType() in ('vuultimo', 'et10000', 'et8000'):
 				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 			else:
 				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				if getBoxType() == 'vuultimo':
+				if getBoxType() in ('vuultimo', 'et10000', 'et8000'):
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 				else:
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
