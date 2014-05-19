@@ -37,11 +37,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
-
-
-config.plugins.configurationbackup = ConfigSubsection()
-config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+import BackupRestore
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
@@ -1870,8 +1866,16 @@ class IpkgInstaller(Screen):
 
 		self.list = SelectionList()
 		self["list"] = self.list
+
+		p = 0
+		if len(list):
+			p = list[0].rfind("/")
+			title = list[0][:p]
+			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
+
 		for listindex in range(len(list)):
-			self.list.addSelection(list[listindex], list[listindex], listindex, False)
+			self.list.addSelection(list[listindex][p+1:], list[listindex], listindex, False)
+		self.list.sort()
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))

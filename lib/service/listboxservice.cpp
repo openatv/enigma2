@@ -747,7 +747,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 											area.moveBy(offset);
 											painter.clip(area);
 											painter.blitScale(piconPixmap,
-												eRect(offset.x()+ area.left(), area.top(), iconWidth, area.height()),
+												eRect(area.left(), area.top(), iconWidth, area.height()),
 												area,
 												gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
 											painter.clippop();
@@ -786,7 +786,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								int correction = (area.height() - pixmap_size.height()) / 2;
 								area.moveBy(offset);
 								painter.clip(area);
-								painter.blit(pixmap, offset+ePoint(area.left() + offs, correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
 								painter.clippop();
 							}
 						}
@@ -796,11 +796,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						{
 							eSize pixmap_size = m_pixmaps[picCrypto]->size();
 							eRect area = m_element_position[celServiceInfo];
-							m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-							m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 							int offs = 0;
 							if (m_crypto_icon_mode == 1)
 							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 								area = m_element_position[celServiceName];
 								offs = xoffs;
 								xoffs += pixmap_size.width() + 8;
@@ -809,8 +809,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							area.moveBy(offset);
 							if (service_info->isCrypted(*m_cursor))
 							{
+								if (m_crypto_icon_mode == 2)
+								{
+									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								}
 								painter.clip(area);
-								painter.blit(m_pixmaps[picCrypto], offset+ePoint(area.left() + offs, correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
 								painter.clippop();
 							}
 						}
@@ -847,7 +852,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						xoffset = pixmap_size.width() + 8;
 					area.moveBy(offset);
 					painter.clip(area);
-					painter.blit(pixmap, offset+ePoint(area.left(), correction), area, gPainter::BT_ALPHATEST);
+					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHATEST);
 					painter.clippop();
 				}
 			}

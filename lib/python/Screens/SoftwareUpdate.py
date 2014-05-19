@@ -281,7 +281,7 @@ class UpdatePlugin(Screen):
 							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:
 							choices.append((_("Perform a full image backup"), "imagebackup"))
-					choices.append((_("Update channel list only"), "channels"))
+					#choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
 					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
 					upgrademessage.setTitle(_('Software update'))
@@ -345,7 +345,7 @@ class UpdatePlugin(Screen):
 				#choices.append((_("Perform a settings backup, making a backup before updating is strongly advised."), "backup"))
 			#if not self.ImageBackupDone and not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:
 				#choices.append((_("Perform a full image backup"), "imagebackup"))
-			choices.append((_("Update channel list only"), "channels"))
+			#choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
 			upgrademessage.setTitle(_('Software update'))
@@ -360,11 +360,11 @@ class UpdatePlugin(Screen):
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "cold":
-			if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
-				self.doAutoBackup()
-			else:
-				self.session.open(TryQuitMainloop,retvalue=42)
-				self.close()
+			#if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
+				#self.doAutoBackup()
+			#else:
+			self.session.open(TryQuitMainloop,retvalue=42)
+			self.close()
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 

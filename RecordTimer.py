@@ -778,14 +778,17 @@ class RecordTimer(timer.Timer):
 
 		list.append('</timers>\n')
 
-		file = open(self.Filename + ".writing", "w")
-		for x in list:
-			file.write(x)
-		file.flush()
+		try:
+			file = open(self.Filename + ".writing", "w")
+			for x in list:
+				file.write(x)
+			file.flush()
 
-		os.fsync(file.fileno())
-		file.close()
-		os.rename(self.Filename + ".writing", self.Filename)
+			os.fsync(file.fileno())
+			file.close()
+			os.rename(self.Filename + ".writing", self.Filename)
+		except:
+			print "There is not /etc/enigma2/timers.xml file !!! Why ?? "
 
 	def getNextZapTime(self):
 		now = time()

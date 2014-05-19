@@ -48,7 +48,7 @@ def buildTerTransponder(frequency,
 	parm.system = system
 	parm.plpid = plpid
 	return parm
-      
+
 def getInitialTerrestrialTransponderList(tlist, region):
 	list = nimmanager.getTranspondersTerrestrial(region)
 
@@ -62,6 +62,7 @@ class IniTerrestrialLocation(Screen):
 	<screen name="IniTerrestrialLocation" position="center,center" size="560,550">
 		<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#2222bb" transparent="1" />
 		<widget name="config" position="0,90" size="560,384" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		<widget name="text" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
 	</screen>"""
@@ -76,12 +77,14 @@ class IniTerrestrialLocation(Screen):
 
 		self["text"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
 		self["key_red"] = Label(_("Exit"))
+		self["key_blue"] = Label(_("Set location"))
 		self.mlist = []
 		self["config"] = TerrestrialMenuList(self.mlist)
 		
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"red": self.close,
+			"blue": self.setLocation,
 			"ok": self.go,
 			"save": self.go,
 			"cancel": self.close,
@@ -139,7 +142,11 @@ class IniTerrestrialLocation(Screen):
 			# empty tuners provide no networks.
 			networks = [ ]
 		return networks
-		  
+
+	def setLocation(self):
+		self.saveTunerSetting()
+		self.close()
+
 	def go(self):
 		self.saveTunerSetting()
 		

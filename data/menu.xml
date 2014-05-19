@@ -312,11 +312,11 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item level="1" text="Network mount" entryID="netmounts_setup">
 			<screen module="NetworkSetup" screen="NetworkMountsMenu"/>
 			</item>
-			<item level="0" text="Filesystem check" entryID="harddisk_check">
+			<item level="0" text="File system check" entryID="harddisk_check">
 			<screen module="HarddiskSetup" screen="HarddiskFsckSelection"/>
 			</item>
 			<!--
-			<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4">
+			<item level="0" text="Convert file system ext3 to ext4" entryID="harddisk_convert" requires="ext4">
 				<screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/>
 			</item>
 			-->

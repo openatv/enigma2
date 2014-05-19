@@ -4,6 +4,7 @@ from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
 import Task
+from boxbranding import getMachineName
 
 def readFile(filename):
 	file = open(filename)
@@ -345,21 +346,11 @@ class Harddisk:
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
-		task = MkfsTask(job, _("Creating filesystem"))
-		big_o_options = ["dir_index"]
+		task = MkfsTask(job, _("Creating file system"))
+		big_o_options = ["dir_index", "filetype"]
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
-			if size > 20000:
-				try:
-					file = open("/proc/version","r")
-					version = map(int, file.read().split(' ', 4)[2].split('.',2)[:2])
-					file.close()
-					if (version[0] > 3) or (version[0] > 2 and version[1] >= 2):
-						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
-						task.args += ["-C", "262144"]
-						big_o_options.append("bigalloc")
-				except Exception, ex:
-					print "Failed to detect Linux version:", ex
+			big_o_options +=["extent", "flex_bg", "uninit_bg"]
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
@@ -373,7 +364,7 @@ class Harddisk:
 		elif size > 2048:
 			# Over 2GB: 32 i-nodes per megabyte
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
-		task.args += ["-m0", "-O", ",".join(big_o_options), self.partitionPath("1")]
+		task.args += ["-L", getMachineName(), "-m0", "-O", ",".join(big_o_options), self.partitionPath("1")]
 
 		task = MountTask(job, self)
 		task.weighting = 3
@@ -393,7 +384,7 @@ class Harddisk:
 		return -5
 
 	def createCheckJob(self):
-		job = Task.Job(_("Checking filesystem..."))
+		job = Task.Job(_("Checking file system..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
@@ -402,10 +393,16 @@ class Harddisk:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
 		task = Task.LoggingTask(job, "fsck")
-		task.setTool('fsck.ext3')
-		task.args.append('-f')
-		task.args.append('-p')
-		task.args.append(dev)
+		if isFileSystemSupported("ext4"):
+			task.setTool("fsck.ext4")
+		else:
+			task.setTool('fsck.ext3')
+		# fsck.ext? return codes less than 4 are not real errors
+		class FsckReturncodePostCondition(Task.ReturncodePostcondition):
+			def check(self, task):
+				return task.returncode < 4
+		task.postconditions = [FsckReturncodePostCondition()]
+		task.args += ["-D", "-f", "-p", dev]
 		MountTask(job, self)
 		task = Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
@@ -431,7 +428,7 @@ class Harddisk:
 		task = Task.LoggingTask(job, "tune2fs")
 		task.setTool('tune2fs')
 		task.args.append('-O')
-		task.args.append('extents,uninit_bg,dir_index')
+		task.args.append('extent,flex_bg,uninit_bg,dir_index,filetype')
 		task.args.append('-o')
 		task.args.append('journal_data_writeback')
 		task.args.append(dev)
