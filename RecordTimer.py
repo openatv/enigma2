@@ -437,6 +437,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
+						print "[RecordTimer] quitMainloop #1"
 						quitMainloop(1)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
@@ -445,6 +446,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
+						print "[RecordTimer] quitMainloop #2"
 						quitMainloop(1)
 
 			return True

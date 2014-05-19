@@ -4,6 +4,7 @@ from Components import Harddisk
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 import time
+from datetime import datetime
 import os
 import enigma
 
@@ -186,6 +187,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 						bytesToRemove -= st_size
 						size -= st_size
 					print "[Trashcan] " + str(trashfolder) + ": Size now:",size
+					print "[Trashcan] ",datetime.now()
 
 class TrashInfo(VariableText, GUIComponent):
 	FREE = 0

@@ -257,6 +257,7 @@ class TryQuitMainloop(MessageBox):
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
+			print "[Standby] quitMainloop #1"
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)

@@ -253,6 +253,7 @@ class Session:
 			errstr = "Screen %s(%s, %s): %s" % (str(screen), str(arguments), str(kwargs), exc_info()[0])
 			print errstr
 			print_exc(file=stdout)
+			print "[mytest.py] quitMainloop #1"
 			enigma.quitMainloop(5)
 
 	def instantiateDialog(self, screen, *arguments, **kwargs):
@@ -285,6 +286,7 @@ class Session:
 			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
 			print '-'*60
 			print_exc(file=stdout)
+			print "[mytest.py] quitMainloop #2"
 			enigma.quitMainloop(5)
 			print '-'*60
 
@@ -522,6 +524,7 @@ def runScreenTest():
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
+			print "[mytest.py] quitMainloop #3"
 			enigma.quitMainloop(*result)
 			return
 
@@ -589,7 +592,7 @@ def runScreenTest():
 	
 	runReactor()
 
-	print "normal shutdown"
+	print "[mytest.py] normal shutdown"
 	config.misc.startCounter.save()
 	config.usage.shutdownOK.setValue(True)
 	config.usage.shutdownOK.save()
@@ -761,5 +764,6 @@ except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60
 	print_exc(file=stdout)
+	print "[mytest.py] quitMainloop #4"
 	enigma.quitMainloop(5)
 	print '-'*60
