@@ -122,7 +122,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			self.wasPowerTimerWakeup = False
 			if os.path.exists("/tmp/was_powertimer_wakeup"):
 				self.wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
-				os.remove("/tmp/was_powertimer_wakeup")
+				#os.remove("/tmp/was_powertimer_wakeup")
+				
+				#remove wakeupstatus for autodeepstandby and deepstandby
+				if not Screens.Standby.inStandby:
+					self.wasPowerTimerWakeup = False
+					os.remove("/tmp/was_powertimer_wakeup")
+					
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
@@ -158,11 +164,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if self.end <= self.begin:
 						self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY and self.wasPowerTimerWakeup:
-				return True
+			#elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY and self.wasPowerTimerWakeup:
+			#	return True
 
-			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY and not self.wasPowerTimerWakeup:
-				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
+			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY	# and not self.wasPowerTimerWakeup:
+				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or self.wasPowerTimerWakeup:
+					self.backoff = 0
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
@@ -184,11 +191,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 							if self.end <= self.begin:
 								self.end = self.begin
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasPowerTimerWakeup:
-				return True
+			#elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasPowerTimerWakeup:
+			#	return True
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasPowerTimerWakeup:
-				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY	# and not self.wasPowerTimerWakeup:
+				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900self.backoff = 0 or self.wasPowerTimerWakeup:
+					self.backoff = 0
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
@@ -236,6 +244,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 		elif next_state == self.StateEnded:
+			if os.path.exists("/tmp/was_powertimer_wakeup"):
+				os.remove("/tmp/was_powertimer_wakeup")
 			old_end = self.end
 			NavigationInstance.instance.PowerTimer.saveTimer()
 			if self.afterEvent == AFTEREVENT.STANDBY:
@@ -243,6 +253,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					self.backoff = 0
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
