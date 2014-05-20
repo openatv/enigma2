@@ -419,6 +419,7 @@ public:
 	int execute(const std::string &pythonfile, const std::string &funcname);
 	static int call(ePyObject pFunc, ePyObject args);
 	static ePyObject resolve(const std::string &pythonfile, const std::string &funcname);
+	static void traceback(void);
 private:
 };
 
