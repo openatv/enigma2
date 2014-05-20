@@ -167,7 +167,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			#elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY and self.wasPowerTimerWakeup:
 			#	return True
 
-			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY	# and not self.wasPowerTimerWakeup:
+			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:	# and not self.wasPowerTimerWakeup:
 				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or self.wasPowerTimerWakeup:
 					self.backoff = 0
 					self.do_backoff()
@@ -194,7 +194,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			#elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasPowerTimerWakeup:
 			#	return True
 
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY	# and not self.wasPowerTimerWakeup:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY:	# and not self.wasPowerTimerWakeup:
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900self.backoff = 0 or self.wasPowerTimerWakeup:
 					self.backoff = 0
 					self.do_backoff()
