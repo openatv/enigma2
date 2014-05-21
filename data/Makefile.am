@@ -15,7 +15,6 @@ dist_pkgdata_DATA = \
 	freesat.t2 \
 	unicable.xml \
 	hd-testcard.mvi \
-	distro-logo.png \
 	lcd_picon_default.png \
 	picon_default.png 
 
