@@ -34,13 +34,13 @@ class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
+		return "{%s}: %s." % (self.skin, self.msg)
 
 class DisplaySkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.value, self.msg)
+		return "{%s}: %s." % (config.skin.display_skin.value, self.msg)
 
 dom_skins = [ ]
 
@@ -332,7 +332,7 @@ class AttributeParser:
 				  "blend": 2,
 				}[value])
 		except KeyError:
-			print "alphatest must be one of on, off, blend, not %s. Please contact the skin's author!" % value
+			print "alphatest must be one of on, off, blend, not %s." % value
 	def scale(self, value):
 		self.guiObject.setScale(1)
 	def orientation(self, value): # used by eSlider
@@ -346,7 +346,7 @@ class AttributeParser:
 					"orRightToLeft": (self.guiObject.orHorizontal, True),
 				}[value])
 		except KeyError:
-			print "orientation must be one of orVertical, orHorizontal, orTopToBottom, orBottomToTop, orLeftToRight, or orRightToLeft, not %s. Please contact the skin's author!" % value
+			print "orientation must be one of orVertical, orHorizontal, orTopToBottom, orBottomToTop, orLeftToRight, or orRightToLeft, not %s." % value
 	def valign(self, value):
 		try:
 			self.guiObject.setVAlign(
@@ -355,7 +355,7 @@ class AttributeParser:
 					"bottom": self.guiObject.alignBottom
 				}[value])
 		except KeyError:
-			print "valign must be one of top, center or bottom, not %s. Please contact the skin's author!" % value
+			print "valign must be one of top, center or bottom, not %s." % value
 	def halign(self, value):
 		try:
 			self.guiObject.setHAlign(
@@ -365,7 +365,7 @@ class AttributeParser:
 					"block": self.guiObject.alignBlock
 				}[value])
 		except KeyError:
-			print "halign must be one of left, center, right or block, not %s. Please contact the skin's author!" % value
+			print "halign must be one of left, center, right or block, not %s." % value
 	def textOffset(self, value):
 		x, y = value.split(',')
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
@@ -865,14 +865,14 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				attributes = screen[wname].skinAttributes = [ ]
 			except:
-				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
+				raise SkinError("screen '" + name + "' does not have component '" + wname + "'")
 			# assert screen[wname] is not Source
 			collectAttributes(attributes, widget, context, skin_path_prefix, ignore=('name',))
 		elif wsource:
 			# get corresponding source
 			#print "Widget source=", wsource
 			while True: # until we found a non-obsolete source
-				# parse our current "wsource", which might specifiy a "related screen" before the dot,
+				# parse our current "wsource", which might specify a "related screen" before the dot,
 				# for example to reference a parent, global or session-global screen.
 				scr = screen
 				# resolve all path components
@@ -882,7 +882,7 @@ def readSkin(screen, skin, names, desktop):
 					if scr is None:
 						#print wsource
 						#print name
-						raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'!")
+						raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'")
 					path = path[1:]
 				# resolve the source.
 				source = scr.get(path[0])
@@ -898,11 +898,11 @@ def readSkin(screen, skin, names, desktop):
 					break
 
 			if source is None:
-				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
+				raise SkinError("screen '" + name + "' does not have source '" + wsource+ "'")
 
 			wrender = get_attr('render')
 			if not wrender:
-				raise SkinError("you must define a renderer with render= for source '%s'" % wsource)
+				raise SkinError("screen '" + name + "' source '" + wsource+ "' is missing 'render='")
 			for converter in widget.findall("convert"):
 				ctype = converter.get('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"
@@ -964,7 +964,7 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				p(w, context)
 			except SkinError, e:
-				print "[Skin] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e
+				print "[Skin] ERROR in screen '%s' widget '%s':" % (name, w.tag), e
 
 	def process_panel(widget, context):
 		n = widget.attrib.get('name')
@@ -972,7 +972,7 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				s = dom_screens[n]
 			except KeyError:
-				print "[SKIN] Unable to find screen '%s' referred in screen '%s'" % (n, name)
+				print "[SKIN] Unable to find screen '%s' referenced in screen '%s'" % (n, name)
 			else:
 				process_screen(s[0], context)
 		layout = widget.attrib.get('layout')
@@ -1000,7 +1000,7 @@ def readSkin(screen, skin, names, desktop):
 		context.y = 0 # coordinates.
 		process_screen(myscreen, context)
 	except Exception, e:
-		print "[Skin] SKIN ERROR in %s:" % name, e
+		print "[Skin] ERROR in %s:" % name, e
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]
