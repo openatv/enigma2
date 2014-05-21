@@ -1809,15 +1809,15 @@ class InfoBarSeek:
 
 	def doSeekRelative(self, pts):
 		seekable = self.getSeek()
-		if seekable is None and int(self.seek.getLength()[1]) < 1:
+		if seekable is None:
 			return
-		prevstate = self.seekstate
+
+		length = seekable.getLength()
+		if length and int(length[1]) < 1:
+			return
 
 		if self.seekstate == self.SEEK_STATE_EOF:
-			if prevstate == self.SEEK_STATE_PAUSE:
-				self.setSeekState(self.SEEK_STATE_PAUSE)
-			else:
-				self.setSeekState(self.SEEK_STATE_PLAY)
+			self.setSeekState(self.SEEK_STATE_PLAY)
 		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
 		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
 			self.showAfterSeek()
