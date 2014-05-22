@@ -360,6 +360,7 @@ class MovieContextMenu(Screen):
 
 		menu.append((_("Add bookmark"), csel.do_addbookmark))
 		menu.append((_("create directory"), csel.do_createdir))
+		menu.append((_("Sort by") + "...", csel.selectSortby))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
@@ -606,9 +607,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
+				'sortby': _("Sort by"),
 				'listtype': _("List type"),
 				'preview': _("Preview"),
-				'movieoff': _("On end of movie")
+				'movieoff': _("On end of movie"),
+				'movieoff_menu': _("On end of movie (as menu)")
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
@@ -1129,6 +1132,29 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.saveLocalSettings()
 			self._updateButtonTexts()
 			self.reloadList()
+
+	def can_sortby(self, item):
+		return True
+
+	def do_sortby(self):
+		self.selectSortby()
+
+	def selectSortby(self):
+		menu = []
+		index = 0
+		used = 0
+		for x in l_moviesort:
+			if int(x[0]) == int(config.movielist.moviesort.value):
+				used = index
+			menu.append((_(x[1]), x[0], "%d" % index))
+			index += 1
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu, selection = used)
+
+	def sortbyMenuCallback(self, choice):
+		if choice is None:
+			return
+		self.sortBy(int(choice[1]))
+		self["movie_sort"].setPixmapNum(int(choice[1])-1)
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
@@ -1822,6 +1848,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["movie_sort"].setPixmapNum(int(config.movielist.moviesort.value)-1)
 		self["movie_sort"].show()
 
+	def can_movieoff(self, item):
+		return True
+
 	def do_movieoff(self):
 		self.setNextMovieOffStatus()
 		self.displayMovieOffStatus()
@@ -1835,6 +1864,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.settings["movieoff"] = config.usage.on_movie_eof.value
 		if config.movielist.settings_per_directory.value:
 			self.saveLocalSettings()
+
+	def can_movieoff_menu(self, item):
+		return True
+
+	def do_movieoff_menu(self):
+		current_movie_eof = config.usage.on_movie_eof.value
+		menu = []
+		for x in config.usage.on_movie_eof.choices:
+			config.usage.on_movie_eof.value = x
+			menu.append((config.usage.on_movie_eof.getText(), x))
+		config.usage.on_movie_eof.value = current_movie_eof
+		used = config.usage.on_movie_eof.getIndex()
+		self.session.openWithCallback(self.movieoffMenuCallback, ChoiceBox, title = _("On end of movie"), list = menu, selection = used)
+
+	def movieoffMenuCallback(self, choice):
+		if choice is None:
+			return
+		self.settings["movieoff"] = choice[1]
+		self.saveLocalSettings()
+		self.displayMovieOffStatus()
 
 	def createPlaylist(self):
 		global playlist

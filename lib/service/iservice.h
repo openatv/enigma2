@@ -270,6 +270,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
 	virtual long long getFileSize(const eServiceReference &ref);
+	virtual bool isCrypted(const eServiceReference &ref);
 
 	virtual int setInfo(const eServiceReference &ref, int w, int v);
 	virtual int setInfoString(const eServiceReference &ref, int w, const char *v);
