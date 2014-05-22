@@ -275,7 +275,11 @@ class AttributeParser:
 		self.scale = scale
 	def applyOne(self, attrib, value):
 		try:
-			getattr(self, attrib)(value)
+			# scale is shadowed by an attribute
+			if attrib == "scale":
+				self.guiObject.setScale(1)
+			else:
+				getattr(self, attrib)(value)
 		except AttributeError:
 			print "[Skin] Attribute not implemented:", attrib, "value:", value
 		except SkinError, ex:
@@ -329,8 +333,6 @@ class AttributeParser:
 				}[value])
 		except KeyError:
 			print "alphatest must be one of on, off, blend, not %s." % value
-	def scale(self, value):
-		self.guiObject.setScale(1)
 	def orientation(self, value): # used by eSlider
 		try:
 			self.guiObject.setOrientation(*
