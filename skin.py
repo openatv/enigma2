@@ -48,6 +48,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 	# read the skin
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
+		print "[SKIN] Adding skin %s from %s" % (name, filename)
 		mpath = os.path.dirname(filename) + "/"
 		file = open(filename, 'r')
 		dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
@@ -281,12 +282,7 @@ class AttributeParser:
 			print "[Skin] Error:", ex
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
-			try:
-				getattr(self, attrib)(value)
-			except AttributeError:
-				print "[Skin] Attribute not implemented:", attrib, "value:", value
-			except SkinError, ex:
-				print "[Skin] Error:", ex
+			self.applyOne(attrib, value)
 	def conditional(self, value):
 		pass
 	def position(self, value):
@@ -487,26 +483,27 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		for pixmap in c.findall('pixmap'):
 			get_attr = pixmap.attrib.get
 			name = get_attr('name')
+			if not name:
+				raise SkinError('pixmap needs name attribute')
 			filename = get_attr('filename')
-			if name and filename:
-				resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-				if fileExists(resolved_png):
-					switchPixmap[name] = resolved_png
-				else:
-					raise SkinError('need filename, got', filename)
+			if not filename:
+				raise SkinError('pixmap needs filename attribute')
+			resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+			if fileExists(resolved_png):
+				switchPixmap[name] = resolved_png
 			else:
-				raise SkinError('need filename and name, got %s %s' % (name, filename))
+				raise SkinError('switchpixmap pixmap filename="%s" (%s) not found' % (filename, resolved_png))
 
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
 			name = get_attr("name")
+			if not name:
+				raise SkinError('color needs name attribute')
 			color = get_attr("value")
-			if name and color:
-				colorNames[name] = parseColor(color)
-				#print "Color:", name, color
-			else:
-				raise SkinError("need color and name, got %s %s" % (name, color))
+			if not color:
+				raise SkinError('color needs value attribute')
+			colorNames[name] = parseColor(color)
 
 	for c in skin.findall("fonts"):
 		for font in c.findall("font"):
@@ -964,7 +961,7 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				p(w, context)
 			except SkinError, e:
-				print "[Skin] ERROR in screen '%s' widget '%s':" % (name, w.tag), e
+				print "[Skin] screen '%s' widget '%s':" % (name, w.tag), e
 
 	def process_panel(widget, context):
 		n = widget.attrib.get('name')
