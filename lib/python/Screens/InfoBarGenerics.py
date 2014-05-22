@@ -51,7 +51,7 @@ from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
-from keyids import KEYFLAGS
+from keyids import KEYFLAGS, KEYIDS
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -191,8 +191,14 @@ class InfoBarUnhandledKey:
 				self.checkUnusedTimer.start(0, True)
 		return 0
 
+	sib_ignore_keys = (
+		KEYIDS["KEY_VOLUMEUP"], KEYIDS["KEY_VOLUMEDOWN"],
+		KEYIDS["KEY_CHANNELUP"], KEYIDS["KEY_CHANNELDOWN"],
+		KEYIDS["KEY_UP"], KEYIDS["KEY_DOWN"], KEYIDS["KEY_OK"],
+		KEYIDS["KEY_NEXT"], KEYIDS["KEY_PREVIOUS"])
+
 	def closeSIB(self, key):
-		if key >= 12 and key not in (114, 115, 352, 103, 108, 402, 403, 407, 412):
+		if key >= 12 and key not in self.sib_ignore_keys:
 			return True
 		else:
 			return False
