@@ -29,7 +29,11 @@ if distro.lower() == "openmips":
 elif distro.lower() == "openatv":
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
-feedurl_atv2= 'http://images.mynonpublic.com/openatv/3.0'
+if ImageVersion == '4.0' or ImageVersion == '3.0':
+	ImageVersion2= '4.1'
+else:
+	ImageVersion2= '4.0'
+feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
 feedurl_om = 'http://image.openmips.com/4.0'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
@@ -476,7 +480,7 @@ class doFlashImage(Screen):
 			else:
 				if self.feed == "atv":
 					self.feedurl = feedurl_atv
-					self["key_blue"].setText("ATV 3.0")
+					self["key_blue"].setText("ATV %s" %ImageVersion2)
 				else:
 					self.feedurl = feedurl_atv2
 					self["key_blue"].setText("ATV %s" %ImageVersion)
