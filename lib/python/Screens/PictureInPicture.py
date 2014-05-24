@@ -84,21 +84,24 @@ class PictureInPicture(Screen):
 			self.setSizePosMainWindow(0, h, 720 - w - 2 , 568 - h - 2)
 
 	def setSizePosMainWindow(self, x = 0, y = 0, w = 720, h = 568):
-		f = open("/proc/stb/vmpeg/0/dst_left","w")
-		f.write("%x" % x)
-		f.close()
-		f = open("/proc/stb/vmpeg/0/dst_top","w")
-		f.write("%x" % y)
-		f.close()
-		f = open("/proc/stb/vmpeg/0/dst_width","w")
-		f.write("%x" % w)
-		f.close()
-		f = open("/proc/stb/vmpeg/0/dst_height","w")
-		f.write("%x" % h)
-		f.close()
-		f = open("/proc/stb/vmpeg/0/dst_apply","w")
-		f.write("1")
-		f.close()
+		try:
+			f = open("/proc/stb/vmpeg/0/dst_left","w")
+			f.write("%x" % x)
+			f.close()
+			f = open("/proc/stb/vmpeg/0/dst_top","w")
+			f.write("%x" % y)
+			f.close()
+			f = open("/proc/stb/vmpeg/0/dst_width","w")
+			f.write("%x" % w)
+			f.close()
+			f = open("/proc/stb/vmpeg/0/dst_height","w")
+			f.write("%x" % h)
+			f.close()
+			f = open("/proc/stb/vmpeg/0/dst_apply","w")
+			f.write("1")
+			f.close()
+		except:
+			pass
 
 	def setExternalPiP(self, onoff):
 		if self.has_external_pip:
