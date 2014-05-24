@@ -44,7 +44,8 @@ from Flash_online import FlashOnline
 from ImageWizard import ImageWizard
 from PluginBackup import PluginBackup
 from PluginRestore import PluginRestore
-from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilenamefrom SoftwareTools import iSoftwareTools
+from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
+from SoftwareTools import iSoftwareTools
 import os
 
 config.plugins.configurationbackup = ConfigSubsection()
@@ -67,7 +68,7 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				 ("N", _("No, never")),
 				 ("ask", _("Always ask"))
 				], "Y")
-config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
+config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=True)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 config.plugins.softwaremanager.updatetype = ConfigSelection(
 				[
