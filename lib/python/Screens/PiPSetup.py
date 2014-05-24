@@ -25,13 +25,15 @@ class PiPSetup(Screen):
 
 		self.pos = (self.pip.instance.position().x(), self.pip.instance.position().y())
 		self.size = self.pip.getSize()
+		self.mode = self.pip.getMode()
 
 		self.orgpos = self.pos
 		self.orgsize = self.size
+		self.orgmode = self.mode
 
 		self.resize = 100
 
-		helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
+		helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress Info to switch PiP mode.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
 		if self.pip.has_external_pip:
 			helptext += "\n" + _("Press '0' to toggle internal/external PiP.")
 
@@ -47,6 +49,7 @@ class PiPSetup(Screen):
 			"right": self.right,
 			"size+": self.bigger,
 			"size-": self.smaller,
+			"mode": self.setMode,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -65,12 +68,14 @@ class PiPSetup(Screen):
 	def cancel(self):
 		self.pos = self.orgpos
 		self.size = self.orgsize
+		self.mode = self.orgmode
+		self.pip.setMode(self.mode)
 		self.setPiPPosition()
 		self.close()
 
 	def setPiPPosition(self):
-		self.pip.move(self.pos[0], self.pos[1])
 		self.pip.resize(self.size[0], self.size[1])
+		self.pip.move(self.pos[0], self.pos[1])
 
 	def resizePiP(self, resize):
 		resize += 100 # resize is in percent, so resize=+20 means: 120%
@@ -108,6 +113,11 @@ class PiPSetup(Screen):
 
 	def smaller(self):
 		self.resizePiP(-10)
+
+	def setMode(self):
+		self.mode = (self.mode + 1) % 3
+		self.pip.setMode(self.mode)
+		self.setPiPPosition()
 
 	def keyNumberGlobal(self, number):
 

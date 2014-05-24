@@ -2991,7 +2991,7 @@ class InfoBarPiP:
 		return _("Swap services")
 
 	def getMoveName(self):
-		return _("Move Picture in Picture")
+		return _("Setup Picture in Picture")
 
 	def getTogglePipzapName(self):
 		slist = self.servicelist
