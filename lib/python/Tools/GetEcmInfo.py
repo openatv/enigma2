@@ -10,6 +10,9 @@ info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
 
+def getECM():
+	return ecm
+
 class GetEcmInfo:
 	def __init__(self):
 		pass
