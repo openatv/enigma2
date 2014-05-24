@@ -309,9 +309,31 @@ class doFlashImage(Screen):
 			(_("Flash and restore settings and selected plugins (ask user)"), "restoresettings"),
 			(_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
 			(_("Do not flash image"), "abort"))
-			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=list)
+			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=list,selection=self.SelectPrevPostFashAction())
 		else:
 			self.show()
+
+	def SelectPrevPostFashAction(self):
+		index = 0
+		Settings = False
+		AllPlugins = False
+		noPlugins = False
+		
+		if os.path.exists('/media/hdd/images/config/settings'):
+			Settings = True
+		if os.path.exists('/media/hdd/images/config/plugins'):
+			AllPlugins = True
+		if os.path.exists('/media/hdd/images/config/noplugins'):
+			noPlugins = True
+
+		if 	Settings and noPlugins:
+			index = 1
+		elif Settings and not AllPlugins and not noPlugins:
+			index = 2
+		elif Settings and AllPlugins:
+			index = 3
+
+		return index
 
 	def postFlashActionCallback(self, answer):
 		print "postFlashActionCallback"
