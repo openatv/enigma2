@@ -173,6 +173,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self["genre"] = Label("")
 		self["coverArt"] = MediaPixmap()
 		self["repeat"] = MultiPixmap()
+		
+		self["key_red"] = Label(_("Rewind"))
+		self["key_green"] = Label(_("Play"))
+		self["key_yellow"] = Label(_("Pause"))
+		self["key_blue"] = Label(_("Forward"))
 
 		self.seek_target = None
 
