@@ -84,7 +84,6 @@ class Standby(Screen):
 		self.DVBResourceManager = eDVBResourceManager.getInstance()
 		if self.DVBResourceManager:
 			self.DVBResourceManager.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
-		self.gotoDeepStandbyAtTunerMaskChange = False
 
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
@@ -117,12 +116,10 @@ class Standby(Screen):
 
 	def tunerUseMaskChanged(self, mask):
 		self.tunerMask = mask
-		if not mask and self.gotoDeepStandbyAtTunerMaskChange:
-			self.standbyTimeout()
 
 	def standbyTimeout(self):
 		if self.tunerMask:
-			self.gotoDeepStandbyAtTunerMaskChange = True
+			self.standbyTimeoutTimer.startLongTimer(600)
 		else:
 			from RecordTimer import RecordTimerEntry
 			RecordTimerEntry.TryQuitMainloop()
