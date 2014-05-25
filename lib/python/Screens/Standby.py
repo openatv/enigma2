@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Tools import Notifications
 from GlobalActions import globalActionMap
 import RecordTimer
-from enigma import eDVBVolumecontrol, eTimer
+from enigma import eDVBVolumecontrol, eTimer, eDVBResourceManager
 from time import time, localtime
 
 inStandby = None
@@ -81,6 +81,10 @@ class Standby(Screen):
 		if gotoShutdownTime:
 			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
 			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
+		self.DVBResourceManager = eDVBResourceManager.getInstance()
+		if self.DVBResourceManager:
+			self.DVBResourceManager.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
+		self.gotoDeepStandbyAtTunerMaskChange = False
 
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
@@ -98,6 +102,8 @@ class Standby(Screen):
 		globalActionMap.setEnabled(True)
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
+		if self.DVBResourceManager:
+			self.DVBResourceManager.frontendUseMaskChanged.get().remove(self.tunerUseMaskChanged)	
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -109,9 +115,17 @@ class Standby(Screen):
 	def createSummary(self):
 		return StandbySummary
 
+	def tunerUseMaskChanged(self, mask):
+		self.tunerMask = mask
+		if not mask and self.gotoDeepStandbyAtTunerMaskChange:
+			self.standbyTimeout()
+
 	def standbyTimeout(self):
-		from RecordTimer import RecordTimerEntry
-		RecordTimerEntry.TryQuitMainloop()
+		if self.tunerMask:
+			self.gotoDeepStandbyAtTunerMaskChange = True
+		else:
+			from RecordTimer import RecordTimerEntry
+			RecordTimerEntry.TryQuitMainloop()
 
 	def stopService(self):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
