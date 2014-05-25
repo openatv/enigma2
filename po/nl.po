@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-25 12:39+0100\n"
-"PO-Revision-Date: 2014-04-29 08:14+0100\n"
+"POT-Creation-Date: 2014-05-24 09:01+0100\n"
+"PO-Revision-Date: 2014-05-25 22:44+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -16,6 +16,13 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: The Netherlands\n"
+
+msgid ""
+"\n"
+"A recording is in progress."
+msgstr ""
+"\n"
+"Er loopt een opname."
 
 msgid ""
 "\n"
@@ -570,9 +577,6 @@ msgstr "U bent aan het opnemen. Stop de opname voordat u probeert de rotor inste
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Een opname is nu bezig. Stop de opname voor u gaat scannen."
 
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
-
 msgid "A repeating timer or just once?"
 msgstr "Een herhalende timer of eenmalig?"
 
@@ -621,17 +625,11 @@ msgstr ""
 msgid "A/V settings"
 msgstr "A/V instellingen"
 
-msgid "AA"
-msgstr "AA"
-
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
 msgid "AAC transcoding"
 msgstr "AAC transcoding"
-
-msgid "AB"
-msgstr "AB"
 
 msgid "AC3"
 msgstr "AC3"
@@ -787,6 +785,9 @@ msgstr "Adres"
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op \"OK\" om dit menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
 
+msgid "Advanced"
+msgstr "Geavanceerd"
+
 msgid "Advanced options"
 msgstr "Geavanceerde opties"
 
@@ -820,17 +821,17 @@ msgstr "Alle leeftijden"
 msgid "All resolutions"
 msgstr "Alle resoluties"
 
-msgid "All satellites 1 (DiSEqC mode 1.2)"
-msgstr "Alle satellieten 1 (DiSEqC mode 1.2)"
+msgid "All satellites 1 (USALS)"
+msgstr "Alle satellieten 1 (USALS)"
 
-msgid "All satellites 2 (DiSEqC mode 1.2)"
-msgstr "Alle satellieten 2 (DiSEqC mode 1.2)"
+msgid "All satellites 2 (USALS)"
+msgstr "Alle satellieten 2 (USALS)"
 
-msgid "All satellites 3 (DiSEqC mode 1.2)"
-msgstr "Alle satellieten 3 (DiSEqC mode 1.2)"
+msgid "All satellites 3 (USALS)"
+msgstr "Alle satellieten 3 (USALS)"
 
-msgid "All satellites 4 (DiSEqC mode 1.2)"
-msgstr "Alle satellieten 4 (DiSEqC mode 1.2)"
+msgid "All satellites 4 (USALS)"
+msgstr "Alle satellieten 4 (USALS)"
 
 msgid "Allocate"
 msgstr "Wijs toe"
@@ -1134,12 +1135,6 @@ msgstr "Beschikbare shares:"
 
 msgid "B"
 msgstr "B"
-
-msgid "BA"
-msgstr "BA"
-
-msgid "BB"
-msgstr "BB"
 
 msgid "Back"
 msgstr "Terug"
@@ -1707,9 +1702,6 @@ msgstr "Commando volgorde"
 msgid "Command type"
 msgstr "Type opdracht "
 
-msgid "Committed DiSEqC command"
-msgstr "Vastgelegd DiSEqC commando"
-
 msgid "Common Interface"
 msgstr "Common interface"
 
@@ -1759,6 +1751,9 @@ msgstr "Bepaal hoelang oude info in de EPG zichtbaar moet blijven. Nuttig als u 
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Stel in hoe de namen van opnames worden samengesteld"
+
+msgid "Configure if and how crypto icons will be shown in the channel selection list."
+msgstr "Stel in of en hoe de crypto-iconen moeten worden getoond."
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Stel in of en hoe de servicetype iconen worden getoond."
@@ -2242,6 +2237,9 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+msgid "DVB_C"
+msgstr "DVB_C"
+
 msgid "DVD data format"
 msgstr "DVD data format"
 
@@ -2388,6 +2386,15 @@ msgstr "Apparaten"
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
+msgid "DiSEqC 1.0 command"
+msgstr "DiSEqC 1.0 commando"
+
+msgid "DiSEqC 1.1 command"
+msgstr "DiSEqC 1.1 commando"
+
+msgid "DiSEqC 1.1 repeats"
+msgstr "DiSEqC 1.1 herhalingen"
+
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
@@ -2400,9 +2407,6 @@ msgstr "DiSEqC-modus"
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC poort %s: %s"
-
-msgid "DiSEqC repeats"
-msgstr "DiSEqC herhaling"
 
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-tester instellingen"
@@ -2871,6 +2875,9 @@ msgstr "Voer hier uw forum-gebruikersnaam in, om terugkoppeling makkelijker te m
 msgid "Entitlements"
 msgstr "Rechten"
 
+msgid "Equal to"
+msgstr "Gelijk aan"
+
 msgid "Error"
 msgstr "Fout"
 
@@ -3011,6 +3018,9 @@ msgstr "Extern (CF)"
 
 msgid "External subtitle color"
 msgstr "Kleur externe ondertitels"
+
+msgid "Extra motor options"
+msgstr "Extra motor opties"
 
 msgid "FAILED"
 msgstr "MISLUKT"
@@ -3655,6 +3665,9 @@ msgstr "Installeer een nieuwe image met uw browser"
 msgid "Install channel list"
 msgstr "Installeer kanaallijst"
 
+msgid "Install extensions"
+msgstr "Installeer extensies"
+
 msgid "Install extensions."
 msgstr "Installeer extensies."
 
@@ -4024,6 +4037,9 @@ msgstr "Lange toetsdruk"
 msgid "Longitude"
 msgstr "Lengtegraad"
 
+msgid "Loop through to"
+msgstr "Doorlus naar"
+
 msgid "Luxembourgish"
 msgstr "Luxumburgs"
 
@@ -4064,6 +4080,9 @@ msgstr "Beheer van extensies"
 msgid "Manage your %s %s's software"
 msgstr "Beheer de software van uw %s %s"
 
+msgid "Manual"
+msgstr "Handmatig"
+
 msgid "Manual Scan"
 msgstr "Handmatig zoeken"
 
@@ -4084,6 +4103,9 @@ msgstr "Marge na opname (minuten)"
 
 msgid "Margin before recording (minutes)"
 msgstr "Marge voor opname (minuten)"
+
+msgid "Max memory positions"
+msgstr "Max aantal geheugenposities"
 
 msgid "Max. bitrate: "
 msgstr "Max. bitrate:"
@@ -4126,9 +4148,6 @@ msgstr "Geheugen informatie"
 
 msgid "Memory index"
 msgstr "Geheugenindex"
-
-msgid "Memory positions"
-msgstr "Geheugenposities"
 
 msgid "Menu"
 msgstr "Menu"
@@ -4628,6 +4647,10 @@ msgstr "Niet zichtbaar"
 msgid "Not associated"
 msgstr "Niet geassocieerd"
 
+#
+msgid "Not configured"
+msgstr "Niet geconfigureerd"
+
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB benodigd, %d MB beschikbaar)"
@@ -4654,6 +4677,9 @@ msgstr "Niet geassocieerd"
 
 msgid "Nothing"
 msgstr "Niets"
+
+msgid "Nothing connected"
+msgstr "Niets aangesloten"
 
 msgid ""
 "Nothing to scan!\n"
@@ -4727,6 +4753,9 @@ msgstr "Aan"
 
 msgid "On end of movie"
 msgstr "Bij het einde van bestand"
+
+msgid "On end of movie (as menu)"
+msgstr "Aan het einde van de film (als menu)"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
 msgstr "U kunt instellen wat er moet gebeuren bij het einde van het afspelen."
@@ -5711,6 +5740,9 @@ msgstr "Een herhaalde timer maakt nu een opname... Wat wilt u doen?"
 msgid "Repeats"
 msgstr "Herhalingen"
 
+msgid "Require authentication for http streams"
+msgstr "Vereist autenticatie voor http streams"
+
 #
 msgid "Required medium type:"
 msgstr "Benodigd mediumtype:"
@@ -6040,6 +6072,9 @@ msgstr "Zoeken naar nieuw geïnstalleerde of verwijderde pakketten. Een ogenblik
 msgid "Searching west ..."
 msgstr "Zoekt west..."
 
+msgid "Second cable of motorized LNB"
+msgstr "2e kabel van gemotoriseerde LNB"
+
 msgid "Secondary DNS"
 msgstr "Secondaire DNS"
 
@@ -6187,9 +6222,6 @@ msgstr "Verstuur"
 
 msgid "Send Confirmation"
 msgstr "Stuur bevestiging"
-
-msgid "Send DiSEqC"
-msgstr "Verstuur DiSEqC"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "Verstuur DiSEqC enkel bij satellietwijziging"
@@ -6543,6 +6575,9 @@ msgstr "Toon kanaalnummers in informatiebalk."
 msgid "Show channel numbers in channel selection"
 msgstr "Toon kanaalnummers in kanaallijst"
 
+msgid "Show crypto icons"
+msgstr "Toon iconen voor versleutelde kanalen"
+
 msgid "Show crypto info in infobar"
 msgstr "Laat crypto-informatie zien in informatiebalk "
 
@@ -6855,6 +6890,9 @@ msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
 msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable updates' in \"software update setup\"."
 msgstr "Sorry: de feeds lijken onstabiel te zijn. Als u die toch wilt gebruiken, moet u 'Accepteer niet geteste updates' activeren in de online update instellingen."
 
+msgid "Sorry that tuner is not available."
+msgstr "Die tuner is niet beschikbaar"
+
 msgid "Sorry uShare Config is Missing"
 msgstr "Sorry uShare configuratie ontbreekt"
 
@@ -6881,11 +6919,17 @@ msgstr "Sorteer"
 msgid "Sort EPG List"
 msgstr "Sorteer EPG-lijst"
 
+msgid "Sort by"
+msgstr "Sorteer lijst op"
+
 msgid "Sort by default"
 msgstr "Standaard sortering"
 
 msgid "Sort list by"
 msgstr "Sorteer lijst op"
+
+msgid "Sort list:"
+msgstr "Sorteer lijst op:"
 
 msgid "Sort menu screens alphabetically"
 msgstr "Sorteer de menu's alfabetisch"
@@ -7982,6 +8026,9 @@ msgstr "Tuner:"
 msgid "Tuner configuration"
 msgstr "Tunerconfiguratie"
 
+msgid "Tuner is not supported"
+msgstr "Tuner wordt niet ondersteund"
+
 msgid "Tuner settings"
 msgstr "Tunerinstellingen"
 
@@ -8000,14 +8047,14 @@ msgstr "Tunerstatus:"
 msgid "Tuner type"
 msgstr "Tunertype"
 
-msgid "Tuning step size"
-msgstr "Draai stapgrootte"
-
 msgid "Turkish"
 msgstr "Turks"
 
 msgid "Turn on the power LED during standby."
 msgstr "Schakel de blauwe LED tijdens standby uit."
+
+msgid "Turning step size"
+msgstr "Draai stapgrootte "
 
 msgid "Two"
 msgstr "Twee"
@@ -8035,9 +8082,6 @@ msgstr "USB-stick wizard"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Upgrade uitvoeren en vervolgens systeem herstarten"
-
-msgid "Uncommitted DiSEqC command"
-msgstr "Uncommitted DiSEqC-commando"
 
 msgid "Undetermined"
 msgstr "Onbepaald"
@@ -8614,6 +8658,9 @@ msgstr "Indien ingeschakeld mogen opnames live-TV beeindigen als er niet voldoen
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Indien ingeschakeld krijgt u de keuze om timeshift te stoppen of door te laten lopen."
+
+msgid "When enabled, authentication is required to watch http streams."
+msgstr ""
 
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
 msgstr "Indien gekozen begint de kanaalnummering voor elk bouquet met '1'."
@@ -9566,6 +9613,9 @@ msgstr "vrij"
 msgid "free diskspace"
 msgstr "ruimte vrij..."
 
+msgid "from"
+msgstr "van"
+
 msgid "full"
 msgstr "vol"
 
@@ -9782,9 +9832,6 @@ msgstr "geen"
 
 msgid "normal"
 msgstr "normaal"
-
-msgid "not available"
-msgstr "niet beschikbaar"
 
 #
 msgid "not configured"
@@ -10198,9 +10245,6 @@ msgstr "Toerisme/Reizen"
 msgid "true"
 msgstr "waar"
 
-msgid "tuner is not supported"
-msgstr "tuner wordt niet ondersteund"
-
 msgid "uShare Log"
 msgstr "uShare Log"
 
@@ -10342,14 +10386,38 @@ msgstr "zapte"
 #~ msgid "3d mode"
 #~ msgstr "3d mode"
 
+#~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+#~ msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
+
+#~ msgid "AA"
+#~ msgstr "AA"
+
+#~ msgid "AB"
+#~ msgstr "AB"
+
 #~ msgid "Adjust 3D settings"
 #~ msgstr "Adjust 3D settings"
 
 #~ msgid "Advanced video setup"
 #~ msgstr "Geavanceerde video-instellingen"
 
-#~ msgid "All satellites"
-#~ msgstr "Alle satellieten"
+#~ msgid "All satellites 1 (DiSEqC mode 1.2)"
+#~ msgstr "Alle satellieten 1 (DiSEqC mode 1.2)"
+
+#~ msgid "All satellites 2 (DiSEqC mode 1.2)"
+#~ msgstr "Alle satellieten 2 (DiSEqC mode 1.2)"
+
+#~ msgid "All satellites 3 (DiSEqC mode 1.2)"
+#~ msgstr "Alle satellieten 3 (DiSEqC mode 1.2)"
+
+#~ msgid "All satellites 4 (DiSEqC mode 1.2)"
+#~ msgstr "Alle satellieten 4 (DiSEqC mode 1.2)"
+
+#~ msgid "BA"
+#~ msgstr "BA"
+
+#~ msgid "BB"
+#~ msgstr "BB"
 
 #~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 #~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
@@ -10360,6 +10428,9 @@ msgstr "zapte"
 #~ msgid "Lamedb"
 #~ msgstr "Lamedb"
 
+#~ msgid "Send DiSEqC"
+#~ msgstr "Verstuur DiSEqC"
+
 #~ msgid "Show tag menu"
 #~ msgstr "Markeringsmenu weergeven"
 
@@ -10369,8 +10440,14 @@ msgstr "zapte"
 #~ msgid "Top and bottom"
 #~ msgstr "Boven en -onderkant"
 
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "Uncommitted DiSEqC-commando"
+
 #~ msgid "Video setup"
 #~ msgstr "Video-instellingen"
 
 #~ msgid "Video wizard"
 #~ msgstr "Video-wizard"
+
+#~ msgid "not available"
+#~ msgstr "niet beschikbaar"
