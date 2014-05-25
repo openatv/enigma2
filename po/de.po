@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-04 15:43+0100\n"
-"PO-Revision-Date: 2014-05-06 20:28+0100\n"
+"POT-Creation-Date: 2014-05-22 12:32+0100\n"
+"PO-Revision-Date: 2014-05-25 20:37+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13,6 +13,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"A recording is in progress."
+msgstr ""
+"\n"
+" Eine Aufnahmen findet statt"
 
 msgid ""
 "\n"
@@ -579,13 +586,6 @@ msgid ""
 msgstr ""
 "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor gesucht wird."
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr ""
-"Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Sat-Finder "
-"gestartet wird."
-
 msgid "A repeating timer or just once?"
 msgstr "Ein wiederholender oder einmaliger Timer?"
 
@@ -839,17 +839,17 @@ msgstr "Alle Alter"
 msgid "All resolutions"
 msgstr "Alle Auflösungen"
 
-msgid "All satellites 1 (DiSEqC mode 1.2)"
-msgstr "Alle Satelliten 1 (DiSEqC Modus 1.2)"
+msgid "All satellites 1 (USALS)"
+msgstr "Alle Satelliten 1 (USALS)"
 
-msgid "All satellites 2 (DiSEqC mode 1.2)"
-msgstr "Alle Satelliten 2 (DiSEqC Modus 1.2)"
+msgid "All satellites 2 (USALS)"
+msgstr "Alle Satelliten 2 (USALS)"
 
-msgid "All satellites 3 (DiSEqC mode 1.2)"
-msgstr "Alle Satelliten 3 (DiSEqC Modus 1.2)"
+msgid "All satellites 3 (USALS)"
+msgstr "Alle Satelliten 3 (USALS)"
 
-msgid "All satellites 4 (DiSEqC mode 1.2)"
-msgstr "Alle Satelliten 4 (DiSEqC Modus 1.2)"
+msgid "All satellites 4 (USALS)"
+msgstr "Alle Satelliten 4 (USALS)"
 
 msgid "Allocate"
 msgstr "Reservieren"
@@ -2415,6 +2415,9 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+msgid "DVB_C"
+msgstr ""
+
 msgid "DVD data format"
 msgstr "DVD Format"
 
@@ -3213,6 +3216,9 @@ msgstr "Extern (CF)"
 msgid "External subtitle color"
 msgstr "Farbe externe Untertitel"
 
+msgid "Extra motor options"
+msgstr "Extra Rotoroptionen"
+
 msgid "FAILED"
 msgstr "FEHLGESCHLAGEN"
 
@@ -3909,6 +3915,9 @@ msgstr "Neues Image mittels Webbrowser installieren"
 msgid "Install channel list"
 msgstr "Installiere Senderliste"
 
+msgid "Install extensions"
+msgstr "Erweiterungen installieren."
+
 msgid "Install extensions."
 msgstr "Erweiterungen installieren."
 
@@ -4350,6 +4359,9 @@ msgstr "Nachlauf nach Aufnahme (Minuten)"
 msgid "Margin before recording (minutes)"
 msgstr "Vorlauf vor Aufnahme (Minuten)"
 
+msgid "Max memory positions"
+msgstr "Maximale Positionsspeicher"
+
 msgid "Max. bitrate: "
 msgstr "Max. Bitrate: "
 
@@ -4391,9 +4403,6 @@ msgstr "Speicherinformationen"
 
 msgid "Memory index"
 msgstr "Index Speicher"
-
-msgid "Memory positions"
-msgstr "Positionen speichern"
 
 msgid "Menu"
 msgstr "Menu"
@@ -5024,6 +5033,9 @@ msgstr "An"
 
 msgid "On end of movie"
 msgstr "Am Ende eines Films"
+
+msgid "On end of movie (as menu)"
+msgstr "Am Ende eines Films (als Menü)"
 
 msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
@@ -6453,8 +6465,8 @@ msgid ""
 "Select if you want to use the ViX colored buttons (set to 'no' if you want "
 "to use (Multi Quick Button)."
 msgstr ""
-"Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du (Multi-)"
-"QuickButton benutzen möchtest):"
+"Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du "
+"(Multi-)QuickButton benutzen möchtest):"
 
 msgid "Select input device"
 msgstr "Wähle Eingabegerät"
@@ -7235,6 +7247,9 @@ msgstr ""
 "Entschuldigung Feeds sind auf instabil eingestellt. Wenn instabile Updates "
 "erlaubt werden sollen muss das in den Einstellungen für Online-Update "
 "aktiviert werden."
+
+msgid "Sorry that tuner is not available."
+msgstr "Entschuldigung dieser Tuner ist nicht verfügbar!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Entschuldigung Konfiguration für uShare fehlt"
@@ -8541,14 +8556,14 @@ msgstr "Tuner-Status:"
 msgid "Tuner type"
 msgstr "Tuner Typ"
 
-msgid "Tuning step size"
-msgstr "Suche Schrittweite"
-
 msgid "Turkish"
 msgstr "Türkisch"
 
 msgid "Turn on the power LED during standby."
 msgstr "Power-LED in Bereitschaft einschalten."
+
+msgid "Turning step size"
+msgstr "Rotot Schrittweite"
 
 msgid "Two"
 msgstr "Zwei"
@@ -10311,6 +10326,9 @@ msgstr "frei"
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
 
+msgid "from"
+msgstr "von"
+
 msgid "full"
 msgstr "voll"
 
@@ -10527,9 +10545,6 @@ msgstr "keine"
 
 msgid "normal"
 msgstr "Normal"
-
-msgid "not available"
-msgstr "nicht verfügbar"
 
 msgid "not configured"
 msgstr "nicht Konfiguriert"
@@ -11083,6 +11098,13 @@ msgstr "umgeschaltet"
 #~ msgid "3d mode"
 #~ msgstr "3D Betriebsart"
 
+#~ msgid ""
+#~ "A recording is currently running. Please stop the recording before trying "
+#~ "to start the satfinder."
+#~ msgstr ""
+#~ "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Sat-"
+#~ "Finder gestartet wird."
+
 #~ msgid "AA"
 #~ msgstr "AA"
 
@@ -11095,8 +11117,17 @@ msgstr "umgeschaltet"
 #~ msgid "Advanced video setup"
 #~ msgstr "Erweiterte Bildeinstellungen"
 
-#~ msgid "All satellites"
-#~ msgstr "Alle Satelliten"
+#~ msgid "All satellites 1 (DiSEqC mode 1.2)"
+#~ msgstr "Alle Satelliten 1 (DiSEqC Modus 1.2)"
+
+#~ msgid "All satellites 2 (DiSEqC mode 1.2)"
+#~ msgstr "Alle Satelliten 2 (DiSEqC Modus 1.2)"
+
+#~ msgid "All satellites 3 (DiSEqC mode 1.2)"
+#~ msgstr "Alle Satelliten 3 (DiSEqC Modus 1.2)"
+
+#~ msgid "All satellites 4 (DiSEqC mode 1.2)"
+#~ msgstr "Alle Satelliten 4 (DiSEqC Modus 1.2)"
 
 #~ msgid "BA"
 #~ msgstr "BA"
@@ -11134,3 +11165,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Video wizard"
 #~ msgstr "Bild Assistent"
+
+#~ msgid "not available"
+#~ msgstr "nicht verfügbar"
