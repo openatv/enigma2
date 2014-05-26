@@ -12,6 +12,9 @@ extern void quitMainloop(int exitCode);
 #include <lib/python/python.h>
 #undef SKIP_PART2
 
+#include <pystate.h>
+#include <frameobject.h>
+
 #ifdef PYTHON_REFCOUNT_DEBUG
 ePyObject &ePyObject::operator=(PyObject *ob)
 {
@@ -236,4 +239,22 @@ ePyObject ePython::resolve(const std::string &pythonfile, const std::string &fun
 	} else if (PyErr_Occurred())
 		PyErr_Print();
 	return pFunc;
+}
+
+void ePython::traceback(void)
+{
+	PyThreadState *tstate = PyThreadState_GET();
+	if (NULL != tstate && NULL != tstate->frame)
+	{
+		PyFrameObject *frame = tstate->frame;
+		printf("Python stack trace:\n");
+		while (NULL != frame) {
+			int line = PyFrame_GetLineNumber(frame);
+			const char *filename = PyString_AsString(
+					frame->f_code->co_filename);
+			const char *funcname = PyString_AsString(frame->f_code->co_name);
+			printf("    %s(%d): %s\n", filename, line, funcname);
+			frame = frame->f_back;
+		}
+	}
 }

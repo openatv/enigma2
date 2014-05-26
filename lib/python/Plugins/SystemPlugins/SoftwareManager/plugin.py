@@ -166,6 +166,9 @@ class UpdatePluginMenu(Screen):
 
 		self["menu"] = List(self.list)
 		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["status"] = StaticText(self.menutext)
 
 		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "MenuActions", "NumberActions"],
@@ -223,7 +226,7 @@ class UpdatePluginMenu(Screen):
 			if iSoftwareTools.available_updates is not 0:
 				self.text = _("There are at least %s updates available.") % (str(iSoftwareTools.available_updates))
 			else:
-				self.text = "" #_("There are no updates available.")
+				self.text = _("There are no updates available.")
 			if iSoftwareTools.list_updating is True:
 				self.text += "\n" + _("A search for available updates is currently in progress.")
 		else:
