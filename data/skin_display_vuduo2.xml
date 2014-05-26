@@ -168,6 +168,11 @@
 		</widget>
 	</screen>
 
+	<screen name="ServiceScanSummary" position="fill">
+		<widget source="parent.Title" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
+		<widget source="Service" render="Label" position="fill" font="Big" noWrap="1"/>
+	</screen>
+
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
 		<panel position="fill" layout="stack">
