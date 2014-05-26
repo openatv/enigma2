@@ -1975,8 +1975,18 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 
 RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial &feparm)
 {
-	oparm.setDVBT(feparm);
-	return 0;
+	int res = 0;
+	unsigned int freq = feparm.frequency;
+	if ( freq < fe_info.frequency_min || freq > fe_info.frequency_max)
+	{
+		eDebugNoSimulate("[FE] (%d) freq %d out of range (%d..%d)", m_dvbid, freq, fe_info.frequency_min, fe_info.frequency_max);
+		res = -EINVAL;
+	}
+	else
+	{
+		res = oparm.setDVBT(feparm);
+	}
+	return res;
 }
 
 RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)

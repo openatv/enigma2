@@ -84,6 +84,7 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 			return;
 		}
 	}
+	ePython::traceback();
 	eFatal("unbindAction with illegal python reference");
 }
 

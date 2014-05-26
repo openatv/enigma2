@@ -57,6 +57,8 @@ class PluginBrowser(Screen):
 
 		self["key_red"] = Button(_("Remove plugins"))
 		self["key_green"] = Button(_("Download plugins"))
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -387,7 +389,7 @@ class PluginDownloadBrowser(Screen):
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:
-					self["text"].setText(_("Sorry feeds are down for maintenance"))
+					self["text"].setText(_("Can not retrieve data from feed server. Check your internet connection and try again later."))
 
 	def dataAvail(self, str):
 		if self.type == self.DOWNLOAD and ('wget returned 1' or 'wget returned 255' or '404 Not Found') in str:

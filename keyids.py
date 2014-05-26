@@ -304,5 +304,6 @@ KEYFLAGS = {
 0: "make",
 1: "break",
 2: "repeat",
-3: "long"
+3: "long",
+4: "ascii"
 }

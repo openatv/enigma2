@@ -467,9 +467,18 @@ void eDVBScan::PMTready(int err)
 	}
 }
 
-
 void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm, tunerstate newstate)
 {
+	eDVBFrontendParametersTerrestrial tparm;
+	feparm->getDVBT(tparm);
+	SCAN_eDebug("[eDVBScan] addKnownGoodChannel %08x:%04x:%04x, tparm.freq=%d, tunerstate.freq=%d",
+			chid.dvbnamespace.get(), chid.original_network_id.get(), chid.transport_stream_id.get(),
+			tparm.frequency, newstate.freq);
+	if (abs(tparm.frequency - newstate.freq) > 120000)
+	{
+		SCAN_eDebug("[eDVBScan] locked frequency is not the same as requested frequency - ignoring");
+		return;
+	}
 	if (chid)
 	{
 		if (m_new_channels.count(chid) == 0)
@@ -720,7 +729,7 @@ void eDVBScan::channelDone()
 						unsigned long hash=0;
 						feparm->getHash(hash);
 						ns = buildNamespace(onid, tsid, hash);
-
+						SCAN_eDebug("[eDVBScan] terrestrial delivery system descriptor found %d", d.getCentreFrequency() * 10);
 						addChannelToScan(eDVBChannelID(ns, tsid, onid), feparm);
 						break;
 					}
@@ -1008,7 +1017,6 @@ void eDVBScan::channelDone()
 		eWarning("[eDVBScan] SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
 	{
-		SCAN_eDebug("[eDVBScan] channel good - adding");
 		tunerstate tstate;
 		switch(type)
 		{
@@ -1023,16 +1031,14 @@ void eDVBScan::channelDone()
 					tstate.ber= fe->readFrontendData(iFrontendInformation_ENUMS::bitErrorRate);
 					tstate.snr = fe->readFrontendData(iFrontendInformation_ENUMS::snrValue);
 					tstate.pwr = fe->readFrontendData(iFrontendInformation_ENUMS::signalPower);
-					eDebug("[eDVBScan] add tuner data for tsid %04x, onid %04x, ns %08x, "
-							"freq %d, ber 0x%x, snr 0x%x, pwr 0x%x",
-						m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(), m_chid_current.dvbnamespace.get(),
-						tstate.freq, tstate.ber, tstate.snr, tstate.pwr);
+					eDebug("[eDVBScan] tuner data from frontend: freq %d, ber 0x%x, snr 0x%x, pwr 0x%x",
+							tstate.freq, tstate.ber, tstate.snr, tstate.pwr);
 				}
 			}
 			break;
 			default:
 				break;
-			}
+		}
 		addKnownGoodChannel(m_chid_current, m_ch_current, tstate);
 	}
 
@@ -1319,7 +1325,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 	{
 		unsigned short service_id = (*s)->getServiceId();
 		SCAN_eDebugNoNewLine("[eDVBScan] SID %04x: ", service_id);
-		bool add = true;
 		bool is_crypted = false;
 		
 		std::map<unsigned short, service>::iterator it =
@@ -1338,8 +1343,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			SCAN_eDebug("not found in PAT.. so we assume it is scrambled!!");
 			is_crypted = true;
 		}
-		else
-			SCAN_eDebug(".");
 
 		if (!(m_flags & scanOnlyFree) || !is_crypted)
 		{
