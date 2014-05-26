@@ -232,26 +232,26 @@ def InitUsageConfig():
 			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
 		config.usage.fan = ConfigSelection(choicelist)
 		def fanChanged(configElement):
-			file = open("/proc/stb/fp/fan", "w")
-			file.write(configElement.value)
-			file.close()
+			open("/proc/stb/fp/fan", "w").write(configElement.value)
 		config.usage.fan.addNotifier(fanChanged)
 
 	if SystemInfo["FanPWM"]:
 		def fanSpeedChanged(configElement):
-			file = open("/proc/stb/fp/fan_pwm", "w")
-			file.write(hex(configElement.value)[2:])
-			file.close()
+			open("/proc/stb/fp/fan_pwm", "w").write(hex(configElement.value)[2:])
 		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
 		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			file = open("/proc/stb/power/standbyled", "w")
-			file.write(configElement.value and "on" or "off")
-			file.close()
+			open("/proc/stb/power/standbyled", "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
+
+	if SystemInfo["WakeOnLAN"]:
+		def standbyLEDChanged(configElement):
+			open("/proc/stb/power/wol", "w").write(configElement.value and "on" or "off")
+		config.usage.wakeOnLAN = ConfigYesNo(default = False)
+		config.usage.wakeOnLAN.addNotifier(standbyLEDChanged)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
