@@ -9,6 +9,9 @@ info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
 
+def getECM():
+	return ecm
+
 class GetEcmInfo:
 	def pollEcmData(self):
 		global data
@@ -124,7 +127,7 @@ class GetEcmInfo:
 				provid = info.get('prov', '0')
 			ecmpid = info.get('pid', '0')
 		except:
-			ecm = None
+			ecm = ''
 			self.textvalue = ""
 			decCI='0'
 			provid='0'

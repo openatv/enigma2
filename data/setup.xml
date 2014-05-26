@@ -18,6 +18,7 @@
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 		<item level="2" text="Include ECM in http streams" description="When enabled, ECM data will be included in http streams. This allows a client receiver to do the descrambling.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling.">config.streaming.descramble</item>
+		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 		<item level="2" text="Fan operation" description="Configure how the fan should operate" requires="Fan">config.usage.fan</item>
 		<item level="2" text="Fan speed" description="Configure the speed of the fan" requires="FanPWM">config.usage.fanspeed</item>
 	</setup>
@@ -29,6 +30,7 @@
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Hide number markers" description="When enabled, number markers will be hiden.">config.usage.hide_number_markers</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown in the channel selection list.">config.usage.servicetype_icon_mode</item>
+		<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
 		<item level="1" text="Show picons in channel list" description="Configure if service picons will be shown in the channel selection list.">config.usage.service_icon_enable</item>
 		<item level="1" text="Customize channel list cursor behavior" description="Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
@@ -167,6 +169,7 @@
 		<item level="0" text="Brightness" description="Configure the brightness level of the front panel display.">config.lcd.bright</item>
 		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display.">config.lcd.contrast</item>
 		<item level="0" text="Standby" description="Configure the brightness level of the front panel display during standby.">config.lcd.standby</item>
+		<item level="0" text="StandbyLED" description="Turn on the power LED during standby." requires="StandbyLED">config.usage.standbyLED</item>
 		<item level="1" requires="LCDMiniTV" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu">config.lcd.modeminitv</item>
 		<item level="1" requires="LCDMiniTV" text="Show PIP in the Front Display" description="You can Display PIP with or without OSD Menu">config.lcd.modepip</item>	
 		<item level="1" requires="LCDMiniTV" text="Set Framerate for MiniTV" description="Lower Framerate save CPU Time">config.lcd.fpsminitv</item>		

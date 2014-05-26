@@ -31,7 +31,7 @@
 		</widget>
 	</screen>
 	<screen name="RecordIconPanel">
-		<widget source="session.RecordState" render="FixedLabel" text="[R]" font="Medium" position="e-16,2" size="16,11" halign="right">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="e-15,1" size="15,11">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>
@@ -42,10 +42,10 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="session.Event_Now" render="Progress" position="top" size="*,2">
+			<widget source="session.Event_Now" render="Progress" position="bottom" size="*,2">
 				<convert type="EventTime">Progress</convert>
 			</widget>
-			<widget source="session.Event_Now" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
+			<widget source="session.Event_Now" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
@@ -71,10 +71,10 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,2">
+			<widget source="parent.ServiceEvent" render="Progress" position="bottom" size="*,2">
 				<convert type="EventTime">Progress</convert>
 			</widget>
-			<widget source="parent.ServiceEvent" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
+			<widget source="parent.ServiceEvent" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
@@ -111,10 +111,10 @@
 			</widget>
 		</panel>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="session.CurrentService" render="Progress" position="top" size="*,2">
+			<widget source="session.CurrentService" render="Progress" position="bottom" size="*,2">
 				<convert type="ServicePosition">Position</convert>
 			</widget>
-			<widget source="session.CurrentService" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
+			<widget source="session.CurrentService" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="ServiceName">Name</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>

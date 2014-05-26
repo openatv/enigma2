@@ -445,14 +445,18 @@ class InfoBarNumberZap:
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			else:
-				self.servicelist.recallPrevService()
+			elif len(self.servicelist.history) > 1:
+				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
 			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+
+	def recallPrevService(self, reply):
+		if reply:
+			self.servicelist.recallPrevService()
 
 	def numberEntered(self, service = None, bouquet = None):
 		if service:
@@ -1969,7 +1973,7 @@ class InfoBarPiP:
 		return _("Swap services")
 
 	def getMoveName(self):
-		return _("Move Picture in Picture")
+		return _("Picture in Picture Setup")
 
 	def getTogglePipzapName(self):
 		slist = self.servicelist
@@ -3021,7 +3025,7 @@ class InfoBarPowersaver:
 			else:
 				message = _("Your receiver will got to standby due to inactivity.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)	
+			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple=True, default=False, timeout_default=True)	
 
 	def inactivityTimeoutCallback(self, answer):
 		if answer:
@@ -3055,7 +3059,7 @@ class InfoBarPowersaver:
 			elif self.sleepTimerSetting > 0:
 				message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)	
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=list, default=False, timeout_default=True)	
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":

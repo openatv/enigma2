@@ -152,9 +152,34 @@ def InitAVSwitch():
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
-
-	SystemInfo["ScartSwitch"] = detected
 	
+	SystemInfo["ScartSwitch"] = detected
+
+	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
+		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
+		can_edidchecking = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_edidchecking = False
+
+	SystemInfo["Canedidchecking"] = can_edidchecking
+
+	if can_edidchecking:
+		def setEDIDBypass(configElement):
+			try:
+				f = open("/proc/stb/hdmi/bypass_edid_checking", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.bypass_edid_checking = ConfigSelection(choices={
+				"00000000": _("off"),
+				"00000001": _("on")},
+				default = "00000000")
+		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
+	else:
+		config.av.bypass_edid_checking = ConfigNothing()
+
 	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
 		can_3dsurround = f.read().strip().split(" ")
@@ -194,30 +219,78 @@ def InitAVSwitch():
 		config.av.autovolume.addNotifier(setAutoVulume)
 	else:
 		config.av.autovolume = ConfigNothing()		
-	
+
 	try:
-		can_downmix_ac3 = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
+		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
+	except:
+		can_pcm_multichannel = False
+
+	SystemInfo["supportPcmMultichannel"] = can_pcm_multichannel
+	if can_pcm_multichannel:
+		def setPCMMultichannel(configElement):
+			open("/proc/stb/audio/multichannel_pcm", "w").write(configElement.value and "enable" or "disable")
+		config.av.pcm_multichannel = ConfigYesNo(default = False)
+		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
+
+	try:
+		f = open("/proc/stb/audio/ac3_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_ac3 = "downmix" in file
 	except:
 		can_downmix_ac3 = False
 
 	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
 	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
-			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
+			f = open("/proc/stb/audio/ac3", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
+			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
+				SystemInfo["CanPcmMultichannel"] = True
+			else:
+				SystemInfo["CanPcmMultichannel"] = False
+				if can_pcm_multichannel:
+					config.av.pcm_multichannel.setValue(False)
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 	
 	try:
-		can_downmix_aac = "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
+		f = open("/proc/stb/audio/aac_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_aac = "downmix" in file
 	except:
 		can_downmix_aac = False
 
 	SystemInfo["CanDownmixAAC"] = can_downmix_aac
 	if can_downmix_aac:
 		def setAACDownmix(configElement):
-			open("/proc/stb/audio/aac", "w").write(configElement.value and "downmix" or "passthrough")
+			f = open("/proc/stb/audio/aac", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
 		config.av.downmix_aac = ConfigYesNo(default = True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
+
+	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
+		f = open("/proc/stb/audio/aac_transcode_choices", "r")
+		can_aactranscode = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_aactranscode = False
+
+	SystemInfo["CanAACTranscode"] = can_aactranscode
+
+	if can_aactranscode:
+		def setAACTranscode(configElement):
+			f = open("/proc/stb/audio/aac_transcode", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+		config.av.transcodeaac = ConfigSelection(choices = choice_list, default = "off")
+		config.av.transcodeaac.addNotifier(setAACTranscode)
+	else:
+		config.av.transcodeaac = ConfigNothing()
 
 	try:
 		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
@@ -237,17 +310,22 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:
-				print "--> setting scaler_sharpness to: %0.8X" % myval
-				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
-				open("/proc/stb/vmpeg/0/pep_apply", "w").write("1")
+				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
+				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
+				f.write("%0.8X" % myval)
+				f.close()
+				f = open("/proc/stb/vmpeg/0/pep_apply", "w")
+				f.write("1")
+				f.close()
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':		
-			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+		if getBoxType() in ('gbquad', 'gbquadplus'):
+			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
 
+	config.av.edid_override = ConfigYesNo(default = False)

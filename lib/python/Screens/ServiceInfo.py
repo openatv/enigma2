@@ -40,9 +40,9 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 
 	return [
 		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""),
-		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 25, 0, RT_HALIGN_LEFT, a),
-		(eListboxPythonMultiContent.TYPE_TEXT, 230, 0, 450, 25, 0, RT_HALIGN_LEFT, b)
+		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 320, 30, 0, RT_HALIGN_LEFT, ""),
+		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 320, 25, 0, RT_HALIGN_LEFT, a),
+		(eListboxPythonMultiContent.TYPE_TEXT, 330, 0, 570, 25, 0, RT_HALIGN_LEFT, b)
 	]
 
 class ServiceInfoList(HTMLComponent, GUIComponent):

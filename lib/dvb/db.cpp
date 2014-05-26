@@ -168,6 +168,11 @@ RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &
 	return eEPGCache::getInstance()->lookupEventTime(ref, start_time, ptr);
 }
 
+bool eDVBService::isCrypted(const eServiceReference &ref)
+{
+	return m_ca.size() > 0;
+}
+
 int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
 	ePtr<eDVBResourceManager> res_mgr;
