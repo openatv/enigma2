@@ -1,4 +1,4 @@
-from enigma import eDVBResourceManager
+from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 
@@ -25,6 +25,8 @@ def countFrontpanelLEDs():
 
 	return leds
 
+SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+SystemInfo["ZapMode"] = fileExists("/proc/stb/video/zapmode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
