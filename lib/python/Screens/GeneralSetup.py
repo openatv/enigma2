@@ -1,5 +1,5 @@
 from enigma import eListboxPythonMultiContent, gFont, eEnv, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_WRAP
-from boxbranding import getMachineBrand, getMachineName, getBoxType
+from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
 
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -569,8 +569,11 @@ class GeneralSetup(Screen):
 			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
 		elif selected == _("Location Scan"):
-			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
-			self.session.open(IniTerrestrialLocation)
+			if not getMachineBuild() in ('inihdp'): 
+				from Screens.IniTerrestrialLocation import IniTerrestrialLocation
+				self.session.open(IniTerrestrialLocation)
+			else:
+				self.session.open(MessageBox, _("Sorry this function is disabled on Beyonwiz T4 sample.\n\nPlease use MANUAL SCAN for FULL DVB-T2 scan.\n\nPlease wait for final sample"), MessageBox.TYPE_INFO, timeout = 10)    
 		elif HAVE_POSITIONERSETUP and selected == _("Positioner Setup"):
 			self.PositionerMain()
 		elif selected == _("Automatic Scan"):
