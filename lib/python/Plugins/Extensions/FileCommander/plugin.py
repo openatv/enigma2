@@ -179,6 +179,12 @@ class FileCommanderScreen(Screen, key_actions):
 		else:
 			path_right = config.plugins.filecommander.path_default.value
 
+		if os_path_isdir(path_left) and path_left[-1] != "/":
+			path_left += "/"
+
+		if os_path_isdir(path_right) and path_right[-1] != "/":
+			path_right += "/"
+
 		self.session = session
 		Screen.__init__(self, session)
 		
