@@ -448,9 +448,8 @@ class InfoBarTimeshift:
         elif self.save_current_timeshift:
             # the user has chosen "no warning" when timeshift is stopped (config.usage.check_timeshift=False)
             # but the user has previously activated "Timeshift save recording" of current event
-            # so we silently do "favoriteSaveAction" when switching channel
-            # (recommended setting config.timeshift.favoriteSaveAction=savetimeshiftandrecord)
-            InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
+            # so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
+            InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
         else:
             returnFunction(True)
 
