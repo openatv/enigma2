@@ -7,13 +7,18 @@ class WOL:
 		pass
 
 	def setWolState(self, value):
-		print '[WOL] set:',value
-		f = open("/proc/stb/fp/wol", "w")
-		f.write(value)
-		f.close()
+		print '[WakeOnLAN] set:',value
+		if fileExists("/proc/stb/fp/wol"):
+			f = open("/proc/stb/fp/wol", "w")
+			f.write(value)
+			f.close()
+		elif fileExists("/proc/stb/power/wol"):
+			f = open("/proc/stb/power/wol", "w")
+			f.write(value)
+			f.close()
 
 def Init():
-	if SystemInfo["WOL"]:
+	if SystemInfo["WakeOnLAN"]:
 		def setWOLmode(value):
 			iwol.setWolState(config.network.wol.value)
 
