@@ -612,8 +612,9 @@ def addInstallTask(job, package):
 
 class HarddiskManager:
 	def __init__(self):
-		self.hdd = [ ]
+		self.hdd = []
 		self.cd = ""
+		# Partitions should always have a trailing /
 		self.partitions = [ ]
 		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
@@ -621,7 +622,7 @@ class HarddiskManager:
 		# Find stuff not detected by the enumeration
 		self.enumerateNetworkMounts()
 		# Find stuff not detected by the enumeration
-		p = [("/", _("Internal Flash")),("/media/upnp", _("DLNA")),]
+		p = [("/", _("Internal Flash")),("/media/upnp/", _("DLNA")),]
 
 		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
 
@@ -735,12 +736,17 @@ class HarddiskManager:
 
 	def removeHotplugPartition(self, device):
 		for x in self.partitions[:]:
+			# Ensure we have a trailing /
+			if device and device[-1] != "/":
+				device += "/"
 			if x.device == device:
 				self.partitions.remove(x)
 				if x.mountpoint: # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
-		l = len(device)
-		if l and not device[l-1].isdigit():
+		# Now strip the trailing /
+		if device and device[-1] == "/":
+			device = device[:-1]
+		if device and not device[-1].isdigit():
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()
@@ -805,6 +811,9 @@ class HarddiskManager:
 		return description
 
 	def addMountedPartition(self, device, desc):
+		# Ensure we have a trailing /
+		if device and device[-1] != "/":
+			device += "/"
 		for x in self.partitions:
 			if x.mountpoint == device:
 				#already_mounted
@@ -812,6 +821,8 @@ class HarddiskManager:
 		self.partitions.append(Partition(mountpoint=device, description=desc))
 
 	def removeMountedPartition(self, mountpoint):
+		if mountpoint and dmountpoint[-1] != "/":
+			mountpoint += "/"
 		for x in self.partitions[:]:
 			if x.mountpoint == mountpoint:
 				self.partitions.remove(x)
