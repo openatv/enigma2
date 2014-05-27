@@ -578,27 +578,40 @@ class Partition:
 						return fields[2]
 		return ''
 
-DEVICEDB =  \
-	{"dm8000":
-		{
-			# dm8000:
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": "Front USB Slot",
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": "Back, upper USB Slot",
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
-			"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/host1/target1:0:0/1:0:0:0": "DVD Drive",
-		},
+DEVICEDB =  {
+	"dm8000":
+	{
+		# dm8000:
+		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": "Front USB Slot",
+		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": "Back, upper USB Slot",
+		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
+		"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/host1/target1:0:0/1:0:0:0": "DVD Drive",
+	},
 	"dm800":
 	{
 		# dm800:
 		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": "Upper USB Slot",
 		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": "Lower USB Slot",
 	},
+	"dm800se":
+	{
+		# USB-1
+		"/devices/platform/ohci-brcm.1/usb4/4-1/": "Front USB Slot",
+		"/devices/platform/ohci-brcm.0/usb3/3-2/": "Back, upper USB Slot",
+		"/devices/platform/ohci-brcm.0/usb3/3-1/": "Back, lower USB Slot",
+		# USB-2
+		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Front USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Back, upper USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-1/": "Back, lower USB Slot",
+		"/devices/pci0000:01/0000:01:00.0/ata1/": "Internal HDD",
+		"/devices/pci0000:01/0000:01:00.0/ata2/": "eSATA HDD",
+	},
 	"dm7025":
 	{
 		# dm7025:
 		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "CF Card Slot", #hdc
-		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
-	}
+		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk",
+	},
 	}
 
 def addInstallTask(job, package):
@@ -719,6 +732,9 @@ class HarddiskManager:
 			except OSError:
 				physdev = dev
 				print "[Harddisk] couldn't determine physdev for device", device
+		else:
+			physdev = os.path.realpath('/sys' + physdev)[4:]
+
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
@@ -760,7 +776,11 @@ class HarddiskManager:
 	def HDDList(self):
 		list = [ ]
 		for hd in self.hdd:
-			hdd = hd.model() + " - " + hd.bus()
+			try:
+				hdd = self.getUserfriendlyDeviceName(hd.disk_path, os.path.realpath(hd.phys_path)[4:])
+			except Exception as ex:
+				print "[Harddisk] couldn't get friendly name for %s: %s" % (hd.phys_path, ex)
+				hdd = hd.model() + " - " + hd.bus()
 			cap = hd.capacity()
 			if cap != "":
 				hdd += " (" + cap + ")"
@@ -804,7 +824,7 @@ class HarddiskManager:
 		from Tools.HardwareInfo import HardwareInfo
 		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
 			if phys.startswith(physdevprefix):
-				description = pdescription
+				description = "%s (%s)" % (pdescription, description)
 		# not wholedisk and not partition 1
 		if part and part != 1:
 			description += " (Partition %d)" % part
