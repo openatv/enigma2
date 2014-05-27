@@ -232,7 +232,7 @@ class PinInput(InputBox):
 				pass
 	
 	def closePinWrong(self, *args):
-		print "args:", args
+		print "[FileCommander] PinInput closePinWrong args:", args
 		self.close(False)
 		
 	def closePinCorrect(self, *args):
