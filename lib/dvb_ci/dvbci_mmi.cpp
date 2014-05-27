@@ -25,6 +25,9 @@ eDVBCIMMISession::eDVBCIMMISession(eDVBCISlot *tslot)
 
 eDVBCIMMISession::~eDVBCIMMISession()
 {
+#ifdef __sh__
+	slot->mmiClosed();
+#endif
 	slot->setMMIManager(NULL);
 	eDVBCI_UI::getInstance()->mmiSessionDestroyed(slot->getSlotID());
 }

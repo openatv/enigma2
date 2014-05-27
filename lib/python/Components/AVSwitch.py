@@ -63,7 +63,7 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('7241', '7358', '7356', '7424', '7425', 'pnx8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if (about.getChipSetString() in ('7241', '7358', '7356', '7424', '7425', 'pnx8493', '7162'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -171,6 +171,11 @@ class AVSwitch:
 				print "setting videomode failed."
 
 		# self.updateAspect(None)
+		if about.getCPUString().startswith('STx'):
+			#call setResolution() with -1,-1 to read the new scrren dimesions without changing the framebuffer resolution
+			from enigma import gMainDC
+			gMainDC.getInstance().setResolution(-1, -1)
+			self.updateColor(port)
 
 	def saveMode(self, port, mode, rate):
 		config.av.videoport.setValue(port)
@@ -336,6 +341,32 @@ class AVSwitch:
 		elif valstr == "16_9_letterbox":
 			val = 6
 		return val
+
+	def setHDMIColor(self, configElement):
+		if about.getCPUString().startswith('STx'):
+			map = {"hdmi_rgb": 0, "hdmi_yuv": 1, "hdmi_422": 2}
+			open("/proc/stb/avs/0/colorformat", "w").write(configElement.value)
+
+	def setYUVColor(self, configElement):
+		if about.getCPUString().startswith('STx'):
+			map = {"yuv": 0}
+			open("/proc/stb/avs/0/colorformat", "w").write(configElement.value)
+
+	def setHDMIAudioSource(self, configElement):
+		if about.getCPUString().startswith('STx'):
+			open("/proc/stb/hdmi/audio_source", "w").write(configElement.value)
+
+	def updateColor(self, port):
+		if about.getCPUString().startswith('STx'):
+			print "updateColor: ", port
+			if port == "HDMI":
+				self.setHDMIColor(config.av.colorformat)
+			elif port == "YPbPr":
+				self.setYUVColor(config.av.colorformat)
+			elif port == "Scart":
+				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+				from enigma import eAVSwitch
+				eAVSwitch.getInstance().setColorFormat(map[config.av.colorformat.value])
 
 iAVSwitch = AVSwitch()
 

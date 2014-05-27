@@ -6,14 +6,17 @@
 #include <string.h>
 #include <sys/un.h>
 #include <unistd.h>
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 #include <openssl/bn.h>
 #include <openssl/sha.h>
+#endif
 #include <lib/base/eerror.h>
 
 #include "etpm.h"
 
 eTPM::eTPM()
 {
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	struct sockaddr_un addr;
 	unsigned char buf[8];
 	unsigned int tag;
@@ -53,6 +56,7 @@ eTPM::eTPM()
 
 	parse_data(val, len);
 	free(val);
+#endif
 }
 
 eTPM::~eTPM()
@@ -63,6 +67,7 @@ eTPM::~eTPM()
 
 bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, size_t len)
 {
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	unsigned char buf[len + 4];
 
 	buf[0] = (cmd >> 8) & 0xff;
@@ -77,11 +82,13 @@ bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, size_t len)
 		return false;
 	}
 
+#endif
 	return true;
 }
 
 void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 {
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	unsigned char buf[4];
 	void *val;
 
@@ -111,10 +118,14 @@ void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 	}
 
 	return val;
+#else
+	return NULL;
+#endif
 }
 
 void eTPM::parse_data(const unsigned char *data, size_t datalen)
 {
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	unsigned int i;
 	unsigned int tag;
 	unsigned int len;
@@ -140,19 +151,23 @@ void eTPM::parse_data(const unsigned char *data, size_t datalen)
 			break;
 		}
 	}
+#endif
 }
 
 std::string eTPM::getCert(cert_type type)
 {
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	if (type == TPMD_DT_LEVEL2_CERT && level2_cert_read)
 		return std::string((char*)level2_cert, 210);
 	else if (type == TPMD_DT_LEVEL3_CERT && level3_cert_read)
 		return std::string((char*)level3_cert, 210);
+#endif
 	return "";
 }
 
 std::string eTPM::challenge(std::string rnd)
 {
+#if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	if (rnd.length() == 8)
 	{
 		if (!send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, rnd.c_str(), 8))
@@ -169,5 +184,6 @@ std::string eTPM::challenge(std::string rnd)
 		free(val);
 		return ret;
 	}
+#endif
 	return "";
 }
