@@ -10,7 +10,6 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
-from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 import skin
 
