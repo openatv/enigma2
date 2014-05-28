@@ -232,24 +232,24 @@ def InitUsageConfig():
 			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
 		config.usage.fan = ConfigSelection(choicelist)
 		def fanChanged(configElement):
-			open("/proc/stb/fp/fan", "w").write(configElement.value)
+			open(SystemInfo["Fan"], "w").write(configElement.value)
 		config.usage.fan.addNotifier(fanChanged)
 
 	if SystemInfo["FanPWM"]:
 		def fanSpeedChanged(configElement):
-			open("/proc/stb/fp/fan_pwm", "w").write(hex(configElement.value)[2:])
+			open(SystemInfo["FanPWM"], "w").write(hex(configElement.value)[2:])
 		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
 		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			open("/proc/stb/power/standbyled", "w").write(configElement.value and "on" or "off")
+			open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["WakeOnLAN"]:
 		def standbyLEDChanged(configElement):
-			open("/proc/stb/power/wol", "w").write(configElement.value and "on" or "off")
+			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 		config.usage.wakeOnLAN = ConfigYesNo(default = False)
 		config.usage.wakeOnLAN.addNotifier(standbyLEDChanged)
 
@@ -352,7 +352,7 @@ def InitUsageConfig():
 
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
-			open("/proc/stb/video/zapmode", "w").write(el.value)
+			open(SystemInfo["ZapMode"], "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
