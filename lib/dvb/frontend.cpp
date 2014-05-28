@@ -589,7 +589,7 @@ int eDVBFrontend::openFrontend()
 	else
 	{
 		fe_info.frequency_min = 900000;
-		fe_info.frequency_max = 2200000;
+		fe_info.frequency_max = 999900000;
 	}
 
 	setTone(iDVBFrontend::toneOff);
