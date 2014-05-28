@@ -483,7 +483,10 @@ class SystemNetworkInfo(Screen):
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
 		except:
-			self["statuspic"].setPixmapNum(0)
+			try:
+				self["statuspic"].setPixmapNum(0)
+			except:
+				print "KeyError: statuspic" 
 
 	def createSummary(self):
 		return AboutSummary

@@ -6,7 +6,7 @@ from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-
+from boxbranding import getImageDistro
 
 class TimerList(HTMLComponent, GUIComponent, object):
 #
@@ -19,7 +19,10 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res = [ None ]
 		x = (2*width) // 3
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 2, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, timer.name))
-		text = ("%s  %s") % (timer.service_ref.getServiceName(), self.getOrbitalPos(timer.service_ref))
+		if getImageDistro() in ("easy-gui-aus", "beyonwiz"):
+			text = ("%s") % timer.service_ref.getServiceName()
+		else:
+			text = ("%s  %s") % (timer.service_ref.getServiceName(), self.getOrbitalPos(timer.service_ref))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x-2, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 
 		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )

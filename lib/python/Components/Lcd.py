@@ -226,7 +226,7 @@ def InitLcd():
 		config.lcd.standby.addNotifier(setLCDbright)
 		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
 
-		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
+		config.lcd.bright = ConfigSlider(default=7, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright)
 		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True

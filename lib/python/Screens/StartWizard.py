@@ -4,7 +4,7 @@ from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
 from Screens.VideoWizard import VideoWizard
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 from Screens.Rc import Rc
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
@@ -41,5 +41,6 @@ class StartWizard(WizardLanguage, Rc):
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation, IniEndWizard, config
 
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 0)
-wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
+if not getMachineBuild() in ('inihdp'):
+	wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
 wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.value, priority = 10) # It always should show as last one

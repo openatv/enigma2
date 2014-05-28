@@ -67,7 +67,6 @@ def FileEntryComponent(name, absolute = None, isDir = False, isLink = False):
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
-		print extension
 		if EXTENSIONS.has_key(extension):
 			png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/" + EXTENSIONS[extension] + ".png")
 		else:

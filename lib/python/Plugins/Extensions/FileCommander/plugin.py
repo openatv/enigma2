@@ -136,13 +136,13 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 			config.plugins.filecommander.path_default.value = res
 		
 	def save(self):
-		print "[File Commander]: Settings saved"
+		print "[FileCommander] Settings saved"
 		for x in self["config"].list:
 			x[1].save()
 		self.close(True)
 
 	def cancel(self):
-		print "[File Commander]: Settings canceled"
+		print "[FileCommander] Settings canceled"
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close(False)
@@ -178,6 +178,12 @@ class FileCommanderScreen(Screen, key_actions):
 			path_right = config.plugins.filecommander.path_right.value
 		else:
 			path_right = config.plugins.filecommander.path_default.value
+
+		if os_path_isdir(path_left) and path_left[-1] != "/":
+			path_left += "/"
+
+		if os_path_isdir(path_right) and path_right[-1] != "/":
+			path_right += "/"
 
 		self.session = session
 		Screen.__init__(self, session)
@@ -532,7 +538,7 @@ class FileCommanderScreen(Screen, key_actions):
 		subFile = sourceDir+testFileName
 		fps = 0
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
-			print "Downloading subtitle for: ", subFile
+			print "[FileCommander] Downloading subtitle for: ", subFile
 			# For Future USE
 		
 	def subCallback(self, answer=False):
@@ -685,7 +691,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.ACTIVELIST.changeSelectionState()
 			self.selectedFiles = self.ACTIVELIST.getSelectedList()
-			print self.selectedFiles
+			print "[FileCommander] selectedFiles:", self.selectedFiles
 			self.goDown()
 				
 	def exit(self):
@@ -750,9 +756,9 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			extension = file.split('.')
 			extension = extension[-1].lower()
 			if MOVIEEXTENSIONS.has_key(extension):
-				print "[Moviebrowser]: skip " +extension
+				print "[FileCommander] skip " +extension
 			else:
-				print "[Moviebrowser]: copy " +extension
+				print "[FileCommander] copy " +extension
 				dst_file = targetDir
 				if dst_file.endswith("/"):
 					targetDir = dst_file[:-1]
@@ -767,9 +773,9 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			extension = file.split('.')
 			extension = extension[-1].lower()
 			if MOVIEEXTENSIONS.has_key(extension):
-				print "[Moviebrowser]: skip " +extension
+				print "[FileCommander] skip " +extension
 			else:
-				print "[Moviebrowser]: copy " +extension
+				print "[FileCommander] copy " +extension
 				dst_file = targetDir
 				if dst_file.endswith("/"):
 					targetDir = dst_file[:-1]
@@ -800,7 +806,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)	
 
 	def doRefresh(self):
-		print self.selectedFiles
+		print "[FileCommander] selectedFiles:", self.selectedFiles
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 		self.updateHead()

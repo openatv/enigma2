@@ -68,7 +68,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			try:
 				self.Text = text.decode("utf-8")
 			except UnicodeDecodeError:
-				print "utf8 kaputt!"
+				print "[FileCommander] Input utf8 kaputt!"
 				self.Text = text
 		if self.firstpos_end:
 			self.currPos = len(self.Text)

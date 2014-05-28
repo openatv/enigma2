@@ -1293,7 +1293,6 @@ class ConfigSelectionNumber(ConfigSelection):
 		self.wraparound = wraparound
 		if default is None:
 			default = min
-		default = str(default)
 		choices = []
 		step = min
 		while step <= max:
@@ -1337,7 +1336,7 @@ class ConfigSelectionNumber(ConfigSelection):
 
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
-		ConfigText.__init__(self, str(default), fixed_size = False)
+		ConfigText.__init__(self, default, fixed_size = False)
 
 	def getValue(self):
 		return int(self.text)
@@ -1429,17 +1428,20 @@ class ConfigDirectory(ConfigText):
 class ConfigSlider(ConfigElement):
 	def __init__(self, default = 0, increment = 1, limits = (0, 100)):
 		ConfigElement.__init__(self)
-		self.value = self.last_value = self.default = default
 		self.min = limits[0]
 		self.max = limits[1]
+		self.value = self.last_value = self.default = self.clampValue(default)
 		self.increment = increment
 
-	def checkValues(self):
-		if self.value < self.min:
-			self.value = self.min
+	def clampValue(self, value):
+		if value < self.min:
+			value = self.min
+		if value > self.max:
+			value = self.max
+		return value
 
-		if self.value > self.max:
-			self.value = self.max
+	def checkValues(self):
+		self.value = self.clampValue(self.value)
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
