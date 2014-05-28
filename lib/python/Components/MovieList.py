@@ -131,7 +131,7 @@ def resetMoviePlayState(cutsFileName, ref=None):
 	except:
 		pass
 		#import sys
-		#print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
+		#print "[MovieList] Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
 
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
@@ -485,7 +485,7 @@ class MovieList(GUIComponent):
 
 		reflist = serviceHandler.list(root)
 		if reflist is None:
-			print "listing of movies failed"
+			print "[MovieList] listing of movies failed"
 			return
 		realtags = set()
 		tags = {}
@@ -493,16 +493,14 @@ class MovieList(GUIComponent):
 		parent = None
 		# Don't navigate above the "root"
 		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
-			parent = os.path.split(os.path.normpath(rootPath))[0]
-			currentfolder = os.path.normpath(rootPath) + '/'
-			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):
-				# enigma wants an extra '/' appended
-				if not parent.endswith('/'):
-					parent += '/'
-				ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent)
-				ref.flags = eServiceReference.flagDirectory
-				self.list.append((ref, None, 0, -1))
-				numberOfDirs += 1
+			parent = os.path.split(rootPath)[0]
+			# enigma wants an extra '/' appended
+			if not parent.endswith('/'):
+				parent += '/'
+			ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent)
+			ref.flags = eServiceReference.flagDirectory
+			self.list.append((ref, None, 0, -1))
+			numberOfDirs += 1
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
@@ -544,7 +542,7 @@ class MovieList(GUIComponent):
 				this_tags_fullname = set(this_tags_fullname)
 				this_tags = set(this_tags)
 				if not this_tags.issuperset(filter_tags) and not this_tags_fullname.issuperset(filter_tags):
-# 					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
+# 					print "[MovieList] Skipping", name, "tags=", this_tags, " filter=", filter_tags
 					continue
 
 			self.list.append((serviceref, info, begin, -1))
@@ -655,7 +653,7 @@ class MovieList(GUIComponent):
 				# if path ends in '/', p is blank.
 				p = os.path.split(p[0])
 			name = p[1]
-		# print "Sorting for -%s-" % name
+		# print "[MovieList] Sorting for -%s-" % name
 
 		return 1, name and name.lower() or "", -x[2]
 
