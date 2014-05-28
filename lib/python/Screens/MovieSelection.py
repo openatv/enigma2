@@ -1811,6 +1811,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					mbox=self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs) + are_you_sure)
 					mbox.setTitle(self.getTitle())
 					return
+				else:
+					self.delete([True])
 			else:
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permanently remove from trash can ?")
