@@ -1,7 +1,7 @@
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider
 from Tools.Directories import resolveFilename, SCOPE_HDD, defaultRecordingLocation
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent
 from Components.NimManager import nimmanager
 from Components.Harddisk import harddiskmanager
 from Components.ServiceList import refreshServiceList
@@ -246,26 +246,26 @@ def InitUsageConfig():
 			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
 		config.usage.fan = ConfigSelection(choicelist)
 		def fanChanged(configElement):
-			file = open("/proc/stb/fp/fan", "w")
-			file.write(configElement.value)
-			file.close()
+			open("/proc/stb/fp/fan", "w").write(configElement.value)
 		config.usage.fan.addNotifier(fanChanged)
 
 	if SystemInfo["FanPWM"]:
 		def fanSpeedChanged(configElement):
-			file = open("/proc/stb/fp/fan_pwm", "w")
-			file.write(hex(configElement.value)[2:])
-			file.close()
+			open("/proc/stb/fp/fan_pwm", "w").write(hex(configElement.value)[2:])
 		config.usage.fanspeed = ConfigSlider(default=127, increment=8, limits=(0, 255))
 		config.usage.fanspeed.addNotifier(fanSpeedChanged)
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			file = open("/proc/stb/power/standbyled", "w")
-			file.write(configElement.value and "on" or "off")
-			file.close()
+			open("/proc/stb/power/standbyled", "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
+
+	if SystemInfo["WakeOnLAN"]:
+		def standbyLEDChanged(configElement):
+			open("/proc/stb/power/wol", "w").write(configElement.value and "on" or "off")
+		config.usage.wakeOnLAN = ConfigYesNo(default = False)
+		config.usage.wakeOnLAN.addNotifier(standbyLEDChanged)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
@@ -305,14 +305,10 @@ def InitUsageConfig():
 			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
-	def set12VOutput(configElement):
-		if configElement.value == "on":
-			Misc_Options.getInstance().set_12V_output(1)
-		elif configElement.value == "off":
-			Misc_Options.getInstance().set_12V_output(0)
-	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
-
-	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+	if SystemInfo["12V_Output"]:
+		def set12VOutput(configElement):
+			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
+		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
@@ -381,15 +377,9 @@ def InitUsageConfig():
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
-	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode")
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
-			try:
-				file = open("/proc/stb/video/zapmode", "w")
-				file.write(el.value)
-				file.close()
-			except:
-				pass
+			open("/proc/stb/video/zapmode", "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)

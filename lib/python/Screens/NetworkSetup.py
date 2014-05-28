@@ -525,6 +525,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
+			if SystemInfo["WakeOnLAN"] and SystemInfo["GBWOL"] and self.iface == 'eth0':
+				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.usage.wakeOnLAN))
 
 			self.extended = None
 			self.configStrings = None

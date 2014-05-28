@@ -1075,8 +1075,6 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 			dvb_service->m_provider_name = service->second->m_provider_name;
 			if (service->second->m_ca.size())
 				dvb_service->m_ca = service->second->m_ca;
-			else if (dvb_service->m_ca.size() == 1 && *dvb_service->m_ca.begin() == 0)
-				dvb_service->m_ca.clear();
 			if (!backgroundscanresult) // do not remove new found flags when this is the result of a 'background scan'
 				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
@@ -1150,8 +1148,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		SCAN_eDebugNoNewLine("SID %04x: ", service_id);
 		bool is_crypted = false;
 
-		std::map<unsigned short, service>::iterator it =
-			m_pmts_to_read.find(service_id);
+		std::map<unsigned short, service>::iterator it = m_pmts_to_read.find(service_id);
 		if (it != m_pmts_to_read.end())
 		{
 			if (it->second.scrambled)
@@ -1161,10 +1158,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			}
 			else
 				SCAN_eDebug("is free");
-		}
-		else {
-			SCAN_eDebug("not found in PAT.. so we assume it is scrambled!!");
-			is_crypted = true;
 		}
 
 		if (!(m_flags & scanOnlyFree) || !is_crypted)
