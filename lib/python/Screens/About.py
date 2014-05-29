@@ -516,7 +516,7 @@ class AboutSummary(Screen):
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
-		elif path.exists('/proc/stb/fp/temp_sensor'):
+		elif path.exists('/proc/stb/fp/temp_sensor') and getBoxType() not in ('gbquad'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
