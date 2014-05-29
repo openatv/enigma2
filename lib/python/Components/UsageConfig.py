@@ -35,6 +35,8 @@ def InitUsageConfig():
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
+	config.usage.crypto_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
@@ -413,14 +415,10 @@ def InitUsageConfig():
 			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
-	def set12VOutput(configElement):
-		if configElement.value == "on":
-			Misc_Options.getInstance().set_12V_output(1)
-		elif configElement.value == "off":
-			Misc_Options.getInstance().set_12V_output(0)
-	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
-
-	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+	if SystemInfo["12V_Output"]:
+		def set12VOutput(configElement):
+			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
+		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
@@ -528,7 +526,6 @@ def InitUsageConfig():
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
-	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
 	if SystemInfo["ZapMode"]:
 		try:
 			if os.path.exists("/proc/stb/video/zapping_mode"):
@@ -731,7 +728,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 1, max = 4, wraparound = True)
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2'):
+		if HardwareInfo().is_nextgen():
 			previewdefault = "2"
 		else:
 			previewdefault = "1"
@@ -820,6 +817,7 @@ def InitUsageConfig():
 	config.streaming.descramble = ConfigYesNo(default = True)
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
+	config.streaming.authentication = ConfigYesNo(default = False)
 
 	config.pluginbrowser = ConfigSubsection()
 	config.pluginbrowser.po = ConfigYesNo(default = False)

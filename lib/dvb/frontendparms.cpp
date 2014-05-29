@@ -193,6 +193,11 @@ int eDVBTransponderData::getHierarchyInformation() const
 	return -1;
 }
 
+int eDVBTransponderData::getPlpId() const
+{
+	return -1;
+}
+
 DEFINE_REF(eDVBSatelliteTransponderData);
 
 eDVBSatelliteTransponderData::eDVBSatelliteTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersSatellite &transponderparms, int frequencyoffset, bool original)
@@ -542,6 +547,19 @@ int eDVBTerrestrialTransponderData::getHierarchyInformation() const
 	default:
 	case HIERARCHY_AUTO: return eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
 	}
+}
+
+int eDVBTerrestrialTransponderData::getPlpId() const
+{
+	if (originalValues) return transponderParameters.plpid;
+
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 9
+	return getProperty(DTV_STREAM_ID);
+#elif DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 3
+	return getProperty(DTV_DVBT2_PLP_ID);
+#else
+	return -1;
+#endif
 }
 
 int eDVBTerrestrialTransponderData::getSystem() const

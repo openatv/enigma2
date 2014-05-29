@@ -170,7 +170,8 @@ class AVSwitch:
 			except IOError:
 				print "setting videomode failed."
 
-		# self.updateAspect(None)
+		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+		self.setColorFormat(map[config.av.colorformat.value])
 
 	def saveMode(self, port, mode, rate):
 		config.av.videoport.setValue(port)
@@ -237,7 +238,12 @@ class AVSwitch:
 		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
-		eAVSwitch.getInstance().setColorFormat(value)
+		if not self.current_port:
+			self.current_port = config.av.videoport.value
+		if self.current_port in ("YPbPr", "Scart-YPbPr"):
+			eAVSwitch.getInstance().setColorFormat(3)
+		else:
+			eAVSwitch.getInstance().setColorFormat(value)
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.value
@@ -422,9 +428,7 @@ def InitAVSwitch():
 	config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
 
 	def setColorFormat(configElement):
-		if config.av.videoport and config.av.videoport.value == "Scart-YPbPr":
-			iAVSwitch.setColorFormat(3)
-		elif config.av.videoport and config.av.videoport.value == "YPbPr" or getMachineBuild() == 'inihdx':
+		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
 			iAVSwitch.setColorFormat(3)
 		else:
 			if getBoxType() == 'et6x00':
@@ -434,12 +438,11 @@ def InitAVSwitch():
 			else:
 				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.value])
+	config.av.colorformat.addNotifier(setColorFormat)
 
 	def setAspectRatio(configElement):
 		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox" : 6}
 		iAVSwitch.setAspectRatio(map[configElement.value])
-	
-	config.av.colorformat.addNotifier(setColorFormat)
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
 	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus' )) or about.getModelString() == 'et6000':

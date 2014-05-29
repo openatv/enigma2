@@ -48,8 +48,7 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="hd.png" position="215,0" size="21,12">
-			<convert type="ServiceInfo">VideoWidth</convert>
-			<convert type="ValueRange">721,1980</convert>
+			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="dolby.png" position="239,0" size="16,12">

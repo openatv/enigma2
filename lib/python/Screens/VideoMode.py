@@ -477,7 +477,7 @@ class AutoVideoMode(Screen):
 
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
-				if config.av.autores_label_timeout.value != '0':
+				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':
 					resolutionlabel.show()
 				print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
 				f = open("/proc/stb/video/videomode", "w")

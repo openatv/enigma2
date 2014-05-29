@@ -70,7 +70,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getMachineBuild() + '/'  + self.logtype + '-git.log'
+			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
@@ -99,7 +99,7 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					imagever = int(getImageBuild())
 			else:
-				imagever = int(getImageBuild())+865
+				imagever = int(getImageBuild())+905
 			while int(releasever) > int(imagever):
 				if ocram:
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'

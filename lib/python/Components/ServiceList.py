@@ -55,6 +55,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/icon_crypt.png"))
+		if pic:
+			self.l.setPixmap(self.l.picCrypto, pic)
+
 		self.root = None
 		self.mode = self.MODE_NORMAL
 		self.listHeight = None
@@ -352,3 +356,4 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if "perc" in config.usage.show_event_progress_in_servicelist.value:
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
+		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
