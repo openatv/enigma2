@@ -11,6 +11,10 @@ if VUSOLO2
 SUBDIRS += CableScan
 endif
 
+if VUSOLOSE
+SUBDIRS += CableScan
+endif
+
 if VUDUO2
 SUBDIRS += CableScan
 endif
