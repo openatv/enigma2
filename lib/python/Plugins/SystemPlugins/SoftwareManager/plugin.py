@@ -556,7 +556,7 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def __init__(self, session, plugin_path = None, args = None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Extensions management"))
+		Screen.setTitle(self, _("Extension management"))
 		self.session = session
 		self.skin_path = plugin_path
 		if self.skin_path is None:
@@ -601,7 +601,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		self.onLayoutFinish.append(self.getUpdateInfos)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Extensions management"))
+		self.setTitle(_("Extension management"))
 
 	def exit(self):
 		if self.currList == "packages":
