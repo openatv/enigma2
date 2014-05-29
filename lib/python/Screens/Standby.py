@@ -141,7 +141,7 @@ class Standby2(Screen):
 		self.tunerMask = mask
 
 	def standbyTimeout(self):
-		if self.tunerMask:
+		if hasattr(self, "tunerMask") and self.tunerMask:
 			self.standbyTimeoutTimer.startLongTimer(600)
 		else:
 			from RecordTimer import RecordTimerEntry
