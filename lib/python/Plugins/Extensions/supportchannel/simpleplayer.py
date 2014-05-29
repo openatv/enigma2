@@ -280,7 +280,6 @@ class SimplePlayerResume:
 #				self.posTrackerTimer.start(1000*5, True)
 
 	def resumePlayback(self, length, last):
-#		print 'SP: resumePlayback:'
 		self.resume_point = last
 		if (length > 0) and abs(length - last) < 4*90000:
 			return
@@ -326,8 +325,6 @@ class SimplePlayerResume:
 		print 'hideAfterResume:'
 		if isinstance(self, InfoBarShowHide):
 			self.hide()
-			if config.supportchannel.sp_on_movie_start.value == "start":
-				self.close()
 
 class SimplePlaylist(Screen):
 
@@ -881,7 +878,6 @@ class SimplePlayer(Screen, SimpleSeekHelper, SimplePlayerResume, InfoBarMenu, In
 
 	def doEofInternal(self, playing):
 		print "doEofInt:"
-		print 
 		if playing:
 			if not self.resumeEOF():
 				if self.playMode[0] == 'random':
@@ -890,6 +886,8 @@ class SimplePlayer(Screen, SimpleSeekHelper, SimplePlayerResume, InfoBarMenu, In
 					self.playNextStream(config.supportchannel.sp_on_movie_eof.value)
 				elif self.playMode[0] == 'backward':
 					self.playPrevStream(config.supportchannel.sp_on_movie_eof.value)
+			else:
+				self.close()
 
 	def playExit(self):
 		print "playExit:"
