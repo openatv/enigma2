@@ -540,7 +540,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						}
 						else
 						{
-							eRect rect(ePoint(m_itemsize.width()-79, offset.y()+15 ), eSize(69,19));
+							eRect rect(ePoint(m_itemsize.width() - pixmap->size().width() - 15, offset.y() + (m_itemsize.height() - pixmap->size().height()) / 2), pixmap->size());
 							painter.clip(rect);
 							painter.blit(pixmap, rect.topLeft(), rect, 0);
 							painter.clippop();
