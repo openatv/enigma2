@@ -76,7 +76,7 @@ class About(Screen):
 			f = open('/proc/stb/sensors/temp0/value', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/proc/stb/fp/temp_sensor'):
+		elif path.exists('/proc/stb/fp/temp_sensor') and getBoxType() not in ('gbquad'):
 			f = open('/proc/stb/fp/temp_sensor', 'r')
 			tempinfo = f.read()
 			f.close()
