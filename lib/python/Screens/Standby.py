@@ -202,6 +202,8 @@ class TryQuitMainloop(MessageBox):
 #				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
+			default_yes = True
+			timeout=30
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			default_yes = False
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
