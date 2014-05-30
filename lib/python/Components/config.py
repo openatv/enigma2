@@ -420,7 +420,18 @@ class ConfigBoolean(ConfigElement):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
-		self.grafic = grafic
+		self.grafic = False
+		if grafic:
+			from skin import switchPixmap
+			offPath = switchPixmap.get('menu_off')
+			onPath = switchPixmap.get('menu_on')
+			if offPath and onPath:
+				falseIcon = LoadPixmap(cached=True, path=offPath)
+				trueIcon = LoadPixmap(cached=True, path=onPath)
+				if falseIcon and trueIcon:
+					self.falseIcon = falseIcon
+					self.trueIcon = trueIcon
+					self.grafic = True
 
 	def handleKey(self, key):
 		if key in (KEY_LEFT, KEY_RIGHT):
@@ -437,19 +448,13 @@ class ConfigBoolean(ConfigElement):
 		return descr
 
 	def getMulti(self, selected):
-		from skin import switchPixmap
-		descr = self.descriptions[self.value]
-		FalseIcon = LoadPixmap(cached=True, path=switchPixmap['menu_off'])
-		TrueIcon = LoadPixmap(cached=True, path=switchPixmap['menu_on'])
 		if not self.grafic:
-			if descr:
-			    return "text", _(descr)
-			return "text", _(descr)
+			return "text", self.getText()
 		elif not self.value:
-			return ('bolean', FalseIcon)
+			return ('bolean', self.falseIcon)
 		else:
-			return ('bolean', TrueIcon)
-		      
+			return ('bolean', self.trueIcon)
+
 	def tostring(self, value):
 		if not value:
 			return "false"
