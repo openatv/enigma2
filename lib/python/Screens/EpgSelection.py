@@ -94,7 +94,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['lab1'] = Label(_('Please wait while gathering data...'))
 		self.key_green_choice = self.EMPTY
 		self['key_red'] = Button(_('IMDb Search'))
-		self['key_green'] = Button(_('Add Timer'))
+		self['key_green'] = Button()
 		self['key_yellow'] = Button(_('EPG Search'))
 		self['key_blue'] = Button(_('Add AutoTimer'))
 		self['dialogactions'] = HelpableActionMap(self, 'WizardActions',
