@@ -161,7 +161,7 @@ class ServiceInfo(Converter, object):
 				video_width = int(f.read(),16)
 				f.close()
 			if not video_width:
-				video_width = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
+				video_width = int(self.getServiceInfoString(info, iServiceInformation.sVideoWidth))
 			return "%d" % video_width
 		elif self.type == self.YRES:
 			video_height = None
@@ -170,7 +170,7 @@ class ServiceInfo(Converter, object):
 				video_height = int(f.read(),16)
 				f.close()
 			if not video_height:
-				video_height = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
+				video_height = int(self.getServiceInfoString(info, iServiceInformation.sVideoHeight))
 			return "%d" % video_height
 		elif self.type == self.APID:
 			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
@@ -195,7 +195,7 @@ class ServiceInfo(Converter, object):
 				video_rate = int(f.read())
 				f.close()
 			if not video_rate:
-				video_rate = self.getServiceInfoString(info, iServiceInformation.sFrameRate)
+				video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
 			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
