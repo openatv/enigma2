@@ -495,7 +495,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
-		self._updateButtonTexts()
+		self.onExecBegin.append(self._updateButtonTexts)
 
 		self["movie_off"] = MultiPixmap()
 		self["movie_off"].hide()
