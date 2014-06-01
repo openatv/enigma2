@@ -5,6 +5,7 @@ from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 import time
 import os
+import stat
 import enigma
 
 def getTrashFolder(path=None):
@@ -27,12 +28,23 @@ def createTrashFolder(path=None):
 	print '[TRASHCAN DeBug path]', path
 	trash = getTrashFolder(path)
 	print '[TRASHCAN DeBug]', trash
-	if trash and os.access(trash, os.W_OK):
-		if not os.path.isdir(trash):
-			os.mkdir(trash)
-		return trash
-	else:
-		return None
+	if trash:
+		try:
+			if os.path.isdir(trash) and os.access(trash, os.R_OK|os.W_OK|os.X_OK):
+				return trash
+			if not os.path.isdir(trash):
+				if os.path.lexists(trash):
+					os.remove(trash)
+				os.mkdir(trash)
+			if not os.access(trash, os.R_OK|os.W_OK|os.X_OK):
+				perms = stat.S_IMODE(os.stat(trash).st_mode)
+				perms |= stat.S_IRWXU
+				chmod(trash, perms)
+			if os.path.isdir(trash) and os.access(trash, os.R_OK|os.W_OK|os.X_OK):
+				return trash
+		except:
+			pass
+	return None
 
 def get_size(start_path = '.'):
 	total_size = 0
