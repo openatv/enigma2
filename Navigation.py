@@ -13,7 +13,9 @@ from Screens.InfoBar import InfoBar
 from sys import maxint
 from os import path
 
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/GB_ipbox"):
+isGBIPBOX = False
+
+if path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/GB_ipbox"):
 	isGBIPBOX = True
 	from gbipbox import gbipbox
 
