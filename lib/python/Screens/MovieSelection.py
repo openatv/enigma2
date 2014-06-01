@@ -1887,11 +1887,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					# Failed to create trash or move files.
 					msg = _("Cannot move to trash can") + "\n"
 					if trash is None:
-						msg += _("Trash can missing") + "\n"
+						msg += _("Trash can missing")
 					else:
 						msg += str(e)
 					msg += "\n"
-					are_you_sure = _("Do you really want to permamently remove %s ?") % name
+					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
