@@ -148,7 +148,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
 			self.list.append(("backupfiles", _("Select backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
+				self.list.append(("ipkg-manager", _("Package management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
 			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("AdvancedSoftwareSupported"):
@@ -388,8 +388,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list = [ ]
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.list.append(self.overwriteConfigfilesEntry)
-		self.list.append(getConfigListEntry(_("show softwaremanager in plugin menu"), config.plugins.softwaremanager.onSetupMenu))
-		self.list.append(getConfigListEntry(_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
+		self.list.append(getConfigListEntry(_("Show software manager in plugin menu"), config.plugins.softwaremanager.onSetupMenu))
+		self.list.append(getConfigListEntry(_("Show software manager on blue button"), config.plugins.softwaremanager.onBlueButton))
 
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
@@ -641,7 +641,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif status == 'error':
 				self["key_green"].setText(_("Continue"))
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
+				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the package list. Please try again." ),'', '', statuspng, divpng, None, '' ))
 			self["list"].style = "default"
 			self['list'].setList(self.statuslist)
 
@@ -665,7 +665,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				if iSoftwareTools.lastDownloadDate is None:
 					self.setState('error')
 					if iSoftwareTools.NetworkConnectionAvailable:
-						self["status"].setText(_("Updatefeed not available."))
+						self["status"].setText(_("Update feed not available."))
 					else:
 						self["status"].setText(_("No network connection available."))
 				else:
@@ -1526,7 +1526,7 @@ class IPKGSource(Screen):
 
 class PacketManager(Screen, NumericalTextInput):
 	skin = """
-		<screen name="PacketManager" position="center,center" size="530,420" title="Packet manager" >
+		<screen name="PacketManager" position="center,center" size="530,420" title="Package manager" >
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -1647,7 +1647,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.rebuildList()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Packet manager"))
+		self.setTitle(_("Package manager"))
 
 	def setStatus(self,status = None):
 		if status:
@@ -1655,11 +1655,11 @@ class PacketManager(Screen, NumericalTextInput):
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
+				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new package list. Please wait..." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the packetlist. Please try again." ),'',statuspng, divpng ))
+				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the package list. Please try again." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 
 	def rebuildList(self):

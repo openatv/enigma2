@@ -859,6 +859,8 @@ def readSkin(screen, skin, names, desktop):
 			return
 		if wname:
 			#print "Widget name=", wname
+			if wname in visited_components:
+				print "[SKIN] Attempt to redefine", wname
 			visited_components.add(wname)
 			# get corresponding 'gui' object
 			try:
