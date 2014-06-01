@@ -3,6 +3,8 @@ from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Tools.HardwareInfo import HardwareInfo
 
+from boxbranding import getBoxType
+
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile, ConfigSubsection
 
