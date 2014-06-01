@@ -15,7 +15,7 @@ from os import path
 
 isGBIPBOX = False
 
-if path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/GB_ipbox"):
+if path.isfile("/usr/lib/enigma2/python/gbipbox.so"):
 	isGBIPBOX = True
 	from gbipbox import gbipbox
 
