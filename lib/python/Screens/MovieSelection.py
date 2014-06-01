@@ -1799,7 +1799,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					except Exception, e:
 						print "[MovieSelection] Weird error moving to trash", e
 						# Failed to create trash or move files.
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+						msg = _("Cannot move to trash can") + "\n"
+						if trash is None:
+							msg += _("Trash can missing")
+						else:
+							msg += str(e)
+						msg += "\n"
+						mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+						mbox.setTitle(self.getTitle())
 						return
 				for fn in os.listdir(cur_path):
 					if (fn != '.') and (fn != '..'):
@@ -1886,7 +1893,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				except Exception, e:
 					print "[MovieSelection] Weird error moving to trash", e
 					# Failed to create trash or move files.
-					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+					msg = _("Cannot move to trash can") + "\n"
+					if trash is None:
+						msg += _("Trash can missing") + "\n"
+					else:
+						msg += str(e)
+					msg += "\n"
+					are_you_sure = _("Do you really want to permamently remove %s ?") % name
 			else:
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
