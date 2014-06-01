@@ -12,6 +12,11 @@ import ServiceReference
 from Screens.InfoBar import InfoBar
 from sys import maxint
 
+try:
+	from gbipbox import gbipbox
+except:
+	pass
+
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
 	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
@@ -155,6 +160,13 @@ class Navigation:
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
+
+				try:
+					if ref.toString().find('//') == -1:					
+						playref = gbipbox.gref(ref)
+				except:
+					pass
+
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
