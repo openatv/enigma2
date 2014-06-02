@@ -220,7 +220,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
-			return str(video_width)
+			return int(video_width)
 		elif self.type == self.YRES:
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
@@ -229,7 +229,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
-			return str(video_height)
+			return int(video_height)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
@@ -238,7 +238,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_rate:
 				video_rate = info.getInfo(iServiceInformation.sFrameRate)
-			return str(video_rate)
+			return int(video_rate)
 
 		return -1
 
