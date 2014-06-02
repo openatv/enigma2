@@ -1,5 +1,6 @@
 from config import config, ConfigSelection, ConfigNothing
 from Components.SystemInfo import SystemInfo
+from Tools.Directories import fileExists
 
 
 class WOL:
