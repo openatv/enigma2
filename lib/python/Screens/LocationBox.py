@@ -29,7 +29,11 @@ from Components.MenuList import MenuList
 # Timer
 from enigma import eTimer
 
-defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+defaultInhibitDirs = [
+	"/.gstreamer-0.10", "/autofs", "/bin", "/boot", "/dev",
+	"/etc", "/home", "/lib", "/picon", "/proc", "/run", "/sbin",
+	"/share", "/sys", "/tmp", "/usr", "/var",
+]
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
