@@ -536,7 +536,7 @@ class MovieList(GUIComponent):
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 
-		reflist = serviceHandler.list(root)
+		reflist = root and serviceHandler.list(root)
 		if reflist is None:
 			print "listing of movies failed"
 			return
