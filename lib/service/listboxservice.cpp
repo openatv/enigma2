@@ -613,7 +613,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		ePtr<eServiceEvent> evt;
 
 		bool serviceAvail = true;
-ifndef FORCE_SERVICEAVAIL
+#ifndef FORCE_SERVICEAVAIL
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 		{
 			if (m_color_set[serviceNotAvail])
