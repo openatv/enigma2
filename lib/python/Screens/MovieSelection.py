@@ -1785,6 +1785,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					are_you_sure = _("Do you really want to move to trashcan ?")
 				else:
 					args = True
+				folder_filename = os.path.split(os.path.split(name)[0])[1]
 				if args:
 					try:
 						# Move the files to the trash can in a way that their CTIME is
@@ -1799,7 +1800,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					except Exception, e:
 						print "[MovieSelection] Weird error moving to trash", e
 						# Failed to create trash or move files.
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+						msg = _("Cannot move to trash can") + "\n"
+						if trash is None:
+							msg += _("Trash can missing")
+						else:
+							msg += str(e)
+						msg += "\n"
+						are_you_sure = _("Do you really want to delete %s ?") % folder_filename
+						mbox=self.session.openWithCallback(self.deleteDirConfirmed, MessageBox, msg + are_you_sure)
+						mbox.setTitle(self.getTitle())
 						return
 				for fn in os.listdir(cur_path):
 					if (fn != '.') and (fn != '..'):
@@ -1809,31 +1818,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						else:
 							files += 1
 				if files or subdirs:
-					folder_filename = os.path.split(os.path.split(name)[0])[1]
 					mbox=self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs) + are_you_sure)
 					mbox.setTitle(self.getTitle())
 					return
 				else:
-					self.delete([True])
+					self.delete(True)
 			else:
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permanently remove from trash can ?")
 				else:
 					are_you_sure = _("Do you really want to delete ?")
 				if args:
-					try:
-						# already confirmed...
-						# but not implemented yet...
-						msg = ''
-						Tools.CopyFiles.deleteFiles(cur_path, name)
-						self["list"].removeService(current)
-						self.showActionFeedback(_("Deleted") + " " + name)
-						return
-					except Exception, e:
-						print "[MovieSelection] Weird error moving to trash", e
-						# Failed to create trash or move files.
-						msg = _("Cannot delete file") + "\n" + str(e) + "\n"
-						return
+					# already confirmed...
+					# but not implemented yet...
+					self.deleteDirConfirmed(True)
+					return
 				for fn in os.listdir(cur_path):
 					if (fn != '.') and (fn != '..'):
 						ffn = os.path.join(cur_path, fn)
@@ -1886,7 +1885,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				except Exception, e:
 					print "[MovieSelection] Weird error moving to trash", e
 					# Failed to create trash or move files.
-					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+					msg = _("Cannot move to trash can") + "\n"
+					if trash is None:
+						msg += _("Trash can missing")
+					else:
+						msg += str(e)
+					msg += "\n"
+					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
@@ -1920,6 +1925,33 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.showActionFeedback(_("Deleted") + " " + name)
 		except Exception, ex:
 			mbox=self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
+			mbox.setTitle(self.getTitle())
+
+	def deleteDirConfirmed(self, confirmed):
+		if not confirmed:
+			return
+		item = self.getCurrentSelection()
+		if item is None:
+			return # huh?
+		current = item[0]
+		info = item[1]
+		cur_path = os.path.realpath(current.getPath())
+		if not os.path.exists(cur_path):
+			# file does not exist.
+			return
+		name = info and info.getName(current) or _("this recording")
+		try:
+			# already confirmed...
+			# but not implemented yet...
+			Tools.CopyFiles.deleteFiles(cur_path, name)
+			self["list"].removeService(current)
+			self.showActionFeedback(_("Deleted") + " " + name)
+			return
+		except Exception, e:
+			print "[MovieSelection] Weird error moving to trash", e
+			# Failed to create trash or move files.
+			msg = _("Cannot delete file") + "\n" + str(e) + "\n"
+			mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
 	def purgeAll(self):
