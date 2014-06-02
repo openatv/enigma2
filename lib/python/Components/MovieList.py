@@ -10,6 +10,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
+from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 import skin
 
@@ -143,6 +144,10 @@ class MovieList(GUIComponent):
 
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
+
+	dirNameExclusions = ['.AppleDouble', '.AppleDesktop', '.AppleDB',
+				'Network Trash Folder', 'Temporary Items',
+				'.TemporaryItems']
 
 	def __init__(self, root, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
@@ -510,7 +515,9 @@ class MovieList(GUIComponent):
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				dirname = info.getName(serviceref)
-				if not dirname.endswith('.AppleDouble/') and not dirname.endswith('.AppleDesktop/') and not dirname.endswith('.AppleDB/') and not dirname.endswith('Network Trash Folder/') and not dirname.endswith('Temporary Items/'):
+				normdirname = os.path.normpath(dirname)
+				normname = os.path.split(normdirname)[1]
+				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
