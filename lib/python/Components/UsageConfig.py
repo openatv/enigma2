@@ -248,10 +248,10 @@ def InitUsageConfig():
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["WakeOnLAN"]:
-		def standbyLEDChanged(configElement):
+		def wakeOnLANChanged(configElement):
 			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 		config.usage.wakeOnLAN = ConfigYesNo(default = False)
-		config.usage.wakeOnLAN.addNotifier(standbyLEDChanged)
+		config.usage.wakeOnLAN.addNotifier(wakeOnLANChanged)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
