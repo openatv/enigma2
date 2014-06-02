@@ -516,7 +516,7 @@ class MovieList(GUIComponent):
 			if serviceref.flags & eServiceReference.mustDescent:
 				dirname = info.getName(serviceref)
 				normdirname = os.path.normpath(dirname)
-				normname = os.path.split(normdirname)[1]
+				normname = os.path.basename(normdirname)
 				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
