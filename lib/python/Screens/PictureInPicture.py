@@ -1,12 +1,15 @@
 from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
+from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
-from Components.config import config, ConfigPosition, ConfigYesNo
+from Components.config import config, ConfigPosition, ConfigYesNo, ConfigSelection
 from Tools import Notifications
 from Screens.MessageBox import MessageBox
 from os import access, W_OK
 
 pip_config_initialized = False
+MAX_X = 720
+MAX_Y = 576
 
 class PictureInPictureZapping(Screen):
 	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
@@ -21,19 +24,25 @@ class PictureInPicture(Screen):
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
 		self.currentService = None
 		self.currentServiceReference = None
-		self.has_external_pip = access("/proc/stb/vmpeg/1/external", W_OK)
 		if not pip_config_initialized:
-			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
-			config.av.external_pip = ConfigYesNo(default = False)
+			choicelist = ["standard"]
+			if SystemInfo["VideoDestinationConfigurable"]:
+				choicelist.append("cascade")
+				choicelist.append("split")
+				choicelist.append("bigpig")
+			if SystemInfo["HasExternalPIP"]:
+				choicelist.append("external")
+			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
+			config.av.pip_mode = ConfigSelection(default="standard", choices=choicelist)
 			pip_config_initialized = True
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 	def __del__(self):
 		del self.pipservice
 		self.setExternalPiP(False)
+		self.setSizePosMainWindow()
 
-	def LayoutFinished(self):
-		self.onLayoutFinish.remove(self.LayoutFinished)
+	def relocate(self):
 		x = config.av.pip.value[0]
 		y = config.av.pip.value[1]
 		w = config.av.pip.value[2]
@@ -41,11 +50,26 @@ class PictureInPicture(Screen):
 		if x != -1 and y != -1 and w != -1 and h != -1:
 			self.move(x, y)
 			self.resize(w, h)
-		self.setExternalPiP(config.av.external_pip.value)
+
+	def LayoutFinished(self):
+		self.onLayoutFinish.remove(self.LayoutFinished)
+		self.relocate()
+		self.setExternalPiP(config.av.pip_mode.value == "external")
 
 	def move(self, x, y):
 		config.av.pip.value[0] = x
 		config.av.pip.value[1] = y
+		w = config.av.pip.value[2]
+		h = config.av.pip.value[3]
+		if config.av.pip_mode.value == "cascade":
+			x = MAX_X - w
+			y = 0
+		elif config.av.pip_mode.value == "split":
+			x = MAX_X / 2
+			y = 0
+		elif config.av.pip_mode.value == "bigpig":
+			x = 0
+			y = 0
 		config.av.pip.save()
 		self.instance.move(ePoint(x, y))
 
@@ -53,21 +77,31 @@ class PictureInPicture(Screen):
 		config.av.pip.value[2] = w
 		config.av.pip.value[3] = h
 		config.av.pip.save()
-		self.instance.resize(eSize(*(w, h)))
-		self["video"].instance.resize(eSize(*(w, h)))
+		if config.av.pip_mode.value == "standard" or config.av.pip_mode.value == "external":
+			self.instance.resize(eSize(*(w, h)))
+			self["video"].instance.resize(eSize(*(w, h)))
+			self.setSizePosMainWindow()
+		elif config.av.pip_mode.value == "cascade":
+			self.instance.resize(eSize(*(w, h)))
+			self["video"].instance.resize(eSize(*(w, h)))
+			self.setSizePosMainWindow(0, h, MAX_X - w, MAX_Y - h)
+		elif config.av.pip_mode.value == "split":
+			self.instance.resize(eSize(*(MAX_X/2, MAX_Y )))
+			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y)))
+			self.setSizePosMainWindow(0, 0, MAX_X/2, MAX_Y)
+		elif config.av.pip_mode.value == "bigpig":
+			self.instance.resize(eSize(*(MAX_X, MAX_Y)))
+			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
+
+	def setSizePosMainWindow(self, x = 0, y = 0, w = MAX_X, h = MAX_Y):
+		open("/proc/stb/vmpeg/0/dst_left", "w").write("%x" % x)
+		open("/proc/stb/vmpeg/0/dst_top", "w").write("%x" % y)
+		open("/proc/stb/vmpeg/0/dst_width", "w").write("%x" % w)
+		open("/proc/stb/vmpeg/0/dst_height", "w").write("%x" % h)
+		open("/proc/stb/vmpeg/0/dst_apply", "w").write("%x" % 1)
 
 	def setExternalPiP(self, onoff):
-		if self.has_external_pip:
-			procentry = open("/proc/stb/vmpeg/1/external", "w")
-			if onoff:
-				procentry.write("on")
-			else:
-				procentry.write("off")
-
-	def toggleExternalPiP(self):
-		config.av.external_pip.value = not config.av.external_pip.value
-		config.av.external_pip.save()
-		self.setExternalPiP(config.av.external_pip.value)
+		open(SystemInfo["HasExternalPIP"], "w").write(onoff and "on" or "off")
 
 	def active(self):
 		self.pipActive.show()
@@ -76,10 +110,22 @@ class PictureInPicture(Screen):
 		self.pipActive.hide()
 
 	def getPosition(self):
-		return ((self.instance.position().x(), self.instance.position().y()))
+		return self.instance.position().x(), self.instance.position().y()
 
 	def getSize(self):
-		return (self.instance.size().width(), self.instance.size().height())
+		return self.instance.size().width(), self.instance.size().height()
+
+	def togglePiPMode(self):
+		self.setMode(config.av.pip_mode.choices[(config.av.pip_mode.index + 1) % len(config.av.pip_mode.choices)])
+
+	def setMode(self, mode):
+		config.av.pip_mode.value = mode
+		config.av.pip_mode.save()
+		self.setExternalPiP(config.av.pip_mode.value == "external")
+		self.relocate()
+
+	def getMode(self):
+		return config.av.pip_mode.value
 
 	def playService(self, service):
 		if service is None:
