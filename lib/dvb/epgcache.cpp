@@ -467,6 +467,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					return;
 				}
 
+#ifdef ENABLE_VIRGIN
+				res = demux->createSectionReader( this, data.m_VirginNowNextReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize virgin nownext reader!!");
+					return;
+				}
+
+				res = demux->createSectionReader( this, data.m_VirginScheduleReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize virgin schedule reader!!");
+					return;
+				}
+#endif
 #ifdef ENABLE_NETMED
 				res = demux->createSectionReader( this, data.m_NetmedScheduleReader );
 				if ( res )
@@ -1554,6 +1569,27 @@ void eEPGCache::channel_data::startEPG()
 		isRunning |= SCHEDULE_OTHER;
 	}
 
+#ifdef ENABLE_VIRGIN
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIRGIN_NOWNEXT)
+	{
+		mask.pid = 0x2bc;
+		mask.data[0] = 0x4E;
+		mask.mask[0] = 0xFE;
+		m_VirginNowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIRGIN_NOWNEXT), m_VirginNowNextConn);
+		m_VirginNowNextReader->start(mask);
+		isRunning |= VIRGIN_NOWNEXT;
+	}
+
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIRGIN_SCHEDULE)
+	{
+		mask.pid = 0x2bc;
+		mask.data[0] = 0x50;
+		mask.mask[0] = 0xFE;
+		m_VirginScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIRGIN_SCHEDULE), m_VirginScheduleConn);
+		m_VirginScheduleReader->start(mask);
+		isRunning |= VIRGIN_SCHEDULE;
+	}
+#endif
 #ifdef ENABLE_NETMED
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NETMED_SCHEDULE)
 	{
@@ -1614,6 +1650,22 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+#ifdef ENABLE_VIRGIN
+		if ( !(haveData&VIRGIN_NOWNEXT) && (isRunning&VIRGIN_NOWNEXT) )
+		{
+			eDebug("[EPGC] abort non avail virgin nownext reading");
+			isRunning &= ~VIRGIN_NOWNEXT;
+			m_VirginNowNextReader->stop();
+			m_VirginNowNextConn=0;
+		}
+		if ( !(haveData&VIRGIN_SCHEDULE) && (isRunning&VIRGIN_SCHEDULE) )
+		{
+			eDebug("[EPGC] abort non avail virgin schedule reading");
+			isRunning &= ~VIRGIN_SCHEDULE;
+			m_VirginScheduleReader->stop();
+			m_VirginScheduleConn=0;
+		}
+#endif
 #ifdef ENABLE_NETMED
 		if ( !(haveData&NETMED_SCHEDULE) && (isRunning&NETMED_SCHEDULE) )
 		{
@@ -1736,6 +1788,20 @@ void eEPGCache::channel_data::abortEPG()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+#ifdef ENABLE_VIRGIN
+		if (isRunning & VIRGIN_NOWNEXT)
+		{
+			isRunning &= ~VIRGIN_NOWNEXT;
+			m_VirginNowNextReader->stop();
+			m_VirginNowNextConn=0;
+		}
+		if (isRunning & VIRGIN_SCHEDULE)
+		{
+			isRunning &= ~VIRGIN_SCHEDULE;
+			m_VirginScheduleReader->stop();
+			m_VirginScheduleConn=0;
+		}
+#endif
 #ifdef ENABLE_NETMED
 		if (isRunning & NETMED_SCHEDULE)
 		{
@@ -1818,6 +1884,16 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 			map = 2;
 			break;
 #endif
+#ifdef ENABLE_VIRGIN
+		case VIRGIN_NOWNEXT:
+			reader = m_VirginNowNextReader;
+			map = 0;
+			break;
+		case VIRGIN_SCHEDULE:
+			reader = m_VirginScheduleReader;
+			map = 1;
+			break;
+#endif
 		default:
 			eDebug("[EPGC] unknown source");
 			return;
@@ -1853,6 +1929,16 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 			case NETMED_SCHEDULE_OTHER:
 				m_NetmedScheduleOtherConn=0;
 				eDebugNoNewLine("netmed schedule other");
+				break;
+#endif
+#ifdef ENABLE_VIRGIN
+			case VIRGIN_NOWNEXT:
+				m_VirginNowNextConn=0;
+				eDebugNoNewLine("virgin nownext");
+				break;
+			case VIRGIN_SCHEDULE:
+				m_VirginScheduleConn=0;
+				eDebugNoNewLine("virgin schedule");
 				break;
 #endif
 			default: eDebugNoNewLine("unknown");break;
