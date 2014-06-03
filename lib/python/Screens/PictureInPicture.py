@@ -94,14 +94,16 @@ class PictureInPicture(Screen):
 			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
 
 	def setSizePosMainWindow(self, x = 0, y = 0, w = MAX_X, h = MAX_Y):
-		open("/proc/stb/vmpeg/0/dst_left", "w").write("%x" % x)
-		open("/proc/stb/vmpeg/0/dst_top", "w").write("%x" % y)
-		open("/proc/stb/vmpeg/0/dst_width", "w").write("%x" % w)
-		open("/proc/stb/vmpeg/0/dst_height", "w").write("%x" % h)
-		open("/proc/stb/vmpeg/0/dst_apply", "w").write("%x" % 1)
+		if SystemInfo["VideoDestinationConfigurable"]:
+			open("/proc/stb/vmpeg/0/dst_left", "w").write("%x" % x)
+			open("/proc/stb/vmpeg/0/dst_top", "w").write("%x" % y)
+			open("/proc/stb/vmpeg/0/dst_width", "w").write("%x" % w)
+			open("/proc/stb/vmpeg/0/dst_height", "w").write("%x" % h)
+			open("/proc/stb/vmpeg/0/dst_apply", "w").write("%x" % 1)
 
 	def setExternalPiP(self, onoff):
-		open(SystemInfo["HasExternalPIP"], "w").write(onoff and "on" or "off")
+		if SystemInfo["HasExternalPIP"]:
+			open(SystemInfo["HasExternalPIP"], "w").write(onoff and "on" or "off")
 
 	def active(self):
 		self.pipActive.show()
