@@ -45,3 +45,11 @@ class SelectionList(MenuList):
 			self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
 		self.setList(self.list)
 
+	def sort(self, sortType=False, flag=False):
+		# sorting by sortType:
+		# 0 - description
+		# 1 - value
+		# 2 - index
+		# 3 - selected
+		self.list.sort(key=lambda x: x[0][sortType],reverse=flag)
+		self.setList(self.list)

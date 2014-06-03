@@ -21,6 +21,11 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.frontendData = feinfo and feinfo.getAll(True)
 		del feinfo
 		del service
+		
+		self.typeOfTuningEntry = None
+		self.systemEntry = None
+		self.satfinderTunerEntry = None
+		self.satEntry = None
 
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Satfinder"))
@@ -115,6 +120,11 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.feid = int(self.satfinder_scan_nims.value)
 			self.prepareFrontend()
 			self.createSetup()
+			if self.frontend == None:
+				msg = _("Sorry that tuner is not available.")
+				if self.session.nav.RecordTimer.isRecording():
+					msg += _("\nA recording is in progress.")
+				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		elif cur == self.satEntry:
 			self.createSetup()
 
@@ -151,7 +161,7 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def createConfig(self, foo):
 		self.preDefTransponders = None
-		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))])
+		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))], default = "predefined_transponder")
 		self.orbital_position = 192
 		if self.frontendData and self.frontendData.has_key('orbital_position'):
 			self.orbital_position = self.frontendData['orbital_position']
@@ -260,10 +270,7 @@ def SatfinderMain(session, close=None, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
 	else:
-		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
-		else:
-			session.openWithCallback(close, Satfinder)
+		session.openWithCallback(close, Satfinder)
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":

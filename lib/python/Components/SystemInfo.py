@@ -1,6 +1,6 @@
 from os import path
 
-from enigma import eDVBResourceManager
+from enigma import eDVBResourceManager, Misc_Options
 
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
@@ -30,14 +30,16 @@ def countFrontpanelLEDs():
 
 	return leds
 
+SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+SystemInfo["ZapMode"] = fileExists("/proc/stb/video/zapmode") or fileExists("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0")
 SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
-SystemInfo["WOL"] = fileExists("/proc/stb/fp/wol")
+SystemInfo["WakeOnLAN"] = fileExists("/proc/stb/fp/wol") or fileExists("/proc/stb/power/wol")
 SystemInfo["StandbyPowerLed"] = fileExists("/proc/stb/power/standbyled")
-SystemInfo["HDMICEC"] = (path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
+SystemInfo["HDMICEC"] = (fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
 SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")
 SystemInfo["SeekStatePlay"] = False
 SystemInfo["GraphicLCD"] = getBoxType() in ('vuultimo', 'xpeedlx3', 'et10000', 'mutant2400')

@@ -297,6 +297,11 @@ long long iStaticServiceInformation::getFileSize(const eServiceReference &ref)
 	return 0;
 }
 
+bool iStaticServiceInformation::isCrypted(const eServiceReference &ref)
+{
+	return 0;
+}
+
 int iStaticServiceInformation::setInfo(const eServiceReference &ref, int w, int v)
 {
 	return -1;

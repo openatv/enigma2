@@ -271,7 +271,6 @@ class CIconfigMenu(Screen):
 		self.read_providers=[]
 		self.usingcaid=[]
 		self.ci_config=[]
-
 		try:
 			fp = open(self.filename, 'r')
 			tree = ci_parse(fp).getroot()
