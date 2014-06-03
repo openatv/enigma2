@@ -2,6 +2,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import SystemInfo
 from Components.Label import Label
+from Components.config import config
 
 # this is not so great.
 MAX_X = 720
@@ -24,8 +25,8 @@ class PiPSetup(Screen):
 
 		self.pip = pip
 
-		self.pos = (self.pip.instance.position().x(), self.pip.instance.position().y())
-		self.size = self.pip.getSize()
+		self.pos = (config.av.pip.value[0], config.av.pip.value[1])
+		self.size = (config.av.pip.value[2], config.av.pip.value[3])
 		self.mode = self.pip.getMode()
 
 		self.orgpos = self.pos
