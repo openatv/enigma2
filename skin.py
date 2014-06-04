@@ -480,6 +480,10 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			if fileExists(skinfile):
 				print "[SKIN] loading include:", skinfile
 				loadSkin(skinfile)
+			else:
+				print "[SKIN] Can not find include file:", filename
+		else:
+			print "[SKIN] include: need to specify 'filename=\"path\"' attribute"
 
 	for c in skin.findall('switchpixmap'):
 		for pixmap in c.findall('pixmap'):
