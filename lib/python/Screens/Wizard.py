@@ -1,3 +1,4 @@
+from boxbranding import getMachineBrand, getMachineName
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
@@ -456,7 +457,7 @@ class Wizard(Screen):
 		return False
 
 	def getTranslation(self, text):
-		return _(text)
+		return _(text).replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 			
 	def updateText(self, firstset = False):
 		text = self.getTranslation(self.wizard[self.currStep]["text"])
