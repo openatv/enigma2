@@ -704,8 +704,10 @@ class MovieList(GUIComponent):
 			itemsBelow = self.list[currentIndex + 1:]
 			#first search the items below the selection
 			for index, item in enumerate(itemsBelow):
+				if item[1] is None:
+					continue
 				ref = item[0]
-				itemName = getShortName(item[1].getName(ref).upper(), ref)
+				itemName = getShortName(item[1].getName(ref), ref)
 				if len(self._char) == 1 and itemName.startswith(self._char):
 					found = True
 					self.instance.moveSelectionTo(index + currentIndex + 1)
@@ -715,17 +717,19 @@ class MovieList(GUIComponent):
 					self.instance.moveSelectionTo(index + currentIndex + 1)
 					break
 		if found == False and currentIndex > 0:
-			itemsAbove = self.list[1:currentIndex] #first item (0) points parent folder - no point to include
+			itemsAbove = self.list[:currentIndex]
 			for index, item in enumerate(itemsAbove):
 				ref = item[0]
-				itemName = getShortName(item[1].getName(ref).upper(), ref)
+				if item[1] is None:
+					continue
+				itemName = getShortName(item[1].getName(ref), ref)
 				if len(self._char) == 1 and itemName.startswith(self._char):
 					found = True
-					self.instance.moveSelectionTo(index + 1)
+					self.instance.moveSelectionTo(index)
 					break
 				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
 					found = True
-					self.instance.moveSelectionTo(index + 1)
+					self.instance.moveSelectionTo(index)
 					break
 
 		self._char = ''
@@ -735,6 +739,7 @@ class MovieList(GUIComponent):
 def getShortName(name, serviceref):
 	if serviceref.flags & eServiceReference.mustDescent: #Directory
 		pathName = serviceref.getPath()
-		return os.path.basename(os.path.normpath(pathName)).upper()
-	else:
-		return name
+		name = os.path.basename(os.path.normpath(pathName))
+		if name == '.Trash':
+			name = _("Deleted items")
+	return name.upper()
