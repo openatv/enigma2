@@ -33,7 +33,10 @@ class StubInfo:
 		pass
 
 	def getName(self, serviceref):
-		return os.path.split(serviceref.getPath())[1]
+		if serviceref.getPath().endswith('/'):
+			return serviceref.getPath()
+		else:
+			return os.path.basename(serviceref.getPath())
 	def getLength(self, serviceref):
 		return -1
 	def getEvent(self, serviceref, *args):
@@ -241,7 +244,7 @@ class MovieList(GUIComponent):
 		result = {}
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
 			if timer.isRunning() and not timer.justplay:
-				result[os.path.split(timer.Filename)[1]+'.ts'] = timer
+				result[os.path.basename(timer.Filename)+'.ts'] = timer
 		if self.runningTimers == result:
 			return
 		self.runningTimers = result
@@ -304,11 +307,7 @@ class MovieList(GUIComponent):
 				# Special case: "parent"
 				txt = ".."
 			else:
-				p = os.path.split(pathName)
-				if not p[1]:
-					# if path ends in '/', p is blank.
-					p = os.path.split(p[0])
-				txt = p[1]
+				txt = os.path.basename(os.path.normpath(pathName))
 				if txt == ".Trash":
 					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
 					res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
@@ -331,7 +330,7 @@ class MovieList(GUIComponent):
 					data.txt = fileName
 			data.icon = None
 			data.part = None
-			if os.path.split(pathName)[1] in self.runningTimers:
+			if os.path.basename(pathName) in self.runningTimers:
 				if switch == 'i':
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.icon = self.iconMoviePlayRec
@@ -497,7 +496,7 @@ class MovieList(GUIComponent):
 		parent = None
 		# Don't navigate above the "root"
 		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
-			parent = os.path.split(rootPath)[0]
+			parent = os.path.dirname(rootPath)
 			# enigma wants an extra '/' appended
 			if not parent.endswith('/'):
 				parent += '/'
@@ -654,11 +653,7 @@ class MovieList(GUIComponent):
 		name = x[1] and x[1].getName(ref)
 		if name and ref.flags & eServiceReference.mustDescent:
 			# only use directory basename for sorting
-			p = os.path.split(name)
-			if not p[1]:
-				# if path ends in '/', p is blank.
-				p = os.path.split(p[0])
-			name = p[1]
+			name = os.path.basename(os.path.normpath(name))
 		# print "[MovieList] Sorting for -%s-" % name
 
 		return 1, name and name.lower() or "", -x[2]
@@ -740,9 +735,6 @@ class MovieList(GUIComponent):
 def getShortName(name, serviceref):
 	if serviceref.flags & eServiceReference.mustDescent: #Directory
 		pathName = serviceref.getPath()
-		p = os.path.split(pathName)
-		if not p[1]: #if path ends in '/', p is blank.
-			p = os.path.split(p[0])
-		return p[1].upper()
+		return os.path.basename(os.path.normpath(pathName)).upper()
 	else:
 		return name
