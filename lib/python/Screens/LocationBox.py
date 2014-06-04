@@ -30,9 +30,9 @@ from Components.MenuList import MenuList
 from enigma import eTimer
 
 defaultInhibitDirs = [
-	"/.gstreamer-0.10", "/autofs", "/bin", "/boot", "/dev",
-	"/etc", "/home", "/lib", "/picon", "/proc", "/run", "/sbin",
-	"/share", "/sys", "/tmp", "/usr", "/var",
+	"/.gstreamer-0.10", "/bin", "/boot", "/dev", "/etc", "/home",
+	"/lib", "/picon", "/proc", "/run", "/sbin", "/share", "/sys",
+	"/tmp", "/usr", "/var",
 ]
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
