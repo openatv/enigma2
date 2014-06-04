@@ -1910,7 +1910,7 @@ class InfoBarPiP:
 		self.onExecBegin.append(self.reclocatePiP)
 
 	def reclocatePiP(self):
-		if self.session.pipshown:
+		if self.session.pipshown and config.av.pip_mode.value not in "standard external":
 			self.relocatePiPTimer = eTimer()
 			self.relocatePiPTimer.callback.append(self.relocatePiPTimeout)
 			self.relocatePiPTimer.start(100, True)
