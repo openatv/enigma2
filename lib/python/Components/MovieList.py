@@ -699,39 +699,22 @@ class MovieList(GUIComponent):
 
 	def _moveToChrStr(self):
 		currentIndex = self.instance.getCurrentIndex()
-		found = False
-		if currentIndex < (len(self.list) - 1):
-			itemsBelow = self.list[currentIndex + 1:]
-			#first search the items below the selection
-			for index, item in enumerate(itemsBelow):
-				if item[1] is None:
-					continue
+		index = currentIndex + 1
+		if index >= len(self.list):
+			index = 0
+		while index != currentIndex:
+			item = self.list[index]
+			if item[1] is not None:
 				ref = item[0]
 				itemName = getShortName(item[1].getName(ref), ref)
-				if len(self._char) == 1 and itemName.startswith(self._char):
-					found = True
-					self.instance.moveSelectionTo(index + currentIndex + 1)
-					break
-				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
-					found = True
-					self.instance.moveSelectionTo(index + currentIndex + 1)
-					break
-		if found == False and currentIndex > 0:
-			itemsAbove = self.list[:currentIndex]
-			for index, item in enumerate(itemsAbove):
-				ref = item[0]
-				if item[1] is None:
-					continue
-				itemName = getShortName(item[1].getName(ref), ref)
-				if len(self._char) == 1 and itemName.startswith(self._char):
-					found = True
+				strlen = len(self._char)
+				if strlen == 1 and itemName.startswith(self._char) \
+				or strlen > 1 and itemName.find(self._char) >= 0:
 					self.instance.moveSelectionTo(index)
 					break
-				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
-					found = True
-					self.instance.moveSelectionTo(index)
-					break
-
+			index += 1
+			if index >= len(self.list):
+				index = 0
 		self._char = ''
 		if self._lbl:
 			self._lbl.visible = False
