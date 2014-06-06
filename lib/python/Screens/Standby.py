@@ -110,6 +110,19 @@ class Standby(Screen):
 		return StandbySummary
 
 	def standbyTimeout(self):
+		if config.usage.inactivity_timer_blocktime.value:
+			curtime = localtime(time())
+			if curtime.tm_year > 1970: #check if the current time is valid
+				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
+				begintime = tuple(config.usage.standby_to_shutdown_timer_blocktime_begin.value)
+				endtime = tuple(config.usage.standby_to_shutdown_timer_blocktime_end.value)
+				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
+					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
+					if duration:
+						if duration < 0:
+							duration += 24*3600
+						self.standbyTimeoutTimer.startLongTimer(duration)
+						return
 		if self.session.screen["TunerInfo"].tuner_use_mask:
 			self.standbyTimeoutTimer.startLongTimer(600)
 		else:

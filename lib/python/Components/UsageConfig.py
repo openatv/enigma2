@@ -142,6 +142,9 @@ def InitUsageConfig():
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, _("after ") + m))
 	config.usage.standby_to_shutdown_timer = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.standby_to_shutdown_timer_blocktime = ConfigYesNo(default = True)
+	config.usage.standby_to_shutdown_timer_blocktime_begin = ConfigClock(default = time.mktime((0, 0, 0, 6, 0, 0, 0, 0, 0)))
+	config.usage.standby_to_shutdown_timer_blocktime_end = ConfigClock(default = time.mktime((0, 0, 0, 23, 0, 0, 0, 0, 0)))
 
 	choicelist = [("0", _("Disabled"))]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
