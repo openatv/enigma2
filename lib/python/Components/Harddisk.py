@@ -658,7 +658,6 @@ class VolumeLabels:
 		self.stale = False
 
 	def getVolumeLabel(self, device):
-		print "[Harddisk] label lookup:", device, self.volume_labels #ZZ
 		if self.stale:
 			self.fetchVolumeLabels()
 
@@ -786,7 +785,6 @@ class HarddiskManager:
 
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
-			print "[Harddisk] addHotplugPartition", device, makestale #ZZ
 			if makestale:
 				self.volume_labels.makeStale()
 			(description, shortdescription) = self._getUserfriendlyDeviceName(device, physdev)
@@ -808,7 +806,6 @@ class HarddiskManager:
 			if device and device[-1] != "/":
 				device += "/"
 			if x.device == device:
-				print "[Harddisk] removeHotplugPartition", device #ZZ
 				self.partitions.remove(x)
 				if x.mountpoint: # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
@@ -838,7 +835,6 @@ class HarddiskManager:
 			if cap != "":
 				hdd += " (" + cap + ")"
 			list.append((hdd, hd))
-		print "[Harddisk] HDDList end" #ZZ
 		return list
 
 	def getCD(self):
@@ -872,10 +868,6 @@ class HarddiskManager:
 		dev, part = self.splitDeviceName(device)
 		shortdescription = description = "External Storage %s" % dev
 		volume_label = self.volume_labels.getVolumeLabel(device)
-		# For testing, force the internal HDD to look as though
-		# it has no label
-		if device == "sda1":
-			volume_label = None
 		if volume_label:
 			shortdescription = description = volume_label
 		if not volume_label:
