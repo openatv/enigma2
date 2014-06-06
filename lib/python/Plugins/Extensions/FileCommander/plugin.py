@@ -295,8 +295,10 @@ class FileCommanderScreen(Screen, key_actions):
 			self.doRefresh()
 
 	def goMenu(self):
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		if self["list_left"].getCurrentDirectory():
+			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
+		if self["list_right"].getCurrentDirectory():
+			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
 		self.session.openWithCallback(self.goRestart, FileCommanderConfigScreen)
 
 	def goDefaultfolder(self):

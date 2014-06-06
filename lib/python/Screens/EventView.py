@@ -262,7 +262,7 @@ class EventViewBase:
 		if isRecordEvent and self.key_green_choice and self.key_green_choice != self.REMOVE_TIMER:
 			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
-		elif not isRecordEvent and self.key_green_choice and self.key_green_choice != self.ADD_TIMER:
+		elif not isRecordEvent:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 
@@ -336,10 +336,7 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				"openSimilarList": self.openSimilarList,
 
 			})
-		if self.isRecording:
-			self["key_green"] = Button("")
-		else:
-			self["key_green"] = Button(_("Add timer"))
+		self["key_green"] = Button("")
 
 		if singleEPGCB:
 			self["key_yellow"] = Button(_("Single EPG"))
