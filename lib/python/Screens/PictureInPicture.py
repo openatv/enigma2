@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
+from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition, ConfigYesNo, ConfigSelection
@@ -95,11 +95,7 @@ class PictureInPicture(Screen):
 
 	def setSizePosMainWindow(self, x = 0, y = 0, w = MAX_X, h = MAX_Y):
 		if SystemInfo["VideoDestinationConfigurable"]:
-			open("/proc/stb/vmpeg/0/dst_left", "w").write("%x" % x)
-			open("/proc/stb/vmpeg/0/dst_top", "w").write("%x" % y)
-			open("/proc/stb/vmpeg/0/dst_width", "w").write("%x" % w)
-			open("/proc/stb/vmpeg/0/dst_height", "w").write("%x" % h)
-			open("/proc/stb/vmpeg/0/dst_apply", "w").write("%x" % 1)
+			self["video"].instance.setFullScreenPosition(eRect(x, y, w, h))
 
 	def setExternalPiP(self, onoff):
 		if SystemInfo["HasExternalPIP"]:

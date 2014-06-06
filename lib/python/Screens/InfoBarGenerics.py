@@ -1907,18 +1907,6 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
-		self.onExecBegin.append(self.reclocatePiP)
-
-	def reclocatePiP(self):
-		if self.session.pipshown and config.av.pip_mode.value not in "standard external":
-			self.relocatePiPTimer = eTimer()
-			self.relocatePiPTimer.callback.append(self.relocatePiPTimeout)
-			self.relocatePiPTimer.start(100, True)
-
-	def relocatePiPTimeout(self):
-		if self.session.pipshown:
-			self.session.pip.relocate()
-
 	def pipShown(self):
 		return self.session.pipshown
 
@@ -1969,7 +1957,6 @@ class InfoBarPiP:
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-				self.reclocatePiP()
 			else:
 				self.session.pipshown = False
 				del self.session.pip
