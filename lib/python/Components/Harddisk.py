@@ -517,14 +517,17 @@ class Harddisk:
 
 class Partition:
 	# for backward compatibility, force_mounted actually means "hotplug"
-	def __init__(self, mountpoint, device = None, description = "", force_mounted = False):
+	def __init__(self, mountpoint, device = None, description = "", shortdescription="", force_mounted = False):
 		self.mountpoint = mountpoint
 		self.description = description
+		if not shortdescription:
+			shortdescription = description
+		self.shortdescription = shortdescription
 		self.force_mounted = mountpoint and force_mounted
 		self.is_hotplug = force_mounted # so far; this might change.
 		self.device = device
 	def __str__(self):
-		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint,self.description,self.device)
+		return "Partition(mountpoint=%s,description=%s,shortdescription=%s,device=%s)" % (self.mountpoint,self.description,self.shortdescription,self.device)
 
 	def stat(self):
 		if self.mountpoint:
@@ -551,6 +554,12 @@ class Partition:
 			# Network devices have a user defined name
 			return self.description
 		return self.description + '\t' + self.mountpoint
+
+	def tabbedShortDescription(self):
+		if self.mountpoint.startswith('/media/net') or self.mountpoint.startswith('/media/autofs'):
+			# Network devices have a user defined name
+			return self.shortdescription
+		return self.shortdescription + '\t' + self.mountpoint
 
 	def mounted(self, mounts = None):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
@@ -623,12 +632,51 @@ def addInstallTask(job, package):
 	task.args.append('install')
 	task.args.append(package)
 
+class VolumeLabels:
+	def __init__(self):
+		self.stale = True
+		self.volume_labels = {}
+
+	def fetchVolumeLabels(self):
+		import subprocess
+		self.volume_labels = {}
+		try:
+			lines = subprocess.check_output(["blkid", "-s", "LABEL"]).split("\n")
+		except Exception, e:
+			print "[HarddiskManager] fetchVolumeLabels", str(e)
+
+		for l in lines:
+			if l:
+				l = l.strip()
+				l = l.replace('"', "")
+				l = l.replace("LABEL=", "").replace("/dev/", "")
+				d = l.split()
+				if len(d) == 2 and d[0][-1] == ':':
+					d[0] = d[0][:-1]
+				self.volume_labels[d[0]] = d[1]
+		print "[Harddisk] volume labels:", self.volume_labels
+		self.stale = False
+
+	def getVolumeLabel(self, device):
+		print "[Harddisk] label lookup:", device, self.volume_labels #ZZ
+		if self.stale:
+			self.fetchVolumeLabels()
+
+		if device in self.volume_labels:
+			return self.volume_labels[device]
+
+		return None
+
+	def makeStale(self):
+		self.stale = True
+
 class HarddiskManager:
 	def __init__(self):
 		self.hdd = []
 		self.cd = ""
 		# Partitions should always have a trailing /
 		self.partitions = [ ]
+		self.volume_labels = VolumeLabels()
 		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
 		self.enumerateBlockDevices()
@@ -637,7 +685,7 @@ class HarddiskManager:
 		# Find stuff not detected by the enumeration
 		p = [("/", _("Internal Flash")),("/media/upnp/", _("DLNA")),]
 
-		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
+		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1], shortdescription=x[1]) for x in p ])
 
 	def getBlockDevInfo(self, blockdev):
 		devpath = "/sys/block/" + blockdev
@@ -687,11 +735,12 @@ class HarddiskManager:
 
 	def enumerateBlockDevices(self):
 		print "[Harddisk] enumerating block devices..."
+		self.volume_labels.makeStale()
 		for blockdev in os.listdir("/sys/block"):
-			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev)
+			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev, makestale=False)
 			if not error and not blacklisted and medium_found:
 				for part in partitions:
-					self.addHotplugPartition(part)
+					self.addHotplugPartition(part, makestale=False)
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def enumerateNetworkMounts(self):
@@ -701,16 +750,16 @@ class HarddiskManager:
 			for fil in netmount:
 				if os.path.ismount('/media/net/' + fil):
 					print "[Harddisk] new Network Mount", fil, '->', os.path.join('/media/net/',fil)
-					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil + '/'), description = fil))
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil + '/'), description = fil, shortdescription = fil))
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
 		if len(autofsmount) > 0:
 			for fil in autofsmount:
 				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
 					print "[Harddisk] new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
-					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil + '/'), description = fil))
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil + '/'), description = fil, shortdescription = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print "[Harddisk] new Network Mount being used as HDD replacement -> /media/hdd/"
-			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
+			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd', shortdescription = '/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s" % device
@@ -722,7 +771,7 @@ class HarddiskManager:
 				return item[1] + '/'
 		return None
 
-	def addHotplugPartition(self, device, physdev = None):
+	def addHotplugPartition(self, device, physdev = None, makestale=True):
 		# device is the device name, without /dev
 		# physdev is the physical device path, which we (might) use to determine the userfriendly name
 		if not physdev:
@@ -737,8 +786,11 @@ class HarddiskManager:
 
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
-			description = self.getUserfriendlyDeviceName(device, physdev)
-			p = Partition(mountpoint = self.getMountpoint(device), description = description, force_mounted = True, device = device)
+			print "[Harddisk] addHotplugPartition", device, makestale #ZZ
+			if makestale:
+				self.volume_labels.makeStale()
+			(description, shortdescription) = self._getUserfriendlyDeviceName(device, physdev)
+			p = Partition(mountpoint = self.getMountpoint(device), description = description, shortdescription = shortdescription, force_mounted = True, device = device)
 			self.partitions.append(p)
 			if p.mountpoint: # Plugins won't expect unmounted devices
 				self.on_partition_list_change("add", p)
@@ -756,6 +808,7 @@ class HarddiskManager:
 			if device and device[-1] != "/":
 				device += "/"
 			if x.device == device:
+				print "[Harddisk] removeHotplugPartition", device #ZZ
 				self.partitions.remove(x)
 				if x.mountpoint: # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
@@ -785,6 +838,7 @@ class HarddiskManager:
 			if cap != "":
 				hdd += " (" + cap + ")"
 			list.append((hdd, hd))
+		print "[Harddisk] HDDList end" #ZZ
 		return list
 
 	def getCD(self):
@@ -814,21 +868,39 @@ class HarddiskManager:
 				return devname, 0
 		return dev, part and int(part) or 0
 
-	def getUserfriendlyDeviceName(self, dev, phys):
-		dev, part = self.splitDeviceName(dev)
-		description = "External Storage %s" % dev
-		try:
-			description = readFile("/sys" + phys + "/model")
-		except IOError, s:
-			print "[Harddisk] couldn't read %s: %s" % ("/sys" + phys + "/model", s)
+	def _getUserfriendlyDeviceName(self, device, phys):
+		dev, part = self.splitDeviceName(device)
+		shortdescription = description = "External Storage %s" % dev
+		volume_label = self.volume_labels.getVolumeLabel(device)
+		# For testing, force the internal HDD to look as though
+		# it has no label
+		if device == "sda1":
+			volume_label = None
+		if volume_label:
+			shortdescription = description = volume_label
+		if not volume_label:
+			try:
+				description = readFile("/sys" + phys + "/model")
+			except IOError, s:
+				print "[Harddisk] couldn't read %s: %s" % ("/sys" + phys + "/model", s)
 		from Tools.HardwareInfo import HardwareInfo
 		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
 			if phys.startswith(physdevprefix):
-				description = "%s (%s)" % (pdescription, description)
+				if volume_label:
+					description = "%s (%s)" % (description, pdescription)
+				else:
+					description = "%s (%s)" % (pdescription, description)
+					shortdescription = pdescription
 		# not wholedisk and not partition 1
-		if part and part != 1:
+		if not volume_label and part and part != 1:
 			description += " (Partition %d)" % part
-		return description
+		return (description, shortdescription)
+
+	def getUserfriendlyDeviceName(self, device, phys):
+		return self._getUserfriendlyDeviceName(device, phys)[0]
+
+	def getUserfriendlyDeviceShortName(self, device, phys):
+		return self._getUserfriendlyDeviceName(device, phys)[1]
 
 	def addMountedPartition(self, device, desc):
 		# Ensure we have a trailing /
@@ -838,7 +910,7 @@ class HarddiskManager:
 			if x.mountpoint == device:
 				#already_mounted
 				return
-		self.partitions.append(Partition(mountpoint=device, description=desc))
+		self.partitions.append(Partition(mountpoint=device, description=desc, shortdescription=desc))
 
 	def removeMountedPartition(self, mountpoint):
 		if mountpoint and dmountpoint[-1] != "/":
