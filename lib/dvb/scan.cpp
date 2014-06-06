@@ -82,6 +82,9 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 	case 0x5E: // Sirius 4.8E 12322V and 12226H
 		ret = abs(orbital_position-48) < 3 && tsid != 1;
 		break;
+	case 0x0070: // Eutelsat W7 36.0E 12174L and 12284R have same ONID/TSID (0x0070/0x0008)
+		ret = orbital_position != 360 || tsid != 0x0008;
+		break;
 	case 10100: // Eutelsat W7 36.0E 11644V and 11652V
 		ret = orbital_position != 360 || tsid != 10187;
 		break;
