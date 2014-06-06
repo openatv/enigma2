@@ -29,7 +29,8 @@ class PictureInPicture(Screen):
 			if SystemInfo["VideoDestinationConfigurable"]:
 				choicelist.append("cascade")
 				choicelist.append("split")
-				choicelist.append("bigpig")
+				choicelist.append("byside")
+			choicelist.append("bigpig")
 			if SystemInfo["HasExternalPIP"]:
 				choicelist.append("external")
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
@@ -67,6 +68,9 @@ class PictureInPicture(Screen):
 		elif config.av.pip_mode.value == "split":
 			x = MAX_X / 2
 			y = 0
+		elif config.av.pip_mode.value == "byside":
+			x = MAX_X / 2
+			y = MAX_Y / 4
 		elif config.av.pip_mode.value == "bigpig":
 			x = 0
 			y = 0
@@ -89,6 +93,10 @@ class PictureInPicture(Screen):
 			self.instance.resize(eSize(*(MAX_X/2, MAX_Y )))
 			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y)))
 			self.setSizePosMainWindow(0, 0, MAX_X/2, MAX_Y)
+		elif config.av.pip_mode.value == "byside":
+			self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
+			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
+			self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
 		elif config.av.pip_mode.value == "bigpig":
 			self.instance.resize(eSize(*(MAX_X, MAX_Y)))
 			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
