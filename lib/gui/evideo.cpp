@@ -129,15 +129,6 @@ void eVideoWidget::updatePosition(int disable)
 	int width = pos.width() * 720 / m_fb_size.width();
 	int height = pos.height() * 576 / m_fb_size.height();
 
-	int tmp = left - (width * 4) / 100;
-	left = tmp < 0 ? 0 : tmp;
-	tmp = top - (height * 4) / 100;
-	top = tmp < 0 ? 0 : tmp;
-	tmp = (width * 108) / 100;
-	width = left + tmp > 720 ? 720 - left : tmp;
-	tmp = (height * 108) / 100;
-	height = top + tmp > 576 ? 576 - top : tmp;
-
 	if (!disable)
 	{
 		setPosition(m_decoder, left, top, width, height);
