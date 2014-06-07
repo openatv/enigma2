@@ -35,7 +35,7 @@ class PictureInPicture(Screen):
 			self.choicelist.append(("external", _("External PiP")))
 
 		if not pip_config_initialized:
-			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
+			config.av.pip = ConfigPosition(default=[510, 28, 180, 135], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
 			config.av.pip_mode = ConfigSelection(default="standard", choices=self.choicelist)
 			pip_config_initialized = True
 
