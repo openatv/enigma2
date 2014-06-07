@@ -153,7 +153,7 @@ class ChannelContextMenu(Screen):
 						if not inBouquet:
 							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 
-					if SystemInfo.get("NumVideoDecoders", 1) > 1:
+					if SystemInfo["PIPAvailable"]:
 						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
 						if not config.ParentalControl.configured.value or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if not csel.dopipzap:
