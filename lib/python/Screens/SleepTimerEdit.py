@@ -79,6 +79,10 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		config.usage.inactivity_timer_blocktime_begin.save()
 		config.usage.inactivity_timer_blocktime_end.save()
 		config.usage.standby_to_shutdown_timer.save()
+		config.usage.standby_to_shutdown_timer_blocktime.save()
+		config.usage.standby_to_shutdown_timer_blocktime_begin.save()
+		config.usage.standby_to_shutdown_timer_blocktime_end.save()
+
 		if self.getCurrentEntry() == _("Sleeptimer"):
 			sleepTimer = config.usage.sleep_timer.value
 			if sleepTimer == "event_shutdown":
