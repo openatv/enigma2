@@ -35,7 +35,11 @@ class PiPSetup(Screen):
 
 		self.resize = 100
 
-		self["text"] = Label(self.getHelpText())
+		helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
+		if SystemInfo["VideoDestinationConfigurable"] or SystemInfo["HasExternalPIP"]:
+			helptext += "\n" + _("Press '0' to toggle PiP mode")
+
+		self["text"] = Label(helptext)
 
 		self["actions"] = NumberActionMap(["PiPSetupActions", "NumberActions"],
 		{
@@ -58,13 +62,6 @@ class PiPSetup(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-
-	def getHelpText(self):
-		helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
-		if SystemInfo["VideoDestinationConfigurable"] or SystemInfo["HasExternalPIP"]:
-			helptext += "\n" + _("current mode") + " " + self.mode
-			helptext += "\n" + _("Press '0' to toggle PiP mode")
-		return helptext
 
 	def go(self):
 		self.close()
@@ -145,6 +142,5 @@ class PiPSetup(Screen):
 		elif number == 0:
 			self.pip.togglePiPMode()
 			self.mode = self.pip.getMode()
-			self["text"].setText(self.getHelpText())
 		# reclip
 		self.moveRelative()
