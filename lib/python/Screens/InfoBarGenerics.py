@@ -1893,6 +1893,9 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
+
+		self.lastPiPService = None
+
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
@@ -1948,12 +1951,13 @@ class InfoBarPiP:
 			if slist and slist.dopipzap:
 				self.togglePipzap()
 			if self.session.pipshown:
+				self.lastPiPService = self.session.pip.getCurrentServiceReference()
 				del self.session.pip
 				self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
