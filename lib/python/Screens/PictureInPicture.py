@@ -43,6 +43,11 @@ class PictureInPicture(Screen):
 		self.setExternalPiP(False)
 		self.setSizePosMainWindow()
 
+	def pigmode(self):
+		self.instance.resize(eSize(*(1, 1)))
+		self["video"].instance.resize(eSize(*(1, 1)))
+		self.instance.move(ePoint(0, 0))
+
 	def relocate(self):
 		x = config.av.pip.value[0]
 		y = config.av.pip.value[1]
