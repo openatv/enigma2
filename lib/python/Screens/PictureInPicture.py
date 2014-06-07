@@ -76,9 +76,8 @@ class PictureInPicture(Screen):
 		y = config.av.pip.value[1]
 		w = config.av.pip.value[2]
 		h = config.av.pip.value[3]
-		if x != -1 and y != -1 and w != -1 and h != -1:
-			self.move(x, y)
-			self.resize(w, h)
+		self.move(x, y)
+		self.resize(w, h)
 
 	def LayoutFinished(self):
 		self.onLayoutFinish.remove(self.LayoutFinished)
