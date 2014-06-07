@@ -25,16 +25,16 @@ class PictureInPicture(Screen):
 		self.currentService = None
 		self.currentServiceReference = None
 		if not pip_config_initialized:
-			choicelist = ["standard"]
+			self.choicelist = [("standard", _("Standard"))]
 			if SystemInfo["VideoDestinationConfigurable"]:
-				choicelist.append("cascade")
-				choicelist.append("split")
-				choicelist.append("byside")
-			choicelist.append("bigpig")
+				self.choicelist.append(("cascade", _("Cascade PiP")))
+				self.choicelist.append(("split", _("Splitscreen")))
+				self.choicelist.append(("byside", _("Side by side")))
+			self.choicelist.append(("bigpig", _("Big PiP")))
 			if SystemInfo["HasExternalPIP"]:
-				choicelist.append("external")
+				self.choicelist.append(("external", _("External PiP")))
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
-			config.av.pip_mode = ConfigSelection(default="standard", choices=choicelist)
+			config.av.pip_mode = ConfigSelection(default="standard", choices=self.choicelist)
 			pip_config_initialized = True
 		self.onLayoutFinish.append(self.LayoutFinished)
 
@@ -132,6 +132,9 @@ class PictureInPicture(Screen):
 
 	def getMode(self):
 		return config.av.pip_mode.value
+
+	def getModeName(self):
+		return self.choicelist[config.av.pip_mode.index][1]
 
 	def playService(self, service):
 		if service is None:
