@@ -2951,71 +2951,49 @@ class InfoBarPowersaver:
 		if Screens.Standby.inStandby:
 			self.inactivityTimeoutCallback(True)
 		else:
-			if int(config.usage.inactivity_timer.value) < 0:
-				message = _("Your receiver will shutdown due to inactivity.")
-			else:
-				message = _("Your receiver will got to standby due to inactivity.")
-			message += "\n" + _("Do you want this?")
+			message = _("Your receiver will got to standby due to inactivity.") + "\n" + _("Do you want this?")
 			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple=True, default=False, timeout_default=True)	
 
 	def inactivityTimeoutCallback(self, answer):
 		if answer:
-			self.goShutdownOrStandby(int(config.usage.inactivity_timer.value))
+			self.goStandby()
 		else:
 			print "[InfoBarPowersaver] abort"
 
 	def setSleepTimer(self, time):
 		print "[InfoBarPowersaver] set sleeptimer", time
 		if time:
-			if time < 0:
-				message = _("And will shutdown your receiver over ")
-			else:
-				message = _("And will put your receiver in standby over ")
+			message = _("And will put your receiver in standby over ")
 			m = abs(time / 60)
 			message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
-			self.sleepTimer.startLongTimer(abs(time))
+			self.sleepTimer.startLongTimer(time)
 		else:
 			message = _("The sleep timer has been disabled.")
 			self.sleepTimer.stop()
 		Notifications.AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
-		self.sleepTimerSetting = time
 
 	def sleepTimerTimeout(self):
-		if Screens.Standby.inStandby:
-			self.sleepTimerTimeoutCallback(True)
-		else:
+		if not Screens.Standby.inStandby:
 			list = [ (_("Yes"), True), (_("Extend sleeptimer 15 minutes"), "extend"), (_("No"), False) ]
-			if self.sleepTimerSetting < 0:
-				message = _("Your receiver will shutdown due to the sleeptimer.")
-			elif self.sleepTimerSetting > 0:
-				message = _("Your receiver will got to stand by due to the sleeptimer.")
+			message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
 			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=list, default=False, timeout_default=True)	
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
 			print "[InfoBarPowersaver] extend sleeptimer"
-			if self.sleepTimerSetting < 0:
-				self.setSleepTimer(-900)
-			else:
-				self.setSleepTimer(900)
+			self.setSleepTimer(900)
 		elif answer:
-			self.goShutdownOrStandby(self.sleepTimerSetting)
+			self.goStandby()
 		else:
 			print "[InfoBarPowersaver] abort"
 			self.setSleepTimer(0)
 
-	def goShutdownOrStandby(self, value):
-		if value < 0:
-			if Screens.Standby.inStandby:
-				print "[InfoBarPowersaver] already in standby now shut down"
-				RecordTimerEntry.TryQuitMainloop()
-			elif not Screens.Standby.inTryQuitMainloop:
-				print "[InfoBarPowersaver] goto shutdown"
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
-		elif not Screens.Standby.inStandby:
+	def goStandby(self):
+		if not Screens.Standby.inStandby:
 			print "[InfoBarPowersaver] goto standby"
 			self.session.open(Screens.Standby.Standby)
+
 class InfoBarHDMI:
 	def __init__(self):
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",

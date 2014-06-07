@@ -40,10 +40,10 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Sleeptimer"),
 			config.usage.sleep_timer,
-			_("Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer")))
+			_("Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer")))
 		self.list.append(getConfigListEntry(_("Inactivity Sleeptimer"),
 			config.usage.inactivity_timer,
-			_("Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled.")))
+			_("Configure the duration in hours the receiver should go to standby when the receiver is not controlled.")))
 		if int(config.usage.inactivity_timer.value):
 			self.list.append(getConfigListEntry(_("Specify timeframe to ignore inactivity sleeptimer"),
 				config.usage.inactivity_timer_blocktime,
@@ -61,7 +61,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		if int(config.usage.standby_to_shutdown_timer.value):
 			self.list.append(getConfigListEntry(_("Specify timeframe to ignore the shutdown in standby"),
 				config.usage.standby_to_shutdown_timer_blocktime,
-				_("When enabled you can specify a timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled")))
+				_("When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode")))
 			if config.usage.inactivity_timer_blocktime.value:
 				self.list.append(getConfigListEntry(_("Start time to ignore shutdown in standby"),
 					config.usage.standby_to_shutdown_timer_blocktime_begin,
@@ -73,21 +73,13 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self["config"].l.setList(self.list)
 
 	def ok(self):
-		config.usage.sleep_timer.save()
-		config.usage.inactivity_timer.save()
-		config.usage.inactivity_timer_blocktime.save()
-		config.usage.inactivity_timer_blocktime_begin.save()
-		config.usage.inactivity_timer_blocktime_end.save()
-		config.usage.standby_to_shutdown_timer.save()
-		config.usage.standby_to_shutdown_timer_blocktime.save()
-		config.usage.standby_to_shutdown_timer_blocktime_begin.save()
-		config.usage.standby_to_shutdown_timer_blocktime_end.save()
-
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].save()
+			self.close()
 		if self.getCurrentEntry() == _("Sleeptimer"):
 			sleepTimer = config.usage.sleep_timer.value
-			if sleepTimer == "event_shutdown":
-				sleepTimer = -self.currentEventTime()
-			elif sleepTimer == "event_standby":
+			if sleepTimer == "event_standby":
 				sleepTimer = self.currentEventTime()
 			else:
 				sleepTimer = int(sleepTimer)
