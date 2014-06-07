@@ -57,8 +57,8 @@ class PictureInPicture(Screen):
 				self.relocateTimer.callback.remove(self.timedRelocate)
 				self.relocateTimer.stop()
 			elif not self.pigmodeEnabled:
-				self.instance.resize(eSize(*(1, 1)))
-				self["video"].instance.resize(eSize(*(1, 1)))
+				self.instance.resize(eSize(*(2, 2)))
+				self["video"].instance.resize(eSize(*(2, 2)))
 				self.instance.move(ePoint(0, 0))
 				self.pigmodeEnabled = True
 		else:
