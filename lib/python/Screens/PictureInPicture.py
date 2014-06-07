@@ -24,15 +24,17 @@ class PictureInPicture(Screen):
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
 		self.currentService = None
 		self.currentServiceReference = None
+
+		self.choicelist = [("standard", _("Standard"))]
+		if SystemInfo["VideoDestinationConfigurable"]:
+			self.choicelist.append(("cascade", _("Cascade PiP")))
+			self.choicelist.append(("split", _("Splitscreen")))
+			self.choicelist.append(("byside", _("Side by side")))
+		self.choicelist.append(("bigpig", _("Big PiP")))
+		if SystemInfo["HasExternalPIP"]:
+			self.choicelist.append(("external", _("External PiP")))
+
 		if not pip_config_initialized:
-			self.choicelist = [("standard", _("Standard"))]
-			if SystemInfo["VideoDestinationConfigurable"]:
-				self.choicelist.append(("cascade", _("Cascade PiP")))
-				self.choicelist.append(("split", _("Splitscreen")))
-				self.choicelist.append(("byside", _("Side by side")))
-			self.choicelist.append(("bigpig", _("Big PiP")))
-			if SystemInfo["HasExternalPIP"]:
-				self.choicelist.append(("external", _("External PiP")))
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
 			config.av.pip_mode = ConfigSelection(default="standard", choices=self.choicelist)
 			pip_config_initialized = True
