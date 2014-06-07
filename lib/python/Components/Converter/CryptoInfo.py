@@ -1,7 +1,7 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
-from Tools.GetEcmInfo import GetEcmInfo 
+from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
 
 
@@ -17,7 +17,7 @@ class CryptoInfo(Poll, Converter, object):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.ecmdata = GetEcmInfo()
-		
+
 	@cached
 	def getText(self):
 		if not config.usage.show_cryptoinfo.value:

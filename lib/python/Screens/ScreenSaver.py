@@ -12,10 +12,10 @@ class Screensaver(Screen):
 			<screen name="Screensaver" position="fill" flags="wfNoBorder">
 				<eLabel position="fill" backgroundColor="#54111112" zPosition="0"/>
 				<widget name="picture" pixmap="skin_default/anniversaryOpenPLi.png" position="0,0" size="145,135" alphatest="blend" backgroundColor="secondBG" transparent="1" zPosition="1"/>
-			</screen>"""	
+			</screen>"""
 
 		Screen.__init__(self, session)
-		
+
 		self.moveLogoTimer = eTimer()
 		self.moveLogoTimer.callback.append(self.doMovePicture)
 		self.onShow.append(self.__onShow)
@@ -27,7 +27,7 @@ class Screensaver(Screen):
 			})
 
 		self["picture"] = Pixmap()
-		
+
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):

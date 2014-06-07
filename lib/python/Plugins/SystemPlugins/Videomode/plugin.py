@@ -28,7 +28,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 
 		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"], 
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
@@ -220,7 +220,7 @@ def videoSetupMain(session, **kwargs):
 	session.open(VideoSetup, video_hw)
 
 def startSetup(menuid):
-	if menuid != "system": 
+	if menuid != "system":
 		return [ ]
 
 	return [(_("A/V settings"), videoSetupMain, "av_setup", 40)]
@@ -232,7 +232,7 @@ def VideoWizard(*args, **kwargs):
 def Plugins(**kwargs):
 	list = [
 #		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-		PluginDescriptor(name=_("Video setup"), description=_("Advanced video setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup) 
+		PluginDescriptor(name=_("Video setup"), description=_("Advanced video setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)
 	]
 	if config.misc.videowizardenabled.value:
 		list.append(PluginDescriptor(name=_("Video wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(0, VideoWizard)))

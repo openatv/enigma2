@@ -44,14 +44,14 @@ class Element(object):
 		self.downstream_elements.append(downstream)
 		if self.master is None:
 			self.master = downstream
-	
+
 	def connectUpstream(self, upstream):
 		assert not self.SINGLE_SOURCE or self.source is None
 		self.sources.append(upstream)
 		# self.source always refers to the last recent source added.
 		self.source = upstream
 		self.changed((self.CHANGED_DEFAULT,))
-	
+
 	def connect(self, upstream):
 		self.connectUpstream(upstream)
 		upstream.connectDownstream(self)
@@ -76,7 +76,7 @@ class Element(object):
 		self.downstream_elements.remove(downstream)
 		if self.master == downstream:
 			self.master = None
-		
+
 		if len(self.downstream_elements) == 0:
 			self.disconnectAll()
 
@@ -92,14 +92,14 @@ class Element(object):
 			self.doSuspend(1)
 		elif self.__suspended and not suspended:
 			self.doSuspend(0)
-			
+
 		self.__suspended = suspended
 		if changed:
 			for s in self.sources:
 				s.checkSuspend()
-	
+
 	suspended = property(lambda self: self.__suspended, setSuspend)
-	
+
 	def checkSuspend(self):
 		self.suspended = reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
 

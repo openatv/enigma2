@@ -120,7 +120,7 @@
 			<panel name="RecordIconPanel"/>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="selected" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
@@ -146,7 +146,7 @@
 		<widget source="SetupValue" render="Label" position="fill" font="Medium" noWrap="1"/>
 	</screen>
 
-	<screen name="SleepTimerEdit_summary"><panel name="SetupSummary"/></screen>	
+	<screen name="SleepTimerEdit_summary"><panel name="SetupSummary"/></screen>
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
@@ -201,7 +201,7 @@
 	<screen name="ChoiceBox_summary" position="fill">
 		<widget source="parent.text" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="parent.summary_selection" render="Label" position="fill" font="Big" noWrap="1"/>
-	</screen>	
+	</screen>
 
 	<screen name="MessageBox_summary" position="fill" layout="stack">
 		<widget source="parent.Text" render="Label" position="top" size="*,32" font="Small"/>

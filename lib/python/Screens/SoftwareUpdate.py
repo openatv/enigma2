@@ -1,7 +1,7 @@
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop 
+from Screens.Standby import TryQuitMainloop
 from Screens.About import CommitInfo
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
@@ -52,20 +52,20 @@ class UpdatePlugin(Screen):
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onClose.append(self.__close)
 
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
-		
-		self.activity = 0 
+
+		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.checkTraficLight)
 		self.activityTimer.callback.append(self.doActivityTimer)
 		self.activityTimer.start(100, True)
 
 	def checkTraficLight(self):
-	
+
 		self.activityTimer.callback.remove(self.checkTraficLight)
 		self.activityTimer.start(100, False)
 

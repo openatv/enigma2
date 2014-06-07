@@ -839,8 +839,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
 			}
-			else if ((e == celFolderPixmap && m_cursor->flags & eServiceReference::isDirectory) || 
-				(e == celMarkerPixmap && m_cursor->flags & eServiceReference::isMarker && 
+			else if ((e == celFolderPixmap && m_cursor->flags & eServiceReference::isDirectory) ||
+				(e == celMarkerPixmap && m_cursor->flags & eServiceReference::isMarker &&
 				!(m_cursor->flags & eServiceReference::isNumberedMarker)))
 			{
 				ePtr<gPixmap> &pixmap =

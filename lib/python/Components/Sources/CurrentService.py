@@ -7,8 +7,8 @@ import NavigationInstance
 class CurrentService(PerServiceBase, Source):
 	def __init__(self, navcore):
 		Source.__init__(self)
-		PerServiceBase.__init__(self, navcore, 
-			{ 
+		PerServiceBase.__init__(self, navcore,
+			{
 				iPlayableService.evStart: self.serviceEvent,
 				iPlayableService.evEnd: self.serviceEvent,
 				# FIXME: we should check 'interesting_events'

@@ -26,14 +26,14 @@ public:
 		enum { vtMPEG2, vtMPEG4_H264, vtMPEG1, vtMPEG4_Part2, vtVC1, vtVC1_SM };
 		int type;
 	};
-	
+
 	struct audioStream
 	{
 		int pid,
 		rdsPid; // hack for some radio services which transmit radiotext on different pid (i.e. harmony fm, HIT RADIO FFH, ...)
 		enum { atMPEG, atAC3, atDTS, atAAC, atAACHE, atLPCM, atDTSHD, atDDP };
 		int type; // mpeg2, ac3, dts, ...
-		
+
 		int component_tag;
 		std::string language_code; /* iso-639, if available. */
 	};

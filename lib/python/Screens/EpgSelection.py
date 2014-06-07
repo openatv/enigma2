@@ -29,7 +29,7 @@ class EPGSelection(Screen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
-	
+
 	ZAP = 1
 
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None):
@@ -348,7 +348,7 @@ class EPGSelection(Screen):
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
-	
+
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
@@ -357,7 +357,7 @@ class EPGSelection(Screen):
 
 	def moveDown(self):
 		self["list"].moveDown()
-	
+
 	def applyButtonState(self, state):
 		if state == 0:
 			self["now_button"].hide()

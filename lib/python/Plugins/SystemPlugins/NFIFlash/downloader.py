@@ -67,7 +67,7 @@ class DownloaderPostcondition(Condition):
 
 	def getErrorMessage(self, task):
 		return self.error_message
-		
+
 class ImageDownloadTask(Task):
 	def __init__(self, job, url, path):
 		Task.__init__(self, job, _("Downloading"))
@@ -120,7 +120,7 @@ class StickWizardJob(Job):
 		self.device = path
 		while self.device[-1:] == "/" or self.device[-1:].isdigit():
 			self.device = self.device[:-1]
-				
+
 		box = HardwareInfo().get_device_name()
 		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s.tar.bz2" % box
 		self.downloadfilename = "/tmp/dreambox-nfiflasher-%s.tar.bz2" % box
@@ -140,22 +140,22 @@ class PartitionTaskPostcondition(Condition):
 			task.ERROR_BLKRRPART: ("Device or resource busy"),
 			task.ERROR_UNKNOWN: (task.errormsg)
 		}[task.error]
-		
+
 class PartitionTask(Task):
 	ERROR_UNKNOWN, ERROR_BLKRRPART = range(2)
 	def __init__(self, job):
 		Task.__init__(self, job, ("partitioning"))
 		self.postconditions.append(PartitionTaskPostcondition())
-		self.job = job		
+		self.job = job
 		self.setTool("sfdisk")
 		self.args += [self.job.device]
 		self.weighting = 10
 		self.initial_input = "0 - 0x6 *\n;\n;\n;\ny"
 		self.errormsg = ""
-	
+
 	def run(self, callback):
 		Task.run(self, callback)
-	
+
 	def processOutput(self, data):
 		print "[PartitionTask] output:", data
 		if data.startswith("BLKRRPART:"):
@@ -174,18 +174,18 @@ class UnpackTask(Task):
 		self.end = 80
 		self.delayTimer = eTimer()
 		self.delayTimer.callback.append(self.progress_increment)
-	
+
 	def run(self, callback):
 		Task.run(self, callback)
 		self.delayTimer.start(950, False)
-		
+
 	def progress_increment(self):
 		self.progress += 1
 
 	def processOutput(self, data):
 		print "[UnpackTask] output: \'%s\'" % data
 		self.job.imagefilename = data
-	
+
 	def afterRun(self):
 		self.delayTimer.callback.remove(self.progress_increment)
 
@@ -203,7 +203,7 @@ class CopyTask(Task):
 	def run(self, callback):
 		Task.run(self, callback)
 		self.delayTimer.start(100, False)
-		
+
 	def progress_increment(self):
 		self.progress += 1
 
@@ -247,7 +247,7 @@ class feedDownloader:
 		self.feed_base = feed_base
 		self.OE_vers = OE_vers
 		self.box = box
-	
+
 	def getList(self, callback, errback):
 		self.urlbase = "%s/%s/%s/images/" % (self.feed_base, self.OE_vers, self.box)
 		print "[getList]", self.urlbase
@@ -304,7 +304,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 				"ok": self.ok,
 				"cancel": self.exit
 			})
-		
+
 		hotplugNotifier.append(self.hotplugCB)
 		self.onShown.append(self.updateButton)
 		self.onClose.append(self.removeHotplug)
@@ -312,14 +312,14 @@ class DeviceBrowser(Screen, HelpableScreen):
 	def hotplugCB(self, dev, action):
 		print "[hotplugCB]", dev, action
 		self.updateButton()
-	
+
 	def updateButton(self):
-		
+
 		if self["filelist"].getFilename() or self["filelist"].getCurrentDirectory():
 			self["key_green"].text = _("Use")
 		else:
 			self["key_green"].text = ""
-	
+
 	def removeHotplug(self):
 		print "[removeHotplug]"
 		hotplugNotifier.remove(self.hotplugCB)
@@ -359,7 +359,7 @@ class NFIDownload(Screen):
 		<ePixmap pixmap="skin_default/border_menu_350.png" position="5,50" zPosition="1" size="350,300" transparent="1" alphatest="on" />
 		<widget source="menu" render="Listbox" position="15,60" size="330,290" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
-				{"templates": 
+				{"templates":
 					{"default": (25, [
 						MultiContentEntryText(pos = (2, 2), size = (330, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
 					], True, "showOnDemand")
@@ -375,7 +375,7 @@ class NFIDownload(Screen):
 					{"default": (300, [
 						MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
 					], False, "showNever")
-					},	
+					},
 				"fonts": [gFont("Regular", 22)],
 				"itemHeight": 300
 				}
@@ -383,14 +383,14 @@ class NFIDownload(Screen):
 		</widget>
 		<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 	</screen>"""
-		
+
 	def __init__(self, session, destdir=None):
 		Screen.__init__(self, session)
 		#self.skin_path = plugin_path
 		#self.menu = args
-		
+
 		self.box = HardwareInfo().get_device_name()
-		self.feed_base = "http://www.dreamboxupdate.com/opendreambox" #/1.5/%s/images/" % self.box	
+		self.feed_base = "http://www.dreamboxupdate.com/opendreambox" #/1.5/%s/images/" % self.box
 		self.usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
 
 		self.menulist = []
@@ -434,7 +434,7 @@ class NFIDownload(Screen):
 		self.onShown.remove(self.go)
 		self.umountCallback = self.getMD5
 		self.umount()
-	
+
 	def getMD5(self):
 		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s-md5sums" % self.box
 		client.getPage(url).addCallback(self.md5sums_finished).addErrback(self.feed_failed)
@@ -487,7 +487,7 @@ class NFIDownload(Screen):
 	def keyDown(self):
 		self["menu"].selectNext()
 		self.updateButtons()
-		
+
 	def updateButtons(self):
 		current = self["menu"].getCurrent()
 		if current:
@@ -522,7 +522,7 @@ class NFIDownload(Screen):
 				description = "\nOpendreambox %s\n%s image\n%s\n" % (result.group("OE_vers"), result.group("branch"), version)
 				imagelist.append((url, name, _("Download %s from server" ) % description, None))
 		self["menu"].setList(imagelist)
-	
+
 	def getUSBPartitions(self):
 		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 		print "[getUSBPartitions]", allpartitions
@@ -532,7 +532,7 @@ class NFIDownload(Screen):
 			if x[1] != '/' and x[0].find("USB") > -1:  # and access(x[1], R_OK) is True:
 				usbpartition.append(x)
 		return usbpartition
-				
+
 	def askDestination(self):
 		usbpartition = self.getUSBPartitions()
 		if len(usbpartition) == 1:
@@ -540,7 +540,7 @@ class NFIDownload(Screen):
 			self.ackDestinationDevice(device_description=usbpartition[0][0])
 		else:
 			self.openDeviceBrowser()
-	
+
 	def openDeviceBrowser(self):
 		self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
 
@@ -551,7 +551,7 @@ class NFIDownload(Screen):
 			self.ackDestinationDevice()
 		else:
 			self.keyRed()
-	
+
 	def ackDestinationDevice(self, device_description=None):
 		if device_description == None:
 			dev = self.target_dir
@@ -641,7 +641,7 @@ class NFIDownload(Screen):
 		self.feedlists = [[],[],[]]
 		self.feedDownloader15.getList(self.gotFeed, self.feed_failed)
 		self.feedDownloader16.getList(self.gotFeed, self.feed_failed)
-		
+
 	def feed_failed(self, message=""):
 		self["status"].text = _("Could not connect to receiver .NFI image feed server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
 
@@ -649,14 +649,14 @@ class NFIDownload(Screen):
 		print "[gotFeed]", OE_vers
 		releaselist = []
 		experimentallist = []
-		
+
 		for name, url in feedlist:
 			if name.find("release") > -1:
 				releaselist.append((name, url))
 			if name.find("experimental") > -1:
 				experimentallist.append((name, url))
 			self.feedlists[ALLIMAGES].append((name, url))
-		
+
 		if OE_vers == "1.6":
 			self.feedlists[RELEASE] = releaselist + self.feedlists[RELEASE]
 			self.feedlists[EXPERIMENTAL] = experimentallist + self.feedlists[RELEASE]
@@ -705,7 +705,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 			self.md5verify(self.stickimage_md5, self.target_dir)
 		else:
 			self.close()
-	
+
 	def wizardQuery(self):
 		print "[wizardQuery]"
 		description = self.target_dir
@@ -716,7 +716,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		message += _("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % description
 		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"),self.askStartWizard), (_("Cancel"),self.close)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
-			
+
 	def setMenu(self):
 		self.menulist = []
 		try:
@@ -804,11 +804,11 @@ def filescan_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
-		Scanner(mimetypes = ["application/x-dream-image"], 
-			paths_to_scan = 
+		Scanner(mimetypes = ["application/x-dream-image"],
+			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
-				], 
-			name = "NFI", 
+				],
+			name = "NFI",
 			description = (_("Download .NFI-files for USB-flasher")+"..."),
 			openfnc = filescan_open, )

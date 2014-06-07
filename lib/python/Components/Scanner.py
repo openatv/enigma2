@@ -106,7 +106,7 @@ def scanDevice(mountpoint):
 
 	res = { }
 
-	# merge all to-be-scanned paths, with priority to 
+	# merge all to-be-scanned paths, with priority to
 	# with_subdirs.
 
 	paths_to_scan = set()
@@ -121,7 +121,7 @@ def scanDevice(mountpoint):
 		if p.with_subdirs == True and ScanPath(path=p.path) in paths_to_scan:
 			paths_to_scan.remove(ScanPath(path=p.path))
 
-	from Components.Harddisk import harddiskmanager	
+	from Components.Harddisk import harddiskmanager
 	blockdev = mountpoint.rstrip("/").rsplit('/',1)[-1]
 	error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.getBlockDevInfo(blockdev)
 

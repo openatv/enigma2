@@ -130,25 +130,25 @@ RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int index)
 RESULT eDVBDemux::getSTC(pts_t &pts, int num)
 {
 	int fd = openDemux();
-	
+
 	if (fd < 0)
 		return -ENODEV;
 
 	struct dmx_stc stc;
 	stc.num = num;
 	stc.base = 1;
-	
+
 	if (ioctl(fd, DMX_GET_STC, &stc) < 0)
 	{
 		eDebug("DMX_GET_STC failed!");
 		::close(fd);
 		return -1;
 	}
-	
+
 	pts = stc.stc;
-	
+
 	eDebug("DMX_GET_STC - %lld", pts);
-	
+
 	::close(fd);
 	return 0;
 }
@@ -156,7 +156,7 @@ RESULT eDVBDemux::getSTC(pts_t &pts, int num)
 RESULT eDVBDemux::flush()
 {
 	// FIXME: implement flushing the PVR queue here.
-	
+
 	m_event(evtFlush);
 	return 0;
 }
@@ -196,7 +196,7 @@ void eDVBSectionReader::data(int)
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux), active(0)
 {
 	fd = demux->openDemux();
-	
+
 	if (fd >= 0)
 	{
 		notifier=eSocketNotifier::create(context, fd, eSocketNotifier::Read, false);
@@ -244,7 +244,7 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 		checkcrc = 1;
 	} else
 		checkcrc = 0;
-	
+
 	memcpy(sct.filter.filter, mask.data, DMX_FILTER_SIZE);
 	memcpy(sct.filter.mask, mask.mask, DMX_FILTER_SIZE);
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
@@ -348,11 +348,11 @@ RESULT eDVBPESReader::start(int pid)
 	flt.pid     = pid;
 	flt.input   = DMX_IN_FRONTEND;
 	flt.output  = DMX_OUT_TAP;
-	
+
 	flt.flags   = DMX_IMMEDIATE_START;
 
 	res = ::ioctl(m_fd, DMX_SET_PES_FILTER, &flt);
-	
+
 	if (res)
 		eWarning("PES filter: DMX_SET_PES_FILTER - %m");
 	if (!res)
@@ -514,7 +514,7 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	eDebug("[eFilePushThreadRecorder] m_ts_parser.parseData: %9u us", (unsigned int)diff);
 	gettimeofday(&starttime, NULL);
 #endif
-	
+
 	int r = m_current_buffer->start(m_fd_dest, m_current_offset, len, m_buffer);
 	if (r < 0)
 	{
@@ -678,7 +678,7 @@ RESULT eDVBTSRecorder::start()
 
 	if (m_running)
 		return -1;
-	
+
 	if (m_target_fd == -1)
 		return -2;
 
@@ -689,7 +689,7 @@ RESULT eDVBTSRecorder::start()
 	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", m_demux->adapter, m_demux->demux);
 
 	m_source_fd = ::open(filename, O_RDONLY);
-	
+
 	if (m_source_fd < 0)
 	{
 		eDebug("FAILED to open demux (%s) in ts recoder (%m)", filename);
@@ -713,12 +713,12 @@ RESULT eDVBTSRecorder::start()
 		m_source_fd = -1;
 		return -3;
 	}
-	
+
 	::ioctl(m_source_fd, DMX_START);
 
 	if (!m_target_filename.empty())
 		m_thread->startSaveMetaInformation(m_target_filename);
-	
+
 	m_thread->start(m_source_fd);
 	m_running = 1;
 
@@ -742,7 +742,7 @@ RESULT eDVBTSRecorder::addPID(int pid)
 {
 	if (m_pids.find(pid) != m_pids.end())
 		return -1;
-	
+
 	m_pids.insert(std::pair<int,int>(pid, -1));
 	if (m_running)
 		startPID(pid);
@@ -753,10 +753,10 @@ RESULT eDVBTSRecorder::removePID(int pid)
 {
 	if (m_pids.find(pid) == m_pids.end())
 		return -1;
-		
+
 	if (m_running)
 		stopPID(pid);
-	
+
 	m_pids.erase(pid);
 	return 0;
 }

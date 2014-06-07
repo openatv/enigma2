@@ -37,13 +37,13 @@ void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 void ePixmap::setPixmapFromFile(const char *filename)
 {
 	loadPNG(m_pixmap, filename, m_scale);
-	
+
 	if (!m_pixmap)
 	{
 		eDebug("ePixmap::setPixmapFromFile: loadPNG failed");
 		return;
 	}
-	
+
 		// TODO: This only works for desktop 0
 	getDesktop(0)->makeCompatiblePixmap(*m_pixmap);
 	event(evtChangedPixmap);

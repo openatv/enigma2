@@ -42,14 +42,14 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
-	
+
 	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
-	
+
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
-	
+
 	def invalidateCurrent(self):
 		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
 
@@ -60,7 +60,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 			self.l.invalidateEntry(self.__list.index(entry))
 
 	GUI_WIDGET = eListbox
-	
+
 	def selectionChanged(self):
 		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
@@ -76,7 +76,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
 		self.instance.setWrapAround(True)
-	
+
 	def preWidgetRemove(self, instance):
 		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
@@ -150,14 +150,14 @@ class ConfigListScreen:
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
-		
+
 		self["config"] = ConfigList(list, session = session)
-		
+
 		if on_change is not None:
 			self.__changed = on_change
 		else:
 			self.__changed = lambda: None
-		
+
 		if not self.handleInputHelpers in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 
@@ -207,7 +207,7 @@ class ConfigListScreen:
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
-			
+
 	def keyOK(self):
 		self["config"].handleKey(KEY_OK)
 
@@ -276,7 +276,7 @@ class ConfigListScreen:
 	def keySave(self):
 		self.saveAll()
 		self.close()
-	
+
 	def cancelConfirm(self, result):
 		if not result:
 			return
@@ -293,6 +293,6 @@ class ConfigListScreen:
 
 	def keyCancel(self):
 		self.closeMenuList()
-	
+
 	def closeRecursive(self):
 		self.closeMenuList(True)

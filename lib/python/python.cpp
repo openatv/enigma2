@@ -120,9 +120,9 @@ void ePyObject::decref(const char *file, int line)
 ePython::ePython()
 {
 //	Py_VerboseFlag = 1;
-	
+
 //	Py_OptimizeFlag = 1;
-	
+
 	Py_Initialize();
 	PyEval_InitThreads();
 
@@ -154,13 +154,13 @@ int ePython::execute(const std::string &pythonfile, const std::string &funcname)
 
 	pModule = PyImport_Import(pName);
 	Py_DECREF(pName);
-	
+
 	if (pModule)
 	{
 		pDict = PyModule_GetDict(pModule);
-		
+
 		pFunc = PyDict_GetItemString(pDict, funcname.c_str());
-		
+
 		if (pFunc && PyCallable_Check(pFunc))
 		{
 			pArgs = PyTuple_New(0);
@@ -226,7 +226,7 @@ ePyObject ePython::resolve(const std::string &pythonfile, const std::string &fun
 
 	pModule = PyImport_Import(pName);
 	Py_DECREF(pName);
-	
+
 	if (pModule)
 	{
 		pDict = PyModule_GetDict(pModule);

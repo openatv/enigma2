@@ -69,7 +69,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.setupList()
-	
+
 	def windowShow(self):
 		job_manager.visible = True
 		self.job.state_changed.append(self.state_changed)
@@ -140,7 +140,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		if Notifications.notifications == []:
 			if self.settings.afterEvent.getValue() == "close" and self.job.status == self.job.FAILED:
 				self.close(False)
-		
+
 	def sendStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.Standby)

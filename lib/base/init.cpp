@@ -39,7 +39,7 @@ void eInit::setRunlevel(int nrl)
 	while (nrl>rl)
 	{
 		rl++;
-			
+
 		for (std::list<std::pair<int,eAutoInit*> >::iterator i(cl->begin()); i!=cl->end(); ++i)
 		{
 			if ((*i).first == rl)
@@ -49,7 +49,7 @@ void eInit::setRunlevel(int nrl)
 			}
 		}
 	}
-	
+
 	while (nrl<rl)
 	{
 		for (std::list<std::pair<int,eAutoInit*> >::iterator i(cl->begin()); i!=cl->end(); ++i)

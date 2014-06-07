@@ -52,7 +52,7 @@ class PerServiceBase(object):
 			self.poll_timer.start(interval)
 		else:
 			self.poll_timer.stop()
-	
+
 	def disablePolling(self):
 		self.enablePolling(interval=0)
 

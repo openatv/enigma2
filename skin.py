@@ -142,7 +142,7 @@ def parseCoordinate(s, e, size=0, font=None):
 	if val < 0:
 		val = 0
 	return val
-	        
+
 
 def getParentSize(object, desktop):
 	size = eSize()
@@ -269,7 +269,7 @@ class AttributeParser:
 	def position(self, value):
 		if isinstance(value, tuple):
 			self.guiObject.move(ePoint(*value))
-		else: 
+		else:
 			self.guiObject.move(parsePosition(value, self.scale, self.guiObject, self.desktop, self.guiObject.csize()))
 	def size(self, value):
 		if isinstance(value, tuple):
@@ -759,7 +759,7 @@ def readSkin(screen, skin, names, desktop):
 				if candidate.tag == 'screen':
 					sid = candidate.attrib.get('id', None)
 					if (not sid) or (int(sid) == display_skin_id):
-						myscreen = candidate 
+						myscreen = candidate
 						break;
 			else:
 				print "[SKIN] Hey, no suitable screen!"

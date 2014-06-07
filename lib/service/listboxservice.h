@@ -21,11 +21,11 @@ public:
 	void setIgnoreService( const eServiceReference &service );
 	void setRoot(const eServiceReference &ref, bool justSet=false);
 	void getCurrent(eServiceReference &ref);
-	
+
 	int getNextBeginningWithChar(char c);
 	int getPrevMarkerPos();
 	int getNextMarkerPos();
-	
+
 		/* support for marked services */
 	void initMarked();
 	void addMarked(const eServiceReference &ref);
@@ -43,9 +43,9 @@ public:
 		visModeSimple,
 		visModeComplex
 	};
-	
+
 	void setVisualMode(int mode);
-	
+
 		/* only in complex mode: */
 	enum {
 		celServiceNumber,
@@ -74,7 +74,7 @@ public:
 	void setElementPosition(int element, eRect where);
 	void setElementFont(int element, gFont *font);
 	void setPixmap(int type, ePtr<gPixmap> &pic);
-	
+
 	void sort();
 
 	int setCurrentMarked(bool);
@@ -103,7 +103,7 @@ public:
 		serviceEventProgressbarBorderColorSelected,
 		colorElements
 	};
-	
+
 	void setColor(int color, gRGB &col);
 protected:
 	void cursorHome();
@@ -118,13 +118,13 @@ protected:
 	void cursorSave();
 	void cursorRestore();
 	int size();
-	
+
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	void setSize(const eSize &size);
-	
+
 		/* the following functions always refer to the selected item */
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	
+
 	int m_visual_mode;
 		/* for complex mode */
 	eRect m_element_position[celElements];
@@ -134,17 +134,17 @@ protected:
 	bool m_color_set[colorElements];
 private:
 	typedef std::list<eServiceReference> list;
-	
+
 	list m_list;
 	list::iterator m_cursor, m_saved_cursor;
-	
+
 	int m_cursor_number, m_saved_cursor_number;
 	int m_size;
-	
+
 	eSize m_itemsize;
 	ePtr<iServiceHandler> m_service_center;
 	ePtr<iListableService> m_lst;
-	
+
 	eServiceReference m_root;
 
 		/* support for marked services */

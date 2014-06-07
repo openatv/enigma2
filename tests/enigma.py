@@ -26,14 +26,14 @@ class eTimer:
 		self.timeout = slot()
 		self.next_activation = None
 		print "NEW TIMER"
-	
+
 	def start(self, msec, singleshot = False):
 		print "start timer", msec
 		self.next_activation = time.time() + msec / 1000.0
 		self.msec = msec
 		self.singleshot = singleshot
 		timers.add(self)
-	
+
 	def stop(self):
 		timers.remove(self)
 
@@ -50,14 +50,14 @@ def runIteration():
 	running_timers = list(timers)
 	assert len(running_timers), "no running timers, so nothing will ever happen!"
 	running_timers.sort(key=lambda x: x.next_activation)
-	
+
 	print "running:", running_timers
-	
+
 	next_timer = running_timers[0]
 
 	now = time.time()
-	delay = next_timer.next_activation - now 
-	
+	delay = next_timer.next_activation - now
+
 	if delay > 0:
 		time.sleep(delay)
 		now += delay
@@ -167,7 +167,7 @@ class iRecordableService:
 	@eventfnc
 	def prepare(self, filename, begin, end, event_id):
 		return 0
-	
+
 	@eventfnc
 	def start(self):
 		return 0
@@ -175,7 +175,7 @@ class iRecordableService:
 	@eventfnc
 	def stop(self):
 		return 0
-	
+
 	def __repr__(self):
 		return "iRecordableService(%s)" % repr(self.ref)
 
@@ -248,9 +248,9 @@ class eDBoxLCD:
 	@classmethod
 	def getInstance(self):
 		return self.instance
-	
+
 	instance = None
-	
+
 	def __init__(self):
 		eDBoxLCD.instance = self
 
@@ -335,10 +335,10 @@ def init_parental_control():
 def init_all():
 	# this is stuff from mytest.py
 	init_nav()
-	
+
 	init_record_config()
 	init_parental_control()
-	
+
 	import Components.InputDevice
 	Components.InputDevice.InitInputDevices()
 

@@ -23,7 +23,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = maxSize
 		self.setText(text)
-		
+
 	def __len__(self):
 		return len(self.text)
 
@@ -81,7 +81,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 	def markAll(self):
 		self.allmarked = True
 		self.update()
-	
+
 	def innerright(self):
 		if self.allmarked:
 			self.currPos = 0
@@ -133,14 +133,14 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			newNumber = str(int(self.Text[self.currPos]) - 1)
 		self.Text = self.Text[0:self.currPos] + newNumber + self.Text[self.currPos + 1:]
 		self.update()
-		
+
 	def home(self):
 		self.allmarked = False
 		if self.type == self.TEXT:
 			self.timeout()
 		self.currPos = 0
 		self.update()
-	
+
 	def end(self):
 		self.allmarked = False
 		if self.type == self.TEXT:

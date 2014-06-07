@@ -76,8 +76,8 @@ struct uniqueEPGKey
 		return (tsid < a.tsid);
 	}
 	operator bool() const
-	{ 
-		return !(sid == -1 && onid == -1 && tsid == -1); 
+	{
+		return !(sid == -1 && onid == -1 && tsid == -1);
 	}
 	bool operator==(const uniqueEPGKey &a) const
 	{
@@ -109,7 +109,7 @@ struct hash_uniqueEPGKey
 };
 
 #define tidMap std::set<__u32>
-#if 0 
+#if 0
 	typedef std::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 	#ifdef ENABLE_PRIVATE_EPG
 		typedef std::unordered_map<time_t, std::pair<time_t, __u16> > contentTimeMap;
@@ -372,7 +372,7 @@ public:
 
 #ifndef SWIG
 private:
-	// For internal use only. Acquire the cache lock before calling. 
+	// For internal use only. Acquire the cache lock before calling.
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eventData *&);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 	RESULT getNextTimeEntry(const eventData *&);

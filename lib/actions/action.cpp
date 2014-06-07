@@ -13,7 +13,7 @@ we need:
  - maybe a lookup "device,key,flags" -> actions? (lazy validation, on bindAction)
  - devices as ids
  - seperate native from python keys? (currently, if an action wasn't found, it's ignored.)
- 
+
 Sorry. I spent 3 days on thinking how this could be made better, and it just DID NOT WORKED OUT.
 
 If you have a better idea, please tell me.
@@ -45,7 +45,7 @@ RESULT eActionMap::getInstance(ePtr<eActionMap> &ptr)
 void eActionMap::bindAction(const std::string &context, int priority, int id, eWidget *widget)
 {
 	eActionBinding bnd;
-	
+
 	bnd.m_context = context;
 	bnd.m_widget = widget;
 	bnd.m_id = id;
@@ -55,7 +55,7 @@ void eActionMap::bindAction(const std::string &context, int priority, int id, eW
 void eActionMap::bindAction(const std::string &context, int priority, ePyObject function)
 {
 	eActionBinding bnd;
-	
+
 	bnd.m_context = context;
 	bnd.m_widget = 0;
 	Py_INCREF(function);
@@ -107,7 +107,7 @@ void eActionMap::bindKey(const std::string &domain, const std::string &device, i
 			return;
 		}
 	}
-	
+
 		// we didn't find the action, so it must be a pythonAction
 	ePythonKeyBinding bind;
 
@@ -148,7 +148,7 @@ struct call_entry
 void eActionMap::keyPressed(const std::string &device, int key, int flags)
 {
 	std::list<call_entry> call_list;
-	
+
 		/* iterate active contexts. */
 	for (std::multimap<int,eActionBinding>::iterator c(m_bindings.begin());
 		c != m_bindings.end(); ++c)

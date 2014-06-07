@@ -37,7 +37,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			eDebug("unknown APDU tag 9F 80 %02x", tag[2]);
 		}
 	}
-	
+
 	return 0;
 }
 

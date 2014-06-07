@@ -8,4 +8,4 @@ install_PYTHON =	\
 	pluginrunner.py \
 	tuxbox.png
 
- 
+

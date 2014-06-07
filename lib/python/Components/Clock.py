@@ -12,14 +12,14 @@ class Clock(VariableText, HTMLComponent, GUIComponent):
 		VariableText.__init__(self)
 		GUIComponent.__init__(self)
 		self.doClock()
-		
+
 		self.clockTimer = eTimer()
 		self.clockTimer.callback.append(self.doClock)
 
 	def onShow(self):
 		self.doClock()
 		self.clockTimer.start(1000)
-	
+
 	def onHide(self):
 		self.clockTimer.stop()
 

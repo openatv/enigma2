@@ -48,7 +48,7 @@ class HarddiskSelection(Screen):
 			tlist = []
 			tlist.append((_("no storage devices found"), 0))
 			self["hddlist"] = MenuList(tlist)
-		else:			
+		else:
 			self["hddlist"] = MenuList(harddiskmanager.HDDList())
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{

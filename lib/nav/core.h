@@ -24,18 +24,18 @@ class eNavigation: public iObject, public Object
 	Signal2<void,ePtr<iRecordableService>,int> m_record_event;
 	void recordEvent(iRecordableService* service, int event);
 public:
-	
+
 	RESULT playService(const eServiceReference &service);
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
 	RESULT connectRecordEvent(const Slot2<void,ePtr<iRecordableService>,int> &event, ePtr<eConnection> &connection);
 /*	int connectServiceEvent(const Slot1<void,iPlayableService*,int> &event, ePtr<eConnection> &connection); */
 	RESULT getCurrentService(ePtr<iPlayableService> &service);
 	RESULT stopService(void);
-	
+
 	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate=false);
 	RESULT stopRecordService(ePtr<iRecordableService> &service);
 	void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false);
-	
+
 	RESULT pause(int p);
 	eNavigation(iServiceHandler *serviceHandler, int decoder = 0);
 	virtual ~eNavigation();

@@ -54,7 +54,7 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
- 
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="96,64">
 		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1" >
@@ -73,7 +73,7 @@
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="96,64">
 		<widget source="parent.title" render="Label" position="0,0" size="96,16" font="FdLcD;14" halign="center" valign="top" noWrap="1"  foregroundColor="lightyellow" />
@@ -100,7 +100,7 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="0,0" size="96,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;12" halign="left" valign="top" noWrap="1"  foregroundColor="lightyellow" />
 		<widget source="selected" render="Label" position="0,14" size="96,32" font="FdLcD;16" />
@@ -197,7 +197,7 @@
 	<screen name="ChoiceBox_summary" position="0,0" size="96,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow" />
 		<widget source="parent.summary_selection" render="Label" position="0,14" size="96,50" font="FdLcD;14" halign="left" />
-	</screen>	
+	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="96,64">
 		<widget source="parent.Text" render="Label" position="0,0" size="96,52" font="FdLcD;11" halign="center" valign="center" />

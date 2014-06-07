@@ -64,7 +64,7 @@ class TitleProperties(Screen,ConfigListScreen):
 		    "cancel": self.cancel,
 		    "ok": self.ok,
 		}, -2)
-		
+
 		self.onShown.append(self.update)
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -86,7 +86,7 @@ class TitleProperties(Screen,ConfigListScreen):
 					if audiotrack.active.getValue():
 						self.list.append(getConfigListEntry(_("Audio track (%s) format") % DVB_aud, audiotrack.format))
 						self.list.append(getConfigListEntry(_("Audio track (%s) language") % DVB_aud, audiotrack.language))
-						
+
 				self.list.append(getConfigListEntry("DVD " + _("Aspect ratio"), self.properties.aspect))
 				if self.properties.aspect.getValue() == "16:9":
 					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))

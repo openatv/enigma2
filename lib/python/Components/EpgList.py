@@ -312,7 +312,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.instance.moveSelectionTo(index)
 				break
 			index += 1
-			
+
 	def moveToEventId(self, eventId):
 		if not eventId:
 			return

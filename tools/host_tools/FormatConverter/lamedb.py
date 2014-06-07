@@ -4,21 +4,21 @@ class lamedb(datasource):
 	def __init__(self, filename = "lamedb"):
 		datasource.__init__(self)
 		self.setFilename(filename)
-		
+
 	def setFilename(self, filename):
 		self.filename = filename
-		
+
 	def getName(self):
 		return "lamedb"
-	
+
 	def getCapabilities(self):
 		return [("read file", self.read), ("print all", self.printAll)]
-	
+
 	def read(self):
 		inputfile = open(self.filename, "r")
 		lines = inputfile.readlines()
 		inputfile.close()
-		
+
 		versionstring = lines[0].split('/')
 		version = int(versionstring[1])
 		if 3 > version or 4 < version:
@@ -50,7 +50,7 @@ class lamedb(datasource):
 					onid = str(int(data[2], 16))
 		satlist = sats.keys()
 		satlist.sort()
-		
+
 		for sat in satlist:
 			print sat
 			self.addSat(sat, sat)
@@ -74,8 +74,7 @@ class lamedb(datasource):
 					if len(transponder) > 7:
 						tmp_transponder["system"] = transponder[7]
 						tmp_transponder["modulation"] = transponder[8]
-				if (tsid != "1" or onid != "1"): 
+				if (tsid != "1" or onid != "1"):
 					tmp_transponder["tsid"] = transponder[0]
 					tmp_transponder["onid"] = transponder[0]
 				self.addTransponder(sat, tmp_transponder)
-				  

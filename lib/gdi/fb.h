@@ -31,11 +31,11 @@ public:
 	int SetMode(int xRes, int yRes, int bpp);
 	void getMode(int &xres, int &yres, int &bpp);
 	int Available() { return available; }
-	
+
 	int getNumPages() { return m_number_of_pages; }
-	
+
 	unsigned long getPhysAddr() { return m_phys_mem; }
-	
+
 	int setOffset(int off);
 	int waitVSync();
 	void blit();
@@ -44,7 +44,7 @@ public:
 
 	fbClass(const char *fb="/dev/fb0");
 	~fbClass();
-	
+
 			// low level gfx stuff
 	int PutCMAP();
 #endif

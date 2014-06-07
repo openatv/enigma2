@@ -69,9 +69,9 @@ class HelpableActionMap(ActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
 
 	Note that you can only use ONE context here!"""
-	
+
 	# sorry for this complicated code.
-	# it's not more than converting a "documented" actionmap 
+	# it's not more than converting a "documented" actionmap
 	# (where the values are possibly (function, help)-tuples)
 	# into a "classic" actionmap, where values are just functions.
 	# the classic actionmap is then passed to the ActionMap constructor,

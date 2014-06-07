@@ -35,8 +35,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 25, 20, 20, self.iconRepeat))
 		else:
 			repeatedtext = begin[0] # date
-		if timer.justplay: 
-			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1])) 
+		if timer.justplay:
+			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 25, width-150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))

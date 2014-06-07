@@ -37,7 +37,7 @@ class EventTime(Poll, Converter, object):
 		event = self.source.event
 		if event is None:
 			return None
-			
+
 		st = event.getBeginTime()
 		if self.type == self.STARTTIME:
 			return st

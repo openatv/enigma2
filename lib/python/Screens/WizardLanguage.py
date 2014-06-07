@@ -11,7 +11,7 @@ class WizardLanguage(Wizard):
 	def red(self):
 		self.resetCounter()
 		self.languageSelect()
-		
+
 	def languageSelect(self):
 		print "languageSelect"
 		newlanguage = language.getActiveLanguageIndex() + 1

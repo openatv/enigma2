@@ -86,7 +86,7 @@ class PlayList(MenuList):
 
 	def pauseFile(self):
 		self.updateState(STATE_PAUSE)
-		
+
 	def stopFile(self):
 		self.updateState(STATE_STOP)
 

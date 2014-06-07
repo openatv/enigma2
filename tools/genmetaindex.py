@@ -7,20 +7,20 @@ root = Element("index")
 for file in sys.argv[1:]:
 	p = ElementTree()
 	p.parse(file)
-	
+
 	package = Element("package")
 	package.set("details", os.path.basename(file))
-	
+
 	# we need all prerequisites
 	package.append(p.find("prerequisites"))
-	
+
 	info = None
 	# we need some of the info, but not all
 	for i in p.findall("info"):
 		if not info:
 			info = i
 	assert info
-	
+
 	for i in info[:]:
 		if i.tag not in ["name", "packagename", "packagetype", "shortdescription"]:
 			info.remove(i)

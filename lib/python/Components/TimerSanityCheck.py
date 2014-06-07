@@ -194,7 +194,7 @@ class TimerSanityCheck:
 							for ref in serviceList.getContent("R"): # iterate over all group service references
 								type = getServiceType(ref)
 								if not type in tunerType: # just add single time
-									tunerType.append(type) 
+									tunerType.append(type)
 					else:
 						tunerType.append(getServiceType(ref))
 

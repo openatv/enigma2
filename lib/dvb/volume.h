@@ -21,12 +21,12 @@ private:
 #endif
 	int openMixer();
 	void closeMixer(int fd);
-	
+
 	bool muted;
 	int leftVol, rightVol;
-	
+
 	int checkVolume(int vol);
-	
+
 public:
 	static eDVBVolumecontrol* getInstance();
 
@@ -36,9 +36,9 @@ public:
 	void setVolume(int left, int right);
 
 	void volumeMute();
-	void volumeUnMute();	
+	void volumeUnMute();
 	void volumeToggleMute();
-			
+
 	int getVolume();
 	bool isMuted();
 };

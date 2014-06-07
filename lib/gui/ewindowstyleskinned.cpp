@@ -9,25 +9,25 @@ DEFINE_REF(eWindowStyleSkinned);
 eWindowStyleSkinned::eWindowStyleSkinned()
 {
 	// m_background_color = gRGB(0x808080);
-	
+
 	// TODO: initialize colors!!
 }
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
 {
 //	eDebug("handle new size: %d x %d", size.width(), size.height());
-	
+
 	size = eSize(
 			size.width() + m_border[bsWindow].m_border_left + m_border[bsWindow].m_border_right,
 			size.height() + m_border[bsWindow].m_border_top + m_border[bsWindow].m_border_bottom
 		);
-	
+
 	offset = eSize(-m_border[bsWindow].m_border_left, -m_border[bsWindow].m_border_top);
-	
+
 	eWidget *child = wnd->child();
-	
+
 	wnd->m_clip_region = eRect(ePoint(0, 0), size);
-	
+
 	child->move(ePoint(m_border[bsWindow].m_border_left, m_border[bsWindow].m_border_top));
 	child->resize(eSize(size.width() - m_border[bsWindow].m_border_left - m_border[bsWindow].m_border_right, size.height() - m_border[bsWindow].m_border_top - m_border[bsWindow].m_border_bottom));
 }
@@ -35,7 +35,7 @@ void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset
 void eWindowStyleSkinned::paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title)
 {
 	drawBorder(painter, eRect(ePoint(0, 0), wnd->size()), m_border[bsWindow], bpAll);
-	
+
 	if (m_fnt)
 	{
 		painter.setBackgroundColor(m_color[colWindowTitleBackground]);
@@ -98,8 +98,8 @@ void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int w
 void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct borderSet &border, int what)
 {
 	int x = pos.left(), xm = pos.right();
-	
-	ePtr<gPixmap> 
+
+	ePtr<gPixmap>
 		&tl = border.m_pixmap[bpiTopLeft],
 		&t  = border.m_pixmap[bpiTop],
 		&tr = border.m_pixmap[bpiTopRight],
@@ -108,13 +108,13 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 		&bl = border.m_pixmap[bpiBottomLeft],
 		&b  = border.m_pixmap[bpiBottom],
 		&br = border.m_pixmap[bpiBottomRight];
-	
+
 	if (tl)
 	{
 		painter.blit(tl, ePoint(x, pos.top()));
 		x += tl->size().width();
 	}
-	
+
 	if (tr)
 	{
 		xm -= tr->size().width();
@@ -129,22 +129,22 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 			x += t->size().width();
 		}
 	}
-	
+
 	x = pos.left();
 	xm = pos.right();
-	
+
 	if (bl)
 	{
 		painter.blit(bl, ePoint(pos.left(), pos.bottom()-bl->size().height()));
 		x += bl->size().width();
 	}
-	
+
 	if (br)
 	{
 		xm -= br->size().width();
 		painter.blit(br, ePoint(xm, pos.bottom()-br->size().height()), eRect(x, pos.bottom()-br->size().height(), pos.width() - x, bl->size().height()));
 	}
-	
+
 	if (b)
 	{
 		while (x < xm)
@@ -153,17 +153,17 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 			x += b->size().width();
 		}
 	}
-	
+
 	int y = 0;
 	if (tl)
 		y = tl->size().height();
-	
+
 	y += pos.top();
-	
+
 	int ym = pos.bottom();
 	if (bl)
 		ym -= bl->size().height();
-	
+
 	if (l)
 	{
 		while (y < ym)
@@ -172,18 +172,18 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 			y += l->size().height();
 		}
 	}
-	
+
 	y = 0;
-	
+
 	if (tr)
 		y = tr->size().height();
-	
+
 	y += pos.top();
-	
+
 	ym = pos.bottom();
 	if (br)
 		ym -= br->size().height();
-	
+
 	if (r)
 	{
 		while (y < ym)
@@ -223,20 +223,20 @@ void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 {
 	if ((bs >= bsMax) || (bs < 0))
 		return;
-	
+
 	int i = 0;
 	for (int b = 1; b < bpMax; b <<= 1, ++i)
 	{
 		if (bp & b)
 			m_border[bs].m_pixmap[i] = &pixmap;
 	}
-	
+
 		/* recalc border sizes */
 	m_border[bs].m_border_top = 0;
 	m_border[bs].m_border_left = 0;
 	m_border[bs].m_border_bottom = 0;
 	m_border[bs].m_border_right = 0;
-	
+
 	for (int i = 0; i < 3; ++i)
 		if (m_border[bs].m_pixmap[i])
 			if (m_border[bs].m_border_top < m_border[bs].m_pixmap[i]->size().height())
@@ -250,15 +250,15 @@ void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 		m_border[bs].m_border_left = m_border[bs].m_pixmap[3]->size().width();
 	else
 		m_border[bs].m_border_left = 0;
-	
+
 	if (m_border[bs].m_pixmap[5])
 		m_border[bs].m_border_right = m_border[bs].m_pixmap[5]->size().width();
 	else
 		m_border[bs].m_border_right = 0;
 
 /*	eDebug("recalced border size for %d: %d:%d %d:%d",
-		bs, 
-		m_border[bs].m_border_left, m_border[bs].m_border_top, 
+		bs,
+		m_border[bs].m_border_left, m_border[bs].m_border_top,
 		m_border[bs].m_border_right, m_border[bs].m_border_bottom);  */
 }
 

@@ -6,16 +6,16 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	m_pos = markedPos;
 	ePtr<eWindowStyle> style;
 	getStyle(style);
-	
+
 	style->getFont(eWindowStyle::fontStatic, m_font);
-	
+
 		/* default to topleft alignment */
 	m_valign = alignTop;
 	m_halign = alignBidi;
-	
+
 	m_have_foreground_color = 0;
 	m_have_shadow_color = 0;
-	
+
 	m_nowrap = 0;
 	m_border_size = 0;
 }
@@ -27,13 +27,13 @@ int eLabel::event(int event, void *data, void *data2)
 	case evtPaint:
 	{
 		ePtr<eWindowStyle> style;
-		
+
 		getStyle(style);
-		
+
 		eWidget::event(event, data, data2);
 
 		gPainter &painter = *(gPainter*)data2;
-		
+
 		if (m_pos != -1)
 		{
 			style->setStyle(painter, eWindowStyle::styleLabel);
@@ -84,12 +84,12 @@ int eLabel::event(int event, void *data, void *data2)
 		{
 			painter.setFont(m_font);
 			style->setStyle(painter, eWindowStyle::styleLabel);
-			
+
 			if (m_have_shadow_color)
 				painter.setForegroundColor(m_shadow_color);
 			else if (m_have_foreground_color)
 				painter.setForegroundColor(m_foreground_color);
-			
+
 			int flags = 0;
 			if (m_valign == alignTop)
 				flags |= gPainter::RT_VALIGN_TOP;
@@ -97,7 +97,7 @@ int eLabel::event(int event, void *data, void *data2)
 				flags |= gPainter::RT_VALIGN_CENTER;
 			else if (m_valign == alignBottom)
 				flags |= gPainter::RT_VALIGN_BOTTOM;
-	
+
 			if (m_halign == alignLeft)
 				flags |= gPainter::RT_HALIGN_LEFT;
 			else if (m_halign == alignCenter)
@@ -106,13 +106,13 @@ int eLabel::event(int event, void *data, void *data2)
 				flags |= gPainter::RT_HALIGN_RIGHT;
 			else if (m_halign == alignBlock)
 				flags |= gPainter::RT_HALIGN_BLOCK;
-			
+
 			if (!m_nowrap)
 				flags |= gPainter::RT_WRAP;
-			
+
 				/* if we don't have shadow, m_shadow_offset will be 0,0 */
 			painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags, m_border_color, m_border_size);
-			
+
 			if (m_have_shadow_color)
 			{
 				if (!m_have_foreground_color)
@@ -122,7 +122,7 @@ int eLabel::event(int event, void *data, void *data2)
 				painter.setBackgroundColor(m_shadow_color);
 				painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags);
 			}
-			
+
 			return 0;
 		}
 	}
@@ -234,10 +234,10 @@ void eLabel::clearForegroundColor()
 eSize eLabel::calculateSize()
 {
 	ePtr<eTextPara> p = new eTextPara(eRect(0, 0, size().width(), size().height()));
-	
+
 	p->setFont(m_font);
 	p->renderString(m_text.empty()?0:m_text.c_str(), m_nowrap ? 0 : RS_WRAP);
-	
+
 	eRect bbox = p->getBoundBox();
 	return bbox.size();
 }

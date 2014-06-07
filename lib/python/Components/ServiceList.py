@@ -204,7 +204,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	GUI_WIDGET = eListbox
-	
+
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.setContent(self.l)
@@ -246,7 +246,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setRoot(self.root, False)
 		self.l.sort()
 		self.instance.moveSelectionTo(index)
-	
+
 	def removeCurrent(self):
 		self.l.removeCurrent()
 
@@ -288,7 +288,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = mode
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
-		
+
 		if config.usage.service_icon_enable.value:
 			self.l.setGetPiconNameFunc(getPiconName)
 		else:

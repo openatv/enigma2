@@ -23,7 +23,7 @@ from Components.config import config
 class EventViewBase:
 	ADD_TIMER = 0
 	REMOVE_TIMER = 1
-	
+
 	def __init__(self, event, Ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
@@ -81,7 +81,7 @@ class EventViewBase:
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
-	
+
 	def timerAdd(self):
 		if self.isRecording:
 			return
@@ -137,7 +137,7 @@ class EventViewBase:
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"		
+			print "Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)

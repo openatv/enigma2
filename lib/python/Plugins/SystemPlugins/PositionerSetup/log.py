@@ -44,7 +44,7 @@ def getvalue():
 		tail = logfile.read(pos)
 	finally:
 		mutex.release()
-	return head + tail 
+	return head + tail
 
 def close():
 	global logfile

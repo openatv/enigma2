@@ -95,7 +95,7 @@ class Setup(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("OK"))
 		self["description"] = Label("")
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], 
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,

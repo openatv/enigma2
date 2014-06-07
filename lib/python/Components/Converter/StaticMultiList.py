@@ -10,7 +10,7 @@ class StaticMultiList(StringList):
 			if self.source:
 				# setup the required item height, as given by the source.
 				self.content.setItemHeight(self.source.item_height)
-			
+
 				# also setup fonts (also given by source)
 				index = 0
 				for f in self.source.fonts:

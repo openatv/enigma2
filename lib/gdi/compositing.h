@@ -11,7 +11,7 @@ struct gContext
 {
 	ePtr<gDC> m_pixmap;
 	int m_reg_int[256];
-	float m_reg_float[256];	
+	float m_reg_float[256];
 	~gContext();
 };
 

@@ -46,13 +46,13 @@ public:
 			// flow control: start/stop data delivery into read buffer.
 	void enableRead();
 	void disableRead();
-	
+
 	void inject(const char *data, int len);
-	
+
 	enum State { Invalid, Idle, HostLookup, Connecting,
 			Listening, Connection, Closing };
 	int state();
-	
+
 	Signal0<void> connectionClosed_;
 	Signal0<void> connected_;
 	Signal0<void> readyRead_;

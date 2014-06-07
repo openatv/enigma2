@@ -101,7 +101,7 @@ def purge(cleanset, ctimeLimit, reserveBytes):
 			return 0
 		diskstat = os.statvfs(trash)
 		free = diskstat.f_bfree * diskstat.f_bsize
-		bytesToRemove = reserveBytes - free 
+		bytesToRemove = reserveBytes - free
 		candidates = []
 		print "[Trashcan] bytesToRemove", bytesToRemove, trash
 		size = 0
@@ -118,7 +118,7 @@ def purge(cleanset, ctimeLimit, reserveBytes):
 						candidates.append((st.st_ctime, fn, st.st_size))
 						size += st.st_size
 				except Exception, e:
-					print "[Trashcan] Failed to stat %s:"% name, e 
+					print "[Trashcan] Failed to stat %s:"% name, e
 			# Remove empty directories if possible
 			for name in dirs:
 				try:
@@ -135,7 +135,7 @@ def purge(cleanset, ctimeLimit, reserveBytes):
 			bytesToRemove -= st_size
 			size -= st_size
 		print "[Trashcan] Size after purging:", size, trash
- 
+
 def cleanAll(trash):
 	if not os.path.isdir(trash):
 		print "[Trashcan] No trash.", trash

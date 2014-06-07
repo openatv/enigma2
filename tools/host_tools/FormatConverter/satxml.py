@@ -8,20 +8,20 @@ class satxml(datasource):
 	def __init__(self, filename = "satellites.xml"):
 		self.filename = filename
 		datasource.__init__(self)
-		
+
 		if not os.path.isfile(filename):
 			print "File %s doesn't exist. Creating it." % filename
-		
+
 	def getStatus(self):
 		text = datasource.getStatus(self)
 		return text
-		
+
 	def getCapabilities(self):
 		return [("set filename", self.setFilename), ("read file", self.read), ("write file", self.write), ("print all", self.printAll)]
-	
+
 	def getName(self):
 		return "satellites.xml"
-	
+
 	def setFilename(self):
 		print "Please give a filename <satellites.xml>:"
 		filename = inputText()
@@ -51,7 +51,7 @@ class satxml(datasource):
 						if len(parameters.keys()) > 1:
 							self.addTransponder(satpos, parameters)
 		print self.transponderlist
-	
+
 	def write(self):
 		satxml = Document()
 		satellites = satxml.createElement("satellites")
@@ -81,7 +81,6 @@ class satxml(datasource):
 		file = open(self.filename, "w")
 		file.write(prettyxml)
 		file.close()
-		
 
-	
-	
+
+

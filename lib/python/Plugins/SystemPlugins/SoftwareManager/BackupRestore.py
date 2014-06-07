@@ -30,19 +30,19 @@ def getBackupPath():
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
-		
+
 
 class BackupScreen(Screen, ConfigListScreen):
 	skin = """
 		<screen position="135,144" size="350,310" title="Backup is running" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
-		
+
 	def __init__(self, session, runBackup = False):
 		Screen.__init__(self, session)
 		self.session = session
 		self.runBackup = runBackup
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.close,
 			"back": self.close,
@@ -95,7 +95,7 @@ class BackupScreen(Screen, ConfigListScreen):
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
 		self.doBackup()
-		
+
 
 class BackupSelection(Screen):
 	skin = """
@@ -114,13 +114,13 @@ class BackupSelection(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
-		
+
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs = inhibitDirs )
 		self["checkList"] = self.filelist
-		
+
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
 		{
 			"cancel": self.exit,
@@ -152,7 +152,7 @@ class BackupSelection(Screen):
 			self["key_yellow"].setText(_("Deselect"))
 		else:
 			self["key_yellow"].setText(_("Select"))
-		
+
 	def up(self):
 		self["checkList"].up()
 
@@ -200,7 +200,7 @@ class RestoreMenu(Screen):
 	def __init__(self, session, plugin_path):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
-		
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Restore"))
 		self["key_yellow"] = StaticText(_("Delete"))
@@ -209,7 +209,7 @@ class RestoreMenu(Screen):
 		self.val = []
 		self.entry = False
 		self.exe = False
-		
+
 		self.path = ""
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -284,7 +284,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		<screen position="135,144" size="350,310" title="Restore is running..." >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
-		
+
 	def __init__(self, session, runRestore = False):
 		Screen.__init__(self, session)
 		self.session = session

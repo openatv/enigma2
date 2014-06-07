@@ -6,7 +6,7 @@ def FuzzyTime(t, inPast = False):
 	nt = time()
 	n = localtime()
 	dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
-	
+
 	if d[:3] == n[:3]:
 		# same day
 		date = _("Today")
@@ -25,9 +25,9 @@ def FuzzyTime(t, inPast = False):
 			date = "%d.%d" % (d[2], d[1])
 	else:
 		date = "%d.%d.%d" % (d[2], d[1], d[0])
-	
+
 	timeres = "%d:%02d" % (d[3], d[4])
-	
+
 	return (date, timeres)
 
 

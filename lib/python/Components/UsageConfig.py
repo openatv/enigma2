@@ -23,7 +23,7 @@ def InitUsageConfig():
 	config.usage.hide_number_markers = ConfigYesNo(default = False)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
 
-	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])  
+	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	config.usage.crypto_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
@@ -37,7 +37,7 @@ def InitUsageConfig():
 		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
 
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
-	
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	choicelist = []
@@ -101,7 +101,7 @@ def InitUsageConfig():
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
-	
+
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
@@ -408,7 +408,7 @@ def InitUsageConfig():
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
 		("ara", _("Arabic")),
 		("eus baq", _("Basque")),
-		("bul", _("Bulgarian")), 
+		("bul", _("Bulgarian")),
 		("hrv", _("Croatian")),
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),

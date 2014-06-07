@@ -122,7 +122,7 @@ void ePMTClient::clientTLVReceived(unsigned char *tag, int length, unsigned char
 		switch (tag[2])
 		{
 		case 0x31: /* ca_info */
-			
+
 			break;
 		case 0x33: /* ca_pmt_reply */
 			/* currently not used */

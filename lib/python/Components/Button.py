@@ -10,15 +10,15 @@ class Button(VariableText, HTMLComponent, GUIComponent):
 		VariableText.__init__(self)
 		self.setText(text)
 		self.onClick = onClick
-	
+
 	def push(self):
 		for x in self.onClick:
 			x()
 		return 0
-	
+
 	def disable(self):
 		pass
-	
+
 	def enable(self):
 		pass
 

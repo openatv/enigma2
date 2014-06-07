@@ -1678,7 +1678,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		{
 			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
 				break;
-			
+
 			gint i, n_video = 0, n_audio = 0, n_text = 0;
 
 			g_object_get (m_gst_playbin, "n-video", &n_video, NULL);

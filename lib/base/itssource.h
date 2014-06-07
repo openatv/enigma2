@@ -10,7 +10,7 @@ protected:
 
 public:
 	iTsSource(int packetsize = 188) : packetSize(packetsize) {}
-	
+
 	/* NOTE: you must be able to handle short reads! */
 	virtual ssize_t read(off_t offset, void *buf, size_t count)=0; /* NOTE: this is what you in normal case have to use!! */
 

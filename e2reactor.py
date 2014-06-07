@@ -31,10 +31,10 @@ class E2SharedPoll:
 
 	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
 		self.dict[fd] = eventmask
-	
+
 	def unregister(self, fd):
 		del self.dict[fd]
-	
+
 	def poll(self, timeout = None):
 		try:
 			r = self.eApp.poll(timeout, self.dict)
@@ -61,8 +61,8 @@ class PollReactor(posixbase.PosixReactorBase):
 			poller.register(fd, mask)
 		else:
 			if selectables.has_key(fd): del selectables[fd]
-		
-		
+
+
 		poller.eApp.interruptPoll()
 
 	def _dictRemove(self, selectable, mdict):
@@ -125,7 +125,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		selectables.clear()
 		for fd in fds:
 			poller.unregister(fd)
-			
+
 		if self.waker is not None:
 			self.addReader(self.waker)
 		return result
@@ -139,7 +139,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			   POLLIN=select.POLLIN,
 			   POLLOUT=select.POLLOUT):
 		"""Poll the poller for new events."""
-		
+
 		if timeout is not None:
 			timeout = int(timeout * 1000) # convert seconds to milliseconds
 
@@ -166,7 +166,7 @@ class PollReactor(posixbase.PosixReactorBase):
 
 	doIteration = doPoll
 
-	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log, 
+	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log,
 		faildict={
 			error.ConnectionDone: failure.Failure(error.ConnectionDone()),
 			error.ConnectionLost: failure.Failure(error.ConnectionLost())
@@ -198,7 +198,7 @@ class PollReactor(posixbase.PosixReactorBase):
 
 def install():
 	"""Install the poll() reactor."""
-	
+
 	p = PollReactor()
 	main.installReactor(p)
 

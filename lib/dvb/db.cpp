@@ -346,7 +346,7 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 {
 	switch(line[0])
 	{
-		case 's': 
+		case 's':
 		{
 			eDVBFrontendParametersSatellite sat;
 			int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
@@ -378,7 +378,7 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 			feparm->setFlags(flags);
 			return feparm;
 		}
-		case 't': 
+		case 't':
 		{
 			eDVBFrontendParametersTerrestrial ter;
 			int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode,

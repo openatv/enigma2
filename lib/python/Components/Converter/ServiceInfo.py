@@ -77,7 +77,7 @@ class ServiceInfo(Converter, object):
 		info = service and service.info()
 		if not info:
 			return False
-		
+
 		if self.type == self.HAS_TELETEXT:
 			tpid = info.getInfo(iServiceInformation.sTXTPID)
 			return tpid != -1
@@ -127,7 +127,7 @@ class ServiceInfo(Converter, object):
 		return False
 
 	boolean = property(getBoolean)
-	
+
 	@cached
 	def getText(self):
 		service = self.source.service

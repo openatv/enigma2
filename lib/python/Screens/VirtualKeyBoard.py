@@ -34,7 +34,7 @@ class VirtualKeyBoard(Screen):
 		self.selectedKey = 0
 		self.smsChar = None
 		self.sms = NumericalTextInput(self.smsOK)
-		
+
 		self.key_bg = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_bg.png"))
 		self.key_sel = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_sel.png"))
 		self.key_backspace = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_backspace.png"))
@@ -73,7 +73,7 @@ class VirtualKeyBoard(Screen):
 		self["header"] = Label(title)
 		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8",'ignore')), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
-		
+
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
 			{
 				"gotAsciiCode": self.keyGotAscii,
@@ -314,23 +314,23 @@ class VirtualKeyBoard(Screen):
 
 		if text == "EXIT":
 			self.close(None)
-		
+
 		elif text == "BACKSPACE":
 			self["text"].deleteBackward()
-		
+
 		elif text == "ALL":
 			self["text"].markAll()
-		
+
 		elif text == "CLEAR":
 			self["text"].deleteAllChars()
 			self["text"].update()
 
 		elif text == "SHIFT":
 			self.shiftClicked()
-		
+
 		elif text == "SPACE":
 			self["text"].char(" ".encode("UTF-8"))
-		
+
 		elif text == "OK":
 			self.close(self["text"].getText().encode("UTF-8"))
 

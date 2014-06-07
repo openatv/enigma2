@@ -14,7 +14,7 @@ class HelpMenu(Screen, Rc):
 		Rc.__init__(self)
 		self["long_key"] = Label("")
 
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self["list"].ok,
 			"back": self.close,

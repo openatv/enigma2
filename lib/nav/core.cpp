@@ -25,7 +25,7 @@ void eNavigation::recordEvent(iRecordableService* service, int event)
 RESULT eNavigation::playService(const eServiceReference &service)
 {
 	stopService();
-	
+
 	ASSERT(m_servicehandler);
 	RESULT res = m_servicehandler->play(service, m_runningService);
 	if (m_runningService)

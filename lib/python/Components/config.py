@@ -1042,7 +1042,7 @@ class ConfigSelectionNumber(ConfigSelection):
 		while step <= max:
 			choices.append(str(step))
 			step += stepwidth
-		
+
 		ConfigSelection.__init__(self, choices, default)
 
 	def getValue(self):

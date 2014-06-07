@@ -419,7 +419,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 						+ lnb_param.guard_offset;
 				int tmp2 = ((((tmp1 * 2) / 4000) + 1) / 2) * 4000;
 				frequency = lnb_param.SatCRvco - (tmp1-tmp2) + lnb_param.guard_offset;
-				lnb_param.UnicableTuningWord = ((tmp2 / 4000) 
+				lnb_param.UnicableTuningWord = ((tmp2 / 4000)
 						| ((band & 1) ? 0x400 : 0)			//HighLow
 						| ((band & 2) ? 0x800 : 0)			//VertHor
 						| ((lnb_param.LNBNum & 1) ? 0 : 0x1000)			//Umschaltung LNB1 LNB2
@@ -723,7 +723,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );  // wait 20 ms after voltage change
-	
+
 				eDVBDiseqcCommand diseqc;
 				memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
 				diseqc.len = 5;
@@ -841,7 +841,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );  // timeout .. we assume now the rotor is already at the correct position
 					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, turn_fast ? 10 : 9 ) );  // timeout .. we assume now the rotor is already at the correct position	
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, turn_fast ? 10 : 9 ) );  // timeout .. we assume now the rotor is already at the correct position
 					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
 			////////////////////
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );

@@ -13,78 +13,78 @@ def filter(g):
 			while g.next()[1] != "\n":
 				pass
 			continue
-		
+
 		if t[1] != "\n":
 #			print t
 			yield t[1]
 
 def do_file(f, mode):
 	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
-	
+
 	sys.stderr.write("parsing %s\n" % f)
-	
+
 	state = 0
-	
+
 	classstate = 0
-	
+
 	firsthit = 1
-	
+
 	while 1:
 		try:
 			t = tokens.next()
 		except:
 			break
-		
+
 		if t == "class":
 			classname = tokens.next()
 			classstate = state
-		
+
 		if t == "{":
 			state = state + 1
-		
+
 		if t == "}":
 			state = state - 1
-		
+
 		if t == "enum" and state == classstate + 1:
 			actionname = tokens.next()
-			
+
 			if actionname == "{":
 				while tokens.next() != "}":
 					pass
 				continue
-			
+
 			if actionname[-7:] == "Actions":
 				if tokens.next() != "{":
 					try:
 						print classname
 					except:
 						pass
-				
+
 					try:
 						print actionname
 					except:
 						pass
-				
+
 					raise Exception("action enum must be simple.")
-			
+
 				counter = 0
-			
+
 				while 1:
-	
+
 					t = tokens.next()
-					
+
 					if t == "=":
 						tokens.next()
 						t = tokens.next()
-	
+
 					if t == "}":
 						break
-					
+
 					if counter:
 						if t != ",":
 							raise Exception("no comma")
 						t = tokens.next()
-				
+
 					if firsthit:
 
 						if mode == "include":

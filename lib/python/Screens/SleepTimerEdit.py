@@ -22,7 +22,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
 		self.createSetup()
-		
+
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 		    "green": self.ok,

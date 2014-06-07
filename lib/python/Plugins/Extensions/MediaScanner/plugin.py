@@ -31,7 +31,7 @@ def mountpoint_choosen(option):
 			print "ignore", mountpoint, "because its not accessible"
 		return
 
-	session.openWithCallback(execute, ChoiceBox, 
+	session.openWithCallback(execute, ChoiceBox,
 		title = _("The following files were found..."),
 		list = list)
 
@@ -50,7 +50,7 @@ def menuEntry(*args):
 from Components.Harddisk import harddiskmanager
 
 def menuHook(menuid):
-	if menuid != "mainmenu": 
+	if menuid != "mainmenu":
 		return [ ]
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]

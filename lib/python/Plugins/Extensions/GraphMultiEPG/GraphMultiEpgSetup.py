@@ -22,14 +22,14 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 			<widget name="oktext" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget name="config" position="10,50" size="550,395" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.setTitle(_("GraphMultiEpg Settings"))
-		
+
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
-		
+
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keySave,
@@ -37,7 +37,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 			"cancel": self.keyCancel,
 			"menu": self.closeRecursive,
 		}, -1)
-		
+
 		self.onChangedEntry = [ ]
 		self.session = session
 		self.list = []
