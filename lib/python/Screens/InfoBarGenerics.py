@@ -1962,9 +1962,14 @@ class InfoBarPiP:
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
-				self.lastPiPService = None
-				self.session.pipshown = False
-				del self.session.pip
+				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				else:
+					self.lastPiPService = None
+					self.session.pipshown = False
+					del self.session.pip
 
 	def activePiP(self):
 		if self.session.pipshown:
