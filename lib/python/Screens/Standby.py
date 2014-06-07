@@ -70,6 +70,9 @@ class Standby(Screen):
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
+		if self.session.pipshown:
+			del self.session.pip
+			self.session.pipshown = False
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
