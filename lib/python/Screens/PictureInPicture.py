@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference
+from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
 from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition, ConfigYesNo, ConfigSelection
@@ -38,17 +38,38 @@ class PictureInPicture(Screen):
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
 			config.av.pip_mode = ConfigSelection(default="standard", choices=self.choicelist)
 			pip_config_initialized = True
+
+		self.pigmodeEnabled = False
+		self.relocateTimer = eTimer()
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 	def __del__(self):
+		if self.relocateTimer.isActive():
+			self.relocateTimer.callback.remove(self.timedRelocate)
+			self.relocateTimer.stop()
 		del self.pipservice
 		self.setExternalPiP(False)
 		self.setSizePosMainWindow()
 
-	def pigmode(self):
-		self.instance.resize(eSize(*(1, 1)))
-		self["video"].instance.resize(eSize(*(1, 1)))
-		self.instance.move(ePoint(0, 0))
+	def pigmode(self, value):
+		if value:
+			if self.relocateTimer.isActive():
+				self.relocateTimer.callback.remove(self.timedRelocate)
+				self.relocateTimer.stop()
+			elif not self.pigmodeEnabled:
+				self.instance.resize(eSize(*(1, 1)))
+				self["video"].instance.resize(eSize(*(1, 1)))
+				self.instance.move(ePoint(0, 0))
+				self.pigmodeEnabled = True
+		else:
+			self.relocateTimer.callback.append(self.timedRelocate)
+			self.relocateTimer.start(100)
+
+	def timedRelocate(self):
+		self.relocateTimer.callback.remove(self.timedRelocate)
+		self.relocateTimer.stop()
+		self.relocate()
+		self.pigmodeEnabled = False
 
 	def relocate(self):
 		x = config.av.pip.value[0]

@@ -2,7 +2,7 @@
 ## P(icture)i(n)g(raphics) renderer
 ##
 from Renderer import Renderer
-from enigma import eVideoWidget, eSize, ePoint, getDesktop
+from enigma import eVideoWidget, eSize, eRect, ePoint, getDesktop
 from Screens.InfoBar import InfoBar
 
 class Pig(Renderer):
@@ -32,11 +32,11 @@ class Pig(Renderer):
 				self.instance.move(self.Position)
 			InfoBarInstance = InfoBar.instance
 			if InfoBarInstance and InfoBarInstance.session.pipshown:
-				InfoBarInstance.session.pip.pigmode()
+				InfoBarInstance.session.pip.pigmode(True)
 
 	def onHide(self):
 		if self.instance:
 			self.preWidgetRemove(self.instance)
 			InfoBarInstance = InfoBar.instance
 			if InfoBarInstance and InfoBarInstance.session.pipshown:
-				InfoBarInstance.session.pip.relocate()
+				InfoBarInstance.session.pip.pigmode(False)
