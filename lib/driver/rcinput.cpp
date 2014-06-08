@@ -286,6 +286,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_SCREEN_TO_KEY_MODE
+	if (ev->code == KEY_SCREEN)
+	{
+		/* GB800 rc has a KEY_ASPECT key, which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_MODE;
+		
+	}
+#endif
+
 #if KEY_PLAY_IS_KEY_PLAYPAUSE
 	if (ev->code == KEY_PLAY)
 	{

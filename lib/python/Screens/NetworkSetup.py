@@ -567,10 +567,13 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-			if SystemInfo["WakeOnLAN"] and self.iface == 'eth0':
+			if SystemInfo["WakeOnLAN"]:
 				if not getBoxType() == 'gbquad' :
 					self.wakeonlan = getConfigListEntry(_('Use WakeOnLAN'), config.network.wol)
 					self.list.append(self.wakeonlan)
+			if SystemInfo["ETWOL"] and self.iface == 'eth1':
+				self.wakeonlan = getConfigListEntry(_('Use WakeOnLAN'), config.network.wol)
+				self.list.append(self.wakeonlan)		
 
 			self.extended = None
 			self.configStrings = None
