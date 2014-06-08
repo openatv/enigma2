@@ -127,6 +127,7 @@ class PictureInPicture(Screen):
 		elif config.av.pip_mode.value in "bigpig external":
 			self.instance.resize(eSize(*(MAX_X, MAX_Y)))
 			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
+			self.setSizePosMainWindow()
 
 	def setSizePosMainWindow(self, x = 0, y = 0, w = MAX_X, h = MAX_Y):
 		if SystemInfo["VideoDestinationConfigurable"]:
