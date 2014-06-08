@@ -616,6 +616,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog.hide()
 
 	def toggleShow(self):
+		print 'SIB VALUE:',config.usage.show_second_infobar.value
 		if not hasattr(self, "LongButtonPressed"):
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
@@ -630,7 +631,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.showDefaultEPG()
 			elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "INFOBAREPG":
 				self.openInfoBarEPG()
-			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value != "none" and not self.secondInfoBarScreen.shown:
 				self.hide()
 				self.secondInfoBarScreen.show()
 				self.secondInfoBarWasShown = True
