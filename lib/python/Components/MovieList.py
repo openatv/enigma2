@@ -699,35 +699,22 @@ class MovieList(GUIComponent):
 
 	def _moveToChrStr(self):
 		currentIndex = self.instance.getCurrentIndex()
-		found = False
-		if currentIndex < (len(self.list) - 1):
-			itemsBelow = self.list[currentIndex + 1:]
-			#first search the items below the selection
-			for index, item in enumerate(itemsBelow):
+		index = currentIndex + 1
+		if index >= len(self.list):
+			index = 0
+		while index != currentIndex:
+			item = self.list[index]
+			if item[1] is not None:
 				ref = item[0]
-				itemName = getShortName(item[1].getName(ref).upper(), ref)
-				if len(self._char) == 1 and itemName.startswith(self._char):
-					found = True
-					self.instance.moveSelectionTo(index + currentIndex + 1)
+				itemName = getShortName(item[1].getName(ref), ref)
+				strlen = len(self._char)
+				if strlen == 1 and itemName.startswith(self._char) \
+				or strlen > 1 and itemName.find(self._char) >= 0:
+					self.instance.moveSelectionTo(index)
 					break
-				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
-					found = True
-					self.instance.moveSelectionTo(index + currentIndex + 1)
-					break
-		if found == False and currentIndex > 0:
-			itemsAbove = self.list[1:currentIndex] #first item (0) points parent folder - no point to include
-			for index, item in enumerate(itemsAbove):
-				ref = item[0]
-				itemName = getShortName(item[1].getName(ref).upper(), ref)
-				if len(self._char) == 1 and itemName.startswith(self._char):
-					found = True
-					self.instance.moveSelectionTo(index + 1)
-					break
-				elif len(self._char) > 1 and itemName.find(self._char) >= 0:
-					found = True
-					self.instance.moveSelectionTo(index + 1)
-					break
-
+			index += 1
+			if index >= len(self.list):
+				index = 0
 		self._char = ''
 		if self._lbl:
 			self._lbl.visible = False
@@ -735,6 +722,7 @@ class MovieList(GUIComponent):
 def getShortName(name, serviceref):
 	if serviceref.flags & eServiceReference.mustDescent: #Directory
 		pathName = serviceref.getPath()
-		return os.path.basename(os.path.normpath(pathName)).upper()
-	else:
-		return name
+		name = os.path.basename(os.path.normpath(pathName))
+		if name == '.Trash':
+			name = _("Deleted items")
+	return name.upper()
