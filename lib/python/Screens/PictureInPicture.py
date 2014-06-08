@@ -52,7 +52,7 @@ class PictureInPicture(Screen):
 		self.setSizePosMainWindow()
 
 	def pigmode(self, value):
-		if value:
+		if value and config.av.pip_mode.value != "external":
 			if self.relocateTimer.isActive():
 				self.relocateTimer.callback.remove(self.timedRelocate)
 				self.relocateTimer.stop()
@@ -98,7 +98,7 @@ class PictureInPicture(Screen):
 		elif config.av.pip_mode.value == "byside":
 			x = MAX_X / 2
 			y = MAX_Y / 4
-		elif config.av.pip_mode.value == "bigpig":
+		elif config.av.pip_mode.value in "bigpig external":
 			x = 0
 			y = 0
 		config.av.pip.save()
@@ -108,7 +108,7 @@ class PictureInPicture(Screen):
 		config.av.pip.value[2] = w
 		config.av.pip.value[3] = h
 		config.av.pip.save()
-		if config.av.pip_mode.value == "standard" or config.av.pip_mode.value == "external":
+		if config.av.pip_mode.value == "standard":
 			self.instance.resize(eSize(*(w, h)))
 			self["video"].instance.resize(eSize(*(w, h)))
 			self.setSizePosMainWindow()
@@ -124,7 +124,7 @@ class PictureInPicture(Screen):
 			self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
 			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
 			self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
-		elif config.av.pip_mode.value == "bigpig":
+		elif config.av.pip_mode.value in "bigpig external":
 			self.instance.resize(eSize(*(MAX_X, MAX_Y)))
 			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
 
