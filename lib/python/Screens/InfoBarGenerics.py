@@ -616,7 +616,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog.hide()
 
 	def toggleShow(self):
-		print 'SIB VALUE:',config.usage.show_second_infobar.value
 		if not hasattr(self, "LongButtonPressed"):
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
@@ -913,6 +912,7 @@ class InfoBarChannelSelection:
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
+				"openBouquets": (self.openBouquets, _("Open favouries list")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
@@ -1027,6 +1027,10 @@ class InfoBarChannelSelection:
 
 	def openSatellites(self):
 		self.servicelist.showSatellites()
+		self.session.execDialog(self.servicelist)
+
+	def openBouquets(self):
+		self.servicelist.showFavourites()
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
