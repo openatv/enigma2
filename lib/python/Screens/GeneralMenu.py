@@ -785,8 +785,8 @@ class GeneralMenu(Screen):
 	if menuID is None:
 		from Components.Harddisk import harddiskmanager
 		for r in harddiskmanager.getMountedPartitions(onlyhotplug = False):
-		    menuitem = [r.tabbedDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
-		    if r.tabbedDescription().split('\t')[0] == _("Internal Flash") or r.tabbedDescription().split('\t')[0] == _("DLNA"): #skin FLASH on Source List
+		    menuitem = [r.tabbedShortDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
+		    if r.tabbedShortDescription().split('\t')[0] == _("Internal Flash") or r.tabbedDescription().split('\t')[0] == _("DLNA"): #skin FLASH on Source List
 			print "[MENU] Skip source: Internal Flash and DLNA"
 		    else:
 			list.append(tuple(menuitem))
