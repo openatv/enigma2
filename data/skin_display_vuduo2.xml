@@ -16,12 +16,13 @@
 		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
 	<fonts>
-		<alias name="Huge" font="Regular" size="32" height="32" />
-		<alias name="Bigger" font="Regular" size="17" height="18" />
-		<alias name="Big" font="Regular" size="15" height="16" />
-		<alias name="Clock" font="Regular" size="15" height="14" />
-		<alias name="Medium" font="Regular" size="11" height="12" />
-		<alias name="Small" font="Regular" size="9" height="10" />
+		<font name="LCD_display" filename="nmsbd.ttf" scale="90"/>
+		<alias name="Huge" font="LCD_display" size="32" height="32" />
+		<alias name="Bigger" font="LCD_display" size="17" height="18" />
+		<alias name="Big" font="LCD_display" size="15" height="16" />
+		<alias name="Clock" font="LCD_display" size="15" height="14" />
+		<alias name="Medium" font="LCD_display" size="11" height="12" />
+		<alias name="Small" font="LCD_display" size="9" height="10" />
 	</fonts>
 
 <!-- template -->
