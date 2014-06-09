@@ -52,23 +52,28 @@ class PictureInPicture(Screen):
 		self.setSizePosMainWindow()
 
 	def pigmode(self, value):
-		if value and config.av.pip_mode.value != "external":
-			if self.relocateTimer.isActive():
-				self.relocateTimer.callback.remove(self.timedRelocate)
-				self.relocateTimer.stop()
-			elif not self.pigmodeEnabled:
-				self.instance.resize(eSize(*(2, 2)))
-				self["video"].instance.resize(eSize(*(2, 2)))
-				self.instance.move(ePoint(0, 0))
-				self.pigmodeEnabled = True
-		else:
-			self.relocateTimer.callback.append(self.timedRelocate)
-			self.relocateTimer.start(100)
+		if config.av.pip_mode.value != "external":
+			if value:
+				if self.relocateTimer.isActive():
+					self.relocateTimer.callback.remove(self.timedRelocate)
+					self.relocateTimer.stop()
+				elif not self.pigmodeEnabled:
+					del self.pipservice
+					self.pigmodeEnabled = True
+			else:
+				self.relocateTimer.callback.append(self.timedRelocate)
+				self.relocateTimer.start(100)
 
 	def timedRelocate(self):
 		self.relocateTimer.callback.remove(self.timedRelocate)
 		self.relocateTimer.stop()
-		self.relocate()
+		self.pipservice = eServiceCenter.getInstance().play(self.currentService)
+		if self.pipservice and not self.pipservice.setTarget(1):
+			self.pipservice.start()
+		else:
+			self.pipservice = None
+			self.currentService = None
+			self.currentServiceReference = None
 		self.pigmodeEnabled = False
 
 	def relocate(self):
