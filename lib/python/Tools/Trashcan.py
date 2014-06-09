@@ -29,7 +29,10 @@ def createTrashFolder(path=None):
 	print '[TRASHCAN DeBug]', trash
 	if trash and os.access(os.path.split(trash)[0], os.W_OK):
 		if not os.path.isdir(trash):
-			os.mkdir(trash)
+			try:
+				os.mkdir(trash)
+			except:
+				return None
 		return trash
 	else:
 		return None
