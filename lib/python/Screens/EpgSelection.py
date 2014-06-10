@@ -974,6 +974,8 @@ class EPGSelection(Screen, HelpableScreen):
 		eventid = event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		title = None
+		keys = []
+		skin_name = None
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				cb_func1 = lambda ret: self.removeTimer(timer)
@@ -981,16 +983,20 @@ class EPGSelection(Screen, HelpableScreen):
 				cb_func3 = lambda ret: self.disableTimer(timer)
 				menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2), (_("Disable timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func3)]
 				title = _("Select action for timer %s:") % event.getEventName()
+				keys = ['red', 'green', 'yellow']
+				skin_name = "RecordTimerQuestion1"
 				break
 		else:
 			if not manual:
 				menu = [(_("Add Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
 				title = "%s?" % event.getEventName()
+				keys = ['green', 'blue']
+				skin_name = "RecordTimerQuestion"
 			else:
 				newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
 				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 		if title:
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=keys, skin_name=skin_name)
 			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
 			posy = self['list'].getSelectionPosition(serviceref)
 			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
