@@ -965,6 +965,23 @@ class EPGSelection(Screen, HelpableScreen):
 		self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
+	def recordTimerQuestionPos(self):
+		serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
+		evtpos = self['list'].getSelectionPosition(serviceref)
+		evth = self['list'].itemHeight
+		menuh = self.ChoiceBoxDialog.instance.size().height()
+		screeny = self.instance.position().y()
+		listy = self['list'].instance.position().y()
+		print "[EPGSelection] recordTimerQuestionPos 1", evtpos, evth, menuh, screeny, listy
+		x = evtpos[0] - self.ChoiceBoxDialog.instance.size().width()
+		if x < 0:
+			x = 0
+		y =  evtpos[1] + evth
+		if y + menuh > self['list'].listHeight + listy:
+			y = evtpos[1] - menuh
+		print "[EPGSelection] recordTimerQuestionPos 2", x, screeny + y
+		return x, screeny + y
+
 	def RecordTimerQuestion(self, manual=False):
 		cur = self['list'].getCurrent()
 		event = cur[0]
@@ -997,9 +1014,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 		if title:
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=keys, skin_name=skin_name)
-			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
-			posy = self['list'].getSelectionPosition(serviceref)
-			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
+			menu_pos = self.recordTimerQuestionPos()
+			self.ChoiceBoxDialog.instance.move(ePoint(menu_pos[0], menu_pos[1]))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
