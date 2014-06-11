@@ -10,7 +10,8 @@ from Tools import Notifications
 from time import localtime, time
 import Screens.InfoBar
 from gettext import dgettext
-
+import PowerTimer
+import RecordTimer
 
 inStandby = None
 
@@ -33,6 +34,9 @@ class Standby2(Screen):
 		# set LCDminiTV 
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
+		#remove wakup files and reset wakup state
+		PowerTimer.resetTimerWakeup()
+		RecordTimer.resetTimerWakeup()
 		#kill me
 		self.close(True)
 

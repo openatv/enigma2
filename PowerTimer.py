@@ -4,7 +4,7 @@ import xml.etree.cElementTree
 from time import ctime, time
 from bisect import insort
 
-from enigma import eActionMap, quitMainloop, eTimer
+from enigma import eActionMap, quitMainloop
 
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -15,18 +15,21 @@ from Tools.XMLTools import stringToXML
 import timer
 import NavigationInstance
 
-
-
 #global variables begin
-DSsave = False				#original time from repeating Deppstandby-Powertimer saved
-RSsave = False				#original time from repeating Restart-Powertimer saved
-RBsave = False				#original time from repeating Reboot-Powertimer saved
-aeDSsave = False			#original time from repeating Powertimer and AfterEvent-Deppstandby saved
+DSsave = False
+RSsave = False
+RBsave = False
+aeDSsave = False
 wasPowerTimerWakeup = False
-delWakeupFileTimer = eTimer()
-delWakeupTimerCounter = 0	#[minutes counter]
-wakeupTime = 60				#[minutes]
+wakeupEnd = time()
 #global variables end
+
+#reset wakeupstatus
+def resetTimerWakeup():
+	global wasPowerTimerWakeup, wakeupEnd
+	if os.path.exists("/tmp/was_powertimer_wakeup"):
+		os.remove("/tmp/was_powertimer_wakeup")	
+	wasPowerTimerWakeup = False
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
@@ -61,7 +64,7 @@ class TIMERTYPE:
 # please do not translate log messages
 class PowerTimerEntry(timer.TimerEntry, object):
 	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False):
-		global wakeupTime
+		global wakeupEnd
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:
@@ -92,13 +95,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		#check startuptimer
 		if self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
 			if abs(time() - self.begin) <= 180:		#begin within 3 minutes -> this is wakeuptimer
-				if self.end > time() + 3600:		#minimum is 60 minutes to the suppression of autodeepstandby and other overlapping powertimer
-					wakeupTime = int((self.end - time()) / 60)
+				if self.end > time():
+					wakeupEnd = self.end
 				else:
-					wakeupTime = 60					#no endtime listed, after 60 minutes lost wakup-status and system works normal
-		if 	wakeupTime > 720:						#max 12 hours
-			wakeupTime = 720
-		#print "[POWERTIMER-wakuptime] " + str(wakeupTime)
+					wakeupEnd = time() + 3600		#no endtime listed, 1hour suppression of autodeepstandby and other overlapping powertimer
+		wuEnd = time () + 43200						#limitation to 12hours  suppression of ...
+		if wakeupEnd > wuEnd:
+			wakeupEnd = wuEnd
 
 	def __repr__(self):
 		timertype = {
@@ -118,17 +121,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
-		#timertype = {
-		#	TIMERTYPE.WAKEUP: "wakeup",
-		#	TIMERTYPE.WAKEUPTOSTANDBY: "wakeuptostandby",
-		#	TIMERTYPE.AUTOSTANDBY: "autostandby",
-		#	TIMERTYPE.AUTODEEPSTANDBY: "autodeepstandby",
-		#	TIMERTYPE.STANDBY: "standby",
-		#	TIMERTYPE.DEEPSTANDBY: "deepstandby",
-		#	TIMERTYPE.REBOOT: "reboot",
-		#	TIMERTYPE.RESTART: "restart"
-		#	}[self.timerType]
-		#print "[POWERTIMER-" + timertype + "] " + str(ctime(time())) + " - " + str((int(time()), code, msg))
 
 	def do_backoff(self):
 		if Screens.Standby.inStandby:
@@ -142,29 +134,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					self.backoff = 1800
 		self.log(10, "backoff: retry in %d minuets" % (int(self.backoff)/60))
 
-	def delWakeupFile(self, force = False):
-		global delWakeupFileTimer, delWakeupTimerCounter, wakeupTime
-		delWakeupTimerCounter += 1
-		#print "[POWERTIMER-delWakeupTimerCounter] " + str(delWakeupTimerCounter)
-		#remove wakeupfile after 60 - 720 minutes or is not in standby (not in standby -> user interaction is possible) or forced
-		if os.path.exists("/tmp/was_powertimer_wakeup") and (delWakeupTimerCounter >= wakeupTime or not Screens.Standby.inStandby or force):
-			os.remove("/tmp/was_powertimer_wakeup")
-		if delWakeupFileTimer.isActive() and not os.path.exists("/tmp/was_powertimer_wakeup"):
-			delWakeupFileTimer.stop()
-			delWakeupTimerCounter = 0
-			wakeupTime = 60
-
 	def activate(self):
-		global DSsave, RSsave, RBsave, aeDSsave, delWakeupFileTimer, wasPowerTimerWakeup, delWakeupTimerCounter
-
-		wasPowerTimerWakeup = False
-		if os.path.exists("/tmp/was_powertimer_wakeup"):
-			wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
-
-		if wasPowerTimerWakeup and not delWakeupFileTimer.isActive():
-			delWakeupFileTimer.callback.append(self.delWakeupFile)
-			delWakeupFileTimer.start(1000*60, False)	#check every minute if not in standby and for counting the minutes
-			delWakeupTimerCounter = 0
+		global DSsave, RSsave, RBsave, aeDSsave, wasPowerTimerWakeup
 
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
@@ -182,10 +153,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			return True
 
 		elif next_state == self.StateRunning:
-			#self.wasPowerTimerWakeup = False
-			#if os.path.exists("/tmp/was_powertimer_wakeup"):
-			#	self.wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
-			#	os.remove("/tmp/was_powertimer_wakeup")
+
+			if os.path.exists("/tmp/was_powertimer_wakeup") and not wasPowerTimerWakeup:
+				wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
+
+			if wasPowerTimerWakeup and time() >= wakeupEnd:
+				resetTimerWakeup()
 
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -222,10 +195,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if self.end <= self.begin:
 						self.end = self.begin
 
-			#elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY and self.wasPowerTimerWakeup:
-			#	return True
-
-			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:	# and not self.wasPowerTimerWakeup:
+			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 				if wasPowerTimerWakeup or (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
 					self.do_backoff()
 					# retry
@@ -248,10 +218,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 							if self.end <= self.begin:
 								self.end = self.begin
 
-			#elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasPowerTimerWakeup:
-			#	return True
-
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY:	# and not self.wasPowerTimerWakeup:
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY:
 				if wasPowerTimerWakeup or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					if int(self.repeated) > 0 and not DSsave:
 						self.DSbegin = self.begin
@@ -324,7 +291,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 		elif next_state == self.StateEnded:
-			self.delWakeupFile(True)
+			resetTimerWakeup()
 			NavigationInstance.instance.PowerTimer.saveTimer()
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
