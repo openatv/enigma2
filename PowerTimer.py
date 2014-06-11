@@ -26,7 +26,7 @@ wakeupEnd = time()
 
 #reset wakeupstatus
 def resetTimerWakeup():
-	global wasPowerTimerWakeup, wakeupEnd
+	global wasPowerTimerWakeup
 	if os.path.exists("/tmp/was_powertimer_wakeup"):
 		os.remove("/tmp/was_powertimer_wakeup")	
 	wasPowerTimerWakeup = False
@@ -98,8 +98,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if self.end > time():
 					wakeupEnd = self.end
 				else:
-					wakeupEnd = time() + 3600		#no endtime listed, 1hour suppression of autodeepstandby and other overlapping powertimer
-		wuEnd = time () + 43200						#limitation to 12hours  suppression of ...
+					wakeupEnd = time() + 3600	#no endtime listed, 1hour suppression of autodeepstandby and other overlapping powertimer
+		wuEnd = time () + 43200					#limitation to 12hours  suppression of ...
 		if wakeupEnd > wuEnd:
 			wakeupEnd = wuEnd
 
@@ -135,7 +135,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.log(10, "backoff: retry in %d minuets" % (int(self.backoff)/60))
 
 	def activate(self):
-		global DSsave, RSsave, RBsave, aeDSsave, wasPowerTimerWakeup
+		global DSsave, RSsave, RBsave, aeDSsave, wasPowerTimerWakeup, wakeupEnd
 
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
