@@ -92,7 +92,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self.CurrService = None
 		self['Service'] = ServiceEvent()
 		self['Event'] = Event()
-		self['lab1'] = Label(_('Please wait while gathering data...'))
 		self.key_green_choice = self.EMPTY
 		self['key_red'] = Button(_('IMDb Search'))
 		self['key_green'] = Button()
@@ -349,8 +348,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.value, graphic=graphic)
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
-		self.listTimer = eTimer()
-		self.listTimer.callback.append(self.hidewaitingtext)
 		self.onLayoutFinish.append(self.onCreate)
 
 	def createSetup(self):
@@ -389,12 +386,6 @@ class EPGSelection(Screen, HelpableScreen):
 		config.epgselection.graph_pig.save()
 		configfile.save()
 		self.close('reopengraph')
-
-	def hidewaitingtext(self):
-		self.listTimer.stop()
-		if self.type == EPG_TYPE_MULTI:
-			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		self['lab1'].hide()
 
 	def getBouquetServices(self, bouquet):
 		services = []
@@ -461,7 +452,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 		else:
 			self['list'].fillSimilarList(self.currentService, self.eventid)
-		self.listTimer.start(10)
+		if self.type == EPG_TYPE_MULTI:
+			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def refreshlist(self):
 		self.refreshTimer.stop()
