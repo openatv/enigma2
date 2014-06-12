@@ -356,3 +356,15 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				})
 		else:
 			self["key_blue"] = Button("")
+
+	def showChoiceBoxDialog(self):
+		for k in ("epgactions1", "epgactions2", "epgactions3"):
+			if self.has_key(k):
+				self[k].setEnabled(False)
+		EventViewBase.showChoiceBoxDialog(self)
+
+	def closeChoiceBoxDialog(self):
+		EventViewBase.closeChoiceBoxDialog(self)
+		for k in ("epgactions1", "epgactions2", "epgactions3"):
+			if self.has_key(k):
+				self[k].setEnabled(True)
