@@ -256,10 +256,6 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
-		self["statusbar"] = Label()
-		self["status"] = Label()
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"red": self.cancel,
