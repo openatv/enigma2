@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-06-13 18:55+0100\n"
+"PO-Revision-Date: 2014-06-13 20:34+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1146,8 +1146,20 @@ msgid "Audio"
 msgstr "Audio"
 
 #
-msgid "Audio Options..."
-msgstr "Audio-Einstellungen..."
+msgid "Audio options..."
+msgstr "Audio-Einstellungen"
+
+#
+msgid "Red button..."
+msgstr "Rote Taste"
+
+#
+msgid "Softcam-Panel..."
+msgstr "Softcam-Panel"
+
+#
+msgid "INFO-Panel..."
+msgstr "Info-Panel"
 
 msgid "Audio PID"
 msgstr "Audio PID"
@@ -2142,8 +2154,12 @@ msgid "Continue in background"
 msgstr "Im Hintergrund fortsetzen"
 
 #
-msgid "Continue playing"
+msgid "Continue playback"
 msgstr "Abspielen fortsetzen"
+
+#
+msgid "Pause playback"
+msgstr "Abspielen anhalten"
 
 msgid "Continues"
 msgstr "Dauert"
@@ -4159,8 +4175,8 @@ msgid "Installing package content... Please wait..."
 msgstr "Installiere Paketinhalt... Bitte warten."
 
 #
-msgid "Instant Record..."
-msgstr "Sofortaufnahme..."
+msgid "Instant recording..."
+msgstr "Sofortaufnahme"
 
 #
 msgid "Instant record location"
@@ -7467,7 +7483,7 @@ msgstr "Zum vorherigen Sender wechseln"
 
 #
 msgid "Open bouquetlist..."
-msgstr "Öffne Bouquet-Liste"
+msgstr "Öffne Favoritenliste"
 
 #
 msgid "List EPG functions..."
@@ -7907,11 +7923,11 @@ msgid "Switch config"
 msgstr "Konfiguration umschalten"
 
 #
-msgid "Switch to next subservice"
+msgid "Switch to next sub service"
 msgstr "Zum nächsten Unterkanal schalten"
 
 #
-msgid "Switch to previous subservice"
+msgid "Switch to previous sub service"
 msgstr "Zum vorhergehenden Unterkanal schalten"
 
 #
@@ -9389,6 +9405,14 @@ msgstr "Ansicht"
 msgid "Watch movies..."
 msgstr "Filme ansehen"
 
+#
+msgid "Watch recordings..."
+msgstr "Aufnahmen ansehen"
+
+#
+msgid "Listen to the radio..."
+msgstr "Radio Favoriten"
+
 # geändert 03.01.13 husky
 msgid "View Movies..."
 msgstr "Filme ansehen..."
@@ -9464,7 +9488,7 @@ msgstr "Eine Liste der verfügbaren System-Erweiterungen anzeigen."
 
 #
 msgid "View teletext..."
-msgstr "Videotext anzeigen..."
+msgstr "Videotext anzeigen"
 
 #
 msgid "Virtual KeyBoard"
@@ -10389,7 +10413,7 @@ msgid "add directory to playlist"
 msgstr "Verzeichnis zur Wiedergabeliste hinzufügen"
 
 #
-msgid "add file to playlist"
+msgid "Add file to playlist"
 msgstr "Datei zur Wiedergabeliste hinzufügen"
 
 #
@@ -10624,7 +10648,7 @@ msgid "delete file"
 msgstr "Datei löschen"
 
 #
-msgid "delete playlist entry"
+msgid "Delete playlist entry"
 msgstr "Wiedergabelisteneintrag löschen"
 
 #
@@ -10882,11 +10906,11 @@ msgid "jump to listend"
 msgstr "Springe zum Listenende"
 
 #
-msgid "jump to next marked position"
+msgid "Jump to next marked position"
 msgstr "Springe zur nächsten Markerposition"
 
 #
-msgid "jump to previous marked position"
+msgid "Jump to previous marked position"
 msgstr "Springe zur vorherigen Markerposition"
 
 #
@@ -11123,15 +11147,15 @@ msgid "play as picture in picture"
 msgstr "Als Bild-in-Bild wiedergeben"
 
 #
-msgid "play entry"
+msgid "Play entry"
 msgstr "Eintrag abspielen"
 
 #
-msgid "play from next mark or playlist entry"
+msgid "Play from next mark or playlist entry"
 msgstr "Wiedergabe ab der nächsten Markierung/Listeneintrag"
 
 #
-msgid "play from previous mark or playlist entry"
+msgid "Play from previous mark or playlist entry"
 msgstr "Wiedergabe ab der letzten Markierung/Listeneintrag"
 
 msgid "play in mainwindow"
@@ -11397,8 +11421,8 @@ msgstr "Sendungs-Details anzeigen"
 msgid "show extended description"
 msgstr "Zeige erweiterte Beschreibung"
 
-msgid "show program infomation..."
-msgstr "Programminformationen anzeigen..."
+msgid "show program information..."
+msgstr "Programminformationen anzeigen"
 
 #
 msgid "Show shutdown menu"
@@ -11438,6 +11462,22 @@ msgstr "Rückwärts springen"
 #
 msgid "skip backward (enter time)"
 msgstr "Rückwärts springen (Zeit eingeben)"
+
+#
+msgid "Seek forward (enter time)"
+msgstr "Vorwärts suchen (Zeit eingeben)"
+
+#
+msgid "Seek backward (enter time)"
+msgstr "Rückwärts suchen (Zeit eingeben)"
+
+#
+msgid "Seek forward"
+msgstr "Vorwärts suchen"
+
+#
+msgid "Seek backward"
+msgstr "Rückwärts suchen"
 
 #
 msgid "skip forward"
@@ -11556,8 +11596,8 @@ msgid "this service is protected by a parental control pin"
 msgstr "Dieser Kanal ist durch einen Jugendschutz-PIN-Code geschützt."
 
 #
-msgid "toggle a cut mark at the current position"
-msgstr "Toggle Marker an der aktuellen Position"
+msgid "Toggle a cut mark at the current position"
+msgstr "Marker an der aktuellen Position setzen"
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -11607,7 +11647,11 @@ msgstr "Vertikal"
 
 #
 msgid "view extensions..."
-msgstr "Erweiterungen anzeigen..."
+msgstr "Erweiterungen anzeigen"
+
+#
+msgid "Quick Menu..."
+msgstr "Schnellstart-Menü"
 
 #
 msgid "view recordings..."
@@ -12139,7 +12183,7 @@ msgid "Show CoolSingleGuide"
 msgstr "Zeige CoolSingleGuide"
 
 #
-msgid "Show EPG"
+msgid "Show epg"
 msgstr "Zeige EPG"
 
 #
