@@ -40,24 +40,24 @@ int eInput::event(int event, void *data, void *data2)
 	{
 		gPainter &painter = *(gPainter*)data2;
 		ePtr<eWindowStyle> style;
-		
+
 		getStyle(style);
-		
+
 		eWidget::event(event, data, data2);
-		
+
 		ePtr<eTextPara> para = new eTextPara(eRect(0, 0, size().width(), size().height()));
-		
+
 		std::string text;
 		int cursor = -1;
-		
+
 		if (m_content)
 			m_content->getDisplay(text, cursor);
-		
+
 		eDebug("cursor is %d", cursor);
 		para->setFont(m_font);
 		para->renderString(text.empty()?0:text.c_str(), 0);
 		int glyphs = para->size();
-		
+
 		if (m_have_focus)
 		{
 			if (m_mode && cursor < glyphs)
@@ -86,9 +86,9 @@ int eInput::event(int event, void *data, void *data2)
 				painter.fill(bbox);
 			}
 		}
-		
+
 		painter.renderPara(para, ePoint(0, 0));
-		
+
 		return 0;
 	}
 	case evtAction:

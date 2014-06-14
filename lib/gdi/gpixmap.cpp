@@ -38,9 +38,9 @@ void gLookup::build(int _size, const gPalette &pal, const gRGB &start, const gRG
 	if (!size)
 		return;
 	lookup=new gColor[size];
-	
+
 	lookup[0] = pal.findColor(start);
-	
+
 	const int rsize = end.r - start.r;
 	const int gsize = end.g - start.g;
 	const int bsize = end.b - start.b;
@@ -201,9 +201,9 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				col = surface->clut.data[color].argb();
 			else
 				col = 0x10101 * color;
-			
+
 			col^=0xFF000000;
-			
+
 			if (surface->data_phys)
 				if (!gAccel::getInstance()->fill(surface,  area, col))
 					continue;
@@ -353,16 +353,16 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
 //		flag, accel);
 	eRect pos = _pos;
-	
+
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
-	
+
 	if (!(flag & blitScale)) /* pos' size is valid only when scaling */
 		pos = eRect(pos.topLeft(), src.size());
 	else if (pos.size() == src.size()) /* no scaling required */
 		flag &= ~blitScale;
 
 	int scale_x = FIX, scale_y = FIX;
-	
+
 	if (flag & blitScale)
 	{
 		ASSERT(src.size().width());
@@ -386,7 +386,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			}
 		}
 	}
-	
+
 //	eDebug("SCALE %x %x", scale_x, scale_y);
 
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
@@ -404,7 +404,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 
 //		eDebug("srcarea before scale: %d %d %d %d",
 //			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
-		
+
 		if (flag & blitScale)
 			srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
 
@@ -453,7 +453,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		if (flag & blitScale)
 		{
 			if ((surface->bpp == 32) && (src.surface->bpp==8))
-			{	
+			{
 				const __u8 *srcptr = (__u8*)src.surface->data;
 				__u8 *dstptr=(__u8*)surface->data; // !!
 				__u32 pal[256];
@@ -598,7 +598,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 						{
 							s++;
 							d++;
-						} 
+						}
 						else
 						{
 							*d++ = *s++;
@@ -659,7 +659,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			}
 		}
 		else if ((surface->bpp == 32) && (src.surface->bpp==8))
-		{	
+		{
 			const __u8 *srcptr = (__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
@@ -791,7 +791,7 @@ void gPixmap::mergePalette(const gPixmap &target)
 
 	for (int i=0; i<surface->clut.colors; i++)
 		lookup[i].color=target.surface->clut.findColor(surface->clut.data[i]);
-	
+
 	delete [] surface->clut.data;
 	surface->clut.colors=target.surface->clut.colors;
 	surface->clut.data=new gRGB[surface->clut.colors];
@@ -805,7 +805,7 @@ void gPixmap::mergePalette(const gPixmap &target)
 			dstptr[ax]=lookup[dstptr[ax]];
 		dstptr+=surface->stride;
 	}
-	
+
 	delete [] lookup;
 }
 
@@ -874,7 +874,7 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, unsigned int c
 			stride /= 4;
 			break;
 	}
-	
+
 	int xa = start.x(), ya = start.y(), xb = dst.x(), yb = dst.y();
 	int dx, dy, x, y, s1, s2, e, temp, swap, i;
 	dy=abs(yb-ya);
@@ -899,13 +899,13 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, unsigned int c
 				/* i don't like this clipping loop, but the only */
 				/* other choice i see is to calculate the intersections */
 				/* before iterating through the pixels. */
-				
+
 				/* one could optimize this because of the ordering */
 				/* of the bands. */
-				
+
 		lasthit = 0;
 		int a = lasthit;
-		
+
 			/* if last pixel was invisble, first check bounding box */
 		if (a == -1)
 		{
@@ -959,14 +959,14 @@ gColor gPalette::findColor(const gRGB rgb) const
 		/* grayscale? */
 	if (!data)
 		return (rgb.r + rgb.g + rgb.b) / 3;
-	
+
 	if (rgb.a == 255) /* Fully transparent, then RGB does not matter */
 	{
 		for (int t=0; t<colors; t++)
 			if (data[t].a == 255)
 				return t;
 	}
-	
+
 	int difference=1<<30, best_choice=0;
 	for (int t=0; t<colors; t++)
 	{

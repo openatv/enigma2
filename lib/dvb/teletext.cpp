@@ -179,7 +179,7 @@ unsigned int Cyrillic_G2_set[6*16] = {
 // This is a very simple en300 706 telext decoder.
 // It can only decode a single page at a time, thus it's only used
 // for subtitles. And it ONLY support LATIN Charsets yet!
- 
+
 DEFINE_REF(eDVBTeletextParser);
 
 	/* we asumme error free transmission! */
@@ -230,9 +230,9 @@ static int extractPTS(pts_t &pts, unsigned char *pkt)
 eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux) : m_pid(-1)
 {
 	setStreamID(0xBD); /* as per en 300 472 */
-	
+
 	setPageAndMagazine(-1, -1, "und");
-	
+
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create teletext subtitle PES reader!");
 	else
@@ -259,45 +259,45 @@ char *get_bits(int val, int count)
 void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 {
 	unsigned char *p = pkt;
-	
+
 	pts_t pts;
 	int have_pts = extractPTS(pts, pkt);
-	
+
 	p += 4; len -= 4; /* start code, already be verified by pes parser */
-	p += 2; len -= 2; /* length, better use the argument */	
-	
+	p += 2; len -= 2; /* length, better use the argument */
+
 	p += 3; len -= 3; /* pes header */
-	
+
 	p += 0x24; len -= 0x24; /* skip header */
-	
+
 //	eDebug("data identifier: %02x", *p);
-	
+
 	p++; len--;
-	
+
 	while (len > 2)
 	{
 		p++; /* data_unit_id */
 		unsigned char data_unit_length = *p++;
 		len -= 2;
-		
+
 		if (len < data_unit_length)
 		{
 			eDebug("data_unit_length > len");
 			break;
 		}
-		
+
 		if (data_unit_length != 44)
 		{
 			/* eDebug("illegal data unit length %d", data_unit_length); */
 			break;
 		}
-		
+
 //		if (data_unit_id != 0x03)
 //		{
 //			/* eDebug("non subtitle data unit id %d", data_unit_id); */
 //			break;
 //		}
-		
+
 		p++; len--; /* line_offset */
 		unsigned char framing_code = *p++; len--;
 
@@ -305,7 +305,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 		magazine_and_packet_address |= decode_hamming_84(p++)<<4; len--;
 
 		unsigned char *data = p; p += 40; len -= 40;
-		
+
 		if (framing_code != 0xe4) /* no teletxt data */
 			continue;
 
@@ -540,7 +540,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 	for (int i=0; i<len; ++i)
 		eDebugNoNewLine("%02x ", decode_odd_parity(data + i));
 	eDebug(""); */
-	
+
 	m_subtitle_page.clearLine(m_Y);
 
 	if (!m_Y) /* first line is page header, we don't need that. */
@@ -548,7 +548,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 		m_double_height = -1;
 		return;
 	}
-		
+
 	if (m_double_height == m_Y)
 	{
 		m_double_height = -1;

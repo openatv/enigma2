@@ -73,11 +73,11 @@ struct eBouquet
 		/* these structures have by intention no operator int() defined.
 		   the reason of these structures is to avoid mixing for example
 		   a onid and a tsid (as there's no general order for them).
-		   
+
 		   defining an operator int() would implicitely convert values
 		   between them over the constructor with the int argument.
-		   
-		   'explicit' doesn't here - eTransportStreamID(eOriginalNetworkID(n)) 
+
+		   'explicit' doesn't here - eTransportStreamID(eOriginalNetworkID(n))
 		   would still work. */
 
 struct eTransportStreamID
@@ -141,14 +141,14 @@ struct eDVBChannelID
 	eDVBNamespace dvbnamespace;
 	eTransportStreamID transport_stream_id;
 	eOriginalNetworkID original_network_id;
-	
+
 	bool operator==(const eDVBChannelID &c) const
 	{
 		return dvbnamespace == c.dvbnamespace &&
 			transport_stream_id == c.transport_stream_id &&
 			original_network_id == c.original_network_id;
 	}
-	
+
 	bool operator<(const eDVBChannelID &c) const
 	{
 		if (dvbnamespace < c.dvbnamespace)
@@ -163,7 +163,7 @@ struct eDVBChannelID
 		}
 		return 0;
 	}
-	eDVBChannelID(eDVBNamespace dvbnamespace, eTransportStreamID tsid, eOriginalNetworkID onid): 
+	eDVBChannelID(eDVBNamespace dvbnamespace, eTransportStreamID tsid, eOriginalNetworkID onid):
 			dvbnamespace(dvbnamespace), transport_stream_id(tsid), original_network_id(onid)
 	{
 	}
@@ -223,14 +223,14 @@ struct eServiceReferenceDVB: public eServiceReference
 		setServiceID(service_id);
 		setServiceType(service_type);
 	}
-	
+
 	void set(const eDVBChannelID &chid)
 	{
 		setDVBNamespace(chid.dvbnamespace);
 		setOriginalNetworkID(chid.original_network_id);
 		setTransportStreamID(chid.transport_stream_id);
 	}
-	
+
 	void getChannelID(eDVBChannelID &chid) const
 	{
 		chid = eDVBChannelID(getDVBNamespace(), getTransportStreamID(), getOriginalNetworkID());
@@ -278,7 +278,7 @@ public:
 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
 	std::string m_service_name, m_service_name_sort;
 	std::string m_provider_name;
-	
+
 	void genSortName();
 
 	int m_flags;
@@ -297,9 +297,9 @@ public:
 	CAID_LIST m_ca;
 
 	virtual ~eDVBService();
-	
+
 	eDVBService &operator=(const eDVBService &);
-	
+
 	// iStaticServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
@@ -341,20 +341,20 @@ public:
 		tAny,
 		tFlags
 	};
-	
+
 	int m_type;
 	int m_inverse;
-	
+
 	std::string m_string;
 	int m_int;
 	eDVBChannelID m_channelid;
-	
+
 		/* sort is only valid in root, and must be from the enum above. */
 	int m_sort;
 	std::string m_bouquet_name;
-	
+
 	static RESULT compile(ePtr<eDVBChannelQuery> &res, std::string query);
-	
+
 	ePtr<eDVBChannelQuery> m_p1, m_p2;
 };
 
@@ -371,9 +371,9 @@ public:
 	virtual RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF)=0;
 	virtual RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)=0;
 	virtual RESULT removeChannel(const eDVBChannelID &id)=0;
-	
+
 	virtual RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm)=0;
-	
+
 	virtual RESULT addService(const eServiceReferenceDVB &reference, eDVBService *service)=0;
 	virtual RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service)=0;
 	virtual RESULT flush()=0;
@@ -557,7 +557,7 @@ public:
 	virtual RESULT getState(int &)=0;
 
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
-	enum 
+	enum
 	{
 		evtPreStart, evtEOF, evtSOF, evtFailed, evtStopped
 	};
@@ -572,7 +572,7 @@ public:
 	};
 	virtual RESULT setCIRouting(const eDVBCIRouting &routing)=0;
 	virtual RESULT getDemux(ePtr<iDVBDemux> &demux, int cap=0)=0;
-	
+
 		/* use count handling */
 	virtual void AddUse() = 0;
 	virtual void ReleaseUse() = 0;
@@ -582,13 +582,13 @@ SWIG_TEMPLATE_TYPEDEF(eUsePtr<iDVBChannel>, iDVBChannelPtr);
 
 #ifndef SWIG
 	/* signed, so we can express deltas. */
-	
+
 typedef long long pts_t;
 
 class iFilePushScatterGather;
 class iTSMPEGDecoder;
 
-	/* note that a cue sheet describes the logical positions. thus 
+	/* note that a cue sheet describes the logical positions. thus
 	   everything is specified in pts and not file positions */
 
 	/* implemented in dvb.cpp */
@@ -597,20 +597,20 @@ class eCueSheet: public iObject, public Object
 	DECLARE_REF(eCueSheet);
 public:
 	eCueSheet();
-	
+
 			/* frontend */
 	void seekTo(int relative, const pts_t &pts);
-	
+
 	void clear();
 	void addSourceSpan(const pts_t &begin, const pts_t &end);
 	void commitSpans();
-	
+
 	void setSkipmode(const pts_t &ratio); /* 90000 is 1:1 */
 	void setDecodingDemux(iDVBDemux *demux, iTSMPEGDecoder *decoder);
-	
+
 			/* frontend and backend */
 	eRdWrLock m_lock;
-	
+
 			/* backend */
 	enum { evtSeek, evtSkipmode, evtSpanChanged };
 	RESULT connectEvent(const Slot1<void, int> &event, ePtr<eConnection> &connection);
@@ -630,16 +630,16 @@ public:
 	{
 		state_eof = state_release + 1  /* end-of-file reached. */
 	};
-	
+
 	virtual RESULT playFile(const char *file) = 0;
 	virtual RESULT playSource(ePtr<iTsSource> &source, const char *priv=NULL) = 0;
 	virtual void stop() = 0;
-	
+
 	virtual void setCueSheet(eCueSheet *cuesheet) = 0;
 	virtual void setOfflineDecodeMode(int parityswitchdelay) = 0;
 
 	virtual RESULT getLength(pts_t &pts) = 0;
-	
+
 		/* we explicitely ask for the decoding demux here because a channel
 		   can be shared between multiple decoders.
 		*/
@@ -713,7 +713,7 @@ public:
 
 		/** Display any complete data as fast as possible */
 	virtual RESULT setTrickmode()=0;
-	
+
 	virtual RESULT getPTS(int what, pts_t &pts) = 0;
 
 	virtual RESULT showSinglePic(const char *filename) = 0;

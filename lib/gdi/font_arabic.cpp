@@ -1,11 +1,11 @@
 /*
- * This was taken from pango. 
+ * This was taken from pango.
  * Modified for enigma by Felix Domke <tmbinc@gmx.net>.
  * I removed support for vowels and ligatures. Sorry.
  *
  * Original header:
  *
- * This is part of Pango - Arabic shaping module 
+ * This is part of Pango - Arabic shaping module
  *
  * (C) 2000 Karl Koehler <koehler@or.uni-bonn.de>
  * (C) 2001 Roozbeh Pournader <roozbeh@sharif.edu>
@@ -225,13 +225,13 @@ shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &tex
 
 	charstruct_init (&oldchar);
 	charstruct_init (&curchar);
-	
+
 	for (std::vector<unsigned long>::const_iterator i(text.begin());
 			i != text.end(); ++i)
 	{
 		nextletter = *i;
 		int nc = shapecount (nextletter);
-		
+
 		if (nc == 1)
 			which = 0;				/* final or isolated */
 		else

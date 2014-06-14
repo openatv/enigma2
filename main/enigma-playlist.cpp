@@ -19,7 +19,7 @@
 class eMain: public eApplication, public Object
 {
 	eInit init;
-	
+
 	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<iDVBChannel> m_channel;
 	ePtr<eDVBDB> m_dvbdb;
@@ -35,7 +35,7 @@ public:
 		m_dvbdb = new eDVBDB();
 		m_mgr = new eDVBResourceManager();
 		m_mgr->setChannelList(m_dvbdb);
-		
+
 		ePtr<eServiceCenter> service_center;
 		eServiceCenter::getInstance(service_center);
 
@@ -59,14 +59,14 @@ public:
 						eDebug("%s", i->toString().c_str());
 			}
 		}
-#endif		
+#endif
 		m_nav->connectEvent(slot(*this, &eMain::event), m_conn_event);
-		
+
 //		eServiceReference ref("1:0:1:6de2:44d:1:c00000:0:0:0:");
 		eServiceReference ref("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp3");
 		eServiceReference ref1("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp31");
 		eServiceReference ref2("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp32");
-		
+
 		if (m_nav->enqueueService(ref))
 			eDebug("play sucked around!");
 		else
@@ -76,11 +76,11 @@ public:
 		m_nav->enqueueService(ref2);
 		m_nav->enqueueService(ref1);
 	}
-	
+
 	void event(eNavigation *nav, int ev)
 	{
 		assert(nav);
-		
+
 		ePtr<ePlaylist> playlist;
 		nav->getPlaylist(playlist);
 		if (playlist)
@@ -90,7 +90,7 @@ public:
 			for (i=playlist->begin(); i != playlist->end(); ++i)
 				eDebug("%s %s", i == playlist->m_current ? "-->" : "   ", i->toString().c_str());
 		}
-		
+
 		switch (ev)
 		{
 		case eNavigation::evStopService:
@@ -129,7 +129,7 @@ public:
 			break;
 		}
 	}
-	
+
 	~eMain()
 	{
 	}

@@ -50,7 +50,7 @@ eWindowStyleSimple::eWindowStyleSimple()
 	m_border_top = 30;
 
 	m_fnt = new gFont("Regular", 25);
-	
+
 	m_border_color_tl = gColor(0x1f);
 	m_border_color_br = gColor(0x14);
 	m_title_color_back = gColor(0x20);
@@ -61,11 +61,11 @@ eWindowStyleSimple::eWindowStyleSimple()
 void eWindowStyleSimple::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
 {
 //	eDebug("handle new size: %d x %d", size.width(), size.height());
-	
+
 	eWidget *child = wnd->child();
-	
+
 	wnd->m_clip_region = eRect(ePoint(0, 0), size);
-	
+
 	child->move(ePoint(m_border_left, m_border_top));
 	child->resize(eSize(size.width() - m_border_left - m_border_right, size.height() - m_border_top - m_border_bottom));
 }
@@ -141,7 +141,7 @@ void eWindowStyleSimple::drawFrame(gPainter &painter, const eRect &frame, int wh
 		c2 = m_border_color_tl;
 		break;
 	}
-	
+
 	painter.setForegroundColor(c2);
 	painter.line(frame.topLeft1(), frame.topRight1());
 	painter.line(frame.topRight1(), frame.bottomRight1());

@@ -2,8 +2,8 @@
 ## P(icture)i(n)g(raphics) renderer
 ##
 from enigma import eVideoWidget, getDesktop
-
 from Renderer import Renderer
+from Screens.InfoBar import InfoBar
 
 
 class Pig(Renderer):
@@ -21,7 +21,7 @@ class Pig(Renderer):
 	def applySkin(self, desktop, parent):
 		ret = Renderer.applySkin(self, desktop, parent)
 		if ret:
-			self.Position = self.instance.position() # fixme, scaling!
+			self.Position = self.instance.position()
 			self.Size = self.instance.size()
 		return ret
 
@@ -31,7 +31,13 @@ class Pig(Renderer):
 				self.instance.resize(self.Size)
 			if self.Position:
 				self.instance.move(self.Position)
+			InfoBarInstance = InfoBar.instance
+			if InfoBarInstance and InfoBarInstance.session.pipshown:
+				InfoBarInstance.session.pip.pigmode(True)
 
 	def onHide(self):
 		if self.instance:
 			self.preWidgetRemove(self.instance)
+			InfoBarInstance = InfoBar.instance
+			if InfoBarInstance and InfoBarInstance.session.pipshown:
+				InfoBarInstance.session.pip.pigmode(False)

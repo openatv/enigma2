@@ -26,24 +26,24 @@ class eDVBScan: public Object, public iObject
 {
 	DECLARE_REF(eDVBScan);
 		/* chid helper functions: */
-		
+
 		/* heuristically determine if onid/tsid is valid */
 	int isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid);
 		/* build dvb namespace */
 	eDVBNamespace buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash);
-	
-		/* scan resources */	
+
+		/* scan resources */
 	eUsePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
-	
+
 		/* infrastructure */
 	void stateChange(iDVBChannel *);
 	ePtr<eConnection> m_stateChanged_connection;
 
-		/* state handling */	
+		/* state handling */
 	RESULT nextChannel();
-	
-	RESULT startFilter();	
+
+	RESULT startFilter();
 	enum { readyPAT=1, readySDT=2, readyNIT=4, readyBAT=8,
 	       validPAT=16, validSDT=32, validNIT=64, validBAT=128};
 
@@ -85,10 +85,10 @@ class eDVBScan: public Object, public iObject
 	int sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2, bool exact=false) const;
 
 	void channelDone();
-	
+
 	Signal1<void,int> m_event;
 	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
-	
+
 	int m_flags;
 	int m_networkid;
 	bool m_usePAT;
@@ -108,7 +108,7 @@ public:
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
 	void insertInto(iDVBChannelList *db, bool backgroundscanresult=false);
-	
+
 	void getStats(int &transponders_done, int &transponders_total, int &services);
 	void getLastServiceName(std::string &name);
 	void getLastServiceRef(std::string &name);

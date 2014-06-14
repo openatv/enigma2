@@ -1144,7 +1144,6 @@ class InfoBarChannelSelection:
 			self.servicelist2.zap(enable_pipzap = True)
 			ChannelSelectionInstance.dopipzap = False
 
-
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
@@ -2570,7 +2569,10 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
-		if SystemInfo.get("NumVideoDecoders", 1) > 1 and isinstance(self, InfoBarEPG):
+
+		self.lastPiPService = None
+
+		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
 					"activatePiP": (self.showPiP, _("Activate PiP")),
@@ -2625,18 +2627,25 @@ class InfoBarPiP:
 			if slist and slist.dopipzap:
 				self.togglePipzap()
 			if self.session.pipshown:
+				self.lastPiPService = self.session.pip.getCurrentServiceReference()
 				del self.session.pip
 				self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
-				self.session.pipshown = False
-				del self.session.pip
+				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				else:
+					self.lastPiPService = None
+					self.session.pipshown = False
+					del self.session.pip
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()

@@ -62,7 +62,7 @@ static inline unsigned short crc_ccitt_byte( unsigned short crc, unsigned char c
 static int bitrate[3][3][16] = {
 	{
 		// MPEG-2, L3
-		{-1,8000,16000,24000,32000,40000,48000,56000,64000,80000,96000,112000,128000,144000,160000,0}, 
+		{-1,8000,16000,24000,32000,40000,48000,56000,64000,80000,96000,112000,128000,144000,160000,0},
 		// MPEG-2, L2
 		{-1,8000,16000,24000,32000,40000,48000,56000,64000,80000,96000,112000,128000,144000,160000,0},
 		// MPEG-2, L1
@@ -70,7 +70,7 @@ static int bitrate[3][3][16] = {
 	},
 	{
 		// MPEG-1, L3
-		{-1,32000,40000,48000,56000,64000,80000,96000,112000,128000,160000,192000,224000,256000,320000,0}, 
+		{-1,32000,40000,48000,56000,64000,80000,96000,112000,128000,160000,192000,224000,256000,320000,0},
 		// MPEG-1, L2
 		{-1,32000,48000,56000,64000,80000,96000,112000,128000,160000,192000,224000,256000,320000,384000,0},
 		// MPEG-1, L1
@@ -215,29 +215,29 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 		ptr=4;cnt=0;
 		item=buf[2]<<8; // Number of Items
 		item|=buf[3];
-		
+
 		while ( cnt++ < item ) //read in items
 		{
 			id=buf[ptr++]<<8; //QDarID
 			id|=buf[ptr++];
-			
+
 			item_no=buf[ptr++]<<8; // Item Number
 			item_no|=buf[ptr++];
-			
+
 			ctrl=buf[ptr++]; //controlbyte
 			item_type=buf[ptr++]; //item type
-			
+
 			item_length=buf[ptr++]<<24; // Item length
 			item_length|=buf[ptr++]<<16;
 			item_length|=buf[ptr++]<<8;
 			item_length|=buf[ptr++];
-			
+
 			ptr=ptr+4; // rfu Bytes ... not used
 			tmp=ptr; // calc crc
 			crc_qdar=0xFFFF;
 			while (tmp < ptr+item_length)
 				crc_qdar = crc_ccitt_byte(crc_qdar, buf[tmp++]);
-		
+
 			crc_read=buf[ptr+item_length]<<8;
 			crc_read|=buf[ptr+item_length+1];
 			//eDebug("[RDS/Rass] CRC read: %04X calculated: %04X",crc_read,crc_qdar^0xFFFF);
@@ -301,12 +301,12 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 					default: //nothing more yet defined
 						break;
 				}
-			} 
+			}
 			else
 			{
 				eDebug("[RDS/Rass] CRC error, skip Rass-Qdar-Item");
 			}
-			
+
 			ptr=+item_length;
 		}
 	}
@@ -340,12 +340,12 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 			}
 		}
 
-		if (c == 0xFD && bsflag ==0) 
+		if (c == 0xFD && bsflag ==0)
 			bsflag=1;
 		else
 			bsflag=0;
-					
-		if (bsflag == 0) 
+
+		if (bsflag == 0)
 		{
 			if ( state == 1 )
 				crc=0xFFFF;
@@ -487,7 +487,7 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 					break;
 				case 35:
 					datamessage[t_ptr++]=c;
-					if(text_len) 
+					if(text_len)
 						--text_len;
 					else
 						++state;
@@ -500,9 +500,9 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 					crc16|=c;
 					//eDebug("[RDS/Rass] CRC read: %04X CRC calculated: %04X",crc16,crc^0xFFFF);
 					state=0;
-					if ( crc16 == (crc^0xFFFF) ) 
+					if ( crc16 == (crc^0xFFFF) )
 					{
-						if (partcnt == -1) 
+						if (partcnt == -1)
 							partcnt=1;
 						if (partcnt == part)
 						{
@@ -532,12 +532,12 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 					state=0;
 					break;
 
-				// process RT plus tags ... 
+				// process RT plus tags ...
 				case 38: // Message Element Length
-					text_len=c;	
+					text_len=c;
 					++state;
 					break;
-				case 39: // Application ID 
+				case 39: // Application ID
 				case 40: // always 0x4BD7 so we ignore it ;)
 				case 41: // Applicationgroup Typecode/PTY ... ignore
 					++state;
@@ -572,15 +572,15 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 					rtp_typ[1]   = (0x20 & rtp_buf[2]<<5) | rtp_buf[3]>>3;
 					rtp_start[1] = (0x38 & rtp_buf[3]<<3) | rtp_buf[4]>>5;
 					rtp_len[1]   = 0x1f & rtp_buf[4];
-									
+
 					unsigned char rtplus_osd_tmp[64];
-					
+
 					if (rtp_start[0] < 66 && (rtp_len[0]+rtp_start[0]) < 66)
 					{
 						memcpy(rtp_item[rtp_typ[0]],lastmessage+rtp_start[0],rtp_len[0]+1);
 						rtp_item[rtp_typ[0]][rtp_len[0]+1]=0;
 					}
-									
+
 					if (rtp_typ[0] != rtp_typ[1])
 					{
 						if (rtp_start[1] < 66 && (rtp_len[1]+rtp_start[1]) < 66)
@@ -600,22 +600,22 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 					// 41 phone.hotline
 					// 46 email.hotline
 					// todo: make a window to display all saved items ...
-	
+
 					//create RTPlus OSD for title/artist
 					rtplus_osd[0]=0;
-								
+
 					if ( rtp_item[4][0] != 0 )//artist
 						sprintf((char*)rtplus_osd_tmp," (%s)",rtp_item[4]);
-								
+
 					if ( rtp_item[1][0] != 0 )//title
 						sprintf((char*)rtplus_osd,"%s%s",rtp_item[1],rtplus_osd_tmp);
-									
+
 					if ( rtplus_osd[0] != 0 )
 					{
 						/*emit*/ m_event(RtpTextChanged);
 						eDebug("RTPlus: %s",rtplus_osd);
 					}
-						
+
 					state=0;
 					break;
 			}
@@ -626,7 +626,7 @@ void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 std::string eDVBRdsDecoder::getRassPicture(int page, int subpage)
 {
 	int val=0;
-	
+
 	switch(subpage)
 	{
 		case 0:

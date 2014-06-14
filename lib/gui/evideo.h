@@ -11,11 +11,17 @@ class eVideoWidget: public eLabel
 	int m_decoder;
 	static ePtr<eTimer> fullsizeTimer;
 	static int pendingFullsize;
+	static int posFullsizeLeft;
+	static int posFullsizeTop;
+	static int posFullsizeWidth;
+	static int posFullsizeHeight;
+
 public:
 	eVideoWidget(eWidget *parent);
 	~eVideoWidget();
 	void setDecoder(int target);
 	void setFBSize(eSize size);
+	void setFullScreenPosition(eRect pos);
 	static void setFullsize(bool force = false);
 protected:
 	int event(int event, void *data=0, void *data2=0);

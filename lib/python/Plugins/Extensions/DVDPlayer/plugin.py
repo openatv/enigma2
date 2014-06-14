@@ -74,7 +74,7 @@ def onPartitionChange(action, partition):
 		elif action == 'add':
 			print "[@] DVD Inserted"
 			detected_DVD = None
-		
+
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		global detected_DVD

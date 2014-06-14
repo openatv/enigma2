@@ -39,7 +39,7 @@ int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 int eDVBCISession::parseLengthField(const unsigned char *pkt, int &len)
 {
 	len=0;
-	if (!(*pkt&0x80)) 
+	if (!(*pkt&0x80))
 	{
 		len = *pkt;
 		return 1;
@@ -230,18 +230,18 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	for(unsigned int i=0;i<len;i++)
 		eDebugNoNewLine("%02x ",ptr[i]);
 	eDebug("");
-	
+
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;
-	
+
 	ePtr<eDVBCISession> session;
-	
+
 	if(tag == 0x91)
 	{
 		unsigned char status;
 		createSession(slot, pkt, status, session);
 		sendOpenSessionResponse(slot, status, pkt, session?session->session_nb:0);
-		
+
 		if (session)
 		{
 			session->state=stateStarted;
@@ -253,13 +253,13 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		unsigned session_nb;
 		session_nb=pkt[hlen-2]<<8;
 		session_nb|=pkt[hlen-1]&0xFF;
-		
+
 		if ((!session_nb) || (session_nb >= SLMS))
 		{
 			eDebug("PROTOCOL: illegal session number %x", session_nb);
 			return;
 		}
-		
+
 		session=sessions[session_nb-1];
 		if (!session)
 		{
@@ -283,7 +283,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			return;
 		}
 	}
-	
+
 	hlen += llen + 1; // lengthfield and tag
 
 	pkt = ((const unsigned char*)ptr) + hlen;
@@ -313,7 +313,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			pkt+=alen;
 			len-=alen;
 		}
-		
+
 	if (len)
 		eDebug("PROTOCOL: warning, TL-Data has invalid length");
 }

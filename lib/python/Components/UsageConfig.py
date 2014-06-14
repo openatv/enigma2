@@ -170,7 +170,7 @@ def InitUsageConfig():
 			m = abs(i / 60)
 			m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, m))
-	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.screen_saver = ConfigSelection(default = "60", choices = choicelist)
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
@@ -365,6 +365,11 @@ def InitUsageConfig():
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
 	config.network = ConfigSubsection()
+	if SystemInfo["WakeOnLAN"]:
+		def wakeOnLANChanged(configElement):
+			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+		config.network.wol = ConfigYesNo(default = False)
+		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = True)
 	config.network.NFS_autostart = ConfigYesNo(default = True)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = True)
@@ -470,15 +475,11 @@ def InitUsageConfig():
 
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
-			file = open(zapfile, "w")
+			file = open(SystemInfo["ZapMode"], "w")
 			file.write(el.value)
 			file.close()
-		if os.path.exists("/proc/stb/video/zapping_mode"):
-			zapfile = "/proc/stb/video/zapping_mode"
-		else:
-			zapfile = "/proc/stb/video/zapmode"
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
-		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
+		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
+			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 	config.usage.historymode = ConfigSelection(default = "1", choices = [("0", _("Just zap")), ("1", _("Show menu"))])
 

@@ -12,14 +12,14 @@
 /*
 
 	Region code.
-	
+
 	A region is basically a list of rectangles. In this implementation,
 	rectangles are ordered by their upper-left position, organized in bands.
-	
+
 	this code stolen from miregion.c out of the X-Window system.
 	for implementation details, look into their source.
 	This code does all the ugly stuff.
-	
+
 	Thanks go out to ryg, for explaining me this stuff.
 
 */
@@ -47,19 +47,19 @@ int gRegion::do_coalesce(int prevStart, unsigned int curStart)
 		return curStart;
 	std::vector<eRect>::iterator prevBox = rects.begin() + prevStart;
 	std::vector<eRect>::const_iterator  curBox = rects.begin() + curStart;
-		
+
 		// The bands may only be coalesced if the bottom of the previous
 		// matches the top scanline of the current.
 	if (prevBox->y2 != curBox->y1)
 		return curStart;
-	
+
 		// Make sure the bands have boxes in the same places. This
 		// assumes that boxes have been added in such a way that they
 		// cover the most area possible. I.e. two boxes in a band must
 		// have some horizontal space between them.
-	
+
 	int y2 = curBox->y2;
-	
+
 	do {
 		if ((prevBox->x1 != curBox->x1) || (prevBox->x2 != curBox->x2))
 			return curStart;
@@ -67,7 +67,7 @@ int gRegion::do_coalesce(int prevStart, unsigned int curStart)
 		curBox++;
 		numRects--;
 	} while ( numRects );
-	
+
 		// The bands may be merged, so set the bottom y of each box
 		// in the previous band to the bottom y of the current band.
 	numRects = curStart - prevStart;
@@ -80,7 +80,7 @@ int gRegion::do_coalesce(int prevStart, unsigned int curStart)
 	return prevStart;
 }
 
-void gRegion::appendNonO(std::vector<eRect>::const_iterator r, 
+void gRegion::appendNonO(std::vector<eRect>::const_iterator r,
 			std::vector<eRect>::const_iterator rEnd, int y1, int y2)
 {
 	int newRects = rEnd - r;
@@ -110,7 +110,7 @@ void gRegion::intersectO(
 	do {
 		x1 = max(r1->x1, r2->x1);
 		x2 = min(r1->x2, r2->x2);
-		
+
 		if (x1 < x2)
 			rects.push_back(eRect(x1, y1, x2 - x1, y2 - y1));
 		if (r1->x2 == x2)
@@ -130,10 +130,10 @@ void gRegion::subtractO(
 {
 	int x1;
 	x1 = r1->x1;
-		
+
 	ASSERT(y1<y2);
 	ASSERT(r1 != r1End && r2 != r2End);
-	
+
 	do {
 		if (r2->x2 <= x1)
 			++r2;
@@ -198,10 +198,10 @@ void gRegion::mergeO(
 		int &overlap)
 {
 	int x1, x2;
-	
+
 	ASSERT(y1 < y2);
 	ASSERT(r1 != r1End && r2 != r2End);
-	
+
 	if (r1->x1 < r2->x1)
 	{
 		x1 = r1->x1;
@@ -212,10 +212,10 @@ void gRegion::mergeO(
 		x2 = r2->x2;
 		++r2;
 	}
-	
+
 	while (r1 != r1End && r2 != r2End)
 		if (r1->x1 < r2->x1) MERGERECT(r1) else MERGERECT(r2);
-	
+
 	if (r1 != r1End)
 	{
 		do {
@@ -236,23 +236,23 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 	int prevBand;
 	int r1y1, r2y1;
 	int curBand, ytop, top, bot;
-	
+
 	r1    = reg1.rects.begin();
 	r1End = reg1.rects.end();
 	r2    = reg2.rects.begin();
 	r2End = reg2.rects.end();
-	
+
 	int newSize  = reg1.rects.size();
 	int numRects = reg2.rects.size();
 	ASSERT(r1 != r1End);
 	ASSERT(r2 != r2End);
-	
+
 	if (numRects > newSize)
 		newSize = numRects;
 	newSize <<= 1;
-	
+
 	rects.reserve(newSize);
-	
+
 	int ybot = min(r1->y1, r2->y1);
 	prevBand = 0;
 	do {
@@ -320,7 +320,7 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 		coalesce(prevBand, curBand);
 		AppendRegions(r2BandEnd, r2End);
 	}
-	
+
 	extends = eRect();
 
 	for (unsigned int a = 0; a<rects.size(); ++a)
@@ -328,7 +328,7 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 	if (!extends.valid())
 		extends = eRect::emptyRect();
 }
-	
+
 void gRegion::intersect(const gRegion &r1, const gRegion &r2)
 {
 		/* in case one region is empty, the resulting regions is empty, too. */
@@ -363,7 +363,7 @@ void gRegion::subtract(const gRegion &r1, const gRegion &r2)
 	// TODO: handle trivial reject
 	regionOp(r1, r2, OP_SUBTRACT, overlap);
 }
-	
+
 void gRegion::merge(const gRegion &r1, const gRegion &r2)
 {
 	if (r1.rects.empty())
@@ -393,7 +393,7 @@ gRegion gRegion::operator&(const gRegion &r2) const
 	return res;
 }
 
-gRegion gRegion::operator-(const gRegion &r2) const 
+gRegion gRegion::operator-(const gRegion &r2) const
 {
 	gRegion res;
 	res.subtract(*this, r2);

@@ -52,7 +52,7 @@ int eDVBMetaParser::parseFile(const std::string &basename)
 		/* first, try parsing the .meta file */
 	if (!parseMeta(basename))
 		return 0;
-	
+
 		/* otherwise, use recordings.epl */
 	if (!parseRecordings(basename))
 		return 0;
@@ -146,27 +146,27 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 	std::string::size_type slash = filename.rfind('/');
 	if (slash == std::string::npos)
 		return -1;
-	
+
 	std::string recordings = filename.substr(0, slash) + "/recordings.epl";
-	
+
 	CFile f(recordings.c_str(), "r");
 	if (!f)
 	{
 //		eDebug("no recordings.epl found: %s: %m", recordings.c_str());
 		return -1;
 	}
-	
+
 	std::string description;
 	eServiceReferenceDVB ref;
-	
+
 //	eDebug("parsing recordings.epl..");
-	
+
 	while (1)
 	{
 		char line[1024];
 		if (!fgets(line, 1024, f))
 			break;
-		
+
 		size_t len = strlen(line);
 		if (len < 2)
 			// Lines with less than one char aren't meaningful
@@ -176,7 +176,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 		line[len] = 0;
 		if (line[len-1] == '\r')
 			line[len-1] = 0;
-		
+
 		if (strncmp(line, "#SERVICE: ", 10) == 0)
 			ref = eServiceReferenceDVB(line + 10);
 		else if (strncmp(line, "#DESCRIPTION: ", 14) == 0)

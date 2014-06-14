@@ -12,13 +12,13 @@
 /*
  *  note on the enigma input layer:
  *  the enigma input layer (rc*) supports n different devices which
- *  all have completely different interfaces, mapped down to 32bit + 
+ *  all have completely different interfaces, mapped down to 32bit +
  *  make/break/release codes mapped down (via xml files) to "actions".
  *  this was necessary to support multiple remote controls with proprietary
  *  interfaces. now everybody is using input devices, and thus adding
  *  another input layer seems to be a bit overkill. BUT:
  *  image a remote control with two hundred buttons. each and every function
- *  in enigma can be bound to a button. no need to use them twice. 
+ *  in enigma can be bound to a button. no need to use them twice.
  *  for example, you would have KEY_MENU assigned to a menu for setup etc.,
  *  but no audio and video settings, since you have special keys for that,
  *  and you don't want to display a big menu with entries that are available
@@ -28,8 +28,8 @@
  *  take this just as a (bad) example. another (better) example might be front-
  *  button-keys. usually you have KEY_UP, KEY_DOWN, KEY_POWER. you don't want
  *  them to behave like the remote-control-KEY_UP, KEY_DOWN and KEY_POWER,
- *  don't you? 
- *  so here we can map same keys of different input devices to different 
+ *  don't you?
+ *  so here we can map same keys of different input devices to different
  *  actions. have fun.
  */
 

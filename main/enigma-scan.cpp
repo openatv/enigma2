@@ -16,7 +16,7 @@
 class eMain: public eApplication, public Object
 {
 	eInit init;
-	
+
 	eDVBScan *m_scan;
 
 	ePtr<eDVBResourceManager> m_mgr;
@@ -40,7 +40,7 @@ public:
 		m_mgr = new eDVBResourceManager();
 
 		eDVBFrontendParametersSatellite fesat;
-		
+
 		fesat.frequency = 11817000; // 12070000;
 		fesat.symbol_rate = 27500000;
 		fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation_Vertical;
@@ -49,7 +49,7 @@ public:
 		fesat.orbital_position = 192;
 
 		eDVBFrontendParameters *fe = new eDVBFrontendParameters();
-		
+
 		fe->setDVBS(fesat);
 
 		if (m_mgr->allocateRawChannel(m_channel))
@@ -57,17 +57,17 @@ public:
 
 //		init.setRunlevel(eAutoInitNumbers::main);
 		eDebug("starting scan...");
-		
+
 		std::list<ePtr<iDVBFrontendParameters> > list;
-		
+
 		list.push_back(fe);
-		
+
 		m_scan = new eDVBScan(m_channel);
 		m_scan->start(list);
-		
+
 		m_scan->connectEvent(slot(*this, &eMain::scanEvent), m_scan_event_connection);
 	}
-	
+
 	~eMain()
 	{
 		delete m_scan;
@@ -85,7 +85,7 @@ void object_dump()
 #endif
 
 int main()
-{	
+{
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif

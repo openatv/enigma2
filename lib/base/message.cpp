@@ -9,7 +9,7 @@ eMessagePumpMT::eMessagePumpMT():
 }
 
 eMessagePumpMT::~eMessagePumpMT()
-{	
+{
 	content.lock(); // blocks until all messages are processed.
 	close(fd[0]);
 	close(fd[1]);
