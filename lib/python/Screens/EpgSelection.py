@@ -83,7 +83,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.pipServiceRelation = {}
 		self.zapnumberstarted = False
 		self.NumberZapTimer = eTimer()
-		self.NumberZapTimer.callback.append(self.dozumberzap)
+		self.NumberZapTimer.callback.append(self.doNumberZap)
 		self.NumberZapField = None
 		self.CurrBouquet = None
 		self.CurrService = None
@@ -1128,7 +1128,7 @@ class EPGSelection(Screen, HelpableScreen):
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if self.zapnumberstarted:
-				self.dozumberzap()
+				self.doNumberZap()
 			else:
 				if config.epgselection.graph_ok.value == 'Zap' or config.epgselection.enhanced_ok.value == 'Zap' or config.epgselection.infobar_ok.value == 'Zap' or config.epgselection.multi_ok.value == 'Zap':
 					self.zapTo()
@@ -1140,7 +1140,7 @@ class EPGSelection(Screen, HelpableScreen):
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			if self.zapnumberstarted:
-				self.dozumberzap()
+				self.doNumberZap()
 			else:
 				if config.epgselection.graph_oklong.value == 'Zap' or config.epgselection.enhanced_oklong.value == 'Zap' or config.epgselection.infobar_oklong.value == 'Zap' or config.epgselection.multi_oklong.value == 'Zap':
 					self.zapTo()
@@ -1481,9 +1481,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self["number"].setText(self.zaptoservicename+'\n'+self.NumberZapField)
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
-				self.dozumberzap()
+				self.doNumberZap()
 
-	def dozumberzap(self):
+	def doNumberZap(self):
 		self.zapnumberstarted = False
 		self.numberEntered(self.service, self.bouquet)
 
