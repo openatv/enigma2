@@ -59,8 +59,11 @@ class EventViewBase:
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
+		self["key_red"] = Button()
+		self["key_green"] = Button()
+		self["key_yellow"] = Button()
+		self["key_blue"] = Button()
 		if similarEPGCB is not None:
-			self["key_red"] = Button("")
 			self.SimilarBroadcastTimer = eTimer()
 			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
@@ -336,7 +339,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				"openSimilarList": self.openSimilarList,
 
 			})
-		self["key_green"] = Button("")
 
 		if singleEPGCB:
 			self["key_yellow"] = Button(_("Single EPG"))
@@ -344,8 +346,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				{
 					"openSingleServiceEPG": singleEPGCB,
 				})
-		else:
-			self["key_yellow"] = Button("")
 			
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
@@ -354,5 +354,3 @@ class EventViewEPGSelect(Screen, EventViewBase):
 
 					"openMultiServiceEPG": multiEPGCB,
 				})
-		else:
-			self["key_blue"] = Button("")
