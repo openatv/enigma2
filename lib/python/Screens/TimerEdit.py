@@ -24,6 +24,8 @@ class TimerEditList(Screen):
 	DISABLE = 2
 	CLEANUP = 3
 	DELETE = 4
+	STOPDISABLE = 5
+	STOP = 6
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -81,6 +83,11 @@ class TimerEditList(Screen):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.pageDown)
 		self.updateState()
 
+	def stopRecording(self):
+		cur=self["timerlist"].getCurrent()
+		if cur:
+			self.runningEventCallback(cur, (_("Stop current event"), "stoponlycurrent"))
+
 	def toggleDisabledState(self):
 		cur=self["timerlist"].getCurrent()
 		if cur:
@@ -122,7 +129,8 @@ class TimerEditList(Screen):
 				self.session.nav.RecordTimer.doActivate(t)
 			if result[1] == "stoponlycoming" or result[1] == "stopall":
 				t.disable()
-			self.session.nav.RecordTimer.timeChanged(t)
+			if t.repeated:
+				self.session.nav.RecordTimer.timeChanged(t)
 			self.refill()
 			self.updateState()
 
@@ -144,11 +152,15 @@ class TimerEditList(Screen):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
 				self.key_yellow_choice = self.ENABLE
-			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
-				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
-			elif ((not cur.isRunning())or cur.repeated ) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
+			elif cur.isRunning() and not cur.repeated and not cur.disabled and (self.key_yellow_choice != self.STOP):
+				self["actions"].actions.update({"yellow":self.stopRecording})
+				self["key_yellow"].setText("Stop recording")
+				self.key_yellow_choice = self.STOP
+			elif cur.isRunning() and cur.repeated and not cur.disabled and (self.key_yellow_choice != self.STOPDISABLE):
+				self["actions"].actions.update({"yellow":self.toggleDisabledState})
+				self["key_yellow"].setText(_("Stop/Disable"))
+				self.key_yellow_choice = self.STOPDISABLE
+			elif not cur.isRunning() and not cur.disabled and self.key_yellow_choice != self.DISABLE:
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
