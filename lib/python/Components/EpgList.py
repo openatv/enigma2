@@ -1084,6 +1084,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
+				elif self.time_base > time():
+					self.time_base -= self.time_epoch * 60
+					self.fillGraphEPG(None) # refill
+					return True
 			elif dir == +24:
 				self.time_base += 86400
 				self.fillGraphEPG(None, self.time_base) # refill
