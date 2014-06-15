@@ -52,7 +52,7 @@ class TimerEditList(Screen):
 		self["key_blue"] = Button()
 
 		self.buttonActions = (
-			(None,                      _("")),               # EMPTY = 0
+			(None,                      ""),                  # EMPTY = 0
 			(self.removeTimerQuestion,  _("Delete")),         # DELETE = 1
 			(self.addCurrentTimer,      _("Add")),            # ADD = 2
 			(self.toggleDisabledState,  _("Enable")),         # ENABLE = 3
@@ -178,12 +178,14 @@ class TimerEditList(Screen):
 		if cur:
 			if cur.disabled:
 				self.assignButton(col, self.ENABLE)
-			elif cur.isRunning() and not cur.repeated and not cur.disabled:
-				self.assignButton(col, self.STOP)
-			elif cur.isRunning() and cur.repeated and not cur.disabled:
-				self.assignButton(col, self.STOPDISABLE)
-			elif not cur.isRunning() and not cur.disabled:
-				self.assignButton(col, self.DISABLE)
+			else:
+				if cur.isRunning():
+					if cur.repeated:
+						self.assignButton(col, self.STOPDISABLE)
+					else:
+						self.assignButton(col, self.STOP)
+				else:
+					self.assignButton(col, self.DISABLE)
 		else:
 			self.assignButton(col, self.EMPTY)
 
@@ -436,7 +438,7 @@ class TimerSanityConflict(Screen):
 		self["key_blue"] = Button()
 
 		self.buttonActions = (
-			(None,              _("")),        # EMPTY = 0
+			(None,              ""),           # EMPTY = 0
 			(self.editTimer1,   _("Edit")),    # EDIT1 = 1
 			(self.editTimer2,   _("Edit")),    # EDIT2 = 2
 			(self.toggleTimer,  _("Enable")),  # ENABLE = 3
@@ -531,7 +533,7 @@ class TimerSanityConflict(Screen):
 				self.assignButton(col, self.ENABLE)
 			elif cur.isRunning() and not cur.repeated:
 				self.assignButton(col, self.EMPTY)
-			elif not cur.isRunning() or cur.repeated:
+			else:
 				self.assignButton(col, self.DISABLE)
 		else:
 			self.assignButton(col, self.EMPTY)
