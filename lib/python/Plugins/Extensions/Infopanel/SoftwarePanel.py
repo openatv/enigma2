@@ -88,7 +88,7 @@ class SoftwarePanel(Screen):
 		if self.packages > 0:
 			if self.packages <= 200:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
-				#self.session.open(UpdatePlugin)
+				self.session.open(UpdatePlugin)
 				self.close()
 			else:
 				print "DO NOT UPDATE !!!"
