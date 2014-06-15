@@ -1,5 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -11,6 +12,7 @@ from Tools.LoadPixmap import LoadPixmap
 from enigma import ePixmap
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 import os
+from boxbranding import getMachineBrand, getMachineName
 
 class SoftwarePanel(Screen):
 
@@ -84,9 +86,25 @@ class SoftwarePanel(Screen):
 
 	def Green(self):
 		if self.packages > 0:
-			from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
-			self.session.open(UpdatePlugin)
-			self.close()
+			if self.packages <= 200:
+				from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
+				#self.session.open(UpdatePlugin)
+				self.close()
+			else:
+				print "DO NOT UPDATE !!!"
+				message = _("There are to many update packages !!\n\n"
+				"There is a risk that your %s %s will not\n"
+				"boot after online-update, or will show disfunction in running Image.\n\n"
+				"You need to flash new !!\n\n"
+				"Do you want to flash-online ?") % (getMachineBrand(), getMachineName())
+				self.session.openWithCallback(self.checkPackagesCallback, MessageBox, message, default = True)
+
+	def checkPackagesCallback(self, ret):
+		print ret
+		if ret:
+			from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
+			self.session.open(FlashOnline)
+		self.close()
 
 	def layoutFinished(self):
 		self.checkTraficLight()
