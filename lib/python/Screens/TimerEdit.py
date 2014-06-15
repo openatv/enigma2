@@ -18,26 +18,11 @@ from Tools.FuzzyDate import FuzzyTime
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
-class TimerEditList(Screen):
+class TimerListButtons:
+
 	EMPTY = 0
-	DELETE = 1
-	ADD = 2
-	ENABLE = 3
-	DISABLE = 4
-	STOPDISABLE = 5
-	STOP = 6
-	CLEANUP = 7
 
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Timer List"))
-
-		self.onChangedEntry = [ ]
-		list = [ ]
-		self.list = list
-		self.fillTimerList()
-
-		self["timerlist"] = TimerList(list)
+	def __init__(self):
 
 		self.key_choice = {
 			"red"    : self.EMPTY,
@@ -50,6 +35,65 @@ class TimerEditList(Screen):
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
+
+		self.buttonActions = (
+			(None,                      ""),     # EMPTY = 0
+		)
+
+	def removeAction(self, descr):
+		actions = self["actions"].actions
+		if descr in actions:
+			del actions[descr]
+
+	def assignButton(self, colour, action):
+		if self.key_choice[colour] != action:
+			act = self.buttonActions[action]
+			if act[0] is None:
+				self.removeAction(colour)
+			else:
+				self["actions"].actions.update({colour:act[0]})
+			self["key_"+colour].setText(act[1])
+			self.key_choice[colour] = act
+
+	def updateRedState(self, cur):
+		pass
+
+	def updateGreenState(self, cur):
+		pass
+
+	def updateYellowState(self, cur):
+		pass
+
+	def updateBlueState(self, cur):
+		pass
+
+	def updateState(self):
+		self.updateRedState(None)
+		self.updateGreenState(None)
+		self.updateYellowState(None)
+		self.updateBlueState(None)
+
+class TimerEditList(Screen, TimerListButtons):
+
+	DELETE = 1
+	ADD = 2
+	ENABLE = 3
+	DISABLE = 4
+	STOPDISABLE = 5
+	STOP = 6
+	CLEANUP = 7
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Timer List"))
+		TimerListButtons.__init__(self)
+
+		self.onChangedEntry = [ ]
+		list = [ ]
+		self.list = list
+		self.fillTimerList()
+
+		self["timerlist"] = TimerList(list)
 
 		self.buttonActions = (
 			(None,                      ""),                  # EMPTY = 0
@@ -147,21 +191,6 @@ class TimerEditList(Screen):
 				self.session.nav.RecordTimer.timeChanged(t)
 			self.refill()
 			self.updateState()
-
-	def removeAction(self, descr):
-		actions = self["actions"].actions
-		if descr in actions:
-			del actions[descr]
-
-	def assignButton(self, colour, action):
-		if self.key_choice[colour] != action:
-			act = self.buttonActions[action]
-			if act[0] is None:
-				self.removeAction(colour)
-			else:
-				self["actions"].actions.update({colour:act[0]})
-			self["key_"+colour].setText(act[1])
-			self.key_choice[colour] = act
 
 	def updateRedState(self, cur):
 		col = "red"
@@ -398,8 +427,8 @@ class TimerEditList(Screen):
 		self.refill()
 		self.updateState()
 
-class TimerSanityConflict(Screen):
-	EMPTY = 0
+class TimerSanityConflict(Screen, TimerListButtons):
+
 	EDIT1 = 1
 	EDIT2 = 2
 	ENABLE = 3
@@ -407,6 +436,8 @@ class TimerSanityConflict(Screen):
 
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
+		TimerListButtons.__init__(self)
+
 		self.timer = timer
 		print "TimerSanityConflict"
 
@@ -424,18 +455,6 @@ class TimerSanityConflict(Screen):
 
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
-
-		self.key_choice = {
-			"red"    : self.EMPTY,
-#			"green"  : self.EMPTY,
-			"yellow" : self.EMPTY,
-			"blue"   : self.EMPTY
-		}
-
-		self["key_red"] = Button()
-# 		self["key_green"] = Button()
-		self["key_yellow"] = Button()
-		self["key_blue"] = Button()
 
 		self.buttonActions = (
 			(None,              ""),           # EMPTY = 0
@@ -498,26 +517,8 @@ class TimerSanityConflict(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
 
-	def removeAction(self, descr):
-		actions = self["actions"].actions
-		if descr in actions:
-			del actions[descr]
-
-	def assignButton(self, colour, action):
-		if self.key_choice[colour] != action:
-			act = self.buttonActions[action]
-			if act[0] is None:
-				self.removeAction(colour)
-			else:
-				self["actions"].actions.update({colour:act[0]})
-			self["key_"+colour].setText(act[1])
-			self.key_choice[colour] = act
-
 	def updateRedState(self, cur):
 		self.assignButton("red", self.EDIT1)
-
-	def updateGreenState(self, cur):
-		pass
 
 	def updateYellowState(self, cur):
 		col = "yellow"
