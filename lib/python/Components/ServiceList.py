@@ -324,3 +324,4 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
+		self.l.setColumnWidth(int(config.usage.servicelist_column.value))
