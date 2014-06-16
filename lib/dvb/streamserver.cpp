@@ -54,7 +54,6 @@ void eStreamClient::notifier(int what)
 		rsn->stop();
 		stop();
 		parent->connectionLost(this);
-		request.clear();
 		return;
 	}
 	request.append(buf, len);
@@ -132,7 +131,6 @@ void eStreamClient::notifier(int what)
 				writeAll(streamFd, reply, strlen(reply));
 				rsn->stop();
 				parent->connectionLost(this);
-				request.clear();
 				return;
 			}
 		}
