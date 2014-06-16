@@ -2666,9 +2666,9 @@ class InfoBarInstantRecord:
 				self.setEndtime(0)
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
-		elif answer[1] == "timer":
+		elif answer[1] == "timerstop":
 			import TimerEdit
-			self.session.open(TimerEdit.TimerEditList)
+			self.session.open(TimerEdit.TimerStopList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ( "indefinitely" , "manualduration", "manualendtime", "event"):
@@ -2779,7 +2779,7 @@ class InfoBarInstantRecord:
 			title = _("Start recording?")
 
 		if self.isTimerRecordRunning():
-			list += ((_("Stop timer recording"), "timer"),)
+			list += ((_("Stop timer recording"), "timerstop"),)
 
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			list += timeshiftcommon

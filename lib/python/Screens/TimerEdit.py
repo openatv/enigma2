@@ -280,6 +280,9 @@ class TimerEditList(Screen, TimerListButtons):
 		for cb in self.onChangedEntry:
 			cb(name, time, duration, service, state)
 
+	def fillTimerTest(self, timer):
+		return True
+
 	def fillTimerList(self):
 		#helper function to move finished timers to end of list
 		def eol_compare(x, y):
@@ -289,8 +292,8 @@ class TimerEditList(Screen, TimerListButtons):
 
 		list = self.list
 		del list[:]
-		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
-		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
+		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list if self.fillTimerTest(timer)])
+		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers if self.fillTimerTest(timer)])
 		if config.usage.timerlist_finished_timer_position.index: #end of list
 			list.sort(cmp = eol_compare)
 		else:
@@ -426,6 +429,50 @@ class TimerEditList(Screen, TimerListButtons):
 	def onStateChange(self, entry):
 		self.refill()
 		self.updateState()
+
+class TimerStopList(TimerEditList):
+
+	DELETE = 1
+	STOP = 2
+	MORE = 3
+
+	def __init__(self, session):
+		TimerEditList.__init__(self, session)
+
+                self.skinName = ["TimerEditList"]
+		Screen.setTitle(self, _("Timer List"))
+
+		self.buttonActions = (
+			(None,                      ""),                  # EMPTY = 0
+			(self.removeTimerQuestion,  _("Delete")),         # DELETE = 1
+			(self.stopRecording,        _("Stop recording")), # STOP = 2
+			(self.openTimerEdit,        _("Timer overview")), # MORE = 3
+		)
+
+		self.setTitle(_("Stop Recordings"))
+
+	def updateGreenState(self, cur):
+		pass
+
+	def updateYellowState(self, cur):
+		col = "yellow"
+		if cur and cur.isRunning():
+			self.assignButton(col, self.STOP)
+		else:
+			self.assignButton(col, self.EMPTY)
+
+	def updateBlueState(self, cur):
+		self.assignButton("blue", self.MORE)
+
+	def openTimerEdit(self):
+		self.session.open(TimerEditList)
+		# Make sure any changes made in TimerEditList are reflected here
+		self.refill()
+		self.updateState()
+
+	def fillTimerTest(self, timer):
+		# Only include running timers
+		return timer.isRunning()
 
 class TimerSanityConflict(Screen, TimerListButtons):
 
