@@ -59,6 +59,7 @@ class PictureInPicture(Screen):
 					self.relocateTimer.stop()
 				elif not self.pigmodeEnabled:
 					del self.pipservice
+					self.pipservice = None
 					self.pigmodeEnabled = True
 			else:
 				self.relocateTimer.callback.append(self.timedRelocate)
