@@ -113,7 +113,7 @@ class Standby(Screen):
 		return StandbySummary
 
 	def standbyTimeout(self):
-		if config.usage.inactivity_timer_blocktime.value:
+		if config.usage.standby_to_shutdown_timer_blocktime.value:
 			curtime = localtime(time())
 			if curtime.tm_year > 1970: #check if the current time is valid
 				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)

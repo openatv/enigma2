@@ -62,7 +62,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Specify timeframe to ignore the shutdown in standby"),
 				config.usage.standby_to_shutdown_timer_blocktime,
 				_("When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode")))
-			if config.usage.inactivity_timer_blocktime.value:
+			if config.usage.standby_to_shutdown_timer_blocktime.value:
 				self.list.append(getConfigListEntry(_("Start time to ignore shutdown in standby"),
 					config.usage.standby_to_shutdown_timer_blocktime_begin,
 					_("Specify the start time to ignore the shutdown timer when the receiver is in standby mode")))
