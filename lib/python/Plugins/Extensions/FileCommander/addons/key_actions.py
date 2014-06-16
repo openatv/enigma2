@@ -11,6 +11,7 @@ from Components.Task import job_manager
 from Components.ActionMap import ActionMap
 from Components.Scanner import openFile
 from Components.MenuList import MenuList
+from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS, KNOWN_EXTENSIONS
 # Screens
 from Screens.Screen import Screen
 from Screens.Console import Console
@@ -178,14 +179,14 @@ class key_actions():
 				testFileName = x[0][0] #"empty"
 			if l == 3 or l == 2:
 				if x[0][1] == False:
-					if (testFileName.endswith(".mp3")) or (testFileName.endswith(".wav")) or (testFileName.endswith(".wma")) or (testFileName.endswith(".ogg")) or (testFileName.endswith(".m4a")) or (testFileName.endswith(".mp2")) or (testFileName.endswith(".flac")):
+					if testFileName.endswith(tuple(AUDIO_EXTENSIONS)):
 						if filename == x[0][0]:
 							start_song = i
 						i += 1
 						mp.playlist.addFile(eServiceReference(4097, 0, path + x[0][0]))
 			else:
 				testfilename = x[4].lower()
-				if (testFileName.endswith(".mp3")) or (testFileName.endswith(".wav")) or (testFileName.endswith(".wma")) or (testFileName.endswith(".ogg")) or (testFileName.endswith(".m4a")) or (testFileName.endswith(".mp2")) or (testFileName.endswith(".flac")):
+				if testFileName.endswith(tuple(AUDIO_EXTENSIONS)):
 					if filename == x[0][0]:
 						start_song = i
 					i += 1
@@ -222,13 +223,10 @@ class key_actions():
 		elif testFileName.endswith(".ts"):
 			fileRef = eServiceReference("1:0:0:0:0:0:0:0:0:0:" + longname)
 			self.session.open(MoviePlayer, fileRef)
-		elif (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")):
+		elif testFileName.endswith(tuple(MOVIE_EXTENSIONS)):
 			fileRef = eServiceReference("4097:0:0:0:0:0:0:0:0:0:" + longname)
 			self.session.open(MoviePlayer, fileRef)
-		elif (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
-			fileRef = eServiceReference("4097:0:0:0:0:0:0:0:0:0:" + longname)
-			self.session.open(MoviePlayer, fileRef)
-		elif (testFileName.endswith(".mp3")) or (testFileName.endswith(".wav")) or (testFileName.endswith(".wma")) or (testFileName.endswith(".ogg")) or (testFileName.endswith(".m4a")) or (testFileName.endswith(".mp2")) or (testFileName.endswith(".flac")):
+		elif testFileName.endswith(tuple(AUDIO_EXTENSIONS)):
 			self.play_music(self.SOURCELIST)
 		elif (testFileName.endswith(".rar")) or (re.search('\.r\d+$', filetype)):
 			self.session.openWithCallback(self.onFileActionCB, RarMenuScreen, self.SOURCELIST, self.TARGETLIST)
@@ -236,7 +234,7 @@ class key_actions():
 			self.session.openWithCallback(self.onFileActionCB, TarMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif (testFileName.endswith(".zip")):
 			self.session.openWithCallback(self.onFileActionCB, UnzipMenuScreen, self.SOURCELIST, self.TARGETLIST)
-		elif (testFileName.endswith(".jpg")) or (testFileName.endswith(".jpeg")) or (testFileName.endswith(".jpe")) or (testFileName.endswith(".png")) or (testFileName.endswith(".bmp")):
+		elif testFileName.endswith(tuple(IMAGE_EXTENSIONS)):
 			if self.SOURCELIST.getSelectionIndex()!=0:
 				self.session.openWithCallback(self.cbShowPicture, 
 							      ImageViewer, 
