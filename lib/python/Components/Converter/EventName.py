@@ -17,6 +17,10 @@ class EventName(Converter, object):
 	RATING = 8
 	SRATING = 9
 
+	NEXT_DESCRIPTION = 21
+	THIRD_NAME = 22
+	THIRD_DESCRIPTION = 23
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgcache = eEPGCache.getInstance()
@@ -104,5 +108,38 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
-		
+		elif int(self.type) == 6 or int(self.type) >= 21:
+			try:
+				reference = self.source.service
+				info = reference and self.source.info
+				if info is None:
+					return
+				test = [ 'ITSECX', (reference.toString(), 1, -1, 1440) ] # search next 24 hours
+				self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+				if self.list:
+						if self.type == self.NAME_NEXT and self.list[1][1]:
+							return pgettext("now/next: 'next' event label", "Next") + ": " + self.list[1][1]
+						elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
+							description = self.list[1][2]
+							extended = self.list[1][3]
+							if (description and extended) and (description[0:20] != extended[0:20]):
+								description += '\n'
+							return description + extended
+						elif self.type == self.THIRD_NAME and self.list[2][1]:
+							return pgettext("third event: 'third' event label", "Later") + ": " + self.list[2][1]
+						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
+							description = self.list[2][2]
+							extended = self.list[2][3]
+							if (description and extended) and (description[0:20] != extended[0:20]):
+								description += '\n'
+							return description + extended
+						else:
+							# failed to return any epg data.
+							return ""
+			except:
+				# failed to return any epg data.
+				if self.type == self.NAME_NEXT:
+					return pgettext("now/next: 'next' event label", "Next") + ": " + event.getEventName()
+				return ""
+
 	text = property(getText)
