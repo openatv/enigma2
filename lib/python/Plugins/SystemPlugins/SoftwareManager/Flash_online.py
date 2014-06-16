@@ -34,7 +34,7 @@ if ImageVersion == '4.0' or ImageVersion == '3.0':
 else:
 	ImageVersion2= '4.0'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
-feedurl_om = 'http://image.openmips.com/4.0'
+feedurl_om = 'http://image.openmips.com/4.1'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
@@ -251,6 +251,7 @@ class doFlashImage(Screen):
 		self.hide()
 		if self.Online:
 			url = self.feedurl + "/" + box + "/" + sel
+			print "[Flash Online] Download image: >%s<" % url
 			if self.newfeed:
 				self.feedurl = self.newfeed[0][:-1]
 				url = self.feedurl + "/" + box + "/" + sel
@@ -272,17 +273,19 @@ class doFlashImage(Screen):
 						fp.write(chunk)
 				self.ImageDownloadCB(False)
 			else:
-				u = urllib2.urlopen(url)
-				f = open(file_name, 'wb')
-				f.close()
-				#meta = u.info()
-				#file_size = int(meta.getheaders("Content-Length")[0])
-				#print "Downloading: %s Bytes: %s" % (sel, file_size)
-				job = ImageDownloadJob(url, file_name, sel)
-				job.afterEvent = "close"
-				job_manager.AddJob(job)
-				job_manager.failed_jobs = []
-				self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
+				try:
+					u = urllib2.urlopen(url)
+					f = open(file_name, 'wb')
+					f.close()
+					job = ImageDownloadJob(url, file_name, sel)
+					job.afterEvent = "close"
+					job_manager.AddJob(job)
+					job_manager.failed_jobs = []
+					self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
+				except urllib2.URLError as e:
+					print "[Flash Online] Download failed !!\n%s" % e
+					self.session.openWithCallback(self.ImageDownloadCB, MessageBox, _("Download Failed !!" + "\n%s" % e), type = MessageBox.TYPE_ERROR)
+					self.close()
 		else:
 			self.session.openWithCallback(self.startInstallLocal, MessageBox, _("Do you want to backup your settings now?"), default=False)
 			
@@ -507,8 +510,8 @@ class doFlashImage(Screen):
 					self.feedurl = feedurl_atv2
 					self["key_blue"].setText("ATV %s" %ImageVersion)
 			url = '%s/index.php?open=%s' % (self.feedurl,box)
-			req = urllib2.Request(url)
 			try:
+				req = urllib2.Request(url)
 				if self.newfeed:
 					self.feedurl = self.newfeed[0][:-1]
 					url = '%s/index.php?open=%s' % (self.feedurl,box)
@@ -521,7 +524,8 @@ class doFlashImage(Screen):
 				else:
 					response = urllib2.urlopen(req)
 			except urllib2.URLError as e:
-				print "URL ERROR: %s" % e
+				print "URL ERROR: %s\n%s" % (e,url)
+				self["imageList"].l.setList(self.imagelist)
 				return
 
 			try:
