@@ -47,6 +47,7 @@ void eStreamClient::notifier(int what)
 	if (!(what & eSocketNotifier::Read))
 		return;
 
+	ePtr<eStreamClient> ref = this;
 	char buf[512];
 	int len;
 	if ((len = singleRead(streamFd, buf, sizeof(buf))) <= 0)
@@ -209,12 +210,14 @@ void eStreamClient::notifier(int what)
 
 void eStreamClient::streamStopped()
 {
+	ePtr<eStreamClient> ref = this;
 	rsn->stop();
 	parent->connectionLost(this);
 }
 
 void eStreamClient::tuneFailed()
 {
+	ePtr<eStreamClient> ref = this;
 	rsn->stop();
 	parent->connectionLost(this);
 }
