@@ -18,16 +18,75 @@ from Tools.FuzzyDate import FuzzyTime
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
-class TimerEditList(Screen):
+class TimerListButtons:
+
 	EMPTY = 0
-	ENABLE = 1
-	DISABLE = 2
-	CLEANUP = 3
-	DELETE = 4
+
+	def __init__(self):
+
+		self.key_choice = {
+			"red"    : self.EMPTY,
+			"green"  : self.EMPTY,
+			"yellow" : self.EMPTY,
+			"blue"   : self.EMPTY
+		}
+
+		self["key_red"] = Button()
+		self["key_green"] = Button()
+		self["key_yellow"] = Button()
+		self["key_blue"] = Button()
+
+		self.buttonActions = (
+			(None,                      ""),     # EMPTY = 0
+		)
+
+	def removeAction(self, descr):
+		actions = self["actions"].actions
+		if descr in actions:
+			del actions[descr]
+
+	def assignButton(self, colour, action):
+		if self.key_choice[colour] != action:
+			act = self.buttonActions[action]
+			if act[0] is None:
+				self.removeAction(colour)
+			else:
+				self["actions"].actions.update({colour:act[0]})
+			self["key_"+colour].setText(act[1])
+			self.key_choice[colour] = act
+
+	def updateRedState(self, cur):
+		pass
+
+	def updateGreenState(self, cur):
+		pass
+
+	def updateYellowState(self, cur):
+		pass
+
+	def updateBlueState(self, cur):
+		pass
+
+	def updateState(self):
+		self.updateRedState(None)
+		self.updateGreenState(None)
+		self.updateYellowState(None)
+		self.updateBlueState(None)
+
+class TimerEditList(Screen, TimerListButtons):
+
+	DELETE = 1
+	ADD = 2
+	ENABLE = 3
+	DISABLE = 4
+	STOPDISABLE = 5
+	STOP = 6
+	CLEANUP = 7
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Timer List"))
+		TimerListButtons.__init__(self)
 
 		self.onChangedEntry = [ ]
 		list = [ ]
@@ -36,14 +95,16 @@ class TimerEditList(Screen):
 
 		self["timerlist"] = TimerList(list)
 
-		self.key_red_choice = self.EMPTY
-		self.key_yellow_choice = self.EMPTY
-		self.key_blue_choice = self.EMPTY
-
-		self["key_red"] = Button(" ")
-		self["key_green"] = Button(_("Add"))
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
+		self.buttonActions = (
+			(None,                      ""),                  # EMPTY = 0
+			(self.removeTimerQuestion,  _("Delete")),         # DELETE = 1
+			(self.addCurrentTimer,      _("Add")),            # ADD = 2
+			(self.toggleDisabledState,  _("Enable")),         # ENABLE = 3
+			(self.toggleDisabledState,  _("Disable")),        # DISABLE = 4
+			(self.toggleDisabledState,  _("Stop/Disable")),   # STOPDISABLE = 5
+			(self.stopRecording,        _("Stop recording")), # STOP = 6
+			(self.cleanupQuestion,      _("Cleanup")),        # CLEANUP = 7
+		)
 
 		self["description"] = Label()
 
@@ -51,7 +112,6 @@ class TimerEditList(Screen):
 			{
 				"ok": self.openEdit,
 				"cancel": self.leave,
-				"green": self.addCurrentTimer,
 				"log": self.showLog,
 				"left": self.left,
 				"right": self.right,
@@ -80,6 +140,11 @@ class TimerEditList(Screen):
 	def right(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.pageDown)
 		self.updateState()
+
+	def stopRecording(self):
+		cur=self["timerlist"].getCurrent()
+		if cur:
+			self.runningEventCallback(cur, (_("Stop current event"), "stoponlycurrent"))
 
 	def toggleDisabledState(self):
 		cur=self["timerlist"].getCurrent()
@@ -122,46 +187,39 @@ class TimerEditList(Screen):
 				self.session.nav.RecordTimer.doActivate(t)
 			if result[1] == "stoponlycoming" or result[1] == "stopall":
 				t.disable()
-			self.session.nav.RecordTimer.timeChanged(t)
+			if t.repeated:
+				self.session.nav.RecordTimer.timeChanged(t)
 			self.refill()
 			self.updateState()
 
-	def removeAction(self, descr):
-		actions = self["actions"].actions
-		if descr in actions:
-			del actions[descr]
-
-	def updateState(self):
-		cur = self["timerlist"].getCurrent()
+	def updateRedState(self, cur):
+		col = "red"
 		if cur:
-			self["description"].setText(cur.description)
-			if self.key_red_choice != self.DELETE:
-				self["actions"].actions.update({"red":self.removeTimerQuestion})
-				self["key_red"].setText(_("Delete"))
-				self.key_red_choice = self.DELETE
-
-			if cur.disabled and (self.key_yellow_choice != self.ENABLE):
-				self["actions"].actions.update({"yellow":self.toggleDisabledState})
-				self["key_yellow"].setText(_("Enable"))
-				self.key_yellow_choice = self.ENABLE
-			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
-				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
-			elif ((not cur.isRunning())or cur.repeated ) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
-				self["actions"].actions.update({"yellow":self.toggleDisabledState})
-				self["key_yellow"].setText(_("Disable"))
-				self.key_yellow_choice = self.DISABLE
+			self.assignButton(col, self.DELETE)
 		else:
-			if self.key_red_choice != self.EMPTY:
-				self.removeAction("red")
-				self["key_red"].setText(" ")
-				self.key_red_choice = self.EMPTY
-			if self.key_yellow_choice != self.EMPTY:
-				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
+			self.assignButton(col, self.EMPTY)
 
+	def updateGreenState(self, cur):
+		self.assignButton("green", self.ADD)
+
+	def updateYellowState(self, cur):
+		col = "yellow"
+		if cur:
+			if cur.disabled:
+				self.assignButton(col, self.ENABLE)
+			else:
+				if cur.isRunning():
+					if cur.repeated:
+						self.assignButton(col, self.STOPDISABLE)
+					else:
+						self.assignButton(col, self.STOP)
+				else:
+					self.assignButton(col, self.DISABLE)
+		else:
+			self.assignButton(col, self.EMPTY)
+
+	def updateBlueState(self, cur):
+		col = "blue"
 		showCleanup = True
 		for x in self.list:
 			if (not x[0].disabled) and (x[1] == True):
@@ -169,14 +227,22 @@ class TimerEditList(Screen):
 		else:
 			showCleanup = False
 
-		if showCleanup and (self.key_blue_choice != self.CLEANUP):
-			self["actions"].actions.update({"blue":self.cleanupQuestion})
-			self["key_blue"].setText(_("Cleanup"))
-			self.key_blue_choice = self.CLEANUP
-		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):
-			self.removeAction("blue")
-			self["key_blue"].setText(" ")
-			self.key_blue_choice = self.EMPTY
+		if showCleanup:
+			self.assignButton(col, self.CLEANUP)
+		else:
+			self.assignButton(col, self.EMPTY)
+
+	def updateState(self):
+		cur = self["timerlist"].getCurrent()
+
+		if cur:
+			self["description"].setText(cur.description)
+
+		self.updateRedState(cur)
+		self.updateGreenState(cur)
+		self.updateYellowState(cur)
+		self.updateBlueState(cur)
+
 		if len(self.list) == 0:
 			return
 		timer = self['timerlist'].getCurrent()
@@ -361,14 +427,17 @@ class TimerEditList(Screen):
 		self.refill()
 		self.updateState()
 
-class TimerSanityConflict(Screen):
-	EMPTY = 0
-	ENABLE = 1
-	DISABLE = 2
-	EDIT = 3
+class TimerSanityConflict(Screen, TimerListButtons):
+
+	EDIT1 = 1
+	EDIT2 = 2
+	ENABLE = 3
+	DISABLE = 4
 
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
+		TimerListButtons.__init__(self)
+
 		self.timer = timer
 		print "TimerSanityConflict"
 
@@ -387,20 +456,18 @@ class TimerSanityConflict(Screen):
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
 
-		self["key_red"] = Button(_("Edit"))
-# 		self["key_green"] = Button(" ")
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
-
-		self.key_green_choice = self.EMPTY
-		self.key_yellow_choice = self.EMPTY
-		self.key_blue_choice = self.EMPTY
+		self.buttonActions = (
+			(None,              ""),           # EMPTY = 0
+			(self.editTimer1,   _("Edit")),    # EDIT1 = 1
+			(self.editTimer2,   _("Edit")),    # EDIT2 = 2
+			(self.toggleTimer,  _("Enable")),  # ENABLE = 3
+			(self.toggleTimer,  _("Disable")), # DISABLE = 4
+		)
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
 				"ok": self.leave_ok,
 				"cancel": self.leave_cancel,
-				"red": self.editTimer1,
 				"up": self.up,
 				"down": self.down
 			}, -1)
@@ -450,10 +517,27 @@ class TimerSanityConflict(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
 
-	def removeAction(self, descr):
-		actions = self["actions"].actions
-		if descr in actions:
-			del actions[descr]
+	def updateRedState(self, cur):
+		self.assignButton("red", self.EDIT1)
+
+	def updateYellowState(self, cur):
+		col = "yellow"
+		if cur is not None:
+			self.assignButton(col, self.EDIT2)
+		else:
+			self.assignButton(col, self.EMPTY)
+
+	def updateBlueState(self, cur):
+		col = "blue"
+		if cur is not None:
+			if cur.disabled:
+				self.assignButton(col, self.ENABLE)
+			elif cur.isRunning() and not cur.repeated:
+				self.assignButton(col, self.EMPTY)
+			else:
+				self.assignButton(col, self.DISABLE)
+		else:
+			self.assignButton(col, self.EMPTY)
 
 	def updateState(self):
 # 		if self.timer[0] is not None:
@@ -470,35 +554,16 @@ class TimerSanityConflict(Screen):
 # 				self["key_green"].setText(_("Disable"))
 # 				self.key_green_choice = self.DISABLE
 
+		self.updateRedState(None)
+
 		if len(self.timer) > 1:
 			x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
-			if self.timer[x] is not None:
-				if self.key_yellow_choice == self.EMPTY:
-					self["actions"].actions.update({"yellow":self.editTimer2})
-					self["key_yellow"].setText(_("Edit"))
-					self.key_yellow_choice = self.EDIT
-				if self.timer[x].disabled and self.key_blue_choice != self.ENABLE:
-					self["actions"].actions.update({"blue":self.toggleTimer})
-					self["key_blue"].setText(_("Enable"))
-					self.key_blue_choice = self.ENABLE
-				elif self.timer[x].isRunning() and not self.timer[x].repeated and self.key_blue_choice != self.EMPTY:
-					self.removeAction("blue")
-					self["key_blue"].setText(" ")
-					self.key_blue_choice = self.EMPTY
-				elif (not self.timer[x].isRunning() or self.timer[x].repeated ) and self.key_blue_choice != self.DISABLE:
-					self["actions"].actions.update({"blue":self.toggleTimer})
-					self["key_blue"].setText(_("Disable"))
-					self.key_blue_choice = self.DISABLE
+			self.updateYellowState(self.timer[x])
+			self.updateBlueState(self.timer[x])
 		else:
 #FIXME.... this doesnt hide the buttons self.... just the text
-			if self.key_yellow_choice != self.EMPTY:
-				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
-			if self.key_blue_choice != self.EMPTY:
-				self.removeAction("blue")
-				self["key_blue"].setText(" ")
-				self.key_blue_choice = self.EMPTY
+			self.updateYellowState(None)
+			self.updateBlueState(None)
 
 class TimerEditListSummary(Screen):
 	def __init__(self, session, parent):
