@@ -158,5 +158,5 @@ class CommitInfo(Screen):
 							date = y.split('>')[1].split('<')[0][:-6]
 					commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
 		except:
-			commitlog = _("Currently the commit log cannot be retreived - please try later again")
+			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
 		self["AboutScrollLabel"].setText(commitlog)
