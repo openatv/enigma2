@@ -52,6 +52,12 @@ from Plugins.Extensions.FileCommander.addons.unzip import *
 from Plugins.Extensions.FileCommander.addons.ipk import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
 
+try:
+	from Screens import DVD
+	DVDPlayerAvailable = True
+except Exception, e:
+	DVDPlayerAvailable = False
+
 ##################################
 
 pname = _("File Commander - Addon Movieplayer")
@@ -226,6 +232,9 @@ class key_actions():
 		elif testFileName.endswith(tuple(MOVIE_EXTENSIONS)):
 			fileRef = eServiceReference("4097:0:0:0:0:0:0:0:0:0:" + longname)
 			self.session.open(MoviePlayer, fileRef)
+		elif testFileName.endswith(tuple(DVD_EXTENSIONS)):
+			if DVDPlayerAvailable:
+				self.session.open(DVD.DVDPlayer, dvd_filelist=[longname])
 		elif testFileName.endswith(tuple(AUDIO_EXTENSIONS)):
 			self.play_music(self.SOURCELIST)
 		elif (testFileName.endswith(".rar")) or (re.search('\.r\d+$', filetype)):
