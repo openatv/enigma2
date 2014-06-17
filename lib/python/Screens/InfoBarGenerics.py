@@ -2022,10 +2022,10 @@ class InfoBarPiP:
 					del self.session.pip
 
 	def activePiP(self):
-		if self.session.pipshown:
-			self.togglePipzap()
-		else:
+		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
 			self.showPiP()
+		else:
+			self.togglePipzap()
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
