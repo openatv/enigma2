@@ -70,9 +70,9 @@ void ePositionGauge::setInOutList(ePyObject list)
 		return;
 	int size = PyList_Size(list);
 	int i;
-	
+
 	m_cue_entries.clear();
-	
+
 	for (i=0; i<size; ++i)
 	{
 		ePyObject tuple = PyList_GET_ITEM(list, i);
@@ -105,17 +105,17 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		eSize s(size());
 
 		getStyle(style);
-		
+
 		eWidget::event(evtPaint, data, data2);
 
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
 //		painter.fill(eRect(0, 10, s.width(), s.height()-20));
-		
+
 		pts_t in = 0, out = 0;
 		int xm, xm_last = -1;
-		
+
 		std::multiset<cueEntry>::iterator i(m_cue_entries.begin());
-		
+
 		while (1)
 		{
 			if (i == m_cue_entries.end())
@@ -145,16 +145,16 @@ int ePositionGauge::event(int event, void *data, void *data2)
 					continue;
 				}
 			}
-			
+
 			if (m_have_foreground_color)
 			{
 				painter.setForegroundColor(gRGB(m_foreground_color));
 				int xi = scale(in), xo = scale(out);
 				painter.fill(eRect(xi, (s.height()-4) / 2, xo-xi, 4));
 			}
-			
+
 			in = m_length;
-			
+
 			if (i == m_cue_entries.end())
 				break;
 		}
@@ -166,7 +166,7 @@ int ePositionGauge::event(int event, void *data, void *data2)
 			painter.fill(eRect(s.width() - 2, 2, s.width() - 1, s.height() - 4));
 			painter.fill(eRect(0, 2, 2, s.height() - 4));
 		}
-		
+
 #if 0
 // border
 		if (m_have_border_color)
@@ -191,7 +191,7 @@ void ePositionGauge::updatePosition()
 	m_pos = scale(m_position);
 	m_seek_pos = scale(m_seek_position);
 	int base = (size().height() - 10) / 2;
-	
+
 	m_point_widget->move(ePoint(m_pos - m_point_center.x(), base - m_point_center.y()));
 	m_seek_point_widget->move(ePoint(m_seek_pos - m_seek_point_center.x(), base - m_seek_point_center.y()));
 }

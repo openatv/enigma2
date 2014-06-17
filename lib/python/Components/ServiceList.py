@@ -280,7 +280,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setRoot(self.root, False)
 		self.l.sort()
 		self.instance.moveSelectionTo(index)
-	
+
 	def removeCurrent(self):
 		self.l.removeCurrent()
 

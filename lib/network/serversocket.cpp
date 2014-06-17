@@ -39,7 +39,7 @@ eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml)
 
 	okflag=1;
 	int val=1;
-	
+
 	setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
 
 	if(bind(getDescriptor(),

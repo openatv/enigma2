@@ -9,7 +9,7 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gmaindc.h>
-#include <lib/gdi/font.h> 
+#include <lib/gdi/font.h>
 
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
@@ -26,7 +26,7 @@ void object_dump()
 
 void dumpRegion(const gRegion &region)
 {
-	fprintf(stderr, "extends: %d %d -> %d %d\n", 
+	fprintf(stderr, "extends: %d %d -> %d %d\n",
 		region.extends.left(), region.extends.top(),
 		region.extends.right(), region.extends.bottom());
 	for (int y=0; y<region.extends.bottom(); ++y)
@@ -56,13 +56,13 @@ int main()
 	gMainDC::getInstance(my_dc);
 
 	gPainter p(my_dc);
-	
+
 	gRGB pal[256];
 	pal[0] = 0;
 	pal[1] = 0xff00ff;
 	pal[2] = 0xffFFff;
 	pal[3] = 0x00ff00;
-	
+
 	for (int a=0; a<0x10; ++a)
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
@@ -74,7 +74,7 @@ int main()
 
 	eWidget *bla = new eWidget(0);
 	dsk.addRootWidget(bla, 0);
-	
+
 	bla->move(ePoint(100, 100));
 	bla->resize(eSize(200, 200));
 	bla->show();
@@ -82,10 +82,10 @@ int main()
 	eWidget *blablub = new eLabel(bla);
 	blablub->move(ePoint(40, 40));
 	blablub->resize(eSize(100, 100));
-	
+
 	eWidget *bla2 = new eWidget(0);
 	dsk.addRootWidget(bla2, 0);
-	
+
 	bla2->move(ePoint(160, 160));
 	bla2->resize(eSize(200, 200));
 	bla2->show();
@@ -95,9 +95,9 @@ int main()
 	dumpRegion(bla->m_visible_region);
 //	dumpRegion(bla2->m_visible_region);
 //	dumpRegion(blablub->m_visible_region);
-	
+
 	eDebug("painting!");
-	
+
 	dsk.invalidate(gRegion(eRect(0, 0, 720, 576)));
 	dsk.paint();
 

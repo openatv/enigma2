@@ -7,7 +7,7 @@
 #if !defined(KEY_OK)
 
 /**
- *  define some additional remote control keys in case they 
+ *  define some additional remote control keys in case they
  *  were not already defined above in <linux/input.h>
  */
 

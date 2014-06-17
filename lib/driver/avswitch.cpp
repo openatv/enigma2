@@ -153,7 +153,7 @@ void eAVSwitch::setColorFormat(int format)
 	const char *svideo="svideo";
 	const char *yuv="yuv";
 	int fd;
-	
+
 	if((fd = open("/proc/stb/avs/0/colorformat", O_WRONLY)) < 0) {
 		printf("cannot open /proc/stb/avs/0/colorformat\n");
 		return;
@@ -171,7 +171,7 @@ void eAVSwitch::setColorFormat(int format)
 		case 3:
 			write(fd, yuv, strlen(yuv));
 			break;
-	}	
+	}
 	close(fd);
 }
 
@@ -212,7 +212,7 @@ void eAVSwitch::setVideomode(int mode)
 {
 	const char *pal="pal";
 	const char *ntsc="ntsc";
-	
+
 	if (mode == m_video_mode)
 		return;
 

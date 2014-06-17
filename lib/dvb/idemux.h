@@ -35,18 +35,18 @@ public:
 
 	enum timing_pid_type { none = -1, video_pid, audio_pid };
 	virtual RESULT setTimingPID(int pid, timing_pid_type pidtype, int streamtype) = 0;
-	
+
 	virtual RESULT setTargetFD(int fd) = 0;
 		/* for saving additional meta data. */
 	virtual RESULT setTargetFilename(const std::string& filename) = 0;
 	virtual RESULT setBoundary(off_t max) = 0;
 	virtual RESULT enableAccessPoints(bool enable) = 0;
-	
+
 	virtual RESULT stop() = 0;
 
 	virtual RESULT getCurrentPCR(pts_t &pcr) = 0;
 	virtual RESULT getFirstPTS(pts_t &pts) = 0;
-	
+
 	enum {
 		eventWriteError,
 				/* a write error has occurred. data won't get lost if fd is writable after return. */

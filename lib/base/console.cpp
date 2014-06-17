@@ -41,7 +41,7 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 		if (cwd)
 			chdir(cwd);
 
-		execvp(cmd, (char * const *)argv); 
+		execvp(cmd, (char * const *)argv);
 				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
 		_exit(0);
 	}
@@ -115,7 +115,7 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	::fcntl(fd[1], F_SETFL, O_NONBLOCK);
 	::fcntl(fd[2], F_SETFL, O_NONBLOCK);
 	in = eSocketNotifier::create(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
-	out = eSocketNotifier::create(eApp, fd[1], eSocketNotifier::Write, false);  
+	out = eSocketNotifier::create(eApp, fd[1], eSocketNotifier::Write, false);
 	err = eSocketNotifier::create(eApp, fd[2], eSocketNotifier::Read|eSocketNotifier::Priority );
 	CONNECT(in->activated, eConsoleAppContainer::readyRead);
 	CONNECT(out->activated, eConsoleAppContainer::readyWrite);

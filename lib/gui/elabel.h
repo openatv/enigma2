@@ -22,10 +22,10 @@ public:
 		alignBlock,
 		alignBidi
 	};
-	
+
 	void setVAlign(int align);
 	void setHAlign(int align);
-	
+
 	void setForegroundColor(const gRGB &col);
 	void setShadowColor(const gRGB &col);
 	void setShadowOffset(const ePoint &offset);
@@ -33,7 +33,7 @@ public:
 	void setBorderWidth(int size);
 	void setNoWrap(int nowrap);
 	void clearForegroundColor();
-	
+
 	eSize calculateSize();
 protected:
 	ePtr<gFont> m_font;
@@ -47,7 +47,7 @@ private:
 	ePoint m_shadow_offset;
 	int m_border_size;
 	int m_nowrap;
-	
+
 	enum eLabelEvent
 	{
 		evtChangedText = evtUserWidget,

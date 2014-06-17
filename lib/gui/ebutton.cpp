@@ -20,12 +20,12 @@ int eButton::event(int event, void *data, void *data2)
 	{
 		gPainter &painter = *(gPainter*)data2;
 		ePtr<eWindowStyle> style;
-		
+
 		getStyle(style);
-		
+
 		eLabel::event(event, data, data2);
 		style->drawFrame(painter, eRect(ePoint(0, 0), size()), eWindowStyle::frameButton);
-		
+
 		return 0;
 	}
 	default:

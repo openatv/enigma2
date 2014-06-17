@@ -30,7 +30,7 @@ def createTrashFolder(path=None):
 			try:
 				os.mkdir(trash)
 			except:
-				pass
+				return None
 		return trash
 	else:
 		return None

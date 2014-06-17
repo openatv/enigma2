@@ -73,7 +73,7 @@ class eDVBAllocatedFrontend
 {
 	DECLARE_REF(eDVBAllocatedFrontend);
 public:
-	
+
 	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe);
 	~eDVBAllocatedFrontend();
 	eDVBFrontend &get() { return *m_fe->m_frontend; }
@@ -88,13 +88,13 @@ class eDVBAllocatedDemux
 {
 	DECLARE_REF(eDVBAllocatedDemux);
 public:
-	
+
 	eDVBAllocatedDemux(eDVBRegisteredDemux *demux);
 	~eDVBAllocatedDemux();
 	eDVBDemux &get() { return *m_demux->m_demux; }
 	operator eDVBRegisteredDemux*() { return m_demux; }
 	operator eDVBDemux*() { return m_demux->m_demux; }
-	
+
 private:
 	eDVBRegisteredDemux *m_demux;
 };
@@ -104,7 +104,7 @@ class iDVBAdapter: public iObject
 public:
 	virtual int getNumDemux() = 0;
 	virtual RESULT getDemux(ePtr<eDVBDemux> &demux, int nr) = 0;
-	
+
 	virtual int getNumFrontends() = 0;
 	virtual RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate=false) = 0;
 };
@@ -119,7 +119,7 @@ public:
 
 	int getNumDemux();
 	RESULT getDemux(ePtr<eDVBDemux> &demux, int nr);
-	
+
 	int getNumFrontends();
 	RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate=false);
 
@@ -175,16 +175,16 @@ class eDVBResourceManager: public iObject, public Object
 		eDVBChannelID m_channel_id;
 			/* we don't hold a reference here. */
 		eDVBChannel *m_channel;
-		
+
 		active_channel(const eDVBChannelID &chid, eDVBChannel *ch) : m_channel_id(chid), m_channel(ch) { }
 	};
-	
+
 	std::list<active_channel> m_active_channels, m_active_simulate_channels;
-	
+
 	ePtr<iDVBChannelList> m_list;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	static eDVBResourceManager *instance;
-	
+
 	friend class eDVBChannel;
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
@@ -205,7 +205,7 @@ public:
 
 	RESULT setChannelList(iDVBChannelList *list);
 	RESULT getChannelList(ePtr<iDVBChannelList> &list);
-	
+
 	enum {
 			/* errNoFrontend = -1 replaced by more spcific messages */
 		errNoDemux    = -2,
@@ -215,7 +215,7 @@ public:
 		errAllSourcesBusy = -6,
 		errNoSourceFound = -7,
 	};
-	
+
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
 	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, int &system, bool simulate=false);
 
@@ -276,7 +276,7 @@ public:
 
 	RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
 	RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection);
-	
+
 	RESULT getState(int &state);
 
 	RESULT setCIRouting(const eDVBCIRouting &routing);
@@ -302,7 +302,7 @@ public:
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
-	
+
 	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
 	eDVBChannelID m_channel_id;
 	Signal1<void,iDVBChannel*> m_stateChanged;
@@ -312,24 +312,24 @@ private:
 
 			/* for channel list */
 	ePtr<eDVBResourceManager> m_mgr;
-	
+
 	void frontendStateChanged(iDVBFrontend*fe);
 	ePtr<eConnection> m_conn_frontendStateChanged;
-	
+
 		/* for PVR playback */
 	eDVBChannelFilePush *m_pvr_thread;
 	void pvrEvent(int event);
-	
+
 	int m_pvr_fd_dst;
 	eSingleLock m_tstools_lock;
 	eDVBTSTools m_tstools;
-	
+
 	ePtr<eCueSheet> m_cue;
-	
+
 	void cueSheetEvent(int event);
 	ePtr<eConnection> m_conn_cueSheetEvent;
 	int m_skipmode_m, m_skipmode_n, m_skipmode_frames, m_skipmode_frames_remainder;
-	
+
 	std::list<std::pair<off_t, off_t> > m_source_span;
 	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size);
 	void flushPVR(iDVBDemux *decoding_demux=0);

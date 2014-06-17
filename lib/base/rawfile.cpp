@@ -81,9 +81,9 @@ ssize_t eRawFile::read(off_t offset, void *buf, size_t count)
 		if (count < 0)
 			return 0;
 	}
-	
+
 	int ret;
-	
+
 	ret = ::read(m_fd, buf, count);
 
 	if (ret > 0)
@@ -124,7 +124,7 @@ int eRawFile::switchOffset(off_t off)
 		if (filenr >= m_nrfiles)
 			filenr = m_nrfiles - 1;
 		if (filenr != m_current_file)
-		{	
+		{
 //			eDebug("-> %d", filenr);
 			close();
 			m_fd = openFileUncached(filenr);
@@ -133,7 +133,7 @@ int eRawFile::switchOffset(off_t off)
 		}
 	} else
 		m_base_offset = 0;
-	
+
 	if (off != m_last_offset)
 	{
 		m_last_offset = ::lseek(m_fd, off - m_base_offset, SEEK_SET) + m_base_offset;

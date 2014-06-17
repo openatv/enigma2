@@ -88,7 +88,7 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 	fontListEntry *font=(fontListEntry *)face_id;
 	if (!font)
 		return -1;
-	
+
 //	eDebug("[FONT] FTC_Face_Requester (%s)", font->face.c_str());
 
 	int error;
@@ -99,7 +99,7 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 	}
 	FT_Select_Charmap(*aface, ft_encoding_unicode);
 	return 0;
-}																																																																
+}
 
 int fontRenderClass::getFaceProperties(const std::string &face, FTC_FaceID &id, int &renderflags)
 {
@@ -198,7 +198,7 @@ fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
 	eDebug("[FONT] loading fonts...");
 	fflush(stdout);
 	font=0;
-	
+
 	int maxbytes=4*1024*1024;
 	eDebug("[FONT] Intializing font cache, using max. %dMB...", maxbytes/1024/1024);
 	fflush(stdout);
@@ -266,7 +266,7 @@ fontRenderClass::~fontRenderClass()
 		font=font->next;
 		delete f;
 	}
-//	auskommentiert weil freetype und enigma die kritische masse des suckens ueberschreiten. 
+//	auskommentiert weil freetype und enigma die kritische masse des suckens ueberschreiten.
 //	FTC_Manager_Done(cacheManager);
 //	FT_Done_FreeType(library);
 }
@@ -359,21 +359,21 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		if (ng.borderimage)
 		{
 			xadvance = ng.borderimage->advance.x;
-			/* 
+			/*
 			 * NOTE: our boundingbox calculation uses xadvance, and ignores glyph width.
 			 * This is fine for all glyphs, except the last one (i.e. rightmost, for left-to-right rendering)
 			 * For border glyphs, xadvance is significantly smaller than the glyph width.
 			 * In fact, border glyphs often have the same xadvance as normal glyphs, borders
 			 * are allowed to overlap.
 			 * As a result, the boundingbox is calculated too small, the actual glyphs won't
-			 * fit into it, and depending on the alignment, one of the borders on the sides 
+			 * fit into it, and depending on the alignment, one of the borders on the sides
 			 * will be cut off.
 			 * Ideally, the boundingbox calculation should be rewritten, to use both advance and glyph dimensions.
 			 * However, for now we adjust xadvance of the last glyph, so the current calculation will produce
 			 * a better fitting boundingbox for border glyphs.
 			 *
-			 * The compensation equals half of the difference between 'normal' glyph width, 
-			 * and border glyph width. (half the width difference is on the left, and half on the right 
+			 * The compensation equals half of the difference between 'normal' glyph width,
+			 * and border glyph width. (half the width difference is on the left, and half on the right
 			 * of the glyph, we only need to compensate for the part on the right)
 			 * And since xadvance is in 16.16 units, we use (dW/2) << 16 = dW << 15
 			 */
@@ -518,12 +518,12 @@ void eTextPara::calc_bbox()
 		boundBox = eRect();
 		return;
 	}
-	
+
 	bboxValid = 1;
 
 	glyphString::iterator i(glyphs.begin());
-	
-	boundBox = i->bbox; 
+
+	boundBox = i->bbox;
 	++i;
 
 	for (; i != glyphs.end(); ++i)
@@ -628,7 +628,7 @@ shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &tex
 int eTextPara::renderString(const char *string, int rflags, int border)
 {
 	singleLock s(ftlock);
-	
+
 	if (!current_font)
 		return -1;
 
@@ -675,7 +675,7 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	std::vector<unsigned long> uc_string, uc_visual;
 	if (string)
 		uc_string.reserve(strlen(string));
-	
+
 	const char *p = string ? string : "";
 
 	while (*p)
@@ -720,7 +720,7 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 
 		// character -> glyph conversion
 	shape(uc_shape, uc_string);
-	
+
 		// now do the usual logical->visual reordering
 	int size=uc_shape.size();
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
@@ -730,13 +730,13 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	std::copy(uc_shape.begin(), uc_shape.end(), array);
 	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
 	uc_visual.assign(target, target+size);
-	
+
 	glyphs.reserve(size);
-	
+
 	unsigned long newcolor = 0;
 	bool activate_newcolor = false;
 	int nextflags = 0;
-	
+
 	for (std::vector<unsigned long>::const_iterator i(uc_visual.begin());
 		i != uc_visual.end(); ++i)
 	{
@@ -998,7 +998,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 					da ^= 0xFF;
 				}
 				for (int i=0; i<16; ++i)
-					lookup16_invert[i]=lookup16_normal[i^0xF];				
+					lookup16_invert[i]=lookup16_normal[i^0xF];
 			} else
 			{
 				eWarning("can't render to %dbpp", surface->bpp);
@@ -1082,7 +1082,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			{
 				int extra_source_stride = pitch - sx;
 				switch (opcode)
-				{ 
+				{
 				case 0: 		// 4bit lookup to 8bit
 					{
 					register int extra_buffer_stride = buffer_stride - sx;
@@ -1174,16 +1174,16 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 		int linelength=0;
 		int numspaces=0, num=0;
 		begin=end;
-		
+
 		ASSERT( end != glyphs.end());
-		
+
 			// zeilenende suchen
 		do {
 			last=end;
 			++end;
 		} while ((end != glyphs.end()) && (!(end->flags&GS_ISFIRST)));
 			// end zeigt jetzt auf begin der naechsten zeile
-		
+
 		for (c=begin; c!=end; ++c)
 		{
 				// space am zeilenende skippen

@@ -97,11 +97,11 @@ private:
 	pts_t m_pts_begin, m_pts_end;
 	off_t m_offset_begin, m_offset_end;
 	pts_t m_pts_length;
-	
+
 		/* for simple linear interpolation */
 	std::map<pts_t, off_t> m_samples;
 	int m_samples_taken;
-	
+
 	eMPEGStreamInformation m_streaminfo;
 	off_t m_last_filelength;
 	int m_futile;

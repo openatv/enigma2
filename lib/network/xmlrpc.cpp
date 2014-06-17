@@ -295,13 +295,13 @@ int eXMLRPCResponse::doCall()
 	result="";
 		// get method name
 	std::string methodName("");
-	
+
 	if (connection->remote_header["Content-Type"]!="text/xml")
 	{
 		eDebug("remote header failure (%s != text/xml)", (connection->remote_header["Content-Type"]).c_str());
 		return -3;
 	}
-	
+
 	XMLTreeNode *methodCall=parser.RootNode();
 	if (!methodCall)
 	{
@@ -317,7 +317,7 @@ int eXMLRPCResponse::doCall()
 	ePtrList<eXMLRPCVariant> params;
 //	params.setAutoDelete(true);
 #warning params autodelete remove
-	
+
 	for (XMLTreeNode *c=methodCall->GetChild(); c; c=c->GetNext())
 	{
 		if (!strcmp(c->GetType(), "methodName"))
@@ -333,18 +333,18 @@ int eXMLRPCResponse::doCall()
 			return 0;
 		}
 	}
-	
+
 	if (methodName.empty())
 	{
 		eDebug("no methodName found!");
 		return -3;
 	}
-	
+
 	eDebug("methodName: %s", methodName.c_str() );
-	
+
 	result="<?xml version=\"1.0\"?>\n"
 		"<methodResponse>";
-	
+
 	ePtrList<eXMLRPCVariant> ret;
 //	ret.setAutoDelete(true);
 #warning autodelete removed
@@ -353,11 +353,11 @@ int eXMLRPCResponse::doCall()
 	int fault;
 
 	std::vector<eXMLRPCVariant>* v = params.getVector();
-	
+
 	if (!proc)
 	{
 		fault=1;
-		xmlrpc_fault(ret, -1, "called method not present");         	
+		xmlrpc_fault(ret, -1, "called method not present");
 	} else
 		fault=proc( *v , ret);
 
@@ -419,7 +419,7 @@ void eXMLRPCResponse::haveData(void *data, int len)
 		eDebug("%s: %s", temp, parser.ErrorString(parser.GetErrorCode()));
 		err=1;
 	}
-	
+
 	if ((!err) && (!len))
 		err=doCall();
 
@@ -463,7 +463,7 @@ int xmlrpc_checkArgs(const std::string& args, std::vector<eXMLRPCVariant> &parm,
 	 	xmlrpc_fault(res, -500, std::string().sprintf("parameter count mismatch (found %d, expected %d)", parm.size(), args.length()));
 		return 1;
 	}
-	
+
 	for (unsigned int i=0; i<args.length(); i++)
 	{
 		switch (args[i])

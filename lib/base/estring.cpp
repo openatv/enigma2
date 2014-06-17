@@ -31,8 +31,8 @@ std::string getNum(int val, int sys)
 	if (sys == 10)
 		snprintf(buf, 12, "%i", val);
 	else if (sys == 16)
-		snprintf(buf, 12, "%X", val);		
-	
+		snprintf(buf, 12, "%X", val);
+
 	std::string res;
 	res.assign(buf);
 	return res;
@@ -695,10 +695,10 @@ std::string removeDVBChars(const std::string &s)
 				continue;
 			}
 		}
-		
+
 		res += s[i];
 	}
-	
+
 	return res;
 }
 
