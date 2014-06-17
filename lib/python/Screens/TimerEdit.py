@@ -480,6 +480,7 @@ class TimerSanityConflict(Screen, TimerListButtons):
 	EDIT2 = 2
 	ENABLE = 3
 	DISABLE = 4
+	STOPDISABLE = 5
 
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -504,17 +505,20 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self["timer2"] = TimerList(self.list2)
 
 		self.buttonActions = (
-			(None,              ""),           # EMPTY = 0
-			(self.editTimer1,   _("Edit")),    # EDIT1 = 1
-			(self.editTimer2,   _("Edit")),    # EDIT2 = 2
-			(self.toggleTimer,  _("Enable")),  # ENABLE = 3
-			(self.toggleTimer,  _("Disable")), # DISABLE = 4
+			(None,              ""),                  # EMPTY = 0
+			(self.editTimer1,   _("Edit")),           # EDIT1 = 1
+			(self.editTimer2,   _("Edit")),           # EDIT2 = 2
+			(self.toggleTimer,  _("Enable")),         # ENABLE = 3
+			(self.toggleTimer,  _("Disable")),        # DISABLE = 4
+			(self.toggleTimer,  _("Stop & Disable")), # STOPDISABLE = 5
 		)
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
 				"ok": self.leave_ok,
 				"cancel": self.leave_cancel,
+				"left": self.left,
+				"right": self.right,
 				"up": self.up,
 				"down": self.down
 			}, -1)
@@ -538,8 +542,7 @@ class TimerSanityConflict(Screen, TimerListButtons):
 			if not self.timer[0].isRunning():
 				self.timer[0].disabled = True
 				self.session.nav.RecordTimer.timeChanged(self.timer[0])
-
-		elif not self.timer[x].isRunning():
+		else:
 			self.timer[x].disabled = True
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 			if self.timer[x].disabled:
@@ -559,10 +562,22 @@ class TimerSanityConflict(Screen, TimerListButtons):
 	def up(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveUp)
 		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self.updateState()
 
 	def down(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self.updateState()
+
+	def left(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self.updateState()
+
+	def right(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self.updateState()
 
 	def updateRedState(self, cur):
 		self.assignButton("red", self.EDIT1)
@@ -579,10 +594,11 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		if cur is not None:
 			if cur.disabled:
 				self.assignButton(col, self.ENABLE)
-			elif cur.isRunning() and not cur.repeated:
-				self.assignButton(col, self.EMPTY)
 			else:
-				self.assignButton(col, self.DISABLE)
+				if cur.isRunning():
+					self.assignButton(col, self.STOPDISABLE)
+				else:
+					self.assignButton(col, self.DISABLE)
 		else:
 			self.assignButton(col, self.EMPTY)
 
