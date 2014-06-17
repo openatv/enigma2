@@ -518,20 +518,46 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		self.oldStyleControls = False
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUpCheck, _("Open service list and select previous channel")),
-				"switchChannelDown": (self.switchChannelDownCheck, _("Open service list and select next channel")),
+				"switchChannelUp": (self.switchChannelUpCheck, _("Open service list and when configured select previous channel")),
+				"switchChannelDown": (self.switchChannelDownCheck, _("Open service list and when configured select next channel")),
 				"zapUp": (self.zapUpCheck, _("Switch to previous channel")),
-				"zapDown": (self.zapDownCheck, _("Switch next channel")),
+				"zapDown": (self.zapDownCheck, _("Switch to next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 			})
+
+		self.onExecBegin.append(self.__onExecBegin)
+
+	def __onExecBegin(self):
+		if self.oldStyleControls != config.usage.oldstyle_zap_controls.value:
+			self.oldStyleControls = config.usage.oldstyle_zap_controls.value
+			newHelpList = []
+			for x in self.helpList:
+				if x[1] == "InfobarChannelSelection":
+					print x
+					newX = []
+					for y in x[2]:
+						if y[0] ==  "switchChannelUp":
+							y = (y[0], self.oldStyleControls and _("Switch to next channel") or _("Open service list and when configured select previous channel"))
+						if y[0] ==  "switchChannelDown":
+							y = (y[0], self.oldStyleControls and _("Switch to previous channel") or _("Open service list and when configured select next channel"))
+						if y[0] ==  "zapUp":
+							y = (y[0], self.oldStyleControls and  _("Open service list and when configured select previous channel") or _("Switch to previous channel"))
+						if y[0] == "zapDown":
+							y = (y[0], self.oldStyleControls and _("Open service list and when configured select next channel") or _("Switch to next channel"))
+						newX.append(y)	
+					x = (x[0], x[1], newX)
+					print x
+				newHelpList.append(x)
+			self.helpList = newHelpList	
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -564,25 +590,25 @@ class InfoBarChannelSelection:
 			self.servicelist.historyNext()
 
 	def switchChannelUpCheck(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if self.oldStyleControls:
 			self.zapDown()
 		else:
 			self.switchChannelUp()
 
 	def switchChannelDownCheck(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if self.oldStyleControls:
 			self.zapUp()
 		else:
 			self.switchChannelDown()
 
 	def zapUpCheck(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if self.oldStyleControls:
 			self.switchChannelUp()
 		else:
 			self.zapUp()
 
 	def zapDownCheck(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if self.oldStyleControls:
 			self.switchChannelDown()
 		else:
 			self.zapDown()
