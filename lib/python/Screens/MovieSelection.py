@@ -1186,14 +1186,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				updates = pickle.load(file)
 				file.close()
 				self.applyConfigSettings(updates)
-			except IOError, e:
-				updates = {
-					"moviesort": config.movielist.moviesort.default,
-					"description": config.movielist.description.default,
-					"movieoff": config.usage.on_movie_eof.default
-				}
-				self.applyConfigSettings(updates)
-				pass # ignore fail to open errors
 			except Exception, e:
 				print "Failed to load settings from %s: %s" % (path, e)
 		else:
