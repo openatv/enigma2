@@ -237,6 +237,8 @@ class TimerEditList(Screen, TimerListButtons):
 
 		if cur:
 			self["description"].setText(cur.description)
+		else:
+			self["description"].setText("")
 
 		self.updateRedState(cur)
 		self.updateGreenState(cur)
