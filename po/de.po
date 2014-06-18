@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-22 12:32+0100\n"
-"PO-Revision-Date: 2014-05-25 20:37+0100\n"
+"POT-Creation-Date: 2014-06-16 18:37+0100\n"
+"PO-Revision-Date: 2014-06-18 23:17+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1234,6 +1234,9 @@ msgstr "Verhalten beim Stoppen eines Films"
 msgid "Behavior when a movie reaches the end"
 msgstr "Verhalten beim Filmende"
 
+msgid "Big PiP"
+msgstr ""
+
 msgid "Bitrate:"
 msgstr "Bitrate:"
 
@@ -1460,6 +1463,9 @@ msgstr "Karten: 0"
 
 msgid "Cardserial"
 msgstr "Seriennummer der Karte"
+
+msgid "Cascade PiP"
+msgstr "Cascade PiP"
 
 msgid "Center DVB subtitles"
 msgstr "DVB Untertitel zentrieren"
@@ -2327,6 +2333,10 @@ msgstr "Akt. Status:"
 msgid "Current device: "
 msgstr "Aktuelles Gerät:"
 
+#, python-format
+msgid "Current mode: %s \n"
+msgstr "Aktueller Modus: %s\n"
+
 msgid "Current settings:"
 msgstr "Aktuelle Einstellungen:"
 
@@ -2994,6 +3004,12 @@ msgstr "Netmed EPG aktivieren"
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat EPG aktivieren"
 
+msgid "Enable Virgin EPG"
+msgstr "Virgin EPG aktivieren"
+
+msgid "Enable Wake On LAN"
+msgstr "Aktiviere WakeOnLan"
+
 msgid "Enable auto fast scan"
 msgstr "Automatische Schnellsuche aktivieren"
 
@@ -3212,6 +3228,9 @@ msgstr "Extern"
 
 msgid "External (CF)"
 msgstr "Extern (CF)"
+
+msgid "External PiP"
+msgstr "Externes PiP"
 
 msgid "External subtitle color"
 msgstr "Farbe externe Untertitel"
@@ -5064,6 +5083,9 @@ msgstr "Nur Erweiterungen."
 msgid "Only free scan"
 msgstr "Nur frei empfangbare Sender speichern"
 
+msgid "Open favouries list"
+msgstr "Favoritenliste öffnen"
+
 msgid "Open satellites list"
 msgstr "Öffne Satellitenliste"
 
@@ -5642,8 +5664,8 @@ msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
 msgid "Preparing... Please wait"
 msgstr "Vorbereitung läuft... Bitte warten!"
 
-msgid "Press '0' to toggle internal/external PiP."
-msgstr "Drücke '0' um zwischen internen und externem PiP zu wechseln"
+msgid "Press '0' to toggle PiP mode"
+msgstr "Drücke '0' um PiP-Modus zu wechseln"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "INFO drücken für zusätzliche Informationen."
@@ -6041,6 +6063,9 @@ msgstr ""
 
 msgid "Repeats"
 msgstr "Wiederholungen"
+
+msgid "Require authentication for http streams"
+msgstr "Verlange Authentifizierung für HTTP-Streams"
 
 msgid "Required medium type:"
 msgstr "Benötigte Rohlingsorte:"
@@ -7083,6 +7108,9 @@ msgstr "Ausschalten"
 msgid "Side by Side"
 msgstr "Side by Side"
 
+msgid "Side by side"
+msgstr "Side by Side"
+
 msgid "Signal OK, proceeding"
 msgstr "Signal OK, setze fort"
 
@@ -7318,6 +7346,9 @@ msgstr "Spanisch"
 
 msgid "Split preview mode"
 msgstr "Splitscreen für Vorschau-Modus"
+
+msgid "Splitscreen"
+msgstr "Splitscreen"
 
 msgid "Sports"
 msgstr "Sport"
@@ -8559,6 +8590,18 @@ msgstr "Tuner Typ"
 msgid "Turkish"
 msgstr "Türkisch"
 
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr "Deaktiviere HDMI-In Vollbild"
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr "Deaktiviere HDMI-In PiP-Modus"
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr "Aktiviere HDMI-In Vollbild"
+
+msgid "Turn on HDMI-IN PiP mode"
+msgstr "HDMI in PiP-Modus aktivieren"
+
 msgid "Turn on the power LED during standby."
 msgstr "Power-LED in Bereitschaft einschalten."
 
@@ -8714,8 +8757,8 @@ msgstr "Farbbutton von ViX benutzen *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Benutze ViaSat EPG-Informationen benutzen wenn sie vorhanden sind."
 
-msgid "Use WOL"
-msgstr "WOL benutzen"
+msgid "Use Virgin EPG information when it is available."
+msgstr "Benutze Virgin EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
@@ -9224,6 +9267,9 @@ msgid ""
 msgstr ""
 "Wenn aktiviert wird eine Warnung angezeigt und der Benutzer hat die "
 "Möglichkeit TimeShift zu stoppen oder fortzuführen."
+
+msgid "When enabled, authentication is required to watch http streams."
+msgstr "Wenn aktiviert wird Authentifizierung für HTTP-Streams benötigt."
 
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
 msgstr ""
@@ -11151,14 +11197,14 @@ msgstr "umgeschaltet"
 #~ msgid "Show tag menu"
 #~ msgstr "Zeige Tag-Menü"
 
-#~ msgid "Side by side"
-#~ msgstr "Side by Side"
-
 #~ msgid "Top and bottom"
 #~ msgstr "Oben und Unten"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-Befehl"
+
+#~ msgid "Use WOL"
+#~ msgstr "WOL benutzen"
 
 #~ msgid "Video setup"
 #~ msgstr "Bild Einstellungen"
