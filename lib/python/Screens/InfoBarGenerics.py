@@ -589,7 +589,7 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def switchChannelUpName(self):
-		return config.usage.oldstyle_zap_controls.value and  _("Open service list and when configured select previous channel") or _("Switch to previous channel")
+		return config.usage.oldstyle_zap_controls.value and  _("Switch to next channel") or _("Open service list and when configured select previous channel")
 
 	def switchChannelDownName(self):
 		return config.usage.oldstyle_zap_controls.value and _("Switch to previous channel") or _("Open service list and when configured select next channel")
