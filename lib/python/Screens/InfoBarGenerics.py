@@ -589,16 +589,40 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def switchChannelUpName(self):
-		return config.usage.oldstyle_zap_controls.value and  _("Switch to next channel") or _("Open service list and when configured select previous channel")
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Switch to next channel")
+		else:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select previous channel")
+		return value
 
 	def switchChannelDownName(self):
-		return config.usage.oldstyle_zap_controls.value and _("Switch to previous channel") or _("Open service list and when configured select next channel")
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Switch to previous channel")
+		else:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select next channel")
+		return value
 
 	def zapUpName(self):
-		return config.usage.oldstyle_zap_controls.value and  _("Open service list and when configured select previous channel") or _("Switch to previous channel")
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select previous channel")
+		else:
+			value = _("Switch to previous channel")
+		return value
 
 	def zapDownName(self):
-		return config.usage.oldstyle_zap_controls.value and _("Open service list and when configured select next channel") or _("Switch to next channel")
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select next channel")
+		else:
+			value = _("Switch to next channel")
+		return value
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
