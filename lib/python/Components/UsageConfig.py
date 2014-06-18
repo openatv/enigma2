@@ -10,6 +10,7 @@ from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
+from boxbranding import getBoxType
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -429,7 +430,10 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
-			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+			if getBoxType() == 'et10000':
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+			else:
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")		
 		config.network.wol = ConfigYesNo(default = False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = False)
