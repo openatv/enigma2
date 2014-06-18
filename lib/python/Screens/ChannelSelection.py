@@ -1406,6 +1406,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
+		self.pipzaptimer = eTimer()
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -1517,7 +1518,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			title = title[:pos]
 		if self.dopipzap:
 			# Mark PiP as inactive and effectively deactivate pipzap
-			self.session.pip.inactive()
+			self.hidePipzapMessage()
 			self.dopipzap = False
 
 			# Disable PiP if not playing a service
@@ -1533,7 +1534,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			title += _(" (TV)")
 		else:
 			# Mark PiP as active and effectively active pipzap
-			self.session.pip.active()
+			self.showPipzapMessage()
 			self.dopipzap = True
 			self.__evServiceStart()
 			# Move to service playing in pip (will not work with subservices)
@@ -1542,6 +1543,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			title += _(" (PiP)")
 		self.setTitle(title)
 		self.buildTitleString()
+
+	def showPipzapMessage(self):
+		time = config.usage.infobar_timeout.index
+		if time:
+			self.pipzaptimer.callback.append(self.hidePipzapMessage)
+			self.pipzaptimer.startLongTimer(time)
+		self.session.pip.active()
+
+	def hidePipzapMessage(self):
+		if self.pipzaptimer.isActive():
+			self.pipzaptimer.callback.remove(self.hidePipzapMessage)
+			self.pipzaptimer.stop()
+		self.session.pip.inactive()
 
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
@@ -1555,6 +1569,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
 					self.session.pip.playService(nref)
 					self.__evServiceStart()
+					self.showPipzapMessage()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
