@@ -245,6 +245,7 @@ private:
 	int m_buffer_size;
 	int m_ignore_buffering_messages;
 	bool m_is_live;
+	bool m_subtitles_paused;
 	bool m_use_prefillbuffer;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;

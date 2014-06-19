@@ -404,6 +404,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
 
 	m_state = stIdle;
+	m_subtitles_paused = false;
 	// eDebug("eServiceMP3::construct!");
 
 	const char *filename = m_ref.path.c_str();
@@ -703,6 +704,7 @@ RESULT eServiceMP3::start()
 	ASSERT(m_state == stIdle);
 
 	m_state = stRunning;
+	m_subtitles_paused = false;
 	if (m_gst_playbin)
 	{
 		// eDebug("eServiceMP3::starting pipeline");
@@ -731,6 +733,7 @@ RESULT eServiceMP3::stop()
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
+	m_subtitles_paused = false;
 	m_nownext_timer->stop();
 
 	return 0;
@@ -767,6 +770,8 @@ RESULT eServiceMP3::pause()
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
+	m_subtitles_paused = true;
+	m_subtitle_sync_timer->start(1, true);
 	trickSeek(0.0);
 
 	return 0;
@@ -777,6 +782,8 @@ RESULT eServiceMP3::unpause()
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
+	m_subtitles_paused = false;
+	m_subtitle_sync_timer->start(1, true);
 	trickSeek(1.0);
 
 	return 0;
@@ -2327,7 +2334,10 @@ void eServiceMP3::pushSubtitles()
 
 			pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, current->second.text.c_str()));
 			pango_page.m_show_pts = start_ms * 90;			// actually completely unused by widget!
-			pango_page.m_timeout = end_ms - decoder_ms;		// take late start into account
+			if (!m_subtitles_paused)
+				pango_page.m_timeout = end_ms - decoder_ms;		// take late start into account
+			else
+				pango_page.m_timeout = 60000;	//paused, subs must stay on (60s for now), avoid timeout in lib/gui/esubtitle.cpp: m_hide_subtitles_timer->start(m_pango_page.m_timeout, true);
 
 			m_subtitle_widget->setPage(pango_page);
 		}
