@@ -21,7 +21,7 @@ eListbox::~eListbox()
 {
 	if (m_scrollbar)
 		delete m_scrollbar;
-	
+
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	ptr->unbindAction(this, 0);
@@ -245,7 +245,7 @@ void eListbox::moveSelection(long dir)
 		break;
 	}
 	}
-	
+
 	/* now, look wether the current selection is out of screen */
 	m_selected = m_content->cursorGet();
 	m_top = m_selected - (m_selected % m_items_per_page);
@@ -351,21 +351,21 @@ int eListbox::event(int event, void *data, void *data2)
 	case evtPaint:
 	{
 		ePtr<eWindowStyle> style;
-		
+
 		if (!m_content)
 			return eWidget::event(event, data, data2);
 		ASSERT(m_content);
-		
+
 		getStyle(style);
-		
+
 		if (!m_content)
 			return 0;
-		
+
 		gPainter &painter = *(gPainter*)data2;
-		
+
 		m_content->cursorSave();
 		m_content->cursorMove(m_top - m_selected);
-		
+
 		gRegion entryrect = eRect(0, 0, size().width(), m_itemheight);
 		const gRegion &paint_region = *(gRegion*)data;
 
@@ -382,7 +382,7 @@ int eListbox::event(int event, void *data, void *data2)
 			if (!entry_clip_rect.empty())
 				m_content->paint(painter, *style, ePoint(xoffset, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
 
-				/* (we could clip with entry_clip_rect, but 
+				/* (we could clip with entry_clip_rect, but
 				   this shouldn't change the behavior of any
 				   well behaving content, so it would just
 				   degrade performance without any gain.) */
@@ -428,7 +428,7 @@ int eListbox::event(int event, void *data, void *data2)
 	case evtChangedSize:
 		recalcSize();
 		return eWidget::event(event, data, data2);
-		
+
 	case evtAction:
 		if (isVisible() && !isLowered())
 		{
@@ -477,17 +477,17 @@ void eListbox::entryAdded(int index)
 	if (m_content && (m_content->size() % m_items_per_page) == 1)
 		m_content_changed=true;
 	/* manage our local pointers. when the entry was added before the current position, we have to advance. */
-		
+
 		/* we need to check <= - when the new entry has the (old) index of the cursor, the cursor was just moved down. */
 	if (index <= m_selected)
 		++m_selected;
 	if (index <= m_top)
 		++m_top;
-		
+
 		/* we have to check wether our current cursor is gone out of the screen. */
 		/* moveSelection will check for this case */
 	moveSelection(justCheck);
-	
+
 		/* now, check if the new index is visible. */
 	if ((m_top <= index) && (index < (m_top + m_items_per_page)))
 	{
@@ -538,7 +538,7 @@ void eListbox::entryReset(bool selectionHome)
 		m_top = 0;
 		m_selected = 0;
 	}
-	
+
 	if (m_content && (m_selected >= m_content->size()))
 	{
 		if (m_content->size())
@@ -547,10 +547,10 @@ void eListbox::entryReset(bool selectionHome)
 			m_selected = 0;
 		m_content->cursorSet(m_selected);
 	}
-	
+
 	oldsel = m_selected;
 	moveSelection(justCheck);
-		/* if oldsel != m_selected, selectionChanged was already 
+		/* if oldsel != m_selected, selectionChanged was already
 		   emitted in moveSelection. we want it in any case, so otherwise,
 		   emit it now. */
 	if (oldsel == m_selected)

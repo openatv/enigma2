@@ -13,12 +13,12 @@ def getPlugins():
 
 	if pathExists(TUXBOX_PLUGINS_PATH):
 		dir = listdir(TUXBOX_PLUGINS_PATH)
-	
+
 		for x in dir:
 			if x[-3:] == "cfg":
 				params = getPluginParams(x)
 				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where = PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", needsRestart = True, fnc=boundFunction(main, plugin=x)))
-	
+
 	return pluginlist
 
 def getPluginParams(file):
@@ -38,6 +38,6 @@ def main(session, plugin, **kwargs):
 	print "Running plugin " + plugin[:-4] + ".so with config file", plugin
 	print getPluginParams(plugin)
 	session.open(PluginRunner, plugin[:-4].split(".so")[0])
-	
+
 def Plugins(**kwargs):
 	return getPlugins()

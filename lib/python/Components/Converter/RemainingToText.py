@@ -16,7 +16,7 @@ class RemainingToText(Converter, object):
 		elif type == "NoSeconds":
 			self.type = self.NO_SECONDS
 		elif type == "InSeconds":
-			self.type = self.IN_SECONDS	
+			self.type = self.IN_SECONDS
 		elif type == "Progress":
 			self.type = self.PROGRESS
 		elif type == "WithSecondsProgress":

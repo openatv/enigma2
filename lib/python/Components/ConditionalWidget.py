@@ -4,9 +4,9 @@ from enigma import eTimer
 class ConditionalWidget(GUIComponent):
 	def __init__(self, withTimer = True):
 		GUIComponent.__init__(self)
-		
+
 		self.setConnect(None)
-		
+
 		if (withTimer):
 			self.conditionCheckTimer = eTimer()
 			self.conditionCheckTimer.callback.append(self.update)
@@ -17,7 +17,7 @@ class ConditionalWidget(GUIComponent):
 
 	def setConnect(self, conditionalFunction):
 		self.conditionalFunction = conditionalFunction
-		
+
 	def activateCondition(self, condition):
 		if condition:
 			self.visible = 1
@@ -39,18 +39,18 @@ class BlinkingWidget(GUIComponent):
 		self.setBlinkTime(500)
 		self.timer = eTimer()
 		self.timer.callback.append(self.blink)
-	
+
 	def setBlinkTime(self, time):
 		self.blinktime = time
-		
+
 	def blink(self):
 		if self.blinking == True:
 			self.visible = not self.visible
-			
+
 	def startBlinking(self):
 		self.blinking = True
 		self.timer.start(self.blinktime)
-		
+
 	def stopBlinking(self):
 		self.blinking = False
 		if self.visible:
@@ -61,7 +61,7 @@ class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
 	def __init__(self):
 		BlinkingWidget.__init__(self)
 		ConditionalWidget.__init__(self)
-		
+
 	def activateCondition(self, condition):
 		if (condition):
 			if not self.blinking: # we are already blinking

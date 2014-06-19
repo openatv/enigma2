@@ -28,14 +28,14 @@ class DVDToolbox(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Update"))
 		self["key_yellow"] = StaticText()
-		
+
 		self["space_label"] = StaticText()
 		self["space_bar"] = Progress()
-		
+
 		self.mediuminfo = [ ]
 		self.formattable = False
 		self["details"] = ScrollLabel()
@@ -77,7 +77,7 @@ class DVDToolbox(Screen):
 			job_manager.AddJob(job)
 			from Screens.TaskView import JobView
 			self.session.openWithCallback(self.formatCB, JobView, job)
-	
+
 	def formatCB(self, in_background):
 		self.update()
 
@@ -163,7 +163,7 @@ class DVDformatJob(Job):
 		Job.__init__(self, _("DVD media toolbox"))
 		self.toolbox = toolbox
 		DVDformatTask(self)
-		
+
 	def retry(self):
 		self.tasks[0].args += self.tasks[0].retryargs
 		Job.retry(self)

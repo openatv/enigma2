@@ -36,8 +36,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarPowersaver,
-	Screen):
-	
+	InfoBarHDMI, Screen):
+
 	ALLOW_SUSPEND = True
 	instance = None
 
@@ -50,10 +50,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openTimerList": (self.openTimerList, _("Show the tv player...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=2)
-		
+
 		self.allowPiP = True
-		self.radioTV = 0
-		
+
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
@@ -162,10 +161,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
-		
+
 	def __init__(self, session, service, slist=None, lastservice=None, infobar=None):
 		Screen.__init__(self, session)
-		
+
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"InfoButtonPressed": (self.openEventView, _("open Info...")),
@@ -183,7 +182,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			}, prio = -2)
 
 		self.allowPiP = True
-		
+
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, \
 				InfoBarAudioSelection, InfoBarNotifications, \
@@ -242,7 +241,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				self.hidePipOnExitCallback(True)
 		elif config.usage.leave_movieplayer_onExit.value == "popup":
 			self.session.openWithCallback(self.leavePlayerOnExitCallback, MessageBox, _("Exit movie player?"), simple=True)
-		elif config.usage.leave_movieplayer_onExit.value == "without popup":	
+		elif config.usage.leave_movieplayer_onExit.value == "without popup":
 			self.leavePlayerOnExitCallback(True)
 
 	def leavePlayerOnExitCallback(self, answer):

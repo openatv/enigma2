@@ -9,12 +9,12 @@ class NextEpgInfo(Renderer, VariableText):
 		VariableText.__init__(self)
 		self.epgcache = eEPGCache.getInstance()
 	GUI_WIDGET = eLabel
-	
+
 	def changed(self, what):
 		self.text = ""
 		reference = self.source.service
 		info = reference and self.source.info
-		if info is None:	
+		if info is None:
 			return
 		nextEvent = self.epgcache.lookupEvent(['IBDCTSERNX', (reference.toString(), 1, -1)])
 		if nextEvent:

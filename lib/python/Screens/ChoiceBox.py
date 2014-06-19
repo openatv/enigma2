@@ -11,7 +11,7 @@ class ChoiceBox(Screen):
 
 		if isinstance(skin_name, str):
 			skin_name = [skin_name]
-		self.skinName = skin_name + ["ChoiceBox"] 
+		self.skinName = skin_name + ["ChoiceBox"]
 
 		self["text"] = Label(title)
 		self.list = []
@@ -20,7 +20,7 @@ class ChoiceBox(Screen):
 			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
-			
+
 		self.keymap = {}
 		pos = 0
 		for x in list:
@@ -34,8 +34,8 @@ class ChoiceBox(Screen):
 		self["summary_list"] = StaticText()
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
-				
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"], 
+
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.go,
 			"back": self.cancel,
@@ -84,10 +84,10 @@ class ChoiceBox(Screen):
 
 	def keyLeft(self):
 		pass
-	
+
 	def keyRight(self):
 		pass
-	
+
 	def up(self):
 		if len(self["list"].list) > 0:
 			while 1:

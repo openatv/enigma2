@@ -66,7 +66,7 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle
 //		eDebug("[SUB] !!!! YCLIP %d >= %d", y, region->height);
 		return;
 	}
-	if( subcentered && region->region_id && line < 3 ) 
+	if( subcentered && region->region_id && line < 3 )
 	{
 		for (int i = 0; i < len; i++ )
 			if( data[i] <= 8)

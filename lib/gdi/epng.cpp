@@ -76,7 +76,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		return 0;
 
 	CFile fp(filename, "rb");
-	
+
 	if (!fp)
 	{
 		eDebug("[ePNG] couldn't open %s", filename );
@@ -125,14 +125,14 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	png_init_io(png_ptr, fp);
 	png_set_sig_bytes(png_ptr, 8);
 	png_read_info(png_ptr, info_ptr);
-	
+
 	png_uint_32 width, height;
 	int bit_depth;
 	int color_type;
 	int interlace_type;
 	int channels;
 	int trns;
-	
+
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, 0, 0);
 	channels = png_get_channels(png_ptr, info_ptr);
 	trns = png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS);
@@ -184,7 +184,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	png_read_image(png_ptr, rowptr);
 
 	delete [] rowptr;
-	
+
 	int num_palette = -1, num_trans = -1;
 	if (color_type == PNG_COLOR_TYPE_PALETTE) {
 		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE)) {
@@ -195,7 +195,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 			else
 				surface->clut.data = 0;
 			surface->clut.colors = num_palette;
-			
+
 			for (int i = 0; i < num_palette; i++) {
 				surface->clut.data[i].a = 0;
 				surface->clut.data[i].r = palette[i].red;
@@ -354,8 +354,8 @@ static int savePNGto(FILE *fp, gPixmap *pixmap)
 		return -3;
 	}
 
-	png_set_IHDR(png_ptr, info_ptr, surface->x, surface->y, surface->bpp/surface->bypp, 
-		PNG_COLOR_TYPE_RGB_ALPHA, 
+	png_set_IHDR(png_ptr, info_ptr, surface->x, surface->y, surface->bpp/surface->bypp,
+		PNG_COLOR_TYPE_RGB_ALPHA,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	if (setjmp(png_jmpbuf(png_ptr)))

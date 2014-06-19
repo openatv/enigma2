@@ -1,4 +1,4 @@
-from enigma import eServiceCenter, eServiceReference 
+from enigma import eServiceCenter, eServiceReference
 
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))

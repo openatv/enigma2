@@ -51,8 +51,7 @@
 			</widget>
 		</panel>
 	</screen>
-    
-  
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;30" halign="center" >
@@ -66,7 +65,7 @@
 		</widget>
 		<panel position="bottom" size="*,44" name="SummaryClockPanel" />
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" position="top" size="*,61" font="FdLcD;30" halign="center" valign="top" />
@@ -89,15 +88,13 @@
 			</widget>
 		</panel>
 	</screen>
-	
-	<screen name="MovieContextMenuSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />
-		<panel position="bottom" size="*,18">
-			<widget source="global.CurrentTime" render="Label" position="right" size="60,*" halign="right" font="FdLcD;16" >
-				<convert type="ClockToText"></convert>
-			</widget>
-		</panel>
+
+	<screen name="MovieContextMenuSummary" position="0,0" size="96,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;12" halign="left" valign="top" noWrap="1"  foregroundColor="lightyellow" />
+		<widget source="selected" render="Label" position="0,14" size="96,32" font="FdLcD;16" />
+		<widget source="global.CurrentTime" render="Label" position="40,46" size="56,18" halign="right" font="FdLcD;16" >
+			<convert type="ClockToText"></convert>
+		</widget>
 	</screen>
 
 	<screen name="MovieSelectionSummary" position="fill">
@@ -182,9 +179,10 @@
 		</widget>
 	</screen>
 
-	<screen name="ChoiceBox_summary" position="fill">
-		<widget source="parent.summary_list" render="Label" position="top" size="*,181" font="FdLcD;25" halign="left" />
-    </screen>	
+	<screen name="ChoiceBox_summary" position="0,0" size="96,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow" />
+		<widget source="parent.summary_selection" render="Label" position="0,14" size="96,50" font="FdLcD;14" halign="left" />
+	</screen>
 
 	<screen name="MessageBox_summary" position="fill">
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />

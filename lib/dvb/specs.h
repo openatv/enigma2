@@ -21,8 +21,8 @@ public:
 		m_spec.tid     = ProgramMapSection::TID;
 		m_spec.tidext  = sid;
 		m_spec.timeout = timeout; // ProgramMapSection::TIMEOUT;
-		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
-			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt | 
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt |
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
 	}
 	operator eDVBTableSpec &()
@@ -143,7 +143,7 @@ public:
 		m_spec.tid     = EventInformationSection::TID;
 		m_spec.tidext  = sid;
 		m_spec.timeout = EventInformationSection::TIMEOUT;
-		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt |
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
 	}

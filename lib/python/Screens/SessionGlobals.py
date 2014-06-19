@@ -22,20 +22,20 @@ class SessionGlobals(Screen):
 		self["TunerInfo"] = TunerInfo()
 		self["RecordState"] = RecordState(session)
 		self["Standby"] = Boolean(fixed = False)
-		
+
 		from Components.SystemInfo import SystemInfo
-		
+
 		combine = Combine(func = lambda s: {(False, False): 0, (False, True): 1, (True, False): 2, (True, True): 3}[(s[0].boolean, s[1].boolean)])
 		combine.connect(self["Standby"])
 		combine.connect(self["RecordState"])
 
 		#                      |  two leds  | single led |
-		# recordstate  standby   red green   
+		# recordstate  standby   red green
 		#    false      false    off   on     off
 		#    true       false    blnk  on     blnk
 		#    false      true      on   off    off
 		#    true       true     blnk  off    blnk
-		
+
 		PATTERN_ON     = (20, 0xffffffff, 0xffffffff)
 		PATTERN_OFF    = (20, 0, 0)
 		PATTERN_BLINK  = (20, 0x55555555, 0xa7fccf7a)

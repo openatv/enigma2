@@ -18,7 +18,7 @@ class MessageBox(Screen):
 
 		if simple:
 			self.skinName="MessageBoxSimple"
-		
+
 		self.msgBoxID = msgBoxID
 
 		self["text"] = Label(text)
@@ -52,7 +52,7 @@ class MessageBox(Screen):
 				self.list = [ (_("no"), False), (_("yes"), True) ]
 		else:
 			self.list = []
-		
+
 		self["list"] = MenuList(self.list)
 		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])
@@ -60,7 +60,7 @@ class MessageBox(Screen):
 			self["list"].hide()
 
 		if enable_input:
-			self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"], 
+			self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"],
 				{
 					"cancel": self.cancel,
 					"ok": self.ok,

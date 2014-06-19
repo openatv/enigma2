@@ -6,11 +6,11 @@ from Source import Source
 class EventInfo(PerServiceBase, Source, object):
 	NOW = 0
 	NEXT = 1
-	
+
 	def __init__(self, navcore, now_or_next):
 		Source.__init__(self)
-		PerServiceBase.__init__(self, navcore, 
-			{ 
+		PerServiceBase.__init__(self, navcore,
+			{
 				iPlayableService.evStart: self.gotEvent,
 				iPlayableService.evUpdatedEventInfo: self.gotEvent,
 				iPlayableService.evEnd: self.gotEvent

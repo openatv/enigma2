@@ -30,9 +30,9 @@ public:
 
 	void bindKey(const std::string &domain, const std::string &device, int key, int flags, const std::string &context, const std::string &action);
 	void unbindKeyDomain(const std::string &domain);
-	
+
 	void keyPressed(const std::string &device, int key, int flags);
-	
+
 #ifndef SWIG
 	static RESULT getInstance(ePtr<eActionMap> &);
 private:
@@ -45,14 +45,14 @@ private:
 //		eActionContext *m_context;
 		std::string m_context; // FIXME
 		std::string m_domain;
-		
+
 		ePyObject m_fnc;
-		
+
 		eWidget *m_widget;
 		int m_id;
 		int m_prev_seen_make_key;
 	};
-	
+
 	std::multimap<int, eActionBinding> m_bindings;
 
 	friend struct compare_string_keybind_native;
@@ -62,13 +62,13 @@ private:
 		std::string m_domain;
 		int m_key;
 		int m_flags;
-		
+
 //		eActionContext *m_context;
 		int m_action;
 	};
-	
+
 	std::multimap<std::string, eNativeKeyBinding> m_native_keys;
-	
+
 	friend struct compare_string_keybind_python;
 	struct ePythonKeyBinding
 	{
@@ -76,10 +76,10 @@ private:
 		std::string m_domain;
 		int m_key;
 		int m_flags;
-		
+
 		std::string m_action;
 	};
-	
+
 	std::multimap<std::string, ePythonKeyBinding> m_python_keys;
 #endif
 };

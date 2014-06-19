@@ -66,9 +66,9 @@ void eFilePushThread::thread()
 			m_current_position = current_span_offset;
 			bytes_read = 0;
 		}
-		
+
 		size_t maxread = m_buffersize;
-		
+
 			/* if we have a source span, don't read past the end */
 		if (m_sg && maxread > current_span_remaining)
 			maxread = current_span_remaining;
@@ -143,9 +143,9 @@ void eFilePushThread::thread()
 			if (m_stop)
 				break;
 
-				/* in stream_mode, we are sending EOF events 
+				/* in stream_mode, we are sending EOF events
 				   over and over until somebody responds.
-				   
+
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
@@ -209,7 +209,7 @@ void eFilePushThread::thread()
 		if (m_stop == 0)
 			m_run_state = 1;
 	}
-	
+
 	} while (m_stop == 0);
 	eDebug("FILEPUSH THREAD STOP");
 }

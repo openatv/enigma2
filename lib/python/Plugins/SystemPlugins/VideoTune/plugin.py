@@ -5,7 +5,7 @@ def videoFinetuneMain(session, **kwargs):
 	session.open(VideoFinetune)
 
 def startSetup(menuid):
-	if menuid != "system": 
+	if menuid != "system":
 		return [ ]
 
 	return [(_("Video fine tuning"), videoFinetuneMain, "video_finetune", None)]

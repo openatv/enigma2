@@ -520,16 +520,17 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		self.oldStyleControls = False
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
-				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"zapUp": (self.zapUp, _("Switch to previous channel")),
-				"zapDown": (self.zapDown, _("Switch next channel")),
+				"switchChannelUp": (self.switchChannelUpCheck, self.switchChannelUpName),
+				"switchChannelDown": (self.switchChannelDownCheck, self.switchChannelDownName),
+				"zapUp": (self.zapUpCheck, self.zapUpName),
+				"zapDown": (self.zapDownCheck, self.zapDownName),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
@@ -610,6 +611,66 @@ class InfoBarChannelSelection:
 		self.servicelist.showFavourites()
 		self.session.execDialog(self.servicelist)	
 
+	def switchChannelUpCheck(self):
+		if config.usage.oldstyle_zap_controls.value:
+			self.zapDown()
+		else:
+			self.switchChannelUp()
+
+	def switchChannelDownCheck(self):
+		if config.usage.oldstyle_zap_controls.value:
+			self.zapUp()
+		else:
+			self.switchChannelDown()
+
+	def zapUpCheck(self):
+		if config.usage.oldstyle_zap_controls.value:
+			self.switchChannelUp()
+		else:
+			self.zapUp()
+
+	def zapDownCheck(self):
+		if config.usage.oldstyle_zap_controls.value:
+			self.switchChannelDown()
+		else:
+			self.zapDown()
+
+	def switchChannelUpName(self):
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Switch to next channel")
+		else:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select previous channel")
+		return value
+
+	def switchChannelDownName(self):
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Switch to previous channel")
+		else:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select next channel")
+		return value
+
+	def zapUpName(self):
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select previous channel")
+		else:
+			value = _("Switch to previous channel")
+		return value
+
+	def zapDownName(self):
+		if config.usage.oldstyle_zap_controls.value:
+			value = _("Open service list")
+			if not "keep" in config.usage.servicelist_cursor_behavior.value:
+				value += " " + _("and select next channel")
+		else:
+			value = _("Switch to next channel")
+		return value
+
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
 			self.servicelist.moveUp()
@@ -618,9 +679,6 @@ class InfoBarChannelSelection:
 	def switchChannelDown(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
 			self.servicelist.moveDown()
-		self.session.execDialog(self.servicelist)
-
-	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
@@ -666,6 +724,9 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.moveDown()
 		self.servicelist.zap(enable_pipzap = True)
+
+	def openServiceList(self):
+		self.session.execDialog(self.servicelist)
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -1943,10 +2004,13 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
-		if SystemInfo.get("NumVideoDecoders", 1) > 1:
+
+		self.lastPiPService = None
+
+		if SystemInfo["PIPAvailable"]:
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
-					"activatePiP": (self.activePiP, _("Activate PiP")),
+					"activatePiP": (self.activePiP, self.activePiPName),
 				})
 			if (self.allowPiP):
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
@@ -1997,17 +2061,19 @@ class InfoBarPiP:
 			slist = self.servicelist
 			if slist and slist.dopipzap:
 				self.togglePipzap()
-			del self.session.pip
-			if SystemInfo["LCDMiniTV"]:
-				if config.lcd.modepip.value >= "1":
-					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
-					f.close()
-			self.session.pipshown = False
+			if self.session.pipshown:
+				self.lastPiPService = self.session.pip.getCurrentServiceReference()
+				del self.session.pip
+				if SystemInfo["LCDMiniTV"]:
+					if config.lcd.modepip.value >= "1":
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.modeminitv.value)
+						f.close()
+				self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -2026,14 +2092,28 @@ class InfoBarPiP:
 						f.write("1")
 						f.close()				
 			else:
-				self.session.pipshown = False
-				del self.session.pip
+				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				else:
+					self.lastPiPService = None
+					self.session.pipshown = False
+					del self.session.pip
 
 	def activePiP(self):
-		if self.session.pipshown:
-			self.togglePipzap()
-		else:
+		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
 			self.showPiP()
+		else:
+			self.togglePipzap()
+
+	def activePiPName(self):
+		if self.servicelist and self.servicelist.dopipzap:
+			return _("Disable Picture in Picture")
+		if self.session.pipshown:
+			return _("Zap focus to Picture in Picture")
+		else:
+			return _("Activate Picture in Picture")
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -3020,68 +3100,72 @@ class InfoBarPowersaver:
 		if Screens.Standby.inStandby:
 			self.inactivityTimeoutCallback(True)
 		else:
-			if int(config.usage.inactivity_timer.value) < 0:
-				message = _("Your receiver will shutdown due to inactivity.")
-			else:
-				message = _("Your receiver will got to standby due to inactivity.")
-			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple=True, default=False, timeout_default=True)	
+			message = _("Your receiver will got to standby due to inactivity.") + "\n" + _("Do you want this?")
+			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple=True, default=False, timeout_default=True)
 
 	def inactivityTimeoutCallback(self, answer):
 		if answer:
-			self.goShutdownOrStandby(int(config.usage.inactivity_timer.value))
+			self.goStandby()
 		else:
 			print "[InfoBarPowersaver] abort"
 
 	def setSleepTimer(self, time):
 		print "[InfoBarPowersaver] set sleeptimer", time
 		if time:
-			if time < 0:
-				message = _("And will shutdown your receiver over ")
-			else:
-				message = _("And will put your receiver in standby over ")
+			message = _("And will put your receiver in standby over ")
 			m = abs(time / 60)
 			message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
-			self.sleepTimer.startLongTimer(abs(time))
+			self.sleepTimer.startLongTimer(time)
 		else:
 			message = _("The sleep timer has been disabled.")
 			self.sleepTimer.stop()
 		Notifications.AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
-		self.sleepTimerSetting = time
 
 	def sleepTimerTimeout(self):
-		if Screens.Standby.inStandby:
-			self.sleepTimerTimeoutCallback(True)
-		else:
+		if not Screens.Standby.inStandby:
 			list = [ (_("Yes"), True), (_("Extend sleeptimer 15 minutes"), "extend"), (_("No"), False) ]
-			if self.sleepTimerSetting < 0:
-				message = _("Your receiver will shutdown due to the sleeptimer.")
-			elif self.sleepTimerSetting > 0:
-				message = _("Your receiver will got to stand by due to the sleeptimer.")
+			message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=list, default=False, timeout_default=True)	
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=list, default=False, timeout_default=True)
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
 			print "[InfoBarPowersaver] extend sleeptimer"
-			if self.sleepTimerSetting < 0:
-				self.setSleepTimer(-900)
-			else:
-				self.setSleepTimer(900)
+			self.setSleepTimer(900)
 		elif answer:
-			self.goShutdownOrStandby(self.sleepTimerSetting)
+			self.goStandby()
 		else:
 			print "[InfoBarPowersaver] abort"
 			self.setSleepTimer(0)
 
-	def goShutdownOrStandby(self, value):
-		if value < 0:
-			if Screens.Standby.inStandby:
-				print "[InfoBarPowersaver] already in standby now shut down"
-				RecordTimerEntry.TryQuitMainloop()
-			elif not Screens.Standby.inTryQuitMainloop:
-				print "[InfoBarPowersaver] goto shutdown"
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
-		elif not Screens.Standby.inStandby:
+	def goStandby(self):
+		if not Screens.Standby.inStandby:
 			print "[InfoBarPowersaver] goto standby"
 			self.session.open(Screens.Standby.Standby)
+
+class InfoBarHDMI:
+	def __init__(self):
+		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
+			{
+				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
+			}, prio=2)
+
+	def HDMIIn(self):
+		slist = self.servicelist
+		if slist.dopipzap:
+			curref = self.session.pip.getCurrentService()
+			if curref and curref.type != 8192:
+				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			else:
+				self.session.pip.playService(slist.servicelist.getCurrent())
+		else:
+			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if curref and curref.type != 8192:
+				if curref and curref.type != -1 and os.path.splitext(curref.toString().split(":")[10])[1].lower() in AUDIO_EXTENSIONS.union(MOVIE_EXTENSIONS, DVD_EXTENSIONS):
+					setResumePoint(self.session)
+				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			elif isStandardInfoBar(self):
+				self.session.nav.playService(slist.servicelist.getCurrent())
+			else:
+				self.session.nav.playService(self.cur_service)
+

@@ -31,9 +31,9 @@ eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
 eDVBCIInterfaces::eDVBCIInterfaces()
 {
 	int num_ci = 0;
-	
+
 	instance = this;
-	
+
 	eDebug("scanning for common interfaces..");
 
 	while (1)
@@ -86,7 +86,7 @@ eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
 			return i;
 
 	eDebug("FIXME: request for unknown slot");
-			
+
 	return 0;
 }
 
@@ -152,7 +152,7 @@ int eDVBCIInterfaces::startMMI(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->startMMI();
 }
 
@@ -162,7 +162,7 @@ int eDVBCIInterfaces::stopMMI(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->stopMMI();
 }
 
@@ -172,7 +172,7 @@ int eDVBCIInterfaces::answerText(int slotid, int answer)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->answerText(answer);
 }
 
@@ -182,7 +182,7 @@ int eDVBCIInterfaces::answerEnq(int slotid, char *value)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->answerEnq(value);
 }
 
@@ -192,7 +192,7 @@ int eDVBCIInterfaces::cancelEnq(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->cancelEnq();
 }
 
@@ -1034,7 +1034,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	linked_next = 0;
 	user_mapped = false;
 	plugged = true;
-	
+
 	slotid = nr;
 
 	sprintf(filename, "/dev/ci%d", nr);
@@ -1109,10 +1109,10 @@ int eDVBCISlot::reset()
 int eDVBCISlot::startMMI()
 {
 	eDebug("CI Slot %d: startMMI()", getSlotID());
-	
+
 	if(application_manager)
 		application_manager->startMMI();
-	
+
 	return 0;
 }
 
@@ -1122,7 +1122,7 @@ int eDVBCISlot::stopMMI()
 
 	if(mmi_session)
 		mmi_session->stopMMI();
-	
+
 	return 0;
 }
 

@@ -46,20 +46,20 @@ class UpdatePlugin(Screen):
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onClose.append(self.__close)
 
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
-		
-		self.activity = 0 
+
+		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.checkTraficLight)
 		self.activityTimer.callback.append(self.doActivityTimer)
 		self.activityTimer.start(100, True)
 
 	def checkTraficLight(self):
-	
+
 		self.activityTimer.callback.remove(self.checkTraficLight)
 		self.activityTimer.start(100, False)
 

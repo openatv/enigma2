@@ -13,7 +13,7 @@ class EventName(Converter, object):
 	GENRE = 7
 	RATING = 8
 	SRATING = 9
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "Description":
@@ -42,7 +42,7 @@ class EventName(Converter, object):
 		event = self.source.event
 		if event is None:
 			return ""
-			
+
 		if self.type == self.NAME:
 			return event.getEventName()
 		elif self.type == self.SRATING:
@@ -95,5 +95,5 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
-		
+
 	text = property(getText)

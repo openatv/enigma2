@@ -60,7 +60,7 @@ class InfoHandler(xml.sax.ContentHandler):
 			else:
 				if not attrs.has_key("name"):
 					self.printError("file tag with no name attribute")
-				else:	
+				else:
 					if not attrs.has_key("directory"):
 						directory = self.directory
 					type = attrs["type"]
@@ -157,7 +157,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,file)) 
+				self.packageslist.append((entry,file))
 		except InfoHandlerParseError:
 			pass
 
@@ -230,7 +230,7 @@ class PackageInfoHandler:
 			self.directory = [self.directory]
 		self.readDetails(self.directory[0] + "/", self.directory[0] + "/" + detailsfile)
 		return self.packageDetails
-			
+
 	def prerequisiteMet(self, prerequisites):
 		met = True
 		if self.neededTag is None:
@@ -254,11 +254,11 @@ class PackageInfoHandler:
 					return False
 			else:
 				return True
-				
+
 		if prerequisites.has_key("satellite"):
 			for sat in prerequisites["satellite"]:
 				if int(sat) not in nimmanager.getConfiguredSats():
-					return False			
+					return False
 		if prerequisites.has_key("bcastsystem"):
 			has_system = False
 			for bcastsystem in prerequisites["bcastsystem"]:
@@ -274,7 +274,7 @@ class PackageInfoHandler:
 			if not hardware_found:
 				return False
 		return True
-	
+
 	def installPackages(self, indexes):
 		if len(indexes) == 0:
 			self.setStatus(self.STATUS_DONE)
@@ -286,18 +286,18 @@ class PackageInfoHandler:
 	def installPackage(self, index):
 		if len(self.packageslist) <= index:
 			return
-		
+
 		attributes = self.packageslist[index][0]["attributes"]
 		self.installingAttributes = attributes
 		self.attributeNames = ["skin", "config", "favourites", "package", "services"]
 		self.currentAttributeIndex = 0
 		self.currentIndex = -1
 		self.installNext()
-		
+
 	def setStatus(self, status):
 		self.status = status
 		self.statusCallback(self.status, None)
-						
+
 	def installNext(self, *args, **kwargs):
 		if self.reloadFavourites:
 			self.reloadFavourites = False
@@ -305,7 +305,7 @@ class PackageInfoHandler:
 
 		self.currentIndex += 1
 		attributes = self.installingAttributes
-		
+
 		if self.currentAttributeIndex >= len(self.attributeNames):
 			if self.currentlyInstallingMetaIndex is None or self.currentlyInstallingMetaIndex >= len(self.installIndexes) - 1:
 				self.setStatus(self.STATUS_DONE)
@@ -315,11 +315,11 @@ class PackageInfoHandler:
 				self.currentAttributeIndex = 0
 				self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
 				return
-		
-		self.setStatus(self.STATUS_WORKING)		
-		
+
+		self.setStatus(self.STATUS_WORKING)
+
 		currentAttribute = self.attributeNames[self.currentAttributeIndex]
-		
+
 		if attributes.has_key(currentAttribute):
 			if self.currentIndex >= len(attributes[currentAttribute]):
 				self.currentIndex = -1
@@ -331,7 +331,7 @@ class PackageInfoHandler:
 			self.currentAttributeIndex += 1
 			self.installNext()
 			return
-			
+
 		if currentAttribute == "skin":
 			skin = attributes["skin"][self.currentIndex]
 			self.installSkin(skin["directory"], skin["name"])
@@ -350,7 +350,7 @@ class PackageInfoHandler:
 		elif currentAttribute == "services":
 			service = attributes["services"][self.currentIndex]
 			self.mergeServices(service["directory"], service["name"])
-				
+
 	def readfile(self, filename):
 		if not os.path.isfile(filename):
 			return []
@@ -358,13 +358,13 @@ class PackageInfoHandler:
 		lines = fd.readlines()
 		fd.close()
 		return lines
-			
+
 	def mergeConfig(self, directory, name, merge = True):
 		if os.path.isfile(directory + name):
 			config.loadFromFile(directory + name, base_file=False)
 			configfile.save()
 		self.installNext()
-		
+
 	def installIPK(self, directory, name):
 		if self.blocking:
 			os.system("opkg install " + directory + name)
@@ -373,13 +373,13 @@ class PackageInfoHandler:
 			self.ipkg = IpkgComponent()
 			self.ipkg.addCallback(self.ipkgCallback)
 			self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': directory + name})
-		
+
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DONE:
 			self.installNext()
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.installNext()
-	
+
 	def installSkin(self, directory, name):
 		if self.blocking:
 			copytree(directory, resolveFilename(SCOPE_SKIN))

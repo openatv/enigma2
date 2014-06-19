@@ -197,7 +197,7 @@ class Task(object):
 
 	def cleanup(self, failed):
 		pass
-	
+
 	def processStdout(self, data):
 		self.processOutput(data)
 

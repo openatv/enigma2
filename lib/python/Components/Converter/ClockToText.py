@@ -16,10 +16,10 @@ class ClockToText(Converter, object):
 	VFD = 10
 	AS_LENGTHHOURS = 11
 	AS_LENGTHSECONDS = 12
-	
+
 	# add: date, date as string, weekday, ...
 	# (whatever you need!)
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
@@ -34,7 +34,7 @@ class ClockToText(Converter, object):
 			self.type = self.AS_LENGTHHOURS
 		elif type == "AsLengthSeconds":
 			self.type = self.AS_LENGTHSECONDS
-		elif type == "Timestamp":	
+		elif type == "Timestamp":
 			self.type = self.TIMESTAMP
 		elif type == "Full":
 			self.type = self.FULL
@@ -74,11 +74,11 @@ class ClockToText(Converter, object):
 			 % (time / 3600, time / 60 % 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-		
+
 		t = localtime(time)
-		
+
 		if self.type == self.WITH_SECONDS:
-			# TRANSLATORS: full time representation hour:minute:seconds 
+			# TRANSLATORS: full time representation hour:minute:seconds
 			return _("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
 			# TRANSLATORS: short time representation hour:minute

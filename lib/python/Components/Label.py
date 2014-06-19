@@ -11,7 +11,7 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.setText(text)
-	
+
 # fake Source methods:
 	def connectDownstream(self, downstream):
 		pass
@@ -22,7 +22,7 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 	def disconnectDownstream(self, downstream):
 		pass
 
-# html:	
+# html:
 	def produceHTML(self):
 		return self.getText()
 
@@ -37,7 +37,7 @@ class LabelConditional(Label, ConditionalWidget):
 	def __init__(self, text = "", withTimer = True):
 		ConditionalWidget.__init__(self, withTimer = withTimer)
 		Label.__init__(self, text = text)
-		
+
 class BlinkingLabel(Label, BlinkingWidget):
 	def __init__(self, text = ""):
 		Label.__init__(text = text)
@@ -84,7 +84,7 @@ class MultiColorLabel(Label):
 				attribs.append(("backgroundColor",backgroundColor))
 			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop, screen)
-	
+
 	def setForegroundColorNum(self, x):
 		if self.instance:
 			if len(self.foreColors) > x:

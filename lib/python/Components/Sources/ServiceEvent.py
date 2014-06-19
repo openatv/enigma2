@@ -5,7 +5,7 @@ from Source import Source
 class ServiceEvent(Source, object):
 	def __init__(self):
 		Source.__init__(self)
-		self.service = None 
+		self.service = None
 
 	@cached
 	def getCurrentService(self):

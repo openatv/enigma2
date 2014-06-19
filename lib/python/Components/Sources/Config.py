@@ -7,7 +7,7 @@ class Config(Source):
 
 	def getConfig(self):
 		return self.__config
-	
+
 	config = property(getConfig)
 
 	def getHTML(self, id):

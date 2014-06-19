@@ -45,7 +45,7 @@ public:
 	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
 	inline int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
-	
+
 	RESULT startEdit(ePtr<iMutableServiceList> &);
 	RESULT flushChanges();
 	RESULT addService(eServiceReference &ref, eServiceReference before);
@@ -58,7 +58,7 @@ private:
 	friend class eServiceFactoryDVB;
 	eDVBServiceList(const eServiceReference &parent);
 	ePtr<iDVBChannelListQuery> m_query;
-	
+
 		/* for editing purposes. WARNING: lifetime issue! */
 	eBouquet *m_bouquet;
 };
@@ -81,12 +81,12 @@ public:
 };
 
 class eDVBServicePlay: public eDVBServiceBase,
-		public iPlayableService, public iPauseableService, 
-		public iSeekableService, public Object, public iServiceInformation, 
+		public iPlayableService, public iPauseableService,
+		public iSeekableService, public Object, public iServiceInformation,
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
-		public iRdsDecoder, public iStreamableService, 
+		public iRdsDecoder, public iStreamableService,
 		public iStreamedService
 {
 	DECLARE_REF(eDVBServicePlay);
@@ -98,7 +98,7 @@ public:
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target);
-	
+
 	RESULT seek(ePtr<iSeekableService> &ptr);
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT info(ePtr<iServiceInformation> &ptr);
@@ -142,13 +142,13 @@ public:
 	void getAITApplications(std::map<int, std::string> &aitlist);
 	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
 
-		// iAudioTrackSelection	
+		// iAudioTrackSelection
 	int getNumberOfTracks();
 	RESULT selectTrack(unsigned int i);
 	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
 	int getCurrentTrack();
 
-		// iAudioChannelSelection	
+		// iAudioChannelSelection
 	int getCurrentChannel();
 	RESULT selectChannel(int i);
 
@@ -177,7 +177,7 @@ public:
 	PyObject *getCutList();
 	void setCutList(SWIG_PYOBJECT(ePyObject));
 	void setCutListEnable(int enable);
-	
+
 		// iSubtitleOutput
 	RESULT enableSubtitles(iSubtitleUser *user, SubtitleTrack &track);
 	RESULT disableSubtitles();
@@ -189,7 +189,7 @@ public:
 	int getPCMDelay();
 	void setAC3Delay(int);
 	void setPCMDelay(int);
-	
+
 		// iStreamableService
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	ePtr<iStreamData> getStreamingData();
@@ -197,24 +197,24 @@ public:
 protected:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
-	
+
 	ePtr<eDVBService> m_dvb_service;
-	
+
 	ePtr<iTSMPEGDecoder> m_decoder;
 	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
-	
+
 		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
 	eDVBServicePMTHandler m_service_handler_timeshift;
 	eDVBServiceEITHandler m_event_handler;
 	int m_current_audio_pid;
-	
+
 	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
-	
+
 		/* events */
 	void gotNewEvent(int error);
-	
+
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
 	Signal2<void,iPlayableService*,int> m_event;
@@ -224,7 +224,7 @@ protected:
 		/* pvr */
 	int m_is_pvr, m_is_paused, m_timeshift_enabled, m_timeshift_active, m_timeshift_changed, m_save_timeshift;
 	int m_first_program_info;
-	
+
 	std::string m_timeshift_file, m_timeshift_file_next;
 	int m_timeshift_fd;
 	ePtr<iDVBDemux> m_decode_demux;
@@ -232,7 +232,7 @@ protected:
 	int m_current_audio_stream;
 	int selectAudioStream(int n = -1);
 	RESULT setFastForward_internal(int ratio, bool final_seek=false);
-	
+
 		/* timeshift */
 	ePtr<iDVBTSRecorder> m_record;
 	std::set<int> m_pids_active;
@@ -243,20 +243,20 @@ protected:
 	void switchToTimeshift();
 
 	void updateDecoder(bool sendSeekableStateChanged=false);
-	
+
 	int m_skipmode;
 	int m_fastforward;
 	int m_slowmotion;
-	
+
 		/* cuesheet */
-	
+
 	ePtr<eCueSheet> m_cue;
-	
+
 	struct cueEntry
 	{
 		pts_t where;
 		unsigned int what;
-		
+
 		bool operator < (const struct cueEntry &o) const
 		{
 			return where < o.where;
@@ -266,17 +266,17 @@ protected:
 		{
 		}
 	};
-	
+
 	std::multiset<cueEntry> m_cue_entries;
 	int m_cuesheet_changed, m_cutlist_enabled;
-	
+
 	void loadCuesheet();
 	void saveCuesheet();
-	
+
 	void cutlistToCuesheet();
-	
+
 	iSubtitleUser *m_subtitle_widget;
-	
+
 		/* teletext subtitles */
 	ePtr<eDVBTeletextParser> m_teletext_parser;
 	void newSubtitleStream();
@@ -284,7 +284,7 @@ protected:
 	void newSubtitlePage(const eDVBTeletextSubtitlePage &p);
 	ePtr<eConnection> m_new_subtitle_page_connection;
 	std::list<eDVBTeletextSubtitlePage> m_subtitle_pages;
-	
+
 		/* dvb subtitles */
 	ePtr<eDVBSubtitleParser> m_subtitle_parser;
 	void newDVBSubtitlePage(const eDVBSubtitlePage &p);

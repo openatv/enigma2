@@ -43,12 +43,12 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	close();
 
 	int pathindex = uri.find("/", 7);
-	if (pathindex > 0) 
+	if (pathindex > 0)
 	{
 		hostname = uri.substr(7, pathindex - 7);
 		uri = uri.substr(pathindex, uri.length() - pathindex);
-	} 
-	else 
+	}
+	else
 	{
 		hostname = uri.substr(7, uri.length() - 7);
 		uri = "/";
@@ -76,12 +76,12 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		BIO_free_all(bio);
 	}
 	int customportindex = hostname.find(":");
-	if (customportindex > 0) 
+	if (customportindex > 0)
 	{
 		port = atoi(hostname.substr(customportindex + 1, hostname.length() - customportindex - 1).c_str());
 		hostname = hostname.substr(0, customportindex);
-	} 
-	else if (customportindex == 0) 
+	}
+	else if (customportindex == 0)
 	{
 		port = atoi(hostname.substr(1, hostname.length() - 1).c_str());
 		hostname = "localhost";
@@ -258,7 +258,7 @@ ssize_t eHttpStream::syncNextRead(void *buf, ssize_t length)
 		{
 			memcpy(partialPkt, e, partialPktSz);
 		}
-	} 
+	}
 	return (length - partialPktSz);
 }
 
@@ -289,7 +289,7 @@ ssize_t eHttpStream::httpChunkedRead(void *buf, size_t count)
 		{
 			if (0 == currentChunkSize)
 			{
-				do 
+				do
 				{
 					ret = readLine(streamSocket, &tmpBuf, &tmpBufSize);
 					if (ret < 0) return -1;

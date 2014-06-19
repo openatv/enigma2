@@ -7,10 +7,9 @@ eMessagePump::eMessagePump(int mt): content(1024*1024), ismt(mt)
 	pipe(fd);
 }
 
-eMessagePump::~eMessagePump()
-{	
-	if (ismt)
-		content.lock(); // blocks until all messages are processed.
+eMessagePumpMT::~eMessagePumpMT()
+{
+	content.lock(); // blocks until all messages are processed.
 	close(fd[0]);
 	close(fd[1]);
 }

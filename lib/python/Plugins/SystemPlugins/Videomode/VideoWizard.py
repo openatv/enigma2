@@ -56,7 +56,7 @@ class VideoWizard(WizardLanguage, Rc):
 				</panel>
 			</panel>
 		</screen>"""
-	
+
 	def __init__(self, session):
 		# FIXME anyone knows how to use relative paths from the plugin's directory?
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/videowizard.xml")
@@ -70,6 +70,7 @@ class VideoWizard(WizardLanguage, Rc):
 		self.port = None
 		self.mode = None
 		self.rate = None
+
 	def createSummary(self):
 		print "++++++++++++***++**** VideoWizard-createSummary"
 		from Screens.Wizard import WizardSummary
@@ -80,7 +81,7 @@ class VideoWizard(WizardLanguage, Rc):
 		config.misc.videowizardenabled.value = 0
 		config.misc.videowizardenabled.save()
 		configfile.save()
-	
+
 	def listInputChannels(self):
 		hw_type = HardwareInfo().get_device_name()
 		has_hdmi = HardwareInfo().has_hdmi()
@@ -134,16 +135,16 @@ class VideoWizard(WizardLanguage, Rc):
 				list.append((mode[0], mode[0]))
 		print "modeslist:", list
 		return list
-	
+
 	def modeSelectionMade(self, index):
 		print "modeSelectionMade:", index
 		self.mode = index
 		self.modeSelect(index)
-	
+
 	def modeSelectionMoved(self):
 		print "mode selection moved:", self.selection
 		self.modeSelect(self.selection)
-	
+
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
@@ -155,7 +156,7 @@ class VideoWizard(WizardLanguage, Rc):
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		else:
 			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
-	
+
 	def listRates(self, querymode = None):
 		if querymode is None:
 			querymode = self.mode
@@ -172,12 +173,12 @@ class VideoWizard(WizardLanguage, Rc):
 							continue
 					list.append((rate, rate))
 		return list
-	
+
 	def rateSelectionMade(self, index):
 		print "rateSelectionMade:", index
 		self.rate = index
 		self.rateSelect(index)
-		
+
 	def rateSelectionMoved(self):
 		print "rate selection moved:", self.selection
 		self.rateSelect(self.selection)

@@ -16,20 +16,20 @@ for dir in os.listdir("."):
 		count += 1
 		dirlist.append(dir)
 		print count, dir
-		
+
 category = raw_input("Select plugin category: ")
 category = dirlist[int(category) - 1]
 
 def add_where_extensionsmenu(name, fnc):
 	description = raw_input("Plugin description: ")
-	return 'PluginDescriptor(name = "%s", description = _("%s"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = %s)' % (name, description, fnc) 
+	return 'PluginDescriptor(name = "%s", description = _("%s"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = %s)' % (name, description, fnc)
 
 def add_where_pluginmenu(name, fnc):
 	description = raw_input("Plugin description: ")
 	icon = raw_input("Icon (default: 'plugin.png': ")
 	if icon == "":
 		icon = "plugin.png"
-	return 'PluginDescriptor(name = "%s", description = _("%s"), icon = "%s", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = %s)' % (name, description, icon, fnc) 
+	return 'PluginDescriptor(name = "%s", description = _("%s"), icon = "%s", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = %s)' % (name, description, icon, fnc)
 
 wherelist = []
 wherelist.append(("WHERE_EXTENSIONSMENU", add_where_extensionsmenu))
@@ -44,7 +44,7 @@ while not stop:
 	print "selected targets:"
 	for where in targetlist:
 		print where[0]
-	
+
 	print
 	print "available targets:"
 	count = 0
@@ -52,7 +52,7 @@ while not stop:
 		count += 1
 		print count, where[0]
 	print "x break"
-		
+
 	target = raw_input("Select WHERE-target: ")
 	if target == "x":
 		stop = True
@@ -123,7 +123,7 @@ for count in range(len(targetlist)):
 	where = targetlist[count]
 	print "Options for target %s" % where[0]
 	descriptorlist.append(where[1](name, mainlist[count]))
-	
+
 if len(descriptorlist) == 1:
 	descriptorlist = descriptorlist[0]
 else:

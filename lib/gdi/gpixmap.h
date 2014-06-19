@@ -186,7 +186,7 @@ public:
 		blitScale=4,
 		blitKeepAspectRatio=8
 	};
-	
+
 	enum {
 		accelNever = -1,
 #ifdef FORCE_NO_ACCELNEVER	
@@ -216,9 +216,9 @@ private:
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
 	void fill(const gRegion &clip, const gRGB &color);
-	
+
 	void blit(const gPixmap &src, const eRect &pos, const gRegion &clip, int flags=0);
-	
+
 	void mergePalette(const gPixmap &target);
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 	void line(const gRegion &clip, ePoint start, ePoint end, gRGB color);

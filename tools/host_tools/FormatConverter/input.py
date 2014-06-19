@@ -16,7 +16,7 @@ def inputChoices(list, backcmd = "b", backtext = "back"):
 		input = inputText()
 		if input == backcmd:
 			return None
-		
+
 		action = int(input)
 		if action >= len(list):
 			repeat = True

@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Tools import Notifications
 from GlobalActions import globalActionMap
 import RecordTimer
-from enigma import eDVBVolumecontrol, eTimer, eDVBResourceManager
+from enigma import eDVBVolumecontrol, eTimer
 from os import path
 import Screens.InfoBar
 from boxbranding import getMachineBrand, getMachineName, getBoxType
@@ -93,6 +93,13 @@ class Standby2(Screen):
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
+		if self.session.pipshown:
+			from Screens.InfoBar import InfoBar
+			if InfoBar.instance and hasattr(InfoBar.instance, "servicelist") and InfoBar.instance.servicelist.dopipzap:
+				InfoBar.instance.servicelist.togglePipzap()
+			if hasattr(self.session, 'pip'):
+				del self.session.pip
+			self.session.pipshown = False
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
@@ -104,9 +111,6 @@ class Standby2(Screen):
 		if gotoShutdownTime:
 			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
 			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
-		self.DVBResourceManager = eDVBResourceManager.getInstance()
-		if self.DVBResourceManager:
-			self.DVBResourceManager.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
 
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
@@ -124,8 +128,6 @@ class Standby2(Screen):
 		globalActionMap.setEnabled(True)
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
-		if self.DVBResourceManager:
-			self.DVBResourceManager.frontendUseMaskChanged.get().remove(self.tunerUseMaskChanged)	
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -137,11 +139,21 @@ class Standby2(Screen):
 	def createSummary(self):
 		return StandbySummary
 
-	def tunerUseMaskChanged(self, mask):
-		self.tunerMask = mask
-
 	def standbyTimeout(self):
-		if hasattr(self, "tunerMask") and self.tunerMask:
+		if config.usage.standby_to_shutdown_timer_blocktime.value:
+			curtime = localtime(time())
+			if curtime.tm_year > 1970: #check if the current time is valid
+				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
+				begintime = tuple(config.usage.standby_to_shutdown_timer_blocktime_begin.value)
+				endtime = tuple(config.usage.standby_to_shutdown_timer_blocktime_end.value)
+				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
+					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
+					if duration:
+						if duration < 0:
+							duration += 24*3600
+						self.standbyTimeoutTimer.startLongTimer(duration)
+						return
+		if self.session.screen["TunerInfo"].tuner_use_mask:
 			self.standbyTimeoutTimer.startLongTimer(600)
 		else:
 			from RecordTimer import RecordTimerEntry

@@ -1,7 +1,7 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/dvb.h>
 
-#undef EPG_DEBUG  
+#undef EPG_DEBUG
 
 #ifdef EPG_DEBUG
 #include <lib/service/event.h>
@@ -337,7 +337,7 @@ pthread_mutex_t eEPGCache::channel_map_lock=
 DEFINE_REF(eEPGCache)
 
 eEPGCache::eEPGCache()
-	:messages(this,1), cleanTimer(eTimer::create(this)), m_running(false) 
+	:messages(this,1), cleanTimer(eTimer::create(this)), m_running(false)
 {
 	eDebug("[EPGC] Initialized EPGCache (wait for setCacheFile call now)");
 
@@ -467,6 +467,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					return;
 				}
 
+#ifdef ENABLE_VIRGIN
+				res = demux->createSectionReader( this, data.m_VirginNowNextReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize virgin nownext reader!!");
+					return;
+				}
+
+				res = demux->createSectionReader( this, data.m_VirginScheduleReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize virgin schedule reader!!");
+					return;
+				}
+#endif
 #ifdef ENABLE_NETMED
 				res = demux->createSectionReader( this, data.m_NetmedScheduleReader );
 				if ( res )
@@ -584,9 +599,9 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 	timeMap::iterator tmp = tm_it;
 	while ((tmp->first+tmp->second->getDuration()-300) > TM)
 	{
-		if(tmp->first != TM 
+		if(tmp->first != TM
 #ifdef ENABLE_PRIVATE_EPG
-			&& tmp->second->type != PRIVATE 
+			&& tmp->second->type != PRIVATE
 #endif
 #ifdef ENABLE_MHW_EPG
 			&& tmp->second->type != MHW
@@ -630,7 +645,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 		{
 			__u16 event_id = tmp->second->getEventID();
 			servicemap.first.erase(event_id);
-#ifdef EPG_DEBUG  
+#ifdef EPG_DEBUG
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
 			event.parseFrom(&evt, service.sid<<16|service.onid);
@@ -661,12 +676,12 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	if ( ptr >= len )
 		return;
 
-#if 0 
-		/* 
-		 * disable for now, as this hack breaks EIT parsing for 
+#if 0
+		/*
+		 * disable for now, as this hack breaks EIT parsing for
 		 * services with a low segment_last_table_id
-		 * 
-		 * Multichoice should be the exception, not the rule... 
+		 *
+		 * Multichoice should be the exception, not the rule...
 		 */
 
 	// This fixed the EPG on the Multichoice irdeto systems
@@ -890,7 +905,7 @@ next:
 				int i = 0;
 				for (eventMap::iterator it(servicemap.first.begin()); it != servicemap.first.end(); ++it )
 				{
-					fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n", 
+					fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n",
 					i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
 				}
 			}
@@ -903,8 +918,8 @@ next:
 						i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
 				}
 			}
-			eFatal("(1)map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d", 
-				service.sid, service.tsid, service.onid, 
+			eFatal("(1)map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d",
+				service.sid, service.tsid, service.onid,
 				servicemap.first.size(), servicemap.second.size() );
 		}
 #endif
@@ -1554,6 +1569,27 @@ void eEPGCache::channel_data::startEPG()
 		isRunning |= SCHEDULE_OTHER;
 	}
 
+#ifdef ENABLE_VIRGIN
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIRGIN_NOWNEXT)
+	{
+		mask.pid = 0x2bc;
+		mask.data[0] = 0x4E;
+		mask.mask[0] = 0xFE;
+		m_VirginNowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIRGIN_NOWNEXT), m_VirginNowNextConn);
+		m_VirginNowNextReader->start(mask);
+		isRunning |= VIRGIN_NOWNEXT;
+	}
+
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIRGIN_SCHEDULE)
+	{
+		mask.pid = 0x2bc;
+		mask.data[0] = 0x50;
+		mask.mask[0] = 0xFE;
+		m_VirginScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIRGIN_SCHEDULE), m_VirginScheduleConn);
+		m_VirginScheduleReader->start(mask);
+		isRunning |= VIRGIN_SCHEDULE;
+	}
+#endif
 #ifdef ENABLE_NETMED
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NETMED_SCHEDULE)
 	{
@@ -1614,6 +1650,22 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+#ifdef ENABLE_VIRGIN
+		if ( !(haveData&VIRGIN_NOWNEXT) && (isRunning&VIRGIN_NOWNEXT) )
+		{
+			eDebug("[EPGC] abort non avail virgin nownext reading");
+			isRunning &= ~VIRGIN_NOWNEXT;
+			m_VirginNowNextReader->stop();
+			m_VirginNowNextConn=0;
+		}
+		if ( !(haveData&VIRGIN_SCHEDULE) && (isRunning&VIRGIN_SCHEDULE) )
+		{
+			eDebug("[EPGC] abort non avail virgin schedule reading");
+			isRunning &= ~VIRGIN_SCHEDULE;
+			m_VirginScheduleReader->stop();
+			m_VirginScheduleConn=0;
+		}
+#endif
 #ifdef ENABLE_NETMED
 		if ( !(haveData&NETMED_SCHEDULE) && (isRunning&NETMED_SCHEDULE) )
 		{
@@ -1736,6 +1788,20 @@ void eEPGCache::channel_data::abortEPG()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+#ifdef ENABLE_VIRGIN
+		if (isRunning & VIRGIN_NOWNEXT)
+		{
+			isRunning &= ~VIRGIN_NOWNEXT;
+			m_VirginNowNextReader->stop();
+			m_VirginNowNextConn=0;
+		}
+		if (isRunning & VIRGIN_SCHEDULE)
+		{
+			isRunning &= ~VIRGIN_SCHEDULE;
+			m_VirginScheduleReader->stop();
+			m_VirginScheduleConn=0;
+		}
+#endif
 #ifdef ENABLE_NETMED
 		if (isRunning & NETMED_SCHEDULE)
 		{
@@ -1818,6 +1884,16 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 			map = 2;
 			break;
 #endif
+#ifdef ENABLE_VIRGIN
+		case VIRGIN_NOWNEXT:
+			reader = m_VirginNowNextReader;
+			map = 0;
+			break;
+		case VIRGIN_SCHEDULE:
+			reader = m_VirginScheduleReader;
+			map = 1;
+			break;
+#endif
 		default:
 			eDebug("[EPGC] unknown source");
 			return;
@@ -1853,6 +1929,16 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 			case NETMED_SCHEDULE_OTHER:
 				m_NetmedScheduleOtherConn=0;
 				eDebugNoNewLine("netmed schedule other");
+				break;
+#endif
+#ifdef ENABLE_VIRGIN
+			case VIRGIN_NOWNEXT:
+				m_VirginNowNextConn=0;
+				eDebugNoNewLine("virgin nownext");
+				break;
+			case VIRGIN_SCHEDULE:
+				m_VirginScheduleConn=0;
+				eDebugNoNewLine("virgin schedule");
 				break;
 #endif
 			default: eDebugNoNewLine("unknown");break;
@@ -1916,7 +2002,7 @@ bool freesatEITSubtableStatus::isSectionPresent(__u8 sectionNo)
 {
 	__u8 sectionIdx = sectionNo / 8;
 	__u8 bitOffset = sectionNo % 8;
-	
+
 	return ((sectionMap[sectionIdx] & (1 << bitOffset)) != 0);
 }
 
@@ -2378,7 +2464,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 		eDebug("not params given");
 		return NULL;
 	}
-	else 
+	else
 	{
 		ePyObject argv=PyList_GET_ITEM(list, 0); // borrowed reference!
 		if (PyString_Check(argv))
@@ -2613,8 +2699,8 @@ static inline __u8 HI(int x) { return (__u8) ((x >> 8) & 0xFF); }
 static inline __u8 LO(int x) { return (__u8) (x & 0xFF); }
 #define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
 // convert from set of strings to DVB format (EIT)
-void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, 
-	long duration, const char* title, const char* short_summary, 
+void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start,
+	long duration, const char* title, const char* short_summary,
 	const char* long_description, char event_type)
 {
 	if (!title)
@@ -2631,7 +2717,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	packet->current_next_indicator = 0;
 	packet->section_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
 	packet->last_section_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
-	
+
 	packet->segment_last_section_number = 0; // eEPGCache::sectionRead() will dig this for the moment
 	packet->segment_last_table_id = 0x50;
 
@@ -2643,7 +2729,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	//6 bytes start time, 3 bytes duration
 	fill_eit_start(evt_struct, start);
 	fill_eit_duration(evt_struct, duration);
-	
+
 	evt_struct->running_status = 0;
 	evt_struct->free_CA_mode = 0;
 
@@ -2653,10 +2739,10 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	x += EIT_LOOP_SIZE;
 	int nameLength = strnlen(title, 246);
 	int descLength = short_summary ? strnlen(short_summary, 246 - nameLength) : 0;
-	
+
 	eit_short_event_descriptor_struct *short_evt = (eit_short_event_descriptor_struct*) x;
 	short_evt->descriptor_tag = SHORT_EVENT_DESCRIPTOR;
-	short_evt->descriptor_length = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + nameLength + descLength + 1 - 2; //+1 for length of short description, -2 for tag and length 
+	short_evt->descriptor_length = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + nameLength + descLength + 1 - 2; //+1 for length of short description, -2 for tag and length
 	if (nameLength) ++short_evt->descriptor_length; // +1 for codepage byte
 	if (descLength) ++short_evt->descriptor_length;
 	short_evt->language_code_1 = 'e';
@@ -2697,7 +2783,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	//Long description
 	int currentLoopLength = x - (__u8*)short_evt;
 	static const int overheadPerDescriptor = 9; //increase if codepages are added!!!
-	static const int MAX_LEN = 256 - overheadPerDescriptor; 
+	static const int MAX_LEN = 256 - overheadPerDescriptor;
 
 	int textLength = long_description ? strnlen(long_description, EIT_LENGTH) : 0;//EIT_LENGTH is a bit too much, but it's only here as a reasonable end point
 	int lastDescriptorNumber = (textLength + MAX_LEN-1) / MAX_LEN - 1;
@@ -2730,10 +2816,10 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 		x[8] = codePage;
 		memcpy(x + 9, &long_description[descrIndex*MAX_LEN], currentTextLength);
 
-		x += 2 + ext_evt->descriptor_length; 
+		x += 2 + ext_evt->descriptor_length;
 	}
 
-	//TODO: add age and more 
+	//TODO: add age and more
 	int desc_loop_length = x - ((__u8*)evt_struct + EIT_LOOP_SIZE);
 	SET_HILO(evt_struct->descriptors_loop_length, desc_loop_length);
 
@@ -2796,7 +2882,7 @@ void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
 void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 {
 	std::vector<eServiceReferenceDVB> refs;
-	
+
 	if (PyString_Check(serviceReferences))
 	{
 		char *refstr;
@@ -2835,13 +2921,13 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 	bool isTuple = PyTuple_Check(list);
 	if (!isTuple && !PyList_Check(list))
 	{
-		
+
 		eDebug("[EPG:import] argument 'list' is neither list nor tuple.");
 		return;
 	}
 
 	int numberOfEvents = isTuple ? PyTuple_Size(list) : PyList_Size(list);
-	
+
 	for (int i = 0; i < numberOfEvents;  ++i)
 	{
 		ePyObject singleEvent = isTuple ? PyTuple_GET_ITEM(list, i) : PyList_GET_ITEM(list, i);
@@ -2856,7 +2942,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			eDebug("[EPG:import] eventdata tuple does not contain enough fields, aborting");
 			return;
 		}
-		
+
 		long start = PyLong_AsLong(PyTuple_GET_ITEM(singleEvent, 0));
 		long duration = PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 1));
 		const char *title = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 2));
@@ -3310,7 +3396,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 						switch ((*desc)->getTag())
 						{
 							case 0xC2: // user defined
-								if ((*desc)->getLength() == 8) 
+								if ((*desc)->getLength() == 8)
 								{
 									__u8 buffer[10];
 									(*desc)->writeToBuffer(buffer);
@@ -4174,7 +4260,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 		while (pos < dataLen)
 		{
 //			eDebugNoNewLine("    [%02x] %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x [%02x %02x %02x %02x %02x %02x %02x] LL - DESCR - ",
-//				data[pos], data[pos+1], data[pos+2], data[pos+3], data[pos+4], data[pos+5], data[pos+6], data[pos+7], 
+//				data[pos], data[pos+1], data[pos+2], data[pos+3], data[pos+4], data[pos+5], data[pos+6], data[pos+7],
 //				data[pos+8], data[pos+9], data[pos+10], data[pos+11], data[pos+12], data[pos+13], data[pos+14], data[pos+15], data[pos+16], data[pos+17]);
 			title.channel_id = data[pos]+1;
 			title.mhw2_mjd_hi = data[pos+11];

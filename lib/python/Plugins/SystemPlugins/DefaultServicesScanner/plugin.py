@@ -58,7 +58,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 			<widget name="introduction" position="10,365" size="500,25" font="Regular;20" halign="center" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = None):
 		ScanSetup.__init__(self, session)
 		# backup lamedb
@@ -69,14 +69,14 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		self.scanIndex = 0
 		self.selectSat(0)
 		self.onFirstExecBegin.append(self.runScan)
-		
+
 	def selectSat(self, index):
 		for satindex in range(len(self.multiscanlist)):
 			if satindex != index:
 				self.multiscanlist[satindex][1].value = False
 			else:
 				self.multiscanlist[satindex][1].value = True
-				
+
 	def runScan(self):
 		print "runScan"
 		self.keyGo()
@@ -105,7 +105,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		<bcastsystem type="DVB-S" />
 		<satellite type="%d" />
 	</prerequisites>
-	
+
 	<info>
 		<author>%s</author>
 		<name>%s</name>
@@ -118,7 +118,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 </default>""" % (satint, "OpenPli", nimmanager.getSatDescription(satint), satint)
 			file.write(xml)
 			file.close()
-		
+
 		self.scanIndex += 1
 		if self.scanIndex + 1 >= len(self.multiscanlist):
 			print "no more sats to scan"

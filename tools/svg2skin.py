@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # don't expect too much.
-# this is a really simple&stupid svg parser, which will use rectangles 
+# this is a really simple&stupid svg parser, which will use rectangles
 # and text fields to produce <widget> snippets for a skin.
 # use object "id" fields for source names if you want.
 # extracting font information is buggy.

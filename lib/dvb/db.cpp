@@ -344,49 +344,76 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 
 ePtr<eDVBFrontendParameters> eDVBDB::parseFrontendData(char * line, int version)
 {
-	if (line[0] != 's' && line[0] != 't' && line[0] != 'c')
-		return NULL;
-
-	ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
-	if (line[0] == 's') {
-		eDVBFrontendParametersSatellite sat;
-		int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
-			flags=0,
-			system=eDVBFrontendParametersSatellite::System_DVB_S,
-			modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
-			rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
-			pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
-		if (version == 3)
-			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
-				&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
-				&inversion, &system, &modulation, &rolloff, &pilot);
-		else
-			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
-				&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
-				&inversion, &flags, &system, &modulation, &rolloff, &pilot);
-		sat.frequency = frequency;
-		sat.symbol_rate = symbol_rate;
-		sat.polarisation = polarisation;
-		sat.fec = fec;
-		sat.orbital_position = orbital_position < 0 ? orbital_position + 3600 : orbital_position;
-		sat.inversion = inversion;
-		sat.system = system;
-		sat.modulation = modulation;
-		sat.rolloff = rolloff;
-		sat.pilot = pilot;
-		feparm->setDVBS(sat);
-		feparm->setFlags(flags);
-	}
-	else if (line[0] == 't') {
-		eDVBFrontendParametersTerrestrial ter;
-		int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode,
-			guard_interval, hierarchy, inversion, flags = 0, plpid = 0;
-		int system = eDVBFrontendParametersTerrestrial::System_DVB_T;
-		sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
-			&frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation,
-			&transmission_mode, &guard_interval, &hierarchy, &inversion, &flags, &system, &plpid);
-		ter.frequency = frequency;
-		switch (bandwidth)
+	switch(line[0])
+	{
+		case 's':
+		{
+			eDVBFrontendParametersSatellite sat;
+			int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
+				flags=0,
+				system=eDVBFrontendParametersSatellite::System_DVB_S,
+				modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
+				rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
+				pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
+			if (version == 3)
+				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+					&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
+					&inversion, &system, &modulation, &rolloff, &pilot);
+			else
+				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+					&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
+					&inversion, &flags, &system, &modulation, &rolloff, &pilot);
+			sat.frequency = frequency;
+			sat.symbol_rate = symbol_rate;
+			sat.polarisation = polarisation;
+			sat.fec = fec;
+			sat.orbital_position = orbital_position < 0 ? orbital_position + 3600 : orbital_position;
+			sat.inversion = inversion;
+			sat.system = system;
+			sat.modulation = modulation;
+			sat.rolloff = rolloff;
+			sat.pilot = pilot;
+			ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+			feparm->setDVBS(sat);
+			feparm->setFlags(flags);
+			return feparm;
+		}
+		case 't':
+		{
+			eDVBFrontendParametersTerrestrial ter;
+			int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode,
+				guard_interval, hierarchy, inversion, flags = 0, plpid = 0;
+			int system = eDVBFrontendParametersTerrestrial::System_DVB_T;
+			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+				&frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation,
+				&transmission_mode, &guard_interval, &hierarchy, &inversion, &flags, &system, &plpid);
+			ter.frequency = frequency;
+			switch (bandwidth)
+			{
+				case eDVBFrontendParametersTerrestrial::Bandwidth_8MHz: ter.bandwidth = 8000000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_7MHz: ter.bandwidth = 7000000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_6MHz: ter.bandwidth = 6000000; break;
+				default:
+				case eDVBFrontendParametersTerrestrial::Bandwidth_Auto: ter.bandwidth = 0; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_5MHz: ter.bandwidth = 5000000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_1_712MHz: ter.bandwidth = 1712000; break;
+				case eDVBFrontendParametersTerrestrial::Bandwidth_10MHz: ter.bandwidth = 10000000; break;
+			}
+			ter.code_rate_HP = code_rate_HP;
+			ter.code_rate_LP = code_rate_LP;
+			ter.modulation = modulation;
+			ter.transmission_mode = transmission_mode;
+			ter.guard_interval = guard_interval;
+			ter.hierarchy = hierarchy;
+			ter.inversion = inversion;
+			ter.system = system;
+			ter.plpid = plpid;
+			ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+			feparm->setDVBT(ter);
+			feparm->setFlags(flags);
+			return feparm;
+		}
+		case 'c':
 		{
 			case eDVBFrontendParametersTerrestrial::Bandwidth_8MHz: ter.bandwidth = 8000000; break;
 			case eDVBFrontendParametersTerrestrial::Bandwidth_7MHz: ter.bandwidth = 7000000; break;

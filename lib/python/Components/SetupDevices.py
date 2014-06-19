@@ -4,10 +4,10 @@ from Components.Language import language
 from Components.Keyboard import keyboard
 
 def InitSetupDevices():
-	
+
 	def timezoneNotifier(configElement):
 		timezones.activateTimezone(configElement.index)
-		
+
 	config.timezone = ConfigSubsection();
 	config.timezone.val = ConfigSelection(default = timezones.getDefaultTimezone(), choices = timezones.getTimezoneList())
 	config.timezone.val.addNotifier(timezoneNotifier)
@@ -21,7 +21,7 @@ def InitSetupDevices():
 
 	def languageNotifier(configElement):
 		language.activateLanguage(configElement.value)
-	
+
 	config.osd = ConfigSubsection()
 	config.osd.language = ConfigText(default = "en_EN");
 	config.osd.language.addNotifier(languageNotifier)

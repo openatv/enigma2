@@ -111,7 +111,7 @@ class VideoFinetune(Screen):
 			if i < 2:
 				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", 20), "%d." % (i+1))
 
-		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", 40), 
+		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", 40),
 			_("Brightness"))
 		c.writeText(xres / 10, yres / 6, xres * 4 / 7, yres * 4 / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", 20),
 			_("If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", "
@@ -148,11 +148,11 @@ class VideoFinetune(Screen):
 
 			c.fill(x, offset, width, eh, RGB(col, col, col))
 			if col == 185 or col == 235 or col == 255:
-				c.fill(x, offset, width, 2, RGB(0,0,0)) 
+				c.fill(x, offset, width, 2, RGB(0,0,0))
 			if i >= 13:
 				c.writeText(x + width, offset, width, eh, RGB(0, 0, 0), RGB(255, 255, 255), gFont("Regular", 20), "%d." % (i-13+1))
 
-		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40), 
+		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40),
 			_("Contrast"))
 		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", 20),
 			_("Now, use the contrast setting to turn up the brightness of the background as much as possible, "
@@ -210,7 +210,7 @@ class VideoFinetune(Screen):
 				if i == 0:
 					self.bbox(x, offset, width, eh, RGB(0,0,0), bbw, bbh)
 
-		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40), 
+		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40),
 			("Color"))
 		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", 20),
 			_("Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. "

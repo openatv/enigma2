@@ -671,7 +671,7 @@ class PositionerSetup(Screen):
 		else:
 			polarisation_text = ""
 		self["polarisation"].setText(polarisation_text)
-	
+
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
 		return round(float(rotorCmd & 0xFFF) / 0x10 / stepsize) * (1 - ((rotorCmd & 0x1000) >> 11))

@@ -13,7 +13,7 @@ class Poll(object):
 			self.__poll_timer.start(self.__interval)
 		else:
 			self.__poll_timer.stop()
-	
+
 	def __setEnable(self, enabled):
 		self.__enabled = enabled
 		self.poll_interval = self.__interval

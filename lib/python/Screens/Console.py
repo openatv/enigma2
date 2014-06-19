@@ -3,7 +3,13 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 
-class Console(Screen):	
+class Console(Screen):
+	#TODO move this to skin.xml
+	skin = """
+		<screen position="100,100" size="550,400" title="Command execution..." >
+			<widget name="text" position="0,0" size="550,400" font="Console;14" />
+		</screen>"""
+
 	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
 		Screen.__init__(self, session)
 
@@ -21,12 +27,12 @@ class Console(Screen):
 			"down": self["text"].pageDown,
 			"yellow": self.yellow,
 		}, -2)
-		
+
 		self.cmdlist = cmdlist
 		self.newtitle = title
-		
+
 		self.onShown.append(self.updateTitle)
-		
+
 		self.container = eConsoleAppContainer()
 		self.run = 0
 		self.container.appClosed.append(self.runFinished)

@@ -44,7 +44,7 @@ def PluginDownloadComponent(plugin, name, version=None, width=440):
 		MultiContentEntryText(pos=(80, 26), size=(width-80, 17), font=1, text=plugin.description),
 		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(60, 50), png = png)
 	]
-	
+
 
 class PluginList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
