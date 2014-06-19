@@ -1,8 +1,4 @@
 keymapsdir = $(datadir)/keymaps
 keymaps_DATA = \
-	*.info \
-	*.kmap
-
-*.info:
-
-*.kmap:
+	$(wildcard @srcdir@/*.info) \
+	$(wildcard @srcdir@/*.kmap)

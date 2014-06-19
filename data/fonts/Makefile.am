@@ -1,3 +1,3 @@
 installdir = $(datadir)/fonts
 
-dist_install_DATA = *.ttf
+dist_install_DATA = $(wildcard @srcdir@/*.ttf)

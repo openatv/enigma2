@@ -1,3 +1,3 @@
 installdir = $(pkglibdir)/python/Tools
 
-install_PYTHON = *.py
+install_PYTHON = $(wildcard @srcdir@/*.py)
