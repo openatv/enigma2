@@ -49,7 +49,7 @@ class PictureInPicture(Screen):
 			self.relocateTimer.stop()
 		del self.pipservice
 		self.setExternalPiP(False)
-		self.setSizePosMainWindow()
+		self.setSizePosMainWindow(0, 0, 0, 0)
 
 	def pigmode(self, value):
 		if config.av.pip_mode.value != "external":
