@@ -525,10 +525,10 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUpCheck, self.switchChannelUpName),
-				"switchChannelDown": (self.switchChannelDownCheck, self.switchChannelDownName),
-				"zapUp": (self.zapUpCheck, self.zapUpName),
-				"zapDown": (self.zapDownCheck, self.zapDownName),
+				"keyUp": (self.keyUpCheck, self.getKeyUpHelptext),
+				"keyDown": (self.keyDownCheck, self.getKeyDownHelpText),
+				"keyLeft": (self.keyLeftCheck, self.getKeyLeftHelptext),
+				"keyRight": (self.keyRightCheck, self.getKeyRightHelptext),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
@@ -564,31 +564,31 @@ class InfoBarChannelSelection:
 		if answer:
 			self.servicelist.historyNext()
 
-	def switchChannelUpCheck(self):
+	def keyUpCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.zapDown()
 		else:
 			self.switchChannelUp()
 
-	def switchChannelDownCheck(self):
+	def keyDownCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.zapUp()
 		else:
 			self.switchChannelDown()
 
-	def zapUpCheck(self):
+	def keyLeftCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.switchChannelUp()
 		else:
 			self.zapUp()
 
-	def zapDownCheck(self):
+	def keyRightCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.switchChannelDown()
 		else:
 			self.zapDown()
 
-	def switchChannelUpName(self):
+	def getKeyUpHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Switch to next channel")
 		else:
@@ -597,7 +597,7 @@ class InfoBarChannelSelection:
 				value += " " + _("and select previous channel")
 		return value
 
-	def switchChannelDownName(self):
+	def getKeyDownHelpText(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Switch to previous channel")
 		else:
@@ -606,7 +606,7 @@ class InfoBarChannelSelection:
 				value += " " + _("and select next channel")
 		return value
 
-	def zapUpName(self):
+	def getKeyLeftHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Open service list")
 			if not "keep" in config.usage.servicelist_cursor_behavior.value:
@@ -615,7 +615,7 @@ class InfoBarChannelSelection:
 			value = _("Switch to previous channel")
 		return value
 
-	def zapDownName(self):
+	def getKeyRightHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Open service list")
 			if not "keep" in config.usage.servicelist_cursor_behavior.value:
