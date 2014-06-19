@@ -58,8 +58,11 @@ class PictureInPicture(Screen):
 					self.relocateTimer.callback.remove(self.timedRelocate)
 					self.relocateTimer.stop()
 				elif not self.pigmodeEnabled:
-					del self.pipservice
-					self.pipservice = False
+					if SystemInfo["hasPIPVisibleProc"]:
+						open(SystemInfo["hasPIPVisibleProc"], "w").write("0")
+					else:
+						del self.pipservice
+						self.pipservice = False
 					self.pigmodeEnabled = True
 			else:
 				self.relocateTimer.callback.append(self.timedRelocate)
@@ -68,13 +71,16 @@ class PictureInPicture(Screen):
 	def timedRelocate(self):
 		self.relocateTimer.callback.remove(self.timedRelocate)
 		self.relocateTimer.stop()
-		self.pipservice = eServiceCenter.getInstance().play(self.currentService)
-		if self.pipservice and not self.pipservice.setTarget(1):
-			self.pipservice.start()
+		if SystemInfo["hasPIPVisibleProc"]:
+			open(SystemInfo["hasPIPVisibleProc"], "w").write("1")
 		else:
-			self.pipservice = None
-			self.currentService = None
-			self.currentServiceReference = None
+			self.pipservice = eServiceCenter.getInstance().play(self.currentService)
+			if self.pipservice and not self.pipservice.setTarget(1):
+				self.pipservice.start()
+			else:
+				self.pipservice = None
+				self.currentService = None
+				self.currentServiceReference = None
 		self.pigmodeEnabled = False
 
 	def relocate(self):
