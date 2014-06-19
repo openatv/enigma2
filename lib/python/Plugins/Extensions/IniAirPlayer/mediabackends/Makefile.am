@@ -1,4 +1,4 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/IniAirPlayer/mediabackends
 
 install_PYTHON = \
-	*.py 
+	$(wildcard @srcdir@/*.py)

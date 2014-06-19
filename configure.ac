@@ -1,5 +1,5 @@
 AC_INIT([enigma2],[3.0.0],[enigma2-devel@lists.elitedvb.net])
-AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
+AM_INIT_AUTOMAKE([foreign dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
 # Silent rules are available since 1.11, but older versions
@@ -13,7 +13,7 @@ AC_PROG_CC
 AC_PROG_CXX
 m4_ifdef([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
 AC_CONFIG_MACRO_DIR([m4])
-AC_OPENMP()
+AC_OPENMP
 
 AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
 # AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
@@ -129,7 +129,7 @@ if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 fi
 
 AC_ARG_WITH(nolcd,
-	AC_HELP_STRING([--with-nolcd], [disable ascii based lcd, yes or no]),
+	AS_HELP_STRING([--with-nolcd], [disable ascii based lcd, yes or no]),
 	[[withnolcd=$withval]],
 	[[withnolcd=no]]
 )
@@ -139,7 +139,7 @@ fi
 AM_CONDITIONAL(NO_LCD, test x"$withnolcd" != xno)
 
 AC_ARG_WITH(textlcd,
-	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
+	AS_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],
 	[[withtextlcd=no]]
 )
@@ -149,7 +149,7 @@ fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
 AC_ARG_WITH(colorlcd,
-	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
 	[[withcolorlcd=no]]
 )
@@ -159,7 +159,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
 AC_ARG_WITH(colorlcd128,
-	AC_HELP_STRING([--with-colorlcd128], [use 128x64 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd128], [use 128x64 16bpp color display, yes or no]),
 	[[withcolorlcd128=$withval]],
 	[[withcolorlcd128=no]]
 )
@@ -169,7 +169,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD128, test x"$withcolorlcd" != xno)
 
 AC_ARG_WITH(colorlcd220,
-	AC_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
 	[[withcolorlcd220=$withval]],
 	[[withcolorlcd220=no]]
 )
@@ -179,7 +179,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD220, test x"$withcolorlcd220" != xno)
 
 AC_ARG_WITH(colorlcd400,
-	AC_HELP_STRING([--with-colorlcd400], [use 400x240 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd400], [use 400x240 16bpp color display, yes or no]),
 	[[withcolorlcd400=$withval]],
 	[[withcolorlcd400=no]]
 )
@@ -190,7 +190,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD400, test x"$withcolorlcd400" != xno)
 
 AC_ARG_WITH(bwlcd255,
-	AC_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
 	[[withbwlcd255=$withval]],
 	[[withbwlcd255=no]]
 )
@@ -200,7 +200,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD255, test x"$withbwlcd255" != xno)
 
 AC_ARG_WITH(bwlcd140,
-	AC_HELP_STRING([--with-bwlcd140], [use 140x32 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd140], [use 140x32 1bpp black and white display, yes or no]),
 	[[withbwlcd140=$withval]],
 	[[withbwlcd140=no]]
 )
@@ -210,7 +210,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD140, test x"$withbwlcd140" != xno)
 
 AC_ARG_WITH(bwlcd128,
-	AC_HELP_STRING([--with-bwlcd128], [use 128x32 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd128], [use 128x32 1bpp black and white display, yes or no]),
 	[[withbwlcd128=$withval]],
 	[[withbwlcd128=no]]
 )
@@ -220,7 +220,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD128, test x"$withbwlcd128" != xno)
 
 AC_ARG_WITH(oldpvr,
-	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
+	AS_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
 	[[witholdpvr=$withval]],
 	[[witholdpvr=no]]
 )
@@ -337,10 +337,10 @@ AC_ARG_WITH(po,
 	AS_HELP_STRING([--with-po],[enable updating of po files]),
 	[with_po="$withval"],[with_po="no"])
 if test "$with_po" = "yes"; then
-	AC_PATH_PROG(MSGINIT, msginit)
-	AC_PATH_PROG(MSGMERGE, msgmerge)
-	AC_PATH_PROG(MSGUNIQ, msguniq)
-	AC_PATH_PROG(XGETTEXT, xgettext)
+	AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
+	AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
+	AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
+	AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
 		AC_MSG_ERROR([Could not find required gettext tools])
 	fi

@@ -1,4 +1,4 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/IniAirPlayer/lib/biplist
 
 install_PYTHON = \
-	*.py 
+	$(wildcard @srcdir@/*.py)

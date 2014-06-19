@@ -7,5 +7,3 @@ install_PYTHON =	\
 	plugin.py \
 	ui.py \
 	pictureplayer.png
-
- 
