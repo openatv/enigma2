@@ -491,19 +491,18 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self.timer = timer
 		print "TimerSanityConflict"
 
+		self["lab1"] = StaticText(_("New timer"))
+		self["lab2"] = StaticText(_("Conflicting timers"))
 		self["timer1"] = TimerList(self.getTimerList(timer[0]))
-		self.list = []
 		self.list2 = []
 		count = 0
 		for x in timer:
 			if count != 0:
-				self.list.append((_("Conflicting timer") + " " + str(count), x))
 				self.list2.append((timer[count], False))
 			count += 1
 		if count == 1:
 			self.list.append((_("Channel not in services list")))
 
-		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
 
 		self.buttonActions = (
@@ -537,7 +536,7 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer2"].getCurrent())
 
 	def toggleTimer(self):
-		x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
+		x = self["timer2"].getCurrentIndex() + 1 # the first is the new timer so we do +1 here
 		if self.timer[x].disabled:
 			self.timer[x].disabled = False
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
@@ -562,23 +561,19 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self.close((False, self.timer[0]))
 
 	def up(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self["timer2"].instance.moveSelection(self["timer2"].instance.moveUp)
 		self.updateState()
 
 	def down(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self["timer2"].instance.moveSelection(self["timer2"].instance.moveDown)
 		self.updateState()
 
 	def left(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageUp)
-		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self["timer2"].instance.moveSelection(self["timer2"].instance.pageUp)
 		self.updateState()
 
 	def right(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageDown)
-		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self["timer2"].instance.moveSelection(self["timer2"].instance.pageDown)
 		self.updateState()
 
 	def updateRedState(self, cur):
@@ -622,7 +617,7 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self.updateRedState(None)
 
 		if len(self.timer) > 1:
-			x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
+			x = self["timer2"].getCurrentIndex() + 1 # the first is the new timer so we do +1 here
 			self.updateYellowState(self.timer[x])
 			self.updateBlueState(self.timer[x])
 		else:
