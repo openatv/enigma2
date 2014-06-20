@@ -57,13 +57,9 @@ class Satfinder(ScanSetup, ServiceScan):
 		if not self.openFrontend():
 			self.session.nav.stopService()
 			if not self.openFrontend():
-				if self.session.pipshown: # try to disable pip
-					if hasattr(self.session, 'infobar'):
-						if self.session.infobar.servicelist.dopipzap:
-							self.session.infobar.servicelist.togglePipzap()
-					if hasattr(self.session, 'pip'):
-						del self.session.pip
-					self.session.pipshown = False
+				if self.session.pipshown:
+					from Screens.InfoBar import InfoBar
+					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
