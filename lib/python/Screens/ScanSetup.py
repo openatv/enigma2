@@ -190,12 +190,7 @@ class CableTransponderSearchSupport:
 			self.session.nav.stopService()
 			if not self.tryGetRawFrontend(nim_idx):
 				if self.session.pipshown:
-					if hasattr(self.session, 'infobar'):
-						if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
-							self.session.infobar.servicelist.togglePipzap()
-					if hasattr(self.session, 'pip'):
-						del self.session.pip
-					self.session.pipshown = False
+					self.session.infobar.showPiP()
 				if not self.tryGetRawFrontend(nim_idx):
 					self.cableTransponderSearchFinished()
 					return
