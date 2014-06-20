@@ -3,7 +3,7 @@
 ##
 from Renderer import Renderer
 from enigma import eVideoWidget, eSize, eRect, ePoint, getDesktop
-from Screens.InfoBar import InfoBar
+from Screens.PictureInPicture import PipPigMode
 
 class Pig(Renderer):
 	def __init__(self):
@@ -30,13 +30,9 @@ class Pig(Renderer):
 				self.instance.resize(self.Size)
 			if self.Position:
 				self.instance.move(self.Position)
-			InfoBarInstance = InfoBar.instance
-			if InfoBarInstance and InfoBarInstance.session.pipshown:
-				InfoBarInstance.session.pip.pigmode(True)
+			PipPigMode(True)
 
 	def onHide(self):
 		if self.instance:
 			self.preWidgetRemove(self.instance)
-			InfoBarInstance = InfoBar.instance
-			if InfoBarInstance and InfoBarInstance.session.pipshown:
-				InfoBarInstance.session.pip.pigmode(False)
+			PipPigMode(False)

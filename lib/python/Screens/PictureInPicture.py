@@ -7,9 +7,39 @@ from Tools import Notifications
 from Screens.MessageBox import MessageBox
 from os import access, W_OK
 
-pip_config_initialized = False
 MAX_X = 720
 MAX_Y = 576
+pip_config_initialized = False
+PipPigModeEnabled = False
+PipPigModeTimer = eTimer()
+
+def timedStopPipPigMode():
+	PipPigModeTimer.stop()
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance and InfoBar.instance.session and hasattr(InfoBar.instance.session, "pip"):
+		if SystemInfo["hasPIPVisibleProc"]:
+			open(SystemInfo["hasPIPVisibleProc"], "w").write("1")
+		else:
+			InfoBar.instance.session.pip.playService(InfoBar.instance.session.pip.currentService)
+	global PipPigModeEnabled
+	PipPigModeEnabled = False
+
+PipPigModeTimer.callback.append(timedStopPipPigMode)
+
+def PipPigMode(value):
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance and InfoBar.instance.session and hasattr(InfoBar.instance.session, "pip") and config.av.pip_mode.value != "external":
+		if value:
+			PipPigModeTimer.stop()
+			global PipPigModeEnabled
+			if not PipPigModeEnabled:
+				if SystemInfo["hasPIPVisibleProc"]:
+					open(SystemInfo["hasPIPVisibleProc"], "w").write("0")
+				else:
+					InfoBar.instance.session.pip.pipservice = False
+				PipPigModeEnabled = True
+		else:
+			PipPigModeTimer.start(100)
 
 class PictureInPictureZapping(Screen):
 	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
@@ -39,49 +69,12 @@ class PictureInPicture(Screen):
 			config.av.pip_mode = ConfigSelection(default="standard", choices=self.choicelist)
 			pip_config_initialized = True
 
-		self.pigmodeEnabled = False
-		self.relocateTimer = eTimer()
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 	def __del__(self):
-		if self.relocateTimer.isActive():
-			self.relocateTimer.callback.remove(self.timedRelocate)
-			self.relocateTimer.stop()
 		del self.pipservice
 		self.setExternalPiP(False)
 		self.setSizePosMainWindow()
-
-	def pigmode(self, value):
-		if config.av.pip_mode.value != "external":
-			if value:
-				if self.relocateTimer.isActive():
-					self.relocateTimer.callback.remove(self.timedRelocate)
-					self.relocateTimer.stop()
-				elif not self.pigmodeEnabled:
-					if SystemInfo["hasPIPVisibleProc"]:
-						open(SystemInfo["hasPIPVisibleProc"], "w").write("0")
-					else:
-						del self.pipservice
-						self.pipservice = False
-					self.pigmodeEnabled = True
-			else:
-				self.relocateTimer.callback.append(self.timedRelocate)
-				self.relocateTimer.start(100)
-
-	def timedRelocate(self):
-		self.relocateTimer.callback.remove(self.timedRelocate)
-		self.relocateTimer.stop()
-		if SystemInfo["hasPIPVisibleProc"]:
-			open(SystemInfo["hasPIPVisibleProc"], "w").write("1")
-		else:
-			self.pipservice = eServiceCenter.getInstance().play(self.currentService)
-			if self.pipservice and not self.pipservice.setTarget(1):
-				self.pipservice.start()
-			else:
-				self.pipservice = None
-				self.currentService = None
-				self.currentServiceReference = None
-		self.pigmodeEnabled = False
 
 	def relocate(self):
 		x = config.av.pip.value[0]
