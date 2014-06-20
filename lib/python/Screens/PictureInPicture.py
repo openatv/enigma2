@@ -16,10 +16,10 @@ PipPigModeTimer = eTimer()
 def timedStopPipPigMode():
 	PipPigModeTimer.stop()
 	from Screens.InfoBar import InfoBar
-	if InfoBar.instance and InfoBar.instance.session and hasattr(InfoBar.instance.session, "pip"):
+	if InfoBar.instance and InfoBar.instance.session:
 		if SystemInfo["hasPIPVisibleProc"]:
 			open(SystemInfo["hasPIPVisibleProc"], "w").write("1")
-		else:
+		elif hasattr(InfoBar.instance.session, "pip"):
 			InfoBar.instance.session.pip.playService(InfoBar.instance.session.pip.currentService)
 	global PipPigModeEnabled
 	PipPigModeEnabled = False
