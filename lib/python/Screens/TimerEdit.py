@@ -538,16 +538,23 @@ class TimerSanityConflict(Screen, TimerListButtons):
 	def toggleTimer(self):
 		x = self["timer2"].getCurrentIndex() + 1 # the first is the new timer so we do +1 here
 		if self.timer[x].disabled:
-			self.timer[x].disabled = False
+			self.timer[x].enable()
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
-			if not self.timer[0].isRunning():
-				self.timer[0].disabled = True
-				self.session.nav.RecordTimer.timeChanged(self.timer[0])
+			if self.timer[0].isRunning():
+				self.timer[0].enable()
+				self.timer[0].processRepeated(findRunningEvent = False)
+				self.session.nav.RecordTimer.doActivate(self.timer[0])
+				self.timer[0].disable()
+			self.session.nav.RecordTimer.timeChanged(self.timer[0])
 		else:
-			self.timer[x].disabled = True
-			self.session.nav.RecordTimer.timeChanged(self.timer[x])
+			if self.timer[x].isRunning():
+				self.timer[x].enable()
+				self.timer[x].processRepeated(findRunningEvent = False)
+				self.session.nav.RecordTimer.doActivate(self.timer[x])
+				self.timer[x].disable()
+				self.session.nav.RecordTimer.timeChanged(self.timer[x])
 			if self.timer[x].disabled:
-				self.timer[0].disabled = False
+				self.timer[0].enable()
 				self.session.nav.RecordTimer.timeChanged(self.timer[0])
 		self.finishedEdit((True, self.timer[0]))
 
