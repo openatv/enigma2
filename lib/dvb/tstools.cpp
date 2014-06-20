@@ -149,7 +149,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 
 	int left = m_maxrange;
 	int resync_failed_counter = 64;
-	
+
 	while (left >= 188)
 	{
 		unsigned char packet[188];
@@ -181,14 +181,14 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			}
 			continue;
 		}
-		
+
 		int pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
 		int pusi = !!(packet[1] & 0x40);
-		
+
 //		printf("PID %04x, PUSI %d\n", pid, pusi);
 
 		unsigned char *payload;
-		
+
 			/* check for adaption field */
 		if (packet[3] & 0x20)
 		{
@@ -310,7 +310,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			return 0;
 		}
 	}
-	
+
 	return -1;
 }
 
@@ -325,18 +325,18 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 			/* for the simple case, we assume one epoch, with up to one wrap around in the middle. */
 		calcBegin();
 		if (!m_begin_valid)
-		{	
+		{
 			eDebug("eDVBTSTools::fixupPTS begin not valid, can't fixup");
 			return -1;
 		}
-		
+
 		pts_t pos = m_pts_begin;
 		if ((now < pos) && ((pos - now) < 90000 * 10))
-		{	
+		{
 			pos = 0;
 			return 0;
 		}
-		
+
 		if (now < pos) /* wrap around */
 			now = now + 0x200000000LL - pos;
 		else
@@ -367,12 +367,12 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 
 		if (!m_samples_taken)
 			takeSamples();
-		
+
 		if (!m_samples.empty())
 		{
 			int maxtries = 5;
 			pts_t p = -1;
-			
+
 			while (maxtries--)
 			{
 					/* search entry before and after */
@@ -381,7 +381,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 
 				if (l != m_samples.begin())
 					--l;
-				
+
 					/* we could have seeked beyond the end */
 				if (u == m_samples.end())
 				{
@@ -392,14 +392,14 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 						--l;
 					}
 				}
-					
+
 					/* if we don't have enough points */
 				if (u == m_samples.end())
 					break;
-				
+
 				pts_t pts_diff = u->first - l->first;
 				off_t offset_diff = u->second - l->second;
-				
+
 				if (offset_diff < 0)
 				{
 					eDebug("something went wrong when taking samples.");
@@ -411,7 +411,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 				eDebug("using: %llu:%llu -> %llu:%llu", l->first, u->first, l->second, u->second);
 
 				int bitrate;
-				
+
 				if (pts_diff)
 					bitrate = offset_diff * 90000 * 8 / pts_diff;
 				else
@@ -434,13 +434,13 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 					offset = m_offset_end + 1024 * 1024;
 					return 0;
 				}
-				
+
 				p = pts;
-				
+
 				if (!takeSample(offset, p))
 				{
 					int diff = (p - pts) / 90;
-			
+
 					eDebug("calculated diff %d ms", diff);
 					if (abs(diff) > 300)
 					{
@@ -452,7 +452,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 
 				break;
 			}
-			
+
 				/* if even the first sample couldn't be taken, fall back. */
 				/* otherwise, return most refined result. */
 			if (p != -1)
@@ -462,7 +462,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 				return 0;
 			}
 		}
-		
+
 		int bitrate = calcBitrate();
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
 		eDebug("fallback, bitrate=%d, results in %016llx", bitrate, offset);
@@ -514,7 +514,7 @@ void eDVBTSTools::calcBegin()
 			 * been determined, in order to ensure m_pts_length will be corrected.
 			 */
 			 m_end_valid = 0;
-			 
+
 		}
 	}
 }
@@ -543,7 +543,7 @@ void eDVBTSTools::calcEnd()
 		m_futile = 0;
 //		eDebug("file size changed, recalc length");
 	}
-	
+
 	int maxiter = 10;
 
 	if (!m_end_valid)
@@ -618,14 +618,14 @@ int eDVBTSTools::calcBitrate()
 	if (calcLen(len_in_pts) != 0)
 		return -1;
 	off_t len_in_bytes = m_offset_end - m_offset_begin;
-	
+
 	if (!len_in_pts)
 		return -1;
-	
+
 	unsigned long long bitrate = len_in_bytes * 90000 * 8 / len_in_pts;
 	if ((bitrate < 10000) || (bitrate > 100000000))
 		return -1;
-	
+
 	return bitrate;
 }
 
@@ -639,7 +639,7 @@ void eDVBTSTools::takeSamples()
 	calcBeginAndEnd();
 	if (!(m_begin_valid && m_end_valid))
 		return;
-	
+
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
 	if (bytes_per_sample < 40*1024*1024)
@@ -670,8 +670,8 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 	if (!eDVBTSTools::getPTS(off, p, 1))
 	{
 			/* as we are happily mixing PTS and PCR values (no comment, please), we might
-			   end up with some "negative" segments. 
-			   
+			   end up with some "negative" segments.
+
 			   so check if this new sample is between the previous and the next field*/
 
 		std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(p);
@@ -738,13 +738,13 @@ int eDVBTSTools::findPMT(eDVBPMTParser::program &program)
 			}
 			continue;
 		}
-		
+
 		if (pmtpid < 0 && !(packet[1] & 0x40)) /* pusi */
 			continue;
-		
+
 			/* ok, now we have a PES header or section header*/
 		unsigned char *sec;
-		
+
 			/* check for adaption field */
 		if (packet[3] & 0x20)
 		{
@@ -882,7 +882,7 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 {
 	int nr_frames, direction;
 //	eDebug("trying to move %d frames at %llu", distance, offset);
-	
+
 	frame_types = frametypeI; /* TODO: intelligent "allow IP frames when not crossing an I-Frame */
 
 	off_t new_offset = offset;
@@ -896,7 +896,7 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 		direction = -1;
                 nr_frames = -1;
 		distance = -distance+1;
-        }	
+        }
 	while (distance > 0)
 	{
 		int dir = direction;
@@ -905,9 +905,9 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 //			eDebug("findFrame failed!\n");
 			return -1;
 		}
-		
+
 		distance -= abs(dir);
-		
+
 //		eDebug("we moved %d, %d to go frames (now at %llu)", dir, distance, new_offset);
 
 		if (distance >= 0 || direction == 0)
@@ -916,7 +916,7 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 			offset = new_offset;
 			len = new_len;
 			nr_frames += abs(dir);
-		} 
+		}
 		else if (first)
 		{
 			first = 0;

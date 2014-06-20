@@ -258,7 +258,7 @@ def defaultRecordingLocation(candidate=None):
 		if not path.endswith('/'):
 			path += '/' # Bad habits die hard, old code relies on this
 	return path
-	
+
 
 def createDir(path, makeParents = False):
 	try:
@@ -287,6 +287,9 @@ def fileExists(f, mode='r'):
 	else:
 		acc_mode = os.F_OK
 	return os.access(f, acc_mode)
+
+def fileCheck(f, mode='r'):
+	return fileExists(f, mode) and f
 
 def getRecordingFilename(basename, dirname = None):
 	# filter out non-allowed characters

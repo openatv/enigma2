@@ -35,7 +35,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
 	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
-	
+
 		// eServiceCenter
 	static RESULT getPrivInstance(ePtr<eServiceCenter> &ptr) { ptr = instance; return 0; }
 	RESULT addServiceFactory(int id, iServiceHandler *hnd, std::list<std::string> &extensions);

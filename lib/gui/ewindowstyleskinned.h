@@ -16,7 +16,7 @@ public:
 	RESULT getFont(int what, ePtr<gFont> &font);
 #endif
 	void setStyle(gPainter &painter, int what);
-	
+
 	enum {
 		bsWindow,
 		bsButton,
@@ -25,7 +25,7 @@ public:
 		bsMax
 #endif
 	};
-	
+
 	enum {
 		bpTopLeft     =     1,
 		bpTop         =     2,
@@ -39,7 +39,7 @@ public:
 		bpAll         = 0x1ff,
 		bpMax         = 0x200
 	};
-	
+
 	enum {
 		bpiTopLeft     =  0,
 		bpiTop         =  1,
@@ -51,10 +51,10 @@ public:
 		bpiBottom      =  7,
 		bpiBottomRight =  8,
 	};
-	
+
 	void setPixmap(int bs, int bp, ePtr<gPixmap> &pixmap);
 	void setPixmap(int bs, int bp, gPixmap &pixmap);
-	
+
 	enum {
 		colBackground,
 		colLabelForeground,
@@ -66,17 +66,17 @@ public:
 		colListboxMarkedForeground,
 		colListboxMarkedAndSelectedBackground,
 		colListboxMarkedAndSelectedForeground,
-		
+
 		colWindowTitleForeground,
 		colWindowTitleBackground,
 		colMax
 	};
-	
+
 	void setColor(int what, const gRGB &back);
-	
+
 	void setTitleOffset(const eSize &offset);
 	void setTitleFont(gFont *fnt);
-	
+
 private:
 	struct borderSet
 	{
@@ -84,14 +84,14 @@ private:
 		int m_border_top, m_border_left, m_border_right, m_border_bottom;
 		borderSet() { m_border_top = m_border_left = m_border_right = m_border_bottom = 0; }
 	};
-	
+
 	borderSet m_border[bsMax];
-	
+
 	gRGB m_color[colMax];
-	
+
 	eSize m_title_offset;
 	ePtr<gFont> m_fnt;
-	
+
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where);
 };
 

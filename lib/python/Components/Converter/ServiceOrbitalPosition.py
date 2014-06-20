@@ -3,7 +3,7 @@ from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr,\
  eServiceCenter
 from ServiceReference import resolveAlternate
- 
+
 from Components.Element import cached
 
 class ServiceOrbitalPosition(Converter, object):

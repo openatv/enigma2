@@ -160,7 +160,7 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	{
 		// try single buffering
 		screeninfo.yres_virtual=screeninfo.yres=nyRes;
-		
+
 		if (ioctl(fbFd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 		{
 			perror("FBIOPUT_VSCREENINFO");
@@ -171,7 +171,6 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 	} else
 		eDebug(" - double buffering available!");
 
-	
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
 	
 #endif

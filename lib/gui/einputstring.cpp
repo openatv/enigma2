@@ -19,7 +19,7 @@ void eInputContentString::getDisplay(std::string &res, int &cursor)
 void eInputContentString::moveCursor(int dir)
 {
 	int old_cursor = m_cursor;
-	
+
 	switch (dir)
 	{
 	case dirLeft:
@@ -35,12 +35,12 @@ void eInputContentString::moveCursor(int dir)
 		m_cursor = m_len;
 		break;
 	}
-	
+
 	if (m_cursor < 0)
 		m_cursor = 0;
 	if (m_cursor > m_len)
 		m_cursor = m_len;
-	
+
 	if (m_cursor != old_cursor)
 		if (m_input)
 			m_input->invalidate();
@@ -52,7 +52,7 @@ int eInputContentString::haveKey(int code, int overwrite)
 
 	if (code >= 0x8020)
 		have_char = code &~ 0x8000;
-	
+
 	if (have_char != -1)
 	{
 		if (overwrite && m_cursor < m_len)
@@ -62,11 +62,11 @@ int eInputContentString::haveKey(int code, int overwrite)
 			m_string.insert(m_cursor, 1, have_char);
 			++m_len;
 		}
-		
+
 		m_cursor++;
-		
+
 		ASSERT(m_cursor <= m_len);
- 
+
 		if (m_input)
 			m_input->invalidate();
 		return 1;
@@ -87,12 +87,12 @@ void eInputContentString::deleteChar(int dir)
 		/* backward delete at begin */
 	if (!m_cursor)
 		return;
-	
+
 	if (!m_len)
 		return;
-	
+
 	m_string.erase(m_cursor - 1, m_cursor);
-	
+
 	m_len--;
 	m_cursor--;
 
@@ -115,7 +115,7 @@ void eInputContentString::setText(const std::string &str)
 	m_len = m_string.size();
 	if (m_cursor > m_len)
 		m_cursor = m_len;
-	
+
 	if (m_input)
 		m_input->invalidate();
 }

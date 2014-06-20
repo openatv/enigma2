@@ -72,7 +72,7 @@ class MessageBox(Screen):
 				self.list = [ (_("no"), False), (_("yes"), True) ]
 		else:
 			self.list = []
-		
+
 		self["list"] = MenuList(self.list)
 		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])

@@ -330,6 +330,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def moveToService(self, serviceref):
+		if not serviceref:
+			return
 		newIdx = self.getIndexFromService(serviceref)
 		if newIdx is None:
 			newIdx = 0

@@ -2,7 +2,7 @@
 #define __E_ERROR__
 
 #include <string>
-#include <map>       
+#include <map>
 #include <new>
 #include <libsig_comp.h>
 

@@ -223,21 +223,21 @@ int main(int argc, char **argv)
 
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
-	
+
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
-	
+
 	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
 #endif
-	
+
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
-	
+
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
-	
+
 	eDebug("Loading spinners...");
-	
+
 	{
 		int i;
 #define MAX_SPINNER 64

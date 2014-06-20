@@ -36,7 +36,7 @@ public:
 //	eXMLRPCVariant(QByteArray *_base64);
 	eXMLRPCVariant(const eXMLRPCVariant &c);
 	~eXMLRPCVariant();
-	
+
 	std::map<std::string,eXMLRPCVariant*> *getStruct();
 	std::vector<eXMLRPCVariant> *getArray();
 	__s32 *getI4();
@@ -45,7 +45,7 @@ public:
 	double *getDouble();
 //	QDateTime *getDatetime();
 //	QByteArray *getBase64();
-	
+
 	void toXML(std::string &);
 };
 
@@ -59,7 +59,7 @@ class eXMLRPCResponse: public eHTTPDataSource
 public:
 	eXMLRPCResponse(eHTTPConnection *c);
 	~eXMLRPCResponse();
-	
+
 	int doWrite(int);
 	void haveData(void *data, int len);
 };

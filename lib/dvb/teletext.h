@@ -28,7 +28,7 @@ struct eDVBTeletextSubtitlePage
 	int m_have_pts;
 	int m_timeout; /* in pts */
 	std::vector<eDVBTeletextSubtitlePageElement> m_elements;
-	
+
 	void clearLine(int line) { for (unsigned int i = 0; i < m_elements.size(); ) if (m_elements[i].m_source_line == line) m_elements.erase(m_elements.begin() + i); else ++i; }
 	void clear() { m_elements.clear(); }
 };
@@ -50,12 +50,12 @@ public:
 private:
 	std::map<int, unsigned int> m_modifications;
 	void processPESPacket(__u8 *pkt, int len);
-	
+
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
-	
+
 	eDVBTeletextSubtitlePage m_subtitle_page;
-	
+
 	int m_C, m_Y, m_pid, m_page_M, m_page_X, m_page_open, m_double_height, m_box_open, m_L;
 	int m_X28_0_valid, m_X28_t1, m_X28_t2;
 	int m_M29_0_valid, m_M29_t1, m_M29_t2;
@@ -63,7 +63,7 @@ private:
 	void handlePageStart();
 	void handleLine(unsigned char *line, int len);
 	void handlePageEnd(int have_pts, const pts_t &pts);
-	
+
 	void addSubtitleString(int color, std::string string, int source_line);
 
 	Signal0<void> m_new_subtitle_stream;

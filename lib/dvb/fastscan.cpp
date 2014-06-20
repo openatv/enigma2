@@ -577,7 +577,7 @@ void eFastScan::parseResult()
 			 * untill the user selects a different audio track.
 			 * So we will not store the default audio pid in the cache.
 			 */
-#if 0 
+#if 0
 			service->setCacheEntry(eDVBService::cMPEGAPID, (*it)->getDefaultAudioPid());
 #endif
 			service->setCacheEntry(eDVBService::cPCRPID, (*it)->getDefaultPcrPid());

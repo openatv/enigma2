@@ -8,14 +8,14 @@ extern void dumpRegion(const gRegion &region);
 void eWidgetDesktop::addRootWidget(eWidget *root)
 {
 	ASSERT(!root->m_desktop);
-	
+
 	int invert_sense = 0;
 		/* buffered mode paints back-to-front, while immediate mode is front-to-back. */
 	if (m_comp_mode == cmBuffered)
 		invert_sense = 1;
-	
+
 	ePtrList<eWidget>::iterator insert_position = m_root.begin();
-	
+
 	for (;;)
 	{
 		if ((insert_position == m_root.end()) || (invert_sense ^ (insert_position->m_z_position < root->m_z_position)))
@@ -25,7 +25,7 @@ void eWidgetDesktop::addRootWidget(eWidget *root)
 		}
 		++insert_position;
 	}
-	
+
 	root->m_desktop = this;
 
 		/* the creation will be postponed. */
@@ -78,10 +78,10 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		widget->m_visible_region = gRegion();
 
 	widget->m_visible_with_childs = widget->m_visible_region;
-	
+
 			/* add childs in reverse (Z) order - we're going from front-to-bottom here. */
 	ePtrList<eWidget>::iterator i(widget->m_childs.end());
-	
+
 	for (;;)
 	{
 		if (i != widget->m_childs.end())
@@ -102,9 +102,9 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 	if (m_comp_mode == cmImmediate)
 	{
 		gRegion background_before = m_screen.m_background_region;
-		
+
 		m_screen.m_background_region = gRegion(eRect(ePoint(0, 0), m_screen.m_screen_size));
-	
+
 		for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 		{
 			if (!(i->m_vis & eWidget::wVisShow))
@@ -112,18 +112,18 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 				clearVisibility(i);
 				continue;
 			}
-			
+
 			gRegion visible_before = i->m_visible_with_childs;
 
 			calcWidgetClipRegion(*i, m_screen.m_background_region);
-			
+
 			gRegion redraw = (i->m_visible_with_childs - visible_before) | (visible_before - i->m_visible_with_childs);
 
 			redraw.moveBy(i->position());
-			
+
 			invalidate(redraw);
 		}
-		
+
 		gRegion redraw = (background_before - m_screen.m_background_region) | (m_screen.m_background_region - background_before);
 		invalidate(redraw);
 	} else if (m_comp_mode == cmBuffered)
@@ -145,8 +145,8 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 				createBufferForWidget(root, 0);
 
 			comp = root->m_comp_buffer[i]; /* it might have changed. */
-			
-			if (!comp) 
+
+			if (!comp)
 				continue;  /* WAIT, don't we need to invalidate,whatever */
 
 					/* CHECKME: don't we need to recalculate everything? after all, our buffer has changed and is likely to be cleared */
@@ -258,7 +258,7 @@ void eWidgetDesktop::setPalette(gPixmap &pm)
 		gPainter painter(m_screen.m_dc);
 		painter.setPalette(&pm);
 	}
-	
+
 	if (m_comp_mode == cmBuffered)
 	{
 		for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
@@ -281,13 +281,13 @@ void eWidgetDesktop::paintBackground(eWidgetDesktopCompBuffer *comp)
 		return;
 
 	comp->m_dirty_region &= comp->m_background_region;
-	
+
 	gPainter painter(comp->m_dc);
-	
+
 	painter.resetClip(comp->m_dirty_region);
 	painter.setBackgroundColor(comp->m_background_color);
 	painter.clear();
-	
+
 	comp->m_dirty_region = gRegion();
 }
 
@@ -356,7 +356,7 @@ void eWidgetDesktop::setRedrawTask(eMainloop &ml)
 	m_mainloop = &ml;
 	m_timer = eTimer::create(m_mainloop);
 	CONNECT(m_timer->timeout, eWidgetDesktop::paint);
-	
+
 	if (m_require_redraw)
 		m_timer->start(0, 1);
 }
@@ -370,7 +370,7 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 {
 	if (m_comp_mode != cmImmediate)
 		return;
-	
+
 //	eDebug("widgetDesktop: make compatible pixmap of %p", &pm);
 	if (!m_screen.m_dc)
 	{
@@ -380,25 +380,25 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 
 	ePtr<gPixmap> target_pixmap;
 	m_screen.m_dc->getPixmap(target_pixmap);
-	
+
 	if (!target_pixmap) {
 		eDebug("no target pixmap! assuming bpp > 8 for accelerated graphics.");
 		return;
 	}
-	
+
 	if (target_pixmap->surface && target_pixmap->surface->bpp > 8)
 		return;
 
 	ePtr<gDC> pixmap_dc = new gDC(&pm);
 	gPainter pixmap_painter(pixmap_dc);
-	
+
 	pixmap_painter.mergePalette(target_pixmap);
 }
 
 void eWidgetDesktop::setCompositionMode(int mode)
 {
 	m_comp_mode = mode;
-	
+
 	if (mode == cmBuffered)
 		for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 			createBufferForWidget(*i, 0);
@@ -473,14 +473,14 @@ void eWidgetDesktop::redrawComposition(int notified)
 {
 	if (m_comp_mode != cmBuffered)
 		return;
-	
+
 	ASSERT(m_screen.m_dc);
-	
+
 	gPainter p(m_screen.m_dc);
 	p.resetClip(eRect(ePoint(0, 0), m_screen.m_screen_size));
 	p.setBackgroundColor(m_screen.m_background_color);
 	p.clear();
-	
+
 	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 	{
 		if (!i->isVisible())
@@ -495,7 +495,7 @@ void eWidgetDesktop::redrawComposition(int notified)
 		}
 	}
 
-		// flip activates on next vsync. 	
+		// flip activates on next vsync.
 	p.flip();
 	p.waitVSync();
 

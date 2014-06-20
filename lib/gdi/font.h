@@ -19,8 +19,8 @@ typedef FTC_SBitCache FTC_SBit_Cache;
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
 #include <string>
-#include <list> 
-#include <lib/base/object.h> 
+#include <list>
+#include <lib/base/object.h>
 
 #include <set>
 
@@ -32,7 +32,7 @@ class gRGB;
 
 #endif
 class fontRenderClass
-{ 
+{
 #ifndef SWIG
 	friend class Font;
 	friend class eTextPara;
@@ -141,7 +141,7 @@ class eTextPara: public iObject
 	int totalheight;
 	int bboxValid;
 	eRect boundBox;
-	bool doTopBottomReordering;	
+	bool doTopBottomReordering;
 
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border, bool last,
 			bool activate_newcolor, unsigned long newcolor);
@@ -156,7 +156,7 @@ public:
 	{
 	}
 	virtual ~eTextPara();
-	
+
 	static void setReplacementFont(std::string font) { replacement_facename=font; }
 	static void forceReplacementGlyph(int unicode) { forced_replaces.insert(unicode); }
 
@@ -181,7 +181,7 @@ public:
 
 		return boundBox;
 	}
-	
+
 	const int size() const
 	{
 		return glyphs.size();
@@ -193,7 +193,7 @@ public:
 		ASSERT(num < (int)glyphs.size());
 		return glyphs[num].bbox;
 	}
-	
+
 	void setGlyphFlag(int g, int f)
 	{
 		ASSERT(g >= 0);
@@ -225,7 +225,7 @@ public:
 #endif
 	FT_Face face;
 	FT_Size size;
-	
+
 	int tabwidth;
 	int height;
 	Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tabwidth, int renderflags);

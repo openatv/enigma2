@@ -116,7 +116,7 @@ public:
 	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	eDVBCISlot(eMainloop *context, int nr);
 	~eDVBCISlot();
-	
+
 	int send(const unsigned char *data, size_t len);
 
 	void setAppManager( eDVBCIApplicationManagerSession *session );
@@ -180,7 +180,7 @@ class eDVBCIInterfaces
 	static eDVBCIInterfaces *instance;
 	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
-	PMTHandlerList m_pmt_handlers; 
+	PMTHandlerList m_pmt_handlers;
 #ifndef SWIG
 public:
 #endif

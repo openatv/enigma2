@@ -89,7 +89,7 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 
 			serviceEvent(eventTuned);
 		}
-	} else if ((m_last_channel_state != iDVBChannel::state_failed) && 
+	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
 		eDebug("tune failed.");
@@ -473,7 +473,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				{
 					if ((*it).find(program.audioStreams[i].language_code) != std::string::npos)
 					{
-						if (program.audioStreams[i].type == audioStream::atMPEG && (autoaudio_level > x || autoaudio_mpeg == -1)) 
+						if (program.audioStreams[i].type == audioStream::atMPEG && (autoaudio_level > x || autoaudio_mpeg == -1))
 							autoaudio_mpeg = i;
 						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
 							autoaudio_ac3 = i;
@@ -701,7 +701,7 @@ int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
 		demux = m_demux;
 		return ret;
 	}
-	
+
 	ASSERT(m_channel); /* calling without a previous ::tune is certainly bad. */
 
 	ret = m_channel->getDemux(demux, iDVBChannel::capDecode);
@@ -820,13 +820,13 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		if (m_channel)
 		{
 			m_channel->connectStateChange(
-				slot(*this, &eDVBServicePMTHandler::channelStateChanged), 
+				slot(*this, &eDVBServicePMTHandler::channelStateChanged),
 				m_channelStateChanged_connection);
 			m_last_channel_state = -1;
 			channelStateChanged(m_channel);
 
 			m_channel->connectEvent(
-				slot(*this, &eDVBServicePMTHandler::channelEvent), 
+				slot(*this, &eDVBServicePMTHandler::channelEvent),
 				m_channelEvent_connection);
 
 			if (ref.path.empty())
@@ -862,7 +862,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 			else
 				m_pvr_channel->playFile(ref.path.c_str());
 
-			if (m_service_type == offline) 
+			if (m_service_type == offline)
 			{
 				m_pvr_channel->setOfflineDecodeMode(eConfigManager::getConfigIntValue("config.recording.offline_decode_delay"));
 			}

@@ -8,4 +8,4 @@ install_PYTHON =	\
 	ui.py \
 	pictureplayer.png
 
- 
+

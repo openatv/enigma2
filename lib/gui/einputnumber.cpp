@@ -17,25 +17,25 @@ void eInputContentNumber::getDisplay(std::string &res, int &cursor)
 {
 	// TODO
 	char r[128];
-	
+
 	int e = 1;
 	for (int i = 1; i < m_len; ++i)
 		e *= 10;
 
 	int v = m_value;
-	
+
 	int i;
 	for (i = 0; i < m_len; ++i)
 	{
 		int rem = v / e;
 		r[i] = '0' + rem;
 		v %= e;
-		
+
 		e /= 10;
 	}
-	
+
 	r[i] = 0;
-	
+
 	res = r;
 	cursor = m_cursor;
 }
@@ -44,7 +44,7 @@ void eInputContentNumber::moveCursor(int dir)
 {
 	eDebug("move cursor..");
 	int old_cursor = m_cursor;
-	
+
 	switch (dir)
 	{
 	case dirLeft:
@@ -60,12 +60,12 @@ void eInputContentNumber::moveCursor(int dir)
 		m_cursor = m_len;
 		break;
 	}
-	
+
 	if (m_cursor < 0)
 		m_cursor = 0;
 	if (m_cursor > m_len)
 		m_cursor = m_len;
-	
+
 	if (m_cursor != old_cursor)
 		if (m_input)
 			m_input->invalidate();
@@ -93,7 +93,7 @@ int eInputContentNumber::haveKey(int code, int overwrite)
 	default:
 		return 0;
 	}
-	
+
 	if (have_digit != -1)
 	{
 		insertDigit(m_cursor, have_digit);
@@ -102,11 +102,11 @@ int eInputContentNumber::haveKey(int code, int overwrite)
 			insertDigit(m_cursor + 1, -1);
 		else
 			++m_len;
-		
+
 		m_cursor++;
-		
+
 		ASSERT(m_cursor <= m_len);
- 
+
 		if (m_input)
 			m_input->invalidate();
 		return 1;
@@ -127,12 +127,12 @@ void eInputContentNumber::deleteChar(int dir)
 		/* backward delete at begin */
 	if (!m_cursor)
 		return;
-	
+
 	if (!m_len)
 		return;
-	
+
 	insertDigit(m_cursor, -1);
-	
+
 	m_len--;
 	m_cursor--;
 
@@ -174,7 +174,7 @@ void eInputContentNumber::recalcLen()
 		++m_len;
 		v /= 10;
 	}
-	
+
 	if (!m_len) /* zero */
 		m_len = 1;
 }
@@ -186,11 +186,11 @@ void eInputContentNumber::insertDigit(int pos, int dig)
 	int i;
 	for (i = 0; i < (m_len - pos); ++i)
 		exp *= 10;
-	
+
 		/* now it's 1...max */
 	int left = m_value / exp;
 	int right = m_value % exp;
-	
+
 	if (dig >= 0)
 	{
 		left *= 10;
@@ -199,7 +199,7 @@ void eInputContentNumber::insertDigit(int pos, int dig)
 	{
 		left /= 10;
 	}
-	
+
 	left *= exp;
 	left += right;
 	m_value = left;

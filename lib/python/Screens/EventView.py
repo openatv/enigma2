@@ -101,10 +101,7 @@ class EventViewBase:
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
-
-	def editTimer(self, timer):
-		self.session.open(TimerEntry, timer)
-
+	
 	def timerAdd(self):
 		if self.isRecording:
 			return

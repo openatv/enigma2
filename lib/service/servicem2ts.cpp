@@ -70,9 +70,9 @@ RESULT eStaticServiceM2TSInformation::getName(const eServiceReference &ref, std:
 int eStaticServiceM2TSInformation::getLength(const eServiceReference &ref)
 {
 	ASSERT(ref == m_ref);
-	
+
 	eDVBTSTools tstools;
-	
+
 	struct stat s;
 	stat(ref.path.c_str(), &s);
 
@@ -285,7 +285,7 @@ eServiceFactoryM2TS::eServiceFactoryM2TS()
 eServiceFactoryM2TS::~eServiceFactoryM2TS()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryM2TS::id);

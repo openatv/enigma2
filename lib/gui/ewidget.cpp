@@ -49,7 +49,7 @@ void eWidget::resize(eSize size)
 {
 		/* same strategy as with move: we first check if
 		   the size changed at all, and if it did, we
-		   invalidate both the old and new area. 
+		   invalidate both the old and new area.
 		   TODO: check if either the old or new area
 		   fits into the other completely, and invalidate
 		   only once. */
@@ -90,9 +90,9 @@ void eWidget::invalidate(const gRegion &region)
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		if (!root) 
+		if (!root)
 		{
-			/* 
+			/*
 			 * Somewhere in out ancestry is a widget without a parent.
 			 * This means we cannot find our desktop, so
 			 * we won't be able to invalidate the requested region.
@@ -128,9 +128,9 @@ void eWidget::show()
 		root = root->m_parent;
 		if (!root)
 		{
-				/* oops: our root widget does not have a desktop associated. 
+				/* oops: our root widget does not have a desktop associated.
 					probably somebody already erased the root, but tries some
-					operations on a child window. 
+					operations on a child window.
 									ignore them for now. */
 			/* ASSERT(root); */
 			return;
@@ -156,7 +156,7 @@ void eWidget::hide()
 		return;
 	m_vis &= ~wVisShow;
 
-		/* this is a workaround to the above problem. when we are in the delete phase, 
+		/* this is a workaround to the above problem. when we are in the delete phase,
 		   don't hide childs. */
 	if (!(m_parent || m_desktop))
 		return;
@@ -241,9 +241,9 @@ ePoint eWidget::getAbsolutePosition()
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		if (!root) 
+		if (!root)
 		{
-			/* 
+			/*
 			 * Somewhere in out ancestry is a widget without a parent.
 			 * This means we cannot find our desktop, so
 			 * we won't be able to get our absolute position.

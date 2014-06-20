@@ -117,10 +117,10 @@ void bsodFatal(const char *component)
 	bsodhandled = true;
 
 	std::string lines = getLogBuffer();
-	
+
 		/* find python-tracebacks, and extract "  File "-strings */
 	size_t start = 0;
-	
+
 	std::string crash_emailaddr = CRASH_EMAILADDR;
 	std::string crash_component = "enigma2";
 
@@ -275,7 +275,7 @@ void bsodFatal(const char *component)
 
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
-	
+
 	gPainter p(my_dc);
 	p.resetOffset();
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
@@ -287,7 +287,7 @@ void bsodFatal(const char *component)
 	p.clear();
 
 	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
-	
+
 	os.str("");
 	os.clear();
 	os << "We are really sorry. Your receiver encountered "
@@ -316,7 +316,7 @@ void bsodFatal(const char *component)
 	font = new gFont("Regular", 14);
 	p.setFont(font);
 
-	p.renderText(usable_area, 
+	p.renderText(usable_area,
 		lines.substr(start), gPainter::RT_HALIGN_LEFT);
 	sleep(10);
 
@@ -364,7 +364,7 @@ void bsodCatchSignals()
 	act.sa_flags = SA_RESTART | SA_SIGINFO;
 	if (sigemptyset(&act.sa_mask) == -1)
 		perror("sigemptyset");
-	
+
 		/* start handling segfaults etc. */
 	sigaction(SIGSEGV, &act, 0);
 	sigaction(SIGILL, &act, 0);

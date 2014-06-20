@@ -730,8 +730,7 @@ import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
 
 profile("Network")
-import Components.Network, Components.Wol
-Components.Wol.Init()
+import Components.Network
 Components.Network.InitNetwork()
 
 profile("LCD")

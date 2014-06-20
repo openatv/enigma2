@@ -31,9 +31,9 @@ void ePESParser::processData(const __u8 *p, int len)
 			memcpy(m_pes_buffer + m_pes_position, p, max);
 			m_pes_position += max;
 			p += max;
-			
+
 			len -= max;
-			
+
 			if (m_pes_position == m_pes_length)
 			{
 				processPESPacket(m_pes_buffer, m_pes_position);

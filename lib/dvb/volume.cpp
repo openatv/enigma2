@@ -177,7 +177,7 @@ void eDVBVolumecontrol::volumeMute()
 	int fd = openMixer();
 	if (fd >= 0)
 	{
-#ifdef HAVE_DVB_API_VERSION	
+#ifdef HAVE_DVB_API_VERSION
 		ioctl(fd, AUDIO_SET_MUTE, true);
 #endif
 		closeMixer(fd);
