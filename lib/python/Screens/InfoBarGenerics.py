@@ -531,7 +531,8 @@ class InfoBarChannelSelection:
 				"keyRight": (self.keyRightCheck, self.getKeyRightHelptext),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
-				"openServiceList": (self.openServiceList, _("Open service list")),
+				"keyChannelUp": (self.keyChannelUpCheck, self.getKeyChannelUpHelptext),
+				"keyChannelDown": (self.keyChannelUpCheck, self.getKeyChannelDownHelptext), 	
 			})
 
 	def showTvChannelList(self, zap=False):
@@ -588,6 +589,18 @@ class InfoBarChannelSelection:
 		else:
 			self.zapDown()
 
+	def keyChannelUpCheck(self):
+		if config.usage.zap_with_ch_buttons.value:
+			self.zapUp()
+		else:
+			self.openServiceList()
+
+	def keyChannelDownCheck(self):
+		if config.usage.zap_with_ch_buttons.value:
+			self.zapDown()
+		else:
+			self.openServiceList()
+
 	def getKeyUpHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Switch to next channel")
@@ -623,6 +636,12 @@ class InfoBarChannelSelection:
 		else:
 			value = _("Switch to next channel")
 		return value
+
+	def getKeyChannelUpHelptext(self):
+		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
+
+	def getKeyChannelDownHelptext(self):
+		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
