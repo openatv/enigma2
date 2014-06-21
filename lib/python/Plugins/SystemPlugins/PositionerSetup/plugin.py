@@ -98,12 +98,8 @@ class PositionerSetup(Screen):
 						cur = feInfo.getTransponderData(True)
 					del feInfo
 					del service
-					if hasattr(session, 'infobar'):
-						if session.infobar.servicelist and session.infobar.servicelist.dopipzap:
-							session.infobar.servicelist.togglePipzap()
-					if hasattr(session, 'pip'):
-						del session.pip
-					session.pipshown = False
+					from Screens.InfoBar import InfoBar
+					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 				if not self.openFrontend():
 					self.frontend = None # in normal case this should not happen
 					if hasattr(self, 'raw_channel'):

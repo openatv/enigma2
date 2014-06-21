@@ -527,18 +527,20 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUpCheck, self.switchChannelUpName),
-				"switchChannelDown": (self.switchChannelDownCheck, self.switchChannelDownName),
-				"zapUp": (self.zapUpCheck, self.zapUpName),
-				"zapDown": (self.zapDownCheck, self.zapDownName),
+				"keyUp": (self.keyUpCheck, self.getKeyUpHelptext),
+				"keyDown": (self.keyDownCheck, self.getKeyDownHelpText),
+				"keyLeft": (self.keyLeftCheck, self.getKeyLeftHelptext),
+				"keyRight": (self.keyRightCheck, self.getKeyRightHelptext),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
-				"openServiceList": (self.openServiceList, _("Open service list")),
-				"openhistorybrowser": (self.openHistoryBrowser, _("open history browser")),
-				"opendevicemanager": (self.openDeviceManager, _("open device manager")),
-				"openaroraplugins": (self.openAroraPlugins, _("open Arora Browser")),
-				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				#"openServiceList": (self.openServiceList, _("Open service list")),
+				#"openhistorybrowser": (self.openHistoryBrowser, _("open history browser")),
+				#"opendevicemanager": (self.openDeviceManager, _("open device manager")),
+				#"openaroraplugins": (self.openAroraPlugins, _("open Arora Browser")),
+				#"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+				#"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"keyChannelUp": (self.keyChannelUpCheck, self.getKeyChannelUpHelptext),
+				"keyChannelDown": (self.keyChannelUpCheck, self.getKeyChannelDownHelptext),
 			})
 
 	def openHistoryBrowser(self):
@@ -611,31 +613,43 @@ class InfoBarChannelSelection:
 		self.servicelist.showFavourites()
 		self.session.execDialog(self.servicelist)	
 
-	def switchChannelUpCheck(self):
+	def keyUpCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.zapDown()
 		else:
 			self.switchChannelUp()
 
-	def switchChannelDownCheck(self):
+	def keyDownCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.zapUp()
 		else:
 			self.switchChannelDown()
 
-	def zapUpCheck(self):
+	def keyLeftCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.switchChannelUp()
 		else:
 			self.zapUp()
 
-	def zapDownCheck(self):
+	def keyRightCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.switchChannelDown()
 		else:
 			self.zapDown()
 
-	def switchChannelUpName(self):
+	def keyChannelUpCheck(self):
+		if config.usage.zap_with_ch_buttons.value:
+			self.zapUp()
+		else:
+			self.openServiceList()
+
+	def keyChannelDownCheck(self):
+		if config.usage.zap_with_ch_buttons.value:
+			self.zapDown()
+		else:
+			self.openServiceList()
+
+	def getKeyUpHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Switch to next channel")
 		else:
@@ -644,7 +658,7 @@ class InfoBarChannelSelection:
 				value += " " + _("and select previous channel")
 		return value
 
-	def switchChannelDownName(self):
+	def getKeyDownHelpText(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Switch to previous channel")
 		else:
@@ -653,7 +667,7 @@ class InfoBarChannelSelection:
 				value += " " + _("and select next channel")
 		return value
 
-	def zapUpName(self):
+	def getKeyLeftHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Open service list")
 			if not "keep" in config.usage.servicelist_cursor_behavior.value:
@@ -662,7 +676,7 @@ class InfoBarChannelSelection:
 			value = _("Switch to previous channel")
 		return value
 
-	def zapDownName(self):
+	def getKeyRightHelptext(self):
 		if config.usage.oldstyle_zap_controls.value:
 			value = _("Open service list")
 			if not "keep" in config.usage.servicelist_cursor_behavior.value:
@@ -670,6 +684,12 @@ class InfoBarChannelSelection:
 		else:
 			value = _("Switch to next channel")
 		return value
+
+	def getKeyChannelUpHelptext(self):
+		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
+
+	def getKeyChannelDownHelptext(self):
+		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
@@ -2021,6 +2041,9 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
+		self.lastPiPServiceTimeout = eTimer()
+		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
+
 	def pipShown(self):
 		return self.session.pipshown
 
@@ -2063,6 +2086,7 @@ class InfoBarPiP:
 				self.togglePipzap()
 			if self.session.pipshown:
 				self.lastPiPService = self.session.pip.getCurrentServiceReference()
+				self.lastPiPServiceTimeout.startLongTimer(60)
 				del self.session.pip
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
@@ -2100,6 +2124,9 @@ class InfoBarPiP:
 					self.lastPiPService = None
 					self.session.pipshown = False
 					del self.session.pip
+
+	def clearLastPiPService(self):
+		self.lastPiPService = None
 
 	def activePiP(self):
 		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
