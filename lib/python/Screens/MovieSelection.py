@@ -53,6 +53,7 @@ config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
+config.movielist.stop_service = ConfigYesNo(default=True)
 
 userDefinedButtons = None
 last_selected_dest = []
@@ -208,6 +209,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 					  getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")), getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
 					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")),
 					  getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behavior.")),
+					  getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service, _("Stop previous broadcasted service on return to movielist.")),
 					  getConfigListEntry(_("Show status icons in movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))]
 		if config.usage.show_icons_in_movielist.value:
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
@@ -1147,15 +1149,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def saveLocalSettings(self):
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-			file = open(path, "wb")
-			pickle.dump(self.settings, file)
-			file.close()
+			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
 			print "Failed to save settings to %s: %s" % (path, e)
 		# Also set config items, in case the user has a read-only disk
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
 		config.usage.on_movie_eof.value = self.settings["movieoff"]
+		# save moviesort and movieeof values for using by hotkeys
+		config.movielist.moviesort.save()
+		config.usage.on_movie_eof.save()
 
 	def loadLocalSettings(self):
 		"""Load settings, called when entering a directory"""
@@ -1991,8 +1994,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def setNextMovieOffStatus(self):
 		config.usage.on_movie_eof.selectNext()
 		self.settings["movieoff"] = config.usage.on_movie_eof.value
-		if config.movielist.settings_per_directory.value:
-			self.saveLocalSettings()
+		self.saveLocalSettings()
 
 	def can_movieoff_menu(self, item):
 		return True

@@ -274,7 +274,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_servicetype_icon_mode(0), m_crypto_icon_mode(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_servicetype_icon_mode(0), m_crypto_icon_mode(0), m_column_width(0)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -515,6 +515,11 @@ void eListboxServiceContent::setCryptoIconMode(int mode)
 	m_crypto_icon_mode = mode;
 }
 
+void eListboxServiceContent::setColumnWidth(int value)
+{
+	m_column_width = value;
+}
+
 void eListboxServiceContent::setGetPiconNameFunc(ePyObject func)
 {
 	if (m_GetPiconNameFunc)
@@ -699,7 +704,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					xoffs = xoffset;
-					tmp.setWidth(tmp.width()-xoffs);
+					tmp.setWidth((!m_column_width ? tmp.width() : m_column_width < 0 ? area.width() / 2 : m_column_width) - xoffs);
 				}
 
 				eTextPara *para = new eTextPara(tmp);
@@ -709,9 +714,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					eRect bbox = para->getBoundBox();
-					m_element_position[celServiceInfo].setLeft(area.left() + bbox.width() + 8 + xoffs);
+
+					int servicenameWidth = (!m_column_width ? bbox.width() : m_column_width < 0 ? area.width() / 2 : m_column_width);
+					m_element_position[celServiceInfo].setLeft(area.left() + servicenameWidth + 8 + xoffs);
 					m_element_position[celServiceInfo].setTop(area.top());
-					m_element_position[celServiceInfo].setWidth(area.width() - (bbox.width() + 8 + xoffs));
+					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + 8 + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
 
 					if (isPlayable)

@@ -2575,7 +2575,7 @@ class InfoBarPiP:
 		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
-					"activatePiP": (self.showPiP, _("Activate PiP")),
+					"activatePiP": (self.activePiP, self.activePiPName),
 				})
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
@@ -2646,6 +2646,20 @@ class InfoBarPiP:
 					self.lastPiPService = None
 					self.session.pipshown = False
 					del self.session.pip
+
+	def activePiP(self):
+		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
+			self.showPiP()
+		else:
+			self.togglePipzap()
+
+	def activePiPName(self):
+		if self.servicelist and self.servicelist.dopipzap:
+			return _("Disable Picture in Picture")
+		if self.session.pipshown:
+			return _("Zap focus to Picture in Picture")
+		else:
+			return _("Activate Picture in Picture")
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()

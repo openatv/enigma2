@@ -71,8 +71,8 @@ class Standby2(Screen):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
 		if self.session.pipshown:
-			del self.session.pip
-			self.session.pipshown = False
+			from Screens.InfoBar import InfoBar
+			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
