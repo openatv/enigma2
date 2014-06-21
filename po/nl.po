@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-24 09:01+0100\n"
-"PO-Revision-Date: 2014-05-25 22:44+0100\n"
+"POT-Creation-Date: 2014-06-16 18:19+0100\n"
+"PO-Revision-Date: 2014-06-21 18:55+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -1199,6 +1199,9 @@ msgstr "Actie na \"top afspelen\""
 msgid "Behavior when a movie reaches the end"
 msgstr "Actie bij het einde van de opname"
 
+msgid "Big PiP"
+msgstr "Audio-PiP"
+
 msgid "Bitrate:"
 msgstr "Bitrate:"
 
@@ -1424,6 +1427,9 @@ msgstr "Kaarten: 0"
 
 msgid "Cardserial"
 msgstr "Kaart serie"
+
+msgid "Cascade PiP"
+msgstr "Waterval PiP"
 
 msgid "Center DVB subtitles"
 msgstr "Centreer DVB-ondertitels"
@@ -2149,6 +2155,10 @@ msgstr "Huidige status:"
 msgid "Current device: "
 msgstr "Huidig apparaat: "
 
+#, python-format
+msgid "Current mode: %s \n"
+msgstr "Huidige modus: %s \n"
+
 msgid "Current settings:"
 msgstr "Huidige instellingen:"
 
@@ -2803,6 +2813,12 @@ msgstr "Netmed EPG inschakelen"
 msgid "Enable ViaSat EPG"
 msgstr "Viasat EPG inschakelen"
 
+msgid "Enable Virgin EPG"
+msgstr "Virgin EPG inschakelen"
+
+msgid "Enable Wake On LAN"
+msgstr "Schakel WoL in"
+
 msgid "Enable auto fast scan"
 msgstr "Auto Fastscan inschakelen"
 
@@ -3015,6 +3031,9 @@ msgstr "Extern"
 
 msgid "External (CF)"
 msgstr "Extern (CF)"
+
+msgid "External PiP"
+msgstr "Externe PiP"
 
 msgid "External subtitle color"
 msgstr "Kleur externe ondertitels"
@@ -4781,6 +4800,9 @@ msgstr "Alleen extensions"
 msgid "Only free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
 
+msgid "Open favouries list"
+msgstr "Open favorieten"
+
 msgid "Open satellites list"
 msgstr "Open satellitenlijst"
 
@@ -5342,8 +5364,8 @@ msgstr "Maak een andere USB-stick klaar voor het flashen"
 msgid "Preparing... Please wait"
 msgstr "Voorbereiden... Een ogenblik geduld a.u.b."
 
-msgid "Press '0' to toggle internal/external PiP."
-msgstr "Druk op  '0' om te schakelen tussen interne/externe PiP."
+msgid "Press '0' to toggle PiP mode"
+msgstr "Druk op  '0' om te schakelen tussen de PiP-modes"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Druk op INFO voor aanvullende informatie."
@@ -6732,6 +6754,9 @@ msgstr "Afsluiten"
 msgid "Side by Side"
 msgstr "Naast elkaar"
 
+msgid "Side by side"
+msgstr "Naast elkaar"
+
 msgid "Signal OK, proceeding"
 msgstr "Signaal OK, gaat door"
 
@@ -6960,6 +6985,9 @@ msgstr "Spaans"
 
 msgid "Split preview mode"
 msgstr "Splits voorvertoningsmodus"
+
+msgid "Splitscreen"
+msgstr "Gesplitst scherm"
 
 msgid "Sports"
 msgstr "Sport"
@@ -8050,6 +8078,18 @@ msgstr "Tunertype"
 msgid "Turkish"
 msgstr "Turks"
 
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr "Schakel HDMI-in vol-sherm modus uit"
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr "Schakel HDMI-in PiP modus uit"
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr "Schakel HDMI-in vol-sherm modus in"
+
+msgid "Turn on HDMI-IN PiP mode"
+msgstr "Schakel HDMI-in PiP modus in"
+
 msgid "Turn on the power LED during standby."
 msgstr "Schakel de blauwe LED tijdens standby uit."
 
@@ -8208,8 +8248,8 @@ msgstr "Gebruik ViX kleurtoetsen*"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Gebruik ViaSat EPG informatie indien beschikbaar."
 
-msgid "Use WOL"
-msgstr "Gebruik WoL"
+msgid "Use Virgin EPG information when it is available."
+msgstr "Gebruik Virgin EPG informatie indien beschikbaar."
 
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
@@ -8660,7 +8700,7 @@ msgid "When enabled, a warning will be displayed and the user will get an option
 msgstr "Indien ingeschakeld krijgt u de keuze om timeshift te stoppen of door te laten lopen."
 
 msgid "When enabled, authentication is required to watch http streams."
-msgstr ""
+msgstr "Indien geactiveerd is authenticatie voor HTTP-streams noodzakelijk"
 
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
 msgstr "Indien gekozen begint de kanaalnummering voor elk bouquet met '1'."
@@ -10434,14 +10474,14 @@ msgstr "zapte"
 #~ msgid "Show tag menu"
 #~ msgstr "Markeringsmenu weergeven"
 
-#~ msgid "Side by side"
-#~ msgstr "Naast elkaar"
-
 #~ msgid "Top and bottom"
 #~ msgstr "Boven en -onderkant"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
+
+#~ msgid "Use WOL"
+#~ msgstr "Gebruik WoL"
 
 #~ msgid "Video setup"
 #~ msgstr "Video-instellingen"
