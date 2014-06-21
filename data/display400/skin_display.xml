@@ -21,6 +21,11 @@
 		<color name="white" value="#00f0f0f0" />
 		<color name="yellow" value="#00ffc000" />
 		<color name="yellowtransparent" value="#084b4b00" />
+		<color name="green" value="#0056c856" />
+		<color name="greentransparent" value="#08004c00" />
+		<color name="orange" value="#00ffc000" />
+		<color name="red" value="#00ff4a3c" />
+		<color name="redtransparent" value="#084c0000" />
 	</colors>
 
 	<fonts>
@@ -214,7 +219,6 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
@@ -231,13 +235,13 @@
 		<widget source="global.CurrentTime" render="Label" position="0,38" size="400,120" font="FdLcD;130" halign="center" noWrap="1" foregroundColor="blue">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="140,156" size="30,30" >
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="140,156" size="30,30" foregroundColor="green">
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update_unstable.png" position="135,156" size="30,30" >
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update_unstable.png" position="135,156" size="30,30" foregroundColor="orange">
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="170,156"  size="50,26">
+		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="170,156"  size="50,26" foregroundColor="red">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 		<panel name="SummaryTunerStatusPanel" />
