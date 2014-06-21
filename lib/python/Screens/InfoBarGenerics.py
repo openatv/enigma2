@@ -1990,6 +1990,9 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
+		self.lastPiPServiceTimeout = eTimer()
+		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
+
 	def pipShown(self):
 		return self.session.pipshown
 
@@ -2032,6 +2035,7 @@ class InfoBarPiP:
 				self.togglePipzap()
 			if self.session.pipshown:
 				self.lastPiPService = self.session.pip.getCurrentServiceReference()
+				self.lastPiPServiceTimeout.startLongTimer(60)
 				del self.session.pip
 				self.session.pipshown = False
 		else:
@@ -2050,6 +2054,9 @@ class InfoBarPiP:
 					self.lastPiPService = None
 					self.session.pipshown = False
 					del self.session.pip
+
+	def clearLastPiPService(self):
+		self.lastPiPService = None
 
 	def activePiP(self):
 		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
