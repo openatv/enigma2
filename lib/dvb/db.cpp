@@ -342,7 +342,7 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 	}
 }
 
-ePtr<eDVBFrontendParameters> eDVBDB::parseFrontendData(char * line, int version)
+static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int version)
 {
 	switch(line[0])
 	{
@@ -415,51 +415,32 @@ ePtr<eDVBFrontendParameters> eDVBDB::parseFrontendData(char * line, int version)
 		}
 		case 'c':
 		{
-			case eDVBFrontendParametersTerrestrial::Bandwidth_8MHz: ter.bandwidth = 8000000; break;
-			case eDVBFrontendParametersTerrestrial::Bandwidth_7MHz: ter.bandwidth = 7000000; break;
-			case eDVBFrontendParametersTerrestrial::Bandwidth_6MHz: ter.bandwidth = 6000000; break;
-			default:
-			case eDVBFrontendParametersTerrestrial::Bandwidth_Auto: ter.bandwidth = 0; break;
-			case eDVBFrontendParametersTerrestrial::Bandwidth_5MHz: ter.bandwidth = 5000000; break;
-			case eDVBFrontendParametersTerrestrial::Bandwidth_1_712MHz: ter.bandwidth = 1712000; break;
-			case eDVBFrontendParametersTerrestrial::Bandwidth_10MHz: ter.bandwidth = 10000000; break;
+			eDVBFrontendParametersCable cab;
+			int frequency, symbol_rate,
+				inversion=eDVBFrontendParametersCable::Inversion_Unknown,
+				modulation=eDVBFrontendParametersCable::Modulation_Auto,
+				fec_inner=eDVBFrontendParametersCable::FEC_Auto,
+				system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A,
+				flags=0;
+			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d",
+				&frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags, &system);
+			cab.frequency = frequency;
+			cab.fec_inner = fec_inner;
+			cab.inversion = inversion;
+			cab.symbol_rate = symbol_rate;
+			cab.modulation = modulation;
+			cab.system = system;
+			ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+			feparm->setDVBC(cab);
+			feparm->setFlags(flags);
+			return feparm;
 		}
-		ter.code_rate_HP = code_rate_HP;
-		ter.code_rate_LP = code_rate_LP;
-		ter.modulation = modulation;
-		ter.transmission_mode = transmission_mode;
-		ter.guard_interval = guard_interval;
-		ter.hierarchy = hierarchy;
-		ter.inversion = inversion;
-		ter.system = system;
-		ter.plpid = plpid;
-		feparm->setDVBT(ter);
-		feparm->setFlags(flags);
+		default:
+			return NULL;
 	}
-	else if (line[0] == 'c') {
-		eDVBFrontendParametersCable cab;
-		int frequency, symbol_rate,
-			inversion=eDVBFrontendParametersCable::Inversion_Unknown,
-			modulation=eDVBFrontendParametersCable::Modulation_Auto,
-			fec_inner=eDVBFrontendParametersCable::FEC_Auto,
-			system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A,
-			flags=0;
-		sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d",
-			&frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags, &system);
-		cab.frequency = frequency;
-		cab.fec_inner = fec_inner;
-		cab.inversion = inversion;
-		cab.symbol_rate = symbol_rate;
-		cab.modulation = modulation;
-		cab.system = system;
-		feparm->setDVBC(cab);
-		feparm->setFlags(flags);
-	}
-
-	return feparm;
 }
 
-eDVBChannelID eDVBDB::parseChannelData(char * line)
+static eDVBChannelID parseChannelData(const char * line)
 {
 	int dvb_namespace = -1, transport_stream_id = -1, original_network_id = -1;
 	sscanf(line, "%x:%x:%x", &dvb_namespace, &transport_stream_id, &original_network_id);
@@ -471,7 +452,7 @@ eDVBChannelID eDVBDB::parseChannelData(char * line)
 			eOriginalNetworkID(original_network_id));
 }
 
-eServiceReferenceDVB eDVBDB::parseServiceRefData(char *line)
+static eServiceReferenceDVB parseServiceRefData(const char *line)
 {
 	int service_id = -1, dvb_namespace, transport_stream_id = -1, original_network_id = -1,
 		service_type = -1, service_number = -1;
@@ -498,14 +479,14 @@ void eDVBDB::loadServicelist(const char *file)
 
 	char line[256];
 	int version;
-	if ((!fgets(line, 256, f)) || sscanf(line, "eDVB services /%d/", &version) != 1)
+	if ((!fgets(line, sizeof(line), f)) || sscanf(line, "eDVB services /%d/", &version) != 1)
 	{
 		eDebug("not a valid servicefile");
 		return;
 	}
 	eDebug("reading services (version %d)", version);
 
-	if ((!fgets(line, 256, f)) || strcmp(line, "transponders\n"))
+	if ((!fgets(line, sizeof(line), f)) || strcmp(line, "transponders\n"))
 	{
 		eDebug("services invalid, no transponders");
 		return;
@@ -514,25 +495,25 @@ void eDVBDB::loadServicelist(const char *file)
 	int tcount = 0;
 	while (!feof(f))
 	{
-		if (!fgets(line, 256, f) || !strcmp(line, "end\n"))
+		if (!fgets(line, sizeof(line), f) || !strcmp(line, "end\n"))
 			break;
 
 		eDVBChannelID channelid = parseChannelData(line);
 		if (!channelid)
 			continue;
 
-		if (!fgets(line, 256, f))
+		if (!fgets(line, sizeof(line), f))
 			break;
 		ePtr<eDVBFrontendParameters> feparm = parseFrontendData(line + 1, version);
-                if (feparm) {
+		if (feparm) {
 			addChannelToList(channelid, feparm);
 			tcount++;
 		}
-		if (!fgets(line, 256, f) || strcmp(line, "/\n"))
+		if (!fgets(line, sizeof(line), f) || strcmp(line, "/\n"))
 			break;
 	}
 
-	if ((!fgets(line, 256, f)) || strcmp(line, "services\n"))
+	if ((!fgets(line, sizeof(line), f)) || strcmp(line, "services\n"))
 	{
 		eDebug("services invalid, no services");
 		return;
@@ -542,13 +523,13 @@ void eDVBDB::loadServicelist(const char *file)
 	while (!feof(f))
 	{
 		int len;
-		if (!fgets(line, 256, f) || !strcmp(line, "end\n"))
+		if (!fgets(line, sizeof(line), f) || !strcmp(line, "end\n"))
 			break;
 
 		eServiceReferenceDVB ref = parseServiceRefData(line);
 		if (!ref)
 			continue;
-		if (!fgets(line, 256, f))
+		if (!fgets(line, sizeof(line), f))
 			break;
 		len = strlen(line); /* strip newline */
 		if (len > 0 && line[len - 1 ] == '\n')
@@ -557,7 +538,7 @@ void eDVBDB::loadServicelist(const char *file)
 		s->m_service_name = line;
 		s->genSortName();
 
-		if (!fgets(line, 256, f))
+		if (!fgets(line, sizeof(line), f))
 			break;
 		len = strlen(line); /* strip newline */
 		if (len > 0 && line[len - 1 ] == '\n')
@@ -782,7 +763,7 @@ int eDVBDB::loadBouquet(const char *path, int startChannelNum)
 				}
 				else
 				{
-					snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
+					snprintf(buf, sizeof(buf), "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
 					tmp.path = buf;
 				}
 				if (m_numbering_mode || path.find("alternatives.") == 0)
@@ -905,7 +886,7 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 			}
 			else
 			{
-				snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
+				snprintf(buf, sizeof(buf), "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
 			}
 
 			if (!path.length())
@@ -1208,7 +1189,8 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 				}
 				if (freq && sr)
 				{
-					freq /= 1000;
+					while (freq > 999999)
+						freq /= 10;
 					tuple = PyTuple_New(7);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
@@ -1906,7 +1888,7 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 				ref.setDVBNamespace(dvbnamespace);
 				ref.flags=eServiceReference::flagDirectory;
 				char buf[128];
-				snprintf(buf, 128, "(satellitePosition == %d) && ", dvbnamespace>>16);
+				snprintf(buf, sizeof(buf), "(satellitePosition == %d) && ", dvbnamespace>>16);
 
 				ref.path=buf+source.path;
 				unsigned int pos=ref.path.find("FROM");
@@ -1922,7 +1904,7 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 //				eDebug("ref.path now %s", ref.path.c_str());
 				m_list.push_back(ref);
 
-				snprintf(buf, 128, "(satellitePosition == %d) && (flags == %d) && ", dvbnamespace>>16, eDVBService::dxNewFound);
+				snprintf(buf, sizeof(buf), "(satellitePosition == %d) && (flags == %d) && ", dvbnamespace>>16, eDVBService::dxNewFound);
 				ref.path=buf+source.path;
 				pos=ref.path.find("FROM");
 				ref.path.erase(pos);
@@ -1954,7 +1936,7 @@ eDVBDBProvidersQuery::eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &
 				eServiceReferenceDVB ref;
 				char buf[64];
 				ref.name=provider_name;
-				snprintf(buf, 64, "(provider == \"%s\") && ", provider_name);
+				snprintf(buf, sizeof(buf), "(provider == \"%s\") && ", provider_name);
 				ref.path=buf+source.path;
 				unsigned int pos = ref.path.find("FROM");
 				ref.flags=eServiceReference::flagDirectory;
