@@ -19,7 +19,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarPowersaver, \
-	setResumePoint, delResumePoint
+	InfoBarHDMI, setResumePoint, delResumePoint
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
@@ -46,7 +46,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
-				"toogleTvRadio": (self.toogleTvRadio, _("toggels betwenn tv and radio...")),
+				"toogleTvRadio": (self.toogleTvRadio, _("toggels between tv and radio...")),
 				"openTimerList": (self.openTimerList, _("Show the tv player...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=2)
@@ -60,7 +60,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarSummarySupport, InfoBarTimeshiftState, \
 				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarPowersaver, \
-				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
+				InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarHDMI:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings..."))]))
@@ -92,7 +92,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def __checkServiceStarted(self):
 		self.__serviceStarted(True)
 		self.onExecBegin.remove(self.__checkServiceStarted)
-		
+
 	def serviceStarted(self):  #override from InfoBarShowHide
 		new = self.servicelist.newServicePlayed()
 		if self.execing:
@@ -152,12 +152,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		except Exception, e:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
-class MoviePlayer(InfoBarBase, InfoBarShowHide, \
-		InfoBarMenu, \
-		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
-		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP):
+class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,
+		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState,
+		InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
+		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarHDMI, InfoBarSimpleEventView):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -189,7 +187,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, \
-				InfoBarPlugins, InfoBarPiP:
+				InfoBarPlugins, InfoBarPiP, InfoBarHDMI:
 			x.__init__(self)
 
 		self.servicelist = slist
@@ -357,7 +355,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def up(self):
 		slist = self.servicelist
 		if slist and slist.dopipzap:
-			slist.moveUp()
+			if "keep" not in config.usage.servicelist_cursor_behavior.value:
+				slist.moveUp()
 			self.session.execDialog(slist)
 		else:
 			self.showMovies()
@@ -365,7 +364,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def down(self):
 		slist = self.servicelist
 		if slist and slist.dopipzap:
-			slist.moveDown()
+			if "keep" not in config.usage.servicelist_cursor_behavior.value:
+				slist.moveDown()
 			self.session.execDialog(slist)
 		else:
 			self.showMovies()
@@ -420,14 +420,23 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		if self.session.pipshown:
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
+			if self.session.pipshown:
+				del self.session.pip
+				self.session.pipshown = False
 		else:
 			from Screens.PictureInPicture import PictureInPicture
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			self.session.pipshown = True
-			self.session.pip.playService(slist.getCurrentSelection())
+			if self.session.pip.playService(slist.getCurrentSelection()):
+				self.session.pipshown = True
+				self.session.pip.servicePath = slist.getCurrentServicePath()
+			else:
+				self.session.pipshown = False
+				del self.session.pip
+
+	def movePiP(self):
+		if self.session.pipshown:
+			InfoBarPiP.movePiP(self)
 
 	def swapPiP(self):
 		pass
