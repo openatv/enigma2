@@ -591,13 +591,13 @@ class InfoBarChannelSelection:
 
 	def keyChannelUpCheck(self):
 		if config.usage.zap_with_ch_buttons.value:
-			self.zapUp()
+			self.zapDown()
 		else:
 			self.openServiceList()
 
 	def keyChannelDownCheck(self):
 		if config.usage.zap_with_ch_buttons.value:
-			self.zapDown()
+			self.zapUp()
 		else:
 			self.openServiceList()
 
