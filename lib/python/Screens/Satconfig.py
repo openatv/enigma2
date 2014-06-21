@@ -546,7 +546,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			"save": self.keySave,
 			"cancel": self.keyCancel,
 			"changetype": self.changeConfigurationMode,
-			"nothingconnected": self.nothingConnectedShortcut
+			"nothingconnected": self.nothingConnectedShortcut,
 			"red": self.keyCancel,
 			"green": self.keySave,
 		}, -2)
