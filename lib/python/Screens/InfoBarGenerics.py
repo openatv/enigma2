@@ -540,7 +540,7 @@ class InfoBarChannelSelection:
 				#"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 				#"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"keyChannelUp": (self.keyChannelUpCheck, self.getKeyChannelUpHelptext),
-				"keyChannelDown": (self.keyChannelUpCheck, self.getKeyChannelDownHelptext),
+				"keyChannelDown": (self.keyChannelDownCheck, self.getKeyChannelDownHelptext), 	
 			})
 
 	def openHistoryBrowser(self):
@@ -554,7 +554,6 @@ class InfoBarChannelSelection:
 
 			
 	def openDeviceManager(self):
-
 		if fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Device Manager - Fast Mounted Remove"):
@@ -564,7 +563,6 @@ class InfoBarChannelSelection:
 			self.session.open(MessageBox, _("The Device Manager plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
 	def openAroraPlugins(self):
-
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Web Browser"):
@@ -579,6 +577,7 @@ class InfoBarChannelSelection:
 			self.secondInfoBarWasShown = False
 		from Screens.PluginBrowser import PluginBrowser
 		self.session.open(PluginBrowser)
+
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
 		if zap:
