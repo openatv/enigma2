@@ -52,7 +52,6 @@ class PiPSetup(Screen):
 			"right": self.right,
 			"size+": self.bigger,
 			"size-": self.smaller,
-			"mode": self.setMode,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
