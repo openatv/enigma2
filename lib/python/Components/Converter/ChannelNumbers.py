@@ -5,10 +5,10 @@ class ChannelNumbers:
 	def __init__(self):
 		pass
 
-	def getChannelNumber(self, frequency, region):
+	def getChannelNumber(self, frequency, nim):
 
 		f = self.getMHz(frequency)
-		descr = self.getTunerDescription(region)
+		descr = self.getTunerDescription(nim)
 
 		if "Europe" in descr:
 			if "DVB-T" in descr:
@@ -39,18 +39,23 @@ class ChannelNumbers:
 			return frequency.split()[0]
 		return (frequency+50000)/100000/10.
 
-	def getTunerDescription(self, region):
-		return nimmanager.getTerrestrialDescription(region)
+	def getTunerDescription(self, nim):
+		description = ""
+		try:
+			description = nimmanager.getTerrestrialDescription(nim)
+		except:
+			print "[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim
+		return description
 
-	def supportedChannels(self, region):
-		descr = self.getTunerDescription(region)
-		if  "Europe" in descr and "DVB-T" in descr:
+	def supportedChannels(self, nim):
+		descr = self.getTunerDescription(nim)
+		if "Europe" in descr and "DVB-T" in descr:
 			return True
 		return False
 
-	def channel2frequency(self, channel, region):
-		descr = self.getTunerDescription(region)
-		if  "Europe" in descr and "DVB-T" in descr:
+	def channel2frequency(self, channel, nim):
+		descr = self.getTunerDescription(nim)
+		if "Europe" in descr and "DVB-T" in descr:
 			if 5 <= channel <= 12:
 				return (177500 + 7000*(channel- 5))*1000
 			elif 21 <= channel <= 69:
