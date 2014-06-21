@@ -532,7 +532,7 @@ class InfoBarChannelSelection:
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"keyChannelUp": (self.keyChannelUpCheck, self.getKeyChannelUpHelptext),
-				"keyChannelDown": (self.keyChannelUpCheck, self.getKeyChannelDownHelptext), 	
+				"keyChannelDown": (self.keyChannelDownCheck, self.getKeyChannelDownHelptext), 	
 			})
 
 	def showTvChannelList(self, zap=False):
