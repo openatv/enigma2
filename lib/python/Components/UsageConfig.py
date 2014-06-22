@@ -53,7 +53,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [(None, _("None")), ("0", _("No timeout"))] + choicelist + [("EPG",_("EPG"))])
+	config.usage.show_second_infobar = ConfigSelection(default = None, choices = [(None, _("None"))] + choicelist + [("EPG",_("EPG"))])	
 	config.usage.infobar_frontend_source = ConfigSelection(default = "tuner", choices = [("settings", _("Settings")), ("tuner", _("Tuner"))])
 	config.usage.oldstyle_zap_controls = ConfigYesNo(default = False)
 	config.usage.zap_with_ch_buttons = ConfigYesNo(default = False)
