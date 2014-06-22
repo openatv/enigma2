@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-08 14:29+0100\n"
+"POT-Creation-Date: 2014-06-21 12:39+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: rimas\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -11,7 +11,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
+
+msgid ""
+"\n"
+"A recording is in progress."
+msgstr ""
+"\n"
+"Toimub salvestamine."
 
 msgid ""
 "\n"
@@ -243,6 +250,12 @@ msgstr[1] "%d minutit"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minutit"
+
+#, python-format
+msgid "%d pixel wide"
+msgid_plural "%d pixels wide"
+msgstr[0] "laius %d piksel"
+msgstr[1] "laius %d pikslit"
 
 #, python-format
 msgid "%d second"
@@ -574,11 +587,6 @@ msgid ""
 "scan."
 msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr "Toimub salvestamine. Peata salvestamine enne satiotsija käivitamist."
-
 msgid "A repeating timer or just once?"
 msgstr "Kas korduv taimer või ainult üks kord?"
 
@@ -653,10 +661,10 @@ msgid "Abort"
 msgstr "Katkesta"
 
 msgid "About"
-msgstr "Andmed"
+msgstr "Süsteemist"
 
 msgid "About..."
-msgstr "Andmed..."
+msgstr "Süsteemist..."
 
 msgid "Accesspoint:"
 msgstr "Tugijaam:"
@@ -672,9 +680,6 @@ msgstr "Käivita"
 
 msgid "Activate MAC-address configuration"
 msgstr "Aktiveeri MAC-aadressi seadistus"
-
-msgid "Activate PiP"
-msgstr "Käivita PiP"
 
 msgid "Activate Picture in Picture"
 msgstr "Ava pilt-pildis"
@@ -1221,6 +1226,9 @@ msgstr "Tegevus taasesituse peatamisel"
 msgid "Behavior when a movie reaches the end"
 msgstr "Tegevus taasesituse lõppemisel"
 
+msgid "Big PiP"
+msgstr "Suur PiP"
+
 msgid "Bitrate:"
 msgstr "Bitikiirus:"
 
@@ -1447,6 +1455,9 @@ msgstr "Kaardid: 0"
 
 msgid "Cardserial"
 msgstr "Kaardi seerianumber"
+
+msgid "Cascade PiP"
+msgstr "PiP kaskaad"
 
 msgid "Center DVB subtitles"
 msgstr "Tsentreeritud DVB subtiitrid"
@@ -1783,7 +1794,7 @@ msgstr "Subtiitrite täpsemaks ajastamiseks määra vajadusel viiteaeg."
 
 msgid ""
 "Configure duration of inactivity before the hard disk drive goes to standby"
-msgstr "Määra tegevusetuse aeg enne kõvaketta ooterežiimile minekut"
+msgstr "Määra tegevusetuse aeg enne kõvaketta seiskamist"
 
 msgid ""
 "Configure for how many minutes finished events should remain visible in the "
@@ -2137,6 +2148,9 @@ msgstr "Ühenda WiFi võrguga"
 msgid "Connected clients"
 msgstr "Ühendatud kliendid"
 
+msgid "Connected satellites"
+msgstr "Ühendatud satelliidid"
+
 msgid "Connected to"
 msgstr "Ühendatud"
 
@@ -2282,6 +2296,10 @@ msgstr "Praegune olek:"
 
 msgid "Current device: "
 msgstr "Praegune seade: "
+
+#, python-format
+msgid "Current mode: %s \n"
+msgstr "Praegune režiim: %s \n"
 
 msgid "Current settings:"
 msgstr "Kasutatavad seade:"
@@ -2524,6 +2542,9 @@ msgstr "Seadme nimi:"
 
 msgid "Devices"
 msgstr "Seadmed"
+
+msgid "Devide"
+msgstr "Jaota"
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -2948,6 +2969,12 @@ msgstr "Luba Netmed EPG"
 msgid "Enable ViaSat EPG"
 msgstr "Luba Viasat EPG"
 
+msgid "Enable Virgin EPG"
+msgstr "Luba Virgin EPG"
+
+msgid "Enable Wake On LAN"
+msgstr "Luba WOL"
+
 msgid "Enable auto fast scan"
 msgstr "Luba automaatne kiirotsing"
 
@@ -3162,6 +3189,9 @@ msgstr "Väline"
 
 msgid "External (CF)"
 msgstr "Väline (CF)"
+
+msgid "External PiP"
+msgstr "Väline PiP"
 
 msgid "External subtitle color"
 msgstr "Väliste subtiitrite värv"
@@ -3495,7 +3525,7 @@ msgid "Hard disk setup"
 msgstr "Kõvaketta seaded"
 
 msgid "Hard disk standby after"
-msgstr "Kõvaketta seiskamine peale"
+msgstr "Kõvaketta seiskamisaeg"
 
 msgid "Hebrew"
 msgstr "Heebrea"
@@ -4984,6 +5014,9 @@ msgstr "Ainult laiendused."
 msgid "Only free scan"
 msgstr "Ainult vabakanalid"
 
+msgid "Open favouries list"
+msgstr "Ava lemmiknimekirjad"
+
 msgid "Open satellites list"
 msgstr "Ava satelliidinimekiri"
 
@@ -5501,6 +5534,9 @@ msgstr "Asukoht salvestati indeksis"
 msgid "Positioner"
 msgstr "Positsioneer"
 
+msgid "Positioner (selecting satellites)"
+msgstr "Positsioneer (satelliitide valimine)"
+
 msgid "Positioner setup"
 msgstr "Positsioneeri seadistus"
 
@@ -5556,10 +5592,10 @@ msgid "Prepare another USB stick for image flashing"
 msgstr "Valmista image paigaldamiseks ette teine USB pulk"
 
 msgid "Preparing... Please wait"
-msgstr "Ettevalmistus...Oota"
+msgstr "Ettevalmistamine...Oota"
 
-msgid "Press '0' to toggle internal/external PiP."
-msgstr "Sisese ja välise PIP vahetamiseks vajuta '0'."
+msgid "Press '0' to toggle PiP mode"
+msgstr "PIP-režiimi vahetamiseks vajuta '0'."
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Vajuta INFO nuppu puldil lisainfo saamiseks."
@@ -5589,6 +5625,9 @@ msgstr "Otsingu alustamiseks vajuta OK"
 msgid "Press OK to select a provider."
 msgstr "Levitaja valimiseks vajuta OK."
 
+msgid "Press OK to select satellites"
+msgstr "Satelliitide valimiseks vajuta OK."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Vajuta OK valik/valik maha CAId."
 
@@ -5597,6 +5636,9 @@ msgstr "MAC-aadressi määramiseks vajuta OK."
 
 msgid "Press OK to start the scan"
 msgstr "Otsingu alustamiseks vajuta OK"
+
+msgid "Press OK to toggle the selection"
+msgstr "Valiku muutmiseks vajuta OK."
 
 msgid "Press OK to toggle the selection."
 msgstr "Valiku muutmiseks vajuta OK."
@@ -5956,6 +5998,9 @@ msgstr "Korduv taimer salvestab. Mida soovid teha?"
 msgid "Repeats"
 msgstr "Kordused"
 
+msgid "Require authentication for http streams"
+msgstr "Http voogude autentimine"
+
 msgid "Required medium type:"
 msgstr "Nõutav meedia tüüp:"
 
@@ -6040,6 +6085,9 @@ msgstr "Tagasi vaadatud kanalile"
 
 msgid "Reverse bouquet buttons"
 msgstr "CHANNEL +/- nupud pööratult"
+
+msgid "Reverse list"
+msgstr "Pööratud nimekiri"
 
 msgid "Rewind speeds"
 msgstr "Tagasikerimise kiirused"
@@ -6326,6 +6374,9 @@ msgstr "Vali WiFi võrk"
 msgid "Select action for timer %s:"
 msgstr "Vali tegevus taimerile %s:"
 
+msgid "Select all"
+msgstr "Vali kõik"
+
 msgid "Select an image to be downloaded"
 msgstr "Vali allalaadimiseks image"
 
@@ -6401,6 +6452,9 @@ msgstr "Vali lisamiseks levitaja..."
 msgid "Select refresh rate"
 msgstr "Vali värskendussagedus"
 
+msgid "Select satellites"
+msgstr "Vali satelliidid"
+
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Määra, kas otsiriba aktiveeritakse VASAK/PAREM (pikk) noolenuppude või << >> "
@@ -6408,6 +6462,9 @@ msgstr ""
 
 msgid "Select service to add..."
 msgstr "Vali lisamiseks kanal..."
+
+msgid "Select sort method:"
+msgstr "Vali järjestusviis:"
 
 msgid "Select target folder"
 msgstr "Vali sihtkataloog"
@@ -6438,6 +6495,12 @@ msgstr "Vali WiFi võrk"
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Vali teenusepakkuja ja vajuta otsingu alustamiseks OK"
+
+msgid "Selecting satellites 1 (USALS)"
+msgstr "Satelliitide valik 1 (USALS)"
+
+msgid "Selecting satellites 2 (USALS)"
+msgstr "Satelliitide vali 2 (USALS)"
 
 msgid "Send"
 msgstr "Saada"
@@ -6550,6 +6613,9 @@ msgstr ""
 
 msgid "Set System"
 msgstr "Määra süsteem"
+
+msgid "Set default"
+msgstr "Määra vaikimisi"
 
 msgid "Set end time"
 msgstr "Määra lõppaeg"
@@ -6985,6 +7051,9 @@ msgstr "Lülita välja"
 msgid "Side by Side"
 msgstr "Kõrvuti"
 
+msgid "Side by side"
+msgstr "Kõrvuti"
+
 msgid "Signal OK, proceeding"
 msgstr "Korralik signaal, jätkame"
 
@@ -7149,6 +7218,9 @@ msgstr ""
 "Uuendused serverites on testimata. Kui soovid neid kasutada määra 'Luba "
 "testimata uuendused' uuendamise seadistustes."
 
+msgid "Sorry that tuner is not available."
+msgstr "See tuuner ei ole saadaval."
+
 msgid "Sorry uShare Config is Missing"
 msgstr "uShare on seadistamata"
 
@@ -7217,11 +7289,17 @@ msgstr "Hispaania"
 msgid "Split preview mode"
 msgstr "Poolitatud eelvaade"
 
+msgid "Splitscreen"
+msgstr "Poolitatud ekraan"
+
 msgid "Sports"
 msgstr "Sport"
 
 msgid "Standard"
 msgstr "Tavaline"
+
+msgid "Standart list"
+msgstr "Tavanimekkiri"
 
 msgid "Standby"
 msgstr "Ooterežiim"
@@ -7292,6 +7370,9 @@ msgstr "Peata"
 msgid "Stop playing this movie?"
 msgstr "Kas lõpetad taasesituse?"
 
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Peata viimati edastatud teenus filmilisti naasmisel"
+
 msgid "Stop recording"
 msgstr "Peata salvestamine"
 
@@ -7300,6 +7381,9 @@ msgstr "Peata salvestamine ja kustuta"
 
 msgid "Stop recording now"
 msgstr "Peata salvestamine kohe"
+
+msgid "Stop service on return to movie list"
+msgstr "Peata teenus filmilisti naasmisel"
 
 msgid "Stop test"
 msgstr "Peata test"
@@ -8414,6 +8498,18 @@ msgstr "Tuuneri tüüp"
 msgid "Turkish"
 msgstr "Türgi"
 
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr "Lülita HDMI-IN täisekraani puhul välja"
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr "Lülita HDMI-IN PiP-režiimi puhul välja"
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr "Lülita HDMI-IN täisekraani puhul sisse"
+
+msgid "Turn on HDMI-IN PiP mode"
+msgstr "Lülita HDMI-IN PiP-režiimi puhul sisse"
+
 msgid "Turn on the power LED during standby."
 msgstr "Toite LED on ooterežiimil sees."
 
@@ -8569,8 +8665,8 @@ msgstr "Kasuta ViX värvinuppe *"
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Viasat EPG kasutamine, kui see on saadaval."
 
-msgid "Use WOL"
-msgstr "Kasuta WOL"
+msgid "Use Virgin EPG information when it is available."
+msgstr "Virgin EPG kasutamine, kui see on saadaval."
 
 msgid "Use a gateway"
 msgstr "Kasuta lüüsi"
@@ -9071,6 +9167,9 @@ msgstr ""
 "Määrates ''jah', kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada "
 "või jätkata."
 
+msgid "When enabled, authentication is required to watch http streams."
+msgstr "Määrates 'jah', on http voogude vaatamiseks vajalik autentimine."
+
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
 msgstr ""
 "Määrates 'jah', algavad kanalinumbrid igas lemmiknimekirjas numbriga '1'."
@@ -9386,6 +9485,9 @@ msgstr "Jah, kuid salvesta ajanihe filmina ja jätka salvestamist"
 
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Jah, kuid salvesta ajanihe filmina ja lõpeta salvestamine"
+
+msgid "Yes, delete this movie and return to movie list"
+msgstr "Jah, kustuta salvestis ja naase filmilisti"
 
 msgid "Yes, do a manual scan now"
 msgstr "Jah, tee nüüd käsiotsing"
@@ -10783,7 +10885,7 @@ msgid "uShare setup"
 msgstr "uShare seaded"
 
 msgid "unavailable"
-msgstr "pole saadaval"
+msgstr "kättesaamatu"
 
 msgid "unconfirmed"
 msgstr "kinnitamata"
@@ -10905,38 +11007,63 @@ msgstr "mine kanalile ja salvesta"
 msgid "zapped"
 msgstr "vahetatud"
 
+msgid "Use WOL"
+msgstr "Kasuta WOL"
+
+#, fuzzy
+#~ msgid ""
+#~ "A recording is currently running. Please stop the recording before trying "
+#~ "to start the satfinder."
+#~ msgstr ""
+#~ "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
+
+#, fuzzy
 #~ msgid "AA"
-#~ msgstr "AA"
+#~ msgstr "A"
 
+#, fuzzy
 #~ msgid "AB"
-#~ msgstr "AB"
+#~ msgstr "A"
 
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#~ msgid "Send DiSEqC"
-#~ msgstr "Saada DiSEqC"
-
-#~ msgid "Show tag menu"
-#~ msgstr "Näita märksõnade menüüd"
-
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Uncommitted DiSEqC-käsk"
-
+#, fuzzy
 #~ msgid "All satellites 1 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 1 (DiSEqC 1.2)"
+#~ msgstr "Kõik satelliidid 1 (USALS)"
 
+#, fuzzy
 #~ msgid "All satellites 2 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 2 (DiSEqC 1.2)"
+#~ msgstr "Kõik satelliidid 2 (USALS)"
 
+#, fuzzy
 #~ msgid "All satellites 3 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 3 (DiSEqC 1.2)"
+#~ msgstr "Kõik satelliidid 3 (USALS)"
 
+#, fuzzy
 #~ msgid "All satellites 4 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 4 (DiSEqC 1.2)"
+#~ msgstr "Kõik satelliidid 4 (USALS)"
 
+#, fuzzy
+#~ msgid "BA"
+#~ msgstr "A"
+
+#, fuzzy
+#~ msgid "BB"
+#~ msgstr "B"
+
+#, fuzzy
+#~ msgid "Send DiSEqC"
+#~ msgstr "DiSEqC"
+
+#, fuzzy
+#~ msgid "Show tag menu"
+#~ msgstr "Menüü"
+
+#, fuzzy
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "DiSEqC 1.0 käsk"
+
+#, fuzzy
 #~ msgid "not available"
-#~ msgstr "pole saadaval"
+#~ msgstr "kättesaamatu"
+
+#~ msgid "Activate PiP"
+#~ msgstr "Käivita PiP"
