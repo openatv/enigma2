@@ -11,7 +11,7 @@ class Screensaver(Screen):
 		self.skin = """
 			<screen name="Screensaver" position="fill" flags="wfNoBorder">
 				<eLabel position="fill" backgroundColor="#54111112" zPosition="0"/>
-				<widget name="picture" pixmap="skin_default/anniversaryOpenPLi.png" position="0,0" size="145,135" alphatest="blend" backgroundColor="secondBG" transparent="1" zPosition="1"/>
+				<widget name="picture" pixmap="skin_default/gb-screensaver.png" position="0,0" size="145,135" alphatest="blend" backgroundColor="secondBG" transparent="1" zPosition="1"/>
 			</screen>"""
 
 		Screen.__init__(self, session)
