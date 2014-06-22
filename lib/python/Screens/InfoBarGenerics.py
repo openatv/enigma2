@@ -227,7 +227,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def __init__(self):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
-				"toggleShow": self.toggleShow,
+				"toggleShow": self.okButtonCheck,
 				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
@@ -317,6 +317,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
+
+	def okButtonCheck(self):
+		if config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
+			self.openServiceList()
+		else:
+			self.toggleShow()
 
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -637,14 +643,20 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def keyChannelUpCheck(self):
-		if config.usage.zap_with_ch_buttons.value:
-			self.zapUp()
+		print "    ",config.usage.ok_is_channelselection.value
+		if config.usage.ok_is_channelselection.value:
+			self.toggleShow()
+		elif config.usage.zap_with_ch_buttons.value:
+			self.zapDown()
 		else:
 			self.openServiceList()
 
 	def keyChannelDownCheck(self):
-		if config.usage.zap_with_ch_buttons.value:
-			self.zapDown()
+		print "    ",config.usage.ok_is_channelselection.value
+		if config.usage.ok_is_channelselection.value:
+			self.toggleShow()
+		elif config.usage.zap_with_ch_buttons.value:
+			self.zapUp()
 		else:
 			self.openServiceList()
 
@@ -685,10 +697,10 @@ class InfoBarChannelSelection:
 		return value
 
 	def getKeyChannelUpHelptext(self):
-		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
+		return config.usage.ok_is_channelselection.value and _("Toggle InfoBar") or config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
 
 	def getKeyChannelDownHelptext(self):
-		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
+		return config.usage.ok_is_channelselection.value and _("Toggle InfoBar") or config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
