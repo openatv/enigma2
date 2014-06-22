@@ -274,13 +274,15 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(False)
 
 	def keyHide(self):
-		if self.__state == self.STATE_SHOWN:
-			self.hide()
-		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
+		if self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
 			if config.usage.pip_hideOnExit.value == "popup":
 				self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
 			else:
 				self.hidePipOnExitCallback(True)
+		elif config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
+			self.toggleShow()
+		elif self.__state == self.STATE_SHOWN:
+			self.hide()
 
 	def hidePipOnExitCallback(self, answer):
 		if answer == True:
@@ -643,19 +645,13 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def keyChannelUpCheck(self):
-		print "    ",config.usage.ok_is_channelselection.value
-		if config.usage.ok_is_channelselection.value:
-			self.toggleShow()
-		elif config.usage.zap_with_ch_buttons.value:
+		if config.usage.zap_with_ch_buttons.value:
 			self.zapDown()
 		else:
 			self.openServiceList()
 
 	def keyChannelDownCheck(self):
-		print "    ",config.usage.ok_is_channelselection.value
-		if config.usage.ok_is_channelselection.value:
-			self.toggleShow()
-		elif config.usage.zap_with_ch_buttons.value:
+		if config.usage.zap_with_ch_buttons.value:
 			self.zapUp()
 		else:
 			self.openServiceList()
@@ -697,10 +693,10 @@ class InfoBarChannelSelection:
 		return value
 
 	def getKeyChannelUpHelptext(self):
-		return config.usage.ok_is_channelselection.value and _("Toggle InfoBar") or config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
+		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
 
 	def getKeyChannelDownHelptext(self):
-		return config.usage.ok_is_channelselection.value and _("Toggle InfoBar") or config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
+		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
@@ -2052,8 +2048,8 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
-		self.lastPiPServiceTimeout = eTimer()
-		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
+		self.lastPiPServiceTimeoutTimer = eTimer()
+		self.lastPiPServiceTimeoutTimer.callback.append(self.clearLastPiPService)
 
 	def pipShown(self):
 		return self.session.pipshown
@@ -2096,8 +2092,11 @@ class InfoBarPiP:
 			if slist and slist.dopipzap:
 				self.togglePipzap()
 			if self.session.pipshown:
-				self.lastPiPService = self.session.pip.getCurrentServiceReference()
-				self.lastPiPServiceTimeout.startLongTimer(60)
+				lastPiPServiceTimeout = int(config.usage.pip_last_service_timeout.value)
+				if lastPiPServiceTimeout >= 0:
+					self.lastPiPService = self.session.pip.getCurrentServiceReference()
+					if lastPiPServiceTimeout:
+						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
 				del self.session.pip
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
@@ -2132,9 +2131,9 @@ class InfoBarPiP:
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
-					self.lastPiPService = None
 					self.session.pipshown = False
 					del self.session.pip
+			self.lastPiPService = None
 
 	def clearLastPiPService(self):
 		self.lastPiPService = None

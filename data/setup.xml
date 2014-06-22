@@ -36,7 +36,7 @@
 		<item level="1" text="Customize channel list cursor behavior" description="Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
 		<item level="2" text="Enable neutrino style zap controlling" description="When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style.">config.usage.oldstyle_zap_controls</item>
 		<item level="2" text="Enable zapping with CH+/-, B+/-, P+/-" description="When enabled you can zap channels with the  CH+/-, B+/-, P+/- buttons instead of opening the channel selection list.">config.usage.zap_with_ch_buttons</item>
-		<item level="2" text="Enable OK for channel selection" description="When enabled you get the channel selection list via the OK button, the infobar toggle is then transfered to the CH+/-, B+/-, P+/- buttons">config.usage.ok_is_channelselection</item>
+		<item level="2" text="Enable OK for channel selection" description="When enabled you get the channel selection list via the OK button, the infobar toggle is then transfered to exit button">config.usage.ok_is_channelselection</item>
 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
 		<item level="1" text="Hide channel list in radio mode" description="When enabled, the channel selection list will be hidden while listening to a radio channel">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Action on long powerbutton press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
@@ -61,6 +61,7 @@
 		<item level="2" text="Show EIT now/next in infobar" description="When enabled, display the EIT now/next eventdata in infobar. When disabled, display now/next eventdata from the EPG cache instead.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Behavior of 0 key in PiP-mode" description="Configure the function of the '0' button do when PIP is active." requires="PIPAvailable">config.usage.pip_zero_button</item>
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Remember last service in PiP" description="Configure of and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 	</setup>
 	<setup key="epgsettings" title="EPG settings">
