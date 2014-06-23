@@ -5,7 +5,7 @@ from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck
 from Tools.HardwareInfo import HardwareInfo
 
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 
 SystemInfo = { }
 
@@ -48,7 +48,7 @@ SystemInfo["SeekStatePlay"] = False
 SystemInfo["GraphicLCD"] = getBoxType() in ('vuultimo', 'xpeedlx3', 'et10000', 'mutant2400')
 SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo")
 SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo")
-SystemInfo["HasExternalPIP"] = getBoxType() != 'et9000' and fileCheck("/proc/stb/vmpeg/1/external")
+SystemInfo["HasExternalPIP"] = getMachineBuild() != 'et9x00' and fileCheck("/proc/stb/vmpeg/1/external")
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
