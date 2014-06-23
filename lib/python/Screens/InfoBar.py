@@ -329,66 +329,86 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 
 	def up(self):
 		slist = self.servicelist
-		if slist and slist.dopipzap:
-			if "keep" not in config.usage.servicelist_cursor_behavior.value:
-				slist.moveUp()
-			self.session.execDialog(slist)
+		if self.servicelist and self.servicelist.dopipzap:
+			if config.usage.oldstyle_zap_controls.value:
+				self.zapDown()
+			else:
+				self.switchChannelUp()
 		else:
 			self.showMovies()
 
 	def down(self):
-		slist = self.servicelist
-		if slist and slist.dopipzap:
-			if "keep" not in config.usage.servicelist_cursor_behavior.value:
-				slist.moveDown()
-			self.session.execDialog(slist)
+		if self.servicelist and self.servicelist.dopipzap:
+			if config.usage.oldstyle_zap_controls.value:
+				self.zapUp()
+			else:
+				self.switchChannelDown()
 		else:
 			self.showMovies()
 
 	def right(self):
-		# XXX: gross hack, we do not really seek if changing channel in pip :-)
-		slist = self.servicelist
-		if slist and slist.dopipzap:
-			# XXX: We replicate InfoBarChannelSelection.zapDown here - we shouldn't do that
-			if slist.inBouquet():
-				prev = slist.getCurrentSelection()
-				if prev:
-					prev = prev.toString()
-					while True:
-						if config.usage.quickzap_bouquet_change.value and slist.atEnd():
-							slist.nextBouquet()
-						else:
-							slist.moveDown()
-						cur = slist.getCurrentSelection()
-						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-							break
+		if self.servicelist and self.servicelist.dopipzap:
+			if config.usage.oldstyle_zap_controls.value:
+				self.switchChannelDown()
 			else:
-				slist.moveDown()
-			slist.zap(enable_pipzap = True)
+				self.zapDown()
 		else:
 			InfoBarSeek.seekFwd(self)
 
 	def left(self):
-		slist = self.servicelist
-		if slist and slist.dopipzap:
-			# XXX: We replicate InfoBarChannelSelection.zapUp here - we shouldn't do that
-			if slist.inBouquet():
-				prev = slist.getCurrentSelection()
-				if prev:
-					prev = prev.toString()
-					while True:
-						if config.usage.quickzap_bouquet_change.value:
-							if slist.atBegin():
-								slist.prevBouquet()
-						slist.moveUp()
-						cur = slist.getCurrentSelection()
-						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-							break
+		if self.servicelist and self.servicelist.dopipzap:
+			if config.usage.oldstyle_zap_controls.value:
+				self.switchChannelUp()
 			else:
-				slist.moveUp()
-			slist.zap(enable_pipzap = True)
+				self.zapUp()
 		else:
 			InfoBarSeek.seekBack(self)
+
+	def switchChannelDown(self):
+		if "keep" not in config.usage.servicelist_cursor_behavior.value:
+			self.servicelist.moveDown()
+		self.session.execDialog(self.servicelist)
+
+	def switchChannelUp(self):
+		if "keep" not in config.usage.servicelist_cursor_behavior.value:
+			self.servicelist.moveUp()
+		self.session.execDialog(self.servicelist)
+
+	def zapUp(self):
+		slist = self.servicelist
+		if slist.inBouquet():
+			prev = slist.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if config.usage.quickzap_bouquet_change.value:
+						if slist.atBegin():
+							slist.prevBouquet()
+					slist.moveUp()
+					cur = slist.getCurrentSelection()
+					if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+						break
+		else:
+			slist.moveUp()
+		slist.zap(enable_pipzap = True)
+
+	def zapDown(self):
+		slist = self.servicelist
+		if slist.inBouquet():
+			prev = slist.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if config.usage.quickzap_bouquet_change.value and slist.atEnd():
+						slist.nextBouquet()
+					else:
+						slist.moveDown()
+					cur = slist.getCurrentSelection()
+					if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+						break
+		else:
+			slist.moveDown()
+		slist.zap(enable_pipzap = True)
 
 	def showPiP(self):
 		slist = self.servicelist
