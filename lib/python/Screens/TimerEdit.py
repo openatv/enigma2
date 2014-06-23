@@ -551,8 +551,8 @@ class TimerSanityConflict(Screen, TimerListButtons):
 				self.timer[x].enable()
 				self.timer[x].processRepeated(findRunningEvent = False)
 				self.session.nav.RecordTimer.doActivate(self.timer[x])
-				self.timer[x].disable()
-				self.session.nav.RecordTimer.timeChanged(self.timer[x])
+			self.timer[x].disable()
+			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 			if self.timer[x].disabled:
 				self.timer[0].enable()
 				self.session.nav.RecordTimer.timeChanged(self.timer[0])
