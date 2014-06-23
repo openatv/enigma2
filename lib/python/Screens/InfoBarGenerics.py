@@ -649,7 +649,7 @@ class InfoBarChannelSelection:
 		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
 
 	def getKeyChannelDownHelptext(self):
-		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
+		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or _("Open service list")
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
