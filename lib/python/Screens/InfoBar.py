@@ -242,7 +242,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 	def movielistAgain(self):
 		from Screens.MovieSelection import playlist
 		del playlist[:]
-		self.session.nav.playService(self.lastservice)
 		self.leavePlayerConfirmed((True, "movielist"))
 
 	def leavePlayerConfirmed(self, answer):
@@ -288,10 +287,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		if answer in ("quit", "quitanddeleteconfirmed"):
 			self.close()
 		elif answer in ("movielist", "deleteandmovielistconfirmed"):
-			if config.movielist.stop_service.value:
-				ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			else:
-				ref = self.lastservice
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.returning = True
 			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 			self.session.nav.stopService()
