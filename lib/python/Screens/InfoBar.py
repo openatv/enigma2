@@ -180,6 +180,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 	def __onClose(self):
 		from Screens.MovieSelection import playlist
 		del playlist[:]
+		if not config.movielist.stop_service.value:
+			Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.session.nav.playService(self.lastservice)
 
 	def handleLeave(self, how):
