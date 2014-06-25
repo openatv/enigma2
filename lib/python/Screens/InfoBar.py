@@ -12,7 +12,7 @@ from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma
-from boxbranding import getBoxType, getMachineBrand,getBrandOEM
+from boxbranding import getBoxType, getMachineBrand, getBrandOEM, getMachineBuild, getMachineName
 
 boxtype = getBoxType()
 
@@ -644,16 +644,22 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				del self.session.pip
 				self.session.pipshown = False
 		else:
-			from Screens.PictureInPicture import PictureInPicture
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			if self.session.pip.playService(slist.getCurrentSelection()):
-				self.session.pipshown = True
-				self.session.pip.servicePath = slist.getCurrentServicePath()
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':  
+				from Screens.PictureInPicture import PictureInPicture
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				if self.session.pip.playService(slist.getCurrentSelection()):
+					self.session.pipshown = True
+					self.session.pip.servicePath = slist.getCurrentServicePath()
+				else:
+					self.session.pipshown = False
+					del self.session.pip
 			else:
-				self.session.pipshown = False
-				del self.session.pip
-
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+				
 	def movePiP(self):
 		if self.session.pipshown:
 			InfoBarPiP.movePiP(self)
