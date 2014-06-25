@@ -388,8 +388,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 							slist.prevBouquet()
 					slist.moveUp()
 					cur = slist.getCurrentSelection()
-					if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-						break
+					if cur:
+						playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
+						if cur.toString() == prev or playable:
+							break
 		else:
 			slist.moveUp()
 		slist.zap(enable_pipzap = True)
@@ -406,8 +408,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 					else:
 						slist.moveDown()
 					cur = slist.getCurrentSelection()
-					if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
-						break
+					if cur:
+						playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
+						if cur.toString() == prev or playable:
+							break
 		else:
 			slist.moveDown()
 		slist.zap(enable_pipzap = True)
