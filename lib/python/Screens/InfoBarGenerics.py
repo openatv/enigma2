@@ -3041,7 +3041,7 @@ class InfoBarPiP:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':		
+			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.show()
 				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
@@ -3072,7 +3072,7 @@ class InfoBarPiP:
 						self.session.pipshown = False
 						del self.session.pip
 			else:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 
 	def activePiP(self):
 		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
