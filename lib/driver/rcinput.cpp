@@ -106,7 +106,16 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_DIRECTORY;
 		
 	}
-#endif	
+#endif
+
+#if KEY_TIME_TO_KEY_SLOW
+	if (ev->code == KEY_TIME)
+	{
+		/* Blackbox Remote rc has a KEY_PLUGIN key, which sends KEY_TIME events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SLOW;
+		
+	}
+#endif
 	
 #if KEY_TEXT_TO_KEY_AUDIO
 	if (ev->code == KEY_AUDIO)
