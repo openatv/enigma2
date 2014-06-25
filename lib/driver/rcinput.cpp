@@ -90,6 +90,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 	
+#if KEY_VIDEO_IS_KEY_SCREEN
+	if (ev->code == KEY_VIDEO)
+	{
+		/* Blackbox Remote rc has a KEY_PIP key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SCREEN;
+		
+	}
+#endif
+
+#if KEY_ARCHIVE_TO_KEY_DIRECTORY
+	if (ev->code == KEY_ARCHIVE)
+	{
+		/* Blackbox Remote rc has a KEY_PLUGIN key, which sends KEY_ARCHIVE events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_DIRECTORY;
+		
+	}
+#endif	
+	
 #if KEY_TEXT_TO_KEY_AUDIO
 	if (ev->code == KEY_AUDIO)
 	{
