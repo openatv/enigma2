@@ -274,15 +274,15 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(False)
 
 	def keyHide(self):
-		if self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
+		if config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
+			self.toggleShow()
+		elif self.__state == self.STATE_SHOWN:
+			self.hide()
+		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
 			if config.usage.pip_hideOnExit.value == "popup":
 				self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
 			else:
 				self.hidePipOnExitCallback(True)
-		elif config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
-			self.toggleShow()
-		elif self.__state == self.STATE_SHOWN:
-			self.hide()
 
 	def hidePipOnExitCallback(self, answer):
 		if answer == True:
@@ -528,7 +528,6 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
-		self.oldStyleControls = False
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
@@ -696,7 +695,7 @@ class InfoBarChannelSelection:
 		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
 
 	def getKeyChannelDownHelptext(self):
-		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or ("Open service list")
+		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or _("Open service list")
 
 	def switchChannelUp(self):
 		if "keep" not in config.usage.servicelist_cursor_behavior.value:
@@ -1845,6 +1844,9 @@ class InfoBarTimeshift:
 		#state = self.seekstate
 		self.activateTimeshiftEnd(False)
 
+	def callServiceStarted(self):
+		self.__serviceStarted()
+
 	def __seekableStatusChanged(self):
 		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled())
 		state = self.getSeek() is not None and self.timeshiftEnabled()
@@ -2087,6 +2089,7 @@ class InfoBarPiP:
 				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
+		self.lastPiPServiceTimeoutTimer.stop()
 		if self.session.pipshown:
 			slist = self.servicelist
 			if slist and slist.dopipzap:
