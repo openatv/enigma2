@@ -40,9 +40,15 @@ struct gRGB
 		{
 			for (int i = 0; i < 8; i++)
 			{
-				if (i) val <<= 4;
-				if (!colorstring[i]) break;
-				val |= (colorstring[i]) & 0x0f;
+				char c = colorstring[i];
+				if (!c) break;
+				val <<= 4;
+				if (c >= '0' && c <= '9')
+					val |= c - '0';
+				else if(c >= 'a' && c <= 'f')
+					val |= c - 'a' + 10;
+				else if(c >= 'A' && c <= 'F')
+					val |= c - 'A' + 10;
 			}
 		}
 		value = val;
