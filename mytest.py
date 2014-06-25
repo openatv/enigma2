@@ -610,6 +610,9 @@ def runScreenTest():
 	config.usage.shutdownOK.save()
 	if not RestoreSettings:
 		configfile.save()
+
+	# kill showiframe if it is running (sh4 hack...)
+	os.system("killall -9 showiframe")
 	
 	runReactor()
 
