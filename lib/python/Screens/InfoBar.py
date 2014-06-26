@@ -288,7 +288,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 			elif answer in ("quitanddeleteconfirmed", "deleteandmovielistconfirmed"):
 				offline = serviceHandler.offlineOperations(ref)
 				if offline.deleteFromDisk(0):
-					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+					self.session.openWithCallback(boundFunction(self.close, self.cur_service), MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 					if answer == "deleteandmovielistconfirmed":
 						self.movielistAgain()
 					return
