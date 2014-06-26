@@ -51,6 +51,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			}, prio=2)
 
 		self.allowPiP = True
+		self.lastMoviePlayerService = None
 
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
@@ -120,7 +121,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef or self.lastMoviePlayerService, timeshiftEnabled = self.timeshiftEnabled())
 
 	def movieSelected(self, service):
 		ref = self.lastservice
@@ -129,7 +130,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 		else:
-			self.session.open(MoviePlayer, service, slist=self.servicelist, lastservice=ref, infobar=self)
+			self.session.openWithCallback(self.MoviePlayerCallback, MoviePlayer, service, slist=self.servicelist, lastservice=ref, infobar=self)
+
+	def MoviePlayerCallback(self, reply=None):
+		if reply:
+			self.lastMoviePlayerService = reply
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,
 		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState,
@@ -262,7 +267,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 						Screens.MovieSelection.moveServiceFiles(ref, trash)
 						# Moved to trash, okay
 						if answer == "quitanddelete":
-							self.close()
+							self.close(self.cur_service)
 						else:
 							self.movielistAgain()
 						return
@@ -287,7 +292,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 					return
 
 		if answer in ("quit", "quitanddeleteconfirmed"):
-			self.close()
+			self.close(self.cur_service)
 		elif answer in ("movielist", "deleteandmovielistconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.returning = True
@@ -470,7 +475,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 			self.session.nav.playService(service)
 			self.returning = False
 		elif self.returning:
-			self.close()
+			self.close(self.cur_service)
 		else:
 			self.is_closing = False
 			ref = self.playingservice
