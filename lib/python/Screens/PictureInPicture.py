@@ -74,7 +74,7 @@ class PictureInPicture(Screen):
 	def __del__(self):
 		del self.pipservice
 		self.setExternalPiP(False)
-		self.setSizePosMainWindow(0, 0, 0, 0)
+		self.setSizePosMainWindow(0,0,0,0)
 
 	def relocate(self):
 		x = config.av.pip.value[0]

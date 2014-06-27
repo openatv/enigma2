@@ -2988,6 +2988,9 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
+		self.lastPiPServiceTimeout = eTimer()
+		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
+
 	def pipShown(self):
 		return self.session.pipshown
 
@@ -3030,6 +3033,7 @@ class InfoBarPiP:
 				self.togglePipzap()
 			if self.session.pipshown:
 				self.lastPiPService = self.session.pip.getCurrentServiceReference()
+				self.lastPiPServiceTimeout.startLongTimer(60)
 				del self.session.pip
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
@@ -3073,6 +3077,9 @@ class InfoBarPiP:
 						del self.session.pip
 			else:
 				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+
+	def clearLastPiPService(self):
+		self.lastPiPService = None
 
 	def activePiP(self):
 		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
