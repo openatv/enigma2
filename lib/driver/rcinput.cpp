@@ -90,15 +90,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
-#if KEY_F11_TO_KEY_AUX
-	if (ev->code == KEY_F11)
-	{
-		/* Mutant Remote rc has a KEY_CONTXT key, which sends KEY_AUX events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_AUX;
-		
-	}
-#endif
-	
 #if KEY_VIDEO_IS_KEY_SCREEN
 	if (ev->code == KEY_VIDEO)
 	{
