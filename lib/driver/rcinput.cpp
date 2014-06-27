@@ -90,10 +90,10 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
-#if KEY_CONTEXT_TO_KEY_AUX
-	if (ev->code == KEY_CONTEXT)
+#if KEY_CONTXT_TO_KEY_AUX
+	if (ev->code == KEY_CONTXT)
 	{
-		/* Mutant Remote rc has a KEY_CONTEXT key, which sends KEY_AUX events. Correct this, so we do not have to place hacks in the keymaps. */
+		/* Mutant Remote rc has a KEY_CONTXT key, which sends KEY_AUX events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_AUX;
 		
 	}
