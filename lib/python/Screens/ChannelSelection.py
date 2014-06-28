@@ -889,6 +889,8 @@ class ChannelSelectionBase(Screen):
 				"nextMarker": self.nextMarker,
 				"prevMarker": self.prevMarker,
 				"gotAsciiCode": self.keyAsciiCode,
+				"keyLeft": self.keyLeft,
+				"keyRight": self.keyRight,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -899,7 +901,7 @@ class ChannelSelectionBase(Screen):
 				"8": self.keyNumberGlobal,
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumber0
-			})
+			}, -2)
 		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
 
@@ -1193,16 +1195,32 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
+		if config.usage.oldstyle_zap_controls.value:
+			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
+		elif "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			self.changeBouquet(-1)
 		else:
 			self.changeBouquet(+1)
 
 	def prevBouquet(self):
-		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
+		if config.usage.oldstyle_zap_controls.value:
+			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
+		elif "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			self.changeBouquet(+1)
 		else:
 			self.changeBouquet(-1)
+
+	def keyLeft(self):
+		if config.usage.oldstyle_zap_controls.value:
+			self.changeBouquet(-1)
+		else:
+			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
+
+	def keyRight(self):
+		if config.usage.oldstyle_zap_controls.value:
+			self.changeBouquet(+1)
+		else:
+			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:

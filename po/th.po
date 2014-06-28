@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-06 12:09+0200\n"
+"POT-Creation-Date: 2014-06-28 00:26+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -109,6 +109,18 @@ msgstr ""
 msgid " (TV)"
 msgstr ""
 
+msgid " (disabled)"
+msgstr ""
+
+msgid " (higher than any auto)"
+msgstr ""
+
+msgid " (higher than rotor any auto)"
+msgstr ""
+
+msgid " (lower than any auto)"
+msgstr ""
+
 msgid " extensions."
 msgstr " ส่วนเพิ่มเติม"
 
@@ -191,6 +203,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d minutes"
 msgstr ""
+
+#, python-format
+msgid "%d pixel wide"
+msgid_plural "%d pixels wide"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d second"
@@ -358,6 +376,10 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+#, python-format
+msgid ": %s"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr ""
 
@@ -466,12 +488,6 @@ msgstr ""
 msgid "A/V settings"
 msgstr "ตั้งค่าภาพและเสียง"
 
-msgid "AA"
-msgstr "AA"
-
-msgid "AB"
-msgstr "AB"
-
 msgid "AC3/DTS downmix"
 msgstr ""
 
@@ -492,10 +508,6 @@ msgstr "เมื่อกดปุ่ม Power ค้างไว้ให้"
 
 msgid "Action on short powerbutton press"
 msgstr ""
-
-#, fuzzy
-msgid "Activate PiP"
-msgstr "ภาพซ้อนภาพ"
 
 msgid "Activate Picture in Picture"
 msgstr "ภาพซ้อนภาพ"
@@ -585,18 +597,17 @@ msgstr "เพิ่มเข้ากลุ่ม (Bouquet)"
 msgid "Add to favourites"
 msgstr "เพิ่มเข้ารายการโปรด (Favourites)"
 
-#, fuzzy
-msgid "Add/remove timer for current event"
-msgstr "บันทึกรายการ (หยุดเมื่อจบรายการ)"
+msgid "Add/remove change timer for current event"
+msgstr ""
 
 msgid "Adjust 3D settings"
 msgstr ""
 
-msgid "Adjust HDMI CEC settings"
-msgstr ""
-
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "ตั้งค่าสีเพื่อแสดงความต่างของสี แต่ยังคงมีความอิ่มตัวอยู่ ถ้าพอใจกับการตั้งค่านี้ให้กดปุ่ม OK เพื่อออกจากตั้งค่าหรือกดปุ่มตัวเลขเพื่อตั้งค่าส่วนอื่นๆ ของหน้าจอ"
+
+msgid "Advanced"
+msgstr ""
 
 #, fuzzy
 msgid "Advanced options"
@@ -639,9 +650,17 @@ msgstr "ทั้งหมด"
 msgid "All ages"
 msgstr ""
 
-#, fuzzy
-msgid "All satellites"
-msgstr "ดาวเทียมทั้งหมด"
+msgid "All satellites 1 (USALS)"
+msgstr ""
+
+msgid "All satellites 2 (USALS)"
+msgstr ""
+
+msgid "All satellites 3 (USALS)"
+msgstr ""
+
+msgid "All satellites 4 (USALS)"
+msgstr ""
 
 msgid "Allocate"
 msgstr ""
@@ -675,6 +694,9 @@ msgstr "ลำดับของ Tuner เพื่อใช้งาน"
 msgid "Always ask"
 msgstr ""
 
+msgid "Always hide infobar"
+msgstr ""
+
 msgid "An empty filename is illegal."
 msgstr "ชื่อไฟล์ห้ามเป็นช่องว่าง"
 
@@ -688,14 +710,14 @@ msgstr "เกิดข้อผิดพลาดขึ้น!"
 msgid "And will put your receiver in standby over "
 msgstr ""
 
-msgid "And will shutdown your receiver over "
-msgstr ""
-
 msgid "Any activity"
 msgstr ""
 
 msgid "Arabic"
 msgstr "ภาษาอาหรับ"
+
+msgid "Are you sure to remove this entry?"
+msgstr ""
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -845,12 +867,6 @@ msgstr "รูปแบบที่ใช้งานได้"
 msgid "B"
 msgstr "B"
 
-msgid "BA"
-msgstr "BA"
-
-msgid "BB"
-msgstr "BB"
-
 msgid "BER"
 msgstr "BER"
 
@@ -913,6 +929,9 @@ msgstr "เมื่อภาพยนต์หยุดเล่นให้"
 msgid "Behavior when a movie reaches the end"
 msgstr "เมื่อเมื่อภาพยนต์จบ ให้"
 
+msgid "Big PiP"
+msgstr ""
+
 msgid "Bitrate:"
 msgstr "บิทเรท:"
 
@@ -961,6 +980,9 @@ msgstr "C"
 
 msgid "C-Band"
 msgstr "C-Band"
+
+msgid "CH"
+msgstr ""
 
 msgid "CI assignment"
 msgstr "CI assignment"
@@ -1014,6 +1036,9 @@ msgstr "ความจุ:"
 msgid "Card"
 msgstr "การ์ด"
 
+msgid "Cascade PiP"
+msgstr ""
+
 msgid "Center DVB subtitles"
 msgstr ""
 
@@ -1048,6 +1073,9 @@ msgstr ""
 
 msgid "Change step size"
 msgstr "เปลี่ยน Step"
+
+msgid "Change timer"
+msgstr ""
 
 msgid "Changelog"
 msgstr ""
@@ -1171,9 +1199,6 @@ msgstr "กำลังทำตามสั่ง..."
 msgid "Command order"
 msgstr "เรียงลำดับคำสั่ง"
 
-msgid "Committed DiSEqC command"
-msgstr "คำสั่ง Committed DiSEqC"
-
 msgid "Common Interface"
 msgstr "อินเตอร์เฟซพื้นฐาน"
 
@@ -1224,10 +1249,19 @@ msgstr ""
 msgid "Configure how recording filenames are constructed."
 msgstr ""
 
-msgid "Configure if and how service type icons will be shown."
+msgid "Configure how the fan should operate"
 msgstr ""
 
-msgid "Configure if service picons will be shown in the servicelist."
+msgid "Configure if and how crypto icons will be shown in the channel selection list."
+msgstr ""
+
+msgid "Configure if and how service type icons will be shown in the channel selection list."
+msgstr ""
+
+msgid "Configure if and how wide columns will be shown in the channel selection list."
+msgstr ""
+
+msgid "Configure if service picons will be shown in the channel selection list."
 msgstr ""
 
 msgid "Configure interface"
@@ -1235,6 +1269,9 @@ msgstr "ตั้งค่าอินเตอร์เฟซ"
 
 msgid "Configure nameservers"
 msgstr "ตั้งค่า Nameservers"
+
+msgid "Configure of and how long the latest service in the PiP will be remembered."
+msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
@@ -1285,13 +1322,16 @@ msgstr ""
 msgid "Configure the contrast level of the front panel display."
 msgstr ""
 
-msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
-msgid "Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in hours the receiver should go to standby when the receiver is not controlled."
 msgstr ""
 
 msgid "Configure the duration in minutes for the screensaver."
+msgstr ""
+
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -1411,7 +1451,13 @@ msgstr ""
 msgid "Configure the slow motion speeds."
 msgstr "ระดับของความช้า"
 
+msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr ""
+
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
+msgstr ""
+
+msgid "Configure the speed of the fan"
 msgstr ""
 
 msgid "Configure the subtitle delay when timing information is not available."
@@ -1464,6 +1510,9 @@ msgstr ""
 msgid "Configure which color format should be used on the SCART output."
 msgstr ""
 
+msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+msgstr ""
+
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr ""
 
@@ -1497,6 +1546,9 @@ msgstr "เชื่อมต่อ"
 #, fuzzy
 msgid "Connect to a wireless network"
 msgstr "เชื่อมต่อกับเครือข่ายไร้สาย"
+
+msgid "Connected satellites"
+msgstr ""
 
 msgid "Connected to"
 msgstr "เชื่อมต่อแล้วกับ"
@@ -1591,6 +1643,10 @@ msgstr ""
 msgid "Current event EPG"
 msgstr ""
 
+#, python-format
+msgid "Current mode: %s \n"
+msgstr ""
+
 msgid "Current settings:"
 msgstr "ตั้งค่าปัจจุบัน:"
 
@@ -1607,6 +1663,9 @@ msgstr "เวอร์ชั่นปัจจุบัน:"
 msgid "Currently installed image"
 msgstr ""
 
+msgid "Currently the commit log cannot be retrieved - please try later again"
+msgstr ""
+
 #, fuzzy
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "ตั้งเวลาข้ามสำหรับปุ่ม '1'/'3'"
@@ -1621,6 +1680,9 @@ msgstr "ตั้งเวลาข้ามสำหรับปุ่ม '7'/'
 
 msgid "Customize"
 msgstr "ปรับแต่ง"
+
+msgid "Customize channel list cursor behavior"
+msgstr ""
 
 msgid "Cut"
 msgstr "ตัด"
@@ -1737,6 +1799,9 @@ msgstr "ลบรายการนี้"
 msgid "Delete saved playlist"
 msgstr "ลบรายการสารบัญ"
 
+msgid "Delete timer"
+msgstr ""
+
 #, fuzzy
 msgid "Delete..."
 msgstr "ลบ..."
@@ -1771,8 +1836,20 @@ msgstr "NIMs ที่พบ:"
 msgid "Devicename:"
 msgstr ""
 
+msgid "Devide"
+msgstr ""
+
 msgid "DiSEqC"
 msgstr "DiSEqC"
+
+msgid "DiSEqC 1.0 command"
+msgstr ""
+
+msgid "DiSEqC 1.1 command"
+msgstr ""
+
+msgid "DiSEqC 1.1 repeats"
+msgstr ""
 
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
@@ -1785,9 +1862,6 @@ msgstr "DiSEqC mode"
 
 #, fuzzy, python-format
 msgid "DiSEqC port %s: %s"
-msgstr "DiSEqC repeats"
-
-msgid "DiSEqC repeats"
 msgstr "DiSEqC repeats"
 
 #, fuzzy
@@ -1832,6 +1906,9 @@ msgid "Disable Picture in Picture"
 msgstr "ไม่ใช้งานภาพซ้อนภาพ"
 
 msgid "Disable background scanning"
+msgstr ""
+
+msgid "Disable timer"
 msgstr ""
 
 msgid "Disabled"
@@ -2069,6 +2146,9 @@ msgstr "ออกจากการตั้งค่า Nameserver"
 msgid "Edit the network configuration of your receiver.\n"
 msgstr ""
 
+msgid "Edit timer"
+msgstr ""
+
 msgid "Edit title"
 msgstr "แก้ไขชื่อเรื่อง"
 
@@ -2096,7 +2176,19 @@ msgstr ""
 msgid "Enable Netmed EPG"
 msgstr ""
 
+msgid "Enable OK for channel selection"
+msgstr ""
+
 msgid "Enable ViaSat EPG"
+msgstr ""
+
+msgid "Enable Virgin EPG"
+msgstr ""
+
+msgid "Enable Wake On LAN"
+msgstr ""
+
+msgid "Enable auto fast scan"
 msgstr ""
 
 #, fuzzy
@@ -2109,10 +2201,16 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "เปิดใช้หลายกลุ่มรายการ"
 
+msgid "Enable neutrino style zap controlling"
+msgstr ""
+
 msgid "Enable parental control"
 msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
 
 msgid "Enable teletext caching"
+msgstr ""
+
+msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr ""
 
 msgid "Enabled"
@@ -2141,6 +2239,9 @@ msgstr "เวลาสิ้นสุด"
 msgid "End time to ignore inactivity sleeptimer"
 msgstr ""
 
+msgid "End time to ignore shutdown in standby"
+msgstr ""
+
 msgid "English"
 msgstr "ภาษาอังกฤษ"
 
@@ -2156,6 +2257,9 @@ msgstr ""
 
 msgid "Enter the service pin"
 msgstr "ป้อนรหัสบริการ"
+
+msgid "Equal to"
+msgstr ""
 
 msgid "Error"
 msgstr "ผิดพลาด"
@@ -2274,7 +2378,13 @@ msgstr "ส่วนเพิ่มเติม"
 msgid "Extensions management"
 msgstr ""
 
+msgid "External PiP"
+msgstr ""
+
 msgid "External subtitle color"
+msgstr ""
+
+msgid "Extra motor options"
 msgstr ""
 
 msgid "FEC"
@@ -2303,6 +2413,12 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Fan %d voltage"
 msgstr "เพิ่ม Voltage"
+
+msgid "Fan operation"
+msgstr ""
+
+msgid "Fan speed"
+msgstr ""
 
 msgid "Fast"
 msgstr "เร็ว"
@@ -2414,6 +2530,9 @@ msgstr ""
 msgid "Function of OK button"
 msgstr ""
 
+msgid "Further Options"
+msgstr ""
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
@@ -2513,7 +2632,7 @@ msgstr ""
 msgid "Goto previous page of events"
 msgstr ""
 
-msgid "Goto specific data/time"
+msgid "Goto specific date/time"
 msgstr ""
 
 msgid "GotoX calibration"
@@ -2535,6 +2654,9 @@ msgid "Guard interval"
 msgstr ""
 
 msgid "HD list"
+msgstr ""
+
+msgid "HDMI-CEC setup"
 msgstr ""
 
 msgid "Handle standby from TV"
@@ -2680,6 +2802,9 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
+msgid "Incorrect type service for PiP!"
+msgstr ""
+
 msgid "Increased voltage"
 msgstr "เพิ่ม Voltage"
 
@@ -2699,6 +2824,9 @@ msgstr "แถบรายการ"
 #, fuzzy
 msgid "Info bar timeout"
 msgstr "เวลาแสดงแถบรายการ"
+
+msgid "Infobar frontend data source"
+msgstr ""
 
 msgid "Information"
 msgstr "ข้อมูล"
@@ -2756,6 +2884,9 @@ msgstr "ติดตั้งอิมเมจผ่านเวบ"
 #, fuzzy
 msgid "Install channel list"
 msgstr "รายการต่อไปในหน่วยความจำ"
+
+msgid "Install extensions"
+msgstr ""
 
 msgid "Install extensions."
 msgstr "ติดตั้งส่วนเพิ่มเติม"
@@ -2817,6 +2948,9 @@ msgstr "โฟล์เดอร์นี้: %s ไม่ถูกต้อง"
 msgid "Invalid location"
 msgstr "ปลายทางไม่ถูกต้อง"
 
+msgid "Invalid transponder data"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Inversion"
 
@@ -2867,6 +3001,9 @@ msgstr "ไปส่วนก่อนหน้า"
 msgid "Just scale"
 msgstr "ขยายเต็มจอ"
 
+msgid "Keep service"
+msgstr ""
+
 #, fuzzy
 msgid "Kernel version: "
 msgstr "เวอร์ชั่นใหม่:"
@@ -2905,6 +3042,9 @@ msgid "Last speed"
 msgstr "ความเร็วล่าสุด"
 
 msgid "Last upgrade: "
+msgstr ""
+
+msgid "Latest Commits"
 msgstr ""
 
 msgid "Latitude"
@@ -3040,6 +3180,9 @@ msgstr "กดปุ่มนานนาน"
 msgid "Longitude"
 msgstr "ลองจิจูด"
 
+msgid "Loop through to"
+msgstr ""
+
 msgid "Luxembourgish"
 msgstr ""
 
@@ -3071,6 +3214,9 @@ msgstr ""
 msgid "Manage your receiver's software"
 msgstr "จัดการซอพท์แวร์เครื่องรับของท่าน"
 
+msgid "Manual"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "ค้นหาเอง"
 
@@ -3095,6 +3241,9 @@ msgstr "บันทึกก่อนเวลาจริง (นาที)"
 msgid "Margin before recording (minutes)"
 msgstr "บันทึกก่อนเวลาจริง (นาที)"
 
+msgid "Max memory positions"
+msgstr ""
+
 #, fuzzy
 msgid "Max. bitrate: "
 msgstr "บิทเรท:"
@@ -3116,9 +3265,6 @@ msgid "Memory"
 msgstr ""
 
 msgid "Memory index"
-msgstr ""
-
-msgid "Memory positions"
 msgstr ""
 
 msgid "Menu"
@@ -3257,6 +3403,9 @@ msgstr ""
 
 msgid "Multisat"
 msgstr "Multisat"
+
+msgid "Multisat all select"
+msgstr ""
 
 msgid "Music/Ballet/Dance"
 msgstr ""
@@ -3432,8 +3581,8 @@ msgstr ""
 msgid "No positioner capable frontend found."
 msgstr "ไม่พบตัวขับจานที่ใช้ได้"
 
-msgid "No satellite frontend found!!"
-msgstr "ไม่พบอุปกรณ์ดาวเทียม"
+msgid "No satellites configured. Plese check your tuner setup."
+msgstr ""
 
 msgid "No service"
 msgstr ""
@@ -3552,9 +3701,15 @@ msgstr "ภาษานอร์เว"
 msgid "Not associated"
 msgstr ""
 
+msgid "Not configured"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "เนื้อที่ไม่เพียงพอ ลบไฟล์ที่ไม่ต้องการออกแล้วลองใหม่ (ต้องการ %d MB แต่เหลืออยู่ %d)"
+
+msgid "Nothing connected"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -3608,6 +3763,9 @@ msgstr "เปิด"
 msgid "On end of movie"
 msgstr ""
 
+msgid "On end of movie (as menu)"
+msgstr ""
+
 msgid "One"
 msgstr "หนึ่ง"
 
@@ -3621,12 +3779,6 @@ msgstr "ค้นหาเฉพาะรายการฟรี"
 #, fuzzy
 msgid "Open service list"
 msgstr "เปิดสารบัญบริการ"
-
-msgid "Open service list and select next channel"
-msgstr ""
-
-msgid "Open service list and select previous channel"
-msgstr ""
 
 #, fuzzy
 msgid "Open the movie list"
@@ -3945,6 +4097,9 @@ msgstr ""
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "ใช้ปุ่มขึ้นหรือลงเพื่อเลือกภาษาที่ต้องการ จากนั้นให้กดปุ่ม OK เพื่อเลือก"
 
+msgid "Please wait"
+msgstr ""
+
 #, fuzzy
 msgid "Please wait (downloading channel list)"
 msgstr "กำลังโหลด... รอสักครู่..."
@@ -4029,6 +4184,9 @@ msgstr ""
 msgid "Positioner"
 msgstr "ตัวขับจาน"
 
+msgid "Positioner (selecting satellites)"
+msgstr ""
+
 msgid "Positioner Setup"
 msgstr ""
 
@@ -4042,6 +4200,9 @@ msgid "Predefined transponder"
 msgstr "ทรานสปอนเดอร์ที่ตั้งไว้แล้ว"
 
 msgid "Prefer AC3 track"
+msgstr ""
+
+msgid "Prefer AC3+ track"
 msgstr ""
 
 msgid "Prefer audio track stored by service"
@@ -4059,13 +4220,16 @@ msgstr ""
 msgid "Preferred tuner"
 msgstr ""
 
+msgid "Preferred tuner for recordings"
+msgstr ""
+
 msgid "Prepare another USB stick for image flashing"
 msgstr ""
 
 msgid "Preparing... Please wait"
 msgstr "กำลังเตรียมงาน... รอสักครู่"
 
-msgid "Press '0' to toggle internal/external PiP."
+msgid "Press '0' to toggle PiP mode"
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -4097,11 +4261,17 @@ msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
 msgid "Press OK to select a provider."
 msgstr "กดปุ่ม OK เพื่อเลือกผู้ให้บริการ"
 
+msgid "Press OK to select satellites"
+msgstr ""
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "กดปุ่ม OK เพื่อเลือกหรือยกเลิก CAId"
 
 msgid "Press OK to start the scan"
 msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
+
+msgid "Press OK to toggle the selection"
+msgstr ""
 
 msgid "Press OK to toggle the selection."
 msgstr "กดปุ่ม OK เพื่อเปลี่ยน"
@@ -4290,6 +4460,9 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
+msgid "Remember last service in PiP"
+msgstr ""
+
 msgid "Remember service PIN"
 msgstr ""
 
@@ -4333,9 +4506,6 @@ msgstr ""
 msgid "Remove plugins"
 msgstr "ลบ Plugin ออก"
 
-msgid "Remove timer"
-msgstr "เอาตารางเวลานี้ออก"
-
 msgid "Remove title"
 msgstr "ลบเรื่อง"
 
@@ -4365,6 +4535,9 @@ msgstr "กำลังบันทึกรายการซ้ำอยู่
 
 msgid "Repeats"
 msgstr "ทำซ้ำ"
+
+msgid "Require authentication for http streams"
+msgstr ""
 
 msgid "Required medium type:"
 msgstr ""
@@ -4449,6 +4622,12 @@ msgstr "กลับไปยังสารบัญภาพยนต์"
 
 msgid "Return to previous service"
 msgstr "กลับไปยังบริการก่อนหน้า"
+
+msgid "Reverse bouquet buttons"
+msgstr ""
+
+msgid "Reverse list"
+msgstr ""
 
 msgid "Rewind speeds"
 msgstr "ความเร็วในการย้อน"
@@ -4636,6 +4815,9 @@ msgstr "กำลังค้นหาส่วนประกอบใหม่
 msgid "Searching west ..."
 msgstr ""
 
+msgid "Second cable of motorized LNB"
+msgstr ""
+
 msgid "Secondary DNS"
 msgstr "DNS สำรอง"
 
@@ -4690,6 +4872,16 @@ msgstr "เลือกภาพยนต์"
 #, fuzzy
 msgid "Select a wireless network"
 msgstr "เลือกเครือข่ายไร้สาย"
+
+msgid "Select action"
+msgstr ""
+
+#, python-format
+msgid "Select action for timer %s:"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
 
 msgid "Select an image to be downloaded"
 msgstr ""
@@ -4749,8 +4941,14 @@ msgstr "เลือกผู้ให้บริการที่ต้อง
 msgid "Select refresh rate"
 msgstr "เลือกอัตราการปรับหน้าจอ"
 
+msgid "Select satellites"
+msgstr ""
+
 msgid "Select service to add..."
 msgstr "เลือกบริการที่ต้องการเพิ่ม..."
+
+msgid "Select sort method:"
+msgstr ""
 
 #, fuzzy
 msgid "Select target folder"
@@ -4779,8 +4977,11 @@ msgstr "เลือกเครือข่ายไร้สาย"
 msgid "Select your provider, and press OK to start the scan"
 msgstr ""
 
-msgid "Send DiSEqC"
-msgstr "ส่งคำสั่ง DiSEqC"
+msgid "Selecting satellites 1 (USALS)"
+msgstr ""
+
+msgid "Selecting satellites 2 (USALS)"
+msgstr ""
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "ส่งคำสั่ง DiSEqC เฉพาะตอนเปลี่ยนช่อง"
@@ -4848,6 +5049,9 @@ msgstr ""
 
 msgid "Services"
 msgstr "บริการต่างๆ"
+
+msgid "Set default"
+msgstr ""
 
 #, fuzzy
 msgid "Set end time"
@@ -4960,6 +5164,12 @@ msgstr ""
 msgid "Show channel numbers in channel selection"
 msgstr ""
 
+msgid "Show columns"
+msgstr ""
+
+msgid "Show crypto icons"
+msgstr ""
+
 msgid "Show crypto info in infobar"
 msgstr ""
 
@@ -5004,6 +5214,9 @@ msgstr "แสดงแถบรายการเมื่อมีการเ
 msgid "Show infobar on skip forward/backward"
 msgstr "แสดงแถบรายการเมื่อเลือกเดินหน้า/ถอยหลัง"
 
+msgid "Show latest commits on sourceforge"
+msgstr ""
+
 #, fuzzy
 msgid "Show message when recording starts"
 msgstr "แสดงข้อความเริ่มเมื่อบับทึกรายการ"
@@ -5015,7 +5228,7 @@ msgstr "โหลดความยาวของภาพยนต์"
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show picons in servicelist"
+msgid "Show picons in channel list"
 msgstr ""
 
 msgid "Show positioner movement"
@@ -5070,12 +5283,6 @@ msgid "Shuffle playlist"
 msgstr "สลับรายการในสารบัญ"
 
 msgid "Shutdown"
-msgstr ""
-
-msgid "Shutdown after current event"
-msgstr ""
-
-msgid "Shutdown in "
 msgstr ""
 
 msgid "Shutdown when in Standby"
@@ -5244,6 +5451,12 @@ msgstr ""
 msgid "Sort A-Z"
 msgstr "เรียง A-Z"
 
+msgid "Sort by"
+msgstr ""
+
+msgid "Sort list:"
+msgstr ""
+
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 #, fuzzy
 msgid "Sort time"
@@ -5265,7 +5478,13 @@ msgstr "ทิศใต้"
 msgid "Spanish"
 msgstr "ภาษาสเปน"
 
+msgid "Specify the end time to ignore the shutdown timer when the receiver is in standby mode"
+msgstr ""
+
 msgid "Specify the end time until the inactivity sleeptimer should be ignored"
+msgstr ""
+
+msgid "Specify the start time to ignore the shutdown timer when the receiver is in standby mode"
 msgstr ""
 
 msgid "Specify the start time when the inactivity sleeptimer should be ignored"
@@ -5274,8 +5493,14 @@ msgstr ""
 msgid "Specify timeframe to ignore inactivity sleeptimer"
 msgstr ""
 
+msgid "Specify timeframe to ignore the shutdown in standby"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "แยกโหมดตัวอย่าง"
+
+msgid "Splitscreen"
+msgstr ""
 
 msgid "Sports"
 msgstr ""
@@ -5283,6 +5508,9 @@ msgstr ""
 #, fuzzy
 msgid "Standard"
 msgstr "มาตรฐาน"
+
+msgid "Standart list"
+msgstr ""
 
 msgid "Standby"
 msgstr "Standby"
@@ -5305,6 +5533,9 @@ msgstr ""
 msgid "Standby in "
 msgstr ""
 
+msgid "StandbyLED"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "เริ่มตั้งแต่ต้น"
 
@@ -5324,6 +5555,9 @@ msgstr "เวลาเริ่ม"
 msgid "Start time to ignore inactivity sleeptimer"
 msgstr ""
 
+msgid "Start time to ignore shutdown in standby"
+msgstr ""
+
 #, fuzzy
 msgid "Start timeshift"
 msgstr "เริ่มควบคุมรายการสด"
@@ -5333,6 +5567,12 @@ msgstr ""
 
 msgid "Starting on"
 msgstr "เริ่มตอน"
+
+msgid "Startup the set top box in standby"
+msgstr ""
+
+msgid "Startup to Standby"
+msgstr ""
 
 msgid "Step east"
 msgstr "ไปทางทิศตะวันออก"
@@ -5370,6 +5610,9 @@ msgid "Stop recording"
 msgstr ""
 
 msgid "Stop recording and delete"
+msgstr ""
+
+msgid "Stop service on return to movie list"
 msgstr ""
 
 msgid "Stop test"
@@ -5493,13 +5736,15 @@ msgstr ""
 msgid "Switch between normal mode and list mode"
 msgstr ""
 
-#, fuzzy
-msgid "Switch next channel"
-msgstr "รายการต่อไป"
+msgid "Switch to HDMI in mode"
+msgstr ""
 
 #, fuzzy
 msgid "Switch to filelist"
 msgstr "เข้าสู่สารบัญไฟล์"
+
+msgid "Switch to next channel"
+msgstr ""
 
 #, fuzzy
 msgid "Switch to next channel in history"
@@ -5862,6 +6107,9 @@ msgstr "เลือกการตั้งเวลา"
 msgid "Timer"
 msgstr "ตั้งเวลา"
 
+msgid "Timer Overview"
+msgstr ""
+
 #, fuzzy
 msgid "Timer edit"
 msgstr "แก้ไขการตั้งเวลา"
@@ -6017,6 +6265,9 @@ msgstr "Tuner"
 msgid "Tuner configuration"
 msgstr "ตั้งค่า Tuner"
 
+msgid "Tuner is not supported"
+msgstr ""
+
 #, fuzzy
 msgid "Tuner slot"
 msgstr "Tuner Slot"
@@ -6031,11 +6282,14 @@ msgstr "สถานะของ Tuner"
 msgid "Tuner type"
 msgstr ""
 
-msgid "Tuning step size"
-msgstr ""
-
 msgid "Turkish"
 msgstr "ภาษาตูรกี"
+
+msgid "Turn on the power LED during standby."
+msgstr ""
+
+msgid "Turning step size"
+msgstr ""
 
 msgid "Two"
 msgstr "สอง"
@@ -6064,9 +6318,6 @@ msgid ""
 "Please wait until your receiver reboots\n"
 "This may take a few minutes"
 msgstr ""
-
-msgid "Uncommitted DiSEqC command"
-msgstr "คำสั่ง Uncommitted DiSEqC"
 
 msgid "Undo install"
 msgstr ""
@@ -6169,6 +6420,9 @@ msgstr "ใช้ USALS กับดาวเทียมนี้"
 msgid "Use ViaSat EPG information when it is available."
 msgstr ""
 
+msgid "Use Virgin EPG information when it is available."
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "ใช้ Gateway"
 
@@ -6176,6 +6430,9 @@ msgid "Use fastscan channel names"
 msgstr ""
 
 msgid "Use fastscan channel numbering"
+msgstr ""
+
+msgid "Use frequency or channel"
 msgstr ""
 
 msgid "Use individual settings for each directory"
@@ -6436,10 +6693,16 @@ msgstr ""
 msgid "Wakeup TV from standby"
 msgstr ""
 
+msgid "Wakeup receiver for start timer"
+msgstr ""
+
 msgid "Wakeup receiver from standby"
 msgstr ""
 
 msgid "Wakeup signal from TV"
+msgstr ""
+
+msgid "Wakeup type"
 msgstr ""
 
 msgid "Warning: no LNB; using factory defaults."
@@ -6512,7 +6775,19 @@ msgstr "ท่านต้องการค้นหาอะไร?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
+msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
+msgstr ""
+
 msgid "When enabled you can specify a timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
+msgstr ""
+
+msgid "When enabled you can zap channels with the  CH+/-, B+/-, P+/- buttons instead of opening the channel selection list."
+msgstr ""
+
+msgid "When enabled you get the channel selection list via the OK button, the infobar toggle is then transfered to exit button"
 msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
@@ -6537,6 +6812,9 @@ msgid "When enabled, a recording is allowed to interrupt live tv, when there are
 msgstr ""
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgstr ""
+
+msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
@@ -6639,6 +6917,9 @@ msgid "When enabled, the receiver will no longer monitor the tuned transponder f
 msgstr ""
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
+msgstr ""
+
+msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
@@ -6746,6 +7027,9 @@ msgstr "ใช่ - ต้องการที่จะลบภาพยนต
 
 msgid "Yes, backup my settings!"
 msgstr "ใช่ - ทำสำรองข้อมูลการตั้งค่าตอนนี้"
+
+msgid "Yes, delete this movie and return to movie list"
+msgstr ""
 
 msgid "Yes, do a manual scan now"
 msgstr "ใช่ - ทำการค้นหาเองตอนนี้เลย"
@@ -6895,12 +7179,6 @@ msgstr ""
 msgid "Your receiver will restart after pressing OK on your remote control."
 msgstr ""
 
-msgid "Your receiver will shutdown due to inactivity."
-msgstr ""
-
-msgid "Your receiver will shutdown due to the sleeptimer."
-msgstr ""
-
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
@@ -6920,9 +7198,6 @@ msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "ย้ายไปยังช่องบริการก่อนตั้งค่าตัวขับจาน"
-
-msgid "Zap back to service before satfinder?"
-msgstr "ย้ายไปยังช่องบริกการก่อนที่ค้นหาดาวเทียม"
 
 msgid "Zap back to service before tuner setup?"
 msgstr ""
@@ -7019,6 +7294,15 @@ msgid "alphabetic reverse"
 msgstr ""
 
 msgid "alternative"
+msgstr ""
+
+msgid "always"
+msgstr ""
+
+msgid "and select next channel"
+msgstr ""
+
+msgid "and select previous channel"
 msgstr ""
 
 msgid "arts/culture (without music, general)"
@@ -7295,6 +7579,9 @@ msgstr "ข้ามไปตอนต่อไป"
 msgid "free"
 msgstr "เหลืออยู่"
 
+msgid "from"
+msgstr ""
+
 msgid "further education"
 msgstr ""
 
@@ -7529,6 +7816,18 @@ msgstr ""
 msgid "once"
 msgstr "ครั้งเดียว"
 
+msgid "only from deep standby"
+msgstr ""
+
+msgid "only from standby"
+msgstr ""
+
+msgid "open EPG..."
+msgstr ""
+
+msgid "open Info..."
+msgstr ""
+
 msgid "open nameserver configuration"
 msgstr "ตั้งค่า Nameserver"
 
@@ -7663,6 +7962,12 @@ msgstr "เลือก"
 
 msgid "select CAId's"
 msgstr "เลือก CAId's"
+
+msgid "select EPG..."
+msgstr ""
+
+msgid "select Info..."
+msgstr ""
 
 msgid "select menu entry"
 msgstr "เลือกเมนูจากรายการ"
@@ -7829,9 +8134,6 @@ msgstr ""
 msgid "true"
 msgstr ""
 
-msgid "tuner is not supported"
-msgstr ""
-
 msgid "unavailable"
 msgstr "ไม่สามารถใช้ได้"
 
@@ -7880,6 +8182,12 @@ msgstr "รายสัปดาห์"
 msgid "west"
 msgstr ""
 
+msgid "when PiPzap enabled zap channel down..."
+msgstr ""
+
+msgid "when PiPzap enabled zap channel up..."
+msgstr ""
+
 msgid "white"
 msgstr ""
 
@@ -7921,3 +8229,52 @@ msgstr ""
 
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
+
+#~ msgid "AA"
+#~ msgstr "AA"
+
+#~ msgid "AB"
+#~ msgstr "AB"
+
+#, fuzzy
+#~ msgid "Activate PiP"
+#~ msgstr "ภาพซ้อนภาพ"
+
+#, fuzzy
+#~ msgid "Add/remove timer for current event"
+#~ msgstr "บันทึกรายการ (หยุดเมื่อจบรายการ)"
+
+#, fuzzy
+#~ msgid "All satellites"
+#~ msgstr "ดาวเทียมทั้งหมด"
+
+#~ msgid "BA"
+#~ msgstr "BA"
+
+#~ msgid "BB"
+#~ msgstr "BB"
+
+#~ msgid "Committed DiSEqC command"
+#~ msgstr "คำสั่ง Committed DiSEqC"
+
+#~ msgid "DiSEqC repeats"
+#~ msgstr "DiSEqC repeats"
+
+#~ msgid "No satellite frontend found!!"
+#~ msgstr "ไม่พบอุปกรณ์ดาวเทียม"
+
+#~ msgid "Remove timer"
+#~ msgstr "เอาตารางเวลานี้ออก"
+
+#~ msgid "Send DiSEqC"
+#~ msgstr "ส่งคำสั่ง DiSEqC"
+
+#, fuzzy
+#~ msgid "Switch next channel"
+#~ msgstr "รายการต่อไป"
+
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "คำสั่ง Uncommitted DiSEqC"
+
+#~ msgid "Zap back to service before satfinder?"
+#~ msgstr "ย้ายไปยังช่องบริกการก่อนที่ค้นหาดาวเทียม"
