@@ -23,19 +23,16 @@ class RcModel:
 		if os.path.exists('/proc/stb/ir/rc/type'):
 			rc = open('/proc/stb/ir/rc/type').read().strip()
 			modeltype = '%s.%s' % (self.model, rc)
-			rctype = (rc)
 		else:
 			modeltype = None
 
 		if modeltype is not None and modeltype in self.RcModels.keys():
 			remote = self.RcModels[modeltype]
-		elif modeltype is not None:
-			remote = (rctype)
 		elif self.model in self.RcModels.keys():
 			remote = self.RcModels[self.model]
 		else:
 			remote = 'dmm'	# default. Assume files for dmm exists
-		f = resolveFilename(SCOPE_SKIN, 'rc_models/rc-' + remote + '.' + ext)
+		f = resolveFilename(SCOPE_SKIN, 'rc_models/' + remote + '.' + ext)
 		if not os.path.exists(f):
 			f = resolveFilename(SCOPE_SKIN, 'rc_models/dmm.' + ext)
 		return f
