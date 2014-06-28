@@ -9,9 +9,6 @@ info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
 
-def getECM():
-	return ecm
-
 class GetEcmInfo:
 	def pollEcmData(self):
 		global data
@@ -43,6 +40,10 @@ class GetEcmInfo:
 			data = self.getText()
 		else:
 			info['ecminterval0'] = int(time.time()-ecm_time+0.5)
+
+	def getEcm(self):
+		self.pollEcmData()
+		return ecm
 
 	def getEcmData(self):
 		self.pollEcmData()
