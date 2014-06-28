@@ -27,19 +27,19 @@ class FileBrowser(Screen, HelpableScreen):
 			currDir = self.getDir()
 			pattern = "(?i)^.*\.(ddvdm\.xml)"
 		if self.scope == "menubg":
-			currDir = self.getDir(configRef.value)
+			currDir = self.getDir(configRef.getValue())
 			pattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)"
 		elif self.scope == "menuaudio":
-			currDir = self.getDir(configRef.value)
+			currDir = self.getDir(configRef.getValue())
 			pattern = "(?i)^.*\.(mp2|m2a|ac3)"
 		elif self.scope == "vmgm":
-			currDir = self.getDir(configRef.value)
+			currDir = self.getDir(configRef.getValue())
 			pattern = "(?i)^.*\.(mpg|mpeg)"
 		elif self.scope == "font_face":
-			currDir = self.getDir(configRef.value, resolveFilename(SCOPE_FONTS))
+			currDir = self.getDir(configRef.getValue(), resolveFilename(SCOPE_FONTS))
 			pattern = "(?i)^.*\.(ttf)"
 		elif self.scope == "isopath":
-			currDir = configRef.value
+			currDir = configRef.getValue()
 		elif self.scope == "image":
 			currDir = resolveFilename(SCOPE_HDD)
 			pattern = "(?i)^.*\.(iso)"
@@ -58,7 +58,7 @@ class FileBrowser(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("DVD file browser"))
+		self.setTitle(_("DVD File Browser"))
 
 	def getDir(self, currentVal=None, defaultDir=None):
 		if currentVal:
@@ -84,23 +84,23 @@ class FileBrowser(Screen, HelpableScreen):
 class ProjectSettings(Screen,ConfigListScreen):
 	skin = """
 		<screen name="ProjectSettings" position="center,center" size="560,440" title="Collection settings" >
-			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget name="config" position="5,50" size="550,276" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="div-h.png" position="0,350" zPosition="1" size="560,2" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
 			<widget source="info" render="Label" position="10,360" size="550,80" font="Regular;18" halign="center" valign="center" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
 		self.project = project
-
+		
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Load"))
@@ -108,7 +108,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self["key_blue"] = StaticText(_("Save"))
 		else:
 			self["key_blue"] = StaticText()
-
+		
 		if config.usage.setup_level.index >= 2: # expert+
 			infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("Year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
 		else:
@@ -119,7 +119,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.settings = project.settings
 		ConfigListScreen.__init__(self, [])
 		self.initConfigList()
-
+		
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 		    "green": self.exit,
@@ -140,12 +140,12 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.initConfigList()
 
 	def initConfigList(self):
-		authormode = self.settings.authormode.value
-		output = self.settings.output.value
+		authormode = self.settings.authormode.getValue()
+		output = self.settings.output.getValue()
 		self.list = []
 		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
 		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
-		self.list.append(getConfigListEntry(_("Output"), self.settings.output))
+		self.list.append(getConfigListEntry(("Output"), self.settings.output))
 		if output == "iso":
 			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
@@ -163,13 +163,15 @@ class ProjectSettings(Screen,ConfigListScreen):
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
 		if config.usage.setup_level.index >= 2: # expert+
-			if authormode != "data_ts":
+			if authormode not in ("data_ts","bdmv"):
 				self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
-				if self.settings.titlesetmode.value == "single" or authormode == "just_linked":
+				if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
 					self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
-			else:
-				self.list.append(getConfigListEntry(_("DVD data format"), self.settings.dataformat))
-
+			elif authormode == "data_ts":
+				self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
+			elif authormode == "bdmv":
+				self.list.append(getConfigListEntry(_("Menu")+' '+_("Language selection"), self.project.menutemplate.settings.menulang))
+		
 		self["config"].setList(self.list)
 		self.keydict = {}
 		for key, val in self.settings.dict().iteritems():
@@ -196,10 +198,10 @@ class ProjectSettings(Screen,ConfigListScreen):
 	def applySettings(self):
 		for x in self["config"].list:
 			x[1].save()
-
+		
 	def ok(self):
 		key = self.keydict[self["config"].getCurrent()[1]]
-		from DVDProject import ConfigFilename
+		from Project import ConfigFilename
 		if type(self["config"].getCurrent()[1]) == ConfigFilename:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self["config"].getCurrent()[1])
 

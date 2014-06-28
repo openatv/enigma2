@@ -1,6 +1,5 @@
-<!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<map context="DVDTitleList">
+	<map context="TitleList">
 		<key id="KEY_RED" mapto="removeCurrentTitle" flags="m" />
 		<key id="KEY_GREEN" mapto="addTitle" flags="m" />
 		<key id="KEY_YELLOW" mapto="titleProperties" flags="m" />
@@ -9,7 +8,7 @@
 		<key id="KEY_0" mapto="burnProject" flags="m" />
 		<key id="KEY_VIDEO" mapto="addTitle" flags="m" />
 	</map>
-	<map context="DVDToolbox">
+	<map context="MediumToolbox">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
