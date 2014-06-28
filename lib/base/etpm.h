@@ -34,7 +34,7 @@ public:
 	~eTPM();
 
 	enum cert_type {
-		DT_LEVEL3_CERT = 0x04,
+		DT_LEVEL2_CERT = 0x04,
 		DT_LEVEL3_CERT = 0x05
 	};
 	std::string getData(cert_type type);
