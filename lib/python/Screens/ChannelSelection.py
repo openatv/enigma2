@@ -1208,13 +1208,13 @@ class ChannelSelectionBase(Screen):
 		if config.usage.oldstyle_zap_controls.value:
 			self.changeBouquet(-1)
 		else:
-			return 0
+			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
 
 	def keyRight(self):
 		if config.usage.oldstyle_zap_controls.value:
 			self.changeBouquet(+1)
 		else:
-			return 0
+			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
