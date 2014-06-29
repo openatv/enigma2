@@ -1189,7 +1189,7 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
 		elif "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			self.changeBouquet(-1)
@@ -1197,7 +1197,7 @@ class ChannelSelectionBase(Screen):
 			self.changeBouquet(+1)
 
 	def prevBouquet(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
 		elif "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			self.changeBouquet(+1)
@@ -1205,13 +1205,13 @@ class ChannelSelectionBase(Screen):
 			self.changeBouquet(-1)
 
 	def keyLeft(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.changeBouquet(-1)
 		else:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
 
 	def keyRight(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.changeBouquet(+1)
 		else:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
