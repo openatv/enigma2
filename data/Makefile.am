@@ -27,5 +27,5 @@ dist_pkgdata_DATA += skin_display.xml
 endif
 endif
 
-skin_display.xml: skin_display_default.xml
-	test -f skin_display_$(BOXTYPE).xml && cp skin_display_$(BOXTYPE).xml skin_display.xml || cp skin_display_default.xml skin_display.xml
+skin_display.xml: $(srcdir)/skin_display_default.xml
+	test -f $(srcdir)/skin_display_$(BOXTYPE).xml && cp $(srcdir)/skin_display_$(BOXTYPE).xml skin_display.xml || cp $(srcdir)/skin_display_default.xml skin_display.xml
