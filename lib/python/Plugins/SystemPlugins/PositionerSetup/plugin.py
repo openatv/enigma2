@@ -255,7 +255,7 @@ class PositionerSetup(Screen):
 		if orb_pos in self.availablesats:
 			lnbnum = int(self.advancedsats[orb_pos].lnb.value)
 			if not lnbnum:
-				for allsats in range(3601, 3604):
+				for allsats in range(3601, 3607):
 					lnbnum = int(self.advancedsats[allsats].lnb.value)
 					if lnbnum:
 						break
