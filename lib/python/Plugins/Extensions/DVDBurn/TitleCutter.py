@@ -1,4 +1,4 @@
-from Plugins.Extensions.CutListEditor.ui import CutListEditor
+from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import iPlayableService, iServiceInformation
 from Tools.Directories import fileExists
@@ -21,8 +21,8 @@ class TitleCutter(CutListEditor):
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 		if n > 0:
-			from DVDTitle import ConfigFixedText
-			from TitleProperties import languageChoices
+			from Title import ConfigFixedText
+			from Project import iso639language
 			from Components.config import config, ConfigSubsection, ConfigSubList, ConfigSelection, ConfigYesNo
 			self.t.properties.audiotracks = ConfigSubList()
 			for x in range(n):
@@ -36,7 +36,9 @@ class TitleCutter(CutListEditor):
 				self.t.properties.audiotracks.append(ConfigSubsection())
 				self.t.properties.audiotracks[-1].active = ConfigYesNo(default = (x < 8))
 				self.t.properties.audiotracks[-1].format = ConfigFixedText(description)
-				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = languageChoices.choices, default=languageChoices.getLanguage(DVB_lang))
+				choicelist = iso639language.getChoices()
+				determined_language = iso639language.determineLanguage(DVB_lang)
+				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = choicelist, default=determined_language)
 				self.t.properties.audiotracks[-1].pid = ConfigFixedText(pid)
 				self.t.properties.audiotracks[-1].DVB_lang = ConfigFixedText(DVB_lang)
 		sAspect = service.info().getInfo(iServiceInformation.sAspect)
@@ -46,6 +48,12 @@ class TitleCutter(CutListEditor):
 			aspect = "16:9"
 		self.t.properties.aspect.setValue(aspect)
 		self.t.VideoType = service.info().getInfo(iServiceInformation.sVideoType)
+		self.t.VideoPID = service.info().getInfo(iServiceInformation.sVideoPID)
+		xres = service.info().getInfo(iServiceInformation.sVideoWidth)
+		yres = service.info().getInfo(iServiceInformation.sVideoHeight)
+		self.t.resolution = (xres, yres)
+		self.t.framerate = service.info().getInfo(iServiceInformation.sFrameRate)
+		self.t.progressive = service.info().getInfo(iServiceInformation.sProgressive)
 
 	def checkAndGrabThumb(self):
 		if not fileExists(self.t.inputfile.rsplit('.',1)[0] + ".png"):

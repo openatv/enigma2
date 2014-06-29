@@ -1,8 +1,5 @@
 from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.HelpMenu import HelpableScreen
-from Components.ActionMap import HelpableActionMap, ActionMap
-from Components.Sources.List import List
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.Task import Task, Job, job_manager, Condition
@@ -11,9 +8,9 @@ from Components.Harddisk import harddiskmanager
 from Components.Console import Console
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
-class DVDToolbox(Screen):
+class MediumToolbox(Screen):
 	skin = """
-		<screen name="DVDToolbox" position="center,center"  size="560,445" title="DVD media toolbox" >
+		<screen name="MediumToolbox" position="center,center"  size="560,445" title="Medium toolbox" >
 		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		    <ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		    <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -28,20 +25,20 @@ class DVDToolbox(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
+		
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Update"))
 		self["key_yellow"] = StaticText()
-
+		
 		self["space_label"] = StaticText()
 		self["space_bar"] = Progress()
-
+		
 		self.mediuminfo = [ ]
 		self.formattable = False
 		self["details"] = ScrollLabel()
 		self["info"] = StaticText()
 
-		self["toolboxactions"] = ActionMap(["ColorActions", "DVDToolbox", "OkCancelActions"],
+		self["toolboxactions"] = ActionMap(["ColorActions", "MediumToolbox", "OkCancelActions"],
 		{
 		    "red": self.exit,
 		    "green": self.update,
@@ -55,7 +52,7 @@ class DVDToolbox(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("DVD media toolbox"))
+		self.setTitle(_("Medium toolbox"))
 
 	def pageUp(self):
 		self["details"].pageUp()
@@ -77,7 +74,7 @@ class DVDToolbox(Screen):
 			job_manager.AddJob(job)
 			from Screens.TaskView import JobView
 			self.session.openWithCallback(self.formatCB, JobView, job)
-
+	
 	def formatCB(self, in_background):
 		self.update()
 
@@ -91,7 +88,7 @@ class DVDToolbox(Screen):
 		for line in mediuminfo.splitlines():
 			if line.find("Mounted Media:") > -1:
 				mediatype = line.rsplit(',',1)[1][1:]
-				if mediatype.find("RW") > 0 or mediatype.find("RAM") > 0:
+				if mediatype.find("RW") > 0 or mediatype.find("RAM") > 0 or mediatype.find("RE"):
 					self.formattable = True
 				else:
 					self.formattable = False
@@ -130,13 +127,17 @@ class DVDToolbox(Screen):
 		if capacity and used > capacity:
 			used = read_capacity or capacity
 			capacity = formatted_capacity or capacity
+		print "capacity", capacity, "used", used, "read_capacity", read_capacity, "formatted_capacity", formatted_capacity
 		self["details"].setText(infotext)
 		if self.formattable:
 			self["key_yellow"].text = _("Format")
 		else:
 			self["key_yellow"].text = ""
 		percent = 100 * used / (capacity or 1)
-		if capacity > 4600:
+		if capacity > 9900:
+			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("BLUDISC RECORDABLE") + ")"
+			self["space_bar"].value = int(percent)
+		elif capacity > 4600 and capacity < 9900:
 			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a DUAL layer medium used.") + ")"
 			self["space_bar"].value = int(percent)
 		elif capacity > 1:
@@ -160,10 +161,10 @@ class DVDToolbox(Screen):
 
 class DVDformatJob(Job):
 	def __init__(self, toolbox):
-		Job.__init__(self, _("DVD media toolbox"))
+		Job.__init__(self, _("Recordable media toolbox"))
 		self.toolbox = toolbox
 		DVDformatTask(self)
-
+		
 	def retry(self):
 		self.tasks[0].args += self.tasks[0].retryargs
 		Job.retry(self)
@@ -177,7 +178,7 @@ class DVDformatTaskPostcondition(Condition):
 		return {
 			task.ERROR_ALREADYFORMATTED: _("This DVD RW medium is already formatted - reformatting will erase all content on the disc."),
 			task.ERROR_NOTWRITEABLE: _("Medium is not a writeable DVD!"),
-			task.ERROR_UNKNOWN: _("An unknown error occurred!")
+			task.ERROR_UNKNOWN: _("An unknown error occured!")
 		}[task.error]
 
 class DVDformatTask(Task):
@@ -198,9 +199,13 @@ class DVDformatTask(Task):
 		if line.startswith("- media is already formatted"):
 			self.error = self.ERROR_ALREADYFORMATTED
 			self.retryargs = [ "-force" ]
-		if line.startswith("- media is not blank") or line.startswith("  -format=full  to perform full (lengthy) reformat;"):
+		#if line.startswith("- media is not blank") or 
+		if line.startswith("  -format=full  to perform full (lengthy) reformat;"):
 			self.error = self.ERROR_ALREADYFORMATTED
 			self.retryargs = [ "-blank" ]
+		elif line.startswith("                to eliminate or adjust Spare Area."):
+			self.error = self.ERROR_ALREADYFORMATTED
+			self.retryargs = [ "-ssa=default" ]	
 		if line.startswith(":-( mounted media doesn't appear to be"):
 			self.error = self.ERROR_NOTWRITEABLE
 

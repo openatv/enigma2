@@ -1,12 +1,8 @@
 from Screens.Screen import Screen
-from Screens.ChoiceBox import ChoiceBox
-from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
-from Components.ActionMap import HelpableActionMap, ActionMap
-from Components.Sources.List import List
+from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry
@@ -62,7 +58,7 @@ class FileBrowser(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("DVD file browser"))
+		self.setTitle(_("DVD File Browser"))
 
 	def getDir(self, currentVal=None, defaultDir=None):
 		if currentVal:
@@ -104,7 +100,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
 		self.project = project
-
+		
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Load"))
@@ -112,7 +108,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self["key_blue"] = StaticText(_("Save"))
 		else:
 			self["key_blue"] = StaticText()
-
+		
 		if config.usage.setup_level.index >= 2: # expert+
 			infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("Year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
 		else:
@@ -123,7 +119,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.settings = project.settings
 		ConfigListScreen.__init__(self, [])
 		self.initConfigList()
-
+		
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 		    "green": self.exit,
@@ -149,7 +145,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
 		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
-		self.list.append(getConfigListEntry(_("Output"), self.settings.output))
+		self.list.append(getConfigListEntry(("Output"), self.settings.output))
 		if output == "iso":
 			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
@@ -167,13 +163,15 @@ class ProjectSettings(Screen,ConfigListScreen):
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
 		if config.usage.setup_level.index >= 2: # expert+
-			if authormode != "data_ts":
+			if authormode not in ("data_ts","bdmv"):
 				self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
 				if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
 					self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
-			else:
-				self.list.append(getConfigListEntry(_("DVD data format"), self.settings.dataformat))
-
+			elif authormode == "data_ts":
+				self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
+			elif authormode == "bdmv":
+				self.list.append(getConfigListEntry(_("Menu")+' '+_("Language selection"), self.project.menutemplate.settings.menulang))
+		
 		self["config"].setList(self.list)
 		self.keydict = {}
 		for key, val in self.settings.dict().iteritems():
@@ -200,10 +198,10 @@ class ProjectSettings(Screen,ConfigListScreen):
 	def applySettings(self):
 		for x in self["config"].list:
 			x[1].save()
-
+		
 	def ok(self):
 		key = self.keydict[self["config"].getCurrent()[1]]
-		from DVDProject import ConfigFilename
+		from Project import ConfigFilename
 		if type(self["config"].getCurrent()[1]) == ConfigFilename:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self["config"].getCurrent()[1])
 

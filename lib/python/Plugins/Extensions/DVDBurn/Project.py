@@ -1,6 +1,6 @@
 from Tools.Directories import fileExists
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigSubList
-import DVDTitle
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
+import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 
@@ -22,18 +22,19 @@ class ConfigFilename(ConfigText):
 		else:
 			mark = [filename]
 		return ("mtext"[1-selected:], filename, mark)
-
-class DVDProject:
+	
+class Project:
 	MAX_SL = 4480
 	MAX_DL = 8150
+	MAX_BD = 24220
 	def __init__(self):
 		self.titles = [ ]
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
-		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Separate titles with a main menu")), ("data_ts", _("special format data DVD (HDTV compatible)"))])
+		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("bdmv", _("BDMV Compatible Bludisc (HDTV only)")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
 		self.settings.titlesetmode = ConfigSelection(choices = [("single", _("Simple titleset (compatibility for legacy players)")), ("multi", _("Complex (allows mixing audio tracks and aspects)"))], default="multi")
-		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("dvd", _("Burn DVD"))])
+		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("medium", _("Burn to medium"))])
 		self.settings.isopath = ConfigText(fixed_size = False, visible_width = 40)
 		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", ("ISO9660 Level 1")), ("iso9660_4", ("ISO9660 version 2")), ("udf", ("UDF"))])
 		self.settings.menutemplate = ConfigFilename()
@@ -42,9 +43,10 @@ class DVDProject:
 		self.menutemplate = MenuTemplate()
 		self.error = ""
 		self.session = None
+		self.finished_burning = False
 
 	def addService(self, service):
-		title = DVDTitle.DVDTitle(self)
+		title = Title.Title(self)
 		title.addService(service)
 		self.titles.append(title)
 		return title
@@ -90,7 +92,7 @@ class DVDProject:
 		while fileExists(filename):
 			i = i+1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
-		try:
+		try:	
 			file = open(filename, "w")
 			for x in list:
 				file.write(x)
@@ -122,7 +124,7 @@ class DVDProject:
 				self.xmlAttributesToConfig(node, self.settings)
 			    elif node.tagName == 'titles':
 				self.xmlGetTitleNodeRecursive(node)
-
+				
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
@@ -174,7 +176,7 @@ class DVDProject:
 		  if subnode.nodeType == xml.dom.minidom.Element.nodeType:
 		    if subnode.tagName == 'title':
 			title_idx += 1
-			title = DVDTitle.DVDTitle(self)
+			title = Title.Title(self)
 			self.titles.append(title)
 			self.xmlGetTitleNodeRecursive(subnode, title_idx)
 		    if subnode.tagName == 'path':
@@ -196,7 +198,7 @@ class DVDProject:
 
 	size = property(getSize)
 
-class MenuTemplate(DVDProject):
+class MenuTemplate(Project):
 	def __init__(self):
 		self.settings = ConfigSubsection()
 		self.settings.titleformat = ConfigText(fixed_size = False, visible_width = 40)
@@ -231,11 +233,38 @@ class MenuTemplate(DVDProject):
 		self.settings.thumb_size = ConfigSequence(seperator = ',', default = [200,158], limits = [(0,576),(-1,720)])
 		self.settings.thumb_border = ConfigInteger(default = 2, limits = (0, 20))
 		self.filekeys = ["menubg", "menuaudio", "fontface_headline", "fontface_title", "fontface_subtitle"]
-		from TitleProperties import languageChoices
-		self.settings.menulang = ConfigSelection(choices = languageChoices.choices, default=languageChoices.choices[1][0])
+		choicelist = iso639language.getChoices()
+		self.settings.menulang = ConfigSelection(choicelist, default=choicelist[1][0])
+		tvsys = config.av.tvsystem
+		if tvsys not in ("pal", "ntsc"):
+			tvsys = "pal"
+		self.settings.video_format = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC")}, default=tvsys)
 		self.error = ""
 
 	def loadTemplate(self, filename):
-		ret = DVDProject.loadProject(self, filename)
-		DVDProject.error = self.error
+		ret = Project.loadProject(self, filename)
+		Project.error = self.error
 		return ret
+
+from Tools.ISO639 import ISO639Language
+class DVDISO639Language(ISO639Language):
+	def __init__(self):
+		ISO639Language.__init__(self, self.PRIMARY)
+
+	def get_dvd_id(self, language):
+		ret = "nolang"
+		if language in self.idlist_by_name:
+			for lang in self.idlist_by_name[language]:
+				if len(lang) == 2:
+					return lang
+		return ret
+
+	def get_bludisc_id(self, language):
+		ret = "und"
+		if language in self.idlist_by_name:
+			for lang in self.idlist_by_name[language]:
+				if len(lang) == 3:
+					return lang
+		return ret
+
+iso639language = DVDISO639Language()
