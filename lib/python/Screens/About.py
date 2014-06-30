@@ -82,7 +82,16 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
@@ -520,7 +529,14 @@ class AboutSummary(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			tempinfo = open('/proc/stb/fp/temp_sensor_avs', 'r').read()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
 
 		self["AboutText"] = StaticText(AboutText)
 
