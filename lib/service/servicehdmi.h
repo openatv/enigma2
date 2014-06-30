@@ -3,6 +3,7 @@
 
 #include <lib/base/message.h>
 #include <lib/service/iservice.h>
+#include <lib/service/servicedvb.h>
 
 class eStaticServiceHDMIInfo;
 
@@ -78,6 +79,44 @@ private:
 	eServiceReference m_ref;
 	int m_decoder_index;
 	ePtr<iTSMPEGDecoder> m_decoder;
+};
+
+class eServiceHDMIRecord: public eDVBServiceBase, public iRecordableService, public Object
+{
+	DECLARE_REF(eServiceHDMIRecord);
+public:
+	eServiceHDMIRecord(const eServiceReference &ref);
+	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm);
+	RESULT prepareStreaming(bool descramble = true, bool includeecm = false);
+	RESULT start(bool simulate=false);
+	RESULT stop();
+	RESULT getError(int &error) { error = m_error; return 0; }
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
+	RESULT stream(ePtr<iStreamableService> &ptr);
+	RESULT subServices(ePtr<iSubserviceList> &ptr);
+
+private:
+	enum { stateIdle, statePrepared, stateRecording };
+	bool m_simulate;
+	int m_state;
+	eDVBRecordFileThread *m_thread;
+	eServiceReference m_ref;
+
+	int m_recording, m_error;
+	std::string m_filename;
+
+	int m_target_fd;
+	int m_encoder_fd;
+
+	int doPrepare();
+	int doRecord();
+
+	/* events */
+	Signal2<void,iRecordableService*,int> m_event;
+
+	/* recorder events */
+	void recordEvent(int event);
 };
 
 #endif
