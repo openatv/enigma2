@@ -120,7 +120,7 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="220,132" zPosition="1" alphatest="on">
+		<widget source="session.CurrentService" render="LcdPicon" position="0,33" size="220,130" zPosition="1" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,165" size="400,10" borderWidth="2" borderColor="white" foregroundColor="yellow">
