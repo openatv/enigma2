@@ -2605,6 +2605,7 @@ class InfoBarExtensions:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.bluekey_ex, _("Show extensions...")),
+					"quickmenu": (self.bluekey_qm, _("Show quickmenu...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
 					"openTimerList": (self.showTimerList, _("Show the list of timers.")),
@@ -2618,6 +2619,7 @@ class InfoBarExtensions:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.bluekey_ex, _("view extensions...")),
+					"quickmenu": (self.bluekey_qm, _("Show quickmenu...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
@@ -2631,6 +2633,12 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getSoftcamPanel, type = InfoBarExtensions.EXTENSION_LIST)
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
 			self.addExtension(extension = self.getRestartNetwork, type = InfoBarExtensions.EXTENSION_LIST)
+
+	def bluekey_qm(self):
+		if config.workaround.blueswitch.value == "1":
+			self.showExtensionSelection()
+		else:
+			self.quickmenuStart()
 
 	def bluekey_ex(self):
 		if config.workaround.blueswitch.value == "1":
@@ -2988,6 +2996,9 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
+		self.lastPiPServiceTimeout = eTimer()
+		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
+
 	def pipShown(self):
 		return self.session.pipshown
 
@@ -3030,6 +3041,7 @@ class InfoBarPiP:
 				self.togglePipzap()
 			if self.session.pipshown:
 				self.lastPiPService = self.session.pip.getCurrentServiceReference()
+				self.lastPiPServiceTimeout.startLongTimer(60)
 				del self.session.pip
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
@@ -3073,6 +3085,9 @@ class InfoBarPiP:
 						del self.session.pip
 			else:
 				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+
+	def clearLastPiPService(self):
+		self.lastPiPService = None
 
 	def activePiP(self):
 		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:

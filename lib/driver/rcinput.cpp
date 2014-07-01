@@ -89,7 +89,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
-	
+
 #if KEY_VIDEO_IS_KEY_SCREEN
 	if (ev->code == KEY_VIDEO)
 	{

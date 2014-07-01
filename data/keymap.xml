@@ -46,6 +46,8 @@
 		<key id="KEY_GREEN" mapto="save" flags="b" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
@@ -111,6 +113,7 @@
 		<key id="KEY_F4" mapto="showPluginBrowser" flags="l" />
 		<key id="KEY_F4" mapto="extensions" flags="b" />
 		<key id="KEY_BLUE" mapto="extensions" flags="l" />
+		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
 	</map>
 
 	<map context="InfoBarQuickMenu">
@@ -146,6 +149,8 @@
 	<map context="InfobarHDMIActions">
 		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
 		<key id="KEY_AUX" mapto="HDMIinLong" flags="l" />
+		<key id="KEY_F11" mapto="HDMIin" flags="b" />
+		<key id="KEY_F11" mapto="HDMIinLong" flags="l" />
 	</map>	
 
 	<map context="MinuteInputActions">
@@ -440,6 +445,7 @@
 			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
 			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
 		</device>
+		<key id="KEY_YELLOW" mapto="playpauseService" flags="m" />
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
@@ -504,7 +510,6 @@
 	</map>
 
 	<map context="InfobarTimeshiftActions">
-		<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PLAY" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
