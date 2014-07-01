@@ -950,7 +950,7 @@ class GeneralMenu(Screen):
 			menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),l.weight]
                 else:
 			menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),l.weight]
-		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal") or l.name == _("AutoTimer"):
+		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal") or l.name == _("AutoTimer") or l.name == _("YouTube TV Settings"):
 			print "Skip =>", l.name
 		else:
 			list.append(tuple(menuitem))
@@ -960,7 +960,7 @@ class GeneralMenu(Screen):
                     menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], l[6])),l[3] or 50]
                 else:
                     menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], None)),l[3] or 50]
-		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management") or l[0] == _("MediaPortal"):                 
+		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management") or l[0] == _("MediaPortal") or l[0] == _("YouTube TV Settings"):                 
 			print "Skip =>" , l.name
 		else:
 			list.append(tuple(menuitem))
