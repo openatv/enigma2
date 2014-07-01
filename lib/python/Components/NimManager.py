@@ -710,7 +710,7 @@ class NimManager:
 #			print "CABLIST", self.cablesList
 #			print "TRANSPONDERS", self.transponders
 
-		if self.hasNimType("DVB-T"):
+		if self.hasNimType("DVB-T") or self.hasNimType("DVB-T2"):
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
