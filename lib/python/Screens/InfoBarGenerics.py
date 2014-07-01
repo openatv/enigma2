@@ -1579,10 +1579,15 @@ class InfoBarSeek:
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				elif action[:8] == "seekdef:":
-					key = int(action[8:])
-					time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
-						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
-						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
+					if action[8:] == "left":
+						time = -config.seek.selfdefined_left.value
+					elif action[8:] == "right":
+						time = config.seek.selfdefined_right.value
+					else:
+						key = int(action[8:])
+						time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+							-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
+							-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
