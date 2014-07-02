@@ -653,9 +653,9 @@ Components.UsageConfig.InitUsageConfig()
 #import Screens.LogManager
 #Screens.LogManager.AutoLogManager()
 
-profile("Init:OnlineCheckState")
-import Components.OnlineUpdateCheck
-Components.OnlineUpdateCheck.OnlineUpdateCheck()
+#profile("Init:OnlineCheckState")
+#import Components.OnlineUpdateCheck
+#Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 import Components.NetworkTime
