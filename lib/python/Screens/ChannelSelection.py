@@ -1687,7 +1687,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for i in self.servicePath:
 			path += i.toString()
 			path += ';'
-		if path and path != self.lastroot.value:
+		if path and path != self.lastroot.value and not self.session.pipshown:
 			self.lastroot.value = path
 			self.lastroot.save()
 
