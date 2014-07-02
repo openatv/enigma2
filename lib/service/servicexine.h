@@ -41,7 +41,7 @@ public:
 
 typedef struct _GstElement GstElement;
 
-class eServiceXine: public iPlayableService, public iPauseableService, 
+class eServiceXine: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public Object
 {
 	DECLARE_REF(eServiceXine);
@@ -53,7 +53,7 @@ public:
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target);
-	
+
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT setSlowMotion(int ratio);
 	RESULT setFastForward(int ratio);
@@ -75,9 +75,9 @@ public:
 		// iPausableService
 	RESULT pause();
 	RESULT unpause();
-	
+
 	RESULT info(ePtr<iServiceInformation>&);
-	
+
 		// iSeekableService
 	RESULT getLength(pts_t &SWIG_OUTPUT);
 	RESULT seekTo(pts_t to);
@@ -85,7 +85,7 @@ public:
 	RESULT getPlayPosition(pts_t &SWIG_OUTPUT);
 	RESULT setTrickmode(int trick);
 	RESULT isCurrentlySeekable();
-	
+
 		// iServiceInformation
 	RESULT getName(std::string &name);
 	int getInfo(int w);
@@ -93,7 +93,7 @@ public:
 private:
 	friend class eServiceFactoryXine;
 	std::string m_filename;
-	eServiceXine(const char *filename);	
+	eServiceXine(const char *filename);
 	Signal2<void,iPlayableService*,int> m_event;
 
 	xine_stream_t *stream;
@@ -106,10 +106,10 @@ private:
 		stError, stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	
+
 	static void eventListenerWrap(void *user_data, const xine_event_t *event);
 	void eventListener(const xine_event_t *event);
-	
+
 
 	eFixedMessagePump<int> m_pump;
 };

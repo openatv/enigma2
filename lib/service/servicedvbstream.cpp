@@ -2,7 +2,7 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
-#include <lib/base/nconfig.h> 
+#include <lib/base/nconfig.h>
 #include <fcntl.h>
 
 DEFINE_REF(eDVBServiceStream);
@@ -92,7 +92,7 @@ RESULT eDVBServiceStream::stop()
 			m_record->stop();
 
 		m_state = statePrepared;
-	} 
+	}
 
 	if (m_state == statePrepared)
 	{
@@ -126,10 +126,10 @@ int eDVBServiceStream::doRecord()
 	{
 		return err;
 	}
-	
+
 	if (!m_tuned)
 		return 0; /* try it again when we are tuned in */
-	
+
 	if (!m_record && m_tuned)
 	{
 		ePtr<iDVBDemux> demux;
@@ -172,18 +172,18 @@ int eDVBServiceStream::doRecord()
 		{
 			eDebugNoNewLine(" (");
 			for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
-				i(program.videoStreams.begin()); 
+				i(program.videoStreams.begin());
 				i != program.videoStreams.end(); ++i)
 			{
 				pids_to_record.insert(i->pid);
-				
+
 				if (timing_pid == -1)
 				{
 					timing_pid = i->pid;
 					timing_stream_type = i->type;
 					timing_pid_type = iDVBTSRecorder::video_pid;
 				}
-				
+
 				if (i != program.videoStreams.begin())
 						eDebugNoNewLine(", ");
 				eDebugNoNewLine("%04x", i->pid);
@@ -195,7 +195,7 @@ int eDVBServiceStream::doRecord()
 		{
 			eDebugNoNewLine(" (");
 			for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
-				i(program.audioStreams.begin()); 
+				i(program.audioStreams.begin());
 				i != program.audioStreams.end(); ++i)
 			{
 				pids_to_record.insert(i->pid);
@@ -206,7 +206,7 @@ int eDVBServiceStream::doRecord()
 					timing_stream_type = i->type;
 					timing_pid_type = iDVBTSRecorder::audio_pid;
 				}
-			
+
 				if (i != program.audioStreams.begin())
 					eDebugNoNewLine(", ");
 				eDebugNoNewLine("%04x", i->pid);
@@ -237,7 +237,7 @@ int eDVBServiceStream::doRecord()
 
 		if (m_stream_ecm)
 		{
-			for (std::list<eDVBServicePMTHandler::program::capid_pair>::const_iterator i(program.caids.begin()); 
+			for (std::list<eDVBServicePMTHandler::program::capid_pair>::const_iterator i(program.caids.begin());
 						i != program.caids.end(); ++i)
 			{
 				if (i->capid >= 0) pids_to_record.insert(i->capid);
@@ -260,16 +260,16 @@ int eDVBServiceStream::doRecord()
 			/* find out which pids are NEW and which pids are obsolete.. */
 		std::set<int> new_pids, obsolete_pids;
 
-		std::set_difference(pids_to_record.begin(), pids_to_record.end(), 
+		std::set_difference(pids_to_record.begin(), pids_to_record.end(),
 				m_pids_active.begin(), m_pids_active.end(),
 				std::inserter(new_pids, new_pids.begin()));
 
 		std::set_difference(
 				m_pids_active.begin(), m_pids_active.end(),
-				pids_to_record.begin(), pids_to_record.end(), 
+				pids_to_record.begin(), pids_to_record.end(),
 				std::inserter(obsolete_pids, obsolete_pids.begin())
 				);
-		
+
 		for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
 		{
 			eDebug("ADD PID: %04x", *i);
