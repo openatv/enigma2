@@ -3,6 +3,10 @@
 
 ePtr<eTimer> eVideoWidget::fullsizeTimer;
 int eVideoWidget::pendingFullsize = 0;
+int eVideoWidget::posFullsizeLeft = 0;
+int eVideoWidget::posFullsizeTop = 0;
+int eVideoWidget::posFullsizeWidth = 0;
+int eVideoWidget::posFullsizeHeight = 0;
 
 eVideoWidget::eVideoWidget(eWidget *parent)
 	:eLabel(parent), m_fb_size(720, 576), m_state(0), m_decoder(1)
@@ -45,6 +49,15 @@ void eVideoWidget::setFBSize(eSize size)
 	m_fb_size = size;
 }
 
+void eVideoWidget::setFullScreenPosition(eRect pos)
+{
+	posFullsizeLeft = pos.left();
+	posFullsizeTop = pos.top();
+	posFullsizeWidth = pos.width();
+	posFullsizeHeight = pos.height();
+	setPosition(0, posFullsizeLeft, posFullsizeTop, posFullsizeWidth, posFullsizeHeight);
+}
+
 void eVideoWidget::writeProc(const std::string &filename, int value)
 {
 	FILE *f = fopen(filename.c_str(), "w");
@@ -73,7 +86,7 @@ void eVideoWidget::setFullsize(bool force)
 	{
 		if (force || (pendingFullsize & (1 << decoder)))
 		{
-			eVideoWidget::setPosition(decoder, 0, 0, 0, 0);
+			eVideoWidget::setPosition(decoder, posFullsizeLeft, posFullsizeTop, posFullsizeWidth, posFullsizeHeight);
 			pendingFullsize &= ~(1 << decoder);
 		}
 	}
@@ -115,15 +128,6 @@ void eVideoWidget::updatePosition(int disable)
 	int top = pos.top() * 576 / m_fb_size.height();
 	int width = pos.width() * 720 / m_fb_size.width();
 	int height = pos.height() * 576 / m_fb_size.height();
-
-	int tmp = left - (width * 4) / 100;
-	left = tmp < 0 ? 0 : tmp;
-	tmp = top - (height * 4) / 100;
-	top = tmp < 0 ? 0 : tmp;
-	tmp = (width * 108) / 100;
-	width = left + tmp > 720 ? 720 - left : tmp;
-	tmp = (height * 108) / 100;
-	height = top + tmp > 576 ? 576 - top : tmp;
 
 	if (!disable)
 	{
