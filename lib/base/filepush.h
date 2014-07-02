@@ -26,12 +26,12 @@ public:
 
 	void pause();
 	void resume();
-	
+
 	void enablePVRCommit(int);
 	/* stream mode will wait on EOF until more data is available. */
 	void setStreamMode(int);
 	void setScatterGather(iFilePushScatterGather *);
-	
+
 	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
 	Signal1<void,int> m_event;
 

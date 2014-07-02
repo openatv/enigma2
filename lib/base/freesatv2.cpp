@@ -1,4 +1,4 @@
-/* 
+/*
 FreeSat Huffman decoder for VDR
 Copyright (C) 2008  DOM http://www.rst38.org.uk/vdr/
 Port to C++ / Enigma 2
@@ -60,8 +60,8 @@ freesatHuffmanDecoder::~freesatHuffmanDecoder()
 	int	i, j;
 	huffTableEntry *currentEntry, *nextEntry;
 	for ( j = 0 ; j < 2; j++ )
-	{ 
-		for ( i = 0 ; i < 256; i++ ) 
+	{
+		for ( i = 0 ; i < 256; i++ )
 		{
 			currentEntry = m_tables[j][i];
 			while ( currentEntry != NULL )
@@ -198,7 +198,7 @@ std::string freesatHuffmanDecoder::decode(const unsigned char *src, size_t size)
 
 	if (src[0] != 0x1f)
 		return uncompressed;
-	
+
 	const unsigned int table_index = src[1] - 1;
 
 	if (table_index <= 1)
