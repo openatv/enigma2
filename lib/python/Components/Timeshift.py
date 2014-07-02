@@ -331,7 +331,7 @@ class InfoBarTimeshift:
 		else:
 			self.pts_eventcount = 0
 			self.activatePermanentTimeshift()
-			self.activateTimeshiftEndAndPause()
+			self.activateTimeshiftEnd()
 
 	def stopTimeshift(self):
 		# print 'stopTimeshift'
@@ -384,24 +384,22 @@ class InfoBarTimeshift:
 			self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
-	def activateTimeshiftEnd(self, back = True):
+	def activateTimeshiftEnd(self, pause = False):
 		ts = self.getTimeshift()
 		if ts is None:
 			return
 
-		if ts.isTimeshiftActive():
+		if ts.isTimeshiftActive() and pause:
 			self.pauseService()
 		else:
 			ts.activateTimeshift() # activate timeshift will automatically pause
-			self.setSeekState(self.SEEK_STATE_PAUSE)
+			if pause:
+				self.setSeekState(self.SEEK_STATE_PAUSE)
+			else:
+				self.setSeekState(self.SEEK_STATE_PLAY)
 			seekable = self.getSeek()
 			if seekable is not None:
-				seekable.seekTo(-90000) # seek approx. 1 sec before end
-		if back:
-			if getBrandOEM() == 'xtrend':
-				self.ts_rewind_timer.start(1000, 1)
-			else:
-				self.ts_rewind_timer.start(100, 1)
+				seekable.seekTo(-90000 * config.seek.selfdefined_left.value)
 
 	def rewindService(self):
 		if getBrandOEM() in ('gigablue', 'xp'):
@@ -410,7 +408,7 @@ class InfoBarTimeshift:
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
-		self.activateTimeshiftEnd(False)
+		self.activateTimeshiftEnd(True)
 
 	def checkTimeshiftRunning(self, returnFunction):
 		# print 'checkTimeshiftRunning'
@@ -1193,7 +1191,7 @@ class InfoBarTimeshift:
 	def ptsStartSeekBackTimer(self):
 		# print '!!!!! ptsStartSeekBackTimer RUN'
 		if self.pts_lastseekspeed == 0:
-			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
 			self.setSeekState(self.makeStateBackward(int(-self.pts_lastseekspeed)))
 

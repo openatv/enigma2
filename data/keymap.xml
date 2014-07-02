@@ -334,9 +334,9 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
-		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
-		
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
 
@@ -360,9 +360,9 @@
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 
-		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
-		
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="m" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="m" />
+
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
 
@@ -394,8 +394,9 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
-		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
 
@@ -426,9 +427,7 @@
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
 		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
-		<key id="KEY_REWIND" mapto="timeshiftActivateEnd" flags="m" />
 		<key id="KEY_LEFT" mapto="timeshiftActivateEnd" flags="m" />
-		<key id="KEY_RIGHT" mapto="timeshiftActivateEnd" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftSeekPointerActions">
