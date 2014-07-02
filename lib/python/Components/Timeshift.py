@@ -553,7 +553,7 @@ class InfoBarTimeshift:
 			filelist.sort()
 
 			for filename in filelist:
-				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
+				if filename.startswith("pts_livebuffer") and filename.endswith(".meta") and not os.path.splitext(filename)[1]:
 					# print "TRUE"
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename))
 					if statinfo.st_mtime < (time()-5.0):
