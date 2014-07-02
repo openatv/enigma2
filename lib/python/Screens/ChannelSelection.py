@@ -1683,7 +1683,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for i in self.servicePath:
 			path += i.toString()
 			path += ';'
-		if path and path != self.lastroot.value and not self.session.pipshown:
+		if path and path != self.lastroot.value:
+			if self.mode == MODE_RADIO and 'FROM BOUQUET "bouquets.tv"' in path:
+				return
+			elif 'FROM BOUQUET "bouquets.radio"' in path:
+				return
 			self.lastroot.value = path
 			self.lastroot.save()
 
