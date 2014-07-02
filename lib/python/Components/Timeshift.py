@@ -449,7 +449,9 @@ class InfoBarTimeshift:
 				# print 'TEST5'
 				if self.save_current_timeshift:
 					# print 'TEST6'
-					InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
+					# the user has previously activated "Timeshift save recording" of current event - so must be necessarily saved of the timeshift!
+					InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
+					#InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
 				else:
 					# print 'TEST7'
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
@@ -470,8 +472,10 @@ class InfoBarTimeshift:
 		if answer:
 			if answer == "savetimeshift" or answer == "savetimeshiftandrecord":
 				self.save_current_timeshift = True
-			elif answer == "noSave" or answer == "no":
+			elif answer == "noSave":
 				self.save_current_timeshift = False
+			elif answer == "no":
+				pass
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
@@ -582,10 +586,11 @@ class InfoBarTimeshift:
 				self.ptsRecordCurrentEvent()
 			else:
 				self.SaveTimeshift()
-		elif action == "noSave" or action == "no":
+		elif action == "noSave":
 			config.timeshift.isRecording.value = False
 			self.save_current_timeshift = False
-
+		elif action == "no":
+			pass
 		# Get rid of old timeshift file before E2 truncates its filesize
 		if returnFunction is not None and action != "no":
 			self.eraseTimeshiftFile()
