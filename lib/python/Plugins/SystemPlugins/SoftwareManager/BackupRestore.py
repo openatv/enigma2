@@ -371,8 +371,18 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.userRestoreScript()
 
 	def userRestoreScript(self, ret = None):
-		startSH = '/media/hdd/images/config/myrestore.sh'
-		if path.exists(startSH):
+		SH_List = []
+		SH_List.append('/media/hdd/images/config/myrestore.sh')
+		SH_List.append('/media/usb/images/config/myrestore.sh')
+		SH_List.append('/media/cf/images/config/myrestore.sh')
+		
+		startSH = None
+		for SH in SH_List:
+			if path.exists(SH):
+				startSH = SH
+				break
+		
+		if startSH:
 			self.session.openWithCallback(self.restoreMetrixSkin, Console, title = _("Running Myrestore script, Please wait ..."), cmdlist = [startSH], closeOnSuccess = True)
 		else:
 			self.restoreMetrixSkin()
