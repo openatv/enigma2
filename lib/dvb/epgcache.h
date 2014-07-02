@@ -5,6 +5,7 @@
 #define ENABLE_MHW_EPG 1
 #define ENABLE_FREESAT 1
 #define ENABLE_NETMED 1
+#define ENABLE_VIRGIN 1
 
 #ifndef SWIG
 
@@ -75,8 +76,8 @@ struct uniqueEPGKey
 		return (tsid < a.tsid);
 	}
 	operator bool() const
-	{ 
-		return !(sid == -1 && onid == -1 && tsid == -1); 
+	{
+		return !(sid == -1 && onid == -1 && tsid == -1);
 	}
 	bool operator==(const uniqueEPGKey &a) const
 	{
@@ -108,7 +109,7 @@ struct hash_uniqueEPGKey
 };
 
 #define tidMap std::set<__u32>
-#if 0 
+#if 0
 	typedef std::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 	#ifdef ENABLE_PRIVATE_EPG
 		typedef std::unordered_map<time_t, std::pair<time_t, __u16> > contentTimeMap;
@@ -200,6 +201,10 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn, m_ViasatConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader, m_ViasatReader;
 		tidMap seenSections[4], calcedSections[4];
+#ifdef ENABLE_VIRGIN
+		ePtr<eConnection> m_VirginNowNextConn, m_VirginScheduleConn;
+		ePtr<iDVBSectionReader> m_VirginNowNextReader, m_VirginScheduleReader;
+#endif
 #ifdef ENABLE_NETMED
 		ePtr<eConnection> m_NetmedScheduleConn, m_NetmedScheduleOtherConn;
 		ePtr<iDVBSectionReader> m_NetmedScheduleReader, m_NetmedScheduleOtherReader;
@@ -368,7 +373,7 @@ public:
 
 #ifndef SWIG
 private:
-	// For internal use only. Acquire the cache lock before calling. 
+	// For internal use only. Acquire the cache lock before calling.
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eventData *&);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 	RESULT getNextTimeEntry(const eventData *&);
@@ -419,6 +424,10 @@ public:
 #ifdef ENABLE_NETMED
 	,NETMED_SCHEDULE=512
 	,NETMED_SCHEDULE_OTHER=1024
+#endif
+#ifdef ENABLE_VIRGIN
+	,VIRGIN_NOWNEXT=2048
+	,VIRGIN_SCHEDULE=4096
 #endif
 	,EPG_IMPORT=0x80000000
 	};
