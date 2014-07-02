@@ -35,6 +35,12 @@ def InitUsageConfig():
 	config.usage.crypto_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 
+	choicelist = [("-1", _("Devide")), ("0", _("Disable"))]
+	for i in range(100,1300,100):
+		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
+	config.usage.servicelist_column = ConfigSelection(default="0", choices=choicelist)
+	config.usage.servicelist_column.addNotifier(refreshServiceList)
+
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
 	config.usage.servicelist_cursor_behavior = ConfigSelection(default = "keep", choices = [
@@ -293,9 +299,11 @@ def InitUsageConfig():
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
+
 	config.epg.freesat = ConfigYesNo(default = False)
 	config.epg.viasat = ConfigYesNo(default = False)
 	config.epg.netmed = ConfigYesNo(default = False)
+	config.epg.virgin = ConfigYesNo(default = False)
 
 	def EpgSettingsChanged(configElement):
 		mask = 0xffffffff
@@ -309,12 +317,15 @@ def InitUsageConfig():
 			mask &= ~eEPGCache.VIASAT
 		if not config.epg.netmed.value:
 			mask &= ~(eEPGCache.NETMED_SCHEDULE | eEPGCache.NETMED_SCHEDULE_OTHER)
+		if not config.epg.virgin.value:
+			mask &= ~(eEPGCache.VIRGIN_NOWNEXT | eEPGCache.VIRGIN_SCHEDULE)
 		eEPGCache.getInstance().setEpgSources(mask)
 	config.epg.eit.addNotifier(EpgSettingsChanged)
 	config.epg.mhw.addNotifier(EpgSettingsChanged)
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
+	config.epg.virgin.addNotifier(EpgSettingsChanged)
 
 	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
 	def EpgHistorySecondsChanged(configElement):
@@ -372,18 +383,19 @@ def InitUsageConfig():
 			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
-	def set12VOutput(configElement):
-		if configElement.value == "on":
-			Misc_Options.getInstance().set_12V_output(1)
-		elif configElement.value == "off":
-			Misc_Options.getInstance().set_12V_output(0)
-	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
-
-	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+	if SystemInfo["12V_Output"]:
+		def set12VOutput(configElement):
+			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
+		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
 	config.network = ConfigSubsection()
+	if SystemInfo["WakeOnLAN"]:
+		def wakeOnLANChanged(configElement):
+			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+		config.network.wol = ConfigYesNo(default = False)
+		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = True)
 	config.network.NFS_autostart = ConfigYesNo(default = True)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = True)
@@ -487,21 +499,13 @@ def InitUsageConfig():
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
-	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
 	if SystemInfo["ZapMode"]:
-		if os.path.exists("/proc/stb/video/zapping_mode"):
-			zapfile = "/proc/stb/video/zapping_mode"
-		else:
-			zapfile = "/proc/stb/video/zapmode"
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
 		def setZapmode(el):
-			try:
-				file = open(zapfile, "w")
-				file.write(el.value)
-				file.close()
-			except:
-				pass
-		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
+			file = open(SystemInfo["ZapMode"], "w")
+			file.write(el.value)
+			file.close()
+		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
+			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 	config.usage.historymode = ConfigSelection(default = "1", choices = [("0", _("Just zap")), ("1", _("Show menu"))])
 
@@ -756,6 +760,7 @@ def InitUsageConfig():
 	config.streaming.descramble = ConfigYesNo(default = True)
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
+	config.streaming.authentication = ConfigYesNo(default = False)
 
 	config.pluginbrowser = ConfigSubsection()
 	config.pluginbrowser.po = ConfigYesNo(default = False)

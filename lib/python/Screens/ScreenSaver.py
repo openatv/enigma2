@@ -8,7 +8,7 @@ import os, random
 class Screensaver(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self.moveLogoTimer = eTimer()
 		self.moveLogoTimer.callback.append(self.doMovePicture)
 		self.onShow.append(self.__onShow)
@@ -20,7 +20,7 @@ class Screensaver(Screen):
 			})
 
 		self["picture"] = Pixmap()
-		
+
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
