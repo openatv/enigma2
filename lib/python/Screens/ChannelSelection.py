@@ -1195,7 +1195,7 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
 		elif "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			self.changeBouquet(-1)
@@ -1203,7 +1203,7 @@ class ChannelSelectionBase(Screen):
 			self.changeBouquet(+1)
 
 	def prevBouquet(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
 		elif "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			self.changeBouquet(+1)
@@ -1211,13 +1211,13 @@ class ChannelSelectionBase(Screen):
 			self.changeBouquet(-1)
 
 	def keyLeft(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.changeBouquet(-1)
 		else:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageUp)
 
 	def keyRight(self):
-		if config.usage.oldstyle_zap_controls.value:
+		if config.usage.oldstyle_channel_select_controls.value:
 			self.changeBouquet(+1)
 		else:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
@@ -1403,9 +1403,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 		self.startServiceRef = None
 
-		self.history_tv = [ ]
-		self.history_radio = [ ]
-		self.history = self.history_tv
+		self.history = [ ]
 		self.history_pos = 0
 
 		if config.servicelist.startupservice.value and config.servicelist.startuproot.value:
@@ -1473,7 +1471,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def setModeTv(self):
 		if self.revertMode is None:
 			self.revertMode = self.mode
-		self.history = self.history_tv
 		self.lastservice = config.tv.lastservice
 		self.lastroot = config.tv.lastroot
 		config.servicelist.lastmode.value = "tv"
@@ -1490,7 +1487,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.revertMode is None:
 			self.revertMode = self.mode
 		if config.usage.e1like_radio_mode.value:
-			self.history = self.history_radio
 			self.lastservice = config.radio.lastservice
 			self.lastroot = config.radio.lastroot
 			config.servicelist.lastmode.value = "radio"
@@ -1693,7 +1689,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for i in self.servicePath:
 			path += i.toString()
 			path += ';'
-		if path and path != self.lastroot.value:
+		if path and path != self.lastroot.value and not self.session.pipshown:
 			self.lastroot.value = path
 			self.lastroot.save()
 

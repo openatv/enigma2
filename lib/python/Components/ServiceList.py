@@ -136,7 +136,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				self.serviceList.setTvMode()
+				self.serviceList.setModeTv()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
 					self.serviceList.enterUserbouquet(bouquet[1])
@@ -144,7 +144,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
-				self.serviceList.setRadioMode()
+				self.serviceList.setModeRadio()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
 					self.serviceList.enterUserbouquet(bouquet[1])
