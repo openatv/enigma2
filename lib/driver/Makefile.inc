@@ -33,12 +33,18 @@ driver_libenigma_driver_a_SOURCES += \
 endif
 
 if GIGABLUE
-driver_libenigma_driver_a_SOURCES += \	
+driver_libenigma_driver_a_SOURCES += \
 	driver/vfd.cpp \
 	driver/vfd.h
 endif
 
 if GBQUADPLUS
+driver_libenigma_driver_a_SOURCES += \
+	driver/vfd.cpp \
+	driver/vfd.h
+endif
+
+if GBIPBOX
 driver_libenigma_driver_a_SOURCES += \
 	driver/vfd.cpp \
 	driver/vfd.h

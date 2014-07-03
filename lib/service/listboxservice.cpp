@@ -620,7 +620,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		ePtr<eServiceEvent> evt;
 
 		bool serviceAvail = true;
-
+#ifndef FORCE_SERVICEAVAIL
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 		{
 			if (m_color_set[serviceNotAvail])
@@ -629,7 +629,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				painter.setForegroundColor(gRGB(0xbbbbbb));
 			serviceAvail = false;
 		}
-
+#endif
 		if (selected && local_style && local_style->m_selection)
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
