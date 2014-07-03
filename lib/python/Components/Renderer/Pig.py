@@ -4,6 +4,7 @@
 from Renderer import Renderer
 from enigma import eVideoWidget, eSize, eRect, ePoint, getDesktop
 from Screens.PictureInPicture import PipPigMode
+from Components.config import config
 
 class Pig(Renderer):
 	def __init__(self):
@@ -30,9 +31,9 @@ class Pig(Renderer):
 				self.instance.resize(self.Size)
 			if self.Position:
 				self.instance.move(self.Position)
-			PipPigMode(True)
+			config.skin.hide_pip_when_pig.value and PipPigMode(True)
 
 	def onHide(self):
 		if self.instance:
 			self.preWidgetRemove(self.instance)
-			PipPigMode(False)
+			config.skin.hide_pip_when_pig.value and PipPigMode(False)
