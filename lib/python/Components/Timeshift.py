@@ -144,6 +144,10 @@ class InfoBarTimeshift:
 		self.pts_cleanUp_timer.callback.append(self.ptsCleanTimeshiftFolder)
 		# self.pts_cleanUp_timer.start(1000, True)
 
+		# Init PTS OldFileCleanUp-Timer
+		self.pts_OldFileCleanUp_timer = eTimer()
+		self.pts_OldFileCleanUp_timer.callback.append(self.ptsOldFileCleanUp)
+
 		# Init PTS SeekBack-Timer
 		self.pts_SeekBack_timer = eTimer()
 		self.pts_SeekBack_timer.callback.append(self.ptsSeekBackTimer)
@@ -264,6 +268,8 @@ class InfoBarTimeshift:
 				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 
 			# Delete Timeshift Records on zap
+			self.pts_Oldeventcount = self.pts_eventcount
+			self.pts_OldFileCleanUp_timer.start(int(config.timeshift.startdelay.value)*2*1000, True)
 			self.pts_eventcount = 0
 			# print 'AAAAAAAAAAAAAAAAAAAAAA'
 			# self.pts_cleanUp_timer.start(1000, True)
@@ -548,6 +554,8 @@ class InfoBarTimeshift:
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftEventPopup(self):
+		if self.pts_OldFileCleanUp_timer.isActive():
+			self.ptsOldFileCleanUp()
 		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
@@ -557,7 +565,7 @@ class InfoBarTimeshift:
 			filelist.sort()
 
 			for filename in filelist:
-				if filename.startswith("pts_livebuffer") and filename.endswith(".meta") and not os.path.splitext(filename)[1]:
+				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
 					# print "TRUE"
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename))
 					if statinfo.st_mtime < (time()-5.0):
@@ -1272,3 +1280,22 @@ class InfoBarTimeshift:
 			return False
 		else:
 			return True
+
+	def ptsOldFileCleanUp(self):
+		#workaround for non-deleted "pts_timeshift_#" and "pts_timeshift_#.sc" files after zap when timeshiftbuffer more than one events
+		count = self.pts_eventcount + 1
+		oldcount = self.pts_Oldeventcount + 1
+		for filename in os.listdir(config.usage.timeshift_path.value):
+			if not filename.startswith("timeshift") and not filename.endswith(".del") and not filename.endswith(".copy"):
+				for f in range(count,oldcount):
+					if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,f))
+					if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,f))
+					if os.path.exists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,f))
+					if os.path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value,f))
+		if self.pts_OldFileCleanUp_timer.isActive():
+			self.pts_OldFileCleanUp_timer.stop()
+
