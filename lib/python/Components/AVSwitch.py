@@ -148,7 +148,7 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if (getBoxType() in ('gbquad', 'gbquadplus', 'gb800seplus', 'gb800ueplus')):
+	if getBoxType() in ('gbquad', 'gbquadplus', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()

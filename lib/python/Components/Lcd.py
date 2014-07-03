@@ -3,6 +3,8 @@ from enigma import eDBoxLCD
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 
+from boxbranding import getBoxType
+
 class LCD:
 	def __init__(self):
 		pass
@@ -41,7 +43,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.standby.apply()
 
 def InitLcd():
-	if config.misc.boxtype.value == 'gb800se' or config.misc.boxtype.value == 'gb800solo' or config.misc.boxtype.value == 'gb800seplus':
+	if getBoxType() in ('gb800se', 'gb800solo', 'gb800seplus', 'gbipbox'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -81,17 +83,17 @@ def InitLcd():
 					"5": _("PIP"),
 					"7": _("PIP with OSD")},
 					default = "0")
-			if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'gbquadplus':
+			if getBoxType() in ('gbquad', 'gbquadplus'):
 				config.lcd.modepip.addNotifier(setLCDModePiP)
-			else:		
+			else:
 				config.lcd.modepip = ConfigNothing()
 
 			config.lcd.modeminitv = ConfigSelection(choices={
 					"0": _("normal"),
 					"1": _("MiniTV"),
 					"2": _("OSD"),
-					"3": _("MiniTV with OSD")},					
-					default = "0")						
+					"3": _("MiniTV with OSD")},
+					default = "0")
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
