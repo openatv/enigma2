@@ -1117,7 +1117,7 @@ class InfoBarEPG:
 		if self.defaultEPGType is not None:
 			self.defaultEPGType()
 			return
-		self.openMultiServiceEPG()
+		self.openEventView()
 
 	def showSingleEPG(self):
 		if self.defaultGuideType is not None:
@@ -2172,7 +2172,6 @@ class InfoBarPiP:
 			currentServicePath = self.servicelist.getCurrentServicePath()
 			self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 			self.session.pip.playService(swapservice)
-			self.session.nav.stopService() # stop portall
 			self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 			self.session.pip.servicePath = currentServicePath
 			if self.servicelist.dopipzap:
