@@ -187,7 +187,7 @@ class InfoBarScreenSaver:
 		flag = self.seekstate[0]
 		if not flag:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref:
+			if ref and not self.session.pipshown:
 				ref = ref.toString().split(":")
 				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 		if time and flag:
@@ -2113,6 +2113,8 @@ class InfoBarPiP:
 						f.write(config.lcd.modeminitv.value)
 						f.close()
 				self.session.pipshown = False
+			if hasattr(self, "ScreenSaverTimerStart"):
+				self.ScreenSaverTimerStart()
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
@@ -2142,6 +2144,8 @@ class InfoBarPiP:
 				else:
 					self.session.pipshown = False
 					del self.session.pip
+			if self.session.pipshown and hasattr(self, "screenSaverTimer"):
+				self.screenSaverTimer.stop()
 			self.lastPiPService = None
 
 	def clearLastPiPService(self):
