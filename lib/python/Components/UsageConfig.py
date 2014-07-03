@@ -71,7 +71,7 @@ def InitUsageConfig():
 	config.usage.infobar_frontend_source = ConfigSelection(default = "tuner", choices = [("settings", _("Settings")), ("tuner", _("Tuner"))])
 	config.usage.oldstyle_zap_controls = ConfigYesNo(default = False)
 	config.usage.oldstyle_channel_select_controls = ConfigYesNo(default = False)
-	config.usage.zap_with_ch_buttons = ConfigYesNo(default = False)
+	config.usage.zap_with_ch_buttons = ConfigYesNo(default = True)
 	config.usage.ok_is_channelselection = ConfigYesNo(default = False)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.sort_settings = ConfigYesNo(default = False)
