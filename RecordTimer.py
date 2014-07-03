@@ -425,7 +425,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
 				return True
-			self.log(12, "stop recording")
+			if self.justplay:
+				self.log(12, "end zapping")
+			else:
+				self.log(12, "stop recording")
 			if not self.justplay:
 				if self.record_service:
 					NavigationInstance.instance.stopRecordService(self.record_service)
