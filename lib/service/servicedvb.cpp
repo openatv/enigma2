@@ -273,6 +273,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		if (streamable_service)
 		{
 			m_playable_service = streamable_service;
+			return 1;
 		}
 	}
 	m_playable_service = eServiceReference();
