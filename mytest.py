@@ -510,7 +510,7 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	
-	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
+	if getBoxType() in ('gb800solo', 'gb800se', 'gb800seplus'):
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openmips starting e2"'
