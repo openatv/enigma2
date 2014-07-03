@@ -1,8 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import Harddisk, harddiskmanager
+from Components.Harddisk import Harddisk, Partition, harddiskmanager, getProcMounts
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
@@ -16,8 +15,17 @@ from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion 
-from os import path, popen
-from re import search
+from os import path, listdir, stat
+from re import search, match
+
+def sizeStr(size, unknown=_("unavailable")):
+	if float(size) / 2**20 >= 1:
+		return str(round(float(size) / 2**20, 2)) + _("TB")
+	if (float(size) / 2**10) >= 1:
+		return str(round(float(size) / 2**10, 2)) + _("GB")
+	if size >= 1:
+		return str(size) + _("MB")
+	return  unknown
 
 class About(Screen):
 	def __init__(self, session):
@@ -95,6 +103,9 @@ class About(Screen):
 			})
 			
 class Devices(Screen):
+
+	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
@@ -106,12 +117,37 @@ class Devices(Screen):
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
 		
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
 			})
 			
+	def mountInfo(self, name, mountpoint, type, mountsep='\t', indent=''):
+		if path.isdir(mountpoint):
+			# Handle autofs "ghost" entries
+			try:
+				stat(mountpoint)
+			except:
+				return ""
+			part = Partition(mountpoint)
+			mounttotal = part.total() / 10**6
+			mountfree =  part.free() / 10**6
+			return "%s%s%s%s%s\t%s%s\t%s\n" % (
+					indent,
+					name,
+					mountsep,
+					_("Size: "),
+					sizeStr(mounttotal, _("unavailable")),
+					_("Free: "),
+					sizeStr(mountfree, _("full")),
+					type
+				)
+		else:
+			return ""
+
 	def populate(self):
 		scanning = _("Wait please while scanning for devices...")
 		self["AboutScrollLabel"].setText(scanning)
@@ -119,7 +155,6 @@ class Devices(Screen):
 
 	def populate2(self):
 		self.activityTimer.stop()
-		self.Console = Console()
 		
 		self.AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 		self.AboutText += "\n" + _("Detected NIMs:") + "\n"
@@ -133,6 +168,8 @@ class Devices(Screen):
 			self.AboutText += nims[count] + "\n"
 
 		self.AboutText += "\n" + _("Detected HDD:") + "\n"
+
+		mounts = getProcMounts()
 
 		self.list = []
 		list2 = []
@@ -186,32 +223,24 @@ class Devices(Screen):
 		
 		self.AboutText += self.list + "\n"
 		self.AboutText += "\n" + _("Network Servers:") + "\n"
-		self.mountinfo = "none"
-		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
-		self.AboutText +=self.mountinfo
-		self["AboutScrollLabel"].setText(self.AboutText)
-
-	def Stage1Complete(self, result, retval, extra_args=None):
-		result = result.replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
-		for line in result:
-			self.parts = line.split()
-			if line and self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
-				line = line.split()
-				ipaddress = line[0]
-				mounttotal = line[1]
-				mountfree = line[3]
-				if self.mountinfo:
-					self.mountinfo += "\n"
-					self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
-		if self.mountinfo:
-			self.mountinfo += "\n"
-		else:
-			self.mountinfo += (_('none'))
-		try:
-			self.AboutText += self.mountinfo + "\n"
-		except:	
-			pass
+		for mount in [m for m in mounts
+				if match(Devices.FSTABIPMATCH, m[0])]:
+			self.mountinfo += self.mountInfo(mount[0], mount[1], mount[2].upper(), mountsep='\n\t')
+
+		for mountname in listdir('/media/autofs'):
+			mountpoint = path.join('/media/autofs', mountname)
+			self.mountinfo += self.mountInfo(mountpoint, mountpoint, 'AUTOFS', mountsep='\n\t')
+		for mountname in listdir('/media/upnp'):
+			mountpoint = path.join('/media/upnp', mountname)
+			if path.isdir(mountpoint) and not mountname.startswith('.'):
+				self.mountinfo += mountpoint + '\t\t' + 'DLNA' + "\n"
+
+		if not self.mountinfo:
+			self.mountinfo = _('none') + "\n"
+
+		self.AboutText += self.mountinfo
+		self["AboutScrollLabel"].setText(self.AboutText)
 		      
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
