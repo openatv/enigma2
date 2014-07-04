@@ -38,6 +38,12 @@ driver_libenigma_driver_a_SOURCES += \
 	driver/vfd.h
 endif
 
+if GBQUAD
+driver_libenigma_driver_a_SOURCES += \
+	driver/vfd.cpp \
+	driver/vfd.h
+endif
+
 if GBQUADPLUS
 driver_libenigma_driver_a_SOURCES += \
 	driver/vfd.cpp \
