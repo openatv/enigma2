@@ -6,7 +6,7 @@ import os
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
 	addFont, gRGB, eWindowStyleSkinned, getDesktop
-from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
+from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
@@ -74,7 +74,6 @@ if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "Magic/skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
-config.skin.hide_pip_when_pig = ConfigYesNo(True)
 
 profile("LoadSkin")
 try:
@@ -395,8 +394,6 @@ class AttributeParser:
 		self.guiObject.setShadowOffset(parsePosition(value, self.scale))
 	def noWrap(self, value):
 		self.guiObject.setNoWrap(1)
-	def hidePip(self, value):
-		config.skin.hide_pip_when_pig.value = value == 1 or False
 
 def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1))):
 	# Someone still using applySingleAttribute?
