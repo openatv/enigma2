@@ -9,31 +9,43 @@ from Components.config import config
 
 from Tools.StbHardware import getFPVersion
 
+from boxbranding import getBoxType
+
+boxtype = getBoxType()
+
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
-		if config.misc.boxtype.value == 'gb800solo':
-			AboutText = _("Hardware: ") + " GigaBlue HD 800solo\n"
-		elif config.misc.boxtype.value == 'gb800se':
-			AboutText = _("Hardware: ") + " GigaBlue HD 800se\n"
-		elif config.misc.boxtype.value == 'gb800ue':
-			AboutText = _("Hardware: ") + " GigaBlue HD 800ue\n"
-		elif config.misc.boxtype.value == 'gbquad':
-			AboutText = _("Hardware: ") + " GigaBlue HD Quad\n"
-		elif config.misc.boxtype.value == 'gbquadplus':
-			AboutText = _("Hardware: ") + " GigaBlue HD Quad Plus\n"
-		elif config.misc.boxtype.value == 'gb800seplus':
-			AboutText = _("Hardware: ") + " GigaBlue HD 800se Plus\n"
-		elif config.misc.boxtype.value == 'gb800ueplus':
-			AboutText = _("Hardware: ") + " GigaBlue HD 800ue Plus\n"
-		elif config.misc.boxtype.value == 'gbipbox':
-			AboutText = _("Hardware: ") + " GigaBlue IP Box\n"
+		if boxtype == 'gb800solo':
+			BoxName = "GigaBlue HD 800SOLO"
+		elif boxtype == 'gb800se':
+			BoxName = "GigaBlue HD 800SE"
+		elif boxtype == 'gb800ue':
+			BoxName = "GigaBlue HD 800UE"
+		elif boxtype == 'gbquad':
+			BoxName = "GigaBlue HD Quad"
+		elif boxtype == 'gbquadplus':
+			BoxName = "GigaBlue HD Quadplus"
+		elif boxtype == 'gb800seplus':
+			BoxName = "GigaBlue HD 800SEplus"
+		elif boxtype == 'gb800ueplus':
+			BoxName = "GigaBlue HD 800UEplus"
+		elif boxtype == 'gbipbox':
+			BoxName = "GigaBlue IP Box"
 		else:
-			AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+			BoxName = about.getHardwareTypeString()
 
-		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
-		AboutText += _("Kernel version: ") + about.getKernelVersionString() + "\n"
+		ImageType = about.getImageTypeString()
+		self["ImageType"] = StaticText(ImageType)
+
+		AboutHeader = ImageType + " - " + BoxName
+		self["AboutHeader"] = StaticText(AboutHeader)
+
+		AboutText = AboutHeader + "\n"
+
+		KernelVersion = _("Kernel version: ") + about.getKernelVersionString() + "\n"
+		self["KernelVersion"] = StaticText(KernelVersion)
+		AboutText += KernelVersion + "\n"
 
 		EnigmaVersion = "GUI Build: " + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
