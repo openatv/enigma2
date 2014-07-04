@@ -41,7 +41,7 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 		if (cwd)
 			chdir(cwd);
 
-		execvp(cmd, (char * const *)argv); 
+		execvp(cmd, (char * const *)argv);
 				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
 		_exit(0);
 	}
@@ -57,8 +57,10 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 
 DEFINE_REF(eConsoleAppContainer);
 
-eConsoleAppContainer::eConsoleAppContainer()
-:pid(-1), killstate(0)
+eConsoleAppContainer::eConsoleAppContainer():
+	pid(-1),
+	killstate(0),
+	buffer(2049)
 {
 	for (int i=0; i < 3; ++i)
 	{
@@ -102,7 +104,7 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	killstate=0;
 
 	// get one read ,one write and the err pipe to the prog..
-	pid = bidirpipe(fd, cmdline, argv, m_cwd.length() ? m_cwd.c_str() : 0);
+	pid = bidirpipe(fd, cmdline, argv, m_cwd.empty() ? 0 : m_cwd.c_str());
 
 	if ( pid == -1 )
 		return -3;
@@ -113,7 +115,7 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	::fcntl(fd[1], F_SETFL, O_NONBLOCK);
 	::fcntl(fd[2], F_SETFL, O_NONBLOCK);
 	in = eSocketNotifier::create(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
-	out = eSocketNotifier::create(eApp, fd[1], eSocketNotifier::Write, false);  
+	out = eSocketNotifier::create(eApp, fd[1], eSocketNotifier::Write, false);
 	err = eSocketNotifier::create(eApp, fd[2], eSocketNotifier::Read|eSocketNotifier::Priority );
 	CONNECT(in->activated, eConsoleAppContainer::readyRead);
 	CONNECT(out->activated, eConsoleAppContainer::readyWrite);
@@ -143,7 +145,7 @@ void eConsoleAppContainer::kill()
 		::kill(-pid, SIGKILL);
 		closePipes();
 	}
-	while( outbuf.size() ) // cleanup out buffer
+	while( !outbuf.empty() ) // cleanup out buffer
 	{
 		queue_data d = outbuf.front();
 		outbuf.pop();
@@ -155,7 +157,7 @@ void eConsoleAppContainer::kill()
 
 	for (int i=0; i < 3; ++i)
 	{
-		if ( filefd[i] > 0 )
+		if ( filefd[i] >= 0 )
 			close(filefd[i]);
 	}
 }
@@ -223,14 +225,14 @@ void eConsoleAppContainer::readyRead(int what)
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
-		char buf[2049];
+		char* buf = &buffer[0];
 		int rd;
 		while((rd = read(fd[0], buf, 2048)) > 0)
 		{
 			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
 			stdoutAvail(buf);
-			if ( filefd[1] > 0 )
+			if ( filefd[1] >= 0 )
 				::write(filefd[1], buf, rd);
 			if (!hungup)
 				break;
@@ -262,7 +264,7 @@ void eConsoleAppContainer::readyErrRead(int what)
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
-		char buf[2049];
+		char* buf = &buffer[0];
 		int rd;
 		while((rd = read(fd[2], buf, 2048)) > 0)
 		{
@@ -304,12 +306,12 @@ void eConsoleAppContainer::readyWrite(int what)
 	}
 	if ( !outbuf.size() )
 	{
-		if ( filefd[0] > 0 )
+		if ( filefd[0] >= 0 )
 		{
-			char readbuf[32*1024];
-			int rsize = read(filefd[0], readbuf, 32*1024);
+			char* buf = &buffer[0];
+			int rsize = read(filefd[0], buf, 2048);
 			if ( rsize > 0 )
-				write(readbuf, rsize);
+				write(buf, rsize);
 			else
 			{
 				close(filefd[0]);

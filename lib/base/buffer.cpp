@@ -55,20 +55,20 @@ int eIOBuffer::peek(void *dest, int len) const
 	int p=ptr;
 	int written=0;
 	while (len)
-	{	
+	{
 		if (i == buffer.end())
 			break;
 		int tc=i->len-p;
 		if (tc > len)
 			tc = len;
-	
+
 		memcpy(dst, i->data+p, tc);
 		dst+=tc;
 		written+=tc;
-	
+
 		++i;
 		p=0;
-			
+
 		len-=tc;
 	}
 	return written;
@@ -149,13 +149,13 @@ int eIOBuffer::tofile(int fd, int len)
 	int written=0;
 	int w;
 	while (len && !buffer.empty())
-	{	
+	{
 		if (buffer.begin() == buffer.end())
 			break;
 		int tc=buffer.front().len-ptr;
 		if (tc > len)
 			tc = len;
-	
+
 		w=::write(fd, buffer.front().data+ptr, tc);
 		if (w < 0)
 		{
@@ -166,7 +166,7 @@ int eIOBuffer::tofile(int fd, int len)
 		ptr+=w;
 		if (ptr == buffer.front().len)
 			removeblock();
-		written+=w;	
+		written+=w;
 
 		len-=w;
 		if (tc != w)
@@ -181,7 +181,7 @@ int eIOBuffer::searchchr(char ch) const
 	int p=ptr;
 	int c=0;
 	while (1)
-	{	
+	{
 		if (i == buffer.end())
 			break;
 		while (p < i->len)

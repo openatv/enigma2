@@ -218,12 +218,7 @@ class CableTransponderSearchSupport:
 			self.session.nav.stopService()
 			if not self.tryGetRawFrontend(nim_idx):
 				if self.session.pipshown:
-					if hasattr(self.session, 'infobar'):
-						if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
-							self.session.infobar.servicelist.togglePipzap()
-					if hasattr(self.session, 'pip'):
-						del self.session.pip
-					self.session.pipshown = False
+					self.session.infobar.showPiP()
 				if not self.tryGetRawFrontend(nim_idx):
 					self.cableTransponderSearchFinished()
 					return
@@ -586,7 +581,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				defaultCab["inversion"] = frontendData.get("inversion", eDVBFrontendParametersCable.Inversion_Unknown)
 				defaultCab["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)
 				defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
-				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
+				defaultCab["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
 			elif ttype == "DVB-T":
 				defaultTer["frequency"] = frontendData.get("frequency", 177500000) / 1000
 				defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)

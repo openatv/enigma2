@@ -138,7 +138,7 @@ class PinInput(InputBox):
 		return False
 
 	def go(self):
-		self.triesEntry.time.setValue(int(time()))
+		self.triesEntry.time.value = int(time())
 		self.triesEntry.time.save()
 		if self.checkPin(self["input"].getText()):
 			self.setTries(3)
@@ -173,7 +173,7 @@ class PinInput(InputBox):
 		self.showTries()
 
 	def setTries(self, tries):
-		self.triesEntry.tries.setValue(tries)
+		self.triesEntry.tries.value = tries
 		self.triesEntry.tries.save()
 
 	def showTries(self):

@@ -1,10 +1,9 @@
 ##
 ## P(icture)i(n)g(raphics) renderer
 ##
-from enigma import eVideoWidget, getDesktop
-
 from Renderer import Renderer
-
+from enigma import eVideoWidget, getDesktop
+from Screens.PictureInPicture import PipPigMode
 
 class Pig(Renderer):
 	def __init__(self):
@@ -21,7 +20,7 @@ class Pig(Renderer):
 	def applySkin(self, desktop, parent):
 		ret = Renderer.applySkin(self, desktop, parent)
 		if ret:
-			self.Position = self.instance.position() # fixme, scaling!
+			self.Position = self.instance.position()
 			self.Size = self.instance.size()
 		return ret
 
@@ -31,7 +30,9 @@ class Pig(Renderer):
 				self.instance.resize(self.Size)
 			if self.Position:
 				self.instance.move(self.Position)
+			PipPigMode(True)
 
 	def onHide(self):
 		if self.instance:
 			self.preWidgetRemove(self.instance)
+			PipPigMode(False)

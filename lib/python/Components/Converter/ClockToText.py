@@ -81,7 +81,7 @@ class ClockToText(Converter, object):
 		t = localtime(time)
 
 		if self.type == self.WITH_SECONDS:
-			# TRANSLATORS: full time representation hour:minute:seconds 
+			# TRANSLATORS: full time representation hour:minute:seconds
 			return _("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
 			# TRANSLATORS: short time representation hour:minute

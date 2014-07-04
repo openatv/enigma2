@@ -22,7 +22,7 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 	def disconnectDownstream(self, downstream):
 		pass
 
-# html:	
+# html:
 	def produceHTML(self):
 		return self.getText()
 

@@ -28,7 +28,7 @@ class eServiceFS: public iListableService
 	friend class eServiceFactoryFS;
 	eServiceFS(const char *path, const char *additional_extensions=0);
 	std::map<int, std::list<std::string> > m_additional_extensions;
-	
+
 	int m_list_valid;
 	std::list<eServiceReference> m_list;
 	int getServiceTypeForExtension(const char *str);

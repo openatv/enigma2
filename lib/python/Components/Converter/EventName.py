@@ -145,5 +145,4 @@ class EventName(Converter, object):
 					return pgettext("now/next: 'next' event label", "Next") + ": " + event.getEventName()
 				return ""
 
-
 	text = property(getText)
