@@ -1371,10 +1371,12 @@ class InfoBarSeek:
 			self.pauseService()
 
 	def okButton(self):
-		if self.seekstate == self.SEEK_STATE_PAUSE:
+		if self.seekstate == self.SEEK_STATE_PLAY:
+			return 0
+		elif self.seekstate == self.SEEK_STATE_PAUSE:
 			self.pauseService()
 		else:
-			return 0
+			self.unPauseService()
 
 	def pauseService(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
