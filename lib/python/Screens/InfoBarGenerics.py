@@ -2449,7 +2449,7 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
+				#self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
@@ -2537,7 +2537,8 @@ class InfoBarPiP:
 		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
 			self.showPiP()
 		else:
-			self.togglePipzap()
+			#self.togglePipzap() TODO I do not know why it cause crash, I tested here and I can not reproduce this bug, in addition We do not support zaping in PIP becasue You remove LEFT RIGHT arrow from zapUP and zapDOWN in keymap.xml
+			self.showPiP()
 
 	def activePiPName(self):
 		if self.servicelist and self.servicelist.dopipzap:
@@ -2556,9 +2557,9 @@ class InfoBarPiP:
 			self.session.pip.playService(swapservice)
 			self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 			self.session.pip.servicePath = currentServicePath
-			#if self.servicelist.dopipzap:
+			if self.servicelist.dopipzap:
 				# This unfortunately won't work with subservices
-			#	self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
+				self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)
