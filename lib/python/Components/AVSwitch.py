@@ -124,7 +124,7 @@ def InitAVSwitch():
 	iAVSwitch = AVSwitch()
 
 	def setColorFormat(configElement):
-		if getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus':
+		if getBoxType() in ('gbquad', 'gbquadplus'):
 			map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
 		else:
 			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3} 

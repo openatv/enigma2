@@ -41,10 +41,10 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if getBoxType() == "odinm7" or getBoxType() == "odinm6" or getBoxType() == "xp1000s":
+				if getBoxType() in ('odinm7', 'odinm6', 'xp1000s'):
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
-				elif getBoxType() == "gb800se" or getBoxType() == "gb800solo":
+				elif getBoxType() in ('gb800solo', 'gb800se'):
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d  \n" % perc)
 				elif getBoxType() == "gb800seplus":
