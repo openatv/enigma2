@@ -14,7 +14,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVer
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
-from Tools.StbHardware import getFPVersion 
+from Tools.StbHardware import getFPVersion
 from os import path, listdir, stat
 from re import match
 
@@ -48,15 +48,15 @@ class About(Screen):
 		AboutText += _("Image:\t%s") % about.getImageVersionString() + "\n"
 		AboutText += _("Kernel: \t%s") % about.getKernelVersionString() + "\n"
 		AboutText += _("Oe-Core:\t%s") % about.getEnigmaVersionString() + "\n"
-		
+
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
 		else:
 			fp_version = _("Front Panel:\t%d") % fp_version
 			AboutText += fp_version + "\n\n"
-			
-		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n" 
+
+		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n"
 		AboutText += _("WWW:\t%s") % about.getImageUrlString()
 
 		tempinfo = ""
@@ -71,17 +71,17 @@ class About(Screen):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
-			
+
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
 				self["Tuner" + str(count)] = StaticText("")
-				
+
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"], 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -90,7 +90,7 @@ class About(Screen):
 				"left": self["AboutScrollLabel"].pageUp,
 				"right": self["AboutScrollLabel"].pageDown,
 			})
-			
+
 class Devices(Screen):
 
 	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
@@ -107,13 +107,13 @@ class Devices(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
 		self.skinName = ["SystemDevicesInfo", "About"]
-		
+
 		self.AboutText = ""
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
-		
+
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 			{
 				"cancel": self.close,
@@ -123,7 +123,7 @@ class Devices(Screen):
 				"left": self["AboutScrollLabel"].pageUp,
 				"right": self["AboutScrollLabel"].pageDown,
 			})
-			
+
 	def mountInfo(self, name, mountpoint, type, mountsep='\t', indent=''):
 		if path.isdir(mountpoint):
 			# Handle autofs "ghost" entries
@@ -241,22 +241,22 @@ class Devices(Screen):
 
 		self.AboutText += '\n' + '\n'.join(self.mountinfo)
 		self["AboutScrollLabel"].setText(self.AboutText)
-		      
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
 		#self.skinName = ["SystemMemoryInfo", "About"]
 		self.skinName = ["About"]
-		
+
 		self["AboutScrollLabel"] = ScrollLabel()
-		
+
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"cancel": self.close,
 			"ok": self.close,
 		})
-									
+
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
@@ -302,7 +302,7 @@ class SystemMemoryInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-			
+
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -516,7 +516,7 @@ class SystemNetworkInfo(Screen):
 			try:
 				self["statuspic"].setPixmapNum(0)
 			except:
-				print "KeyError: statuspic" 
+				print "KeyError: statuspic"
 
 	def createSummary(self):
 		return AboutSummary
@@ -526,4 +526,4 @@ class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["selected"] = StaticText("About")
-		
+
