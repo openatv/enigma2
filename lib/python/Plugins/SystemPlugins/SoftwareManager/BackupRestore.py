@@ -26,7 +26,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName
 boxtype = getBoxType()
 
 config.plugins.configurationbackup = ConfigSubsection()
-if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo') and not path.exists("/media/hdd/backup_%s" %boxtype):
+if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:	
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -371,8 +371,18 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.userRestoreScript()
 
 	def userRestoreScript(self, ret = None):
-		startSH = '/media/hdd/images/config/myrestore.sh'
-		if path.exists(startSH):
+		SH_List = []
+		SH_List.append('/media/hdd/images/config/myrestore.sh')
+		SH_List.append('/media/usb/images/config/myrestore.sh')
+		SH_List.append('/media/cf/images/config/myrestore.sh')
+		
+		startSH = None
+		for SH in SH_List:
+			if path.exists(SH):
+				startSH = SH
+				break
+		
+		if startSH:
 			self.session.openWithCallback(self.restoreMetrixSkin, Console, title = _("Running Myrestore script, Please wait ..."), cmdlist = [startSH], closeOnSuccess = True)
 		else:
 			self.restoreMetrixSkin()

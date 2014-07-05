@@ -41,8 +41,8 @@ eTPM::eTPM()
 		return;
 	}
 
-	buf[0] = DT_LEVEL2_CERT;
-	buf[1] = DT_LEVEL3_CERT;
+	buf[0] = TPMD_DT_LEVEL2_CERT;
+	buf[1] = TPMD_DT_LEVEL3_CERT;
 	if (!send_cmd(TPMD_CMD_GET_DATA, buf, 2))
 	{
 		return;
@@ -137,13 +137,13 @@ void eTPM::parse_data(const unsigned char *data, size_t datalen)
 		val = &data[i];
 
 		switch (tag) {
-		case DT_LEVEL2_CERT:
+		case TPMD_DT_LEVEL2_CERT:
 			if (len != 210)
 				break;
 			memcpy(level2_cert, val, 210);
 			level2_cert_read = true;
 			break;
-		case DT_LEVEL3_CERT:
+		case TPMD_DT_LEVEL3_CERT:
 			if (len != 210)
 				break;
 			memcpy(level3_cert, val, 210);
@@ -154,18 +154,18 @@ void eTPM::parse_data(const unsigned char *data, size_t datalen)
 #endif
 }
 
-std::string eTPM::getData(cert_type type)
+std::string eTPM::getCert(cert_type type)
 {
 #if not defined(__sh__) // we dont have a tpm chip, and we dont want one
-	if (type == DT_LEVEL2_CERT && level2_cert_read)
+	if (type == TPMD_DT_LEVEL2_CERT && level2_cert_read)
 		return std::string((char*)level2_cert, 210);
-	else if (type == DT_LEVEL3_CERT && level3_cert_read)
+	else if (type == TPMD_DT_LEVEL3_CERT && level3_cert_read)
 		return std::string((char*)level3_cert, 210);
 #endif
 	return "";
 }
 
-std::string eTPM::computeSignature(std::string rnd)
+std::string eTPM::challenge(std::string rnd)
 {
 #if not defined(__sh__) // we dont have a tpm chip, and we dont want one
 	if (rnd.length() == 8)
