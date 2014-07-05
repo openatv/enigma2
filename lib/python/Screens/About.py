@@ -6,7 +6,6 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
-from Components.Console import Console
 from Components.Label import Label
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
@@ -282,26 +281,17 @@ class SystemMemoryInfo(Screen):
 				SwapFree = out_lines[lidx].split()
 				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
-		self.Console = Console()
-		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
-
-	def Stage1Complete(self, result, retval, extra_args=None):
-		flash = str(result).replace('\n', '')
-		flash = flash.split()
-		RamTotal = flash[1]
-		RamFree = flash[3]
+		mounts = getProcMounts()
+		if mounts:
+			part = Partition(mounts[0][1])
+			RamTotal = sizeStr(part.total() / 10**6, _("unavailable"))
+			RamFree = sizeStr(part.free() / 10**6, _("full"))
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
 		self.AboutText += _("Free:") + "\t" + RamFree + "\n\n"
 
 		self["AboutScrollLabel"].setText(self.AboutText)
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
