@@ -429,7 +429,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.showDefaultEPG()
 			elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "INFOBAREPG":
 				self.openInfoBarEPG()
-			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value != "none" and not self.secondInfoBarScreen.shown:
 				self.hide()
 				self.secondInfoBarScreen.show()
 				self.secondInfoBarWasShown = True
@@ -1579,10 +1579,15 @@ class InfoBarSeek:
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				elif action[:8] == "seekdef:":
-					key = int(action[8:])
-					time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
-						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
-						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
+					if action[8:] == "left":
+						time = -config.seek.selfdefined_left.value
+					elif action[8:] == "right":
+						time = config.seek.selfdefined_right.value
+					else:
+						key = int(action[8:])
+						time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+							-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
+							-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
@@ -2432,19 +2437,25 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
-		if SystemInfo.get("NumVideoDecoders", 1) > 1 and isinstance(self, InfoBarEPG):
+
+		self.lastPiPService = None
+
+		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
-					"activatePiP": (self.showPiP, _("Activate PiP")),
+					"activatePiP": (self.activePiP, self.activePiPName),
 				})
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-				# self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
+				#self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+
+		self.lastPiPServiceTimeout = eTimer()
+		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
 
 	def pipShown(self):
 		return self.session.pipshown
@@ -2462,7 +2473,7 @@ class InfoBarPiP:
 		return _("Swap services")
 
 	def getMoveName(self):
-		return _("Move Picture in Picture")
+		return _("Picture in Picture Setup")
 
 	def getTogglePipzapName(self):
 		slist = self.servicelist
@@ -2487,29 +2498,55 @@ class InfoBarPiP:
 			info = service and service.info()
 			xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 			slist = self.servicelist
-
+			
 			if self.session.pipshown:
 				slist = self.servicelist
 				if slist and slist.dopipzap:
 					self.togglePipzap()
 				if self.session.pipshown:
+					self.lastPiPService = self.session.pip.getCurrentServiceReference()
+					self.lastPiPServiceTimeout.startLongTimer(60)
 					del self.session.pip
 					self.session.pipshown = False
 			else:
 				if int(xres) <= 720 or about.getCPUString() == 'BCM7346B2' or about.getCPUString() == 'BCM7425B2':
 					self.session.pip = self.session.instantiateDialog(PictureInPicture)
 					self.session.pip.show()
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 					else:
-						self.session.pipshown = False
-						del self.session.pip
+						newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+						if self.session.pip.playService(newservice):
+							self.session.pipshown = True
+							self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+						else:
+							self.lastPiPService = None
+							self.session.pipshown = False
+							del self.session.pip
 				else:
 					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 		except:
 			pass
+
+	def clearLastPiPService(self):
+		self.lastPiPService = None
+
+	def activePiP(self):
+		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
+			self.showPiP()
+		else:
+			#self.togglePipzap() TODO I do not know why it cause crash, I tested here and I can not reproduce this bug, in addition We do not support zaping in PIP becasue You remove LEFT RIGHT arrow from zapUP and zapDOWN in keymap.xml
+			self.showPiP()
+
+	def activePiPName(self):
+		if self.servicelist and self.servicelist.dopipzap:
+			return _("Disable Picture in Picture")
+		if self.session.pipshown:
+			return _("Zap focus to Picture in Picture")
+		else:
+			return _("Activate Picture in Picture")
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -2520,9 +2557,9 @@ class InfoBarPiP:
 			self.session.pip.playService(swapservice)
 			self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 			self.session.pip.servicePath = currentServicePath
-			#if self.servicelist.dopipzap:
+			if self.servicelist.dopipzap:
 				# This unfortunately won't work with subservices
-			#	self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
+				self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)

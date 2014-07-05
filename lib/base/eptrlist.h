@@ -68,51 +68,51 @@ private:
 	iterator cur;
 public:
 	iterator begin()
-	{				
+	{
 	//	makes implicit type conversion form std::list::iterator to ePtrList::iterator
-		return std::list<T*>::begin();		
+		return std::list<T*>::begin();
 	}
 
 	iterator end()
-	{				
+	{
 	//	makes implicit type conversion form std::list::iterator to ePtrList::iterator
-		return std::list<T*>::end();		
+		return std::list<T*>::end();
 	}
 
 	const_iterator begin() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_iterator to ePtrList::const_iterator
-		return std::list<T*>::begin();		
+		return std::list<T*>::begin();
 	}
 
 	const_iterator end() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_iterator to ePtrList::const_iterator
-		return std::list<T*>::end();		
+		return std::list<T*>::end();
 	}
 
 	reverse_iterator rbegin()
-	{				
+	{
 	//	makes implicit type conversion form std::list::reverse:_iterator to ePtrList::reverse_iterator
-		return std::list<T*>::rbegin();		
+		return std::list<T*>::rbegin();
 	}
 
 	reverse_iterator rend()
-	{				
+	{
 	//	makes implicit type conversion form std::list::reverse_iterator to ePtrList::reverse_iterator
-		return std::list<T*>::rend();		
+		return std::list<T*>::rend();
 	}
 
 	const_reverse_iterator rbegin() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_reverse_iterator to ePtrList::const_reverse_iterator
-		return std::list<T*>::rbegin();		
+		return std::list<T*>::rbegin();
 	}
 
 	const_reverse_iterator rend() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_reverse_iterator to ePtrList::const_reverse_iterator
-		return std::list<T*>::rend();		
+		return std::list<T*>::rend();
 	}
 
 	iterator erase(iterator it)
@@ -131,32 +131,32 @@ public:
 	//	If auto-deletion is enabled, than the list call delete for all removed items
 		while (from != to)
 			from = erase(from);
-	
+
 		return from;
 	}
 
-	operator iterator()	
+	operator iterator()
 	{
 	//	Returns a iterator that equal to begin() of the list
-		return begin();	
+		return begin();
 	}
 
 	operator const_iterator() const
 	{
 	//	Returns a const_iterator that equal to begin() of the list
-		return begin();	
+		return begin();
 	}
 
 	operator reverse_iterator()
 	{
 	//	Returns a reverse_iterator that equal to rbegin() of the list
-		return rbegin();	
+		return rbegin();
 	}
 
-	operator const_reverse_iterator() const	
+	operator const_reverse_iterator() const
 	{
 	//	Returns a const_reverse_iterator that equal to rbegin() of the list
-		return rbegin();	
+		return rbegin();
 	}
 
 	std::vector<T>* getVector()
@@ -198,7 +198,7 @@ public:
 	{
 		return *operator->();
 	}
-	
+
 	operator T*() const
 	{
 		return operator->();
@@ -372,7 +372,7 @@ public:
 template <class T>
 ePtrList<T>::ePtrList()
     :cur(std::list<T*>::begin())
-{		
+{
 
 }
 
@@ -380,7 +380,7 @@ ePtrList<T>::ePtrList()
 template <class T>
 ePtrList<T>::ePtrList(const ePtrList& e)
 	:std::list<T*>(e), cur(e.cur)
-{		
+{
 }
 
 /////////////////// ePtrList Destructor /////////////////////////////
@@ -392,11 +392,11 @@ inline ePtrList<T>::~ePtrList()
 /////////////////// ePtrList sort() /////////////////////////
 template <class T>
 inline void ePtrList<T>::sort()
-{		
+{
 //	Sorts all items in the list.
 // 	The type T must have a operator <.
 	std::list<T*>::sort(typename ePtrList<T>::less());
-}	
+}
 
 /////////////////// ePtrList remove(T*) /////////////////////////
 template <class T>
@@ -420,7 +420,7 @@ inline void ePtrList<T>::remove(T* t)
 			it = std::list<T*>::erase(it);  // remove all other items that equals to t (no delete is called..)
 		else
 			it++;
-			
+
 }
 
 /////////////////// ePtrList singleremove(T*) /////////////////////////
@@ -443,11 +443,11 @@ inline void ePtrList<T>::singleremove(T* t)
 
 /////////////////// ePtrList clear() //////////////////
 template <class T>
-inline void ePtrList<T>::clear()	
-{		
+inline void ePtrList<T>::clear()
+{
 // 	Remove all items from the list
 //	If auto-deletion is enabled, than the list call delete for all items in the list
-	erase(std::list<T*>::begin(), std::list<T*>::end());	
+	erase(std::list<T*>::begin(), std::list<T*>::end());
 }
 
 /////////////////// ePtrList pop_back() ////////////////////
@@ -472,22 +472,22 @@ inline void ePtrList<T>::pop_front()
 
 /////////////////// ePtrList push_back(T*) ////////////////////
 template <class T>
-inline void ePtrList<T>::push_back(T* x)	
-{		
+inline void ePtrList<T>::push_back(T* x)
+{
 // Add a new item at the end of the list.
 // The current item is set to the last item;
 	std::list<T*>::push_back(x);
-	last();	
+	last();
 }
 
 /////////////////// ePtrList push_front(T*) ////////////////////
 template <class T>
-inline void ePtrList<T>::push_front(T* x)	
-{		
+inline void ePtrList<T>::push_front(T* x)
+{
 // Add a new item at the begin of the list.
 // The current item is set to the first item;
 	std::list<T*>::push_front(x);
-	first();	
+	first();
 }
 
 /////////////////// ePtrList take() ////////////////////
@@ -532,7 +532,7 @@ template <class T>
 inline T* ePtrList<T>::current()
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is -1).
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// ePtrList next() ////////////////////
@@ -567,7 +567,7 @@ template <class T>
 inline T* ePtrList<T>::first()
 {
 // Returns a pointer to the first item in the list and makes this the current list item, or null if the list is empty.
-	return *(cur = begin());	
+	return *(cur = begin());
 }
 
 /////////////////// ePtrList last() ////////////////////
@@ -583,7 +583,7 @@ template <class T>
 inline const T* ePtrList<T>::current() const
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is not valid)
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// const ePtrList next() ////////////////////
@@ -618,7 +618,7 @@ template <class T>
 inline const T* ePtrList<T>::first() const
 {
 // Returns a pointer to the first item in the list and makes this the current list item, or null if the list is empty.
-	return *(cur = begin());	
+	return *(cur = begin());
 }
 
 /////////////////// const ePtrList last() ////////////////////
@@ -645,14 +645,14 @@ template <class T>
 ePtrList<T>::operator bool() const
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
-	return !std::list<T*>::empty();	
+	return !std::list<T*>::empty();
 }
 
 template <class T>
 bool ePtrList<T>::operator!() const
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
-	return std::list<T*>::empty();	
+	return std::list<T*>::empty();
 }
 
 template <class T>
@@ -715,51 +715,51 @@ private:
 	iterator cur;
 public:
 	iterator begin()
-	{				
+	{
 	//	makes implicit type conversion form std::list::iterator to eSmartPtrList::iterator
-		return std::list<ePtr<T> >::begin();		
+		return std::list<ePtr<T> >::begin();
 	}
 
 	iterator end()
-	{				
+	{
 	//	makes implicit type conversion form std::list::iterator to eSmartPtrList::iterator
-		return std::list<ePtr<T> >::end();		
+		return std::list<ePtr<T> >::end();
 	}
 
 	const_iterator begin() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_iterator to eSmartPtrList::const_iterator
-		return std::list<ePtr<T> >::begin();		
+		return std::list<ePtr<T> >::begin();
 	}
 
 	const_iterator end() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_iterator to eSmartPtrList::const_iterator
-		return std::list<ePtr<T> >::end();		
+		return std::list<ePtr<T> >::end();
 	}
 
 	reverse_iterator rbegin()
-	{				
+	{
 	//	makes implicit type conversion form std::list::reverse:_iterator to eSmartPtrList::reverse_iterator
-		return std::list<ePtr<T> >::rbegin();		
+		return std::list<ePtr<T> >::rbegin();
 	}
 
 	reverse_iterator rend()
-	{				
+	{
 	//	makes implicit type conversion form std::list::reverse_iterator to eSmartPtrList::reverse_iterator
-		return std::list<ePtr<T> >::rend();		
+		return std::list<ePtr<T> >::rend();
 	}
 
 	const_reverse_iterator rbegin() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_reverse_iterator to eSmartPtrList::const_reverse_iterator
-		return std::list<ePtr<T> >::rbegin();		
+		return std::list<ePtr<T> >::rbegin();
 	}
 
 	const_reverse_iterator rend() const
-	{				
+	{
 	//	makes implicit type conversion form std::list::const_reverse_iterator to eSmartPtrList::const_reverse_iterator
-		return std::list<ePtr<T> >::rend();		
+		return std::list<ePtr<T> >::rend();
 	}
 
 	iterator erase(iterator it)
@@ -779,32 +779,32 @@ public:
 	//	If auto-deletion is enabled, than the list call delete for all removed items
 		while (from != to)
 			from = erase(from);
-	
+
 		return from;
 	}
 
-	operator iterator()	
+	operator iterator()
 	{
 	//	Returns a iterator that equal to begin() of the list
-		return begin();	
+		return begin();
 	}
 
 	operator const_iterator() const
 	{
 	//	Returns a const_iterator that equal to begin() of the list
-		return begin();	
+		return begin();
 	}
 
 	operator reverse_iterator()
 	{
 	//	Returns a reverse_iterator that equal to rbegin() of the list
-		return rbegin();	
+		return rbegin();
 	}
 
-	operator const_reverse_iterator() const	
+	operator const_reverse_iterator() const
 	{
 	//	Returns a const_reverse_iterator that equal to rbegin() of the list
-		return rbegin();	
+		return rbegin();
 	}
 
 	std::vector<T>* getVector()
@@ -846,7 +846,7 @@ public:
 	{
 		return *operator->();
 	}
-	
+
 	operator T*() const
 	{
 		return operator->();
@@ -1020,7 +1020,7 @@ public:
 template <class T>
 eSmartPtrList<T>::eSmartPtrList()
     :cur(std::list<ePtr<T> >::begin())
-{		
+{
 
 }
 
@@ -1028,7 +1028,7 @@ eSmartPtrList<T>::eSmartPtrList()
 template <class T>
 eSmartPtrList<T>::eSmartPtrList(const eSmartPtrList& e)
 	:std::list<ePtr<T> >(e), cur(e.cur)
-{		
+{
 }
 
 /////////////////// eSmartPtrList Destructor /////////////////////////////
@@ -1041,11 +1041,11 @@ inline eSmartPtrList<T>::~eSmartPtrList()
 /////////////////// eSmartPtrList sort() /////////////////////////
 template <class T>
 inline void eSmartPtrList<T>::sort()
-{		
+{
 //	Sorts all items in the list.
 // 	The type T must have a operator <.
 	std::list<ePtr<T> >::sort(eSmartPtrList<T>::less());
-}	
+}
 
 /////////////////// eSmartPtrList remove(T*) /////////////////////////
 template <class T>
@@ -1063,22 +1063,22 @@ inline void eSmartPtrList<T>::remove(T* t)
 		}
 		else
 			it++;
-	
+
 	while (it != std::list<ePtr<T> >::end())
 		if (*it == t)
 			it = std::list<ePtr<T> >::erase(it);  // remove all other items that equals to t (no delete is called..)
 		else
 			it++;
-			
+
 }
 
 /////////////////// eSmartPtrList clear() //////////////////
 template <class T>
-inline void eSmartPtrList<T>::clear()	
-{		
+inline void eSmartPtrList<T>::clear()
+{
 // 	Remove all items from the list
 //	If auto-deletion is enabled, than the list call delete for all items in the list
-	erase(std::list<ePtr<T> >::begin(), std::list<ePtr<T> >::end());	
+	erase(std::list<ePtr<T> >::begin(), std::list<ePtr<T> >::end());
 }
 
 /////////////////// eSmartPtrList pop_back() ////////////////////
@@ -1103,22 +1103,22 @@ inline void eSmartPtrList<T>::pop_front()
 
 /////////////////// eSmartPtrList push_back(T*) ////////////////////
 template <class T>
-inline void eSmartPtrList<T>::push_back(T* x)	
-{		
+inline void eSmartPtrList<T>::push_back(T* x)
+{
 // Add a new item at the end of the list.
 // The current item is set to the last item;
 	std::list<ePtr<T> >::push_back(x);
-	last();	
+	last();
 }
 
 /////////////////// eSmartPtrList push_front(T*) ////////////////////
 template <class T>
-inline void eSmartPtrList<T>::push_front(T* x)	
-{		
+inline void eSmartPtrList<T>::push_front(T* x)
+{
 // Add a new item at the begin of the list.
 // The current item is set to the first item;
 	std::list<ePtr<T> >::push_front(x);
-	first();	
+	first();
 }
 
 /////////////////// eSmartPtrList setCurrent(T*) ////////////////////
@@ -1142,7 +1142,7 @@ template <class T>
 inline T* eSmartPtrList<T>::current()
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is -1).
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// eSmartPtrList next() ////////////////////
@@ -1177,7 +1177,7 @@ template <class T>
 inline T* eSmartPtrList<T>::first()
 {
 // Returns a pointer to the first item in the list and makes this the current list item, or null if the list is empty.
-	return *(cur = begin());	
+	return *(cur = begin());
 }
 
 /////////////////// eSmartPtrList last() ////////////////////
@@ -1193,7 +1193,7 @@ template <class T>
 inline const T* eSmartPtrList<T>::current() const
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is not valid)
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// const eSmartPtrList next() ////////////////////
@@ -1228,7 +1228,7 @@ template <class T>
 inline const T* eSmartPtrList<T>::first() const
 {
 // Returns a pointer to the first item in the list and makes this the current list item, or null if the list is empty.
-	return *(cur = begin());	
+	return *(cur = begin());
 }
 
 /////////////////// const eSmartPtrList last() ////////////////////
@@ -1255,14 +1255,14 @@ template <class T>
 eSmartPtrList<T>::operator bool() const
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
-	return !std::list<T>::empty();	
+	return !std::list<T>::empty();
 }
 
 template <class T>
 bool eSmartPtrList<T>::operator!() const
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
-	return std::list<T>::empty();	
+	return std::list<T>::empty();
 }
 
 #endif // _E_PTRLIST

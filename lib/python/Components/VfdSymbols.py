@@ -1,7 +1,7 @@
 from twisted.internet import threads
 from config import config
 from enigma import eDBoxLCD, eTimer, iPlayableService, iServiceInformation
-from boxbranding import getBoxType
+from boxbranding import getMachineProcModel
 import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
@@ -45,7 +45,7 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
-		if getBoxType() in ('ini-7012', 'ini-7012au'):
+		if getMachineProcModel() in ('ini-7012', 'ini-7012au'):
 			self.Resolution()
 			self.Audio()
 		self.Subtitle()

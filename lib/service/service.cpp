@@ -49,11 +49,11 @@ eServiceReference::eServiceReference(const std::string &string)
 		{
 			if (!strncmp(namestr, "://", 3))
 			{
-				/* 
+				/*
 				 * The path is a url (e.g. "http://...")
-				 * We can expect more colons to be present 
-				 * in a url, so instead of a colon, we look 
-				 * for a space instead as url delimiter, 
+				 * We can expect more colons to be present
+				 * in a url, so instead of a colon, we look
+				 * for a space instead as url delimiter,
 				 * after which a name may be present.
 				 */
 				namestr = strchr(namestr, ' ');

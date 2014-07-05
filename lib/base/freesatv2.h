@@ -1,13 +1,13 @@
 #ifndef FREESAT_H
 #define FREESAT_H
 
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <unistd.h>
 #include <string>
 
 struct huffTableEntry;
 
-class freesatHuffmanDecoder 
+class freesatHuffmanDecoder
 {
 private:
 	huffTableEntry *m_tables[2][256];

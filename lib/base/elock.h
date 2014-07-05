@@ -176,7 +176,7 @@ class eSemaphore
 public:
 	eSemaphore();
 	~eSemaphore();
-	
+
 	int down();
 	int decrement();
 	int up();
