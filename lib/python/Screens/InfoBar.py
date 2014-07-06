@@ -53,6 +53,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 		self.allowPiP = True
 		self.lastMoviePlayerService = None
+		self.radioTV = 0
 
 		for x in HelpableScreen, \
 				InfoBarBase, InfoBarShowHide, \
