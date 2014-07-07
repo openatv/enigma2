@@ -7,7 +7,8 @@ from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Label import Label
-from enigma import eTimer, getEnigmaVersionString
+from Components.Sources.List import List
+from enigma import eTimer, getEnigmaVersionString, gFont
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
@@ -17,46 +18,84 @@ from Tools.StbHardware import getFPVersion
 from os import path, listdir, stat
 from re import match
 
-def sizeStr(size, unknown=_("unavailable")):
-	if float(size) / 2**20 >= 1:
-		return str(round(float(size) / 2**20, 2)) + _("TB")
-	if (float(size) / 2**10) >= 1:
-		return str(round(float(size) / 2**10, 2)) + _("GB")
-	if size >= 1:
-		return str(size) + _("MB")
-	return  unknown
-
-class About(Screen):
+class AboutBase(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+		self.list = []
+		self["list"] = List(self.list)
+
+	@staticmethod
+	def sizeStr(size, unknown=_("unavailable")):
+		if float(size) / 2**20 >= 1:
+			return str(round(float(size) / 2**20, 2)) + _("TB")
+		if (float(size) / 2**10) >= 1:
+			return str(round(float(size) / 2**10, 2)) + _("GB")
+		if size >= 1:
+			return str(size) + _("MB")
+		return  unknown
+
+	ENT_HEADING=0
+	ENT_INFOLABEL=1
+	ENT_INFO=2
+	ENT_HEADINFOLABEL=3
+	ENT_HEADINFO=4
+	NENT=5
+
+	@staticmethod
+	def makeEmptyEntry():
+		return ('',) * AboutBase.NENT
+
+	@staticmethod
+	def makeHeadingEntry(heading):
+		l = [''] * AboutBase.NENT
+		l[AboutBase.ENT_HEADING] = heading
+		return tuple(l)
+
+	@staticmethod
+	def makeInfoEntry(label, info):
+		l = [''] * AboutBase.NENT
+		l[AboutBase.ENT_INFOLABEL:AboutBase.ENT_INFO+1] = label, info
+		return tuple(l)
+
+	@staticmethod
+	def makeHeadingInfoEntry(label, info):
+		l = [''] * AboutBase.NENT
+		l[AboutBase.ENT_HEADINFOLABEL:AboutBase.ENT_HEADINFO+1] = label, info
+		return tuple(l)
+
+class About(AboutBase):
+	def __init__(self, session):
+		AboutBase.__init__(self, session)
+
+		self.list.append(self.makeHeadingInfoEntry(_("Model:"), "%s %s" % (getMachineBrand(), getMachineName())))
+
+		self.list.append(self.makeEmptyEntry())
 
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
+			self.list.append(self.makeInfoEntry(_("Chipset:"), "BCM%s" % about.getChipSetString()))
 
-		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
-		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+		self.list.append(self.makeInfoEntry(_("CPU:"), about.getCPUString()))
+		self.list.append(self.makeInfoEntry(_("Cores:"), str(about.getCpuCoresString())))
 
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
-		AboutText += _("Drivers:\t%s") % driversdate + "\n"
-		AboutText += _("Image:\t%s") % about.getImageVersionString() + "\n"
-		AboutText += _("Kernel: \t%s") % about.getKernelVersionString() + "\n"
-		AboutText += _("Oe-Core:\t%s") % about.getEnigmaVersionString() + "\n"
+		self.list.append(self.makeInfoEntry(_("Drivers:"), driversdate))
+		self.list.append(self.makeInfoEntry(_("Image:"), about.getImageVersionString()))
+		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
+		self.list.append(self.makeInfoEntry(_("Oe-Core:"), about.getEnigmaVersionString()))
 
 		fp_version = getFPVersion()
-		if fp_version is None:
-			fp_version = ""
-		else:
-			fp_version = _("Front Panel:\t%d") % fp_version
-			AboutText += fp_version + "\n\n"
+		if fp_version is not None:
+			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))
 
-		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n"
-		AboutText += _("WWW:\t%s") % about.getImageUrlString()
+		self.list.append(self.makeEmptyEntry())
+		self.list.append(self.makeInfoEntry(_("Last Upgrade:"), about.getLastUpdateString()))
+		self.list.append(self.makeEmptyEntry())
+		self.list.append(self.makeInfoEntry(_("WWW:"), about.getImageUrlString()))
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
@@ -69,28 +108,79 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
 
-		nims = nimmanager.nimList()
-		for count in range(len(nims)):
-			if count < 4:
-				self["Tuner" + str(count)] = StaticText(nims[count])
-			else:
-				self["Tuner" + str(count)] = StaticText("")
+		self["list"].updateList(self.list)
 
-		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown,
-				"left": self["AboutScrollLabel"].pageUp,
-				"right": self["AboutScrollLabel"].pageDown,
 			})
 
-class Devices(Screen):
+class Devices(AboutBase):
+
+	ENT_HEADING=0
+	ENT_INFOLABEL=1
+	ENT_INFO=2
+	ENT_HEADINFOLABEL=3
+	ENT_HEADINFO=4
+	ENT_HDDNAME=5
+	ENT_HDDTYPE=6
+	ENT_HDDSIZE=7
+	ENT_FSNAME=8
+	ENT_FSTYPE=9
+	ENT_FSSIZE=10
+	ENT_FSFREE=11
+	ENT_FSWIDE=12
+	ENT_FSWIDENET=13
+	NENT=14
+
+	@staticmethod
+	def makeEmptyEntry():
+		return ('',) * Devices.NENT
+
+	@staticmethod
+	def makeHeadingEntry(heading):
+		l = [''] * Devices.NENT
+		l[Devices.ENT_HEADING] = heading
+		return tuple(l)
+
+	@staticmethod
+	def makeInfoEntry(label, info):
+		l = [''] * Devices.NENT
+		l[Devices.ENT_INFOLABEL:Devices.ENT_INFO+1] = label, info
+		return tuple(l)
+
+	@staticmethod
+	def makeHeadingInfoEntry(label, info):
+		l = [''] * Devices.NENT
+		l[Devices.ENT_HEADINFOLABEL:Devices.ENT_HEADINFO+1] = label, info
+		return tuple(l)
+
+	@staticmethod
+	def makeHDDEntry(name, type, size):
+		l = [''] * Devices.NENT
+		l[Devices.ENT_HDDNAME:Devices.ENT_HDDSIZE+1] = name, type, size
+		return tuple(l)
+
+	@staticmethod
+	def makeFilesystemEntry(name, type, size, free):
+		l = [''] * Devices.NENT
+		l[Devices.ENT_FSNAME:Devices.ENT_FSFREE+1] = name, type, size, free
+		return tuple(l)
+
+	@staticmethod
+	def makeWideFilesystemEntry(name):
+		l = [''] * 14
+		l[Devices.ENT_FSWIDE] = name
+		return tuple(l)
+
+	@staticmethod
+	def makeWideNetworkEntry(name):
+		l = [''] * 14
+		l[Devices.ENT_FSWIDENET] = name
+		return tuple(l)
 
 	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
 
@@ -103,27 +193,19 @@ class Devices(Screen):
 		 }
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Device Information"))
-		self.skinName = ["SystemDevicesInfo", "About"]
+		AboutBase.__init__(self, session)
 
-		self.AboutText = ""
-		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown,
-				"left": self["AboutScrollLabel"].pageUp,
-				"right": self["AboutScrollLabel"].pageDown,
 			})
 
-	def mountInfo(self, name, mountpoint, type, mountsep='\t', indent=''):
+	def mountInfo(self, name, mountpoint, type, twoLines=False, indent=''):
 		if path.isdir(mountpoint):
 			# Handle autofs "ghost" entries
 			try:
@@ -141,39 +223,47 @@ class Devices(Screen):
 				mountfree = -1
 			else:
 				mountfree /= 10**6
-			return "%s%s%s%s%s\t%s%s\t%s" % (
-					indent,
-					name,
-					mountsep,
+			sizeinfo = "%s%s" % (
 					_("Size: "),
-					sizeStr(mounttotal, _("unavailable")),
-					_("Free: "),
-					sizeStr(mountfree, _("full")),
-					type
+					self.sizeStr(mounttotal, _("unavailable"))
 				)
+			freeinfo = "%s%s" % (
+					_("Free: "),
+					self.sizeStr(mountfree, _("full"))
+				)
+			if twoLines:
+				return (
+					self.makeWideNetworkEntry(name),
+					self.makeFilesystemEntry(None, type, sizeinfo, freeinfo)
+				)
+			else:
+				return (self.makeFilesystemEntry(name, type, sizeinfo, freeinfo),)
 		else:
-			return ""
+			return (self.makeInfoEntry(name, ''),)
 
 	def populate(self):
 		scanning = _("Wait please while scanning for devices...")
-		self["AboutScrollLabel"].setText(scanning)
+		self.list.append(self.makeHeadingEntry(scanning))
+		self["list"].updateList(self.list)
 		self.activityTimer.start(10)
 
 	def populate2(self):
 		self.activityTimer.stop()
 
-		self.AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
-		self.AboutText += "\n" + _("Detected NIMs:")
+		self.list = []
+
+		self.list.append(self.makeHeadingInfoEntry(_("Model:"), "%s %s" % (getMachineBrand(), getMachineName())))
+
+		self.list.append(self.makeEmptyEntry())
+
+		self.list.append(self.makeHeadingEntry(_("Detected NIMs"+":")))
 
 		nims = nimmanager.nimList()
-		for count in range(len(nims)):
-			if count < 4:
-				self["Tuner" + str(count)] = StaticText(nims[count])
-			else:
-				self["Tuner" + str(count)] = StaticText("")
-			self.AboutText +=  "\n" + nims[count]
+		for count in range(min(len(nims), 4)):
+			self.list.append(self.makeInfoEntry(*nims[count].split(": ")))
 
-		self.AboutText += "\n\n" + _("Detected HDDs and Volumes:")
+		self.list.append(self.makeEmptyEntry())
+		self.list.append(self.makeHeadingEntry(_("Detected HDDs and Volumes"+":")))
 
 		partitions = []
 		f = open('/proc/partitions', 'r')
@@ -199,7 +289,7 @@ class Devices(Screen):
 		self.mountinfo = []
 		for hddtup in harddiskmanager.HDDList():
 			hdd = hddtup[1]
-			self.mountinfo.append("%s\t%s %s" % (hdd.device, hdd.model(), sizeStr(hdd.diskSize())))
+			self.mountinfo.append(self.makeHDDEntry(hdd.dev_path, hdd.model(), self.sizeStr(hdd.diskSize())))
 			for part in [p for p in partitions
 					if p.startswith(hdd.device)]:
 				if part in mountIndex:
@@ -213,42 +303,39 @@ class Devices(Screen):
 					fsType = mount[2]
 					if fsType in Devices.fsNameMap:
 						fsType = Devices.fsNameMap[fsType]
-					self.mountinfo.append(self.mountInfo(mount[0], mount[1], fsType, indent="    "))
+					self.mountinfo += self.mountInfo(mount[0], mount[1], fsType)
 				else:
-					self.mountinfo.append("    " + part + '\t' + _('Not mounted'))
+					self.mountinfo.append(self.makeInfoEntry(part, _('Not mounted')))
 		if not self.mountinfo:
-			self.mountinfo.append(_('none'))
+			self.mountinfo.append(self.makeHDDEntry(_('none'), '', ''))
 
-		self.AboutText += '\n' + '\n'.join(self.mountinfo)
+		self.list += self.mountinfo
 
-		self.AboutText += "\n\n" + _("Network Servers:")
 		self.mountinfo = []
+		self.list.append(self.makeEmptyEntry())
+		self.list.append(self.makeHeadingEntry(_("Network Servers:")))
 		for mount in [m for m in mounts
 				if match(Devices.FSTABIPMATCH, m[0])]:
-			self.mountinfo.append(self.mountInfo(mount[0], mount[1], mount[2].upper(), mountsep='\n\t'))
+			self.mountinfo += self.mountInfo(mount[0], mount[1], mount[2].upper(), twoLines=True)
 
 		for mountname in listdir('/media/autofs'):
 			mountpoint = path.join('/media/autofs', mountname)
-			self.mountinfo.append(self.mountInfo(mountpoint, mountpoint, 'AUTOFS', mountsep='\n\t'))
+			self.mountinfo += self.mountInfo(mountpoint, mountpoint, 'AUTOFS', twoLines=True)
 		for mountname in listdir('/media/upnp'):
 			mountpoint = path.join('/media/upnp', mountname)
 			if path.isdir(mountpoint) and not mountname.startswith('.'):
-				self.mountinfo.append(mountpoint + '\t\t' + 'DLNA')
+				self.mountinfo.append(self.makeWideNetworkEntry(mountpoint))
+				self.mountinfo.append(self.makeFilesystemEntry(None, 'DLNA', None, None))
 
 		if not self.mountinfo:
-			self.mountinfo.append(_('none'))
+			self.mountinfo.append(self.makeWideFilesystemEntry(_('none')))
 
-		self.AboutText += '\n' + '\n'.join(self.mountinfo)
-		self["AboutScrollLabel"].setText(self.AboutText)
+		self.list += self.mountinfo
+		self["list"].updateList(self.list)
 
-class SystemMemoryInfo(Screen):
+class SystemMemoryInfo(AboutBase):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Memory Information"))
-		#self.skinName = ["SystemMemoryInfo", "About"]
-		self.skinName = ["About"]
-
-		self["AboutScrollLabel"] = ScrollLabel()
+		AboutBase.__init__(self, session)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -257,47 +344,46 @@ class SystemMemoryInfo(Screen):
 		})
 
 		out_lines = file("/proc/meminfo").readlines()
-		self.AboutText = _("RAM") + '\n\n'
-		RamTotal = "-"
-		RamFree = "-"
+		self.list.append(self.makeHeadingEntry(_("RAM")))
 		for lidx in range(len(out_lines) - 1):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Memory:") + "\t" + MemTotal[1] + "\n"
+				self.list.append(self.makeInfoEntry(_("Total Memory:"), MemTotal[1]))
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				self.AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+				self.list.append(self.makeInfoEntry(_("Free Memory:"), MemFree[1]))
 			if "Buffers:" in tstLine:
 				Buffers = out_lines[lidx].split()
-				self.AboutText += _("Buffers:") + "\t" + Buffers[1] + "\n"
+				self.list.append(self.makeInfoEntry(_("Buffers:"), Buffers[1]))
 			if "Cached:" in tstLine:
 				Cached = out_lines[lidx].split()
-				self.AboutText += _("Cached:") + "\t" + Cached[1] + "\n"
+				self.list.append(self.makeInfoEntry(_("Cached:"), Cached[1]))
 			if "SwapTotal:" in tstLine:
 				SwapTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
+				self.list.append(self.makeInfoEntry(_("Total Swap:"), SwapTotal[1]))
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
+				self.list.append(self.makeInfoEntry(_("Free Swap:"), SwapFree[1]))
 
+		FlashTotal = "-"
+		FlashFree = "-"
 		mounts = getProcMounts()
 		if mounts:
 			part = Partition(mounts[0][1])
-			RamTotal = sizeStr(part.total() / 10**6, _("unavailable"))
-			RamFree = sizeStr(part.free() / 10**6, _("full"))
+			FlashTotal = self.sizeStr(part.total() / 10**6, _("unavailable"))
+			FlashFree = self.sizeStr(part.free() / 10**6, _("full"))
 
-		self.AboutText += _("FLASH") + '\n\n'
-		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
-		self.AboutText += _("Free:") + "\t" + RamFree + "\n\n"
+		self.list.append(self.makeEmptyEntry())
+		self.list.append(self.makeHeadingEntry(_("FLASH")))
+		self.list.append(self.makeInfoEntry(_("Total:"), FlashTotal))
+		self.list.append(self.makeInfoEntry(_("Free:"), FlashFree))
 
-		self["AboutScrollLabel"].setText(self.AboutText)
+		self["list"].updateList(self.list)
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Network Information"))
-		self.skinName = ["SystemNetworkInfo", "About"]
 
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
@@ -516,4 +602,3 @@ class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["selected"] = StaticText("About")
-
