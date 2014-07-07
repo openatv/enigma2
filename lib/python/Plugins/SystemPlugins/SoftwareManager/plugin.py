@@ -1689,6 +1689,7 @@ class UpdatePlugin(Screen):
 				self.close()
 		else:
 			if not self.updating:
+				self.ipkg.stop()
 				self.close()
 
 	def exitAnswer(self, result):
