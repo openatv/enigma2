@@ -13,11 +13,15 @@ if [ ! -d ${sysconfdir}/enigma2 ]; then
 	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
 fi
 
-if [ -x ${bindir}/showiframe ]; then
-	if [ -f ${sysconfdir}/enigma2/backdrop.mvi ]; then
-		${bindir}/showiframe ${sysconfdir}/enigma2/backdrop.mvi
-	elif [ -f ${datadir}/backdrop.mvi ]; then
-		${bindir}/showiframe ${datadir}/backdrop.mvi
+if [ -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
+	echo "factory test mode"
+else
+	if [ -x ${bindir}/showiframe ]; then
+		if [ -f ${sysconfdir}/enigma2/backdrop.mvi ]; then
+			${bindir}/showiframe ${sysconfdir}/enigma2/backdrop.mvi
+		elif [ -f ${datadir}/backdrop.mvi ]; then
+			${bindir}/showiframe ${datadir}/backdrop.mvi
+		fi
 	fi
 fi
 
@@ -46,15 +50,19 @@ sync
 
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
-        
-if [ "$(grep config.crash.enabledebug ${sysconfdir}/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-	if [ "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LD_PRELOAD=$LIBS ${bindir}/enigma2 &> $(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+
+if [ -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
+	/home/root/factory/enigma2
+else    
+	if [ "$(grep config.crash.enabledebug ${sysconfdir}/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+		if [ "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+			LD_PRELOAD=$LIBS ${bindir}/enigma2 &> $(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+		else
+			LD_PRELOAD=$LIBS ${bindir}/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+		fi
 	else
-		LD_PRELOAD=$LIBS ${bindir}/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+		LD_PRELOAD=$LIBS ${bindir}/enigma2
 	fi
-else
-	LD_PRELOAD=$LIBS ${bindir}/enigma2
 fi
 
 # enigma2 exit codes:
