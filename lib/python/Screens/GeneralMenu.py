@@ -753,7 +753,8 @@ class GeneralMenu(Screen):
         subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [])
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
-        (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
+	 (_('History'),'mainmenu_tv_zaphistory',boundFunction(self.openDialog, HistoryZapSelector),50),
+	 (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
          (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
         ])
 
