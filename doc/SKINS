@@ -30,25 +30,35 @@ You can either:
    use this to refer to pixmaps which are included in the default 
    distribution, i.e. no skin specific stuff but for example the 
    number bitmaps etc.
+[ NB: The following description of skin relative path resolution is
+      inaccurate. There are some design flaws that make this scheme
+      unsuitable for general use. Implementing this scheme would be
+      challenging, given embedded skins and skinning practices currently
+      adopted by plugins. RTFS is recommended. ]
+
  - relative to the skin's directory (with a leading "~/").
    ~ in this case can be seen as the skin's "home directory", that's the 
    place where the skin.xml is.
-   use this if you are building a skin.
+
+
 
 A NOTE ABOUT PNGs
 =================
+[ NB: The following is outdated and may be not accurate in a number of
+      areas. Modern enigma2 hardware is less constrained than the original
+      platform was at the time this was written. RTFS. ]
 
-Enigma can user either a 32bit argb or an 8bit pseudocolor output. In any
+Enigma can use either a 32bit argb or an 8bit pseudocolor output. In any
 case, enigma uses 8bit PNGs for skins.
 
 Though it would be easy to support 32bit pngs as well, it questionable if
 this would be a great idea.
 
-a.) the quality improvement is realative
+a.) the quality improvement is relative
 
 you can use another palette for each png. that gives you unique 256 colors
 for each skin element. Unless you have very big PNGs, you shouldn't be able
-to notive the difference between 32bit and 8bit.
+to notice the difference between 32bit and 8bit.
 
 b.) 32bit skins wouldn't be compatible to 8bit displays
 
