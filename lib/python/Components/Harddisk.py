@@ -330,7 +330,11 @@ class Harddisk:
 			else:
 				# Prefer optimal alignment for performance
 				alignment = 'opt'
-			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', 'gpt', 'mkpart', 'primary', '0%', '100%']
+			if size > 2097151:
+				parttype = 'gpt'
+			else:
+				parttype = 'msdos'
+			task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
 		else:
 			task.setTool('sfdisk')
 			task.args.append('-f')
