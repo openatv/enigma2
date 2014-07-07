@@ -42,8 +42,8 @@ def PipPigMode(value):
 			PipPigModeTimer.start(100)
 
 class PictureInPictureZapping(Screen):
-	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
-			<eLabel text="PiP-Zap" position="0,0" size="90,26" foregroundColor="#00ff66" font="Regular;26" />
+	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="130,30" title="PiPZap" zPosition="-1">
+			<eLabel text="PiP-Zap" position="0,0" size="130,30" foregroundColor="#00ff66" font="Regular;26" />
 		</screen>"""
 
 class PictureInPicture(Screen):
