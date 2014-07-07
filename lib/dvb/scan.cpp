@@ -472,7 +472,7 @@ void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParame
 		m_new_channels.insert(std::pair<eDVBChannelID,ePtr<iDVBFrontendParameters> >(chid, feparm));
 }
 
-void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
+void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 {
 		/* check if we don't already have that channel ... */
 
@@ -616,9 +616,6 @@ void eDVBScan::channelDone()
 				SCAN_eDebug("TSID: %04x ONID: %04x", (*tsinfo)->getTransportStreamId(),
 					(*tsinfo)->getOriginalNetworkId());
 
-				eOriginalNetworkID onid = (*tsinfo)->getOriginalNetworkId();
-				eTransportStreamID tsid = (*tsinfo)->getTransportStreamId();
-
 				for (DescriptorConstIterator desc = (*tsinfo)->getDescriptors()->begin();
 						desc != (*tsinfo)->getDescriptors()->end(); ++desc)
 				{
@@ -634,13 +631,7 @@ void eDVBScan::channelDone()
 						cable.set(d);
 						feparm->setDVBC(cable);
 
-						unsigned long hash=0;
-						feparm->getHash(hash);
-						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
-
-						addChannelToScan(
-							eDVBChannelID(ns, tsid, onid),
-							feparm);
+						addChannelToScan(feparm);
 						break;
 					}
 					case TERRESTRIAL_DELIVERY_SYSTEM_DESCRIPTOR:
@@ -653,13 +644,7 @@ void eDVBScan::channelDone()
 						terr.set(d);
 						feparm->setDVBT(terr);
 
-						unsigned long hash=0;
-						feparm->getHash(hash);
-						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
-
-						addChannelToScan(
-							eDVBChannelID(ns, tsid, onid),
-							feparm);
+						addChannelToScan(feparm);
 						break;
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
@@ -693,11 +678,7 @@ void eDVBScan::channelDone()
 							SCAN_eDebug("dropping this transponder, it's on another satellite.");
 						else
 						{
-							unsigned long hash=0;
-							feparm->getHash(hash);
-							addChannelToScan(
-									eDVBChannelID(buildNamespace(onid, tsid, hash), tsid, onid),
-									feparm);
+							addChannelToScan(feparm);
 						}
 						break;
 					}
