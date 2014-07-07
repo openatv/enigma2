@@ -534,8 +534,7 @@ class GeneralSetup(Screen):
 			from Screens.ParentalControlSetup import ParentalControlSetup
 			self.session.open(ParentalControlSetup)
 		elif selected == _("Zap history"):
-			from Plugins.Extensions.IniZapHistoryBrowser.plugin import ZapHistoryConfigurator
-			self.session.open(ZapHistoryConfigurator)
+			self.openSetup("zaphistorysetup")
 ######## Select Mounts Menu ##############################
 		elif selected == _("Mount Manager"):
 			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)

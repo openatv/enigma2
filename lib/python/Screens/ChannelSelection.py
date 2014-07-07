@@ -8,6 +8,7 @@ import Screens.InfoBar
 import Components.ParentalControl
 from Components.About import about
 from Components.Button import Button
+from Components.Label import Label
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
@@ -2424,15 +2425,22 @@ class HistoryZapSelector(Screen):
 			self.currentPos = len(items) - sel_item - 1
 		else:
 			self.currentPos = sel_item
-		self["actions"] = ActionMap(["OkCancelActions", "InfobarCueSheetActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "InfobarCueSheetActions", "ColorActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
 				"jumpPreviousMark": self.prev,
 				"jumpNextMark": self.next,
 				"toggleMark": self.okbuttonClick,
+				'red': self.okbuttonClick
 			})
 		self.setTitle(_("History zap..."))
+		
+		self['key_red'] = Label(_('Zap'))
+		self['key_green'] = Label('')
+		self['key_yellow'] = Label('')
+		self['key_blue'] = Label('')
+        
 		self.list = []
 		cnt = 0
 		serviceHandler = eServiceCenter.getInstance()
