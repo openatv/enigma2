@@ -6,7 +6,6 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
-from Components.Console import Console
 from Components.Label import Label
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
@@ -14,9 +13,9 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVer
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
-from Tools.StbHardware import getFPVersion 
+from Tools.StbHardware import getFPVersion
 from os import path, listdir, stat
-from re import search, match
+from re import match
 
 def sizeStr(size, unknown=_("unavailable")):
 	if float(size) / 2**20 >= 1:
@@ -32,6 +31,7 @@ class About(Screen):
 		Screen.__init__(self, session)
 
 		AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
 
@@ -47,15 +47,15 @@ class About(Screen):
 		AboutText += _("Image:\t%s") % about.getImageVersionString() + "\n"
 		AboutText += _("Kernel: \t%s") % about.getKernelVersionString() + "\n"
 		AboutText += _("Oe-Core:\t%s") % about.getEnigmaVersionString() + "\n"
-		
+
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
 		else:
 			fp_version = _("Front Panel:\t%d") % fp_version
 			AboutText += fp_version + "\n\n"
-			
-		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n" 
+
+		AboutText += _("Last Upgrade:\t%s") % about.getLastUpdateString() + "\n\n"
 		AboutText += _("WWW:\t%s") % about.getImageUrlString()
 
 		tempinfo = ""
@@ -70,61 +70,59 @@ class About(Screen):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
-			
+
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
 				self["Tuner" + str(count)] = StaticText("")
-				
-		hddlist = harddiskmanager.HDDList()
-		hddinfo = ""
-		if hddlist:
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += "%s\n(%s, %d GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024, _("free"))
-				else:
-					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
-		else:
-			hddinfo = _("none")
-			
+
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"], 
-			{
-				"cancel": self.close,
-				"ok": self.close,
-				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown
-			})
-			
-class Devices(Screen):
-
-	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Device Information"))
-		self.skinName = ["SystemDevicesInfo", "About"]
-		
-		self.AboutText = ""
-		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
-		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.populate2)
-		self.populate()
-		
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
 				"up": self["AboutScrollLabel"].pageUp,
-				"down": self["AboutScrollLabel"].pageDown
+				"down": self["AboutScrollLabel"].pageDown,
+				"left": self["AboutScrollLabel"].pageUp,
+				"right": self["AboutScrollLabel"].pageDown,
 			})
-			
+
+class Devices(Screen):
+
+	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
+
+       # Mapping fuseblk is a hack that only works if NTFS
+       # is the only FUSE file system loaded.
+
+	fsNameMap = { "fuseblk": "NTFS", "hfs": "HFS", "hfsplus": "HFS+",
+			"iso9660": "ISO9660", "msdos" : "FAT",
+			"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
+		 }
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Device Information"))
+		self.skinName = ["SystemDevicesInfo", "About"]
+
+		self.AboutText = ""
+		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
+		self.activityTimer = eTimer()
+		self.activityTimer.timeout.get().append(self.populate2)
+		self.populate()
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown,
+				"left": self["AboutScrollLabel"].pageUp,
+				"right": self["AboutScrollLabel"].pageDown,
+			})
+
 	def mountInfo(self, name, mountpoint, type, mountsep='\t', indent=''):
 		if path.isdir(mountpoint):
 			# Handle autofs "ghost" entries
@@ -133,9 +131,17 @@ class Devices(Screen):
 			except:
 				return ""
 			part = Partition(mountpoint)
-			mounttotal = part.total() / 10**6
-			mountfree =  part.free() / 10**6
-			return "%s%s%s%s%s\t%s%s\t%s\n" % (
+			mounttotal = part.total()
+			if mounttotal is None:
+				mounttotal = -1
+			else:
+				mounttotal /= 10**6
+			mountfree =  part.free()
+			if mountfree is None:
+				mountfree = -1
+			else:
+				mountfree /= 10**6
+			return "%s%s%s%s%s\t%s%s\t%s" % (
 					indent,
 					name,
 					mountsep,
@@ -155,9 +161,9 @@ class Devices(Screen):
 
 	def populate2(self):
 		self.activityTimer.stop()
-		
+
 		self.AboutText = _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
-		self.AboutText += "\n" + _("Detected NIMs:") + "\n"
+		self.AboutText += "\n" + _("Detected NIMs:")
 
 		nims = nimmanager.nimList()
 		for count in range(len(nims)):
@@ -165,98 +171,91 @@ class Devices(Screen):
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
 				self["Tuner" + str(count)] = StaticText("")
-			self.AboutText += nims[count] + "\n"
+			self.AboutText +=  "\n" + nims[count]
 
-		self.AboutText += "\n" + _("Detected HDD:") + "\n"
+		self.AboutText += "\n\n" + _("Detected HDDs and Volumes:")
 
-		mounts = getProcMounts()
-
-		self.list = []
-		list2 = []
+		partitions = []
 		f = open('/proc/partitions', 'r')
 		for line in f.readlines():
 			parts = line.strip().split()
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]', device):
+			if device in partitions or not device[-1].isdigit():
 				continue
-			if device in list2:
-				continue
+			partitions.append(device)
+		partitions.sort()
 
-			mount = '/dev/' + device
-			f = open('/proc/mounts', 'r')
-			for line in f.readlines():
-				if device in line:
-					parts = line.strip().split()
-					mount = str(parts[1])
-					break
-			f.close()
+		mounts = getProcMounts()
 
-			if not mount.startswith('/dev/'):
-				size = Harddisk(device).diskSize()
-				free = Harddisk(device).free()
+		mountIndex = {}
+		for m in mounts:
+			x = m[0]
+			if x.startswith('/dev/'):
+				x = x[5:]
+			mountIndex[x] = m
 
-				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
-				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
-				elif size >= 1:
-					sizeline = _("Size: ") + str(size) + _("MB")
+		self.mountinfo = []
+		for hddtup in harddiskmanager.HDDList():
+			hdd = hddtup[1]
+			self.mountinfo.append("%s\t%s %s" % (hdd.device, hdd.model(), sizeStr(hdd.diskSize())))
+			for part in [p for p in partitions
+					if p.startswith(hdd.device)]:
+				if part in mountIndex:
+					mount = mountIndex[part]
+
+					fs = mount[2]
+					if fs:
+						fs = fs.upper()
+					else:
+						fs = "Unknown"
+					fsType = mount[2]
+					if fsType in Devices.fsNameMap:
+						fsType = Devices.fsNameMap[fsType]
+					self.mountinfo.append(self.mountInfo(mount[0], mount[1], fsType, indent="    "))
 				else:
-					sizeline = _("Size: ") + _("unavailable")
+					self.mountinfo.append("    " + part + '\t' + _('Not mounted'))
+		if not self.mountinfo:
+			self.mountinfo.append(_('none'))
 
-				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
-				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
-				elif free >= 1:
-					freeline = _("Free: ") + str(free) + _("MB")
-				else:
-					freeline = _("Free: ") + _("full")
-				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
-			else:
-				self.list.append(mount + '\t' + _('Not mounted'))
+		self.AboutText += '\n' + '\n'.join(self.mountinfo)
 
-			list2.append(device)
-		self.list = '\n'.join(self.list)
-		
-		self.AboutText += self.list + "\n"
-		self.AboutText += "\n" + _("Network Servers:") + "\n"
-		self.mountinfo = ""
+		self.AboutText += "\n\n" + _("Network Servers:")
+		self.mountinfo = []
 		for mount in [m for m in mounts
 				if match(Devices.FSTABIPMATCH, m[0])]:
-			self.mountinfo += self.mountInfo(mount[0], mount[1], mount[2].upper(), mountsep='\n\t')
+			self.mountinfo.append(self.mountInfo(mount[0], mount[1], mount[2].upper(), mountsep='\n\t'))
 
 		for mountname in listdir('/media/autofs'):
 			mountpoint = path.join('/media/autofs', mountname)
-			self.mountinfo += self.mountInfo(mountpoint, mountpoint, 'AUTOFS', mountsep='\n\t')
+			self.mountinfo.append(self.mountInfo(mountpoint, mountpoint, 'AUTOFS', mountsep='\n\t'))
 		for mountname in listdir('/media/upnp'):
 			mountpoint = path.join('/media/upnp', mountname)
 			if path.isdir(mountpoint) and not mountname.startswith('.'):
-				self.mountinfo += mountpoint + '\t\t' + 'DLNA' + "\n"
+				self.mountinfo.append(mountpoint + '\t\t' + 'DLNA')
 
 		if not self.mountinfo:
-			self.mountinfo = _('none') + "\n"
+			self.mountinfo.append(_('none'))
 
-		self.AboutText += self.mountinfo
+		self.AboutText += '\n' + '\n'.join(self.mountinfo)
 		self["AboutScrollLabel"].setText(self.AboutText)
-		      
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
 		#self.skinName = ["SystemMemoryInfo", "About"]
 		self.skinName = ["About"]
-		
+
 		self["AboutScrollLabel"] = ScrollLabel()
-		
+
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"cancel": self.close,
 			"ok": self.close,
 		})
-									
+
 		out_lines = file("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
@@ -282,14 +281,11 @@ class SystemMemoryInfo(Screen):
 				SwapFree = out_lines[lidx].split()
 				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
 
-		self.Console = Console()
-		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
-
-	def Stage1Complete(self, result, retval, extra_args=None):
-		flash = str(result).replace('\n', '')
-		flash = flash.split()
-		RamTotal = flash[1]
-		RamFree = flash[3]
+		mounts = getProcMounts()
+		if mounts:
+			part = Partition(mounts[0][1])
+			RamTotal = sizeStr(part.total() / 10**6, _("unavailable"))
+			RamFree = sizeStr(part.free() / 10**6, _("full"))
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
@@ -297,12 +293,6 @@ class SystemMemoryInfo(Screen):
 
 		self["AboutScrollLabel"].setText(self.AboutText)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
-			
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -346,12 +336,14 @@ class SystemNetworkInfo(Screen):
 		self["key_red"] = StaticText(_("Close"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
-									{
-										"cancel": self.close,
-										"ok": self.close,
-										"up": self["AboutScrollLabel"].pageUp,
-										"down": self["AboutScrollLabel"].pageDown
-									})
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown,
+				"left": self["AboutScrollLabel"].pageUp,
+				"right": self["AboutScrollLabel"].pageDown,
+			})
 
 	def createscreen(self):
 		self.AboutText = ""
@@ -514,7 +506,7 @@ class SystemNetworkInfo(Screen):
 			try:
 				self["statuspic"].setPixmapNum(0)
 			except:
-				print "KeyError: statuspic" 
+				print "KeyError: statuspic"
 
 	def createSummary(self):
 		return AboutSummary
@@ -524,4 +516,4 @@ class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["selected"] = StaticText("About")
-		
+
