@@ -90,6 +90,8 @@ class PluginBrowser(Screen):
 
 		self["red"] = Label(_("Remove plugins"))
 		self["green"] = Label(_("Download plugins"))
+		self["key_red"] = self["red"] = Label(_("Remove plugins"))
+		self["key_green"] = self["green"] = Label(_("Download plugins"))
 
 		self.list = []
 		self["list"] = PluginList(self.list)
