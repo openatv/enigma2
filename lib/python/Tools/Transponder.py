@@ -5,6 +5,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 	ret = { }
 	if tunertype is None:
 		tunertype = tp.get("tuner_type", "None")
+	if tp.get("tuner_number") is not None:
+		ret["tuner_name"] = chr(ord('A') + tp["tuner_number"])
 	if tunertype == "DVB-S":
 		ret["tuner_type"] = _("Satellite")
 		ret["inversion"] = {
@@ -82,6 +84,9 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
 		ret["frequency"] = (tp.get("frequency") and "%1.3f MHz" % (tp.get("frequency")/1000.0)) or '0 MHz'
+		chan = channelnumbers.getChannelNumber(tp.get("frequency"), tp.get("tuner_number"))
+		if chan is not None:
+			ret["channel"] = chan
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
