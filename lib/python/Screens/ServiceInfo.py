@@ -42,8 +42,32 @@ TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
 
 class ServiceInfo(Screen):
+	infoLabels = (
+		(_("NIM"), "tuner_name", TYPE_TEXT),
+		(_("Type"), "tuner_type", TYPE_TEXT),
+		(_("System"), "system", TYPE_TEXT),
+		(_("Modulation"), "modulation", TYPE_TEXT),
+		(_("Orbital position"), "orbital_position", TYPE_VALUE_DEC),
+		(_("Frequency"), "frequency", TYPE_VALUE_DEC),
+		(_("Channel"), "channel", TYPE_TEXT),
+		(_("Symbol rate"), "symbol_rate", TYPE_VALUE_DEC),
+		(_("Polarization"), "polarization", TYPE_TEXT),
+		(_("Inversion"), "inversion", TYPE_TEXT),
+		(_("FEC"), "fec_inner", TYPE_TEXT),
+		(_("Pilot"), "pilot", TYPE_TEXT),
+		(_("Roll-off"), "rolloff", TYPE_TEXT),
+		(_("Bandwidth"), "bandwidth", TYPE_VALUE_DEC),
+		(_("Code rate LP"), "code_rate_lp", TYPE_TEXT),
+		(_("Code rate HP"), "code_rate_hp", TYPE_TEXT),
+		(_("Constellation"), "constellation", TYPE_TEXT),
+		(_("Transmission mode"), "transmission_mode", TYPE_TEXT),
+		(_("Guard interval"), "guard_interval", TYPE_TEXT),
+		(_("Hierarchy info"), "hierarchy_information", TYPE_TEXT),
+	)
+
 	def __init__(self, session, serviceref=None):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Service Information"))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
@@ -118,27 +142,7 @@ class ServiceInfo(Screen):
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
-				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 		: _("Transponder type"),
-						 "system"			: _("System"),
-						 "modulation"		: _("Modulation"),
-						 "orbital_position" : _("Orbital position"),
-						 "frequency"		: _("Frequency"),
-						 "symbol_rate"		: _("Symbol rate"),
-						 "bandwidth"		: _("Bandwidth"),
-						 "polarization"		: _("Polarization"),
-						 "inversion"		: _("Inversion"),
-						 "pilot"			: _("Pilot"),
-						 "rolloff"			: _("Roll-off"),
-						 "fec_inner"		: _("FEC"),
-						 "code_rate_lp"		: _("Coderate LP"),
-						 "code_rate_hp"		: _("Coderate HP"),
-						 "constellation"	: _("Constellation"),
-						 "transmission_mode": _("Transmission mode"),
-						 "guard_interval" 	: _("Guard interval"),
-						 "hierarchy_information": _("Hierarchy information") }
-				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
-				self.fillList(Labels)
+				self.fillList(self.getFEData(self.transponder_info))
 
 	def pids(self):
 		if self.type == TYPE_SERVICE_INFO:
@@ -155,8 +159,8 @@ class ServiceInfo(Screen):
 	def showFrontendData(self, real):
 		if self.type == TYPE_SERVICE_INFO:
 			frontendData = self.feinfo and self.feinfo.getAll(real)
-			Labels = self.getFEData(frontendData)
-			self.fillList(Labels)
+
+			self.fillList(self.getFEData(frontendData))
 
 	def transponder(self):
 		if self.type == TYPE_SERVICE_INFO:
@@ -169,40 +173,9 @@ class ServiceInfo(Screen):
 	def getFEData(self, frontendDataOrg):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
-			if frontendDataOrg["tuner_type"] == "DVB-S":
-				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
-						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
-						(_("System"), frontendData["system"], TYPE_TEXT),
-						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
-						(_("Orbital position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
-						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
-						(_("Symbol rate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
-						(_("Polarization"), frontendData["polarization"], TYPE_TEXT),
-						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
-						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT),
-						(_("Pilot"), frontendData.get("pilot", None), TYPE_TEXT),
-						(_("Roll-off"), frontendData.get("rolloff", None), TYPE_TEXT))
-			elif frontendDataOrg["tuner_type"] == "DVB-C":
-				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
-						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
-						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
-						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
-						(_("Symbol rate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
-						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
-						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT))
-			elif frontendDataOrg["tuner_type"] == "DVB-T":
-				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
-						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
-						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
-						(_("Channel"), channelnumbers.getChannelNumber(frontendData["frequency"], frontendData["tuner_number"]), TYPE_TEXT),
-						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
-						(_("Bandwidth"), frontendData["bandwidth"], TYPE_VALUE_DEC),
-						(_("Code rate LP"), frontendData["code_rate_lp"], TYPE_TEXT),
-						(_("Code rate HP"), frontendData["code_rate_hp"], TYPE_TEXT),
-						(_("Constellation"), frontendData["constellation"], TYPE_TEXT),
-						(_("Transmission mode"), frontendData["transmission_mode"], TYPE_TEXT),
-						(_("Guard interval"), frontendData["guard_interval"], TYPE_TEXT),
-						(_("Hierarchy info"), frontendData["hierarchy_information"], TYPE_TEXT))
+			return [(label, frontendData[data], format)
+					for (label, data, format) in ServiceInfo.infoLabels
+						if data in frontendData]
 		return [ ]
 
 	def fillList(self, Labels):
