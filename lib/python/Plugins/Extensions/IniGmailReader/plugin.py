@@ -422,10 +422,10 @@ class DocompareTimes(Screen):
 
 	def Checkcounts(self):
 		netcount = comparecounts()
-		print "netcount:", netcount
+		print "[GMail] netcount:", netcount
 		if netcount>0:
 			msg="New " + str(netcount)+ " emails press ok to view"
-			print msg
+			print "[GMail]", msg
 			self.session.openWithCallback(self.repeat,gmailnotifier,msg)
 		else:
 			self.repeat()
@@ -448,11 +448,11 @@ def getnewgmailcount():
 def comparecounts():
 	netcount=0
 	oldcount=config.plugins.gmailreader.gmailcount.value
-	print "oldcount",oldcount
+	print "[GMail] oldcount",oldcount
 	newcount=getnewgmailcount()
-	print "newcount",newcount
+	print "[GMail] newcount",newcount
 	netcount=newcount-oldcount
-	print "netcount",netcount
+	print "[GMail] netcount",netcount
 	if newcount!=0:
 		config.plugins.gmailreader.gmailcount.value=newcount
 	return netcount
@@ -582,7 +582,7 @@ def decodeHeader(text, default=''):
 	textNew = ""
 	for part in decode_header(text):
 		(content, charset) = part
-		# print("decodeHeader content/charset: %s/%s" %(repr(content),charset))
+		# print("[GMail] decodeHeader content/charset: %s/%s" %(repr(content),charset))
 		if charset:
 			textNew += content.decode(charset)
 		else:
