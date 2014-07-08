@@ -422,11 +422,11 @@ class DocompareTimes(Screen):
 
 	def Checkcounts(self):
 		netcount = comparecounts()
-		print "[GMail] netcount:", netcount
+#		print "[GMail] netcount:", netcount
 		if netcount>0:
 			msg = "%d new email%s.\nPress OK to view." % (netcount, "s" if netcount > 1 else "")
-			print "[GMail]", msg
-			self.session.openWithCallback(self.repeat,gmailnotifier,msg)
+#			print "[GMail]", msg
+			self.session.openWithCallback(self.repeat, gmailnotifier, msg)
 		else:
 			self.repeat()
 
@@ -448,11 +448,11 @@ def getnewgmailcount():
 def comparecounts():
 	netcount=0
 	oldcount=config.plugins.gmail.gmailcount.value
-	print "[GMail] oldcount",oldcount
+#	print "[GMail] oldcount",oldcount
 	newcount=getnewgmailcount()
-	print "[GMail] newcount",newcount
+#	print "[GMail] newcount",newcount
 	netcount=newcount-oldcount
-	print "[GMail] netcount",netcount
+#	print "[GMail] netcount",netcount
 	if newcount and newcount != oldcount:
 		config.plugins.gmail.gmailcount.value=newcount
 		config.plugins.gmail.gmailcount.save()
