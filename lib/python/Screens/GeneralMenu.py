@@ -753,7 +753,7 @@ class GeneralMenu(Screen):
         subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [])
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
-	 (_('History'),'mainmenu_tv_zaphistory',boundFunction(self.openDialog, HistoryZapSelector),50),
+	 (_('History'),'mainmenu_tv_zaphistory',boundFunction(self.openHisotryChannelSelection),50),
 	 (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
          (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
         ])
@@ -814,6 +814,13 @@ class GeneralMenu(Screen):
 	InfoBar.instance.showTv()
 	self.close(1)
 
+    def openHisotryChannelSelection(self):
+	self.hide()
+	if InfoBar.instance.servicelist is None:
+		InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelection)
+	InfoBar.instance.servicelist.historyZap(0)
+	self.close(1)
+	
     def openLiveTV(self):
 	self.hide()
 	if InfoBar.instance.servicelist is None:
