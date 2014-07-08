@@ -171,6 +171,9 @@ class  Gmailfeedsscrn(Screen):
 		self["info"] = Label()
 		self["info"].setText(info)
 		self["key_red"] = Button(_("Setup"))
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		self["menu"] = MenuList([], True, eListboxPythonMultiContent)
 		Screen.__init__(self, session)
 		self["actions"] = ActionMap(["WizardActions","MenuActions", "DirectionActions", "ColorActions"],
@@ -201,7 +204,7 @@ class  Gmailfeedsscrn(Screen):
 		title= str(self.gmails[currentindex][1])
 		author=str(self.gmails[currentindex][2])
 		summary=str(self.gmails[currentindex][3])
-		self.session.openWithCallback(self.refresh,Gmailbodyviewer,title,body,tdate,author)
+		self.session.openWithCallback(self.refresh, Gmailbodyviewer, title, body, tdate, author)
 
 	def UpdateTitle(self):
 		pass
@@ -282,9 +285,9 @@ class GmailSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 
 		self["key_red"] = Button(_("Cancel"))
-		self["key_blue"] = Button(_("Keyboard"))
-		#self["key_green"] = Button(_("setup"))
 		self["key_green"] = Button(_("Save"))
+		self["key_yellow"] = Label()
+		self["key_blue"] = Button(_("Keyboard"))
 		self["info"] = Label("")
 		self.list = [ ]
 
@@ -356,8 +359,8 @@ def Plugins(**kwargs):
 		PluginDescriptor(name="GMail Reader", description="GMail Reader", where = PluginDescriptor.WHERE_PLUGINMENU, icon="gmail.png", fnc=main)]
 
 class gmailnotifier(Screen):
-	skin = """<screen name="gmailnotifier" position="40,40" size="200,200" title=""  flags="wfNoBorder" >
-		<widget name="info" position="0,0" size="200,200" font="Regular;24" zPosition="2" transparent="1" valign="center" halign="center" />
+	skin = """<screen name="gmailnotifier" position="40,150" size="200,100" title="New GMail"  flags="wfNoBorder" >
+		<widget name="info" position="0,0" size="200,100" font="Regular;20" zPosition="2" transparent="1" valign="center" halign="center" />
 		</screen>"""
 
 	def __init__(self, session,msg=None):
@@ -396,7 +399,7 @@ def autostart(reason, **kwargs):
 		session.open(DocompareTimes)
 
 class DocompareTimes(Screen):
-	skin = """<screen position="100,100" size="300,300" title="paryertimes" >
+	skin = """<screen position="100,150" size="300,100" title="New GMail" >
 		</screen>"""
 
 	def __init__(self,session):
@@ -461,7 +464,7 @@ def comparecounts():
 
 class Gmailbodyviewer(Screen):
 	skin = """<screen name="Gmailbodyviewer" position="center,center" size="920,600" title="GMail Reader - View E-mail" >
-			<widget name="titel" position="20,0" zPosition="1" size="880,30" font="Regular;20" transparent="1"  backgroundColor="#00000000" foregroundColor="yellow" valign="center" halign="left" />
+			<widget name="title" position="20,0" zPosition="1" size="880,30" font="Regular;20" transparent="1"  backgroundColor="#00000000" foregroundColor="yellow" valign="center" halign="left" />
 			<widget name="author" position="20,60" size="600,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
 			<widget name="tdate" position="620,60" size="300,30" transparent="1" halign="left" font="Regular;20" foregroundColor="yellow"/>
 			<ePixmap position="15,88" size="890,12" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
@@ -474,10 +477,13 @@ class Gmailbodyviewer(Screen):
 
 		self.session=session
 		self.itemscount=10
-		self["author"] = Label(_("Author: ") + author)
-		self["titel"] = Label(_("Topic: ") +title)
-		self["tdate"] = Label(_("Date: ") +tdate)
+		self["author"] = Label(_("From: ") + author)
+		self["title"] = Label(_("Subject: ") + title)
+		self["tdate"] = Label(_("Date: ") + tdate)
 		self["key_red"] = Button(_("Close"))
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		self["text"] = ScrollLabel("")
 
 		txt=""
