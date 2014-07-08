@@ -166,7 +166,7 @@ class  Gmailfeedsscrn(Screen):
 
 	def __init__(self, session, args = 0):
 		self.session = session
-		info="Please wait while gettings emails\nPress menu to enter username and password"
+		info="Please wait while getting email\nUse Setup to enter username and password"
 
 		self["info"] = Label()
 		self["info"].setText(info)
@@ -186,12 +186,12 @@ class  Gmailfeedsscrn(Screen):
 	def gmailviewer(self):
 		tlabel=str(config.plugins.gmail.label.value)
 		if not tlabel=="inbox" :
-			self.session.open( MessageBox, _("You can view message only from  inbox ,change label to inbox from settings."), MessageBox.TYPE_WARNING,10)
+			self.session.open( MessageBox, _("You can only view messages from inbox. Use setup to change label to inbox."), MessageBox.TYPE_WARNING,10)
 			return
 		idlist=[]
 		idlist=getidlist()
 		if len(idlist)==0:
-			self.session.open( MessageBox, _("Sorry ,unable to view email body,try later."), MessageBox.TYPE_WARNING,10)
+			self.session.open( MessageBox, _("Sorry! Unable to view email body, try again later."), MessageBox.TYPE_WARNING,10)
 			return
 		currentindex = self["menu"].getSelectedIndex()
 		message_id=idlist[currentindex]
@@ -208,7 +208,7 @@ class  Gmailfeedsscrn(Screen):
 
 	def checkpass(self):
 		if config.plugins.gmail.password.value=="" or config.plugins.gmail.username.value=="" :
-			info="Press menu to enter username and password"
+			info="Use setup to enter username and password"
 			self["info"].setText(info)
 		else:
 			self.refresh(True)
@@ -222,7 +222,7 @@ class  Gmailfeedsscrn(Screen):
 			self["menu"].l.setList(thegmails)
 			self["info"].setText("")
 			self["menu"].show()
-			info="Please wait while getting emails\nPress menu for setup username and password"
+			info="Please wait while getting email\nUse Setup to enter username and password"
 			self["info"].setText(info)
 			self.timer = eTimer()
 			self.timer.callback.append(self.ListToMulticontentgmails)
@@ -424,7 +424,7 @@ class DocompareTimes(Screen):
 		netcount = comparecounts()
 		print "[GMail] netcount:", netcount
 		if netcount>0:
-			msg="New " + str(netcount)+ " emails press ok to view"
+			msg = "%d new email%s.\nPress OK to view." % (netcount, "s" if netcount > 1 else "")
 			print "[GMail]", msg
 			self.session.openWithCallback(self.repeat,gmailnotifier,msg)
 		else:
