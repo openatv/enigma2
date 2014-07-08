@@ -35,7 +35,7 @@ labels=(["inbox","unread","all","read","starred","spam","sent","trash","draft"])
 config.plugins.gmail.label = ConfigSelection(default = 'inbox',choices=(labels))
 checkgmailtimes=(["disabled","2","5","10","30","60","120","240","480"])
 config.plugins.gmail.checktimes = ConfigSelection(default = 'disabled',choices=(checkgmailtimes))
-config.plugins.gmailreader.gmailcount = ConfigNumber(default = 0)
+config.plugins.gmail.gmailcount = ConfigNumber(default = 0)
 
 sliderfile="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png"
 c7color=0xADFF2F
@@ -447,14 +447,14 @@ def getnewgmailcount():
 
 def comparecounts():
 	netcount=0
-	oldcount=config.plugins.gmailreader.gmailcount.value
+	oldcount=config.plugins.gmail.gmailcount.value
 	print "[GMail] oldcount",oldcount
 	newcount=getnewgmailcount()
 	print "[GMail] newcount",newcount
 	netcount=newcount-oldcount
 	print "[GMail] netcount",netcount
 	if newcount!=0:
-		config.plugins.gmailreader.gmailcount.value=newcount
+		config.plugins.gmail.gmailcount.value=newcount
 	return netcount
 
 class Gmailbodyviewer(Screen):
