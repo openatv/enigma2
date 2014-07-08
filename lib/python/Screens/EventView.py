@@ -102,7 +102,7 @@ class EventViewBase:
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
-		self["key_green"].setText(_("Add timer"))
+		self["key_green"].setText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 
 	def editTimer(self, timer):
@@ -176,7 +176,7 @@ class EventViewBase:
 			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
 
@@ -266,7 +266,7 @@ class EventViewBase:
 			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 
 
