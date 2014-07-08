@@ -1,8 +1,7 @@
-from Components.HTMLComponent import HTMLComponent
-from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.Sources.List import List
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter
 from Tools.Transponder import ConvertToHumanReadable
@@ -37,26 +36,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		else:
 			b = str(b)
 
-	return [
-		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""),
-		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 25, 0, RT_HALIGN_LEFT, a),
-		(eListboxPythonMultiContent.TYPE_TEXT, 230, 0, 450, 25, 0, RT_HALIGN_LEFT, b)
-	]
-
-class ServiceInfoList(HTMLComponent, GUIComponent):
-	def __init__(self, source):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.list = source
-		self.l.setList(self.list)
-		self.l.setFont(0, gFont("Regular", 23))
-		self.l.setItemHeight(25)
-
-	GUI_WIDGET = eListbox
-
-	def postWidgetCreate(self, instance):
-		self.instance.setContent(self.l)
+	return (a, b)
 
 TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
@@ -64,7 +44,6 @@ TYPE_TRANSPONDER_INFO = 2
 class ServiceInfo(Screen):
 	def __init__(self, session, serviceref=None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Service Information"))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
@@ -100,7 +79,7 @@ class ServiceInfo(Screen):
 
 		tlist = [ ]
 
-		self["infolist"] = ServiceInfoList(tlist)
+		self["infolist"] = List(tlist)
 		self.onShown.append(self.information)
 
 	def information(self):
@@ -238,7 +217,7 @@ class ServiceInfo(Screen):
 			else:
 				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2], item[3]))
 
-		self["infolist"].l.setList(tlist)
+		self["infolist"].setList(tlist)
 
 	def getServiceInfoValue(self, what):
 		if self.info is None:
