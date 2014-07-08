@@ -453,8 +453,10 @@ def comparecounts():
 	print "[GMail] newcount",newcount
 	netcount=newcount-oldcount
 	print "[GMail] netcount",netcount
-	if newcount!=0:
+	if newcount and newcount != oldcount:
 		config.plugins.gmail.gmailcount.value=newcount
+		config.plugins.gmail.gmailcount.save()
+		configfile.save()
 	return netcount
 
 class Gmailbodyviewer(Screen):
