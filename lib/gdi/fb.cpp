@@ -8,9 +8,6 @@
 #include <linux/kd.h>
 
 #include <lib/gdi/fb.h>
-#ifdef __sh__
-#include <linux/stmfb.h>
-#endif
 
 #ifndef FBIO_WAITFORVSYNC
 #define FBIO_WAITFORVSYNC _IOW('F', 0x20, __u32)
@@ -100,7 +97,7 @@ nolfb:
 
 int fbClass::showConsole(int state)
 {
-#if not defined(__sh__) 
+#if not defined(__sh__)
 	int fd=open("/dev/tty0", O_RDWR);
 	if(fd>=0)
 	{
@@ -155,7 +152,6 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 		break;
 	}
 
-
 	if (ioctl(fbFd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 	{
 		// try single buffering
@@ -172,10 +168,10 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 		eDebug(" - double buffering available!");
 
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
-	
+
 #endif
 	ioctl(fbFd, FBIOGET_VSCREENINFO, &screeninfo);
-	
+
 #if defined(__sh__)
 	xResSc=screeninfo.xres;
 	yResSc=screeninfo.yres;
@@ -352,7 +348,6 @@ int fbClass::lock()
 	}
 	else
 		locked = 1;
-
 #if defined(__sh__)
 	outcfg.outputid = STMFBIO_OUTPUTID_MAIN;
 	if (ioctl( fbFd, STMFBIO_GET_OUTPUT_CONFIG, &outcfg ) < 0)
@@ -382,7 +377,6 @@ void fbClass::unlock()
 	if (locked == 2)  // re-enable manualBlit
 		enableManualBlit();
 	locked=0;
-
 #if defined(__sh__)
 	if (ioctl( fbFd, STMFBIO_SET_VAR_SCREENINFO_EX, &infoex ) < 0)
 		perror("STMFBIO_SET_VAR_SCREENINFO_EX\n");
@@ -401,7 +395,6 @@ void fbClass::unlock()
 
 	memset(lfb, 0, stride*yRes);
 #endif
-
 	SetMode(xRes, yRes, bpp);
 	PutCMAP();
 }

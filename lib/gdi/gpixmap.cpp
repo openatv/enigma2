@@ -152,11 +152,13 @@ gSurface::~gSurface()
 	if (data)
 	{
 		delete [] (unsigned char*)data;
+		data = 0;
 		removed_pixmap(y * stride);
 	}
 	if (clut.data)
 	{
 		delete [] clut.data;
+		clut.data = 0;
 	}
 }
 
@@ -449,7 +451,8 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		Stopwatch s;
 #endif
 		if (accel) {
-			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
+			if (!(src.surface->bpp==8 && surface->bpp==32) && 
+					(!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))) {
 #ifdef GPIXMAP_DEBUG
 				s.stop();
 				eDebug("[BLITBENCH] accel blit took %u us", s.elapsed_us());
@@ -815,6 +818,7 @@ void gPixmap::mergePalette(const gPixmap &target)
 	}
 
 	delete [] lookup;
+	lookup = 0;
 }
 
 static inline int sgn(int a)
@@ -841,19 +845,10 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 
 	if (surface->bpp == 16)
 	{
-
-#if defined(__sh__)
 #if BYTE_ORDER == LITTLE_ENDIAN
 		col = bswap_16(((col & 0xFF) >> 3) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF0000) >> 19);
 #else
 		col = ((col & 0xFF) >> 3) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF0000) >> 19;
-#endif
-#else
-#if BYTE_ORDER == LITTLE_ENDIAN
-		col = bswap_16(((col & 0xFF) >> 3) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF0000) >> 19);
-#else
-		col = ((col & 0xFF) >> 3) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF0000) >> 19;
-#endif
 #endif
 	}
 	line(clip, start, dst, col);
