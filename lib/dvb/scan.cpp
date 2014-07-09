@@ -7,6 +7,8 @@
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/ca_identifier_descriptor.h>
 #include <dvbsi++/registration_descriptor.h>
+#include <dvbsi++/extension_descriptor.h>
+#include <dvbsi++/frequency_list_descriptor.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/scan.h>
@@ -472,7 +474,7 @@ void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParame
 		m_new_channels.insert(std::pair<eDVBChannelID,ePtr<iDVBFrontendParameters> >(chid, feparm));
 }
 
-void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
+void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 {
 		/* check if we don't already have that channel ... */
 
@@ -615,9 +617,8 @@ void eDVBScan::channelDone()
 			{
 				SCAN_eDebug("TSID: %04x ONID: %04x", (*tsinfo)->getTransportStreamId(),
 					(*tsinfo)->getOriginalNetworkId());
-
-				eOriginalNetworkID onid = (*tsinfo)->getOriginalNetworkId();
-				eTransportStreamID tsid = (*tsinfo)->getTransportStreamId();
+				bool T2 = false;
+				eDVBFrontendParametersTerrestrial t2transponder;
 
 				for (DescriptorConstIterator desc = (*tsinfo)->getDescriptors()->begin();
 						desc != (*tsinfo)->getDescriptors()->end(); ++desc)
@@ -634,13 +635,7 @@ void eDVBScan::channelDone()
 						cable.set(d);
 						feparm->setDVBC(cable);
 
-						unsigned long hash=0;
-						feparm->getHash(hash);
-						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
-
-						addChannelToScan(
-							eDVBChannelID(ns, tsid, onid),
-							feparm);
+						addChannelToScan(feparm);
 						break;
 					}
 					case TERRESTRIAL_DELIVERY_SYSTEM_DESCRIPTOR:
@@ -653,13 +648,7 @@ void eDVBScan::channelDone()
 						terr.set(d);
 						feparm->setDVBT(terr);
 
-						unsigned long hash=0;
-						feparm->getHash(hash);
-						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
-
-						addChannelToScan(
-							eDVBChannelID(ns, tsid, onid),
-							feparm);
+						addChannelToScan(feparm);
 						break;
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
@@ -693,11 +682,129 @@ void eDVBScan::channelDone()
 							SCAN_eDebug("dropping this transponder, it's on another satellite.");
 						else
 						{
-							unsigned long hash=0;
-							feparm->getHash(hash);
-							addChannelToScan(
-									eDVBChannelID(buildNamespace(onid, tsid, hash), tsid, onid),
-									feparm);
+							addChannelToScan(feparm);
+						}
+						break;
+					}
+					case EXTENSION_DESCRIPTOR:
+					{
+						if (system != iDVBFrontend::feTerrestrial)
+							break; // when current locked transponder is no terrestrial transponder ignore this descriptor
+
+						ExtensionDescriptor &d = (ExtensionDescriptor&)**desc;
+						switch (d.getExtensionTag())
+						{
+						case 0x04: /* T2_delivery_system_descriptor */
+							if (d.getLength() > 4)
+							{
+								T2 = true;
+								t2transponder.system = eDVBFrontendParametersTerrestrial::System_DVB_T2;
+								t2transponder.plpid = (int)d.getSelectorBytes()->at(0);
+								t2transponder.code_rate_HP = t2transponder.code_rate_LP = eDVBFrontendParametersTerrestrial::FEC_Auto;
+								t2transponder.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
+								t2transponder.modulation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
+								t2transponder.inversion = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
+								switch ((d.getSelectorBytes()->at(3) >> 2) & 0xf)
+								{
+								case 0:
+									t2transponder.bandwidth = 8000000;
+									break;
+								case 1:
+									t2transponder.bandwidth = 7000000;
+									break;
+								case 2:
+									t2transponder.bandwidth = 6000000;
+									break;
+								case 3:
+									t2transponder.bandwidth = 5000000;
+									break;
+								case 4:
+									t2transponder.bandwidth = 1712000;
+									break;
+								case 5:
+									t2transponder.bandwidth = 10000000;
+									break;
+								default:
+									t2transponder.bandwidth = 0;
+									break;
+								}
+								switch ((d.getSelectorBytes()->at(4) >> 5) & 0x7)
+								{
+								case 0:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_1_32;
+									break;
+								case 1:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_1_16;
+									break;
+								case 2:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_1_8;
+									break;
+								case 3:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_1_4;
+									break;
+								case 4:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_1_128;
+									break;
+								case 5:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_19_128;
+									break;
+								case 6:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_19_256;
+									break;
+								case 7:
+									t2transponder.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_Auto;
+									break;
+								}
+								switch ((d.getSelectorBytes()->at(4) >> 2) & 0x7)
+								{
+								case 0:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_2k;
+									break;
+								case 1:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_8k;
+									break;
+								case 2:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_4k;
+									break;
+								case 3:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_1k;
+									break;
+								case 4:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_16k;
+									break;
+								case 5:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_32k;
+									break;
+								default:
+									t2transponder.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
+									break;
+								}
+							}
+							if (d.getLength() > 6)
+							{
+								/* TODO: parse centre_frequency(s) */
+							}
+						}
+						break;
+					}
+					case FREQUENCY_LIST_DESCRIPTOR:
+					{
+						if (system != iDVBFrontend::feTerrestrial)
+							break; // when current locked transponder is no terrestrial transponder ignore this descriptor
+						if (!T2)
+							break;
+
+						FrequencyListDescriptor &d = (FrequencyListDescriptor&)**desc;
+						if (d.getCodingType() != 0x03)
+							break;
+
+						for (CentreFrequencyConstIterator it = d.getCentreFrequencies()->begin();
+								it != d.getCentreFrequencies()->end(); ++it)
+						{
+							t2transponder.frequency = (*it) * 10;
+							ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+							feparm->setDVBT(t2transponder);
+							addChannelToScan(feparm);
 						}
 						break;
 					}
