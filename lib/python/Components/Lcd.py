@@ -132,6 +132,21 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
+	def setLCDMiniTVMode(self, value):
+		print 'setLCDMiniTVMode',value
+		f = open('/proc/stb/lcd/mode', "w")
+		f.write(value)
+		f.close()
+
+	def setLCDMiniTVPIPMode(self, value):
+		print 'setLCDMiniTVPIPMode',value
+
+	def setLCDMiniTVFPS(self, value):
+		print 'setLCDMiniTVFPS',value
+		f = open('/proc/stb/lcd/fps', "w")
+		f.write("%d \n" % value)
+		f.close()
+
 def leaveStandby():
 	config.lcd.bright.apply()
 	config.lcd.ledbrightness.apply()
@@ -194,6 +209,18 @@ def InitLcd():
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value)
 
+		def setLCDminitvmode(configElement):
+			ilcd.setLCDMiniTVMode(configElement.value)
+
+		def setLCDminitvpipmode(configElement):
+			ilcd.setLCDMiniTVPIPMode(configElement.value)
+
+		def setLCDminitvfps(configElement):
+			ilcd.setLCDMiniTVFPS(configElement.value)
+
+		def setLEDstandby(configElement):
+			ilcd.setLEDStandby(configElement.value)
+
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value)
 
@@ -228,6 +255,14 @@ def InitLcd():
 
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
+
+		if SystemInfo["LCDMiniTV"]:
+			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
+			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
+			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PIP")), ("7", _("PIP with OSD"))], "0")
+			config.lcd.minitvpipmode.addNotifier(setLCDminitvpipmode)
+			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
+			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
 		if fileExists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))

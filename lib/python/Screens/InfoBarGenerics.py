@@ -2633,6 +2633,11 @@ class InfoBarPiP:
 				self.lastPiPService = self.session.pip.getCurrentServiceReference()
 				self.lastPiPServiceTimeout.startLongTimer(60)
 				del self.session.pip
+				if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+						print '[LCDMiniTV] disable PIP'
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.minitvmode.value)
+						f.close()
 				self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
@@ -2641,11 +2646,39 @@ class InfoBarPiP:
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+						print '[LCDMiniTV] enable PIP'
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.minitvpipmode.value)
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_width", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_height", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+						f.write("1")
+						f.close()
 			else:
 				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+							print '[LCDMiniTV] enable PIP'
+							f = open("/proc/stb/lcd/mode", "w")
+							f.write(config.lcd.minitvpipmode.value)
+							f.close()
+							f = open("/proc/stb/vmpeg/1/dst_width", "w")
+							f.write("0")
+							f.close()
+							f = open("/proc/stb/vmpeg/1/dst_height", "w")
+							f.write("0")
+							f.close()
+							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+							f.write("1")
+							f.close()
 				else:
 					self.lastPiPService = None
 					self.session.pipshown = False
