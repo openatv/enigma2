@@ -52,6 +52,7 @@ class ParentalControl:
 		#Do not call open on init, because bouquets are not ready at that moment
 		self.filesOpened = False
 		self.serviceLevel = {}
+		self.PinDlg = None
 		#Instead: Use Flags to see, if we already initialized config and called open
 		self.configInitialized = False
 		#This is the timer that is used to see, if the time for caching the pin is over
@@ -80,7 +81,7 @@ class ParentalControl:
 	def setServiceLevel(self, service, type, level):
 		self.serviceLevel[service] = level
 
-	def isServicePlayable(self, ref, callback):
+	def isServicePlayable(self, ref, callback, session=None):
 		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
@@ -99,7 +100,13 @@ class ParentalControl:
 			if self.serviceLevel.has_key(service):
 				levelNeeded = self.serviceLevel[service]
 			pinList = self.getPinList()[:levelNeeded + 1]
-			Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
+			if not session:
+				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
+			else:
+				Notifications.RemovePopup("Parental control")
+				if self.PinDlg:
+					self.PinDlg.close()
+				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
 			return False
 		else:
 			return True
