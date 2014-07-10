@@ -1597,20 +1597,32 @@ class InfoBarPVRState:
 		else:
 			self._mayShow()
 
+class TimeshiftLive(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
+		self.timeshiftLiveScreen = self.session.instantiateDialog(TimeshiftLive)
+		self.timeshiftLiveScreen.hide()
 		self.__hideTimer = eTimer()
 		self.__hideTimer.callback.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled():
-			self.pvrStateDialog.show()
-			if self.seekstate == self.SEEK_STATE_PLAY and not self.shown:
-				self.__hideTimer.start(5*1000, True)
+			if self.timeshiftActivated():
+				self.pvrStateDialog.show()
+				self.timeshiftLiveScreen.hide()
+			else:
+				self.pvrStateDialog.hide()
+				self.timeshiftLiveScreen.show()
+			if self.seekstate == self.SEEK_STATE_PLAY:
+				self.__hideTimer.startLongTimer(5)
 
 	def __hideTimeshiftState(self):
 		self.pvrStateDialog.hide()
+		self.timeshiftLiveScreen.hide()
 
 class InfoBarShowMovies:
 
@@ -1688,6 +1700,10 @@ class InfoBarTimeshift:
 	def timeshiftEnabled(self):
 		ts = self.getTimeshift()
 		return ts and ts.isTimeshiftEnabled()
+
+	def timeshiftActivated(self):
+		ts = self.getTimeshift()
+		return ts and ts.isTimeshiftActive()
 
 	def startTimeshift(self, pauseService = True):
 		print "enable timeshift"

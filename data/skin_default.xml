@@ -1187,6 +1187,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y() + (or
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
 	</screen>
+	<screen name="TimeshiftLive" position="70,70" zPosition="2" size="150,30" backgroundColor="transpBlack" flags="wfNoBorder">
+		<eLabel position="0,0" size="150,30" font="Regular;23" text="Timeshift Live" backgroundColor="transpBlack"/>
+	</screen>
 	<!-- Translator Info -->
 	<screen name="TranslationInfo" position="center,center" size="420,350" title="Translation">
 		<eLabel position="10,20" size="380,23" font="Regular;23" text="Translation:" />
