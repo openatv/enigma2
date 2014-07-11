@@ -154,8 +154,9 @@ class LCD:
 
 def leaveStandby():
 	config.lcd.bright.apply()
-	config.lcd.ledbrightness.apply()
-	config.lcd.ledbrightnessdeepstandby.apply()
+	if SystemInfo["LEDButtons"]:
+		config.lcd.ledbrightness.apply()
+		config.lcd.ledbrightnessdeepstandby.apply()
 
 def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
