@@ -85,6 +85,8 @@ public:
 	void setServiceTypeIconMode(int mode);
 	void setCryptoIconMode(int mode);
 	void setColumnWidth(int value);
+	void setProgressbarHeight(int value);
+	void setProgressbarBorderWidth(int value);
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
@@ -163,6 +165,8 @@ private:
 	int m_servicetype_icon_mode;
 	int m_crypto_icon_mode;
 	int m_column_width;
+	int m_progressbar_height;
+	int m_progressbar_border_width;
 };
 
 #endif
