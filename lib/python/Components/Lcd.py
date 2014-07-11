@@ -161,8 +161,9 @@ def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
-	config.lcd.ledbrightnessstandby.apply()
-	config.lcd.ledbrightnessdeepstandby.apply()
+	if SystemInfo["LEDButtons"]:
+		config.lcd.ledbrightnessstandby.apply()
+		config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
 	if getBoxType() in ('gb800se', 'gb800solo', 'iqonios300hd', 'tmsingle', 'tmnano2super', 'vusolo', 'et4x00', 'et5x00', 'et6x00'):
