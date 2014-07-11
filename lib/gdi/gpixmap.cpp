@@ -152,13 +152,11 @@ gSurface::~gSurface()
 	if (data)
 	{
 		delete [] (unsigned char*)data;
-		data = 0;
 		removed_pixmap(y * stride);
 	}
 	if (clut.data)
 	{
 		delete [] clut.data;
-		clut.data = 0;
 	}
 }
 
@@ -451,8 +449,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		Stopwatch s;
 #endif
 		if (accel) {
-			if (!(src.surface->bpp==8 && surface->bpp==32) && 
-					(!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))) {
+			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
 #ifdef GPIXMAP_DEBUG
 				s.stop();
 				eDebug("[BLITBENCH] accel blit took %u us", s.elapsed_us());
@@ -818,7 +815,6 @@ void gPixmap::mergePalette(const gPixmap &target)
 	}
 
 	delete [] lookup;
-	lookup = 0;
 }
 
 static inline int sgn(int a)
