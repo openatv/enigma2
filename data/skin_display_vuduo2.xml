@@ -18,11 +18,11 @@
 	<fonts>
 		<font name="LCD_display" filename="nmsbd.ttf" scale="90"/>
 		<alias name="Huge" font="LCD_display" size="32" height="32" />
-		<alias name="Bigger" font="LCD_display" size="17" height="18" />
-		<alias name="Big" font="LCD_display" size="15" height="16" />
-		<alias name="Clock" font="LCD_display" size="15" height="14" />
-		<alias name="Medium" font="LCD_display" size="11" height="12" />
-		<alias name="Small" font="LCD_display" size="9" height="10" />
+		<alias name="Bigger" font="LCD_display" size="18" height="18" />
+		<alias name="Big" font="LCD_display" size="16" height="16" />
+		<alias name="Clock" font="LCD_display" size="14" height="14" />
+		<alias name="Medium" font="LCD_display" size="12" height="12" />
+		<alias name="Small" font="LCD_display" size="10" height="10" />
 	</fonts>
 
 <!-- template -->
@@ -41,6 +41,7 @@
 	<screen name="InfoBarSummary" position="fill">
 		<widget source="session.CurrentService" render="Label" position="top" size="*,18" font="Bigger" noWrap="1">
 			<convert type="ServiceName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
 			<widget source="session.Event_Now" render="Progress" position="bottom" size="*,2">
@@ -48,6 +49,7 @@
 			</widget>
 			<widget source="session.Event_Now" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
+				<convert type="TextCase">ToUpper</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
 		</panel>
@@ -57,10 +59,12 @@
 	<screen name="GraphMultiEPG_summary" position="fill">
 		<widget source="parent.Service" render="Label" position="top" size="*,18" font="Bigger" noWrap="1">
 			<convert type="ServiceName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
 			<widget source="parent.Event" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
+				<convert type="TextCase">ToUpper</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
 		</panel>
@@ -70,6 +74,7 @@
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,18" font="Bigger" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
 			<widget source="parent.ServiceEvent" render="Progress" position="bottom" size="*,2">
@@ -77,6 +82,7 @@
 			</widget>
 			<widget source="parent.ServiceEvent" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
+				<convert type="TextCase">ToUpper</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
 		</panel>
@@ -87,6 +93,7 @@
 		<widget source="parent.title" render="Label" position="top" size="*,16" font="Big"  valign="top" noWrap="1"/>
 		<widget source="parent.menu" render="Label" position="fill" font="Big">
 			<convert type="StringListSelection" />
+			<convert type="TextCase">ToUpper</convert>
 		</widget>
 	</screen>
 
@@ -97,7 +104,9 @@
 			<widget source="parent.number_summary" render="Label" position="fill" font="Bigger" halign="right"/>
 		</panel>
 		<panel position="fill" name="SummaryClockPanel">
-			<widget source="parent.servicename_summary" render="Label" position="fill" font="Clock" noWrap="1"/>
+			<widget source="parent.servicename_summary" render="Label" position="fill" font="Clock" noWrap="1">
+				<convert type="TextCase">ToUpper</convert>
+			</widget>
 		</panel>
 	</screen>
 
@@ -117,6 +126,7 @@
 			</widget>
 			<widget source="session.CurrentService" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="ServiceName">Name</convert>
+				<convert type="TextCase">ToUpper</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
 		</panel>
