@@ -110,6 +110,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.ServiceInfoFont = parseFont(value, ((1,1),(1,1)))
 				elif attrib == "serviceNumberFont":
 					self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
+				elif attrib == "progressbarHeight":
+					self.l.setProgressbarHeight(int(value))
+				elif attrib == "progressbarBorderWidth":
+					self.l.setProgressbarBorderWidth(int(value))
 				else:
 					attribs.append((attrib, value))
 		self.skinAttributes = attribs
