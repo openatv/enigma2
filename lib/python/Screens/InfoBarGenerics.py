@@ -1621,11 +1621,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 				self.timeshiftLiveScreen.show()
 				self.showTimeshiftState = False
 		else:
-			self.__hideTimeshiftState()
-
-	def __hideTimeshiftState(self):
-		self.pvrStateDialog.hide()
-		self.timeshiftLiveScreen.hide()
+			self.pvrStateDialog.hide()
+			self.timeshiftLiveScreen.hide()
 
 class InfoBarShowMovies:
 
