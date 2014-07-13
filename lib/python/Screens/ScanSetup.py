@@ -252,7 +252,7 @@ class CableTransponderSearchSupport:
 			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
 		elif tunername.startswith("Sundtek"):
 			bin_name = "mediaclient"
-			cmd = "mediaclient --blindscan %d" % nim_idx
+			cmd = "/opt/bin/mediaclient --blindscan %d" % nim_idx
 		else:
 			bin_name = GetCommand(nim_idx)
 			cmd = "%(BIN_NAME)s --init --scan --verbose --wakeup --inv 2 --bus %(BUS)d" % {'BIN_NAME':bin_name , 'BUS':bus}
