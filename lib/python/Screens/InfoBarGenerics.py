@@ -1610,7 +1610,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.__hideTimer.callback.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
-		if self.shown and self.timeshiftEnabled():
+		if self.timeshiftEnabled() and self.showTimeshiftState:
 			if self.timeshiftActivated():
 				self.pvrStateDialog.show()
 				self.timeshiftLiveScreen.hide()
@@ -1619,6 +1619,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 				self.timeshiftLiveScreen.show()
 			if self.seekstate == self.SEEK_STATE_PLAY:
 				self.__hideTimer.startLongTimer(5)
+		else:
+			self.__hideTimeshiftState()
 
 	def __hideTimeshiftState(self):
 		self.pvrStateDialog.hide()
@@ -1685,6 +1687,7 @@ class InfoBarTimeshift:
 		self.ts_start_delay_timer.callback.append(self.startTimeshiftWithoutPause)
 		self.save_timeshift_file = False
 		self.timeshift_was_activated = False
+		self.showTimeshiftState = False
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1725,6 +1728,9 @@ class InfoBarTimeshift:
 					# PAUSE.
 					#self.setSeekState(self.SEEK_STATE_PAUSE)
 					self.activateTimeshiftEnd(False)
+					self.showTimeshiftState = True
+				else:
+					self.showTimeshiftState = False
 
 				# enable the "TimeshiftEnableActions", which will override
 				# the startTimeshift actions
@@ -1762,6 +1768,7 @@ class InfoBarTimeshift:
 
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, back = True):
+		self.showTimeshiftState = True
 		ts = self.getTimeshift()
 		print "activateTimeshiftEnd"
 
