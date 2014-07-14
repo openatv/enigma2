@@ -171,6 +171,9 @@ def InitLcd():
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
+
+	ilcd = LCD()
+
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection()
 
@@ -179,6 +182,18 @@ def InitLcd():
 		config.usage.standbyLED.addNotifier(setLEDstandby)
 
 	if SystemInfo["LEDButtons"]:
+		def setLEDstandby(configElement):
+			ilcd.setLEDStandby(configElement.value)
+
+		def setLEDnormalstate(configElement):
+			ilcd.setLEDNormalState(configElement.value)
+
+		def setLEDdeepstandby(configElement):
+			ilcd.setLEDDeepStandbyState(configElement.value)
+
+		def setLEDblinkingtime(configElement):
+			ilcd.setLEDBlinkingTime(configElement.value)
+
 		config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 		config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime)
 		config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
@@ -236,21 +251,7 @@ def InitLcd():
 		def setLCDminitvfps(configElement):
 			ilcd.setLCDMiniTVFPS(configElement.value)
 
-		def setLEDstandby(configElement):
-			ilcd.setLEDStandby(configElement.value)
-
-		def setLEDnormalstate(configElement):
-			ilcd.setLEDNormalState(configElement.value)
-
-		def setLEDdeepstandby(configElement):
-			ilcd.setLEDDeepStandbyState(configElement.value)
-
-		def setLEDblinkingtime(configElement):
-			ilcd.setLEDBlinkingTime(configElement.value)
-
 		standby_default = 0
-
-		ilcd = LCD()
 
 		if not ilcd.isOled():
 			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
