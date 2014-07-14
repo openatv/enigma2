@@ -47,7 +47,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"toogleTvRadio": (self.toogleTvRadio, _("toggels between tv and radio...")),
-				"openTimerList": (self.openTimerList, _("Show the tv player...")),
+				"openTimerList": (self.openTimerList, _("Open Timerlist...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=2)
 
