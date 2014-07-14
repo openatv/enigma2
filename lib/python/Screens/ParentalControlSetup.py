@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
-from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN
+from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN, configfile
 from Components.ParentalControlList import ParentalControlEntryComponent, ParentalControlList
 
 from Components.Sources.StaticText import StaticText
@@ -52,11 +52,12 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
 		  "cancel": self.keyCancel,
-		  "save": self.keyCancel,
+		  "save": self.keySave,
 		  "menu": self.closeRecursive,
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
+		self.recursive = False
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -72,7 +73,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 		self.list = []
 		self.list.append(getConfigListEntry(_("Enable parental control"), config.ParentalControl.configured))
-		print "config.ParentalControl.configured.value", config.ParentalControl.configured.value
 		self.editBouquetListEntry = -1
 		self.reloadLists = -1
 		if config.ParentalControl.configured.value:
@@ -105,7 +105,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self["config"].setList(self.list)
 
 	def keyOK(self):
-		print "self[\"config\"].l.getCurrentSelection()", self["config"].l.getCurrentSelection()
 		if self["config"].l.getCurrentSelection() == self.editListEntry:
 			self.session.open(ParentalControlEditor)
 		elif self["config"].l.getCurrentSelection() == self.editBouquetListEntry:
@@ -120,19 +119,17 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		elif self["config"].l.getCurrentSelection() == self.reloadLists:
 			from Components.ParentalControl import parentalControl
 			parentalControl.open()
+			self.session.open(MessageBox, _("Lists reloaded!"), MessageBox.TYPE_INFO, timeout=3)
 		else:
 			ConfigListScreen.keyRight(self)
-			print "current selection:", self["config"].l.getCurrentSelection()
 			self.createSetup()
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		print "current selection:", self["config"].l.getCurrentSelection()
 		self.createSetup()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		print "current selection:", self["config"].l.getCurrentSelection()
 		self.createSetup()
 
 	def SetupPinMessageCallback(self, value):
@@ -140,27 +137,39 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.setuppin, _("setup PIN"))
 		else:
 			config.ParentalControl.setuppinactive.value = False
-			self.keyCancel()
+			self.keySave()
 
 	def ServicePinMessageCallback(self, value):
 		if value:
 			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service PIN"))
 		else:
 			config.ParentalControl.servicepinactive.value = False
-			self.keyCancel()
+			self.keySave()
 
 	def cancelCB(self,value):
-		self.keyCancel()
+		self.keySave()
 
 	def keyCancel(self):
-		if config.ParentalControl.setuppinactive.value and config.ParentalControl.setuppin.value == 'aaaa':
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keySave(self):
+		if config.ParentalControl.configured.value and config.ParentalControl.setuppinactive.value and config.ParentalControl.setuppin.value == 0000:
 			self.session.openWithCallback(self.SetupPinMessageCallback, MessageBox, _("No valid setup PIN found!\nDo you like to change the setup PIN now?\nWhen you say 'No' here the setup protection stay disabled!"), MessageBox.TYPE_YESNO)
-		elif config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 'aaaa':
+		elif config.ParentalControl.configured.value and config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 0000:
 			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
 		else:
+			if config.ParentalControl.configured.value and not config.ParentalControl.setuppinactive.value and not config.ParentalControl.servicepinactive.value:
+				config.ParentalControl.configured.value = False
 			for x in self["config"].list:
 				x[1].save()
-			self.close()
+				configfile.save()
+			self.close(self.recursive)
+
+	def closeRecursive(self):
+		self.recursive = True
+		self.keySave()
 
 	def keyNumberGlobal(self, number):
 		pass
@@ -187,7 +196,6 @@ class ParentalControlEditor(Screen):
 		self.list = []
 		self.servicelist = ParentalControlList(self.list)
 		self["servicelist"] = self.servicelist;
-		#self.onShown.append(self.chooseLetter)
 		self.currentLetter = chr(SPECIAL_CHAR)
 		self.readServiceList()
 		self.chooseLetterTimer = eTimer()
@@ -198,8 +206,6 @@ class ParentalControlEditor(Screen):
 		{
 			"ok": self.select,
 			"cancel": self.cancel,
-			#"left": self.keyLeft,
-			#"right": self.keyRight,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -242,7 +248,6 @@ class ParentalControlEditor(Screen):
 				self.servicesList[key].append(s)
 
 	def chooseLetter(self):
-		print "choose letter"
 		mylist = []
 		for x in self.servicesList.keys():
 			if x == chr(SPECIAL_CHAR):
@@ -257,7 +262,6 @@ class ParentalControlEditor(Screen):
 	def letterChosen(self, result):
 		from Components.ParentalControl import parentalControl
 		if result is not None:
-			print "result:", result
 			self.currentLetter = result[1]
 			#Replace getProtectionLevel by new getProtectionType
 			self.list = [ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionType(x[0])) for x in self.servicesList[result[1]]]
@@ -323,9 +327,6 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.list.append(getConfigListEntry(_("New PIN"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Reenter new PIN"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
-#		print "old pin:", pin
-		#if pin.value != "aaaa":
-			#self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.pin.value], title = _("please enter the old pin"), windowTitle = _("Change pin code")))
 		ProtectedScreen.__init__(self)
 
 		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions", "MenuActions"],
@@ -352,17 +353,10 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		return _("Please enter the old PIN code")
 
 	def isProtected(self):
-		return (self.pin.value != "aaaa")
+		return (self.pin.value != 0000)
 
 	def protectedWithPin(self):
 		return self.pin.value
-
-#	def pinEntered(self, result):
-		#if result[0] is None:
-			#self.close()
-		#if not result[0]:
-			#print result, "-", self.pin.value
-			#self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def keyOK(self):
 		if self.pin1.value == self.pin2.value:
