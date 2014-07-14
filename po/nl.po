@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-16 18:19+0100\n"
-"PO-Revision-Date: 2014-06-21 18:55+0100\n"
+"POT-Creation-Date: 2014-07-12 18:33+0100\n"
+"PO-Revision-Date: 2014-07-14 05:50+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: Nederlands\n"
@@ -254,6 +254,12 @@ msgstr[1] "%d minuten"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minuten"
+
+#, python-format
+msgid "%d pixel wide"
+msgid_plural "%d pixels wide"
+msgstr[0] "%d pixels breed"
+msgstr[1] "%d pixels wide"
 
 #, python-format
 msgid "%d second"
@@ -670,9 +676,6 @@ msgstr "Activeer"
 
 msgid "Activate MAC-address configuration"
 msgstr "Activeer MAC-adresconfiguratie"
-
-msgid "Activate PiP"
-msgstr "activeer PiP"
 
 msgid "Activate Picture in Picture"
 msgstr "Activeer Picture In Picture"
@@ -2010,6 +2013,9 @@ msgstr "Verbind met een draadloos netwerk"
 msgid "Connected clients"
 msgstr "Verbonden klanten"
 
+msgid "Connected satellites"
+msgstr "Verbonden satellieten"
+
 msgid "Connected to"
 msgstr "Verbonden met"
 
@@ -2392,6 +2398,9 @@ msgstr "Apparaatnaam:"
 
 msgid "Devices"
 msgstr "Apparaten"
+
+msgid "Devide"
+msgstr ""
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -4059,6 +4068,9 @@ msgstr "Lengtegraad"
 msgid "Loop through to"
 msgstr "Doorlus naar"
 
+msgid "Lower Framerate save CPU Time"
+msgstr "Lagere framerate gebruikt minder processortijd."
+
 msgid "Luxembourgish"
 msgstr "Luxumburgs"
 
@@ -4185,6 +4197,12 @@ msgstr "MiniDLNA installingen"
 
 msgid "MiniDLNA setup"
 msgstr "MiniDLNA instellingen"
+
+msgid "MiniTV"
+msgstr "MiniTV"
+
+msgid "MiniTV with OSD"
+msgstr "MiniTV met OSD"
 
 #, python-format
 msgid "Minimum age %d years"
@@ -4746,6 +4764,9 @@ msgstr "OK, mij tijdens de software update begeleiden"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OSD"
+msgstr "OSD"
+
 msgid "OSD 3D Setup"
 msgstr "OSD 3D-Instellingen"
 
@@ -4871,6 +4892,13 @@ msgstr "PCR PID"
 
 msgid "PIDs"
 msgstr "PIDs"
+
+#
+msgid "PIP"
+msgstr "PIP"
+
+msgid "PIP with OSD"
+msgstr "PIP met OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -5307,6 +5335,9 @@ msgstr "Positie opgeslagen in index."
 msgid "Positioner"
 msgstr "Rotor"
 
+msgid "Positioner (selecting satellites)"
+msgstr "Positioner (selecteert satellieten)"
+
 msgid "Positioner setup"
 msgstr "Rotor instellingen"
 
@@ -5395,6 +5426,9 @@ msgstr "Druk OK om te zoeken."
 msgid "Press OK to select a provider."
 msgstr "Druk op OK om een provider te kiezen."
 
+msgid "Press OK to select satellites"
+msgstr "Druk op OK om satellieten te kiezen."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Druk op OK om de CAId aan/uit te zetten."
 
@@ -5403,6 +5437,9 @@ msgstr "Druk op OK om MAC-adresin te stallen."
 
 msgid "Press OK to start the scan"
 msgstr "Druk OK om te zoeken."
+
+msgid "Press OK to toggle the selection"
+msgstr "Druk op OK om de selectie te wisselen."
 
 msgid "Press OK to toggle the selection."
 msgstr "Druk op OK om de selectie te (de)activeren."
@@ -5852,6 +5889,9 @@ msgstr "Terug naar laatste zender"
 msgid "Reverse bouquet buttons"
 msgstr "Omgekeerde favorietenknoppen"
 
+msgid "Reverse list"
+msgstr "Keer lijst om"
+
 msgid "Rewind speeds"
 msgstr "Terugspoel snelheid"
 
@@ -6134,6 +6174,9 @@ msgstr "Kies een draadloos netwerk"
 msgid "Select action for timer %s:"
 msgstr "Kies bestemming voor %s:"
 
+msgid "Select all"
+msgstr "Selecteer alle"
+
 msgid "Select an image to be downloaded"
 msgstr "Kies bestand om te downloaden"
 
@@ -6203,11 +6246,17 @@ msgstr "Selecteer provider om toe te voegen..."
 msgid "Select refresh rate"
 msgstr "Selecteer herhalingsfrequentie"
 
+msgid "Select satellites"
+msgstr "Kie satellieten"
+
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Hier geeft u aan of de zoekbalk wordt geactiveerd met pijl-L/R (lang) of met << - >> (lang)."
 
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
+
+msgid "Select sort method:"
+msgstr "Selecteer sorteermodus:"
 
 msgid "Select target folder"
 msgstr "Kies doelmap"
@@ -6238,6 +6287,12 @@ msgstr "Secteer draadloos netwerk"
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Kies uw provider en druk OK om de scan te starten"
+
+msgid "Selecting satellites 1 (USALS)"
+msgstr "Alle satellieten 1 (USALS)"
+
+msgid "Selecting satellites 2 (USALS)"
+msgstr "Alle satellieten 2 (USALS)"
 
 msgid "Send"
 msgstr "Verstuur"
@@ -6344,8 +6399,14 @@ msgstr "Kanalen"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Kanalen kunnen in favorietenlijsten worden samengevoegd. Indien geactiveerd kunt u meer dan één favorietenlijst gebruiken."
 
+msgid "Set Framerate for MiniTV"
+msgstr "Stel framerate in voor MiniTV"
+
 msgid "Set System"
 msgstr "Systeminstellingen"
+
+msgid "Set default"
+msgstr "Standaard waarde"
 
 #
 msgid "Set end time"
@@ -6543,11 +6604,17 @@ msgstr "Toon logmanager in extensiemenu?"
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Toon resterende/verstreken media afspeeltijd als"
 
+msgid "Show MiniTV in the Front Display"
+msgstr "Toon MiniTV op LCD"
+
 msgid "Show OE Log"
 msgstr "Toon OE-Log"
 
 msgid "Show OScam Info in extensions?"
 msgstr "Toon Oscam in extensiemenu?"
+
+msgid "Show PIP in the Front Display"
+msgstr "Toon PiP in LCD"
 
 msgid "Show PVR status in Movie Player infobar"
 msgstr "Toon de PVR-status in de informatiebalk (als uw skin dat ondersteunt)."
@@ -6995,6 +7062,9 @@ msgstr "Sport"
 msgid "Standard"
 msgstr "Standaard"
 
+msgid "Standart list"
+msgstr ""
+
 msgid "Standby"
 msgstr "Stand-by"
 
@@ -7064,6 +7134,9 @@ msgstr "Stoppen"
 msgid "Stop playing this movie?"
 msgstr "Stop afspelen van deze opname?"
 
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Stop de vorige zender en keer terug naar de opnamelijst."
+
 msgid "Stop recording"
 msgstr "Stop opname"
 
@@ -7072,6 +7145,9 @@ msgstr "Stop opname en verwijder"
 
 msgid "Stop recording now"
 msgstr "Stop de opname nu"
+
+msgid "Stop service on return to movie list"
+msgstr "Stop afspelen en keer terug naar de opnamelijst"
 
 msgid "Stop test"
 msgstr "Stop test"
@@ -8935,6 +9011,9 @@ msgstr "Ja, maar bewaar timeshift als opname en ga door met opnemen"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja, maar bewaar timeshift als opname en stop opname."
 
+msgid "Yes, delete this movie and return to movie list"
+msgstr "Ja, verwijder deze opname en ga terug naar de opnamelijst."
+
 msgid "Yes, do a manual scan now"
 msgstr "Ja, voer nu de handmatige zoekfunctie uit"
 
@@ -8948,7 +9027,7 @@ msgid "Yes, restore the settings now"
 msgstr "Ja, de gegevens nu terugplaatsen"
 
 msgid "Yes, returning to movie list"
-msgstr "Ja, terug naar de opname lijst"
+msgstr "Ja, terug naar de opnamelijst"
 
 msgid "Yes, shut down now."
 msgstr "Ja, ik wil nu afsluiten."
@@ -8974,6 +9053,12 @@ msgstr ""
 "U heeft al een kanaallijst geïnstalleerd,\n"
 "wilt u verwijderen\n"
 "\"%s\"?"
+
+msgid "You can Display MiniTV with or without OSD Menu"
+msgstr "U kunt MiniTV met en zonder OSD-menu tonen."
+
+msgid "You can Display PIP with or without OSD Menu"
+msgstr "U kubt PIP met en zonder OSD-menu tonen"
 
 msgid "You can cancel the installation."
 msgstr "Installatie kan worden geannuleerd."
@@ -10434,6 +10519,9 @@ msgstr "zapte"
 
 #~ msgid "AB"
 #~ msgstr "AB"
+
+#~ msgid "Activate PiP"
+#~ msgstr "activeer PiP"
 
 #~ msgid "Adjust 3D settings"
 #~ msgstr "Adjust 3D settings"
