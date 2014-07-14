@@ -353,7 +353,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		return _("Please enter the old PIN code")
 
 	def isProtected(self):
-		return (self.pin.value != 0000)
+		return (self.pin.value != "aaaa")
 
 	def protectedWithPin(self):
 		return self.pin.value
