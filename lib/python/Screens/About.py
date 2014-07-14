@@ -75,6 +75,21 @@ class About(AboutBase):
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
 
+		scanning = _("Wait please while loading information...")
+		self.list.append(self.makeHeadingEntry(scanning))
+		self["list"].updateList(self.list)
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
+
+		about.getBootLoaderVersion(self.populate)
+
+	def populate(self, bootLoaderInfo):
+		self.list = []
+
 		self.list.append(self.makeHeadingInfoEntry(_("Model:"), "%s %s" % (getMachineBrand(), getMachineName())))
 
 		self.list.append(self.makeEmptyEntry())
@@ -94,6 +109,7 @@ class About(AboutBase):
 		self.list.append(self.makeInfoEntry(_("Image:"), about.getImageVersionString()))
 		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
 		self.list.append(self.makeInfoEntry(_("Oe-Core:"), about.getEnigmaVersionString()))
+		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo["OEM"]))
 
 		fp_version = getFPVersion()
 		if fp_version is not None:
@@ -114,12 +130,6 @@ class About(AboutBase):
 			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
 
 		self["list"].updateList(self.list)
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
 
 class Devices(AboutBase):
 
