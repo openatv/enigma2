@@ -87,7 +87,7 @@ def getLastUpdateString():
 #			"Jul": "07", "Aug": "08", "Sep": "09",
 #			"Oct": "10", "Nov": "11", "Dec": "12",
 #		}
-#	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) ([0-2][0-9]):([0-5][0-9]):([0-5][0-9]) [A-Z]+ ([0-9]{4})"
+#	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) ([0-2][0-9]):([0-5][0-9]):([0-5][0-9]) [A-Za-z]+ ([0-9]{4})"
 #	dateMatchRe = re.compile(dateMatch)
 #
 #	def __init__(self):
@@ -144,7 +144,7 @@ class BootLoaderVersionFetcher:
 			"Jul": "07", "Aug": "08", "Sep": "09",
 			"Oct": "10", "Nov": "11", "Dec": "12",
 		}
-	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [A-Z]+ ([0-9]{4})"
+	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [A-Za-z]+ ([0-9]{4})"
 	dateMatchRe = re.compile(dateMatch)
 
 	def __init__(self):
