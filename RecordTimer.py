@@ -444,6 +444,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
+				if (abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900):
+					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
+					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						print "[RecordTimer] quitMainloop #1"
@@ -452,6 +455,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
 			elif wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO:
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
+					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
+					return True
+				if (abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900):
+					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
