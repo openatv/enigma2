@@ -2699,9 +2699,22 @@ static inline __u8 HI(int x) { return (__u8) ((x >> 8) & 0xFF); }
 static inline __u8 LO(int x) { return (__u8) (x & 0xFF); }
 #define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
 // convert from set of strings to DVB format (EIT)
+/**
+ * @brief Import EPG events into the EPG database.
+ *
+ * @param serviceRefs list of services that will receive this event
+ * @param start start time of the event
+ * @param duration duration of the event
+ * @param title title of the event. Must not be NULL.
+ * @param short_summary summary of the event
+ * @param long_description full description of the event
+ * @param event_type event type/genre classification
+ * @param eventId optional EIT event id, defaults to 0 = auto-generated hash based on start time
+ * @return void
+ */
 void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start,
 	long duration, const char* title, const char* short_summary,
-	const char* long_description, char event_type)
+	const char* long_description, char event_type, __u16 eventId)
 {
 	if (!title)
 		return;
@@ -2723,7 +2736,6 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 
 	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
 
-	__u16 eventId = start & 0xFFFF;
 	SET_HILO(evt_struct->event_id, eventId);
 
 	//6 bytes start time, 3 bytes duration
@@ -2871,14 +2883,23 @@ void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
 	importEvents(serviceReference, list);
 }
 
-//here we get a python tuple of tuples ;)
-// consider it an array of objects with the following data
-// 1. start time (long)
-// 2. duration (int)
-// 3. event title (string)
-// 4. short description (string)
-// 5. extended description (string)
-// 6. event type (byte)
+/**
+ * @brief Import EPG events from Python into the EPG database. Each event in the @list
+ * is added to each service in the @serviceReferences list.
+ *
+ * @param serviceReferences Either a single service reference string, or a list of strings
+ * @param list Either a list or a tuple of EPG events. Each event is a tuple of at least 6 elements:
+ * 1. start time (long)
+ * 2. duration (int)
+ * 3. event title (string)
+ * 4. short description (string)
+ * 5. extended description (string)
+ * 6. event type (byte)
+ * 7. optional event ID (int), if not supplied, it will default to 0, which implies an
+ *    an auto-generated ID based on the start time.
+ *
+ * @return void
+ */
 void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 {
 	std::vector<eServiceReferenceDVB> refs;
@@ -2937,7 +2958,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			return;
 		}
 		int tupleSize = PyTuple_Size(singleEvent);
-		if (tupleSize < 5)
+		if (tupleSize < 6)
 		{
 			eDebug("[EPG:import] eventdata tuple does not contain enough fields, aborting");
 			return;
@@ -2949,8 +2970,13 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 		const char *short_summary = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 3));
 		const char *long_description = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 4));
 		char event_type = (char) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 5));
+		__u16 eventId = 0;
+		if (tupleSize >= 7)
+		{
+			eventId = (__u16) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 6));
+		}
 
-		submitEventData(refs, start, duration, title, short_summary, long_description, event_type);
+		submitEventData(refs, start, duration, title, short_summary, long_description, event_type, eventId);
 	}
 }
 
