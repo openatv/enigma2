@@ -1473,6 +1473,11 @@ bool eEPGCache::channel_data::finishEPG()
 	return false;
 }
 
+/**
+ * @brief Entry point for the EPG update timer
+ *
+ * @return void
+ */
 void eEPGCache::channel_data::startEPG()
 {
 	eDebug("[EPGC] start caching events(%ld)", ::time(0));
@@ -1746,7 +1751,7 @@ void eEPGCache::channel_data::startChannel()
 	if (update < ZAP_DELAY)
 		update = ZAP_DELAY;
 
-	zapTimer->start(update, 1);
+	zapTimer->start(update, true);
 	if (update >= 60000)
 		eDebug("[EPGC] next update in %i min", update/60000);
 	else if (update >= 1000)
