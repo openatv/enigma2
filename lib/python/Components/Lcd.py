@@ -52,11 +52,11 @@ class IconCheckPoller:
 				LinkState = f.read()
 				f.close()	
 		LinkState = LinkState[:1]
-		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '1':
+		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '1':
 			f = open("/proc/stb/lcd/symbol_network", "w")
 			f.write(str(LinkState))
 			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.getValue() == '0':
+		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
 			f = open("/proc/stb/lcd/symbol_network", "w")
 			f.write('0')
 			f.close()
@@ -73,11 +73,11 @@ class IconCheckPoller:
 					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
 					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '1':
+		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
 			f = open("/proc/stb/lcd/symbol_usb", "w")
 			f.write(str(USBState))
 			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.getValue() == '0':
+		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
 			f = open("/proc/stb/lcd/symbol_usb", "w")
 			f.write('0')
 			f.close()
@@ -159,6 +159,15 @@ def InitLcd():
 		detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection()
+
+	if SystemInfo["StandbyLED"]:
+		def standbyLEDChanged(configElement):
+			file = open("/proc/stb/power/standbyled", "w")
+			file.write(configElement.value and "on" or "off")
+			file.close()
+		config.usage.standbyLED = ConfigYesNo(default = True)
+		config.usage.standbyLED.addNotifier(standbyLEDChanged)
+
 	if detected:
 		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
 			("500", _("slow")),
@@ -217,7 +226,7 @@ def InitLcd():
 		config.lcd.standby.addNotifier(setLCDbright)
 		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
 
-		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
+		config.lcd.bright = ConfigSlider(default=7, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright)
 		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True

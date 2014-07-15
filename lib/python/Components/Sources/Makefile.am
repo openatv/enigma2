@@ -1,3 +1,3 @@
 installdir = $(pkglibdir)/python/Components/Sources
 
-install_PYTHON = *.py
+install_PYTHON = $(wildcard @srcdir@/*.py)

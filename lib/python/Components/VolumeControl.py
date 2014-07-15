@@ -21,7 +21,7 @@ class VolumeControl:
 		VolumeControl.instance = self
 
 		config.audio = ConfigSubsection()
-		config.audio.volume = ConfigInteger(default = 50, limits = (0, 100))
+		config.audio.volume = ConfigInteger(default = 90, limits = (0, 100))
 
 		self.volumeDialog = session.instantiateDialog(Volume)
 		self.muteDialog = session.instantiateDialog(Mute)
@@ -29,7 +29,7 @@ class VolumeControl:
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.callback.append(self.volHide)
 
-		vol = config.audio.volume.getValue()
+		vol = config.audio.volume.value
 		self.volumeDialog.setValue(vol)
 		self.volctrl = eDVBVolumecontrol.getInstance()
 		self.volctrl.setVolume(vol, vol)

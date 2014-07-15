@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getMachineProcModel
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import commands
@@ -36,6 +36,25 @@ if float(getVersionString()) >= 4.0:
 else:
 	basegroup = "task-base"
 
+class NetworkSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["entry"] = StaticText("")
+		self["desc"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent.selectionChanged()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, name, desc):
+		self["entry"].text = name.split(",")[8][2:-1]
+		self["desc"].text = desc
+		
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -302,7 +321,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 	def ok(self):
 		iNetwork.clearNameservers()
 		for nameserver in self.nameserverEntries:
-			iNetwork.addNameserver(nameserver.getValue())
+			iNetwork.addNameserver(nameserver.value)
 		iNetwork.writeNameserverConfig()
 		self.close()
 
@@ -374,7 +393,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["config"].l.setList(self.list)
 
 	def ok(self):
-		MAC = self.getConfigMac.getValue()
+		MAC = self.getConfigMac.value
 		f = open('/etc/enigma2/hwmac', 'w')
 		f.write(MAC)
 		f.close()
@@ -543,7 +562,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
 			self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
-			self.encryptionlist.append(("WPA/WPA2", _("WPA2")))
+			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
 			self.weplist.append("ASCII")
 			self.weplist.append("HEX")
@@ -573,24 +592,24 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self):
-		self.wolstartvalue = config.network.wol.getValue()
+		if SystemInfo["WakeOnLAN"]:
+			self.wolstartvalue = config.network.wol.value
 		self.list = []
 		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
 
 		self.list.append(self.InterfaceEntry)
-		if self.activateInterfaceEntry.getValue():
+		if self.activateInterfaceEntry.value:
 			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
 			self.list.append(self.dhcpEntry)
-			if not self.dhcpConfigEntry.getValue():
+			if not self.dhcpConfigEntry.value:
 				self.list.append(getConfigListEntry(_('IP address'), self.ipConfigEntry))
 				self.list.append(getConfigListEntry(_('Netmask'), self.netmaskConfigEntry))
 				self.gatewayEntry = getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry)
 				self.list.append(self.gatewayEntry)
-				if self.hasGatewayConfigEntry.getValue():
+				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-			if SystemInfo["WOL"] and self.iface == 'eth0':
-				self.wakeonlan = getConfigListEntry(_('Use WOL'), config.network.wol)
-				self.list.append(self.wakeonlan)
+			if SystemInfo["WakeOnLAN"] and self.iface == 'eth0':
+				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
 			self.extended = None
 			self.configStrings = None
@@ -612,8 +631,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						self.encryptionType = getConfigListEntry(_("Encryption key type"), config.plugins.wlan.wepkeytype)
 						self.encryptionKey = getConfigListEntry(_("Encryption key"), config.plugins.wlan.psk)
 
-						if config.plugins.wlan.encryption.getValue() != "Unencrypted":
-							if config.plugins.wlan.encryption.getValue() == 'WEP':
+						if config.plugins.wlan.encryption.value != "Unencrypted":
+							if config.plugins.wlan.encryption.value == 'WEP':
 								self.list.append(self.encryptionType)
 							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
@@ -644,7 +663,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keySave(self):
 		self.hideInputHelp()
-		if self["config"].isChanged() or (self.wolstartvalue != config.network.wol.getValue()):
+		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
 			self.session.openWithCallback(self.keySaveConfirm, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
 		else:
 			if self.finished_cb:
@@ -684,12 +703,12 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def applyConfig(self, ret = False):
 		if ret:
 			self.applyConfigRef = None
-			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.getValue())
-			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.getValue())
-			iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.getValue())
-			iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.getValue())
-			if self.hasGatewayConfigEntry.getValue():
-				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.getValue())
+			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.value)
+			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.value)
+			iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.value)
+			iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.value)
+			if self.hasGatewayConfigEntry.value:
+				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
 
@@ -697,7 +716,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig(self.iface)
 
-			if self.activateInterfaceEntry.getValue() is False:
+			if self.activateInterfaceEntry.value is False:
 				iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
@@ -742,7 +761,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyCancelConfirm(self, result):
 		if not result:
 			return
-		config.network.wol.setValue(self.wolstartvalue)	
+		if SystemInfo["WakeOnLAN"]:
+			config.network.wol.setValue(self.wolstartvalue)	
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -750,7 +770,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keyCancel(self):
 		self.hideInputHelp()
-		if self["config"].isChanged() or (self.wolstartvalue != config.network.wol.getValue()):
+		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
 			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close('cancel')
@@ -780,7 +800,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if current == self.wlanSSID:
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.getValue() is not "Unencrypted":
+		elif current == self.encryptionKey and config.plugins.wlan.encryption.value is not "Unencrypted":
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
 				
@@ -940,8 +960,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["menulist"].pageDown()
 
 	def createSummary(self):
-		from Screens.PluginBrowser import PluginBrowserSummary
-		return PluginBrowserSummary
+		return NetworkSummary
+		#from Screens.PluginBrowser import PluginBrowserSummary
+		#return PluginBrowserSummary
 
 	def selectionChanged(self):
 		if self["menulist"].getCurrent()[0] == 'edit':
@@ -1025,7 +1046,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append(SubNetworkMenuEntryComponent((_("Network wizard")), "openwizard"))
 		kernel_ver = about.getKernelVersionString()
-		if kernel_ver <= "3.5.0":
+		if kernel_ver <= "3.5.0" and not getMachineProcModel().startswith('ini'):
 			menu.append(SubNetworkMenuEntryComponent((_("Network MAC settings")), "mac"))
 
 		
@@ -1675,7 +1696,7 @@ class NetworkAfp(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_red'] = Label(_("Remove Service"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label()
 		self['status_summary'] = StaticText()
@@ -1706,9 +1727,9 @@ class NetworkAfp(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage,MessageBox, _('Your %s %s will be restarted after the installation of service\nReady to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -1812,7 +1833,7 @@ class NetworkFtp(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Enable"))
+		self['key_green'] = Label()
 		self['key_red'] = Label(_("Exit"))
 		self.my_ftp_active = False
 		self.Console = Console()
@@ -1891,7 +1912,7 @@ class NetworkNfs(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label()
@@ -1921,7 +1942,7 @@ class NetworkNfs(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
@@ -2028,7 +2049,7 @@ class NetworkOpenvpn(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
@@ -2058,7 +2079,7 @@ class NetworkOpenvpn(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2181,21 +2202,21 @@ class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
-		self.skinName = "NetworkServiceSetup"
+		self.skinName = ["NetworkSamba", "NetworkServiceSetup"]
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.close, 'back': self.close, 'menu': self.setupsamba, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
 		self.service_name = basegroup + '-smbfs'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -2218,7 +2239,7 @@ class NetworkSamba(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
@@ -2339,7 +2360,10 @@ class NetworkSamba(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
+			
+	def setupsamba(self):
+		self.session.openWithCallback(self.updateService, NetworkSambaSetup)
+		
 class NetworkSambaLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2359,6 +2383,95 @@ class NetworkSambaLog(Screen):
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
 
+class NetworkSambaSetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
+		Screen.setTitle(self, _("Samba Setup"))
+		self['key_red'] = Label(_("Exit"))
+		self['key_green'] = Label(_("Save"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.close, 'green': self.saveSmb, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self.updateList()
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		if item:
+			name = str(item[0])
+			desc = str(item[1].value)
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+
+	def updateList(self):
+		self.smb_server_string = NoSave(ConfigText(fixed_size=False))
+		self.smb_workgroup = NoSave(ConfigText(fixed_size=False))
+
+		if fileExists('/etc/samba/smb.conf'):
+			f = open('/etc/samba/smb.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('server string = '):
+					line = line[16:]
+					self.smb_server_string.value = line
+					smb_server_string1 = getConfigListEntry(_("Server Name") + ":", self.smb_server_string)
+					self.list.append(smb_server_string1)
+				elif line.startswith('workgroup = '):
+					line = line[12:]
+					self.smb_workgroup.value = line
+					smb_workgroup1 = getConfigListEntry(_("Workgroup Name") + ":", self.smb_workgroup)
+					self.list.append(smb_workgroup1)
+			f.close()
+		self['config'].list = self.list
+		self['config'].l.setList(self.list)
+
+	def KeyText(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.vkvar = sel[0]
+			if self.vkvar == _("Server Name") + ':' or self.vkvar == _("Workgroup Name") + ':':
+				from Screens.VirtualKeyBoard import VirtualKeyBoard
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+
+	def saveSmb(self):
+		if fileExists('/etc/samba/smb.conf'):
+			inme = open('/etc/samba/smb.conf', 'r')
+			out = open('/etc/samba/smb.conf.tmp', 'w')
+			for line in inme.readlines():
+				line = line.strip()
+				if line.startswith('server string'):
+					line = ('server string = ' + self.smb_server_string.value.strip())
+				elif line.startswith('workgroup'):
+					line = ('workgroup = ' + self.smb_workgroup.value.strip())
+				out.write((line + '\n'))
+			out.close()
+			inme.close()
+		else:
+			self.session.open(MessageBox, _("Sorry Samba Config is Missing"), MessageBox.TYPE_INFO)
+			self.close()
+		if fileExists('/etc/samba/smb.conf.tmp'):
+			rename('/etc/samba/smb.conf.tmp', '/etc/samba/smb.conf')
+		self.myStop()
+
+	def myStop(self):
+		self.close()
+		
 class NetworkTelnet(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2368,7 +2481,7 @@ class NetworkTelnet(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Enable"))
+		self['key_green'] = Label()
 		self['key_red'] = Label(_("Exit"))
 		self.Console = Console()
 		self.my_telnet_active = False
@@ -2459,7 +2572,7 @@ class NetworkInadyn(Screen):
 		self['system'] = Label(_("System") + ":")
 		self['labsys'] = Label()
 		self['key_red'] = Label(_("Remove Service"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupinadyn, 'back': self.close, 'menu': self.setupinadyn, 'red': self.UninstallCheck, 'green': self.InadynStartStop, 'yellow': self.autostart, 'blue': self.inaLog})
@@ -2486,7 +2599,7 @@ class NetworkInadyn(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2648,7 +2761,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		item = self["config"].getCurrent()
 		if item:
 			name = str(item[0])
-			desc = str(item[1].getValue())
+			desc = str(item[1].value)
 		else:
 			name = ""
 			desc = ""
@@ -2715,7 +2828,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':' or self.vkvar == _("Alias") + ':' or self.vkvar == _("System") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -2735,11 +2848,11 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				elif line.startswith('alias '):
 					line = ('alias ' + self.ina_alias.value.strip())
 				elif line.startswith('update_period_sec '):
-					strview = (self.ina_period.getValue() * 60)
+					strview = (self.ina_period.value * 60)
 					strview = str(strview)
 					line = ('update_period_sec ' + strview)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
-					if self.ina_sysactive.getValue():
+					if self.ina_sysactive.value:
 						line = ('dyndns_system ' + self.ina_system.value.strip())
 					else:
 						line = ('#dyndns_system ' + self.ina_system.value.strip())
@@ -2810,7 +2923,7 @@ class NetworkuShare(Screen):
 		self['dlnainactive'] = Pixmap()
 
 		self['key_red'] = Label(_("Remove Service"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupushare, 'back': self.close, 'menu': self.setupushare, 'red': self.UninstallCheck, 'green': self.uShareStartStop, 'yellow': self.autostart, 'blue': self.ushareLog})
@@ -2837,7 +2950,7 @@ class NetworkuShare(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -3025,7 +3138,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		item = self["config"].getCurrent()
 		if item:
 			name = str(item[0])
-			desc = str(item[1].getValue())
+			desc = str(item[1].value)
 		else:
 			name = ""
 			desc = ""
@@ -3109,7 +3222,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			self.vkvar = sel[0]
 			if self.vkvar == _("uShare Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -3127,28 +3240,28 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				elif line.startswith('USHARE_IFACE='):
 					line = ('USHARE_IFACE=' + self.ushare_iface.value.strip())
 				elif line.startswith('USHARE_PORT='):
-					line = ('USHARE_PORT=' + str(self.ushare_port.getValue()))
+					line = ('USHARE_PORT=' + str(self.ushare_port.value))
 				elif line.startswith('USHARE_TELNET_PORT='):
-					line = ('USHARE_TELNET_PORT=' + str(self.ushare_telnetport.getValue()))
+					line = ('USHARE_TELNET_PORT=' + str(self.ushare_telnetport.value))
 				elif line.startswith('USHARE_DIR='):
-					line = ('USHARE_DIR=' + ', '.join( config.networkushare.mediafolders.getValue() ))
+					line = ('USHARE_DIR=' + ', '.join( config.networkushare.mediafolders.value ))
 				elif line.startswith('ENABLE_WEB='):
-					if not self.ushare_web.getValue():
+					if not self.ushare_web.value:
 						line = 'ENABLE_WEB=no'
 					else:
 						line = 'ENABLE_WEB=yes'
 				elif line.startswith('ENABLE_TELNET='):
-					if not self.ushare_telnet.getValue():
+					if not self.ushare_telnet.value:
 						line = 'ENABLE_TELNET=no'
 					else:
 						line = 'ENABLE_TELNET=yes'
 				elif line.startswith('ENABLE_XBOX='):
-					if not self.ushare_xbox.getValue():
+					if not self.ushare_xbox.value:
 						line = 'ENABLE_XBOX=no'
 					else:
 						line = 'ENABLE_XBOX=yes'
 				elif line.startswith('ENABLE_DLNA='):
-					if not self.ushare_ps3.getValue():
+					if not self.ushare_ps3.value:
 						line = 'ENABLE_DLNA=no'
 					else:
 						line = 'ENABLE_DLNA=yes'
@@ -3298,7 +3411,7 @@ class NetworkMiniDLNA(Screen):
 		self['dlnainactive'] = Pixmap()
 
 		self['key_red'] = Label(_("Remove Service"))
-		self['key_green'] = Label(_("Start"))
+		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupminidlna, 'back': self.close, 'menu': self.setupminidlna, 'red': self.UninstallCheck, 'green': self.MiniDLNAStartStop, 'yellow': self.autostart, 'blue': self.minidlnaLog})
@@ -3325,7 +3438,7 @@ class NetworkMiniDLNA(Screen):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Can not retrieve data from feed server. Check your internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -3502,7 +3615,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		item = self["config"].getCurrent()
 		if item:
 			name = str(item[0])
-			desc = str(item[1].getValue())
+			desc = str(item[1].value)
 		else:
 			name = ""
 			desc = ""
@@ -3578,7 +3691,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 			self.vkvar = sel[0]
 			if self.vkvar == _("Name") + ":" or self.vkvar == _("Share Folder's") + ":":
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -3596,23 +3709,23 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 				elif line.startswith('network_interface='):
 					line = ('network_interface=' + self.minidlna_iface.value.strip())
 				elif line.startswith('port='):
-					line = ('port=' + str(self.minidlna_port.getValue()))
+					line = ('port=' + str(self.minidlna_port.value))
 				elif line.startswith('serial='):
-					line = ('serial=' + str(self.minidlna_serialno.getValue()))
+					line = ('serial=' + str(self.minidlna_serialno.value))
 				elif line.startswith('media_dir='):
-					line = ('media_dir=' + ', '.join( config.networkminidlna.mediafolders.getValue() ))
+					line = ('media_dir=' + ', '.join( config.networkminidlna.mediafolders.value ))
 				elif line.startswith('inotify='):
-					if not self.minidlna_inotify.getValue():
+					if not self.minidlna_inotify.value:
 						line = 'inotify=no'
 					else:
 						line = 'inotify=yes'
 				elif line.startswith('enable_tivo='):
-					if not self.minidlna_tivo.getValue():
+					if not self.minidlna_tivo.value:
 						line = 'enable_tivo=no'
 					else:
 						line = 'enable_tivo=yes'
 				elif line.startswith('strict_dlna='):
-					if not self.minidlna_strictdlna.getValue():
+					if not self.minidlna_strictdlna.value:
 						line = 'strict_dlna=no'
 					else:
 						line = 'strict_dlna=yes'

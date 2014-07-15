@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
-from enigma import getDesktop
+from enigma import getDesktop, iServiceInformation
 from os import access, R_OK
 
 def InitOsd():
@@ -22,53 +22,53 @@ def InitOsd():
 	def setOSDLeft(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_left", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_width", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_top", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
 			f = open("/proc/stb/fb/dst_height", "w")
-			f.write('%X' % configElement.getValue())
+			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_height.addNotifier(setOSDHeight)
-	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
+	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def setOSDAlpha(configElement):
-		print 'Setting OSD alpha:', str(configElement.getValue())
-		config.av.osd_alpha.setValue(configElement.getValue())
+		print 'Setting OSD alpha:', str(configElement.value)
+		config.av.osd_alpha.setValue(configElement.value)
 		f = open("/proc/stb/video/alpha", "w")
-		f.write(str(configElement.getValue()))
+		f.write(str(configElement.value))
 		f.close()
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D mode:',configElement.getValue()
+			print 'Setting 3D mode:',configElement.value
 			f = open("/proc/stb/fb/3dmode", "w")
-			f.write(configElement.getValue())
+			f.write(configElement.value)
 			f.close()
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D depth:',configElement.getValue()
+			print 'Setting 3D depth:',configElement.value
 			f = open("/proc/stb/fb/znorm", "w")
-			f.write('%d' % int(configElement.getValue()))
+			f.write('%d' % int(configElement.value))
 			f.close()
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 
@@ -77,6 +77,10 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.setup_title = _("Position Setup")
 		self.Console = Console()
+		
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.session.nav.stopService()
+		
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -152,10 +156,10 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		size_h = getDesktop(0).size().height()
 		dsk_w = int(float(size_w)) / float(720)
 		dsk_h = int(float(size_h)) / float(576)
-		dst_left = int(config.osd.dst_left.getValue())
-		dst_width = int(config.osd.dst_width.getValue())
-		dst_top = int(config.osd.dst_top.getValue())
-		dst_height = int(config.osd.dst_height.getValue())
+		dst_left = int(config.osd.dst_left.value)
+		dst_width = int(config.osd.dst_width.value)
+		dst_top = int(config.osd.dst_top.value)
+		dst_height = int(config.osd.dst_height.value)
 		while dst_width + (dst_left / float(dsk_w)) >= 720.5 or dst_width + dst_left > 720:
 			dst_width = int(dst_width) - 1
 		while dst_height + (dst_top / float(dsk_h)) >= 576.5 or dst_height + dst_top > 576:
@@ -165,7 +169,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
+		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -174,8 +178,15 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
+	def playOldService(self):
+		try:
+			self.session.nav.playService(self.oldref)
+		except:
+			pass
+		      
 	def keySave(self):
 		self.saveAll()
+		self.playOldService()
 		self.close()
 
 	def cancelConfirm(self, result):
@@ -184,6 +195,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 		for x in self["config"].list:
 			x[1].cancel()
+		self.playOldService()
 		self.close()
 
 	def keyCancel(self):
@@ -191,6 +203,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
+			self.playOldService()
 			self.close()
 
 	def run(self):
@@ -199,6 +212,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_top.save()
 		config.osd.dst_height.save()
 		configfile.save()
+		self.playOldService()
 		self.close()
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):

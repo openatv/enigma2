@@ -5,9 +5,10 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol
+from enigma import eDVBVolumecontrol, eTimer
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 from Tools import Notifications
+from time import localtime, time
 import Screens.InfoBar
 from os import path
 from gettext import dgettext
@@ -79,20 +80,28 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
+		self.standbyTimeUnknownTimer = eTimer()
+
 		#mute adc
 		self.setMute()
 
 		self.paused_service = None
 		self.prev_running_service = None
+
 		if self.session.current_dialog:
 			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				#get currently playing service reference
-				self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				#stop actual played dvb-service
-				self.session.nav.stopService()
+				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					self.session.nav.stopService()
+				else:
+					self.standbyTimeUnknownTimer.callback.append(self.stopService)
+					self.standbyTimeUnknownTimer.startLongTimer(60)
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
+		if self.session.pipshown:
+			from Screens.InfoBar import InfoBar
+			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
@@ -105,6 +114,7 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
+		self.standbyTimeUnknownTimer.stop()
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
 		elif self.paused_service:
@@ -120,6 +130,10 @@ class Standby2(Screen):
 
 	def createSummary(self):
 		return StandbySummary
+
+	def stopService(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.nav.stopService()
 
 class Standby(Standby2):
 	def __init__(self, session):
@@ -139,7 +153,7 @@ class Standby(Standby2):
 			self.onClose.append(self.doStandby)
 
 	def doStandby(self):
-			Notifications.AddNotification(Screens.Standby.Standby2)
+		Notifications.AddNotification(Screens.Standby.Standby2)
 
 class StandbySummary(Screen):
 	skin = """
@@ -170,13 +184,31 @@ class QuitMainloopScreen(Screen):
 		text = { 1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
 			2: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
 			3: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
-			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
+			4: _("Your front processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
 			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
 		self["text"] = Label(text)
+		
+		import os
+		text2 = { 1: _("Shutting down"),
+			2: _("Rebooting"),
+			3: _("GUI restarting"),
+			4: _("Front processor upgrade"),
+			5: _("GUI restarting"),
+			42: _("Upgrading"),
+			43: _("Reflashing"),
+			44: _("Front panel upgrade")}.get(retvalue)
+		cmd = "echo " + text2 + " > /dev/dbox/oled0"
+		os.system(cmd)
 
+class QuitMainloopScreenSummary(Screen):
+	skin = """
+	<screen name="QuitMainloopScreenSummary" position="0,0" size="132,64">
+		<eLabel text="TEST" position="0,0" size="132,64" font="Regular;40" halign="center"/>
+	</screen>"""
+	
 inTryQuitMainloop = False
 
 class TryQuitMainloop(MessageBox):
@@ -215,7 +247,7 @@ class TryQuitMainloop(MessageBox):
 			text = { 1: _("Really shutdown now?"),
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
-				4: _("Really upgrade the frontprocessor and reboot now?"),
+				4: _("Really upgrade the front processor and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				44: _("Really upgrade the front panel and reboot now?") }.get(retvalue)
@@ -232,7 +264,7 @@ class TryQuitMainloop(MessageBox):
 		self.close(True)
 
 	def getRecordEvent(self, recservice, event):
-		if event == iRecordableService.evEnd and config.timeshift.isRecording.getValue():
+		if event == iRecordableService.evEnd and config.timeshift.isRecording.value:
 			return
 		else:
 			if event == iRecordableService.evEnd:

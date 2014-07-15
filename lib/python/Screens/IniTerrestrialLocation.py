@@ -20,14 +20,14 @@ config.misc.inifirstrun = ConfigBoolean(default = True)
 class TerrestrialMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(0, gFont("Regular", 24))
 		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		self.l.setItemHeight(32)
 	
 def TerrestrialMenuEntryComponent(name, item):
 	return [
 		(item),
-		MultiContentEntryText(pos=(20, 8), size=(400, 50), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 4), size=(400, 32), font=0, text = _(name)),
 	]
 
 def buildTerTransponder(frequency,
@@ -48,7 +48,7 @@ def buildTerTransponder(frequency,
 	parm.system = system
 	parm.plpid = plpid
 	return parm
-      
+
 def getInitialTerrestrialTransponderList(tlist, region):
 	list = nimmanager.getTranspondersTerrestrial(region)
 
@@ -58,6 +58,15 @@ def getInitialTerrestrialTransponderList(tlist, region):
 			tlist.append(parm)
 			
 class IniTerrestrialLocation(Screen):
+	skin = """
+	<screen name="IniTerrestrialLocation" position="center,center" size="560,550">
+		<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#2222bb" transparent="1" />
+		<widget name="config" position="0,90" size="560,384" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<widget name="text" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
+	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Terrestrial Location Settings"))
@@ -67,14 +76,16 @@ class IniTerrestrialLocation(Screen):
 		if config.misc.inifirstrun.getValue():
 			self.skinName = ["StartWizard"]
 
-		self["text"] = Label(_("Please scroll to location and select your location and then press ok. If your location is not listed or you do not find all the channels please select Australia as your location."))
+		self["text"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
 		self["key_red"] = Label(_("Exit"))
+		self["key_blue"] = Label(_("Set location"))
 		self.mlist = []
 		self["config"] = TerrestrialMenuList(self.mlist)
 		
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"red": self.close,
+			"blue": self.setLocation,
 			"ok": self.go,
 			"save": self.go,
 			"cancel": self.close,
@@ -105,16 +116,24 @@ class IniTerrestrialLocation(Screen):
 		self.nimConfig0.terrestrial.setValue(str(item[0]))
 		self.nimConfig0.terrestrial.save()
 
-		self.nim1 = nimmanager.nim_slots[1]
-		self.nimConfig1 = self.nim1.config
-		self.nimConfig1.terrestrial.setValue(str(item[0]))
-		self.nimConfig1.terrestrial.save()
+		if len(nimmanager.nim_slots) > 1:
+			self.nim1 = nimmanager.nim_slots[1]
+			self.nimConfig1 = self.nim1.config
+			self.nimConfig1.terrestrial.setValue(str(item[0]))
+			self.nimConfig1.terrestrial.save()
+			
+			if len(nimmanager.nim_slots) > 2:
+				self.nim2 = nimmanager.nim_slots[2]
+				self.nimConfig2 = self.nim2.config
+				self.nimConfig2.terrestrial.setValue(str(item[0]))
+				self.nimConfig2.terrestrial.save()
+
+				if len(nimmanager.nim_slots) > 3:
+					self.nim3 = nimmanager.nim_slots[3]
+					self.nimConfig3 = self.nim3.config
+					self.nimConfig3.terrestrial.setValue(str(item[0]))
+					self.nimConfig3.terrestrial.save()
 		
-		self.nim2 = nimmanager.nim_slots[2]
-		self.nimConfig2 = self.nim2.config
-		self.nimConfig2.terrestrial.setValue(str(item[0]))
-		self.nimConfig2.terrestrial.save()
-	    
 	def getNetworksForNim(self, nim):
 		if nim.isCompatible("DVB-S"):
 			networks = nimmanager.getSatListForNim(nim.slot)
@@ -124,7 +143,11 @@ class IniTerrestrialLocation(Screen):
 			# empty tuners provide no networks.
 			networks = [ ]
 		return networks
-		  
+
+	def setLocation(self):
+		self.saveTunerSetting()
+		self.close()
+
 	def go(self):
 		self.saveTunerSetting()
 		

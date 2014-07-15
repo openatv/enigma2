@@ -11,9 +11,9 @@ class eDVBServiceEITHandler: public Object
 	ePtr<iDVBDemux> m_demux;
 	eAUTable<eTable<EventInformationSection> > m_EIT;
 	void EITready(int error);
-	
+
 	RESULT parseEvent(ePtr<eServiceEvent> &serviceevent, const Event &dvbevent);
-	
+
 	ePtr<eServiceEvent> m_event_now, m_event_next;
 public:
 	eDVBServiceEITHandler();
@@ -21,9 +21,9 @@ public:
 	void inject(ePtr<eServiceEvent> &event, int nownext);
 	void start(iDVBDemux *demux, int sid);
 	void startOther(iDVBDemux *demux, int sid);
-	
+
 	RESULT getEvent(ePtr<eServiceEvent> &event, int nownext);
-	
+
 	PSignal1<void, int> m_eit_changed;
 };
 

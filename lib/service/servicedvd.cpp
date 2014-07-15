@@ -26,7 +26,7 @@ extern "C" {
 eServiceFactoryDVD::eServiceFactoryDVD()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 	{
@@ -40,7 +40,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 eServiceFactoryDVD::~eServiceFactoryDVD()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryDVD::id);
@@ -221,7 +221,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 			if (m_subtitle_widget) {
 				int x1,x2,y1,y2;
 				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
-				
+
 				int x_offset = 0, y_offset = 0, width = 720, height = 576;
 
 #ifdef DDVD_SUPPORTS_GET_BLIT_DESTINATION
@@ -1027,7 +1027,7 @@ void eServiceDVD::saveCuesheet()
 		what = htonl(3);
 		fwrite(&where, sizeof(where), 1, f);
 		fwrite(&what, sizeof(what), 1, f);
-		
+
 		what = htonl(4);
 		fwrite(&resume_info, sizeof(struct ddvd_resume), 1, f);
 		fwrite(&what, sizeof(what), 1, f);

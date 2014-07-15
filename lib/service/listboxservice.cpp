@@ -274,7 +274,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_servicetype_icon_mode(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_servicetype_icon_mode(0), m_crypto_icon_mode(0), m_column_width(0)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -510,6 +510,16 @@ void eListboxServiceContent::setServiceTypeIconMode(int mode)
 	m_servicetype_icon_mode = mode;
 }
 
+void eListboxServiceContent::setCryptoIconMode(int mode)
+{
+	m_crypto_icon_mode = mode;
+}
+
+void eListboxServiceContent::setColumnWidth(int value)
+{
+	m_column_width = value;
+}
+
 void eListboxServiceContent::setGetPiconNameFunc(ePyObject func)
 {
 	if (m_GetPiconNameFunc)
@@ -694,7 +704,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					xoffs = xoffset;
-					tmp.setWidth(tmp.width()-xoffs);
+					tmp.setWidth((!m_column_width ? tmp.width() : m_column_width < 0 ? area.width() / 2 : m_column_width) - xoffs);
 				}
 
 				eTextPara *para = new eTextPara(tmp);
@@ -704,9 +714,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					eRect bbox = para->getBoundBox();
-					m_element_position[celServiceInfo].setLeft(area.left() + bbox.width() + 8 + xoffs);
+
+					int servicenameWidth = (!m_column_width ? bbox.width() : m_column_width < 0 ? area.width() / 2 : m_column_width);
+					m_element_position[celServiceInfo].setLeft(area.left() + servicenameWidth + 8 + xoffs);
 					m_element_position[celServiceInfo].setTop(area.top());
-					m_element_position[celServiceInfo].setWidth(area.width() - (bbox.width() + 8 + xoffs));
+					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + 8 + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
 
 					if (isPlayable)
@@ -742,7 +754,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 											area.moveBy(offset);
 											painter.clip(area);
 											painter.blitScale(piconPixmap,
-												eRect(offset.x()+ area.left(), area.top(), iconWidth, area.height()),
+												eRect(area.left(), area.top(), iconWidth, area.height()),
 												area,
 												gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
 											painter.clippop();
@@ -776,10 +788,41 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									offs = xoffs;
 									xoffs += pixmap_size.width() + 8;
 								}
+								else if (m_crypto_icon_mode == 1 && m_pixmaps[picCrypto])
+									offs = offs + m_pixmaps[picCrypto]->size().width() + 8;
 								int correction = (area.height() - pixmap_size.height()) / 2;
 								area.moveBy(offset);
 								painter.clip(area);
-								painter.blit(pixmap, offset+ePoint(area.left() + offs, correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+								painter.clippop();
+							}
+						}
+
+						//crypto icon stuff
+						if (m_crypto_icon_mode && m_pixmaps[picCrypto])
+						{
+							eSize pixmap_size = m_pixmaps[picCrypto]->size();
+							eRect area = m_element_position[celServiceInfo];
+							int offs = 0;
+							if (m_crypto_icon_mode == 1)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + 8;
+							}
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (service_info->isCrypted(*m_cursor))
+							{
+								if (m_crypto_icon_mode == 2)
+								{
+									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								}
+								painter.clip(area);
+								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
 								painter.clippop();
 							}
 						}
@@ -801,8 +844,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
 			}
-			else if ((e == celFolderPixmap && m_cursor->flags & eServiceReference::isDirectory) || 
-				(e == celMarkerPixmap && m_cursor->flags & eServiceReference::isMarker && 
+			else if ((e == celFolderPixmap && m_cursor->flags & eServiceReference::isDirectory) ||
+				(e == celMarkerPixmap && m_cursor->flags & eServiceReference::isMarker &&
 				!(m_cursor->flags & eServiceReference::isNumberedMarker)))
 			{
 				ePtr<gPixmap> &pixmap =
@@ -816,7 +859,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						xoffset = pixmap_size.width() + 8;
 					area.moveBy(offset);
 					painter.clip(area);
-					painter.blit(pixmap, offset+ePoint(area.left(), correction), area, gPainter::BT_ALPHATEST);
+					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHATEST);
 					painter.clippop();
 				}
 			}

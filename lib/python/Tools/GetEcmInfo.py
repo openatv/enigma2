@@ -3,12 +3,15 @@ import os
 import time
 
 ECM_INFO = '/tmp/ecm.info'
-EMPTY_ECM_INFO = _("Free To Air"),'0','0','0'
+EMPTY_ECM_INFO = ' ','0','0','0'
 
 old_ecm_time = time.time()
 info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
+
+def getECM():
+	return ecm
 
 class GetEcmInfo:
 	def __init__(self):
@@ -94,9 +97,9 @@ class GetEcmInfo:
 		using = info.get('using', '')
 		protocol = info.get('protocol', '')
 		if using or protocol:
-			if config.usage.show_cryptoinfo.getValue() == '0':
+			if config.usage.show_cryptoinfo.value == '0':
 				self.textvalue = ' '
-			elif config.usage.show_cryptoinfo.getValue() == '1':
+			elif config.usage.show_cryptoinfo.value == '1':
 				# CCcam
 				if using == 'fta':
 					self.textvalue = _("Free To Air")
@@ -115,7 +118,7 @@ class GetEcmInfo:
 					else:
 						hops = ''
 					self.textvalue = address + hops + " (%ss)" % info.get('ecm time', '?')
-			elif config.usage.show_cryptoinfo.getValue() == '2':
+			elif config.usage.show_cryptoinfo.value == '2':
 				# CCcam
 				if using == 'fta':
 					self.textvalue = _("Free To Air")

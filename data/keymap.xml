@@ -45,7 +45,7 @@
 		<key id="KEY_GREEN" mapto="save" flags="m" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
-		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+		<!--<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />-->
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
@@ -99,14 +99,15 @@
 	</map>
 
 	<map context="SatlistShortcutAction">
+		<key id="KEY_YELLOW" mapto="changetype" flags="b"/>
 		<key id="KEY_BLUE" mapto="nothingconnected" flags="b" />
 	</map>
 
 	<map context="InfobarChannelSelection">
 		<!--<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
-		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />-->
+		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
 		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
-		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />
+		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />-->
 		<key id="KEY_UP" mapto="switchChannelUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="mr" />
 		<!--<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
@@ -114,6 +115,7 @@
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
+		<key id="KEY_LAST" mapto="reCallService" flags="m" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
 		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="mr" />
@@ -154,7 +156,7 @@
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 		<key id="KEY_ESC" mapto="back" flags="m" />
-		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+		<!--<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />-->
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
@@ -232,7 +234,8 @@
 	      </map>-->
 
 	<map context="InfobarAudioSelectionActions">
-		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
+		<key id="KEY_AUDIO" mapto="audioSelection" flags="b" />
+		<key id="KEY_AUDIO" mapto="audioSelectionLong" flags="l" />
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">
@@ -303,7 +306,7 @@
 	</map>
 
 	<map context="TextEntryActions">
-		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+	  <!--<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />-->
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 	</map>
@@ -315,6 +318,14 @@
 			<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
 			<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
 		</device>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+			<key id="KEY_GREEN" mapto="playpauseService" flags="b" />
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="SeekbarBack" flags="l" />
+			<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l" />
+		</device>
 
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
@@ -325,8 +336,9 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
-		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
 
@@ -349,6 +361,9 @@
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
+
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="m" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="m" />
 
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
@@ -381,8 +396,9 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
-		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
 
@@ -413,7 +429,7 @@
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
 		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
-		<key id="KEY_REWIND" mapto="timeshiftActivateEnd" flags="m" />
+		<key id="KEY_LEFT" mapto="timeshiftActivateEnd" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftSeekPointerActions">

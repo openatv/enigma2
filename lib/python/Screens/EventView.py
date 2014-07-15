@@ -59,8 +59,11 @@ class EventViewBase:
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
+		self["key_red"] = Button()
+		self["key_green"] = Button()
+		self["key_yellow"] = Button()
+		self["key_blue"] = Button()
 		if similarEPGCB is not None:
-			self["key_red"] = Button("")
 			self.SimilarBroadcastTimer = eTimer()
 			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
@@ -99,7 +102,7 @@ class EventViewBase:
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
-		self["key_green"].setText(_("Add timer"))
+		self["key_green"].setText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 
 	def editTimer(self, timer):
@@ -119,8 +122,8 @@ class EventViewBase:
 				cb_func1 = lambda ret: self.removeTimer(timer)
 				cb_func2 = lambda ret: self.editTimer(timer)
 				menu = [(_("Delete timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func2)]
-				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
-				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0],self.instance.position().y()+self["key_green"].getPosition()[1]-self["key_green"].instance.size().height()))
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
+				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0],self.instance.position().y()+self["key_green"].getPosition()[1]-self.ChoiceBoxDialog.instance.size().height()))
 				self.showChoiceBoxDialog()
 				break
 		else:
@@ -156,7 +159,7 @@ class EventViewBase:
 						self.session.nav.RecordTimer.timeChanged(x)
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
-					if not entry.repeated and not config.recording.margin_before.getValue() and not config.recording.margin_after.getValue() and len(simulTimerList) > 1:
+					if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
 						change_time = False
 						conflict_begin = simulTimerList[1].begin
 						conflict_end = simulTimerList[1].end
@@ -173,7 +176,7 @@ class EventViewBase:
 			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
-			self["key_green"].setText(_("Add timer"))
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
 
@@ -262,8 +265,8 @@ class EventViewBase:
 		if isRecordEvent and self.key_green_choice and self.key_green_choice != self.REMOVE_TIMER:
 			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
-		elif not isRecordEvent and self.key_green_choice and self.key_green_choice != self.ADD_TIMER:
-			self["key_green"].setText(_("Add timer"))
+		elif not isRecordEvent:
+			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
 
 
@@ -329,12 +332,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = self.ADD_TIMER
 
-		# Background for Buttons
-		self["red"] = Pixmap()
-		self["green"] = Pixmap()
-		self["yellow"] = Pixmap()
-		self["blue"] = Pixmap()
-
 		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 
@@ -342,10 +339,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				"openSimilarList": self.openSimilarList,
 
 			})
-		if self.isRecording:
-			self["key_green"] = Button("")
-		else:
-			self["key_green"] = Button(_("Add timer"))
 
 		if singleEPGCB:
 			self["key_yellow"] = Button(_("Single EPG"))
@@ -353,9 +346,6 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				{
 					"openSingleServiceEPG": singleEPGCB,
 				})
-		else:
-			self["key_yellow"] = Button("")
-			self["yellow"].hide()
 			
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
@@ -364,6 +354,15 @@ class EventViewEPGSelect(Screen, EventViewBase):
 
 					"openMultiServiceEPG": multiEPGCB,
 				})
-		else:
-			self["key_blue"] = Button("")
-			self["blue"].hide()
+
+	def showChoiceBoxDialog(self):
+		for k in ("epgactions1", "epgactions2", "epgactions3"):
+			if self.has_key(k):
+				self[k].setEnabled(False)
+		EventViewBase.showChoiceBoxDialog(self)
+
+	def closeChoiceBoxDialog(self):
+		EventViewBase.closeChoiceBoxDialog(self)
+		for k in ("epgactions1", "epgactions2", "epgactions3"):
+			if self.has_key(k):
+				self[k].setEnabled(True)

@@ -22,6 +22,37 @@ struct service
 	bool scrambled;
 };
 
+struct tunerstate
+{
+	tunerstate()
+	:freq(0), ber(0), snr(0), pwr(0)
+	{
+	}
+	bool operator<=(const tunerstate &rhs) const
+	{
+#if 1
+		return pwr <= rhs.pwr;
+		/* It turns out that only taking signal power into account is the
+		 * most reliable method. BER and SNR figures tend to fluctuate all
+		 * over the place so taking an instantaneous reading is not good
+		 * enough. */
+#else
+		if (ber > rhs.ber) return true;	// Error rate: lower is better
+		if (ber == rhs.ber)
+		{
+			if (snr < rhs.snr) return true;
+			if (snr == rhs.snr) return pwr <= rhs.pwr;
+		}
+		return false;
+#endif
+	}
+	int freq;
+	int ber;
+	int snr;
+	int pwr;
+};
+
+
 class eDVBScan: public Object, public iObject
 {
 	DECLARE_REF(eDVBScan);
@@ -52,7 +83,7 @@ class eDVBScan: public Object, public iObject
 	int m_ready, m_ready_all;
 
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
-	std::map<eDVBChannelID, int> m_tuner_data; // frequency read from tuner for every new channel
+	std::map<eDVBChannelID, tunerstate> m_tunerstate_data;
 
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_new_services;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_last_service;
@@ -79,11 +110,10 @@ class eDVBScan: public Object, public iObject
 	void PATready(int err);
 	void PMTready(int err);
 
-	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
+	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm, tunerstate newstate);
 	void addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
 
 	int sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2, bool exact=false) const;
-
 	void channelDone();
 	
 	Signal1<void,int> m_event;

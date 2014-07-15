@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/IniWebcamViewer
 
-install_PYTHON = *.py *.xml
+install_PYTHON = $(wildcard @srcdir@/*.py) $(wildcard @srcdir@/*.xml)
 
-install_DATA = *.xml
+install_DATA = $(wildcard @srcdir@/*.xml)
  

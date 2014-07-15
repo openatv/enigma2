@@ -94,7 +94,7 @@ typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS } subty
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
-	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, 
+	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection,
 	public iSubtitleOutput, public iStreamedService, public iAudioDelay, public Object
 {
 	DECLARE_REF(eServiceMP3);
@@ -106,7 +106,7 @@ public:
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target);
-	
+
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT setSlowMotion(int ratio);
 	RESULT setFastForward(int ratio);
@@ -130,9 +130,9 @@ public:
 		// iPausableService
 	RESULT pause();
 	RESULT unpause();
-	
+
 	RESULT info(ePtr<iServiceInformation>&);
-	
+
 		// iSeekableService
 	RESULT getLength(pts_t &SWIG_OUTPUT);
 	RESULT seekTo(pts_t to);
@@ -148,13 +148,13 @@ public:
 	std::string getInfoString(int w);
 	ePtr<iServiceInfoContainer> getInfoObject(int w);
 
-		// iAudioTrackSelection	
+		// iAudioTrackSelection
 	int getNumberOfTracks();
 	RESULT selectTrack(unsigned int i);
 	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
 	int getCurrentTrack();
 
-		// iAudioChannelSelection	
+		// iAudioChannelSelection
 	int getCurrentChannel();
 	RESULT selectChannel(int i);
 
@@ -226,7 +226,7 @@ public:
 
 protected:
 	ePtr<eTimer> m_nownext_timer;
-	ePtr<eServiceEvent> m_event_now, m_event_next;	
+	ePtr<eServiceEvent> m_event_now, m_event_next;
 	void updateEpgCacheNowNext();
 
 private:
@@ -317,7 +317,7 @@ private:
 	typedef std::pair<uint32_t, subtitle_page_t> subtitle_pages_map_pair_t;
 	subtitle_pages_map_t m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
-	
+
 	ePtr<eTimer> m_streamingsrc_timeout;
 	pts_t m_prev_decoder_time;
 	int m_decoder_time_valid_state;

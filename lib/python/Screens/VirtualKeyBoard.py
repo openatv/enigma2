@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode
-from Screens.Screen import Screen
+from Screen import Screen
 from Components.Language import language
 from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Input import Input
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
@@ -19,13 +20,12 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setItemHeight(45)
 
 class VirtualKeyBoardEntryComponent:
-	def __init__(self):
-		pass
+	pass
 
 class VirtualKeyBoard(Screen):
+
 	def __init__(self, session, title="", **kwargs):
 		Screen.__init__(self, session)
-		self.setTitle(_(title))
 		self.keys_list = []
 		self.shiftkeys_list = []
 		self.lang = language.getLanguage()
@@ -34,7 +34,7 @@ class VirtualKeyBoard(Screen):
 		self.selectedKey = 0
 		self.smsChar = None
 		self.sms = NumericalTextInput(self.smsOK)
-		
+
 		self.key_bg = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_bg.png"))
 		self.key_sel = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_sel.png"))
 		self.key_backspace = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_backspace.png"))
@@ -47,9 +47,10 @@ class VirtualKeyBoard(Screen):
 		self.key_space = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_space.png"))
 		self.key_left = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_left.png"))
 		self.key_right = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_right.png"))
-
+		
 		self.keyImages =  {
 				"BACKSPACE": self.key_backspace,
+				"CLEAR": self.key_clr,
 				"ALL": self.key_all,
 				"EXIT": self.key_esc,
 				"OK": self.key_ok,
@@ -61,6 +62,7 @@ class VirtualKeyBoard(Screen):
 		self.keyImagesShift = {
 				"BACKSPACE": self.key_backspace,
 				"CLEAR": self.key_clr,
+				"ALL": self.key_all,
 				"EXIT": self.key_esc,
 				"OK": self.key_ok,
 				"SHIFT": self.key_shift_sel,
@@ -69,11 +71,12 @@ class VirtualKeyBoard(Screen):
 				"RIGHT": self.key_right
 			}
 
-		self["country"] = StaticText("")
-		self["header"] = Label()
+		self["country"] = Label(_("Keyboard language"))
+		self["header"] = Label(title)
 		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8",'ignore')), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
-
+		self["current_language"] = Label(self.lang)
+		
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
 			{
 				"gotAsciiCode": self.keyGotAscii,
@@ -83,7 +86,7 @@ class VirtualKeyBoard(Screen):
 				"right": self.right,
 				"up": self.up,
 				"down": self.down,
-				"red": self.backClicked,
+				"red": self.exit,
 				"green": self.ok,
 				"yellow": self.switchLang,
 				"blue": self.shiftClicked,
@@ -106,7 +109,11 @@ class VirtualKeyBoard(Screen):
 		self.setLang()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
-	
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		self.sms.timer.stop()
+
 	def switchLang(self):
 		self.lang = self.nextLang
 		self.setLang()
@@ -243,26 +250,28 @@ class VirtualKeyBoard(Screen):
 			self.nextLang = 'en_EN'
 		else:
 			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"-", u"["],
+				[u"`" , u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
+				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"[", u"]"],
 				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"\\"],
-				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"ALL"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT"]]
+				[u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"+", u"-"],
+				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"EXIT"]]
 			self.shiftkeys_list = [
-				[u"EXIT", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"*", u"]"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"?", u'"', u"|"],
-				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT"]]
+				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
+				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"{", u"}"],
+				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u":", u'"', u"|"],
+				[u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"_", u"*"],
+				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"EXIT"]]
 			self.lang = 'en_EN'
 			self.nextLang = 'de_DE'
-		self["country"].setText(self.lang)
+			
+		self["country"].setText(self.lang + (_(" - Please press yellow button to change keyboard language")))
+		
 		self.max_key=47+len(self.keys_list[4])
 
 	def virtualKeyBoardEntryComponent(self, keys):
 		key_bg_width = self.key_bg and self.key_bg.size().width() or 45
 		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
-		res = [keys]
+		res = [(keys)]
 		text = []
 		x = 0
 		for key in keys:
@@ -310,23 +319,23 @@ class VirtualKeyBoard(Screen):
 
 		if text == "EXIT":
 			self.close(None)
-		
+
 		elif text == "BACKSPACE":
 			self["text"].deleteBackward()
-		
+
 		elif text == "ALL":
 			self["text"].markAll()
-		
+
 		elif text == "CLEAR":
 			self["text"].deleteAllChars()
 			self["text"].update()
 
 		elif text == "SHIFT":
 			self.shiftClicked()
-		
+
 		elif text == "SPACE":
 			self["text"].char(" ".encode("UTF-8"))
-		
+
 		elif text == "OK":
 			self.close(self["text"].getText().encode("UTF-8"))
 
@@ -378,7 +387,7 @@ class VirtualKeyBoard(Screen):
 		self.smsChar = None
 		self.selectedKey += 12
 		if self.selectedKey > self.max_key:
-			self.selectedKey %= 12
+			self.selectedKey = self.selectedKey % 12
 		self.markSelectedKey()
 
 	def keyNumberGlobal(self, number):

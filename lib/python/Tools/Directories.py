@@ -140,11 +140,11 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			path = defaultPaths[SCOPE_SKIN][0]
 		else:
 			tmp = defaultPaths[SCOPE_LCDSKIN][0]
-			pos = config.skin.display_skin.getValue().rfind('/')
+			pos = config.skin.display_skin.value.rfind('/')
 			if pos != -1:
-				tmpfile = tmp+config.skin.display_skin.getValue()[:pos+1] + base
+				tmpfile = tmp+config.skin.display_skin.value[:pos+1] + base
 				if pathExists(tmpfile):
-					path = tmp+config.skin.display_skin.getValue()[:pos+1]
+					path = tmp+config.skin.display_skin.value[:pos+1]
 				else:
 					if 'skin_default' not in tmp:
 						path = tmp + 'skin_default/'
@@ -255,7 +255,7 @@ def defaultRecordingLocation(candidate=None):
 		if not path.endswith('/'):
 			path += '/' # Bad habits die hard, old code relies on this
 	return path
-	
+
 
 def createDir(path, makeParents = False):
 	try:
@@ -284,6 +284,9 @@ def fileExists(f, mode='r'):
 	else:
 		acc_mode = os.F_OK
 	return os.access(f, acc_mode)
+
+def fileCheck(f, mode='r'):
+	return fileExists(f, mode) and f
 
 def getRecordingFilename(basename, dirname = None):
 	# filter out non-allowed characters

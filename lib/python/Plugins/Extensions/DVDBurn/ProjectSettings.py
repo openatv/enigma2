@@ -27,19 +27,19 @@ class FileBrowser(Screen, HelpableScreen):
 			currDir = self.getDir()
 			pattern = "(?i)^.*\.(ddvdm\.xml)"
 		if self.scope == "menubg":
-			currDir = self.getDir(configRef.getValue())
+			currDir = self.getDir(configRef.value)
 			pattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)"
 		elif self.scope == "menuaudio":
-			currDir = self.getDir(configRef.getValue())
+			currDir = self.getDir(configRef.value)
 			pattern = "(?i)^.*\.(mp2|m2a|ac3)"
 		elif self.scope == "vmgm":
-			currDir = self.getDir(configRef.getValue())
+			currDir = self.getDir(configRef.value)
 			pattern = "(?i)^.*\.(mpg|mpeg)"
 		elif self.scope == "font_face":
-			currDir = self.getDir(configRef.getValue(), resolveFilename(SCOPE_FONTS))
+			currDir = self.getDir(configRef.value, resolveFilename(SCOPE_FONTS))
 			pattern = "(?i)^.*\.(ttf)"
 		elif self.scope == "isopath":
-			currDir = configRef.getValue()
+			currDir = configRef.value
 		elif self.scope == "image":
 			currDir = resolveFilename(SCOPE_HDD)
 			pattern = "(?i)^.*\.(iso)"
@@ -140,8 +140,8 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.initConfigList()
 
 	def initConfigList(self):
-		authormode = self.settings.authormode.getValue()
-		output = self.settings.output.getValue()
+		authormode = self.settings.authormode.value
+		output = self.settings.output.value
 		self.list = []
 		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
 		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
@@ -165,7 +165,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		if config.usage.setup_level.index >= 2: # expert+
 			if authormode != "data_ts":
 				self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
-				if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
+				if self.settings.titlesetmode.value == "single" or authormode == "just_linked":
 					self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
 			else:
 				self.list.append(getConfigListEntry(_("DVD data format"), self.settings.dataformat))

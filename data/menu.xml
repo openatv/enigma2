@@ -1,17 +1,19 @@
 <!--suppress XmlUnboundNsPrefix -->
 <menu text="Mainmenu" title="Main menu">
 	<id val="mainmenu" />
-		<menu weight="1" level="0" text="TV" entryID="mainmenu_tv" >
-			<id val="id_mainmenu_tv" default="&gt;&lt;"/>
-			<item level="0" text="Recorded TV" entryID="mainmenu_tv_recorded" weight="10" endtext="•••>">
-				<code>
+	<menu weight="1"  level="0" text="TV" entryID="mainmenu_tv" >
+		<id val="id_mainmenu_tv" default="&gt;&lt;"/>
+		<item level="0" text="Recorded TV" entryID="mainmenu_tv_recorded" weight="10" endtext="•••>">
+			<code>
 from Screens.InfoBar import InfoBar
 InfoBar.instance.showMovies()
-				</code>
-			</item>
-			<item level="0" text="Scheduler" entryID="mainmenu_tv_timer" weight="20" endtext="•••>"><screen module="TimerEdit" screen="TimerEditList" /></item>
-			<item level="0" text="Live TV" entryID="mainmenu_tv_live" weight="30" endtext="&gt;&lt;">
-				<code>
+			</code>
+		</item>
+		<item level="0" text="Scheduler" entryID="mainmenu_tv_timer" weight="20" endtext="•••>">
+			<screen module="TimerEdit" screen="TimerEditList" />
+		</item>
+		<item level="0" text="Live TV" entryID="mainmenu_tv_live" weight="30" endtext="&gt;&lt;">
+			<code>
 from Screens.InfoBar import InfoBar
 from Screens.ChannelSelection import ChannelSelection
 self.hide()
@@ -20,10 +22,10 @@ if InfoBar.instance.servicelist is None:
 InfoBar.instance.servicelist.setModeTv()
 InfoBar.instance.servicelist.zap()
 self.close(1)
-				</code>
-			</item>
-			<item level="0" text="Radio" entryID="mainmenu_tv_live_radio" weight="40" endtext="&gt;&lt;">
-				<code>
+			</code>
+		</item>
+		<item level="0" text="Radio" entryID="mainmenu_tv_live_radio" weight="40" endtext="&gt;&lt;">
+			<code>
 from Screens.InfoBar import InfoBar
 from Screens.ChannelSelection import ChannelSelection
 self.hide()
@@ -31,10 +33,10 @@ if InfoBar.instance.servicelist is None:
 	InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelection)
 InfoBar.instance.showRadio()
 self.close(1)
-				</code>
-			</item>
-			<item level="0" text="Channel Selection" entryID="mainmenu_tv_channel" weight="50">
-				<code>
+			</code>
+		</item>
+		<item level="0" text="Channel Selection" entryID="mainmenu_tv_channel" weight="50">
+			<code>
 from Screens.InfoBar import InfoBar
 from Screens.ChannelSelection import ChannelSelection
 self.hide()
@@ -42,71 +44,71 @@ if InfoBar.instance.servicelist is None:
 	InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelection)
 InfoBar.instance.showTv()
 self.close(1)
-				</code>
-			</item>
-		</menu>
-		<item weight="2" level="1" text="Plugins" entryID="mainmenu_plugins" endtext="&gt;&lt;"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
-		
-	
-				
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<menu level="0" text="Movies" entryID="mainmenu_movies" weight="20">
-			<id val="id_mainmenu_movies" default="&gt;" overrides="0" update="1"/>
-			<item level="0" text="Recorded TV" entryID="mainmenu_movies_recorded" weight="30" endtext="•••>">
-				<code>
+			</code>
+		</item>
+	</menu>
+	<item weight="2"  level="1" text="Plugins" entryID="mainmenu_plugins" endtext="&gt;&lt;">
+		<screen module="PluginBrowser" screen="PluginBrowser" />
+	</item>
+	<menu weight="20" level="0" text="Movies" entryID="mainmenu_movies">
+		<id val="id_mainmenu_movies" default="&gt;" overrides="0" update="1"/>
+		<item level="0" text="Recorded TV" entryID="mainmenu_movies_recorded" weight="30" endtext="•••>">
+			<code>
 from Screens.InfoBar import InfoBar
 InfoBar.instance.showMovies()
-				</code>
-			</item>
-			<item level="0" text="All movies" entryID="mainmenu_movies_movies" weight="40" endtext=">">
-			</item>
-			<menu level="0" text="TV Serials" entryID="mainmenu_movies_tvserials" weight="70" endtext=">">
-				<id val="id_mainmenu_movies_tvserials" default=">" overrides="0" update="1" findmenu="1"/>
-			</menu>
-			<menu level="0" text="TV Shows" entryID="mainmenu_movies_tvshows" weight="80" endtext=">">
-				<id val="id_mainmenu_movies_tvshows" default=">" overrides="0" update="1" findmenu="1"/>
-			</menu>
+			</code>
+		</item>
+		<item level="0" text="All movies" entryID="mainmenu_movies_movies" weight="40" endtext=">">
+		</item>
+		<menu level="0" text="TV Serials" entryID="mainmenu_movies_tvserials" weight="70" endtext=">">
+			<id val="id_mainmenu_movies_tvserials" default=">" overrides="0" update="1" findmenu="1"/>
 		</menu>
-
-		
-		
-		
-		<menu weight="3" level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" endtext="•••>" >
-			<id val="id_mainmenu_tasks_setup" />
-
-		
+		<menu level="0" text="TV Shows" entryID="mainmenu_movies_tvshows" weight="80" endtext=">">
+			<id val="id_mainmenu_movies_tvshows" default=">" overrides="0" update="1" findmenu="1"/>
+		</menu>
+	</menu>
+	<menu weight="3"  level="0" text="Setup" entryID="setup_selection" flushConfigOnClose="1" endtext="•••>" >
+		<id val="id_mainmenu_tasks_setup" />
 		<menu weight="50" level="0" text="TV" entryID="mainmenu_tasks_setup_tv" endtext="•••>">
 			<id val="id_mainmenu_tasks_setup_tv" default="&gt;&lt;"/>
 			<menu weight="10" level="0" text="Service searching" entryID="mainmenu_tasks_setup_tv_scan">
 				<id val="id_mainmenu_tasks_setup_tv_scan" />
-				<item text="Tuner configuration" entryID="id_mainmenu_tasks_setup_tv_scan_tuner"><screen module="Satconfig" screen="NimSelection" /></item>
-				<item text="Automatic scan" entryID="id_mainmenu_tasks_setup_tv_scan_auto"><screen module="ScanSetup" screen="ScanSimple" /></item>
-				<item text="Manual scan" entryID="id_mainmenu_tasks_setup_tv_scan_manual"><screen module="ScanSetup" /></item>
+				<item text="Tuner configuration" entryID="id_mainmenu_tasks_setup_tv_scan_tuner">
+					<screen module="Satconfig" screen="NimSelection" />
+				</item>
+				<item text="Automatic scan" entryID="id_mainmenu_tasks_setup_tv_scan_auto">
+					<screen module="ScanSetup" screen="ScanSimple" />
+				</item>
+				<item text="Manual scan" entryID="id_mainmenu_tasks_setup_tv_scan_manual">
+					<screen module="ScanSetup" />
+				</item>
 			</menu>
-			<item weight="20" level="0" text="Recording settings" entryID="record_paths"><screen module="Recordings" screen="RecordingSettings" /></item>
-			<item weight="30" level="0" text="Timeshift settings" entryID="record_paths"><screen module="Timershift" screen="TimeshiftSettings" /></item>
-			<menu weight="40" level="0" text="EPG Settings" entryID="eog_settings">   
+			<item weight="20" level="0" text="Recording settings" entryID="record_paths">
+				<screen module="Recordings" screen="RecordingSettings" />
+			</item>
+			<item weight="30" level="0" text="Timeshift settings" entryID="record_paths">
+				<screen module="Timershift" screen="TimeshiftSettings" />
+			</item>
+			<menu weight="40" level="0" text="EPG Settings" entryID="epg_settings">   
 				<id val="epg" />
-				<item weight="1" level="2" text="General Settings" entryID="epg_setup"><setup id="epgsettings" /></item>
+				<item weight="1" level="2" text="General Settings" entryID="epg_setup">
+					<setup id="epgsettings" />
+				</item>
 				<menu weight="3" level="2" text="Advanced Settings" entryID="epg_menu" endtext="•••>">
-						<id val="epg2" />
-						<item weight="1" level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
-						<item weight="2" level="2" entryID="setup_epgenhanced"><setup id="epgenhanced" /></item>
-						<item weight="3" level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
-						<menu weight="4" level="1" text="Load/Save EPG" entryID="epgloadsave_menu">
-							<id val="epgloadsave_menu" />
-							<item level="1" entryID="saveepgcache" text="Save EPG">
-<code>
+					<id val="epg2" />
+					<item weight="1" level="2" entryID="setup_epgmulti">
+						<setup id="epgmulti" />
+					</item>
+					<item weight="2" level="2" entryID="setup_epgenhanced">
+						<setup id="epgenhanced" />
+					</item>
+					<item weight="3" level="2" entryID="setup_epggraphical">
+						<setup id="epggraphical" />
+					</item>
+					<menu weight="4" level="1" text="Load/Save EPG" entryID="epgloadsave_menu">
+						<id val="epgloadsave_menu" />
+						<item level="1" entryID="saveepgcache" text="Save EPG">
+							<code>
 from Components.EpgLoadSave import EpgSaveMsg
 def msgClosed(ret):
 	if ret:
@@ -114,10 +116,10 @@ def msgClosed(ret):
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 self.session.openWithCallback(msgClosed, EpgSaveMsg)
-</code>
+							</code>
 						</item>
 						<item level="1" entryID="loadepgcache" text="Load EPG">
-<code>
+							<code>
 from Components.EpgLoadSave import EpgLoadMsg
 def msgClosed(ret):
 	if ret:
@@ -125,100 +127,125 @@ def msgClosed(ret):
 		epgcache = eEPGCache.getInstance()
 		epgcache.load()
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
-</code>
+							</code>
 						</item>
-						</menu>
+					</menu>
 				</menu>      
 			</menu>
-			<item weight="50" level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
-			<item weight="60" level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
+			<item weight="50" level="2" entryID="subtitle_setup">
+				<setup id="subtitlesetup" />
+			</item>
+			<item weight="60" level="1" entryID="autolanguage_setup">
+				<setup id="autolanguagesetup" />
+			</item>
 			<menu weight="70" level="1" text="Common Interface" entryID="mainmenu_tasks_setup_tv_ci" requires="CommonInterface">
 				<id val="id_mainmenu_tasks_setup_tv_ci" default=">"/>
-				<item weight="10" level="1" text="Common Interface selection" entryID="mainmenu_tasks_setup_tv_ci_selection" requires="CommonInterface" endtext="•••>"><screen module="Ci" screen="CiSelection" /></item>
+				<item weight="10" level="1" text="Common Interface selection" entryID="mainmenu_tasks_setup_tv_ci_selection" requires="CommonInterface" endtext="•••>">
+					<screen module="Ci" screen="CiSelection" />
+				</item>
 			</menu>
-			<item weight="80" level="0" text="Parental Control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
+			<item weight="80" level="0" text="Parental Control" entryID="parental_setup">
+				<screen module="ParentalControlSetup" screen="ParentalControlSetup" />
+			</item>
 		</menu>
-			<item level="0" text="Photos" entryID="id_mainmenu_tasks_setup_photos" weight="50">
-				<code>
+		<item level="0" text="Photos" entryID="id_mainmenu_tasks_setup_photos" weight="50">
+			<code>
 from Plugins.Extensions.PicturePlayer.ui import Pic_Setup
 self.session.open(Pic_Setup)
-				</code>
-			</item>
-			<item level="0" text="Music" entryID="id_mainmenu_tasks_setup_music" weight="50">
-				<code>
+			</code>
+		</item>
+		<item level="0" text="Music" entryID="id_mainmenu_tasks_setup_music" weight="50">
+			<code>
 from Plugins.Extensions.MediaPlayer.settings import MediaPlayerSettings
 self.session.open(MediaPlayerSettings, self)
-				</code>
-			</item>
-			
-			<item level="0" text="Movies" entryID="id_mainmenu_tasks_setup_movies" weight="50">
-				<code>
+			</code>
+		</item>
+		<item level="0" text="Movies" entryID="id_mainmenu_tasks_setup_movies" weight="50">
+			<code>
 from Plugins.Extensions.MovieBrowser.plugin import movieBrowserConfig
 self.session.open(movieBrowserConfig)
-				</code>
+			</code>
+		</item>
+		<menu weight="5" level="0" text="System" entryID="id_mainmenu_tasks_setup_system" endtext="•••>">
+			<id val="id_mainmenu_tasks_setup_system" />
+			<item weight="1" level="0" text="Language setup" entryID="language_setup">
+				<screen module="LanguageSelection" />
 			</item>
-			<menu weight="5" level="0" text="System" entryID="id_mainmenu_tasks_setup_system" endtext="•••>">
-				<id val="id_mainmenu_tasks_setup_system" />
-				<item weight="1" level="0" text="Language setup" entryID="language_setup"><screen module="LanguageSelection" /></item>
-				<item weight="2" level="0" entryID="timezone_setup"><setup id="time"/></item>
-				<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<item weight="19" level="0" text="General settings" entryID="user_interface"><setup id="userinterface" /></item>
-				<menu weight="20" level="0" text="Expert settings" entryID="expert_setup" endtext="•••>">
-				  <id val="expert" />
-
-				  <menu weight="3" level="2" text="User interface" entryID="osd_setup" requires="OsdMenu" endtext="•••>">
-					  <id val="osd_menu" />
-					  <item weight="10" level="0" text="Skin setup" entryID="skin_selection"><screen module="SkinSelector" screen="SkinSelector"/></item>					  
-					  <item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
-					  <item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
-					  <menu weight="5" level="0" text="Display setup" entryID="display_selection" requires="Display">
-						  <id val="display" />
-						  <item level="0" entryID="displaysetup"><setup id="display" /></item>
-						  <item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
-					  </menu>  
-				  </menu>
-				  <item weight="4" level="0" text="Customize" entryID="usage_setup"><setup id="usage" /></item>
-
-				  <menu weight="10" level="0" text="Network Settings" entryID="network_menu" endtext="•••>">
-					  <id val="network" />
-					  <item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					  <item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
-					  <item level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
-					  <item level="2" text="FTP setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
-					  <item level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
-					  <item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
-					  <item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
-					  <item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-					  <item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
-<code>
+			<item weight="2" level="0" entryID="timezone_setup">
+				<setup id="time"/>
+			</item>
+			<item weight="16" level="1" entryID="rfmod_setup" requires="RfModulator">
+				<setup id="RFmod"/>
+			</item>
+			<item weight="19" level="0" text="General settings" entryID="user_interface">
+				<setup id="userinterface" />
+			</item>
+			<menu weight="20" level="0" text="Expert settings" entryID="expert_setup" endtext="•••>">
+				<id val="expert" />
+				<menu weight="3" level="2" text="User interface" entryID="osd_setup" requires="OsdMenu" endtext="•••>">
+					<id val="osd_menu" />
+					<item weight="10" level="0" text="Skin setup" entryID="skin_selection"><screen module="SkinSelector" screen="SkinSelector"/></item>
+					<item level="2" text="Position setup" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
+					<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
+					<menu weight="5" level="0" text="Display setup" entryID="display_selection" requires="Display">
+						<id val="display" />
+						<item level="0" entryID="displaysetup"><setup id="display" /></item>
+						<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
+					</menu>  
+				</menu>
+				<item weight="4" level="0" text="Customize" entryID="usage_setup"><setup id="usage" /></item>
+				<menu weight="10" level="0" text="Network Settings" entryID="network_menu" endtext="•••>">
+					<id val="network" />
+					<item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
+					<item level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
+					<item level="2" text="FTP setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
+					<item level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
+					<item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
+					<item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
+					<item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
+					<item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
+						<code>
 from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
 self.session.open(SABnzbdSetupScreen)
-</code>
-					  </item>
-					  <item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
-					  <item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
-					  <item level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-				  </menu>
-				  <item weight="7" level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
-<code>
+						</code>
+					</item>
+					<item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
+					<item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
+					<item level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
+				</menu>
+				<item weight="7" level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
+					<code>
 from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
-</code>
-				  </item>
-				  <!--<item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;"><setup id="softwareupdate"/></item>--> 
-				  <!--<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>-->
-				</menu>
+					</code>
+				</item>
+				<!--
+				<item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;">
+					<setup id="softwareupdate"/>
+				</item>
+				--> 
+				<!--
+				<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch">
+					<code>
+self.session.scart.VCRSbChanged(3)
+					</code>
+				</item>
+				-->
 			</menu>
-
-
-			<!--<menu weight="16" level="0" text="Software Manager" entryID="software_manager">
-				<id val="software_manager" />
-				<item weight="15" level="0" text="Software Update" entryID="software_update" endtext="&gt;&lt;" ><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
-			      </menu>
-
-			<item weight="199" level="0" text="Installation Wizard" entryID="startwizzard"><screen module="StartWizard" screen="StartWizard" /></item>
-			<item weight="200" level="0" text="Factory Reset" entryID="factory_reset" endtext="&gt;&lt;">
-<code>
+		</menu>
+		<!--
+		<menu weight="16" level="0" text="Software Manager" entryID="software_manager">
+			<id val="software_manager" />
+			<item weight="15" level="0" text="Software Update" entryID="software_update" endtext="&gt;&lt;" >
+				<screen module="SoftwareUpdate" screen="UpdatePlugin" />
+			</item>
+		</menu>
+		<item weight="199" level="0" text="Installation Wizard" entryID="startwizzard">
+			<screen module="StartWizard" screen="StartWizard" />
+		</item>
+		<item weight="200" level="0" text="Factory Reset" entryID="factory_reset" endtext="&gt;&lt;">
+			<code>
 from Screens.FactoryReset import FactoryReset
 def msgClosed(ret):
 	if ret:
@@ -228,36 +255,71 @@ def msgClosed(ret):
 		system("/usr/bin/showiframe /usr/share/backdrop.mvi")
 		_exit(0)
 self.session.openWithCallback(msgClosed, FactoryReset)
-</code>
-			</item>-->
+			</code>
+		</item>
+		-->
+	</menu>
+	<menu weight="4"  level="0" text="Information" entryID="mainmenu_tasks_info">
+		<id val="id_mainmenu_tasks_info" />
+		<item level="0" text="About" entryID="mainmenu_tasks_info_about">
+			<screen module="About" screen="About"/>
+		</item>
+		<item level="0" text="Devices" entryID="mainmenu_tasks_info_devices">
+			<screen module="About" screen="Devices"/>
+		</item>
+		<item level="0" text="Memory" entryID="mainmenu_tasks_info_memory">
+			<screen module="About" screen="SystemMemoryInfo"/>
+		</item>
+		<item level="0" text="Network" entryID="mainmenu_tasks_info_network">
+			<screen module="About" screen="SystemNetworkInfo"/>
+		</item>
+		<item level="1" text="Service" entryID="mainmenu_tasks_info_service">
+			<screen module="ServiceInfo" screen="ServiceInfo"/>
+		</item>
+	</menu>
+	<menu weight="20" level="0" entryID="mainmenu_tasks_power" text="Power / Restart" endtext="&gt;&lt;">
+		<id val="shutdown" default=" "/>
+		<item level="0" text="Sleep Timer" entryID="mainmenu_tasks_power_sleeptimer">
+			<screen module="PowerTimerEdit" screen="PowerTimerEditList" />
+		</item>
+		<item level="0" text="Standby" entryID="mainmenu_tasks_power_standby" endtext=" ">
+			<screen module="Standby" screen="Standby"/>
+		</item>
+		<item level="0" text="Shutdown" entryID="mainmenu_tasks_power_shutdown" endtext="">
+			<screen module="Standby" screen="TryQuitMainloop">1</screen>
+		</item>
+		<item level="0" text="Reboot" entryID="mainmenu_tasks_power_reboot" endtext="">
+			<screen module="Standby" screen="TryQuitMainloop">2</screen>
+		</item>
+		<item level="0" text="Restart GUI" entryID="mainmenu_tasks_power_restartshell" endtext="">
+			<screen module="Standby" screen="TryQuitMainloop">3</screen>
+		</item>
+	</menu>
+	<menu weight="70" level="0" text="Sources" entryID="mainmenu_source">
+		<id val="id_mainmenu_source" update="1" overrides="0" findmenu="1" default=">"/>
+		<item weight="10" level="1" text="Scart" entryID="mainmenu_source_scart" requires="ScartMenu" endtext="•••>">
+			<code>self.session.scart.VCRSbChanged(3)</code>
+		</item>
+		<menu weight="11" level="0" text="Storage Manager" entryID="hardisk_selection" requires="Harddisk" endtext="•••>">
+			<id val="harddisk" />
+			<!--
+			<item level="1" entryID="harddisk_setup"><setup id="harddisk"/>
+			</item>
+			-->
+			<item level="0" text="Format and initialize" entryID="harddisk_init">
+			<screen module="HarddiskSetup" screen="HarddiskSelection"/>
+			</item>
+			<item level="1" text="Network mount" entryID="netmounts_setup">
+			<screen module="NetworkSetup" screen="NetworkMountsMenu"/>
+			</item>
+			<item level="0" text="File system check" entryID="harddisk_check">
+			<screen module="HarddiskSetup" screen="HarddiskFsckSelection"/>
+			</item>
+			<!--
+			<item level="0" text="Convert file system ext3 to ext4" entryID="harddisk_convert" requires="ext4">
+				<screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/>
+			</item>
+			-->
 		</menu>
-
-		<menu weight="4" level="0" text="Information" entryID="mainmenu_tasks_info">
-			<id val="id_mainmenu_tasks_info" />
-			<item level="0" text="About" entryID="mainmenu_tasks_info_about"><screen module="About" screen="About"/></item>
-			<item level="0" text="Devices" entryID="mainmenu_tasks_info_devices"><screen module="About" screen="Devices"/></item>
-			<item level="0" text="Memory" entryID="mainmenu_tasks_info_memory"><screen module="About" screen="SystemMemoryInfo"/></item>
-			<item level="0" text="Network" entryID="mainmenu_tasks_info_network"><screen module="About" screen="SystemNetworkInfo"/></item>
-			<item level="1" text="Service" entryID="mainmenu_tasks_info_service"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
-		</menu>
-		<menu weight="20" level="0" entryID="mainmenu_tasks_power" text="Standby / Restart" endtext="&gt;&lt;">
-			<id val="shutdown" default=">"/>
-			<item level="0" text="Sleep Timer" entryID="mainmenu_tasks_power_sleeptimer" endtext="•••>"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
-			<item level="0" text="Standby" entryID="mainmenu_tasks_power_standby"><screen module="Standby" screen="Standby"/></item>
-			<item level="0" text="Shutdown" entryID="mainmenu_tasks_power_shutdown"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
-			<item level="0" text="Reboot" entryID="mainmenu_tasks_power_reboot"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-			<item level="0" text="Restart GUI" entryID="mainmenu_tasks_power_restartshell"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
-		</menu>
-		<menu level="0" text="Sources" entryID="mainmenu_source" weight="70">
-			<id val="id_mainmenu_source" update="1" overrides="0" findmenu="1" default=">"/>
-			<item weight="10" level="1" text="Scart" entryID="mainmenu_source_scart" requires="ScartMenu" endtext="•••>"><code>self.session.scart.VCRSbChanged(3)</code></item>
-			<menu weight="11" level="0" text="Storage Manager" entryID="hardisk_selection" requires="Harddisk" endtext="•••>">
-				<id val="harddisk" />
-				<!--<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>-->
-				<item level="0" text="Format and initialize" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-				<item level="1" text="Network mount" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
-				<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-				<!--<item level="0" text="Convert filesystem ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>-->
-			</menu>
-		</menu>
+	</menu>
 </menu>

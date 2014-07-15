@@ -1126,31 +1126,3 @@ class SHOUTcastStreamripperRecordingPath(Screen):
 			self["target"].setText(currFolder)
 		else:
 			self["target"].setText(_("Invalid Location"))
-
-	def up(self):
-		self["filelist"].up()
-		self.updateTarget()
-
-	def down(self):
-		self["filelist"].down()
-		self.updateTarget()
-
-	def left(self):
-		self["filelist"].pageUp()
-		self.updateTarget()
-
-	def right(self):
-		self["filelist"].pageDown()
-		self.updateTarget()
-
-	def ok(self):
-		if self["filelist"].canDescent():
-			self["filelist"].descent()
-			self.updateTarget()
-
-	def updateTarget(self):
-		currFolder = self["filelist"].getSelection()[0]
-		if currFolder is not None:
-			self["target"].setText(currFolder)
-		else:
-			self["target"].setText(_("Invalid Location"))

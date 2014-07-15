@@ -6,7 +6,6 @@ class ServiceStopScreen:
 			self.session
 		except:
 			print "[ServiceStopScreen] ERROR: no self.session set"
-
 		self.oldref = None
 		self.onClose.append(self.__onClose)
 
@@ -24,8 +23,12 @@ class ServiceStopScreen:
 		self.session.nav.stopService()
 		if self.pipAvailable():
 			if self.session.pipshown: # try to disable pip
+				if hasattr(self.session, 'infobar'):
+					if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+						self.session.infobar.servicelist.togglePipzap()
+				if hasattr(self.session, 'pip'):
+					del self.session.pip
 				self.session.pipshown = False
-				del self.session.pip
 
 	def __onClose(self):
 		self.session.nav.playService(self.oldref)

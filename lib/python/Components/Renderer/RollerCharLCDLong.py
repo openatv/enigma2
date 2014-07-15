@@ -4,12 +4,11 @@ from enigma import eLabel, eTimer
 from Components.VariableText import VariableText
 
 class RollerCharLCDLong(VariableText, Renderer):
-
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
-		self.stringlength = 36
-
+		self.stringlength = 26
+		
 	GUI_WIDGET = eLabel
 
 	def connect(self, source):
@@ -47,10 +46,10 @@ class RollerCharLCDLong(VariableText, Renderer):
 			self.status = 'end'
 			self.text = self.backtext
 		if self.status != 'end':
-			self.scrollspeed = int(config.lcd.scroll_speed.getValue())
+			self.scrollspeed = int(config.lcd.scroll_speed.value)
 			self.moveTimerText.start(self.scrollspeed)
-		if config.lcd.scroll_delay.getValue() != 'noscrolling':
-			self.scrolldelay = int(config.lcd.scroll_delay.getValue())
+		if config.lcd.scroll_delay.value != 'noscrolling':
+			self.scrolldelay = int(config.lcd.scroll_delay.value)
 			self.delayTimer = eTimer()
 			self.delayTimer.timeout.get().append(self.delayTimergo)
 			self.delayTimer.start(self.scrolldelay)

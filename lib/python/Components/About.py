@@ -1,5 +1,4 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
-from Tools.HardwareInfo import HardwareInfo
 from os import path
 import sys
 import os
@@ -104,14 +103,45 @@ def getIfConfig(ifname):
 	sock.close()
 	return ifreq
 
+def getAllIfTransferredData():
+	transData = {}
+	for line in file("/proc/net/dev").readlines():
+		flds = line.split(':')
+		if len(flds) > 1:
+			ifname = flds[0].strip()
+			flds = flds[1].strip().split()
+			rx_bytes, tx_bytes = (flds[0], flds[8])
+			transData[ifname] = (rx_bytes, tx_bytes)
+	return transData
+
 def getIfTransferredData(ifname):
-	f = open('/proc/net/dev', 'r')
-	for line in f:
+	for line in file("/proc/net/dev").readlines():
 		if ifname in line:
 			data = line.split('%s:' % ifname)[1].split()
 			rx_bytes, tx_bytes = (data[0], data[8])
-			f.close()
 			return rx_bytes, tx_bytes
+	return None
+
+def getGateways():
+	gateways = {}
+	count = 0
+	for line in file("/proc/net/route").readlines():
+		if count > 0:
+			flds = line.strip().split()
+			for i in range(1, 4):
+				flds[i] = int(flds[i], 16)
+			if flds[3] & 2:
+				if flds[0] not in gateways:
+					gateways[flds[0]] = []
+				gateways[flds[0]].append({
+					"destination": socket.inet_ntoa(struct.pack("!L", socket.htonl(flds[1]))),
+					"gateway": socket.inet_ntoa(struct.pack("!L", socket.htonl(flds[2])))
+				})
+		count += 1
+	return gateways
+
+def getIfGateways(ifname):
+	return getGateways().get(ifname)
 
 def getModelString():	
 	try:

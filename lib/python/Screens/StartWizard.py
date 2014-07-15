@@ -4,7 +4,7 @@ from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
 from Screens.VideoWizard import VideoWizard
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 from Screens.Rc import Rc
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
@@ -34,12 +34,13 @@ class StartWizard(WizardLanguage, Rc):
 		config.misc.firstrun.save()
 		configfile.save()
 
-#wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.getValue(), priority = 0)
-#wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = -1)
-#wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.getValue(), priority = 3)
+#wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority = 0)
+#wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = -1)
+#wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.value, priority = 3)
 
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation, IniEndWizard, config
 
-wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 0)
-wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.getValue(), priority = 1)
-wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.getValue(), priority = 1)
+wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 0)
+if not getMachineBuild() in ('inihdp'):
+	wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
+wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.value, priority = 10) # It always should show as last one

@@ -106,9 +106,9 @@ ssize_t readLine(int fd, char** buffer, size_t* bufsize)
 {
 	size_t i = 0;
 	int result;
-	while (1) 
+	while (1)
 	{
-		if (i >= *bufsize) 
+		if (i >= *bufsize)
 		{
 			char *newbuf = (char*)realloc(*buffer, (*bufsize)+1024);
 			if (newbuf == NULL)

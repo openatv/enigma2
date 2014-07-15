@@ -33,21 +33,21 @@ RESULT eStaticServiceFSInformation::getName(const eServiceReference &ref, std::s
 eServiceFactoryFS::eServiceFactoryFS()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 	{
 		std::list<std::string> extensions;
 		sc->addServiceFactory(eServiceFactoryFS::id, this, extensions);
 	}
-	
+
 	m_service_information = new eStaticServiceFSInformation();
 }
 
 eServiceFactoryFS::~eServiceFactoryFS()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryFS::id);
@@ -172,20 +172,20 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 	{
 		if (!(strcmp(e->d_name, ".") && strcmp(e->d_name, "..")))
 			continue;
-		
+
 		std::string filename;
-		
+
 		filename = path;
 		filename += e->d_name;
-		
+
 		struct stat s;
 		if (::stat(filename.c_str(), &s) < 0)
 			continue;
-		
+
 		if (S_ISDIR(s.st_mode) || S_ISLNK(s.st_mode))
 		{
 			filename += "/";
-			eServiceReference service(eServiceFactoryFS::id, 
+			eServiceReference service(eServiceFactoryFS::id,
 				eServiceReference::isDirectory|
 				eServiceReference::canDescent|eServiceReference::mustDescent|
 				eServiceReference::shouldSort|eServiceReference::sort1,
@@ -205,7 +205,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 				{
 					type = sc->getServiceTypeForExtension(extension);
 				}
-			
+
 				if (type != -1)
 				{
 					eServiceReference service(type,
@@ -323,13 +323,13 @@ RESULT eServiceFS::getNext(eServiceReference &ptr)
 		if (res)
 			return res;
 	}
-	
+
 	if (m_list.empty())
 	{
 		ptr = eServiceReference();
 		return -ERANGE;
 	}
-	
+
 	ptr = m_list.front();
 	m_list.pop_front();
 	return 0;

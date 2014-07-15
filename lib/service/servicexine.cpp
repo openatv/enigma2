@@ -19,7 +19,7 @@ static xine_t *xine; /* TODO: move this into a static class */
 eServiceFactoryXine::eServiceFactoryXine()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryXine::id, this);
@@ -30,7 +30,7 @@ eServiceFactoryXine::eServiceFactoryXine()
 eServiceFactoryXine::~eServiceFactoryXine()
 {
 	ePtr<eServiceCenter> sc;
-	
+
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryXine::id);
@@ -104,8 +104,8 @@ eServiceXine::eServiceXine(const char *filename): m_filename(filename), m_pump(e
 	event_queue = 0;
 	ao_port = 0;
 	vo_port = 0;
-	
-	
+
+
 //	if ((vo_port = xine_open_video_driver(xine, "fb", XINE_VISUAL_TYPE_FB, NULL)) == NULL)
 	if ((vo_port = xine_open_video_driver(xine, "none", XINE_VISUAL_TYPE_NONE, NULL)) == NULL)
 	{
@@ -143,11 +143,11 @@ eServiceXine::~eServiceXine()
 		xine_close_audio_driver(xine, ao_port);
 	eDebug("dispose vo port");
 	if (vo_port)
-		xine_close_video_driver(xine, vo_port);	
+		xine_close_video_driver(xine, vo_port);
 	eDebug("done.");
 }
 
-DEFINE_REF(eServiceXine);	
+DEFINE_REF(eServiceXine);
 
 void eServiceXine::eventListenerWrap(void *user_data, const xine_event_t *event)
 {
@@ -158,7 +158,7 @@ void eServiceXine::eventListenerWrap(void *user_data, const xine_event_t *event)
 void eServiceXine::eventListener(const xine_event_t *event)
 {
 	eDebug("handle %d", event->type);
-	switch(event->type) { 
+	switch(event->type) {
 	case XINE_EVENT_UI_PLAYBACK_FINISHED:
 		break;
 	}
@@ -177,13 +177,13 @@ RESULT eServiceXine::start()
 
 	ASSERT(m_state == stIdle);
 	ASSERT(stream);
-	
+
 	if (!xine_open(stream, m_filename.c_str()))
 	{
 		eWarning("xine_open failed!");
 		return -1;
 	}
-	
+
 	if (!xine_play(stream, 0, 0))
 	{
 		eWarning("xine_play failed!");
@@ -191,7 +191,7 @@ RESULT eServiceXine::start()
 	}
 
 	m_state = stRunning;
-	
+
 	m_event(this, evStart);
 	return 0;
 }
@@ -232,7 +232,7 @@ RESULT eServiceXine::setFastForward(int ratio)
 {
 	return -1;
 }
-  
+
 		// iPausableService
 RESULT eServiceXine::pause()
 {
@@ -260,19 +260,19 @@ RESULT eServiceXine::getLength(pts_t &pts)
 	if (m_state == stError)
 		return 1;
 	ASSERT(stream);
-	
+
 	int pos_stream, pos_time, length_time;
-	
+
 	if (!xine_get_pos_length(stream, &pos_stream, &pos_time, &length_time))
 	{
 		eDebug("xine_get_pos_length failed!");
 		return 1;
 	}
-	
+
 	eDebug("length: %d ms", length_time);
-	
+
 	pts = length_time * 90;
-	
+
 	return 0;
 }
 
@@ -294,15 +294,15 @@ RESULT eServiceXine::getPlayPosition(pts_t &pts)
 	if (m_state == stError)
 		return 1;
 	ASSERT(stream);
-	
+
 	int pos_stream, pos_time, length_time;
-	
+
 	if (!xine_get_pos_length(stream, &pos_stream, &pos_time, &length_time))
 		return 1;
-	
+
 	eDebug("pos_time: %d", pos_time);
 	pts = pos_time * 90;
-	
+
 		// GET POSITION
 	return 0;
 }
@@ -370,13 +370,13 @@ public:
 			int major, minor, sub;
 			eDebug("Built with xine library %d.%d.%d (%s)\n",
 						 XINE_MAJOR_VERSION, XINE_MINOR_VERSION, XINE_SUB_VERSION, XINE_VERSION);
-		
+
 			xine_get_version (&major, &minor, &sub);
 
-			eDebug("Found xine library version: %d.%d.%d (%s).\n", 
+			eDebug("Found xine library version: %d.%d.%d (%s).\n",
 						 major, minor, sub, xine_get_version_string());
 		}
-	
+
 		xine = xine_new();
 		xine_engine_set_param(xine, XINE_ENGINE_PARAM_VERBOSITY, 1);
 		xine_init(xine);

@@ -8,12 +8,11 @@ DEFINE_REF(eComponentScan);
 
 void eComponentScan::scanEvent(int evt)
 {
-//	eDebug("scan event %d!", evt);
-	
 	switch(evt)
 	{
 		case eDVBScan::evtFinish:
 		{
+			eDebug("[eComponentScan] scan event finish");
 			m_done = 1;
 			ePtr<iDVBChannelList> db;
 			ePtr<eDVBResourceManager> res;
@@ -21,29 +20,31 @@ void eComponentScan::scanEvent(int evt)
 			int err;
 			if ((err = eDVBResourceManager::getInstance(res)) != 0)
 			{
-				eDebug("no resource manager");
+				eDebug("[eComponentScan] no resource manager");
 				m_failed = 2;
 			} else if ((err = res->getChannelList(db)) != 0)
 			{
 				m_failed = 3;
-				eDebug("no channel list");
+				eDebug("[eComponentScan] no channel list");
 			} else
 			{
 				m_scan->insertInto(db);
 				db->flush();
-				eDebug("scan done!");
+				eDebug("[eComponentScan] scan done!");
 			}
 			break;
 		}
 		case eDVBScan::evtNewService:
+			eDebug("[eComponentScan] scan event new service");
 			newService();
 			return;
 		case eDVBScan::evtFail:
-			eDebug("scan failed.");
+			eDebug("[eComponentScan] scan event fail");
 			m_failed = 1;
 			m_done = 1;
 			break;
 		case eDVBScan::evtUpdate:
+			eDebug("[eComponentScan] scan event update");
 			break;
 	}
 	statusChanged();
@@ -86,6 +87,7 @@ void eComponentScan::addInitial(const eDVBFrontendParametersTerrestrial &p)
 
 int eComponentScan::start(int feid, int flags, int networkid)
 {
+	eDebug("[eComponentScan] %s(%d, 0x%x, %d)", __func__, feid, flags, networkid);
 	if (m_initial.empty())
 		return -2;
 
@@ -101,7 +103,7 @@ int eComponentScan::start(int feid, int flags, int networkid)
 
 	if (mgr->allocateRawChannel(channel, feid))
 	{
-		eDebug("scan: allocating raw channel (on frontend %d) failed!", feid);
+		eDebug("[eComponentScan] scan: allocating raw channel (on frontend %d) failed!", feid);
 		return -1;
 	}
 
@@ -115,9 +117,9 @@ int eComponentScan::start(int feid, int flags, int networkid)
 		ePtr<eDVBResourceManager> res;
 		int err;
 		if ((err = eDVBResourceManager::getInstance(res)) != 0)
-			eDebug("no resource manager");
+			eDebug("[eComponentScan] no resource manager");
 		else if ((err = res->getChannelList(db)) != 0)
-			eDebug("no channel list");
+			eDebug("[eComponentScan] no channel list");
 		else
 		{
 			if (m_initial.size() > 1)

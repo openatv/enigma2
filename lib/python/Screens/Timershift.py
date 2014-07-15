@@ -118,12 +118,12 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.getValue())) in locations:
+			if Components.Harddisk.findMountPoint(os.path.realpath(configele.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) in locations:
 				if fileExists(configele.value, "w"):
-					configele.last_value = configele.getValue()
+					configele.last_value = configele.value
 					return True
 				else:
-					dir = configele.getValue()
+					dir = configele.value
 					configele.value = configele.last_value
 					self.session.open(
 						MessageBox,
@@ -132,7 +132,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 						)
 					return False
 			else:
-				dir = configele.getValue()
+				dir = configele.value
 				configele.value = configele.last_value
 				self.session.open(
 					MessageBox,
@@ -141,7 +141,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					)
 				return False
 		else:
-			dir = configele.getValue()
+			dir = configele.value
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
@@ -151,8 +151,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			return False
 
 	def createSetup(self):
-		default = config.usage.timeshift_path.getValue()
-		tmp = config.usage.allowed_timeshift_paths.getValue()
+		default = config.usage.timeshift_path.value
+		tmp = config.usage.allowed_timeshift_paths.value
 		if default not in tmp:
 			tmp = tmp[:]
 			tmp.append(default)
@@ -165,7 +165,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 		self.refill(list)
 		self["config"].setList(list)
-		if config.usage.sort_settings.getValue():
+		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 
 	def layoutFinished(self):
@@ -173,11 +173,11 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
-		self.lastvideodirs = config.movielist.videodirs.getValue()
-		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.getValue()
+		self.lastvideodirs = config.movielist.videodirs.value
+		self.lasttimeshiftdirs = config.usage.allowed_timeshift_paths.value
 		if currentry == self.timeshift_entry:
 			self.entrydirname = self.timeshift_dirname
-			config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
+			config.usage.timeshift_path.value = self.timeshift_dirname.value
 			self.session.openWithCallback(
 				self.dirnameSelected,
 				TimeshiftLocationBox
@@ -199,9 +199,9 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					locations.append(validdevice[1])
 				if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
 					self.entrydirname.value = res
-					if config.usage.allowed_timeshift_paths.getValue() != self.lasttimeshiftdirs:
-						tmp = config.usage.allowed_timeshift_paths.getValue()
-						default = self.timeshift_dirname.getValue()
+					if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
+						tmp = config.usage.allowed_timeshift_paths.value
+						default = self.timeshift_dirname.value
 						if default not in tmp:
 							tmp = tmp[:]
 							tmp.append(default)
@@ -240,16 +240,16 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue()))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.getValue())) in locations:
-				config.usage.timeshift_path.value = self.timeshift_dirname.getValue()
+			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) in locations:
+				config.usage.timeshift_path.value = self.timeshift_dirname.value
 				config.usage.timeshift_path.save()
 				self.saveAll()
 				self.close()
 			else:
-				if int(config.timeshift.startdelay.getValue()) > 0:
+				if int(config.timeshift.startdelay.value) > 0:
 					self.session.open(
 						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.getValue(),
+						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
 						type = MessageBox.TYPE_ERROR
 						)
 				else:
@@ -257,10 +257,10 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					self.saveAll()
 					self.close()
 		else:
-			if int(config.timeshift.startdelay.getValue()) > 0:
+			if int(config.timeshift.startdelay.value) > 0:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.getValue(),
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
 					type = MessageBox.TYPE_ERROR
 					)
 			else:
@@ -301,7 +301,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
-					if item.getValue() and not item.getValue() == "0":
+					if item.value and not item.value == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False

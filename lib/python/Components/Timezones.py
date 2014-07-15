@@ -11,8 +11,6 @@ class Timezones:
 	def readTimezonesFromFile(self):
 		try:
 			tz_file = "/etc/timezone.xml"
-			if getImageDistro() == "easy-gui-aus":
-				tz_file = "/etc/tuxbox/timezone-aus.xml"
 			file = open(tz_file)
 			root = xml.etree.cElementTree.parse(file).getroot()
 			file.close()

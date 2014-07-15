@@ -9,13 +9,9 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
-
+import BackupRestore
 
 config.misc.firstrun = ConfigBoolean(default = True)
-config.plugins.configurationbackup = ConfigSubsection()
-config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
-
 
 backupfile = "enigma2settingsbackup.tar.gz"
 
@@ -43,7 +39,7 @@ def checkConfigBackup():
 		return None		
 
 def checkBackupFile():
-	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
+	backuplocation = config.plugins.configurationbackup.backuplocation.value
 	if backuplocation.endswith('/'):
 		fullbackupfile =  backuplocation + 'backup/' + backupfile
 		if fileExists(fullbackupfile):
@@ -114,6 +110,6 @@ class ImageWizard(WizardLanguage, Rc):
 		config.plugins.configurationbackup.save()
 
 	
-if config.misc.firstrun.getValue():
+if config.misc.firstrun.value:
 	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = -1)
 

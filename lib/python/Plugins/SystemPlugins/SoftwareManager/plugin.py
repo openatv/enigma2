@@ -37,11 +37,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
-
-
-config.plugins.configurationbackup = ConfigSubsection()
-config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+import BackupRestore
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
@@ -123,7 +119,7 @@ class UpdatePluginMenu(Screen):
 		self.menutext = _("Press MENU on your remote control for additional options.")
 		self.infotext = _("Press INFO on your remote control for additional information.")
 		self.text = ""
-		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
+		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 		if self.menu == 0:
 			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
@@ -149,10 +145,10 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings." ) + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.getValue() + self.oktext, None))
+			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
 			self.list.append(("backupfiles", _("Select backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
+				self.list.append(("ipkg-manager", _("Package management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
 			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("AdvancedSoftwareSupported"):
@@ -170,6 +166,9 @@ class UpdatePluginMenu(Screen):
 
 		self["menu"] = List(self.list)
 		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["status"] = StaticText(self.menutext)
 
 		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "MenuActions", "NumberActions"],
@@ -227,7 +226,7 @@ class UpdatePluginMenu(Screen):
 			if iSoftwareTools.available_updates is not 0:
 				self.text = _("There are at least %s updates available.") % (str(iSoftwareTools.available_updates))
 			else:
-				self.text = "" #_("There are no updates available.")
+				self.text = _("There are no updates available.")
 			if iSoftwareTools.list_updating is True:
 				self.text += "\n" + _("A search for available updates is currently in progress.")
 		else:
@@ -299,19 +298,19 @@ class UpdatePluginMenu(Screen):
 					self.extended(self.session, None)
 
 	def backupfiles_choosen(self, ret):
-		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
+		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 		config.plugins.configurationbackup.backupdirs.save()
 		config.plugins.configurationbackup.save()
 		config.save()
 
 	def backuplocation_choosen(self, option):
-		oldpath = config.plugins.configurationbackup.backuplocation.getValue()
+		oldpath = config.plugins.configurationbackup.backuplocation.value
 		if option is not None:
 			config.plugins.configurationbackup.backuplocation.value = str(option[1])
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 		config.save()
-		newpath = config.plugins.configurationbackup.backuplocation.getValue()
+		newpath = config.plugins.configurationbackup.backuplocation.value
 		if newpath != oldpath:
 			self.createBackupfolders()
 
@@ -389,8 +388,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list = [ ]
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.list.append(self.overwriteConfigfilesEntry)
-		self.list.append(getConfigListEntry(_("show softwaremanager in plugin menu"), config.plugins.softwaremanager.onSetupMenu))
-		self.list.append(getConfigListEntry(_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
+		self.list.append(getConfigListEntry(_("Show software manager in plugin menu"), config.plugins.softwaremanager.onSetupMenu))
+		self.list.append(getConfigListEntry(_("Show software manager on blue button"), config.plugins.softwaremanager.onBlueButton))
 
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
@@ -449,7 +448,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getValue())
+		return str(self["config"].getCurrent()[1].value)
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
@@ -514,7 +513,7 @@ class SoftwareManagerInfo(Screen):
 	def showInfos(self):
 		if self.mode == "backupinfo":
 			self.list = []
-			backupfiles = config.plugins.configurationbackup.backupdirs.getValue()
+			backupfiles = config.plugins.configurationbackup.backupdirs.value
 			for entry in backupfiles:
 				self.list.append((entry,))
 			self['list'].setList(self.list)
@@ -557,7 +556,7 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def __init__(self, session, plugin_path = None, args = None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Extensions management"))
+		Screen.setTitle(self, _("Extension management"))
 		self.session = session
 		self.skin_path = plugin_path
 		if self.skin_path is None:
@@ -602,7 +601,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		self.onLayoutFinish.append(self.getUpdateInfos)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Extensions management"))
+		self.setTitle(_("Extension management"))
 
 	def exit(self):
 		if self.currList == "packages":
@@ -642,7 +641,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif status == 'error':
 				self["key_green"].setText(_("Continue"))
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
+				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the package list. Please try again." ),'', '', statuspng, divpng, None, '' ))
 			self["list"].style = "default"
 			self['list'].setList(self.statuslist)
 
@@ -666,7 +665,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				if iSoftwareTools.lastDownloadDate is None:
 					self.setState('error')
 					if iSoftwareTools.NetworkConnectionAvailable:
-						self["status"].setText(_("Updatefeed not available."))
+						self["status"].setText(_("Update feed not available."))
 					else:
 						self["status"].setText(_("No network connection available."))
 				else:
@@ -1527,7 +1526,7 @@ class IPKGSource(Screen):
 
 class PacketManager(Screen, NumericalTextInput):
 	skin = """
-		<screen name="PacketManager" position="center,center" size="530,420" title="Packet manager" >
+		<screen name="PacketManager" position="center,center" size="530,420" title="Package manager" >
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -1553,7 +1552,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.session = session
 		self.skin_path = plugin_path
 
-		if config.usage.show_channel_jump_in_servicelist.getValue() == "alpha":
+		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
 			self.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
 		else:
 			self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
@@ -1601,7 +1600,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		if config.misc.remotecontrol_text_support.getValue():
+		if config.misc.remotecontrol_text_support.value:
 			rcinput.setKeyboardMode(rcinput.kmNone)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
@@ -1648,7 +1647,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.rebuildList()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Packet manager"))
+		self.setTitle(_("Package manager"))
 
 	def setStatus(self,status = None):
 		if status:
@@ -1656,11 +1655,11 @@ class PacketManager(Screen, NumericalTextInput):
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
+				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new package list. Please wait..." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the packetlist. Please try again." ),'',statuspng, divpng ))
+				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the package list. Please try again." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 
 	def rebuildList(self):
@@ -1870,8 +1869,16 @@ class IpkgInstaller(Screen):
 
 		self.list = SelectionList()
 		self["list"] = self.list
+
+		p = 0
+		if len(list):
+			p = list[0].rfind("/")
+			title = list[0][:p]
+			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
+
 		for listindex in range(len(list)):
-			self.list.addSelection(list[listindex], list[listindex], listindex, False)
+			self.list.addSelection(list[listindex][p+1:], list[listindex], listindex, False)
+		self.list.sort()
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
@@ -1917,7 +1924,7 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.getValue():
+	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.value:
 		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 	return [ ]
 
@@ -1928,8 +1935,8 @@ def Plugins(path, **kwargs):
 		PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
-	if not config.plugins.softwaremanager.onSetupMenu.getValue() and not config.plugins.softwaremanager.onBlueButton.getValue():
+	if not config.plugins.softwaremanager.onSetupMenu.value and not config.plugins.softwaremanager.onBlueButton.value:
 		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain))
-	if config.plugins.softwaremanager.onBlueButton.getValue():
+	if config.plugins.softwaremanager.onBlueButton.value:
 		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
 	return list

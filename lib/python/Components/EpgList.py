@@ -347,19 +347,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.cur_service is None:
 				return None, None
-			old_service = self.cur_service  #(service, service_name, events, picon)
-			events = self.cur_service[2]
-			refstr = self.cur_service[0]
-			try:
-				if self.cur_event is None or not events or self.cur_event > len(events):
-					return None, ServiceReference(refstr)
-				event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-				eventid = event[0]
-				service = ServiceReference(refstr)
-				event = self.getEventFromId(service, eventid) # get full event info
-				return event, service
-			except:
+			(refstr, service_name, events, picon) = self.cur_service
+			if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events)-1):
 				return None, ServiceReference(refstr)
+			event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
+			eventid = event[0]
+			service = ServiceReference(refstr)
+			event = self.getEventFromId(service, eventid) # get full event info
+			return event, service
 		else:
 			idx = 0
 			if self.type == EPG_TYPE_MULTI:
@@ -372,11 +367,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.getEventFromId(service, eventid)
 			return event, service
 
-	def connectSelectionChanged(func):
+	def connectSelectionChanged(self, func):
 		if not self.onSelChanged.count(func):
 			self.onSelChanged.append(func)
 
-	def disconnectSelectionChanged(func):
+	def disconnectSelectionChanged(self, func):
 		self.onSelChanged.remove(func)
 
 	def serviceChanged(self):
@@ -431,28 +426,28 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
 				if self.listHeight > 0:
-					itemHeight = self.listHeight / config.epgselection.graph_itemsperpage.getValue()
+					itemHeight = self.listHeight / config.epgselection.graph_itemsperpage.value
 				else:
 					itemHeight = 54 # some default (270/5)
-				if config.epgselection.graph_heightswitch.getValue():
-					if ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) / 3) >= 27:
-						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) / 3)
-					elif ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) / 2) >= 27:
-						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) / 2)
+				if config.epgselection.graph_heightswitch.value:
+					if ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3) >= 27:
+						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3)
+					elif ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 2) >= 27:
+						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 2)
 					else:
 						tmp_itemHeight = 27
 					if tmp_itemHeight < itemHeight:
 						itemHeight = tmp_itemHeight
 					else:
-						if ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) * 3) <= 45:
-							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) * 3)
-						elif ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) * 2) <= 45:
-							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.getValue()) * 2)
+						if ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 3) <= 45:
+							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 3)
+						elif ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 2) <= 45:
+							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 2)
 						else:
 							itemHeight = 45
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				if self.listHeight > 0:
-					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.getValue()
+					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
 				else:
 					itemHeight = 54 # some default (270/5)
 			if self.NumberOfRows:
@@ -465,7 +460,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselection.enhanced_itemsperpage.getValue()
+				itemHeight = self.listHeight / config.epgselection.enhanced_itemsperpage.value
 			else:
 				itemHeight = 32
 			if itemHeight < 25:
@@ -477,7 +472,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_MULTI:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselection.multi_itemsperpage.getValue()
+				itemHeight = self.listHeight / config.epgselection.multi_itemsperpage.value
 			else:
 				itemHeight = 32
 			if itemHeight < 25:
@@ -489,7 +484,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_INFOBAR:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.getValue()
+				itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
 			else:
 				itemHeight = 32
 			if itemHeight < 25:
@@ -502,22 +497,22 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def setServiceFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
-			self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.getValue()))
+			self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value))
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			self.l.setFont(0, gFont(self.serviceFontNameInfobar, self.serviceFontSizeInfobar + config.epgselection.infobar_servfs.getValue()))
+			self.l.setFont(0, gFont(self.serviceFontNameInfobar, self.serviceFontSizeInfobar + config.epgselection.infobar_servfs.value))
 
 	def setEventFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
-			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselection.graph_eventfs.getValue()))
+			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselection.graph_eventfs.value))
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
-			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.getValue()))
+			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value))
 		elif self.type == EPG_TYPE_MULTI:
-			self.l.setFont(0, gFont(self.eventFontNameMulti, self.eventFontSizeMulti + config.epgselection.multi_eventfs.getValue()))
-			self.l.setFont(1, gFont(self.eventFontNameMulti, self.eventFontSizeMulti - 4 + config.epgselection.multi_eventfs.getValue()))
+			self.l.setFont(0, gFont(self.eventFontNameMulti, self.eventFontSizeMulti + config.epgselection.multi_eventfs.value))
+			self.l.setFont(1, gFont(self.eventFontNameMulti, self.eventFontSizeMulti - 4 + config.epgselection.multi_eventfs.value))
 		elif self.type == EPG_TYPE_INFOBAR:
-			self.l.setFont(0, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselection.infobar_eventfs.getValue()))
+			self.l.setFont(0, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselection.infobar_eventfs.value))
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			self.l.setFont(1, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselection.infobar_eventfs.getValue()))
+			self.l.setFont(1, gFont(self.eventFontNameInfobar, self.eventFontSizeInfobar + config.epgselection.infobar_eventfs.value))
 
 	def postWidgetCreate(self, instance):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -566,14 +561,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			piconw = 0
 			if self.type == EPG_TYPE_GRAPH:
 				if self.showServiceTitle:
-					servicew = config.epgselection.graph_servicewidth.getValue()
+					servicew = config.epgselection.graph_servicewidth.value
 				if self.showPicon:
-					piconw = config.epgselection.graph_piconwidth.getValue()
+					piconw = config.epgselection.graph_piconwidth.value
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				if self.showServiceTitle:
-					servicew = config.epgselection.infobar_servicewidth.getValue()
+					servicew = config.epgselection.infobar_servicewidth.value
 				if self.showPicon:
-					piconw = config.epgselection.infobar_piconwidth.getValue()
+					piconw = config.epgselection.infobar_piconwidth.value
 			w = (piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
@@ -918,6 +913,10 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.nowSelEvPix
 					else:
 						bgpng = self.selEvPix
+						if clock_types is not None and clock_types == 2:
+							bgpng = self.recSelEvPix
+						elif clock_types is not None and clock_types == 7:
+							bgpng = self.zapSelEvPix
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]
@@ -958,9 +957,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
 				evH = height - 2 * self.eventBorderWidth
 				if self.type == EPG_TYPE_GRAPH:
-					infowidth = config.epgselection.graph_infowidth.getValue()
+					infowidth = config.epgselection.graph_infowidth.value
 				elif self.type == EPG_TYPE_INFOBARGRAPH:
-					infowidth = config.epgselection.infobar_infowidth.getValue()
+					infowidth = config.epgselection.infobar_infowidth.value
 				if evW < infowidth and infoPix is not None:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (evX, evY), size = (evW, evH),
@@ -1020,28 +1019,28 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.type == EPG_TYPE_GRAPH:
 			indx = int(self.getIndexFromService(serviceref))
 			selx = self.select_rect.x+self.select_rect.w
-			while indx+1 > config.epgselection.graph_itemsperpage.getValue():
-				indx = indx - config.epgselection.graph_itemsperpage.getValue()
+			while indx+1 > config.epgselection.graph_itemsperpage.value:
+				indx = indx - config.epgselection.graph_itemsperpage.value
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			indx = int(self.getIndexFromService(serviceref))
 			selx = self.select_rect.x+self.select_rect.w
-			while indx+1 > config.epgselection.infobar_itemsperpage.getValue():
-				indx = indx - config.epgselection.infobar_itemsperpage.getValue()
+			while indx+1 > config.epgselection.infobar_itemsperpage.value:
+				indx = indx - config.epgselection.infobar_itemsperpage.value
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			indx = int(self.l.getCurrentSelectionIndex())
 			selx = self.listWidth
-			while indx+1 > config.epgselection.enhanced_itemsperpage.getValue():
-				indx = indx - config.epgselection.enhanced_itemsperpage.getValue()
+			while indx+1 > config.epgselection.enhanced_itemsperpage.value:
+				indx = indx - config.epgselection.enhanced_itemsperpage.value
 		elif self.type == EPG_TYPE_MULTI:
 			indx = int(self.l.getCurrentSelectionIndex())
 			selx = self.listWidth
-			while indx+1 > config.epgselection.multi_itemsperpage.getValue():
-				indx = indx - config.epgselection.multi_itemsperpage.getValue()
+			while indx+1 > config.epgselection.multi_itemsperpage.value:
+				indx = indx - config.epgselection.multi_itemsperpage.value
 		elif self.type == EPG_TYPE_INFOBAR:
 			indx = int(self.l.getCurrentSelectionIndex())
 			selx = self.listWidth
-			while indx+1 > config.epgselection.infobar_itemsperpage.getValue():
-				indx = indx - config.epgselection.infobar_itemsperpage.getValue()
+			while indx+1 > config.epgselection.infobar_itemsperpage.value:
+				indx = indx - config.epgselection.infobar_itemsperpage.value
 		pos = self.instance.position().y()
 		sely = int(pos)+(int(self.itemHeight)*int(indx))
 		temp = int(self.instance.position().y())+int(self.listHeight)
@@ -1085,19 +1084,23 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
+				elif self.time_base > time():
+					self.time_base -= self.time_epoch * 60
+					self.fillGraphEPG(None) # refill
+					return True
 			elif dir == +24:
 				self.time_base += 86400
 				self.fillGraphEPG(None, self.time_base) # refill
 				return True
 			elif dir == -24:
-				now = time() - int(config.epg.histminutes.getValue()) * 60
+				now = time() - int(config.epg.histminutes.value) * 60
 				if self.type == EPG_TYPE_GRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.graph_roundto.getValue()) * 60):
+					if (self.time_base - 86400) >= now - now % (int(config.epgselection.graph_roundto.value) * 60):
 						self.time_base -= 86400
 						self.fillGraphEPG(None, self.time_base) # refill
 						return True
 				elif self.type == EPG_TYPE_INFOBARGRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.infobar_roundto.getValue()) * 60):
+					if (self.time_base - 86400) >= now - now % (int(config.epgselection.infobar_roundto.value) * 60):
 						self.time_base -= 86400
 						self.fillGraphEPG(None, self.time_base) # refill
 						return True
@@ -1135,7 +1138,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def fillSingleEPG(self, service):
 		t = time()
-		epg_time = t - config.epg.histminutes.getValue()*60
+		epg_time = t - config.epg.histminutes.value*60
 		test = [ 'RIBDT', (service.ref.toString(), 0, epg_time, -1) ]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
@@ -1298,6 +1301,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.time_epoch = 0
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
+		self.timelineAlign = 'left'
 		self.datefmt = ""
 
 	GUI_WIDGET = eListbox
@@ -1320,6 +1324,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.timelineFontName = font.family
 					self.timelineFontSize = font.pointSize
+				elif attrib == "TimelineAlignment":
+					self.timelineAlign = value
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -1333,9 +1339,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 	def setTimeLineFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
-			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.graph_timelinefs.getValue()))
+			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.graph_timelinefs.value))
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.infobar_timelinefs.getValue()))
+			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.infobar_timelinefs.value))
 
 	def postWidgetCreate(self, instance):
 		self.setTimeLineFontsize()
@@ -1345,6 +1351,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
 		time_base = l.getTimeBase()
+
+		if self.timelineAlign.lower() == 'right':
+			alignnment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
+		else:
+			alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
 
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
@@ -1364,17 +1375,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
-			self.ServiceWidth = service_rect.width()
+			ServiceWidth = service_rect.width()
 			if nowTime[2] != begTime[2]:
-				if self.ServiceWidth > 179:
+				if ServiceWidth > 179:
 					datestr = strftime("%A %d %B", localtime(time_base))
-				elif self.ServiceWidth > 139:
+				elif ServiceWidth > 139:
 					datestr = strftime("%a %d %B", localtime(time_base))
-				elif self.ServiceWidth > 129:
+				elif ServiceWidth > 129:
 					datestr = strftime("%a %d %b", localtime(time_base))
-				elif self.ServiceWidth > 119:
+				elif ServiceWidth > 119:
 					datestr = strftime("%a %d", localtime(time_base))
-				elif self.ServiceWidth > 109:
+				elif ServiceWidth > 109:
 					datestr = strftime("%A", localtime(time_base))
 				else:
 					datestr = strftime("%a", localtime(time_base))
@@ -1402,8 +1413,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			res.append(MultiContentEntryText(
 				pos = (5, 0),
-				size = (service_rect.width(), self.listHeight),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
+				size = (service_rect.width()-15, self.listHeight),
+				font = 0, flags = alignnment,
 				text = _(datestr),
 				color = foreColor,
 				backcolor = backColor))
@@ -1428,7 +1439,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			for x in range(0, num_lines):
 				ttime = localtime(time_base + (x*timeStepsCalc))
-				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.getValue()) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.getValue()):
+				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
 					timetext = strftime("%H:%M", localtime(time_base + x*timeStepsCalc))
 				else:
 					if int(strftime("%H",ttime)) > 12:

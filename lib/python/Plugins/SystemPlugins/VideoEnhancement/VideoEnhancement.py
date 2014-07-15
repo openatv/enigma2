@@ -1,6 +1,6 @@
 from os import path as os_path
 
-from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigNothing, NoSave
+from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.
 
@@ -17,7 +17,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_contrast"):
 			def setContrast(config):
-				myval = int(config.getValue() * 256)
+				myval = int(config.value * 256)
 				try:
 					print "--> setting contrast to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_contrast", "w")
@@ -36,7 +36,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_saturation"):
 			def setSaturation(config):
-				myval = int(config.getValue() * 256)
+				myval = int(config.value * 256)
 				try:
 					print "--> setting saturation to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_saturation", "w")
@@ -55,7 +55,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_hue"):
 			def setHue(config):
-				myval = int(config.getValue() * 256)
+				myval = int(config.value * 256)
 				try:
 					print "--> setting hue to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_hue", "w")
@@ -74,7 +74,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_brightness"):
 			def setBrightness(config):
-				myval = int(config.getValue() * 256)
+				myval = int(config.value * 256)
 				try:
 					print "--> setting brightness to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_brightness", "w")
@@ -93,7 +93,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_block_noise_reduction"):
 			def setBlock_noise_reduction(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting block_noise_reduction to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_block_noise_reduction", "w")
@@ -112,7 +112,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_mosquito_noise_reduction"):
 			def setMosquito_noise_reduction(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting mosquito_noise_reduction to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_mosquito_noise_reduction", "w")
@@ -131,7 +131,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_digital_contour_removal"):
 			def setDigital_contour_removal(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting digital_contour_removal to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_digital_contour_removal", "w")
@@ -151,9 +151,9 @@ class VideoEnhancement:
 		if os_path.exists("/proc/stb/vmpeg/0/pep_split"):
 			def setSplitMode(config):
 				try:
-					print "--> setting splitmode to:",str(config.getValue())
+					print "--> setting splitmode to:",str(config.value)
 					f = open("/proc/stb/vmpeg/0/pep_split", "w")
-					f.write(str(config.getValue()))
+					f.write(str(config.value))
 					f.close()
 				except IOError:
 					print "couldn't write pep_split."
@@ -172,7 +172,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_sharpness"):
 			def setSharpness(config):
-				myval = int(config.getValue() * 256)
+				myval = int(config.value * 256)
 				try:
 					print "--> setting sharpness to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_sharpness", "w")
@@ -191,7 +191,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_auto_flesh"):
 			def setAutoflesh(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting auto_flesh to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_auto_flesh", "w")
@@ -210,7 +210,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_green_boost"):
 			def setGreenboost(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting green_boost to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_green_boost", "w")
@@ -229,7 +229,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_blue_boost"):
 			def setBlueboost(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting blue_boost to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_blue_boost", "w")
@@ -248,7 +248,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_dynamic_contrast"):
 			def setDynamic_contrast(config):
-				myval = int(config.getValue())
+				myval = int(config.value)
 				try:
 					print "--> setting dynamic_contrast to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_dynamic_contrast", "w")
@@ -266,11 +266,11 @@ class VideoEnhancement:
 			config.pep.dynamic_contrast = NoSave(ConfigNothing())
 
 		try:
-			x = config.av.scaler_sharpness.getValue()
+			x = config.av.scaler_sharpness.value
 		except KeyError:
 			if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 				def setScaler_sharpness(config):
-					myval = int(config.getValue())
+					myval = int(config.value)
 					try:
 						print "--> setting scaler_sharpness to: %0.8X" % myval
 						f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
@@ -289,7 +289,7 @@ class VideoEnhancement:
 
 		if os_path.exists("/proc/stb/video/hdmi_colorspace") and os_path.exists("/proc/stb/video/hdmi_colorspace_choices"):
 			def setColour_space(config):
-				myval = config.getValue()
+				myval = config.value
 				try:
 					print "--> setting color_soace to:", myval
 					f = open("/proc/stb/video/hdmi_colorspace", "w")
@@ -308,6 +308,40 @@ class VideoEnhancement:
 			config.pep.color_space.addNotifier(setColour_space)
 		else:
 			config.pep.color_space = NoSave(ConfigNothing())
+
+		if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_vertical_dejagging"):
+			def setScaler_vertical_dejagging(configElement):
+				myval = configElement.value and "enable" or "disable"
+				try:
+					print "--> setting scaler_vertical_dejagging to: %s" % myval
+					open("/proc/stb/vmpeg/0/pep_scaler_vertical_dejagging", "w").write(myval)
+				except IOError:
+					print "couldn't write pep_scaler_vertical_dejagging."
+
+				if not VideoEnhancement.firstRun:
+					self.setConfiguredValues()
+
+			config.pep.scaler_vertical_dejagging = ConfigBoolean(default=False, descriptions = {False: _("Disabled"), True: _("Enabled")} )
+			config.pep.scaler_vertical_dejagging.addNotifier(setScaler_vertical_dejagging)
+		else:
+			config.pep.scaler_vertical_dejagging = NoSave(ConfigNothing())
+
+		if os_path.exists("/proc/stb/vmpeg/0/smooth"):
+			def setSmooth(configElement):
+				myval = configElement.value and "enable" or "disable"
+				try:
+					print "--> setting smooth to: %s" % myval
+					open("/proc/stb/vmpeg/0/smooth", "w").write(myval)
+				except IOError:
+					print "couldn't write smooth."
+
+				if not VideoEnhancement.firstRun:
+					self.setConfiguredValues()
+
+			config.pep.smooth = ConfigBoolean(default=False, descriptions = {False: _("Disabled"), True: _("Enabled")} )
+			config.pep.smooth.addNotifier(setSmooth)
+		else:
+			config.pep.smooth = NoSave(ConfigNothing())
 
 		if VideoEnhancement.firstRun:
 			self.setConfiguredValues()

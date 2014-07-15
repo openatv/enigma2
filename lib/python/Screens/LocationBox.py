@@ -29,7 +29,11 @@ from Components.MenuList import MenuList
 # Timer
 from enigma import eTimer
 
-defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+defaultInhibitDirs = [
+	"/.gstreamer-0.10", "/bin", "/boot", "/dev", "/etc", "/home",
+	"/lib", "/picon", "/proc", "/run", "/sbin", "/share", "/sys",
+	"/tmp", "/usr", "/var",
+]
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
@@ -77,7 +81,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Buttons
 		self["key_green"] = Button(_("OK"))
 		self["key_yellow"] = Button(_("Rename"))
-		self["key_blue"] = Button(_("Remove bookmark"))
+		self["key_blue"] = Button()
+		self.onExecBegin.append(self._initialButtonTexts)
 		self["key_red"] = Button(_("Cancel"))
 
 		# Background for Buttons
@@ -166,14 +171,19 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Make sure we remove our callback
 		self.onClose.append(self.disableTimer)
 
+	def _initialButtonTexts(self):
+		self["key_blue"].text = _("Add bookmark")
+
 	def switchToFileListOnStart(self):
-		if self.realBookmarks and self.realBookmarks.getValue():
+		if self.realBookmarks and self.realBookmarks.value:
 			self.currList = "booklist"
 			currDir = self["filelist"].current_directory
 			if currDir in self.bookmarks:
 				self["booklist"].moveToIndex(self.bookmarks.index(currDir))
 		else:
 			self.switchToFileList()
+		self.currList = "filelist"
+		self.up()
 
 	def disableTimer(self):
 		self.qs_timer.callback.remove(self.timeout)
@@ -281,7 +291,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
-				val = self.realBookmarks and self.realBookmarks.getValue()
+				val = self.realBookmarks and self.realBookmarks.value
 				if val and name in val:
 					val.remove(name)
 					self.realBookmarks.setValue(val)
@@ -329,8 +339,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.bookmarks.append(self.getPreferredFolder())
 					self.bookmarks.sort()
 
-				if self.bookmarks != self.realBookmarks.getValue():
-					self.realBookmarks.setValue(self.bookmarks)
+				if self.bookmarks != self.realBookmarks.value:
+					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
 			self.close(ret)
 
@@ -508,7 +518,7 @@ class TimeshiftLocationBox(LocationBox):
 				self,
 				session,
 				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.timeshift_path.getValue(),
+				currDir = config.usage.timeshift_path.value,
 				bookmarks = config.usage.allowed_timeshift_paths,
 				autoAdd = True,
 				editDir = True,

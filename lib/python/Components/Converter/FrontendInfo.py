@@ -36,7 +36,7 @@ class FrontendInfo(Converter, object):
 	def getText(self):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
 		percent = None
-		swapsnr = config.usage.swap_snr_on_osd.getValue()
+		swapsnr = config.usage.swap_snr_on_osd.value
 		if self.type == self.BER: # as count
 			count = self.source.ber
 			if count is not None:

@@ -5,6 +5,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 	ret = { }
 	if tunertype is None:
 		tunertype = tp.get("tuner_type", "None")
+	if tp.get("tuner_number") is not None:
+		ret["tuner_name"] = chr(ord('A') + tp["tuner_number"])
 	if tunertype == "DVB-S":
 		ret["tuner_type"] = _("Satellite")
 		ret["inversion"] = {
@@ -82,6 +84,9 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
 		ret["frequency"] = (tp.get("frequency") and "%1.3f MHz" % (tp.get("frequency")/1000.0)) or '0 MHz'
+		chan = channelnumbers.getChannelNumber(tp.get("frequency"), tp.get("tuner_number"))
+		if chan is not None:
+			ret["channel"] = chan
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
@@ -92,6 +97,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			6000000 : "6 MHz",
 			5000000 : "5 MHz",
 			1712000 : "1.712 MHz"}.get(tp.get("bandwidth"))
+		print 'bandwidth:',tp.get("bandwidth")
 		ret["code_rate_lp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
@@ -101,6 +107,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
 			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}.get(tp.get("code_rate_lp"))
+		print 'code_rate_lp:',tp.get("code_rate_lp")
 		ret["code_rate_hp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
@@ -110,12 +117,14 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
 			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}.get(tp.get("code_rate_hp"))
+		print 'code_rate_hp:',tp.get("code_rate_hp")
 		ret["constellation"] = {
 			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM16 : "QAM16",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM64 : "QAM64",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM256 : "QAM256"}.get(tp.get("constellation"))
+		print 'constellation:',tp.get("constellation")
 		ret["transmission_mode"] = {
 			eDVBFrontendParametersTerrestrial.TransmissionMode_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.TransmissionMode_1k : "1k",
@@ -124,6 +133,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.TransmissionMode_8k : "8k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_16k : "16k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_32k : "32k"}.get(tp.get("transmission_mode"))
+		print 'transmission_mode:',tp.get("transmission_mode")
 		ret["guard_interval"] = {
 			eDVBFrontendParametersTerrestrial.GuardInterval_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.GuardInterval_19_256 : "19/256",
@@ -133,20 +143,25 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_16 : "1/16",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_8 : "1/8",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_4 : "1/4"}.get(tp.get("guard_interval"))
+		print 'guard_interval:',tp.get("guard_interval")
 		ret["hierarchy_information"] = {
 			eDVBFrontendParametersTerrestrial.Hierarchy_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Hierarchy_None : _("None"),
 			eDVBFrontendParametersTerrestrial.Hierarchy_1 : "1",
 			eDVBFrontendParametersTerrestrial.Hierarchy_2 : "2",
 			eDVBFrontendParametersTerrestrial.Hierarchy_4 : "4"}.get(tp.get("hierarchy_information"))
+		print 'hierarchy_information:',tp.get("hierarchy_information")
 		ret["inversion"] = {
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}.get(tp.get("inversion"))
+		print 'inversion:',tp.get("inversion")
 		ret["system"] = {
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
+		print 'system:',tp.get("system")
 		ret["frequency"] = (tp.get("frequency") and "%1.3f MHz" % (tp.get("frequency")/1000000.0)) or '0 MHz'
+		print 'frequency:',tp.get("frequency")
 	elif tunertype == "ATSC":
 		ret["tuner_type"] = "ATSC"
 		ret["modulation"] = {

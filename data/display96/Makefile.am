@@ -1,2 +1,2 @@
 installdir = $(pkgdatadir)/display
-dist_install_DATA = *.xml *.png
+dist_install_DATA = $(wildcard @srcdir@/*.xml) $(wildcard @srcdir@/*.png)

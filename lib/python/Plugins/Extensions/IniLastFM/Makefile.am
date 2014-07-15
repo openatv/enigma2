@@ -1,3 +1,3 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/IniLastFM
 
-install_PYTHON = *.py
+install_PYTHON = $(wildcard @srcdir@/*.py)

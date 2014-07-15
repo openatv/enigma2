@@ -348,7 +348,7 @@ class NetworkWizard(WizardLanguage, Rc):
 						if wlan0.has_key('netmask'):
 							text11 += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
 						if wlan0.has_key('brdaddr'):
-							text11 += _("Gateway:") + "\t" + wlan0['brdaddr'] + "\n"
+							text11 += _("Broadcast:") + "\t" + wlan0['brdaddr'] + "\n"
 						if wlan0.has_key('hwaddr'):
 							text11 += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n\n"  
 					text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is working now.\n\n") % (getMachineBrand(), getMachineName())
@@ -360,9 +360,9 @@ class NetworkWizard(WizardLanguage, Rc):
 					text7 = _('Encryption:') + "\t" + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
 					try:
-						infotext = text1 + text11 + text2 + text3 + text4 + text6 + text7 + "\n" + text8
+						infotext = text1 + text11 + text2 + text3 + text4 + text5 + text6 + text7 + "\n" + text8
 					except:
-						infotext = text1 + text2 + text3 + text4 + text6 + text7 + "\n" + text8
+						infotext = text1 + text2 + text3 + text4 + text5 + text6 + text7 + "\n" + text8
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
 					if str(status[self.selectedInterface]["accesspoint"]) == "Not-Associated":
@@ -500,14 +500,14 @@ class NetworkWizard(WizardLanguage, Rc):
 	def ChoicesSelectionMoved(self):
 		pass
 
-	def getLanStatusMsg(self):      
+	def getLanStatusMsg(self):
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
 			text11 = _("Your IP:") + "\t" + eth0['addr'] + "\n\n"
 			if eth0.has_key('netmask'):
 				text11 += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('brdaddr'):
-				text11 += _("Gateway:") + "\t" + eth0['brdaddr'] + "\n"
+				text11 += _("Broadcast:") + "\t" + eth0['brdaddr'] + "\n"
 			if eth0.has_key('hwaddr'):
 				text11 += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"  
 		try:
@@ -518,4 +518,3 @@ class NetworkWizard(WizardLanguage, Rc):
 			text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is not working now.\n\n") % (getMachineBrand(), getMachineName())
 			text2 = _("Please press OK to continue.")
 			return text1 + "\n" + text2
-

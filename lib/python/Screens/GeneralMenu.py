@@ -1,3 +1,5 @@
+from boxbranding import getMachineBrand
+
 from Components.Sources.List import List 
 
 from Screens.Screen import Screen
@@ -8,7 +10,7 @@ from Screens.InfoBar import InfoBar
 from Screens.ChannelSelection import ChannelSelection, HistoryZapSelector
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.FileManager import FileManager
+from Plugins.Extensions.FileCommander.plugin import FileCommanderScreen
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
 from enigma import eServiceReference, iServiceInformation, eServiceCenter, eEnv, fontRenderClass
 from os import system as os_system, path as os_path
@@ -233,7 +235,7 @@ class GeneralMenu(Screen):
          (_('Photos'), 'id_mainmenu_photos', boundFunction(self.openPicturePlayer)),
          (_('Music'), 'id_mainmenu_music', boundFunction(self.openMediaPlayer)),
          (_('TV / RADIO'), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
-         (_('Videos'), 'id_mainmenu_movies', boundFunction(self.openMovieBrowserAll)),
+         (_('Videos'), 'id_mainmenu_movies', boundFunction(self.openRecordings)),
          (_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
          (_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup))]
         self.pos = {}
@@ -748,24 +750,16 @@ class GeneralMenu(Screen):
          #,(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100)
          ])
           
-        subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [(_('Albums'), 'mainmenu_music_playlists', boundFunction(self.openMp3Browser), 50)
-         #,(_('Setup'), 'mainmenu_music_setup', boundFunction(self.openMediaPlayerSetup), 100)
-         ])
+        subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [])
 
         subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
-	#(_('Live Radio'), 'mainmenu_tv_live_radio', boundFunction(self.openLiveRadio), 60),
-        (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
+	 (_('History'),'mainmenu_tv_zaphistory',boundFunction(self.openHisotryChannelSelection),50),
+	 (_('Timers'),'mainmenu_tv_timer',boundFunction(self.openDialog, TimerEditList),60),
          (_('Program Guide'),'mainmenu_tv_timer',boundFunction(self.openProgramGuide),70)
-        # ,(_('Cross EPG'),'mainmenu_tv_timer',boundFunction(self.openCrossEPG),80)
-        #,(_('Setup'), 'mainmenu_tv_setup', boundFunction(self.notReadyMessage), 100)
         ])
 
         subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [
-	  #(_('TV Shows'), 'mainmenu_movies_tvshows', boundFunction(self.openMovieBrowserMovies), 30),
-        # (_('TV Serials'), 'mainmenu_movies_tvserials', boundFunction(self.openMovieBrowserSeries), 40),
          (_('Recordings'),'mainmenu_tv_recorded', boundFunction(self.openRecordings),50)
-         #,(_('Media Portal'),'mainmenu_tv_recorded', boundFunction(self.openMediaPortal),60)
-         #,(_('Setup'), 'mainmenu_movies_setup', boundFunction(self.openMovieBrowserSetup),100)
          ])
  
         subentrys['id_mainmenu_source'] = self.getSubEntry('id_mainmenu_source', self.getScart(None, []))
@@ -784,7 +778,7 @@ class GeneralMenu(Screen):
         self.session.open(MessageBox, _('This part is not ready yet!'), MessageBox.TYPE_INFO)
 
     def openFileManager(self, path):
-	self.session.open(FileManager, path)
+	self.session.open(FileCommanderScreen, path)
 	
     # sources
     def getScart(self, menuID, list):
@@ -792,8 +786,8 @@ class GeneralMenu(Screen):
 	if menuID is None:
 		from Components.Harddisk import harddiskmanager
 		for r in harddiskmanager.getMountedPartitions(onlyhotplug = False):
-		    menuitem = [r.tabbedDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
-		    if r.tabbedDescription().split('\t')[0] == _("Internal Flash") or r.tabbedDescription().split('\t')[0] == _("DLNA"): #skin FLASH on Source List
+		    menuitem = [r.tabbedShortDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
+		    if r.tabbedShortDescription().split('\t')[0] == _("Internal Flash") or r.tabbedDescription().split('\t')[0] == _("DLNA"): #skin FLASH on Source List
 			print "[MENU] Skip source: Internal Flash and DLNA"
 		    else:
 			list.append(tuple(menuitem))
@@ -820,6 +814,13 @@ class GeneralMenu(Screen):
 	InfoBar.instance.showTv()
 	self.close(1)
 
+    def openHisotryChannelSelection(self):
+	self.hide()
+	if InfoBar.instance.servicelist is None:
+		InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelection)
+	InfoBar.instance.servicelist.historyZap(0)
+	self.close(1)
+	
     def openLiveTV(self):
 	self.hide()
 	if InfoBar.instance.servicelist is None:
@@ -841,10 +842,6 @@ class GeneralMenu(Screen):
     def openProgramGuide(self):
 	#InfoBar.instance.openMultiServiceEPG()
 	InfoBar.instance.openGraphEPG()
-	
-    #def openCrossEPG(self):
-	#from Plugins.SystemPlugins.CrossEPG.crossepg_menu import CrossEPG_Menu
-	#self.session.open(CrossEPG_Menu)   
 	
     # Photos
     def openPicturePlayer(self):
@@ -944,39 +941,11 @@ class GeneralMenu(Screen):
     def openMediaPlayer(self):
  	from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 	self.session.open(MediaPlayer)
-
-    def openMp3Browser(self):
- 	from Plugins.Extensions.MP3Browser.plugin import mp3Browser
-	self.session.open(mp3Browser)
 	
     def openMediaPlayerSetup(self):
  	from Plugins.Extensions.MediaPlayer.settings import MediaPlayerSettings
 	self.session.open(MediaPlayerSettings, self)
 
-    # Movies
-    #def openMediaPortal(self):
-	#from Plugins.Extensions.MediaPortal.plugin import haupt_Screen, haupt_Screen_Wall, config
-	#if config.mediaportal.ansicht.value == "liste":
-		#self.session.open(haupt_Screen)
-	#else:
-		#self.session.open(haupt_Screen_Wall, config.mediaportal.filter.value)
-		
-    def openMovieBrowserAll(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
-	self.session.open(movieBrowserBackdrop, 0, ":::", ":::")
-
-    def openMovieBrowserMovies(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
-	self.session.open(movieBrowserBackdrop, 0, ":::Movie:::", ":::Movie:::")
-
-    def openMovieBrowserSeries(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserBackdrop
-	self.session.open(movieBrowserBackdrop, 0, ":::Series:::", ":::Series:::")
-	
-    def openMovieBrowserSetup(self):
- 	from Plugins.Extensions.MovieBrowser.plugin import movieBrowserConfig
-	self.session.open(movieBrowserConfig)
-	
     # Sources
     def openMediaScanner(self):
 	from Plugins.Extensions.MediaScanner.plugin import main
@@ -989,7 +958,7 @@ class GeneralMenu(Screen):
 			menuitem = [l.name,'/'.join((l.path, l.iconstr)),boundFunction(self.runPlugin, (l, None)),l.weight]
                 else:
 			menuitem = [l.name,'',boundFunction(self.runPlugin, (l, None)),l.weight]
-		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal"):
+		if l.name == _("Front Panel Update") or l.name == _("CrossEPG Downloader") or l.name == _("OpenWebif") or l.name == _("Software management") or l.name == _("MediaPortal") or l.name == _("AutoTimer") or l.name == _("YouTube TV Settings"):
 			print "Skip =>", l.name
 		else:
 			list.append(tuple(menuitem))
@@ -999,7 +968,7 @@ class GeneralMenu(Screen):
                     menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], l[6])),l[3] or 50]
                 else:
                     menuitem = [l[0],l[2],boundFunction(self.runPlugin, (l[1], None)),l[3] or 50]
-		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management") or l[0] == _("MediaPortal"):                 
+		if l[0] == _("Front Panel Update") or l[0] == _("CrossEPG Downloader") or l[0] == _("OpenWebif") or l[0] == _("Software management") or l[0] == _("MediaPortal") or l[0] == _("YouTube TV Settings"):                 
 			print "Skip =>" , l.name
 		else:
 			list.append(tuple(menuitem))
