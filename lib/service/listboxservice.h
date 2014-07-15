@@ -83,6 +83,7 @@ public:
 	void setItemHeight(int height);
 	void setServiceTypeIconMode(int mode);
 	void setCryptoIconMode(int mode);
+	/* just merge note, setColumnWidth was allready there */
 	void setColumnWidth(int value);
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
