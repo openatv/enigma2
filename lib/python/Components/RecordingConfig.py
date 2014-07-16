@@ -10,6 +10,7 @@ def InitRecordingConfig():
 	config.recording.keep_timers = ConfigSelectionNumber(min = 1, max = 120, stepwidth = 1, default = 7, wraparound = True)
 	config.recording.filename_composition = ConfigSelection(default = "standard", choices = [
 		("standard", _("standard")),
+		("veryshort", _("Very short filenames")),
 		("short", _("Short filenames")),
 		("long", _("Long filenames")) ] )
 	config.recording.offline_decode_delay = ConfigSelectionNumber(min = 1, max = 10000, stepwidth = 10, default = 1000, wraparound = True)
