@@ -477,10 +477,16 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		config.av.bypass_edid_checking = ConfigSelection(choices={
-				"00000000": _("off"),
-				"00000001": _("on")},
-				default = "00000000")
+		if (getBrandOEM() in ('fulan'):	
+			config.av.bypass_edid_checking = ConfigSelection(choices={
+					"strict": _("off"),
+					"nonstrict": _("on")},
+					default = "nonstrict")
+		else:
+			config.av.bypass_edid_checking = ConfigSelection(choices={
+					"00000000": _("off"),
+					"00000001": _("on")},
+					default = "00000000")		
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
