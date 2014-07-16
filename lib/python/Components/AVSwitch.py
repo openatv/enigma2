@@ -477,7 +477,7 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		if (getBrandOEM() in ('fulan'):	
+		if (getBrandOEM() in ('fulan')):	
 			config.av.bypass_edid_checking = ConfigSelection(choices={
 					"strict": _("off"),
 					"nonstrict": _("on")},
