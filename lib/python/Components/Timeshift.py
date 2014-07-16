@@ -144,10 +144,6 @@ class InfoBarTimeshift:
 		self.pts_cleanUp_timer.callback.append(self.ptsCleanTimeshiftFolder)
 		# self.pts_cleanUp_timer.start(1000, True)
 
-		# Init PTS OldFileCleanUp-Timer
-		self.pts_OldFileCleanUp_timer = eTimer()
-		self.pts_OldFileCleanUp_timer.callback.append(self.ptsOldFileCleanUp)
-
 		# Init PTS SeekBack-Timer
 		self.pts_SeekBack_timer = eTimer()
 		self.pts_SeekBack_timer.callback.append(self.ptsSeekBackTimer)
@@ -195,10 +191,8 @@ class InfoBarTimeshift:
 
 	def __serviceStarted(self):
 		# print '__serviceStarted'
-		self.createTimeshiftFolder()
 		self.service_changed = 1
 		self.pts_service_changed = True
-		self.ptsCleanTimeshiftFolder()
 		# print 'self.timeshiftEnabled1',self.timeshiftEnabled()
 		if self.pts_delay_timer.isActive():
 			# print 'TS AUTO START TEST1'
@@ -268,8 +262,6 @@ class InfoBarTimeshift:
 				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 
 			# Delete Timeshift Records on zap
-			self.pts_Oldeventcount = self.pts_eventcount
-			self.pts_OldFileCleanUp_timer.start(int(config.timeshift.startdelay.value)*2*1000, True)
 			self.pts_eventcount = 0
 			# print 'AAAAAAAAAAAAAAAAAAAAAA'
 			# self.pts_cleanUp_timer.start(1000, True)
@@ -438,7 +430,7 @@ class InfoBarTimeshift:
 							(_("Save timeshift as movie and stop recording"), "savetimeshift"),
 							(_("Cancel save timeshift as movie"), "noSave"),
 							(_("Nothing, just leave this menu"), "no")]
- 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
 				else:
 					# print 'TEST4'
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
@@ -450,7 +442,7 @@ class InfoBarTimeshift:
 							(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
 							(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
 							(_("No"), "no")]
- 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
 			else:
 				# print 'TEST5'
 				if self.save_current_timeshift:
@@ -501,6 +493,9 @@ class InfoBarTimeshift:
 			self.activateAutorecordTimeshift()
 
 	def activateAutorecordTimeshift(self):
+		self.createTimeshiftFolder()
+		if self.pts_eventcount == 0: #only cleanup folder after switching channels, not when a new event starts, to allow saving old events from timeshift buffer
+			self.ptsCleanTimeshiftFolder()
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
@@ -554,8 +549,6 @@ class InfoBarTimeshift:
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftEventPopup(self):
-		if self.pts_OldFileCleanUp_timer.isActive():
-			self.ptsOldFileCleanUp()
 		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
@@ -1284,22 +1277,3 @@ class InfoBarTimeshift:
 			return False
 		else:
 			return True
-
-	def ptsOldFileCleanUp(self):
-		#workaround for non-deleted "pts_timeshift_#" and "pts_timeshift_#.sc" files after zap when timeshiftbuffer more than one events
-		count = self.pts_eventcount + 1
-		oldcount = self.pts_Oldeventcount + 1
-		for filename in os.listdir(config.usage.timeshift_path.value):
-			if not filename.startswith("timeshift") and not filename.endswith(".del") and not filename.endswith(".copy"):
-				for f in range(count,oldcount):
-					if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,f)):
-						self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,f))
-					if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,f)):
-						self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,f))
-					if os.path.exists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,f)):
-						self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,f))
-					if os.path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value,f)):
-						self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value,f))
-		if self.pts_OldFileCleanUp_timer.isActive():
-			self.pts_OldFileCleanUp_timer.stop()
-
