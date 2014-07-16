@@ -594,6 +594,16 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	}
 }
 
+/**
+ * @brief ...
+ *
+ * @param servicemap ...
+ * @param TM ...
+ * @param duration ...
+ * @param tm_it ...
+ * @param service ...
+ * @return bool true if there were any deletions performed.
+ */
 bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
 {
 	bool ret = false;
@@ -2884,14 +2894,16 @@ static const char* getStringFromPython(ePyObject obj)
 	return result;
 }
 
-void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
+/** @copydoc eEPGCache::importEvents
+ */
+void eEPGCache::importEvent(ePyObject serviceReferences, ePyObject list)
 {
-	importEvents(serviceReference, list);
+	importEvents(serviceReferences, list);
 }
 
 /**
- * @brief Import EPG events from Python into the EPG database. Each event in the @list
- * is added to each service in the @serviceReferences list.
+ * @brief Import EPG events from Python into the EPG database. Each event in the @p list
+ * is added to each service in the @p serviceReferences list.
  *
  * @param serviceReferences Either a single service reference string, or a list of strings
  * @param list Either a list or a tuple of EPG events. Each event is a tuple of at least 6 elements:
