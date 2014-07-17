@@ -248,6 +248,7 @@ data/Makefile
 data/fonts/Makefile
 data/countries/Makefile
 data/extensions/Makefile
+data/gbipbox/Makefile
 data/keymaps/Makefile
 data/lcd220/Makefile
 data/lcd400/Makefile
