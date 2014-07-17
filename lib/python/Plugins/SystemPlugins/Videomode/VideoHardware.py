@@ -58,7 +58,7 @@ class VideoHardware:
 	if chipset == 'bcm7405':
 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
 									"25Hz":		{ 25: "1080p25" },
-									"30Hz":		{ 30: "1080p30" }}
+									"30Hz":		{ 30: "1080p30" } }
 
 	elif chipset == 'bcm7358' or chipset == 'bcm7356':
 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
@@ -70,7 +70,7 @@ class VideoHardware:
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
-		"800x600" : { 60: "800x600" },  # also not possible
+		"800x600" : { 60: "800x600" }, # also not possible
 		"720x480" : { 60: "720x480" },
 		"720x576" : { 60: "720x576" },
 		"1280x720": { 60: "1280x720" },
@@ -81,8 +81,7 @@ class VideoHardware:
 		"1366x768" : { 60: "1366x768"},
 		"1366x768 multi" : { 50: "1366x768", 60: "1366x768_50" },
 		"1280x768": { 60: "1280x768" },
-		"640x480" : { 60: "640x480" }
-	}
+		"640x480" : { 60: "640x480" } }
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
