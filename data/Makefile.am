@@ -17,9 +17,9 @@ dist_pkgdata_DATA = \
 	unicable.xml
 
 if GBIPBOX
-dist_pkgdata_DATA += startwizard.xml
-else
 dist_pkgdata_DATA += gbipbox/startwizard.xml
+else
+dist_pkgdata_DATA += startwizard.xml
 endif
 
 if HAVE_TEXTLCD
