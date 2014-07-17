@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-16 18:37+0100\n"
-"PO-Revision-Date: 2014-06-18 23:17+0100\n"
+"POT-Creation-Date: 2014-07-16 11:05+0100\n"
+"PO-Revision-Date: 2014-07-17 21:29+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -251,6 +251,12 @@ msgstr[1] "%d Minuten"
 #, python-format
 msgid "%d minutes"
 msgstr "%d Minuten"
+
+#, python-format
+msgid "%d pixel wide"
+msgid_plural "%d pixels wide"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d second"
@@ -679,9 +685,6 @@ msgstr "Aktiviere"
 
 msgid "Activate MAC-address configuration"
 msgstr "Aktiviere aktuelle MAC-Adresse"
-
-msgid "Activate PiP"
-msgstr "Aktiviere PiP"
 
 msgid "Activate Picture in Picture"
 msgstr "Aktiviere Bild in Bild"
@@ -2186,6 +2189,9 @@ msgstr "Mit Funk-Netzwerk verbinden"
 msgid "Connected clients"
 msgstr "Verbundene Klienten"
 
+msgid "Connected satellites"
+msgstr "Verbundene Satelliten"
+
 msgid "Connected to"
 msgstr "Verbunden mit"
 
@@ -2579,6 +2585,9 @@ msgstr "Gerätename:"
 
 msgid "Devices"
 msgstr "Geräte"
+
+msgid "Devide"
+msgstr "Gerät"
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -4314,6 +4323,9 @@ msgstr "Längengrad"
 msgid "Loop through to"
 msgstr "Verbunden mit"
 
+msgid "Lower Framerate save CPU Time"
+msgstr "Niedrigere Bildraten sparen CPU Zeit"
+
 msgid "Luxembourgish"
 msgstr ""
 
@@ -4440,6 +4452,12 @@ msgstr "MiniDLNA Einstellungen"
 
 msgid "MiniDLNA setup"
 msgstr "MiniDLNA Einstellungen"
+
+msgid "MiniTV"
+msgstr ""
+
+msgid "MiniTV with OSD"
+msgstr ""
 
 #, python-format
 msgid "Minimum age %d years"
@@ -5026,6 +5044,9 @@ msgstr "OK, führe mich durch den Aktualisierungsprozess"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OSD"
+msgstr "GUI"
+
 msgid "OSD 3D Setup"
 msgstr "OSD 3D Einstellungen"
 
@@ -5154,6 +5175,12 @@ msgstr "PCR PID"
 
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PIP"
+msgstr "PiP"
+
+msgid "PIP with OSD"
+msgstr ""
 
 msgid "PLP ID"
 msgstr ""
@@ -5607,6 +5634,9 @@ msgstr "Position bei Index gespeichert"
 msgid "Positioner"
 msgstr "Rotor"
 
+msgid "Positioner (selecting satellites)"
+msgstr "Rotos (wähle Satelliten)"
+
 msgid "Positioner setup"
 msgstr "Rotor Einstellungen"
 
@@ -5695,6 +5725,9 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Press OK to select a provider."
 msgstr "Drücke OK um einen Anbieter auszuwählen."
 
+msgid "Press OK to select satellites"
+msgstr "Drücke OK um einen Satelliten auszuwählen."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Drücke OK um eine CAID auszuwählen/abzuwählen."
 
@@ -5703,6 +5736,9 @@ msgstr "OK drücken um die MAC-Adresse zu setzen."
 
 msgid "Press OK to start the scan"
 msgstr "Zum Starten der Suche OK drücken."
+
+msgid "Press OK to toggle the selection"
+msgstr "Drücke OK um die Auswahl umzuschalten."
 
 msgid "Press OK to toggle the selection."
 msgstr "Drücke OK um die Auswahl umzuschalten."
@@ -6153,6 +6189,9 @@ msgstr "Zurück zum letzten Sender"
 msgid "Reverse bouquet buttons"
 msgstr "Bouquet-Button umdrehen"
 
+msgid "Reverse list"
+msgstr "Luiste umkehren"
+
 msgid "Rewind speeds"
 msgstr "Rücklaufgeschwindigkeiten"
 
@@ -6441,6 +6480,9 @@ msgstr "Wähle Funk-Netzwerk"
 msgid "Select action for timer %s:"
 msgstr "Wäjle Aktion für Timer %s:"
 
+msgid "Select all"
+msgstr "Alle auswählen"
+
 msgid "Select an image to be downloaded"
 msgstr "Wähle Image zum Download"
 
@@ -6514,6 +6556,9 @@ msgstr "Wähle einen Anbieter zum Hinzufügen"
 msgid "Select refresh rate"
 msgstr "Wähle eine Bildwiederholrate"
 
+msgid "Select satellites"
+msgstr "Wähle Satelliten"
+
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Wähle ob Seekbar mit Pfeil links/rechts (lang) oder Sprung vorwärts/"
@@ -6521,6 +6566,9 @@ msgstr ""
 
 msgid "Select service to add..."
 msgstr "Wähle einen Sender zum Hinzufügen"
+
+msgid "Select sort method:"
+msgstr "Wähle den Sortier-Modus"
 
 msgid "Select target folder"
 msgstr "Wähle Zielverzeichnisse"
@@ -6552,6 +6600,12 @@ msgstr "Wähle Funk-Netzwerk"
 msgid "Select your provider, and press OK to start the scan"
 msgstr ""
 "Bitte wähle den Anbieter aus und bestätige mit OK, um die Suche zu starten"
+
+msgid "Selecting satellites 1 (USALS)"
+msgstr "Wähle Satelliten 1 (USALS)"
+
+msgid "Selecting satellites 2 (USALS)"
+msgstr "Wähle Satelliten 2 (USALS)"
 
 msgid "Send"
 msgstr "Senden"
@@ -6662,8 +6716,14 @@ msgstr ""
 "Sender können in Favoriten gruppiert werden. Wenn aktiviert kann mehr als "
 "eine Favoritenliste benutzt werden."
 
+msgid "Set Framerate for MiniTV"
+msgstr "Setze Bildrate für MiniTV"
+
 msgid "Set System"
 msgstr ""
+
+msgid "Set default"
+msgstr "Setze Standard"
 
 msgid "Set end time"
 msgstr "End-Zeit eingeben"
@@ -6897,11 +6957,17 @@ msgstr "Zeige Log Verwaltung in Erweiterungen?"
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Zeige Zeit bei Wiedergabe als verbleibend/verstrichen"
 
+msgid "Show MiniTV in the Front Display"
+msgstr "Zeige MiniTV im Display"
+
 msgid "Show OE Log"
 msgstr "Zeige OE Log"
 
 msgid "Show OScam Info in extensions?"
 msgstr "Zeige OScam in Erweiterungen?"
+
+msgid "Show PIP in the Front Display"
+msgstr "Zeige PiP im Display"
 
 msgid "Show PVR status in Movie Player infobar"
 msgstr "Zeige PVR Status in der Infobar des Medienplayers"
@@ -7356,6 +7422,9 @@ msgstr "Sport"
 msgid "Standard"
 msgstr ""
 
+msgid "Standart list"
+msgstr "Standard Liste:"
+
 msgid "Standby"
 msgstr "Bereitschaft"
 
@@ -7425,6 +7494,9 @@ msgstr "Wiedergabe anhalten"
 msgid "Stop playing this movie?"
 msgstr "Wiedergabe beenden?"
 
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Angezeigten Sender beenden und Filmliste anzeigen."
+
 msgid "Stop recording"
 msgstr "Aufnahme beenden"
 
@@ -7433,6 +7505,9 @@ msgstr "Aufnahme beenden und löschen"
 
 msgid "Stop recording now"
 msgstr "Aufnahme jetzt beenden"
+
+msgid "Stop service on return to movie list"
+msgstr "Ja, stopp und zurück zur Filmauswahl"
 
 msgid "Stop test"
 msgstr "Test stoppen"
@@ -9608,6 +9683,9 @@ msgstr "Ja aber TimeShift als Film speichern und Aufnahme fortsetzen"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja aber TimeShift als Film speichern und Aufnahme beenden"
 
+msgid "Yes, delete this movie and return to movie list"
+msgstr "Ja, Film löschen und zurück zur Filmauswahl"
+
 msgid "Yes, do a manual scan now"
 msgstr "Ja, eine manuelle Suche durchführen"
 
@@ -9647,6 +9725,12 @@ msgid ""
 msgstr ""
 "Es ist bereits eine Senderliste installiert.\n"
 "Soll \"%s\" entfernt werden?"
+
+msgid "You can Display MiniTV with or without OSD Menu"
+msgstr "MiniTV mit oder ohne GUI Menü anzeigen"
+
+msgid "You can Display PIP with or without OSD Menu"
+msgstr "PiP mit oder ohne GUI Menü anzeigen"
 
 msgid "You can cancel the installation."
 msgstr "Die Installation kann abgebrochen werden."
@@ -11156,6 +11240,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "AB"
 #~ msgstr "AB"
+
+#~ msgid "Activate PiP"
+#~ msgstr "Aktiviere PiP"
 
 #~ msgid "Adjust 3D settings"
 #~ msgstr "3D Einstellungen"
