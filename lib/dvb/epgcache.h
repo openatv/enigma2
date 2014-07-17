@@ -9,6 +9,8 @@
 
 #ifndef SWIG
 
+#include <time.h>
+
 #include <vector>
 #include <list>
 // unordered_map unordered_set aren't there yet?
@@ -93,12 +95,15 @@ struct uniqueEPGKey
 };
 
 //eventMap is sorted by event_id
-#define eventMap std::map<__u16, eventData*>
+typedef std::map<const __u16, eventData*> eventMap;
 //timeMap is sorted by beginTime
-#define timeMap std::map<time_t, eventData*>
+typedef std::map<const time_t, eventData*> timeMap;
+typedef std::pair<eventMap, timeMap> serviceMap;
+typedef std::map<const eDVBChannelID, time_t> updateMap;
+typedef std::pair<int,__u8*> descriptorPair;
+typedef std::map<const __u32, descriptorPair > descriptorMap;
+typedef std::set<__u32> tidMap;
 
-#define channelMapIterator std::map<iDVBChannel*, channel_data*>::iterator
-#define updateMap std::map<eDVBChannelID, time_t>
 
 struct hash_uniqueEPGKey
 {
@@ -108,25 +113,22 @@ struct hash_uniqueEPGKey
 	}
 };
 
-#define tidMap std::set<__u32>
+
 #if 0
-	typedef std::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
+	typedef std::unordered_map<uniqueEPGKey, serviceMap, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 	#ifdef ENABLE_PRIVATE_EPG
 		typedef std::unordered_map<time_t, std::pair<time_t, __u16> > contentTimeMap;
 		typedef std::unordered_map<int, contentTimeMap > contentMap;
 		typedef std::unordered_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
 	#endif
 #else
-	typedef __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
+	typedef __gnu_cxx::hash_map<uniqueEPGKey, serviceMap, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 	#ifdef ENABLE_PRIVATE_EPG
 		typedef __gnu_cxx::hash_map<time_t, std::pair<time_t, __u16> > contentTimeMap;
 		typedef __gnu_cxx::hash_map<int, contentTimeMap > contentMap;
 		typedef __gnu_cxx::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
 	#endif
 #endif
-
-#define descriptorPair std::pair<int,__u8*>
-#define descriptorMap std::map<__u32, descriptorPair >
 
 class eventData
 {
@@ -186,6 +188,29 @@ public:
 
 class eEPGCache: public eMainloop, private eThread, public Object
 {
+public:
+	enum eit_type_t {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4
+#ifdef ENABLE_MHW_EPG
+	,MHW=8
+#endif
+#ifdef ENABLE_FREESAT
+	,FREESAT_NOWNEXT=16
+	,FREESAT_SCHEDULE=32
+	,FREESAT_SCHEDULE_OTHER=64
+#endif
+	,VIASAT=256
+#ifdef ENABLE_NETMED
+	,NETMED_SCHEDULE=512
+	,NETMED_SCHEDULE_OTHER=1024
+#endif
+#ifdef ENABLE_VIRGIN
+	,VIRGIN_NOWNEXT=2048
+	,VIRGIN_SCHEDULE=4096
+#endif
+	,EPG_IMPORT=0x80000000
+	};
+
+private:
 #ifndef SWIG
 	DECLARE_REF(eEPGCache)
 	struct channel_data: public Object
@@ -253,14 +278,17 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
 		void storeMHWTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
 #endif
-		void readData(const __u8 *data, int source);
+		void readData(const __u8 *data, eEPGCache::eit_type_t source);
 		void startChannel();
 		void startEPG();
 		bool finishEPG();
 		void abortEPG();
 		void abortNonAvail();
 	};
-	bool FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
+
+	typedef std::map<iDVBChannel*, channel_data*>::iterator channelMapIterator;
+
+	bool FixOverlapping(serviceMap &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
 public:
 	struct Message
 	{
@@ -327,7 +355,7 @@ private:
 #ifdef ENABLE_PRIVATE_EPG
 	void privateSectionRead(const uniqueEPGKey &, const __u8 *);
 #endif
-	void sectionRead(const __u8 *data, int source, channel_data *channel);
+	void sectionRead(const __u8 *data, eit_type_t source, channel_data *channel);
 	void gotMessage(const Message &message);
 	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
 	void cleanLoop();
@@ -411,26 +439,6 @@ public:
 	SWIG_VOID(RESULT) lookupEventTime(const eServiceReference &service, time_t, ePtr<eServiceEvent> &SWIG_OUTPUT, int direction=0);
 	SWIG_VOID(RESULT) getNextTimeEntry(ePtr<eServiceEvent> &SWIG_OUTPUT);
 
-	enum {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4
-#ifdef ENABLE_MHW_EPG
-	,MHW=8
-#endif
-#ifdef ENABLE_FREESAT
-	,FREESAT_NOWNEXT=16
-	,FREESAT_SCHEDULE=32
-	,FREESAT_SCHEDULE_OTHER=64
-#endif
-	,VIASAT=256
-#ifdef ENABLE_NETMED
-	,NETMED_SCHEDULE=512
-	,NETMED_SCHEDULE_OTHER=1024
-#endif
-#ifdef ENABLE_VIRGIN
-	,VIRGIN_NOWNEXT=2048
-	,VIRGIN_SCHEDULE=4096
-#endif
-	,EPG_IMPORT=0x80000000
-	};
 	void setEpgHistorySeconds(time_t seconds);
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
@@ -451,6 +459,7 @@ inline void eEPGCache::Unlock()
 {
 	pthread_mutex_unlock(&cache_lock);
 }
+
 #endif
 
 #endif
