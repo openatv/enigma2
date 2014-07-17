@@ -12,10 +12,15 @@ dist_pkgdata_DATA = \
 	skin_default.xml \
 	skin_subtitles.xml \
 	skin.xml \
-	startwizard.xml \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml
+
+if GBIPBOX
+dist_pkgdata_DATA += startwizard.xml
+else
+dist_pkgdata_DATA += gbipbox/startwizard.xml
+endif
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml
