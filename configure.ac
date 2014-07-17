@@ -432,6 +432,7 @@ Makefile
 data/Makefile
 data/fonts/Makefile
 data/extensions/Makefile
+data/gbipbox/Makefile
 data/keymaps/Makefile
 data/displaytext/Makefile
 data/display96/Makefile
