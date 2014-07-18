@@ -26,18 +26,18 @@ import os
 
 config.pluginfilter = ConfigSubsection()
 config.pluginfilter.kernel = ConfigYesNo(default = False)
-config.pluginfilter.drivers = ConfigYesNo(default = True)
+config.pluginfilter.drivers = ConfigYesNo(default = False)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
 config.pluginfilter.picons = ConfigYesNo(default = True)
 config.pluginfilter.pli = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = False)
-config.pluginfilter.settings = ConfigYesNo(default = True)
+config.pluginfilter.settings = ConfigYesNo(default = False)
 config.pluginfilter.skins = ConfigYesNo(default = True)
 config.pluginfilter.softcams = ConfigYesNo(default = True)
-config.pluginfilter.systemplugins = ConfigYesNo(default = False)
+config.pluginfilter.systemplugins = ConfigYesNo(default = True)
 config.pluginfilter.skincomponents = ConfigYesNo(default = False)
 config.pluginfilter.codec = ConfigYesNo(default = False)
-config.pluginfilter.dvb = ConfigYesNo(default = True)
+config.pluginfilter.dvb = ConfigYesNo(default = False)
 config.pluginfilter.userfeed = ConfigText(default = 'http://', fixed_size=False)
 
 def languageChanged():
