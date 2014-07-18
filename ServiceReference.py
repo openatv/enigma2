@@ -1,4 +1,5 @@
 from enigma import eServiceReference, eServiceCenter, getBestPlayableServiceReference
+from Components.SystemInfo import SystemInfo
 import NavigationInstance
 
 class ServiceReference(eServiceReference):
@@ -47,7 +48,10 @@ def getPlayingref(ref):
 
 def isPlayableForCur(ref):
 	info = eServiceCenter.getInstance().info(ref)
-	return not not (info and info.isPlayable(ref, getPlayingref(ref)))
+	if SystemInfo["isGBIPBOX"]:
+		return not (info and info.isPlayable(ref, getPlayingref(ref)))
+	else:
+		return not not (info and info.isPlayable(ref, getPlayingref(ref)))
 
 def resolveAlternate(ref):
 	nref = None
