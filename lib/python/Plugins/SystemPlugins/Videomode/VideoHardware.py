@@ -3,6 +3,7 @@ from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesN
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
+from os import path
 import os
 
 from boxbranding import getBoxType
