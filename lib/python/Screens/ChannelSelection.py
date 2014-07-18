@@ -154,13 +154,11 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 
 					if SystemInfo["PIPAvailable"]:
-						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
-						if parentalControlEnabled and parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							if not csel.dopipzap:
-								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level = 0, key = "blue")
-								self.pipAvailable = True
-							else:
-								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
+						if not csel.dopipzap:
+							append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level = 0, key = "blue")
+							self.pipAvailable = True
+						else:
+							append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
 				else:
 					if 'FROM SATELLITES' in current_root.getPath():
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
