@@ -918,57 +918,30 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 	std::list<eServiceReference> &list = bouquet.m_services;
 	for (std::list<eServiceReference>::iterator it = list.begin(); it != list.end(); ++it)
 	{
-		eServiceReference &tmp = *it;
-		if ( tmp.flags&eServiceReference::canDescent )
+		eServiceReference &ref = *it;
+		if (ref.flags & eServiceReference::canDescent)
 		{
-			size_t pos = tmp.path.rfind('/');
-			char buf[256];
-			std::string path = tmp.path;
-			if ( pos != std::string::npos )
-				path.erase(0, pos+1);
-			if (path.empty())
+			std::string filename = ref.toString();
+			size_t pos = filename.find("FROM BOUQUET ");
+			if(pos != std::string::npos)
 			{
-				eDebug("Bouquet load failed.. no filename given..");
-				continue;
-			}
-			pos = path.find("FROM BOUQUET ");
-			if (pos != std::string::npos)
-			{
-				char endchr = path[pos+13];
-				if (endchr != '"')
+				char endchr = filename[pos+13];
+				if (endchr == '"')
 				{
-					eDebug("ignore invalid bouquet '%s' (only \" are allowed)", tmp.toString().c_str());
-					continue;
+					char *beg = &filename[pos+14];
+					char *end = strchr(beg, endchr);
+					filename.assign(beg, end - beg);
+					eBouquet &subBouquet = m_bouquets[filename];
+					if (m_numbering_mode || filename.find("alternatives.") == 0)
+						renumberBouquet(subBouquet);
+					else
+						startChannelNum = renumberBouquet(subBouquet, startChannelNum);
 				}
-				char *beg = &path[pos+14];
-				char *end = strchr(beg, endchr);
-				path.assign(beg, end - beg);
 			}
-			else
-			{
-				snprintf(buf, sizeof(buf), "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
-			}
-
-			if (!path.length())
-			{
-				continue;
-			}
-			pos = path.rfind('/');
-			if ( pos != std::string::npos )
-				path.erase(0, pos+1);
-			if (path.empty())
-			{
-				continue;
-			}
-			eBouquet &subBouquet = m_bouquets[path];
-			if (m_numbering_mode || path.find("alternatives.") == 0)
-				renumberBouquet(subBouquet);
-			else
-				startChannelNum = renumberBouquet(subBouquet, startChannelNum);
 		}
-		if( !(tmp.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
-		   (tmp.flags & eServiceReference::isNumberedMarker) )
-			tmp.number = startChannelNum++;
+		if( !(ref.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
+		   (ref.flags & eServiceReference::isNumberedMarker) )
+			ref.number = startChannelNum++;
 
 	}
 	return startChannelNum;
