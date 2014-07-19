@@ -849,7 +849,6 @@ void eDVBDB::loadBouquet(const char *path)
 			else
 				snprintf(buf, sizeof(buf), "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
 			eServiceReference tmp(buf);
-			tmp.path = buf + 20;
 			loadBouquet(userbouquetsfiles[i].c_str());
 			list.push_front(tmp);
 			++entries;
