@@ -89,6 +89,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
+	
+#if KEY_MODE_TO_KEY_AUDIO
+	if (ev->code == KEY_MODE)
+	{
+		/* ebox Remote rc has a AV key, which sends KEY_MODE events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_AUDIO;
+		
+	}
+#endif	
 
 #if KEY_VIDEO_IS_KEY_SCREEN
 	if (ev->code == KEY_VIDEO)
