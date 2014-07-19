@@ -112,7 +112,7 @@ class ChannelContextMenu(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
 				"blue": self.showServiceInPiP,
-				"menu": self.menu,
+				"menu": self.openSetup,
 				"4": self.renameEntry,
 				"5": self.removeCurrentService,
 				"6": self.toggleMoveMode
@@ -217,7 +217,7 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append(ChoiceEntryComponent("menu", text = (_("Configuration..."), self.menu)))
+		menu.append(ChoiceEntryComponent("menu", text = (_("Configuration..."), self.openSetup)))
 		self["menu"] = ChoiceList(menu)
 
 	def playMain(self):
@@ -230,9 +230,9 @@ class ChannelContextMenu(Screen):
 	def okbuttonClick(self):
 		self["menu"].getCurrent()[0][1]()
 
-	def openSetup(self, key):
+	def openSetup(self):
 		from Screens.Setup import Setup
-		self.session.open(Setup, key)
+		self.session.open(Setup, "userinterface")
 
 	def cancelClick(self):
 		self.close(False)
@@ -403,9 +403,6 @@ class ChannelContextMenu(Screen):
 		self.csel.addAlternativeServices()
 		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
 		self.close()
-
-	def menu(self):
-		self.openSetup("userinterface")
 
 class SelectionEventInfo:
 	def __init__(self):
