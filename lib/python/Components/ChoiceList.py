@@ -13,7 +13,7 @@ def ChoiceEntryComponent(key = "", text = ["--"]):
 
 		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/key_" + key + ".png"))
 		if png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 35, 25, png))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 30, 30, png))
 
 	return res
 
