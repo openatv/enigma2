@@ -132,9 +132,9 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
-	def setLEDStandby(configElement):
+	def setLEDStandby(self, value):
 		file = open("/proc/stb/power/standbyled", "w")
-		file.write(configElement.value and "on" or "off")
+		file.write(value and "on" or "off")
 		file.close()
 
 	def setLCDMiniTVMode(self, value):
@@ -178,13 +178,12 @@ def InitLcd():
 	config.lcd = ConfigSubsection()
 
 	if SystemInfo["StandbyLED"]:
+		def setLEDstandby(configElement):
+			ilcd.setLEDStandby(configElement.value)
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(setLEDstandby)
 
 	if SystemInfo["LEDButtons"]:
-		def setLEDstandby(configElement):
-			ilcd.setLEDStandby(configElement.value)
-
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value)
 
