@@ -181,7 +181,7 @@ class ChannelContextMenu(Screen):
 				if current_root and ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_root.getPath():
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level=0)
 			else:
-					menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
+					menu.append(ChoiceEntryComponent(text=(_("add bouquet"), self.showBouquetInputBox)))
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="4")
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level=0, key="5")
 
@@ -191,7 +191,7 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 						if current.type != -1:
-							menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
+							menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
 						if haveBouquets:
 							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
 						else:
@@ -259,7 +259,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showBouquetInputBox(self):
-		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width = 56, type=Input.TEXT)
+		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
@@ -271,7 +271,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def removeParentalProtection(self, service):
-		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList = [config.ParentalControl.servicepin[0].value], triesEntry = config.ParentalControl.retries.servicepin, title = _("Enter the service pin"), windowTitle = _("Change pin code"))
+		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Change pin code"))
 
 	def pinEntered(self, service, result):
 		if result:
@@ -308,7 +308,7 @@ class ChannelContextMenu(Screen):
 		if cnt > 1: # show bouquet list
 			self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
-			self.addCurrentServiceToBouquet(bouquets[0][1], closeBouquetSelection = False)
+			self.addCurrentServiceToBouquet(bouquets[0][1], closeBouquetSelection=False)
 
 	def bouquetSelClosed(self, recursive):
 		self.bsel = None
@@ -336,14 +336,14 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showMarkerInputBox(self):
-		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width = 56, type=Input.TEXT)
+		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
 
 	def markerInputCallback(self, marker):
 		if marker is not None:
 			self.csel.addMarker(marker)
 		self.close()
 
-	def addCurrentServiceToBouquet(self, dest, closeBouquetSelection = True):
+	def addCurrentServiceToBouquet(self, dest, closeBouquetSelection=True):
 		self.csel.addServiceToBouquet(dest)
 		if self.bsel is not None:
 			self.bsel.close(True)
@@ -461,7 +461,7 @@ class ChannelSelectionEPG:
 				break
 		epg.setService(ServiceReference(self.getCurrentSelection()))
 
-	def zapToService(self, service, preview = False, zapback = False):
+	def zapToService(self, service, preview=False, zapback=False):
 		if self.startServiceRef is None:
 			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
@@ -472,7 +472,7 @@ class ChannelSelectionEPG:
 				self.servicelist.enterPath(self.epg_bouquet)
 			self.servicelist.setCurrent(service)
 		if not zapback or preview:
-			self.zap(enable_pipzap = True)
+			self.zap(enable_pipzap=True)
 		if (self.dopipzap or zapback) and not preview:
 			self.zapBack()
 		if not preview:
@@ -491,7 +491,7 @@ class ChannelSelectionEdit:
 		self.current_ref = None
 
 		class ChannelSelectionEditActionMap(ActionMap):
-			def __init__(self, csel, contexts = [ ], actions = { }, prio=0):
+			def __init__(self, csel, contexts=[ ], actions={ }, prio=0):
 				ActionMap.__init__(self, contexts, actions, prio)
 				self.csel = csel
 
@@ -775,7 +775,7 @@ class ChannelSelectionEdit:
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
 				if not bouquet and ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.channelSelected(doClose = False)
+					self.channelSelected(doClose=False)
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
@@ -831,7 +831,7 @@ class ChannelSelectionEdit:
 	def doContext(self):
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
 
-	def exitContext(self, close = False):
+	def exitContext(self, close=False):
 		if close:
 			self.cancel()
 
@@ -1479,7 +1479,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def doRadioButton(self):
 		if self.mode == MODE_RADIO:
-			self.channelSelected(doClose = False)
+			self.channelSelected(doClose=False)
 		else:
 			self.setModeRadio()
 
@@ -1520,7 +1520,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif not (ref.flags & eServiceReference.isMarker or ref.type == -1):
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = doClose, preview_zap = not doClose)
+				self.zap(enable_pipzap=doClose, preview_zap=not doClose)
 				self.asciiOff()
 				if doClose:
 					if self.dopipzap:
