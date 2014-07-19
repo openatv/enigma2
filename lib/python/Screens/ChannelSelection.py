@@ -120,7 +120,6 @@ class ChannelContextMenu(Screen):
 			})
 		menu = [ ]
 
-		self.pipAvailable = False
 		current = csel.getCurrentSelection()
 		current_root = csel.getRoot()
 		current_sel_path = current.getPath()
@@ -161,11 +160,8 @@ class ChannelContextMenu(Screen):
 
 					if SystemInfo["PIPAvailable"]:
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							if not csel.dopipzap:
-								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
-								self.pipAvailable = True
-							else:
-								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
+							append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
+							append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
 				else:
 					if 'FROM SATELLITES' in current_root.getPath():
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level=0)
@@ -282,8 +278,6 @@ class ChannelContextMenu(Screen):
 
 	def showServiceInPiP(self):
 		if self.parentalControlEnabled and not self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1:
-			return 0
-		if not self.pipAvailable:
 			return 0
 		if self.session.pipshown:
 			del self.session.pip
