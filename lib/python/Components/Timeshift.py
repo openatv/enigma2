@@ -93,6 +93,7 @@ class InfoBarTimeshift:
 		self.ts_rewind_timer = eTimer()
 		self.ts_rewind_timer.callback.append(self.rewindService)
 		self.save_timeshift_file = False
+		self.saveTimeshiftEventPopupActive = False
 
 		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
 			{
@@ -495,7 +496,9 @@ class InfoBarTimeshift:
 	def activateAutorecordTimeshift(self):
 		self.createTimeshiftFolder()
 		if self.pts_eventcount == 0: #only cleanup folder after switching channels, not when a new event starts, to allow saving old events from timeshift buffer
-			self.ptsCleanTimeshiftFolder()
+			self.ptsCleanTimeshiftFolder(justZapped = True)  #remove all timeshift files
+		else:
+			self.ptsCleanTimeshiftFolder(justZapped = False) #only delete very old timeshift files based on config.usage.timeshiftMaxHours
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
@@ -549,6 +552,7 @@ class InfoBarTimeshift:
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftEventPopup(self):
+		self.saveTimeshiftEventPopupActive = True
 		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
@@ -575,6 +579,7 @@ class InfoBarTimeshift:
 						entrylist.append((_("Record") + " #%s (%s): %s" % (filecount,strftime("%H:%M",localtime(int(begintime))),eventname), "%s" % filename))
 
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save permanently?"), list=entrylist)
+		self.saveTimeshiftEventPopupActive = False
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		# print 'saveTimeshiftActions'
@@ -774,26 +779,41 @@ class InfoBarTimeshift:
 				Notifications.AddNotification(MessageBox, _("Timeshift save failed!")+"\n\n%s" % errormessage, MessageBox.TYPE_ERROR, timeout=30)
 		# print 'SAVE COMPLETED'
 
-	def ptsCleanTimeshiftFolder(self):
+	def ptsCleanTimeshiftFolder(self, justZapped = True):
 		# print '!!!!!!!!!!!!!!!!!!!!! ptsCleanTimeshiftFolder'
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
 			return
 
 		for filename in os.listdir(config.usage.timeshift_path.value):
-			if (filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_")) and (filename.endswith(".del") is False and filename.endswith(".copy") is False):
+			if (os.path.exists("%s%s" % (config.usage.timeshift_path.value,filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
 				# print 'filename:',filename
-				statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename)) # if no write for 3 sec = stranded timeshift
-				if statinfo.st_mtime < (time()-3.0):
-				# try:
-					# print "[TimeShift] Erasing stranded timeshift %s" % filename
+				statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename))
+				if (justZapped is True) and (statinfo.st_mtime < (time()-3.0) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False)):
+					# after zapping, remove all regular timeshift files that are older than 3 seconds
+					# print "[TimeShift] Erasing stranded timeshift file %s" % filename
 					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
-
-					# Delete Meta and EIT File too
-					# if filename.startswith("pts_livebuffer_") is True:
-					# 	self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.value,filename))
-					# 	self.BgFileEraser.erase("%s%s.eit" % (config.usage.timeshift_path.value,filename))
-				# except:
-				# 	print "[TimeShift] IO-Error while cleaning Timeshift Folder ..."
+				elif (filename.endswith(".eit") is False) and (filename.endswith(".meta") is False) and (filename.endswith(".sc") is False) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
+					# remove old files, but only complete sets of files (base file, .eit, .meta, .sc),
+					# and not while saveTimeshiftEventPopup is active (avoid deleting files about to be saved)
+					# and don't delete the file currently playing
+					if (statinfo.st_mtime < (time()-3600*config.timeshift.timeshiftMaxHours.value)) and (self.saveTimeshiftEventPopupActive is False) and not(filename == ("pts_livebuffer_%s" % self.pts_currplaying)):
+						# print "[TimeShift] Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename
+						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
+						if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value,filename)):
+							self.BgFileEraser.erase("%s%s.eit" % (config.usage.timeshift_path.value,filename))
+						if os.path.exists("%s%s.meta" % (config.usage.timeshift_path.value,filename)):
+							self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.value,filename))
+						if os.path.exists("%s%s.sc" % (config.usage.timeshift_path.value,filename)):
+							self.BgFileEraser.erase("%s%s.sc" % (config.usage.timeshift_path.value,filename))
+ 				else:
+					# remove anything still left over another 24h later
+					if statinfo.st_mtime < (time()-3600*(24+config.timeshift.timeshiftMaxHours.value)):
+						# print "[TimeShift] Erasing very old timeshift file %s" % filename
+						if filename.endswith(".del") is True:
+							os.rename("%s%s" % (config.usage.timeshift_path.value,filename), "%s%s.del_again" % (config.usage.timeshift_path.value,filename))
+							self.BgFileEraser.erase("%s%s.del_again" % (config.usage.timeshift_path.value,filename))
+						else:
+							self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 
 	def ptsGetEventInfo(self):
 		event = None
