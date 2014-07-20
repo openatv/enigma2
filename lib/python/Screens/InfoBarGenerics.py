@@ -3228,6 +3228,7 @@ class InfoBarInstantRecord:
 			InfoBarInstance = InfoBar.instance
 			if InfoBarInstance:
 				self.recording = InfoBarInstance.recording
+		self.saveTimeshiftEventPopupActive = False
 
 	def stopCurrentRecording(self, entry = -1):
 		if entry is not None and entry != -1:
@@ -3323,6 +3324,7 @@ class InfoBarInstantRecord:
 		# print 'test1'
 		if answer is None or answer[1] == "no":
 			# print 'test2'
+			self.saveTimeshiftEventPopupActive = False
 			return
 		list = []
 		recording = self.recording[:]
@@ -3370,6 +3372,9 @@ class InfoBarInstantRecord:
 		elif answer[1].startswith("pts_livebuffer") is True:
 			# print 'test2'
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
+
+		if answer[1] != "savetimeshiftEvent":
+			self.saveTimeshiftEventPopupActive = False
 
 	def setEndtime(self, entry):
 		if entry is not None and entry >= 0:
