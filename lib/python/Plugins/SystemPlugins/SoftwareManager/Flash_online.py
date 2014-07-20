@@ -443,10 +443,20 @@ class doFlashImage(Screen):
 					dest = flashTmp + '/rootfs.bin'
 					shutil.copyfile(binfile, dest)
 					rootfs = False
+				elif name.find('uImage') > -1 and kernel:
+					binfile = os.path.join(path, name)
+					dest = flashTmp + '/uImage'
+					shutil.copyfile(binfile, dest)
+					kernel = False
+				elif name.find('e2jffs2') > -1 and name.endswith('.img') and rootfs:
+					binfile = os.path.join(path, name)
+					dest = flashTmp + '/e2jffs2.img'
+					shutil.copyfile(binfile, dest)
+					rootfs = False
 					
 	def yellow(self):
 		if not self.Online:
-			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
+			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2|img)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
 		else:
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 			self.session.openWithCallback(self.green,BackupScreen, runBackup = True)
@@ -478,7 +488,7 @@ class doFlashImage(Screen):
 			os.mkdir(flashTmp)
 			if binorzip == 0:
 				for files in os.listdir(self.imagePath):
-					if files.endswith(".bin") or files.endswith('.jffs2'):
+					if files.endswith(".bin") or files.endswith('.jffs2') or files.endswith('.img'):
 						self.prepair_flashtmp(strPath)
 						break
 				self.Start_Flashing()
