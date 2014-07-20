@@ -186,7 +186,7 @@ class ImageBackup(Screen):
 		system("mount --bind / /tmp/bi/root")
 
 		if self.ROOTFSTYPE == "jffs2":
-			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.JFFS2OPTIONS)
+			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 		else:
 			f = open("%s/ubinize.cfg" %self.WORKDIR, "w")
