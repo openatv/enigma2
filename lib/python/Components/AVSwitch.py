@@ -328,4 +328,5 @@ def InitAVSwitch():
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
 
-	config.av.edid_override = ConfigYesNo(default = False)
+	config.av.edid_override = ConfigYesNo(default = True)
+
