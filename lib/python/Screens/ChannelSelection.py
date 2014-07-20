@@ -161,8 +161,10 @@ class ChannelContextMenu(Screen):
 
 					if SystemInfo["PIPAvailable"]:
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
-							append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
+							if self.csel.dopipzap:
+								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
+							else:	
+								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
 				else:
 					if 'FROM SATELLITES' in current_root.getPath():
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level=0)
@@ -230,11 +232,11 @@ class ChannelContextMenu(Screen):
 
 	def playMain(self):
 		sel = self.csel.getCurrentSelection()
-		if sel and sel.valid() and (not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+		if sel and sel.valid() and self.csel.dopipzap and (not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
 			self.csel.zap()
 			self.csel.setCurrentSelection(sel)
 			self.close(True)
-		else:	
+		else:
 			return 0
 
 	def okbuttonClick(self):
@@ -288,7 +290,7 @@ class ChannelContextMenu(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def showServiceInPiP(self):
-		if self.parentalControlEnabled and not self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1:
+		if self.csel.dopipzap or (self.parentalControlEnabled and not self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
 			return 0
 		if self.session.pipshown:
 			del self.session.pip
