@@ -115,11 +115,12 @@ class ChannelContextMenu(Screen):
 				"red": self.playMain,
 				"menu": self.openSetup,
 				"4": self.renameEntry,
-				"5": self.removeCurrentService,
+				"5": self.removeEntry,
 				"6": self.toggleMoveMode
 			})
 		menu = [ ]
 
+		self.removeFunction = False
 		current = csel.getCurrentSelection()
 		current_root = csel.getRoot()
 		current_sel_path = current.getPath()
@@ -174,12 +175,14 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="4")
 					if not inAlternativeList:
 						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0, key="5")
+						self.removeFunction = self.removeCurrentService
 				if current_root and ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_root.getPath():
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level=0)
 			else:
 					menu.append(ChoiceEntryComponent(text=(_("add bouquet"), self.showBouquetInputBox)))
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="4")
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level=0, key="5")
+					self.removeFunction = self.removeBouquet
 
 		if inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
@@ -211,6 +214,7 @@ class ChannelContextMenu(Screen):
 					if current_sel_flags & eServiceReference.isMarker:
 						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="4")
 						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0, key="5")
+						self.removeFunction = self.removeCurrentService
 				else:
 					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level=0)
 					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level=0)
@@ -218,13 +222,20 @@ class ChannelContextMenu(Screen):
 		menu.append(ChoiceEntryComponent("menu", (_("Configuration..."), self.openSetup)))
 		self["menu"] = ChoiceList(menu)
 
-	def playMain(self):
-		if self.parentalControlEnabled and not self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1:
+	def removeEntry(self):
+		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.removeFunction()
+		else:
 			return 0
+
+	def playMain(self):
 		sel = self.csel.getCurrentSelection()
-		self.csel.zap()
-		self.csel.setCurrentSelection(sel)
-		self.close(True)
+		if sel and sel.valid() and (not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+			self.csel.zap()
+			self.csel.setCurrentSelection(sel)
+			self.close(True)
+		else:	
+			return 0
 
 	def okbuttonClick(self):
 		self["menu"].getCurrent()[0][1]()
@@ -284,14 +295,17 @@ class ChannelContextMenu(Screen):
 		self.session.pip = self.session.instantiateDialog(PictureInPicture)
 		self.session.pip.show()
 		newservice = self.csel.servicelist.getCurrent()
-		if self.session.pip.playService(newservice):
-			self.session.pipshown = True
-			self.session.pip.servicePath = self.csel.getCurrentServicePath()
-			self.close(True)
+		if newservice and newservice.valid():
+			if self.session.pip.playService(newservice):
+				self.session.pipshown = True
+				self.session.pip.servicePath = self.csel.getCurrentServicePath()
+				self.close(True)
+			else:
+				self.session.pipshown = False
+				del self.session.pip
+				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.pipshown = False
-			del self.session.pip
-			self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+			return 0
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -325,9 +339,12 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def removeBouquet(self):
-		self.csel.removeBouquet()
-		eDVBDB.getInstance().reloadBouquets()
-		self.close()
+		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.removeBouquet()
+			eDVBDB.getInstance().reloadBouquets()
+			self.close()
+		else:
+			return 0
 
 	def showMarkerInputBox(self):
 		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
@@ -345,16 +362,25 @@ class ChannelContextMenu(Screen):
 			self.close(closeBouquetSelection) # close bouquet selection
 
 	def removeCurrentService(self):
-		self.csel.removeCurrentService()
-		self.close()
+		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.removeCurrentService()
+			self.close()
+		else:
+			return 0
 
 	def renameEntry(self):
-		self.csel.renameEntry()
-		self.close()
+		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.renameEntry()
+			self.close()
+		else:
+			return 0
 
 	def toggleMoveMode(self):
-		self.csel.toggleMoveMode()
-		self.close()
+		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.toggleMoveMode()
+			self.close()
+		else:
+			return 0
 
 	def bouquetMarkStart(self):
 		self.csel.startMarkedEdit(EDIT_BOUQUET)
@@ -526,10 +552,13 @@ class ChannelSelectionEdit:
 
 	def renameEntry(self):
 		cur = self.getCurrentSelection()
-		name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
-		name.replace('\xc2\x86', '').replace('\xc2\x87', '')
-		if name:
-			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+		if cur and cur.valid():
+			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
+			name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			if name:
+				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+		else:
+			return 0
 
 	def renameEntryCallback(self, name):
 		if name:
@@ -1241,31 +1270,33 @@ class ChannelSelectionBase(Screen):
 					self.servicelist.moveToChar(charstr[0])
 
 	def BouquetNumberActions(self, number):
-		if number == 1: #Set focus on current playing service when available in current userbouquet
-			currentSelectedService = self.servicelist.getCurrent()
-			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			self.servicelist.setCurrent(currentPlayingService)
-			if self.servicelist.getCurrent() != currentPlayingService:
-				self.servicelist.setCurrent(currentSelectedService)
-		elif number == 2: #set focus on service available from history in current userbouquet
-			currentSelectedService = self.servicelist.getCurrent()
-			root = self.getRoot()
-			service = None
-			for path in self.history:
-				if len(path) > 2 and path[1] == root:
-					service = path[2]
-			if service:
-				self.setCurrentSelection(service)
-				if self.servicelist.getCurrent() != service:
+		currentSelectedService = self.servicelist.getCurrent()
+		if currentSelectedService and currentSelectedService.valid():
+			if number == 1: #Set focus on current playing service when available in current userbouquet
+				currentSelectedService = self.servicelist.getCurrent()
+				currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+				self.servicelist.setCurrent(currentPlayingService)
+				if self.servicelist.getCurrent() != currentPlayingService:
 					self.servicelist.setCurrent(currentSelectedService)
-		elif number == 4:
-			self.renameEntry()
-		elif number == 5:
-			self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
-		elif number == 6:
-			self.toggleMoveMode()
-			if self.movemode and not self.entry_marked:
-				self.toggleMoveMarked()
+			elif number == 2: #set focus on service available from history in current userbouquet
+				currentSelectedService = self.servicelist.getCurrent()
+				root = self.getRoot()
+				service = None
+				for path in self.history:
+					if len(path) > 2 and path[1] == root:
+						service = path[2]
+				if service:
+					self.setCurrentSelection(service)
+					if self.servicelist.getCurrent() != service:
+						self.servicelist.setCurrent(currentSelectedService)
+			elif number == 4:
+				self.renameEntry()
+			elif number == 5:
+				self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
+			elif number == 6:
+				self.toggleMoveMode()
+				if self.movemode and not self.entry_marked:
+					self.toggleMoveMarked()
 
 	def removeCurrentServiceCallback(self, confirmation):
 		if confirmation:
