@@ -787,8 +787,8 @@ class InfoBarTimeshift:
 			if (os.path.exists("%s%s" % (config.usage.timeshift_path.value,filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
 				# print 'filename:',filename
 				statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename))
-				if (justZapped is True) and (statinfo.st_mtime < (time()-3.0) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False)):
-					# after zapping, remove all regular timeshift files that are older than 3 seconds
+				if (justZapped is True) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
+					# after zapping, remove all regular timeshift files
 					# print "[TimeShift] Erasing stranded timeshift file %s" % filename
 					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 				elif (filename.endswith(".eit") is False) and (filename.endswith(".meta") is False) and (filename.endswith(".sc") is False) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
