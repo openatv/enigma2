@@ -18,7 +18,11 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 4.0 openATV"
+VERSION = "Version 4.1 openATV"
+
+HaveGZkernel = True
+if getBrandOEM() in ("fulan"):
+	HaveGZkernel = False
 
 def Freespace(dev):
 	statdev = statvfs(dev)
@@ -217,24 +221,28 @@ class ImageBackup(Screen):
 		cmdlist.append('echo " "')
 		cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
-		cmdlist.append('echo "Check: kerneldump"')
+		
+		if HaveGZkernel:
+			cmdlist.append('echo "Check: kerneldump"')
 		cmdlist.append("sync")
-				
+
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
 
 	def doFullBackupCB(self):
-		ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
-		if ret:
-			text = "Kernel dump error\n"
-			text += "Please Flash your Kernel new and Backup again"
-			system('rm -rf /tmp/vmlinux.bin')
-			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
-			return
+		if HaveGZkernel:
+			ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
+			if ret:
+				text = "Kernel dump error\n"
+				text += "Please Flash your Kernel new and Backup again"
+				system('rm -rf /tmp/vmlinux.bin')
+				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+				return
 
 		cmdlist = []
 		cmdlist.append(self.message)
-		cmdlist.append('echo "Kernel dump OK"')
-		cmdlist.append("rm -rf /tmp/vmlinux.bin")
+		if HaveGZkernel:
+			cmdlist.append('echo "Kernel dump OK"')
+			cmdlist.append("rm -rf /tmp/vmlinux.bin")
 		cmdlist.append('echo "_________________________________________________"')
 		cmdlist.append('echo "Almost there... "')
 		cmdlist.append('echo "Now building the USB-Image"')
