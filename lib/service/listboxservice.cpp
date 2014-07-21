@@ -700,7 +700,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					xoffs = xoffset;
-					tmp.setWidth((!m_column_width ? tmp.width() : m_column_width < 0 ? area.width() / 2 : m_column_width) - xoffs);
+					tmp.setWidth(((!isPlayable || !m_column_width) ? tmp.width() : m_column_width < 0 ? area.width() / 2 : m_column_width) - xoffs);
 				}
 
 				eTextPara *para = new eTextPara(tmp);
@@ -711,7 +711,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					eRect bbox = para->getBoundBox();
 
-					int servicenameWidth = (!m_column_width ? bbox.width() : m_column_width < 0 ? area.width() / 2 : m_column_width);
+					int servicenameWidth = ((!isPlayable || !m_column_width) ? bbox.width() : m_column_width < 0 ? area.width() / 2 : m_column_width);
 					m_element_position[celServiceInfo].setLeft(area.left() + servicenameWidth + 8 + xoffs);
 					m_element_position[celServiceInfo].setTop(area.top());
 					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + 8 + xoffs));
