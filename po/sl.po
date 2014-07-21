@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: 2012-12-02 18:21+0100\n"
 "Last-Translator: Taykun345 <podpora@linux-sprejemniki.info>\n"
 "Language-Team: OldSkul <podpora@linux-sprejemniki.info>\n"
@@ -1079,9 +1079,8 @@ msgstr ""
 msgid "Begin time"
 msgstr "Začetek"
 
-#
-msgid "Behavior of 'pause' when paused"
-msgstr "Odziv tipke \"premor\""
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1477,6 +1476,9 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr ""
 
@@ -1494,9 +1496,6 @@ msgstr "Nastavi vmesnik"
 msgid "Configure nameservers"
 msgstr "Nastavite imenske strežnike"
 
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr ""
-
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Nastavitev omogoča, da določite, na katerih napravah naj bo uporabljeno možnost \"izbrisa v ozadju\"."
 
@@ -1513,8 +1512,8 @@ msgstr "Nastavitev IP naslova."
 msgid "Configure the aspect ratio of the screen."
 msgstr "Nastavitev razmerja slike za zaslon."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "Določitev obnašanja tipke \"premor\", ko je video posnetek že zamrznjen."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
@@ -2499,6 +2498,12 @@ msgstr "Elektronski spored programov (EPG)"
 msgid "Enable"
 msgstr "omogoči"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Omogoči 5V za potrebe aktivne antene"
@@ -2541,9 +2546,6 @@ msgstr "Freesat EPG sistem"
 #
 msgid "Enable multiple bouquets"
 msgstr "Omogoči sezname priljubljenih kanalov"
-
-msgid "Enable neutrino style zap controlling"
-msgstr ""
 
 #
 msgid "Enable parental control"
@@ -3594,6 +3596,9 @@ msgstr[3] "Verzija seznama %d, najdenih je %d kanalov"
 msgid "Listen to the radio..."
 msgstr "Poslušanje radia"
 
+msgid "Lists reloaded!"
+msgstr ""
+
 #
 msgid "Lithuanian"
 msgstr "Litvansko"
@@ -4436,6 +4441,9 @@ msgstr "Ustavite film na koncu"
 #
 msgid "Pause playback"
 msgstr "Pavzirajte predvajanje"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Odstotek na levi strani"
@@ -7070,6 +7078,9 @@ msgstr "Vrsta časovnika"
 msgid "Timeshift"
 msgstr "Časovni zamik"
 
+msgid "Timeshift Live"
+msgstr ""
+
 #
 msgid "Timeshift location"
 msgstr "Lokacija časovnega zamika"
@@ -7802,7 +7813,10 @@ msgstr "Kaj želite iskati?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -9522,8 +9536,15 @@ msgstr "preklopljen"
 #~ msgstr "BB"
 
 #
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Odziv tipke \"premor\""
+
+#
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "Commited DiSEqC ukaz"
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "Določitev obnašanja tipke \"premor\", ko je video posnetek že zamrznjen."
 
 #
 #~ msgid "DiSEqC repeats"

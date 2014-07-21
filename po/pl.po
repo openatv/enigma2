@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: 2014-06-28 16:58+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
@@ -1083,9 +1083,8 @@ msgstr "Baskijski"
 msgid "Begin time"
 msgstr "Czas rozpoczęcia"
 
-#
-msgid "Behavior of 'pause' when paused"
-msgstr "Zachowanie 'pauzy' gdy zatrzymany"
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1485,6 +1484,9 @@ msgstr "Skonfiguruj tryb pracy wentylatora"
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Skonfiguruj czy i jak wyświetlać w liście ikony informujące o tym, że kanał jest kodowany."
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr "Skonfiguruj czy i jak wyświetlać ikony typu w liście kanałów."
 
@@ -1501,9 +1503,6 @@ msgstr "Konfiguracja interfejsu"
 #
 msgid "Configure nameservers"
 msgstr "Konfiguracja DNS"
-
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr "Skonfiguruj jak długo ma być pamiętany kanał ostatnio uruchomiony w PiP."
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Skonfiguruj dla jakich urządzeń opcja usuwania w tle ma być użyta."
@@ -1522,8 +1521,8 @@ msgstr "Ustaw adres IP"
 msgid "Configure the aspect ratio of the screen."
 msgstr "Skonfiguruj aspect ratio."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "skonfiguruj zachowanie klawisza 'pauza' gdy odtwarzanie filmu jest już wstrzymane."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
@@ -2524,6 +2523,12 @@ msgstr "EPG"
 msgid "Enable"
 msgstr "Włącz"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
@@ -2568,10 +2573,6 @@ msgstr "Włącz freesat EPG"
 #
 msgid "Enable multiple bouquets"
 msgstr "Włącz tryb wielu bukietów"
-
-#
-msgid "Enable neutrino style zap controlling"
-msgstr "Sterowanie przełączaniem kanałów jak w neutrino"
 
 #
 msgid "Enable parental control"
@@ -3634,6 +3635,9 @@ msgstr[2] "Wersja listy %d, znaleziono %d kanałów"
 msgid "Listen to the radio..."
 msgstr "Słuchaj radia..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 #
 msgid "Lithuanian"
 msgstr "Litewski"
@@ -4491,6 +4495,9 @@ msgstr "Zatrzymaj film na końcu"
 #
 msgid "Pause playback"
 msgstr "Wstrzymaj odtwarzanie"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Procenty po lewej"
@@ -7183,6 +7190,9 @@ msgstr "Typ timera"
 msgid "Timeshift"
 msgstr ""
 
+msgid "Timeshift Live"
+msgstr ""
+
 #
 msgid "Timeshift location"
 msgstr "Lokalizacja timeshift"
@@ -7920,8 +7930,11 @@ msgstr "Co chcesz skanować?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Gdy włączone, PiP może być wyłączony klawiszem exit"
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
-msgstr "Gdy włączone, strzałki wokół przycisku OK na pilocie będą zachowywać się jak w neutrino."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
 msgstr "Gdy włączone, można określić przedział czasowy, w którym 'timer wyłączania' ma być ignorowany, gdy odbiornik jest w trybie czuwania."
@@ -9688,9 +9701,19 @@ msgstr "Przełączony"
 #~ msgstr "B"
 
 #
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Zachowanie 'pauzy' gdy zatrzymany"
+
+#
 #, fuzzy
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "Komenda DiSEqC 1.0"
+
+#~ msgid "Configure of and how long the latest service in the PiP will be remembered."
+#~ msgstr "Skonfiguruj jak długo ma być pamiętany kanał ostatnio uruchomiony w PiP."
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "skonfiguruj zachowanie klawisza 'pauza' gdy odtwarzanie filmu jest już wstrzymane."
 
 #, fuzzy
 #~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
@@ -9708,6 +9731,10 @@ msgstr "Przełączony"
 #, fuzzy
 #~ msgid "DiSEqC repeats"
 #~ msgstr "Powtórzenia DiSEqC 1.1"
+
+#
+#~ msgid "Enable neutrino style zap controlling"
+#~ msgstr "Sterowanie przełączaniem kanałów jak w neutrino"
 
 #, fuzzy
 #~ msgid "Goto specific data/time"
@@ -9760,6 +9787,9 @@ msgstr "Przełączony"
 #, fuzzy
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Komenda DiSEqC 1.0"
+
+#~ msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+#~ msgstr "Gdy włączone, strzałki wokół przycisku OK na pilocie będą zachowywać się jak w neutrino."
 
 #, fuzzy
 #~ msgid "Your receiver will shutdown due to inactivity."
