@@ -261,6 +261,7 @@ class QuickMenu(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
 		self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
 		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
+		self.sublist.append(QuickSubMenuEntryComponent("RemoteTuner",_("Setup Remote Tuner Server"),_("Setup Remote Tuner Server")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
@@ -420,6 +421,8 @@ class QuickMenu(Screen):
 			self.session.open(NetworkuShare)
 		elif item[0] == _("Telnet"):
 			self.session.open(NetworkTelnet)
+		elif item[0] == _("RemoteTuner"):
+			self.session.open(RemoteTunerServer)
 ######## Select System Setup Menu ##############################
 		elif item[0] == _("Customise"):
 			self.openSetup("usage")
