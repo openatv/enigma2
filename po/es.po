@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: 2011-04-12 22:26+0200\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: none\n"
@@ -1068,9 +1068,8 @@ msgstr ""
 msgid "Begin time"
 msgstr "Hora inicio"
 
-#
-msgid "Behavior of 'pause' when paused"
-msgstr "Tecla \"pausa\" cuando está parado"
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1472,6 +1471,9 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr ""
 
@@ -1488,9 +1490,6 @@ msgstr "Configurar interfaz"
 #
 msgid "Configure nameservers"
 msgstr "Configurar DNSs"
-
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
@@ -1511,7 +1510,7 @@ msgstr "Configurar interfaz"
 msgid "Configure the aspect ratio of the screen."
 msgstr ""
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
 msgstr ""
 
 #
@@ -2523,6 +2522,12 @@ msgstr "Guía de Programación Electrónica"
 msgid "Enable"
 msgstr "Activar"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Activar 5V para la antena activa"
@@ -2562,9 +2567,6 @@ msgstr ""
 #
 msgid "Enable multiple bouquets"
 msgstr "Habilitar multiples listas"
-
-msgid "Enable neutrino style zap controlling"
-msgstr ""
 
 #
 msgid "Enable parental control"
@@ -3665,6 +3667,9 @@ msgstr[1] ""
 msgid "Listen to the radio..."
 msgstr "escuchar radio..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 #
 msgid "Lithuanian"
 msgstr "Lituano"
@@ -4542,6 +4547,9 @@ msgstr "Parar película al final"
 #, fuzzy
 msgid "Pause playback"
 msgstr "Continuar reproducción"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr ""
@@ -7259,6 +7267,9 @@ msgstr "Tipo de grabación"
 msgid "Timeshift"
 msgstr "Pausa"
 
+msgid "Timeshift Live"
+msgstr ""
+
 #
 msgid "Timeshift location"
 msgstr "Ruta pausa grabación"
@@ -7992,7 +8003,10 @@ msgstr "¿Qué quiere buscar?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -9706,6 +9720,10 @@ msgstr "zapeado"
 #
 #~ msgid "BB"
 #~ msgstr "BB"
+
+#
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Tecla \"pausa\" cuando está parado"
 
 #
 #~ msgid "Committed DiSEqC command"

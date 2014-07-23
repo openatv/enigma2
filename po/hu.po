@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: 2014-02-11 21:04+0100\n"
 "Last-Translator: robertut <robertut@yahoo.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -905,8 +905,8 @@ msgstr "Baszk"
 msgid "Begin time"
 msgstr "Kezdési idő"
 
-msgid "Behavior of 'pause' when paused"
-msgstr "A 'szünet' gomb amikor a lejátszás szüneteltetve van"
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "Kép-a-Képben esetén a 0 gomb jelentése"
@@ -1236,6 +1236,9 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr "A csatornák típusának (földi, műholdas, stb.) megjelenítése, és annak módja és csatornalistában."
 
@@ -1250,9 +1253,6 @@ msgstr "Interfész konfigurálása"
 
 msgid "Configure nameservers"
 msgstr "Névszerverek konfigurálása"
-
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Milyen eszközökre legyen érvényes a háttérben történő törölgetés."
@@ -1269,8 +1269,8 @@ msgstr "Interfész konfigurálása"
 msgid "Configure the aspect ratio of the screen."
 msgstr "A kép méret-arányának beállítása."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "A 'szünet' gomb működése abban az esetben, amikor a lejástás már szüneteltetett állapotban van."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Mi történjen amikor egy fájl lejátszása kézzel meg van állítva."
@@ -2108,6 +2108,12 @@ msgstr "Elektronikus Műsorújság"
 msgid "Enable"
 msgstr "Engedélyezve"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
@@ -2143,9 +2149,6 @@ msgstr "Freesat EPG engedélyezése"
 
 msgid "Enable multiple bouquets"
 msgstr "Többszörös bouquetek engedélyezése"
-
-msgid "Enable neutrino style zap controlling"
-msgstr ""
 
 msgid "Enable parental control"
 msgstr "Gyermekzár engedélyezése"
@@ -3018,6 +3021,9 @@ msgstr[1] "%d listaverzió, %d csatornát találtam"
 msgid "Listen to the radio..."
 msgstr "Rádiólista megnyitása..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 msgid "Lithuanian"
 msgstr "Litván"
 
@@ -3715,6 +3721,9 @@ msgstr "Film megállítása a végén"
 
 msgid "Pause playback"
 msgstr "Lejátszás folytatása"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Százalék hátra"
@@ -5900,6 +5909,9 @@ msgstr "Időzítés típusa"
 msgid "Timeshift"
 msgstr "Időcsúsztatás"
 
+msgid "Timeshift Live"
+msgstr ""
+
 msgid "Timeshift location"
 msgstr "Időcsúsztatás tárhelye"
 
@@ -6507,7 +6519,10 @@ msgstr "Mit szeretne lekeresni?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kép-a-Képben bezárása a távírányító 'Exit' gomb megnyomásakor."
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -7995,6 +8010,9 @@ msgstr "ugrott"
 #~ msgid "BB"
 #~ msgstr "BB"
 
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "A 'szünet' gomb amikor a lejátszás szüneteltetve van"
+
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "Elkötelezett DiSEqC parancs"
 
@@ -8003,6 +8021,9 @@ msgstr "ugrott"
 
 #~ msgid "Configure if service picons will be shown in the servicelist."
 #~ msgstr "A csatornák pikonjainak megjelenítésének módja és lehetősége a csatornalistában."
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "A 'szünet' gomb működése abban az esetben, amikor a lejástás már szüneteltetett állapotban van."
 
 #~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
 #~ msgstr "Ennyi óra tétlenség után mi történjen: kikapcsolás, készenlét."
