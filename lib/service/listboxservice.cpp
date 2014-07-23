@@ -637,8 +637,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isMarker = ref.flags & eServiceReference::isMarker;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
-
-		bool isRecorded = checkServiceIsRecorded(ref);
+		bool isRecorded = isPlayable && checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
 
@@ -649,6 +648,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			else
 				painter.setForegroundColor(gRGB(0xbbbbbb));
 			serviceAvail = false;
+		}
+		if (m_record_indicator_mode == 3 && isRecorded)
+		{
+			if (m_color_set[serviceRecorded])
+				painter.setForegroundColor(m_color[serviceRecorded]);
+			else
+				painter.setForegroundColor(gRGB(0xbb0000));
 		}
 
 		if (selected && local_style && local_style->m_selection)
@@ -851,7 +857,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						}
 
 						//record icon stuff
-						if (m_record_indicator_mode && m_pixmaps[picRecord])
+						if (m_record_indicator_mode && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
 						{
 							eSize pixmap_size = m_pixmaps[picRecord]->size();
 							eRect area = m_element_position[celServiceInfo];
