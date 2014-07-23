@@ -400,7 +400,7 @@ void eEPGCache::timeUpdated()
 			messages.send(Message(Message::timeChanged));
 	}
 	else
-		eDebug("[EPGC] time updated.. but cache file not set yet.. dont start epg!!");
+		eDebug("[EPGC] time updated.. but cache file not set yet.. do not start epg!!");
 }
 
 void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
@@ -450,21 +450,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				RESULT res = demux->createSectionReader( this, data.m_NowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize nownext reader!!");
+					eDebug("[eEPGCache] could not initialize nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize schedule reader!!");
+					eDebug("[eEPGCache] could not initialize schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
+					eDebug("[eEPGCache] could not initialize schedule other reader!!");
 					return;
 				}
 
@@ -472,14 +472,14 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_VirginNowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize virgin nownext reader!!");
+					eDebug("[eEPGCache] could not initialize virgin nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_VirginScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize virgin schedule reader!!");
+					eDebug("[eEPGCache] could not initialize virgin schedule reader!!");
 					return;
 				}
 #endif
@@ -487,28 +487,28 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_NetmedScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize netmed schedule reader!!");
+					eDebug("[eEPGCache] could not initialize netmed schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_NetmedScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize netmed schedule other reader!!");
+					eDebug("[eEPGCache] could not initialize netmed schedule other reader!!");
 					return;
 				}
 #endif
 				res = demux->createSectionReader( this, data.m_ViasatReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize viasat reader!!");
+					eDebug("[eEPGCache] could not initialize viasat reader!!");
 					return;
 				}
 #ifdef ENABLE_PRIVATE_EPG
 				res = demux->createSectionReader( this, data.m_PrivateReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize private reader!!");
+					eDebug("[eEPGCache] could not initialize private reader!!");
 					return;
 				}
 #endif
@@ -516,13 +516,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_MHWReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize mhw reader!!");
+					eDebug("[eEPGCache] could not initialize mhw reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_MHWReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize mhw reader!!");
+					eDebug("[eEPGCache] could not initialize mhw reader!!");
 					return;
 				}
 #endif
@@ -530,13 +530,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat reader!!");
+					eDebug("[eEPGCache] could not initialize FreeSat reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat reader 2!!");
+					eDebug("[eEPGCache] could not initialize FreeSat reader 2!!");
 					return;
 				}
 #endif
@@ -630,11 +630,12 @@ bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, 
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
 			event.parseFrom(&evt, service.sid<<16|service.onid);
-			eDebug("[EPGC] (1) erase sid=%04x evt=%d\n"
+			eDebug("[EPGC] (1) erase svc(%x:%x:%x) evt=%04x\n"
 				"old event start=%ld, end=%ld\n"
 				"new event start=%ld, end=%ld\n"
 				"%s %s\n%s",
-				service.sid, event_id, (long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
+				service.onid, service.tsid, service.sid, event_id,
+				(long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
 				(long)TM, (long)TM + duration,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
@@ -669,11 +670,12 @@ bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, 
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
 			event.parseFrom(&evt, service.sid<<16|service.onid);
-			eDebug("[EPGC] (2) erase sid=%04x evt=%d\n"
+			eDebug("[EPGC] (2) erase svc(%x:%x:%x) evt=%04x\n"
 				"old event start=%ld, end=%ld\n"
 				"new event start=%ld, end=%ld\n"
 				"%s %s\n%s",
-				service.sid, event_id, (long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
+				service.onid, service.tsid, service.sid, event_id,
+				(long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
 				(long)TM, (long)TM + duration,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
@@ -807,15 +809,15 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			// search in eventmap
 			eventMap::iterator ev_it = servicemap.first.find(event_id);
 
-//			eDebug("event_id is %d sid is %04x", event_id, service.sid);
+//			eDebug("svc(%x:%x:%x) event_id %04x", service.onid, service.tsid, service.sid, event_id);
 
 			// entry with this event_id is already exist ?
 			if ( ev_it != servicemap.first.end() )
 			{
-//				eDebug("[EPGC] event %d in eventMap with start time %ld", event_id, (long)ev_it->second->getStartTime());
+//				eDebug("[EPGC] event %04x in eventMap with start time %ld", event_id, (long)ev_it->second->getStartTime());
 				if ( source > ev_it->second->type )  // update needed ?
 				{
-					eDebug("[EPGC] skip update: source=0x%x > type=0x%x", source, ev_it->second->type);
+					eDebug("[EPGC] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
 					goto next; // when not.. then skip this entry
 				}
 
@@ -825,7 +827,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				{
 					if ( tm_it_tmp->first == TM ) // just update eventdata
 					{
-						eDebug("[EPGC] event %d in timeMap with same start time - update and FixOverlap", event_id);
+//						eDebug("[EPGC] event %04x in timeMap with same start time - update and FixOverlap", event_id);
 						// exempt memory
 						eventData *tmp = ev_it->second;
 						ev_it->second = tm_it_tmp->second =
@@ -840,7 +842,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 					}
 					else  // event has new event begin time
 					{
-						eDebug("[EPGC] event %d in timeMap with a different start time - delete from timeMap", event_id);
+						eDebug("[EPGC] event %04x in timeMap with a different start time - delete from timeMap", event_id);
 						tm_erase_count++;
 						// delete the found record from timemap
 						servicemap.second.erase(tm_it_tmp);
@@ -849,12 +851,12 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				}
 				else
 				{
-					eDebug("[EPGC] event %d not found in timeMap at time %ld", event_id, (long)ev_it->second->getStartTime());
+					eDebug("[EPGC] event %04x not found in timeMap at time %ld", event_id, (long)ev_it->second->getStartTime());
 				}
 			}
 			else
 			{
-				eDebug("[EPGC] event %d not found in eventMap", event_id);
+				eDebug("[EPGC] event %04x not found in eventMap", event_id);
 			}
 
 			// search in timemap, for check of a case if new time has coincided with time of other event
@@ -862,12 +864,12 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			timeMap::iterator tm_it = servicemap.second.find(TM);
 			if ( tm_it != servicemap.second.end() )
 			{
-//				eDebug("[EPGC] event at time %ld in timeMap with id %d", (long)TM, tm_it->second->getEventID());
+//				eDebug("[EPGC] event at time %ld in timeMap with id %04x", (long)TM, tm_it->second->getEventID());
 				// event with same start time but another event_id...
 				if ( source > tm_it->second->type &&
 					ev_it == servicemap.first.end() )
 				{
-					eDebug("[EPGC] skip update: source=0x%x > type=0x%x && event %d not found in eventMap", source, tm_it->second->type, event_id);
+					eDebug("[EPGC] event at time %ld skip update: source=0x%x > type=0x%x && event %04x not found in eventMap", (long)TM, source, tm_it->second->type, event_id);
 					goto next; // when not.. then skip this entry
 				}
 
@@ -875,7 +877,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				eventMap::iterator ev_it_tmp = servicemap.first.find(tm_it->second->getEventID());
 				if ( ev_it_tmp != servicemap.first.end() )
 				{
-					eDebug("[EPGC] event at time %ld found in event map as %d - delete from eventMap", (long)TM, tm_it->second->getEventID());
+					eDebug("[EPGC] event at time %ld found in event map as %04x - delete from eventMap", (long)TM, tm_it->second->getEventID());
 					ev_erase_count++;
 					// delete the found record from eventmap
 					servicemap.first.erase(ev_it_tmp);
@@ -883,7 +885,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				}
 				else
 				{
-					eDebug("[EPGC] event at time %ld not found in eventMap as %d", (long)TM, tm_it->second->getEventID());
+					eDebug("[EPGC] event at time %ld not found in eventMap as %04x", (long)TM, tm_it->second->getEventID());
 				}
 			}
 			else
@@ -922,7 +924,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 #ifdef EPG_DEBUG
 				consistencyCheck=false;
 #endif
-				eDebug("[EPGC] add new event %d at time %ld", event_id, (long)TM);
+				eDebug("[EPGC] add new event %04x at time %ld", event_id, (long)TM);
 				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
 				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( TM, evt ) );
 			}
@@ -939,10 +941,10 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 					eFatal("timemap key(%ld) non equal TM(%ld)",
 						(long)tm_it->first, (long)TM);
 				else if ( ev_it->second->getEventID() != ev_it->first )
-					eFatal("event_id (%d) non equal event_map key(%d)",
+					eFatal("event_id (%04x) non equal event_map key(%04x)",
 						ev_it->second->getEventID(), ev_it->first);
 				else if ( ev_it->first != event_id )
-					eFatal("eventmap key(%d) non equal event_id(%d)",
+					eFatal("eventmap key(%04x) non equal event_id(%04x)",
 						ev_it->first, event_id );
 			}
 #endif
@@ -986,10 +988,10 @@ next:
 
 void eEPGCache::flushEPG(const uniqueEPGKey & s)
 {
-	eDebug("[EPGC] flushEPG %d", (int)(bool)s);
 	singleLock l(cache_lock);
 	if (s)  // clear only this service
 	{
+		eDebug("[EPGC] flushEPG svc(%x:%x:%x)", s.onid, s.tsid, s.sid);
 		eventCache::iterator it = eventDB.find(s);
 		if ( it != eventDB.end() )
 		{
@@ -1015,6 +1017,7 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 	}
 	else // clear complete EPG Cache
 	{
+		eDebug("[EPGC] flushEPG all services");
 		for (eventCache::iterator it(eventDB.begin());
 			it != eventDB.end(); ++it)
 		{
@@ -1036,6 +1039,12 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 	}
 }
 
+/**
+ * @brief Remove old events from the cache. An event is considered old
+ * if it's end time is earlier than @p eEPGCache::historySeconds ago.
+ *
+ * @return void
+ */
 void eEPGCache::cleanLoop()
 {
 	singleLock s(cache_lock);
@@ -1050,6 +1059,9 @@ void eEPGCache::cleanLoop()
 			{
 				if ( now > (It->first+It->second->getDuration()) )  // outdated normal entry (nvod references to)
 				{
+					eDebug("[EPGC] cleanLoop: svc(%x:%x:%x) delete old event %04x at time %ld",
+						DBIt->first.onid, DBIt->first.tsid, DBIt->first.sid,
+						It->second->getEventID(), (long) It->first);
 					// remove entry from eventMap
 					eventMap::iterator b(DBIt->second.first.find(It->second->getEventID()));
 					if ( b != DBIt->second.first.end() )
@@ -1418,7 +1430,7 @@ void eEPGCache::save()
 	tmp*=s.f_bsize;
 	if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 	{
-		eDebug("[EPGC] not enough free space at path '%s' %lld bytes availd but %d needed", buf, tmp, (eventData::CacheSize*12)/10);
+		eDebug("[EPGC] not enough free space at path '%s' %lld bytes avail but %d needed", buf, tmp, (eventData::CacheSize*12)/10);
 		fclose(f);
 		return;
 	}
@@ -2126,7 +2138,7 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
 	if ( itmap == freeSatSubTableStatus.end() )
 	{
 		// New sub table. Store version.
-		//eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
+//		eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
 		fsstatus = new freesatEITSubtableStatus(eit->version_number, eit->last_section_number);
 		m_FreesatTablesToComplete++;
 		freeSatSubTableStatus.insert(std::pair<__u32,freesatEITSubtableStatus>(subtableNo, *fsstatus));
