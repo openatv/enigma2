@@ -659,7 +659,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			if (m_color_set[serviceRecorded])
 				painter.setForegroundColor(m_color[serviceRecorded]);
 			else
-				painter.setForegroundColor(gRGB(0xbb0000));
+				painter.setForegroundColor(gRGB(0xb40431));
 		}
 		if (selected && local_style && local_style->m_selection)
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
