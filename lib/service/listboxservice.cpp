@@ -4,6 +4,7 @@
 #include <lib/gdi/epng.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
+#include <lib/nav/core.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
 
@@ -274,7 +275,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false), m_servicetype_icon_mode(0), m_crypto_icon_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_hide_number_marker(false), m_servicetype_icon_mode(0), m_crypto_icon_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2), m_record_indicator_mode(0)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -611,6 +612,18 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isMarker = ref.flags & eServiceReference::isMarker;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
+
+		std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > recordedServices;
+		recordedServices = eNavigation::getInstance()->getRecordingsServices();
+		bool isRecorded = false;
+		for (std::map<ePtr<iRecordableService>, eServiceReference >::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
+		{
+			if (ref == it->second)
+			{
+				isRecorded = true;
+				break;
+			}
+		}
 		ePtr<eServiceEvent> evt;
 
 		bool serviceAvail = true;
@@ -819,6 +832,35 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								}
 								painter.clip(area);
 								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+								painter.clippop();
+							}
+						}
+
+						//record icon stuff
+						if (m_record_indicator_mode && m_pixmaps[picRecord])
+						{
+							eSize pixmap_size = m_pixmaps[picRecord]->size();
+							eRect area = m_element_position[celServiceInfo];
+							int offs = 0;
+							if (isRecorded && m_record_indicator_mode == 1)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + 8;
+							}
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (isRecorded)
+							{
+								if (m_record_indicator_mode == 2)
+								{
+									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								}
+								painter.clip(area);
+								painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
 								painter.clippop();
 							}
 						}
