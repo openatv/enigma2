@@ -3,6 +3,7 @@
 #include <lib/gdi/font.h>
 #include <lib/gdi/epng.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/db.h>
 #include <lib/dvb/pmt.h>
 #include <lib/nav/core.h>
 #include <lib/python/connections.h>
@@ -526,6 +527,30 @@ void eListboxServiceContent::setItemHeight(int height)
 		m_listbox->setItemHeight(height);
 }
 
+bool eListboxServiceContent::checkServiceIsRecorded(eServiceReference ref)
+{
+	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > recordedServices;
+	recordedServices = eNavigation::getInstance()->getRecordingsServices();
+	for (std::map<ePtr<iRecordableService>, eServiceReference >::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
+	{
+		if (ref.flags & eServiceReference::isGroup)
+		{
+			ePtr<iDVBChannelList> db;
+			ePtr<eDVBResourceManager> res;
+			eDVBResourceManager::getInstance(res);
+			res->getChannelList(db);
+			eBouquet *bouquet=0;
+			db->getBouquet(ref, bouquet);
+			for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++it)
+				if (*i == it->second)
+					return true;
+		}
+		else if (ref == it->second)
+			return true;
+	}
+	return false;
+}
+
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	painter.clip(eRect(offset, m_itemsize));
@@ -613,19 +638,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		bool isMarker = ref.flags & eServiceReference::isMarker;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
 
-		std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > recordedServices;
-		recordedServices = eNavigation::getInstance()->getRecordingsServices();
-		bool isRecorded = false;
-		for (std::map<ePtr<iRecordableService>, eServiceReference >::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
-		{
-			if (ref == it->second)
-			{
-				isRecorded = true;
-				break;
-			}
-		}
+		bool isRecorded = checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
-
 		bool serviceAvail = true;
 
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))

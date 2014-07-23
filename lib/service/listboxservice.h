@@ -110,6 +110,7 @@ public:
 	};
 
 	void setColor(int color, gRGB &col);
+	bool checkServiceIsRecorded(eServiceReference ref);
 protected:
 	void cursorHome();
 	void cursorEnd();
