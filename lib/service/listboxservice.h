@@ -68,6 +68,7 @@ public:
 		picMarker,
 		picServiceEventProgressbar,
 		picCrypto,
+		picRecord,
 		picElements
 	};
 
@@ -81,9 +82,10 @@ public:
 
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
-	void setServiceTypeIconMode(int mode);
-	void setCryptoIconMode(int mode);
-	void setColumnWidth(int value);
+	void setServiceTypeIconMode(int mode) { m_servicetype_icon_mode = mode; }
+	void setCryptoIconMode(int mode) { m_crypto_icon_mode = mode; }
+	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
+	void setColumnWidth(int value) { m_column_width = value; }
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
@@ -160,6 +162,7 @@ private:
 	int m_itemheight;
 	int m_servicetype_icon_mode;
 	int m_crypto_icon_mode;
+	int m_record_indicator_mode;
 	int m_column_width;
 };
 
