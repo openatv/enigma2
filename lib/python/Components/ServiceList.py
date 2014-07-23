@@ -59,6 +59,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picCrypto, pic)
 
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/record.png"))
+		if pic:
+			self.l.setPixmap(self.l.picRecord, pic)
+
 		self.root = None
 		self.mode = self.MODE_NORMAL
 		self.listHeight = None
@@ -357,5 +361,5 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
-		# just merge note, config.usage.servicelist_column.value was allready there
+		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
 		self.l.setColumnWidth(int(config.usage.servicelist_column.value))

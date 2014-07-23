@@ -68,6 +68,7 @@ public:
 		picMarker,
 		picServiceEventProgressbar,
 		picCrypto,
+		picRecord,
 		picElements
 	};
 
@@ -83,7 +84,7 @@ public:
 	void setItemHeight(int height);
 	void setServiceTypeIconMode(int mode);
 	void setCryptoIconMode(int mode);
-	/* just merge note, setColumnWidth was allready there */
+	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 	void setColumnWidth(int value);
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
@@ -161,6 +162,7 @@ private:
 	int m_itemheight;
 	int m_servicetype_icon_mode;
 	int m_crypto_icon_mode;
+	int m_record_indicator_mode;
 	int m_column_width;
 };
 
