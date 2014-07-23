@@ -477,16 +477,10 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		if (getBrandOEM() in ('fulan')):	
-			config.av.bypass_edid_checking = ConfigSelection(choices={
-					"strict": _("off"),
-					"nonstrict": _("on")},
-					default = "nonstrict")
-		else:
-			config.av.bypass_edid_checking = ConfigSelection(choices={
-					"00000000": _("off"),
-					"00000001": _("on")},
-					default = "00000000")		
+		config.av.bypass_edid_checking = ConfigSelection(choices={
+				"00000000": _("off"),
+				"00000001": _("on")},
+				default = "00000001")
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
@@ -511,7 +505,7 @@ def InitAVSwitch():
 		config.av.audio_source = ConfigSelection(choices={
 				"pcm": _("PCM"),
 				"spdif": _("SPDIF")},
-				default="pcm")		
+				default="pcm")
 		config.av.audio_source.addNotifier(setAudioSource)
 	else:
 		config.av.audio_source = ConfigNothing()
@@ -554,7 +548,7 @@ def InitAVSwitch():
 		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
 		config.av.autovolume.addNotifier(setAutoVulume)
 	else:
-		config.av.autovolume = ConfigNothing()		
+		config.av.autovolume = ConfigNothing()
 
 	try:
 		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
