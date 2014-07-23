@@ -155,9 +155,9 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.close()
 
 	def keySave(self):
-		if config.ParentalControl.configured.value and config.ParentalControl.setuppinactive.value and config.ParentalControl.setuppin.value == 0000:
+		if config.ParentalControl.configured.value and config.ParentalControl.setuppinactive.value and config.ParentalControl.setuppin.value == 'aaaa':
 			self.session.openWithCallback(self.SetupPinMessageCallback, MessageBox, _("No valid setup PIN found!\nDo you like to change the setup PIN now?\nWhen you say 'No' here the setup protection stay disabled!"), MessageBox.TYPE_YESNO)
-		elif config.ParentalControl.configured.value and config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 0000:
+		elif config.ParentalControl.configured.value and config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 'aaaa':
 			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
 		else:
 			if config.ParentalControl.configured.value and not config.ParentalControl.setuppinactive.value and not config.ParentalControl.servicepinactive.value:
@@ -353,7 +353,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		return _("Please enter the old PIN code")
 
 	def isProtected(self):
-		return (self.pin.value != 0000)
+		return (self.pin.value != 'aaaa')
 
 	def protectedWithPin(self):
 		return self.pin.value
