@@ -637,7 +637,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isMarker = ref.flags & eServiceReference::isMarker;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
-		bool isRecorded = isPlayable && checkServiceIsRecorded(ref);
+		bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
 
@@ -857,12 +857,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						}
 
 						//record icon stuff
-						if (m_record_indicator_mode && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
+						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
 						{
 							eSize pixmap_size = m_pixmaps[picRecord]->size();
 							eRect area = m_element_position[celServiceInfo];
 							int offs = 0;
-							if (isRecorded && m_record_indicator_mode == 1)
+							if (m_record_indicator_mode == 1)
 							{
 								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
 								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
@@ -872,17 +872,14 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 							int correction = (area.height() - pixmap_size.height()) / 2;
 							area.moveBy(offset);
-							if (isRecorded)
+							if (m_record_indicator_mode == 2)
 							{
-								if (m_record_indicator_mode == 2)
-								{
-									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
-								}
-								painter.clip(area);
-								painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
-								painter.clippop();
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 							}
+							painter.clip(area);
+							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+							painter.clippop();
 						}
 					}
 				}
