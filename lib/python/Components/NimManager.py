@@ -1489,7 +1489,7 @@ def InitNimManager(nimmgr):
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
-			nim.simpleSingleSendDiSEqC = ConfigYesNo(True)
+			nim.simpleSingleSendDiSEqC = ConfigYesNo(False)
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
 			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
