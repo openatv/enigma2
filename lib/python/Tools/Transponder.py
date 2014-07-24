@@ -152,6 +152,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}.get(tp.get("inversion"))
 		print 'inversion:',tp.get("inversion")
 		ret["system"] = {
+			eDVBFrontendParametersTerrestrial.System_DVB_T_T2 : "DVB-T/T2",
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
 		print 'system:',tp.get("system")
