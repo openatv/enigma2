@@ -669,7 +669,7 @@ void ePicLoad::thread()
 
 void ePicLoad::decodePic()
 {
-	eDebug("[Picload] decode picture... %s",m_filepara->file);
+	// eDebug("[Picload] decode picture... %s",m_filepara->file);
 
 	switch(m_filepara->id)
 	{
@@ -859,7 +859,7 @@ void ePicLoad::gotMessage(const Message &msg)
 			}
 			break;
 		default:
-			eDebug("unhandled thread message");
+			eDebug("[Picload] unhandled thread message");
 	}
 }
 
@@ -1001,7 +1001,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	result = 0;
 	if (m_filepara == NULL)
 	{
-		eDebug("picload - Weird situation, I wasn't decoding anything!");
+		eDebug("[Picload] Weird situation, I wasn't decoding anything!");
 		return 1;
 	}
 	if(m_filepara->pic_buffer == NULL)
@@ -1188,7 +1188,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
 		m_conf.background = strtoul(bg_str+1, NULL, 16);
-	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+	// eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
 	return 1;
@@ -1201,7 +1201,7 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 {
 	long asp1, asp2;
 	result = 0;
-	eDebug("deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
+	eDebug("[Picload] deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
 	ePicLoad mPL;
 
 	switch(aspect)
