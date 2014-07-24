@@ -610,8 +610,8 @@ msgstr "3D Einstellungen"
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Verändern Sie die Farbeinstellungen, sodass Sie alle Farbabstufungen voneinander unterscheiden können, diese aber so gesättigt wie möglich dargestellt werden. Wenn Sie mit dem Ergebnis zufrieden sind, drücken Sie OK, um die Feineinstellungen zu beenden. Mit den Zahlentasten können Sie weitere Testbilder auswählen."
 
-msgid "advanced"
-msgstr "erweitert"
+msgid "Advanced"
+msgstr "Erweitert"
 
 msgid "Advanced options"
 msgstr "Erweiterte Optionen"
@@ -918,7 +918,7 @@ msgstr "Baskisch"
 msgid "Begin time"
 msgstr "Startzeit"
 
-msgid "Behavior of 'pause' when paused"
+msgid "Behavior of 'pause and ok' when paused"
 msgstr "Verhalten der Pausetaste bei Standbild"
 
 msgid "Behavior of 0 key in PiP-mode"
@@ -934,7 +934,7 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Verhalten beim Filmende"
 
 msgid "Big PiP"
-msgstr ""
+msgstr "Grosses PiP"
 
 msgid "Bitrate:"
 msgstr "Bitrate:"
@@ -1115,7 +1115,7 @@ msgid "Check the internet connection"
 msgstr "Überprüfe die Internet-Verbindung"
 
 msgid "Check the internet connection again"
-msgstr "Überprüfe erneut die Internet-Verbindung"
+msgstr "Überprüfe die Internet-Verbindung erneut"
 
 msgid "Checking filesystem..."
 msgstr "Überprüfe Dateisystem..."
@@ -1139,9 +1139,6 @@ msgstr "Wähle Favoritenliste"
 
 msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den Tuner aus."
-
-msgid "Choose Tuner"
-msgstr "Tuner auswählen"
 
 msgid "Circular left"
 msgstr "Links-Zirkular"
@@ -1255,6 +1252,9 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr "Konfiguriert, ob und wie Service-Typ Icons in der Kanalliste angezeigt werden."
 
@@ -1269,9 +1269,6 @@ msgstr "Netzwerkkarte konfigurieren"
 
 msgid "Configure nameservers"
 msgstr "DNS-Server konfigurieren"
-
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Einstellung der Geräte bei denen die Hintergrund-Löschung aktiviert werden soll."
@@ -1297,8 +1294,8 @@ msgstr "Netzwerk-Einstellungen"
 msgid "Configure the aspect ratio of the screen."
 msgstr "Bildformat des Bildschirms konfigurieren."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "Verhalten der Pause-Taste bei bereits aktivem Pause-Modus."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Verhalten beim Stoppen eines Films"
@@ -2143,6 +2140,12 @@ msgstr "Elektronischer Programmführer"
 msgid "Enable"
 msgstr "Ein"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 msgid "Enable 5V for active antenna"
 msgstr "5V für aktive Antenne"
 
@@ -2187,9 +2190,6 @@ msgstr "Aktiviere freesat EPG"
 
 msgid "Enable multiple bouquets"
 msgstr "Mehrere Bouquets erlauben"
-
-msgid "Enable neutrino style zap controlling"
-msgstr ""
 
 msgid "Enable parental control"
 msgstr "Jugendschutz anschalten"
@@ -3146,6 +3146,9 @@ msgstr[1] "Listen Version %d, %d gefundene Kanäle"
 msgid "Listen to the radio..."
 msgstr "Radio hören..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 msgid "Lithuanian"
 msgstr "Litauisch"
 
@@ -3850,6 +3853,9 @@ msgstr "Am Filmende pausieren"
 
 msgid "Pause playback"
 msgstr "Wiedergabe pausieren"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Prozentangabe links"
@@ -4820,6 +4826,7 @@ msgstr "Funk-Netzwerk auswählen"
 msgid "Select action"
 msgstr ""
 
+#, python-format
 msgid "Select action for timer %s:"
 msgstr "Wähle Aktion für Timer %s:"
 
@@ -6033,6 +6040,9 @@ msgstr "Timertyp"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+msgid "Timeshift Live"
+msgstr ""
+
 msgid "Timeshift location"
 msgstr "Timeshift-Verzeichnis"
 
@@ -6641,7 +6651,10 @@ msgstr "Was wollen Sie suchen?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Falls aktiviert, kann PiP mit der Exit-Taste geschlossen werden."
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -7164,7 +7177,7 @@ msgstr "Jugendschutz anschalten"
 msgid "adult movie/drama"
 msgstr "Erwachsenenfilm/Drama"
 
-msgid "Advanced"
+msgid "advanced"
 msgstr "Erweitert"
 
 msgid "adventure/western/war"
@@ -7397,6 +7410,9 @@ msgstr "Unterhaltung (10-16 Jahre)"
 msgid "entertainment (6-14 year old)"
 msgstr "Unterhaltung (6-14 Jahre)"
 
+msgid "equal to"
+msgstr "Gleich wie"
+
 msgid "equestrian"
 msgstr "Pferdesport"
 
@@ -7562,6 +7578,9 @@ msgstr "Live-Übertragung"
 msgid "locked"
 msgstr "gesperrt"
 
+msgid "loopthrough to"
+msgstr "Verbunden mit"
+
 msgid "magazines/reports/documentary"
 msgstr "Magazine/Reportagen/Dokumentationen"
 
@@ -7654,6 +7673,9 @@ msgstr "Keine"
 
 msgid "normal"
 msgstr "Normal"
+
+msgid "not configured"
+msgstr "Nicht konfiguriert"
 
 msgid "not locked"
 msgstr "Kein Signal"
@@ -8132,11 +8154,20 @@ msgstr "umgeschaltet"
 #~ msgid "BB"
 #~ msgstr "BB"
 
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Verhalten der Pausetaste bei Standbild"
+
+#~ msgid "Choose Tuner"
+#~ msgstr "Tuner-Wahl"
+
 #~ msgid "Choose your Skin"
 #~ msgstr "Skin Auswahl"
 
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "DiSEqC-Befehl übertragen"
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "Verhalten der Pause-Taste bei bereits aktivem Pause-Modus."
 
 #~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
 #~ msgstr "Konfiguriere die Dauer in Stunden und die Aktion (Ausschalten oder Standby), wenn der Receiver nicht verwendet wird."
@@ -8162,7 +8193,6 @@ msgstr "Geringe Framerate reduziert die CPU Belastung"
 #~ msgid "Goto specific data/time"
 #~ msgstr "Springe hin zum angegebenen Datum/Uhrzeit"
 
-
 #~ msgid "Memory positions"
 #~ msgstr "Position speichern"
 
@@ -8174,9 +8204,6 @@ msgstr "Geringe Framerate reduziert die CPU Belastung"
 
 #~ msgid "Open service list and select next channel"
 #~ msgstr "Kanalliste öffnen und nächsten Kanal auswählen"
-
-msgid "Channel Selection"
-msgstr "Kanalliste"
 
 msgid "Reload Services"
 msgstr "Kanäle neuladen"
@@ -8192,13 +8219,6 @@ msgstr "LCD Skin Einstellungen"
 
 msgid "Giga LED Setup"
 msgstr "Giga LED Einstellungen"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Zur Übernahme des Skins muss das GUI\n"
-"neu gestartet werden. Jetzt neu starten?"
 
 msgid "EPG Cache Path"
 msgstr "EPG Cache Pfad"
@@ -8294,4 +8314,3 @@ msgstr "Log zeigen"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "Nicht unterstützter Tuner"
-
