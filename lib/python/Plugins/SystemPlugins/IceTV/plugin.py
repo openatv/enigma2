@@ -57,7 +57,7 @@ def Plugins(**kwargs):
             name = "IceTV",
             where = PluginDescriptor.WHERE_PLUGINMENU,
             description = _("IceTV"),
-#            icon = "IceTV_icon.png",
+            icon = "icon.png",
             fnc = plugin_main
             ),
         PluginDescriptor(
