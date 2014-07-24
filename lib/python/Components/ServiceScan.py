@@ -96,6 +96,7 @@ class ServiceScan:
 						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
 						tp_text = ("%s %s %s %s") %(
 							{
+								tp.System_DVB_T_T2 : "DVB-T/T2",
 								tp.System_DVB_T : "DVB-T",
 								tp.System_DVB_T2 : "DVB-T2"
 							}.get(tp.system, ""),
