@@ -129,6 +129,9 @@ class ChannelContextMenu(Screen):
 		inAlternativeList = current_root and 'FROM BOUQUET "alternatives' in current_root.getPath()
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
+
+		menu.append(ChoiceEntryComponent("menu", (_("Configuration..."), self.openSetup)))
+
 		from Components.ParentalControl import parentalControl
 		self.parentalControl = parentalControl
 		self.parentalControlEnabled = config.ParentalControl.configured.value and config.ParentalControl.servicepinactive.value
@@ -222,7 +225,6 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level=0)
 
 		menu.append(ChoiceEntryComponent(text = (_("Reload Services"), self.reloadServices)))
-		menu.append(ChoiceEntryComponent("menu", (_("Configuration..."), self.openSetup)))
 
 		self["menu"] = ChoiceList(menu)
 
