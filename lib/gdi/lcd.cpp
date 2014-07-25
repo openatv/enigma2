@@ -96,6 +96,22 @@ eDBoxLCD::eDBoxLCD()
 					lcdfd = open("/dev/dbox/oled0", O_RDWR);
 				}
 		}
+		else if((strcmp(boxtype_name, "spark\n") == 0))
+		{
+				if((fp_file = fopen("/proc/stb/fp/version", "r")) != NULL)
+				{
+					fgets(fp_version, sizeof(fp_version), fp_file);
+					fclose(fp_file);
+				}
+				if(strcmp(fp_version, "4\n") == 0)
+				{
+					lcdfd = open("/dev/null", O_RDWR);
+				}
+				else
+				{
+					lcdfd = open("/dev/dbox/oled0", O_RDWR);
+				}
+		}		
 		else
 		{
 			lcdfd = open("/dev/dbox/oled0", O_RDWR);
