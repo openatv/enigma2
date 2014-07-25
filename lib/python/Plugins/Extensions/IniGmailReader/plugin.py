@@ -278,7 +278,6 @@ class GmailSetup(Screen, ConfigListScreen):
 		<widget name="key_red" position="182,17" size="150,45" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
 		<widget name="key_green" position="312,17" size="150,45" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
 		<widget name="config" position="15,150" size="610,320" scrollbarMode="showOnDemand" transparent="1" zPosition="2" />
-		<widget name="info" position="0,370" zPosition="4" size="400,30" font="Regular;20" foregroundColor="yellow" transparent="1" halign="left" valign="center" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -288,7 +287,6 @@ class GmailSetup(Screen, ConfigListScreen):
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Label()
 		self["key_blue"] = Button(_("Keyboard"))
-		self["info"] = Label("")
 		self.list = [ ]
 
 		self.checktimestart=config.plugins.gmail.checktimes.value
