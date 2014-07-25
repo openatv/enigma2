@@ -1322,7 +1322,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				transm = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
 				hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
 				inv = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
-				system = eDVBFrontendParametersTerrestrial::System_DVB_T;
+				system = eDVBFrontendParametersTerrestrial::System_DVB_T_T2;
 				plpid = 0;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
