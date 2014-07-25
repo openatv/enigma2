@@ -414,22 +414,24 @@ class GeneralMenu(Screen):
          'right': self.right,
          'rightRepeated': self.right}, -2)
 
-	#from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-        #hotplugNotifier.append(self.hotplugCB)
-	self.onClose.append(self.__onClose)
+	from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+        hotplugNotifier.append(self.hotplugCB)
         self.onFirstExecBegin.append(self.__onFirstExecBegin)
         self.onShow.append(self.__onShow)
+	self.onClose.append(self.__onClose)
 
     def __onClose(self):
         print "__onClose"
-        #from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-        #hotplugNotifier.remove(self.hotplugCB)
+        from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+        hotplugNotifier.remove(self.hotplugCB)
 
     def __onFirstExecBegin(self):
+	print "__onFirstExecBegin"
         self.buildGeneralMenu()
         self.fillExtEntry(self.selectedEntryID)
 
     def __onShow(self):
+	print "__onShow"
         self.buildGeneralMenu()
         self.fillExtEntry(self.selectedEntryID)
         
@@ -782,26 +784,29 @@ class GeneralMenu(Screen):
 	
     # sources
     def getScart(self, menuID, list):
+	list = []
 	i=0
 	if menuID is None:
 		from Components.Harddisk import harddiskmanager
 		for r in harddiskmanager.getMountedPartitions(onlyhotplug = False):
-		    menuitem = [r.tabbedShortDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
-		    if r.tabbedShortDescription().split('\t')[0] == _("Internal Flash") or r.tabbedDescription().split('\t')[0] == _("DLNA"): #skin FLASH on Source List
-			print "[MENU] Skip source: Internal Flash and DLNA"
-		    else:
-			list.append(tuple(menuitem))
-		deviceList = [ name for name in os.listdir("/media/upnp/") if os.path.isdir(os.path.join("/media/upnp/", name)) ]
-		deviceList.sort()
-		for d in deviceList:
-			if d[0] in ('.', '_'): continue
-			menuitem = [(_(d)), d, boundFunction(self.openFileManager, "/media/upnp/"+d+"/"), i+10] 
-			list.append(tuple(menuitem))
+			menuitem = [r.tabbedShortDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i+10]
+			if menuitem[0] in ((_("Internal Flash")), _(".message")): # , _("DLNA")):
+				print "[MENU] Skip source:", menuitem[0]
+			else:
+				list.append(tuple(menuitem))
+			"""
+			deviceList = [ name for name in os.listdir("/media/upnp/") if os.path.isdir(os.path.join("/media/upnp/", name)) ]
+			deviceList.sort()
+			for d in deviceList:
+				if d[0] in ('.', '_'): continue
+				menuitem = [(_(d)), d, boundFunction(self.openFileManager, "/media/upnp/"+d+"/"), i+10]
+				list.append(tuple(menuitem))
+			"""
 	#if SystemInfo.get('ScartMenu', True):
 	#	     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]  
 	#	     list.append(tuple(menuitem))
+	#	      
 	return list
-
 
     def openScart(self):
         self.session.scart.VCRSbChanged(3)
@@ -1003,3 +1008,9 @@ class GeneralMenu(Screen):
             
     def createSummary(self):
         return GeneralMenuSummary        
+
+    def hotplugCB(self, dev, media_state):
+	print "hotplugCB"
+	self.subentrys = self.getSubEntrys()
+	self.buildGeneralMenu()
+                
