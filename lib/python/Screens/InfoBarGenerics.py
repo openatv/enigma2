@@ -2131,13 +2131,19 @@ class InfoBarSeek:
 		elif not self.isSeekable():
 			SystemInfo["SeekStatePlay"] = False
 			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-				f = open("/proc/stb/lcd/symbol_hdd", "w")
-				f.write("0")
-				f.close()        
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):  
-				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
-				f.write("0")
-				f.close()
+				try:
+					f = open("/proc/stb/lcd/symbol_hdd", "w")
+					f.write("0")
+					f.close()
+				except:
+					pass
+			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+				try:
+					f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+					f.write("0")
+					f.close()
+				except:
+					pass
 #			print "not seekable, return to play"
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -2157,26 +2163,38 @@ class InfoBarSeek:
 			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 					if config.lcd.hdd.value == "1":
-						file = open("/proc/stb/lcd/symbol_hdd", "w")
-						file.write('%d' % int(hdd))
-						file.close()
+						try:
+							file = open("/proc/stb/lcd/symbol_hdd", "w")
+							file.write('%d' % int(hdd))
+							file.close()
+						except:
+							pass
 				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
 					if config.lcd.hdd.value == "1":
-						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-						file.write('%d' % int(self.activity))
-						file.close() 
+						try:
+							file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+							file.write('%d' % int(self.activity))
+							file.close()
+						except:
+							pass
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
 			hdd = 0
 		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-			file = open("/proc/stb/lcd/symbol_hdd", "w")
-			file.write('%d' % int(hdd))
-			file.close()
+			try:
+				file = open("/proc/stb/lcd/symbol_hdd", "w")
+				file.write('%d' % int(hdd))
+				file.close()
+			except:
+				pass
 		if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-			file.write('%d' % int(self.activity))
-			file.close()
+			try:
+				file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				file.write('%d' % int(self.activity))
+				file.close()
+			except:
+				pass
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
