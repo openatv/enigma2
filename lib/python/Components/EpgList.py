@@ -48,6 +48,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
 		self.cur_event = None
 		self.cur_service = None
+		self.service_set = False
 		self.offs = 0
 		self.time_base = None
 		self.time_epoch = time_epoch
@@ -334,6 +335,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		if newIdx is None:
 			newIdx = 0
 		self.setCurrentIndex(newIdx)
+		self.service_set = True
+		self.findBestEvent()
 
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
@@ -380,6 +383,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.findBestEvent()
 
 	def findBestEvent(self):
+		if not self.service_set:
+			return
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
@@ -1043,6 +1048,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible = True):
+		if not self.service_set:
+			return
 		cur_service = self.cur_service    #(service, service_name, events, picon)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
@@ -1103,7 +1110,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.select_rect = Rect(xpos ,0, width, self.event_rect.h)
+			self.select_rect = Rect(xpos, 0, width, self.event_rect.h)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
 			self.select_rect = self.event_rect

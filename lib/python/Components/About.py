@@ -1,8 +1,10 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
+from Components.Console import Console
 from os import path
 import sys
 import os
 import time
+import re
 from boxbranding import getImageVersion, getMachineBrand
 from sys import modules
 import socket, fcntl, struct
@@ -75,6 +77,125 @@ def getLastUpdateString():
 		return lastupdated
 	except IOError:
 		return "unavailable"
+
+#ifdef SHORT_FMT_VERSION
+#
+#class BootLoaderVersionFetcher:
+#	monMap = {
+#			"Jan": "01", "Feb": "02", "Mar": "03",
+#			"Apr": "04", "May": "05", "Jun": "06",
+#			"Jul": "07", "Aug": "08", "Sep": "09",
+#			"Oct": "10", "Nov": "11", "Dec": "12",
+#		}
+#	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) ([0-2][0-9]):([0-5][0-9]):([0-5][0-9]) [A-Za-z]+ ([0-9]{4})"
+#	dateMatchRe = re.compile(dateMatch)
+#
+#	def __init__(self):
+#		pass
+#
+#	def searchBootVer(self, appcallback):
+#		self.console = Console()
+#		cmd = "strings -n 28 /dev/mtd3ro | grep ' [0-2][0-9]:[0-5][0-9]:[0-5][0-9] '"
+#		self.console.ePopen(cmd, callback=self.searchBootVerFinished, extra_args=appcallback)
+#
+#	def fmtTimestamp(self, timestamp):
+#		return ' '.join((
+#				'-'.join(timestamp[0:3]),
+#				':'.join(timestamp[3:5])
+#			))
+#
+#	def searchBootVerFinished(self, result, retval, extra_args):
+#		callback = extra_args
+#		dates = []
+#		for l in result.splitlines():
+#			l = l.strip()
+#			match = self.dateMatchRe.search(l)
+#			groups = match.groups()
+#			if len(groups) == 7:
+#				month = self.monMap[groups[1]]
+#				mday = groups[2]
+#				if mday[0] == ' ':
+#					mday = '0' + mday[1:]
+#				hh = groups[3]
+#				mm = groups[4]
+#				year = groups[6]
+#				dates.append((year, month, mday, hh, mm))
+#		if len(dates) == 2:
+#			if dates[0][0:3] < dates[1][0:3]:
+#				ret = {
+#					'CFE': self.fmtTimestamp(dates[0]),
+#					"OEM": self.fmtTimestamp(dates[1]),
+#				}
+#			else:
+#				ret = {
+#					'CFE': self.fmtTimestamp(dates[1]),
+#					"OEM": self.fmtTimestamp(dates[0]),
+#				}
+#		else:
+#			ret = {'CFE': "Unknown", "OEM": "Unknown",}
+#		if callback:
+#			callback(ret)
+#else not SHORT_FMT_VERSION
+
+class BootLoaderVersionFetcher:
+	monMap = {
+			"Jan": "01", "Feb": "02", "Mar": "03",
+			"Apr": "04", "May": "05", "Jun": "06",
+			"Jul": "07", "Aug": "08", "Sep": "09",
+			"Oct": "10", "Nov": "11", "Dec": "12",
+		}
+	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [A-Za-z]+ ([0-9]{4})"
+	dateMatchRe = re.compile(dateMatch)
+
+	def __init__(self):
+		pass
+
+	def searchBootVer(self, appcallback):
+		self.console = Console()
+		cmd = "strings -n 28 /dev/mtd3ro | grep ' [0-2][0-9]:[0-5][0-9]:[0-5][0-9] '"
+		self.console.ePopen(cmd, callback=self.searchBootVerFinished, extra_args=appcallback)
+
+	def fmtTimestamp(self, timestamp):
+		return ' '.join((
+				'-'.join(timestamp[0:3]),
+				':'.join(timestamp[3:5])
+			))
+
+	def searchBootVerFinished(self, result, retval, extra_args):
+		callback = extra_args
+		dates = []
+		for l in result.splitlines():
+			l = l.strip()
+			match = self.dateMatchRe.search(l)
+			groups = match.groups()
+			if len(groups) == 4:
+				month = self.monMap[groups[1]]
+				mday = groups[2]
+				if mday[0] == ' ':
+					mday = '0' + mday[1:]
+				year = groups[3]
+				dates.append((year, month, mday, l))
+		if len(dates) == 2:
+			if dates[0][0:3] < dates[1][0:3]:
+				ret = {
+					'CFE': dates[0][3],
+					"OEM": dates[1][3],
+				}
+			else:
+				ret = {
+					'CFE': dates[1][3],
+					"OEM": dates[0][3],
+				}
+		else:
+			ret = {'CFE': "Unknown", "OEM": "Unknown",}
+		if callback:
+			callback(ret)
+#endif SHORT_FMT_VERSION
+
+__bootLoaderFetcher = BootLoaderVersionFetcher()
+
+def getBootLoaderVersion(callback):
+	__bootLoaderFetcher.searchBootVer(callback)
 
 import socket, fcntl, struct
 
