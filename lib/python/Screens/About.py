@@ -109,7 +109,7 @@ class About(AboutBase):
 		self.list.append(self.makeInfoEntry(_("Image:"), about.getImageVersionString()))
 		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
 		self.list.append(self.makeInfoEntry(_("Oe-Core:"), about.getEnigmaVersionString()))
-		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo["OEM"]))
+		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo))
 
 		fp_version = getFPVersion()
 		if fp_version is not None:
