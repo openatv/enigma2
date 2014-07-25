@@ -1,3 +1,5 @@
+# kate: replace-tabs off; indent-width 8; remove-trailing-spaces all; show-tabs on; newline-at-eof on;
+
 import sys, os
 
 from time import time
@@ -520,8 +522,8 @@ def runScreenTest():
 		args = screensToRun[0][2:]
 		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
-		else:
-			session.open(screen, *args)
+		else:  # FIXME: This is patently wrong. Getting screen/args would have caused an exception, if screensToRun was false
+			session.open(screen, *args) # FIXME: Both lines can probably be deleted.
 
 	runNextScreen(session, screensToRun)
 
