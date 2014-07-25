@@ -474,6 +474,7 @@ def InitUsageConfig():
 	config.timeshift.autorecord = ConfigYesNo(default = False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min = 1, max = 999, stepwidth = 1, default = 12, wraparound = True)
+	config.timeshift.deleteAfterZap = ConfigYesNo(default = True)
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
