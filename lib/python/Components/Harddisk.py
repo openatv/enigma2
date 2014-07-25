@@ -609,8 +609,8 @@ DEVICEDB =  {
 		"/devices/platform/ohci-brcm.0/usb3/3-2/": "Back, upper USB Slot",
 		"/devices/platform/ohci-brcm.0/usb3/3-1/": "Back, lower USB Slot",
 		# USB-2
-		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Front USB Slot",
-		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Back, upper USB Slot",
+		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Back, upper USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Front USB Slot",
 		"/devices/platform/ehci-brcm.0/usb1/1-1/": "Back, lower USB Slot",
 		"/devices/pci0000:01/0000:01:00.0/ata1/": "Internal HDD",
 		"/devices/pci0000:01/0000:01:00.0/ata2/": "eSATA HDD",
@@ -802,17 +802,12 @@ class HarddiskManager:
 
 	def removeHotplugPartition(self, device):
 		for x in self.partitions[:]:
-			# Ensure we have a trailing /
-			if device and device[-1] != "/":
-				device += "/"
 			if x.device == device:
 				self.partitions.remove(x)
 				if x.mountpoint: # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
-		# Now strip the trailing /
-		if device and device[-1] == "/":
-			device = device[:-1]
-		if device and not device[-1].isdigit():
+		l = len(device)
+		if l and not device[l-1].isdigit():
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()
