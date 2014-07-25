@@ -273,8 +273,8 @@ def InitUsageConfig():
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
 			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
-		config.usage.wakeOnLAN = ConfigYesNo(default = False)
-		config.usage.wakeOnLAN.addNotifier(wakeOnLANChanged)
+		config.network.wol = ConfigYesNo(default = False)
+		config.network.wol.addNotifier(wakeOnLANChanged)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
