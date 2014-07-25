@@ -531,8 +531,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			havewol = False
 			if SystemInfo["WakeOnLAN"]:
 				havewol = True
-			elif getBoxType() in ('gbquad'):
-					havewol = False
+			#elif getBoxType() in ('gbquad'):
+			#		havewol = False
 			if havewol:	
 				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
