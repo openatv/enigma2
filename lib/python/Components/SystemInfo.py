@@ -47,5 +47,5 @@ SystemInfo["isGBIPBOX"] = fileExists("/usr/lib/enigma2/python/gbipbox.so")
 #if getBoxType() in ('gbquadplus'):
 #	SystemInfo["WakeOnLAN"] = False
 #else:
-SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
+SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/fp/wol")
 
