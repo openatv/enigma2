@@ -1,0 +1,21 @@
+<!--suppress XmlUnboundNsPrefix -->
+<wizard>
+	   <step id="start" nextstep="end">
+				<text value="Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\nWhen you are ready press OK to continue." />
+				<displaytext value="Configure interface" />
+				<config screen="UserInterfacePositioner" module="UserInterfacePositioner" type="ConfigList" />
+				<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+				</code>
+				<code pos="after" async="yes">
+self.markDone()
+self.close()
+				</code>
+		</step>
+</wizard>
+
