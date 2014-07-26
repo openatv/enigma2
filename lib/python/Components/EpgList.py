@@ -278,6 +278,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.setServiceFontsize()
+			self.setEventFontsize()
+		else:
+			self.setEventFontsize()
 		return rc
 
 	def getCurrentChangeCount(self):
@@ -1336,6 +1341,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		if self.graphic:
 			self.TlDate = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'))
 			self.TlTime = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'))
+		self.setTimeLineFontsize()
 		return rc
 
 	def setTimeLineFontsize(self):
@@ -1345,7 +1351,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.infobar_timelinefs.value))
 
 	def postWidgetCreate(self, instance):
-		self.setTimeLineFontsize()
 		instance.setContent(self.l)
 
 	def setEntries(self, l, timeline_now, time_lines, force):
@@ -1537,6 +1542,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.l.setItemHeight(self.itemHeight)
+		self.setBouquetFontsize()
 		return rc
 
 	GUI_WIDGET = eListbox
@@ -1585,7 +1591,6 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
 		# self.l.setSelectionClip(eRect(0,0,0,0), False)
-		self.setBouquetFontsize()
 
 	def preWidgetRemove(self, instance):
 		instance.selectionChanged.get().append(self.selectionChanged)
