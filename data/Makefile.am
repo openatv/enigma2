@@ -12,10 +12,8 @@ dist_pkgdata_DATA = \
 	skin_default.xml \
 	skin_subtitles.xml \
 	skin.xml \
-	userinterfacepositionerwizard.xml \
 	freesat.t1 \
 	freesat.t2 \
-	hd-testcard.mvi \
 	unicable.xml
 
 if GBIPBOX
