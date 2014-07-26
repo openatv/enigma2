@@ -8,7 +8,9 @@ from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Label import Label
 from Components.Sources.List import List
-from enigma import eTimer, getEnigmaVersionString, gFont
+from keyids import KEYIDS
+from enigma import eTimer, getEnigmaVersionString, gFont, eActionMap, eListbox
+
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Network import iNetwork
@@ -25,6 +27,14 @@ class AboutBase(Screen):
 
 		self.list = []
 		self["list"] = List(self.list)
+
+		self.setBindings()
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+			})
 
 	@staticmethod
 	def sizeStr(size, unknown=_("unavailable")):
@@ -71,6 +81,29 @@ class AboutBase(Screen):
 		l[AboutBase.ENT_HEADINFOLABEL:AboutBase.ENT_HEADINFO+1] = label, info
 		return tuple(l)
 
+	def setBindings(self):
+		actionMap = eActionMap.getInstance()
+		actionMap.unbindNativeKey("ListboxActions", eListbox.moveUp)
+		actionMap.unbindNativeKey("ListboxActions", eListbox.moveDown)
+		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_UP"], 5, "ListboxActions", "pageUp")
+		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_DOWN"], 5, "ListboxActions", "pageDown")
+		self.onClose.append(self.restoreBindings)
+
+	def restoreBindings(self):
+		# After setBindings(), both KEY_UP and KEY_LEFT are bound to
+		# pageUp, and KEY_DOWN, KEY_RIGHT are bound to pageDown,
+		# so all four are unbound by the unbindNativeKey()s here
+		# and all must be rebound to their defaults
+
+		actionMap = eActionMap.getInstance()
+		actionMap.unbindNativeKey("ListboxActions", eListbox.pageUp)
+		actionMap.unbindNativeKey("ListboxActions", eListbox.pageDown)
+		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_UP"], 5, "ListboxActions", "moveUp")
+		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_DOWN"], 5, "ListboxActions", "moveDown")
+		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_LEFT"], 5, "ListboxActions", "pageUp")
+		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_RIGHT"], 5, "ListboxActions", "pageDown")
+
+
 class About(AboutBase):
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
@@ -78,12 +111,6 @@ class About(AboutBase):
 		scanning = _("Wait please while loading information...")
 		self.list.append(self.makeHeadingEntry(scanning))
 		self["list"].updateList(self.list)
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
 
 		about.getBootLoaderVersion(self.populate)
 
@@ -211,12 +238,6 @@ class Devices(AboutBase):
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-			})
 
 	def mountInfo(self, name, mountpoint, type, twoLines=False, indent=''):
 		if path.isdir(mountpoint):
@@ -350,12 +371,6 @@ class SystemMemoryInfo(AboutBase):
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
-			"cancel": self.close,
-			"ok": self.close,
-		})
-
 		out_lines = file("/proc/meminfo").readlines()
 		self.list.append(self.makeHeadingEntry(_("RAM")))
 		for lidx in range(len(out_lines) - 1):
@@ -420,10 +435,7 @@ class SystemNetworkInfo(AboutBase):
 		return None
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-
-		self.list = []
-		self["list"] = List(self.list)
+		AboutBase.__init__(self, session)
 
 		self.linkIcons = (self.getPixmap("buttons/button_green_off.png"), self.getPixmap("buttons/button_green.png"))
 
@@ -444,12 +456,6 @@ class SystemNetworkInfo(AboutBase):
 		self.ifScan = []
 
 		self.createscreen()
-
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
-			"cancel": self.close,
-			"ok": self.close,
-		})
 
 	def createscreen(self):
 		self.allGateways = about.getGateways()
