@@ -154,7 +154,7 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 					ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 					feparm->setDVBT(parm);
 					addChannelToScan(
-						eDVBChannelID(ns, tsid, onid),
+						eDVBChannelID(),
 						feparm);
 				}
 			}
