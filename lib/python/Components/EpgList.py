@@ -278,11 +278,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self.setServiceFontsize()
-			self.setEventFontsize()
-		else:
-			self.setEventFontsize()
+		self.setServiceFontsize()
+		self.setEventFontsize()
 		return rc
 
 	def getCurrentChangeCount(self):
@@ -531,13 +528,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			instance.selectionChanged.get().append(self.serviceChanged)
 			instance.setContent(self.l)
 			self.l.setSelectionClip(eRect(0,0,0,0), False)
-			self.setServiceFontsize()
-			self.setEventFontsize()
 		else:
 			instance.setWrapAround(False)
 			instance.selectionChanged.get().append(self.selectionChanged)
 			instance.setContent(self.l)
-			self.setEventFontsize()
 
 	def preWidgetRemove(self, instance):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
