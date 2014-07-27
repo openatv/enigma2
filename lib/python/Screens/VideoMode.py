@@ -78,6 +78,10 @@ class VideoSetup(Screen, ConfigListScreen):
 				if config.av.autores.value in 'hd':
 					self.list.append(getConfigListEntry(_("Show SD as"), config.av.autores_sd, _("This option allows you to choose how to display standard definition video on your TV.")))
 				self.list.append(getConfigListEntry(_("Show 720p 24fps as"), config.av.autores_720p24, _("This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)")))
+				self.list.append(getConfigListEntry(_("Show 720p 25fps as"), config.av.autores_720p25, _("This option allows you to choose how to display 720p 25Hz on your TV. (as not all TV's support these resolutions)")))
+				self.list.append(getConfigListEntry(_("Show 720p 30fps as"), config.av.autores_720p30, _("This option allows you to choose how to display 720p 30Hz on your TV. (as not all TV's support these resolutions)")))
+				self.list.append(getConfigListEntry(_("Show 720p 50fps as"), config.av.autores_720p50, _("This option allows you to choose how to display 720p 50Hz on your TV. (as not all TV's support these resolutions)")))
+				self.list.append(getConfigListEntry(_("Show 720p 60fps as"), config.av.autores_720p60, _("This option allows you to choose how to display 720p 60Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24, _("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25, _("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 30fps as"), config.av.autores_1080p30, _("This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)")))
@@ -360,6 +364,14 @@ class AutoVideoMode(Screen):
 					new_mode = new_res + new_pol + new_rate
 					if new_mode == '720p24':
 						new_mode = config.av.autores_720p24.value
+					if new_mode == '720p25':
+						new_mode = config.av.autores_720p25.value
+					if new_mode == '720p30':
+						new_mode = config.av.autores_720p30.value
+					if new_mode == '720p50':
+						new_mode = config.av.autores_720p50.value
+					if new_mode == '720p60':
+						new_mode = config.av.autores_720p60.value
 					if new_mode == '1080p24':
 						new_mode = config.av.autores_1080p24.value
 					if new_mode == '1080p25':
@@ -369,8 +381,7 @@ class AutoVideoMode(Screen):
 				elif new_res + new_pol in iAVSwitch.modes_available:
 					new_mode = new_res + new_pol
 				else:
-					write_mode = config_mode + new_rate
-
+					new_mode = config_mode + new_rate
 				write_mode = new_mode
 			elif config.av.autores.value == 'hd' and int(new_res) <= 576:
 				if (config.av.autores_deinterlace.value and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.value and not HardwareInfo().is_nextgen() and not config.av.autores_sd.value == '1080i'):
@@ -380,16 +391,22 @@ class AutoVideoMode(Screen):
 						new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
 					else:
 						new_mode = config.av.autores_sd.value + new_rate
-
 				if new_mode == '720p24':
 					new_mode = config.av.autores_720p24.value
+				if new_mode == '720p25':
+					new_mode = config.av.autores_720p25.value
+				if new_mode == '720p30':
+					new_mode = config.av.autores_720p30.value
+				if new_mode == '720p50':
+					new_mode = config.av.autores_720p50.value
+				if new_mode == '720p60':
+					new_mode = config.av.autores_720p60.value
 				if new_mode == '1080p24':
 					new_mode = config.av.autores_1080p24.value
 				if new_mode == '1080p25':
 					new_mode = config.av.autores_1080p25.value
 				if new_mode == '1080p30':
 					new_mode = config.av.autores_1080p30.value
-
 				write_mode = new_mode
 			else:
 				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
