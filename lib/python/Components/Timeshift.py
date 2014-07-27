@@ -108,6 +108,7 @@ class InfoBarTimeshift:
 
 		self.pts_begintime = 0
 		self.pts_switchtolive = False
+		self.pts_firstplayable = 1
 		self.pts_currplaying = 1
 		self.pts_nextplaying = 0
 		self.pts_lastseekspeed = 0
@@ -158,7 +159,7 @@ class InfoBarTimeshift:
 		self.session.nav.RecordTimer.on_state_change.append(self.ptsTimerEntryStateChange)
 
 		# Keep Current Event Info for recordings
-		self.pts_eventcount = 1
+		self.pts_eventcount = 0
 		self.pts_curevent_begin = int(time())
 		self.pts_curevent_end = 0
 		self.pts_curevent_name = _("Timeshift")
@@ -216,7 +217,7 @@ class InfoBarTimeshift:
 
 		# print 'self.pts_currplaying',self.pts_currplaying
 		self.pts_nextplaying = 0
-		if self.pts_currplaying > 1:
+		if self.pts_currplaying > self.pts_firstplayable:
 			self.pts_currplaying -= 1
 		else:
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -263,7 +264,9 @@ class InfoBarTimeshift:
 				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 
 			# Delete Timeshift Records on zap
-			self.pts_eventcount = 0
+			if config.timeshift.deleteAfterZap.value:
+				self.pts_eventcount = 0
+			self.pts_firstplayable = self.pts_eventcount + 1
 			# print 'AAAAAAAAAAAAAAAAAAAAAA'
 			# self.pts_cleanUp_timer.start(1000, True)
 
