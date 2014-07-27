@@ -115,7 +115,7 @@ class Harddisk:
 		elif self.type == DEVTYPE_DEVFS:
 			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
 
-		internal = "pci" in self.phys_path
+		internal = "pci" in self.phys_path or "ahci" in self.phys_path
 
 		if ide_cf:
 			ret = "External (CF)"
