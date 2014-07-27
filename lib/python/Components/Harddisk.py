@@ -609,8 +609,8 @@ DEVICEDB =  {
 		"/devices/platform/ohci-brcm.0/usb3/3-2/": "Back, upper USB Slot",
 		"/devices/platform/ohci-brcm.0/usb3/3-1/": "Back, lower USB Slot",
 		# USB-2
-		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Back, upper USB Slot",
-		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Front USB Slot",
+		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Front USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Back, upper USB Slot",
 		"/devices/platform/ehci-brcm.0/usb1/1-1/": "Back, lower USB Slot",
 		"/devices/pci0000:01/0000:01:00.0/ata1/": "Internal HDD",
 		"/devices/pci0000:01/0000:01:00.0/ata2/": "eSATA HDD",
