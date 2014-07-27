@@ -1,12 +1,5 @@
 #!/bin/sh
 
-if [ `cat /etc/hostname | cut -c 1-2`=="gb" ]; then
-	echo 'Gigablue' > /proc/stb/info/model
-	cat /etc/model > /proc/stb/info/gbmodel
-fi
-
-rm -rf /dev/dbox/oled0
-
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
