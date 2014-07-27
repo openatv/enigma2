@@ -338,7 +338,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			newIdx = 0
 		self.setCurrentIndex(newIdx)
 		self.service_set = True
-		self.findBestEvent()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.findBestEvent()
 
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
