@@ -278,14 +278,6 @@ class AutoVideoMode(Screen):
 		if current_mode.upper() in ('PAL', 'NTSC'):
 			current_mode = current_mode.upper()
 
-		current_pol = ''
-		if 'i' in current_mode:
-			current_pol = 'i'
-		elif 'p' in current_mode:
-			current_pol = 'p'
-		current_res = current_pol and current_mode.split(current_pol)[0].replace('\n', '') or ""
-		current_rate = current_pol and current_mode.split(current_pol)[0].replace('\n', '') and current_mode.split(current_pol)[1].replace('\n', '') or ""
-
 		video_height = None
 		video_width = None
 		video_pol = None
