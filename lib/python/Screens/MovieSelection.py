@@ -1465,11 +1465,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if d in inlist:
 					# improve shortcuts to mountpoints
 					try:
-						bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+						bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription().replace("\t", " - "), d)
 					except:
 						pass
 				else:
-					bookmarks.append((p.tabbedDescription(), d))
+					bookmarks.append((p.tabbedDescription().replace("\t", " - "), d))
 				inlist.append(d)
 		for d in last_selected_dest:
 			if d not in inlist:
