@@ -153,7 +153,9 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 					parm.system = eDVBFrontendParametersTerrestrial::System_DVB_T2;
 					ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 					feparm->setDVBT(parm);
-					addChannelToScan(feparm);
+					addChannelToScan(
+						eDVBChannelID(ns, tsid, onid),
+						feparm);
 				}
 			}
 		}
