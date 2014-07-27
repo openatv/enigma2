@@ -583,16 +583,6 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if boxtype in ( 'gb800se', 'gb800solo', 'gb800seplus'):
-		from enigma import evfd, eConsoleAppContainer
-		try:
-			cmd = 'vfdctl "    openatv starting e2"'
-			container = eConsoleAppContainer()
-			container.execute(cmd)
-		except:
-			evfd.getInstance().vfd_write_string("-E2-")
-		evfd.getInstance().vfd_led(str(1))
-		
 	if boxtype in ('sf8', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
