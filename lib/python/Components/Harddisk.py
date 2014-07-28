@@ -802,17 +802,12 @@ class HarddiskManager:
 
 	def removeHotplugPartition(self, device):
 		for x in self.partitions[:]:
-			# Ensure we have a trailing /
-			if device and device[-1] != "/":
-				device += "/"
 			if x.device == device:
 				self.partitions.remove(x)
 				if x.mountpoint: # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
-		# Now strip the trailing /
-		if device and device[-1] == "/":
-			device = device[:-1]
-		if device and not device[-1].isdigit():
+		l = len(device)
+		if l and not device[l-1].isdigit():
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()

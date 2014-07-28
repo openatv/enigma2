@@ -48,6 +48,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
 		self.cur_event = None
 		self.cur_service = None
+		self.service_set = False
 		self.offs = 0
 		self.time_base = None
 		self.time_epoch = time_epoch
@@ -113,8 +114,6 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))
 
-		self.nowEvPix = None
-		self.nowSelEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
 		self.othServPix = None
@@ -145,10 +144,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorSelected = 0xd69600
 		self.foreColorService = 0xffffff
 		self.backColorService = 0x2D455E
-		self.foreColorNow = 0xffffff
-		self.foreColorNowSelected = 0xffffff
-		self.backColorNow = 0x00825F
-		self.backColorNowSelected = 0xd69600
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
 
@@ -230,15 +225,6 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorSelected":
 					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNow":
-					self.backColorNow = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNowSelected":
-					self.backColorNowSelected = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorNow":
-					self.foreColorNow = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorNowSelected":
-					self.foreColorNowSelected = parseColor(value).argb()
-
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceBorderWidth":
@@ -277,6 +263,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
+		self.setServiceFontsize()
+		self.setEventFontsize()
 		return rc
 
 	def getCurrentChangeCount(self):
@@ -334,6 +322,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		if newIdx is None:
 			newIdx = 0
 		self.setCurrentIndex(newIdx)
+		self.service_set = True
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.findBestEvent()
 
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
@@ -380,6 +371,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.findBestEvent()
 
 	def findBestEvent(self):
+		if not self.service_set:
+			return
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
@@ -521,13 +514,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			instance.selectionChanged.get().append(self.serviceChanged)
 			instance.setContent(self.l)
 			self.l.setSelectionClip(eRect(0,0,0,0), False)
-			self.setServiceFontsize()
-			self.setEventFontsize()
 		else:
 			instance.setWrapAround(False)
 			instance.selectionChanged.get().append(self.selectionChanged)
 			instance.setContent(self.l)
-			self.setEventFontsize()
 
 	def preWidgetRemove(self, instance):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -838,7 +828,13 @@ class EPGList(HTMLComponent, GUIComponent):
 					flags = BT_SCALE))
 
 		if self.graphic:
-			if self.othEvPix:
+			if selected and not events and self.selEvPix:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png = self.selEvPix,
+					flags = BT_SCALE))
+			elif self.othEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
 					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
@@ -874,26 +870,20 @@ class EPGList(HTMLComponent, GUIComponent):
 					else:
 						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
-				if stime <= now < (stime + duration):
-					foreColor = self.foreColorNow
-					backColor = self.backColorNow
-					foreColorSel = self.foreColorNowSelected
-					backColorSel = self.backColorNowSelected
-				else:
-					foreColor = self.foreColor
-					backColor = self.backColor
-					foreColorSel = self.foreColorSelected
-					backColorSel = self.backColorSelected
-					if clock_types is not None and clock_types == 2:
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-					elif clock_types is not None and clock_types == 7:
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
+				foreColor = self.foreColor
+				backColor = self.backColor
+				foreColorSel = self.foreColorSelected
+				backColorSel = self.backColorSelected
+				if clock_types is not None and clock_types in (2, 12):
+					foreColor = self.foreColorRecord
+					backColor = self.backColorRecord
+					foreColorSel = self.foreColorRecordSelected
+					backColorSel = self.backColorRecordSelected
+				elif clock_types is not None and clock_types == 7:
+					foreColor = self.foreColorZap
+					backColor = self.backColorZap
+					foreColorSel = self.foreColorZapSelected
+					backColorSel = self.backColorZapSelected
 
 				if selected and self.select_rect.x == xpos + left:
 					if clock_types is not None:
@@ -903,14 +893,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderBottomPix = self.borderSelectedBottomPix
 					borderRightPix = self.borderSelectedRightPix
 					infoPix = self.selInfoPix
-					if stime <= now < (stime + duration):
-						bgpng = self.nowSelEvPix
-					else:
-						bgpng = self.selEvPix
-						if clock_types is not None and clock_types == 2:
-							bgpng = self.recSelEvPix
-						elif clock_types is not None and clock_types == 7:
-							bgpng = self.zapSelEvPix
+					bgpng = self.selEvPix
+					if clock_types is not None and clock_types in (2, 12):
+						bgpng = self.recSelEvPix
+					elif clock_types is not None and clock_types == 7:
+						bgpng = self.zapSelEvPix
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]
@@ -919,14 +906,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderBottomPix = self.borderBottomPix
 					borderRightPix = self.borderRightPix
 					infoPix = self.InfoPix
-					if stime <= now < (stime + duration):
-						bgpng = self.nowEvPix
-					else:
-						bgpng = self.othEvPix
-						if clock_types is not None and clock_types == 2:
-							bgpng = self.recEvPix
-						elif clock_types is not None and clock_types == 7:
-							bgpng = self.zapEvPix
+					bgpng = self.othEvPix
+					if clock_types is not None and clock_types == 2:
+						bgpng = self.recEvPix
+					elif clock_types is not None and clock_types == 7:
+						bgpng = self.zapEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
@@ -1043,6 +1027,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible = True):
+		if not self.service_set:
+			return
 		cur_service = self.cur_service    #(service, service_name, events, picon)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
@@ -1103,7 +1089,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.select_rect = Rect(xpos ,0, width, self.event_rect.h)
+			self.select_rect = Rect(xpos, 0, width, self.event_rect.h)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
 			self.select_rect = self.event_rect
@@ -1169,8 +1155,6 @@ class EPGList(HTMLComponent, GUIComponent):
 	def fillGraphEPG(self, services, stime = None):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
-				self.nowEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'))
-				self.nowSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
 				self.othEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
 				self.selEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedEvent.png'))
 				self.othServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherService.png'))
@@ -1329,6 +1313,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		if self.graphic:
 			self.TlDate = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'))
 			self.TlTime = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'))
+		self.setTimeLineFontsize()
 		return rc
 
 	def setTimeLineFontsize(self):
@@ -1338,7 +1323,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.infobar_timelinefs.value))
 
 	def postWidgetCreate(self, instance):
-		self.setTimeLineFontsize()
 		instance.setContent(self.l)
 
 	def setEntries(self, l, timeline_now, time_lines, force):
@@ -1530,6 +1514,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.l.setItemHeight(self.itemHeight)
+		self.setBouquetFontsize()
 		return rc
 
 	GUI_WIDGET = eListbox
@@ -1578,7 +1563,6 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
 		# self.l.setSelectionClip(eRect(0,0,0,0), False)
-		self.setBouquetFontsize()
 
 	def preWidgetRemove(self, instance):
 		instance.selectionChanged.get().append(self.selectionChanged)

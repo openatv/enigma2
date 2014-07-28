@@ -1,8 +1,8 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
-from os import path
+from Components.Console import Console
 import sys
-import os
 import time
+import re
 from boxbranding import getImageVersion, getMachineBrand
 from sys import modules
 import socket, fcntl, struct
@@ -40,10 +40,10 @@ def getImageUrlString():
 			return version
 	except IOError:
 		return "unavailable"
-	      
+
 def getEnigmaVersionString():
 	return getImageVersion()
-	
+
 def getKernelVersionString():
 	try:
 		f = open("/proc/version","r")
@@ -75,6 +75,49 @@ def getLastUpdateString():
 		return lastupdated
 	except IOError:
 		return "unavailable"
+
+
+class BootLoaderVersionFetcher:
+	monMap = {
+			"Jan": "01", "Feb": "02", "Mar": "03",
+			"Apr": "04", "May": "05", "Jun": "06",
+			"Jul": "07", "Aug": "08", "Sep": "09",
+			"Oct": "10", "Nov": "11", "Dec": "12",
+		}
+	dateMatch = "(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (" + '|'.join(monMap.keys()) + ") ([ 1-3][0-9]) [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [A-Za-z]+ ([0-9]{4})"
+	dateMatchRe = re.compile(dateMatch)
+
+	def __init__(self):
+		pass
+
+	def searchBootVer(self, appcallback):
+		self.console = Console()
+		cmd = "strings -n 28 /dev/mtd3ro | grep ' [0-2][0-9]:[0-5][0-9]:[0-5][0-9] '"
+		self.console.ePopen(cmd, callback=self.searchBootVerFinished, extra_args=appcallback)
+
+	def searchBootVerFinished(self, result, retval, extra_args):
+		callback = extra_args
+		latest_date = (0, 0, 0, "Unknown")
+		for line in result.splitlines():
+			line = line.strip()
+			match = self.dateMatchRe.search(line)
+			groups = match.groups()
+			if len(groups) == 4:
+				month = self.monMap[groups[1]]
+				day = groups[2]
+				if day[0] == ' ':
+					day = '0' + day[1:]
+				year = groups[3]
+				d = (year, month, day, line)
+				if latest_date < d:
+					latest_date = d
+		if callback:
+			callback(latest_date[3])
+
+__bootLoaderFetcher = BootLoaderVersionFetcher()
+
+def getBootLoaderVersion(callback):
+	__bootLoaderFetcher.searchBootVer(callback)
 
 import socket, fcntl, struct
 
