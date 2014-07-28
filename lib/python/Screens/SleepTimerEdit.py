@@ -86,7 +86,8 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 				sleepTimer = self.currentEventTime()
 			else:
 				sleepTimer = int(sleepTimer)
-			InfoBar.instance.setSleepTimer(sleepTimer)
+			if sleepTimer or not self.getCurrentEntry().endswith(_("(not activated)")):
+				InfoBar.instance.setSleepTimer(sleepTimer)
 			self.close(True)
 		self.close()
 
