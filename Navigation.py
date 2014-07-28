@@ -281,13 +281,10 @@ class Navigation:
 			self.pnav.stopService()
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
-		try:
-			if path.exists("/proc/stb/lcd/symbol_signal"):
-				f = open("/proc/stb/lcd/symbol_signal", "w")
-				f.write("0")
-				f.close()
-		except:
-			pass
+		if path.exists("/proc/stb/lcd/symbol_signal"):
+			f = open("/proc/stb/lcd/symbol_signal", "w")
+			f.write("0")
+			f.close()
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
