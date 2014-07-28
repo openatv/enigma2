@@ -843,7 +843,13 @@ class EPGList(HTMLComponent, GUIComponent):
 					flags = BT_SCALE))
 
 		if self.graphic:
-			if self.othEvPix:
+			if selected and not events and self.selEvPix:
+				res.append(MultiContentEntryPixmapAlphaTest(
+					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png = self.selEvPix,
+					flags = BT_SCALE))
+			elif self.othEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
 					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
