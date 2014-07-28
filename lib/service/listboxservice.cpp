@@ -641,7 +641,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isMarker = ref.flags & eServiceReference::isMarker;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
-		bool isRecorded = isPlayable && checkServiceIsRecorded(ref);
+
+		bool isRecorded = checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
 #ifndef FORCE_SERVICEAVAIL
@@ -654,14 +655,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			serviceAvail = false;
 		}
 #endif
-		if (m_record_indicator_mode == 3 && isRecorded)
-		{
-			if (m_color_set[serviceRecorded])
-				painter.setForegroundColor(m_color[serviceRecorded]);
-			else
-				painter.setForegroundColor(gRGB(0xbb0000));
-		}
-		if (selected && local_style && local_style->m_selection)
+		if (selected && local_style && local_style->m_selection)
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
@@ -861,7 +855,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						}
 
 						//record icon stuff
-						if (m_record_indicator_mode && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
+						if (m_record_indicator_mode && m_pixmaps[picRecord])
 						{
 							eSize pixmap_size = m_pixmaps[picRecord]->size();
 							eRect area = m_element_position[celServiceInfo];

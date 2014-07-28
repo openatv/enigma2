@@ -103,7 +103,6 @@ public:
 		serviceEventProgressbarColorSelected,
 		serviceEventProgressbarBorderColor,
 		serviceEventProgressbarBorderColorSelected,
-		serviceRecorded,
 		colorElements
 	};
 
