@@ -114,8 +114,6 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))
 
-		self.nowEvPix = None
-		self.nowSelEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
 		self.othServPix = None
@@ -146,10 +144,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorSelected = 0xd69600
 		self.foreColorService = 0xffffff
 		self.backColorService = 0x2D455E
-		self.foreColorNow = 0xffffff
-		self.foreColorNowSelected = 0xffffff
-		self.backColorNow = 0x00825F
-		self.backColorNowSelected = 0xd69600
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
 
@@ -231,15 +225,6 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorSelected":
 					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNow":
-					self.backColorNow = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorNowSelected":
-					self.backColorNowSelected = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorNow":
-					self.foreColorNow = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorNowSelected":
-					self.foreColorNowSelected = parseColor(value).argb()
-
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceBorderWidth":
@@ -885,26 +870,20 @@ class EPGList(HTMLComponent, GUIComponent):
 					else:
 						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
-				if stime <= now < (stime + duration):
-					foreColor = self.foreColorNow
-					backColor = self.backColorNow
-					foreColorSel = self.foreColorNowSelected
-					backColorSel = self.backColorNowSelected
-				else:
-					foreColor = self.foreColor
-					backColor = self.backColor
-					foreColorSel = self.foreColorSelected
-					backColorSel = self.backColorSelected
-					if clock_types is not None and clock_types == 2:
-						foreColor = self.foreColorRecord
-						backColor = self.backColorRecord
-						foreColorSel = self.foreColorRecordSelected
-						backColorSel = self.backColorRecordSelected
-					elif clock_types is not None and clock_types == 7:
-						foreColor = self.foreColorZap
-						backColor = self.backColorZap
-						foreColorSel = self.foreColorZapSelected
-						backColorSel = self.backColorZapSelected
+				foreColor = self.foreColor
+				backColor = self.backColor
+				foreColorSel = self.foreColorSelected
+				backColorSel = self.backColorSelected
+				if clock_types is not None and clock_types in (2, 12):
+					foreColor = self.foreColorRecord
+					backColor = self.backColorRecord
+					foreColorSel = self.foreColorRecordSelected
+					backColorSel = self.backColorRecordSelected
+				elif clock_types is not None and clock_types == 7:
+					foreColor = self.foreColorZap
+					backColor = self.backColorZap
+					foreColorSel = self.foreColorZapSelected
+					backColorSel = self.backColorZapSelected
 
 				if selected and self.select_rect.x == xpos + left:
 					if clock_types is not None:
@@ -914,14 +893,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderBottomPix = self.borderSelectedBottomPix
 					borderRightPix = self.borderSelectedRightPix
 					infoPix = self.selInfoPix
-					if stime <= now < (stime + duration):
-						bgpng = self.nowSelEvPix
-					else:
-						bgpng = self.selEvPix
-						if clock_types is not None and clock_types == 2:
-							bgpng = self.recSelEvPix
-						elif clock_types is not None and clock_types == 7:
-							bgpng = self.zapSelEvPix
+					bgpng = self.selEvPix
+					if clock_types is not None and clock_types in (2, 12):
+						bgpng = self.recSelEvPix
+					elif clock_types is not None and clock_types == 7:
+						bgpng = self.zapSelEvPix
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]
@@ -930,14 +906,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderBottomPix = self.borderBottomPix
 					borderRightPix = self.borderRightPix
 					infoPix = self.InfoPix
-					if stime <= now < (stime + duration):
-						bgpng = self.nowEvPix
-					else:
-						bgpng = self.othEvPix
-						if clock_types is not None and clock_types == 2:
-							bgpng = self.recEvPix
-						elif clock_types is not None and clock_types == 7:
-							bgpng = self.zapEvPix
+					bgpng = self.othEvPix
+					if clock_types is not None and clock_types == 2:
+						bgpng = self.recEvPix
+					elif clock_types is not None and clock_types == 7:
+						bgpng = self.zapEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
@@ -1182,8 +1155,6 @@ class EPGList(HTMLComponent, GUIComponent):
 	def fillGraphEPG(self, services, stime = None):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
-				self.nowEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'))
-				self.nowSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
 				self.othEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
 				self.selEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedEvent.png'))
 				self.othServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherService.png'))
