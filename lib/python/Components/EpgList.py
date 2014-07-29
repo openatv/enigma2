@@ -44,7 +44,110 @@ class Rect:
 	def width(self):
 		return self.w
 
+def _loadPixmaps(names):
+	pixmaps = [ ]
+	for name in names:
+		try:
+			pixmaps.append(LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, name)))
+                except Exception, e:
+                        print "[EPGList]", e
+			pixmaps.append(None)
+	return pixmaps
+
+def _loadPixmap(name):
+	return _loadPixmaps((name,))[0]
+
+def _loadPixmapsToAttrs(obj, map):
+	attrNames = map.keys()
+	pixmaps = _loadPixmaps(map.values())
+	for (attr, pixmap) in zip(attrNames, pixmaps):
+		setattr(obj, attr, pixmap)
+
+def _applySkinAttributes(obj, skinAttrs, attribMap, callerApplyMap = None):
+	def applyStrAttrib(obj, objAttrs, value):
+		setattr(obj, objAttrs[0], value)
+
+	def applyIntAttrib(obj, objAttrs, value):
+		setattr(obj, objAttrs[0], int(value))
+
+	def applyFontAttrib(obj, objAttrs, value):
+		font = parseFont(value, ((1,1),(1,1)) )
+		setattr(obj, objAttrs[0], font.family)
+		setattr(obj, objAttrs[1], font.pointSize)
+
+	def applyColorAttrib(obj, objAttrs, value):
+		setattr(obj, objAttrs[0], parseColor(value).argb())
+
+	applyMap = {
+		"str":		applyStrAttrib,
+		"int":		applyIntAttrib,
+		"font":		applyFontAttrib,
+		"color":	applyColorAttrib,
+	}
+
+	# Callers can override/extend function map
+	if callerApplyMap is not None:
+		applyMap = dict(applyMap.items() + callerApplyMap.items())
+
+	if skinAttrs is not None:
+		attribs = [ ]
+		for (attrib, value) in skinAttrs:
+			if attrib in attribMap:
+				mapEnt = attribMap[attrib]
+				type = mapEnt[0]
+				if type in applyMap:
+					applyMap[type](obj, mapEnt[1:], value)
+				else:
+					print "[EPGList]", "Unknown type %s in attribute map for skin attribute %s" % (type, attrib)
+			else:
+				attribs.append((attrib,value))
+		return attribs
+	else:
+		return None
+
 class EPGList(HTMLComponent, GUIComponent):
+
+	# Map skin attributes to class attribute names; font skin attributes
+	# map to two class attributes each, font name and font size.
+
+	attribMap = {
+		# Plain strs
+		"EntryFontAlignment":	("str", "eventNameAlign"),
+		"EntryFontWrap":	("str", "eventNameWrap"),
+		# Plain ints
+		"NumberOfRows":		("int", "NumberOfRows"),
+		"EventBorderWidth":	("int", "eventBorderWidth"),
+		"EventNamePadding":	("int", "eventNamePadding"),
+		"ServiceBorderWidth":	("int", "serviceBorderWidth"),
+		"ServiceNamePadding":	("int", "serviceNamePadding"),
+		# Fonts
+		"ServiceFontGraphical": ("font", "serviceFontNameGraph", "serviceFontSizeGraph"),
+		"EntryFontGraphical":	("font", "eventFontNameGraph", "eventFontSize"),
+		"EventFontSingle":	("font", "eventFontNameSingle", "eventFontSizeSingle"),
+		"EventFontInfobar":	("font", "eventFontNameInfobar", "eventFontSizeInfobar"),
+		"ServiceFontInfobar":	("font", "serviceFontNameInfobar", "serviceFontSizeInfobar"),
+		# Colors
+		"ServiceForegroundColor":	("color", "foreColorService"),
+		"ServiceForegroundColorNow":	("color", "foreColorServiceNow"),
+		"ServiceBackgroundColor":	("color", "backColorService"),
+		"ServiceBackgroundColorNow":	("color", "backColorServiceNow"),
+
+		"EntryForegroundColor":		("color", "foreColor"),
+		"EntryForegroundColorSelected":	("color", "foreColorSelected"),
+		"EntryBackgroundColor":		("color", "backColor"),
+		"EntryBackgroundColorSelected":	("color", "backColorSelected"),
+		"ServiceBorderColor":		("color", "borderColorService"),
+		"EntryBorderColor":		("color", "borderColor"),
+		"RecordForegroundColor":	("color", "foreColorRecord"),
+		"RecordForegroundColorSelected":("color", "foreColorRecordSelected"),
+		"RecordBackgroundColor":	("color", "backColorRecord"),
+		"RecordBackgroundColorSelected":("color", "backColorRecordSelected"),
+		"ZapForegroundColor":		("color", "foreColorZap"),
+		"ZapBackgroundColor":		("color", "backColorZap"),
+		"ZapForegroundColorSelected":	("color", "foreColorZapSelected"),
+		"ZapBackgroundColorSelected":	("color", "backColorZapSelected"),
+	}
+
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
 		self.cur_event = None
 		self.cur_service = None
@@ -80,39 +183,43 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 
-		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zaprec.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png'))]
+		self.clocks = _loadPixmaps((
+				'icons/epgclock_add.png',
+				'icons/epgclock_pre.png',
+				'icons/epgclock.png',
+				'icons/epgclock_prepost.png',
+				'icons/epgclock_post.png',
+				'icons/epgclock_add.png',
+				'icons/epgclock_pre.png',
+				'icons/epgclock_zap.png',
+				'icons/epgclock_prepost.png',
+				'icons/epgclock_post.png',
+				'icons/epgclock_add.png',
+				'icons/epgclock_pre.png',
+				'icons/epgclock_zaprec.png',
+				'icons/epgclock_prepost.png',
+				'icons/epgclock_post.png'
+			))
 
-		self.selclocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selprepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zap.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selprepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_zaprec.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selprepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpost.png'))]
+		self.selclocks = _loadPixmaps((
+				'icons/epgclock_add.png',
+				'icons/epgclock_selpre.png',
+				'icons/epgclock.png',
+				'icons/epgclock_selprepost.png',
+				'icons/epgclock_selpost.png',
+				'icons/epgclock_add.png',
+				'icons/epgclock_selpre.png',
+				'icons/epgclock_zap.png',
+				'icons/epgclock_selprepost.png',
+				'icons/epgclock_selpost.png',
+				'icons/epgclock_add.png',
+				'icons/epgclock_selpre.png',
+				'icons/epgclock_zaprec.png',
+				'icons/epgclock_selprepost.png',
+				'icons/epgclock_selpost.png'
+			))
 
-		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_autotimer.png'))
+		self.autotimericon = _loadPixmap('icons/epgclock_autotimer.png')
 
 		self.othEvPix = None
 		self.selEvPix = None
@@ -180,85 +287,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.NumberOfRows = None
 
 	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "ServiceFontGraphical":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.serviceFontNameGraph = font.family
-					self.serviceFontSizeGraph = font.pointSize
-				elif attrib == "EntryFontGraphical":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.eventFontNameGraph = font.family
-					self.eventFontSize = font.pointSize
-				elif attrib == "EntryFontAlignment":
-					self.eventNameAlign = value
-				elif attrib == "EntryFontWrap":
-					self.eventNameWrap = value
-				elif attrib == "EventFontSingle":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.eventFontNameSingle = font.family
-					self.eventFontSizeSingle = font.pointSize
-				elif attrib == "EventFontInfobar":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.eventFontNameInfobar = font.family
-					self.eventFontSizeInfobar = font.pointSize
-				elif attrib == "ServiceFontInfobar":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.serviceFontNameInfobar = font.family
-					self.serviceFontSizeInfobar = font.pointSize
-
-				elif attrib == "ServiceForegroundColor":
-					self.foreColorService = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColorNow":
-					self.foreColorServiceNow = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColor":
-					self.backColorService = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColorNow":
-					self.backColorServiceNow = parseColor(value).argb()
-
-				elif attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "ServiceBorderColor":
-					self.borderColorService = parseColor(value).argb()
-				elif attrib == "ServiceBorderWidth":
-					self.serviceBorderWidth = int(value)
-				elif attrib == "ServiceNamePadding":
-					self.serviceNamePadding = int(value)
-				elif attrib == "EntryBorderColor":
-					self.borderColor = parseColor(value).argb()
-				elif attrib == "EventBorderWidth":
-					self.eventBorderWidth = int(value)
-				elif attrib == "EventNamePadding":
-					self.eventNamePadding = int(value)
-
-				elif attrib == "RecordForegroundColor":
-					self.foreColorRecord = parseColor(value).argb()
-				elif attrib == "RecordForegroundColorSelected":
-					self.foreColorRecordSelected = parseColor(value).argb()
-				elif attrib == "RecordBackgroundColor":
-					self.backColorRecord = parseColor(value).argb()
-				elif attrib == "RecordBackgroundColorSelected":
-					self.backColorRecordSelected = parseColor(value).argb()
-				elif attrib == "ZapForegroundColor":
-					self.foreColorZap = parseColor(value).argb()
-				elif attrib == "ZapBackgroundColor":
-					self.backColorZap = parseColor(value).argb()
-				elif attrib == "ZapForegroundColorSelected":
-					self.foreColorZapSelected = parseColor(value).argb()
-				elif attrib == "ZapBackgroundColorSelected":
-					self.backColorZapSelected = parseColor(value).argb()
-				elif attrib == "NumberOfRows":
-					self.NumberOfRows = int(value)
-				else:
-					attribs.append((attrib,value))
-			self.skinAttributes = attribs
+		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
@@ -1155,26 +1184,31 @@ class EPGList(HTMLComponent, GUIComponent):
 	def fillGraphEPG(self, services, stime = None):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
-				self.othEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
-				self.selEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedEvent.png'))
-				self.othServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherService.png'))
-				self.nowServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentService.png'))
-				self.recEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/RecordEvent.png'))
-				self.recSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedRecordEvent.png'))
-				self.zapEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/ZapEvent.png'))
-				self.zapSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedZapEvent.png'))
+				_loadPixmapsToAttrs(self, {
+					"othEvPix":	'epg/OtherEvent.png',
+					"selEvPix":	'epg/SelectedEvent.png',
+					"othServPix":	'epg/OtherService.png',
+					"nowServPix":	'epg/CurrentService.png',
+					"recEvPix":	'epg/RecordEvent.png',
+					"recSelEvPix":	'epg/SelectedRecordEvent.png',
+					"zapEvPix":	'epg/ZapEvent.png',
+					"zapSelEvPix":	'epg/SelectedZapEvent.png',
+				})
+				_loadPixmapsToAttrs(self, {
+					"borderTopPix":		'epg/BorderTop.png',
+					"borderBottomPix":	'epg/BorderBottom.png',
+					"borderLeftPix":	'epg/BorderLeft.png',
+					"borderRightPix":	'epg/BorderRight.png',
+					"borderSelectedTopPix":	'epg/SelectedBorderTop.png',
+					"borderSelectedBottomPix":'epg/SelectedBorderBottom.png',
+					"borderSelectedLeftPix":'epg/SelectedBorderLeft.png',
+					"borderSelectedRightPix":'epg/SelectedBorderRight.png',
+				})
 
-				self.borderTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'))
-				self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'))
-				self.borderLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
-				self.borderRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'))
-				self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'))
-				self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'))
-				self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
-				self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
-
-			self.InfoPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/information.png'))
-			self.selInfoPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedInformation.png'))
+			_loadPixmapsToAttrs(self, {
+				"InfoPix":	'epg/information.png',
+				"selInfoPix":	'epg/SelectedInformation.png',
+			})
 
 			self.graphicsloaded = True
 
@@ -1262,6 +1296,20 @@ class EPGList(HTMLComponent, GUIComponent):
 			index += 1
 
 class TimelineText(HTMLComponent, GUIComponent):
+
+	attribMap = {
+		# Plain strs
+		"TimelineAlignment":	("str", "timelineAlign"),
+		# Plain ints
+		"borderWidth":		("int", "borderWidth"),
+		# Fonts
+		"TimelineFont":		("font", "timelineFontName", "timelineFontSize"),
+		# Colors
+		"foregroundColor":	("color", "foreColor"),
+		"borderColor":		("color", "borderColor"),
+		"backgroundColor":	("color", "backColor"),
+	}
+
 	def __init__(self, type = EPG_TYPE_GRAPH, graphic=False):
 		GUIComponent.__init__(self)
 		self.type = type
@@ -1285,25 +1333,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def applySkin(self, desktop, screen):
+		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
 		if self.skinAttributes is not None:
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
-				if attrib == "foregroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "borderColor":
-					self.borderColor = parseColor(value).argb()
-				elif attrib == "backgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "font":
+				if attrib == "font":
 					self.l.setFont(0, parseFont(value,  ((1,1),(1,1)) ))
-				elif attrib == "borderWidth":
-					self.borderWidth = int(value)
-				elif attrib == "TimelineFont":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.timelineFontName = font.family
-					self.timelineFontSize = font.pointSize
-				elif attrib == "TimelineAlignment":
-					self.timelineAlign = value
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -1311,8 +1346,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		if self.graphic:
-			self.TlDate = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'))
-			self.TlTime = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'))
+			_loadPixmapsToAttrs(self, {
+				"TlDate":	'epg/TimeLineDate.png',
+				"TlTime":	'epg/TimeLineTime.png',
+			})
 		self.setTimeLineFontsize()
 		return rc
 
@@ -1454,6 +1491,21 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = False
 
 class EPGBouquetList(HTMLComponent, GUIComponent):
+
+	attribMap = {
+		# Plain ints
+		"borderWidth":			("int", "BorderWidth"),
+		"itemHeight":			("int", "itemHeight"),
+		# Fonts
+		"font":				("font", "bouquetFontName", "bouquetFontSize"),
+		# Colors
+		"foregroundColor":		("color", "foreColor"),
+		"backgroundColor":		("color", "backColor"),
+		"foregroundColorSelected":	("color", "foreColorSelected"),
+		"backgroundColorSelected":	("color", "backColorSelected"),
+		"borderColor":			("color", "borderColor"),
+	}
+
 	def __init__(self, graphic=False):
 		GUIComponent.__init__(self)
 		self.graphic = graphic
@@ -1486,30 +1538,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.bouquetNameWrap = 'no'
 
 	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "font":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.bouquetFontName = font.family
-					self.bouquetFontSize = font.pointSize
-				elif attrib == "foregroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "backgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "foregroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "backgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "borderColor":
-					self.borderColor = parseColor(value).argb()
-				elif attrib == "borderWidth":
-					self.BorderWidth = int(value)
-				elif attrib == "itemHeight":
-					self.itemHeight = int(value)
-				else:
-					attribs.append((attrib,value))
-			self.skinAttributes = attribs
+		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
@@ -1691,17 +1720,19 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def fillBouquetList(self, bouquets):
 		if self.graphic and not self.graphicsloaded:
-			self.othPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/OtherEvent.png'))
-			self.selPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedCurrentEvent.png'))
+			_loadPixmapsToAttrs(self, {
+				"othPix":		'epg/OtherEvent.png',
+				"selPix":		'epg/SelectedCurrentEvent.png',
 
-			self.borderTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderTop.png'))
-			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderLeft.png'))
-			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderBottom.png'))
-			self.borderRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/BorderRight.png'))
-			self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderTop.png'))
-			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderLeft.png'))
-			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderBottom.png'))
-			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedBorderRight.png'))
+				"borderTopPix":		'epg/BorderTop.png',
+				"borderBottomPix":	'epg/BorderLeft.png',
+				"borderLeftPix":		'epg/BorderBottom.png',
+				"borderRightPix":	'epg/BorderRight.png',
+				"borderSelectedTopPix":	'epg/SelectedBorderTop.png',
+				"borderSelectedLeftPix":	'epg/SelectedBorderLeft.png',
+				"borderSelectedBottomPix":'epg/SelectedBorderBottom.png',
+				"borderSelectedRightPix":'epg/SelectedBorderRight.png',
+			})
 
 			self.graphicsloaded = True
 		self.bouquetslist = bouquets
