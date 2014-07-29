@@ -126,7 +126,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		result = readLine(streamSocket, &linebuf, &buflen);
 		if (!contenttypeparsed)
 		{
-			char contenttype[32];
+			char contenttype[33];
 			if (sscanf(linebuf, "Content-Type: %32s", contenttype) == 1)
 			{
 				contenttypeparsed = true;
