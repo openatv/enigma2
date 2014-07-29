@@ -199,6 +199,7 @@ class IceTVRegionSetup(Screen):
 <screen name="IceTVRegionSetup" position="320,130" size="640,550" title="IceTV - Region" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
     <widget name="config" position="30,120" size="580,325" enableWrapAround="1" scrollbarMode="showAlways"/>
+    <widget name="error" position="30,120" size="580,325" font="Console; 16" zPosition="1" />
 
     <widget name="description" position="20,e-100" size="600,70" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
@@ -219,6 +220,8 @@ class IceTVRegionSetup(Screen):
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
         self["description"] = Label(self._wait)
+        self["error"] = Label()
+        self["error"].hide()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
@@ -252,14 +255,17 @@ class IceTVRegionSetup(Screen):
 #        self.session.open(IceTVCreateLogin)
 
     def getRegionList(self):
-        msg = ""
-        rl = []
         try:
             res = ice.Regions().get().json()
             regions = res["regions"]
+            rl = []
             for region in regions:
                 rl.append((str(region["name"]), int(region["id"])))
+            self["config"].setList(rl)
+            self["description"].setText("")
         except RuntimeError as ex:
-            msg = _("Can not download list of regions: ") + ex
-        self["description"].setText(msg)
-        self["config"].setList(rl)
+            print "[IceTV] Can not download list of regions:", ex
+            msg = _("Can not download list of regions: ") + str(ex)
+            self["description"].setText(_("There was an error downloading the region list"))
+            self["error"].setText(msg)
+            self["error"].show()
