@@ -80,7 +80,7 @@ def Plugins(**kwargs):
 
 class IceTVUserTypeScreen(Screen):
     skin = """
-<screen name="IceTVUserTypeScreen" position="320,140" size="640,400" title="IceTV - Account selection" >
+<screen name="IceTVUserTypeScreen" position="320,130" size="640,400" title="IceTV - Account selection" >
  <widget position="20,20" size="600,40" name="title" font="Regular;32" />
  <widget position="20,80" size="600,200" name="instructions" font="Regular;22" />
  <widget position="20,300" size="600,100" name="menu" />
@@ -121,13 +121,11 @@ If you already have an IceTV subscription, please select 'Existing User', if not
 
 class IceTVNewUserSetup(ConfigListScreen, Screen):
     skin = """
-<screen name="IceTVNewUserSetup" position="320,130" size="640,550" title="IceTV - User Information" >
+<screen name="IceTVNewUserSetup" position="320,230" size="640,310" title="IceTV - User Information" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
-    <widget name="config" position="20,110" size="600,75" />
+    <widget name="config" position="20,120" size="600,100" />
 
-    <widget name="HelpWindow" position="500,320" size="1,1" />
-
-    <widget name="description" position="20,e-100" size="600,70" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="VKeyIcon" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
@@ -196,12 +194,12 @@ class IceTVOldUserSetup(IceTVNewUserSetup):
 
 class IceTVRegionSetup(Screen):
     skin = """
-<screen name="IceTVRegionSetup" position="320,130" size="640,550" title="IceTV - Region" >
+<screen name="IceTVRegionSetup" position="320,130" size="640,510" title="IceTV - Region" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
-    <widget name="config" position="30,120" size="580,325" enableWrapAround="1" scrollbarMode="showAlways"/>
-    <widget name="error" position="30,120" size="580,325" font="Console; 16" zPosition="1" />
+    <widget name="config" position="30,120" size="580,300" enableWrapAround="1" scrollbarMode="showAlways"/>
+    <widget name="error" position="30,120" size="580,300" font="Console; 16" zPosition="1" />
 
-    <widget name="description" position="20,e-100" size="600,70" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
