@@ -105,6 +105,30 @@ def _applySkinAttributes(obj, skinAttrs, attribMap, callerApplyMap = None):
 	else:
 		return None
 
+def _makeBorder(rect, borderWidth, pixmaps):
+	size = ((rect.w, borderWidth),					# T/B
+		(borderWidth, rect.h))					# L/R
+	pos  = ((rect.x, rect.y), (rect.x, rect.y+rect.h-borderWidth),	# T/B
+		(rect.x, rect.y), (rect.x+rect.w-borderWidth, 0))	# L/R
+	bdr = [ ]
+	for i in range(4): # T, B, L, R
+		if pixmaps and i < len(pixmaps) and pixmaps[i]:
+			bdr.append(MultiContentEntryPixmapAlphaTest(
+				pos = pos[i],
+				size = size[i/2],
+				png = pixmaps[i],
+				flags = BT_SCALE))
+	return bdr
+
+def _rectToPosSize(rect, tbBorderWidth = 0, lrBorderWidth = None):
+	if lrBorderWidth is None:
+		lrBorderWidth = tbBorderWidth
+	return {
+		"pos":  (rect.x + lrBorderWidth, rect.y + tbBorderWidth),
+		"size": (max(0, rect.w - lrBorderWidth * 2),
+			 max(0, rect.h - tbBorderWidth * 2))
+	}
+
 class EPGList(HTMLComponent, GUIComponent):
 
 	# Map skin attributes to class attribute names; font skin attributes
@@ -230,14 +254,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.zapEvPix = None
 		self.zapSelEvPix = None
 
-		self.borderTopPix = None
-		self.borderBottomPix = None
-		self.borderLeftPix = None
-		self.borderRightPix = None
-		self.borderSelectedTopPix = None
-		self.borderSelectedLeftPix = None
-		self.borderSelectedBottomPix = None
-		self.borderSelectedRightPix = None
+		self.borderPixmaps = None
+		self.borderSelectedPixmaps = None
 		self.InfoPix = None
 		self.selInfoPix = None
 		self.graphicsloaded = False
@@ -736,10 +754,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		selected = self.cur_service[0] == service
 		res = [ None ]
 
-		borderTopPix = None
-		borderLeftPix = None
-		borderBottomPix = None
-		borderRightPix = None
+		borderPixmaps = None
 
 		# Picon and Service name
 		serviceForeColor = self.foreColorService
@@ -753,10 +768,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		if bgpng is not None and self.graphic:
 			serviceBackColor = None
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
-					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
 					png = bgpng,
-					flags = BT_SCALE))
+					flags = BT_SCALE,
+					**_rectToPosSize(r1, self.serviceBorderWidth)))
 		else:
 			res.append(MultiContentEntryText(
 					pos  = (r1.x, r1.y),
@@ -801,74 +815,28 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle or displayPicon is None:
 			res.append(MultiContentEntryText(
-				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
-					r1.y + self.serviceBorderWidth),
-				size = (namewidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
-					r1.h - 2 * self.serviceBorderWidth),
 				font = namefont, flags = namefontflag,
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
-				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+				backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
+				**_rectToPosSize(Rect(r1.x + piconWidth, r1.y, namewidth, r1.h), self.serviceBorderWidth, self.serviceBorderWidth + self.serviceNamePadding)))
 
 		# Service Borders
-		if self.borderTopPix is not None and self.graphic:
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x, r1.y),
-					size = (r1.w, self.serviceBorderWidth),
-					png = self.borderTopPix,
-					flags = BT_SCALE))
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x, r2.y),
-					size = (r2.w, self.eventBorderWidth),
-					png = self.borderTopPix,
-					flags = BT_SCALE))
-		if self.borderBottomPix is not None and self.graphic:
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x, r1.h-self.serviceBorderWidth),
-					size = (r1.w, self.serviceBorderWidth),
-					png = self.borderBottomPix,
-					flags = BT_SCALE))
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x, r2.h-self.eventBorderWidth),
-					size = (r2.w, self.eventBorderWidth),
-					png = self.borderBottomPix,
-					flags = BT_SCALE))
-		if self.borderLeftPix is not None and self.graphic:
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x, r1.y),
-					size = (self.serviceBorderWidth, r1.h),
-					png = self.borderLeftPix,
-					flags = BT_SCALE))
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x, r2.y),
-					size = (self.eventBorderWidth, r2.h),
-					png = self.borderLeftPix,
-					flags = BT_SCALE))
-		if self.borderRightPix is not None and self.graphic:
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.w-self.serviceBorderWidth, r1.x),
-					size = (self.serviceBorderWidth, r1.h),
-					png = self.borderRightPix,
-					flags = BT_SCALE))
-			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + r2.w-self.eventBorderWidth, r2.y),
-					size = (self.eventBorderWidth, r2.h),
-					png = self.borderRightPix,
-					flags = BT_SCALE))
+		if self.graphic:
+			res += _makeBorder(r1, self.serviceBorderWidth, self.borderPixmaps)
+			res += _makeBorder(r2, self.eventBorderWidth, self.borderPixmaps)
 
 		if self.graphic:
 			if selected and not events and self.selEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
 					png = self.selEvPix,
-					flags = BT_SCALE))
+					flags = BT_SCALE,
+					**_rectToPosSize(r2, self.eventBorderWidth)))
 			elif self.othEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
 					png = self.othEvPix,
-					flags = BT_SCALE))
+					flags = BT_SCALE,
+					**_rectToPosSize(r2, self.eventBorderWidth)))
 		else:
 			res.append(MultiContentEntryText(
 				pos = (left, top), size = (width, height),
@@ -887,6 +855,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
+				evRect = Rect(left + xpos, top, ewidth, height)
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
@@ -917,10 +886,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				if selected and self.select_rect.x == xpos + left:
 					if clock_types is not None:
 						clocks = self.selclocks[clock_types]
-					borderTopPix = self.borderSelectedTopPix
-					borderLeftPix = self.borderSelectedLeftPix
-					borderBottomPix = self.borderSelectedBottomPix
-					borderRightPix = self.borderSelectedRightPix
+					borderPixmaps = self.borderSelectedPixmaps
 					infoPix = self.selInfoPix
 					bgpng = self.selEvPix
 					if clock_types is not None and clock_types in (2, 12):
@@ -930,10 +896,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]
-					borderTopPix = self.borderTopPix
-					borderLeftPix = self.borderLeftPix
-					borderBottomPix = self.borderBottomPix
-					borderRightPix = self.borderRightPix
+					borderPixmaps = self.borderPixmaps
 					infoPix = self.InfoPix
 					bgpng = self.othEvPix
 					if clock_types is not None and clock_types == 2:
@@ -946,64 +909,37 @@ class EPGList(HTMLComponent, GUIComponent):
 					backColor = None
 					backColorSel = None
 					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
-						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
 						png = bgpng,
-						flags = BT_SCALE))
+						flags = BT_SCALE,
+						**_rectToPosSize(evRect, self.eventBorderWidth)))
 				else:
 					res.append(MultiContentEntryText(
-						pos = (left + xpos, top), size = (ewidth, height),
 						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = "", color = None, color_sel = None,
 						backcolor = backColor, backcolor_sel = backColorSel,
-						border_width = self.eventBorderWidth, border_color = self.borderColor))
+						border_width = self.eventBorderWidth, border_color = self.borderColor,
+						**_rectToPosSize(evRect, 0)))
 
 				# event text
-				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
-				evY = top + self.eventBorderWidth
-				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
-				evH = height - 2 * self.eventBorderWidth
+				evSizePos = _rectToPosSize(evRect, self.eventBorderWidth, self.eventBorderWidth + self.eventNamePadding)
 				if self.type == EPG_TYPE_GRAPH:
 					infowidth = config.epgselection.graph_infowidth.value
 				elif self.type == EPG_TYPE_INFOBARGRAPH:
 					infowidth = config.epgselection.infobar_infowidth.value
-				if evW < infowidth and infoPix is not None:
+				if evSizePos["size"][0] < infowidth and infoPix is not None:
 					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (evX, evY), size = (evW, evH),
-						png = infoPix))
+						png = infoPix,
+						**evSizePos))
 				else:
 					res.append(MultiContentEntryText(
-						pos = (evX, evY), size = (evW, evH),
 						font = 1, flags = alignnment,
 						text = ev[1],
 						color = foreColor, color_sel = foreColorSel,
-						backcolor = backColor, backcolor_sel = backColorSel))
+						backcolor = backColor, backcolor_sel = backColorSel,
+						**evSizePos))
 
 				# event box borders
-				if borderTopPix is not None and self.graphic:
-					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, top),
-							size = (ewidth, self.eventBorderWidth),
-							png = borderTopPix,
-							flags = BT_SCALE))
-				if borderBottomPix is not None and self.graphic:
-					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, height-self.eventBorderWidth),
-							size = (ewidth, self.eventBorderWidth),
-							png = borderBottomPix,
-							flags = BT_SCALE))
-				if borderLeftPix is not None and self.graphic:
-					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, top),
-							size = (self.eventBorderWidth, height),
-							png = borderLeftPix,
-							flags = BT_SCALE))
-				if borderRightPix is not None and self.graphic:
-					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos + ewidth-self.eventBorderWidth, top),
-							size = (self.eventBorderWidth, height),
-							png = borderRightPix,
-							flags = BT_SCALE))
+				res += _makeBorder(evRect, self.eventBorderWidth, borderPixmaps)
 
 				# recording icons
 				if clock_types is not None and ewidth > 23:
@@ -1194,16 +1130,18 @@ class EPGList(HTMLComponent, GUIComponent):
 					"zapEvPix":	'epg/ZapEvent.png',
 					"zapSelEvPix":	'epg/SelectedZapEvent.png',
 				})
-				_loadPixmapsToAttrs(self, {
-					"borderTopPix":		'epg/BorderTop.png',
-					"borderBottomPix":	'epg/BorderBottom.png',
-					"borderLeftPix":	'epg/BorderLeft.png',
-					"borderRightPix":	'epg/BorderRight.png',
-					"borderSelectedTopPix":	'epg/SelectedBorderTop.png',
-					"borderSelectedBottomPix":'epg/SelectedBorderBottom.png',
-					"borderSelectedLeftPix":'epg/SelectedBorderLeft.png',
-					"borderSelectedRightPix":'epg/SelectedBorderRight.png',
-				})
+				self.borderPixmaps = _loadPixmaps((
+					'epg/BorderTop.png',
+					'epg/BorderBottom.png',
+					'epg/BorderLeft.png',
+					'epg/BorderRight.png',
+				))
+				self.borderSelectedPixmaps = _loadPixmaps((
+					'epg/SelectedBorderTop.png',
+					'epg/SelectedBorderBottom.png',
+					'epg/SelectedBorderLeft.png',
+					'epg/SelectedBorderRight.png',
+				))
 
 			_loadPixmapsToAttrs(self, {
 				"InfoPix":	'epg/information.png',
@@ -1613,11 +1551,6 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def buildEntry(self, name, func):
 		r1 = self.bouquet_rect
-		left = r1.x
-		top = r1.y
-		# width = (len(name)+5)*8
-		width = r1.w
-		height = r1.h
 		selected = self.CurrentBouquetService == func
 
 		if self.bouquetNameAlign.lower() == 'left':
@@ -1633,12 +1566,11 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 		res = [ None ]
 
+		borderPixmaps = None
+
 		if selected:
 			if self.graphic:
-				borderTopPix = self.borderSelectedTopPix
-				borderLeftPix = self.borderSelectedLeftPix
-				borderBottomPix = self.borderSelectedBottomPix
-				borderRightPix = self.borderSelectedRightPix
+				borderPixmaps = self.borderSelectedPixmaps
 			foreColor = self.foreColor
 			backColor = self.backColor
 			foreColorSel = self.foreColorSelected
@@ -1649,10 +1581,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 				backColorSel = None
 		else:
 			if self.graphic:
-				borderTopPix = self.borderTopPix
-				borderLeftPix = self.borderLeftPix
-				borderBottomPix = self.borderBottomPix
-				borderRightPix = self.borderRightPix
+				borderPixmaps = self.borderPixmaps
 			backColor = self.backColor
 			foreColor = self.foreColor
 			foreColorSel = self.foreColorSelected
@@ -1665,56 +1594,27 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		# box background
 		if bgpng is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-				pos = (left + self.BorderWidth, top + self.BorderWidth),
-				size = (width - 2 * self.BorderWidth, height - 2 * self.BorderWidth),
 				png = bgpng,
-				flags = BT_SCALE))
+				flags = BT_SCALE,
+				**_rectToPosSize(r1, self.BorderWidth)))
 		else:
 			res.append(MultiContentEntryText(
-				pos = (left , top), size = (width, height),
 				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 				text = "", color = None, color_sel = None,
 				backcolor = backColor, backcolor_sel = backColorSel,
-				border_width = self.BorderWidth, border_color = self.borderColor))
-
-		evX = left + self.BorderWidth + self.bouquetNamePadding
-		evY = top + self.BorderWidth
-		evW = width - 2 * (self.BorderWidth + self.bouquetNamePadding)
-		evH = height - 2 * self.BorderWidth
+				border_width = self.BorderWidth, border_color = self.borderColor,
+				**_rectToPosSize(r1, 0)))
 
 		res.append(MultiContentEntryText(
-			pos = (evX, evY), size = (evW, evH),
 			font = 0, flags = alignnment,
 			text = name,
 			color = foreColor, color_sel = foreColorSel,
-			backcolor = backColor, backcolor_sel = backColorSel))
+			backcolor = backColor, backcolor_sel = backColorSel,
+			**_rectToPosSize(r1, self.BorderWidth, self.BorderWidth + self.bouquetNamePadding)))
 
 		# Borders
 		if self.graphic:
-			if borderTopPix is not None:
-				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left, r1.y),
-						size = (r1.w, self.BorderWidth),
-						png = borderTopPix,
-						flags = BT_SCALE))
-			if borderBottomPix is not None:
-				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left, r1.h-self.BorderWidth),
-						size = (r1.w, self.BorderWidth),
-						png = borderBottomPix,
-						flags = BT_SCALE))
-			if borderLeftPix is not None:
-				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left, r1.y),
-						size = (self.BorderWidth, r1.h),
-						png = borderLeftPix,
-						flags = BT_SCALE))
-			if borderRightPix is not None:
-				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (r1.w-self.BorderWidth, left),
-						size = (self.BorderWidth, r1.h),
-						png = borderRightPix,
-						flags = BT_SCALE))
+			res += _makeBorder(r1, self.BorderWidth, borderPixmaps)
 
 		return res
 
@@ -1723,16 +1623,19 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			_loadPixmapsToAttrs(self, {
 				"othPix":		'epg/OtherEvent.png',
 				"selPix":		'epg/SelectedCurrentEvent.png',
-
-				"borderTopPix":		'epg/BorderTop.png',
-				"borderBottomPix":	'epg/BorderLeft.png',
-				"borderLeftPix":		'epg/BorderBottom.png',
-				"borderRightPix":	'epg/BorderRight.png',
-				"borderSelectedTopPix":	'epg/SelectedBorderTop.png',
-				"borderSelectedLeftPix":	'epg/SelectedBorderLeft.png',
-				"borderSelectedBottomPix":'epg/SelectedBorderBottom.png',
-				"borderSelectedRightPix":'epg/SelectedBorderRight.png',
 			})
+			self.borderPixmaps = _loadPixmaps((
+				'epg/BorderTop.png',
+				'epg/BorderBottom.png',
+				'epg/BorderLeft.png',
+				'epg/BorderRight.png',
+			))
+			self.borderSelectedPixmaps = _loadPixmaps((
+				'epg/SelectedBorderTop.png',
+				'epg/SelectedBorderBottom.png',
+				'epg/SelectedBorderLeft.png',
+				'epg/SelectedBorderRight.png',
+			))
 
 			self.graphicsloaded = True
 		self.bouquetslist = bouquets
