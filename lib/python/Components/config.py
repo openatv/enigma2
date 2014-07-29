@@ -777,7 +777,7 @@ class ConfigMAC(ConfigSequence):
 		ConfigSequence.__init__(self, seperator = ":", limits = mac_limits, default = default)
 
 class ConfigMacText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", visible_width = False):
+	def __init__(self, default="", visible_width=False, show_help=True):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
 
@@ -788,6 +788,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = 17
 		self.help_window = None
+		self.show_help = show_help
 		self.value = self.last_value = self.default = default
 		self.useableChars = '0123456789ABCDEF'
 
@@ -891,7 +892,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
-			self.help_window.show()
+			if self.show_help:
+				self.help_window.show()
 
 	def onDeselect(self, session):
 		self.marked_pos = 0
@@ -1076,9 +1078,9 @@ def getCharValue(code):
 
 # an editable text...
 class ConfigText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", fixed_size = True, visible_width = False):
+	def __init__(self, default="", fixed_size=True, visible_width=False, show_help=True):
 		ConfigElement.__init__(self)
-		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
+		NumericalTextInput.__init__(self, nextFunc=self.nextFunc, handleTimeout=False)
 
 		self.marked_pos = 0
 		self.allmarked = (default != "")
@@ -1087,13 +1089,14 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = fixed_size
 		self.help_window = None
+		self.show_help = show_help
 		self.value = self.last_value = self.default = default
 
 	def validateMarker(self):
 		textlen = len(self.text)
 		if self.fixed_size:
-			if self.marked_pos > textlen-1:
-				self.marked_pos = textlen-1
+			if self.marked_pos > textlen - 1:
+				self.marked_pos = textlen - 1
 		else:
 			if self.marked_pos > textlen:
 				self.marked_pos = textlen
@@ -1151,7 +1154,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				self.deleteAllChars()
 				self.allmarked = False
 			elif self.marked_pos > 0:
-				self.deleteChar(self.marked_pos-1)
+				self.deleteChar(self.marked_pos - 1)
 				if not self.fixed_size and self.offset > 0:
 					self.offset -= 1
 				self.marked_pos -= 1
@@ -1237,21 +1240,22 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			if self.allmarked:
 				mark = range(0, min(self.visible_width, len(self.text)))
 			else:
-				mark = [self.marked_pos-self.offset]
-			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
+				mark = [self.marked_pos - self.offset]
+			return "mtext"[1 - selected:], self.text[self.offset:self.offset + self.visible_width].encode("utf-8") + " ", mark
 		else:
 			if self.allmarked:
 				mark = range(0, len(self.text))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
+			return "mtext"[1 - selected:], self.text.encode("utf-8") + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
-			self.help_window.show()
+			if self.show_help:
+				self.help_window.show()
 
 	def onDeselect(self, session):
 		self.marked_pos = 0
@@ -1270,8 +1274,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.value = str(value)
 
 class ConfigPassword(ConfigText):
-	def __init__(self, default = "", fixed_size = False, visible_width = False, censor = "*"):
-		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width)
+	def __init__(self, default="", fixed_size=False, visible_width=False, censor="*", show_help=True):
+		ConfigText.__init__(self, default=default, fixed_size=fixed_size, visible_width=visible_width, show_help=show_help)
 		self.censor_char = censor
 		self.hidden = True
 
@@ -1340,8 +1344,8 @@ class ConfigSelectionNumber(ConfigSelection):
 				self.value = self.choices[nchoices - 1]
 
 class ConfigNumber(ConfigText):
-	def __init__(self, default = 0):
-		ConfigText.__init__(self, default, fixed_size = False)
+	def __init__(self, default=0):
+		ConfigText.__init__(self, default, fixed_size=False)
 
 	def getValue(self):
 		return int(self.text)
