@@ -190,6 +190,16 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(dualtextlcd,
+	AC_HELP_STRING([--with-dualtextlcd], [use ascii based lcd, yes or no]),
+	[[withdualtextlcd=$withval]],
+	[[withdualtextlcd=no]]
+)
+if test x"$withdualtextlcd" != xno ; then
+	AC_DEFINE(HAVE_DUALTEXTLCD, 1,[Define when using an ascii based lcd device])
+fi
+AM_CONDITIONAL(HAVE_DUALTEXTLCD, test x"$withdualtextlcd" != xno)
+
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
@@ -448,6 +458,7 @@ data/extensions/Makefile
 data/gbipbox/Makefile
 data/keymaps/Makefile
 data/displaytext/Makefile
+data/displaydualtext/Makefile
 data/display96/Makefile
 data/display128/Makefile
 data/display220/Makefile

@@ -28,6 +28,10 @@ if HAVE_TEXTLCD
 SUBDIRS += displaytext
 endif
 
+if HAVE_DUALTEXTLCD
+SUBDIRS += displaytext
+endif
+
 if HAVE_COLORLCD2
 SUBDIRS += display96
 endif
