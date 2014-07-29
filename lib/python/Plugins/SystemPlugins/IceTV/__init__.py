@@ -1,6 +1,12 @@
 # kate: replace-tabs on; indent-width 4; remove-trailing-spaces all; show-tabs on; newline-at-eof on;
 # -*- coding:utf-8 -*-
 
+'''
+Copyright (C) 2014 Peter Urbanec
+All Right Reserved
+License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
+'''
+
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave
 

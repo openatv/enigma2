@@ -1,6 +1,7 @@
 '''
-Copyright 2014 Peter Urbanec
+Copyright (C) 2014 Peter Urbanec
 All Right Reserved
+License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
 import requests
