@@ -77,6 +77,7 @@ AM_CONDITIONAL(EDISION, test `echo "$BOXTYPE" | cut -b 1-4` == "opti")
 AM_CONDITIONAL(JEPSSEN, test `echo "$BOXTYPE" | cut -b 1-5` == "media")
 AM_CONDITIONAL(SOGNO, test `echo "$BOXTYPE" | cut -b 1-5` == "sogno")
 AM_CONDITIONAL(SKYLAKE, test `echo "$BOXTYPE" | cut -b 1-2` == "hd")
+AM_CONDITIONAL(SPARK, test `echo "$BOXTYPE" | cut -b 1-5` == "spark")
 AM_CONDITIONAL(UNIBOXHDE, test "$BOXTYPE" == uniboxhde)
 AM_CONDITIONAL(EVO, test `echo "$BOXTYPE" | cut -b 1-4` == "enfi")
 AM_CONDITIONAL(MIRACLEBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "mb")
@@ -189,16 +190,6 @@ if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
-
-AC_ARG_WITH(dualtextlcd,
-	AC_HELP_STRING([--with-dualtextlcd], [use ascii based lcd, yes or no]),
-	[[withdualtextlcd=$withval]],
-	[[withdualtextlcd=no]]
-)
-if test x"$withdualtextlcd" != xno ; then
-	AC_DEFINE(HAVE_DUALTEXTLCD, 1,[Define when using an ascii based lcd device])
-fi
-AM_CONDITIONAL(HAVE_DUALTEXTLCD, test x"$withdualtextlcd" != xno)
 
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
