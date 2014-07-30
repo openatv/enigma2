@@ -186,8 +186,8 @@ class IceTVOldUserSetup(IceTVNewUserSetup):
 
     def keySave(self):
         print "[IceTV] old user", self["config"]
-#        self.session.open(IceTVLogin)
         self.saveAll()
+        self.session.open(IceTVLogin)
         self.close()
 
 
@@ -246,7 +246,10 @@ class IceTVRegionSetup(Screen):
     def save(self):
         item = self["config"].getCurrent()
         print "[IceTV] region: ", item
-#        self.session.open(IceTVCreateLogin)
+        config.plugins.icetv.member.region_id.value = item[1]
+        config.plugins.icetv.member.region_id.save()
+        self.session.open(IceTVCreateLogin)
+        self.close()
 
     def getRegionList(self):
         try:
@@ -260,6 +263,86 @@ class IceTVRegionSetup(Screen):
         except RuntimeError as ex:
             print "[IceTV] Can not download list of regions:", ex
             msg = _("Can not download list of regions: ") + str(ex)
+            if hasattr(ex, 'response'):
+                print "[IceTV] Server says:", ex.response.text
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
             self["error"].show()
+
+
+class IceTVLogin(Screen):
+    skin = """
+<screen name="IceTVLogin" position="320,130" size="640,510" title="IceTV - Login" >
+    <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
+    <widget name="message" position="30,120" size="580,300" font="Console; 16" zPosition="1" />
+
+    <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
+    <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+</screen>"""
+
+    _instructions = _("Contacting IceTV server and obtaining token for use. ")
+    _wait = _("Please wait...")
+
+    def __init__(self, session, args=None):
+        self.session = session
+        Screen.__init__(self, session)
+        self["instructions"] = Label(self._instructions)
+        self["description"] = Label(self._wait)
+        self["message"] = Label()
+        self["key_red"] = Label()
+        self["key_green"] = Label(_("Done"))
+        self["key_yellow"] = Label()
+        self["key_blue"] = Label()
+        self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
+                                       actions={"cancel": self.close,
+                                                "red": self.close,
+                                                "green": self.close,
+                                                "ok": self.close,
+                                                }, prio=-2
+                                       )
+        self.createTimer = eTimer()
+        self.createTimer.callback.append(self.onCreate)
+        self.onLayoutFinish.append(self.layoutFinished)
+
+    def layoutFinished(self):
+        self.createTimer.start(3, True)
+
+    def onCreate(self):
+        self.createTimer.stop()
+        self.doLogin()
+
+    def doLogin(self):
+        try:
+            if ice.have_credentials():
+                ice.Logout().delete()
+        except:
+            # Failure to logout is not a show-stopper
+            pass
+        try:
+            self.loginCmd()
+            self["message"].setText("All is good.\n"
+                                    "Your IceTV guide will now download in the background.")
+            self["description"].setText("")
+        except RuntimeError as ex:
+            print "[IceTV] Login failure:", ex
+            msg = _("Login failure: ") + str(ex)
+            if hasattr(ex, 'response'):
+                print "[IceTV] Server says:", ex.response.text
+            self["description"].setText(_("There was an error while trying to login."))
+            self["message"].setText(msg)
+
+    def loginCmd(self):
+        ice.Login(config.plugins.icetv.member.email_address.value,
+                  config.plugins.icetv.member.password.value).post()
+
+
+class IceTVCreateLogin(IceTVLogin):
+
+    def loginCmd(self):
+        ice.Login(config.plugins.icetv.member.email_address.value,
+                  config.plugins.icetv.member.password.value,
+                  config.plugins.icetv.member.region_id.value).post()
