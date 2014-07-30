@@ -25,7 +25,7 @@ dist_pkgdata_DATA += startwizard.xml
 endif
 
 if HAVE_TEXTLCD
-if HAVE SPARK
+if SPARK
 SUBDIRS += displaydualtext
 else
 SUBDIRS += displaytext
