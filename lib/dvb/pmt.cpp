@@ -477,7 +477,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 							autoaudio_mpeg = i;
 						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
 							autoaudio_ac3 = i;
-						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
+						else if (program.audioStreams[i].type == audioStream::atDDP && (autoaudio_level > x || autoaudio_ddp == -1))
 							autoaudio_ddp = i;
 						else if (program.audioStreams[i].type == audioStream::atAACHE && (autoaudio_level > x || autoaudio_aache == -1))
 							autoaudio_aache = i;
