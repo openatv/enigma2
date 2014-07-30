@@ -116,7 +116,7 @@ If you already have an IceTV subscription, please select 'Existing User', if not
         self.close()
 
     def ok(self):
-        selection = self["menu"].l.getCurrentSelection()
+        selection = self["menu"].getCurrent()
         print "[IceTV] ok - selection: ", selection
         if selection[1] == "newUser":
             self.session.open(IceTVNewUserSetup)
@@ -175,27 +175,20 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
                                              "blue": self.KeyText,
                                          }, prio=-2)
 
-    def hideHelper(self):
-        sel = self["config"].getCurrent()
-        if sel and sel[1].help_window.instance is not None:
-            sel[1].help_window.hide()
-
-    def keyCancel(self):
-        self.hideHelper()
-        self.closeMenuList()
-
     def keySave(self):
-        self.hideHelper()
         print "[IceTV] new user", self["config"]
+        self.saveAll()
         self.session.open(IceTVRegionSetup)
+        self.close()
 
 
 class IceTVOldUserSetup(IceTVNewUserSetup):
 
     def keySave(self):
-        self.hideHelper()
         print "[IceTV] old user", self["config"]
 #        self.session.open(IceTVLogin)
+        self.saveAll()
+        self.close()
 
 
 class IceTVRegionSetup(Screen):
@@ -233,10 +226,10 @@ class IceTVRegionSetup(Screen):
         self.regionList = []
         self["config"] = MenuList(self.regionList)
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
-                                       actions={"cancel": self.keyCancel,
-                                                "red": self.keyCancel,
-                                                "green": self.keySave,
-                                                "ok": self.keySave,
+                                       actions={"cancel": self.close,
+                                                "red": self.close,
+                                                "green": self.save,
+                                                "ok": self.save,
                                                 }, prio=-2
                                        )
         self.createTimer = eTimer()
@@ -244,16 +237,13 @@ class IceTVRegionSetup(Screen):
         self.onLayoutFinish.append(self.layoutFinished)
 
     def layoutFinished(self):
-        self.createTimer.start(3)
+        self.createTimer.start(3, True)
 
     def onCreate(self):
         self.createTimer.stop()
         self.getRegionList()
 
-    def keyCancel(self):
-        self.close()
-
-    def keySave(self):
+    def save(self):
         item = self["config"].getCurrent()
         print "[IceTV] region: ", item
 #        self.session.open(IceTVCreateLogin)
