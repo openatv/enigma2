@@ -128,10 +128,13 @@ class Login(Request):
     def send(self, method):
         r = super(Login, self).send(method)
         result = r.json()
-        for key in ("email_address", "token", "id", "region_id"):
-            config.plugins.icetv.member[key].value = result["member"][key]
-        for key in ("id", "label", "type_id"):
-            config.plugins.icetv.device[key].value = result["device"][key]
+        config.plugins.icetv.member.email_address.value = result["member"]["email_address"]
+        config.plugins.icetv.member.token.value = result["member"]["token"]
+        config.plugins.icetv.member.id.value = result["member"]["id"]
+        config.plugins.icetv.member.region_id.value = result["member"]["region_id"]
+        config.plugins.icetv.device.id.value = result["device"]["id"]
+        config.plugins.icetv.device.label.value = result["device"]["label"]
+        config.plugins.icetv.device.type_id.value = result["device"]["type_id"]
         config.plugins.icetv.save()
         saveConfigFile()
         return r
