@@ -10,7 +10,7 @@ import json
 from fcntl import ioctl
 from struct import pack
 from socket import socket, AF_INET, SOCK_DGRAM
-from . import config
+from . import config, saveConfigFile
 
 _version_string = "20140728"
 _server = "http://api.dev.icetv.com.au"
@@ -42,6 +42,7 @@ def get_credentials():
 def clear_credentials():
     config.plugins.icetv.member.token.value = ""
     config.plugins.icetv.member.token.save()
+    saveConfigFile()
 
 class Request(object):
     def __init__(self, resource):
@@ -132,6 +133,7 @@ class Login(Request):
         for key in ("id", "label", "type_id"):
             config.plugins.icetv.device[key].value = result["device"][key]
         config.plugins.icetv.save()
+        saveConfigFile()
         return r
 
 

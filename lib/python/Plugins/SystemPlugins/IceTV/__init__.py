@@ -8,7 +8,7 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
-    ConfigPassword, ConfigSelection, NoSave
+    ConfigPassword, ConfigSelection, NoSave, configfile
 
 
 config.plugins.icetv = ConfigSubsection()
@@ -49,6 +49,8 @@ checktimes = {
 
 config.plugins.icetv.refresh_interval = ConfigSelection(default="15 minutes", choices=checktimes)
 
+def saveConfigFile():
+    configfile.save()
 
 '''
 {
