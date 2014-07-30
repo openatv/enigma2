@@ -756,7 +756,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			eit_event->start_time_3,
 			eit_event->start_time_4,
 			eit_event->start_time_5);
-	time_t now = ::time(0);
+	time_t now = ::time(0) - historySeconds;
 
 	// Set a flag in the channel to signify that the source is available
 	if ( TM != 3599 && TM > -1 && channel)
@@ -782,13 +782,15 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			eit_event->start_time_5,
 			&event_hash);
 
+		bool isOld = ((TM + duration) < now);
+
 		std::vector<int>::iterator m_it=find(onid_blacklist.begin(),onid_blacklist.end(),onid);
 		if (m_it != onid_blacklist.end())
 			goto next;
 
 		if ( (TM != 3599) &&		// NVOD Service
-// Don't skip old events. This allows us to delete events by setting their start time to distant past and they will be deleted by the clean up loop later.
-//		     (now <= (TM+duration)) &&	// skip old events
+// Don't skip old events. This allows us to delete events by setting their start time to distant past and they will be deleted by cleanLoop() later.
+//		     isOld &&	// skip old events
 		     (TM < (now+28*24*60*60)) &&	// no more than 4 weeks in future
 		     ( (onid != 1714) || (duration != (24*3600-1)) )	// PlatformaHD invalid event
 		   )
@@ -924,9 +926,17 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 #ifdef EPG_DEBUG
 				consistencyCheck=false;
 #endif
-				eDebug("[EPGC] add new event %04x at time %ld", event_id, (long)TM);
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
-				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( TM, evt ) );
+				if (isOld)
+				{
+					delete evt;
+					goto next;
+				}
+				else
+				{
+					eDebug("[EPGC] add new event %04x at time %ld", event_id, (long)TM);
+					ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
+					tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( TM, evt ) );
+				}
 			}
 
 #ifdef EPG_DEBUG
