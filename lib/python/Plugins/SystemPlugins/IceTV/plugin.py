@@ -267,6 +267,7 @@ class IceTVRegionSetup(Screen):
             msg = _("Can not download list of regions: ") + str(ex)
             if hasattr(ex, 'response'):
                 print "[IceTV] Server says:", ex.response.text
+                msg += "\n%s" % str(ex.response.text).strip()
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
             self["error"].show()
@@ -338,6 +339,7 @@ class IceTVLogin(Screen):
             msg = _("Login failure: ") + str(ex)
             if hasattr(ex, 'response'):
                 print "[IceTV] Server says:", ex.response.text
+                msg += "\n%s" % str(ex.response.text).strip()
             self["description"].setText(_("There was an error while trying to login."))
             self["message"].setText(msg)
 
