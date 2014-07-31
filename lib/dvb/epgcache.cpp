@@ -2,7 +2,7 @@
 #include <lib/dvb/dvb.h>
 
 #undef EPG_DEBUG
-#define EPG_DEBUG 1
+//#define EPG_DEBUG 1
 
 #ifdef EPG_DEBUG
 #include <lib/service/event.h>
@@ -819,7 +819,9 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 //				eDebug("[EPGC] event %04x in eventMap with start time %ld", event_id, (long)ev_it->second->getStartTime());
 				if ( source > ev_it->second->type )  // update needed ?
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
+#endif
 					goto next; // when not.. then skip this entry
 				}
 
@@ -844,7 +846,9 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 					}
 					else  // event has new event begin time
 					{
+#ifdef EPG_DEBUG
 						eDebug("[EPGC] event %04x in timeMap with a different start time - delete from timeMap", event_id);
+#endif
 						tm_erase_count++;
 						// delete the found record from timemap
 						servicemap.second.erase(tm_it_tmp);
@@ -853,12 +857,16 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				}
 				else
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] event %04x not found in timeMap at time %ld", event_id, (long)ev_it->second->getStartTime());
+#endif
 				}
 			}
 			else
 			{
+#ifdef EPG_DEBUG
 				eDebug("[EPGC] event %04x not found in eventMap", event_id);
+#endif
 			}
 
 			// search in timemap, for check of a case if new time has coincided with time of other event
@@ -871,7 +879,9 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				if ( source > tm_it->second->type &&
 					ev_it == servicemap.first.end() )
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] event at time %ld skip update: source=0x%x > type=0x%x && event %04x not found in eventMap", (long)TM, source, tm_it->second->type, event_id);
+#endif
 					goto next; // when not.. then skip this entry
 				}
 
@@ -879,7 +889,9 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				eventMap::iterator ev_it_tmp = servicemap.first.find(tm_it->second->getEventID());
 				if ( ev_it_tmp != servicemap.first.end() )
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] event at time %ld found in event map as %04x - delete from eventMap", (long)TM, tm_it->second->getEventID());
+#endif
 					ev_erase_count++;
 					// delete the found record from eventmap
 					servicemap.first.erase(ev_it_tmp);
@@ -887,12 +899,16 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				}
 				else
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] event at time %ld not found in eventMap as %04x", (long)TM, tm_it->second->getEventID());
+#endif
 				}
 			}
 			else
 			{
+#ifdef EPG_DEBUG
 				eDebug("[EPGC] event at time %ld not found in timeMap", (long)TM);
+#endif
 			}
 
 			evt = new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
@@ -933,7 +949,9 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				}
 				else
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] add new event %04x at time %ld", event_id, (long)TM);
+#endif
 					ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
 					tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( TM, evt ) );
 				}
@@ -1069,9 +1087,11 @@ void eEPGCache::cleanLoop()
 			{
 				if ( now > (It->first+It->second->getDuration()) )  // outdated normal entry (nvod references to)
 				{
+#ifdef EPG_DEBUG
 					eDebug("[EPGC] cleanLoop: svc(%x:%x:%x) delete old event %04x at time %ld",
 						DBIt->first.onid, DBIt->first.tsid, DBIt->first.sid,
 						It->second->getEventID(), (long) It->first);
+#endif
 					// remove entry from eventMap
 					eventMap::iterator b(DBIt->second.first.find(It->second->getEventID()));
 					if ( b != DBIt->second.first.end() )
