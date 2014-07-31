@@ -7,7 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer
+from enigma import eTimer, eEPGCache
 from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -16,19 +16,106 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.config import getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
-from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
+import time
 from . import config
 import API as ice
+from Plugins.SystemPlugins.IceTV import saveConfigFile
+
+_session = None
 
 
-class Wizpop(MessageBox):
+class IceTVMain(ChoiceBox):
+
     def __init__(self, session, *args, **kwargs):
-        super(Wizpop, self).__init__(session, _("Enable IceTV?"))
+        if _session is None:
+            global _session
+            _session = session
+        menu = [("Enable IceTV", "CALLFUNC", enableIceTV),
+                ("Disable IceTV", "CALLFUNC", disableIceTV),
+                ("Configure IceTV", "CALLFUNC", configIceTV),
+                ("Fetch EPG", "CALLFUNC", fetchEpg),
+                ]
+        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
 
     def close(self, retval):
-        print "[IceTV] Wizpop answer was", retval
-        super(Wizpop, self).close()
+        print "[IceTV] IceTVMain answer was", retval
+        super(IceTVMain, self).close()
+
+
+def enableIceTV(res=None):
+    print "[IceTV] enableIceTV"
+    config.epg.eit.value = False
+    config.epg.save()
+    config.plugins.icetv.enable_epg.value = True
+    epgcache = eEPGCache.getInstance()
+    epgcache.setEpgSources(0)
+    epgcache.clear()
+    epgcache.save()
+    saveConfigFile()
+
+
+def disableIceTV(res=None):
+    print "[IceTV] disableIceTV"
+    epgcache = eEPGCache.getInstance()
+    epgcache.setEpgSources(0)
+    epgcache.clear()
+    epgcache.save()
+    epgcache.setEpgSources(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
+    config.epg.eit.value = True
+    config.epg.save()
+    config.plugins.icetv.enable_epg.value = False
+    saveConfigFile()
+
+
+def configIceTV(res=None):
+    print "[IceTV] configIceTV"
+    pass
+
+
+def fetchEpg(res=None):
+    print "[IceTV] fetchEpg"
+    shows = getShows()
+    channel_service_map = makeChanServMap(shows["channels"])
+    channel_show_map = makeChanShowMap(shows["shows"])
+    epgcache = eEPGCache.getInstance()
+    for channel_id in channel_show_map.keys():
+        print "[IceTV] inserting %d shows into" % len(channel_show_map[channel_id]), channel_service_map[channel_id]
+        print "[IceTV] first one:", channel_show_map[channel_id][0]
+        epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
+
+def makeChanServMap(channels):
+    res = {}
+    for channel in channels:
+        channel_id = channel["id"]
+        for triplet in channel["dvb_triplets"]:
+            res.setdefault(channel_id, []).append((int(triplet["original_network_id"]),
+                                                   int(triplet["transport_stream_id"]),
+                                                   int(triplet["service_id"])))
+    return res
+
+def makeChanShowMap(shows):
+    res = {}
+    for show in shows:
+        channel_id = show["channel_id"]
+        # Fit within 16 bits, but never pass 0
+        event_id = (int(show["id"]) % 65530) + 1
+        start = int(time.mktime(time.strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+        stop = int(time.mktime(time.strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+        duration = stop - start
+        title = show["title"].encode("utf8")
+        short = show["subtitle"].encode("utf8")
+        extended = show["desc"].encode("utf8")
+        res.setdefault(channel_id, []).append((start, duration, title, short, extended, 0, event_id))
+    return res
+
+
+def getShows():
+    req = ice.Shows()
+    last_update = config.plugins.icetv.last_update_time.value
+    req.params["last_update_time"] = last_update
+    return req.get().json()
 
 
 def autostart_main(reason, **kwargs):
@@ -40,20 +127,32 @@ def autostart_main(reason, **kwargs):
     else:
         print "[IceTV] autostart with unknown reason:", reason
 
+
 def sessionstart_main(reason, session, **kwargs):
     if reason == 0:
         print "[IceTV] sessionstart start"
+        if _session is None:
+            global _session
+            _session = session
     elif reason == 1:
         print "[IceTV] sessionstart stop"
+        global _session
+        _session = None
     else:
         print "[IceTV] sessionstart with unknown reason:", reason
 
+
 def wizard_main(*args, **kwargs):
     print "[IceTV] wizard"
-    return Wizpop(*args, **kwargs)
+    return IceTVMain(*args, **kwargs)
+
 
 def plugin_main(session, **kwargs):
-    session.open(IceTVUserTypeScreen)
+    if _session is None:
+        global _session
+        _session = session
+    session.open(IceTVMain)
+
 
 def Plugins(**kwargs):
     return [
