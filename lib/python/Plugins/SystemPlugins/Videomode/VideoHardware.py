@@ -87,7 +87,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 	
-	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
+	if chipset == 'bcm7358' or chipset == 'bcm7346' or chipset == 'bcm7356' or chipset == 'bcm7405':
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
