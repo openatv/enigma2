@@ -2997,7 +2997,9 @@ void eEPGCache::importEvent(ePyObject serviceReferences, ePyObject list)
  * @brief Import EPG events from Python into the EPG database. Each event in the @p list
  * is added to each service in the @p serviceReferences list.
  *
- * @param serviceReferences Either a single service reference string, or a list of strings
+ * @param serviceReferences Any of: a single service reference string; a list of service reference
+ * strings; a single tuple with DVB triplet or a list of tuples with DVB triplets. A DVB triplet is
+ * (onid, tsid, sid)
  * @param list Either a list or a tuple of EPG events. Each event is a tuple of at least 6 elements:
  * 1. start time (long)
  * 2. duration (int)
@@ -3018,12 +3020,24 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 	{
 		char *refstr;
 		refstr = PyString_AS_STRING(serviceReferences);
-	        if (!refstr)
-	        {
-        	        eDebug("[EPG:import] serviceReference string is 0, aborting");
-                	return;
-	        }
+		if (!refstr)
+		{
+			eDebug("[EPG:import] serviceReferences string is 0, aborting");
+			return;
+		}
 		refs.push_back(eServiceReferenceDVB(refstr));
+	}
+	else if (PyTuple_Check(serviceReferences))
+	{
+		if (PyTuple_Size(serviceReferences) != 3)
+		{
+			eDebug("[EPG:import] serviceReferences tuple must contain 3 numbers (tsid, onid, sid), aborting");
+			return;
+		}
+		int onid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 0));
+		int tsid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 1));
+		int sid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 2));
+		refs.push_back(eServiceReferenceDVB(0, tsid, onid, sid, 0));
 	}
 	else if (PyList_Check(serviceReferences))
 	{
@@ -3031,28 +3045,51 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 		for (int i = 0; i < nRefs; ++i)
 		{
 			PyObject* item = PyList_GET_ITEM(serviceReferences, i);
-			char *refstr;
-	                refstr = PyString_AS_STRING(item);
-	                if (!refstr)
-        	        {
-                	        eDebug("[EPG:import] a serviceref item is not a string");
-                        }
+			if (PyString_Check(item))
+			{
+				char *refstr;
+				refstr = PyString_AS_STRING(item);
+				if (!refstr)
+				{
+					eDebug("[EPG:import] serviceReferences[%d] is not a string", i);
+				}
+				else
+				{
+					refs.push_back(eServiceReferenceDVB(refstr));
+				}
+			}
+			else if (PyTuple_Check(item))
+			{
+				if (PyTuple_Size(item) != 3)
+				{
+					eDebug("[EPG:import] serviceReferences[%d] tuple must contain 3 numbers (tsid, onid, sid)", i);
+				}
+				int onid = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
+				int tsid = PyInt_AsLong(PyTuple_GET_ITEM(item, 1));
+				int sid = PyInt_AsLong(PyTuple_GET_ITEM(item, 2));
+				refs.push_back(eServiceReferenceDVB(0, tsid, onid, sid, 0));
+			}
 			else
-		        {
-		                refs.push_back(eServiceReferenceDVB(refstr));
+			{
+				eDebug("[EPG:import] serviceReferences[%d] is not a string or a tuple", i);
 			}
 		}
 	}
 	else
 	{
-		eDebug("[EPG:import] serviceReference string is neither string nor list, aborting");
+		eDebug("[EPG:import] serviceReferences is not a string, a list of strings, a tuple or a list of tuples, aborting");
+		return;
+	}
+
+	if (refs.empty())
+	{
+		eDebug("[EPG:import] no valid serviceReferences found, aborting");
 		return;
 	}
 
 	bool isTuple = PyTuple_Check(list);
 	if (!isTuple && !PyList_Check(list))
 	{
-
 		eDebug("[EPG:import] argument 'list' is neither list nor tuple.");
 		return;
 	}
@@ -3085,7 +3122,6 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 		{
 			eventId = (__u16) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 6));
 		}
-
 		submitEventData(refs, start, duration, title, short_summary, long_description, event_type, eventId);
 	}
 }
