@@ -1293,6 +1293,11 @@ void eEPGCache::thread()
 
 static const char* EPGDAT_IN_FLASH = "/epg.dat";
 
+void eEPGCache::clear()
+{
+	flushEPG();
+}
+
 void eEPGCache::load()
 {
 	if (m_filename.empty())
