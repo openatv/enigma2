@@ -51,4 +51,5 @@ checktimes = {
 config.plugins.icetv.refresh_interval = ConfigSelection(default="15 minutes", choices=checktimes)
 
 def saveConfigFile():
+    config.plugins.icetv.save()
     configfile.save()
