@@ -1425,8 +1425,8 @@ void eEPGCache::save()
 	if (eventData::isCacheCorrupt)
 		return;
 	// only save epg.dat if it's worth the trouble...
-	if (eventData::CacheSize < 10240)
-		return;
+//	if (eventData::CacheSize < 10240)
+//		return;
 
 	/* create empty file */
 	FILE *f = fopen(EPGDAT, "wb");
