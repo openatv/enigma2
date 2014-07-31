@@ -176,7 +176,7 @@ class Dish(Screen):
 			from Components.NimManager import nimmanager
 			nimConfig = nimmanager.getNimConfig(tuner)
 			if nimConfig.configMode.value == "simple":
-				if nimConfig.diseqcMode.value == "positioner":
+				if "positioner" in nimConfig.diseqcMode.value:
 					nim = config.Nims[tuner]
 					if pol in (1, 3): # vertical
 						return nim.turningspeedV.float
