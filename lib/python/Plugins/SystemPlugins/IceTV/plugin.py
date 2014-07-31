@@ -8,6 +8,7 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
 from enigma import eTimer
+from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
@@ -92,16 +93,17 @@ class IceTVUserTypeScreen(Screen):
  <widget position="20,300" size="600,100" name="menu" />
 </screen>
 """
-    instructions = """In order to allow you to access all the features of the IceTV smart recording service, we need to gather some basic information.
-
-If you already have an IceTV subscription, please select 'Existing User', if not, then select 'New User'.
-"""
+    _instructions = _("In order to allow you to access all the features of the "
+                      "IceTV smart recording service, we need to gather some "
+                      "basic information.\n\n"
+                      "If you already have an IceTV subscription, please select "
+                      "'Existing User', if not, then select 'New User'.")
 
     def __init__(self, session, args=None):
         self.session = session
         Screen.__init__(self, session)
         self["title"] = Label(_("Welcome to IceTV"))
-        self["instructions"] = Label(_(self.instructions))
+        self["instructions"] = Label(_(self._instructions))
         options = []
         options.append((_("New User"), "newUser"))
         options.append((_("Existing User"), "oldUser"))
@@ -284,7 +286,7 @@ class IceTVLogin(Screen):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("Contacting IceTV server and obtaining token for use. ")
+    _instructions = _("Contacting IceTV server and setting up your %s %s.") % (getMachineBrand(), getMachineName())
     _wait = _("Please wait...")
 
     def __init__(self, session, args=None):
@@ -324,8 +326,12 @@ class IceTVLogin(Screen):
             pass
         try:
             self.loginCmd()
-            self["message"].setText("All is good.\n"
-                                    "Your IceTV guide will now download in the background.")
+            self["message"].setText(_("Setup is complete.\n\n"
+                                      "Congratulations, you have successfully configured your %s %s "
+                                      "for use with the IceTV Smart Recording service.\n\n"
+                                      "For more information, visit icetv.com.au\n\n"
+                                      "Your IceTV guide will now download in the background.")
+                                    % (getMachineBrand(), getMachineName()))
             self["description"].setText("")
         except RuntimeError as ex:
             print "[IceTV] Login failure:", ex

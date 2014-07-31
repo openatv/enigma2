@@ -7,6 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
+from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave, configfile
 
@@ -23,7 +24,7 @@ config.plugins.icetv.member.region_id = ConfigNumber()
 config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_help=False))
 
 config.plugins.icetv.device = ConfigSubsection()
-config.plugins.icetv.device.label = ConfigText(default="Beyonwiz T3", show_help=False)
+config.plugins.icetv.device.label = ConfigText(default="%s %s" % (getMachineBrand(), getMachineName()), show_help=False)
 config.plugins.icetv.device.id = ConfigNumber()
 config.plugins.icetv.device.type_id = ConfigNumber(default=22)
 
@@ -51,20 +52,3 @@ config.plugins.icetv.refresh_interval = ConfigSelection(default="15 minutes", ch
 
 def saveConfigFile():
     configfile.save()
-
-'''
-{
-  "device": {
-    "label": "Beyonwiz T3",
-    "id": "172",
-    "type_id": "22"
-  },
-  "member": {
-    "token": "66e3a9c6-8a8a-44f7-8f10-b70ff2cfc405",
-    "email_address": "test1@example.com",
-    "id": "322374",
-    "region_id": "1"
-  },
-  "last_update_time": "1405656119"
-}
-'''
