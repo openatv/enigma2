@@ -9,7 +9,7 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 
 from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
-    ConfigPassword, ConfigSelection, NoSave, configfile
+    ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo
 
 
 config.plugins.icetv = ConfigSubsection()
@@ -29,6 +29,7 @@ config.plugins.icetv.device.id = ConfigNumber()
 config.plugins.icetv.device.type_id = ConfigNumber(default=22)
 
 config.plugins.icetv.last_update_time = ConfigNumber()
+config.plugins.icetv.enable_epg = ConfigYesNo(default=True)
 
 checktimes = {
     "2 minutes": 2 * 60,
