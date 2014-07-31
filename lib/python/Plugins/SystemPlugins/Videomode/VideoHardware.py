@@ -40,7 +40,7 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
+	if chipset == 'bcm7358' or chipset == 'bcm7346' or chipset == 'bcm7356' or chipset == 'bcm7405':
 		rates["720p"] =		{ "24Hz": 	{ 24: "720p24" },
 									"25Hz": 	{ 25: "720p25" },
 									"30Hz": 	{ 30: "720p30" },
@@ -61,7 +61,7 @@ class VideoHardware:
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" } }
 
-	elif chipset == 'bcm7358' or chipset == 'bcm7356':
+	elif chipset == 'bcm7358' or chipset == 'bcm7346' or chipset == 'bcm7356':
 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
 									"25Hz": 	{ 25: "1080p25" },
 									"30Hz": 	{ 30: "1080p30" },
@@ -87,7 +87,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 	
-	if chipset == 'bcm7358' or chipset == 'bcm7356' or chipset == 'bcm7405':
+	if chipset == 'bcm7358' or chipset == 'bcm7346' or chipset == 'bcm7356' or chipset == 'bcm7405':
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
