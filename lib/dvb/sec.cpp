@@ -42,7 +42,9 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 #define eSecDebugNoSimulate(x...) \
 	do { \
 		if (!simulate) \
+		{ \
 			eSecDebug(x); \
+		} \
 	} while(0)
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id, int *highest_score_lnb)
