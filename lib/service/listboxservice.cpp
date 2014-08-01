@@ -8,6 +8,7 @@
 #include <lib/nav/core.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
+#include <ctype.h>
 
 ePyObject eListboxServiceContent::m_GetPiconNameFunc;
 
@@ -128,7 +129,7 @@ int eListboxServiceContent::getNextBeginningWithChar(char c)
 		while ( idx <= len )
 		{
 			char cc = text[idx++];
-			if ( cc >= 33 && cc < 127)
+			if (isprint(cc))
 			{
 				if (cc == c)
 					return index;
