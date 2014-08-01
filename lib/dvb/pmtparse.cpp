@@ -537,7 +537,7 @@ RESULT eDVBPMTParser::eStreamData::getDemuxId(int &result) const
 
 RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const
 {
-	for (unsigned int i = 0; i < caIds.size(), i < ecmPids.size(); i++)
+	for (unsigned int i = 0; (i < caIds.size()) && (i < ecmPids.size()); i++)
 	{
 		caids.push_back(caIds[i]);
 		ecmpids.push_back(ecmPids[i]);
