@@ -88,6 +88,7 @@ bool eListboxServiceContent::setCurrent(const eServiceReference &ref)
 {
 	int index=0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i, ++index)
+	{
 		if ( *i == ref )
 		{
 			m_cursor = i;
@@ -99,6 +100,7 @@ bool eListboxServiceContent::setCurrent(const eServiceReference &ref)
 			}
 			break;
 		}
+	}
 	return false;
 }
 
