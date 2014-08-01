@@ -39,7 +39,7 @@ class eDVBTeletextParser: public iObject, public ePESParser, public Object
 public:
 	eDVBTeletextParser(iDVBDemux *demux);
 	virtual ~eDVBTeletextParser();
-	const int max_id = 26;
+	static const int max_id = 26;
 	static const char * const my_country_codes[];
 	int start(int pid);
 	void setPageAndMagazine(int page, int magazine, const char * lang);

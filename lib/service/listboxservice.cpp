@@ -8,6 +8,7 @@
 #include <lib/nav/core.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
+#include <ctype.h>
 
 ePyObject eListboxServiceContent::m_GetPiconNameFunc;
 
@@ -88,15 +89,19 @@ bool eListboxServiceContent::setCurrent(const eServiceReference &ref)
 {
 	int index=0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i, ++index)
+	{
 		if ( *i == ref )
 		{
 			m_cursor = i;
 			m_cursor_number = index;
 			if (m_listbox)
+			{
 				m_listbox->moveSelectionTo(cursorResolve(index));
 				return true;
+			}
 			break;
 		}
+	}
 	return false;
 }
 
@@ -124,7 +129,7 @@ int eListboxServiceContent::getNextBeginningWithChar(char c)
 		while ( idx <= len )
 		{
 			char cc = text[idx++];
-			if ( cc >= 33 && cc < 127)
+			if (isprint(cc))
 			{
 				if (cc == c)
 					return index;
@@ -465,8 +470,10 @@ int eListboxServiceContent::currentCursorSelectable()
 	if (cursorValid())
 	{
 		/* don't allow markers to be selected, unless we're in edit mode (because we want to provide some method to the user to remove a marker) */
-		if (m_cursor->flags & eServiceReference::isMarker && m_marked.empty()) return 0;
-		return 1;
+		if (m_cursor->flags & eServiceReference::isMarker && m_marked.empty())
+			return 0;
+		else
+			return 1;
 	}
 	return 0;
 }

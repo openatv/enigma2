@@ -119,7 +119,7 @@ eServiceFS::eServiceFS(const char *path, const char *additional_extensions): pat
 			if (*cmds)
 			{
 				int id;
-				char buf2[16];
+				char buf2[17]; /* additional extention string is 16 characters + null-termination */
 				while(1)
 				{
 					tmp = strchr(cmds, ' ');
@@ -127,14 +127,14 @@ eServiceFS::eServiceFS(const char *path, const char *additional_extensions): pat
 						*tmp = 0;
 					if (strstr(cmds, "0x"))
 					{
-						if (sscanf(cmds, "0x%x:%s", &id, buf2) == 2)
+						if (sscanf(cmds, "0x%x:%16s", &id, buf2) == 2)
 							m_additional_extensions[id].push_back(buf2);
 						else
 							eDebug("parse additional_extension (%s) failed", cmds);
 					}
 					else
 					{
-						if (sscanf(cmds, "%d:%s", &id, buf2) == 2)
+						if (sscanf(cmds, "%d:%16s", &id, buf2) == 2)
 							m_additional_extensions[id].push_back(buf2);
 						else
 							eDebug("parse additional_extension (%s) failed", cmds);
