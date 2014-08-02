@@ -1312,7 +1312,7 @@ class ChannelSelectionBase(Screen):
 		if len(self.zapNumber)>4:
 			self.clearZapNumber()
 		self.zapNumber = self.zapNumber + str(number)
-		ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber))
+		ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber), bouquet=self.getRoot())
 		if ref:
 			if not ref.flags & eServiceReference.isMarker:
 				self.enterUserbouquet(bouquet)
@@ -1920,9 +1920,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		lastservice = eServiceReference(config.tv.lastservice.value)
 		self.session.nav.playService(lastservice)
 
-	def numberZapActions(self, number):
-		pass
-
 	def startRassInteractive(self):
 		self.info.hide();
 		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
@@ -2040,7 +2037,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def layoutFinished(self):
 		self.setModeTv()
 
-	def numberZapActions(self, number):
+	def saveRoot(self):
 		pass
 
 	def channelSelected(self): # just return selected service

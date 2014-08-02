@@ -478,8 +478,8 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 		return None
 
-	def searchNumber(self, number, firstBouquetOnly = False):
-		bouquet = self.servicelist.getRoot()
+	def searchNumber(self, number, firstBouquetOnly=False, bouquet=None):
+		bouquet = bouquet or self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		if not firstBouquetOnly:
