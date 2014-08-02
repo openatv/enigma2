@@ -118,6 +118,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder
+		self.servicelist.correctChannelNumber()
 
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
