@@ -114,9 +114,10 @@ class ChannelContextMenu(Screen):
 				"blue": self.showServiceInPiP,
 				"red": self.playMain,
 				"menu": self.openSetup,
+				"1": self.findCurrentlyPlayed,
 				"4": self.renameEntry,
 				"5": self.removeEntry,
-				"6": self.toggleMoveMode
+				"6": self.toggleMoveModeSelect
 			})
 		menu = [ ]
 
@@ -228,7 +229,7 @@ class ChannelContextMenu(Screen):
 								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
 							else:	
 								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
-
+					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="1")
 		self["menu"] = ChoiceList(menu)
 
 	def removeEntry(self):
@@ -377,10 +378,14 @@ class ChannelContextMenu(Screen):
 
 	def removeCurrentService(self):
 		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
-			self.csel.removeCurrentService()
-			self.close()
+			self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
 		else:
 			return 0
+
+	def removeCurrentServiceCallback(self, answer):
+		if answer:
+			self.csel.removeCurrentService()
+			self.close()
 
 	def renameEntry(self):
 		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
@@ -389,12 +394,15 @@ class ChannelContextMenu(Screen):
 		else:
 			return 0
 
-	def toggleMoveMode(self):
+	def toggleMoveMode(self, select=False):
 		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
-			self.csel.toggleMoveMode()
+			self.csel.toggleMoveMode(select)
 			self.close()
 		else:
 			return 0
+
+	def toggleMoveModeSelect(self):
+		self.toggleMoveMode(select=True)
 
 	def bouquetMarkStart(self):
 		self.csel.startMarkedEdit(EDIT_BOUQUET)
@@ -439,6 +447,15 @@ class ChannelContextMenu(Screen):
 	def addAlternativeServices(self):
 		self.csel.addAlternativeServices()
 		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
+		self.close()
+
+	def findCurrentlyPlayed(self):
+		sel = self.csel.getCurrentSelection()
+		if sel and sel.valid():
+			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.csel.servicelist.setCurrent(currentPlayingService)
+			if self.csel.getCurrentSelection() != currentPlayingService:
+				self.csel.setCurrentSelection(sel)
 		self.close()
 
 class SelectionEventInfo:
@@ -831,7 +848,7 @@ class ChannelSelectionEdit:
 					self.servicelist.addService(service)
 				self.servicelist.resetRoot()
 
-	def toggleMoveMode(self):
+	def toggleMoveMode(self, select=False):
 		if self.movemode:
 			if self.entry_marked:
 				self.toggleMoveMarked() # unmark current entry
@@ -845,6 +862,7 @@ class ChannelSelectionEdit:
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
+			select and self.toggleMoveMarked()
 			self.pathChangeDisabled = True # no path change allowed in movemode
 			self.saved_title = self.getTitle()
 			pos = self.saved_title.find(')')
@@ -909,6 +927,9 @@ class ChannelSelectionBase(Screen):
 		self.history = [ ]
 		self.rootChanged = False
 		self.startRoot = None
+		self.zapNumber = ""
+		self.clearZapNumberTimer = eTimer()
+		self.clearZapNumberTimer.callback.append(self.clearZapNumber)
 
 		self.mode = MODE_TV
 		self.dopipzap = False
@@ -1072,6 +1093,15 @@ class ChannelSelectionBase(Screen):
 	def enterPath(self, ref, justSet=False):
 		self.servicePath.append(ref)
 		self.setRoot(ref, justSet)
+
+	def enterUserbouquet(self, root):
+		self.clearPath()
+		self.recallBouquetMode()
+		if self.bouquet_root:
+			self.enterPath(self.bouquet_root)
+		self.enterPath(root)
+		self.startRoot = None
+		self.saveRoot()
 
 	def pathUp(self, justSet=False):
 		prev = self.servicePath.pop()
@@ -1270,51 +1300,41 @@ class ChannelSelectionBase(Screen):
 						self.clearPath()
 						self.enterPath(self.bouquet_root)
 
+	def keyNumber0(self, number):
+		if len(self.servicePath) > 1 and not self.zapNumber:
+			self.keyGoUp()
+		else:
+			self.keyNumberGlobal(number)
+
 	def keyNumberGlobal(self, number):
 		if self.isBasePathEqual(self.bouquet_root):
-			self.BouquetNumberActions(number)
+			self.numberZapActions(number)
 		else:
 			current_root = self.getRoot()
 			if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
-				self.BouquetNumberActions(number)
+				self.numberZapActions(number)
 			else:
 				unichar = self.numericalTextInput.getKey(number)
 				charstr = unichar.encode("utf-8")
 				if len(charstr) == 1:
 					self.servicelist.moveToChar(charstr[0])
 
-	def BouquetNumberActions(self, number):
-		currentSelectedService = self.servicelist.getCurrent()
-		if currentSelectedService and currentSelectedService.valid():
-			if number == 1: #Set focus on current playing service when available in current userbouquet
-				currentSelectedService = self.servicelist.getCurrent()
-				currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				self.servicelist.setCurrent(currentPlayingService)
-				if self.servicelist.getCurrent() != currentPlayingService:
-					self.servicelist.setCurrent(currentSelectedService)
-			elif number == 2: #set focus on service available from history in current userbouquet
-				currentSelectedService = self.servicelist.getCurrent()
-				root = self.getRoot()
-				service = None
-				for path in self.history:
-					if len(path) > 2 and path[1] == root:
-						service = path[2]
-				if service:
-					self.setCurrentSelection(service)
-					if self.servicelist.getCurrent() != service:
-						self.servicelist.setCurrent(currentSelectedService)
-			elif number == 4:
-				self.renameEntry()
-			elif number == 5:
-				self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
-			elif number == 6:
-				self.toggleMoveMode()
-				if self.movemode and not self.entry_marked:
-					self.toggleMoveMarked()
+	def numberZapActions(self, number):
+		if len(self.zapNumber)>4:
+			self.clearZapNumber()
+		self.zapNumber = self.zapNumber + str(number)
+		ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber), bouquet=self.getRoot())
+		if ref:
+			if not ref.flags & eServiceReference.isMarker:
+				self.enterUserbouquet(bouquet)
+				self.servicelist.setCurrent(ref)
+			self.clearZapNumberTimer.start(1000, True)
+		else:
+			self.clearZapNumber()
 
-	def removeCurrentServiceCallback(self, confirmation):
-		if confirmation:
-			self.removeCurrentService()
+	def clearZapNumber(self):
+		self.clearZapNumberTimer.stop()
+		self.zapNumber = ""
 
 	def keyAsciiCode(self):
 		unichar = unichr(getPrevAsciiCode())
@@ -1362,12 +1382,6 @@ class ChannelSelectionBase(Screen):
 				bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
 			return bouquets
 		return None
-
-	def keyNumber0(self, num):
-		if len(self.servicePath) > 1:
-			self.keyGoUp()
-		else:
-			self.keyNumberGlobal(num)
 
 	def keyGoUp(self):
 		if len(self.servicePath) > 1:
@@ -1838,15 +1852,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.revertMode = None
 			self.enterUserbouquet(root)
 
-	def enterUserbouquet(self, root):
-		self.clearPath()
-		self.recallBouquetMode()
-		if self.bouquet_root:
-			self.enterPath(self.bouquet_root)
-		self.enterPath(root)
-		self.startRoot = None
-		self.saveRoot()
-
 	def correctChannelNumber(self):
 		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.dopipzap:
@@ -1921,6 +1926,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self["RdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 		self.onClose.append(self.__onClose)
+		self.onExecBegin.append(self.__onExecBegin)
+		self.onExecEnd.append(self.__onExecEnd)
 
 	def __onClose(self):
 		lastservice = eServiceReference(config.tv.lastservice.value)
@@ -1938,6 +1945,12 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def RassInteractivePossibilityChanged(self, state):
 		self["RdsActions"].setEnabled(state)
 ########## RDS Radiotext / Rass Support END
+
+	def __onExecBegin(self):
+		self.info.show()
+
+	def __onExecEnd(self):
+		self.info.hide()
 
 	def cancel(self):
 		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
@@ -2044,7 +2057,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def layoutFinished(self):
 		self.setModeTv()
 
-	def BouquetNumberActions(self, number):
+	def saveRoot(self):
 		pass
 
 	def channelSelected(self): # just return selected service
