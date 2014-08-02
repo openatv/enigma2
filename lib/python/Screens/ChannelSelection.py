@@ -1309,17 +1309,18 @@ class ChannelSelectionBase(Screen):
 					self.servicelist.moveToChar(charstr[0])
 
 	def numberZapActions(self, number):
-		if len(self.zapNumber)>4:
-			self.clearZapNumber()
-		self.zapNumber = self.zapNumber + str(number)
-		ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber), bouquet=self.getRoot())
-		if ref:
-			if not ref.flags & eServiceReference.isMarker:
-				self.enterUserbouquet(bouquet)
-				self.servicelist.setCurrent(ref)
-			self.clearZapNumberTimer.start(1000, True)
-		else:
-			self.clearZapNumber()
+		if not self.entry_marked:
+			if len(self.zapNumber)>4:
+				self.clearZapNumber()
+			self.zapNumber = self.zapNumber + str(number)
+			ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber), bouquet=self.getRoot())
+			if ref:
+				if not ref.flags & eServiceReference.isMarker:
+					self.enterUserbouquet(bouquet)
+					self.servicelist.setCurrent(ref)
+				self.clearZapNumberTimer.start(1000, True)
+			else:
+				self.clearZapNumber()
 
 	def clearZapNumber(self):
 		self.clearZapNumberTimer.stop()
