@@ -1311,7 +1311,7 @@ class ChannelSelectionBase(Screen):
 					self.servicelist.moveToChar(charstr[0])
 
 	def numberZapActions(self, number):
-		if not self.entry_marked:
+		if not self.movemode:
 			if len(self.zapNumber)>4:
 				self.clearZapNumber()
 			self.zapNumber = self.zapNumber + str(number)
