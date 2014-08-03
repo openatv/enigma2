@@ -128,7 +128,7 @@ class ChannelContextMenu(Screen):
 		current_sel_flags = current.flags
 		inBouquetRootList = current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath() #FIXME HACK
 		inAlternativeList = current_root and 'FROM BOUQUET "alternatives' in current_root.getPath()
-		inBouquet = csel.getMutableList() is not None
+		self.inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 		from Components.ParentalControl import parentalControl
 		self.parentalControl = parentalControl
@@ -154,10 +154,10 @@ class ChannelContextMenu(Screen):
 							bouquetCnt = 0
 						else:
 							bouquetCnt = len(bouquets)
-						if not inBouquet or bouquetCnt > 1:
+						if not self.inBouquet or bouquetCnt > 1:
 							append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level=0)
 					else:
-						if not inBouquet:
+						if not self.inBouquet:
 							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level=0)
 
 					if SystemInfo["PIPAvailable"]:
@@ -171,11 +171,11 @@ class ChannelContextMenu(Screen):
 					if 'FROM SATELLITES' in current_root.getPath():
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level=0)
 					if haveBouquets:
-						if not inBouquet and not "PROVIDERS" in current_sel_path:
+						if not self.inBouquet and not "PROVIDERS" in current_sel_path:
 							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level=0)
 					if ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
 						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level=0)
-				if inBouquet:
+				if self.inBouquet:
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="4")
 					if not inAlternativeList:
 						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0, key="5")
@@ -188,7 +188,7 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level=0, key="5")
 					self.removeFunction = self.removeBouquet
 
-		if inBouquet: # current list is editable?
+		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
@@ -342,13 +342,18 @@ class ChannelContextMenu(Screen):
 		self.csel.copyCurrentToBouquetList()
 		self.close()
 
+
 	def removeBouquet(self):
-		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
+			self.session.openWithCallback(self.removeBouquetCallback, MessageBox, _("Are you sure to remove this entry?"))
+		else:
+			return 0
+
+	def removeBouquetCallback(self, answer):
+		if answer:
 			self.csel.removeBouquet()
 			eDVBDB.getInstance().reloadBouquets()
 			self.close()
-		else:
-			return 0
 
 	def showMarkerInputBox(self):
 		self.session.openWithCallback(self.markerInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
@@ -377,21 +382,25 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def renameEntry(self):
-		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
+		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
 			self.csel.renameEntry()
 			self.close()
 		else:
 			return 0
 
-	def toggleMoveMode(self, select=False):
-		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
-			self.csel.toggleMoveMode(select)
+	def toggleMoveMode(self):
+		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.toggleMoveMode()
 			self.close()
 		else:
 			return 0
 
 	def toggleMoveModeSelect(self):
-		self.toggleMoveMode(select=True)
+		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.toggleMoveMode(True)
+			self.close()
+		else:
+			return 0
 
 	def bouquetMarkStart(self):
 		self.csel.startMarkedEdit(EDIT_BOUQUET)
