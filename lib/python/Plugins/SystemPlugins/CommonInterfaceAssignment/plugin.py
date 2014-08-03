@@ -640,7 +640,7 @@ def main(session, **kwargs):
 	session.open(CIselectMainMenu)
 
 def menu(menuid, **kwargs):
-	if menuid == "setup" and isModule():
+	if menuid == "cam_setup" and isModule():
 		return [(_("Common Interface assignment"), main, "ci_assign", 11)]
 	return [ ]
 
