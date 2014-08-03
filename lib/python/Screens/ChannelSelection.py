@@ -1094,14 +1094,15 @@ class ChannelSelectionBase(Screen):
 		self.servicePath.append(ref)
 		self.setRoot(ref, justSet)
 
-	def enterUserbouquet(self, root):
+	def enterUserbouquet(self, root, save_root=True):
 		self.clearPath()
 		self.recallBouquetMode()
 		if self.bouquet_root:
 			self.enterPath(self.bouquet_root)
 		self.enterPath(root)
 		self.startRoot = None
-		self.saveRoot()
+		if save_root:
+			self.saveRoot()
 
 	def pathUp(self, justSet=False):
 		prev = self.servicePath.pop()
@@ -1327,7 +1328,7 @@ class ChannelSelectionBase(Screen):
 			ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber), bouquet=self.getRoot())
 			if ref:
 				if not ref.flags & eServiceReference.isMarker:
-					self.enterUserbouquet(bouquet)
+					self.enterUserbouquet(bouquet, save_root=False)
 					self.servicelist.setCurrent(ref)
 				self.clearZapNumberTimer.start(1000, True)
 			else:
