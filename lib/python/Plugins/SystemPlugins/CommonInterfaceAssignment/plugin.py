@@ -641,7 +641,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "cam_setup" and isModule():
-		return [(_("Common Interface assignment"), main, "ci_assign", 11)]
+		return [(_("CI assignment"), main, "ci_assign", 11)]
 	return [ ]
 
 def Plugins(**kwargs):
