@@ -640,7 +640,7 @@ def main(session, **kwargs):
 	session.open(CIselectMainMenu)
 
 def menu(menuid, **kwargs):
-	if menuid == "cam_setup" and isModule():
+	if menuid == "cam" and isModule():
 		return [(_("CI assignment"), main, "ci_assign", 11)]
 	return [ ]
 
@@ -648,8 +648,8 @@ def Plugins(**kwargs):
 	if config.usage.setup_level.index > 1:
 		return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart ),
 				PluginDescriptor( where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart ),
-				PluginDescriptor( name = _("Common Interface assignment"), description = _("a gui to assign services/providers/caids to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
+				PluginDescriptor( name = _("CI assignment"), description = _("a gui to assign services/providers/caids to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
 	else:
 		return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart ),
 				PluginDescriptor( where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart ),
-				PluginDescriptor( name = _("Common Interface assignment"), description = _("a gui to assign services/providers to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
+				PluginDescriptor( name = _("CI assignment"), description = _("a gui to assign services/providers to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
