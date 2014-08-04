@@ -82,13 +82,14 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self.pipServiceRelation = {}
 		self.zapnumberstarted = False
-		self.NumberZapTimer = eTimer()
-		self.NumberZapTimer.callback.append(self.doNumberZap)
-		self.NumberZapField = None
+		if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
+			self.NumberZapTimer = eTimer()
+			self.NumberZapTimer.callback.append(self.doNumberZap)
+			self.NumberZapField = None
+			self["number"] = Label()
+			self["number"].hide()
 		self.CurrBouquet = None
 		self.CurrService = None
-		self["number"] = Label()
-		self["number"].hide()
 		self['Service'] = ServiceEvent()
 		self['Event'] = Event()
 		self['lab1'] = Label(_('Please wait while gathering data...'))
@@ -1466,7 +1467,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].resetOffset()
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines()
-		else:
+		elif self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
 			if not self.NumberZapField:
@@ -1474,7 +1475,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.NumberZapField += str(number)
 			self.handleServiceName()
-			self["number"].setText(self.zaptoservicename+'\n'+self.NumberZapField)
+			self["number"].setText("Channel change\n"+self.zaptoservicename+'\n'+self.NumberZapField)
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
 				self.doNumberZap()
@@ -1528,10 +1529,11 @@ class EPGSelection(Screen, HelpableScreen):
 		return service, bouquet
 
 	def zapToNumber(self, service, bouquet):
-		self["number"].hide()
-		self.NumberZapField = None
-		self.CurrBouquet = bouquet
-		self.CurrService = service
+		if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
+			self["number"].hide()
+			self.NumberZapField = None
+			self.CurrBouquet = bouquet
+			self.CurrService = service
 		if service is not None:
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
