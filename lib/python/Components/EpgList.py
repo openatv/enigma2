@@ -859,14 +859,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+						alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+						alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 				else:
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+						alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+						alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				foreColor = self.foreColor
 				backColor = self.backColor
@@ -933,7 +933,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						**evSizePos))
 				else:
 					res.append(MultiContentEntryText(
-						font = 1, flags = alignnment,
+						font = 1, flags = alignment,
 						text = ev[1],
 						color = foreColor, color_sel = foreColorSel,
 						backcolor = backColor, backcolor_sel = backColorSel,
@@ -1308,9 +1308,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 		time_base = l.getTimeBase()
 
 		if self.timelineAlign.lower() == 'right':
-			alignnment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
+			alignment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
 		else:
-			alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
+			alignment = RT_HALIGN_LEFT | RT_VALIGN_TOP
 
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
@@ -1369,8 +1369,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 			res.append(MultiContentEntryText(
 				pos = (5, 0),
 				size = (service_rect.w-15, self.listHeight),
-				font = 0, flags = alignnment,
-				text = _(datestr),
+				font = 0, flags = alignment,
+				text = datestr,
 				color = foreColor,
 				backcolor = backColor))
 
@@ -1557,14 +1557,14 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 		if self.bouquetNameAlign.lower() == 'left':
 			if self.bouquetNameWrap.lower() == 'yes':
-				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 			else:
-				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+				alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 		else:
 			if self.bouquetNameWrap.lower() == 'yes':
-				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+				alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 			else:
-				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+				alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 		res = [ None ]
 
@@ -1608,7 +1608,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 				**_rectToPosSize(r1, 0)))
 
 		res.append(MultiContentEntryText(
-			font = 0, flags = alignnment,
+			font = 0, flags = alignment,
 			text = name,
 			color = foreColor, color_sel = foreColorSel,
 			backcolor = backColor, backcolor_sel = backColorSel,
