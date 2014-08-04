@@ -236,10 +236,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetlist'].hide()
 			self['timeline_text'] = TimelineText(type=self.type,graphic=graphic)
 			self['Event'] = Event()
-			self['primetime'] = Label(_('PRIMETIME'))
-			self['change_bouquet'] = Label(_('CHANGE BOUQUET'))
-			self['jump'] = Label(_('JUMP 24 HOURS'))
-			self['page'] = Label(_('PAGE UP/DOWN'))
 			self.time_lines = []
 			for x in range(0, MAX_TIMELINES):
 				pm = Pixmap()
