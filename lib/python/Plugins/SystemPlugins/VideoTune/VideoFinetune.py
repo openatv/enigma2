@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Components.Sources.CanvasSource import CanvasSource
 from Components.ActionMap import ActionMap, NumberActionMap
+from Tools.Directories import fileExists
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 def RGB(r,g,b):
@@ -92,6 +93,17 @@ class VideoFinetune(Screen):
 
 		self.basic_colors = [RGB(255, 255, 255), RGB(255, 255, 0), RGB(0, 255, 255), RGB(0, 255, 0), RGB(255, 0, 255), RGB(255, 0, 0), RGB(0, 0, 255), RGB(0, 0, 0)]
 
+		if fileExists("/proc/stb/fb/dst_left"):
+			self.left = open("/proc/stb/fb/dst_left", "r").read()
+			self.width = open("/proc/stb/fb/dst_width", "r").read()
+			self.top = open("/proc/stb/fb/dst_top", "r").read()
+			self.height = open("/proc/stb/fb/dst_height", "r").read()
+			open("/proc/stb/fb/dst_left", "w").write("00000000")
+			open("/proc/stb/fb/dst_width", "w").write("000002d0")
+			open("/proc/stb/fb/dst_top", "w").write("00000000")
+			open("/proc/stb/fb/dst_height", "w").write("0000000240")
+			self.onClose.append(self.__close)
+
 		self["actions"] = NumberActionMap(["InputActions", "OkCancelActions"],
 		{
 			"1": self.keyNumber,
@@ -105,6 +117,12 @@ class VideoFinetune(Screen):
 			"cancel": self.close,
 		})
 		self.testpic_brightness()
+
+	def __close(self):
+		open("/proc/stb/fb/dst_left", "w").write(self.left)
+		open("/proc/stb/fb/dst_width", "w").write(self.width)
+		open("/proc/stb/fb/dst_top", "w").write(self.top)
+		open("/proc/stb/fb/dst_height", "w").write(self.height)
 
 	def keyNumber(self, key):
 		(self.testpic_brightness, self.testpic_contrast, self.testpic_colors, self.testpic_filter, self.testpic_gamma, self.testpic_overscan, self.testpic_fullhd)[key-1]()
