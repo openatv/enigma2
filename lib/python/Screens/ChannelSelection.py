@@ -460,7 +460,7 @@ class ChannelContextMenu(Screen):
 		sel = self.csel.getCurrentSelection()
 		if sel and sel.valid() and not self.csel.movemode and not (hasattr(self.csel, "dopipzap") and self.csel.dopipzap):
 			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			self.csel.servicelist.setCurrent(currentPlayingService)
+			self.csel.servicelist.setCurrent(currentPlayingService, adjust=False)
 			if self.csel.getCurrentSelection() != currentPlayingService:
 				self.csel.setCurrentSelection(sel)
 			self.close()
