@@ -172,8 +172,7 @@ class ChannelContextMenu(Screen):
 								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
 							else:	
 								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
-					if not (hasattr(self.csel, "dopipzap") and self.csel.dopipzap):
-						append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
+					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
 				else:
 					if 'FROM SATELLITES' in current_root.getPath():
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level=0)
@@ -269,9 +268,9 @@ class ChannelContextMenu(Screen):
 
 	def openSetup(self):
 		from Screens.Setup import Setup
-		self.session.open(Setup, "userinterface")
+		self.session.openWithCallback(self.cancelClick, Setup, "userinterface")
 
-	def cancelClick(self):
+	def cancelClick(self, dummy=False):
 		self.close(False)
 
 	def reloadServices(self):
@@ -477,8 +476,8 @@ class ChannelContextMenu(Screen):
 
 	def findCurrentlyPlayed(self):
 		sel = self.csel.getCurrentSelection()
-		if sel and sel.valid() and not self.csel.movemode and not (hasattr(self.csel, "dopipzap") and self.csel.dopipzap):
-			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if sel and sel.valid() and not self.csel.movemode:
+			currentPlayingService = (hasattr(self.csel, "dopipzap") and self.csel.dopipzap) and self.session.pip.getCurrentService() or self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.csel.servicelist.setCurrent(currentPlayingService, adjust=False)
 			if self.csel.getCurrentSelection() != currentPlayingService:
 				self.csel.setCurrentSelection(sel)
