@@ -77,6 +77,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.p
 	BLINDSCAN = True
 else:
 	BLINDSCAN = False
+
+if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/RemoteChannelStreamConverter"):
+	from Plugins.Extensions.RemoteChannelStreamConverter.plugin import StreamingChannelFromServerScreen
+	REMOTEBOX = True
+else:
+	REMOTEBOX = False
 	
 def isFileSystemSupported(filesystem):
 	try:
@@ -333,6 +339,8 @@ class GeneralSetup(Screen):
 		if len(dvbt_nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+		if REMOTEBOX == True:
+			self.sublist.append(QuickSubMenuEntryComponent("Remote IP Channels",_("Setup Channels Server IP"),_("Setup server IP for your IP channels")))
 		if BLINDSCAN == True and len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
 		if HAVE_SATFINDER and len(nimList) != 0:
@@ -573,6 +581,8 @@ class GeneralSetup(Screen):
 		elif selected == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
+		elif selected == _("Remote IP Channels"):
+			self.session.open(StreamingChannelFromServerScreen)
 		elif selected == _("Tuner Configuration"):
 			self.session.open(NimSelection)
 		elif HAVE_POSITIONERSETUP and selected == _("Positioner Setup"):
