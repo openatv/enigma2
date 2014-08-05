@@ -4,5 +4,4 @@ install_PYTHON = \
 	__init__.py \
 	plugin.py \
 	API.py \
-	icon.png \
-
+	icon.png
