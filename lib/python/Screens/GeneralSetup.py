@@ -16,6 +16,7 @@ from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
+from Screens.Satconfig import NimSelection
 from Screens.Setup import Setup, getSetupTitle
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
@@ -323,12 +324,14 @@ class GeneralSetup(Screen):
 
 ######## Tuner Menu ##############################
 	def Qtuner(self):
-		nimList = nimmanager.getNimListOfType("DVB-S")
+		dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
+		dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
-		if HAVE_POSITIONERSETUP and len(nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Set up rotor"),_("Set up positioner for your satellite system")))
-		#self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+		if len(dvbs_nimList) != 0:
+			self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
+			self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+		if len(dvbt_nimList) != 0:
+			self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
 		if BLINDSCAN == True and len(nimList) != 0:
 			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
@@ -570,6 +573,8 @@ class GeneralSetup(Screen):
 		elif selected == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
+		elif selected == _("Tuner Configuration"):
+			self.session.open(NimSelection)
 		elif HAVE_POSITIONERSETUP and selected == _("Positioner Setup"):
 			self.PositionerMain()
 		elif selected == _("Automatic Scan"):
