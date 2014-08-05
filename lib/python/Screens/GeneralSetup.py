@@ -568,11 +568,8 @@ class GeneralSetup(Screen):
 			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
 		elif selected == _("Location Scan"):
-			if not getMachineBuild() in ('inihdp'): 
-				from Screens.IniTerrestrialLocation import IniTerrestrialLocation
-				self.session.open(IniTerrestrialLocation)
-			else:
-				self.session.open(MessageBox, _("Sorry this function is disabled on Beyonwiz T4 sample.\n\nPlease use MANUAL SCAN for FULL DVB-T2 scan.\n\nPlease wait for final sample"), MessageBox.TYPE_INFO, timeout = 10)    
+			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
+			self.session.open(IniTerrestrialLocation)
 		elif HAVE_POSITIONERSETUP and selected == _("Positioner Setup"):
 			self.PositionerMain()
 		elif selected == _("Automatic Scan"):
