@@ -15,7 +15,7 @@ from sys import maxint
 from os import path
 
 if SystemInfo["isGBIPBOX"]:
-	from gbipbox import gbipbox
+	from gbipbox import ZAP
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -162,7 +162,7 @@ class Navigation:
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 
 				if ref.toString().find('//') == -1 and SystemInfo["isGBIPBOX"]:
-					playref = gbipbox.gref(ref)
+					playref = ZAP.gref(ref, self.pnav)
 
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
