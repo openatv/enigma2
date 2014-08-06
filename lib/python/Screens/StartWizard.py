@@ -8,6 +8,7 @@ from boxbranding import getBoxType, getMachineBuild
 
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
+from Components.NimManager import nimmanager
 
 from LanguageSelection import LanguageWizard
 
@@ -41,5 +42,7 @@ class StartWizard(WizardLanguage, Rc):
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation, IniEndWizard, config
 
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 0)
-wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
+dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
+if len(dvbt_nimList) != 0:
+	wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
 wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.value, priority = 10) # It always should show as last one
