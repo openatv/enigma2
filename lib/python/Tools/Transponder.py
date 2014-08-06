@@ -73,9 +73,11 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersCable.FEC_2_3 : "2/3",
 			eDVBFrontendParametersCable.FEC_3_4 : "3/4",
 			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
-			eDVBFrontendParametersCable.FEC_6_7 : "6/7",
 			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
-			eDVBFrontendParametersCable.FEC_8_9 : "8/9"}.get(tp.get("fec_inner"))
+			eDVBFrontendParametersCable.FEC_8_9 : "8/9",
+			eDVBFrontendParametersCable.FEC_3_5 : "3/5",
+			eDVBFrontendParametersCable.FEC_4_5 : "4/5",
+			eDVBFrontendParametersCable.FEC_9_10 : "9/10"}.get(tp.get("fec_inner"))
 		ret["system"] = {
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
