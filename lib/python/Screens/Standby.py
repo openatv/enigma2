@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
+from Components.Harddisk import internalHDDNotSleeping
 from Components.SystemInfo import SystemInfo
 from Tools import Notifications
 from GlobalActions import globalActionMap
@@ -126,7 +127,7 @@ class Standby(Screen):
 							duration += 24*3600
 						self.standbyTimeoutTimer.startLongTimer(duration)
 						return
-		if self.session.screen["TunerInfo"].tuner_use_mask:
+		if self.session.screen["TunerInfo"].tuner_use_mask or internalHDDNotSleeping():
 			self.standbyTimeoutTimer.startLongTimer(600)
 		else:
 			from RecordTimer import RecordTimerEntry
