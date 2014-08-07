@@ -46,7 +46,7 @@ static void ignore_but_report_signals()
 
 static int checkStream(int &m_stop)
 {
-	if (strncmp(myipbox,"ipbox", sizeof(myipbox)) == 0){
+	if (strncmp(myipbox,"gbipbox", sizeof(myipbox)) == 0){
 		num ++;
 		if (num == 1){
 			FILE *f = fopen("/tmp/.zap", "w");
