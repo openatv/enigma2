@@ -27,7 +27,7 @@ if distro.lower() == "openmips":
 elif distro.lower() == "openatv":
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/4.1'
-feedurl_om = 'http://image.openmips.com/4.1'
+feedurl_om = 'http://image.openmips.com/4.1-BETA'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
