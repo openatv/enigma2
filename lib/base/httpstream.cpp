@@ -154,7 +154,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 			break;
 		}
 
-		if (statuscode == 206 && strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
+		if (((statuscode == 200) || (statuscode == 206)) && !strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
 		{
 			isChunked = true;
 		}
