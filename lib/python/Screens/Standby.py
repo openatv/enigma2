@@ -52,6 +52,9 @@ class Standby(Screen):
 		self.StandbyCounterIncrease = StandbyCounterIncrease
 
 		self.standbyTimeoutTimer = eTimer()
+		self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
+		self.standbyStopServiceTimer = eTimer()
+		self.standbyStopServiceTimer.callback.append(self.stopService)
 		self.timeHandler = None
 
 		#mute adc
@@ -63,12 +66,14 @@ class Standby(Screen):
 		if self.session.current_dialog:
 			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
 				self.timeHandler =  eDVBLocalTimeHandler.getInstance()
-				if self.timeHandler.ready() and self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-					self.session.nav.stopService()
+				if self.timeHandler.ready():
+					if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+						self.stopService()
+					else:
+						self.standbyStopServiceTimer.startLongTimer(5)
 					self.timeHandler = None
 				else:
-					self.timeHandler.m_timeUpdated.get().append(self.timeIsAdjusted)
+					self.timeHandler.m_timeUpdated.get().append(self.stopService)
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
@@ -84,7 +89,6 @@ class Standby(Screen):
 
 		gotoShutdownTime = int(config.usage.standby_to_shutdown_timer.value)
 		if gotoShutdownTime:
-			self.standbyTimeoutTimer.callback.append(self.standbyTimeout)
 			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
 
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
@@ -94,7 +98,8 @@ class Standby(Screen):
 		global inStandby
 		inStandby = None
 		self.standbyTimeoutTimer.stop()
-		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.timeIsAdjusted)
+		self.standbyStopServiceTimer.stop()
+		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
 		elif self.paused_service:
@@ -111,7 +116,7 @@ class Standby(Screen):
 		if self.StandbyCounterIncrease:
 			config.misc.standbyCounter.value += 1
 
-	def timeIsAdjusted(self):
+	def stopService(self):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
