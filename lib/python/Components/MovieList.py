@@ -135,6 +135,7 @@ class MovieList(GUIComponent):
 	SORT_RECORDED_REVERSE = 5
 	SORT_ALPHANUMERIC_FLAT = 6
 	SORT_ALPHANUMERIC_FLAT_REVERSE = 7
+	SORT_GROUPWISE = 8
 
 	LISTTYPE_ORIGINAL = 1
 	LISTTYPE_COMPACT_DESCRIPTION = 2
@@ -149,7 +150,7 @@ class MovieList(GUIComponent):
 		self.list = []
 		self.list_type = list_type or self.LISTTYPE_MINIMAL
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
-		self.sort_type = sort_type or self.SORT_RECORDED
+		self.sort_type = sort_type or self.SORT_GROUPWISE
 		self.firstFileEntry = 0
 		self.parentDirectory = 0
 		self.fontName = "Regular"
@@ -599,18 +600,20 @@ class MovieList(GUIComponent):
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
+		elif self.sort_type == MovieList.SORT_RECORDED:
+			self.list.sort(key=self.buildBeginTimeSortKey)
 		else:
 			#always sort first this way to avoid shuffle and reverse-sort directories
-			self.list.sort(key=self.buildBeginTimeSortKey)
-		if self.sort_type == MovieList.SHUFFLE:
-			dirlist = self.list[:numberOfDirs]
-			shufflelist = self.list[numberOfDirs:]
-			random.shuffle(shufflelist)
-			self.list = dirlist + shufflelist
-		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
-			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
-		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
-			self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
+			self.list.sort(key=self.buildGroupwiseSortkey)
+			if self.sort_type == MovieList.SHUFFLE:
+				dirlist = self.list[:numberOfDirs]
+				shufflelist = self.list[numberOfDirs:]
+				random.shuffle(shufflelist)
+				self.list = dirlist + shufflelist
+			elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
+				self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
+			elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
+				self.list = self.list[:numberOfDirs] + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
 
 		if self.root and numberOfDirs > 0:
 			rootPath = os.path.normpath(self.root.getPath())
@@ -698,6 +701,14 @@ class MovieList(GUIComponent):
 		if ref.flags & eServiceReference.mustDescent:
 			return (0, x[1] and x[1].getName(ref).lower() or "")
 		return (1, -x[2])
+		
+	def buildGroupwiseSortkey(self, x):
+		# Sort recordings by date, sort MP3 and stuff by name
+		ref = x[0]
+		if ref.type >= eServiceReference.idUser:
+			return self.buildAlphaNumericSortKey(x)
+		else:
+			return self.buildBeginTimeSortKey(x)
 
 	def moveTo(self, serviceref):
 		index = self.findService(serviceref)
