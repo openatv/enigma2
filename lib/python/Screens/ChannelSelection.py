@@ -1584,7 +1584,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.enterPath(ref)
 				self.gotoCurrentServiceOrProvider(ref)
 			else:
-				self.close(None)
+				self.cancel()
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
