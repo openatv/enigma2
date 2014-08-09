@@ -3,6 +3,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.About import CommitInfo
+from Components.config import config
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
@@ -87,10 +88,29 @@ class UpdatePlugin(Screen):
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
 		if default:
-			self.startActualUpdate(True)
+			self.showDisclaimer()
 		else:
 			message += "\n" + _("Do you want to update your receiver?")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
+
+	def showDisclaimer(self, justShow=False):
+		if config.usage.show_update_disclaimer.value or justShow:
+			message = "With this disclaimer the openPLi team is informing you that we are working with nightly builds and it might be that after the upgrades your set top box \
+is not anymore working as expected. Therefore it is recommendable to create backups with Autobackup or Backupsuite so when something went wrong you can easily and quickly restore \
+when you discover 'bugs' please keep them reported on www.openpli.org.\n\nDo you understand this?"
+			list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
+			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list)
+		else:
+			self.startActualUpdate(True)
+
+	def disclaimerCallback(self, justShow, answer):
+		if answer == "never":
+			config.usage.show_update_disclaimer.value = False
+			config.usage.show_update_disclaimer.save()
+		if justShow and answer:
+			self.ipkgCallback(IpkgComponent.EVENT_DONE, None)
+		else:
+			self.startActualUpdate(answer)
 
 	def getLatestImageTimestamp(self):
 		currentTimeoutDefault = socket.getdefaulttimeout()
@@ -177,6 +197,8 @@ class UpdatePlugin(Screen):
 						(_("Update channel list only"), "channels"),
 						(_("Show latest commits on sourceforge"), "commits"),
 						(_("Cancel"), "")]
+					if not config.usage.show_update_disclaimer.value:
+						choices.append((_("Show disclaimer"), "disclaimer"))
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -233,6 +255,8 @@ class UpdatePlugin(Screen):
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
 		elif answer[1] == "commits":
 			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), CommitInfo)
+		elif answer[1] == "disclaimer":
+			self.showDisclaimer(justShow=True)
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
