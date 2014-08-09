@@ -95,9 +95,9 @@ class UpdatePlugin(Screen):
 
 	def showDisclaimer(self, justShow=False):
 		if config.usage.show_update_disclaimer.value or justShow:
-			message = "With this disclaimer the openPLi team is informing you that we are working with nightly builds and it might be that after the upgrades your set top box \
-is not anymore working as expected. Therefore it is recommendable to create backups with Autobackup or Backupsuite so when something went wrong you can easily and quickly restore \
-when you discover 'bugs' please keep them reported on www.openpli.org.\n\nDo you understand this?"
+			message = _("With this disclaimer the openPLi team is informing you that we are working with nightly builds and it might be that after the upgrades your set top box \
+is not anymore working as expected. Therefore it is recommendable to create backups with Autobackup or Backupsuite so when something went wrong you can easily and quickly restore. \
+When you discover 'bugs' please keep them reported on www.openpli.org.\n\nDo you understand this?")
 			list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
 			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list)
 		else:
