@@ -35,7 +35,10 @@ class HarddiskSetup(Screen):
 			return
 		from Components.Task import job_manager
 		try:
-			job_manager.AddJob(self.action(), onSuccess=job_manager.popupTaskView)
+			job = self.action()
+			job_manager.AddJob(job, onSuccess=job_manager.popupTaskView)
+			from TaskView import JobView
+			self.session.open(JobView, job, afterEventChangeable=False)
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 		self.close()
