@@ -107,7 +107,7 @@
 			<widget source="parent.number_summary" render="Label" position="fill" font="Bigger" halign="right"/>
 		</panel>
 		<panel position="fill" name="SummaryClockPanel">
-			<widget source="parent.servicename_summary" render="Label" position="fill" font="Clock" noWrap="1">
+			<widget source="parent.servicename_summary" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="TextCase">ToUpper</convert>
 			</widget>
 		</panel>
