@@ -93,7 +93,7 @@ class PinInput(InputBox):
 		self.pinList = pinList
 		self["service"] = Label(service)
 
-		if service:
+		if service and simple:
 			self.skinName = "PinInputPopup"
 
 		if self.getTries() == 0:
