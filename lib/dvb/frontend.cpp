@@ -142,6 +142,7 @@ void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descr
 		case 7: fec_inner = FEC_3_5; break;
 		case 8: fec_inner = FEC_4_5; break;
 		case 9: fec_inner = FEC_9_10; break;
+		case 10: fec_inner = FEC_6_7; break;
 	}
 	modulation = descriptor.getModulation();
 	if (modulation > Modulation_QAM256)

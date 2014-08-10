@@ -26,7 +26,6 @@ config.pic.infoline = ConfigYesNo(default=True)
 config.pic.loop = ConfigYesNo(default=True)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 config.pic.textcolor = ConfigSelection(default="#0038FF48", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
-config.pic.fullview_resolution = ConfigSelection(default = None, choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
 
 class picshow(Screen):
 	skin = """
@@ -176,7 +175,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
 			getConfigListEntry(_("Background color"), config.pic.bgcolor),
 			getConfigListEntry(_("Text color"), config.pic.textcolor),
-			getConfigListEntry(_("Fulview resulution"), config.pic.fullview_resolution),
+			getConfigListEntry(_("Fulview resulution"), config.usage.pic_resolution),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
@@ -444,8 +443,8 @@ class Pic_Full_View(Screen):
 		self.size_w = size_w = getDesktop(0).size().width()
 		self.size_h = size_h = getDesktop(0).size().height()
 
-		if config.pic.fullview_resolution.value and (size_w, size_h) != eval(config.pic.fullview_resolution.value):
-			(size_w, size_h) = eval(config.pic.fullview_resolution.value)
+		if config.usage.pic_resolution.value and (size_w, size_h) != eval(config.usage.pic_resolution.value):
+			(size_w, size_h) = eval(config.usage.pic_resolution.value)
 			gMainDC.getInstance().setResolution(size_w, size_h)
 			getDesktop(0).resize(eSize(size_w, size_h))
 
@@ -597,7 +596,7 @@ class Pic_Full_View(Screen):
 	def Exit(self):
 		del self.picload
 
-		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+		if config.usage.pic_resolution.value and (self.size_w, self.size_h) != eval(config.usage.pic_resolution.value):
 			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 
