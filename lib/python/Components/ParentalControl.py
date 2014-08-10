@@ -100,13 +100,14 @@ class ParentalControl:
 			if self.serviceLevel.has_key(service):
 				levelNeeded = self.serviceLevel[service]
 			pinList = self.getPinList()[:levelNeeded + 1]
-			if not session:
-				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
-			else:
+			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
+			if session:
 				Notifications.RemovePopup("Parental control")
 				if self.PinDlg:
 					self.PinDlg.close()
-				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
+				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=pinList, service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"))
+			else:
+				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=pinList, service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"))
 			return False
 		else:
 			return True
