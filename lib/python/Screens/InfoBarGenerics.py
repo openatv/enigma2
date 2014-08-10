@@ -704,11 +704,6 @@ class InfoBarChannelSelection:
 			self.servicelist.moveDown()
 		self.servicelist.zap(enable_pipzap = True)
 
-	def bouquetSelected(self, ref):
-		self.servicelist.enterPath(ref)
-		self.servicelist.gotoCurrentServiceOrProvider(ref)
-		self.openServiceList()
-
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
 
