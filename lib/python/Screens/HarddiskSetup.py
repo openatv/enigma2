@@ -13,16 +13,19 @@ from enigma import eListboxPythonMultiContent, gFont
 from Components.MultiContent import MultiContentEntryText
 
 class HarddiskSetup(Screen):
-	def __init__(self, session, hdd, action, text, question):
+	def __init__(self, session, hdd, action, text, question, backgroundable=True):
 		Screen.__init__(self, session)
 		self.action = action
 		self.question = question
 		self.curentservice = None
+		self.backgroundable = backgroundable
 		self["model"] = Label(_("Model: ") + hdd.model())
 		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
 		self["bus"] = Label(_("Bus: ") + hdd.bus())
-		self["initialize"] = Pixmap()
-		self["initializetext"] = Label(text)
+		self["key_red"] = Label(text)
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.hddQuestion,
@@ -35,12 +38,14 @@ class HarddiskSetup(Screen):
 
 	def hddQuestion(self, answer=False):
 		print 'answer:',answer
-		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
+		if Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
 			message = self.question + "\n" + _("You seem to be in time shift. In order to proceed, time shift needs to stop.")
 			message += '\n' + _("Do you want to continue?")
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:
-			message = self.question + "\n" + _("You can continue watching while this is running.")
+			message = self.question
+			if self.backgroundable:
+				message += "\n" + _("You can continue watching while this is running.")
 			self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def stopTimeshift(self, confirmed):
@@ -51,7 +56,7 @@ class HarddiskSetup(Screen):
 			self.hddConfirmed(True)
 
 	def hddConfirmed(self, confirmed):
-		if not confirmed:
+		if not confirmed or not self.backgroundable:
 			return
 		try:
 			job_manager.AddJob(self.action())
@@ -69,10 +74,12 @@ class HarddiskSetup(Screen):
 	def showJobView(self, job):
 		from Screens.TaskView import JobView
 		job_manager.in_background = False
-		self.session.openWithCallback(self.JobViewCB, JobView, job, cancelable=False, afterEventChangeable=False, afterEvent="close")
+		self.session.openWithCallback(self.JobViewCB, JobView, job, cancelable=False, afterEventChangeable=False, afterEvent="close", backgroundable=self.backgroundable)
 
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
+		if not self.backgroundable:
+			self.close()
 
 class HarddiskMenuList(MenuList):
 	def __init__(self, list, enableWrapAround = False):
@@ -104,6 +111,8 @@ class HarddiskSelection(Screen):
 		
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Select"))
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"save" : self.okbuttonClick,
