@@ -56,7 +56,7 @@ class HarddiskSetup(Screen):
 			self.hddConfirmed(True)
 
 	def hddConfirmed(self, confirmed):
-		if not confirmed or not self.backgroundable:
+		if not confirmed:
 			return
 		try:
 			job_manager.AddJob(self.action())
@@ -66,6 +66,9 @@ class HarddiskSetup(Screen):
 					break
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
+
+		if not self.backgroundable:
+			return
 
 		if self.curentservice:
 			self.session.nav.playService(self.curentservice)
