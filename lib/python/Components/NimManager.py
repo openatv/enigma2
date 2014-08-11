@@ -48,7 +48,7 @@ class SecConfigure:
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
 		sec.setLNBThreshold(11700000)
-		sec.setLNBIncreasedVoltage(bool(lnbParam.OFF))
+		sec.setLNBIncreasedVoltage(lnbParam.OFF)
 		sec.setRepeats(0)
 		sec.setFastDiSEqC(fastDiSEqC)
 		sec.setSeqRepeat(0)
@@ -381,9 +381,9 @@ class SecConfigure:
 #					pass # nyi in drivers
 
 				if currLnb.increased_voltage.value:
-					sec.setLNBIncreasedVoltage(bool(lnbParam.ON))
+					sec.setLNBIncreasedVoltage(lnbParam.ON)
 				else:
-					sec.setLNBIncreasedVoltage(bool(lnbParam.OFF))
+					sec.setLNBIncreasedVoltage(lnbParam.OFF)
 
 				dm = currLnb.diseqcMode.value
 				if dm == "none":
