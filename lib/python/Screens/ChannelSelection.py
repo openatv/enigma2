@@ -940,9 +940,9 @@ class ChannelSelectionBase(Screen):
 		self.history = [ ]
 		self.rootChanged = False
 		self.startRoot = None
-		self.zapNumber = ""
-		self.clearZapNumberTimer = eTimer()
-		self.clearZapNumberTimer.callback.append(self.clearZapNumber)
+		self.selectionNumber = ""
+		self.clearNumberSelectionNumberTimer = eTimer()
+		self.clearNumberSelectionNumberTimer.callback.append(self.clearNumberSelectionNumber)
 
 		self.mode = MODE_TV
 		self.dopipzap = False
@@ -1315,41 +1315,41 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(self.bouquet_root)
 
 	def keyNumber0(self, number):
-		if len(self.servicePath) > 1 and not self.zapNumber:
+		if len(self.servicePath) > 1 and not self.selectionNumber:
 			self.keyGoUp()
 		else:
 			self.keyNumberGlobal(number)
 
 	def keyNumberGlobal(self, number):
 		if self.isBasePathEqual(self.bouquet_root):
-			self.numberZapActions(number)
+			self.numberSelectionActions(number)
 		else:
 			current_root = self.getRoot()
 			if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
-				self.numberZapActions(number)
+				self.numberSelectionActions(number)
 			else:
 				unichar = self.numericalTextInput.getKey(number)
 				charstr = unichar.encode("utf-8")
 				if len(charstr) == 1:
 					self.servicelist.moveToChar(charstr[0])
 
-	def numberZapActions(self, number):
+	def numberSelectionActions(self, number):
 		if not self.movemode:
-			if len(self.zapNumber)>4:
-				self.clearZapNumber()
-			self.zapNumber = self.zapNumber + str(number)
-			ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.zapNumber), bouquet=self.getRoot())
+			if len(self.selectionNumber)>4:
+				self.clearNumberSelectionNumber()
+			self.selectionNumber = self.selectionNumber + str(number)
+			ref, bouquet = Screens.InfoBar.InfoBar.instance.searchNumber(int(self.selectionNumber), bouquet=self.getRoot())
 			if ref:
 				if not ref.flags & eServiceReference.isMarker:
 					self.enterUserbouquet(bouquet, save_root=False)
 					self.servicelist.setCurrent(ref)
-				self.clearZapNumberTimer.start(1000, True)
+				self.clearNumberSelectionNumberTimer.start(1000, True)
 			else:
-				self.clearZapNumber()
+				self.clearNumberSelectionNumber()
 
-	def clearZapNumber(self):
-		self.clearZapNumberTimer.stop()
-		self.zapNumber = ""
+	def clearNumberSelectionNumber(self):
+		self.clearNumberSelectionNumberTimer.stop()
+		self.selectionNumber = ""
 
 	def keyAsciiCode(self):
 		unichar = unichr(getPrevAsciiCode())
