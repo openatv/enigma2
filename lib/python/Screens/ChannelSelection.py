@@ -1765,7 +1765,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if path and path != self.lastroot.value:
 			if self.mode == MODE_RADIO and 'FROM BOUQUET "bouquets.tv"' in path:
 				self.setModeTv()
-			elif 'FROM BOUQUET "bouquets.radio"' in path:
+			elif self.mode == MODE_TV and 'FROM BOUQUET "bouquets.radio"' in path:
 				self.setModeRadio()
 			self.lastroot.value = path
 			self.lastroot.save()
