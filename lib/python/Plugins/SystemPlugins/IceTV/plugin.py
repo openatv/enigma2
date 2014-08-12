@@ -48,6 +48,8 @@ def enableIceTV(res=None):
     print "[IceTV] enableIceTV"
     config.epg.eit.value = False
     config.epg.save()
+    config.usage.show_eit_nownext.value = False
+    config.usage.show_eit_nownext.save()
     config.plugins.icetv.enable_epg.value = True
     epgcache = eEPGCache.getInstance()
     epgcache.setEpgSources(0)
@@ -65,6 +67,8 @@ def disableIceTV(res=None):
     epgcache.setEpgSources(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
     config.epg.eit.value = True
     config.epg.save()
+    config.usage.show_eit_nownext.value = False
+    config.usage.show_eit_nownext.save()
     config.plugins.icetv.enable_epg.value = False
     saveConfigFile()
 
