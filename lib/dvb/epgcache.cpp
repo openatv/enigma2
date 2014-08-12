@@ -1298,6 +1298,8 @@ void eEPGCache::clear()
 	flushEPG();
 }
 
+const static unsigned int EPG_MAGIC = 0x98765432;
+
 void eEPGCache::load()
 {
 	eDebug("[EPGC] load()");
@@ -1332,10 +1334,10 @@ void eEPGCache::load()
 		int cnt=0;
 		unsigned int magic=0;
 		unlink(EPGDAT_IN_FLASH);/* Don't keep it around when in flash */
-		fread( &magic, sizeof(int), 1, f);
-		if (magic != 0x98765432)
+		fread(&magic, sizeof(int), 1, f);
+		if (magic != EPG_MAGIC)
 		{
-			eDebug("[EPGC] epg file has incorrect byte order.. dont read it");
+			eDebug("[EPGC] epg file load failed magic test expected 0x%08x, got 0x%08x (%m)", EPG_MAGIC, magic);
 			fclose(f);
 			return;
 		}
@@ -1480,8 +1482,8 @@ void eEPGCache::save()
 	}
 
 	int cnt=0;
-	unsigned int magic = 0x98765432;
-	fwrite( &magic, sizeof(int), 1, f);
+	unsigned int magic = EPG_MAGIC;
+	fwrite(&magic, sizeof(int), 1, f);
 	const char *text = "UNFINISHED_V7";
 	fwrite( text, 13, 1, f );
 	int size = eventDB.size();
