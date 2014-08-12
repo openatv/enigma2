@@ -162,7 +162,8 @@ class Dish(Screen):
 		self.showdish = configElement.value
 
 	def rotorPositionChanged(self, configElement=None):
-		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
+		if self.cur_orbpos != config.misc.lastrotorposition.value != INVALID_POSITION:
+			self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
 
 	def getTurnTime(self, start, end, pol=0):
 		mrt = abs(start - end) if start and end else 0
