@@ -71,10 +71,14 @@ class eAITSectionReader:
 			return False
 		if len(document) == 0:
 			return False
-		document = document.decode("cp1252").encode("utf-8")
-		#print document
-		self.mDocument = xml.dom.minidom.parseString(document)
-		return True
+		try:
+			document = document.decode("cp1252").encode("utf-8")
+			#print document
+			self.mDocument = xml.dom.minidom.parseString(document)
+			return True
+		except Exception as ex:
+			print "[aitreader]", str(ex)
+			return False
 
 	def doDump(self):
 		for x in self.getApplicationList():
