@@ -71,7 +71,7 @@ def disableIceTV(res=None):
 
 def configIceTV(res=None):
     print "[IceTV] configIceTV"
-    pass
+    _session.open(IceTVUserTypeScreen)
 
 
 def fetchEpg(res=None):
