@@ -1432,9 +1432,9 @@ void eEPGCache::save()
 	const char* EPGDAT = m_filename.c_str();
 	if (eventData::isCacheCorrupt)
 		return;
-	// only save epg.dat if it's worth the trouble...
-//	if (eventData::CacheSize < 10240)
-//		return;
+	// only save epg.dat if it is not empty
+	if (eventData::CacheSize < 1)
+		return;
 
 	/* create empty file */
 	FILE *f = fopen(EPGDAT, "wb");
