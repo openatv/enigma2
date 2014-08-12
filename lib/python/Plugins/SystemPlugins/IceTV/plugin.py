@@ -29,8 +29,8 @@ _session = None
 class IceTVMain(ChoiceBox):
 
     def __init__(self, session, *args, **kwargs):
+        global _session
         if _session is None:
-            global _session
             _session = session
         menu = [("Enable IceTV", "CALLFUNC", enableIceTV),
                 ("Disable IceTV", "CALLFUNC", disableIceTV),
@@ -129,14 +129,13 @@ def autostart_main(reason, **kwargs):
 
 
 def sessionstart_main(reason, session, **kwargs):
+    global _session
     if reason == 0:
         print "[IceTV] sessionstart start"
         if _session is None:
-            global _session
             _session = session
     elif reason == 1:
         print "[IceTV] sessionstart stop"
-        global _session
         _session = None
     else:
         print "[IceTV] sessionstart with unknown reason:", reason
@@ -148,8 +147,8 @@ def wizard_main(*args, **kwargs):
 
 
 def plugin_main(session, **kwargs):
+    global _session
     if _session is None:
-        global _session
         _session = session
     session.open(IceTVMain)
 
