@@ -1300,6 +1300,7 @@ void eEPGCache::clear()
 
 void eEPGCache::load()
 {
+	eDebug("[EPGC] load()");
 	if (m_filename.empty())
 		m_filename = "/hdd/epg.dat";
 	const char* EPGDAT = m_filename.c_str();
@@ -1310,18 +1311,21 @@ void eEPGCache::load()
 	if (f == NULL)
 	{
 		/* No EPG on harddisk, so try internal flash */
-		eDebug("[EPGC] %s not found, try /epg.dat", EPGDAT);
+		eDebug("[EPGC] %s not found, try %s", EPGDAT, EPGDAT_IN_FLASH);
 		EPGDAT = EPGDAT_IN_FLASH;
 		f = fopen(EPGDAT, "rb");
 		if (f == NULL)
+		{
+			eDebug("[EPGC] %s not found, giving up", EPGDAT);
 			return;
+		}
 		renameResult = -1;
 	}
 	else
 	{
 		unlink(EPGDATX);
 		renameResult = rename(EPGDAT, EPGDATX);
-		if (renameResult) eDebug("[EPGC] failed to rename %s", EPGDAT);
+		if (renameResult) eDebug("[EPGC] failed to rename %s to %s: %m", EPGDAT, EPGDATX);
 	}
 	{
 		int size=0;
@@ -1417,10 +1421,12 @@ void eEPGCache::load()
 			if (renameResult) eDebug("[EPGC] failed to rename epg.dat back");
 		}
 	}
+	eDebug("[EPGC] load() - finished");
 }
 
 void eEPGCache::save()
 {
+	eDebug("[EPGC] save()");
 	const char* EPGDAT = m_filename.c_str();
 	if (eventData::isCacheCorrupt)
 		return;
@@ -1436,7 +1442,10 @@ void eEPGCache::save()
 		EPGDAT = EPGDAT_IN_FLASH;
 		f = fopen(EPGDAT, "wb");
 		if (!f)
+		{
+			eDebug("[EPGC] Failed to open '%s' (%m)", EPGDAT);
 			return;
+		}
 	}
 
 	char* buf = realpath(EPGDAT, NULL);
