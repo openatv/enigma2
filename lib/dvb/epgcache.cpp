@@ -1308,6 +1308,7 @@ void eEPGCache::load()
 	const char* EPGDAT = m_filename.c_str();
 	std::string filenamex = m_filename + ".loading";
 	const char* EPGDATX = filenamex.c_str();
+	singleLock s(cache_lock);
 	FILE *f = fopen(EPGDAT, "rb");
 	int renameResult;
 	if (f == NULL)
@@ -1345,7 +1346,6 @@ void eEPGCache::load()
 		fread( text1, 13, 1, f);
 		if ( !memcmp( text1, "ENIGMA_EPG_V7", 13) )
 		{
-			singleLock s(cache_lock);
 			fread( &size, sizeof(int), 1, f);
 			while(size--)
 			{
@@ -1436,6 +1436,7 @@ void eEPGCache::save()
 	if (eventData::CacheSize < 1)
 		return;
 
+	singleLock s(cache_lock);
 	/* create empty file */
 	FILE *f = fopen(EPGDAT, "wb");
 	if (!f)
@@ -1460,9 +1461,9 @@ void eEPGCache::save()
 
 	eDebug("[EPGC] store epg to realpath '%s'", buf);
 
-	struct statfs s;
+	struct statfs st;
 	off64_t tmp;
-	if (statfs(buf, &s) < 0) {
+	if (statfs(buf, &st) < 0) {
 		eDebug("[EPGC] statfs '%s' failed in save (%m)", buf);
 		fclose(f);
 		free(buf);
@@ -1470,8 +1471,8 @@ void eEPGCache::save()
 	}
 
 	// check for enough free space on storage
-	tmp=s.f_bfree;
-	tmp*=s.f_bsize;
+	tmp=st.f_bfree;
+	tmp*=st.f_bsize;
 	if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 	{
 		eDebug("[EPGC] not enough free space at path '%s' %lld bytes avail but %d needed", buf, tmp, (eventData::CacheSize*12)/10);
