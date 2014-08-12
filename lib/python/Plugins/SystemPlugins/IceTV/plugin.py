@@ -18,7 +18,8 @@ from Components.config import getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
-import time
+from calendar import timegm
+from time import strptime
 from . import config
 import API as ice
 from Plugins.SystemPlugins.IceTV import saveConfigFile
@@ -35,7 +36,7 @@ class IceTVMain(ChoiceBox):
         menu = [("Enable IceTV", "CALLFUNC", enableIceTV),
                 ("Disable IceTV", "CALLFUNC", disableIceTV),
                 ("Configure IceTV", "CALLFUNC", configIceTV),
-                ("Fetch EPG", "CALLFUNC", fetchEpg),
+                ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
                 ]
         super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
 
@@ -78,49 +79,65 @@ def configIceTV(res=None):
     _session.open(IceTVUserTypeScreen)
 
 
-def fetchEpg(res=None):
-    print "[IceTV] fetchEpg"
-    shows = getShows()
-    channel_service_map = makeChanServMap(shows["channels"])
-    channel_show_map = makeChanShowMap(shows["shows"])
-    epgcache = eEPGCache.getInstance()
-    for channel_id in channel_show_map.keys():
-        print "[IceTV] inserting %d shows into" % len(channel_show_map[channel_id]), channel_service_map[channel_id]
-        print "[IceTV] first one:", channel_show_map[channel_id][0]
-        epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
+class EPGFetcher(object):
+    def __init__(self):
+        self.downloadTimer = eTimer()
+        self.downloadTimer.callback.append(self.onDownloadStart)
+        self.last_msg = ""
 
-def makeChanServMap(channels):
-    res = {}
-    for channel in channels:
-        channel_id = channel["id"]
-        for triplet in channel["dvb_triplets"]:
-            res.setdefault(channel_id, []).append((int(triplet["original_network_id"]),
-                                                   int(triplet["transport_stream_id"]),
-                                                   int(triplet["service_id"])))
-    return res
+    def fetchEpg(self, res=None):
+        print "[IceTV] fetchEpg"
+        self.downloadTimer.start(3, True)
 
-def makeChanShowMap(shows):
-    res = {}
-    for show in shows:
-        channel_id = show["channel_id"]
-        # Fit within 16 bits, but never pass 0
-        event_id = (int(show["id"]) % 65530) + 1
-        start = int(time.mktime(time.strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
-        stop = int(time.mktime(time.strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
-        duration = stop - start
-        title = show["title"].encode("utf8")
-        short = show["subtitle"].encode("utf8")
-        extended = show["desc"].encode("utf8")
-        res.setdefault(channel_id, []).append((start, duration, title, short, extended, 0, event_id))
-    return res
+    def onDownloadStart(self):
+        self.downloadTimer.stop()
+        try:
+            shows = self.getShows()
+            channel_service_map = self.makeChanServMap(shows["channels"])
+            channel_show_map = self.makeChanShowMap(shows["shows"])
+            epgcache = eEPGCache.getInstance()
+            for channel_id in channel_show_map.keys():
+                print "[IceTV] inserting %d shows into" % len(channel_show_map[channel_id]), channel_service_map[channel_id]
+                print "[IceTV] first one:", channel_show_map[channel_id][0]
+                epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
+            epgcache.save()
+            self.last_msg = "EPG download OK"
+        except RuntimeError as ex:
+            print "[IceTV] Can not download EPG:", ex
+            self.last_msg = "Can not download EPG: " + str(ex)
 
+    def makeChanServMap(self, channels):
+        res = {}
+        for channel in channels:
+            channel_id = channel["id"]
+            for triplet in channel["dvb_triplets"]:
+                res.setdefault(channel_id, []).append((int(triplet["original_network_id"]),
+                                                       int(triplet["transport_stream_id"]),
+                                                       int(triplet["service_id"])))
+        return res
 
-def getShows():
-    req = ice.Shows()
-    last_update = config.plugins.icetv.last_update_time.value
-    req.params["last_update_time"] = last_update
-    return req.get().json()
+    def makeChanShowMap(self, shows):
+        res = {}
+        for show in shows:
+            channel_id = show["channel_id"]
+            # Fit within 16 bits, but never pass 0
+            event_id = (int(show["id"]) % 65530) + 1
+            start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+            stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+            duration = stop - start
+            title = show["title"].encode("utf8")
+            short = show["subtitle"].encode("utf8")
+            extended = show["desc"].encode("utf8")
+            res.setdefault(channel_id, []).append((start, duration, title, short, extended, 0, event_id))
+        return res
 
+    def getShows(self):
+        req = ice.Shows()
+        last_update = config.plugins.icetv.last_update_time.value
+        req.params["last_update_time"] = last_update
+        return req.get().json()
+
+fetcher = EPGFetcher()
 
 def autostart_main(reason, **kwargs):
     if reason == 0:
