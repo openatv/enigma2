@@ -1469,8 +1469,6 @@ void eEPGCache::save()
 		return;
 	}
 
-	free(buf);
-
 	// check for enough free space on storage
 	tmp=s.f_bfree;
 	tmp*=s.f_bsize;
@@ -1478,8 +1476,11 @@ void eEPGCache::save()
 	{
 		eDebug("[EPGC] not enough free space at path '%s' %lld bytes avail but %d needed", buf, tmp, (eventData::CacheSize*12)/10);
 		fclose(f);
+		free(buf);
 		return;
 	}
+	free(buf);
+
 
 	int cnt=0;
 	unsigned int magic = EPG_MAGIC;
