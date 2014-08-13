@@ -11,9 +11,10 @@ from fcntl import ioctl
 from struct import pack
 from socket import socket, AF_INET, SOCK_DGRAM
 from . import config, saveConfigFile
+from boxbranding import getMachineBrand, getMachineName
 
-_version_string = "20140728"
-_server = "http://api.dev.icetv.com.au"
+_version_string = "20140812"
+_server = "http://api.icetv.com.au"
 _device_type_id = 22
 
 
@@ -54,7 +55,7 @@ class Request(object):
         self.headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "User-Agent": "IceT3",
+            "User-Agent": "SystemPlugins.IceTV/%s (%s; %s)" % (_version_string, getMachineBrand(), getMachineName()),
         }
         self.url = _server + resource
         self.data = {
