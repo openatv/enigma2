@@ -948,7 +948,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
 		kernel_ver = about.getKernelVersionString()
-		if kernel_ver <= "3.5.0" and getBoxType() not in ('gb800seplus', 'gb800ueplus'):
+		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
+		if getBoxType() not in ('DUMMY'):
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
