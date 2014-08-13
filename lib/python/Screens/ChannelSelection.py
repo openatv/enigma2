@@ -172,7 +172,13 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
 				else:
 					if 'FROM SATELLITES' in current_root.getPath():
-						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level=0)
+						unsigned_orbpos = current.getUnsignedData(4) >> 16
+						if unsigned_orbpos == 0xFFFF:
+							append_when_current_valid(current, menu, (_("remove cable services"), self.removeSatelliteServices), level = 0)
+						elif unsigned_orbpos == 0xEEEE:
+							append_when_current_valid(current, menu, (_("remove terrestrial services"), self.removeSatelliteServices), level = 0)
+						else:
+							append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
 					if haveBouquets:
 						if not self.inBouquet and not "PROVIDERS" in current_sel_path:
 							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level=0)
@@ -341,14 +347,21 @@ class ChannelContextMenu(Screen):
 			self.close(False)
 
 	def removeSatelliteServices(self):
-		curpath = self.csel.getCurrentSelection().getPath()
-		idx = curpath.find("satellitePosition == ")
-		if idx != -1:
-			tmp = curpath[idx+21:]
-			idx = tmp.find(')')
+		current = self.csel.getCurrentSelection()
+		unsigned_orbpos = current.getUnsignedData(4) >> 16
+		if unsigned_orbpos == 0xFFFF:
+			eDVBDB.getInstance().removeServices(int("0xFFFF0000", 16) - 0x100000000)
+		elif unsigned_orbpos == 0xEEEE:
+			eDVBDB.getInstance().removeServices(int("0xEEEE0000", 16) - 0x100000000)
+		else:
+			curpath = current.getPath()
+			idx = curpath.find("satellitePosition == ")
 			if idx != -1:
-				satpos = int(tmp[:idx])
-				eDVBDB.getInstance().removeServices(-1, -1, -1, satpos)
+				tmp = curpath[idx + 21:]
+				idx = tmp.find(')')
+				if idx != -1:
+					satpos = int(tmp[:idx])
+					eDVBDB.getInstance().removeServices(-1, -1, -1, satpos)
 		self.close()
 
 	def copyCurrentToBouquetList(self):
