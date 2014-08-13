@@ -1890,8 +1890,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			oldref = self.session.nav.currentlyPlayingServiceReference
 			if oldref and selected_ref == oldref or (oldref != current_ref and selected_ref == current_ref):
 				self.session.nav.currentlyPlayingServiceOrGroup = selected_ref
-				from Components.Renderer.ChannelNumber import doRenumber
-				doRenumber()
+				self.session.nav.pnav.navEvent(iPlayableService.evStart)
 		if self.dopipzap:
 			if tmp_mode == "tv":
 				self.setModeTv()
