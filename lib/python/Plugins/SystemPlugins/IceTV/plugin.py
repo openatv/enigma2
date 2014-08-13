@@ -17,12 +17,12 @@ from Components.Pixmap import Pixmap
 from Components.config import getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from calendar import timegm
 from time import strptime
-from . import config
+from . import config, saveConfigFile
 import API as ice
-from Plugins.SystemPlugins.IceTV import saveConfigFile
 
 _session = None
 
@@ -52,11 +52,13 @@ def enableIceTV(res=None):
     config.usage.show_eit_nownext.value = False
     config.usage.show_eit_nownext.save()
     config.plugins.icetv.enable_epg.value = True
+    config.plugins.icetv.last_update_time.value = 0
     epgcache = eEPGCache.getInstance()
     epgcache.setEpgSources(0)
     epgcache.clear()
     epgcache.save()
     saveConfigFile()
+    _session.open(MessageBox, _("IceTV enabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
 
 def disableIceTV(res=None):
@@ -71,8 +73,9 @@ def disableIceTV(res=None):
     config.usage.show_eit_nownext.value = False
     config.usage.show_eit_nownext.save()
     config.plugins.icetv.enable_epg.value = False
+    config.plugins.icetv.last_update_time.value = 0
     saveConfigFile()
-
+    _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
 def configIceTV(res=None):
     print "[IceTV] configIceTV"
@@ -101,10 +104,16 @@ class EPGFetcher(object):
                 print "[IceTV] first one:", channel_show_map[channel_id][0]
                 epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
             epgcache.save()
+            if "last_update_time" in shows:
+                config.plugins.icetv.last_update_time.value = shows["last_update_time"]
+                saveConfigFile()
             self.last_msg = "EPG download OK"
         except RuntimeError as ex:
             print "[IceTV] Can not download EPG:", ex
             self.last_msg = "Can not download EPG: " + str(ex)
+            _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
+            return
+        _session.open(MessageBox, _("EPG and timers downloaded"), type=MessageBox.TYPE_INFO, timeout=5)
 
     def makeChanServMap(self, channels):
         res = {}
