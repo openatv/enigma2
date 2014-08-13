@@ -19,6 +19,8 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from RecordTimer import RecordTimerEntry
+from ServiceReference import ServiceReference
 from calendar import timegm
 from time import strptime
 from . import config, saveConfigFile
@@ -113,6 +115,8 @@ class EPGFetcher(object):
             self.last_msg = "Can not download EPG: " + str(ex)
             _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
             return
+        if "timers" in shows:
+            self.processTimers(channel_service_map, shows["timers"])
         _session.open(MessageBox, _("EPG and timers downloaded"), type=MessageBox.TYPE_INFO, timeout=5)
 
     def makeChanServMap(self, channels):
@@ -131,14 +135,36 @@ class EPGFetcher(object):
             channel_id = show["channel_id"]
             # Fit within 16 bits, but never pass 0
             event_id = (int(show["id"]) % 65530) + 1
-            start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
-            stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
-            duration = stop - start
-            title = show["title"].encode("utf8")
-            short = show["subtitle"].encode("utf8")
-            extended = show["desc"].encode("utf8")
+            if "deleted_record" in show and int(show["deleted_record"]) == 1:
+                start = 999
+                duration = 10
+            else:
+                start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+                stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+                duration = stop - start
+            title = show.get("title", "").encode("utf8")
+            short = show.get("subtitle", "").encode("utf8")
+            extended = show.get("desc", "").encode("utf8")
             res.setdefault(channel_id, []).append((start, duration, title, short, extended, 0, event_id))
         return res
+
+    def processTimers(self, channel_service_map, timers):
+        for timer in timers:
+            print "[IceTV] timer:", timer
+            try:
+                name = timer.get("name", "")
+                start = int(timegm(strptime(timer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+                duration = 60 * int(timer["duration_minutes"])
+                message = timer.get("message", "")
+                rec_id = timer["id"]
+                channel_id = timer["channel_id"]
+                ch = channel_service_map[channel_id]
+                print "[IceTV] channel_id %s maps to" % channel_id, ch
+                serviceref = ServiceReference("1:0:1:%d:%d:%d:EEEE0000:0:0:0:" % (ch[0][2], ch[0][1], ch[0][0]))
+                recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, tags=rec_id)
+                _session.nav.RecordTimer.record(recording)
+            except (RuntimeError, KeyError) as ex:
+                print "[IceTV] Can not process timer:", ex
 
     def getShows(self):
         req = ice.Shows()
