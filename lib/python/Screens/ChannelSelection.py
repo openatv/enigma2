@@ -2480,7 +2480,7 @@ class HistoryZapSelector(Screen):
 						local_end = localtime(end)
 						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3],local_begin[4],local_end[3],local_end[4],prefix, remaining)
 
-			png = ""
+			png = None
 			picon = getPiconName(str(ServiceReference(x[1])))
 			if picon != "":
 				png = loadPNG(picon)
