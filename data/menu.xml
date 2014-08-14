@@ -144,7 +144,11 @@ self.session.open(RemoteControlCode)
 				<item level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 
 			</menu>
-			<item weight="10" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+			<menu weight="10" text="Common interface" entryID="cam_setup" requires="CommonInterface">
+				<id val="cam" />
+				<item weight="10" level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
+				<item weight="10" level="1" text="Common interface PIN Setup" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
+			</menu>
 			<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			<item weight="25" level="0" text="Factory reset" entryID="factory_reset">
 <code>
