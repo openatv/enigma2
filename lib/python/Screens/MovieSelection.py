@@ -1157,7 +1157,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		config.movielist.description.value = self.settings["description"]
 		config.usage.on_movie_eof.value = self.settings["movieoff"]
 		# save moviesort and movieeof values for using by hotkeys
-		config.movielist.moviesort.save()
+#		config.movielist.moviesort.save()
 		config.usage.on_movie_eof.save()
 
 	def loadLocalSettings(self):
