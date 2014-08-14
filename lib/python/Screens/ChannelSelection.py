@@ -347,43 +347,12 @@ class ChannelContextMenu(Screen):
 			self.close(False)
 
 	def removeSatelliteServices(self):
-		current = self.csel.getCurrentSelection()
-		unsigned_orbpos = current.getUnsignedData(4) >> 16
-		if unsigned_orbpos == 0xFFFF:
-			self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, _("Are you sure to remove all cable services?"))
-		elif unsigned_orbpos == 0xEEEE:
-			self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, _("Are you sure to remove all terrestrial services?"))
-		else:
-			direction = 'E'
-			if unsigned_orbpos > 1800:
-				unsigned_orbpos = 3600 - unsigned_orbpos
-				direction = 'W'
-			self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, _("Are you sure to remove all %d.%d\xc2\xb0 %s services?" % (unsigned_orbpos/10, unsigned_orbpos%10, direction)))
-
-	def removeSatelliteServicesCallback(self, answer):
-		if answer:
-			current = self.csel.getCurrentSelection()
-			unsigned_orbpos = current.getUnsignedData(4) >> 16
-			if unsigned_orbpos == 0xFFFF:
-				eDVBDB.getInstance().removeServices(int("0xFFFF0000", 16) - 0x100000000)
-			elif unsigned_orbpos == 0xEEEE:
-				eDVBDB.getInstance().removeServices(int("0xEEEE0000", 16) - 0x100000000)
-			else:
-				curpath = current.getPath()
-				idx = curpath.find("satellitePosition == ")
-				if idx != -1:
-					tmp = curpath[idx + 21:]
-					idx = tmp.find(')')
-					if idx != -1:
-						satpos = int(tmp[:idx])
-						eDVBDB.getInstance().removeServices(-1, -1, -1, satpos)
-			eDVBDB.getInstance().reloadBouquets()
+		self.csel.removeSatelliteServices()
 		self.close()
 
 	def copyCurrentToBouquetList(self):
 		self.csel.copyCurrentToBouquetList()
 		self.close()
-
 
 	def removeBouquet(self):
 		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
@@ -791,6 +760,42 @@ class ChannelSelectionEdit:
 				remove(filename)
 		except OSError:
 			print "error during remove of", filename
+
+	def removeSatelliteServices(self):
+		current = self.getCurrentSelection()
+		unsigned_orbpos = current.getUnsignedData(4) >> 16
+		if unsigned_orbpos == 0xFFFF:
+			messageText = _("Are you sure to remove all cable services?")
+		elif unsigned_orbpos == 0xEEEE:
+			messageText = _("Are you sure to remove all terrestrial services?")
+		else:
+			if unsigned_orbpos > 1800:
+				unsigned_orbpos = 3600 - unsigned_orbpos
+				direction = _("W")
+			else:
+				direction = _("E")
+			messageText = _("Are you sure to remove all %d.%d\xc2\xb0 %s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, direction)
+		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
+
+	def removeSatelliteServicesCallback(self, answer):
+		if answer:
+			current = self.getCurrentSelection()
+			unsigned_orbpos = current.getUnsignedData(4) >> 16
+			if unsigned_orbpos == 0xFFFF:
+				eDVBDB.getInstance().removeServices(int("0xFFFF0000", 16) - 0x100000000)
+			elif unsigned_orbpos == 0xEEEE:
+				eDVBDB.getInstance().removeServices(int("0xEEEE0000", 16) - 0x100000000)
+			else:
+				curpath = current.getPath()
+				idx = curpath.find("satellitePosition == ")
+				if idx != -1:
+					tmp = curpath[idx + 21:]
+					idx = tmp.find(')')
+					if idx != -1:
+						satpos = int(tmp[:idx])
+						eDVBDB.getInstance().removeServices(-1, -1, -1, satpos)
+			refreshServiceList()
+			hasattr(self.session, 'showSatellites') and self.showSatellites()
 
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
 	def startMarkedEdit(self, type):
