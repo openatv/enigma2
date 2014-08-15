@@ -21,8 +21,10 @@ class HarddiskSetup(Screen):
 		self["model"] = Label(_("Model: ") + hdd.model())
 		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
 		self["bus"] = Label(_("Bus: ") + hdd.bus())
-		self["initialize"] = Pixmap()
-		self["initializetext"] = Label(text)
+		self["key_red"] = Label(text)
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.hddQuestion,
@@ -104,6 +106,8 @@ class HarddiskSelection(Screen):
 		
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Select"))
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"save" : self.okbuttonClick,

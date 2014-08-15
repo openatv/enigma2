@@ -12,6 +12,22 @@ def readFile(filename):
 	file.close()
 	return data
 
+def getPartitionNames():
+	partitions = []
+	try:
+		f = open('/proc/partitions', 'r')
+		for line in f.readlines():
+			parts = line.strip().split()
+			if not parts:
+				continue
+			device = parts[3]
+			if device in partitions or not device[-1].isdigit():
+				continue
+			partitions.append(device)
+	except IOError, ex:
+		print "[Harddisk] Failed to open /proc/partitions", ex
+	return partitions
+
 def getProcMounts():
 	try:
 		mounts = open("/proc/mounts", 'r')
@@ -450,6 +466,9 @@ class Harddisk:
 	def getDeviceName(self):
 		return self.disk_path
 
+	def getDevicePhysicalName(self):
+		return self.phys_path
+
 	# the HDD idle poll daemon.
 	# as some harddrives have a buggy standby timer, we are doing this by hand here.
 	# first, we disable the hardware timer. then, we check every now and then if
@@ -822,7 +841,7 @@ class HarddiskManager:
 		list = [ ]
 		for hd in self.hdd:
 			try:
-				hdd = self.getUserfriendlyDeviceName(hd.disk_path, os.path.realpath(hd.phys_path)[4:])
+				hdd = self.getUserfriendlyDeviceName(hd.disk_path, os.path.realpath(hd.phys_path))
 			except Exception as ex:
 				print "[Harddisk] couldn't get friendly name for %s: %s" % (hd.phys_path, ex)
 				hdd = hd.model() + " - " + hd.bus()
@@ -859,8 +878,19 @@ class HarddiskManager:
 				return devname, 0
 		return dev, part and int(part) or 0
 
+	def getPhysicalDeviceLocation(self, phys):
+		from Tools.HardwareInfo import HardwareInfo
+		if phys.startswith("/sys"):
+			phys = phys[4:]
+		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
+			if phys.startswith(physdevprefix):
+				return pdescription
+		return None
+
 	def _getUserfriendlyDeviceName(self, device, phys):
 		dev, part = self.splitDeviceName(device)
+		if phys.startswith("/sys"):
+			phys = phys[4:]
 		shortdescription = description = "External Storage %s" % dev
 		volume_label = self.volume_labels.getVolumeLabel(device)
 		if volume_label:
@@ -870,14 +900,13 @@ class HarddiskManager:
 				description = readFile("/sys" + phys + "/model")
 			except IOError, s:
 				print "[Harddisk] couldn't read %s: %s" % ("/sys" + phys + "/model", s)
-		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
-			if phys.startswith(physdevprefix):
-				if volume_label:
-					description = "%s (%s)" % (description, pdescription)
-				else:
-					description = "%s (%s)" % (pdescription, description)
-					shortdescription = pdescription
+		pdescription = self.getPhysicalDeviceLocation(phys)
+		if pdescription is not None:
+			if volume_label:
+				description = "%s (%s)" % (description, pdescription)
+			else:
+				description = "%s (%s)" % (pdescription, description)
+				shortdescription = pdescription
 		# not wholedisk and not partition 1
 		if not volume_label and part and part != 1:
 			description += " (Partition %d)" % part
