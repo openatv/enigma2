@@ -250,8 +250,8 @@ class IceTVUserTypeScreen(Screen):
     _instructions = _("In order to allow you to access all the features of the "
                       "IceTV smart recording service, we need to gather some "
                       "basic information.\n\n"
-                      "If you already have an IceTV subscription, please select "
-                      "'Existing User', if not, then select 'New User'.")
+                      "If you already have an IceTV subscription or trial, please select "
+                      "'Existing or trial user', if not, then select 'New user'.")
 
     def __init__(self, session, args=None):
         self.session = session
@@ -259,8 +259,8 @@ class IceTVUserTypeScreen(Screen):
         self["title"] = Label(_("Welcome to IceTV"))
         self["instructions"] = Label(_(self._instructions))
         options = []
-        options.append((_("New User"), "newUser"))
-        options.append((_("Existing User"), "oldUser"))
+        options.append((_("New user"), "newUser"))
+        options.append((_("Existing or trial user"), "oldUser"))
         self["menu"] = MenuList(options)
         self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
                                  actions={
@@ -298,7 +298,8 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
 </screen>"""
 
     _instructions = _("Please enter your email address. This is required for us to send you "
-                      "service announcements, account reminders and promotional offers.")
+                      "service announcements, account reminders, promotional offers and "
+                      "a welcome email.")
     _email = _("Email")
     _password = _("Password")
     _label = _("Label")
@@ -316,11 +317,11 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
         self["VKeyIcon"] = Pixmap()
         self.list = [
              getConfigListEntry(self._email, config.plugins.icetv.member.email_address,
-                                _("Your email address is required to use an IceTV account")),
+                                _("Your email address is used to login to IceTV services.")),
              getConfigListEntry(self._password, config.plugins.icetv.member.password,
-                                _("Choose a password with at least 5 characters")),
+                                _("Choose a password with at least 5 characters.")),
              getConfigListEntry(self._label, config.plugins.icetv.device.label,
-                                _("Choose a label that will identify this device within IceTV services")),
+                                _("Choose a label that will identify this device within IceTV services.")),
         ]
         ConfigListScreen.__init__(self, self.list, session)
         self["InusActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
@@ -481,8 +482,7 @@ class IceTVLogin(Screen):
             pass
         try:
             self.loginCmd()
-            self["message"].setText(_("Setup is complete.\n\n"
-                                      "Congratulations, you have successfully configured your %s %s "
+            self["message"].setText(_("Congratulations, you have successfully configured your %s %s "
                                       "for use with the IceTV Smart Recording service.\n\n"
                                       "For more information, visit icetv.com.au\n\n"
                                       "Your IceTV guide will now download in the background.")
