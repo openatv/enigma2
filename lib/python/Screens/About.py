@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import Harddisk, Partition, harddiskmanager, getProcMounts
+from Components.Harddisk import Harddisk, Partition, harddiskmanager, getProcMounts, getPartitionNames
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.config import config
@@ -278,16 +278,7 @@ class Devices(AboutBase):
 		self.list.append(self.makeEmptyEntry())
 		self.list.append(self.makeHeadingEntry(_("Detected HDDs and Volumes"+":")))
 
-		partitions = []
-		f = open('/proc/partitions', 'r')
-		for line in f.readlines():
-			parts = line.strip().split()
-			if not parts:
-				continue
-			device = parts[3]
-			if device in partitions or not device[-1].isdigit():
-				continue
-			partitions.append(device)
+		partitions = getPartitionNames()
 		partitions.sort()
 
 		mounts = getProcMounts()
