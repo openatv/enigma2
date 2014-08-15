@@ -996,6 +996,7 @@ class ChannelSelectionBase(Screen):
 				"gotAsciiCode": self.keyAsciiCode,
 				"keyLeft": self.keyLeft,
 				"keyRight": self.keyRight,
+				"keyRecord": self.keyRecord,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -1337,6 +1338,9 @@ class ChannelSelectionBase(Screen):
 		else:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
 
+	def keyRecord(self):
+		return 0
+
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_rootstr):
@@ -1531,6 +1535,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
 		self.pipzaptimer = eTimer()
+
+	def keyRecord(self):
+		ref = self.getCurrentSelection()
+		if ref and not(ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+			Screens.InfoBar.InfoBar.instance.instantRecord(serviceRef=ref)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
