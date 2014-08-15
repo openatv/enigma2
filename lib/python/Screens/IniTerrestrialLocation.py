@@ -74,7 +74,7 @@ class IniTerrestrialLocation(Screen):
 		InitNimManager(nimmanager)
 		
 		if config.misc.inifirstrun.getValue():
-			self.skinName = ["StartWizard"]
+			self.skinName = ["IniTerrestrialLocationWizard"]
 
 		self["text"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
 		self["key_red"] = Label(_("Exit"))
@@ -198,8 +198,6 @@ class IniEndWizard(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Congratulations!"))
 		
-		self.skinName = ["StartWizard"]
-
 		self["text"] = Label(_("Congratulations, your %s %s is now set up.\nPlease press OK to start using your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()) )
 
 		self["actions"] = ActionMap(["SetupActions"],
@@ -216,4 +214,3 @@ class IniEndWizard(Screen):
 	def go(self):
 		self.saveIniWizardSetting()
 		self.close()
-		

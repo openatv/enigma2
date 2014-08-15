@@ -859,14 +859,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+						alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+						alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 				else:
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+						alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+						alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				foreColor = self.foreColor
 				backColor = self.backColor
@@ -933,7 +933,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						**evSizePos))
 				else:
 					res.append(MultiContentEntryText(
-						font = 1, flags = alignnment,
+						font = 1, flags = alignment,
 						text = ev[1],
 						color = foreColor, color_sel = foreColorSel,
 						backcolor = backColor, backcolor_sel = backColorSel,
@@ -1240,8 +1240,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 	attribMap = {
 		# Plain strs
 		"TimelineAlignment":	("str", "timelineAlign"),
+		"TimelineTicksOn":	("str", "ticksOn"),
+		"TimelineTickAlignment":("str", "tickAlignment"),
 		# Plain ints
 		"borderWidth":		("int", "borderWidth"),
+		"TimelineTextPadding":	("int", "textPadding"),
 		# Fonts
 		"TimelineFont":		("font", "timelineFontName", "timelineFontSize"),
 		# Colors
@@ -1262,12 +1265,15 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.foreColor = 0xffc000
 		self.borderColor = 0x000000
 		self.backColor = 0x000000
-		self.borderWidth = 1
 		self.time_base = 0
 		self.time_epoch = 0
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
 		self.timelineAlign = 'left'
+		self.borderWidth = 1
+		self.ticksOn = "yes"
+		self.tickAlignment = "right"
+		self.textPadding = 2
 		self.datefmt = ""
 
 	GUI_WIDGET = eListbox
@@ -1290,6 +1296,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 				"TlDate":	'epg/TimeLineDate.png',
 				"TlTime":	'epg/TimeLineTime.png',
 			})
+		self.ticksOn = self.ticksOn.lower()
+		self.tickAlignment = self.tickAlignment.lower()
 		self.setTimeLineFontsize()
 		return rc
 
@@ -1308,9 +1316,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 		time_base = l.getTimeBase()
 
 		if self.timelineAlign.lower() == 'right':
-			alignnment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
+			alignment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
 		else:
-			alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
+			alignment = RT_HALIGN_LEFT | RT_VALIGN_TOP
 
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
@@ -1369,8 +1377,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 			res.append(MultiContentEntryText(
 				pos = (5, 0),
 				size = (service_rect.w-15, self.listHeight),
-				font = 0, flags = alignnment,
-				text = _(datestr),
+				font = 0, flags = alignment,
+				text = datestr,
 				color = foreColor,
 				backcolor = backColor))
 
@@ -1392,7 +1400,29 @@ class TimelineText(HTMLComponent, GUIComponent):
 					backcolor = backColor,
 					border_width = self.borderWidth, border_color = self.borderColor))
 
+			# An estimate of textHeight is the best we can do, and it's not really critical
+			textHeight = self.timelineFontSize + 2
+			textScreenY = self.position[1]
 			for x in range(0, num_lines):
+				line = time_lines[x]
+				textOffset = self.textPadding
+				if self.ticksOn == "yes":
+					tickWidth, tickHeight = line.getSize()
+					tickScreenY = line.position[1]
+					if self.tickAlignment == "left":
+						tickXOffset = -tickWidth
+					elif self.tickAlignment == "center":
+						tickXOffset = -tickWidth / 2
+					else:
+						tickXOffset = 0
+					line.setPosition(xpos + eventLeft + tickXOffset, tickScreenY)
+					line.visible = True
+					# If the tick and text overlap in y, nudge the text over by the
+					# amount of the line to the left of the nominal x position
+					if min(textScreenY + textHeight, tickScreenY + tickHeight) - max(textScreenY, tickScreenY) > 0:
+						textOffset += tickWidth + tickXOffset
+				else:
+					line.visible = False
 				ttime = localtime(time_base + (x*timeStepsCalc))
 				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
 					timetext = strftime("%H:%M", localtime(time_base + x*timeStepsCalc))
@@ -1402,16 +1432,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 					else:
 						timetext = strftime("%-I:%M",ttime) + _('am')
 				res.append(MultiContentEntryText(
-					pos = (service_rect.w + xpos, 0),
+					pos = (service_rect.width() + xpos + textOffset, 0),
 					size = (incWidth, self.listHeight),
 					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_TOP,
 					text = timetext,
 					color = foreColor,
 					backcolor = backColor))
-				line = time_lines[x]
-				old_pos = line.position
-				line.setPosition(xpos + eventLeft, old_pos[1])
-				line.visible = True
 				xpos += incWidth
 			for x in range(num_lines, MAX_TIMELINES):
 				time_lines[x].visible = False
@@ -1421,7 +1447,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		now = time()
 		if time_base <= now < (time_base + time_epoch * 60):
-			xpos = int((((now - time_base) * event_rect.w) / (time_epoch * 60)) - (timeline_now.instance.size().width() / 2))
+			xpos = int((((now - time_base) * event_rect.w) / (time_epoch * 60)) - (timeline_now.getSize()[0] / 2))
 			old_pos = timeline_now.position
 			new_pos = (xpos + eventLeft, old_pos[1])
 			if old_pos != new_pos:
@@ -1557,14 +1583,14 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 		if self.bouquetNameAlign.lower() == 'left':
 			if self.bouquetNameWrap.lower() == 'yes':
-				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 			else:
-				alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+				alignment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 		else:
 			if self.bouquetNameWrap.lower() == 'yes':
-				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+				alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 			else:
-				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+				alignment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 		res = [ None ]
 
@@ -1608,7 +1634,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 				**_rectToPosSize(r1, 0)))
 
 		res.append(MultiContentEntryText(
-			font = 0, flags = alignnment,
+			font = 0, flags = alignment,
 			text = name,
 			color = foreColor, color_sel = foreColorSel,
 			backcolor = backColor, backcolor_sel = backColorSel,
