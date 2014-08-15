@@ -215,27 +215,36 @@ class ServiceInfo(Converter, object):
 		if self.type == self.XRES:
 			video_width = None
 			if path.exists("/proc/stb/vmpeg/0/xres"):
-				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(),16)
-				f.close()
+				try:
+					f = open("/proc/stb/vmpeg/0/xres", "r")
+					video_width = int(f.read(),16)
+					f.close()
+				except:
+					video_width = 0
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
 			return int(video_width)
 		elif self.type == self.YRES:
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
-				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
-				f.close()
+				try:
+					f = open("/proc/stb/vmpeg/0/yres", "r")
+					video_height = int(f.read(),16)
+					f.close()
+				except:
+					video_height = 0
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
 			return int(video_height)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				video_rate = int(f.read())
-				f.close()
+				try:
+					f = open("/proc/stb/vmpeg/0/framerate", "r")
+					video_rate = int(f.read())
+					f.close()
+				except:
+					video_rate = 0
 			if not video_rate:
 				video_rate = info.getInfo(iServiceInformation.sFrameRate)
 			return int(video_rate)
