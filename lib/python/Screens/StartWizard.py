@@ -15,6 +15,7 @@ from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 from Components.NimManager import nimmanager
 from Components.Label import Label
+from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import ActionMap
 
 from LanguageSelection import LanguageWizard
@@ -118,16 +119,34 @@ class StartHDDFormatWizard(Screen):
 		msg += "\n\nThe disk must be formatted now to operate correctly with your %s." % getMachineName()
 		msg += "\n\nPress OK to format the hard disk."
 		self["text"] = Label(msg)
+		self["errors"] = ScrollLabel()
+		self["errors"].hide()
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
 		{
 			"ok": self.doFormat,
+			"up": self["errors"].pageUp,
+			"down": self["errors"].pageDown,
+			"left": self["errors"].pageUp,
+			"right": self["errors"].pageDown,
 		}, -2)
+		self["poweractions"] = ActionMap(["PowerKeyActions"],
+		{
+			"powerdown": self.tryShutdown,
+		}, -2)
+		self.reset()
 
+	def reset(self):
+		self.firstTaskCallback = True # to wait for both the Job and JobView callbacks
+		self.failedJob = None
+		self.failedTask = None
+		self.failedConditions = [ ]
+		self["poweractions"].setEnabled(False)
 
 	def doFormat(self):
+		self.reset()
 		try:
-			job_manager.AddJob(self.internalHdd.createInitializeJob())
+			job_manager.AddJob(self.internalHdd.createInitializeJob(), onSuccess=self.formatSucceeded, onFail=self.formatFailed)
 			for job in job_manager.getPendingJobs():
 				if job.name == _("Initializing storage device..."):
 					self.showJobView(job)
@@ -142,12 +161,59 @@ class StartHDDFormatWizard(Screen):
 
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
-		self.formatDone()
+		if self.firstTaskCallback:
+			self.firstTaskCallback = False
+		else:
+			self.formatFinished()
 
-	def formatDone(self):
-		msg = "Your %s %s will restart now.\n" % (getMachineBrand(), getMachineName())
-		msg += "If you are setting up your %s, the setup will continue after the restart." % getMachineName()
-		self.session.openWithCallback(self.tryReboot, MessageBox, _(msg), type=MessageBox.TYPE_INFO, timeout=10)
+	def formatSucceeded(self, job):
+		if self.firstTaskCallback:
+			self.firstTaskCallback = False
+		else:
+			self.formatFinished()
+
+	def formatFailed(self, job, task, res):
+		self.failedJob = job
+		self.failedTask = task
+		self.failedConditions = res
+		if self.firstTaskCallback:
+			self.firstTaskCallback = False
+		else:
+			self.formatFinished()
+		return True
+
+	def formatFinished(self):
+		if not (self.failedJob or needHDDFormat()):
+			msg = "Your %s %s will restart now.\n" % (getMachineBrand(), getMachineName())
+			msg += "If you are setting up your %s, the setup will continue after the restart." % getMachineName()
+			self.session.openWithCallback(self.tryReboot, MessageBox, _(msg), type=MessageBox.TYPE_INFO, timeout=10)
+		else:
+			msg = "Formatting the internal disk of your %s %s has failed." % (getMachineBrand(), getMachineName())
+			msg += "\n\nPress OK to retry the format or POWER to shut down."
+			msg += "\n\nIf the internal HDD was pre-installed in your %s, please note down any error messages below and call %s support." % (getMachineName(), getMachineBrand())
+			self["text"].setText(msg)
+			errs = ""
+			if self.failedTask:
+				errs = self.failedTask.name
+			if self.failedJob and self.failedJob.name:
+				if self.failedJob.name.endswith(_("...")):
+					failedJobname = self.failedJob.name[:-len(_("..."))]
+				if errs:
+					errs += " in job"
+				errs += " " + failedJobname
+			if not errs:
+				errs = "Disk format"
+			errs += " failed:\n"
+			if self.failedConditions:
+				errs += '\n'.join(x.getErrorMessage(self.failedTask)
+						for x in self.failedConditions)
+			else:
+				errs += "No error information available"
+			self["errors"].setText(errs)
+			self["errors"].show()
+			self["poweractions"].setEnabled(True)
+			if self.failedJob:
+				job_manager.errorCB(False)
 
 	def tryReboot(self, dummy):
 		self.session.openWithCallback(self.shutdownFailed, TryQuitMainloop, 2)
