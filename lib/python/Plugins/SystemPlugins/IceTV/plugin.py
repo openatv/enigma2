@@ -330,6 +330,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
                                              "red": self.keyCancel,
                                              "green": self.keySave,
                                              "blue": self.KeyText,
+                                             "ok": self.KeyText,
                                          }, prio=-2)
 
     def keySave(self):
