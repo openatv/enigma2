@@ -116,14 +116,19 @@ class EPGFetcher(object):
             _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
             return
         if "timers" in shows:
-            self.processTimers(channel_service_map, shows["timers"])
+            self.processTimers(shows["timers"])
         _session.open(MessageBox, _("EPG and timers downloaded"), type=MessageBox.TYPE_INFO, timeout=5)
 
     def makeChanServMap(self, channels):
         res = {}
         for channel in channels:
-            channel_id = channel["id"]
-            for triplet in channel["dvb_triplets"]:
+            channel_id = long(channel["id"])
+            triplets = []
+            if "dvb_triplets" in channel:
+                triplets = channel["dvb_triplets"]
+            elif "dvbt_info" in channel:
+                triplets = channel["dvbt_info"]
+            for triplet in triplets:
                 res.setdefault(channel_id, []).append((int(triplet["original_network_id"]),
                                                        int(triplet["transport_stream_id"]),
                                                        int(triplet["service_id"])))
@@ -132,7 +137,7 @@ class EPGFetcher(object):
     def makeChanShowMap(self, shows):
         res = {}
         for show in shows:
-            channel_id = show["channel_id"]
+            channel_id = long(show["channel_id"])
             # Fit within 16 bits, but never pass 0
             event_id = (int(show["id"]) % 65530) + 1
             if "deleted_record" in show and int(show["deleted_record"]) == 1:
@@ -148,21 +153,32 @@ class EPGFetcher(object):
             res.setdefault(channel_id, []).append((start, duration, title, short, extended, 0, event_id))
         return res
 
-    def processTimers(self, channel_service_map, timers):
+    def processTimers(self, timers):
+        channel_service_map = self.makeChanServMap(self.getChannels())
         for timer in timers:
             print "[IceTV] timer:", timer
             try:
-                name = timer.get("name", "")
+                name = timer.get("name", "").encode("utf8")
                 start = int(timegm(strptime(timer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(timer["duration_minutes"])
-                message = timer.get("message", "")
-                rec_id = timer["id"]
-                channel_id = timer["channel_id"]
-                ch = channel_service_map[channel_id]
-                print "[IceTV] channel_id %s maps to" % channel_id, ch
-                serviceref = ServiceReference("1:0:1:%d:%d:%d:EEEE0000:0:0:0:" % (ch[0][2], ch[0][1], ch[0][0]))
-                recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, tags=rec_id)
-                _session.nav.RecordTimer.record(recording)
+                message = timer.get("message", "").encode("utf8")
+                rec_id = timer["id"].encode("utf8")
+                channel_id = long(timer["channel_id"])
+                channels = channel_service_map[channel_id]
+                print "[IceTV] channel_id %s maps to" % channel_id, channels
+                for channel in channels:
+                    serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
+                    if serviceref.isRecordable():
+                        print "[IceTV] %s is recordable" % str(serviceref), serviceref.getServiceName()
+                        recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, tags=["iceid:%s" % rec_id])
+                        conflicts = _session.nav.RecordTimer.record(recording)
+                        if conflicts is None:
+                            print "[IceTV] Timer added to service:", serviceref
+                            break
+                        else:
+                            print "[IceTV] Timer conflict / bad service:", conflicts
+                    else:
+                        print "[IceTV] %s is NOT recordable" % str(serviceref), serviceref.getServiceName()
             except (RuntimeError, KeyError) as ex:
                 print "[IceTV] Can not process timer:", ex
 
@@ -171,6 +187,12 @@ class EPGFetcher(object):
         last_update = config.plugins.icetv.last_update_time.value
         req.params["last_update_time"] = last_update
         return req.get().json()
+
+    def getChannels(self):
+        req = ice.Channels(config.plugins.icetv.member.region_id.value)
+        res = req.get().json()
+        print "[IceTV] channels:", res
+        return res.get("channels", [])
 
 fetcher = EPGFetcher()
 
