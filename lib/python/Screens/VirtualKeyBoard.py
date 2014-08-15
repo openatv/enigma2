@@ -191,7 +191,7 @@ class VirtualKeyBoard(Screen):
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK", u"LEFT", u"RIGHT"]]
 			self.nextLang = 'sk_SK'
-		elif self.lang =='sk_SK':
+		elif self.lang == 'sk_SK':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ú", u"+"],
@@ -254,18 +254,18 @@ class VirtualKeyBoard(Screen):
 				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"[", u"]"],
 				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"\\"],
 				[u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"+", u"-"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"EXIT"]]
+				[u"SHIFT", u"SPACE", u"@", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"OK", u"EXIT"]]
 			self.shiftkeys_list = [
 				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
 				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"{", u"}"],
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u":", u'"', u"|"],
 				[u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"_", u"*"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"EXIT"]]
+				[u"SHIFT", u"SPACE", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"OK", u"EXIT"]]
 			self.lang = 'en_EN'
 			self.nextLang = 'de_DE'
-			
-		self["country"].setText(self.lang + (_(" - Please press yellow button to change keyboard language")))
-		
+
+		self["country"].setText(self.lang + (_(" - Yellow button changes keyboard language.")))
+
 		self.max_key=47+len(self.keys_list[4])
 
 	def virtualKeyBoardEntryComponent(self, keys):
