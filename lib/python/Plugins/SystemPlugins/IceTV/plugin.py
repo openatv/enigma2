@@ -433,9 +433,9 @@ class IceTVLogin(Screen):
     skin = """
 <screen name="IceTVLogin" position="320,130" size="640,510" title="IceTV - Login" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
-    <widget name="message" position="30,120" size="580,300" font="Console; 16" zPosition="1" />
+    <widget name="message" position="30,120" size="580,300" font="Regular;22" />
+    <widget name="error" position="30,120" size="580,300" font="Console; 16" zPosition="1" />
 
-    <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -444,14 +444,14 @@ class IceTVLogin(Screen):
 </screen>"""
 
     _instructions = _("Contacting IceTV server and setting up your %s %s.") % (getMachineBrand(), getMachineName())
-    _wait = _("Please wait...")
 
     def __init__(self, session, args=None):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
-        self["description"] = Label(self._wait)
         self["message"] = Label()
+        self["error"] = Label()
+        self["error"].hide()
         self["key_red"] = Label()
         self["key_green"] = Label(_("Done"))
         self["key_yellow"] = Label()
@@ -488,15 +488,17 @@ class IceTVLogin(Screen):
                                       "For more information, visit icetv.com.au\n\n"
                                       "Your IceTV guide will now download in the background.")
                                     % (getMachineBrand(), getMachineName()))
-            self["description"].setText("")
+            self["instructions"].setText(_("Setup is complete"))
         except RuntimeError as ex:
             print "[IceTV] Login failure:", ex
             msg = _("Login failure: ") + str(ex)
             if hasattr(ex, 'response'):
                 print "[IceTV] Server says:", ex.response.text
                 msg += "\n%s" % str(ex.response.text).strip()
-            self["description"].setText(_("There was an error while trying to login."))
-            self["message"].setText(msg)
+            self["instructions"].setText(_("There was an error while trying to login."))
+            self["message"].hide()
+            self["error"].show()
+            self["error"].setText(msg)
 
     def loginCmd(self):
         ice.Login(config.plugins.icetv.member.email_address.value,
