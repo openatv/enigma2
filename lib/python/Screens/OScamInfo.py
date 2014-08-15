@@ -44,15 +44,33 @@ class OscamInfo:
 	version = ""
 
 	def confPath(self):
-		search_dirs = [ "/usr", "/var", "/etc" ]
-		sdirs = " ".join(search_dirs)
-		cmd = 'find %s -name "oscam.conf"' % sdirs
+		#search_dirs = [ "/usr", "/var", "/etc" ]
+		#sdirs = " ".join(search_dirs)
+		#cmd = 'find %s -name "oscam.conf"' % sdirs
+		#res = os.popen(cmd).read()
+		#if res == "":
+		#	return None
+		#else:
+		#	return res.replace("\n", "")
+		cmd = 'ps -eo command | sort -u | grep -v "grep" | grep -c "oscam"'
 		res = os.popen(cmd).read()
-		if res == "":
-			return None
-		else:
-			return res.replace("\n", "")
-
+		if res:
+			data = res.replace("\n", "")
+			if int(data) == 1:
+				cmd = 'ps -eo command | sort -u | grep -v "grep" | grep "oscam"'
+				res = os.popen(cmd).read()
+				if res:
+					data = res.replace("\n", "")
+					data = '/' + data.split(" /")[1].strip() + '/oscam.conf'
+					if os.path.exists(data):
+						return data
+					print 'OScaminfo - config file "%s" not found' % data
+					return None
+			elif int(data) > 1:
+				print 'OScaminfo - more than one(%s) oscam binarys is active'  % data
+				return None
+		print 'OScaminfo - no active oscam binarys found'
+		return None
 
 	def getUserData(self):
 		err = ""
