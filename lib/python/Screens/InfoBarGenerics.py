@@ -836,27 +836,24 @@ class InfoBarEPG:
 
 	def getEPGPluginList(self, getAll=False):
 		pluginlist = [(p.name, boundFunction(self.runPlugin, p), p.path) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
-				if 'selectedevent' not in p.__call__.func_code.co_varnames]
-		if pluginlist:
-			from Components.ServiceEventTracker import InfoBarCount
-			if getAll or InfoBarCount == 1:
-				pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG, "current_channel"))
-			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG, "multi_epg"))
-			pluginlist.append((_("Current event EPG"), self.openEventView, "event_epg"))
+				if 'selectedevent' not in p.__call__.func_code.co_varnames] or []
+		from Components.ServiceEventTracker import InfoBarCount
+		if getAll or InfoBarCount == 1:
+			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG, "current_channel"))
+		pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG, "multi_epg"))
+		pluginlist.append((_("Current event EPG"), self.openEventView, "event_epg"))
 		return pluginlist
 
 	def getDefaultEPGtype(self):
-		pluginlist = self.getEPGPluginList()
 		config.usage.defaultEPGType=ConfigText()
-		for plugin in pluginlist:
+		for plugin in self.getEPGPluginList():
 			if plugin[2] == config.usage.defaultEPGType.value:
 				return plugin[1]
 		return None
 
 	def getDefaultGuidetype(self):
-		pluginlist = self.getEPGPluginList()
 		config.usage.defaultGuideType=ConfigText(default="/usr/lib/enigma2/python/Plugins/Extensions/GraphMultiEPG")
-		for plugin in pluginlist:
+		for plugin in self.getEPGPluginList():
 			if plugin[2] == config.usage.defaultGuideType.value:
 				return plugin[1]
 		return None
