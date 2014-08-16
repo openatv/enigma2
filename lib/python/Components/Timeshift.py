@@ -445,6 +445,8 @@ class InfoBarTimeshift:
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
 					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
+		elif self.save_current_timeshift:
+			self.checkTimeshiftRunningCallback(returnFunction, "savetimeshiftandrecord")
 		else:
 			returnFunction(True)
 
@@ -602,6 +604,7 @@ class InfoBarTimeshift:
 			timeshift_saveerror1 = ""
 			timeshift_saveerror2 = ""
 			metamergestring = ""
+			fullname = None
 
 			config.timeshift.isRecording.value = True
 
@@ -680,7 +683,7 @@ class InfoBarTimeshift:
 
 			# Hmpppf! Saving Timeshift via Hardlink-Method failed. Probably other device?
 			# Let's try to copy the file in background now! This might take a while ...
-			if not timeshift_saved:
+			if not timeshift_saved and fullname is not None:
 				try:
 					stat = os.statvfs(config.usage.default_path.value)
 					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
