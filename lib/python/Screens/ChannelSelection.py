@@ -171,7 +171,7 @@ class ChannelContextMenu(Screen):
 								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
 					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
 				else:
-					if 'FROM SATELLITES' in current_root.getPath():
+					if 'FROM SATELLITES' in current_root.getPath() and current and _("Services") in eServiceCenter.getInstance().info(current).getName(current):
 						unsigned_orbpos = current.getUnsignedData(4) >> 16
 						if unsigned_orbpos == 0xFFFF:
 							append_when_current_valid(current, menu, (_("remove cable services"), self.removeSatelliteServices), level = 0)
