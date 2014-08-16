@@ -34,8 +34,8 @@ public:
 	int getPid() { return m_pid; }
 private:
 	void abortNonAvail();
-	void processPESPacket(__u8 *pkt, int len);
-	void gotAncillaryData(const __u8 *data, int len);
+	void processPESPacket(uint8_t *pkt, int len);
+	void gotAncillaryData(const uint8_t *data, int len);
 	void process_qdar(unsigned char*);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;

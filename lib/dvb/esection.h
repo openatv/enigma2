@@ -17,12 +17,12 @@ class eGTable: public iObject, public Object
 
 	ePtr<eTimer> m_timeout;
 
-	void sectionRead(const __u8 *data);
+	void sectionRead(const uint8_t *data);
 	void timeout();
 	ePtr<eConnection> m_sectionRead_conn;
 protected:
 	static const bool m_debug = false;
-	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
+	virtual int createTable(unsigned int nr, const uint8_t *data, unsigned int max)=0;
 	virtual unsigned int totalSections(unsigned int max) { return max + 1; }
 public:
 	Signal1<void, int> tableReady;
@@ -42,7 +42,7 @@ private:
 	std::vector<Section*> sections;
 	std::set<int> avail;
 protected:
-	int createTable(unsigned int nr, const __u8 *data, unsigned int max)
+	int createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 	{
 		unsigned int ssize = sections.size();
 		if (max < ssize || nr >= max)

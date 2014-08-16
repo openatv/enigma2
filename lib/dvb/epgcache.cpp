@@ -25,7 +25,7 @@
 int eventData::CacheSize=0;
 bool eventData::isCacheCorrupt = 0;
 descriptorMap eventData::descriptors;
-__u8 eventData::data[2 * 4096 + 12];
+uint8_t eventData::data[2 * 4096 + 12];
 extern const uint32_t crc32_table[256];
 
 const eServiceReference &handleGroup(const eServiceReference &ref)
@@ -57,16 +57,16 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 	if (!e)
 		return;
 
-	__u32 descr[65];
-	__u32 *pdescr=descr;
+	uint32_t descr[65];
+	uint32_t *pdescr=descr;
 
-	__u8 *data = (__u8*)e;
+	uint8_t *data = (uint8_t*)e;
 	int ptr=12;
 	size -= 12;
 
 	while(size > 1)
 	{
-		__u8 *descr = data+ptr;
+		uint8_t *descr = data+ptr;
 		int descr_len = descr[1];
 		descr_len += 2;
 		if (size >= descr_len)
@@ -79,7 +79,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 				case CONTENT_DESCRIPTOR:
 				case PARENTAL_RATING_DESCRIPTOR:
 				{
-					__u32 crc = 0;
+					uint32_t crc = 0;
 					int cnt=0;
 					while(cnt++ < descr_len)
 						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
@@ -88,7 +88,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 					if ( it == descriptors.end() )
 					{
 						CacheSize+=descr_len;
-						__u8 *d = new __u8[descr_len];
+						uint8_t *d = new uint8_t[descr_len];
 						memcpy(d, descr, descr_len);
 						descriptors[crc] = descriptorPair(1, d);
 					}
@@ -125,7 +125,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 						*/
 						eventNameUTF8len = truncateUTF8(eventNameUTF8, 255 - 6);
 						int title_len = 6 + eventNameUTF8len;
-						__u8 *title_data = new __u8[title_len + 2];
+						uint8_t *title_data = new uint8_t[title_len + 2];
 						title_data[0] = SHORT_EVENT_DESCRIPTOR;
 						title_data[1] = title_len;
 						title_data[2] = descr[2];
@@ -137,7 +137,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 						title_data[7 + eventNameUTF8len] = 0;
 
 						//Calculate the CRC, based on our new data
-						__u32 title_crc = 0;
+						uint32_t title_crc = 0;
 						int cnt=0;
 						int tmpPtr = 0;
 						title_len += 2; //add 2 the length to include the 2 bytes in the header
@@ -163,7 +163,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 					{
 						textUTF8len = truncateUTF8(textUTF8, 255 - 6);
 						int text_len = 6 + textUTF8len;
-						__u8 *text_data = new __u8[text_len + 2];
+						uint8_t *text_data = new uint8_t[text_len + 2];
 						text_data[0] = SHORT_EVENT_DESCRIPTOR;
 						text_data[1] = text_len;
 						text_data[2] = descr[2];
@@ -174,7 +174,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 						text_data[7] = 0x15; //identify text as UTF-8
 						memcpy(&text_data[8], textUTF8.data(), textUTF8len);
 
-						__u32 text_crc = 0;
+						uint32_t text_crc = 0;
 						int cnt=0;
 						int tmpPtr = 0;
 						text_len += 2; //add 2 the length to include the 2 bytes in the header
@@ -209,9 +209,9 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 	}
 	ASSERT(pdescr <= &descr[65]);
 	ByteSize = 10+((pdescr-descr)*4);
-	EITdata = new __u8[ByteSize];
+	EITdata = new uint8_t[ByteSize];
 	CacheSize+=ByteSize;
-	memcpy(EITdata, (__u8*) e, 10);
+	memcpy(EITdata, (uint8_t*) e, 10);
 	memcpy(EITdata+10, descr, ByteSize-10);
 }
 
@@ -221,7 +221,7 @@ const eit_event_struct* eventData::get() const
 	int tmp = ByteSize - 10;
 	memcpy(data, EITdata, 10);
 	unsigned int descriptors_length = 0;
-	__u32 *p = (__u32*)(EITdata + 10);
+	uint32_t *p = (uint32_t*)(EITdata + 10);
 	while (tmp > 3)
 	{
 		descriptorMap::iterator it = descriptors.find(*p++);
@@ -249,7 +249,7 @@ eventData::~eventData()
 	if ( ByteSize )
 	{
 		CacheSize -= ByteSize;
-		__u32 *d = (__u32*)(EITdata+10);
+		uint32_t *d = (uint32_t*)(EITdata+10);
 		ByteSize -= 10;
 		while(ByteSize>3)
 		{
@@ -279,16 +279,16 @@ void eventData::load(FILE *f)
 {
 	int size=0;
 	int id=0;
-	__u8 header[2];
+	uint8_t header[2];
 	descriptorPair p;
 	fread(&size, sizeof(int), 1, f);
 	while(size)
 	{
-		fread(&id, sizeof(__u32), 1, f);
+		fread(&id, sizeof(uint32_t), 1, f);
 		fread(&p.first, sizeof(int), 1, f);
 		fread(header, 2, 1, f);
 		int bytes = header[1]+2;
-		p.second = new __u8[bytes];
+		p.second = new uint8_t[bytes];
 		p.second[0] = header[0];
 		p.second[1] = header[1];
 		fread(p.second+2, bytes-2, 1, f);
@@ -307,7 +307,7 @@ void eventData::save(FILE *f)
 	fwrite(&size, sizeof(int), 1, f);
 	while(size)
 	{
-		fwrite(&it->first, sizeof(__u32), 1, f);
+		fwrite(&it->first, sizeof(uint32_t), 1, f);
 		fwrite(&it->second.first, sizeof(int), 1, f);
 		fwrite(it->second.second, it->second.second[1]+2, 1, f);
 		++it;
@@ -608,7 +608,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 #endif
 			)
 		{
-			__u16 event_id = tmp->second->getEventID();
+			uint16_t event_id = tmp->second->getEventID();
 			servicemap.first.erase(event_id);
 #ifdef EPG_DEBUG
 			Event evt((uint8_t*)tmp->second->get());
@@ -643,7 +643,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 	{
 		if (tmp->first != TM && tmp->second->type != PRIVATE)
 		{
-			__u16 event_id = tmp->second->getEventID();
+			uint16_t event_id = tmp->second->getEventID();
 			servicemap.first.erase(event_id);
 #ifdef EPG_DEBUG
 			Event evt((uint8_t*)tmp->second->get());
@@ -667,7 +667,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 	return ret;
 }
 
-void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
+void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *channel)
 {
 	eit_t *eit = (eit_t*) data;
 
@@ -735,7 +735,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 
 	while (ptr<len)
 	{
-		__u16 event_hash;
+		uint16_t event_hash;
 		eit_event_size = HILO(eit_event->descriptors_loop_length)+EIT_LOOP_SIZE;
 
 		duration = fromBCD(eit_event->duration_1)*3600+fromBCD(eit_event->duration_2)*60+fromBCD(eit_event->duration_3);
@@ -757,7 +757,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 		     ( (onid != 1714) || (duration != (24*3600-1)) )	// PlatformaHD invalid event
 		   )
 		{
-			__u16 event_id = HILO(eit_event->event_id);
+			uint16_t event_id = HILO(eit_event->event_id);
 			eventData *evt = 0;
 			int ev_erase_count = 0;
 			int tm_erase_count = 0;
@@ -859,7 +859,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			{
 				// exempt memory
 				delete tm_it->second;
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
+				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const uint16_t, eventData*>( event_id, evt) );
 				tm_it->second=evt;
 			}
 			else // added new eventData
@@ -867,7 +867,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 #ifdef EPG_DEBUG
 				consistencyCheck=false;
 #endif
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
+				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const uint16_t, eventData*>( event_id, evt) );
 				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
 			}
 
@@ -924,7 +924,7 @@ next:
 		}
 #endif
 		ptr += eit_event_size;
-		eit_event=(eit_event_struct*)(((__u8*)eit_event)+eit_event_size);
+		eit_event=(eit_event_struct*)(((uint8_t*)eit_event)+eit_event_size);
 	}
 }
 
@@ -1248,13 +1248,13 @@ void eEPGCache::load()
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
 				{
-					__u8 len=0;
-					__u8 type=0;
+					uint8_t len=0;
+					uint8_t type=0;
 					eventData *event=0;
-					fread( &type, sizeof(__u8), 1, f);
-					fread( &len, sizeof(__u8), 1, f);
+					fread( &type, sizeof(uint8_t), 1, f);
+					fread( &len, sizeof(uint8_t), 1, f);
 					event = new eventData(0, len, type);
-					event->EITdata = new __u8[len];
+					event->EITdata = new uint8_t[len];
 					eventData::CacheSize+=len;
 					fread( event->EITdata, len, 1, f);
 					evMap[ event->getEventID() ]=event;
@@ -1288,11 +1288,11 @@ void eEPGCache::load()
 						while(size--)
 						{
 							time_t time1, time2;
-							__u16 event_id;
+							uint16_t event_id;
 							fread( &time1, sizeof(time_t), 1, f);
 							fread( &time2, sizeof(time_t), 1, f);
-							fread( &event_id, sizeof(__u16), 1, f);
-							content_time_tables[key][content_id][time1]=std::pair<time_t, __u16>(time2, event_id);
+							fread( &event_id, sizeof(uint16_t), 1, f);
+							content_time_tables[key][content_id][time1]=std::pair<time_t, uint16_t>(time2, event_id);
 							eventMap::iterator it =
 								evMap.find(event_id);
 							if (it != evMap.end())
@@ -1382,9 +1382,9 @@ void eEPGCache::save()
 		fwrite( &size, sizeof(int), 1, f);
 		for (timeMap::iterator time_it(timemap.begin()); time_it != timemap.end(); ++time_it)
 		{
-			__u8 len = time_it->second->ByteSize;
-			fwrite( &time_it->second->type, sizeof(__u8), 1, f );
-			fwrite( &len, sizeof(__u8), 1, f);
+			uint8_t len = time_it->second->ByteSize;
+			fwrite( &time_it->second->type, sizeof(uint8_t), 1, f );
+			fwrite( &len, sizeof(uint8_t), 1, f);
 			fwrite( time_it->second->EITdata, len, 1, f);
 			++cnt;
 		}
@@ -1412,7 +1412,7 @@ void eEPGCache::save()
 			{
 				fwrite( &it->first, sizeof(time_t), 1, f);
 				fwrite( &it->second.first, sizeof(time_t), 1, f);
-				fwrite( &it->second.second, sizeof(__u16), 1, f);
+				fwrite( &it->second.second, sizeof(uint16_t), 1, f);
 			}
 		}
 	}
@@ -1852,7 +1852,7 @@ void eEPGCache::channel_data::abortEPG()
 	pthread_mutex_unlock(&channel_active);
 }
 
-void eEPGCache::channel_data::readData( const __u8 *data, int source)
+void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 {
 	int map;
 	iDVBSectionReader *reader = NULL;
@@ -1953,7 +1953,7 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 	else
 	{
 		eit_t *eit = (eit_t*) data;
-		__u32 sectionNo = data[0] << 24;
+		uint32_t sectionNo = data[0] << 24;
 		sectionNo |= data[3] << 16;
 		sectionNo |= data[4] << 8;
 		sectionNo |= eit->section_number;
@@ -1965,8 +1965,8 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 		{
 			seenSections.insert(sectionNo);
 			calcedSections.insert(sectionNo);
-			__u32 tmpval = sectionNo & 0xFFFFFF00;
-			__u8 incr = source == NOWNEXT ? 1 : 8;
+			uint32_t tmpval = sectionNo & 0xFFFFFF00;
+			uint8_t incr = source == NOWNEXT ? 1 : 8;
 			for ( int i = 0; i <= eit->last_section_number; i+=incr )
 			{
 				if ( i == eit->section_number )
@@ -1984,12 +1984,12 @@ void eEPGCache::channel_data::readData( const __u8 *data, int source)
 
 #if ENABLE_FREESAT
 
-freesatEITSubtableStatus::freesatEITSubtableStatus(u_char version, __u8 maxSection) : version(version)
+freesatEITSubtableStatus::freesatEITSubtableStatus(u_char version, uint8_t maxSection) : version(version)
 {
 	initMap(maxSection);
 }
 
-void freesatEITSubtableStatus::initMap(__u8 maxSection)
+void freesatEITSubtableStatus::initMap(uint8_t maxSection)
 {
 	int i, maxSectionIdx = maxSection / 8;
 	for (i = 0; i < 32; i++)
@@ -1998,18 +1998,18 @@ void freesatEITSubtableStatus::initMap(__u8 maxSection)
 	}
 }
 
-bool freesatEITSubtableStatus::isSectionPresent(__u8 sectionNo)
+bool freesatEITSubtableStatus::isSectionPresent(uint8_t sectionNo)
 {
-	__u8 sectionIdx = sectionNo / 8;
-	__u8 bitOffset = sectionNo % 8;
+	uint8_t sectionIdx = sectionNo / 8;
+	uint8_t bitOffset = sectionNo % 8;
 
 	return ((sectionMap[sectionIdx] & (1 << bitOffset)) != 0);
 }
 
 bool freesatEITSubtableStatus::isCompleted()
 {
-	__u32 i = 0;
-	__u8 calc;
+	uint32_t i = 0;
+	uint8_t calc;
 
 	while ( i < 32 )
 	{
@@ -2022,11 +2022,11 @@ bool freesatEITSubtableStatus::isCompleted()
 	return true; // All segments ok
 }
 
-void freesatEITSubtableStatus::seen(__u8 sectionNo, __u8 maxSegmentSection)
+void freesatEITSubtableStatus::seen(uint8_t sectionNo, uint8_t maxSegmentSection)
 {
-	__u8 sectionIdx = sectionNo / 8;
-	__u8 bitOffset = sectionNo % 8;
-	__u8 maxBitOffset = maxSegmentSection % 8;
+	uint8_t sectionIdx = sectionNo / 8;
+	uint8_t bitOffset = sectionNo % 8;
+	uint8_t maxBitOffset = maxSegmentSection % 8;
 
 	sectionMap[sectionIdx] &= 0x00FF; // Clear calc map
 	sectionMap[sectionIdx] |= ((0x01FF << maxBitOffset) & 0xFF00); // Set calc map
@@ -2038,7 +2038,7 @@ bool freesatEITSubtableStatus::isVersionChanged(u_char testVersion)
 	return version != testVersion;
 }
 
-void freesatEITSubtableStatus::updateVersion(u_char newVersion, __u8 maxSection)
+void freesatEITSubtableStatus::updateVersion(u_char newVersion, uint8_t maxSection)
 {
 	version = newVersion;
 	initMap(maxSection);
@@ -2050,16 +2050,16 @@ void eEPGCache::channel_data::cleanupFreeSat()
 	m_FreesatTablesToComplete = 0;
 }
 
-void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
+void eEPGCache::channel_data::readFreeSatScheduleOtherData( const uint8_t *data)
 {
 	eit_t *eit = (eit_t*) data;
-	__u32 subtableNo = data[0] << 24; // Table ID
+	uint32_t subtableNo = data[0] << 24; // Table ID
 	subtableNo |= data[3] << 16; // Service ID Hi
 	subtableNo |= data[4] << 8; // Service ID Lo
 
 	// Check for sub-table version in map
-	std::map<__u32, freesatEITSubtableStatus> &freeSatSubTableStatus = this->m_FreeSatSubTableStatus;
-	std::map<__u32, freesatEITSubtableStatus>::iterator itmap = freeSatSubTableStatus.find(subtableNo);
+	std::map<uint32_t, freesatEITSubtableStatus> &freeSatSubTableStatus = this->m_FreeSatSubTableStatus;
+	std::map<uint32_t, freesatEITSubtableStatus>::iterator itmap = freeSatSubTableStatus.find(subtableNo);
 
 	freesatEITSubtableStatus *fsstatus;
 	if ( itmap == freeSatSubTableStatus.end() )
@@ -2068,7 +2068,7 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
 		//eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
 		fsstatus = new freesatEITSubtableStatus(eit->version_number, eit->last_section_number);
 		m_FreesatTablesToComplete++;
-		freeSatSubTableStatus.insert(std::pair<__u32,freesatEITSubtableStatus>(subtableNo, *fsstatus));
+		freeSatSubTableStatus.insert(std::pair<uint32_t,freesatEITSubtableStatus>(subtableNo, *fsstatus));
 	}
 	else
 	{
@@ -2695,8 +2695,8 @@ static void fill_eit_duration(eit_event_struct *evt, int time)
     evt->duration_3 = toBCD((time % 3600) % 60);
 }
 
-static inline __u8 HI(int x) { return (__u8) ((x >> 8) & 0xFF); }
-static inline __u8 LO(int x) { return (__u8) (x & 0xFF); }
+static inline uint8_t HI(int x) { return (uint8_t) ((x >> 8) & 0xFF); }
+static inline uint8_t LO(int x) { return (uint8_t) (x & 0xFF); }
 #define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
 // convert from set of strings to DVB format (EIT)
 void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start,
@@ -2706,8 +2706,8 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	if (!title)
 		return;
 	static const int EIT_LENGTH = 4108;
-	static const __u8 codePage = 0x15; // UTF-8 encoding
-	__u8 data[EIT_LENGTH];
+	static const uint8_t codePage = 0x15; // UTF-8 encoding
+	uint8_t data[EIT_LENGTH];
 
 	eit_t *packet = (eit_t *) data;
 	packet->table_id = 0x50;
@@ -2723,7 +2723,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 
 	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
 
-	__u16 eventId = start & 0xFFFF;
+	uint16_t eventId = start & 0xFFFF;
 	SET_HILO(evt_struct->event_id, eventId);
 
 	//6 bytes start time, 3 bytes duration
@@ -2735,7 +2735,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 
 	//no support for different code pages, only DVB's latin1 character set
 	//TODO: convert text to correct character set (data is probably passed in as UTF-8)
-	__u8 *x = (__u8 *) evt_struct;
+	uint8_t *x = (uint8_t *) evt_struct;
 	x += EIT_LOOP_SIZE;
 	int nameLength = strnlen(title, 246);
 	int descLength = short_summary ? strnlen(short_summary, 246 - nameLength) : 0;
@@ -2749,7 +2749,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	short_evt->language_code_2 = 'n';
 	short_evt->language_code_3 = 'g';
 	short_evt->event_name_length = nameLength ? nameLength + 1 : 0;
-	x = (__u8 *) short_evt;
+	x = (uint8_t *) short_evt;
 	x += EIT_SHORT_EVENT_DESCRIPTOR_SIZE;
 	*x = codePage;
 	++x;
@@ -2781,7 +2781,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	}
 
 	//Long description
-	int currentLoopLength = x - (__u8*)short_evt;
+	int currentLoopLength = x - (uint8_t*)short_evt;
 	static const int overheadPerDescriptor = 9; //increase if codepages are added!!!
 	static const int MAX_LEN = 256 - overheadPerDescriptor;
 
@@ -2820,7 +2820,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	}
 
 	//TODO: add age and more
-	int desc_loop_length = x - ((__u8*)evt_struct + EIT_LOOP_SIZE);
+	int desc_loop_length = x - ((uint8_t*)evt_struct + EIT_LOOP_SIZE);
 	SET_HILO(evt_struct->descriptors_loop_length, desc_loop_length);
 
 	int packet_length = (x - data) - 3; //should add 1 for crc....
@@ -2987,7 +2987,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 {
 	ePyObject ret;
 	int descridx = -1;
-	__u32 descr[512];
+	uint32_t descr[512];
 	int eventid = -1;
 	const char *argstring=0;
 	char *refstr=0;
@@ -3063,18 +3063,18 @@ PyObject *eEPGCache::search(ePyObject arg)
 						lookupEventId(ref, eventid, evData);
 						if (evData)
 						{
-							__u8 *data = evData->EITdata;
+							uint8_t *data = evData->EITdata;
 							int tmp = evData->ByteSize-10;
-							__u32 *p = (__u32*)(data+10);
+							uint32_t *p = (uint32_t*)(data+10);
 							// search short and extended event descriptors
 							while(tmp>3)
 							{
-								__u32 crc = *p++;
+								uint32_t crc = *p++;
 								descriptorMap::iterator it =
 									eventData::descriptors.find(crc);
 								if (it != eventData::descriptors.end())
 								{
-									__u8 *descr_data = it->second.second;
+									uint8_t *descr_data = it->second.second;
 									switch(descr_data[0])
 									{
 									case 0x4D ... 0x4E:
@@ -3132,7 +3132,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					for (descriptorMap::iterator it(eventData::descriptors.begin());
 						it != eventData::descriptors.end() && descridx < 511; ++it)
 					{
-						__u8 *data = it->second.second;
+						uint8_t *data = it->second.second;
 						if ( data[0] == 0x4D ) // short event descriptor
 						{
 							const char *titleptr = (const char*)&data[6];
@@ -3246,14 +3246,14 @@ PyObject *eEPGCache::search(ePyObject arg)
 					if (evit->second->getEventID() == eventid)
 						continue;
 				}
-				__u8 *data = evit->second->EITdata;
+				uint8_t *data = evit->second->EITdata;
 				int tmp = evit->second->ByteSize-10;
-				__u32 *p = (__u32*)(data+10);
+				uint32_t *p = (uint32_t*)(data+10);
 				// check if any of our descriptor used by this event
 				int cnt=-1;
 				while(tmp>3)
 				{
-					__u32 crc32 = *p++;
+					uint32_t crc32 = *p++;
 					for ( int i=0; i <= descridx; ++i)
 					{
 						if (descr[i] == crc32)  // found...
@@ -3398,7 +3398,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 							case 0xC2: // user defined
 								if ((*desc)->getLength() == 8)
 								{
-									__u8 buffer[10];
+									uint8_t buffer[10];
 									(*desc)->writeToBuffer(buffer);
 									if (!memcmp((const char *)buffer+2, "EPGDATA", 7))
 									{
@@ -3482,14 +3482,14 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 
 struct date_time
 {
-	__u8 data[5];
+	uint8_t data[5];
 	time_t tm;
 	date_time( const date_time &a )
 	{
 		memcpy(data, a.data, 5);
 		tm = a.tm;
 	}
-	date_time( const __u8 data[5])
+	date_time( const uint8_t data[5])
 	{
 		memcpy(this->data, data, 5);
 		tm = parseDVBtime(data[0], data[1], data[2], data[3], data[4]);
@@ -3497,7 +3497,7 @@ struct date_time
 	date_time()
 	{
 	}
-	const __u8& operator[](int pos) const
+	const uint8_t& operator[](int pos) const
 	{
 		return data[pos];
 	}
@@ -3511,7 +3511,7 @@ struct less_datetime
 	}
 };
 
-void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __u8 *data)
+void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const uint8_t *data)
 {
 	contentMap &content_time_table = content_time_tables[current_service];
 	singleLock s(cache_lock);
@@ -3539,14 +3539,14 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 	}
 	time_event_map.clear();
 
-	__u8 duration[3];
+	uint8_t duration[3];
 	memcpy(duration, data+ptr, 3);
 	ptr+=3;
 	int duration_sec =
 		fromBCD(duration[0])*3600+fromBCD(duration[1])*60+fromBCD(duration[2]);
 
-	const __u8 *descriptors[65];
-	const __u8 **pdescr = descriptors;
+	const uint8_t *descriptors[65];
+	const uint8_t **pdescr = descriptors;
 
 	int descriptors_length = (data[ptr++]&0x0F) << 8;
 	descriptors_length |= data[ptr++];
@@ -3588,7 +3588,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 				descr_len -= 6;
 				while( descr_len > 2 )
 				{
-					__u8 datetime[5];
+					uint8_t datetime[5];
 					datetime[0] = data[ptr++];
 					datetime[1] = data[ptr++];
 					int tmp_len = data[ptr++];
@@ -3615,13 +3615,13 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		}
 	}
 	ASSERT(pdescr <= &descriptors[65]);
-	__u8 event[4098];
+	uint8_t event[4098];
 	eit_event_struct *ev_struct = (eit_event_struct*) event;
 	ev_struct->running_status = 0;
 	ev_struct->free_CA_mode = 1;
 	memcpy(event+7, duration, 3);
 	ptr = 12;
-	const __u8 **d=descriptors;
+	const uint8_t **d=descriptors;
 	while ( d < pdescr )
 	{
 		memcpy(event+ptr, *d, ((*d)[1])+2);
@@ -3640,7 +3640,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		for (std::list<uniqueEPGKey>::iterator i(it->second.begin()); i != it->second.end(); ++i)
 		{
 			event[bptr++] = 0x4A;
-			__u8 *len = event+(bptr++);
+			uint8_t *len = event+(bptr++);
 			event[bptr++] = (i->tsid & 0xFF00) >> 8;
 			event[bptr++] = (i->tsid & 0xFF);
 			event[bptr++] = (i->onid & 0xFF00) >> 8;
@@ -3659,12 +3659,12 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		while( tmMap.find(stime) != tmMap.end() )
 			++stime;
 		event[6] += (stime - it->first.tm);
-		__u16 event_id = 0;
+		uint16_t event_id = 0;
 		while( evMap.find(event_id) != evMap.end() )
 			++event_id;
 		event[0] = (event_id & 0xFF00) >> 8;
 		event[1] = (event_id & 0xFF);
-		time_event_map[it->first.tm]=std::pair<time_t, __u16>(stime, event_id);
+		time_event_map[it->first.tm]=std::pair<time_t, uint16_t>(stime, event_id);
 		eventData *d = new eventData( ev_struct, bptr, PRIVATE );
 		evMap[event_id] = d;
 		tmMap[stime] = d;
@@ -3693,7 +3693,7 @@ void eEPGCache::channel_data::startPrivateReader()
 	m_PrivateReader->start(mask);
 }
 
-void eEPGCache::channel_data::readPrivateData( const __u8 *data)
+void eEPGCache::channel_data::readPrivateData( const uint8_t *data)
 {
 	if ( seenPrivateSections.find(data[6]) == seenPrivateSections.end() )
 	{
@@ -3725,7 +3725,7 @@ void eEPGCache::channel_data::cleanupMHW()
 	m_program_ids.clear();
 }
 
-__u8 *eEPGCache::channel_data::delimitName( __u8 *in, __u8 *out, int len_in )
+uint8_t *eEPGCache::channel_data::delimitName( uint8_t *in, uint8_t *out, int len_in )
 {
 	// Names in mhw structs are not strings as they are not '\0' terminated.
 	// This function converts the mhw name into a string.
@@ -3760,7 +3760,7 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 {
 	char tz_saved[1024];
 	// Remove offset in mhw time.
-	__u8 local_hours = hours;
+	uint8_t local_hours = hours;
 	if ( hours >= 16 )
 		local_hours -= 4;
 	else if ( hours >= 8 )
@@ -3811,10 +3811,10 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 	timeMHW2DVB( recdate.tm_hour, minutes, return_time+2 );
 }
 
-void eEPGCache::channel_data::storeMHWTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data)
+void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::iterator itTitle, std::string sumText, const uint8_t *data)
 // data is borrowed from calling proc to save memory space.
 {
-	__u8 name[34];
+	uint8_t name[34];
 
 	// For each title a separate EIT packet will be sent to eEPGCache::sectionRead()
 	bool isMHW2 = itTitle->second.mhw2_mjd_hi || itTitle->second.mhw2_mjd_lo ||
@@ -3837,7 +3837,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<__u32, mhw_title_t>::iterat
 	packet->segment_last_section_number = 0; // eEPGCache::sectionRead() will dig this for the moment
 	packet->segment_last_table_id = 0x50;
 
-	__u8 *title = isMHW2 ? ((__u8*)(itTitle->second.title))-4 : (__u8*)itTitle->second.title;
+	uint8_t *title = isMHW2 ? ((uint8_t*)(itTitle->second.title))-4 : (uint8_t*)itTitle->second.title;
 	std::string prog_title = (char *) delimitName( title, name, isMHW2 ? 35 : 23 );
 	int prog_title_length = prog_title.length();
 
@@ -3963,7 +3963,7 @@ void eEPGCache::channel_data::startMHWTimeout(int msec)
 	m_MHWTimeoutet=false;
 }
 
-void eEPGCache::channel_data::startMHWReader(__u16 pid, __u8 tid)
+void eEPGCache::channel_data::startMHWReader(uint16_t pid, uint8_t tid)
 {
 	m_MHWFilterMask.pid = pid;
 	m_MHWFilterMask.data[0] = tid;
@@ -3971,7 +3971,7 @@ void eEPGCache::channel_data::startMHWReader(__u16 pid, __u8 tid)
 //	eDebug("start 0x%02x 0x%02x", pid, tid);
 }
 
-void eEPGCache::channel_data::startMHWReader2(__u16 pid, __u8 tid, int ext)
+void eEPGCache::channel_data::startMHWReader2(uint16_t pid, uint8_t tid, int ext)
 {
 	m_MHWFilterMask2.pid = pid;
 	m_MHWFilterMask2.data[0] = tid;
@@ -3990,7 +3990,7 @@ void eEPGCache::channel_data::startMHWReader2(__u16 pid, __u8 tid, int ext)
 	m_MHWReader2->start(m_MHWFilterMask2);
 }
 
-void eEPGCache::channel_data::readMHWData(const __u8 *data)
+void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 {
 	if ( m_MHWReader2 )
 		m_MHWReader2->stop();
@@ -4029,9 +4029,9 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		int record_size = sizeof( mhw_theme_name_t );
 		int nbr_records = int (len/record_size);
 		int idx_ptr = 0;
-		__u8 next_idx = (__u8) *(data + 3 + idx_ptr);
-		__u8 idx = 0;
-		__u8 sub_idx = 0;
+		uint8_t next_idx = (uint8_t) *(data + 3 + idx_ptr);
+		uint8_t idx = 0;
+		uint8_t sub_idx = 0;
 		for ( int i = 0; i < nbr_records; i++ )
 		{
 			mhw_theme_name_t *theme = (mhw_theme_name_t*) &data[19 + i*record_size];
@@ -4039,7 +4039,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 			{
 				idx = (idx_ptr<<4);
 				idx_ptr++;
-				next_idx = (__u8) *(data + 3 + idx_ptr);
+				next_idx = (uint8_t) *(data + 3 + idx_ptr);
 				sub_idx = 0;
 			}
 			else
@@ -4057,7 +4057,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 	// Titles table
 	{
 		mhw_title_t *title = (mhw_title_t*) data;
-		__u8 name[24];
+		uint8_t name[24];
 		std::string prog_title = (char *) delimitName( title->title, name, 23 );
 
 		if ( title->channel_id == 0xFF || prog_title.substr(0,7) == "BIENTOT" )	// Separator or BIENTOT record
@@ -4065,9 +4065,9 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		else
 		{
 			// Create unique key per title
-			__u32 title_id = ((title->channel_id)<<16)|((title->dh.day)<<13)|((title->dh.hours)<<8)|
+			uint32_t title_id = ((title->channel_id)<<16)|((title->dh.day)<<13)|((title->dh.hours)<<8)|
 				(title->ms.minutes);
-			__u32 program_id = ((title->program_id_hi)<<24)|((title->program_id_mh)<<16)|
+			uint32_t program_id = ((title->program_id_hi)<<24)|((title->program_id_mh)<<16)|
 				((title->program_id_ml)<<8)|(title->program_id_lo);
 
 			if ( m_titles.find( title_id ) == m_titles.end() )
@@ -4080,7 +4080,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 				m_titles[ title_id ] = *title;
 				if ( (title->ms.summary_available) && (m_program_ids.find(program_id) == m_program_ids.end()) )
 					// program_ids will be used to gather summaries.
-					m_program_ids.insert(std::pair<__u32,__u32>(program_id,title_id));
+					m_program_ids.insert(std::pair<uint32_t,uint32_t>(program_id,title_id));
 				return;	// Continue reading of the current table.
 			}
 			else if (!checkMHWTimeout())
@@ -4104,7 +4104,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		mhw_summary_t *summary = (mhw_summary_t*) data;
 
 		// Create unique key per record
-		__u32 program_id = ((summary->program_id_hi)<<24)|((summary->program_id_mh)<<16)|
+		uint32_t program_id = ((summary->program_id_hi)<<24)|((summary->program_id_mh)<<16)|
 			((summary->program_id_ml)<<8)|(summary->program_id_lo);
 		int len = ((data[1]&0xf)<<8) + data[2];
 
@@ -4113,7 +4113,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		memcpy(&tmp, &data, sizeof(void*));
 		tmp[len+3] = 0;	// Terminate as a string.
 
-		std::multimap<__u32, __u32>::iterator itProgid( m_program_ids.find( program_id ) );
+		std::multimap<uint32_t, uint32_t>::iterator itProgid( m_program_ids.find( program_id ) );
 		if ( itProgid == m_program_ids.end() )
 		{ /*	This part is to prevent to looping forever if some summaries are not received yet.
 			There is a timeout of 4 sec. after the last successfully read summary. */
@@ -4129,7 +4129,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 				the_text.replace(pos, 2, " ");
 
 			// Find corresponding title, store title and summary in epgcache.
-			std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgid->second ) );
+			std::map<uint32_t, mhw_title_t>::iterator itTitle( m_titles.find( itProgid->second ) );
 			if ( itTitle != m_titles.end() )
 			{
 				startMHWTimeout(4000);
@@ -4146,7 +4146,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		m_program_ids.size());
 	// Summaries have been read, titles that have summaries have been stored.
 	// Now store titles that do not have summaries.
-	for (std::map<__u32, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
+	for (std::map<uint32_t, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
 		storeMHWTitle( itTitle, "", data );
 	isRunning &= ~MHW;
 	m_MHWConn=0;
@@ -4156,7 +4156,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		finishEPG();
 }
 
-void eEPGCache::channel_data::readMHWData2(const __u8 *data)
+void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 {
 	int dataLen = (((data[1]&0xf) << 8) | data[2]) + 3;
 
@@ -4192,7 +4192,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 		else
 			goto abort;
 		// data seems consistent...
-		const __u8 *tmp = data+121;
+		const uint8_t *tmp = data+121;
 		for (int i=0; i < num_channels; ++i)
 		{
 			mhw_channel_name_t channel;
@@ -4273,17 +4273,17 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			title.mhw2_duration_lo = duration&0xFF;
 
 			// Create unique key per title
-			__u32 title_id = (data[pos+7] << 24) | (data[pos+8] << 16) | (data[pos+9] << 8) | data[pos+10];
+			uint32_t title_id = (data[pos+7] << 24) | (data[pos+8] << 16) | (data[pos+9] << 8) | data[pos+10];
 
-			__u8 slen = data[pos+18] & 0x3f;
-			__u8 *dest = ((__u8*)title.title)-4;
+			uint8_t slen = data[pos+18] & 0x3f;
+			uint8_t *dest = ((uint8_t*)title.title)-4;
 			memcpy(dest, &data[pos+19], slen>35 ? 35 : slen);
 			memset(dest+slen, 0, 35-slen);
 			pos += 19 + slen;
 //			eDebug("%02x [%02x %02x]: %s", data[pos], data[pos+1], data[pos+2], dest);
 
 //			not used theme id (data[7] & 0x3f) + (data[pos] & 0x3f);
-			__u32 summary_id = (data[pos+1] << 8) | data[pos+2];
+			uint32_t summary_id = (data[pos+1] << 8) | data[pos+2];
 
 //			if (title.channel_id > m_channels.size())
 //				eDebug("channel_id(%d %02x) to big!!", title.channel_id);
@@ -4295,7 +4295,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 
 			pos += 3;
 
-			std::map<__u32, mhw_title_t>::iterator it = m_titles.find( title_id );
+			std::map<uint32_t, mhw_title_t>::iterator it = m_titles.find( title_id );
 			if ( it == m_titles.end() )
 			{
 				startMHWTimeout(5000);
@@ -4303,7 +4303,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 				if (summary_id != 0xFFFF)
 				{
 					bool add=true;
-					std::multimap<__u32, __u32>::iterator it(m_program_ids.lower_bound(summary_id));
+					std::multimap<uint32_t, uint32_t>::iterator it(m_program_ids.lower_bound(summary_id));
 					while (it != m_program_ids.end() && it->first == summary_id)
 					{
 						if (it->second == title_id) {
@@ -4313,7 +4313,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 						++it;
 					}
 					if (add)
-						m_program_ids.insert(std::pair<__u32,__u32>(summary_id,title_id));
+						m_program_ids.insert(std::pair<uint32_t,uint32_t>(summary_id,title_id));
 				}
 			}
 			else
@@ -4377,7 +4377,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			if (valid)
 			{
 				// data seems consistent...
-				__u32 summary_id = (data[3]<<8)|data[4];
+				uint32_t summary_id = (data[3]<<8)|data[4];
 //				eDebug ("summary id %04x\n", summary_id);
 //				eDebug("[%02x %02x] %02x %02x %02x %02x %02x %02x %02x %02x XX\n", data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13] );
 
@@ -4401,7 +4401,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 				else
 					tmp[pos+1] = 0;
 
-				std::multimap<__u32, __u32>::iterator itProgId( m_program_ids.lower_bound(summary_id) );
+				std::multimap<uint32_t, uint32_t>::iterator itProgId( m_program_ids.lower_bound(summary_id) );
 				if ( itProgId == m_program_ids.end() || itProgId->first != summary_id)
 				{ /*	This part is to prevent to looping forever if some summaries are not received yet.
 					There is a timeout of 4 sec. after the last successfully read summary. */
@@ -4419,7 +4419,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 					{
 //						eDebug(".");
 						// Find corresponding title, store title and summary in epgcache.
-						std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgId->second ) );
+						std::map<uint32_t, mhw_title_t>::iterator itTitle( m_titles.find( itProgId->second ) );
 						if ( itTitle != m_titles.end() )
 						{
 							storeMHWTitle( itTitle, the_text, data );
@@ -4453,7 +4453,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 		{
 			// Summaries have been read, titles that have summaries have been stored.
 			// Now store titles that do not have summaries.
-			for (std::map<__u32, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
+			for (std::map<uint32_t, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
 				storeMHWTitle( itTitle, "", data );
 			eDebug("[EPGC] mhw2 finished(%ld) %d summaries not found",
 				::time(0),
