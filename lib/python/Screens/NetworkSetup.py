@@ -595,11 +595,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if SystemInfo["WakeOnLAN"]:
 			self.wolstartvalue = config.network.wol.value
 		self.list = []
-		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
+		self.InterfaceEntry = getConfigListEntry(_("Enable %s" % iNetwork.getFriendlyAdapterDescription(self.iface)), self.activateInterfaceEntry)
 
 		self.list.append(self.InterfaceEntry)
 		if self.activateInterfaceEntry.value:
-			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
+			self.dhcpEntry = getConfigListEntry(_("Automatic configuration (DHCP)"), self.dhcpConfigEntry)
 			self.list.append(self.dhcpEntry)
 			if not self.dhcpConfigEntry.value:
 				self.list.append(getConfigListEntry(_('IP address'), self.ipConfigEntry))
@@ -803,7 +803,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		elif current == self.encryptionKey and config.plugins.wlan.encryption.value is not "Unencrypted":
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
-				
+
+
 class NetworkMenuList(MenuList):
 	def __init__(self, list, enableWrapAround = False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
@@ -816,6 +817,8 @@ def SubNetworkMenuEntryComponent(name, item):
 		_(item),
 		MultiContentEntryText(pos=(20, 8), size=(400, 50), font=0, text = _(name)),	
 	]
+
+
 class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session,iface):
 		Screen.__init__(self, session)
@@ -837,7 +840,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["statuspic"].hide()
 
 		self.oktext = _("Press OK on your remote control to continue.")
-		self.reboottext = _("Your STB will restart after pressing OK on your remote control.")
+		self.reboottext = _("Your %s %s will restart after pressing OK on your remote control." % (getMachineBrand(), getMachineName()))
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
 		self.missingwlanplugintxt = _("The wireless LAN plugin is not installed!\nPlease install it.")
 
