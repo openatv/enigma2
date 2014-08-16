@@ -41,9 +41,7 @@ class Sensors:
 		value = -1
 		sensor = self.sensors_list[sensorid]
 		if sensor[0] == self.TYPE_TEMPERATURE:
-			f = open("%s/value" % sensor[3], "r")
-			value = int(f.readline().strip())
-			f.close()
+			value = int(open("%s/value" % sensor[3], "r").readline().strip())
 		elif sensor[0] == self.TYPE_FAN_RPM:
 			value = fancontrol.getFanSpeed(sensor[3])
 		return value
@@ -56,14 +54,8 @@ class Sensors:
 		if os.path.exists("/proc/stb/sensors"):
 			for dirname in os.listdir("/proc/stb/sensors"):
 				if dirname.find("temp", 0, 4) == 0:
-					f = open("/proc/stb/sensors/%s/name" % dirname, "r")
-					name = f.readline().strip()
-					f.close()
-
-					f = open("/proc/stb/sensors/%s/unit" % dirname, "r")
-					unit = f.readline().strip()
-					f.close()
-
+					name = open("/proc/stb/sensors/%s/name" % dirname, "r").readline().strip()
+					unit = open("/proc/stb/sensors/%s/unit" % dirname, "r").readline().strip()
 					self.sensors_list.append((self.TYPE_TEMPERATURE, name, unit, "/proc/stb/sensors/%s" % dirname))
 		for fanid in range(fancontrol.getFanCount()):
 			if fancontrol.hasRPMSensor(fanid):
