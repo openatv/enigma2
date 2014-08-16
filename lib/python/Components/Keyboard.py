@@ -11,10 +11,9 @@ class Keyboard:
 	def readKeyboardMapFiles(self):
 		for keymapfile in os_listdir(eEnv.resolve('${datadir}/keymaps/')):
 			if (keymapfile.endswith(".info")):
-				f = open(eEnv.resolve('${datadir}/keymaps/') + keymapfile)
 				mapfile = None
 				mapname = None
-				for line in f:
+				for line in open(eEnv.resolve('${datadir}/keymaps/') + keymapfile):
 					m = re_compile('^\s*(\w+)\s*=\s*(.*)\s*$').match(line)
 					if m:
 						key, val = m.groups()
@@ -24,7 +23,6 @@ class Keyboard:
 						    mapname = val
 						if (mapfile is not None) and (mapname is not None):
 						    self.keyboardmaps.append(( mapfile,mapname))
-				f.close()
 
 	def activateKeyboardMap(self, index):
 		try:
