@@ -59,6 +59,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picCrypto, pic)
 
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/record.png"))
+		if pic:
+			self.l.setPixmap(self.l.picRecord, pic)
+
 		self.root = None
 		self.mode = self.MODE_NORMAL
 		self.ItemHeight = 28
@@ -98,6 +102,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+				elif attrib == "colorServiceRecorded":
+					self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
 					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 					if pic:
@@ -328,4 +334,5 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
+		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
 		self.l.setColumnWidth(int(config.usage.servicelist_column.value))

@@ -2,10 +2,12 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop 
+from Components.config import config
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
+from Tools.BoundFunction import boundFunction
 from enigma import eTimer, eDVBDB
 from boxbranding import getBoxType
 
@@ -84,10 +86,43 @@ class UpdatePlugin(Screen):
 #			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
 		if default:
-			self.startActualUpdate(True)
+			self.showDisclaimer()
 		else:
 			message += "\n" + _("Do you want to update your receiver?")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
+
+	def showDisclaimer(self, justShow=False):
+		if config.usage.show_update_disclaimer.value or justShow:
+			message = _("With this disclaimer the openMips team is informing you that we are working with nightly builds and it might be that after the upgrades your set top box \
+is not anymore working as expected. Therefore it is recommended to create backups. If something went wrong you can easily and quickly restore. \
+When you discover 'bugs' please keep them reported on www.gigablue-support.com.\n\nDo you understand this?")
+			list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
+			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list)
+		else:
+			self.startActualUpdate(True)
+
+	def disclaimerCallback(self, justShow, answer):
+		if answer == "never":
+			config.usage.show_update_disclaimer.value = False
+			config.usage.show_update_disclaimer.save()
+		if justShow and answer:
+			self.ipkgCallback(IpkgComponent.EVENT_DONE, None)
+		else:
+			self.startActualUpdate(answer)
+
+	#def getLatestImageTimestamp(self):
+	#	currentTimeoutDefault = socket.getdefaulttimeout()
+	#	socket.setdefaulttimeout(3)
+	#	latestImageTimestamp = ""
+	#	try:
+	#		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
+	#		# run in parallel to the package update.
+	#		latestImageTimestamp = re.findall('<dd>(.*?)</dd>', urlopen("http://openpli.org/download/"+getBoxType()+"/").read())[0][:16]
+	#		latestImageTimestamp = time.strftime(_("%d-%b-%Y %-H:%M"), time.strptime(latestImageTimestamp, "%Y/%m/%d %H:%M"))
+	#	except:
+	#		pass
+	#	socket.setdefaulttimeout(currentTimeoutDefault)
+	#	return latestImageTimestamp
 
 	def startActualUpdate(self,answer):
 		if answer:
@@ -154,6 +189,8 @@ class UpdatePlugin(Screen):
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
 						(_("Cancel"), "")]
+					if not config.usage.show_update_disclaimer.value:
+						choices.append((_("Show disclaimer"), "disclaimer"))
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -208,6 +245,10 @@ class UpdatePlugin(Screen):
 			self.channellist_only = 1
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
+		#elif answer[1] == "commits":
+		#	self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), CommitInfo)
+		elif answer[1] == "disclaimer":
+			self.showDisclaimer(justShow=True)
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 

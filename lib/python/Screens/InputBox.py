@@ -85,7 +85,7 @@ class InputBox(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service = "", triesEntry = None, pinList = [], popup = False, *args, **kwargs):
+	def __init__(self, session, service = "", triesEntry = None, pinList = [], popup = False, simple=True, *args, **kwargs):
 		InputBox.__init__(self, session = session, text = "    ", maxSize = True, type = Input.PIN, *args, **kwargs)
 
 		self.waitTime = 15
@@ -93,7 +93,7 @@ class PinInput(InputBox):
 		self.pinList = pinList
 		self["service"] = Label(service)
 
-		if service:
+		if service and simple:
 			self.skinName = "PinInputPopup"
 
 		if self.getTries() == 0:
@@ -102,7 +102,7 @@ class PinInput(InputBox):
 				remainingMinutes = int(remaining / 60)
 				remainingSeconds = int(remaining % 60)
 				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
-				if service:
+				if service and simple:
 					AddPopup(messageText, type = MessageBox.TYPE_ERROR, timeout = 3)
 					self.closePinCancel()
 				else:

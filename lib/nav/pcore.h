@@ -23,11 +23,11 @@ public:
 	SWIG_VOID(RESULT) recordService(const eServiceReference &ref, ePtr<iRecordableService> &SWIG_OUTPUT, bool simulate);
 	RESULT stopRecordService(ePtr<iRecordableService> &service);
 	void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false);
+	void navEvent(int event);
 
 private:
 	ePtr<eNavigation> m_core;
 	ePtr<eConnection> m_nav_event_connection, m_nav_record_event_connection;
-	void navEvent(int event);
 	void navRecordEvent(ePtr<iRecordableService>, int event);
 };
 

@@ -56,6 +56,7 @@ class Dish(Screen):
 		self.configChanged(config.usage.showdish)
 
 		self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
+		config.misc.lastrotorposition.addNotifier(self.rotorPositionChanged)
 		self.turn_time = self.total_time = self.pmt_timeout = self.close_timeout = None
 		self.cur_polar = 0
 		self.__state = self.STATE_HIDDEN
@@ -160,6 +161,10 @@ class Dish(Screen):
 	def configChanged(self, configElement):
 		self.showdish = configElement.value
 
+	def rotorPositionChanged(self, configElement=None):
+		if self.cur_orbpos != config.misc.lastrotorposition.value != INVALID_POSITION:
+			self.rotor_pos = self.cur_orbpos = config.misc.lastrotorposition.value
+
 	def getTurnTime(self, start, end, pol=0):
 		mrt = abs(start - end) if start and end else 0
 		if mrt > 0:
@@ -176,7 +181,7 @@ class Dish(Screen):
 			from Components.NimManager import nimmanager
 			nimConfig = nimmanager.getNimConfig(tuner)
 			if nimConfig.configMode.value == "simple":
-				if nimConfig.diseqcMode.value == "positioner":
+				if "positioner" in nimConfig.diseqcMode.value:
 					nim = config.Nims[tuner]
 					if pol in (1, 3): # vertical
 						return nim.turningspeedV.float

@@ -44,12 +44,9 @@ def profile(id):
 				if getBoxType() in ('odinm7', 'odinm6', 'xp1000s'):
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
-				elif getBoxType() in ('gb800solo', 'gb800se'):
-					f = open("/dev/dbox/oled0", "w")
-					f.write("%d  \n" % perc)
-				elif getBoxType() == "gb800seplus":
+				elif getBoxType() in ('gb800solo', 'gb800se', 'gb800seplus'):
 					f = open("/dev/mcu", "w")
-					f.write("%d  \n" % perc)					
+					f.write("%d  \n" % perc)
 				elif getBoxType() == "ebox5000":
 					f = open("/proc/progress", "w")
 					f.write("%d" % perc)

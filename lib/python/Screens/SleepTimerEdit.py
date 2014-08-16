@@ -38,7 +38,11 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Sleeptimer"),
+		if InfoBar.instance and InfoBar.instance.sleepTimer.isActive():
+			statusSleeptimerText = _("(activated +%d min)") % InfoBar.instance.sleepTimerState()
+		else:
+			statusSleeptimerText = _("(not activated)")
+		self.list.append(getConfigListEntry(_("Sleeptimer") + " " + statusSleeptimerText,
 			config.usage.sleep_timer,
 			_("Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer")))
 		self.list.append(getConfigListEntry(_("Inactivity Sleeptimer"),
@@ -76,14 +80,14 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		if self["config"].isChanged():
 			for x in self["config"].list:
 				x[1].save()
-			self.close()
-		if self.getCurrentEntry() == _("Sleeptimer"):
+		if self.getCurrentEntry().startswith(_("Sleeptimer")):
 			sleepTimer = config.usage.sleep_timer.value
 			if sleepTimer == "event_standby":
 				sleepTimer = self.currentEventTime()
 			else:
 				sleepTimer = int(sleepTimer)
-			InfoBar.instance.setSleepTimer(sleepTimer)
+			if sleepTimer or not self.getCurrentEntry().endswith(_("(not activated)")):
+				InfoBar.instance.setSleepTimer(sleepTimer)
 			self.close(True)
 		self.close()
 

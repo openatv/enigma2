@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims21@users.sourceforge.net>\n"
@@ -1087,9 +1087,8 @@ msgstr "Baskicky"
 msgid "Begin time"
 msgstr "Čas začátku"
 
-#
-msgid "Behavior of 'pause' when paused"
-msgstr "Režim tlačítka 'pause' při pozastavení filmu"
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1484,6 +1483,9 @@ msgstr "Nastavuje jak bude pracovat ventilátor"
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Nastavuje zda a jak budou zobrazovány ikony kódovaných programů v přehledech kanálů."
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr "Nastavuje zda a jak dlouho bude zapamatován poslední program v PIP."
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr "Nastavuje zda a jak budou zobrazovány ikony typu programu v seznamu kanálů."
 
@@ -1503,9 +1505,6 @@ msgstr "Nastavuje interface"
 msgid "Configure nameservers"
 msgstr "Nastavuje DNS servery"
 
-msgid "Configure if and how long the latest service in the PiP will be remembered."
-msgstr "Nastavuje zda a jak dlouho bude zapamatován poslední program v PIP."
-
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Nastavuje, na kterých zařízeních může být nastaveno mazání na pozadí."
 
@@ -1522,8 +1521,8 @@ msgstr "Nastavuje IP adresu."
 msgid "Configure the aspect ratio of the screen."
 msgstr "Nastavuje poměr stran obrazu."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "Nastavuje chování tlačítka 'pause' když je přehrávání již pozastaveno."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
@@ -2523,6 +2522,12 @@ msgstr "EPG"
 msgid "Enable"
 msgstr "Povolit"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 #
 msgid "Enable 5V for active antenna"
 msgstr "Povolit 5V pro aktivní anténu"
@@ -2565,9 +2570,6 @@ msgstr "Povolit freesat EPG"
 #
 msgid "Enable multiple bouquets"
 msgstr "Povolit vícenásobné přehledy"
-
-msgid "Enable neutrino style zap controlling"
-msgstr "Povolit neutrino styl řízení přepínání"
 
 #
 msgid "Enable parental control"
@@ -3629,6 +3631,9 @@ msgstr[2] "Seznam verze %d, nalezeno %d kanálů"
 msgid "Listen to the radio..."
 msgstr "Poslech rádia..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 #
 msgid "Lithuanian"
 msgstr "Litevsky"
@@ -4485,6 +4490,9 @@ msgstr "zastavit film na konci"
 #
 msgid "Pause playback"
 msgstr "Pauza/přehrávání"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Procenta vlevo"
@@ -7143,6 +7151,9 @@ msgstr "Typ časovače"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+msgid "Timeshift Live"
+msgstr ""
+
 #
 msgid "Timeshift location"
 msgstr "Timeshift"
@@ -7879,8 +7890,11 @@ msgstr "Co chcete prohledat?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Jestliže je povoleno, pak PIP může být ukončen tlačítkem Exit"
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
-msgstr "Pokud je povoleno, tlačítka se šipkami okolo tlačítka OK budou používat neutrino styl přepínání namísto stylu Enigma2."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
 
 #
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -9597,3 +9611,15 @@ msgstr "přepnout a nahrát"
 msgid "zapped"
 msgstr "přepnutý"
 
+#
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Režim tlačítka 'pause' při pozastavení filmu"
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "Nastavuje chování tlačítka 'pause' když je přehrávání již pozastaveno."
+
+#~ msgid "Enable neutrino style zap controlling"
+#~ msgstr "Povolit neutrino styl řízení přepínání"
+
+#~ msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+#~ msgstr "Pokud je povoleno, tlačítka se šipkami okolo tlačítka OK budou používat neutrino styl přepínání namísto stylu Enigma2."

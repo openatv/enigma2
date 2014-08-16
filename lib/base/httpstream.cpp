@@ -126,7 +126,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		result = readLine(streamSocket, &linebuf, &buflen);
 		if (!contenttypeparsed)
 		{
-			char contenttype[32];
+			char contenttype[33];
 			if (sscanf(linebuf, "Content-Type: %32s", contenttype) == 1)
 			{
 				contenttypeparsed = true;
@@ -154,7 +154,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 			break;
 		}
 
-		if (statuscode == 206 && strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
+		if (((statuscode == 200) || (statuscode == 206)) && !strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
 		{
 			isChunked = true;
 		}

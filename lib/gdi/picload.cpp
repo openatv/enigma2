@@ -2,6 +2,7 @@
 #include <png.h>
 #include <fcntl.h>
 
+#include <lib/base/cfile.h>
 #include <lib/gdi/picload.h>
 #include <lib/gdi/picexif.h>
 
@@ -206,7 +207,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 					read(fd, buff, skip);
 				wr_buffer -= (*x) * 6;
 			}
-			delete tbuffer;
+			delete [] tbuffer;
 			break;
 		}
 		case 8:
@@ -230,7 +231,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 					read(fd, buff, skip);
 				wr_buffer -= (*x) * 3;
 			}
-			delete tbuffer;
+			delete [] tbuffer;
 			break;
 		}
 		case 24:
@@ -269,29 +270,23 @@ static void png_load(Cfilepara* filepara, int background)
 	unsigned int i;
 	int bit_depth, color_type, interlace_type;
 	png_byte *fbptr;
-	FILE *fh = fopen(filepara->file, "rb");
-
-	if (fh == NULL)
+	CFile fh(filepara->file, "rb");
+	if (!fh)
 		return;
 
 	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (png_ptr == NULL)
-	{
-		fclose(fh);
 		return;
-	}
 	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (info_ptr == NULL)
 	{
 		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
-		fclose(fh);
 		return;
 	}
 
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-		fclose(fh);
 		return;
 	}
 
@@ -372,7 +367,6 @@ static void png_load(Cfilepara* filepara, int background)
 		{
 			eDebug("[Picload] Error processing (did not get RGB data from PNG file)");
 			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-			fclose(fh);
 			return;
 		}
 
@@ -390,7 +384,6 @@ static void png_load(Cfilepara* filepara, int background)
 		png_read_end(png_ptr, info_ptr);
 	}
 	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-	fclose(fh);
 }
 
 //-------------------------------------------------------------------
@@ -414,10 +407,10 @@ static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int
 	struct jpeg_decompress_struct cinfo;
 	struct jpeg_decompress_struct *ciptr = &cinfo;
 	struct r_jpeg_error_mgr emgr;
-	FILE *fh;
 	unsigned char *pic_buffer=NULL;
+	CFile fh(file, "rb");
 
-	if (!(fh = fopen(file, "rb")))
+	if (!fh)
 		return NULL;
 
 	ciptr->err = jpeg_std_error(&emgr.pub);
@@ -425,7 +418,6 @@ static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int
 	if (setjmp(emgr.envbuffer) == 1)
 	{
 		jpeg_destroy_decompress(ciptr);
-		fclose(fh);
 		return NULL;
 	}
 
@@ -466,7 +458,6 @@ static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int
 	}
 	jpeg_finish_decompress(ciptr);
 	jpeg_destroy_decompress(ciptr);
-	fclose(fh);
 	return(pic_buffer);
 }
 
@@ -475,18 +466,19 @@ static int jpeg_save(const char * filename, int ox, int oy, unsigned char *pic_b
 {
 	struct jpeg_compress_struct cinfo;
 	struct jpeg_error_mgr jerr;
-	FILE * outfile;
 	JSAMPROW row_pointer[1];
 	int row_stride;
+	CFile outfile(filename, "wb");
+
+	if (!outfile)
+	{
+		eDebug("[Picload] jpeg can't write %s", filename);
+		return 1;
+	}
 
 	cinfo.err = jpeg_std_error(&jerr);
 	jpeg_create_compress(&cinfo);
 
-	if ((outfile = fopen(filename, "wb")) == NULL)
-	{
-		eDebug("[Picload] jpeg can't open %s", filename);
-		return 1;
-	}
 	eDebug("[Picload] save Thumbnail... %s",filename);
 
 	jpeg_stdio_dest(&cinfo, outfile);
@@ -505,7 +497,6 @@ static int jpeg_save(const char * filename, int ox, int oy, unsigned char *pic_b
 		(void) jpeg_write_scanlines(&cinfo, row_pointer, 1);
 	}
 	jpeg_finish_compress(&cinfo);
-	fclose(outfile);
 	jpeg_destroy_compress(&cinfo);
 	return 0;
 }
@@ -669,7 +660,7 @@ void ePicLoad::thread()
 
 void ePicLoad::decodePic()
 {
-	eDebug("[Picload] decode picture... %s",m_filepara->file);
+	// eDebug("[Picload] decode picture... %s",m_filepara->file);
 
 	switch(m_filepara->id)
 	{
@@ -859,7 +850,7 @@ void ePicLoad::gotMessage(const Message &msg)
 			}
 			break;
 		default:
-			eDebug("unhandled thread message");
+			eDebug("[Picload] unhandled thread message");
 	}
 }
 
@@ -1001,7 +992,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	result = 0;
 	if (m_filepara == NULL)
 	{
-		eDebug("picload - Weird situation, I wasn't decoding anything!");
+		eDebug("[Picload] Weird situation, I wasn't decoding anything!");
 		return 1;
 	}
 	if(m_filepara->pic_buffer == NULL)
@@ -1188,9 +1179,9 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
 		m_conf.background = strtoul(bg_str+1, NULL, 16);
-	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
-			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
-			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
+	//eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+	//		m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
+	//		(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
 	return 1;
 }
 
@@ -1201,7 +1192,7 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 {
 	long asp1, asp2;
 	result = 0;
-	eDebug("deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
+	eDebug("[Picload] deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
 	ePicLoad mPL;
 
 	switch(aspect)

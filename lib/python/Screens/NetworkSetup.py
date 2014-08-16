@@ -511,6 +511,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self):
+		if SystemInfo["WakeOnLAN"]:
+			self.wolstartvalue = config.network.wol.value
 		self.list = []
 		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
 
@@ -525,8 +527,12 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-			if SystemInfo["WakeOnLAN"] and SystemInfo["GBWOL"] and self.iface == 'eth0':
-				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.usage.wakeOnLAN))
+
+			havewol = False
+			if SystemInfo["WakeOnLAN"]:
+				havewol = True
+			if havewol and self.iface == 'eth0':	
+				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
 			self.extended = None
 			self.configStrings = None
@@ -578,16 +584,15 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.newConfig()
 
 	def keySave(self):
-		if SystemInfo["WakeOnLAN"]:
-			config.usage.wakeOnLAN.save()
 		self.hideInputHelp()
-		if self["config"].isChanged():
+		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
 			self.session.openWithCallback(self.keySaveConfirm, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
 		else:
 			if self.finished_cb:
 				self.finished_cb()
 			else:
 				self.close('cancel')
+		config.network.save()
 
 	def keySaveConfirm(self, ret = False):
 		if (ret == True):
@@ -678,6 +683,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyCancelConfirm(self, result):
 		if not result:
 			return
+		if SystemInfo["WakeOnLAN"]:
+			config.network.wol.setValue(self.wolstartvalue)	
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -685,8 +692,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keyCancel(self):
 		self.hideInputHelp()
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"))
+		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
+			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close('cancel')
 
@@ -941,7 +948,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
 		kernel_ver = about.getKernelVersionString()
-		if kernel_ver <= "3.5.0" and getBoxType() not in ('gb800seplus', 'gb800ueplus'):
+		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
+		if getBoxType() not in ('DUMMY'):
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu

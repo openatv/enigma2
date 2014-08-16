@@ -20,38 +20,39 @@
 		<alias name="Huge" font="LCD_display" size="32" height="32" />
 		<alias name="Bigger" font="LCD_display" size="18" height="18" />
 		<alias name="Big" font="LCD_display" size="16" height="16" />
-		<alias name="Clock" font="LCD_display" size="14" height="14" />
-		<alias name="Medium" font="LCD_display" size="12" height="12" />
+		<alias name="Medium" font="LCD_display" size="14" height="12" />
 		<alias name="Small" font="LCD_display" size="10" height="10" />
 	</fonts>
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="right" size="40,*" font="Clock" halign="right" valign="top" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="right" size="36,*" font="Medium" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"/>
 		</widget>
 	</screen>
 	<screen name="RecordIconPanel">
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="e-15,1" size="15,11">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="e-15,0" size="15,11">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,18" font="Bigger" noWrap="1">
-			<convert type="ServiceName">Name</convert>
-			<convert type="TextCase">ToUpper</convert>
+		<panel position="top" size="*,16" layout="stack">
+			<widget source="session.CurrentService" render="Label" position="top" size="*,16" font="Bigger" noWrap="1">
+				<convert type="ServiceName">Name</convert>
+				<convert type="TextCase">ToUpper</convert>
+			</widget>
+			<panel name="RecordIconPanel"/>
+		</panel>
+		<widget source="session.Event_Now" render="Progress" position="top" size="*,4" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="session.Event_Now" render="Progress" position="bottom" size="*,2">
-				<convert type="EventTime">Progress</convert>
-			</widget>
 			<widget source="session.Event_Now" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
 				<convert type="EventName">Name</convert>
 				<convert type="TextCase">ToUpper</convert>
 			</widget>
-			<panel name="RecordIconPanel"/>
 		</panel>
 	</screen>
 
@@ -72,19 +73,21 @@
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
-		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,18" font="Bigger" noWrap="1" >
-			<convert type="ServiceName">Name</convert>
-			<convert type="TextCase">ToUpper</convert>
-		</widget>
-		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="parent.ServiceEvent" render="Progress" position="bottom" size="*,2">
-				<convert type="EventTime">Progress</convert>
-			</widget>
-			<widget source="parent.ServiceEvent" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
-				<convert type="EventName">Name</convert>
+		<panel position="top" size="*,16" layout="stack">
+			<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" >
+				<convert type="ServiceName">Name</convert>
 				<convert type="TextCase">ToUpper</convert>
 			</widget>
 			<panel name="RecordIconPanel"/>
+		</panel>
+		<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,4" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<panel position="fill" name="SummaryClockPanel" layout="stack">
+			<widget source="parent.ServiceEvent" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
+				<convert type="EventName">Name</convert>
+				<convert type="TextCase">ToUpper</convert>
+			</widget>
 		</panel>
 	</screen>
 
@@ -104,7 +107,7 @@
 			<widget source="parent.number_summary" render="Label" position="fill" font="Bigger" halign="right"/>
 		</panel>
 		<panel position="fill" name="SummaryClockPanel">
-			<widget source="parent.servicename_summary" render="Label" position="fill" font="Clock" noWrap="1">
+			<widget source="parent.servicename_summary" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="TextCase">ToUpper</convert>
 			</widget>
 		</panel>
@@ -112,23 +115,25 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
-		<panel position="top" size="*,18">
-			<widget source="session.CurrentService" render="Label" position="right" size="48,*" font="Bigger" halign="right" noWrap="1">
-				<convert type="ServicePosition">Remaining,ShowHours,Negate,ShowNoSeconds</convert>
-			</widget>
-			<widget source="session.CurrentService" render="Label" position="fill" size="64,*" font="Bigger"  noWrap="1">
-				<convert type="ServicePosition">Position,ShowHours</convert>
-			</widget>
+		<panel position="top" size="*,16" layout="stack">
+			<panel position="top" size="*,16">
+				<widget source="session.CurrentService" render="Label" position="right" size="48,*" font="Bigger" halign="right" noWrap="1">
+					<convert type="ServicePosition">Remaining,ShowHours,Negate,ShowNoSeconds</convert>
+				</widget>
+				<widget source="session.CurrentService" render="Label" position="fill" size="64,*" font="Bigger"  noWrap="1">
+					<convert type="ServicePosition">Position,ShowHours</convert>
+				</widget>
+			</panel>
+			<panel name="RecordIconPanel"/>
 		</panel>
+		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="session.CurrentService" render="Progress" position="bottom" size="*,2">
-				<convert type="ServicePosition">Position</convert>
-			</widget>
-			<widget source="session.CurrentService" render="Label" position="top" size="*,12" font="Medium" noWrap="1">
+			<widget source="session.CurrentService" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
 				<convert type="ServiceName">Name</convert>
 				<convert type="TextCase">ToUpper</convert>
 			</widget>
-			<panel name="RecordIconPanel"/>
 		</panel>
 	</screen>
 
@@ -140,7 +145,7 @@
 	<screen name="MovieSelectionSummary" position="fill">
 		<widget source="name" render="Label" position="top" size="*,18" font="Bigger" noWrap="1"/>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="parent.Service" render="Label" position="fill" font="Clock" noWrap="1">
+			<widget source="parent.Service" render="Label" position="fill" font="Medium" noWrap="1">
 				<convert type="MovieInfo">FileSize</convert>
 			</widget>
 		</panel>

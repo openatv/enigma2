@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 OPLi-3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: 2013-09-03 19:48+0200\n"
 "Last-Translator: Yetkin AYDIN <yetkina@gmail.com>\n"
 "Language-Team: Yetkin AYDIN <yetkina@gmail.com>\n"
@@ -892,8 +892,8 @@ msgstr "Bask"
 msgid "Begin time"
 msgstr "Başlama zamanı"
 
-msgid "Behavior of 'pause' when paused"
-msgstr "Duraklama kipinde 'duraklat' tuşu görevi"
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "RiR kipinde 0 tuşu görevi"
@@ -1223,6 +1223,9 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr ""
 
@@ -1237,9 +1240,6 @@ msgstr "Arayüz yapılandırması"
 
 msgid "Configure nameservers"
 msgstr "İsim sunucu yapılandırması"
-
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Arka plan silme seçeneği kullanılması gereken aygıtları yapılandırın."
@@ -1256,8 +1256,8 @@ msgstr "IP adresini yapılandırın."
 msgid "Configure the aspect ratio of the screen."
 msgstr "Ekranın en boy oranını yapılandırın."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "'PAUSE' tuşunu yapılandırın. Normalde film oynarken durdurmaya yarar."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Film oyntılırken el ile durdurulduğunda davranışı yapılandırın."
@@ -2094,6 +2094,12 @@ msgstr "Elektronik Televizyon Rehberi"
 msgid "Enable"
 msgstr "Etkinleştir"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 msgid "Enable 5V for active antenna"
 msgstr "Aktif anten için 5V etkinleştir"
 
@@ -2129,9 +2135,6 @@ msgstr "Freesat EPG Aktif"
 
 msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
-
-msgid "Enable neutrino style zap controlling"
-msgstr ""
 
 msgid "Enable parental control"
 msgstr "Aile korumasını aç"
@@ -3003,6 +3006,9 @@ msgstr[0] ""
 msgid "Listen to the radio..."
 msgstr "Radyo dinleme..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 msgid "Lithuanian"
 msgstr "Litvanyaca"
 
@@ -3700,6 +3706,9 @@ msgstr "Bittiğinde filmi duraklat"
 
 msgid "Pause playback"
 msgstr "Yürütmeyi duraklat"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Sol oran"
@@ -5883,6 +5892,9 @@ msgstr "Zamanlayıcı tipi"
 msgid "Timeshift"
 msgstr "Zaman kaydırıcı"
 
+msgid "Timeshift Live"
+msgstr ""
+
 msgid "Timeshift location"
 msgstr "Zaman kaydırıcı kayıt konumu"
 
@@ -6490,7 +6502,10 @@ msgstr "Neleri aramak istiyorsunuz?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -7977,8 +7992,14 @@ msgstr "kanal değiştirildi"
 #~ msgid "BB"
 #~ msgstr "BB"
 
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Duraklama kipinde 'duraklat' tuşu görevi"
+
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "Bağlı DiSEqC emri"
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "'PAUSE' tuşunu yapılandırın. Normalde film oynarken durdurmaya yarar."
 
 #~ msgid "DiSEqC repeats"
 #~ msgstr "DiSEqC tekrarı"

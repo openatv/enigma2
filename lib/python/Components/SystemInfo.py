@@ -44,8 +44,8 @@ SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_l
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["isGBIPBOX"] = fileExists("/usr/lib/enigma2/python/gbipbox.so")
 
-if getBoxType() in ('gbquadplus'):
-	SystemInfo["WakeOnLAN"] = False
-else:
-	SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
+#if getBoxType() in ('gbquadplus'):
+#	SystemInfo["WakeOnLAN"] = False
+#else:
+SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/fp/wol")
 

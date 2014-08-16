@@ -509,23 +509,13 @@ def runScreenTest():
 
 	profile("RunReactor")
 	profile_final()
-	
-	if getBoxType() in ('gb800solo', 'gb800se', 'gb800seplus'):
-		from enigma import evfd, eConsoleAppContainer
-		try:
-			cmd = 'vfdctl "    openmips starting e2"'
-			container = eConsoleAppContainer()
-			container.execute(cmd)
-		except:
-			evfd.getInstance().vfd_write_string("-E2-")
-		evfd.getInstance().vfd_led(str(1))
-	
+
 	runReactor()
 
 	config.misc.startCounter.save()
 
 	profile("wakeup")
-	
+
 	try:
 		from Plugins.SystemPlugins.VFDControl.plugin import SetTime
 		SetTime()

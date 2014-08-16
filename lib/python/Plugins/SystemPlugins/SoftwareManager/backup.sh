@@ -70,6 +70,17 @@ elif [ $MODEL = "gb800seplus" ]; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
+## TESTING THE Gigablue GB IPBox Models
+elif [ $MODEL = "gbipbox" ]; then
+	TYPE=GIGABLUE
+	MODEL="ipbox"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="GigaBlue $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 ## TESTING THE Gigablue HD 800 Solo Model
 elif [ $MODEL = "gb800solo" ] ; then
 	TYPE=GIGABLUE

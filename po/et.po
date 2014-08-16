@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 00:26+0200\n"
+"POT-Creation-Date: 2014-07-21 19:08+0200\n"
 "PO-Revision-Date: 2014-03-04 17:07+0200\n"
 "Last-Translator: zeros <zeros@hot.ee>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -901,8 +901,8 @@ msgstr "Baski"
 msgid "Begin time"
 msgstr "Algusaeg"
 
-msgid "Behavior of 'pause' when paused"
-msgstr "Paus-nupu funktsioon"
+msgid "Behavior of 'pause and ok' when paused"
+msgstr ""
 
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "0-nupu funktsioon PiP-režiimis"
@@ -1230,6 +1230,9 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr ""
+
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr ""
 
@@ -1244,9 +1247,6 @@ msgstr "Seadista liides"
 
 msgid "Configure nameservers"
 msgstr "Seadista nimeserverid"
-
-msgid "Configure of and how long the latest service in the PiP will be remembered."
-msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Määra, millisel andmekandjal kasutatakse taustal kustutamise võimalust."
@@ -1263,8 +1263,8 @@ msgstr "Määra IP aaddress."
 msgid "Configure the aspect ratio of the screen."
 msgstr "Määra ekraani pildisuhe."
 
-msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "Määra 'paus' nupu toime, kui filmi esitus on juba peatatud."
+msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
+msgstr ""
 
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Määra käitumine filmi käsitsi peatamisel."
@@ -2103,6 +2103,12 @@ msgstr "EPG"
 msgid "Enable"
 msgstr "Luba"
 
+msgid "Enable 'neutrino' style channel select controlling"
+msgstr ""
+
+msgid "Enable 'neutrino' style zap controlling"
+msgstr ""
+
 msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
 
@@ -2138,9 +2144,6 @@ msgstr "Luba freesat EPG"
 
 msgid "Enable multiple bouquets"
 msgstr "Luba lemmiknimekirjad"
-
-msgid "Enable neutrino style zap controlling"
-msgstr ""
 
 msgid "Enable parental control"
 msgstr "Luba lapselukk"
@@ -3013,6 +3016,9 @@ msgstr[1] "Versioon  %d, leiti %d kanalit"
 msgid "Listen to the radio..."
 msgstr "Kuula raadiot..."
 
+msgid "Lists reloaded!"
+msgstr ""
+
 msgid "Lithuanian"
 msgstr "Leedu"
 
@@ -3711,6 +3717,9 @@ msgstr "Pane film lõpus seisma"
 
 msgid "Pause playback"
 msgstr "Peata taasesitus"
+
+msgid "Pauze/Continue playback"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Protsent vasakul"
@@ -5894,6 +5903,9 @@ msgstr "Taimeri liik"
 msgid "Timeshift"
 msgstr "Ajanihe"
 
+msgid "Timeshift Live"
+msgstr ""
+
 msgid "Timeshift location"
 msgstr "Ajanihke asukoht"
 
@@ -6502,7 +6514,10 @@ msgstr "Mida soovid otsida?"
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
-msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
+msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -7992,8 +8007,14 @@ msgstr "vahetatud"
 #~ msgid "BB"
 #~ msgstr "BB"
 
+#~ msgid "Behavior of 'pause' when paused"
+#~ msgstr "Paus-nupu funktsioon"
+
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "Committed DiSEqC-käsk"
+
+#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
+#~ msgstr "Määra 'paus' nupu toime, kui filmi esitus on juba peatatud."
 
 #~ msgid "DiSEqC repeats"
 #~ msgstr "DiSEqC-kordused"
