@@ -209,7 +209,6 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 
 void eSubtitleWidget::clearPage()
 {
-	eDebug("subtitle timeout... hide");
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
 	m_pango_page_ok = 0;
