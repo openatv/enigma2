@@ -61,7 +61,11 @@ class OscamInfo:
 				res = os.popen(cmd).read()
 				if res:
 					data = res.replace("\n", "")
-					data = '/' + data.split(" /")[1].strip() + '/oscam.conf'
+					try:
+						data = '/' + data.split(" /")[1].strip() + '/oscam.conf'
+					except:
+						print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed'
+						return None
 					if os.path.exists(data):
 						return data
 					print 'OScaminfo - config file "%s" not found' % data
