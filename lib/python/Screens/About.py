@@ -15,6 +15,8 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVer
 
 from Components.Network import iNetwork
 
+from Components.config import config, ConfigInteger
+
 from Tools.StbHardware import getFPVersion
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
@@ -401,6 +403,9 @@ class SystemMemoryInfo(AboutBase):
 
 		self["list"].updateList(self.list)
 
+config.network.interface_info_poll=ConfigInteger(default=5, limits=(1,3600))
+config.network.internet_info_poll=ConfigInteger(default=20, limits=(10,3600))
+
 class SystemNetworkInfo(AboutBase):
 
 	@staticmethod
@@ -434,21 +439,37 @@ class SystemNetworkInfo(AboutBase):
 		def __init__(self, screenList):
 			self.screenList = screenList
 			self.list = []
+			self.pos = 0
+			self.changed = set()
 
 		def reset(self):
-			self.list = []
+			self.pos = 0
 
 		def add(self, data):
-			self.list.append(data)
+			if self.pos < len(self.list):
+				if self.list[self.pos] != data:
+					self.list[self.pos] = data
+					self.changed.add(self.pos)
+			else:
+				self.list.append(data)
+				self.changed.add(self.pos)
+			self.pos += 1
 
 		def update(self, row, data):
-			self.list[row] = data
+			if row <= len(self.list) and self.list[row] != data:
+				self.list[row] = data
+				self.changed.add(row)
 
 		def updateScreen(self):
-			self.screenList.setList(self.list)
+			if len(self.changed) <= len(self.list) / 4 and len(self.list) == len(self.screenList.list):
+				for row in self.changed:
+					self.screenList.modifyEntry(row, self.list[row])
+			else:
+				self.screenList.updateList(self.list)
+			self.changed.clear()
 
 		def nextPos(self):
-			return len(self.list)
+			return self.pos
 
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
@@ -469,33 +490,53 @@ class SystemNetworkInfo(AboutBase):
 		self.allGateways = {}
 		self.allTransferredData = {}
 		self.linkState = {}
+		self.iNetState = False
+
+		self.ifacePollTime = config.network.interface_info_poll.value * 1000
+		self.inetPollTime = config.network.internet_info_poll.value * 1000
+
+		self.ifacePollTimer = eTimer()
+		self.ifacePollTimer.timeout.get().append(self.updateLinks)
+		self.inetPollTimer = eTimer()
+		self.inetPollTimer.timeout.get().append(self.updateInternetStatus)
 
 		self.updateLinks()
 		self.updateInternetStatus()
+
+		self.ifacePollTimer.start(self.ifacePollTime)
+		self.inetPollTimer.start(self.inetPollTime)
 
 	def updateLinks(self):
 		self.allGateways = about.getGateways()
 		self.allTransferredData = about.getAllIfTransferredData()
 
-		self.linkState = {}
+		anyLinkUp = any(self.linkState)
+
 		self.list.reset()
 
 		hostname = file('/proc/sys/kernel/hostname').read().strip()
 		self.iNetHeadInfo = { "row": self.list.nextPos(),
 				 "labels": (_("Hostname:"), hostname, _("Internet:"))
 				}
-		self.list.add(self.makeNetworkHeadEntry(*self.iNetHeadInfo["labels"] + (None,)))
+		self.list.add(self.makeNetworkHeadEntry(*self.iNetHeadInfo["labels"] + (self.linkIcons[self.iNetState],)))
 
 		for ifaceName in [ifn for ifn in iNetwork.getInstalledAdapters()
 					if ifn != 'lo']:
 			self.addIfList(ifaceName)
 
+		if anyLinkUp != any(self.linkState):
+			self.updateInternetStatus(restart=True)
+
 		self.list.updateScreen()
 
-	def updateInternetStatus(self):
-		iNetwork.checkNetworkState(self.checkNetworkCB)
+	def updateInternetStatus(self, restart=False):
+		if (iNetwork.PingConsole is None or len(iNetwork.PingConsole.appContainers) == 0):
+			iNetwork.checkNetworkState(self.checkNetworkCB)
+		if(restart):
+			self.inetPollTimer.start(self.inetPollTime)
 
 	def addIfList(self, ifaceName):
+		prevLinkState = ifaceName in self.linkState and self.linkState[ifaceName]
 		self.linkState[ifaceName] = False
 
 		iface = about.getIfConfig(ifaceName)
@@ -551,9 +592,9 @@ class SystemNetworkInfo(AboutBase):
 			and iface['flags']['running']
 
 	def cleanup(self):
+		self.ifacePollTimer.stop()
+		self.inetPollTimer.stop()
 		iNetwork.stopPingConsole()
-		if self.iStatus:
-			self.iStatus.stopWlanConsole()
 
 	def addWirelessInfo(self, ifaceName):
 		status = self.iStatus.getDataForInterface(ifaceName)
@@ -606,7 +647,8 @@ class SystemNetworkInfo(AboutBase):
 	def checkNetworkCB(self, data):
 		hdrInfo = self.iNetHeadInfo
 		if hdrInfo:
-			self.list.update(hdrInfo["row"], self.makeNetworkHeadEntry(*hdrInfo["labels"] + (self.linkIcons[data <= 2],)))
+			self.iNetState = data <= 2
+			self.list.update(hdrInfo["row"], self.makeNetworkHeadEntry(*hdrInfo["labels"] + (self.linkIcons[self.iNetState],)))
 			self.list.updateScreen()
 
 	def createSummary(self):
