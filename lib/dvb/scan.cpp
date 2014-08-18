@@ -705,7 +705,11 @@ void eDVBScan::channelDone()
 						eDVBFrontendParametersTerrestrial terr;
 						terr.set(d);
 						feparm->setDVBT(terr);
+						
+						unsigned long hash=0;
+						feparm->getHash(hash);
 						ns = buildNamespace(onid, tsid, hash);
+						
 						addChannelToScan(feparm);
 						break;
 					}
