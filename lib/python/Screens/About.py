@@ -51,16 +51,17 @@ class AboutBase(Screen):
 	ENT_INFO=2
 	ENT_HEADINFOLABEL=3
 	ENT_HEADINFO=4
-	ENT_ICONINFO1=5
-	ENT_GW=6
-	ENT_GWDEST=7
-	ENT_IFTYPE=8
-	NENT=9
+	ENT_GW=5
+	ENT_GWDEST=6
+	ENT_IFTYPE=7
+	ENT_INETLABEL=8
+	ENT_ICONINFO=9
+	NENT=10
 
 	@staticmethod
 	def makeEmptyEntry():
 		l = [''] * AboutBase.NENT
-		l[AboutBase.ENT_ICONINFO1] = None
+		l[AboutBase.ENT_ICONINFO] = None
 		return tuple(l)
 
 	@staticmethod
@@ -403,11 +404,12 @@ class SystemMemoryInfo(AboutBase):
 class SystemNetworkInfo(AboutBase):
 
 	@staticmethod
-	def makeNetworkHeadEntry(label, info, icon):
+	def makeNetworkHeadEntry(label, info, statusLabel, icon):
 		l = list(AboutBase.makeEmptyEntry())
 		l[SystemNetworkInfo.ENT_HEADINFOLABEL] = label
 		l[SystemNetworkInfo.ENT_IFTYPE] = info
-		l[SystemNetworkInfo.ENT_ICONINFO1] = icon
+		l[SystemNetworkInfo.ENT_INETLABEL] = statusLabel
+		l[SystemNetworkInfo.ENT_ICONINFO] = icon
 		return tuple(l)
 
 	@staticmethod
@@ -418,17 +420,20 @@ class SystemNetworkInfo(AboutBase):
 		return tuple(l)
 
 	@staticmethod
-	def getPixmap(pixmap):
-		try:
-			return LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, pixmap))
-		except Exception, e:
-			print "[SystemNetworkInfo]", e
-		return None
+	def getPixmaps(pixmapNames):
+		pixmaps = []
+		for name in pixmapNames:
+			try:
+				pixmaps.append(LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, name)))
+			except Exception, e:
+				pixmaps.append(None)
+				print "[SystemNetworkInfo]", e
+		return tuple(pixmaps)
 
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
 
-		self.linkIcons = (self.getPixmap("buttons/button_green_off.png"), self.getPixmap("buttons/button_green.png"))
+		self.linkIcons = self.getPixmaps(("buttons/button_green_off.png", "buttons/button_green.png"))
 
 		# self.config controls whether the items
 		# "BSSID", "ESSID", "quality", "signal",
@@ -437,50 +442,47 @@ class SystemNetworkInfo(AboutBase):
 		self.config = frozenset(("BSSID", "ESSID", "quality",
 					"signal", "bitrate", "enc"))
 
-		self.updateLocs = {}
-
-		self.currIfaceace = None
+		self.currIface = None
 		self.iStatus = None
 		self.allGateways = {}
 		self.allTransferredData = {}
+		self.linkState = {}
 
-		self.ifScan = []
+		self.updateLinks()
+		self.updateInternetStatus()
 
-		self.createscreen()
-
-	def createscreen(self):
+	def updateLinks(self):
 		self.allGateways = about.getGateways()
 		self.allTransferredData = about.getAllIfTransferredData()
 
-		self.ifScan = [ifn for ifn in iNetwork.getInstalledAdapters()
-					if ifn != 'lo']
-
+		self.linkState = {}
 		self.list = []
 
 		hostname = file('/proc/sys/kernel/hostname').read().strip()
-		self.list.append(self.makeHeadingInfoEntry(_("Hostname:"), hostname))
+		self.iNetHeadInfo = { "row": len(self.list),
+				 "labels": (_("Hostname:"), hostname, _("Internet:"))
+				}
+		self.list.append(self.makeNetworkHeadEntry(*self.iNetHeadInfo["labels"] + (None,)))
 
-		self.createIfList()
+		for ifaceName in [ifn for ifn in iNetwork.getInstalledAdapters()
+					if ifn != 'lo']:
+			self.addIfList(ifaceName)
 
-	def createIfList(self):
-		if self.ifScan:
-			self.currIface = self.ifScan.pop(0)
-		else:
-			self["list"].updateList(self.list)
-			self.currIface = None
-			return
+		self["list"].updateList(self.list)
 
-		ifaceName = self.currIface
+	def updateInternetStatus(self):
+		iNetwork.checkNetworkState(self.checkNetworkCB)
+
+	def addIfList(self, ifaceName):
+		self.linkState[ifaceName] = False
 
 		iface = about.getIfConfig(ifaceName)
 		if iface.has_key('addr'):
 			self.list.append(self.makeEmptyEntry())
 
-			netHeadLabels = (_("Network:"), iNetwork.getFriendlyAdapterName(ifaceName))
-			self.list.append(self.makeNetworkHeadEntry(*netHeadLabels + (self.linkIcons[int(False)],)))
-			if ifaceName not in self.updateLocs:
-				self.updateLocs[ifaceName] = {}
-			self.updateLocs[ifaceName]["linkIcon"] = {"loc": len(self.list)-1, "labels": netHeadLabels}
+			self.linkState[ifaceName] = self.getLinkState(ifaceName, iface)
+
+			self.list.append(self.makeNetworkHeadEntry(_("Network:"), iNetwork.getFriendlyAdapterName(ifaceName), _("Link:"), self.linkIcons[self.linkState[ifaceName]]))
 
 			self.list.append(self.makeInfoEntry(_("IP:"), str(iface['addr'])))
 			if iface.has_key('netmask'):
@@ -494,7 +496,7 @@ class SystemNetworkInfo(AboutBase):
 				if len(gateways) == 1:
 					gatewayLabel = _("Gateway:")
 				elif len(gateways) > 1:
-					gatewayLabel = _("Gateways:")
+					gatewayLabel = _("Gateways")
 					self.list.append(self.makeGwInfoEntry('', _("Gateway"), _("Destination")))
 				for gw in gateways:
 					if gw["destination"] == "0.0.0.0":
@@ -503,21 +505,12 @@ class SystemNetworkInfo(AboutBase):
 				gatewayLabel = None
 			transferredData = self.allTransferredData.get(ifaceName)
 			if transferredData:
-				self.list.append(self.makeInfoEntry(_("Bytes received:"), str(transferredData[0])))
-				self.list.append(self.makeInfoEntry(_("Bytes sent:"), str(transferredData[1])))
+				self.list.append(self.makeInfoEntry(_("Bytes in / out:"), ' / '.join([str(s) for s in transferredData])))
 
 			self.loadWanIfStatusModule(ifaceName)
 
 			if iNetwork.isWirelessInterface(ifaceName):
-				try:
-					self.iStatus.getDataForInterface(self.currIface, self.getInfoCB)
-				except:
-					self.setLinkIcon(False)
-					self.createIfList()
-			else:
-				iNetwork.getLinkState(self.currIface, self.getLinkStateCB)
-		else:
-			self.createIfList()
+				self.addWirelessInfo(ifaceName)
 
 	def loadWanIfStatusModule(self, ifaceName):
 		if 'iStatus' not in globals() and iNetwork.isWirelessInterface(ifaceName):
@@ -529,14 +522,21 @@ class SystemNetworkInfo(AboutBase):
 				pass
 			self.onClose.append(self.cleanup)
 
+	def getLinkState(self, ifaceName, iface):
+		return 'flags' in iface \
+			and 'up' in iface['flags'] \
+			and iface['flags']['up'] \
+			and 'running' in iface['flags'] \
+			and iface['flags']['running']
+
 	def cleanup(self):
+		iNetwork.stopPingConsole()
 		if self.iStatus:
 			self.iStatus.stopWlanConsole()
 
-	def getInfoCB(self, data, status):
-		self.LinkState = None
-		ifaceName = self.currIface
-		if data and status is not None and iNetwork.isWirelessInterface(ifaceName):
+	def addWirelessInfo(self, ifaceName):
+		status = self.iStatus.getDataForInterface(ifaceName)
+		if status:
 			if status[ifaceName]["essid"] == "off":
 				essid = _("No Connection")
 			else:
@@ -553,7 +553,7 @@ class SystemNetworkInfo(AboutBase):
 
 			if "quality" in self.config:
 				quality = status[ifaceName]["quality"]
-				self.list.append(self.makeInfoEntry(_('Link Quality:'), str(quality)))
+				self.list.append(self.makeInfoEntry(_('Link Quality:'), quality.replace('/', ' / ')))
 
 			if "bitrate" in self.config:
 				if status[ifaceName]["bitrate"] == '0':
@@ -575,53 +575,17 @@ class SystemNetworkInfo(AboutBase):
 				else:
 					encryption = _("Enabled")
 				self.list.append(self.makeInfoEntry(_('Encryption:'), str(encryption)))
-
-			if status[ifaceName]["essid"] == "off" or status[ifaceName]["accesspoint"] in [False, "Not-Associated"]:
-				self.LinkState = False
-				self.setLinkIcon(False)
-				self.createIfList()
-			else:
-				self.LinkState = True
-				iNetwork.checkNetworkState(self.checkNetworkCB)
+			self.linkState[ifaceName] = status[ifaceName]["essid"] != "off" and status[ifaceName]["accesspoint"] not in [False, "Not-Associated"]
+		else:
+			self.linkState[ifaceName] = False
 
 	def exit(self):
 		self.close()
 
-	def getLinkStateCB(self, data):
-		self.LinkState = None
-		for line in data.splitlines():
-			line = line.strip()
-			if 'Link detected:' in line:
-				if "yes" in line:
-					self.LinkState = True
-				else:
-					self.LinkState = False
-		if self.LinkState:
-			iNetwork.checkNetworkState(self.checkNetworkCB)
-		else:
-			self.setLinkIcon(False)
-			self.createIfList()
-
 	def checkNetworkCB(self, data):
-		try:
-			if iNetwork.getAdapterAttribute(self.currIface, "up") is True:
-				if self.LinkState is True:
-					if data <= 2:
-						self.setLinkIcon(True)
-					else:
-						self.setLinkIcon(False)
-				else:
-					self.setLinkIcon(False)
-			else:
-				self.setLinkIcon(False)
-		except:
-			self.setLinkIcon(False)
-		self.createIfList()
-
-	def setLinkIcon(self, on):
-		loc = self.updateLocs[self.currIface]["linkIcon"]["loc"]
-		labels = self.updateLocs[self.currIface]["linkIcon"]["labels"]
-		self.list[loc] = self.makeNetworkHeadEntry(labels[0], labels[1], self.linkIcons[int(on)])
+		hdrInfo = self.iNetHeadInfo
+		if hdrInfo:
+			self["list"].modifyEntry(hdrInfo["row"], self.makeNetworkHeadEntry(*hdrInfo["labels"] + (self.linkIcons[data <= 2],)))
 
 	def createSummary(self):
 		return AboutSummary
