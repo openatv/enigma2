@@ -282,10 +282,9 @@ class Devices(AboutBase):
 		scanning = _("Wait please while scanning for devices...")
 		self.list.append(self.makeHeadingEntry(scanning))
 		self["list"].updateList(self.list)
-		self.activityTimer.start(10)
+		self.activityTimer.start(10, True)
 
 	def populate2(self):
-		self.activityTimer.stop()
 
 		self.list = []
 
@@ -540,18 +539,18 @@ class SystemNetworkInfo(AboutBase):
 		self.linkState[ifaceName] = False
 
 		iface = about.getIfConfig(ifaceName)
-		if iface.has_key('addr'):
+		if 'addr' in iface:
 			self.list.add(self.makeEmptyEntry())
 
 			self.linkState[ifaceName] = self.getLinkState(ifaceName, iface)
 			self.list.add(self.makeNetworkHeadEntry(_("Network:"), iNetwork.getFriendlyAdapterName(ifaceName), _("Link:"), self.linkIcons[self.linkState[ifaceName]]))
 
 			self.list.add(self.makeInfoEntry(_("IP:"), str(iface['addr'])))
-			if iface.has_key('netmask'):
+			if 'netmask' in iface:
 				self.list.add(self.makeInfoEntry(_("Netmask:"), str(iface['netmask'])))
 			if 'brdaddr' in iface:
 				self.list.add(self.makeInfoEntry(_("Broadcast:"), iface['brdaddr']))
-			if iface.has_key('hwaddr'):
+			if 'hwaddr' in iface:
 				self.list.add(self.makeInfoEntry(_("MAC:"), iface['hwaddr']))
 			gateways = self.allGateways.get(ifaceName)
 			if gateways:
