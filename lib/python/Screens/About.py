@@ -430,8 +430,30 @@ class SystemNetworkInfo(AboutBase):
 				print "[SystemNetworkInfo]", e
 		return tuple(pixmaps)
 
+	class DisplayList:
+		def __init__(self, screenList):
+			self.screenList = screenList
+			self.list = []
+
+		def reset(self):
+			self.list = []
+
+		def add(self, data):
+			self.list.append(data)
+
+		def update(self, row, data):
+			self.list[row] = data
+
+		def updateScreen(self):
+			self.screenList.setList(self.list)
+
+		def nextPos(self):
+			return len(self.list)
+
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
+
+		self.list = self.DisplayList(self["list"])
 
 		self.linkIcons = self.getPixmaps(("buttons/button_green_off.png", "buttons/button_green.png"))
 
@@ -456,19 +478,19 @@ class SystemNetworkInfo(AboutBase):
 		self.allTransferredData = about.getAllIfTransferredData()
 
 		self.linkState = {}
-		self.list = []
+		self.list.reset()
 
 		hostname = file('/proc/sys/kernel/hostname').read().strip()
-		self.iNetHeadInfo = { "row": len(self.list),
+		self.iNetHeadInfo = { "row": self.list.nextPos(),
 				 "labels": (_("Hostname:"), hostname, _("Internet:"))
 				}
-		self.list.append(self.makeNetworkHeadEntry(*self.iNetHeadInfo["labels"] + (None,)))
+		self.list.add(self.makeNetworkHeadEntry(*self.iNetHeadInfo["labels"] + (None,)))
 
 		for ifaceName in [ifn for ifn in iNetwork.getInstalledAdapters()
 					if ifn != 'lo']:
 			self.addIfList(ifaceName)
 
-		self["list"].updateList(self.list)
+		self.list.updateScreen()
 
 	def updateInternetStatus(self):
 		iNetwork.checkNetworkState(self.checkNetworkCB)
@@ -478,34 +500,33 @@ class SystemNetworkInfo(AboutBase):
 
 		iface = about.getIfConfig(ifaceName)
 		if iface.has_key('addr'):
-			self.list.append(self.makeEmptyEntry())
+			self.list.add(self.makeEmptyEntry())
 
 			self.linkState[ifaceName] = self.getLinkState(ifaceName, iface)
+			self.list.add(self.makeNetworkHeadEntry(_("Network:"), iNetwork.getFriendlyAdapterName(ifaceName), _("Link:"), self.linkIcons[self.linkState[ifaceName]]))
 
-			self.list.append(self.makeNetworkHeadEntry(_("Network:"), iNetwork.getFriendlyAdapterName(ifaceName), _("Link:"), self.linkIcons[self.linkState[ifaceName]]))
-
-			self.list.append(self.makeInfoEntry(_("IP:"), str(iface['addr'])))
+			self.list.add(self.makeInfoEntry(_("IP:"), str(iface['addr'])))
 			if iface.has_key('netmask'):
-				self.list.append(self.makeInfoEntry(_("Netmask:"), str(iface['netmask'])))
+				self.list.add(self.makeInfoEntry(_("Netmask:"), str(iface['netmask'])))
 			if 'brdaddr' in iface:
-				self.list.append(self.makeInfoEntry(_("Broadcast:"), iface['brdaddr']))
+				self.list.add(self.makeInfoEntry(_("Broadcast:"), iface['brdaddr']))
 			if iface.has_key('hwaddr'):
-				self.list.append(self.makeInfoEntry(_("MAC:"), iface['hwaddr']))
+				self.list.add(self.makeInfoEntry(_("MAC:"), iface['hwaddr']))
 			gateways = self.allGateways.get(ifaceName)
 			if gateways:
 				if len(gateways) == 1:
 					gatewayLabel = _("Gateway:")
 				elif len(gateways) > 1:
 					gatewayLabel = _("Gateways")
-					self.list.append(self.makeGwInfoEntry('', _("Gateway"), _("Destination")))
+					self.list.add(self.makeGwInfoEntry('', _("Gateway"), _("Destination")))
 				for gw in gateways:
 					if gw["destination"] == "0.0.0.0":
 						gw["destination"] = "default"
-					self.list.append(self.makeGwInfoEntry(gatewayLabel, gw["gateway"], gw["destination"]))
+					self.list.add(self.makeGwInfoEntry(gatewayLabel, gw["gateway"], gw["destination"]))
 				gatewayLabel = None
 			transferredData = self.allTransferredData.get(ifaceName)
 			if transferredData:
-				self.list.append(self.makeInfoEntry(_("Bytes in / out:"), ' / '.join([str(s) for s in transferredData])))
+				self.list.add(self.makeInfoEntry(_("Bytes in / out:"), ' / '.join([str(s) for s in transferredData])))
 
 			self.loadWanIfStatusModule(ifaceName)
 
@@ -547,24 +568,24 @@ class SystemNetworkInfo(AboutBase):
 			else:
 				accesspoint = status[ifaceName]["accesspoint"]
 			if "BSSID" in self.config:
-				self.list.append(self.makeInfoEntry(_("Accesspoint:"), accesspoint))
+				self.list.add(self.makeInfoEntry(_("Accesspoint:"), accesspoint))
 			if "ESSID" in self.config:
-				self.list.append(self.makeInfoEntry(_("SSID:"), essid))
+				self.list.add(self.makeInfoEntry(_("SSID:"), essid))
 
 			if "quality" in self.config:
 				quality = status[ifaceName]["quality"]
-				self.list.append(self.makeInfoEntry(_('Link Quality:'), quality.replace('/', ' / ')))
+				self.list.add(self.makeInfoEntry(_('Link Quality:'), quality.replace('/', ' / ')))
 
 			if "bitrate" in self.config:
 				if status[ifaceName]["bitrate"] == '0':
 					bitrate = _("Unsupported")
 				else:
 					bitrate = str(status[ifaceName]["bitrate"])
-				self.list.append(self.makeInfoEntry(_('Bitrate:'), str(bitrate)))
+				self.list.add(self.makeInfoEntry(_('Bitrate:'), str(bitrate)))
 
 			if "signal" in self.config:
 				signal = status[ifaceName]["signal"]
-				self.list.append(self.makeInfoEntry(_('Signal Strength:'), str(signal)))
+				self.list.add(self.makeInfoEntry(_('Signal Strength:'), str(signal)))
 
 			if "enc" in self.config:
 				if status[ifaceName]["encryption"] == "off":
@@ -574,7 +595,7 @@ class SystemNetworkInfo(AboutBase):
 						encryption = _("Unsupported")
 				else:
 					encryption = _("Enabled")
-				self.list.append(self.makeInfoEntry(_('Encryption:'), str(encryption)))
+				self.list.add(self.makeInfoEntry(_('Encryption:'), str(encryption)))
 			self.linkState[ifaceName] = status[ifaceName]["essid"] != "off" and status[ifaceName]["accesspoint"] not in [False, "Not-Associated"]
 		else:
 			self.linkState[ifaceName] = False
@@ -585,7 +606,8 @@ class SystemNetworkInfo(AboutBase):
 	def checkNetworkCB(self, data):
 		hdrInfo = self.iNetHeadInfo
 		if hdrInfo:
-			self["list"].modifyEntry(hdrInfo["row"], self.makeNetworkHeadEntry(*hdrInfo["labels"] + (self.linkIcons[data <= 2],)))
+			self.list.update(hdrInfo["row"], self.makeNetworkHeadEntry(*hdrInfo["labels"] + (self.linkIcons[data <= 2],)))
+			self.list.updateScreen()
 
 	def createSummary(self):
 		return AboutSummary
