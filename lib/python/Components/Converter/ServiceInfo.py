@@ -83,10 +83,13 @@ class ServiceInfo(Converter, object):
 		video_height = None
 		video_aspect = None
 		if self.type in (self.IS_SD, self.IS_HD, self.IS_SD_AND_WIDESCREEN, self.IS_SD_AND_NOT_WIDESCREEN):
-			if path.exists("/proc/stb/vmpeg/0/yres"):
-				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
-				f.close()
+			try:
+				if path.exists("/proc/stb/vmpeg/0/yres"):
+					f = open("/proc/stb/vmpeg/0/yres", "r")
+					video_height = int(f.read(),16)
+					f.close()
+			except:
+				video_height = 0
 			if path.exists("/proc/stb/vmpeg/0/aspect"):
 				f = open("/proc/stb/vmpeg/0/aspect", "r")
 				video_aspect = int(f.read())
@@ -156,19 +159,25 @@ class ServiceInfo(Converter, object):
 
 		if self.type == self.XRES:
 			video_width = None
-			if path.exists("/proc/stb/vmpeg/0/xres"):
-				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(),16)
-				f.close()
+			try:
+				if path.exists("/proc/stb/vmpeg/0/xres"):
+					f = open("/proc/stb/vmpeg/0/xres", "r")
+					video_width = int(f.read(),16)
+					f.close()
+			except:
+				video_width = 0
 			if not video_width:
 				video_width = int(self.getServiceInfoString(info, iServiceInformation.sVideoWidth))
 			return "%d" % video_width
 		elif self.type == self.YRES:
 			video_height = None
-			if path.exists("/proc/stb/vmpeg/0/yres"):
-				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
-				f.close()
+			try:
+				if path.exists("/proc/stb/vmpeg/0/yres"):
+					f = open("/proc/stb/vmpeg/0/yres", "r")
+					video_height = int(f.read(),16)
+					f.close()
+			except:
+				video_height = 0
 			if not video_height:
 				video_height = int(self.getServiceInfoString(info, iServiceInformation.sVideoHeight))
 			return "%d" % video_height
