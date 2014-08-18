@@ -949,7 +949,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			menu.append((_("Network wizard"), "openwizard"))
 		kernel_ver = about.getKernelVersionString()
 		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
-		if getBoxType() not in ('DUMMY'):
+		if getBoxType() not in ('DUMMY') and self.iface == 'eth0':
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
