@@ -80,7 +80,7 @@ class eDVBScan: public Object, public iObject
 	void PMTready(int err);
 
 	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
-	void addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
+	void addChannelToScan(iDVBFrontendParameters *feparm);
 
 	int sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2, bool exact=false) const;
 

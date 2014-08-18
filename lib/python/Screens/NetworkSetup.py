@@ -2497,9 +2497,11 @@ class NetworkSamba(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		self.message.close()
-		self.feedscheck.close()
-		self.SambaStartStop()
+		#self.message.close()
+		#self.feedscheck.close()
+		#self.SambaStartStop()
+		# SAMBA INSTALLATION NEEDS A RESTART OF THE BOX BEFORE IT COULD BE USED !!
+		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
 		self.service_name = self.service_name + ' ' + basegroup + '-smbfs-client'

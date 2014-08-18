@@ -29,12 +29,12 @@ if distro.lower() == "openmips":
 elif distro.lower() == "openatv":
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
-if ImageVersion == '4.0' or ImageVersion == '3.0':
-	ImageVersion2= '4.1'
+if ImageVersion == '4.1' or ImageVersion == '4.0' or ImageVersion == '3.0':
+	ImageVersion2= '4.2'
 else:
-	ImageVersion2= '4.0'
+	ImageVersion2= '4.1'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
-feedurl_om = 'http://image.openmips.com/4.1'
+feedurl_om = 'http://image.openmips.com/4.2'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'

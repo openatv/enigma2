@@ -204,6 +204,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 					return False
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					self.disabled = True
 					if Screens.Standby.inStandby: # in standby
 						print "[PowerTimer] quitMainloop #1"
 						quitMainloop(1)
