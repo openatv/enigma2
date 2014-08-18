@@ -3,7 +3,6 @@
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
-#include <dvbsi++/logical_channel_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 #include <dvbsi++/logical_channel_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
@@ -530,6 +529,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 		}
 	}
 }
+
 
 void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 {
