@@ -6,7 +6,7 @@ from Components.NimManager import nimmanager
 from Components.Harddisk import harddiskmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
-from boxbranding import getBoxType
+
 import os
 import time
 
@@ -274,7 +274,7 @@ def InitUsageConfig():
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	config.network = ConfigSubsection()
-	if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus'):
+	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
 			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 		config.network.wol = ConfigYesNo(default = False)

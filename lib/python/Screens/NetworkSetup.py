@@ -511,7 +511,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self):
-		if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus'):
+		if SystemInfo["WakeOnLAN"]:
 			self.wolstartvalue = config.network.wol.value
 		self.list = []
 		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
