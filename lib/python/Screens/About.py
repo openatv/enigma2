@@ -345,14 +345,21 @@ class Devices(AboutBase):
 				if match(Devices.FSTABIPMATCH, m[0])]:
 			self.mountinfo += self.mountInfo(mount[0], mount[1], mount[2].upper(), twoLines=True)
 
-		for mountname in listdir('/media/autofs'):
-			mountpoint = path.join('/media/autofs', mountname)
-			self.mountinfo += self.mountInfo(mountpoint, mountpoint, 'AUTOFS', twoLines=True)
-		for mountname in listdir('/media/upnp'):
-			mountpoint = path.join('/media/upnp', mountname)
-			if path.isdir(mountpoint) and not mountname.startswith('.'):
-				self.mountinfo.append(self.makeWideNetworkEntry(mountpoint))
-				self.mountinfo.append(self.makeFilesystemEntry(None, 'DLNA', None, None))
+		try:
+			for mountname in listdir('/media/autofs'):
+				mountpoint = path.join('/media/autofs', mountname)
+				self.mountinfo += self.mountInfo(mountpoint, mountpoint, 'AUTOFS', twoLines=True)
+		except Exception, e:
+			print "[Devices] find autofs mounts:", e
+
+		try:
+			for mountname in listdir('/media/upnp'):
+				mountpoint = path.join('/media/upnp', mountname)
+				if path.isdir(mountpoint) and not mountname.startswith('.'):
+					self.mountinfo.append(self.makeWideNetworkEntry(mountpoint))
+					self.mountinfo.append(self.makeFilesystemEntry(None, 'DLNA', None, None))
+		except Exception, e:
+			print "[Devices] find DLNA mounts:", e
 
 		if not self.mountinfo:
 			self.mountinfo.append(self.makeWideFilesystemEntry(_('none')))
