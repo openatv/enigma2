@@ -4,7 +4,6 @@ from Components.Sources.StaticText import StaticText
 from Components.Harddisk import Harddisk, Partition, harddiskmanager, getProcMounts, getPartitionNames
 from Components.NimManager import nimmanager
 from Components.About import about
-from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
@@ -403,8 +402,8 @@ class SystemMemoryInfo(AboutBase):
 
 		self["list"].updateList(self.list)
 
-config.network.interface_info_poll=ConfigInteger(default=5, limits=(1,3600))
-config.network.internet_info_poll=ConfigInteger(default=20, limits=(10,3600))
+config.misc.interface_info_poll=ConfigInteger(default=5, limits=(1,3600))
+config.misc.internet_info_poll=ConfigInteger(default=20, limits=(10,3600))
 
 class SystemNetworkInfo(AboutBase):
 
@@ -495,8 +494,8 @@ class SystemNetworkInfo(AboutBase):
 		self.linkState = {}
 		self.iNetState = False
 
-		self.ifacePollTime = config.network.interface_info_poll.value * 1000
-		self.inetPollTime = config.network.internet_info_poll.value * 1000
+		self.ifacePollTime = config.misc.interface_info_poll.value * 1000
+		self.inetPollTime = config.misc.internet_info_poll.value * 1000
 
 		self.ifacePollTimer = eTimer()
 		self.ifacePollTimer.timeout.get().append(self.updateLinks)
