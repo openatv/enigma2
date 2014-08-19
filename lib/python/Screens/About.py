@@ -7,6 +7,7 @@ from Components.About import about
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Label import Label
+from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List
 from keyids import KEYIDS
 from enigma import eTimer, getEnigmaVersionString, gFont, eActionMap, eListbox
@@ -473,6 +474,9 @@ class SystemNetworkInfo(AboutBase):
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
 
+		self["hostname"] = Label()
+		self["inetstatus"] = MultiPixmap()
+
 		self.list = self.DisplayList(self["list"])
 
 		self.linkIcons = self.getPixmaps(("buttons/button_green_off.png", "buttons/button_green.png"))
@@ -514,10 +518,9 @@ class SystemNetworkInfo(AboutBase):
 		self.list.reset()
 
 		hostname = file('/proc/sys/kernel/hostname').read().strip()
-		self.iNetHeadInfo = { "row": self.list.nextPos(),
-				 "labels": (_("Hostname:"), hostname, _("Internet:"))
-				}
-		self.list.add(self.makeNetworkHeadEntry(*self.iNetHeadInfo["labels"] + (self.linkIcons[self.iNetState],)))
+
+		self["hostname"].setText(hostname)
+		self["inetstatus"].setPixmapNum(self.iNetState)
 
 		for ifaceName in [ifn for ifn in iNetwork.getInstalledAdapters()
 					if ifn != 'lo']:
@@ -540,8 +543,6 @@ class SystemNetworkInfo(AboutBase):
 
 		iface = about.getIfConfig(ifaceName)
 		if 'addr' in iface:
-			self.list.add(self.makeEmptyEntry())
-
 			self.linkState[ifaceName] = self.getLinkState(ifaceName, iface)
 			self.list.add(self.makeNetworkHeadEntry(_("Network:"), iNetwork.getFriendlyAdapterName(ifaceName), _("Link:"), self.linkIcons[self.linkState[ifaceName]]))
 
@@ -644,11 +645,8 @@ class SystemNetworkInfo(AboutBase):
 		self.close()
 
 	def checkNetworkCB(self, data):
-		hdrInfo = self.iNetHeadInfo
-		if hdrInfo:
-			self.iNetState = data <= 2
-			self.list.update(hdrInfo["row"], self.makeNetworkHeadEntry(*hdrInfo["labels"] + (self.linkIcons[self.iNetState],)))
-			self.list.updateScreen()
+		self.iNetState = data <= 2
+		self["inetstatus"].setPixmapNum(self.iNetState)
 
 	def createSummary(self):
 		return AboutSummary
