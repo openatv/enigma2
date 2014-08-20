@@ -115,14 +115,21 @@ class EPGFetcher(object):
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
                 saveConfigFile()
             self.last_msg = "EPG download OK"
+            if "timers" in shows:
+                self.processTimers(shows["timers"])
+            _session.open(MessageBox, _("EPG and timers downloaded"), type=MessageBox.TYPE_INFO, timeout=5)
+            return
         except RuntimeError as ex:
             print "[IceTV] Can not download EPG:", ex
             self.last_msg = "Can not download EPG: " + str(ex)
             _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
-            return
-        if "timers" in shows:
-            self.processTimers(shows["timers"])
-        _session.open(MessageBox, _("EPG and timers downloaded"), type=MessageBox.TYPE_INFO, timeout=5)
+        try:
+            timers = self.getTimers()
+            self.processTimers(timers)
+        except RuntimeError as ex:
+            print "[IceTV] Can not download timers:", ex
+            self.last_msg = "Can not download timers: " + str(ex)
+            _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
 
     def makeChanServMap(self, channels):
         res = {}
@@ -199,6 +206,12 @@ class EPGFetcher(object):
         res = req.get().json()
         print "[IceTV] channels:", res
         return res.get("channels", [])
+
+    def getTimers(self):
+        req = ice.Timers()
+        res = req.get().json()
+        print "[IceTV] timers:", res
+        return res.get("timers", [])
 
 fetcher = EPGFetcher()
 
