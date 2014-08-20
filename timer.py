@@ -125,7 +125,7 @@ class TimerEntry:
 		pass
 
 	def fail(self):
-		self.faileded = True
+		self.failed = True
 
 	def disable(self):
 		self.disabled = True
