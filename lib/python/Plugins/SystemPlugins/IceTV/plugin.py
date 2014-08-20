@@ -35,8 +35,8 @@ class IceTVMain(ChoiceBox):
         global _session
         if _session is None:
             _session = session
-        menu = [("Enable IceTV", "CALLFUNC", enableIceTV),
-                ("Disable IceTV", "CALLFUNC", disableIceTV),
+        menu = [("Enable IceTV", "CALLFUNC", self.enable),
+                ("Disable IceTV", "CALLFUNC", self.disable),
                 ("Configure IceTV", "CALLFUNC", configIceTV),
                 ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
                 ]
@@ -45,6 +45,14 @@ class IceTVMain(ChoiceBox):
     def close(self, retval):
         print "[IceTV] IceTVMain answer was", retval
         super(IceTVMain, self).close()
+
+    def enable(self, res=None):
+        enableIceTV(res)
+        _session.open(MessageBox, _("IceTV enabled"), type=MessageBox.TYPE_INFO, timeout=5)
+
+    def disable(self, res=None):
+        disableIceTV(res)
+        _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
 
 def enableIceTV(res=None):
@@ -60,8 +68,6 @@ def enableIceTV(res=None):
     epgcache.clear()
     epgcache.save()
     saveConfigFile()
-    _session.open(MessageBox, _("IceTV enabled"), type=MessageBox.TYPE_INFO, timeout=5)
-
 
 def disableIceTV(res=None):
     print "[IceTV] disableIceTV"
@@ -72,12 +78,11 @@ def disableIceTV(res=None):
     epgcache.setEpgSources(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
     config.epg.eit.value = True
     config.epg.save()
-    config.usage.show_eit_nownext.value = False
+    config.usage.show_eit_nownext.value = True
     config.usage.show_eit_nownext.save()
     config.plugins.icetv.enable_epg.value = False
     config.plugins.icetv.last_update_time.value = 0
     saveConfigFile()
-    _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
 def configIceTV(res=None):
     print "[IceTV] configIceTV"
@@ -221,7 +226,7 @@ def sessionstart_main(reason, session, **kwargs):
 
 def wizard_main(*args, **kwargs):
     print "[IceTV] wizard"
-    return IceTVMain(*args, **kwargs)
+    return IceTVSelectProviderScreen(*args, **kwargs)
 
 
 def plugin_main(session, **kwargs):
@@ -232,33 +237,81 @@ def plugin_main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    return [
+    res = []
+    res.append(
         PluginDescriptor(
             name="IceTV",
             where=PluginDescriptor.WHERE_AUTOSTART,
             description=_("IceTV"),
             fnc=autostart_main
-        ),
+        ))
+    res.append(
         PluginDescriptor(
             name="IceTV",
             where=PluginDescriptor.WHERE_SESSIONSTART,
             description=_("IceTV"),
             fnc=sessionstart_main
-        ),
+        ))
+    res.append(
         PluginDescriptor(
             name="IceTV",
             where=PluginDescriptor.WHERE_PLUGINMENU,
             description=_("IceTV"),
             icon="icon.png",
             fnc=plugin_main
-        ),
-#         PluginDescriptor(
-#             name="IceTV",
-#             where=PluginDescriptor.WHERE_WIZARD,
-#             description=_("IceTV"),
-#             fnc=(95, wizard_main)
-#         ),
-    ]
+        ))
+    if not config.plugins.icetv.configured.value:
+        # TODO: Check that we have networking
+        res.append(
+            PluginDescriptor(
+                name="IceTV",
+                where=PluginDescriptor.WHERE_WIZARD,
+                description=_("IceTV"),
+                fnc=(95, wizard_main)
+            ))
+    return res
+
+
+class IceTVSelectProviderScreen(Screen):
+    skin = """
+<screen name="IceTVSelectProviderScreen" position="320,130" size="640,400" title="Select EPG provider" >
+ <widget position="20,20" size="600,280" name="instructions" font="Regular;22" />
+ <widget position="20,300" size="600,100" name="menu" />
+</screen>
+"""
+    _instructions = _("Select the EPG provider for your %s %s.\n\n"
+                      "Free To Air: EPG broadcast by the TV stations.\n\n"
+                      "IceTV: Subscription service - includes a free trial."
+                      ) % (getMachineBrand(), getMachineName())
+
+    def __init__(self, session, args=None):
+        self.session = session
+        Screen.__init__(self, session)
+        self["instructions"] = Label(_(self._instructions))
+        options = []
+        options.append((_("Free To Air"), "eitEpg"))
+        options.append((_("IceTV (with free trial)"), "iceEpg"))
+        self["menu"] = MenuList(options)
+        self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
+                                 actions={
+                                     "cancel": self.cancel,
+                                     "ok": self.ok,
+                                 }, prio=-1)
+
+    def cancel(self):
+        self.close()
+
+    def ok(self):
+        selection = self["menu"].getCurrent()
+        print "[IceTV] ok - selection: ", selection
+        if selection[1] == "eitEpg":
+            config.plugins.icetv.configured.value = True
+            config.plugins.icetv.configured.save()
+            disableIceTV()
+        elif selection[1] == "iceEpg":
+            enableIceTV()
+            self.session.open(IceTVUserTypeScreen)
+        self.close()
 
 
 class IceTVUserTypeScreen(Screen):
@@ -517,6 +570,8 @@ class IceTVLogin(Screen):
                                       "the Google Play Store and the Windows Phone Store.\n\n"
                                       "Download it today!"))
             self["qrcode"].show()
+            config.plugins.icetv.configured.value = True
+            config.plugins.icetv.configured.save()
         except RuntimeError as ex:
             print "[IceTV] Login failure:", ex
             msg = _("Login failure: ") + str(ex)

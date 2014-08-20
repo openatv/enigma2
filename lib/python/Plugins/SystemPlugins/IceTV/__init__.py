@@ -30,6 +30,7 @@ config.plugins.icetv.device.type_id = ConfigNumber(default=22)
 
 config.plugins.icetv.last_update_time = ConfigNumber()
 config.plugins.icetv.enable_epg = ConfigYesNo(default=True)
+config.plugins.icetv.configured = ConfigYesNo(default=False)
 
 checktimes = {
     "2 minutes": 2 * 60,
