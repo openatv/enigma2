@@ -453,10 +453,11 @@ class IceTVRegionSetup(Screen):
 
 class IceTVLogin(Screen):
     skin = """
-<screen name="IceTVLogin" position="320,130" size="640,510" title="IceTV - Login" >
-    <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
-    <widget name="message" position="30,120" size="580,300" font="Regular;22" />
-    <widget name="error" position="30,120" size="580,300" font="Console; 16" zPosition="1" />
+<screen name="IceTVLogin" position="220,115" size="840,570" title="IceTV - Login" >
+    <widget name="instructions" position="20,10" size="800,80" font="Regular;22" />
+    <widget name="error" position="30,120" size="780,300" font="Console; 16" zPosition="1" />
+    <widget name="qrcode" position="292,90" size="256,256" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/qr_code.png" zPosition="1" />
+    <widget name="message" position="20,360" size="800,170" font="Regular;22" />
 
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -474,6 +475,8 @@ class IceTVLogin(Screen):
         self["message"] = Label()
         self["error"] = Label()
         self["error"].hide()
+        self["qrcode"] = Pixmap()
+        self["qrcode"].hide()
         self["key_red"] = Label()
         self["key_green"] = Label(_("Done"))
         self["key_yellow"] = Label()
@@ -505,12 +508,15 @@ class IceTVLogin(Screen):
             pass
         try:
             self.loginCmd()
-            self["message"].setText(_("Congratulations, you have successfully configured your %s %s "
-                                      "for use with the IceTV Smart Recording service.\n\n"
-                                      "For more information, visit icetv.com.au\n\n"
-                                      "Your IceTV guide will now download in the background.")
-                                    % (getMachineBrand(), getMachineName()))
-            self["instructions"].setText(_("Setup is complete"))
+            self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
+                                           "for use with the IceTV Smart Recording service. "
+                                           "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
+            self["message"].setText(_("Enjoy how IceTV can enhance your TV viewing experience by "
+                                      "downloading the IceTV app to your smartphone or tablet. "
+                                      "The IceTV app is available free from the iTunes App Store, "
+                                      "the Google Play Store and the Windows Phone Store.\n\n"
+                                      "Download it today!"))
+            self["qrcode"].show()
         except RuntimeError as ex:
             print "[IceTV] Login failure:", ex
             msg = _("Login failure: ") + str(ex)
