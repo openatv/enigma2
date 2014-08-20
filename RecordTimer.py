@@ -85,10 +85,14 @@ wasRecTimerWakeup = False
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False, always_zap = False):
+	def __init__(self, serviceref, begin, end, name, description, eit,
+				disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO,
+				checkOldTimers=False, dirname=None, tags=None,
+				descramble='notset', record_ecm='notset',
+				isAutoTimer=False, iceTimerId=None, always_zap=False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
-			if self.begin < time() - 1209600:	# 2 weeks
+			if self.begin < time() - 1209600:  # 2 weeks
 				self.begin = int(time())
 
 		if self.end < self.begin:
@@ -114,7 +118,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
 		self.autoincrease = False
-		self.autoincreasetime = 3600 * 24 # 1 day
+		self.autoincreasetime = 3600 * 24  # 1 day
 		self.tags = tags or []
 
 		if descramble == 'notset' and record_ecm == 'notset':
@@ -134,6 +138,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
 		self.isAutoTimer = isAutoTimer
+		self.iceTimerId = iceTimerId
 		self.wasInStandby = False
 
 		self.log_entries = []
@@ -454,7 +459,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		else:
 			new_end = entry.begin -30
 
-		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit, disabled=True, justplay = self.justplay, afterEvent = self.afterEvent, dirname = self.dirname, tags = self.tags)
+		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit,
+									disabled=True, justplay=self.justplay, afterEvent=self.afterEvent,
+									dirname=self.dirname, tags=self.tags)
 		dummyentry.disabled = self.disabled
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.RecordTimer.timer_list, dummyentry)
 		if not timersanitycheck.check():
@@ -626,10 +633,14 @@ def createTimer(xml):
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
 	isAutoTimer = int(xml.get("isAutoTimer") or "0")
-
+	iceTimerId = xml.get("iceTimerId")
+	if iceTimerId:
+		iceTimerId = iceTimerId.encode("utf-8")
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent,
+							dirname=location, tags=tags, descramble=descramble, record_ecm=record_ecm,
+							isAutoTimer=isAutoTimer, iceTimerId=iceTimerId, always_zap=always_zap)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -764,6 +775,8 @@ class RecordTimer(timer.Timer):
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
+			if timer.iceTimerId is not None:
+				list.append(' iceTimerId="' + str(timer.iceTimerId) + '"')
 			list.append('>\n')
 
 			for time, code, msg in timer.log_entries:

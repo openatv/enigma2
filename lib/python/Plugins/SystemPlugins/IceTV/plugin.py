@@ -174,7 +174,7 @@ class EPGFetcher(object):
                 start = int(timegm(strptime(timer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(timer["duration_minutes"])
                 message = timer.get("message", "").encode("utf8")
-                rec_id = timer["id"].encode("utf8")
+                iceTimerId = timer["id"].encode("utf8")
                 channel_id = long(timer["channel_id"])
                 channels = channel_service_map[channel_id]
                 print "[IceTV] channel_id %s maps to" % channel_id, channels
@@ -183,7 +183,7 @@ class EPGFetcher(object):
                     serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
                     if db.isValidService(channel[1], channel[0], channel[2]):
                         print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
-                        recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, tags=["iceid:%s" % rec_id])
+                        recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, iceTimerId=iceTimerId)
                         conflicts = _session.nav.RecordTimer.record(recording)
                         if conflicts is None:
                             print "[IceTV] Timer added to service:", serviceref
