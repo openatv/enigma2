@@ -13,7 +13,7 @@ from socket import socket, AF_INET, SOCK_DGRAM
 from . import config, saveConfigFile
 from boxbranding import getMachineBrand, getMachineName
 
-_version_string = "20140812"
+_version_string = "20140821"
 _server = "http://api.icetv.com.au"
 _device_type_id = 22
 
@@ -225,3 +225,23 @@ class Timers(AuthRequest):
 
     def get(self):
         return self.send("get")
+
+    def post(self):
+        return self.send("post")
+
+    def put(self):
+        return self.send("put")
+
+
+class Timer(AuthRequest):
+    def __init__(self, timerid):
+        super(Timer, self).__init__("/shows/timers" + str(timerid))
+
+    def get(self):
+        return self.send("get")
+
+    def put(self):
+        return self.send("put")
+
+    def delete(self):
+        return self.send("delete")
