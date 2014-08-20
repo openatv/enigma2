@@ -7,7 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer, eEPGCache
+from enigma import eTimer, eEPGCache, eDVBDB
 from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -171,10 +171,11 @@ class EPGFetcher(object):
                 channel_id = long(timer["channel_id"])
                 channels = channel_service_map[channel_id]
                 print "[IceTV] channel_id %s maps to" % channel_id, channels
+                db = eDVBDB.getInstance()
                 for channel in channels:
                     serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
-                    if serviceref.isRecordable():
-                        print "[IceTV] %s is recordable" % str(serviceref), serviceref.getServiceName()
+                    if db.isValidService(channel[1], channel[0], channel[2]):
+                        print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
                         recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, tags=["iceid:%s" % rec_id])
                         conflicts = _session.nav.RecordTimer.record(recording)
                         if conflicts is None:
@@ -183,7 +184,7 @@ class EPGFetcher(object):
                         else:
                             print "[IceTV] Timer conflict / bad service:", conflicts
                     else:
-                        print "[IceTV] %s is NOT recordable" % str(serviceref), serviceref.getServiceName()
+                        print "[IceTV] %s is NOT valid" % str(serviceref)
             except (RuntimeError, KeyError) as ex:
                 print "[IceTV] Can not process timer:", ex
 
