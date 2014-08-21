@@ -24,6 +24,7 @@ from ServiceReference import ServiceReference
 from calendar import timegm
 from time import strptime
 from . import config, saveConfigFile
+from Components.Task import Job, PythonTask, job_manager
 import API as ice
 
 _session = None
@@ -39,8 +40,9 @@ class IceTVMain(ChoiceBox):
                 ("Disable IceTV", "CALLFUNC", self.disable),
                 ("Configure IceTV", "CALLFUNC", configIceTV),
                 ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
+                ("Show timers", "CALLFUNC", self.showTimers),
                 ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
+        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu, text=fetcher.last_msg)
 
     def close(self, retval):
         print "[IceTV] IceTVMain answer was", retval
@@ -53,6 +55,12 @@ class IceTVMain(ChoiceBox):
     def disable(self, res=None):
         disableIceTV(res)
         _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
+
+    def showTimers(self, res=None):
+        curTimers = _session.nav.RecordTimer.timer_list
+        print "[IceTV] current timers:", curTimers
+        doneTimers = _session.nav.RecordTimer.processed_timers
+        print "[IceTV] processed timers:", doneTimers
 
 
 def enableIceTV(res=None):
@@ -91,16 +99,25 @@ def configIceTV(res=None):
 
 class EPGFetcher(object):
     def __init__(self):
-        self.downloadTimer = eTimer()
-        self.downloadTimer.callback.append(self.onDownloadStart)
+        print "[IceTV] Created EPGFetcher"
+        self.fetchTimer = eTimer()
+        self.fetchTimer.callback.append(self.createFetchJob)
+        self.fetchTimer.start(3 * 60 * 1000)
         self.last_msg = ""
+
+    def createFetchJob(self):
+        print "[IceTV] Created EPGFetcher fetch job"
+        job = Job(_("IceTV update job"))
+        task = PythonTask(job, _("Fetch"))
+        task.work = self.doWork
+        job_manager.AddJob(job)
 
     def fetchEpg(self, res=None):
         print "[IceTV] fetchEpg"
-        self.downloadTimer.start(3, True)
+        self.doWork()
 
-    def onDownloadStart(self):
-        self.downloadTimer.stop()
+    def doWork(self):
+        print "[IceTV] EPGFetcher doWork()"
         try:
             shows = self.getShows()
             channel_service_map = self.makeChanServMap(shows["channels"])
@@ -117,19 +134,16 @@ class EPGFetcher(object):
             self.last_msg = "EPG download OK"
             if "timers" in shows:
                 self.processTimers(shows["timers"])
-            _session.open(MessageBox, _("EPG and timers downloaded"), type=MessageBox.TYPE_INFO, timeout=5)
             return
         except RuntimeError as ex:
             print "[IceTV] Can not download EPG:", ex
             self.last_msg = "Can not download EPG: " + str(ex)
-            _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
         try:
             timers = self.getTimers()
             self.processTimers(timers)
         except RuntimeError as ex:
             print "[IceTV] Can not download timers:", ex
             self.last_msg = "Can not download timers: " + str(ex)
-            _session.open(MessageBox, _(self.last_msg), type=MessageBox.TYPE_ERROR, timeout=10)
 
     def makeChanServMap(self, channels):
         res = {}
