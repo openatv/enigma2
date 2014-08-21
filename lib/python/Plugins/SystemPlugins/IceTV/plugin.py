@@ -337,22 +337,27 @@ def Plugins(**kwargs):
 class IceTVSelectProviderScreen(Screen):
     skin = """
 <screen name="IceTVSelectProviderScreen" position="320,130" size="640,400" title="Select EPG provider" >
- <widget position="20,20" size="600,280" name="instructions" font="Regular;22" />
+ <widget position="20,20" size="600,280" name="instructions" font="Regular;20" />
  <widget position="20,300" size="600,100" name="menu" />
 </screen>
 """
-    _instructions = _("Select the EPG provider for your %s %s.\n\n"
-                      "Free To Air: EPG broadcast by the TV stations.\n\n"
-                      "IceTV: Subscription service - includes a free trial."
-                      ) % (getMachineBrand(), getMachineName())
+    _instructions = _("IceTV will change the way you watch TV! IceTV gives you the power to "
+                      "discover and manage programmes you want to see. Build your own playlists "
+                      "of TV Shows based on the series and favourites you are interested in "
+                      "and, when they air, IceTV will take care of the rest. You can set TV "
+                      "show recordings from wherever you are. Whether you're sitting in front "
+                      "of the TV, on the bus or on holidays overseas. With IceTV choose the "
+                      "show you want to record and press 'record'. Simple!\n\n"
+                      "Free To Air - Basic EPG as broadcast by the TV stations."
+                      )
 
     def __init__(self, session, args=None):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(_(self._instructions))
         options = []
-        options.append((_("Free To Air"), "eitEpg"))
         options.append((_("IceTV (with free trial)"), "iceEpg"))
+        options.append((_("Free To Air"), "eitEpg"))
         self["menu"] = MenuList(options)
         self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
                                  actions={
