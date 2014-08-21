@@ -36,6 +36,7 @@ class STBInfo(Poll, Converter):
     USBINFO = 6
     HDDINFO = 7
     FLASHINFO = 8
+    DRIVERINFO = 9
 
     def __init__(self, type):
         Converter.__init__(self, type)
@@ -59,6 +60,8 @@ class STBInfo(Poll, Converter):
             self.type = self.USBINFO
         elif 'HddInfo' in type:
             self.type = self.HDDINFO
+        elif 'DriverInfo' in type:
+            self.type = self.DRIVERINFO
         else:
             self.type = self.FLASHINFO
         if self.type in (self.FLASHINFO, self.HDDINFO, self.USBINFO):
@@ -81,6 +84,8 @@ class STBInfo(Poll, Converter):
             text = self.getHddTemp()
         elif self.type == self.LOADAVG:
             text = self.getLoadAvg()
+        elif self.type == self.DRIVERINFO:
+            text = self.getDriverInfo()
         else:
             entry = {self.MEMTOTAL: ('Mem', 'Ram'),
              self.MEMFREE: ('Mem', 'Ram'),
@@ -149,6 +154,18 @@ class STBInfo(Poll, Converter):
         try:
             out_line = popen('cat /proc/loadavg').readline()
             info = 'Loadavg: ' + out_line[:15]
+            textvalue = info
+        except:
+            pass
+        return textvalue
+
+    def getDriverInfo(self):
+        textvalue = 'No info'
+        info = '0'
+        try:
+            popen('modinfo dvb |grep version: > /tmp/modinfo')
+            out_line = popen('cat /tmp/modinfo').readline()
+            info = 'Driver: ' + out_line[16:50]
             textvalue = info
         except:
             pass
