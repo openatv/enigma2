@@ -96,15 +96,15 @@ class STBInfo(Poll, Converter):
             if list[0] == 0:
                 text = '%s: Not Available' % entry[1]
             elif self.shortFormat:
-                text = '%s: %s, in use: %s%%' % (entry[1], self.getSizeStr(list[0]), list[3])
+                text = '%s:  Total %s, in use %s%%' % (entry[1], self.getSizeStr(list[0]), list[3])
             elif self.fullFormat:
-                text = '%s: %s Free:%s Used:%s (%s%%)' % (entry[1],
+                text = '%s:  Total %s  Free %s  Used %s (%s%%)' % (entry[1],
                  self.getSizeStr(list[0]),
                  self.getSizeStr(list[2]),
                  self.getSizeStr(list[1]),
                  list[3])
             else:
-                text = '%s: %s Used:%s Free:%s' % (entry[1],
+                text = '%s:  Total %s  Used %s  Free %s' % (entry[1],
                  self.getSizeStr(list[0]),
                  self.getSizeStr(list[1]),
                  self.getSizeStr(list[2]))
@@ -137,7 +137,7 @@ class STBInfo(Poll, Converter):
         info = '0'
         try:
             out_line = popen('hddtemp -n -q /dev/sda').readline()
-            info = 'Hdd C:' + out_line[:4]
+            info = 'Hdd C: ' + out_line[:4]
             textvalue = info
         except:
             pass
@@ -148,7 +148,7 @@ class STBInfo(Poll, Converter):
         info = '0'
         try:
             out_line = popen('cat /proc/loadavg').readline()
-            info = 'loadavg:' + out_line[:15]
+            info = 'Loadavg: ' + out_line[:15]
             textvalue = info
         except:
             pass
