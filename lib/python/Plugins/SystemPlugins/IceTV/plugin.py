@@ -42,7 +42,6 @@ class IceTVMain(ChoiceBox):
                 ("Disable IceTV", "CALLFUNC", self.disable),
                 ("Configure IceTV", "CALLFUNC", configIceTV),
                 ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
-                ("Show timers", "CALLFUNC", self.showTimers),
                 ("Show log", "CALLFUNC", self.showLog),
                 ]
         super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
@@ -55,11 +54,6 @@ class IceTVMain(ChoiceBox):
         disableIceTV()
         _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
-    def showTimers(self, res=None):
-        curTimers = _session.nav.RecordTimer.timer_list
-        print "[IceTV] current timers:", curTimers
-        doneTimers = _session.nav.RecordTimer.processed_timers
-        print "[IceTV] processed timers:", doneTimers
 
 def configIceTV(res=None):
     print "[IceTV] configIceTV"
