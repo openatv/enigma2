@@ -172,6 +172,7 @@ class EPGFetcher(object):
                             print "[IceTV] removing timer:", timer
                             _session.nav.RecordTimer.removeEntry(timer)
                     iceTimer["state"] = "completed"
+                    iceTimer["message"] = "Removed"
                     update_queue.append(iceTimer)
                 else:
                     completed = False
@@ -179,6 +180,7 @@ class EPGFetcher(object):
                         if timer.iceTimerId == iceTimerId:
                             print "[IceTV] completed timer:", timer
                             iceTimer["state"] = "completed"
+                            iceTimer["message"] = "Done"
                             update_queue.append(iceTimer)
                             completed = True
                     # Create or update iceTimer
@@ -190,6 +192,7 @@ class EPGFetcher(object):
                                 # TODO: Update and run sanity checks see TimerEdit.finishedEdit
                                 _session.nav.RecordTimer.timeChanged(timer)
                                 iceTimer["state"] = "pending"
+                                iceTimer["message"] = "Updated"
                                 update_queue.append(iceTimer)
                                 updated = True
                     created = False
@@ -207,13 +210,16 @@ class EPGFetcher(object):
                                 if conflicts is None:
                                     print "[IceTV] Timer added to service:", serviceref
                                     iceTimer["state"] = "pending"
+                                    iceTimer["message"] = "Added"
                                     update_queue.append(iceTimer)
                                     created = True
                                     break
                                 else:
-                                    print "[IceTV] Timer conflict / bad service:", conflicts
+                                    print "[IceTV] Timer conflict:", conflicts
+                                    iceTimer["message"] = "Conflict"
                             else:
                                 print "[IceTV] %s is NOT valid" % str(serviceref)
+                                iceTimer["message"] = "No matching service"
                     if not completed and not updated and not created:
                         iceTimer["state"] = "failed"
                         update_queue.append(iceTimer)
