@@ -79,17 +79,30 @@ class EPGFetcher(object):
         print "[IceTV] Created EPGFetcher"
         self.fetchTimer = eTimer()
         self.fetchTimer.callback.append(self.createFetchJob)
-        self.fetchTimer.start(3 * 60 * 1000)
+        config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
+        self.fetchTimer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
+        self.log = deque(maxlen=40)
+        self.addLog("IceTV started")
 
-    def createFetchJob(self):
-        print "[IceTV] Created EPGFetcher fetch job"
-        job = Job(_("IceTV update job"))
-        task = PythonTask(job, _("Fetch"))
-        task.work = self.doWork
-        job_manager.AddJob(job)
+    def freqChanged(self, refresh_interval):
+        self.fetchTimer.stop()
+        self.fetchTimer.start(int(refresh_interval.value) * 1000)
+
     def addLog(self, msg):
         self.log.append("%s: %s" % (str(datetime.now()).split(".")[0], msg))
 
+    def createFetchJob(self, res=None):
+        if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
+            global passwordRequested
+            if passwordRequested:
+                self.addLog("Can not proceed - you need to login first")
+                print "[IceTV] Not creating fetch job - need login"
+                return
+            job = Job(_("IceTV update job"))
+            task = PythonTask(job, _("Fetch"))
+            task.work = self.doWork
+            job_manager.AddJob(job)
+            print "[IceTV] Created EPGFetcher fetch job"
 
     def doWork(self):
         global passwordRequested
@@ -291,6 +304,7 @@ def sessionstart_main(reason, session, **kwargs):
         print "[IceTV] sessionstart start"
         if _session is None:
             _session = session
+        fetcher.createFetchJob()
     elif reason == 1:
         print "[IceTV] sessionstart stop"
         _session = None
@@ -457,6 +471,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     _email = _("Email")
     _password = _("Password")
     _label = _("Label")
+    _update_interval = _("Connect to IceTV server every")
 
     def __init__(self, session, args=None):
         self.session = session
@@ -476,6 +491,8 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
                                 _("Your password must have at least 5 characters.")),
              getConfigListEntry(self._label, config.plugins.icetv.device.label,
                                 _("Choose a label that will identify this device within IceTV services.")),
+             getConfigListEntry(self._update_interval, config.plugins.icetv.refresh_interval,
+                                _("Choose how often to connect to IceTV server to check for updates.")),
         ]
         ConfigListScreen.__init__(self, self.list, session)
         self["InusActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
