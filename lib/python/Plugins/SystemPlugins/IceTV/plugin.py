@@ -40,7 +40,7 @@ class IceTVMain(ChoiceBox):
             _session = session
         menu = [("Enable IceTV", "CALLFUNC", self.enable),
                 ("Disable IceTV", "CALLFUNC", self.disable),
-                ("Configure IceTV", "CALLFUNC", configIceTV),
+                ("Configure IceTV", "CALLFUNC", self.configure),
                 ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
                 ("Show log", "CALLFUNC", self.showLog),
                 ]
@@ -54,10 +54,9 @@ class IceTVMain(ChoiceBox):
         disableIceTV()
         _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
+    def configure(self, res=None):
+        _session.open(IceTVUserTypeScreen)
 
-def configIceTV(res=None):
-    print "[IceTV] configIceTV"
-    _session.open(IceTVUserTypeScreen)
 
 
     def showLog(self, res=None):
