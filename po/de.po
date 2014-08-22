@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-08-22 16:35+0100\n"
+"PO-Revision-Date: 2014-08-22 18:07+0100\n"
 "Last-Translator: Schimmelreiter <Ziggy.SpaceRat at gmx dot de>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1017,7 +1017,7 @@ msgid "Always ask before sending"
 msgstr "Vor dem Senden immer nachfragen."
 
 msgid "Always show bouquets"
-msgstr "Immer Bouquets anzeigen"
+msgstr "Bouquets immer anzeigen"
 
 #
 msgid "An empty filename is illegal."
@@ -1428,7 +1428,7 @@ msgid "Button"
 msgstr "Taste"
 
 msgid "Button setup"
-msgstr "Tastenbelegung einstellen"
+msgstr "Tastenbelegung"
 
 msgid "By openATV Image Team"
 msgstr "Vom openATV Image-Team"
@@ -1570,7 +1570,7 @@ msgstr "DVB-Untertitel zentrieren"
 
 #
 msgid "Change bouquets in quickzap"
-msgstr "Bouquets wechseln beim Quickzap"
+msgstr "Bouquets beim Quickzap wechseln"
 
 #
 msgid "Change pin code"
@@ -1607,10 +1607,10 @@ msgid "Channel"
 msgstr "Kanal"
 
 msgid "Channel +/- button mode"
-msgstr "Kanal +/-Tasten-Modus"
+msgstr "Funktion der Tasten Kanal +/-"
 
 msgid "Channel 1 at start"
-msgstr "Programmplatz 1 beim Start"
+msgstr "Starte auf Programmplatz 1"
 
 msgid "Channel Info"
 msgstr "Programm-Informationen"
@@ -1639,7 +1639,7 @@ msgid "Channel list on mode change"
 msgstr "Kanalliste bei Moduswechsel"
 
 msgid "Channel list preview"
-msgstr "Kanallisten-Vorschaumodus"
+msgstr "Vorschau"
 
 msgid "Channel list service mode (requires restart)"
 msgstr "Kanallisten-Servicemode (benötigt Neustart)"
@@ -2973,10 +2973,10 @@ msgid "EPG Setup"
 msgstr "EPG-Einstellungen"
 
 msgid "EPG button mode"
-msgstr "EPG-Tastenmodus"
+msgstr "Funktion der EPG-Taste"
 
 msgid "INFO button mode"
-msgstr "Modus für die Info-Taste"
+msgstr "Funktion der Info-Taste"
 
 msgid "EPG filename"
 msgstr "EPG-Dateiname"
@@ -6089,7 +6089,7 @@ msgid "Quick"
 msgstr "Schnell"
 
 msgid "QuickEPG mode"
-msgstr "QuickEPG-Modus"
+msgstr "Aufruf von QuickEPG"
 
 #
 msgid "Quickzap"
@@ -7411,7 +7411,7 @@ msgid "Show bouquet on launch"
 msgstr "Zeige Bouquet beim Start"
 
 msgid "Show channel numbers in channel selection"
-msgstr "Zeige Kanalnummer in Kanalauswahl"
+msgstr "Kanalnummer anzeigen"
 
 msgid "Show channel selection on mode change"
 msgstr "Zeige Kanalauswahl bei Betriebsartwechsel"
@@ -7420,11 +7420,11 @@ msgid "Show crypto info in infobar"
 msgstr "Zeige Verschlüsselungs-Details in Infoleiste"
 
 msgid "Show crypto icons"
-msgstr "Zeige Verschlüsselungs-Icons"
+msgstr "Anzeige der Verschlüsselung"
 
 #
 msgid "Show event-progress in channel selection"
-msgstr "Zeige Sendungs-Fortschritt in der Kanal-Liste"
+msgstr "Sendungsfortschritt anzeigen"
 
 msgid "Show icon for new/unseen items"
 msgstr "Zeige Icon für neue/ungesehene Elemente"
@@ -7993,7 +7993,7 @@ msgid "TV System"
 msgstr "Fernsehnorm"
 
 msgid "TV button mode"
-msgstr "TV-Taster Modus"
+msgstr "Funktion der TV-Taste"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -10323,7 +10323,7 @@ msgid "Zap focus to main screen"
 msgstr "Fokus umschalten zum Hauptbildschirm"
 
 msgid "Zap mode"
-msgstr "Umschalte-Modus"
+msgstr "Umschaltmodus"
 
 msgid "[TimeShift] - Merging records failed!"
 msgstr "[TimeShift] - Zusammenführen der Aufnahmen fehlgeschlagen!"
@@ -12545,7 +12545,7 @@ msgid "Toggle Sort"
 msgstr "Sortierung ändern"
 
 msgid "Channel list service mode*"
-msgstr "Kanalliste Service Mode*"
+msgstr "Servicemodus*"
 
 msgid "Jump first press in channel selection"
 msgstr "Springe zuerst in Programmauswahl"
@@ -13136,19 +13136,19 @@ msgstr "Zeige verstrichene Zeit mit positivem Vorzeichen"
 
 #: Einstellunen Kanallisten-Menue
 msgid "Service number font size"
-msgstr "Schriftgröße der Sendernummern"
+msgstr "Schriftgröße für Sendernummern"
 
 #: Einstellunen Kanallisten-Menue
 msgid "Service name font size"
-msgstr "Schriftgröße der Sendernamen"
+msgstr "Schriftgröße für Sendernamen"
 
 #: Einstellunen Kanallisten-Menue
 msgid "Service info font size"
-msgstr "Schriftgröße der Sendungsinformation"
+msgstr "Schriftgröße für Sendungsinformationen"
 
 #: Einstellunen Kanallisten-Menue
 msgid "Number of rows"
-msgstr "Anzahl Zeilen in der Kanalliste"
+msgstr "Anzahl der Zeilen"
 
 msgid "GIGA LED Setup"
 msgstr "GIGA LED Einstellung"
@@ -14033,7 +14033,7 @@ msgstr "Größe: "
 
 #
 msgid "Setup mode"
-msgstr "Einstellungs Modus"
+msgstr "Einstellungs-Ansicht"
 
 #
 msgid "EPG settings"
@@ -14057,11 +14057,11 @@ msgstr "Kanal Vorschau Modus"
 
 #
 msgid "OK button (long)"
-msgstr "OK Taste (lang)"
+msgstr "OK-Taste (lang)"
 
 #
 msgid "OK button (short)"
-msgstr "OK Taste (kurz)"
+msgstr "OK-Taste (kurz)"
 
 #
 msgid "Skip empty services"
@@ -14076,7 +14076,7 @@ msgstr ""
 
 #
 msgid "You can have the list sorted by time or alphanumerical."
-msgstr "Sie können die Liste sortieren nach Zeit oder alphabetisch."
+msgstr "Sie können die Liste chronologisch oder alphabetisch sortieren."
 
 #
 msgid ""
@@ -14122,7 +14122,7 @@ msgstr "Breite"
 
 #
 msgid "Timeline font size"
-msgstr "Zeitskala Schriftgröße"
+msgstr "Schriftgröße für die Zeitskala"
 
 #
 msgid "Service Title mode"
@@ -14822,7 +14822,7 @@ msgid "Your %s %s does not support PiP HD"
 msgstr "Ihre %s %s unterstützt kein Bild in Bild HD"
 
 msgid "Show service type icons"
-msgstr "Zeige Service Type Icons"
+msgstr "Anzeige des Servicetyps"
 
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
@@ -14915,10 +14915,10 @@ msgid "Timeshift save recording (Select event)"
 msgstr "Timeshift Aufnahme speichern (wähle Ereignis)"
 
 msgid "Up/Down button mode"
-msgstr "Hoch/Runter Tasten-Modus"
+msgstr "Funktion der Tasten Hoch/Runter"
 
 msgid "OK button mode"
-msgstr "OK-Tastenmodus"
+msgstr "Funktion der OK-Taste"
 
 msgid "Select what you want the OK button to activate:"
 msgstr "Wählen Sie was die OK-Taste bewirken soll:"
@@ -14998,7 +14998,7 @@ msgstr ""
 
 # boot-up action
 msgid "Boot-up action"
-msgstr "Boot Aktion"
+msgstr "Startmodus"
 
 msgid ""
 "Select what should be done when the %s %s was boot-up, normal playing or "
@@ -15008,7 +15008,7 @@ msgstr ""
 "Normal Starten oder in den Standby gehen?"
 
 msgid "show picons in service list"
-msgstr "Zeige Picons in der Kanalliste"
+msgstr "Senderlogos anzeigen"
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Wenn aktiviert, werden die Picons in der Kanalliste angezeigt."
@@ -15253,7 +15253,7 @@ msgid "Storage devices"
 msgstr "Speichergeräte"
 
 msgid "Channel list cursor behavior"
-msgstr "Kanallisten Cursor verhalten"
+msgstr "Cursorverhalten"
 
 msgid ""
 "Configure the cursor behaviour in the channel selection list. When opening "
