@@ -121,11 +121,41 @@ def getBootLoaderVersion(callback):
 
 import socket, fcntl, struct
 
+SIOCGIFADDR    = 0x8915
+SIOCGIFBRDADDR = 0x8919
+SIOCSIFHWADDR  = 0x8927
+SIOCGIFNETMASK = 0x891b
+SIOCGIFFLAGS   = 0x8913
+
+ifflags = {
+	"up":          0x1,	# interface is up
+	"broadcast":   0x2,	# broadcast address valid
+	"debug":       0x4,	# turn on debugging
+	"loopback":    0x8,	# is a loopback net
+	"pointopoint": 0x10,	# interface is has p-p link
+	"notrailers":  0x20,	# avoid use of trailers
+	"running":     0x40,	# interface RFC2863 OPER_UP
+	"noarp":       0x80,	# no ARP protocol
+	"promisc":     0x100,	# receive all packets
+	"allmulti":    0x200,	# receive all multicast packets
+	"master":      0x400,	# master of a load balancer
+	"slave":       0x800,	# slave of a load balancer
+	"multicast":   0x1000,	# Supports multicast
+	"portsel":     0x2000,	# can set media type
+	"automedia":   0x4000,	# auto media select active
+	"dynamic":     0x8000,	# dialup device with changing addresses
+	"lower_up":    0x10000,	# driver signals L1 up
+	"dormant":     0x20000,	# driver signals dormant
+	"echo":        0x40000,	# echo sent packets
+}
+
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', ifname[:15])
 	info  = fcntl.ioctl(sock.fileno(), addr, iface)
-	if addr == 0x8927:
-		return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
+	if addr == SIOCSIFHWADDR:
+		return ':'.join(['%02X' % ord(char) for char in info[18:24]])
+	elif addr == SIOCGIFFLAGS:
+		return socket.ntohl(struct.unpack("!L", info[16:20])[0])
 	else:
 		return socket.inet_ntoa(info[20:24])
 
@@ -134,15 +164,19 @@ def getIfConfig(ifname):
 	infos = {}
 	sock  = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	# offsets defined in /usr/include/linux/sockios.h on linux 2.6
-	infos['addr']    = 0x8915 # SIOCGIFADDR
-	infos['brdaddr'] = 0x8919 # SIOCGIFBRDADDR
-	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
-	infos['netmask'] = 0x891b # SIOCGIFNETMASK
+	infos['addr']    = SIOCGIFADDR
+	infos['brdaddr'] = SIOCGIFBRDADDR
+	infos['hwaddr']  = SIOCSIFHWADDR
+	infos['netmask'] = SIOCGIFNETMASK
+	infos['flags']   = SIOCGIFFLAGS
 	try:
 		for k,v in infos.items():
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
 		pass
+	if 'flags' in ifreq:
+		flags = ifreq['flags']
+		ifreq['flags'] = dict([(name, bool(flags & flag)) for name, flag in ifflags.items()])
 	sock.close()
 	return ifreq
 
