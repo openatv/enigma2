@@ -253,7 +253,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), self.descramble, self.record_ecm)
+			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -499,7 +499,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A record has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby and Screens.InfoBar.InfoBar.instance.execing
+			notify = config.usage.show_message_when_recording_starts.value and \
+				not Screens.Standby.inStandby and \
+				Screens.InfoBar.InfoBar.instance and \
+				Screens.InfoBar.InfoBar.instance.execing
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
