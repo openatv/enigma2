@@ -32,25 +32,25 @@ config.plugins.icetv.last_update_time = ConfigNumber()
 config.plugins.icetv.enable_epg = ConfigYesNo(default=True)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
 
-checktimes = {
-    "2 minutes": 2 * 60,
-    "5 minutes": 5 * 60,
-    "10 minutes": 10 * 60,
-    "15 minutes": 15 * 60,
-    "30 minutes": 30 * 60,
-    "1 hour": 60 * 60,
-    "2 hours": 2 * 60 * 60,
-    "3 hours": 3 * 60 * 60,
-    "4 hours": 4 * 60 * 60,
-    "5 hours": 5 * 60 * 60,
-    "6 hours": 6 * 60 * 60,
-    "7 hours": 7 * 60 * 60,
-    "8 hours": 8 * 60 * 60,
-    "12 hours": 12 * 60 * 60,
-    "24 hours": 24 * 60 * 60,
-}
+checktimes = [
+    ("%d" % int(2 * 60      ), "2 minutes" ),
+    ("%d" % int(5 * 60      ), "5 minutes" ),
+    ("%d" % int(10 * 60     ), "10 minutes"),
+    ("%d" % int(15 * 60     ), "15 minutes"),
+    ("%d" % int(30 * 60     ), "30 minutes"),
+    ("%d" % int(60 * 60     ), "1 hour"    ),
+    ("%d" % int(2 * 60 * 60 ), "2 hours"   ),
+    ("%d" % int(3 * 60 * 60 ), "3 hours"   ),
+    ("%d" % int(4 * 60 * 60 ), "4 hours"   ),
+    ("%d" % int(5 * 60 * 60 ), "5 hours"   ),
+    ("%d" % int(6 * 60 * 60 ), "6 hours"   ),
+    ("%d" % int(7 * 60 * 60 ), "7 hours"   ),
+    ("%d" % int(8 * 60 * 60 ), "8 hours"   ),
+    ("%d" % int(12 * 60 * 60), "12 hours"  ),
+    ("%d" % int(24 * 60 * 60), "24 hours"  ),
+]
 
-config.plugins.icetv.refresh_interval = ConfigSelection(default="15 minutes", choices=checktimes)
+config.plugins.icetv.refresh_interval = ConfigSelection(default=checktimes[3][0], choices=checktimes)
 
 def saveConfigFile():
     config.plugins.icetv.save()
