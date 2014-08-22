@@ -7,6 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
+from enigma import eEPGCache
 from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo
@@ -55,3 +56,30 @@ config.plugins.icetv.refresh_interval = ConfigSelection(default=checktimes[3][0]
 def saveConfigFile():
     config.plugins.icetv.save()
     configfile.save()
+
+def enableIceTV():
+    config.epg.eit.value = False
+    config.epg.save()
+    config.usage.show_eit_nownext.value = False
+    config.usage.show_eit_nownext.save()
+    config.plugins.icetv.enable_epg.value = True
+    config.plugins.icetv.last_update_time.value = 0
+    epgcache = eEPGCache.getInstance()
+    epgcache.setEpgSources(0)
+    epgcache.clear()
+    epgcache.save()
+    saveConfigFile()
+
+def disableIceTV():
+    epgcache = eEPGCache.getInstance()
+    epgcache.setEpgSources(0)
+    epgcache.clear()
+    epgcache.save()
+    epgcache.setEpgSources(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
+    config.epg.eit.value = True
+    config.epg.save()
+    config.usage.show_eit_nownext.value = True
+    config.usage.show_eit_nownext.save()
+    config.plugins.icetv.enable_epg.value = False
+    config.plugins.icetv.last_update_time.value = 0
+    saveConfigFile()

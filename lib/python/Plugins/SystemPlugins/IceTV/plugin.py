@@ -23,7 +23,7 @@ from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
 from time import strptime
-from . import config, saveConfigFile
+from . import config, saveConfigFile, enableIceTV, disableIceTV
 from Components.Task import Job, PythonTask, job_manager
 import API as ice
 
@@ -49,11 +49,11 @@ class IceTVMain(ChoiceBox):
         super(IceTVMain, self).close()
 
     def enable(self, res=None):
-        enableIceTV(res)
+        enableIceTV()
         _session.open(MessageBox, _("IceTV enabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
     def disable(self, res=None):
-        disableIceTV(res)
+        disableIceTV()
         _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
     def showTimers(self, res=None):
@@ -61,36 +61,6 @@ class IceTVMain(ChoiceBox):
         print "[IceTV] current timers:", curTimers
         doneTimers = _session.nav.RecordTimer.processed_timers
         print "[IceTV] processed timers:", doneTimers
-
-
-def enableIceTV(res=None):
-    print "[IceTV] enableIceTV"
-    config.epg.eit.value = False
-    config.epg.save()
-    config.usage.show_eit_nownext.value = False
-    config.usage.show_eit_nownext.save()
-    config.plugins.icetv.enable_epg.value = True
-    config.plugins.icetv.last_update_time.value = 0
-    epgcache = eEPGCache.getInstance()
-    epgcache.setEpgSources(0)
-    epgcache.clear()
-    epgcache.save()
-    saveConfigFile()
-
-def disableIceTV(res=None):
-    print "[IceTV] disableIceTV"
-    epgcache = eEPGCache.getInstance()
-    epgcache.setEpgSources(0)
-    epgcache.clear()
-    epgcache.save()
-    epgcache.setEpgSources(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
-    config.epg.eit.value = True
-    config.epg.save()
-    config.usage.show_eit_nownext.value = True
-    config.usage.show_eit_nownext.save()
-    config.plugins.icetv.enable_epg.value = False
-    config.plugins.icetv.last_update_time.value = 0
-    saveConfigFile()
 
 def configIceTV(res=None):
     print "[IceTV] configIceTV"
