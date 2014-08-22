@@ -42,6 +42,7 @@ class IceTVMain(ChoiceBox):
                 ("Disable IceTV", "CALLFUNC", self.disable),
                 ("Configure IceTV", "CALLFUNC", self.configure),
                 ("Fetch EPG and update timers now", "CALLFUNC", self.fetch),
+                ("Login to IceTV server", "CALLFUNC", self.login),
                 ("Show log", "CALLFUNC", self.showLog),
                 ]
         super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
@@ -60,6 +61,8 @@ class IceTVMain(ChoiceBox):
     def fetch(self, res=None):
         fetcher.doWork()
 
+    def login(self, res=None):
+        _session.open(IceTVNeedPassword)
 
     def showLog(self, res=None):
         _session.open(LogView, "\n".join(fetcher.log))
@@ -69,6 +72,7 @@ class LogView(TextBox):
         <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
 </screen>"""
 
+passwordRequested = False
 
 class EPGFetcher(object):
     def __init__(self):
@@ -88,8 +92,18 @@ class EPGFetcher(object):
 
 
     def doWork(self):
+        global passwordRequested
         print "[IceTV] EPGFetcher doWork()"
         self.addLog("Start update")
+        if passwordRequested:
+            self.addLog("Can not proceed - you need to login first")
+            return
+        if not ice.have_credentials():
+            passwordRequested = True
+            self.addLog("No token, requesting password...")
+            _session.open(IceTVNeedPassword)
+            if not ice.have_credentials():
+                return
         try:
             shows = self.getShows()
             channel_service_map = self.makeChanServMap(shows["channels"])
@@ -118,6 +132,10 @@ class EPGFetcher(object):
         except RuntimeError as ex:
             print "[IceTV] Can not download timers:", ex
             self.addLog("Can not download timers: " + str(ex))
+        if not ice.have_credentials() and not passwordRequested:
+            passwordRequested = True
+            self.addLog("No token, requesting password...")
+            _session.open(IceTVNeedPassword)
 
     def makeChanServMap(self, channels):
         res = {}
@@ -455,7 +473,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
              getConfigListEntry(self._email, config.plugins.icetv.member.email_address,
                                 _("Your email address is used to login to IceTV services.")),
              getConfigListEntry(self._password, config.plugins.icetv.member.password,
-                                _("Choose a password with at least 5 characters.")),
+                                _("Your password must have at least 5 characters.")),
              getConfigListEntry(self._label, config.plugins.icetv.device.label,
                                 _("Choose a label that will identify this device within IceTV services.")),
         ]
@@ -655,3 +673,71 @@ class IceTVCreateLogin(IceTVLogin):
         ice.Login(config.plugins.icetv.member.email_address.value,
                   config.plugins.icetv.member.password.value,
                   config.plugins.icetv.member.region_id.value).post()
+
+
+class IceTVNeedPassword(ConfigListScreen, Screen):
+    skin = """
+<screen name="IceTVNeedPassword" position="320,230" size="640,310" title="IceTV - Password required" >
+    <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
+    <widget name="config" position="20,120" size="600,100" />
+
+    <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
+    <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
+    <widget name="VKeyIcon" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
+    <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+</screen>"""
+
+    _instructions = _("The IceTV server has requested password for %s.") % config.plugins.icetv.member.email_address.value
+    _password = _("Password")
+    _update_interval = _("Connect to IceTV server every")
+
+    def __init__(self, session, args=None):
+        self.session = session
+        Screen.__init__(self, session)
+        self["instructions"] = Label(self._instructions)
+        self["description"] = Label()
+        self["key_red"] = Label(_("Cancel"))
+        self["key_green"] = Label(_("Login"))
+        self["key_yellow"] = Label()
+        self["key_blue"] = Label(_("Keyboard"))
+        self["VKeyIcon"] = Pixmap()
+        self.list = [
+             getConfigListEntry(self._password, config.plugins.icetv.member.password,
+                                _("Your existing IceTV password.")),
+             getConfigListEntry(self._update_interval, config.plugins.icetv.refresh_interval,
+                                _("Choose how often to connect to IceTV server to check for updates.")),
+        ]
+        ConfigListScreen.__init__(self, self.list, session)
+        self["InpActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
+                                        actions={
+                                             "cancel": self.keyCancel,
+                                             "red": self.keyCancel,
+                                             "green": self.doLogin,
+                                             "blue": self.KeyText,
+                                             "ok": self.KeyText,
+                                         }, prio=-2)
+
+    def doLogin(self):
+        self.saveAll()
+        try:
+            self.loginCmd()
+            self.close()
+            global passwordRequested
+            passwordRequested = False
+            fetcher.addLog("Login OK")
+        except RuntimeError as ex:
+            print "[IceTV] Login failure:", ex
+            msg = _("Login failure: ") + str(ex)
+            if hasattr(ex, 'response'):
+                print "[IceTV] Server says:", ex.response.text
+                msg += "\n%s" % str(ex.response.text).strip()
+            self.session.open(MessageBox, _(msg), type=MessageBox.TYPE_ERROR)
+            fetcher.addLog(msg)
+
+    def loginCmd(self):
+        ice.Login(config.plugins.icetv.member.email_address.value,
+                  config.plugins.icetv.member.password.value).post()
