@@ -23,15 +23,17 @@ from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
 from time import strptime
+from datetime import datetime
 from . import config, saveConfigFile, enableIceTV, disableIceTV
 from Components.Task import Job, PythonTask, job_manager
 import API as ice
+from collections import deque
+from Screens.TextBox import TextBox
 
 _session = None
 
 
 class IceTVMain(ChoiceBox):
-
     def __init__(self, session, *args, **kwargs):
         global _session
         if _session is None:
@@ -41,12 +43,9 @@ class IceTVMain(ChoiceBox):
                 ("Configure IceTV", "CALLFUNC", configIceTV),
                 ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
                 ("Show timers", "CALLFUNC", self.showTimers),
+                ("Show log", "CALLFUNC", self.showLog),
                 ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu, text=fetcher.last_msg)
-
-    def close(self, retval):
-        print "[IceTV] IceTVMain answer was", retval
-        super(IceTVMain, self).close()
+        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
 
     def enable(self, res=None):
         enableIceTV()
@@ -67,13 +66,21 @@ def configIceTV(res=None):
     _session.open(IceTVUserTypeScreen)
 
 
+    def showLog(self, res=None):
+        _session.open(LogView, "\n".join(fetcher.log))
+
+class LogView(TextBox):
+    skin = """<screen name="LogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
+        <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
+</screen>"""
+
+
 class EPGFetcher(object):
     def __init__(self):
         print "[IceTV] Created EPGFetcher"
         self.fetchTimer = eTimer()
         self.fetchTimer.callback.append(self.createFetchJob)
         self.fetchTimer.start(3 * 60 * 1000)
-        self.last_msg = ""
 
     def createFetchJob(self):
         print "[IceTV] Created EPGFetcher fetch job"
@@ -85,9 +92,13 @@ class EPGFetcher(object):
     def fetchEpg(self, res=None):
         print "[IceTV] fetchEpg"
         self.doWork()
+    def addLog(self, msg):
+        self.log.append("%s: %s" % (str(datetime.now()).split(".")[0], msg))
+
 
     def doWork(self):
         print "[IceTV] EPGFetcher doWork()"
+        self.addLog("Start update")
         try:
             shows = self.getShows()
             channel_service_map = self.makeChanServMap(shows["channels"])
@@ -101,19 +112,21 @@ class EPGFetcher(object):
             if "last_update_time" in shows:
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
                 saveConfigFile()
-            self.last_msg = "EPG download OK"
+            self.addLog("EPG download OK")
             if "timers" in shows:
                 self.processTimers(shows["timers"])
+            self.addLog("End update")
             return
         except RuntimeError as ex:
             print "[IceTV] Can not download EPG:", ex
-            self.last_msg = "Can not download EPG: " + str(ex)
+            self.addLog("Can not download EPG: " + str(ex))
         try:
             timers = self.getTimers()
             self.processTimers(timers)
+            self.addLog("End update")
         except RuntimeError as ex:
             print "[IceTV] Can not download timers:", ex
-            self.last_msg = "Can not download timers: " + str(ex)
+            self.addLog("Can not download timers: " + str(ex))
 
     def makeChanServMap(self, channels):
         res = {}
@@ -218,8 +231,10 @@ class EPGFetcher(object):
         # Now send back updated timer states
         try:
             self.putTimers(update_queue)
+            self.addLog("Timers updated OK")
         except (RuntimeError, KeyError) as ex:
             print "[IceTV] Can not update server timers:", ex
+            self.addLog("Can not update server timers: " + str(ex))
 
     def getShows(self):
         req = ice.Shows()
@@ -230,7 +245,6 @@ class EPGFetcher(object):
     def getChannels(self):
         req = ice.Channels(config.plugins.icetv.member.region_id.value)
         res = req.get().json()
-        print "[IceTV] get channels:", res
         return res.get("channels", [])
 
     def getTimers(self):
@@ -252,7 +266,6 @@ def autostart_main(reason, **kwargs):
         print "[IceTV] autostart start"
     elif reason == 1:
         print "[IceTV] autostart stop"
-        print "[IceTV] autostart Here is where we should save the config"
     else:
         print "[IceTV] autostart with unknown reason:", reason
 
