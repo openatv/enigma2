@@ -13,7 +13,7 @@ from socket import socket, AF_INET, SOCK_DGRAM
 from . import config, saveConfigFile
 from boxbranding import getMachineBrand, getMachineName
 
-_version_string = "20140821"
+_version_string = "20140822"
 _server = "http://api.icetv.com.au"
 _device_type_id = 22
 
@@ -58,13 +58,7 @@ class Request(object):
             "User-Agent": "SystemPlugins.IceTV/%s (%s; %s)" % (_version_string, getMachineBrand(), getMachineName()),
         }
         self.url = _server + resource
-        self.data = {
-            "device": {
-                "uid": get_mac_address('eth0'),
-                "label": config.plugins.icetv.device.label.value,
-                "type_id": config.plugins.icetv.device.type_id.value,
-            }
-        }
+        self.data = {}
         self.response = None
 
     def send(self, method):
@@ -113,6 +107,11 @@ class Channels(Request):
 class Login(Request):
     def __init__(self, email, password, region=None):
         super(Login, self).__init__("/login")
+        self.data["device"] = {
+            "uid": get_mac_address('eth0'),
+            "label": config.plugins.icetv.device.label.value,
+            "type_id": config.plugins.icetv.device.type_id.value,
+        }
         self.data["member"] = {
             "email_address": email,
             "password": password,
