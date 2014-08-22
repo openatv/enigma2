@@ -41,7 +41,7 @@ class IceTVMain(ChoiceBox):
         menu = [("Enable IceTV", "CALLFUNC", self.enable),
                 ("Disable IceTV", "CALLFUNC", self.disable),
                 ("Configure IceTV", "CALLFUNC", self.configure),
-                ("Fetch EPG", "CALLFUNC", fetcher.fetchEpg),
+                ("Fetch EPG and update timers now", "CALLFUNC", self.fetch),
                 ("Show log", "CALLFUNC", self.showLog),
                 ]
         super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
@@ -57,6 +57,8 @@ class IceTVMain(ChoiceBox):
     def configure(self, res=None):
         _session.open(IceTVUserTypeScreen)
 
+    def fetch(self, res=None):
+        fetcher.doWork()
 
 
     def showLog(self, res=None):
@@ -81,10 +83,6 @@ class EPGFetcher(object):
         task = PythonTask(job, _("Fetch"))
         task.work = self.doWork
         job_manager.AddJob(job)
-
-    def fetchEpg(self, res=None):
-        print "[IceTV] fetchEpg"
-        self.doWork()
     def addLog(self, msg):
         self.log.append("%s: %s" % (str(datetime.now()).split(".")[0], msg))
 
