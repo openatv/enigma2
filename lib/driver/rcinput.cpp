@@ -89,22 +89,36 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
-	
+
+#if KEY_INFO_TO_KEY_EPG
+	if (ev->code == KEY_INFO)
+	{
+		/* vu Remote rc has a EPG key, which sends KEY_INFO events but we need a KEY_EPG. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_EPG;
+	}
+#endif
+
+#if KEY_HELP_TO_KEY_INFO
+	if (ev->code == KEY_HELP)
+	{
+		/* vu Remote rc has a HELP key, which sends KEY_HELP events but we need a KEY_INFO. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_INFO;
+	}
+#endif
+
 #if KEY_MODE_TO_KEY_AUDIO
 	if (ev->code == KEY_MODE)
 	{
 		/* ebox Remote rc has a AV key, which sends KEY_MODE events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_AUDIO;
-		
 	}
-#endif	
+#endif
 
 #if KEY_VIDEO_IS_KEY_SCREEN
 	if (ev->code == KEY_VIDEO)
 	{
 		/* Blackbox Remote rc has a KEY_PIP key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_SCREEN;
-		
 	}
 #endif
 
@@ -113,7 +127,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Blackbox Remote rc has a KEY_PLUGIN key, which sends KEY_ARCHIVE events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_DIRECTORY;
-		
 	}
 #endif
 
@@ -122,7 +135,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Blackbox Remote rc has a KEY_PLUGIN key, which sends KEY_TIME events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_SLOW;
-		
 	}
 #endif
 	
@@ -136,7 +148,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has a KEY Check key, which sends KEY_AUDIO events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_TEXT;
-		
 	}
 #endif
 
@@ -145,7 +156,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Gigablue New Remote rc has a KEY_PIP key, which sends KEY_F2 events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_F6;
-		
 	}
 #endif
 
@@ -154,7 +164,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Xtrend New Remote rc has a KEY_F3 key, which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_LIST;
-		
 	}
 #endif
 
@@ -163,26 +172,22 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has a KEY_MODE key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_MODE;
-		
 	}
-#endif	
+#endif
 
-	
 #if KEY_VIDEO_TO_KEY_EPG
 	if (ev->code == KEY_VIDEO)
 	{
 		/* AZBOX rc has a KEY_EPG key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_EPG;
-		
 	}
-#endif	
+#endif
 
 #if KEY_VIDEO_TO_KEY_SUBTITLE
 	if (ev->code == KEY_VIDEO)
 	{
 		/* AZBOX rc has a KEY_SUBTITLE key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_SUBTITLE;
-		
 	}
 #endif
 
@@ -191,7 +196,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has a KEY_STOP key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_STOP;
-		
 	}
 #endif
 
@@ -200,7 +204,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has a KEY_RECORD key, which sends KEY_RADIO events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_RECORD;
-		
 	}
 #endif
 
@@ -209,7 +212,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has no radio/tv/pvr key, we use KEY_HOME which sends KEY_OPEN events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_OPEN;
-		
 	}
 #endif
 
@@ -218,7 +220,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* DAGS map HOME Key to show Mediaportal */
 		ev->code = KEY_HOMEPAGE;
-		
 	}
 #endif
 
@@ -227,16 +228,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* DAGS map Media to F2 to show MediaCenter */
 		ev->code = KEY_F2;
-		
 	}
 #endif
-	
+
 #if KEY_TV_TO_KEY_VIDEO
 	if (ev->code == KEY_TV)
 	{
 		/* Venton HD1 rc has a no KEY_VIDEO key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_VIDEO;
-		
 	}
 #endif
 
@@ -245,7 +244,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton ini2 remote has a KEY_BOOKMARKS key we need KEY_DIRECTORY. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_DIRECTORY;
-		
 	}
 #endif
 
@@ -254,7 +252,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton ini2 remote has a KEY_MEDIA key we need KEY_Bookmark. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_BOOKMARKS;
-		
 	}
 #endif
 
@@ -263,7 +260,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton ini2 remote has a KEY_MEDIA key we need KEY_OPEN. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_OPEN;
-		
 	}
 #endif
 
@@ -272,7 +268,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton rc has a a Key WWW and send KEY_SEARCH. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_WWW;
-		
 	}
 #endif
 
@@ -281,7 +276,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton rc has a a Key WWW and send KEY_POWER2. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_WWW;
-		
 	}
 #endif
 
@@ -290,7 +284,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton rc has a a KEY_DIRECTORY and send KEY_FILE. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_FILE;
-		
 	}
 #endif
 
@@ -299,7 +292,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_PC;
-		
 	}
 #endif
 
@@ -308,7 +300,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton rc has a a Key Format and send KEY_Video. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_MODE;
-		
 	}
 #endif
 	
@@ -318,7 +309,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* GB800 rc has a KEY_GUIDE key, which sends KEY_HELP events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_EPG;
-		
 	}
 #endif
 
@@ -327,7 +317,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* GB800 rc has a KEY_ASPECT key, which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_MODE;
-		
 	}
 #endif
 
@@ -336,7 +325,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* sogno rc has a KEY_PLAYPAUSE  key, which sends KEY_PLAY events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_PLAYPAUSE;
-		
 	}
 #endif
 
@@ -356,7 +344,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Technomate , which sends KEY_F1 events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_PC;
-		
 	}
 #endif
 
@@ -365,7 +352,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Technomate , which sends KEY_F5 events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_ANGLE;
-		
 	}
 #endif
 
@@ -374,7 +360,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Technomate , which sends KEY_DOT events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_HOMEPAGE;
-		
 	}
 #endif
 
@@ -383,7 +368,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* MixOs , which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_ANGLE;
-		
 	}
 #endif
 
@@ -392,7 +376,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_SCREEN;
-		
 	}
 #endif
 
@@ -401,7 +384,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* MixOs , which sends KEY_SLEEP events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_PROGRAM;
-		
 	}
 #endif
 
@@ -410,7 +392,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* HDx , which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_PVR;
-		
 	}
 #endif
 

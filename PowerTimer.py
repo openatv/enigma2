@@ -90,8 +90,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.resetState()
 
 		#autopowertimer start on systemstart + 60s
-		if self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-			self.begin = time() + 60
+		#if self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+		#	self.begin = time() + 60
 		#check startuptimer
 		if self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
 			if abs(time() - self.begin) <= 180:		#begin within 3 minutes -> this is wakeuptimer
@@ -204,7 +204,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 					return False
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-					self.disabled = True
+					if self.autosleeprepeat == "once":
+						self.disabled = True
 					if Screens.Standby.inStandby: # in standby
 						print "[PowerTimer] quitMainloop #1"
 						quitMainloop(1)

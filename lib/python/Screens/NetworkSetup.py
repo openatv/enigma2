@@ -568,13 +568,13 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-			havewol = False		
-			if SystemInfo["WakeOnLAN"]:
+			havewol = False
+			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbquad'):
 				havewol = True
 			if getBoxType() == 'et10000' and self.iface == 'eth0':
 					havewol = False
 			if havewol:	
-				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))		
+				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
 			self.extended = None
 			self.configStrings = None
@@ -993,8 +993,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		kernel_ver = about.getKernelVersionString()
-		if kernel_ver <= "3.5.0":
+		# kernel_ver = about.getKernelVersionString()
+		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
+		if getBoxType() not in ('DUMMY') and self.iface == 'eth0':
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
