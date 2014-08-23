@@ -8,7 +8,7 @@ class ConditionalShowHide(Converter, object):
 		self.invert = "Invert" in args
 		self.blink = "Blink" in args
 		if self.blink:
-			self.blinktime = 500
+			self.blinktime = len(args) == 2 and args[1].isdigit() and int(args[1]) or 500
 			self.timer = eTimer()
 			self.timer.callback.append(self.blinkFunc)
 		else:
