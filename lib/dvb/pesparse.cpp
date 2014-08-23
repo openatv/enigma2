@@ -18,7 +18,7 @@ void ePESParser::setStreamID(unsigned char id, unsigned char id_mask)
 	m_stream_id_mask = id_mask;
 }
 
-void ePESParser::processData(const __u8 *p, int len)
+void ePESParser::processData(const uint8_t *p, int len)
 {
 		/* this is a state machine, handling arbitary amounts of pes-formatted data. */
 	while (len)

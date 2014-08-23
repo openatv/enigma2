@@ -9,7 +9,7 @@ public:
 	virtual RESULT setBufferSize(int size)=0;
 	virtual RESULT start(const eDVBSectionFilterMask &mask)=0;
 	virtual RESULT stop()=0;
-	virtual RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn)=0;
+	virtual RESULT connectRead(const Slot1<void,const uint8_t*> &read, ePtr<eConnection> &conn)=0;
 	virtual ~iDVBSectionReader() { };
 };
 
@@ -19,7 +19,7 @@ public:
 	virtual RESULT setBufferSize(int size)=0;
 	virtual RESULT start(int pid)=0;
 	virtual RESULT stop()=0;
-	virtual RESULT connectRead(const Slot2<void,const __u8*, int> &read, ePtr<eConnection> &conn)=0;
+	virtual RESULT connectRead(const Slot2<void,const uint8_t*, int> &read, ePtr<eConnection> &conn)=0;
 	virtual ~iDVBPESReader() { };
 };
 

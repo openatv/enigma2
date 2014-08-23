@@ -46,7 +46,7 @@ RESULT eTSFileSectionReader::stop()
 	return 0;
 }
 
-RESULT eTSFileSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eConnection> &conn)
+RESULT eTSFileSectionReader::connectRead(const Slot1<void,const uint8_t*> &r, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, read.connect(r));
 	return 0;

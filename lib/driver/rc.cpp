@@ -58,7 +58,7 @@ eRCDriver::~eRCDriver()
 
 void eRCShortDriver::keyPressed(int)
 {
-	__u16 rccode;
+	uint16_t rccode;
 	while (1)
 	{
 		if (read(handle, &rccode, 2)!=2)
