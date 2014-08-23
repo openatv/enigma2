@@ -551,6 +551,7 @@ class ChannelSelectionEdit:
 		self.saved_title = None
 		self.saved_root = None
 		self.current_ref = None
+		self.editMode = False
 
 		class ChannelSelectionEditActionMap(ActionMap):
 			def __init__(self, csel, contexts=[ ], actions={ }, prio=0):
@@ -593,6 +594,7 @@ class ChannelSelectionEdit:
 		return name
 
 	def renameEntry(self):
+		self.editMode = True
 		cur = self.getCurrentSelection()
 		if cur and cur.valid():
 			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
@@ -867,7 +869,18 @@ class ChannelSelectionEdit:
 		else:
 			self.servicelist.addMarked(ref)
 
+	def removeCurrentEntry(self, bouquet=False):
+		self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"))
+
+	def removeCurrentEntryCallback(self, bouquet, answer):
+		if answer:
+			if bouquet:
+				self.removeBouquet()
+			else:
+				self.removeCurrentService()
+
 	def removeCurrentService(self, bouquet=False):
+		self.editMode = True
 		ref = self.servicelist.getCurrent()
 		mutableList = self.getMutableList()
 		if ref.valid() and mutableList is not None:
@@ -896,6 +909,7 @@ class ChannelSelectionEdit:
 				self.servicelist.resetRoot()
 
 	def toggleMoveMode(self, select=False):
+		self.editMode = True
 		if self.movemode:
 			if self.entry_marked:
 				self.toggleMoveMarked() # unmark current entry
@@ -1362,11 +1376,27 @@ class ChannelSelectionBase(Screen):
 
 	def keyNumberGlobal(self, number):
 		if self.isBasePathEqual(self.bouquet_root):
-			self.numberSelectionActions(number)
+			if hasattr(self, "editMode") and self.editMode:
+				if number == 2:
+					self.renameEntry()
+				if number == 6:
+					self.toggleMoveMode(select=True)
+				if number == 8:
+					self.removeCurrentEntry(bouquet=False)
+			else:
+				self.numberSelectionActions(number)
 		else:
 			current_root = self.getRoot()
 			if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
-				self.numberSelectionActions(number)
+				if hasattr(self, "editMode") and self.editMode:
+					if number == 2:
+						self.renameEntry()
+					if number == 6:
+						self.toggleMoveMode(select=True)
+					if number == 8:
+						self.removeCurrentEntry(bouquet=True)
+				else:
+					self.numberSelectionActions(number)
 			else:
 				unichar = self.numericalTextInput.getKey(number)
 				charstr = unichar.encode("utf-8")
@@ -1637,6 +1667,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.startServiceRef = None
 					self.startRoot = None
 					self.correctChannelNumber()
+					self.editMode = False
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
@@ -1889,6 +1920,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.asciiOff()
 		self.zapBack()
 		self.correctChannelNumber()
+		self.editMode = False
 		self.close(None)
 
 	def zapBack(self):
