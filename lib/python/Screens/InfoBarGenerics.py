@@ -574,6 +574,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.showDefaultEPG()
 		elif config.plisettings.PLIINFO_mode.value == "single":
 			self.openSingleServiceEPG()
+		elif config.plisettings.PLIINFO_mode.value == "coolinfoguide" and COOLTVGUIDE:
+			self.showCoolInfoGuide()
+		elif config.plisettings.PLIINFO_mode.value == "coolsingleguide" and COOLTVGUIDE:
+			self.showCoolSingleGuide()
+		elif config.plisettings.PLIINFO_mode.value == "cooltvguide" and COOLTVGUIDE:
+			if self.isInfo:
+				self.showCoolTVGuide()
 
 	def OkPressed(self):
 		if config.usage.okbutton_mode.value == "0":
