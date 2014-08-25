@@ -136,15 +136,21 @@ class EPGFetcher(object):
             self.addLog("End update")
             return
         except RuntimeError as ex:
-            print "[IceTV] Can not download EPG:", ex
-            self.addLog("Can not download EPG: " + str(ex))
+            msg = "Can not download EPG: " + str(ex)
+            if hasattr(ex, 'response'):
+                msg += "\n%s" % str(ex.response.text).strip()
+            print "[IceTV] ", msg
+            self.addLog(msg)
         try:
             timers = self.getTimers()
             self.processTimers(timers)
             self.addLog("End update")
         except RuntimeError as ex:
-            print "[IceTV] Can not download timers:", ex
-            self.addLog("Can not download timers: " + str(ex))
+            msg = "Can not download timers: " + str(ex)
+            if hasattr(ex, 'response'):
+                msg += "\n%s" % str(ex.response.text).strip()
+            print "[IceTV] ", msg
+            self.addLog(msg)
         if not ice.have_credentials() and not passwordRequested:
             passwordRequested = True
             self.addLog("No token, requesting password...")
@@ -261,8 +267,11 @@ class EPGFetcher(object):
             self.putTimers(update_queue)
             self.addLog("Timers updated OK")
         except (RuntimeError, KeyError) as ex:
-            print "[IceTV] Can not update server timers:", ex
-            self.addLog("Can not update server timers: " + str(ex))
+            msg = "Can not update timers: " + str(ex)
+            if hasattr(ex, 'response'):
+                msg += "\n%s" % str(ex.response.text).strip()
+            print "[IceTV] ", msg
+            self.addLog(msg)
 
     def getShows(self):
         req = ice.Shows()
@@ -590,11 +599,11 @@ class IceTVRegionSetup(Screen):
             self["config"].setList(rl)
             self["description"].setText("")
         except RuntimeError as ex:
-            print "[IceTV] Can not download list of regions:", ex
-            msg = _("Can not download list of regions: ") + str(ex)
+            msg = "Can not download list of regions: " + str(ex)
             if hasattr(ex, 'response'):
-                print "[IceTV] Server says:", ex.response.text
                 msg += "\n%s" % str(ex.response.text).strip()
+            print "[IceTV] ", msg
+            self.addLog(msg)
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
             self["error"].show()
@@ -669,11 +678,11 @@ class IceTVLogin(Screen):
             config.plugins.icetv.configured.value = True
             config.plugins.icetv.configured.save()
         except RuntimeError as ex:
-            print "[IceTV] Login failure:", ex
-            msg = _("Login failure: ") + str(ex)
+            msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
-                print "[IceTV] Server says:", ex.response.text
                 msg += "\n%s" % str(ex.response.text).strip()
+            print "[IceTV] ", msg
+            self.addLog(msg)
             self["instructions"].setText(_("There was an error while trying to login."))
             self["message"].hide()
             self["error"].show()
@@ -747,11 +756,11 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             passwordRequested = False
             fetcher.addLog("Login OK")
         except RuntimeError as ex:
-            print "[IceTV] Login failure:", ex
-            msg = _("Login failure: ") + str(ex)
+            msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
-                print "[IceTV] Server says:", ex.response.text
                 msg += "\n%s" % str(ex.response.text).strip()
+            print "[IceTV] ", msg
+            self.addLog(msg)
             self.session.open(MessageBox, _(msg), type=MessageBox.TYPE_ERROR)
             fetcher.addLog(msg)
 
