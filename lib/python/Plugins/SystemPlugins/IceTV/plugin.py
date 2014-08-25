@@ -78,7 +78,6 @@ passwordRequested = False
 
 class EPGFetcher(object):
     def __init__(self):
-        print "[IceTV] Created EPGFetcher"
         self.fetchTimer = eTimer()
         self.fetchTimer.callback.append(self.createFetchJob)
         config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
@@ -98,17 +97,14 @@ class EPGFetcher(object):
             global passwordRequested
             if passwordRequested:
                 self.addLog("Can not proceed - you need to login first")
-                print "[IceTV] Not creating fetch job - need login"
                 return
             job = Job(_("IceTV update job"))
             task = PythonTask(job, _("Fetch"))
             task.work = self.doWork
             job_manager.AddJob(job)
-            print "[IceTV] Created EPGFetcher fetch job"
 
     def doWork(self):
         global passwordRequested
-        print "[IceTV] EPGFetcher doWork()"
         self.addLog("Start update")
         if passwordRequested:
             self.addLog("Can not proceed - you need to login first")
@@ -125,8 +121,6 @@ class EPGFetcher(object):
             channel_show_map = self.makeChanShowMap(shows["shows"])
             epgcache = eEPGCache.getInstance()
             for channel_id in channel_show_map.keys():
-                print "[IceTV] inserting %d shows into" % len(channel_show_map[channel_id]), channel_service_map[channel_id]
-                print "[IceTV] first one:", channel_show_map[channel_id][0]
                 epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
             epgcache.save()
             if "last_update_time" in shows:
@@ -141,7 +135,6 @@ class EPGFetcher(object):
             msg = "Can not download EPG: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
             self.addLog(msg)
         try:
             timers = self.getTimers()
@@ -151,7 +144,6 @@ class EPGFetcher(object):
             msg = "Can not download timers: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
             self.addLog(msg)
         if not ice.have_credentials() and not passwordRequested:
             passwordRequested = True
@@ -196,7 +188,7 @@ class EPGFetcher(object):
         update_queue = []
         channel_service_map = self.makeChanServMap(self.getChannels())
         for iceTimer in timers:
-            print "[IceTV] iceTimer:", iceTimer
+            # print "[IceTV] iceTimer:", iceTimer
             try:
                 action = iceTimer.get("action", "").encode("utf8")
                 state = iceTimer.get("state", "").encode("utf8")
@@ -209,7 +201,7 @@ class EPGFetcher(object):
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
                         if timer.iceTimerId == iceTimerId:
-                            print "[IceTV] removing timer:", timer
+                            # print "[IceTV] removing timer:", timer
                             _session.nav.RecordTimer.removeEntry(timer)
                     iceTimer["state"] = "completed"
                     iceTimer["message"] = "Removed"
@@ -218,7 +210,7 @@ class EPGFetcher(object):
                     completed = False
                     for timer in _session.nav.RecordTimer.processed_timers:
                         if timer.iceTimerId == iceTimerId:
-                            print "[IceTV] completed timer:", timer
+                            # print "[IceTV] completed timer:", timer
                             iceTimer["state"] = "completed"
                             iceTimer["message"] = "Done"
                             update_queue.append(iceTimer)
@@ -227,7 +219,7 @@ class EPGFetcher(object):
                     if not completed:
                         for timer in _session.nav.RecordTimer.timer_list:
                             if timer.iceTimerId == iceTimerId:
-                                print "[IceTV] updating timer:", timer
+                                # print "[IceTV] updating timer:", timer
                                 if self.updateTimer(timer, name, start, duration, channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
                                         _session.nav.RecordTimer.removeEntry(timer)
@@ -247,16 +239,15 @@ class EPGFetcher(object):
                     created = False
                     if not completed and not updated:
                         channels = channel_service_map[channel_id]
-                        print "[IceTV] channel_id %s maps to" % channel_id, channels
+                        # print "[IceTV] channel_id %s maps to" % channel_id, channels
                         db = eDVBDB.getInstance()
                         for channel in channels:
                             serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
                             if db.isValidService(channel[1], channel[0], channel[2]):
-                                print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
+                                # print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
                                 recording = RecordTimerEntry(serviceref, start, start + duration, name, message, None, iceTimerId=iceTimerId)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
-                                    print "[IceTV] Timer added to service:", serviceref
                                     iceTimer["state"] = "pending"
                                     iceTimer["message"] = "Added"
                                     update_queue.append(iceTimer)
@@ -267,7 +258,6 @@ class EPGFetcher(object):
                                     iceTimer["state"] = "failed"
                                     iceTimer["message"] = "Conflict"
                             else:
-                                print "[IceTV] %s is NOT valid" % str(serviceref)
                                 iceTimer["state"] = "failed"
                                 iceTimer["message"] = "No matching service"
                     if not completed and not updated and not created:
@@ -339,14 +329,12 @@ class EPGFetcher(object):
     def getTimers(self):
         req = ice.Timers()
         res = req.get().json()
-        print "[IceTV] get timers:", res
         return res.get("timers", [])
 
     def putTimers(self, timers):
         req = ice.Timers()
         req.data["timers"] = timers
         res = req.put()
-        print "[IceTV] put timers:", res
 
 fetcher = EPGFetcher()
 
@@ -362,19 +350,16 @@ def autostart_main(reason, **kwargs):
 def sessionstart_main(reason, session, **kwargs):
     global _session
     if reason == 0:
-        print "[IceTV] sessionstart start"
         if _session is None:
             _session = session
         fetcher.createFetchJob()
     elif reason == 1:
-        print "[IceTV] sessionstart stop"
         _session = None
     else:
         print "[IceTV] sessionstart with unknown reason:", reason
 
 
 def wizard_main(*args, **kwargs):
-    print "[IceTV] wizard"
     return IceTVSelectProviderScreen(*args, **kwargs)
 
 
@@ -457,7 +442,6 @@ class IceTVSelectProviderScreen(Screen):
 
     def ok(self):
         selection = self["menu"].getCurrent()
-        print "[IceTV] ok - selection: ", selection
         if selection[1] == "eitEpg":
             config.plugins.icetv.configured.value = True
             config.plugins.icetv.configured.save()
@@ -502,7 +486,6 @@ class IceTVUserTypeScreen(Screen):
 
     def ok(self):
         selection = self["menu"].getCurrent()
-        print "[IceTV] ok - selection: ", selection
         if selection[1] == "newUser":
             self.session.open(IceTVNewUserSetup)
         elif selection[1] == "oldUser":
@@ -566,7 +549,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
                                          }, prio=-2)
 
     def keySave(self):
-        print "[IceTV] new user", self["config"]
         self.saveAll()
         self.session.open(IceTVRegionSetup)
         self.close()
@@ -575,7 +557,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
 class IceTVOldUserSetup(IceTVNewUserSetup):
 
     def keySave(self):
-        print "[IceTV] old user", self["config"]
         self.saveAll()
         self.session.open(IceTVLogin)
         self.close()
@@ -635,7 +616,6 @@ class IceTVRegionSetup(Screen):
 
     def save(self):
         item = self["config"].getCurrent()
-        print "[IceTV] region: ", item
         config.plugins.icetv.member.region_id.value = item[1]
         config.plugins.icetv.member.region_id.save()
         self.session.open(IceTVCreateLogin)
@@ -654,8 +634,7 @@ class IceTVRegionSetup(Screen):
             msg = "Can not download list of regions: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
-            self.addLog(msg)
+            fetcher.addLog(msg)
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
             self["error"].show()
@@ -733,8 +712,7 @@ class IceTVLogin(Screen):
             msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
-            self.addLog(msg)
+            fetcher.addLog(msg)
             self["instructions"].setText(_("There was an error while trying to login."))
             self["message"].hide()
             self["error"].show()
@@ -811,8 +789,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
-            self.addLog(msg)
+            fetcher.addLog(msg)
             self.session.open(MessageBox, _(msg), type=MessageBox.TYPE_ERROR)
             fetcher.addLog(msg)
 
