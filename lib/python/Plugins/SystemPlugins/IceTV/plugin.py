@@ -753,7 +753,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
         ]
         ConfigListScreen.__init__(self, self.list, session)
         self["InpActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
-                                        actions={
+                                       actions={
                                              "cancel": self.keyCancel,
                                              "red": self.keyCancel,
                                              "green": self.doLogin,
@@ -769,6 +769,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             global passwordRequested
             passwordRequested = False
             fetcher.addLog("Login OK")
+            fetcher.createFetchJob()
         except RuntimeError as ex:
             msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
