@@ -84,7 +84,7 @@
 		</widget>
 	</screen>
 
-<!-- standby -->
+<!-- standby 
 	<screen name="StandbySummary" position="0,0" size="400,240">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,50" font="FdLcD;50" halign="center" noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
@@ -93,6 +93,22 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,200" size="190,30" font="FdLcD;30" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen> -->
+
+	<screen name="StandbySummary" position="0,0" size="400,240" flags="wfNoBorder">
+		<ePixmap pixmap="skin_default/analog_lcd.png" position="0,0" size="400,240" />
+		<widget source="global.CurrentTime" render="OMaClockLcd400" position="0,0" size="400,240" hColor="white" linewidth="4" zPosition="4" alphatest="on">
+			<convert type="OMaclock">Hours</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="OMaClockLcd400" position="0,0" size="400,240" mColor="white" linewidth="3" zPosition="3" alphatest="on">
+			<convert type="OMaclock">Minutes</convert>
+		</widget>		
+		<widget source="global.CurrentTime" render="OMaClockLcd400" position="0,0" size="400,240" sColor="red" linewidth="3" zPosition="2" alphatest="on">
+			<convert type="OMaclock">Seconds</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/button_blue.png" position="32,2" size="15,16" zPosition="10" transparent="1" alphatest="on" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>

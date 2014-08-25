@@ -133,7 +133,7 @@
 		<widget source="parent.title_summary" render="Label" position="0,0" size="220,15" font="FdLcD;15" halign="left" noWrap="1" />
 		<widget source="parent.text_summary" render="Label" position="0,16" size="220,54" font="FdLcD;12" halign="left" transparent="1" />
 	</screen>
-	<screen name="StandbySummary" position="fill">
+<!-- standby <screen name="StandbySummary" position="fill">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
@@ -143,7 +143,24 @@
 		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="220,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
+	</screen> -->
+
+	<screen name="StandbySummary" position="0,0" size="220,176" flags="wfNoBorder">
+		<ePixmap pixmap="skin_default/analog_lcd.png" position="0,0" size="220,176" />
+		<widget source="global.CurrentTime" render="OMaClockLcd220" position="0,0" size="220,176" hColor="white" linewidth="4" zPosition="4" alphatest="on">
+			<convert type="OMaclock">Hours</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="OMaClockLcd220" position="0,0" size="220,176" mColor="white" linewidth="3" zPosition="3" alphatest="on">
+			<convert type="OMaclock">Minutes</convert>
+		</widget>		
+		<widget source="global.CurrentTime" render="OMaClockLcd220" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="2" alphatest="on">
+			<convert type="OMaclock">Seconds</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/button_blue.png" position="32,2" size="15,16" zPosition="10" transparent="1" alphatest="on" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 	</screen>
+
 	<!-- T -->
 	<screen name="TimerEditListSummary" position="fill">
 		<widget source="service" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
