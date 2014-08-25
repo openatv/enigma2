@@ -98,7 +98,7 @@
 	</screen> -->
 
 	<screen name="StandbySummary" position="0,0" size="400,240" flags="wfNoBorder">
-		<ePixmap pixmap="skin_default/analog_lcd.png" position="0,0" size="400,240" />
+		<ePixmap pixmap="lcd_skin/analog_lcd.png" position="0,0" size="400,240" />
 		<widget source="global.CurrentTime" render="OMaClockLcd400" position="0,0" size="400,240" hColor="white" linewidth="4" zPosition="4" alphatest="on">
 			<convert type="OMaclock">Hours</convert>
 		</widget>
