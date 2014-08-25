@@ -29,6 +29,8 @@ from Components.Task import Job, PythonTask, job_manager
 import API as ice
 from collections import deque
 from Screens.TextBox import TextBox
+from Components.TimerSanityCheck import TimerSanityCheck
+from timer import TimerEntry
 
 _session = None
 
@@ -201,6 +203,7 @@ class EPGFetcher(object):
                 name = iceTimer.get("name", "").encode("utf8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
+                channel_id = long(iceTimer["channel_id"])
                 message = iceTimer.get("message", "").encode("utf8")
                 iceTimerId = iceTimer["id"].encode("utf8")
                 if action == "forget":
@@ -220,21 +223,29 @@ class EPGFetcher(object):
                             iceTimer["message"] = "Done"
                             update_queue.append(iceTimer)
                             completed = True
-                    # Create or update iceTimer
                     updated = False
                     if not completed:
                         for timer in _session.nav.RecordTimer.timer_list:
                             if timer.iceTimerId == iceTimerId:
                                 print "[IceTV] updating timer:", timer
-                                # TODO: Update and run sanity checks see TimerEdit.finishedEdit
-                                _session.nav.RecordTimer.timeChanged(timer)
-                                iceTimer["state"] = "pending"
-                                iceTimer["message"] = "Updated"
+                                if self.updateTimer(timer, name, start, duration, channel_service_map[channel_id]):
+                                    if not self.modifyTimer(timer):
+                                        _session.nav.RecordTimer.removeEntry(timer)
+                                        iceTimer["state"] = "failed"
+                                        iceTimer["message"] = "Failed to update the timer"
+                                    else:
+                                        iceTimer["state"] = "pending"
+                                        iceTimer["message"] = "Updated"
+                                else:
+                                    iceTimer["state"] = "pending"
+                                    iceTimer["message"] = "Up to date"
+                                if timer.state == TimerEntry.StateRunning:
+                                    iceTimer["state"] = "running"
+                                    iceTimer["message"] = "Recording"
                                 update_queue.append(iceTimer)
                                 updated = True
                     created = False
                     if not completed and not updated:
-                        channel_id = long(iceTimer["channel_id"])
                         channels = channel_service_map[channel_id]
                         print "[IceTV] channel_id %s maps to" % channel_id, channels
                         db = eDVBDB.getInstance()
@@ -253,9 +264,11 @@ class EPGFetcher(object):
                                     break
                                 else:
                                     print "[IceTV] Timer conflict:", conflicts
+                                    iceTimer["state"] = "failed"
                                     iceTimer["message"] = "Conflict"
                             else:
                                 print "[IceTV] %s is NOT valid" % str(serviceref)
+                                iceTimer["state"] = "failed"
                                 iceTimer["message"] = "No matching service"
                     if not completed and not updated and not created:
                         iceTimer["state"] = "failed"
@@ -272,6 +285,45 @@ class EPGFetcher(object):
                 msg += "\n%s" % str(ex.response.text).strip()
             print "[IceTV] ", msg
             self.addLog(msg)
+
+    def updateTimer(self, timer, name, start, duration, channels):
+        changed = False
+        db = eDVBDB.getInstance()
+        for channel in channels:
+            serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
+            if db.isValidService(channel[1], channel[0], channel[2]):
+                if str(timer.service_ref) != str(serviceref):
+                    changed = True
+                    timer.service_ref = serviceref
+                break
+        if timer.name != name:
+            changed = True
+            timer.name = name
+        if timer.begin != start:
+            changed = True
+            timer.begin = start
+        end = start + duration
+        if timer.end != end:
+            changed = True
+            timer.end = end
+        return changed
+
+    def modifyTimer(self, timer):
+        timersanitycheck = TimerSanityCheck(self._session.nav.RecordTimer.timer_list, timer)
+        success = False
+        if not timersanitycheck.check():
+            simulTimerList = timersanitycheck.getSimulTimerList()
+            if simulTimerList is not None:
+                for x in simulTimerList:
+                    if x.setAutoincreaseEnd(timer):
+                        self.session.nav.RecordTimer.timeChanged(x)
+                if timersanitycheck.check():
+                    success = True
+        else:
+            success = True
+        if success:
+            self._session.nav.RecordTimer.timeChanged(timer)
+        return success
 
     def getShows(self):
         req = ice.Shows()
