@@ -111,7 +111,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 	def checkReadWriteDir(self, configele):
 		import os.path
 		import Components.Harddisk
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 		candidates = []
 		mounts = Components.Harddisk.getProcMounts()
 		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
@@ -139,7 +139,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				configele.value = configele.last_value
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
+					_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%dir,
 					type = MessageBox.TYPE_ERROR
 					)
 				return False
@@ -148,7 +148,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
+				_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%dir,
 				type = MessageBox.TYPE_ERROR
 				)
 			return False
@@ -207,7 +207,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		if res is not None:
 			import os.path
 			import Components.Harddisk
-			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 			candidates = []
 			mounts = Components.Harddisk.getProcMounts()
 			for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
@@ -238,13 +238,13 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				else:
 					self.session.open(
 						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%res,
+						_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%res,
 						type = MessageBox.TYPE_ERROR
 						)
 			else:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%res,
+					_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%res,
 					type = MessageBox.TYPE_ERROR
 					)
 
@@ -258,7 +258,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 	def keySave(self):
 		import os.path
 		import Components.Harddisk
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 		candidates = []
 		mounts = Components.Harddisk.getProcMounts()
 		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
@@ -277,7 +277,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				if int(config.timeshift.startdelay.value) > 0:
 					self.session.open(
 						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+						_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
 						type = MessageBox.TYPE_ERROR
 						)
 				else:
@@ -288,7 +288,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			if int(config.timeshift.startdelay.value) > 0:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+					_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
 					type = MessageBox.TYPE_ERROR
 					)
 			else:
