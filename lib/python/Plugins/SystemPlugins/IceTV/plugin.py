@@ -338,15 +338,6 @@ class EPGFetcher(object):
 
 fetcher = EPGFetcher()
 
-def autostart_main(reason, **kwargs):
-    if reason == 0:
-        print "[IceTV] autostart start"
-    elif reason == 1:
-        print "[IceTV] autostart stop"
-    else:
-        print "[IceTV] autostart with unknown reason:", reason
-
-
 def sessionstart_main(reason, session, **kwargs):
     global _session
     if reason == 0:
@@ -372,13 +363,6 @@ def plugin_main(session, **kwargs):
 
 def Plugins(**kwargs):
     res = []
-    res.append(
-        PluginDescriptor(
-            name="IceTV",
-            where=PluginDescriptor.WHERE_AUTOSTART,
-            description=_("IceTV"),
-            fnc=autostart_main
-        ))
     res.append(
         PluginDescriptor(
             name="IceTV",
