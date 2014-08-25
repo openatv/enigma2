@@ -33,47 +33,6 @@ from Components.TimerSanityCheck import TimerSanityCheck
 from timer import TimerEntry
 
 _session = None
-
-
-class IceTVMain(ChoiceBox):
-    def __init__(self, session, *args, **kwargs):
-        global _session
-        if _session is None:
-            _session = session
-        menu = [("Enable IceTV", "CALLFUNC", self.enable),
-                ("Disable IceTV", "CALLFUNC", self.disable),
-                ("Configure IceTV", "CALLFUNC", self.configure),
-                ("Fetch EPG and update timers now", "CALLFUNC", self.fetch),
-                ("Login to IceTV server", "CALLFUNC", self.login),
-                ("Show log", "CALLFUNC", self.showLog),
-                ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
-
-    def enable(self, res=None):
-        enableIceTV()
-        _session.open(MessageBox, _("IceTV enabled"), type=MessageBox.TYPE_INFO, timeout=5)
-
-    def disable(self, res=None):
-        disableIceTV()
-        _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
-
-    def configure(self, res=None):
-        _session.open(IceTVUserTypeScreen)
-
-    def fetch(self, res=None):
-        fetcher.doWork()
-
-    def login(self, res=None):
-        _session.open(IceTVNeedPassword)
-
-    def showLog(self, res=None):
-        _session.open(LogView, "\n".join(fetcher.log))
-
-class LogView(TextBox):
-    skin = """<screen name="LogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
-        <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
-</screen>"""
-
 passwordRequested = False
 
 class EPGFetcher(object):
@@ -388,6 +347,48 @@ def Plugins(**kwargs):
                 fnc=(95, wizard_main)
             ))
     return res
+
+
+class IceTVMain(ChoiceBox):
+    def __init__(self, session, *args, **kwargs):
+        global _session
+        if _session is None:
+            _session = session
+        menu = [
+                ("Show log", "CALLFUNC", self.showLog),
+                ("Fetch EPG and update timers now", "CALLFUNC", self.fetch),
+                ("Login to IceTV server", "CALLFUNC", self.login),
+                ("Configure IceTV", "CALLFUNC", self.configure),
+                ("Enable IceTV", "CALLFUNC", self.enable),
+                ("Disable IceTV", "CALLFUNC", self.disable),
+               ]
+        super(IceTVMain, self).__init__(session, title=_("IceTV"), list=menu)
+
+    def enable(self, res=None):
+        enableIceTV()
+        _session.open(MessageBox, _("IceTV enabled"), type=MessageBox.TYPE_INFO, timeout=5)
+
+    def disable(self, res=None):
+        disableIceTV()
+        _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
+
+    def configure(self, res=None):
+        _session.open(IceTVUserTypeScreen)
+
+    def fetch(self, res=None):
+        fetcher.doWork()
+
+    def login(self, res=None):
+        _session.open(IceTVNeedPassword)
+
+    def showLog(self, res=None):
+        _session.open(LogView, "\n".join(fetcher.log))
+
+
+class LogView(TextBox):
+    skin = """<screen name="LogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
+        <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
+</screen>"""
 
 
 class IceTVSelectProviderScreen(Screen):
