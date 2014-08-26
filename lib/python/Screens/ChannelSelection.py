@@ -2131,7 +2131,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.channelSelected()
 
 class SimpleChannelSelection(ChannelSelectionBase):
-	def __init__(self, session, title):
+	def __init__(self, session, title, currentBouquet=False):
 		ChannelSelectionBase.__init__(self, session)
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
@@ -2142,10 +2142,16 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			})
 		self.bouquet_mark_edit = OFF
 		self.title = title
+		self.currentBouquet = currentBouquet
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
 		self.setModeTv()
+		if self.currentBouquet:
+			ref = Screens.InfoBar.InfoBar.instance.servicelist.getRoot()
+			if ref:
+				self.enterPath(ref)
+				self.gotoCurrentServiceOrProvider(ref)
 
 	def saveRoot(self):
 		pass
