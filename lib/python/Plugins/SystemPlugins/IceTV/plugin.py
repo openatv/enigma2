@@ -27,7 +27,7 @@ from datetime import datetime
 from . import config, saveConfigFile, enableIceTV, disableIceTV
 from Components.Task import Job, PythonTask, job_manager
 import API as ice
-from collections import deque
+from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
 from timer import TimerEntry
@@ -110,7 +110,7 @@ class EPGFetcher(object):
             _session.open(IceTVNeedPassword)
 
     def makeChanServMap(self, channels):
-        res = {}
+        res = defaultdict(list)
         for channel in channels:
             channel_id = long(channel["id"])
             triplets = []
@@ -119,13 +119,14 @@ class EPGFetcher(object):
             elif "dvbt_info" in channel:
                 triplets = channel["dvbt_info"]
             for triplet in triplets:
-                res.setdefault(channel_id, []).append((int(triplet["original_network_id"]),
-                                                       int(triplet["transport_stream_id"]),
-                                                       int(triplet["service_id"])))
+                res[channel_id].append(
+                    (int(triplet["original_network_id"]),
+                     int(triplet["transport_stream_id"]),
+                     int(triplet["service_id"])))
         return res
 
     def makeChanShowMap(self, shows):
-        res = {}
+        res = defaultdict(list)
         for show in shows:
             channel_id = long(show["channel_id"])
             # Fit within 16 bits, but never pass 0
@@ -140,7 +141,7 @@ class EPGFetcher(object):
             title = show.get("title", "").encode("utf8")
             short = show.get("subtitle", "").encode("utf8")
             extended = show.get("desc", "").encode("utf8")
-            res.setdefault(channel_id, []).append((start, duration, title, short, extended, 0, event_id))
+            res[channel_id].append((start, duration, title, short, extended, 0, event_id))
         return res
 
     def processTimers(self, timers):
