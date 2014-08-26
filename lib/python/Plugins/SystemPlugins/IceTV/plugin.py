@@ -91,7 +91,7 @@ class EPGFetcher(object):
                 self.processTimers(shows["timers"])
             self.addLog("End update")
             return
-        except RuntimeError as ex:
+        except (IOError, RuntimeError) as ex:
             msg = "Can not download EPG: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
@@ -100,7 +100,7 @@ class EPGFetcher(object):
             timers = self.getTimers()
             self.processTimers(timers)
             self.addLog("End update")
-        except RuntimeError as ex:
+        except (IOError, RuntimeError) as ex:
             msg = "Can not download timers: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
@@ -228,13 +228,13 @@ class EPGFetcher(object):
                     iceTimer["state"] = "failed"
                     iceTimer["message"] = "No valid service mapping for channel_id %d" % channel_id
                     update_queue.append(iceTimer)
-            except (RuntimeError, KeyError) as ex:
+            except (IOError, RuntimeError, KeyError) as ex:
                 print "[IceTV] Can not process iceTimer:", ex
         # Now send back updated timer states
         try:
             self.putTimers(update_queue)
             self.addLog("Timers updated OK")
-        except (RuntimeError, KeyError) as ex:
+        except (IOError, RuntimeError, KeyError) as ex:
             msg = "Can not update timers: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
@@ -635,7 +635,7 @@ class IceTVRegionSetup(Screen):
                 rl.append((str(region["name"]), int(region["id"])))
             self["config"].setList(rl)
             self["description"].setText("")
-        except RuntimeError as ex:
+        except (IOError, RuntimeError) as ex:
             msg = "Can not download list of regions: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
@@ -714,7 +714,7 @@ class IceTVLogin(Screen):
             config.plugins.icetv.configured.value = True
             config.plugins.icetv.configured.save()
             fetcher.createFetchJob()
-        except RuntimeError as ex:
+        except (IOError, RuntimeError) as ex:
             msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
@@ -793,7 +793,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             passwordRequested = False
             fetcher.addLog("Login OK")
             fetcher.createFetchJob()
-        except RuntimeError as ex:
+        except (IOError, RuntimeError) as ex:
             msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
