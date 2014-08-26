@@ -255,7 +255,8 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.session.openWithCallback(
 				self.finishedChannelSelection,
 				ChannelSelection.SimpleChannelSelection,
-				_("Select channel to record from")
+				_("Select channel to record from"),
+				currentBouquet=True
 			)
 		elif config.usage.setup_level.index >= 2 and cur == self.dirname:
 			self.session.openWithCallback(
