@@ -472,6 +472,7 @@ class IceTVUserTypeScreen(Screen):
                                  }, prio=-1)
 
     def cancel(self):
+        self.hide()
         self.close()
 
     def ok(self):
@@ -480,6 +481,7 @@ class IceTVUserTypeScreen(Screen):
             self.session.open(IceTVNewUserSetup)
         elif selection[1] == "oldUser":
             self.session.open(IceTVOldUserSetup)
+        self.hide()
         self.close()
 
 
@@ -540,6 +542,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
 
     def keySave(self):
         self.saveAll()
+        self.hide()
         self.session.open(IceTVRegionSetup)
         self.close()
 
@@ -548,6 +551,7 @@ class IceTVOldUserSetup(IceTVNewUserSetup):
 
     def keySave(self):
         self.saveAll()
+        self.hide()
         self.session.open(IceTVLogin)
         self.close()
 
@@ -587,8 +591,8 @@ class IceTVRegionSetup(Screen):
         self.regionList = []
         self["config"] = MenuList(self.regionList)
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
-                                       actions={"cancel": self.close,
-                                                "red": self.close,
+                                       actions={"cancel": self.cancel,
+                                                "red": self.cancel,
                                                 "green": self.save,
                                                 "ok": self.save,
                                                 }, prio=-2
@@ -604,11 +608,16 @@ class IceTVRegionSetup(Screen):
         self.createTimer.stop()
         self.getRegionList()
 
+    def cancel(self):
+        self.hide()
+        self.close()
+
     def save(self):
         item = self["config"].getCurrent()
         config.plugins.icetv.member.region_id.value = item[1]
         config.plugins.icetv.member.region_id.save()
         self.session.open(IceTVCreateLogin)
+        self.hide()
         self.close()
 
     def getRegionList(self):
@@ -772,6 +781,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
         self.saveAll()
         try:
             self.loginCmd()
+            self.hide()
             self.close()
             global passwordRequested
             passwordRequested = False
