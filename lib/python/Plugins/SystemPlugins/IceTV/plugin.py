@@ -291,9 +291,10 @@ class EPGFetcher(object):
         return res.get("timers", [])
 
     def putTimers(self, timers):
-        req = ice.Timers()
-        req.data["timers"] = timers
-        res = req.put()
+        if timers:
+            req = ice.Timers()
+            req.data["timers"] = timers
+            res = req.put()
 
 fetcher = EPGFetcher()
 
