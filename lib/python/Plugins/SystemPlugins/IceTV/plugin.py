@@ -395,18 +395,20 @@ class LogView(TextBox):
 class IceTVSelectProviderScreen(Screen):
     skin = """
 <screen name="IceTVSelectProviderScreen" position="320,130" size="640,400" title="Select EPG provider" >
- <widget position="20,20" size="600,280" name="instructions" font="Regular;20" />
- <widget position="20,300" size="600,100" name="menu" />
+ <widget position="20,20" size="600,320" name="instructions" font="Regular;20" />
+ <widget position="20,340" size="600,60" name="menu" />
 </screen>
 """
-    _instructions = _("IceTV will change the way you watch TV! IceTV gives you the power to "
+    _instructions = _("IceTV\n"
+                      "      IceTV will change the way you watch TV! IceTV gives you the power to "
                       "discover and manage programmes you want to see. Build your own playlists "
                       "of TV Shows based on the series and favourites you are interested in "
                       "and, when they air, IceTV will take care of the rest. You can set TV "
                       "show recordings from wherever you are. Whether you're sitting in front "
                       "of the TV, on the bus or on holidays overseas. With IceTV choose the "
                       "show you want to record and press 'record'. Simple!\n\n"
-                      "Free To Air - Basic EPG as broadcast by the TV stations."
+                      "Free To Air\n"
+                      "      Basic EPG as broadcast by the TV stations."
                       )
 
     def __init__(self, session, args=None):
