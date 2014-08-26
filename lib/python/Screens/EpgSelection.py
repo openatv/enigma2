@@ -273,10 +273,10 @@ class EPGSelection(Screen):
 		if self.type == EPG_TYPE_MULTI:
 			self["list"].updateMultiEPG(1)
 		if self.type == EPG_TYPE_SINGLE:
-			self.session.openWithCallback(self.channelSelectionCallback, ChannelSelection.SimpleChannelSelection, _("Select channel"))
+			self.session.openWithCallback(self.channelSelectionCallback, ChannelSelection.SimpleChannelSelection, _("Select channel"), currentBouquet=True)
 
-	def channelSelectionCallback(self, service):
-		service and self.setService(ServiceReference(service))
+	def channelSelectionCallback(self, *args):
+		args and self.setService(ServiceReference(args[0]))
 
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
