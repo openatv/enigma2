@@ -80,7 +80,8 @@ class EPGFetcher(object):
             channel_show_map = self.makeChanShowMap(shows["shows"])
             epgcache = eEPGCache.getInstance()
             for channel_id in channel_show_map.keys():
-                epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
+                if channel_id in channel_service_map:
+                    epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
             epgcache.save()
             if "last_update_time" in shows:
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
@@ -166,7 +167,7 @@ class EPGFetcher(object):
                     iceTimer["state"] = "completed"
                     iceTimer["message"] = "Removed"
                     update_queue.append(iceTimer)
-                else:
+                elif channel_id in channel_service_map:
                     completed = False
                     for timer in _session.nav.RecordTimer.processed_timers:
                         if timer.iceTimerId == iceTimerId:
@@ -223,6 +224,10 @@ class EPGFetcher(object):
                     if not completed and not updated and not created:
                         iceTimer["state"] = "failed"
                         update_queue.append(iceTimer)
+                else:
+                    iceTimer["state"] = "failed"
+                    iceTimer["message"] = "No valid service mapping for channel_id %d" % channel_id
+                    update_queue.append(iceTimer)
             except (RuntimeError, KeyError) as ex:
                 print "[IceTV] Can not process iceTimer:", ex
         # Now send back updated timer states
