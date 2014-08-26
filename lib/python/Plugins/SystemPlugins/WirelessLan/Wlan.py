@@ -4,7 +4,7 @@ from string import maketrans, strip
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console
 from Components.Network import iNetwork
-from pythonwifi.iwlibs import getNICnames, Wireless, Iwfreq, getWNICnames
+from pythonwifi.iwlibs import Wireless, Iwstats, getWNICnames
 from pythonwifi import flags as wififlags
 
 
@@ -266,96 +266,46 @@ class Status:
 			self.WlanConsole.killAll()
 			self.WlanConsole = None
 
+	def collectDataForInterface(self, iface):
+		w = Wireless(iface)
+		wsconfig = { }
+
+		simpleConfigs = (
+			("essid",       w.getEssid,      "off"),
+			("frequency",   w.getFrequency,  ""),
+			("accesspoint", w.getAPaddr,     "Not-Associated"),
+			("bitrate",     w.getBitrate,    "0"),
+			("encryption",  w.getEncryption, "off"),
+		)
+
+		for name, func, default in simpleConfigs:
+			try:
+				wsconfig[name] = func()
+			except:
+				wsconfig[name] = default
+		try:
+			wsconfig["quality"] = str(Iwstats("wlan0").qual.quality) + "/" + str(w.getQualityMax().quality)
+		except:
+			wsconfig["quality"] = ""
+		try:
+			wsconfig["signal"] = str(w.getQualityAvg().siglevel-128) + " dBm"
+		except:
+			wsconfig["signal"] = ""
+
+		return wsconfig
+
 	def getDataForInterface(self, iface, callback = None):
-		self.WlanConsole = Console()
-		cmd = "iwconfig " + iface
-		if callback is not None:
-			self.statusCallback = callback
-		self.WlanConsole.ePopen(cmd, self.iwconfigFinished, iface)
-
-	def iwconfigFinished(self, result, retval, extra_args):
-		iface = extra_args
-		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False }
-		for line in result.splitlines():
-			line = line.strip()
-			if "ESSID" in line:
-				if "off/any" in line:
-					ssid = "off"
-				else:
-					if "Nickname" in line:
-						ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
-					else:
-						ssid=(line[line.index('ESSID')+7:len(line)-1])
-				if ssid is not None:
-					data['essid'] = ssid
-			if "Frequency" in line:
-				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
-				if frequency is not None:
-					data['frequency'] = frequency
-			if "Access Point" in line:
-				if "Sensitivity" in line:
-					ap=line[line.index('Access Point')+14:line.index('   Sensitivity')]
-				else:
-					ap=line[line.index('Access Point')+14:len(line)]
-				if ap is not None:
-					data['accesspoint'] = ap
-			if "Bit Rate" in line:
-				if "kb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' kb/s')]
-				else:
-					br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')]
-				if br is not None:
-					data['bitrate'] = br
-			if "Encryption key" in line:
-				if ":off" in line:
-					enc = "off"
-				elif "Security" in line:
-					enc = line[line.index('Encryption key')+15 :line.index('   Security')]
-					if enc is not None:
-						enc = "on"
-				else:
-					enc = line[line.index('Encryption key')+15 :len(line)]
-					if enc is not None:
-						enc = "on"
-				if enc is not None:
-					data['encryption'] = enc
-			if 'Quality' in line:
-				if "/100" in line:
-					qual = line[line.index('Quality')+8:line.index('  Signal')]
-				else:
-					qual = line[line.index('Quality')+8:line.index('Sig')]
-				if qual is not None:
-					data['quality'] = qual
-			if 'Signal level' in line:
-				if "dBm" in line:
-					signal = line[line.index('Signal level')+13 :line.index(' dBm')] + " dBm"
-				elif "/100" in line:
-					if "Noise" in line:
-						signal = line[line.index('Signal level')+13:line.index('  Noise')]
-					else:
-						signal = line[line.index('Signal level')+13:len(line)]
-				else:
-					if "Noise" in line:
-						signal = line[line.index('Signal level')+13:line.index('  Noise')]
-					else:
-						signal = line[line.index('Signal level')+13:len(line)]
-				if signal is not None:
-					data['signal'] = signal
-
-		self.wlaniface[iface] = data
+		wsconfig = self.collectDataForInterface(iface)
+		self.wlaniface[iface] = wsconfig
 		self.backupwlaniface = self.wlaniface
-
-		if self.WlanConsole is not None:
-			if len(self.WlanConsole.appContainers) == 0:
-				print "[Wlan.py] self.wlaniface after loading:", self.wlaniface
-				if self.statusCallback is not None:
-						self.statusCallback(True,self.wlaniface)
-						self.statusCallback = None
+		if callback is not None:
+			callback(True, self.wlaniface)
+		return self.wlaniface
 
 	def getAdapterAttribute(self, iface, attribute):
 		self.iface = iface
-		if self.wlaniface.has_key(self.iface):
-			if self.wlaniface[self.iface].has_key(attribute):
+		if self.iface in self.wlaniface:
+			if attribute in self.wlaniface[self.iface]:
 				return self.wlaniface[self.iface][attribute]
 		return None
 

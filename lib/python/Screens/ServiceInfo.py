@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.About import AboutBase
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Sources.List import List
@@ -41,7 +42,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
 
-class ServiceInfo(Screen):
+class ServiceInfo(AboutBase):
 	infoLabels = (
 		(_("NIM"), "tuner_name", TYPE_TEXT),
 		(_("Type"), "tuner_type", TYPE_TEXT),
@@ -66,8 +67,7 @@ class ServiceInfo(Screen):
 	)
 
 	def __init__(self, session, serviceref=None):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Service Information"))
+		AboutBase.__init__(self, session)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
@@ -101,9 +101,7 @@ class ServiceInfo(Screen):
 				self.info = None
 				self.feinfo = None
 
-		tlist = [ ]
-
-		self["infolist"] = List(tlist)
+		self["list"] = List([ ])
 		self.onShown.append(self.information)
 
 	def information(self):
@@ -190,7 +188,7 @@ class ServiceInfo(Screen):
 			else:
 				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2], item[3]))
 
-		self["infolist"].setList(tlist)
+		self["list"].setList(tlist)
 
 	def getServiceInfoValue(self, what):
 		if self.info is None:
