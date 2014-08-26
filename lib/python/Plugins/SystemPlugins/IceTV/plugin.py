@@ -424,9 +424,11 @@ class IceTVSelectProviderScreen(Screen):
                                  }, prio=-1)
 
     def cancel(self):
+        self.hide()
         self.close()
 
     def ok(self):
+        self.hide()
         selection = self["menu"].getCurrent()
         if selection[1] == "eitEpg":
             config.plugins.icetv.configured.value = True
