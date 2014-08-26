@@ -153,16 +153,18 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
 		self.Text = self.Text.decode("utf-8", "ignore").decode("utf-8")
+		n = len(ch)
 		if not pos:
 			pos = self.currPos
 		if ins and not self.maxSize:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
 		elif owr or self.overwrite:
-			self.Text = self.Text[0:pos] + ch + self.Text[pos + 1:]
+			self.Text = self.Text[0:pos] + ch + self.Text[pos + n - 1:]
 		elif self.maxSize:
-			self.Text = self.Text[0:pos] + ch + self.Text[pos:-1]
+			self.Text = self.Text[0:pos] + ch + self.Text[pos:-n]
 		else:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
+		self.currPos += n - 1
 
 	def deleteChar(self, pos):
 		if not self.maxSize:
