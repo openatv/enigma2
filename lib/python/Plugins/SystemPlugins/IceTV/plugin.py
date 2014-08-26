@@ -694,6 +694,7 @@ class IceTVLogin(Screen):
             self["qrcode"].show()
             config.plugins.icetv.configured.value = True
             config.plugins.icetv.configured.save()
+            fetcher.createFetchJob()
         except RuntimeError as ex:
             msg = "Login failure: " + str(ex)
             if hasattr(ex, 'response'):
