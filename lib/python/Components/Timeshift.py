@@ -233,7 +233,14 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(3600 * 24 * 90000)
 			self.pts_SeekBack_timer.start(1000, True)
-
+		else:
+			print ('[TIMESHIFT] - "pts_livebuffer_%s" file was not found -> put pointer to the first (current) "pts_livebuffer_%s" file' % (self.pts_currplaying, self.pts_currplaying + 1))
+			self.pts_currplaying += 1
+			self.pts_firstplayable += 1
+			self.setSeekState(self.SEEK_STATE_PLAY)
+			self.doSeek(0)
+			return
+		
 	def __evEOF(self):
 		# print '!!!!! jumpToNextTimeshiftedEvent'
 		if not self.timeshiftEnabled():
@@ -563,8 +570,12 @@ class InfoBarTimeshift:
 		filelist = os.listdir(config.usage.timeshift_path.value)
 
 		if filelist is not None:
-			filelist.sort()
-
+			try:
+				filelist = sorted(filelist, key=lambda x: int(x.split('pts_livebuffer_')[1]) if x.startswith("pts_livebuffer") and not os.path.splitext(x)[1] else x)
+			except:
+				print '[TIMESHIFT] - file sorting error, use standard sorting method'
+				filelist.sort()
+			# print filelist
 			for filename in filelist:
 				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
 					# print "TRUE"
