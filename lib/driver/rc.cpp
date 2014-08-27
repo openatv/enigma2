@@ -151,8 +151,15 @@ bool eRCInputEventDriver::isKeyboard()
 #ifdef VUPLUS_RC_WORKAROUND
 	return(false);
 #else
-	/* check whether the input device has KEY_A, in which case we assume it is a keyboard */
-	return hasCap(keyCaps, KEY_A);
+	/* Make an assumption that a keyboard will have A and Z, but not all of
+	 * POWER, CHANNEL_UP, CHANNEL_DOWN, RED, GREEN, YELLOW and BLUE. */
+	return hasCap(keyCaps, KEY_A) && hasCap(keyCaps, KEY_Z) &&
+			!(
+				hasCap(keyCaps, KEY_POWER) &&
+				hasCap(keyCaps, KEY_CHANNELUP) && hasCap(keyCaps, KEY_CHANNELDOWN) &&
+				hasCap(keyCaps, KEY_RED) && hasCap(keyCaps, KEY_GREEN) &&
+				hasCap(keyCaps, KEY_YELLOW) && hasCap(keyCaps, KEY_BLUE)
+			);
 #endif
 }
 
