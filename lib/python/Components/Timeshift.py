@@ -239,8 +239,7 @@ class InfoBarTimeshift:
 			self.pts_firstplayable += 1
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(0)
-			return
-		
+
 	def __evEOF(self):
 		# print '!!!!! jumpToNextTimeshiftedEvent'
 		if not self.timeshiftEnabled():
