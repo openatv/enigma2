@@ -17,6 +17,7 @@ class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(1, gFont("Regular", 16))
 		self.l.setItemHeight(45)
 
 class VirtualKeyBoardEntryComponent:
@@ -47,7 +48,7 @@ class VirtualKeyBoard(Screen):
 		self.key_space = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_space.png"))
 		self.key_left = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_left.png"))
 		self.key_right = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_right.png"))
-		
+
 		self.keyImages =  {
 				"BACKSPACE": self.key_backspace,
 				"CLEAR": self.key_clr,
@@ -250,17 +251,17 @@ class VirtualKeyBoard(Screen):
 			self.nextLang = 'en_EN'
 		else:
 			self.keys_list = [
-				[u"`" , u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
+				[u"`", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"[", u"]"],
 				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"\\"],
-				[u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"+", u"-"],
-				[u"SHIFT", u"SPACE", u"@", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"OK", u"EXIT"]]
+				[u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"+", u"-"],
+				[u"SHIFT", u"SPACE", u"@", u".com", u".net", u".au", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"OK", u"EXIT"]]
 			self.shiftkeys_list = [
 				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
 				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"{", u"}"],
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u":", u'"', u"|"],
 				[u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"_", u"*"],
-				[u"SHIFT", u"SPACE", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"OK", u"EXIT"]]
+				[u"SHIFT", u"SPACE", u".org", u".com", u".net", u".au", u"LEFT", u"RIGHT", u"ALL", u"CLEAR", u"OK", u"EXIT"]]
 			self.lang = 'en_EN'
 			self.nextLang = 'de_DE'
 
@@ -282,7 +283,10 @@ class VirtualKeyBoard(Screen):
 			else:
 				width = key_bg_width
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_bg))
-				text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				if len(key) > 2:
+					text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=1, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				else:
+					text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 			x += width
 		return res + text
 
@@ -335,6 +339,18 @@ class VirtualKeyBoard(Screen):
 
 		elif text == "SPACE":
 			self["text"].char(" ".encode("UTF-8"))
+
+		elif text == ".com":
+			self["text"].char(".com".encode("UTF-8"))
+
+		elif text == ".org":
+			self["text"].char(".org".encode("UTF-8"))
+
+		elif text == ".net":
+			self["text"].char(".net".encode("UTF-8"))
+
+		elif text == ".au":
+			self["text"].char(".au".encode("UTF-8"))
 
 		elif text == "OK":
 			self.close(self["text"].getText().encode("UTF-8"))

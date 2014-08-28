@@ -184,7 +184,7 @@ public:
 
 class eTimer;
 
-			// werden in einer mainloop verarbeitet
+// are processed in a mainloop
 class eMainloop
 {
 	friend class eTimer;
@@ -300,10 +300,10 @@ public:
 	bool needsActivation(const timespec &now) { return nextActivation <= now; }
 	bool needsActivation() { timespec now; clock_gettime(CLOCK_MONOTONIC, &now); return nextActivation <= now; }
 
-	void start(long msec, bool b=false);
+	void start(long msec, bool singleshot=false);
 	void stop();
-	void changeInterval(long msek);
-	void startLongTimer( int seconds );
+	void changeInterval(long msec);
+	void startLongTimer(int seconds);
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
 	eSmartPtrList<iObject> m_clients;
 };
