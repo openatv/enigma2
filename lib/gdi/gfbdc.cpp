@@ -9,6 +9,9 @@
 
 gFBDC::gFBDC()
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	fb=new fbClass;
 
 	if (!fb->Available())
@@ -37,12 +40,18 @@ gFBDC::gFBDC()
 
 gFBDC::~gFBDC()
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	delete fb;
 	delete[] surface.clut.data;
 }
 
 void gFBDC::calcRamp()
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 #if 0
 	float fgamma=gamma ? gamma : 1;
 	fgamma/=10.0;
@@ -82,6 +91,9 @@ void gFBDC::calcRamp()
 
 void gFBDC::setPalette()
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	if (!surface.clut.data)
 		return;
 
@@ -97,6 +109,9 @@ void gFBDC::setPalette()
 
 void gFBDC::exec(const gOpcode *o)
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s(%s)", __FUNCTION__, gOpcode::opcode_names[o->opcode]);
+#endif
 	switch (o->opcode)
 	{
 	case gOpcode::setPalette:
@@ -153,6 +168,9 @@ void gFBDC::exec(const gOpcode *o)
 
 void gFBDC::setAlpha(int a)
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	alpha=a;
 
 	calcRamp();
@@ -161,6 +179,9 @@ void gFBDC::setAlpha(int a)
 
 void gFBDC::setBrightness(int b)
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	brightness=b;
 
 	calcRamp();
@@ -169,6 +190,9 @@ void gFBDC::setBrightness(int b)
 
 void gFBDC::setGamma(int g)
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	gamma=g;
 
 	calcRamp();
@@ -177,6 +201,9 @@ void gFBDC::setGamma(int g)
 
 void gFBDC::setResolution(int xres, int yres, int bpp)
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp))
 		return;
 
@@ -232,10 +259,16 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 
 void gFBDC::saveSettings()
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 }
 
 void gFBDC::reloadSettings()
 {
+#ifdef DEBUG_FBDC
+	eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
 	alpha=255;
 	gamma=128;
 	brightness=128;

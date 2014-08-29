@@ -9,6 +9,8 @@
 
 #include <lib/gdi/fb.h>
 
+// #define DEBUG_FB
+
 #ifndef FBIO_WAITFORVSYNC
 #define FBIO_WAITFORVSYNC _IOW('F', 0x20, __u32)
 #endif
@@ -22,11 +24,17 @@ fbClass *fbClass::instance;
 
 fbClass *fbClass::getInstance()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	return instance;
 }
 
 fbClass::fbClass(const char *fb)
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	m_manual_blit=-1;
 	instance=this;
 	locked=0;
@@ -86,6 +94,9 @@ nolfb:
 
 int fbClass::showConsole(int state)
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	int fd=open("/dev/tty0", O_RDWR);
 	if(fd>=0)
 	{
@@ -100,6 +111,9 @@ int fbClass::showConsole(int state)
 
 int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
 	screeninfo.yres_virtual=(screeninfo.yres=nyRes)*2;
 	screeninfo.height=0;
@@ -174,6 +188,9 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 
 void fbClass::getMode(int &xres, int &yres, int &bpp)
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	xres = screeninfo.xres;
 	yres = screeninfo.yres;
 	bpp = screeninfo.bits_per_pixel;
@@ -181,6 +198,9 @@ void fbClass::getMode(int &xres, int &yres, int &bpp)
 
 int fbClass::setOffset(int off)
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	screeninfo.xoffset = 0;
 	screeninfo.yoffset = off;
 	return ioctl(fbFd, FBIOPAN_DISPLAY, &screeninfo);
@@ -188,20 +208,32 @@ int fbClass::setOffset(int off)
 
 int fbClass::waitVSync()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	int c = 0;
 	return ioctl(fbFd, FBIO_WAITFORVSYNC, &c);
 }
 
 void fbClass::blit()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	if (m_manual_blit == 1) {
 		if (ioctl(fbFd, FBIO_BLIT) < 0)
 			perror("FBIO_BLIT");
+	}
+	else {
+		eDebug("[fbClass] %s ignored because m_manul_blit != 1", __FUNCTION__);
 	}
 }
 
 fbClass::~fbClass()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	if (lfb)
 	{
 		msync(lfb, available, MS_SYNC);
@@ -218,11 +250,17 @@ fbClass::~fbClass()
 
 int fbClass::PutCMAP()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	return ioctl(fbFd, FBIOPUTCMAP, &cmap);
 }
 
 int fbClass::lock()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	if (locked)
 		return -1;
 	if (m_manual_blit == 1)
@@ -237,6 +275,9 @@ int fbClass::lock()
 
 void fbClass::unlock()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	if (!locked)
 		return;
 	if (locked == 2)  // re-enable manualBlit
@@ -248,6 +289,9 @@ void fbClass::unlock()
 
 void fbClass::enableManualBlit()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	unsigned char tmp = 1;
 	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		perror("FBIO_SET_MANUAL_BLIT");
@@ -257,10 +301,12 @@ void fbClass::enableManualBlit()
 
 void fbClass::disableManualBlit()
 {
+#ifdef DEBUG_FB
+	eDebug("[fbClass] %s", __FUNCTION__);
+#endif
 	unsigned char tmp = 0;
 	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		perror("FBIO_SET_MANUAL_BLIT");
 	else
 		m_manual_blit = 0;
 }
-

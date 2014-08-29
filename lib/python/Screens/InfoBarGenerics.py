@@ -51,7 +51,7 @@ from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
-from keyids import KEYFLAGS, KEYIDS
+from keyids import KEYFLAGS, KEYIDS, invertKeyIds
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -139,7 +139,7 @@ def loadResumePoints():
 def updateresumePointCache():
 	global resumePointCache
 	resumePointCache = loadResumePoints()
-	
+
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
@@ -149,10 +149,10 @@ class InfoBarDish:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.detection) #highest prio
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.detection)  # highest prio
 		self.LongButtonPressed = False
 
-	#this function is called on every keypress!
+	# this function is called on every keypress!
 	def detection(self, key, flag):
 		if flag == 3:
 			self.LongButtonPressed = True
@@ -167,27 +167,26 @@ class InfoBarUnhandledKey:
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
-		eActionMap.getInstance().bindAction('', -maxint -1, self.actionA) #highest prio
-		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
-		self.flags = (1<<1)
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.actionA)  # highest prio
+		eActionMap.getInstance().bindAction('', maxint, self.actionB)  # lowest prio
+		self.flags = (1 << 1)
 		self.uflags = 0
+		self.invKeyIds = invertKeyIds()
 
-	#this function is called on every keypress!
+	# this function is called on every keypress!
 	def actionA(self, key, flag):
-		try:
-			print 'KEY: %s %s %s' % (key, KEYFLAGS[flag], getKeyDescription(key)[0])
-		except:
-			print 'KEY: %s %s' % (key, KEYFLAGS[flag])
+		print "KEY:", key, KEYFLAGS[flag], self.invKeyIds.get(key, ""), getKeyDescription(key)
+
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 
 		if flag != 4:
-			if self.flags & (1<<1):
+			if self.flags & (1 << 1):
 				self.flags = self.uflags = 0
-			self.flags |= (1<<flag)
-			if flag == 1: # break
+			self.flags |= (1 << flag)
+			if flag == 1:  # break
 				self.checkUnusedTimer.start(0, True)
 		return 0
 
@@ -203,10 +202,10 @@ class InfoBarUnhandledKey:
 		else:
 			return False
 
-	#this function is only called when no other action has handled this key
+	# this function is only called when no other action has handled this key
 	def actionB(self, key, flag):
 		if flag != 4:
-			self.uflags |= (1<<flag)
+			self.uflags |= (1 << flag)
 
 	def checkUnused(self):
 		if self.flags == self.uflags:
