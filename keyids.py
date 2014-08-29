@@ -309,8 +309,7 @@ KEYFLAGS = {
 }
 
 def invertKeyIds():
-	from keyids import KEYIDS
-	invkids =  dict()
+	invkids = dict()
 	for k, v in KEYIDS.iteritems():
 		if v not in invkids:
 			invkids[v] = k

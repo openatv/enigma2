@@ -183,7 +183,7 @@ def getKeyDescription(key):
 	else:
 		idx = 2
 	if key in keyDescriptions[idx]:
-		return keyDescriptions[idx].get(key, [ ])
+		return keyDescriptions[idx][key]
 
 def removeKeyBindings(domain):
 	# remove all entries of domain 'domain'

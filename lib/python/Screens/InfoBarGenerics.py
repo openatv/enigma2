@@ -139,7 +139,7 @@ def loadResumePoints():
 def updateresumePointCache():
 	global resumePointCache
 	resumePointCache = loadResumePoints()
-	
+
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
@@ -175,12 +175,7 @@ class InfoBarUnhandledKey:
 
 	# this function is called on every keypress!
 	def actionA(self, key, flag):
-		try:
-			keyDesc = ' ' + getKeyDescription(key)[0]
-		except:
-			keyDesc = ''
-		keyName = ' ' + self.invKeyIds[key] if key in self.invKeyIds else ''
-		print 'KEY: %s %s%s%s' % (key, KEYFLAGS[flag], keyName, keyDesc)
+		print "KEY:", key, KEYFLAGS[flag], self.invKeyIds.get(key, ""), getKeyDescription(key)
 
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
