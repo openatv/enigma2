@@ -51,7 +51,7 @@ from Tools.KeyBindings import getKeyDescription
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
-from keyids import KEYFLAGS, KEYIDS
+from keyids import KEYFLAGS, KEYIDS, invertKeyIds
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -171,13 +171,17 @@ class InfoBarUnhandledKey:
 		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
 		self.flags = (1<<1)
 		self.uflags = 0
+		self.invKeyIds = invertKeyIds()
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print 'KEY: %s %s %s' % (key, KEYFLAGS[flag], getKeyDescription(key)[0])
+			keyDesc = ' ' + getKeyDescription(key)[0]
 		except:
-			print 'KEY: %s %s' % (key, KEYFLAGS[flag])
+			keyDesc = ''
+		keyName = ' ' + self.invKeyIds[key] if key in self.invKeyIds else ''
+		print 'KEY: %s %s%s%s' % (key, KEYFLAGS[flag], keyName, keyDesc)
+
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
