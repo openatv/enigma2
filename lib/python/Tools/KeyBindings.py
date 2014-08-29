@@ -1,10 +1,11 @@
-keyBindings = { }
+keyBindings = {}
 
 from keyids import KEYIDS
 from Components.config import config
 from Components.RcModel import rc_model
 
-keyDescriptions = [{
+keyDescriptions = [
+	{
 		KEYIDS["BTN_0"]: ("UP", "fp"),
 		KEYIDS["BTN_1"]: ("DOWN", "fp"),
 		KEYIDS["KEY_OK"]: ("OK", ""),
@@ -174,7 +175,7 @@ def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
 		return [(x[0], x[2]) for x in keyBindings[(context, action)]]
 	else:
-		return [ ]
+		return []
 
 def getKeyDescription(key):
 	if rc_model.rcIsDefault():
