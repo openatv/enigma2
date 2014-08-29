@@ -307,3 +307,13 @@ KEYFLAGS = {
 3: "long",
 4: "ascii"
 }
+
+def invertKeyIds():
+	from keyids import KEYIDS
+	invkids =  dict()
+	for k, v in KEYIDS.iteritems():
+		if v not in invkids:
+			invkids[v] = k
+		else:
+			print "[keyids] key", v, "is mapped to both", invkids[v], "and", k
+	return invkids
