@@ -276,7 +276,10 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
-			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+			if "fb" in SystemInfo["WakeOnLAN"]:
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "1" or "0")
+			else:
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 		config.network.wol = ConfigYesNo(default = False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 
