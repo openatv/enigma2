@@ -67,13 +67,13 @@ class EPGFetcher(object):
         self.addLog("Start update")
         if passwordRequested:
             self.addLog("Can not proceed - you need to login first")
-            return
+            return False
         if not ice.have_credentials():
             passwordRequested = True
             self.addLog("No token, requesting password...")
             _session.open(IceTVNeedPassword)
             if not ice.have_credentials():
-                return
+                return False
         try:
             shows = self.getShows()
             channel_service_map = self.makeChanServMap(shows["channels"])
@@ -87,18 +87,20 @@ class EPGFetcher(object):
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
                 saveConfigFile()
             self.addLog("EPG download OK")
+            res = True
             if "timers" in shows:
-                self.processTimers(shows["timers"])
+                res = self.processTimers(shows["timers"])
             self.addLog("End update")
-            return
+            return res
         except (IOError, RuntimeError) as ex:
             msg = "Can not download EPG: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
+        res = False
         try:
             timers = self.getTimers()
-            self.processTimers(timers)
+            res = self.processTimers(timers)
             self.addLog("End update")
         except (IOError, RuntimeError) as ex:
             msg = "Can not download timers: " + str(ex)
@@ -109,6 +111,7 @@ class EPGFetcher(object):
             passwordRequested = True
             self.addLog("No token, requesting password...")
             _session.open(IceTVNeedPassword)
+        return res
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
@@ -234,12 +237,14 @@ class EPGFetcher(object):
         try:
             self.putTimers(update_queue)
             self.addLog("Timers updated OK")
+            return True
         except (IOError, RuntimeError, KeyError) as ex:
             msg = "Can not update timers: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
             print "[IceTV] ", msg
             self.addLog(msg)
+        return False
 
     def updateTimer(self, timer, name, start, duration, channels):
         changed = False
@@ -383,7 +388,10 @@ class IceTVMain(ChoiceBox):
         _session.open(IceTVUserTypeScreen)
 
     def fetch(self, res=None):
-        fetcher.doWork()
+        if fetcher.doWork():
+            _session.open(MessageBox, _("IceTV update completed OK"), type=MessageBox.TYPE_INFO, timeout=5)
+        else:
+            _session.open(MessageBox, _("IceTV update completed with errors.\n\nPlease check the log for details."), type=MessageBox.TYPE_ERROR, timeout=15)
 
     def login(self, res=None):
         _session.open(IceTVNeedPassword)
