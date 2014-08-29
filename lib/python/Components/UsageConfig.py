@@ -1,6 +1,6 @@
 import os
 from time import time
-from boxbranding import getBrandOEM
+from boxbranding import getBrandOEM, getBoxType
 
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent
 
@@ -15,7 +15,7 @@ from Tools.HardwareInfo import HardwareInfo
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
-	if getBrandOEM() == 'vuplus':
+	if getBrandOEM() in ('vuplus', 'ini')
 		config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
 	else:
 		config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
@@ -373,7 +373,10 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
-			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+			if getBoxType() in ('et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbipbox'):
+					open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+				else:
+					open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")	
 		config.network.wol = ConfigYesNo(default = False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = True)
