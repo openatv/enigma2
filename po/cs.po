@@ -1088,7 +1088,7 @@ msgid "Begin time"
 msgstr "Čas začátku"
 
 msgid "Behavior of 'pause and ok' when paused"
-msgstr ""
+msgstr "Chování 'pauza a ok' při pozastavení"
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1170,7 +1170,7 @@ msgid "C-Band"
 msgstr "C-Band"
 
 msgid "CH"
-msgstr ""
+msgstr "K"
 
 #
 msgid "CI assignment"
@@ -1522,7 +1522,7 @@ msgid "Configure the aspect ratio of the screen."
 msgstr "Nastavuje poměr stran obrazu."
 
 msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
-msgstr ""
+msgstr "Nastavení chování tlačítka 'pauza a ok' jestliže přehrávání filmu je již pozastaveno."
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
@@ -2134,11 +2134,11 @@ msgstr "DiSEqC"
 
 #
 msgid "DiSEqC 1.0 command"
-msgstr ""
+msgstr "DiSEqC 1.0 příkaz"
 
 #
 msgid "DiSEqC 1.1 command"
-msgstr ""
+msgstr "DiSEqC 1.1 příkaz"
 
 #
 msgid "DiSEqC 1.1 repeats"
@@ -2523,10 +2523,10 @@ msgid "Enable"
 msgstr "Povolit"
 
 msgid "Enable 'neutrino' style channel select controlling"
-msgstr ""
+msgstr "Povolit 'neutrino' styl výběru kanálů"
 
 msgid "Enable 'neutrino' style zap controlling"
-msgstr ""
+msgstr "Povolit 'neutrino' styl přepínání"
 
 #
 msgid "Enable 5V for active antenna"
@@ -3560,7 +3560,7 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 msgid "Letterbox zoom"
-msgstr ""
+msgstr "Letterbox zvětšení"
 
 #
 msgid "Limit character set for recording filenames"
@@ -3632,7 +3632,7 @@ msgid "Listen to the radio..."
 msgstr "Poslech rádia..."
 
 msgid "Lists reloaded!"
-msgstr ""
+msgstr "Seznam obnoven!"
 
 #
 msgid "Lithuanian"
@@ -4492,7 +4492,7 @@ msgid "Pause playback"
 msgstr "Pauza/přehrávání"
 
 msgid "Pauze/Continue playback"
-msgstr ""
+msgstr "Pozastavit/Pokračovat v přehrávání"
 
 msgid "Percentage left"
 msgstr "Procenta vlevo"
@@ -7891,10 +7891,10 @@ msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Jestliže je povoleno, pak PIP může být ukončen tlačítkem Exit"
 
 msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
-msgstr ""
+msgstr "Jestliže je povoleno, pak šipky okolo tlačítka OK budou používat 'neutrino' styl přepínání namísto stylu enigma2."
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
-msgstr ""
+msgstr "Jestliže je povoleno, pak tlačítka vlevo, vpravo, CH+/-, B+/-, P+/- budou používat 'neutrino' styl pro přepínání namísto stylu enigma2."
 
 #
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
@@ -9612,14 +9612,46 @@ msgid "zapped"
 msgstr "přepnutý"
 
 #
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "Režim tlačítka 'pause' při pozastavení filmu"
+msgid "Show record indicator"
+msgstr "Zobrazovat indikátor záznamu"
 
-#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-#~ msgstr "Nastavuje chování tlačítka 'pause' když je přehrávání již pozastaveno."
+#
+msgid "Configure if and how the record indicator will be shown in the channel selection list."
+msgstr "Nastavuje zda a jak bude zobrazovat indikaci nahrávaného kanálu v seznamu kanálů. "
 
-#~ msgid "Enable neutrino style zap controlling"
-#~ msgstr "Povolit neutrino styl řízení přepínání"
+#
+msgid "and never show this message again"
+msgstr "a více tuto zprávu nezobrazovat"
 
-#~ msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
-#~ msgstr "Pokud je povoleno, tlačítka se šipkami okolo tlačítka OK budou používat neutrino styl přepínání namísto stylu Enigma2."
+#
+msgid "Show disclaimer"
+msgstr "Zobrazit právní omezení"
+
+#
+msgid ""
+"With this disclaimer the openPLi team is informing you that we are working with nightly builds and it might be that after the upgrades your set top box is not anymore working as expected. Therefore it is recommendable to create backups with Autobackup or Backupsuite so when something went wrong you can easily and quickly restore. When you discover 'bugs' please keep them reported on www.openpli.org.\n"
+"\n"
+"Do you understand this?"
+msgstr ""
+"Tímto právním omezením Vás openPLi tým informuje, že pracujeme s nočními verzemi a může se stát, že po aktualizaci nebude přijímač pracovat tak, jak bylo očekáváno. Proto je doporučeno provést zálohu pomocí Autobackup nebo Backupsuite, takže v případě, že bude něco špatně, můžete jednoduše a rychle přijímač obnovit. Když objevíte nějaké chyby, prosím, oznamte je na www.openpli.org.\n"
+"\n"
+"Porozuměli jste?"
+
+#
+msgid "Select Channel"
+msgstr "Vybrat kanál"
+
+#
+msgid "add bouquet to parental protection"
+msgstr "přidat přehled do rodičovské ochrany"
+
+#
+msgid "Config resolution of pictures"
+msgstr "Nastavení rozlišení obrázků"
+
+#
+msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
+msgstr "Nastavuje v jakém rozlišení bude zobrazovat obrázky prohlížeč obrázků a movieplayer"
+#
+msgid "find currently played service"
+msgstr "najít právě přehrávaný program"

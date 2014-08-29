@@ -2354,7 +2354,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		{
 			return 0;
 		}
-		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2 && !can_handle_dvbt)
+		// if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2 && !can_handle_dvbt)
+		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2 && !(can_handle_dvbt || can_handle_dvbt2))
 		{
 			return 0;
 		}
