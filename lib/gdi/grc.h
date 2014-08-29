@@ -34,37 +34,33 @@ struct gOpcode
 		renderText,
 		renderPara,
 		setFont,
-		
-		fill, fillRegion, clear,
+		fill,
+		fillRegion,
+		clear,
 		blit,
-
 		setPalette,
 		mergePalette,
-		
 		line,
-		
 		setBackgroundColor,
 		setForegroundColor,
-		
 		setBackgroundColorRGB,
 		setForegroundColorRGB,
-		
 		setOffset,
-		
-		setClip, addClip, popClip,
-		
+		setClip,
+		addClip,
+		popClip,
 		flush,
-		
 		waitVSync,
 		flip,
 		notify,
-		
-		enableSpinner, disableSpinner, incrementSpinner,
-		
+		enableSpinner,
+		disableSpinner,
+		incrementSpinner,
 		shutdown,
-		
 		setCompositing,
 	} opcode;
+
+	static const char *opcode_names[];
 
 	gDC *dc;
 	union para
@@ -146,6 +142,7 @@ struct gOpcode
 		gCompositingData *setCompositing;
 	} parm;
 };
+
 
 #define MAXSIZE 2048
 

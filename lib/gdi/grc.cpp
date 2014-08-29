@@ -4,6 +4,38 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
+#define MKSTRING(x) #x
+const char *gOpcode::opcode_names[] = {
+	MKSTRING(renderText),
+	MKSTRING(renderPara),
+	MKSTRING(setFont),
+	MKSTRING(fill),
+	MKSTRING(fillRegion),
+	MKSTRING(clear),
+	MKSTRING(blit),
+	MKSTRING(setPalette),
+	MKSTRING(mergePalette),
+	MKSTRING(line),
+	MKSTRING(setBackgroundColor),
+	MKSTRING(setForegroundColor),
+	MKSTRING(setBackgroundColorRGB),
+	MKSTRING(setForegroundColorRGB),
+	MKSTRING(setOffset),
+	MKSTRING(setClip),
+	MKSTRING(addClip),
+	MKSTRING(popClip),
+	MKSTRING(flush),
+	MKSTRING(waitVSync),
+	MKSTRING(flip),
+	MKSTRING(notify),
+	MKSTRING(enableSpinner),
+	MKSTRING(disableSpinner),
+	MKSTRING(incrementSpinner),
+	MKSTRING(shutdown),
+	MKSTRING(setCompositing)
+};
+#undef MKSTRING
+
 #ifndef SYNC_PAINT
 void *gRC::thread_wrapper(void *ptr)
 {
@@ -263,8 +295,10 @@ gPainter::~gPainter()
 
 void gPainter::setBackgroundColor(const gColor &color)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::setBackgroundColor;
 	o.dc = m_dc.grabRef();
@@ -276,8 +310,10 @@ void gPainter::setBackgroundColor(const gColor &color)
 
 void gPainter::setForegroundColor(const gColor &color)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::setForegroundColor;
 	o.dc = m_dc.grabRef();
@@ -289,8 +325,10 @@ void gPainter::setForegroundColor(const gColor &color)
 
 void gPainter::setBackgroundColor(const gRGB &color)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::setBackgroundColorRGB;
 	o.dc = m_dc.grabRef();
@@ -302,8 +340,10 @@ void gPainter::setBackgroundColor(const gRGB &color)
 
 void gPainter::setForegroundColor(const gRGB &color)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::setForegroundColorRGB;
 	o.dc = m_dc.grabRef();
@@ -315,8 +355,10 @@ void gPainter::setForegroundColor(const gRGB &color)
 
 void gPainter::setFont(gFont *font)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::setFont;
 	o.dc = m_dc.grabRef();
@@ -330,8 +372,10 @@ void gPainter::setFont(gFont *font)
 void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border)
 {
 	if (string.empty()) return;
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::renderText;
 	o.dc = m_dc.grabRef();
@@ -346,8 +390,10 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 
 void gPainter::renderPara(eTextPara *para, ePoint offset)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	ASSERT(para);
 	gOpcode o;
 	o.opcode=gOpcode::renderPara;
@@ -362,8 +408,10 @@ void gPainter::renderPara(eTextPara *para, ePoint offset)
 
 void gPainter::fill(const eRect &area)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::fill;
 
@@ -375,8 +423,10 @@ void gPainter::fill(const eRect &area)
 
 void gPainter::fill(const gRegion &region)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::fillRegion;
 
@@ -388,8 +438,10 @@ void gPainter::fill(const gRegion &region)
 
 void gPainter::clear()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::clear;
 	o.dc = m_dc.grabRef();
@@ -407,8 +459,10 @@ void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &cl
 {
 	flags |= aflags;
 
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 
 	ASSERT(pixmap);
@@ -426,8 +480,10 @@ void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &cl
 
 void gPainter::setPalette(gRGB *colors, int start, int len)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	ASSERT(colors);
 	gOpcode o;
 	o.opcode=gOpcode::setPalette;
@@ -452,8 +508,10 @@ void gPainter::setPalette(gPixmap *source)
 
 void gPainter::mergePalette(gPixmap *target)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	ASSERT(target);
 	gOpcode o;
 	o.opcode = gOpcode::mergePalette;
@@ -466,8 +524,10 @@ void gPainter::mergePalette(gPixmap *target)
 
 void gPainter::line(ePoint start, ePoint end)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::line;
 	o.dc = m_dc.grabRef();
@@ -479,8 +539,10 @@ void gPainter::line(ePoint start, ePoint end)
 
 void gPainter::setOffset(ePoint val)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
@@ -492,8 +554,10 @@ void gPainter::setOffset(ePoint val)
 
 void gPainter::moveOffset(ePoint rel)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
@@ -505,8 +569,10 @@ void gPainter::moveOffset(ePoint rel)
 
 void gPainter::resetOffset()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
@@ -518,8 +584,10 @@ void gPainter::resetOffset()
 
 void gPainter::resetClip(const gRegion &region)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::setClip;
 	o.dc = m_dc.grabRef();
@@ -530,8 +598,10 @@ void gPainter::resetClip(const gRegion &region)
 
 void gPainter::clip(const gRegion &region)
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::addClip;
 	o.dc = m_dc.grabRef();
@@ -542,8 +612,10 @@ void gPainter::clip(const gRegion &region)
 
 void gPainter::clippop()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::popClip;
 	o.dc = m_dc.grabRef();
@@ -552,8 +624,10 @@ void gPainter::clippop()
 
 void gPainter::waitVSync()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::waitVSync;
 	o.dc = m_dc.grabRef();
@@ -562,8 +636,10 @@ void gPainter::waitVSync()
 
 void gPainter::flip()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::flip;
 	o.dc = m_dc.grabRef();
@@ -572,8 +648,10 @@ void gPainter::flip()
 
 void gPainter::notify()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::notify;
 	o.dc = m_dc.grabRef();
@@ -592,8 +670,10 @@ void gPainter::setCompositing(gCompositingData *comp)
 
 void gPainter::flush()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 	gOpcode o;
 	o.opcode = gOpcode::flush;
 	o.dc = m_dc.grabRef();
@@ -602,8 +682,10 @@ void gPainter::flush()
 
 void gPainter::end()
 {
-	if ( m_dc->islocked() )
+	if ( m_dc->islocked() ) {
+		eDebug("[gpainter] %s ignored because of lock", __FUNCTION__);
 		return;
+	}
 }
 
 gDC::gDC()
