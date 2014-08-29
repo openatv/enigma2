@@ -22,7 +22,7 @@ from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
-from time import strptime
+from time import strptime, sleep
 from datetime import datetime
 from . import config, saveConfigFile, enableIceTV, disableIceTV
 from Components.Task import Job, PythonTask, job_manager
@@ -430,6 +430,7 @@ class IceTVSelectProviderScreen(Screen):
                                      "cancel": self.cancel,
                                      "ok": self.ok,
                                  }, prio=-1)
+        sleep(2)    # Prevent display corruption if the screen is displayed too soon after enigma2 start up
 
     def cancel(self):
         self.hide()
