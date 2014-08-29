@@ -4,6 +4,8 @@
 #include <lib/base/eerror.h>
 #include <linux/fb.h>
 
+// #define DEBUG_FB
+
 class fbClass
 {
 	int fbFd;
@@ -30,17 +32,42 @@ public:
 	int showConsole(int state);
 	int SetMode(int xRes, int yRes, int bpp);
 	void getMode(int &xres, int &yres, int &bpp);
-	int Available() { return available; }
+	int Available() {
+#ifdef DEBUG_FB
+		eDebug("[fbClass] %s", __FUNCTION__);
+#endif
+		return available;
+	}
 	
-	int getNumPages() { return m_number_of_pages; }
+	int getNumPages() {
+#ifdef DEBUG_FB
+		eDebug("[fbClass] %s", __FUNCTION__);
+#endif
+		return m_number_of_pages;
+	}
 	
-	unsigned long getPhysAddr() { return m_phys_mem; }
+	unsigned long getPhysAddr() {
+#ifdef DEBUG_FB
+		eDebug("[fbClass] %s", __FUNCTION__);
+#endif
+		return m_phys_mem;
+	}
 	
 	int setOffset(int off);
 	int waitVSync();
 	void blit();
-	unsigned int Stride() { return stride; }
-	fb_cmap *CMAP() { return &cmap; }
+	unsigned int Stride() {
+#ifdef DEBUG_FB
+		eDebug("[fbClass] %s", __FUNCTION__);
+#endif
+		return stride;
+	}
+	fb_cmap *CMAP() {
+#ifdef DEBUG_FB
+		eDebug("[fbClass] %s", __FUNCTION__);
+#endif
+		return &cmap;
+	}
 
 	fbClass(const char *fb="/dev/fb0");
 	~fbClass();
@@ -52,7 +79,12 @@ public:
 
 	int lock();
 	void unlock();
-	int islocked() { return locked; }
+	int islocked() {
+#ifdef DEBUG_FB
+		eDebug("[fbClass] %s", __FUNCTION__);
+#endif
+		return locked;
+	}
 };
 
 #endif

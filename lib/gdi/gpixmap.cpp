@@ -169,10 +169,17 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 		if (area.empty())
 			continue;
 
+#ifdef GPIXMAP_DEBUG
+		Stopwatch s;
+#endif
 		if (surface->bpp == 8)
 		{
 			for (int y=area.top(); y<area.bottom(); y++)
 		 		memset(((__u8*)surface->data)+y*surface->stride+area.left(), color.color, area.width());
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[BLITBENCH] cpu 8-bpp indexed fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
+#endif
 		} else if (surface->bpp == 16)
 		{
 			__u32 icol;
@@ -193,6 +200,10 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				while (x--)
 					*dst++=col;
 			}
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[BLITBENCH] cpu 16-bpp indexed fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
+#endif
 		} else if (surface->bpp == 32)
 		{
 			__u32 col;
@@ -205,8 +216,13 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			col^=0xFF000000;
 			
 			if (surface->data_phys)
-				if (!gAccel::getInstance()->fill(surface,  area, col))
+				if (!gAccel::getInstance()->fill(surface,  area, col)) {
+#ifdef GPIXMAP_DEBUG
+					s.stop();
+					eDebug("[BLITBENCH] accel 32-bpp indexed fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
+#endif
 					continue;
+				}
 
 			for (int y=area.top(); y<area.bottom(); y++)
 			{
@@ -215,6 +231,10 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				while (x--)
 					*dst++=col;
 			}
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[BLITBENCH] cpu 32-bpp indexed fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
+#endif
 		}	else
 			eWarning("couldn't fill %d bpp", surface->bpp);
 	}
@@ -229,6 +249,9 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 		if (area.empty())
 			continue;
 
+#ifdef GPIXMAP_DEBUG
+		Stopwatch s;
+#endif
 		if (surface->bpp == 32)
 		{
 			__u32 col;
@@ -236,14 +259,11 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 			col = color.argb();
 			col^=0xFF000000;
 
-#ifdef GPIXMAP_DEBUG
-			Stopwatch s;
-#endif
 			if (surface->data_phys && (area.surface() > 20000))
 				if (!gAccel::getInstance()->fill(surface,  area, col)) {
 #ifdef GPIXMAP_DEBUG
 					s.stop();
-					eDebug("[BLITBENCH] accel fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+					eDebug("[BLITBENCH] accel 32-bpp fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
 #endif
 					continue;
 				}
@@ -257,7 +277,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[BLITBENCH] cpu fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+			eDebug("[BLITBENCH] cpu 32-bpp fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
 #endif
 		} else if (surface->bpp == 16)
 		{
@@ -274,6 +294,10 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 				while (x--)
 					*dst++=col;
 			}
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[BLITBENCH] cpu 16-bpp fill %dx%d at %d,%d took %u us", area.width(), area.height(), area.left(), area.top(), s.elapsed_us());
+#endif
 		}	else
 			eWarning("couldn't rgbfill %d bpp", surface->bpp);
 	}

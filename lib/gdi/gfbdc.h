@@ -5,6 +5,8 @@
 #include "gpixmap.h"
 #include "gmaindc.h"
 
+// #define DEBUG_FBDC
+
 class gFBDC: public gMainDC
 {
 	fbClass *fb;
@@ -22,17 +24,42 @@ public:
 	void setBrightness(int brightness);
 	void setGamma(int gamma);
 
-	int getAlpha() const { return alpha; }
-	int getBrightness() const { return brightness; }
-	int getGamma() const { return gamma; }
+	int getAlpha() const {
+#ifdef DEBUG_FBDC
+		eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
+		return alpha;
+	}
+	int getBrightness() const {
+#ifdef DEBUG_FBDC
+		eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
+		return brightness;
+	}
+	int getGamma() const {
+#ifdef DEBUG_FBDC
+		eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
+		return gamma;
+	}
 
-	int haveDoubleBuffering() const { return surface_back.data_phys != 0; }
+	int haveDoubleBuffering() const {
+#ifdef DEBUG_FBDC
+		eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
+		return surface_back.data_phys != 0;
+	}
 
 	void saveSettings();
 
 	gFBDC();
 	virtual ~gFBDC();
-	int islocked() const { return fb->islocked(); }
+	int islocked() const {
+#ifdef DEBUG_FBDC
+		eDebug("[gFBDC] %s", __FUNCTION__);
+#endif
+		return fb->islocked();
+	}
 };
 
 #endif
