@@ -30,9 +30,9 @@ class ServiceTime(Converter, object):
 			return info.getInfo(service, iServiceInformation.sTimeCreate)
 		elif self.type == self.ENDTIME:
 			begin = info.getInfo(service, iServiceInformation.sTimeCreate)
-			len = info.getLength(service)
+			len = info.getLength(service) + 10 # added 10 seconds to fix round to minutes
 			return begin + len
 		elif self.type == self.DURATION:
-			return info.getLength(service)
+			return info.getLength(service) + 10 # added 10 seconds to fix round to minutes
 
 	time = property(getTime)
