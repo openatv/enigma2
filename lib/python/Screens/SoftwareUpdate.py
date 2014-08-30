@@ -189,7 +189,7 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
-						(_("Show updated packages"), "showlist")]
+						(_("Show packages to be updated"), "showlist")]
 					if not config.usage.show_update_disclaimer.value:
 						choices.append((_("Show disclaimer"), "disclaimer"))
 					choices.append((_("Cancel"), ""))
