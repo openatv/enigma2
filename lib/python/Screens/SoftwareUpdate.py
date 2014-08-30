@@ -260,10 +260,10 @@ When you discover 'bugs' please keep them reported on www.openpli.org.\n\nDo you
 		elif answer[1] == "disclaimer":
 			self.showDisclaimer(justShow=True)
 		elif answer[1] == "showlist":
-			text = _("Packages to update") + "\n"
+			text = ""
 			for i in [x[0] for x in sorted(self.ipkg.getFetchedList(), key=lambda d: d[0])]:
-				text += "\n" + i
-			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text)
+				text = text and text + "\n" + i or i
+			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text, _("Packages to update"))
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
