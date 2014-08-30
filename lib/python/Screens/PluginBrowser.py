@@ -427,7 +427,7 @@ class PluginDownloadBrowser(Screen):
 		except:
 			pass
 		for plugin in self.pluginlist:
-			if plugin[3] == self["list"].l.getCurrentSelection()[0].name:
+			if plugin[3] == self["list"].l.getCurrentSelection()[0].name or plugin[0] == self["list"].l.getCurrentSelection()[0].name:
 				self.pluginlist.remove(plugin)
 				break
 		self.plugins_changed = True
@@ -507,7 +507,14 @@ class PluginDownloadBrowser(Screen):
 								if plugin[0] not in self.installedplugins:
 									if len(plugin) == 2:
 										# 'opkg list_installed' does not return descriptions, append empty description
-										plugin.append('')
+										if plugin[0].startswith('enigma2-locale-'):
+											lang = plugin[0].split('-')
+											if len(lang) > 3:
+												plugin.append(lang[2] + '-' + lang[3])
+											else:
+												plugin.append(lang[2])
+										else:
+											plugin.append('')
 									plugin.append(plugin[0][15:])
 
 									self.pluginlist.append(plugin)
@@ -538,19 +545,19 @@ class PluginDownloadBrowser(Screen):
 			if split[0] == "kernel modules":
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][14:], x[1]))
 			elif split[0] == "languages":
-				langname = None
 				for t in self.LanguageList:
 					if len(x[2])>2:
 						tmpT = t[0].lower()
 						tmpT = tmpT.replace('_','-')
 						if tmpT == x[2]:
-							langname = t[1]
+							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
+							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
+							break
 					else:
-						if t[0][:2] == x[2]:
-							langname = t[1]
-					if langname:
-						self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), langname, x[1]))
-						break
+						if t[0][:2] == x[2] and t[0][3:] != 'GB':
+							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
+							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
+							break
 							
 			else:
 				if len(split) < 2:
