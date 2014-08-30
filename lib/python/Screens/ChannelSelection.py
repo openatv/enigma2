@@ -187,7 +187,7 @@ class ChannelContextMenu(Screen):
 				if self.inBouquet:
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
 					if not inAlternativeList:
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0, key="8")
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
 						self.removeFunction = self.removeCurrentService
 				if current_root and ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_root.getPath():
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level=0)
@@ -199,7 +199,7 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("remove bouquet from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level=0)
 					menu.append(ChoiceEntryComponent(text=(_("add bouquet"), self.showBouquetInputBox)))
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
-					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level=0, key="8")
+					append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
 					self.removeFunction = self.removeBouquet
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
@@ -230,7 +230,7 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level=0)
 					if current_sel_flags & eServiceReference.isMarker:
 						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0, key="8")
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
 						self.removeFunction = self.removeCurrentService
 				else:
 					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level=0)
@@ -247,9 +247,26 @@ class ChannelContextMenu(Screen):
 
 	def removeEntry(self):
 		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
-			self.removeFunction()
+			if self.csel.confirmRemove:
+				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
+				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?"), list=list)
+			else:
+				self.removeFunction(True)
 		else:
 			return 0
+
+	def removeCurrentService(self, answer):
+		if answer:
+			if answer == "never":
+				self.csel.confirmRemove = False
+			self.csel.removeCurrentService()
+			self.close()
+
+	def removeBouquet(self, answer):
+		if answer:
+			self.csel.removeBouquet()
+			eDVBDB.getInstance().reloadBouquets()
+			self.close()
 
 	def playMain(self):
 		sel = self.csel.getCurrentSelection()
@@ -354,18 +371,6 @@ class ChannelContextMenu(Screen):
 		self.csel.copyCurrentToBouquetList()
 		self.close()
 
-	def removeBouquet(self):
-		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
-			self.session.openWithCallback(self.removeBouquetCallback, MessageBox, _("Are you sure to remove this entry?"))
-		else:
-			return 0
-
-	def removeBouquetCallback(self, answer):
-		if answer:
-			self.csel.removeBouquet()
-			eDVBDB.getInstance().reloadBouquets()
-			self.close()
-
 	def showMarkerInputBox(self):
 		self.session.openWithCallback(self.markerInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
 
@@ -380,17 +385,6 @@ class ChannelContextMenu(Screen):
 			self.bsel.close(True)
 		else:
 			self.close(closeBouquetSelection) # close bouquet selection
-
-	def removeCurrentService(self):
-		if self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
-			self.session.openWithCallback(self.removeCurrentServiceCallback, MessageBox, _("Are you sure to remove this entry?"))
-		else:
-			return 0
-
-	def removeCurrentServiceCallback(self, answer):
-		if answer:
-			self.csel.removeCurrentService()
-			self.close()
 
 	def renameEntry(self):
 		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
@@ -552,6 +546,7 @@ class ChannelSelectionEdit:
 		self.saved_root = None
 		self.current_ref = None
 		self.editMode = False
+		self.confirmRemove = True
 
 		class ChannelSelectionEditActionMap(ActionMap):
 			def __init__(self, csel, contexts=[ ], actions={ }, prio=0):
@@ -870,10 +865,16 @@ class ChannelSelectionEdit:
 			self.servicelist.addMarked(ref)
 
 	def removeCurrentEntry(self, bouquet=False):
-		self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"))
+		if self.confirmRemove:
+			list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
+			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"), list=list)
+		else:
+			self.removeCurrentEntryCallback(bouquet, True)
 
 	def removeCurrentEntryCallback(self, bouquet, answer):
 		if answer:
+			if answer == "never":
+				self.confirmRemove = False
 			if bouquet:
 				self.removeBouquet()
 			else:
