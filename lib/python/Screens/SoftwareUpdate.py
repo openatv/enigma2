@@ -2,6 +2,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
+from Screens.TextBox import TextBox
 from Screens.About import CommitInfo
 from Components.config import config
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -196,12 +197,13 @@ When you discover 'bugs' please keep them reported on www.openpli.org.\n\nDo you
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
 						(_("Show latest commits on sourceforge"), "commits"),
-						(_("Cancel"), "")]
+						(_("Show updated packages"), "showlist")]
 					if not config.usage.show_update_disclaimer.value:
 						choices.append((_("Show disclaimer"), "disclaimer"))
+					choices.append((_("Cancel"), ""))
 					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
-					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=3, close_on_any_key=True)
 			elif self.channellist_only > 0:
 				if self.channellist_only == 1:
 					self.setEndMessage(_("Could not find installed channel list."))
@@ -257,6 +259,11 @@ When you discover 'bugs' please keep them reported on www.openpli.org.\n\nDo you
 			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), CommitInfo)
 		elif answer[1] == "disclaimer":
 			self.showDisclaimer(justShow=True)
+		elif answer[1] == "showlist":
+			text = _("Packages to update") + "\n"
+			for i in [x[0] for x in sorted(self.ipkg.getFetchedList(), key=lambda d: d[0])]:
+				text += "\n" + i
+			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text)
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 
