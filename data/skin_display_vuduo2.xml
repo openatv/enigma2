@@ -26,25 +26,22 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="right" size="36,*" font="Medium" halign="right" valign="top" noWrap="1">
-			<convert type="ClockToText"/>
-		</widget>
-	</screen>
-	<screen name="RecordIconPanel">
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="e-15,0" size="15,11">
-			<convert type="ConditionalShowHide">Blink,2000</convert>
-		</widget>
+		<panel position="right" size="36,*" layout="stack">
+			<widget source="global.CurrentTime" render="Label" position="right" size="36,*" font="Medium" halign="right" valign="top" noWrap="1">
+				<convert type="ClockToText"/>
+			</widget>
+			<widget source="session.RecordState" render="FixedLabel" text="[REC]" position="right" size="36,*" font="Medium" halign="right" valign="top">
+				<convert type="ConditionalShowHide">Blink,2000</convert>
+			</widget>
+		</panel>
 	</screen>
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
-		<panel position="top" size="*,16" layout="stack">
-			<widget source="session.CurrentService" render="Label" position="top" size="*,16" font="Bigger" noWrap="1">
-				<convert type="ServiceName">Name</convert>
-				<convert type="TextCase">ToUpper</convert>
-			</widget>
-			<panel name="RecordIconPanel"/>
-		</panel>
+		<widget source="session.CurrentService" render="Label" position="top" size="*,16" font="Bigger" noWrap="1">
+			<convert type="ServiceName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
 		<widget source="session.Event_Now" render="Progress" position="top" size="*,4" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
@@ -62,24 +59,18 @@
 			<convert type="ServiceName">Name</convert>
 			<convert type="TextCase">ToUpper</convert>
 		</widget>
-		<panel position="fill" name="SummaryClockPanel" layout="stack">
-			<widget source="parent.Event" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
-				<convert type="EventName">Name</convert>
-				<convert type="TextCase">ToUpper</convert>
-			</widget>
-			<panel name="RecordIconPanel"/>
-		</panel>
+		<widget source="parent.Event" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1">
+			<convert type="EventName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
 	</screen>
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
-		<panel position="top" size="*,16" layout="stack">
-			<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" >
-				<convert type="ServiceName">Name</convert>
-				<convert type="TextCase">ToUpper</convert>
-			</widget>
-			<panel name="RecordIconPanel"/>
-		</panel>
+		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,4" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
@@ -115,16 +106,13 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
-		<panel position="top" size="*,16" layout="stack">
-			<panel position="top" size="*,16">
-				<widget source="session.CurrentService" render="Label" position="right" size="48,*" font="Bigger" halign="right" noWrap="1">
-					<convert type="ServicePosition">Remaining,ShowHours,Negate,ShowNoSeconds</convert>
-				</widget>
-				<widget source="session.CurrentService" render="Label" position="fill" size="64,*" font="Bigger"  noWrap="1">
-					<convert type="ServicePosition">Position,ShowHours</convert>
-				</widget>
-			</panel>
-			<panel name="RecordIconPanel"/>
+		<panel position="top" size="*,16">
+			<widget source="session.CurrentService" render="Label" position="right" size="48,*" font="Bigger" halign="right" noWrap="1">
+				<convert type="ServicePosition">Remaining,ShowHours,Negate,ShowNoSeconds</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label" position="fill" size="64,*" font="Bigger"  noWrap="1">
+				<convert type="ServicePosition">Position,ShowHours</convert>
+			</widget>
 		</panel>
 		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
 			<convert type="ServicePosition">Position</convert>
