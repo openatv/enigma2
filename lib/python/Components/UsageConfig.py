@@ -15,7 +15,7 @@ from Tools.HardwareInfo import HardwareInfo
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
-	if getBrandOEM() in ('vuplus', 'ini')
+	if getBrandOEM() in ('vuplus', 'ini'):
 		config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
 	else:
 		config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
@@ -375,7 +375,7 @@ def InitUsageConfig():
 		def wakeOnLANChanged(configElement):
 			if getBoxType() in ('et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbipbox'):
 					open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
-				else:
+			else:
 					open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")	
 		config.network.wol = ConfigYesNo(default = False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
