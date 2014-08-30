@@ -374,9 +374,9 @@ def InitUsageConfig():
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
 			if getBoxType() in ('et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbipbox'):
-					open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 			else:
-					open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")	
+				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")	
 		config.network.wol = ConfigYesNo(default = False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = True)
