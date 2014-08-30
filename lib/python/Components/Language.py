@@ -81,7 +81,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index])
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
@@ -170,7 +170,7 @@ class Language:
 		f.write('# date: ' + createdate + '\n#\n\n')
 		f.write('LANG_TEXT = {\n')
 		for lang in self.langlist:
-			catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[str(lang)])
+			catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[str(lang)], fallback=True)
 			T1 = catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button.")
 			T2 = catalog.gettext("Language selection")
 			T3 = catalog.gettext("Cancel")

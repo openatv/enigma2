@@ -23,6 +23,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.Button import Button
 from Components.ActionMap import ActionMap
+from Components.SystemInfo import SystemInfo
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from __init__ import _
@@ -43,9 +44,9 @@ config.softcam.actCam2 = ConfigText(visible_width = 200)
 config.softcam.waittime = ConfigSelection([('0',_("dont wait")),('1',_("1 second")), ('5',_("5 seconds")),('10',_("10 seconds")),('15',_("15 seconds")),('20',_("20 seconds")),('30',_("30 seconds"))], default='15')
 config.plugins.infopanel_redpanel = ConfigSubsection()
 if getBoxType() == "dm800":
-	config.plugins.infopanel_redpanel.enabled = ConfigYesNo(default=False)
+	config.plugins.infopanel_redpanel.selection = ConfigSelection([('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))], default='0')
 else:
-	config.plugins.infopanel_redpanel.enabled = ConfigYesNo(default=True)
+	config.plugins.infopanel_redpanel.selection = ConfigSelection([('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))], default='1')
 config.plugins.infopanel_redpanel.enabledlong = ConfigYesNo(default=False)
 config.plugins.infopanel_yellowkey = ConfigSubsection()
 if getBoxType() == "dm800":
@@ -87,6 +88,8 @@ def Check_Softcam():
 			found = True
 			break;
 	return found
+
+SystemInfo["SoftCam"] = Check_Softcam()
 
 # Hide Softcam-Panel Setup when no softcams installed
 if not Check_Softcam() and (config.plugins.showinfopanelextensions.value or config.plugins.infopanel_redpanel.enabledlong.value):
@@ -302,8 +305,6 @@ class Infopanel(Screen, InfoBarPiP):
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanelSetup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('RedPanel'), _("RedPanel"), 'RedPanel')))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Yellow-Key-Action'), _("Yellow-Key-Action"), 'Yellow-Key-Action')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
@@ -459,10 +460,6 @@ class Infopanel(Screen, InfoBarPiP):
 			self.session.open(SundtekControlCenter)
 		elif menu == "SwapManager":
 			self.session.open(Swap)
-		elif menu == "RedPanel":
-			self.session.open(RedPanel)
-		elif menu == "Yellow-Key-Action":
-			self.session.open(YellowPanel)
 		elif menu == "Softcam-Panel Setup":
 			self.session.open(ShowSoftcamPanelExtensions)
 		elif menu == "KeymapSel":
@@ -688,181 +685,6 @@ class KeymapSel(ConfigListScreen, Screen):
 	def ExecuteRestart(self, result):
 		if result:
 			quitMainloop(3)
-		else:
-			self.close()
-
-class RedPanel(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skinName = "Setup"
-		Screen.setTitle(self, _("RedPanel") + "...")
-		self.setup_title =  _("RedPanel") + "..."
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["status"] = StaticText()
-		self['footnote'] = Label("")
-		self["description"] = Label(_(""))
-		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keySave,
-			"menu": self.keyCancel,
-		}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Show INFO-Panel Red-key"), config.plugins.infopanel_redpanel.enabled))
-		self.list.append(getConfigListEntry(_("Show Softcam-Panel Red-key long"), config.plugins.infopanel_redpanel.enabledlong))
-		
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[0])
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	def keySave(self):
-		self.saveAll()
-		self.close()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
-
-class YellowPanel(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skinName = "Setup"
-		Screen.setTitle(self, _("Yellow Key Action") + "...")
-		self.setup_title = _("Yellow Key Action") + "..."
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["status"] = StaticText()
-		self['footnote'] = Label("")
-		self["description"] = Label("")
-		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keySave,
-			"menu": self.keyCancel,
-		}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Yellow Key Action"), config.plugins.infopanel_yellowkey.list))
-		
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[0])
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	def keySave(self):
-		self.saveAll()
-		self.close()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
 

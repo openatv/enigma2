@@ -108,6 +108,7 @@ class InfoBarTimeshift:
 
 		self.pts_begintime = 0
 		self.pts_switchtolive = False
+		self.pts_firstplayable = 1
 		self.pts_currplaying = 1
 		self.pts_nextplaying = 0
 		self.pts_lastseekspeed = 0
@@ -158,7 +159,7 @@ class InfoBarTimeshift:
 		self.session.nav.RecordTimer.on_state_change.append(self.ptsTimerEntryStateChange)
 
 		# Keep Current Event Info for recordings
-		self.pts_eventcount = 1
+		self.pts_eventcount = 0
 		self.pts_curevent_begin = int(time())
 		self.pts_curevent_end = 0
 		self.pts_curevent_name = _("Timeshift")
@@ -216,7 +217,8 @@ class InfoBarTimeshift:
 
 		# print 'self.pts_currplaying',self.pts_currplaying
 		self.pts_nextplaying = 0
-		if self.pts_currplaying > 1:
+		#if self.pts_currplaying > 1:
+		if self.pts_currplaying > self.pts_firstplayable:
 			self.pts_currplaying -= 1
 		else:
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -231,6 +233,12 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(3600 * 24 * 90000)
 			self.pts_SeekBack_timer.start(1000, True)
+		else:
+			print ('[TIMESHIFT] - "pts_livebuffer_%s" file was not found -> put pointer to the first (current) "pts_livebuffer_%s" file' % (self.pts_currplaying, self.pts_currplaying + 1))
+			self.pts_currplaying += 1
+			self.pts_firstplayable += 1
+			self.setSeekState(self.SEEK_STATE_PLAY)
+			self.doSeek(0)
 
 	def __evEOF(self):
 		# print '!!!!! jumpToNextTimeshiftedEvent'
@@ -263,7 +271,9 @@ class InfoBarTimeshift:
 				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 
 			# Delete Timeshift Records on zap
-			self.pts_eventcount = 0
+			if config.timeshift.deleteAfterZap.value:
+				self.pts_eventcount = 0
+			self.pts_firstplayable = self.pts_eventcount + 1
 			# print 'AAAAAAAAAAAAAAAAAAAAAA'
 			# self.pts_cleanUp_timer.start(1000, True)
 
@@ -559,8 +569,12 @@ class InfoBarTimeshift:
 		filelist = os.listdir(config.usage.timeshift_path.value)
 
 		if filelist is not None:
-			filelist.sort()
-
+			try:
+				filelist = sorted(filelist, key=lambda x: int(x.split('pts_livebuffer_')[1]) if x.startswith("pts_livebuffer") and not os.path.splitext(x)[1] else x)
+			except:
+				print '[TIMESHIFT] - file sorting error, use standard sorting method'
+				filelist.sort()
+			# print filelist
 			for filename in filelist:
 				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
 					# print "TRUE"
@@ -576,7 +590,12 @@ class InfoBarTimeshift:
 
 						# Add Event to list
 						filecount += 1
-						entrylist.append((_("Record") + " #%s (%s): %s" % (filecount,strftime("%H:%M",localtime(int(begintime))),eventname), "%s" % filename))
+						if config.timeshift.deleteAfterZap.value and servicerefname == self.pts_curevent_servicerefname:
+							entrylist.append((_("Record") + " #%s (%s): %s" % (filecount,strftime("%H:%M",localtime(int(begintime))),eventname), "%s" % filename))
+						else:
+							servicename = ServiceReference(servicerefname).getServiceName()
+							#entrylist.append((_("Record") + " #%s (%s,%s): %s" % (filecount,strftime("%H:%M",localtime(int(begintime))),servicename,eventname), "%s" % filename))
+							entrylist.append(("[%s] %s : %s" % (strftime("%H:%M",localtime(int(begintime))),servicename,eventname), "%s" % filename))
 
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save permanently?"), list=entrylist)
 
@@ -672,11 +691,18 @@ class InfoBarTimeshift:
 					begintime = readmetafile.readline()[0:-1]
 					readmetafile.close()
 
-					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname)
+					if config.timeshift.deleteAfterZap.value and servicerefname == self.pts_curevent_servicerefname:
+						servicename = self.pts_curevent_station
+					else:
+						servicename = ServiceReference(servicerefname).getServiceName()
+
+					#ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname)
+					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),servicename,eventname)
 					try:
 						if config.usage.setup_level.index >= 2:
 							if config.recording.filename_composition.value == "long" and eventname != description:
-								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname,description)
+								#ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname,description)
+								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),servicename,eventname,description)
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d",localtime(int(begintime))),eventname)
 							elif config.recording.filename_composition.value == "veryshort":

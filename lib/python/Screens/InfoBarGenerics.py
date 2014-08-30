@@ -3154,23 +3154,29 @@ class InfoBarINFOpanel:
 				for x in self.onHBBTVActivation:
 					x()
 					
-			elif config.plugins.infopanel_redpanel.enabled.value == True:
-				try:
-					from Plugins.Extensions.Infopanel.plugin import Infopanel
-					self.session.open(Infopanel, services = self.servicelist)
-				except:
-					pass
+			elif config.plugins.infopanel_redpanel.selection.value == '0':
+				self.instantRecord()
 			else:
-				self.instantRecord()		
+				self.doRedKeyTask()
 		
-		elif config.plugins.infopanel_redpanel.enabled.value == True:
-			try:
+		elif config.plugins.infopanel_redpanel.selection.value == '0':
+			self.instantRecord()
+		else:
+			self.doRedKeyTask()
+
+	def doRedKeyTask(self):
+		try:
+			if config.plugins.infopanel_redpanel.selection.value == '1':
 				from Plugins.Extensions.Infopanel.plugin import Infopanel
 				self.session.open(Infopanel, services = self.servicelist)
-			except:
-				pass
-		else:
-			self.instantRecord()
+			elif config.plugins.infopanel_redpanel.selection.value == '2':
+				self.session.open(TimerEditList)
+			elif config.plugins.infopanel_redpanel.selection.value == '3':
+				self.showMovies()
+			else:
+				self.instantRecord()
+		except:
+			pass
 		
 	def softcamPanel(self):
 		if config.plugins.infopanel_redpanel.enabledlong.value == True:

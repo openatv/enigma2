@@ -90,6 +90,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
+#if KEY_F1_TO_KEY_F2
+	if (ev->code == KEY_F1)
+	{
+		/* ET7X00 Remote rc has a Funktion key, which sends KEY_F1 events but we need a KEY_F2. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_F2;
+	}
+#endif
+
 #if KEY_INFO_TO_KEY_EPG
 	if (ev->code == KEY_INFO)
 	{
