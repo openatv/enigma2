@@ -747,7 +747,83 @@ void eDVBDB::loadBouquet(const char *path)
 	p+=path;
 	eDebug("loading bouquet... %s", p.c_str());
 	CFile fp(p.c_str(), "rt");
-	if (!fp)
+	int entries=0;
+	if (fp)
+	{
+		size_t linesize = 256;
+		char *line = (char*)malloc(linesize);
+		bool read_descr=false;
+		eServiceReference *e = NULL;
+		while (1)
+		{
+			int len;
+			if ((len = getline(&line, &linesize, fp)) < 2) break;
+			/* strip newline */
+			line[--len] = 0;
+			/* strip carriage return (when found) */
+			if (line[len - 1] == '\r') line[--len] = 0;
+			if (!strncmp(line, "#SERVICE", 8))
+			{
+				int offs = line[8] == ':' ? 10 : 9;
+				eServiceReference tmp(line+offs);
+				if ( tmp.flags&eServiceReference::canDescent )
+				{
+					size_t pos = tmp.path.rfind('/');
+					char buf[256];
+					std::string path = tmp.path;
+					if ( pos != std::string::npos )
+						path.erase(0, pos+1);
+					if (path.empty())
+					{
+						eDebug("Bouquet load failed.. no filename given..");
+						continue;
+					}
+					pos = path.find("FROM BOUQUET ");
+					if (pos != std::string::npos)
+					{
+						char endchr = path[pos+13];
+						if (endchr != '"')
+						{
+							eDebug("ignore invalid bouquet '%s' (only \" are allowed)",
+								tmp.toString().c_str());
+							continue;
+						}
+						char *beg = &path[pos+14];
+						char *end = strchr(beg, endchr);
+						path.assign(beg, end - beg);
+					}
+					else
+					{
+						snprintf(buf, sizeof(buf), "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
+						tmp.path = buf;
+					}
+					for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
+					{
+						if (userbouquetsfiles[i].compare(path.c_str()) == 0)
+						{
+							userbouquetsfiles.erase(userbouquetsfiles.begin() + i);
+							break;
+						}
+					}
+					loadBouquet(path.c_str());
+				}
+				list.push_back(tmp);
+				e = &list.back();
+				read_descr=true;
+				++entries;
+			}
+			else if (read_descr && !strncmp(line, "#DESCRIPTION", 12))
+			{
+				int offs = line[12] == ':' ? 14 : 13;
+				e->name = line+offs;
+				read_descr=false;
+			}
+			else if (!strncmp(line, "#NAME ", 6))
+				bouquet.m_bouquet_name=line+6;
+		}
+		free(line);
+	}
+	else
 	{
 		eDebug("can't open %s: %m", p.c_str());
 		if (!strcmp(path, "bouquets.tv"))
@@ -762,82 +838,7 @@ void eDVBDB::loadBouquet(const char *path)
 			bouquet.m_bouquet_name="Bouquets (Radio)";
 			bouquet.flushChanges();
 		}
-		if (!userbouquetsfiles.size())
-			return;
 	}
-	int entries=0;
-	size_t linesize = 256;
-	char *line = (char*)malloc(linesize);
-	bool read_descr=false;
-	eServiceReference *e = NULL;
-	while (fp)
-	{
-		int len;
-		if ((len = getline(&line, &linesize, fp)) < 2) break;
-		/* strip newline */
-		line[--len] = 0;
-		/* strip carriage return (when found) */
-		if (line[len - 1] == '\r') line[--len] = 0;
-		if (!strncmp(line, "#SERVICE", 8))
-		{
-			int offs = line[8] == ':' ? 10 : 9;
-			eServiceReference tmp(line+offs);
-			if ( tmp.flags&eServiceReference::canDescent )
-			{
-				size_t pos = tmp.path.rfind('/');
-				char buf[256];
-				std::string path = tmp.path;
-				if ( pos != std::string::npos )
-					path.erase(0, pos+1);
-				if (path.empty())
-				{
-					eDebug("Bouquet load failed.. no filename given..");
-					continue;
-				}
-				pos = path.find("FROM BOUQUET ");
-				if (pos != std::string::npos)
-				{
-					char endchr = path[pos+13];
-					if (endchr != '"')
-					{
-						eDebug("ignore invalid bouquet '%s' (only \" are allowed)",
-							tmp.toString().c_str());
-						continue;
-					}
-					char *beg = &path[pos+14];
-					char *end = strchr(beg, endchr);
-					path.assign(beg, end - beg);
-				}
-				else
-				{
-					snprintf(buf, sizeof(buf), "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
-					tmp.path = buf;
-				}
-				for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
-				{
-					if (userbouquetsfiles[i].compare(path.c_str()) == 0)
-					{
-						userbouquetsfiles.erase(userbouquetsfiles.begin() + i);
-						break;
-					}
-				}
-				loadBouquet(path.c_str());
-			}
-			list.push_back(tmp);
-			e = &list.back();
-			read_descr=true;
-			++entries;
-		}
-		else if (read_descr && !strncmp(line, "#DESCRIPTION", 12))
-		{
-			int offs = line[12] == ':' ? 14 : 13;
-			e->name = line+offs;
-			read_descr=false;
-		}
-		else if (!strncmp(line, "#NAME ", 6))
-			bouquet.m_bouquet_name=line+6;
-	}
-	free(line);
 	if (userbouquetsfiles.size())
 	{
 		for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
