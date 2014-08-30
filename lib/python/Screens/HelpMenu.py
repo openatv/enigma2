@@ -9,7 +9,6 @@ class HelpMenu(Screen, Rc):
 		Screen.__init__(self, session)
 		self.onSelChanged = [ ]
 		self["list"] = HelpMenuList(list, self.close)
-		self["list"].onSelChanged.append(self.SelectionChanged)
 		Rc.__init__(self)
 		self["long_key"] = Label("")
 
@@ -20,29 +19,27 @@ class HelpMenu(Screen, Rc):
 		}, -1)
 
 		self.onLayoutFinish.append(self.SelectionChanged)
+		self.onFirstExecBegin.append(self.doOnFirstExecBegin)
+
+	def doOnFirstExecBegin(self):
+		self["list"].onSelChanged.append(self.SelectionChanged)
 
 	def SelectionChanged(self):
 		self.clearSelectedKeys()
 		selection = self["list"].getCurrent()
-		if selection:
-			selection = selection[3]
-		#arrow = self["arrowup"]
-		print "selection:", selection
 
 		longText = ""
-		if selection and len(selection) > 1:
-			if selection[1] == "SHIFT":
-				self.selectKey("SHIFT")
-			elif selection[1] == "long":
-				longText = _("Long key press")
-		self["long_key"].setText(longText)
+		if selection:
+			selection = selection[3][0]
+			print "selection:", selection
+			if len(selection) > 1:
+				if selection[1] == "SHIFT":
+					self.selectKey("SHIFT")
+				elif selection[1] == "long":
+					longText = _("Long key press")
+			self.selectKey(selection[0])
 
-		self.selectKey(selection[0])
-		#if selection is None:
-		print "select arrow"
-		#	arrow.moveTo(selection[1], selection[2], 1)
-		#	arrow.startMoving()
-		#	arrow.show()
+		self["long_key"].setText(longText)
 
 class HelpableScreen:
 	def __init__(self):
