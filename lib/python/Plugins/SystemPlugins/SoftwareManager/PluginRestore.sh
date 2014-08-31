@@ -1,16 +1,9 @@
 #!/bin/sh
-# created by Nobody28
-#
-# www.gigablue-support.com
 clear
-echo '############################'
-echo '# www.gigablue-support.com #'
-echo '#        by Nobody28       #'
-echo '############################'
 echo $LINE 
-echo 'Restore/Update your Plugins'
+echo 'Restore your plugins'
 echo $LINE
-echo 'Please Wait'
+echo 'Please wait'
 echo $LINE
 
 opkg update
@@ -29,7 +22,7 @@ sh /tmp/install_plugin1.sh > /dev/null
 
 rm /tmp/install_plugin1.sh
 
-echo Please check the LOG with UP Button!
+echo Please check the log with UP button!
 echo $LINE
 echo Press OK or EXIT to go back!
 
