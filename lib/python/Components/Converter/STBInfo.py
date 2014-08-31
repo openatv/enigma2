@@ -183,7 +183,7 @@ class STBInfo(Poll, Converter):
                 if value + 'Total' in line:
                     check += 1
                     result[0] = int(line.split()[1]) * 1024
-                elif value + 'Free' in line:
+                elif value + 'Available' in line:
                     check += 1
                     result[2] = int(line.split()[1]) * 1024
                 if check > 1:
