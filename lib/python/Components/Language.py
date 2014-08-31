@@ -12,6 +12,7 @@ class Language:
 		self.catalog = None
 		self.lang = {}
 		self.langlist = []
+		self.langlistselection = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		self.addLanguage("Arabic",      "ar", "AE")
@@ -33,7 +34,7 @@ class Language:
 		self.addLanguage("Magyar",      "hu", "HU")
 		self.addLanguage("Íslenska",    "is", "IS")
 		self.addLanguage("Italiano",    "it", "IT")
-		self.addLanguage("Kurdish",	"ku", "KU")
+		self.addLanguage("Kurdish",     "ku", "KU")
 		self.addLanguage("Lietuvių",    "lt", "LT")
 		self.addLanguage("Latviešu",    "lv", "LV")
 		self.addLanguage("Nederlands",  "nl", "NL")
@@ -48,7 +49,7 @@ class Language:
 		self.addLanguage("Slovenščina", "sl", "SI")
 		self.addLanguage("Srpski",      "sr", "YU")
 		self.addLanguage("Svenska",     "sv", "SE")
-		self.addLanguage("ภาษาไทย",     "th", "TH")
+		self.addLanguage("ภาษาไทย",        "th", "TH")
 		self.addLanguage("Türkçe",      "tr", "TR")
 		self.addLanguage("Ukrainian",   "uk", "UA")
 
@@ -60,6 +61,7 @@ class Language:
 			self.langlist.append(str(lang + "_" + country))
 		except:
 			print "Language " + str(name) + " not found"
+		self.langlistselection.append((str(lang + "_" + country), name))
 
 	def activateLanguage(self, index):
 		try:
@@ -89,6 +91,9 @@ class Language:
 
 	def getLanguageList(self):
 		return [ (x, self.lang[x]) for x in self.langlist ]
+
+	def getLanguageListSelection(self):
+		return self.langlistselection
 
 	def getActiveLanguage(self):
 		return self.activeLanguage
