@@ -1,22 +1,15 @@
 #!/bin/sh
-# created by Nobody28
-#
-# www.gigablue-support.com
 clear
-echo '############################'
-echo '# www.gigablue-support.com #'
-echo '#        by Nobody28       #'
-echo '############################'
 echo $LINE 
-echo 'Backup your Plugins'
+echo 'Backing up your installed plugins'
 echo $LINE
-echo 'Please Wait'
+echo 'Please wait...'
 echo $LINE
 
-opkg list-installed | egrep 'enigma2-plugin-|task-base' > /etc/enigma2/installed-list.txt
+opkg list-installed |cut -d " " -f1 | egrep 'enigma2-plugin-|task-base' > /etc/enigma2/installed-list.txt
 opkg list-changed-conffiles > /etc/enigma2/changed-configfiles.txt
 
-echo Please check the LOG with UP Button!
+echo Please check the log with UP button!
 echo $LINE
 echo Press OK or EXIT to go back!
 
