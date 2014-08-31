@@ -62,7 +62,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showLanSetup": (self.showLanSetup, _("Show LAN Setup...")),
 				"showFormat": self.showFormat,
 
-			}, prio=2)
+			}, prio=2, description=_("Common actions"))
 
 		self.radioTV = 0
 		self.allowPiP = True
@@ -290,7 +290,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
 				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
-			})
+			}, description=_("MoviePlayer actions"))
 
 		self.allowPiP = True
 

@@ -7,10 +7,11 @@ from Screens.Rc import Rc
 class HelpMenu(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
+		Rc.__init__(self)
 		self.onSelChanged = [ ]
 		self["list"] = HelpMenuList(list, self.close)
-		Rc.__init__(self)
-		self["long_key"] = Label("")
+		self["longshift_key0"] = Label("")
+		self["longshift_key1"] = Label("")
 
 		self["actions"] = ActionMap(["WizardActions"],
 		{
@@ -18,28 +19,41 @@ class HelpMenu(Screen, Rc):
 			"back": self.close,
 		}, -1)
 
-		self.onLayoutFinish.append(self.SelectionChanged)
-		self.onFirstExecBegin.append(self.doOnFirstExecBegin)
+		self.onLayoutFinish.append(self.doOnLayoutFinish)
 
-	def doOnFirstExecBegin(self):
+	def doOnLayoutFinish(self):
 		self["list"].onSelChanged.append(self.SelectionChanged)
+		self.SelectionChanged()
 
 	def SelectionChanged(self):
 		self.clearSelectedKeys()
 		selection = self["list"].getCurrent()
 
-		longText = ""
+		longText = [""] * 2
+		longButtons = []
+		shiftButtons=[]
 		if selection:
-			selection = selection[3][0]
-			print "selection:", selection
-			if len(selection) > 1:
-				if selection[1] == "SHIFT":
-					self.selectKey("SHIFT")
-				elif selection[1] == "long":
-					longText = _("Long key press")
-			self.selectKey(selection[0])
+			for button in selection[3]:
+				print "button:", button
+				if len(button) > 1:
+					if button[1] == "SHIFT":
+						self.selectKey("SHIFT")
+						shiftButtons.append(button[0])
+					elif button[1] == "long":
+						longText[0] = _("Long key press")
+						longButtons.append(button[0])
+				self.selectKey(button[0])
 
-		self["long_key"].setText(longText)
+			textline = 0
+			if len(selection[3]) > 1:
+				if longButtons:
+					longText[textline] = _("Long press: ") + ', '.join(longButtons)
+					textline += 1
+				if shiftButtons:
+					longText[textline] = _("SHIFT: ") + ', '.join(shiftButtons)
+
+		self["longshift_key0"].setText(longText[0])
+		self["longshift_key1"].setText(longText[1])
 
 class HelpableScreen:
 	def __init__(self):
