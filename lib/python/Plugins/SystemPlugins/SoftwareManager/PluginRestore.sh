@@ -3,7 +3,7 @@ clear
 echo $LINE 
 echo 'Restore your plugins'
 echo $LINE
-echo 'Please wait'
+echo 'Please wait...'
 echo $LINE
 
 opkg update
