@@ -13,7 +13,7 @@ from socket import socket, AF_INET, SOCK_DGRAM
 from . import config, saveConfigFile
 from boxbranding import getMachineBrand, getMachineName
 
-_version_string = "20140829"
+_version_string = "20140831"
 _server = "http://api.icetv.com.au"
 _device_type_id = 22
 
