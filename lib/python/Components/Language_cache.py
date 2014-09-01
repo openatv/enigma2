@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# date: 28.10.2013  22:51:41
+# date: 30.08.2014  13:39:12
 #
 
 LANG_TEXT = {
@@ -148,7 +148,7 @@ LANG_TEXT = {
 	 "T4": "Saglabāt",
 },
 "nl_NL": {
-	 "T1": "Gebruik de omhoog/omlaag toeten om de gewenste taal te selecteren. Druk daarna op OK.",
+	 "T1": "Gebruik de omhoog/omlaag toetsen om de gewenste taal te selecteren. Druk daarna op OK.",
 	 "T2": "Taalkeuze",
 	 "T3": "Annuleren",
 	 "T4": "Opslaan",
@@ -160,10 +160,10 @@ LANG_TEXT = {
 	 "T4": "Save",
 },
 "no_NO": {
-	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	 "T1": "Vennligst bruk OPP og NED tastene for å velge ditt språk. Deretter trykk OK.",
 	 "T2": "Språkvalg",
 	 "T3": "Avbryte",
-	 "T4": "Save",
+	 "T4": "Lagre",
 },
 "pl_PL": {
 	 "T1": "W celu wyboru języka użyj klawiszy GÓRA i DÓŁ. Nastepnie nacisnij przycisk OK.",
