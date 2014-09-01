@@ -658,6 +658,9 @@ class RecordTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
 
+		self.onTimerAdded = []
+		self.onTimerRemoved = []
+
 		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers.xml")
 
 		try:
@@ -872,6 +875,10 @@ class RecordTimer(timer.Timer):
 		self.addTimerEntry(entry)
 		if dosave:
 			self.saveTimer()
+
+		# Trigger onTimerAdded callbacks
+		for f in self.onTimerAdded:
+			f(entry)
 		return None
 
 	def isInTimer(self, eventid, begin, duration, service):
@@ -1062,6 +1069,10 @@ class RecordTimer(timer.Timer):
 		# now the timer should be in the processed_timers list. remove it from there.
 		self.processed_timers.remove(entry)
 		self.saveTimer()
+
+		# Trigger onTimerRemoved callbacks
+		for f in self.onTimerRemoved:
+			f(entry)
 
 	def shutdown(self):
 		self.saveTimer()
