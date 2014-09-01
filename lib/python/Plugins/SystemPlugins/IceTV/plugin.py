@@ -100,7 +100,7 @@ class EPGFetcher(object):
             self.addLog(msg)
             return False
         # Delete iceTimers
-        for iceTimerId in self.deleted_timers:
+        for iceTimerId in self.deleted_timers[:]:
             try:
                 print "[IceTV] deleting timer:", iceTimerId
                 self.deleteTimer(iceTimerId)
@@ -112,13 +112,12 @@ class EPGFetcher(object):
                 self.addLog(msg)
                 res = False
             self.deleted_timers.remove(iceTimerId)
-        # TODO: Create locally added timers
-        for local_timer in self.added_timers:
+        # Upload locally added timers
+        for local_timer in self.added_timers[:]:
             try:
                 print "[IceTV] uploading new timer:", local_timer
                 res = self.postTimer(local_timer, channel_service_map)
 #                local_timer.iceTimerId = res[0]["id"]
-                self.added_timers.remove(local_timer)
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not upload timer: " + str(ex)
                 if hasattr(ex, 'response'):
@@ -126,6 +125,7 @@ class EPGFetcher(object):
                 print "[IceTV] ", msg
                 self.addLog(msg)
                 res = False
+            self.added_timers.remove(local_timer)
         try:
             shows = self.getShows()
             channel_show_map = self.makeChanShowMap(shows["shows"])
