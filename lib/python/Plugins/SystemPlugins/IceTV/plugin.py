@@ -374,7 +374,7 @@ class IceTVMain(ChoiceBox):
                 ("Enable IceTV", "CALLFUNC", self.enable),
                 ("Disable IceTV", "CALLFUNC", self.disable),
                ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV" % ice._version_string), list=menu)
+        super(IceTVMain, self).__init__(session, title=_("IceTV version %s" % ice._version_string), list=menu)
 
     def enable(self, res=None):
         enableIceTV()
