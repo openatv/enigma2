@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+﻿# -*- coding: UTF-8 -*-
 import gettext
 import locale
 import os
@@ -11,6 +11,10 @@ class Language:
 		self.activeLanguage = 0
 		self.catalog = None
 		self.lang = {}
+		self.InitLang()
+		self.callbacks = []
+		
+	def InitLang(self):
 		self.langlist = []
 		self.langlistselection = []
 		# FIXME make list dynamically
@@ -52,8 +56,6 @@ class Language:
 		self.addLanguage("ภาษาไทย",        "th", "TH")
 		self.addLanguage("Türkçe",      "tr", "TR")
 		self.addLanguage("Ukrainian",   "uk", "UA")
-
-		self.callbacks = []
 
 	def addLanguage(self, name, lang, country):
 		try:
