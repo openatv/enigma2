@@ -234,7 +234,7 @@ class Timers(AuthRequest):
 
 class Timer(AuthRequest):
     def __init__(self, timerid):
-        super(Timer, self).__init__("/shows/timers" + str(timerid))
+        super(Timer, self).__init__("/shows/timers/" + str(timerid))
 
     def get(self):
         return self.send("get")
