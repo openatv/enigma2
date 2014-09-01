@@ -15,14 +15,12 @@ from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText
 
 config.plugins.icetv = ConfigSubsection()
 config.plugins.icetv.member = ConfigSubsection()
-# config.plugins.icetv.member.email_address = ConfigText(visible_width=50, fixed_size=False)
-config.plugins.icetv.member.email_address = ConfigText(show_help=False)
+config.plugins.icetv.member.email_address = ConfigText(show_help=False, fixed_size=False)
 config.plugins.icetv.member.token = ConfigText()
 config.plugins.icetv.member.id = ConfigNumber()
 config.plugins.icetv.member.region_id = ConfigNumber()
 
-# config.plugins.icetv.meber.password = ConfigPassword(visible_width=50, fixed_size=False, censor="●")
-config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_help=False))
+config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_help=False, fixed_size=False))
 
 config.plugins.icetv.device = ConfigSubsection()
 config.plugins.icetv.device.label = ConfigText(default="%s %s" % (getMachineBrand(), getMachineName()), show_help=False)
