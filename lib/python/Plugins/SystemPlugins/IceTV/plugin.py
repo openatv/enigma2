@@ -513,30 +513,30 @@ class LogView(TextBox):
 
 class IceTVSelectProviderScreen(Screen):
     skin = """
-<screen name="IceTVSelectProviderScreen" position="320,130" size="640,400" title="Select EPG provider" >
- <widget position="20,20" size="600,320" name="instructions" font="Regular;20" />
- <widget position="20,340" size="600,60" name="menu" />
+<screen name="IceTVSelectProviderScreen" position="280,140" size="720,410" title="Select TV guide provider" >
+ <widget position="20,10" size="680,330" name="instructions" font="Regular;20" />
+ <widget position="20,350" size="680,60" name="menu" />
 </screen>
 """
-    _instructions = _("IceTV\n"
-                      "      IceTV will change the way you watch TV! IceTV gives you the power to "
-                      "discover and manage programmes you want to see. Build your own playlists "
-                      "of TV Shows based on the series and favourites you are interested in "
-                      "and, when they air, IceTV will take care of the rest. You can set TV "
-                      "show recordings from wherever you are. Whether you're sitting in front "
-                      "of the TV, on the bus or on holidays overseas. With IceTV choose the "
-                      "show you want to record and press 'record'. Simple!\n\n"
-                      "Free To Air\n"
-                      "      Basic EPG as broadcast by the TV stations."
-                      )
+    _instructions = _("IceTV  (Requires permanent Internet connection)\n\n"
+                      "IceTV is a third party TV guide provider that gives your %(brand)s %(box)s "
+                      "a total smart recording solution for a small monthly fee. "
+                      "Build your own play lists of your favourite shows and series via your "
+                      "computer, smart phone or tablet and IceTV will automatically set your %(box)s "
+                      "to record them every time they air. Your %(box)s includes a free 3 month "
+                      "IceTV subscription.\n\n\n\n"
+                      "Free to air TV Guide  (No Internet connection required)\n\n"
+                      "This is the Free To Air TV guide, broadcast by the TV stations and "
+                      "received by your %(brand)s %(box)s via your TV antenna."
+                      ) % {"brand": getMachineBrand(), "box": getMachineName()}
 
     def __init__(self, session, args=None):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(_(self._instructions))
         options = []
-        options.append((_("IceTV (with free trial)"), "iceEpg"))
-        options.append((_("Free To Air"), "eitEpg"))
+        options.append((_("IceTV (with free trial)\t- Requires Internet connection"), "iceEpg"))
+        options.append((_("Free To Air               \t- No Internet connection required"), "eitEpg"))
         self["menu"] = MenuList(options)
         self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
                                  actions={
