@@ -16,6 +16,7 @@ from boxbranding import getMachineBrand, getMachineName
 _version_string = "20140831"
 _server = "http://api.icetv.com.au"
 _device_type_id = 22
+_debug_level = 0
 
 
 def get_mac_address(ifname):
@@ -64,6 +65,18 @@ class Request(object):
     def send(self, method):
         data = json.dumps(self.data)
         r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False)
+        if _debug_level > 0:
+            print "[IceTVAPI]", r.request.method, r.request.url
+        if _debug_level > 1:
+            print "[IceTVAPI]", r.request.headers
+        if _debug_level > 2:
+            print "[IceTVAPI]", r.request.body
+        if _debug_level > 0:
+            print "[IceTVAPI]", r.status_code, r.url
+        if _debug_level > 1:
+            print "[IceTVAPI]", r.headers
+        if _debug_level > 2:
+            print "[IceTVAPI]", r.text
         self.response = r
         if r.status_code == 401:
             clear_credentials()
