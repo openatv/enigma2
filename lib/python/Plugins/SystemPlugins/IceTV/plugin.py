@@ -74,8 +74,11 @@ class EPGFetcher(object):
                 return
             job = Job(_("IceTV update job"))
             task = PythonTask(job, _("Fetch"))
-            task.work = self.doWork
+            task.work = self.work
             job_manager.AddJob(job)
+
+    def work(self):
+        self.doWork()
 
     def doWork(self):
         global passwordRequested
