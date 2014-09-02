@@ -1302,7 +1302,9 @@ const static unsigned int EPG_MAGIC = 0x98765432;
 
 void eEPGCache::load()
 {
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] load()");
+#endif
 	if (m_filename.empty())
 		m_filename = "/hdd/epg.dat";
 	const char* EPGDAT = m_filename.c_str();
@@ -1423,12 +1425,16 @@ void eEPGCache::load()
 			if (renameResult) eDebug("[EPGC] failed to rename epg.dat back");
 		}
 	}
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] load() - finished");
+#endif
 }
 
 void eEPGCache::save()
 {
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] save()");
+#endif
 	const char* EPGDAT = m_filename.c_str();
 	if (eventData::isCacheCorrupt)
 		return;
@@ -1459,7 +1465,9 @@ void eEPGCache::save()
 		return;
 	}
 
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] store epg to realpath '%s'", buf);
+#endif
 
 	struct statfs st;
 	off64_t tmp;
@@ -1505,7 +1513,9 @@ void eEPGCache::save()
 			++cnt;
 		}
 	}
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] %d events written to %s", cnt, EPGDAT);
+#endif
 	eventData::save(f);
 #ifdef ENABLE_PRIVATE_EPG
 	const char* text3 = "PRIVATE_EPG";
@@ -1567,7 +1577,9 @@ bool eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
+#ifdef EPG_DEBUG
 		eDebug("[EPGC] stop caching events(%ld)", ::time(0));
+#endif
 		zapTimer->start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
@@ -1595,7 +1607,9 @@ bool eEPGCache::channel_data::finishEPG()
  */
 void eEPGCache::channel_data::startEPG()
 {
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] start caching events(%ld)", ::time(0));
+#endif
 	state=0;
 	haveData=0;
 	for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
@@ -2645,7 +2659,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					{
 						if (!PyString_Check(entry))
 						{
-							eDebug("tuple entry 0 is no a string");
+							eDebug("tuple entry 0 is not a string");
 							goto skip_entry;
 						}
 						service = entry;
@@ -3473,7 +3487,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							if (needServiceEvent)
 							{
 								if (lookupEventId(ref, evit->second->getEventID(), ev_data))
-									eDebug("[EPGC] event not found !!!!!!!!!!!");
+									eDebug("[EPGC] event %04x not found !!!!!!!!!!!", evit->second->getEventID());
 								else
 								{
 									const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
