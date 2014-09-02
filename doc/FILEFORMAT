@@ -1,12 +1,12 @@
-== TS FILES ==
+== .ts FILES ==
 
-TS files are plain recordings, including PMT and PAT.
+.ts files are plain recordings, including PMT and PAT.
 
 They don't have a private header. 
 
 == .meta FILES ==
 
-.meta files have currently up to 7 lines:
+.meta files have currently up to 10 lines:
 
 <service reference>
 <name>
@@ -15,6 +15,9 @@ They don't have a private header.
 [<tags>]
 [<length>]
 [<filesize>]
+[<service data>]
+[<packet size>]
+[<scrambled>]
 
 The service reference contains the Service-ID of the recorded service. With
 that ID, you can find the PMT and the elementary streams.
@@ -41,7 +44,7 @@ PTS values are not corrected (i.e. they aren't zero-based), offsets are
 relative to the beginning of the file (or first file, when we implement
 splitting)
 
-== .cut FILES ==
+== .cuts FILES ==
 
 Also network ordered, they contain a 64bit value (PTS) and 32bit value
 (type) for each cut. (If you want file offsets, use the .ap file to look up
@@ -52,14 +55,15 @@ Type is:
 0 - 'in' point
 1 - 'out' point
 2 - mark
+3 - last play position
 
-If the first 'out'-point is not preceeded by an 'in'-point, there is an 
+If the first 'out'-point is not preceded by an 'in'-point, there is an 
 implicit 'in' point at zero.
 
 If the there is no final 'out' point, the end-of-file is an implicit
 'out'-point.
 
-Note that the PTS values are zero-based and continouus. If you want absolute
+Note that the PTS values are zero-based and continuous. If you want absolute
 PTS values, you can either:
  - use the .ap file, find discontinuities, and interpolate between the APs
  - or just use the first PTS value as an offset, and work around PTS
