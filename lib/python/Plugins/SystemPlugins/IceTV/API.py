@@ -65,18 +65,19 @@ class Request(object):
     def send(self, method):
         data = json.dumps(self.data)
         r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False)
-        if _debug_level > 0:
-            print "[IceTVAPI]", r.request.method, r.request.url
-        if _debug_level > 1:
-            print "[IceTVAPI]", r.request.headers
-        if _debug_level > 2:
-            print "[IceTVAPI]", r.request.body
-        if _debug_level > 0:
-            print "[IceTVAPI]", r.status_code, r.url
-        if _debug_level > 1:
-            print "[IceTVAPI]", r.headers
-        if _debug_level > 2:
-            print "[IceTVAPI]", r.text
+        err = not r.ok
+        if err or _debug_level > 0:
+            print "[IceTV]", r.request.method, r.request.url
+        if err or _debug_level > 1:
+            print "[IceTV] headers", r.request.headers
+        if err or _debug_level > 2:
+            print "[IceTV]", r.request.body
+        if err or _debug_level > 0:
+            print "[IceTV]", r.status_code, r.reason
+        if err or _debug_level > 1:
+            print "[IceTV] headers", r.headers
+        if err or _debug_level > 2:
+            print "[IceTV]", r.text
         self.response = r
         if r.status_code == 401:
             clear_credentials()

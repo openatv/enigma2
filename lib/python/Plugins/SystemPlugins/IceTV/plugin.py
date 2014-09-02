@@ -48,12 +48,12 @@ class EPGFetcher(object):
         self.addLog("IceTV started")
 
     def onTimerAdded(self, entry):
-        print "[IceTV] timer added: ", entry
+        # print "[IceTV] timer added: ", entry
         if entry.iceTimerId is None and not entry.isAutoTimer:
             self.added_timers.append(entry)
 
     def onTimerRemoved(self, entry):
-        print "[IceTV] timer removed: ", entry
+        # print "[IceTV] timer removed: ", entry
         if entry in self.added_timers:
             self.added_timers.remove(entry)
         if entry.iceTimerId:
@@ -99,7 +99,6 @@ class EPGFetcher(object):
             msg = "Can not retrieve channel map: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
             self.addLog(msg)
             return False
         # Delete iceTimers
@@ -111,7 +110,6 @@ class EPGFetcher(object):
                 msg = "Can not delete timer: " + str(ex)
                 if hasattr(ex, 'response'):
                     msg += "\n%s" % str(ex.response.text).strip()
-                print "[IceTV] ", msg
                 self.addLog(msg)
                 res = False
             self.deleted_timers.remove(iceTimerId)
@@ -125,7 +123,6 @@ class EPGFetcher(object):
                 msg = "Can not upload timer: " + str(ex)
                 if hasattr(ex, 'response'):
                     msg += "\n%s" % str(ex.response.text).strip()
-                print "[IceTV] ", msg
                 self.addLog(msg)
                 res = False
             self.added_timers.remove(local_timer)
@@ -281,7 +278,7 @@ class EPGFetcher(object):
                                 else:
                                     print "[IceTV] Timer conflict:", conflicts
                                     iceTimer["state"] = "failed"
-                                    iceTimer["message"] = "Conflict"
+                                    iceTimer["message"] = "Timer conflict"
                             else:
                                 iceTimer["state"] = "failed"
                                 iceTimer["message"] = "No matching service"
@@ -299,11 +296,13 @@ class EPGFetcher(object):
         try:
             self.putTimers(update_queue)
             self.addLog("Timers updated OK")
-        except (IOError, RuntimeError, KeyError) as ex:
+        except KeyError as ex:
+            print "[IceTV] ", str(ex)
+            res = False
+        except (IOError, RuntimeError) as ex:
             msg = "Can not update timers: " + str(ex)
             if hasattr(ex, 'response'):
                 msg += "\n%s" % str(ex.response.text).strip()
-            print "[IceTV] ", msg
             self.addLog(msg)
             res = False
         return res
@@ -430,6 +429,7 @@ def sessionstart_main(reason, session, **kwargs):
 
 
 def wizard_main(*args, **kwargs):
+    # TODO: Check that we have networking
     return IceTVSelectProviderScreen(*args, **kwargs)
 
 
@@ -458,7 +458,6 @@ def Plugins(**kwargs):
             fnc=plugin_main
         ))
     if not config.plugins.icetv.configured.value:
-        # TODO: Check that we have networking
         res.append(
             PluginDescriptor(
                 name="IceTV",
