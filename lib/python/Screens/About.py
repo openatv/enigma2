@@ -32,6 +32,8 @@ class About(Screen):
 			BoxName = "GigaBlue HD 800UEplus"
 		elif boxtype == 'gbipbox':
 			BoxName = "GigaBlue IP Box"
+		elif boxtype == 'gbultra':
+			BoxName = "GigaBlue HD Ultra"
 		else:
 			BoxName = about.getHardwareTypeString()
 

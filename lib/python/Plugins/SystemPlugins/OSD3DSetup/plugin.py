@@ -4,13 +4,13 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSel
 from boxbranding import getBoxType
 
 modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by Side"), "topandbottom": _("Top and Bottom")}
-if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
+if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra'):
 	setmodelist = {"mode1": _("Mode 1"), "mode2": _("Mode 2")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
 config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
-if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
+if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra'):
 	config.plugins.OSD3DSetup.setmode = ConfigSelection(choices = setmodelist, default = "mode1")
 
 PROC_ET_3DMODE = "/proc/stb/fb/3dmode"
@@ -54,12 +54,12 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 		mode = config.plugins.OSD3DSetup.mode.value
 		znorm = config.plugins.OSD3DSetup.znorm.value
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
+		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra'):
 			setmode = config.plugins.OSD3DSetup.setmode.value
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
+		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra'):
 			self.setmode = ConfigSelection(choices = setmodelist, default = setmode)
 			self.list.append(getConfigListEntry(_("Setup mode"), self.setmode))
 		self.list.append(getConfigListEntry(_("3d mode"), self.mode))
@@ -82,7 +82,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keyGo(self):
 		config.plugins.OSD3DSetup.mode.value = self.mode.value
 		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.value) - 50
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
+		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra'):
 			config.plugins.OSD3DSetup.setmode.value = self.setmode.value
 		config.plugins.OSD3DSetup.save()
 		self.close()
@@ -143,7 +143,7 @@ def applySettings2(mode, znorm, setmode):
 		return		
 
 def setConfiguredSettings():
-	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox'):
+	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra'):
 		applySettings2(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value), config.plugins.OSD3DSetup.setmode.value)
 	else:	
 		applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))

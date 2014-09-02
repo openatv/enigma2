@@ -112,6 +112,16 @@ elif [ $MODEL = "gbquadplus" ] ; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue	
+elif [ $MODEL = "gb800ultra" ]; then
+	TYPE=GIGABLUE
+	MODEL="ultra"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="GigaBlue $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 
 else
 	echo "No supported receiver found!"
