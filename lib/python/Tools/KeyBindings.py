@@ -115,7 +115,10 @@ keyDescriptions = [
 	{
 		KEYIDS["BTN_0"]: ("UP", "fp"),
 		KEYIDS["BTN_1"]: ("DOWN", "fp"),
-		KEYIDS["KEY_OK"]: ("OK", ""),
+		KEYIDS["KEY_OK"]: ("OK",),
+		KEYIDS["KEY_ENTER"]: ("ENTER", "kbd"),
+		KEYIDS["KEY_PREVIOUSSONG"]: ("REWIND", "kbd"),
+		KEYIDS["KEY_NEXTSONG"]: ("FASTFORWARD", "kbd"),
 		KEYIDS["KEY_UP"]: ("UP",),
 		KEYIDS["KEY_DOWN"]: ("DOWN",),
 		KEYIDS["KEY_POWER"]: ("POWER",),
@@ -126,21 +129,23 @@ keyDescriptions = [
 		KEYIDS["KEY_MENU"]: ("MENU",),
 		KEYIDS["KEY_LEFT"]: ("LEFT",),
 		KEYIDS["KEY_RIGHT"]: ("RIGHT",),
-		KEYIDS["KEY_VIDEO"]: ("PVR",),
 		KEYIDS["KEY_INFO"]: ("INFO",),
 		KEYIDS["KEY_AUDIO"]: ("AUDIO",),
 		KEYIDS["KEY_TV"]: ("TV",),
 		KEYIDS["KEY_RADIO"]: ("RADIO",),
 		KEYIDS["KEY_TEXT"]: ("TEXT",),
+		KEYIDS["KEY_HELP"]: ("HELP",),
 		KEYIDS["KEY_NEXT"]: ("ARROWRIGHT",),
 		KEYIDS["KEY_PREVIOUS"]: ("ARROWLEFT",),
 		KEYIDS["KEY_LAST"]: ("BACK",),
-		KEYIDS["KEY_PREVIOUSSONG"]: ("REWIND",),
-		KEYIDS["KEY_PLAYPAUSE"]: ("PAUSE",),
-		KEYIDS["KEY_PLAY"]: ("PLAY",),
-		KEYIDS["KEY_NEXTSONG"]: ("FASTFORWARD",),
+		KEYIDS["KEY_REWIND"]: ("REWIND",),
+		KEYIDS["KEY_PLAYPAUSE"]: ("PLAYPAUSE",),
+		KEYIDS["KEY_FASTFORWARD"]: ("FASTFORWARD",),
 		KEYIDS["KEY_CHANNELUP"]: ("CH+",),
 		KEYIDS["KEY_CHANNELDOWN"]: ("CH-",),
+		KEYIDS["KEY_VOLUMEUP"]: ("VOL+",),
+		KEYIDS["KEY_VOLUMEDOWN"]: ("VOL-",),
+		KEYIDS["KEY_MUTE"]: ("MUTE",),
 		KEYIDS["KEY_0"]: ("0",),
 		KEYIDS["KEY_1"]: ("1",),
 		KEYIDS["KEY_2"]: ("2",),
@@ -159,7 +164,6 @@ keyDescriptions = [
 		KEYIDS["KEY_MEDIA"]: ("MEDIA",),
 		KEYIDS["KEY_PROGRAM"]: ("TIMER",),
 		KEYIDS["KEY_EPG"]: ("EPG",),
-		KEYIDS["KEY_EDIT"]: ("EPGSETUP",),
 		KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
 		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
 		KEYIDS["KEY_FAVORITES"]: ("FAV",),
@@ -182,8 +186,7 @@ def getKeyDescription(key):
 		idx = config.misc.rcused.value
 	else:
 		idx = 2
-	if key in keyDescriptions[idx]:
-		return keyDescriptions[idx][key]
+	return keyDescriptions[idx].get(key)
 
 def removeKeyBindings(domain):
 	# remove all entries of domain 'domain'
