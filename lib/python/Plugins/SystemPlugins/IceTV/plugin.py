@@ -479,6 +479,22 @@ class IceTVMain(ChoiceBox):
                 ("Disable IceTV", "CALLFUNC", self.disable),
                ]
         super(IceTVMain, self).__init__(session, title=_("IceTV version %s" % ice._version_string), list=menu)
+        self["debugactions"] = ActionMap(
+            contexts=["DirectionActions"],
+            actions={
+                 "chplus": self.increaseDebug,
+                 "chminus": self.decreaseDebug,
+            }, prio=-1)
+
+    def increaseDebug(self):
+        if ice._debug_level < 3:
+            ice._debug_level += 1
+        print "[IceTV] debug level =", ice._debug_level
+
+    def decreaseDebug(self):
+        if ice._debug_level > 0:
+            ice._debug_level -= 1
+        print "[IceTV] debug level =", ice._debug_level
 
     def enable(self, res=None):
         enableIceTV()
