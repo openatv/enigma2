@@ -57,6 +57,10 @@ def clearCredentials():
     config.plugins.icetv.member.token.save()
     saveConfigFile()
 
+def showIdToEventId(show_id):
+    # Fit within 16 bits, but avoid 0 and 0xFFF8 - 0xFFFF
+    return (int(show_id) % 0xFFF7) + 1
+
 class Request(object):
     def __init__(self, resource):
         super(Request, self).__init__()
