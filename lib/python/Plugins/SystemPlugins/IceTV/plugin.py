@@ -30,7 +30,6 @@ import API as ice
 from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
-from socket import create_connection, SHUT_RDWR, error as sockerror
 
 _session = None
 passwordRequested = False
@@ -439,16 +438,6 @@ def plugin_main(session, **kwargs):
         _session = session
     session.open(IceTVMain)
 
-def canSeeIceTV():
-    try:
-        sock = create_connection(("api.icetv.com.au", 80), 3)
-        sock.shutdown(SHUT_RDWR)
-        sock.close()
-        return True
-    except sockerror as ex:
-        print "[IceTV] Can not connect to IceTV server:", str(ex)
-    return False
-
 def Plugins(**kwargs):
     res = []
     res.append(
@@ -466,7 +455,7 @@ def Plugins(**kwargs):
             icon="icon.png",
             fnc=plugin_main
         ))
-    if not config.plugins.icetv.configured.value and canSeeIceTV():
+    if not config.plugins.icetv.configured.value and ice.isServerReachable():
         res.append(
             PluginDescriptor(
                 name="IceTV",

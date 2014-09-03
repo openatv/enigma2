@@ -9,15 +9,26 @@ import json
 
 from fcntl import ioctl
 from struct import pack
-from socket import socket, AF_INET, SOCK_DGRAM
+from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, error as sockerror
 from . import config, saveConfigFile
 from boxbranding import getMachineBrand, getMachineName
 
 _version_string = "20140901"
-_server = "http://api.icetv.com.au"
+_protocol = "http://"
+_server = "api.icetv.com.au"
 _device_type_id = 22
 _debug_level = 0
 
+
+def isServerReachable():
+    try:
+        sock = create_connection((_server, 80), 3)
+        sock.shutdown(SHUT_RDWR)
+        sock.close()
+        return True
+    except sockerror as ex:
+        print "[IceTV] Can not connect to IceTV server:", str(ex)
+    return False
 
 def get_mac_address(ifname):
     result = "00:00:00:00:00:00"
@@ -58,7 +69,7 @@ class Request(object):
             "Accept": "application/json",
             "User-Agent": "SystemPlugins.IceTV/%s (%s; %s)" % (_version_string, getMachineBrand(), getMachineName()),
         }
-        self.url = _server + resource
+        self.url = _protocol + _server + resource
         self.data = {}
         self.response = None
 
