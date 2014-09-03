@@ -30,7 +30,7 @@ def isServerReachable():
         print "[IceTV] Can not connect to IceTV server:", str(ex)
     return False
 
-def get_mac_address(ifname):
+def getMacAddress(ifname):
     result = "00:00:00:00:00:00"
     sock = socket(AF_INET, SOCK_DGRAM)
     # noinspection PyBroadException
@@ -43,16 +43,16 @@ def get_mac_address(ifname):
     sock.close()
     return result
 
-def have_credentials():
+def haveCredentials():
     return bool(config.plugins.icetv.member.token.value)
 
-def get_credentials():
+def getCredentials():
     return {
             "email_address": config.plugins.icetv.member.email_address.value,
             "token": config.plugins.icetv.member.token.value,
     }
 
-def clear_credentials():
+def clearCredentials():
     config.plugins.icetv.member.token.value = ""
     config.plugins.icetv.member.token.save()
     saveConfigFile()
@@ -91,7 +91,7 @@ class Request(object):
             print "[IceTV]", r.text
         self.response = r
         if r.status_code == 401:
-            clear_credentials()
+            clearCredentials()
         r.raise_for_status()
         return r
 
@@ -99,7 +99,7 @@ class Request(object):
 class AuthRequest(Request):
     def __init__(self, resource):
         super(AuthRequest, self).__init__(resource)
-        self.params.update(get_credentials())
+        self.params.update(getCredentials())
 
 
 class Regions(Request):
@@ -133,7 +133,7 @@ class Login(Request):
     def __init__(self, email, password, region=None):
         super(Login, self).__init__("/login")
         self.data["device"] = {
-            "uid": get_mac_address('eth0'),
+            "uid": getMacAddress('eth0'),
             "label": config.plugins.icetv.device.label.value,
             "type_id": config.plugins.icetv.device.type_id.value,
         }
@@ -174,7 +174,7 @@ class Logout(AuthRequest):
 
     def send(self, method):
         r = super(Logout, self).send(method)
-        clear_credentials()
+        clearCredentials()
         return r
 
 

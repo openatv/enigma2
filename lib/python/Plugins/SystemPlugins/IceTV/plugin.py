@@ -32,14 +32,14 @@ from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
 
 _session = None
-passwordRequested = False
+password_requested = False
 
 class EPGFetcher(object):
     def __init__(self):
-        self.fetchTimer = eTimer()
-        self.fetchTimer.callback.append(self.createFetchJob)
+        self.fetch_timer = eTimer()
+        self.fetch_timer.callback.append(self.createFetchJob)
         config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
-        self.fetchTimer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
+        self.fetch_timer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
         self.log = deque(maxlen=40)
         self.added_timers = []
         _session.nav.RecordTimer.onTimerAdded.append(self.onTimerAdded)
@@ -49,27 +49,27 @@ class EPGFetcher(object):
 
     def onTimerAdded(self, entry):
         # print "[IceTV] timer added: ", entry
-        if entry.iceTimerId is None and not entry.isAutoTimer:
+        if entry.ice_timer_id is None and not entry.isAutoTimer:
             self.added_timers.append(entry)
 
     def onTimerRemoved(self, entry):
         # print "[IceTV] timer removed: ", entry
         if entry in self.added_timers:
             self.added_timers.remove(entry)
-        if entry.iceTimerId:
-            self.deleted_timers.append(entry.iceTimerId)
+        if entry.ice_timer_id:
+            self.deleted_timers.append(entry.ice_timer_id)
 
     def freqChanged(self, refresh_interval):
-        self.fetchTimer.stop()
-        self.fetchTimer.start(int(refresh_interval.value) * 1000)
+        self.fetch_timer.stop()
+        self.fetch_timer.start(int(refresh_interval.value) * 1000)
 
     def addLog(self, msg):
         self.log.append("%s: %s" % (str(datetime.now()).split(".")[0], msg))
 
     def createFetchJob(self, res=None):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
-            global passwordRequested
-            if passwordRequested:
+            global password_requested
+            if password_requested:
                 self.addLog("Can not proceed - you need to login first")
                 return
             job = Job(_("IceTV update job"))
@@ -81,16 +81,16 @@ class EPGFetcher(object):
         self.doWork()
 
     def doWork(self):
-        global passwordRequested
+        global password_requested
         self.addLog("Start update")
-        if passwordRequested:
+        if password_requested:
             self.addLog("Can not proceed - you need to login first")
             return False
-        if not ice.have_credentials():
-            passwordRequested = True
+        if not ice.haveCredentials():
+            password_requested = True
             self.addLog("No token, requesting password...")
             _session.open(IceTVNeedPassword)
-            if not ice.have_credentials():
+            if not ice.haveCredentials():
                 return False
         res = True
         try:
@@ -102,23 +102,23 @@ class EPGFetcher(object):
             self.addLog(msg)
             return False
         # Delete iceTimers
-        for iceTimerId in self.deleted_timers[:]:
+        for ice_timer_id in self.deleted_timers[:]:
             try:
-                print "[IceTV] deleting timer:", iceTimerId
-                self.deleteTimer(iceTimerId)
+                print "[IceTV] deleting timer:", ice_timer_id
+                self.deleteTimer(ice_timer_id)
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not delete timer: " + str(ex)
                 if hasattr(ex, 'response'):
                     msg += "\n%s" % str(ex.response.text).strip()
                 self.addLog(msg)
                 res = False
-            self.deleted_timers.remove(iceTimerId)
+            self.deleted_timers.remove(ice_timer_id)
         # Upload locally added timers
         for local_timer in self.added_timers[:]:
             try:
                 print "[IceTV] uploading new timer:", local_timer
                 res = self.postTimer(local_timer, channel_service_map)
-#                local_timer.iceTimerId = res[0]["id"]
+#                local_timer.ice_timer_id = res[0]["id"]
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not upload timer: " + str(ex)
                 if hasattr(ex, 'response'):
@@ -159,8 +159,8 @@ class EPGFetcher(object):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
             res = False
-        if not ice.have_credentials() and not passwordRequested:
-            passwordRequested = True
+        if not ice.haveCredentials() and not password_requested:
+            password_requested = True
             self.addLog("No token, requesting password...")
             _session.open(IceTVNeedPassword)
         return res
@@ -219,10 +219,10 @@ class EPGFetcher(object):
                 duration = 60 * int(iceTimer["duration_minutes"])
                 channel_id = long(iceTimer["channel_id"])
                 message = iceTimer.get("message", "").encode("utf8")
-                iceTimerId = iceTimer["id"].encode("utf8")
+                ice_timer_id = iceTimer["id"].encode("utf8")
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
-                        if timer.iceTimerId == iceTimerId:
+                        if timer.ice_timer_id == ice_timer_id:
                             # print "[IceTV] removing timer:", timer
                             _session.nav.RecordTimer.removeEntry(timer)
                     iceTimer["state"] = "completed"
@@ -231,7 +231,7 @@ class EPGFetcher(object):
                 elif channel_id in channel_service_map:
                     completed = False
                     for timer in _session.nav.RecordTimer.processed_timers:
-                        if timer.iceTimerId == iceTimerId:
+                        if timer.ice_timer_id == ice_timer_id:
                             # print "[IceTV] completed timer:", timer
                             iceTimer["state"] = "completed"
                             iceTimer["message"] = "Done"
@@ -240,7 +240,7 @@ class EPGFetcher(object):
                     updated = False
                     if not completed:
                         for timer in _session.nav.RecordTimer.timer_list:
-                            if timer.iceTimerId == iceTimerId:
+                            if timer.ice_timer_id == ice_timer_id:
                                 # print "[IceTV] updating timer:", timer
                                 if self.updateTimer(timer, name, start, duration, channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
@@ -267,7 +267,7 @@ class EPGFetcher(object):
                             serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
                             if db.isValidService(channel[1], channel[0], channel[2]):
                                 # print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
-                                recording = RecordTimerEntry(serviceref, start, start + duration, name, name, None, iceTimerId=iceTimerId)
+                                recording = RecordTimerEntry(serviceref, start, start + duration, name, name, None, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
                                     iceTimer["state"] = "pending"
@@ -308,20 +308,20 @@ class EPGFetcher(object):
         return res
 
     def isIceTimerInUpdateQueue(self, iceTimer, update_queue):
-        iceTimerId = iceTimer["id"].encode("utf8")
+        ice_timer_id = iceTimer["id"].encode("utf8")
         for timer in update_queue:
-            if iceTimerId == timer["id"].encode("utf8"):
+            if ice_timer_id == timer["id"].encode("utf8"):
                 return True
         return False
 
     def isIceTimerInLocalTimerList(self, iceTimer, ignoreCompleted=False):
-        iceTimerId = iceTimer["id"].encode("utf8")
+        ice_timer_id = iceTimer["id"].encode("utf8")
         for timer in _session.nav.RecordTimer.timer_list:
-            if timer.iceTimerId == iceTimerId:
+            if timer.ice_timer_id == ice_timer_id:
                 return True
         if not ignoreCompleted:
             for timer in _session.nav.RecordTimer.processed_timers:
-                if timer.iceTimerId == iceTimerId:
+                if timer.ice_timer_id == ice_timer_id:
                     return True
         return False
 
@@ -407,8 +407,8 @@ class EPGFetcher(object):
 # In reality all that the server returns is an empty list "[]"
         return res.json()
 
-    def deleteTimer(self, iceTimerId):
-        req = ice.Timer(iceTimerId)
+    def deleteTimer(self, ice_timer_id):
+        req = ice.Timer(ice_timer_id)
         req.delete()
 
 fetcher = None
@@ -424,7 +424,7 @@ def sessionstart_main(reason, session, **kwargs):
         fetcher.createFetchJob()
     elif reason == 1:
         _session = None
-        fetcher.fetchTimer.stop()
+        fetcher.fetch_timer.stop()
         fetcher = None
 
 
@@ -809,7 +809,7 @@ class IceTVLogin(Screen):
 
     def doLogin(self):
         try:
-            if ice.have_credentials():
+            if ice.haveCredentials():
                 ice.Logout().delete()
         except:
             # Failure to logout is not a show-stopper
@@ -903,8 +903,8 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             self.loginCmd()
             self.hide()
             self.close()
-            global passwordRequested
-            passwordRequested = False
+            global password_requested
+            password_requested = False
             fetcher.addLog("Login OK")
             fetcher.createFetchJob()
         except (IOError, RuntimeError) as ex:

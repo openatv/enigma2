@@ -89,7 +89,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO,
 				checkOldTimers=False, dirname=None, tags=None,
 				descramble='notset', record_ecm='notset',
-				isAutoTimer=False, iceTimerId=None, always_zap=False):
+				isAutoTimer=False, ice_timer_id=None, always_zap=False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:  # 2 weeks
@@ -138,7 +138,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
 		self.isAutoTimer = isAutoTimer
-		self.iceTimerId = iceTimerId
+		self.ice_timer_id = ice_timer_id
 		self.wasInStandby = False
 
 		self.log_entries = []
@@ -146,8 +146,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def __repr__(self):
 		ice = ""
-		if self.iceTimerId:
-			ice = ", iceTimerId=%s" % self.iceTimerId
+		if self.ice_timer_id:
+			ice = ", ice_timer_id=%s" % self.ice_timer_id
 		if not self.disabled:
 			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer, ice)
 		else:
@@ -636,14 +636,14 @@ def createTimer(xml):
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
 	isAutoTimer = int(xml.get("isAutoTimer") or "0")
-	iceTimerId = xml.get("iceTimerId")
-	if iceTimerId:
-		iceTimerId = iceTimerId.encode("utf-8")
+	ice_timer_id = xml.get("ice_timer_id")
+	if ice_timer_id:
+		ice_timer_id = ice_timer_id.encode("utf-8")
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent,
 							dirname=location, tags=tags, descramble=descramble, record_ecm=record_ecm,
-							isAutoTimer=isAutoTimer, iceTimerId=iceTimerId, always_zap=always_zap)
+							isAutoTimer=isAutoTimer, ice_timer_id=ice_timer_id, always_zap=always_zap)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -781,8 +781,8 @@ class RecordTimer(timer.Timer):
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
-			if timer.iceTimerId is not None:
-				list.append(' iceTimerId="' + str(timer.iceTimerId) + '"')
+			if timer.ice_timer_id is not None:
+				list.append(' ice_timer_id="' + str(timer.ice_timer_id) + '"')
 			list.append('>\n')
 
 			for time, code, msg in timer.log_entries:
