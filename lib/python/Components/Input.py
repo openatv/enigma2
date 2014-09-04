@@ -159,7 +159,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if ins and not self.maxSize:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
 		elif owr or self.overwrite:
-			self.Text = self.Text[0:pos] + ch + self.Text[pos + n - 1:]
+			self.Text = self.Text[0:pos] + ch + self.Text[pos + n:]
 		elif self.maxSize:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:-n]
 		else:
