@@ -227,6 +227,8 @@ class EPGFetcher(object):
                     iceTimer["state"] = "completed"
                     iceTimer["message"] = "Removed"
                     update_queue.append(iceTimer)
+                elif state == "completed":
+                    continue    # Completely ignore completed timers - the server should not be sending those back to us anyway.
                 elif channel_id in channel_service_map:
                     completed = False
                     for timer in _session.nav.RecordTimer.processed_timers:
