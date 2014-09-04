@@ -107,6 +107,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.eit = eit
 		self.dontSave = False
 		self.name = name
+		if not description:
+			evt = self.getEventFromEPG()
+			if evt:
+				description = evt.getShortDescription()
+				if not description:
+					description = evt.getExtendedDescription()
 		self.description = description
 		self.disabled = disabled
 		self.timer = None
@@ -207,6 +213,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
+
+	def getEventFromEPG(self):
+		epgcache = eEPGCache.getInstance()
+		queryTime = self.begin + (self.end - self.begin) / 2
+		ref = self.service_ref and self.service_ref.ref
+		return epgcache.lookupEventTime(ref, queryTime)
 
 	def tryPrepare(self):
 		if self.justplay:
