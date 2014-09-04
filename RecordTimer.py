@@ -106,13 +106,16 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.service_ref = ServiceReference(None)
 		self.eit = eit
 		self.dontSave = False
-		self.name = name
-		if not description:
+		if not description or not name:
 			evt = self.getEventFromEPG()
 			if evt:
-				description = evt.getShortDescription()
+				if not description:
+					description = evt.getShortDescription()
 				if not description:
 					description = evt.getExtendedDescription()
+				if not name:
+					name = evt.getEventName()
+		self.name = name
 		self.description = description
 		self.disabled = disabled
 		self.timer = None
