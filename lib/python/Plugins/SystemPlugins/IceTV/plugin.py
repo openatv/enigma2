@@ -266,7 +266,7 @@ class EPGFetcher(object):
                             serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
                             if db.isValidService(channel[1], channel[0], channel[2]):
                                 # print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
-                                recording = RecordTimerEntry(serviceref, start, start + duration, name, name, None, ice_timer_id=ice_timer_id)
+                                recording = RecordTimerEntry(serviceref, start, start + duration, name, "", None, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
                                     iceTimer["state"] = "pending"
