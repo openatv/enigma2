@@ -1645,7 +1645,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.zap()
 
 	def channelSelected(self, doClose = True):
-		if self.startServiceRef is None and not doClose:
+		if config.usage.channelselection_preview.value and self.getCurrentSelection() != self.session.nav.getCurrentlyPlayingServiceOrGroup():
+			doClose = False
+		if not self.startServiceRef and not doClose:
 			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		ref = self.getCurrentSelection()
 		if self.movemode:
