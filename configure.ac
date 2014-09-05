@@ -96,6 +96,7 @@ AM_CONDITIONAL(DM800SEV2, test "$BOXTYPE" == dm800sev2)
 AM_CONDITIONAL(DM500HD, test "$BOXTYPE" == dm500hd)
 AM_CONDITIONAL(DM500HDV2, test "$BOXTYPE" == dm500hdv2)
 AM_CONDITIONAL(E3HD, test "$BOXTYPE" == e3hd)
+AM_CONDITIONAL(KMT3000, test "$BOXTYPE" == kmt3000)
 AM_CONDITIONAL(MIXOSF5, test "$BOXTYPE" == mixosf5)
 AM_CONDITIONAL(MIXOSF5MINI, test "$BOXTYPE" == mixosf5mini)
 AM_CONDITIONAL(MIXOSLUMI, test "$BOXTYPE" == mixoslumi)
@@ -383,6 +384,11 @@ if test "$BOXTYPE" == "inihde" -o "$BOXTYPE" == "inihdx" -o "$BOXTYPE" == "inihd
 	AC_DEFINE(KEY_VIDEO_TO_KEY_MODE, 1,[define when rc sends a KEY_VIDEO event for its KEY_MODE key])
 	AC_DEFINE(KEY_BOOKMARKS_TO_KEY_DIRECTORY, 1,[define when rc sends a KEY_BOOKMARKS event for its KEY_DIRECTORY key])
 	AC_DEFINE(KEY_LIST_TO_KEY_PVR, 1,[define when rc sends a KEY_LIST event for its KEY_PVR key])
+fi
+
+if test "$BOXTYPE" == "kmt3000"; then
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 fi
 
 if test "$BOXTYPE" == "blackbox7405"; then
