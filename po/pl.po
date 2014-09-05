@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-21 19:08+0200\n"
-"PO-Revision-Date: 2014-06-28 16:58+0100\n"
+"POT-Creation-Date: 2014-09-04 19:21+0200\n"
+"PO-Revision-Date: 2014-09-04 19:54+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
 "Language: pl_PL\n"
@@ -309,9 +309,16 @@ msgstr ""
 msgid "(ZAP)"
 msgstr "(Przełącz)"
 
+#, python-format
+msgid "(activated +%d min)"
+msgstr "(aktywny, +%d min)"
+
 #
 msgid "(empty)"
 msgstr "(puste)"
+
+msgid "(not activated)"
+msgstr "(nieaktywny)"
 
 #
 msgid "(show optional DVD audio menu)"
@@ -635,10 +642,6 @@ msgid "Add"
 msgstr "Dodaj"
 
 #
-msgid "Add Bookmark"
-msgstr "Dodaj zakładkę"
-
-#
 msgid "Add a mark"
 msgstr "Dodaj znacznik"
 
@@ -846,6 +849,19 @@ msgstr "Każda aktywność"
 #
 msgid "Arabic"
 msgstr "Arabski"
+
+#
+#, python-format
+msgid "Are you sure to remove all %d.%d° %s services?"
+msgstr "Jesteś pewien, że chcesz usunąć wszystkie  %d.%d° %s kanały?"
+
+#
+msgid "Are you sure to remove all cable services?"
+msgstr "Jesteś pewien, że chcesz usunąć wszystkie kanały tv kablowej?"
+
+#
+msgid "Are you sure to remove all terrestrial services?"
+msgstr "Jesteś pewien, że chcesz usunąć wszystkie kanały tv naziemnej?"
 
 #
 msgid "Are you sure to remove this entry?"
@@ -1084,7 +1100,7 @@ msgid "Begin time"
 msgstr "Czas rozpoczęcia"
 
 msgid "Behavior of 'pause and ok' when paused"
-msgstr ""
+msgstr "Zachowanie 'pauzy' i 'OK' gdy spauzowane"
 
 #
 msgid "Behavior of 0 key in PiP-mode"
@@ -1452,6 +1468,10 @@ msgstr "Kompleksowe (pozwala mixować ścieżki i rodzaje audio)"
 msgid "Composition of the recording filenames"
 msgstr "Składnia nazw nagrań"
 
+#
+msgid "Config resolution of pictures"
+msgstr "Rozdzielczość wyświetlanych zdjęć"
+
 msgid "Configuration mode"
 msgstr "Tryb konfiguracji"
 
@@ -1485,10 +1505,13 @@ msgid "Configure if and how crypto icons will be shown in the channel selection 
 msgstr "Skonfiguruj czy i jak wyświetlać w liście ikony informujące o tym, że kanał jest kodowany."
 
 msgid "Configure if and how long the latest service in the PiP will be remembered."
-msgstr ""
+msgstr "Skonfiguruj czy, i jak długo, ma być pamiętany ostatni kanał wyświetlony w PiP."
 
 msgid "Configure if and how service type icons will be shown in the channel selection list."
 msgstr "Skonfiguruj czy i jak wyświetlać ikony typu w liście kanałów."
+
+msgid "Configure if and how the record indicator will be shown in the channel selection list."
+msgstr "Skonfiguruj czy i jak zaznaczać w liście wydarzenie, które jest aktualnie nagrywane."
 
 msgid "Configure if and how wide columns will be shown in the channel selection list."
 msgstr "Skonfiguruj czy i jakiej szerokości wyświetlać kolumny w liście wyboru kanałów. Liczba pikseli wyznacza szerokość kolumny z nazwami kanałów"
@@ -1522,7 +1545,7 @@ msgid "Configure the aspect ratio of the screen."
 msgstr "Skonfiguruj aspect ratio."
 
 msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
-msgstr ""
+msgstr "Skonfiguruj zachowanie przycisku 'pauza' i 'OK', gdy odtwarzanie jest aktualnie spauzowane."
 
 #
 msgid "Configure the behavior when movie playback is manually stopped."
@@ -1792,10 +1815,6 @@ msgstr "Podłączone satelity"
 #
 msgid "Connected to"
 msgstr "Podłączony do"
-
-#
-msgid "Connected!"
-msgstr "Połączony!"
 
 #
 msgid "Constellation"
@@ -2164,10 +2183,6 @@ msgid "DiSEqC-tester settings"
 msgstr "DiSEqC - ustawienia testera"
 
 #
-msgid "Dialing:"
-msgstr "Wybieranie:"
-
-#
 msgid "Digital contour removal"
 msgstr "Cyfrowe usunięcie konturu"
 
@@ -2184,17 +2199,8 @@ msgid "Directory %s does not exist."
 msgstr "Katalog %s nie istnieje."
 
 #
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "Katalog %s nie istnieje."
-
-#
 msgid "Directory browser"
 msgstr "Przeglądarka katalogów"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Katalog zawiera %d plików i %d podkatalogów.\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -2219,10 +2225,6 @@ msgstr "Wyłącz timer"
 #
 msgid "Disabled"
 msgstr "Wyłączone"
-
-#
-msgid "Disconnect"
-msgstr "Rozłącz"
 
 #
 msgid "Disk space to reserve for recordings (in GB)"
@@ -2524,10 +2526,10 @@ msgid "Enable"
 msgstr "Włącz"
 
 msgid "Enable 'neutrino' style channel select controlling"
-msgstr ""
+msgstr "Sterowanie w liście wyboru kanałów jak w neutrino"
 
 msgid "Enable 'neutrino' style zap controlling"
-msgstr ""
+msgstr "Sterowanie przełączaniem kanałów w stylu neutrino."
 
 #
 msgid "Enable 5V for active antenna"
@@ -2546,6 +2548,11 @@ msgid "Enable Netmed EPG"
 msgstr "Włącz Netmed EPG"
 
 #
+#, fuzzy
+msgid "Enable OK as preview in channel selection"
+msgstr "Podgląd w liście kanałów po wciśnięciu OK "
+
+#
 msgid "Enable OK for channel selection"
 msgstr "Wywołanie listy kanałów klawiszem OK"
 
@@ -2556,9 +2563,6 @@ msgstr "Włącz Viasat EPG"
 #
 msgid "Enable Virgin EPG"
 msgstr "Włącz Virgin EPG"
-
-msgid "Enable Wake On LAN"
-msgstr "Włącz Wake On LAN"
 
 msgid "Enable auto fast scan"
 msgstr "Włącz automatyczny fast scan"
@@ -2581,6 +2585,10 @@ msgstr "Włącz kontrolę rodzicielską"
 #
 msgid "Enable teletext caching"
 msgstr "Włącz pamięć telegazety"
+
+#
+msgid "Enable volume control with arrow buttons"
+msgstr "Regulacja głośności strzałkami L/P"
 
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr "Włącz przełączanie kanałów przyciskami CH+/-, B+/-, P+/-"
@@ -3636,7 +3644,7 @@ msgid "Listen to the radio..."
 msgstr "Słuchaj radia..."
 
 msgid "Lists reloaded!"
-msgstr ""
+msgstr "Listy zostały przeładowane!"
 
 #
 msgid "Lithuanian"
@@ -3645,10 +3653,6 @@ msgstr "Litewski"
 #
 msgid "Load"
 msgstr "Otwórz"
-
-#
-msgid "Load Length of Movies in Movielist"
-msgstr "Wyświetlaj długości filmów w liście"
 
 #
 msgid "Load length of movies in movie list"
@@ -3895,12 +3899,6 @@ msgstr "Przesunięto na pozycję z indeksem"
 
 msgid "Movement"
 msgstr "Ruch"
-
-msgid "Movie List Configuration"
-msgstr "Konfiguracja listy nagrań"
-
-msgid "Movie Selection"
-msgstr "Filmy / Multimedia"
 
 msgid "Movie list configuration"
 msgstr "Konfiguracja listy kanałów"
@@ -4449,6 +4447,10 @@ msgid "Package list update"
 msgstr "Aktualizacja listy pakietów"
 
 #
+msgid "Packages to update"
+msgstr "Pakiety do zaktualizowania"
+
+#
 msgid "Packet management"
 msgstr "Zarządzanie pakietami"
 
@@ -4481,10 +4483,6 @@ msgid "Parental control type"
 msgstr "Typ kontroli rodzicielskiej"
 
 #
-msgid "Password"
-msgstr "Hasło"
-
-#
 msgid "Pause"
 msgstr "Pauza"
 
@@ -4497,7 +4495,7 @@ msgid "Pause playback"
 msgstr "Wstrzymaj odtwarzanie"
 
 msgid "Pauze/Continue playback"
-msgstr ""
+msgstr "Pauza/wznowienie odtwarzania"
 
 msgid "Percentage left"
 msgstr "Procenty po lewej"
@@ -4517,10 +4515,6 @@ msgstr "Usuń wszystkie pliki z 'Kosza'"
 #
 msgid "Persian"
 msgstr "Perski"
-
-#
-msgid "Phone number"
-msgstr "Numer telefonu"
 
 #
 msgid "PiP setup"
@@ -5194,6 +5188,10 @@ msgid "Red button..."
 msgstr "Czerwony..."
 
 #
+msgid "Red colored"
+msgstr "Czerwona czcionka"
+
+#
 msgid "Reenter new PIN"
 msgstr "Wpisz ponownie nowy PIN"
 
@@ -5232,9 +5230,6 @@ msgstr "Pamiętaj ostatni kanał w PiP"
 #
 msgid "Remember service PIN"
 msgstr "Pamiętaj PIN kanału"
-
-msgid "Remember these settings for each folder"
-msgstr ""
 
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Pamietaj, wybrałeś zapisywanie pliku timeshift."
@@ -5688,6 +5683,10 @@ msgid "Select CAId"
 msgstr "Wybierz CAId"
 
 #
+msgid "Select Channel"
+msgstr "Wybierz kanał"
+
+#
 msgid "Select HDD"
 msgstr "Wybierz HDD"
 
@@ -5743,6 +5742,10 @@ msgstr "Wybierz pliki do backupu"
 #
 msgid "Select backup location"
 msgstr "Wybierz lokalizację backupu"
+
+#
+msgid "Select channel"
+msgstr "Wybierz kanał"
 
 #
 msgid "Select channel to record from"
@@ -6063,6 +6066,9 @@ msgstr "System kodowania na pasku info"
 msgid "Show detailed event info"
 msgstr "Pokaż szczegółowy opis audycji"
 
+msgid "Show disclaimer"
+msgstr "Wyświetl ostrzeżenie"
+
 #
 msgid "Show event details"
 msgstr "Pokaż szczegóły wydarzenia"
@@ -6127,6 +6133,10 @@ msgstr "Pikony w liście kanałów"
 msgid "Show positioner movement"
 msgstr "Pokaż ruchy pozycjonera"
 
+#
+msgid "Show record indicator"
+msgstr "Wskaźnik nagrywania"
+
 msgid "Show screensaver"
 msgstr "Wygaszacz ekranu"
 
@@ -6149,10 +6159,6 @@ msgid "Show single service EPG"
 msgstr "Wyświetl EPG pojedynczego kanału"
 
 #
-msgid "Show status icons in Movielist"
-msgstr "Ikony stanu w liście filmów"
-
-#
 msgid "Show status icons in movie list"
 msgstr "Ikony stanu w liście filmów"
 
@@ -6171,6 +6177,10 @@ msgstr "Przejdź w tryb radio..."
 #
 msgid "Show the tv player..."
 msgstr "Przejdź w tryb TV..."
+
+#
+msgid "Show updated packages"
+msgstr "Wyświetl zaktualizowane pakiety."
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Ostrzeżenie przy zatrzymywaniu timeshiftu"
@@ -6846,6 +6856,15 @@ msgstr ""
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a special format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "Standard DVD nie wspiera strumienia video H.264 (HDTV). Czy zamiast tego nagrać dane w formacie data DVD? Dane nie będą czytane w stacjonarnych odtwarzaczach DVD."
+
+msgid ""
+"The OpenPLi team would like to point out that upgrading to the latest nightly build comes not only with the latest features, but also with some risks. After the update, it is possible that your device no longer works as expected. We recommend you create backups with Autobackup or Backupsuite. This allows you to quickly and easily restore your device to its previous state, should you experience any problems. If you encounter a 'bug', please report the issue on www.openpli.org.\n"
+"\n"
+"Do you understand this?"
+msgstr ""
+"OpenPLi team chciałby zwrócić uwagę, że aktualizacja do najnowszego nightly build image nie tylko wnosi najnowsze rozwiązania i funkcje, lecz niesie także pewne ryzyko. Jest możliwe, że po aktualizacji Twój odbiornik nie będzie działał jak powinien. Zalecamy  tworzenie kopii zapasowych image, używając pluginu AutoBackup lub BackupSuite. To pozwoli szybko i łatwo przywrócić odbiornik do poprzedniego stanu, gdyby po aktualizacji wystąpiły jakieś problemy. W przypadku wykrycia 'bugów' prosimy o zgłaszanie ich na www.openpli.org\n"
+"\n"
+"Czy zrozumiałeś powyższą informację?"
 
 #
 msgid "The PIN code has been changed successfully."
@@ -7603,10 +7622,6 @@ msgstr "Transponder zdefiniowany przez użytkownika"
 msgid "User interface"
 msgstr "Interfejs użytkownika"
 
-#
-msgid "Username"
-msgstr "Nazwa użytkownika"
-
 #, python-format
 msgid "Using LNB %d"
 msgstr "Używany LNB %d"
@@ -7786,6 +7801,14 @@ msgid "Volume"
 msgstr "Głośność"
 
 #
+msgid "Volume down"
+msgstr "Ciszej"
+
+#
+msgid "Volume up"
+msgstr "Głośnośniej"
+
+#
 msgid "W"
 msgstr "W"
 
@@ -7821,6 +7844,9 @@ msgstr "Czekaj na podmontowanie"
 
 msgid "Waiting for partition"
 msgstr "Czekaj na utworzenie partycji"
+
+msgid "Wake On LAN"
+msgstr ""
 
 #
 msgid "Wakeup"
@@ -7931,10 +7957,19 @@ msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Gdy włączone, PiP może być wyłączony klawiszem exit"
 
 msgid "When enabled the arrow buttons around the OK button will follow the 'neutrino' style zap controls instead of the enigma2 style."
-msgstr ""
+msgstr "Gdy włączone, strzałki wokół przycisku OK będą zachowywać się jak w neutrino: góra/dół - przełączanie kanałów, prawo/lewo - wywołanie listy."
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr "Gdy włączone, zachowanie przycisków <, >,  CH+/-, B+/-, P+/-,  w liście wyboru kanałów będzie analogiczne jak w neutrino."
+
+msgid "When enabled the set top box is able to wakeup on LAN"
 msgstr ""
+
+msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
+msgstr ""
+
+msgid "When enabled you can control the volume with the arrow buttons instead of getting the channel selection list"
+msgstr "Gdy włączone, strzałki prawa/lewa regulują głośność, a nie otwierają listy wyboru kanałów."
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
 msgstr "Gdy włączone, można określić przedział czasowy, w którym 'timer wyłączania' ma być ignorowany, gdy odbiornik jest w trybie czuwania."
@@ -8430,13 +8465,16 @@ msgid "Zap focus to main screen"
 msgstr "Przełączanie w głównym oknie"
 
 msgid "Zap mode"
-msgstr " Tryb przełączania kanałów"
+msgstr "Tryb przełączania kanałów"
 
 msgid "Zap to selected channel"
 msgstr "Przełącz na wybrany kanał"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 msgstr "Przełącz na wybrany kanał lub pokaż info o audycji (w zależności od konfiguracji)"
+
+msgid "[REC]"
+msgstr ""
 
 #
 msgid "[alternative edit]"
@@ -8495,6 +8533,10 @@ msgid "add bouquet"
 msgstr "Dodaj bukiet"
 
 #
+msgid "add bouquet to parental protection"
+msgstr "Dodaj bukiet do kontroli rodzicielskiej"
+
+#
 msgid "add marker"
 msgstr "Dodaj znacznik"
 
@@ -8539,6 +8581,12 @@ msgstr "alternatywny"
 #
 msgid "always"
 msgstr "zawsze"
+
+msgid "and never ask again this session again"
+msgstr "i nie pytaj ponownie w trakcie tej sesji"
+
+msgid "and never show this message again"
+msgstr "i nigdy nie pokazuj tej wiadomości ponownie"
 
 msgid "and select next channel"
 msgstr "i wybierz kolejny kanał"
@@ -8647,6 +8695,9 @@ msgstr "Złożony"
 msgid "config menu"
 msgstr "Menu konfiguracji"
 
+msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
+msgstr "Skonfiguruj w jakiej rozdzielczości wyświetlane są zdjęcia w przeglądarce zdjęć i odtwarzaczu filmów"
+
 #
 msgid "confirmed"
 msgstr "Potwierdzony"
@@ -8689,10 +8740,6 @@ msgstr "Domyślny"
 #
 msgid "delete cut"
 msgstr "Usuń cięcie"
-
-#
-msgid "delete..."
-msgstr "Usuń..."
 
 msgid "descramble and record ecm"
 msgstr "Dekoduj i nagrywaj ECM"
@@ -8804,10 +8851,6 @@ msgid "exit DVD player or return to file browser"
 msgstr "Zamknij odtwarzacz DVD lub powróć do przeglądarki plików"
 
 #
-msgid "exit movielist"
-msgstr "Wyjdź z listy filmów"
-
-#
 msgid "exit network adapter configuration"
 msgstr "Zamknij menu konfiguracji adaptera sieciowego"
 
@@ -8835,6 +8878,9 @@ msgstr "Nazwa pliku"
 
 msgid "film/cinema"
 msgstr "Film/Kino"
+
+msgid "find currently played service"
+msgstr "Znajdź aktualnie włączony kanał"
 
 msgid "fine arts"
 msgstr "Sztuki piękne"
@@ -9148,9 +9194,6 @@ msgstr "Włączony"
 msgid "on READ ONLY medium."
 msgstr "Nośnik tylko do odczytu."
 
-msgid "on end of movie"
-msgstr "Na końcu filmu"
-
 #
 msgid "once"
 msgstr "Raz"
@@ -9252,6 +9295,14 @@ msgid "remove bookmark"
 msgstr "Usuń zakładkę"
 
 #
+msgid "remove bouquet from parental protection"
+msgstr "Usuń bukiet z kontroli rodzicielskiej"
+
+#
+msgid "remove cable services"
+msgstr "Usuń kanały tv kablowej"
+
+#
 msgid "remove directory"
 msgstr "Usuń katalog"
 
@@ -9270,6 +9321,10 @@ msgstr "Usuń flagę 'nowo znaleziony'"
 #
 msgid "remove selected satellite"
 msgstr "Usuń wybranego satelitę"
+
+#
+msgid "remove terrestrial services"
+msgstr "Usuń kanały tv naziemnej"
 
 #
 msgid "remove this mark"
@@ -9348,14 +9403,6 @@ msgstr "Wybierz akcję dla przycisku Info"
 msgid "select menu entry"
 msgstr "Wybierz pozycję menu"
 
-#
-msgid "select movie"
-msgstr "Wybierz film"
-
-#
-msgid "select the movie path"
-msgstr "Wybierz ścieżkę do filmu"
-
 msgid "serious music/classic music"
 msgstr "Muzyka klasyczna"
 
@@ -9389,10 +9436,6 @@ msgstr "Pokaż alternatywne kanały"
 msgid "show event details"
 msgstr "Pokaż szczegóły wydarzenia"
 
-#
-msgid "show extended description"
-msgstr "Pokaż rozszerzony opis"
-
 msgid "show mediaplayer on mainmenu"
 msgstr "Pokaż Mediaplayer w menu głównym"
 
@@ -9401,10 +9444,6 @@ msgstr "Software Manager w menu/ustawienia"
 
 msgid "show softwaremanager on blue button"
 msgstr "Software Manager pod niebieskim"
-
-#
-msgid "show tag menu"
-msgstr "Pokaż menu tagów"
 
 #
 msgid "show transponder info"
@@ -9517,6 +9556,10 @@ msgstr "Szablon"
 
 msgid "tennis/squash"
 msgstr "Tennis/Squash"
+
+#
+msgid "this bouquet is protected by a parental control pin"
+msgstr "Ten bukiet jest chroniony kodem PIN"
 
 #
 msgid "this recording"
@@ -9657,148 +9700,3 @@ msgstr "Przełącz i nagraj"
 #
 msgid "zapped"
 msgstr "Przełączony"
-
-#
-#, fuzzy
-#~ msgid "AA"
-#~ msgstr "A"
-
-#
-#, fuzzy
-#~ msgid "AB"
-#~ msgstr "A"
-
-#
-#, fuzzy
-#~ msgid "Activate PiP"
-#~ msgstr "Włącz PiP"
-
-#, fuzzy
-#~ msgid "Add/remove timer for current event"
-#~ msgstr "Dodaj/usuń timer dla bieżącej audycji"
-
-#, fuzzy
-#~ msgid "Adjust HDMI CEC settings"
-#~ msgstr "Dostosuj ustawienia 3d"
-
-#
-#, fuzzy
-#~ msgid "All satellites"
-#~ msgstr "Wybierz satelity"
-
-#, fuzzy
-#~ msgid "And will shutdown your receiver over "
-#~ msgstr "Odbiornik przejdzie w stan czuwania za"
-
-#
-#, fuzzy
-#~ msgid "BA"
-#~ msgstr "A"
-
-#
-#, fuzzy
-#~ msgid "BB"
-#~ msgstr "B"
-
-#
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "Zachowanie 'pauzy' gdy zatrzymany"
-
-#
-#, fuzzy
-#~ msgid "Committed DiSEqC command"
-#~ msgstr "Komenda DiSEqC 1.0"
-
-#~ msgid "Configure of and how long the latest service in the PiP will be remembered."
-#~ msgstr "Skonfiguruj jak długo ma być pamiętany kanał ostatnio uruchomiony w PiP."
-
-#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-#~ msgstr "skonfiguruj zachowanie klawisza 'pauza' gdy odtwarzanie filmu jest już wstrzymane."
-
-#, fuzzy
-#~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
-#~ msgstr "Ustaw czas (w godzinach) po jakim odbiornik przełączy się w tryb czuwania, gdy pozostaje nieaktywny."
-
-#, fuzzy
-#~ msgid "Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
-#~ msgstr "Ustaw czas (w minutach) dla wyłącznika czasowego. Wybierz opcję i wciśnij OK lub zielony aby uruchomić/zatrzymać sleeptimer. "
-
-#, fuzzy
-#~ msgid "Currently the commit log cannot be retreived - please try later again"
-#~ msgstr "Commit log nie może zostać teraz pobrany - spróbuj ponownie później"
-
-#
-#, fuzzy
-#~ msgid "DiSEqC repeats"
-#~ msgstr "Powtórzenia DiSEqC 1.1"
-
-#
-#~ msgid "Enable neutrino style zap controlling"
-#~ msgstr "Sterowanie przełączaniem kanałów jak w neutrino"
-
-#, fuzzy
-#~ msgid "Goto specific data/time"
-#~ msgstr "Idź do konkretnej daty/godziny"
-
-#, fuzzy
-#~ msgid "Open service list and select next channel"
-#~ msgstr "i wybierz kolejny kanał"
-
-#, fuzzy
-#~ msgid "Open service list and select previous channel"
-#~ msgstr "i wybierz poprzedni kanał."
-
-#, fuzzy
-#~ msgid "Press '0' to toggle internal/external PiP."
-#~ msgstr "Wciśnij '0' aby przełączać tryby PiP"
-
-#
-#, fuzzy
-#~ msgid "Remove timer"
-#~ msgstr "Usuń tytuł"
-
-#
-#, fuzzy
-#~ msgid "Send DiSEqC"
-#~ msgstr "DiSEqC"
-
-#, fuzzy
-#~ msgid "Shutdown after current event"
-#~ msgstr "Przejdź w tryb czuwania po bieżącym wydarzeniu"
-
-#
-#, fuzzy
-#~ msgid "Shutdown in "
-#~ msgstr "Wyłącz"
-
-#
-#, fuzzy
-#~ msgid "Switch next channel"
-#~ msgstr "Przełącz na następny kanał"
-
-#~ msgid "Toggle InfoBar"
-#~ msgstr "Wyświetl / ukryj pasek info"
-
-#, fuzzy
-#~ msgid "Tuning step size"
-#~ msgstr "Rozmiar kroku obrotu"
-
-#
-#, fuzzy
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Komenda DiSEqC 1.0"
-
-#~ msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
-#~ msgstr "Gdy włączone, strzałki wokół przycisku OK na pilocie będą zachowywać się jak w neutrino."
-
-#, fuzzy
-#~ msgid "Your receiver will shutdown due to inactivity."
-#~ msgstr "Odbiornik przejdzie w tryb czuwania z powodu bezczynności"
-
-#, fuzzy
-#~ msgid "Your receiver will shutdown due to the sleeptimer."
-#~ msgstr "Sleeptimer przełączy odbiornik w tryb czuwania"
-
-#, fuzzy
-#~ msgid "tuner is not supported"
-#~ msgstr "Tuner nieobsługiwany"

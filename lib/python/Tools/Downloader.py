@@ -37,6 +37,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 
 class downloadWithProgress:
 	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
+#<<<<<<< HEAD
 		if hasattr(client, '_parse'):
 			scheme, host, port, path = client._parse(url)
 		else:
@@ -46,6 +47,11 @@ class downloadWithProgress:
 			host = uri.host
 			port = uri.port
 			path = uri.path
+# ======= another twisted fix possibility
+#		parsed = urlparse(url)
+#		scheme = parsed.scheme
+#		host = parsed.hostname
+#		port = parsed.port or (443 if scheme == 'https' else 80)
 
 		self.factory = HTTPProgressDownloader(url, outputfile, *args, **kwargs)
 		if scheme == "https":
