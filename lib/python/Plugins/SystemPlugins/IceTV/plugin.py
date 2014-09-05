@@ -97,7 +97,7 @@ class EPGFetcher(object):
             channel_service_map = self.makeChanServMap(self.getChannels())
         except (IOError, RuntimeError, KeyError) as ex:
             msg = "Can not retrieve channel map: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
             return False
@@ -108,7 +108,7 @@ class EPGFetcher(object):
                 self.deleteTimer(ice_timer_id)
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not delete timer: " + str(ex)
-                if hasattr(ex, 'response'):
+                if hasattr(ex, "response") and hasattr(ex.response, "text"):
                     msg += "\n%s" % str(ex.response.text).strip()
                 self.addLog(msg)
                 res = False
@@ -121,7 +121,7 @@ class EPGFetcher(object):
 #                local_timer.ice_timer_id = res[0]["id"]
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not upload timer: " + str(ex)
-                if hasattr(ex, 'response'):
+                if hasattr(ex, "response") and hasattr(ex.response, "text"):
                     msg += "\n%s" % str(ex.response.text).strip()
                 self.addLog(msg)
                 res = False
@@ -144,7 +144,7 @@ class EPGFetcher(object):
             return res
         except (IOError, RuntimeError) as ex:
             msg = "Can not download EPG: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
             res = False
@@ -155,7 +155,7 @@ class EPGFetcher(object):
             self.addLog("End update")
         except (IOError, RuntimeError) as ex:
             msg = "Can not download timers: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
             res = False
@@ -302,7 +302,7 @@ class EPGFetcher(object):
             res = False
         except (IOError, RuntimeError) as ex:
             msg = "Can not update timers: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
             res = False
@@ -768,7 +768,7 @@ class IceTVRegionSetup(Screen):
             self["description"].setText("")
         except (IOError, RuntimeError) as ex:
             msg = "Can not download list of regions: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             fetcher.addLog(msg)
             self["description"].setText(_("There was an error downloading the region list"))
@@ -847,7 +847,7 @@ class IceTVLogin(Screen):
             fetcher.createFetchJob()
         except (IOError, RuntimeError) as ex:
             msg = "Login failure: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             fetcher.addLog(msg)
             self["instructions"].setText(_("There was an error while trying to login."))
@@ -926,7 +926,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             fetcher.createFetchJob()
         except (IOError, RuntimeError) as ex:
             msg = "Login failure: " + str(ex)
-            if hasattr(ex, 'response'):
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             fetcher.addLog(msg)
             self.session.open(MessageBox, _(msg), type=MessageBox.TYPE_ERROR)
