@@ -456,7 +456,7 @@ def Plugins(**kwargs):
             icon="icon.png",
             fnc=plugin_main
         ))
-    if not config.plugins.icetv.configured.value and ice.isServerReachable():
+    if not config.plugins.icetv.configured.value:
         res.append(
             PluginDescriptor(
                 name="IceTV",
@@ -547,10 +547,25 @@ class IceTVSelectProviderScreen(Screen):
                       "received by your %(brand)s %(box)s via your TV antenna."
                       ) % {"brand": getMachineBrand(), "box": getMachineName()}
 
+    _no_internet = _("\n\n\n\n"
+                     "Defaulting to Free To Air TV Guide, which does not require Internet.")
+
     def __init__(self, session, args=None):
         self.session = session
         Screen.__init__(self, session)
-        self["instructions"] = Label(_(self._instructions))
+        if not ice.isServerReachable():
+            self["instructions"] = Label(self._no_internet)
+            self.hide()
+            self.close()
+            # FIXME: If we can prevent this screen from ever appearing (even briefly), then there is
+            #        no need to save this configuration and the IceTV selection screen can be shown
+            #        as soon as the user connects to the Internet and restarts the GUI.
+            config.plugins.icetv.configured.value = True
+            config.plugins.icetv.configured.save()
+            disableIceTV()
+            return
+        sleep(2)    # Prevent display corruption if the screen is displayed too soon after enigma2 start up
+        self["instructions"] = Label(self._instructions)
         options = []
         options.append((_("IceTV (with free trial)\t- Requires Internet connection"), "iceEpg"))
         options.append((_("Free To Air               \t- No Internet connection required"), "eitEpg"))
@@ -560,7 +575,6 @@ class IceTVSelectProviderScreen(Screen):
                                      "cancel": self.cancel,
                                      "ok": self.ok,
                                  }, prio=-1)
-        sleep(2)    # Prevent display corruption if the screen is displayed too soon after enigma2 start up
 
     def cancel(self):
         self.hide()
