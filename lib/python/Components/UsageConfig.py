@@ -77,6 +77,7 @@ def InitUsageConfig():
 	config.usage.zap_with_ch_buttons = ConfigYesNo(default = True)
 	config.usage.ok_is_channelselection = ConfigYesNo(default = False)
 	config.usage.volume_instead_of_channelselection = ConfigYesNo(default = False)
+	config.usage.channelselection_preview = ConfigYesNo(default = False)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.sort_settings = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
@@ -277,7 +278,7 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
-			if "fb" in SystemInfo["WakeOnLAN"]:
+			if "fp" in SystemInfo["WakeOnLAN"]:
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
 			else:
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
