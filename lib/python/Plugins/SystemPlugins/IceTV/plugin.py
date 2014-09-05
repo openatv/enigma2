@@ -519,11 +519,11 @@ class IceTVMain(ChoiceBox):
         _session.open(IceTVNeedPassword)
 
     def showLog(self, res=None):
-        _session.open(LogView, "\n".join(fetcher.log))
+        _session.open(IceTVLogView, "\n".join(fetcher.log))
 
 
-class LogView(TextBox):
-    skin = """<screen name="LogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
+class IceTVLogView(TextBox):
+    skin = """<screen name="IceTVLogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
         <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
 </screen>"""
 
