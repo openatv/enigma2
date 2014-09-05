@@ -1,7 +1,7 @@
 # kate: replace-tabs off; indent-width 8; remove-trailing-spaces all; show-tabs on; newline-at-eof on;
 
-import sys, os
-
+import sys
+import os
 from time import time
 
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
@@ -45,30 +45,32 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_ACTIVE_SKIN, "black.mvi"))
+config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_ACTIVE_SKIN, "black.mvi"))
 radiopic = resolveFilename(SCOPE_ACTIVE_SKIN, "radio.mvi")
 if os.path.exists(resolveFilename(SCOPE_CONFIG, "radio.mvi")):
 	radiopic = resolveFilename(SCOPE_CONFIG, "radio.mvi")
-config.misc.radiopic = ConfigText(default = radiopic)
+config.misc.radiopic = ConfigText(default=radiopic)
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
-config.misc.NTPserver = ConfigText(default = 'au.pool.ntp.org', fixed_size=False)
+config.misc.SyncTimeUsing = ConfigSelection(default="0", choices=[
+	("0", "Transponder Time"),
+	("1", _("NTP"))])
+config.misc.NTPserver = ConfigText(default='au.pool.ntp.org', fixed_size=False)
 
-config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
-config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
-config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandby
+config.misc.startCounter = ConfigInteger(default=0)  # number of e2 starts...
+config.misc.standbyCounter = NoSave(ConfigInteger(default=0))  # number of standby
+config.misc.DeepStandby = NoSave(ConfigYesNo(default=False))  # detect deepstandby
 
-#demo code for use of standby enter leave callbacks
-#def leaveStandby():
-#	print "!!!!!!!!!!!!!!!!!leave standby"
+# demo code for use of standby enter leave callbacks
+# def leaveStandby():
+# 	print "!!!!!!!!!!!!!!!!!leave standby"
 
-#def standbyCountChanged(configelement):
-#	print "!!!!!!!!!!!!!!!!!enter standby num", configelement.value
-#	from Screens.Standby import inStandby
-#	inStandby.onClose.append(leaveStandby)
+# def standbyCountChanged(configelement):
+# 	print "!!!!!!!!!!!!!!!!!enter standby num", configelement.value
+# 	from Screens.Standby import inStandby
+# 	inStandby.onClose.append(leaveStandby)
 
-#config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
+# config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
 def useSyncUsingChanged(configelement):
@@ -92,7 +94,7 @@ def NTPserverChanged(configelement):
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.value)
-config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback = True)
+config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
 
 profile("Twisted")
 try:
@@ -105,6 +107,7 @@ try:
 		reactor.run(installSignalHandlers=False)
 except ImportError:
 	print "twisted not available"
+
 	def runReactor():
 		enigma.runMainloop()
 
@@ -123,21 +126,21 @@ from Plugins.Plugin import PluginDescriptor
 profile("misc")
 had = dict()
 
-def dump(dir, p = ""):
-	if isinstance(dir, dict):
-		for (entry, val) in dir.items():
+def dump(d, p=""):
+	if isinstance(d, dict):
+		for (entry, val) in d.items():
 			dump(val, p + "(dict)/" + entry)
-	if hasattr(dir, "__dict__"):
-		for name, value in dir.__dict__.items():
-			if not had.has_key(str(value)):
+	if hasattr(d, "__dict__"):
+		for name, value in d.__dict__.items():
+			if not str(value) in had:
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
 			else:
-				print p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)"
+				print p + "/" + str(name) + ":" + str(d.__class__) + "(cycle)"
 	else:
-		print p + ":" + str(dir)
+		print p + ":" + str(d)
 
-# + ":" + str(dir.__class__)
+# + ":" + str(d.__class__)
 
 # display
 
@@ -175,7 +178,7 @@ Screen.global_screen = Globals()
 # * destroy screen
 
 class Session:
-	def __init__(self, desktop = None, summary_desktop = None, navigation = None):
+	def __init__(self, desktop=None, summary_desktop=None, navigation=None):
 		self.desktop = desktop
 		self.summary_desktop = summary_desktop
 		self.nav = navigation
@@ -184,8 +187,8 @@ class Session:
 
 		self.current_dialog = None
 
-		self.dialog_stack = [ ]
-		self.summary_stack = [ ]
+		self.dialog_stack = []
+		self.summary_stack = []
 		self.summary = None
 
 		self.in_exec = False
@@ -207,7 +210,7 @@ class Session:
 
 		if self.current_dialog.isTmp:
 			self.current_dialog.doClose()
-#			dump(self.current_dialog)
+			# dump(self.current_dialog)
 			del self.current_dialog
 		else:
 			del self.current_dialog.callback
@@ -216,7 +219,7 @@ class Session:
 		if callback is not None:
 			callback(*retval)
 
-	def execBegin(self, first=True, do_show = True):
+	def execBegin(self, first=True, do_show=True):
 		assert not self.in_exec
 		self.in_exec = True
 		c = self.current_dialog
@@ -283,10 +286,10 @@ class Session:
 			dlg = self.create(screen, arguments, **kwargs)
 		except:
 			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
-			print '-'*60
+			print '-' * 60
 			print_exc(file=stdout)
 			enigma.quitMainloop(5)
-			print '-'*60
+			print '-' * 60
 
 		if dlg is None:
 			return
@@ -318,7 +321,7 @@ class Session:
 		self.pushCurrent()
 		self.current_dialog = dialog
 		self.current_dialog.isTmp = False
-		self.current_dialog.callback = None # would cause re-entrancy problems.
+		self.current_dialog.callback = None  # would cause re-entrancy problems.
 		self.execBegin()
 
 	def openWithCallback(self, callback, screen, *arguments, **kwargs):
@@ -379,11 +382,11 @@ class PowerKey:
 
 	def __init__(self, session):
 		self.session = session
-		globalActionMap.actions["power_down"]=self.powerdown
-		globalActionMap.actions["power_up"]=self.powerup
-		globalActionMap.actions["power_long"]=self.powerlong
-		globalActionMap.actions["deepstandby"]=self.shutdown # frontpanel long power button press
-		globalActionMap.actions["discrete_off"]=self.standby
+		globalActionMap.actions["power_down"] = self.powerdown
+		globalActionMap.actions["power_up"] = self.powerup
+		globalActionMap.actions["power_long"] = self.powerlong
+		globalActionMap.actions["deepstandby"] = self.shutdown  # frontpanel long power button press
+		globalActionMap.actions["discrete_off"] = self.standby
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
@@ -397,11 +400,11 @@ class PowerKey:
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not self.session.nav.RecordTimer.isRecTimerWakeup():
 				f = open("/tmp/was_rectimer_wakeup", "r")
-				file = f.read()
+				wakeup = f.read()
 				f.close()
-				wasRecTimerWakeup = int(file) and True or False
+				wasRecTimerWakeup = int(wakeup) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup or self.session.nav.RecordTimer.isRecording():
-				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
+				print "PowerOff (timer wakeup) - Recording in progress or a timer about to activate, entering standby!"
 				lastrecordEnd = 0
 				for timer in self.session.nav.RecordTimer.timer_list:
 					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
@@ -410,7 +413,15 @@ class PowerKey:
 						if timer.end > lastrecordEnd:
 							lastrecordEnd = timer.end + 900
 				from Screens.MessageBox import MessageBox
-				self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
+				self.session.openWithCallback(
+					self.gotoStandby,
+					MessageBox, _(
+						"PowerOff while Recording in progress!\n"
+						"Entering standby, after recording the box will shutdown."
+					),
+					type=MessageBox.TYPE_INFO,
+					timeout=10
+				)
 			else:
 				print "PowerOff - Now!"
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
@@ -421,7 +432,7 @@ class PowerKey:
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
-		self.doAction(action = config.usage.on_long_powerpress.value)
+		self.doAction(action=config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
 		self.standbyblocked = 1
@@ -447,14 +458,14 @@ class PowerKey:
 
 	def powerup(self):
 		if self.standbyblocked == 0:
-			self.doAction(action = config.usage.on_short_powerpress.value)
-	
+			self.doAction(action=config.usage.on_short_powerpress.value)
+
 	def gotoStandby(self, ret):
 		self.standby()
-		
+
 	def standby(self):
-		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec: #I am still not sure if it is good idea...
-		#if not Screens.Standby.inStandby and self.session.current_dialog and self.session.in_exec:
+		# if not Screens.Standby.inStandby and self.session.current_dialog and self.session.in_exec:
+		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:  # I am still not sure if it is good idea...
 			self.session.open(Screens.Standby.Standby)
 
 profile("Scart")
@@ -475,7 +486,7 @@ class AutoScartControl:
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
-		#print "vcr sb changed to", value
+		# print "vcr sb changed to", value
 		self.current_vcr_sb = value
 		if config.av.vcrswitch.value or value > 2:
 			if value:
@@ -500,11 +511,11 @@ def runScreenTest():
 
 	profile("Init:Session")
 	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value, config.misc.isNextPowerTimerAfterEventActionAuto.value)
-	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
+	session = Session(desktop=enigma.getDesktop(0), summary_desktop=enigma.getDesktop(1), navigation=nav)
 
 	CiHandler.setSession(session)
 
-	screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+	screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
@@ -523,7 +534,7 @@ def runScreenTest():
 		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
 		else:  # FIXME: This is patently wrong. Getting screen/args would have caused an exception, if screensToRun was false
-			session.open(screen, *args) # FIXME: Both lines can probably be deleted.
+			session.open(screen, *args)  # FIXME: Both lines can probably be deleted.
 
 	runNextScreen(session, screensToRun)
 
@@ -536,7 +547,7 @@ def runScreenTest():
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
-		
+
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)
 
@@ -556,60 +567,61 @@ def runScreenTest():
 
 	profile("wakeup")
 
-	#get currentTime
+	# get currentTime
 	nowTime = time()
 	if not config.misc.SyncTimeUsing.getValue() == "0" or getBoxType().startswith('gb') or getMachineProcModel().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
-		
+
 	wakeupList = [
-		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-					(session.nav.RecordTimer.getNextZapTime(), 1),
-					(plugins.getNextWakeupTime(), 2),
-					(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
+		x for x in (
+			(session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
+			(session.nav.RecordTimer.getNextZapTime(), 1),
+			(plugins.getNextWakeupTime(), 2),
+			(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto())
+		)
 		if x[0] != -1
 	]
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
 		startTime = wakeupList[0]
-		if (startTime[0] - nowTime) < 270: # no time to switch box back on
+		if (startTime[0] - nowTime) < 270:  # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			if getBoxType().startswith("gb"):
-				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
+				wptime = startTime[0] - 120  # Gigaboxes already start 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
 
-		#if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
-		#	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-		#	setRTCtime(nowTime)
+		# if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
+		# 	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+		# 	setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
-		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
+		print 'recordTimerWakeupAuto', recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
-
 
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
 		startTime = wakeupList[0]
-		if (startTime[0] - nowTime) < 60: # no time to switch box back on
+		if (startTime[0] - nowTime) < 60:  # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			if getBoxType().startswith("gb"):
-				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
+				wptime = startTime[0] + 120  # Gigaboxes already start 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
 
-		#if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
-		#	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-		#	setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
+		# if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
+		# 	print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+		# 	setRTCtime(nowTime)
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime + 60))
 		setFPWakeuptime(wptime)
 		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
-		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto
+		print 'PowerTimerWakeupAuto', PowerTimerWakeupAuto
 	config.misc.isNextPowerTimerAfterEventActionAuto.value = PowerTimerWakeupAuto
 	config.misc.isNextPowerTimerAfterEventActionAuto.save()
 
@@ -651,13 +663,13 @@ profile("UsageConfig")
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
 
-#profile("Init:DebugLogCheck")
-#import Screens.LogManager
-#Screens.LogManager.AutoLogManager()
+# profile("Init:DebugLogCheck")
+# import Screens.LogManager
+# Screens.LogManager.AutoLogManager()
 
-#profile("Init:OnlineCheckState")
-#import Components.OnlineUpdateCheck
-#Components.OnlineUpdateCheck.OnlineUpdateCheck()
+# profile("Init:OnlineCheckState")
+# import Components.OnlineUpdateCheck
+# Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 import Components.NetworkTime
@@ -696,10 +708,10 @@ Screens.Ci.InitCiConfig()
 profile("RcModel")
 import Components.RcModel
 
-#from enigma import dump_malloc_stats
-#t = eTimer()
-#t.callback.append(dump_malloc_stats)
-#t.start(1000)
+# from enigma import dump_malloc_stats
+# t = eTimer()
+# t.callback.append(dump_malloc_stats)
+# t.start(1000)
 
 # first, setup a screen
 try:
@@ -710,7 +722,7 @@ try:
 	Components.ParentalControl.parentalControl.save()
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
-	print '-'*60
+	print '-' * 60
 	print_exc(file=stdout)
 	enigma.quitMainloop(5)
-	print '-'*60
+	print '-' * 60
