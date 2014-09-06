@@ -34,35 +34,61 @@
 			<id val="setup" />
 			<menu weight="0" level="0" text="System" entryID="system_selection">
 				<id val="system" />
-				<item level="0" text="LCD Skin Setup" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
-				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
-				<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
-				<item level="0" entryID="epg_settings"><setup id="epgsettings" /></item>
-				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
-				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
-				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
-				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
-				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
-					<id val="harddisk" />
-					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
-					<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-					<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-					<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+				
+				<!-- Configuration / Setup /Audio Menu -->
+				<menu weight="0" level="0" text="Audio Setup" entryID="audio_menu">
+					<id val="audio_menu" />
+					<item weight="0" level="0" text="Audio Settings" entryID="audio_setup"><setup id="audio_setup" /></item>
 				</menu>
-				<menu level="0" text="Network" entryID="network_menu">
-					<id val="network" />
-					<item level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					<item level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
-					<item level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+
+				<!-- Configuration / Setup /Video Menu -->
+				<menu weight="0" level="0" text="Video Setup" entryID="video_menu">
+					<id val="video_menu" />
+					<item weight="0" level="0" text="Video Settings" entryID="video_setup"><setup id="video_setup" /></item>
 				</menu>
-				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
-				<item requires="Display"><setup level="1" id="lcd" /></item>
-				<item text="Keyboard"><setup id="keyboard" /></item>
-				<item level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
-				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
-				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
-				<item level="0" entryID="logs_setup"><setup id="logs" /></item>
+
+				<!-- Configuration / Setup /GUI Menu -->
+				<menu weight="0" level="0" text="GUI Setup" entryID="gui_setup">
+					<id val="gui_menu" />
+					<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+					<item requires="Display"><setup level="1" id="lcd" /></item>
+					<item level="0" text="LCD Skin Setup" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
+					<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
+				</menu>
+				
+				<!-- Configuration / Setup /General Menu -->
+				<menu weight="0" level="0" text="General Setup" entryID="genral_setup">
+					<id val="general_menu" />
+					<item level="0" entryID="usage_setup"><setup id="usage" /></item>
+					<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
+					<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>				
+					<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
+						<id val="harddisk" />
+						<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
+						<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+						<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
+						<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+					</menu>
+					<item level="0" entryID="recording_setup"><setup id="recording" /></item>
+					<item level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
+					<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
+					<item level="0" entryID="epg_settings"><setup id="epgsettings" /></item>
+				</menu>
+				
+				<!-- Configuration / Setup /Setup Menu -->
+				<menu weight="0" level="0" text="System Setup" entryID="system_setup">
+					<id val="system_menu" />
+					<menu level="0" text="Network" entryID="network_menu">
+						<id val="network" />
+						<item level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+						<item level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
+						<item level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+					</menu>
+					<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
+					<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+					<item text="Keyboard"><setup id="keyboard" /></item>
+					<item level="0" entryID="logs_setup"><setup id="logs" /></item>
+				</menu>
 			</menu>
 
 			<menu weight="5" level="0" text="Service searching" entryID="service_searching_selection" requires="!isGBIPBOX">

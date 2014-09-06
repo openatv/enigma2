@@ -2,9 +2,24 @@
 	<setup key="timezone" title="Timezone">
 		<item level="0" text="Timezone">config.timezone.val</item>
 	</setup>
-	<setup key="avsetup">
+	<setup key="audio_setup">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>
+	<setup key="video_setup">
+		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
+	</setup>
+<!--	<setup key="videosetup" title="Video Setup">
+		<item level="0" text="Video output" description="Configures which video output connector will be used.">config.av.videoport</item>
+		<item level="0" text="Mode" description="Configure the video output mode (or resolution).">config.av.videomode[config.av.videoport.value]</item>
+		<item level="0" text="Refresh rate" description="">config.av.videorate[config.av.videomode[config.av.videoport.value].value]</item>
+		<item level="0" text="Display 4:3 content as" description="">config.av.policy_43</item>
+		<item level="0" text="Display >16:9 content as" description="">config.av.policy_169</item>
+		<item level="0" text="OSD transparency" description="">config.av.osd_alpha</item>
+		<item level="0" text="Scaler sharpness" description="">config.av.scaler_sharpness</item>
+	</setup>
+	<setup key="audiosetup" title="Audio Setup">
+		
+	</setup> -->
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup mode" description="Configure which access level to use for the configuration menu. Expert level gives access to all items.">config.usage.setup_level</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Configure the way in which the receiver changes channels.">config.misc.zapmode</item>
