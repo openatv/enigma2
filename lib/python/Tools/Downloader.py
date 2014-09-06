@@ -37,6 +37,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 
 class downloadWithProgress:
 	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
+		from urlparse import urlparse
 		parsed = urlparse(url)
 		scheme = parsed.scheme
 		host = parsed.hostname
