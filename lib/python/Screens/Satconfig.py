@@ -516,7 +516,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.newConfig()
+		if self["config"].getCurrent() in (self.advancedSelectSatsEntry, self.selectSatsEntry):
+			self.keyOk()
+		else:
+			self.newConfig()
 
 	def setTextKeyBlue(self):
 		self["key_blue"].setText("")
@@ -525,7 +528,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.newConfig()
+		if self["config"].getCurrent() in (self.advancedSelectSatsEntry, self.selectSatsEntry):
+			self.keyOk()
+		else:
+			self.newConfig()
 
 	def handleKeyFileCallback(self, answer):
 		ConfigListScreen.handleKeyFileCallback(self, answer)
