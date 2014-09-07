@@ -1070,7 +1070,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.nim_enable = [ ]
 
 		if len(nims_to_scan):
+			self.scan_networkScan = ConfigYesNo(default = True)
 			self.scan_clearallservices = ConfigSelection(default = "yes", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
+			self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 
 			for nim in nims_to_scan:
@@ -1134,7 +1136,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				else:
 					assert False
 
-				flags |= eComponentScan.scanNetworkSearch #FIXMEEE.. use flags from cables / satellites / terrestrial.xml
+				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
 				tmp = self.scan_clearallservices.value
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
