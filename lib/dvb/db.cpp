@@ -637,6 +637,19 @@ void eDVBDB::saveServicelist(const char *file)
 			case 1712000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_1_712MHz; break;
 			case 10000000: bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_10MHz; break;
 			}
+			if (ter.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2)
+			{
+				/*
+				 * System_DVB_T_T2 (T with fallback to T2) is used only when 'system' is not (yet) specified.
+				 * When storing a transponder with 'system' still equalling System_DVB_T_T2,
+				 * there has been no fallback to T2 (in which case 'system' would have been set to
+				 * System_DVB_T2).
+				 * So we are dealing with a T transponder, store it with System_DVB_T.
+				 * (fallback to T2 is only used while scanning, System_DVB_T_T2 should never be used for actual
+				 * transponders in the lamedb)
+				 */
+				ter.system = eDVBFrontendParametersTerrestrial::System_DVB_T;
+			}
 			fprintf(f, "\tt %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
 				ter.frequency, bandwidth, ter.code_rate_HP,
 				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
