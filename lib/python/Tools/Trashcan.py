@@ -39,7 +39,7 @@ def createTrashFolder(path=None):
 			if not os.access(trash, os.R_OK|os.W_OK|os.X_OK):
 				perms = stat.S_IMODE(os.stat(trash).st_mode)
 				perms |= stat.S_IRWXU
-				chmod(trash, perms)
+				os.chmod(trash, perms)
 			if os.path.isdir(trash) and os.access(trash, os.R_OK|os.W_OK|os.X_OK):
 				return trash
 		except:
