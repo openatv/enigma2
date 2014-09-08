@@ -1023,7 +1023,7 @@ class InfoBarTimeshift:
 			else:
 				eventname = ""
 			#JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\"" % filename, eventname))
-			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\" > /dev/nul" % filename, eventname))
+			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\" > /dev/null" % filename, eventname))
 		else:
 			self.ptsSaveTimeshiftFinished()
 
