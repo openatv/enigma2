@@ -49,18 +49,18 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		Screen.__init__(self, session)
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
-				"showMovies": self.showMovies,
-				"showRadio": (self.showRadio, _("Show the radio player...")),
-				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
-				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
-				"openTimerList": self.openTimerList,
-				"openSleepTimer": (self.openSleepTimer, _("Show/Add Sleep Timers")),
-				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
-				"showSetup": (self.showSetup, _("Show setup...")),
-				"showWWW": (self.showWWW, _("Open WebBrowser...")),
+				"showMovies": (self.showMovies, _("Watch recordings and media")),
+				"showRadio": (self.showRadio, _("Listen to the radio...")),
+				"showTv": (self.TvRadioToggle, _("Switch between TV and radio")),
+				"openBouquetList": (self.openBouquetList, _("Open bouquet list...")),
+				"openTimerList": (self.openTimerList, _("Open timer list...")),
+				"openSleepTimer": (self.openSleepTimer, _("Show/add sleep timers...")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Open the media player...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Open the plugins screen...")),
+				"showSetup": (self.showSetup, _("Open the settings screen...")),
+				"showWWW": (self.showWWW, _("Open Web browser...")),
 				"showLanSetup": (self.showLanSetup, _("Show LAN Setup...")),
-				"showFormat": self.showFormat,
+				"showFormat": (self.showFormat, _("Display the screen format...")),
 
 			}, prio = 2, description = _("Basic functions"))
 
@@ -288,8 +288,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
-				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
+				"leavePlayer": (self.leavePlayer, _("Leave movie player...")),
+				"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player..."))
 			}, description = _("Movie player"))
 
 		self.allowPiP = True
