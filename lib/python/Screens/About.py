@@ -1,27 +1,24 @@
-from Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.Harddisk import Harddisk, Partition, harddiskmanager, getProcMounts, getPartitionNames
-from Components.NimManager import nimmanager
-from Components.About import about
-from Components.ScrollLabel import ScrollLabel
-from Components.Label import Label
-from Components.Pixmap import MultiPixmap
-from Components.Sources.List import List
-from keyids import KEYIDS
-from enigma import eTimer, getEnigmaVersionString, gFont, eActionMap, eListbox
-
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
-
-from Components.Network import iNetwork
-
-from Components.config import config, ConfigInteger
-
-from Tools.StbHardware import getFPVersion
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from os import path, listdir, stat
 from re import match
+
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from enigma import eTimer, getEnigmaVersionString, gFont, eActionMap, eListbox
+from Components.About import about
+from Components.ActionMap import ActionMap
+from Components.Harddisk import Partition, harddiskmanager, getProcMounts, getPartitionNames
+from Components.Label import Label
+from Components.Network import iNetwork
+from Components.NimManager import nimmanager
+from Components.Pixmap import MultiPixmap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Components.config import config, ConfigInteger
+from Screen import Screen
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.LoadPixmap import LoadPixmap
+from Tools.StbHardware import getFPVersion
+from keyids import KEYIDS
+
 
 class AboutBase(Screen):
 	def __init__(self, session):
@@ -32,7 +29,8 @@ class AboutBase(Screen):
 
 		self.setBindings()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(
+			["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -40,25 +38,25 @@ class AboutBase(Screen):
 
 	@staticmethod
 	def sizeStr(size, unknown=_("unavailable")):
-		if float(size) / 2**20 >= 1:
-			return str(round(float(size) / 2**20, 2)) + _("TB")
-		if (float(size) / 2**10) >= 1:
-			return str(round(float(size) / 2**10, 2)) + _("GB")
+		if float(size) / 2 ** 20 >= 1:
+			return str(round(float(size) / 2 ** 20, 2)) + _("TB")
+		if (float(size) / 2 ** 10) >= 1:
+			return str(round(float(size) / 2 ** 10, 2)) + _("GB")
 		if size >= 1:
 			return str(size) + _("MB")
-		return  unknown
+		return unknown
 
-	ENT_HEADING=0
-	ENT_INFOLABEL=1
-	ENT_INFO=2
-	ENT_HEADINFOLABEL=3
-	ENT_HEADINFO=4
-	ENT_GW=5
-	ENT_GWDEST=6
-	ENT_IFTYPE=7
-	ENT_INETLABEL=8
-	ENT_ICONINFO=9
-	NENT=10
+	ENT_HEADING = 0
+	ENT_INFOLABEL = 1
+	ENT_INFO = 2
+	ENT_HEADINFOLABEL = 3
+	ENT_HEADINFO = 4
+	ENT_GW = 5
+	ENT_GWDEST = 6
+	ENT_IFTYPE = 7
+	ENT_INETLABEL = 8
+	ENT_ICONINFO = 9
+	NENT = 10
 
 	@staticmethod
 	def makeEmptyEntry():
@@ -75,13 +73,13 @@ class AboutBase(Screen):
 	@staticmethod
 	def makeInfoEntry(label, info):
 		l = list(AboutBase.makeEmptyEntry())
-		l[AboutBase.ENT_INFOLABEL:AboutBase.ENT_INFO+1] = label, info
+		l[AboutBase.ENT_INFOLABEL:AboutBase.ENT_INFO + 1] = label, info
 		return tuple(l)
 
 	@staticmethod
 	def makeHeadingInfoEntry(label, info):
 		l = list(AboutBase.makeEmptyEntry())
-		l[AboutBase.ENT_HEADINFOLABEL:AboutBase.ENT_HEADINFO+1] = label, info
+		l[AboutBase.ENT_HEADINFOLABEL:AboutBase.ENT_HEADINFO + 1] = label, info
 		return tuple(l)
 
 	def setBindings(self):
@@ -163,21 +161,21 @@ class About(AboutBase):
 
 class Devices(AboutBase):
 
-	ENT_HEADING=0
-	ENT_INFOLABEL=1
-	ENT_INFO=2
-	ENT_HEADINFOLABEL=3
-	ENT_HEADINFO=4
-	ENT_HDDNAME=5
-	ENT_HDDTYPE=6
-	ENT_HDDSIZE=7
-	ENT_FSNAME=8
-	ENT_FSTYPE=9
-	ENT_FSSIZE=10
-	ENT_FSFREE=11
-	ENT_FSWIDE=12
-	ENT_FSWIDENET=13
-	NENT=14
+	ENT_HEADING = 0
+	ENT_INFOLABEL = 1
+	ENT_INFO = 2
+	ENT_HEADINFOLABEL = 3
+	ENT_HEADINFO = 4
+	ENT_HDDNAME = 5
+	ENT_HDDTYPE = 6
+	ENT_HDDSIZE = 7
+	ENT_FSNAME = 8
+	ENT_FSTYPE = 9
+	ENT_FSSIZE = 10
+	ENT_FSFREE = 11
+	ENT_FSWIDE = 12
+	ENT_FSWIDENET = 13
+	NENT = 14
 
 	@staticmethod
 	def makeEmptyEntry():
@@ -192,25 +190,25 @@ class Devices(AboutBase):
 	@staticmethod
 	def makeInfoEntry(label, info):
 		l = list(Devices.makeEmptyEntry())
-		l[Devices.ENT_INFOLABEL:Devices.ENT_INFO+1] = label, info
+		l[Devices.ENT_INFOLABEL:Devices.ENT_INFO + 1] = label, info
 		return tuple(l)
 
 	@staticmethod
 	def makeHeadingInfoEntry(label, info):
 		l = list(Devices.makeEmptyEntry())
-		l[Devices.ENT_HEADINFOLABEL:Devices.ENT_HEADINFO+1] = label, info
+		l[Devices.ENT_HEADINFOLABEL:Devices.ENT_HEADINFO + 1] = label, info
 		return tuple(l)
 
 	@staticmethod
-	def makeHDDEntry(name, type, size):
+	def makeHDDEntry(name, kind, size):
 		l = list(Devices.makeEmptyEntry())
-		l[Devices.ENT_HDDNAME:Devices.ENT_HDDSIZE+1] = name, type, size
+		l[Devices.ENT_HDDNAME:Devices.ENT_HDDSIZE + 1] = name, kind, size
 		return tuple(l)
 
 	@staticmethod
-	def makeFilesystemEntry(name, type, size, free):
+	def makeFilesystemEntry(name, kind, size, free):
 		l = list(Devices.makeEmptyEntry())
-		l[Devices.ENT_FSNAME:Devices.ENT_FSFREE+1] = name, type, size, free
+		l[Devices.ENT_FSNAME:Devices.ENT_FSFREE + 1] = name, kind, size, free
 		return tuple(l)
 
 	@staticmethod
@@ -227,13 +225,13 @@ class Devices(AboutBase):
 
 	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
 
-       # Mapping fuseblk is a hack that only works if NTFS
-       # is the only FUSE file system loaded.
-
-	fsNameMap = { "fuseblk": "NTFS", "hfs": "HFS", "hfsplus": "HFS+",
-			"iso9660": "ISO9660", "msdos" : "FAT",
-			"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
-		 }
+# Mapping fuseblk is a hack that only works if NTFS
+# is the only FUSE file system loaded.
+	fsNameMap = {
+				"fuseblk": "NTFS", "hfs": "HFS", "hfsplus": "HFS+",
+				"iso9660": "ISO9660", "msdos": "FAT",
+				"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
+	}
 
 	def __init__(self, session):
 		AboutBase.__init__(self, session)
@@ -242,7 +240,7 @@ class Devices(AboutBase):
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
 
-	def mountInfo(self, name, mountpoint, type, twoLines=False, indent=''):
+	def mountInfo(self, name, mountpoint, kind, twoLines=False, indent=''):
 		if path.isdir(mountpoint):
 			# Handle autofs "ghost" entries
 			try:
@@ -254,12 +252,12 @@ class Devices(AboutBase):
 			if mounttotal is None:
 				mounttotal = -1
 			else:
-				mounttotal /= 10**6
-			mountfree =  part.free()
+				mounttotal /= 10 ** 6
+			mountfree = part.free()
 			if mountfree is None:
 				mountfree = -1
 			else:
-				mountfree /= 10**6
+				mountfree /= 10 ** 6
 			sizeinfo = "%s%s" % (
 					_("Size: "),
 					self.sizeStr(mounttotal, _("unavailable"))
@@ -271,10 +269,10 @@ class Devices(AboutBase):
 			if twoLines:
 				return (
 					self.makeWideNetworkEntry(name),
-					self.makeFilesystemEntry(None, type, sizeinfo, freeinfo)
+					self.makeFilesystemEntry(None, kind, sizeinfo, freeinfo)
 				)
 			else:
-				return (self.makeFilesystemEntry(name, type, sizeinfo, freeinfo),)
+				return (self.makeFilesystemEntry(name, kind, sizeinfo, freeinfo),)
 		else:
 			return (self.makeInfoEntry(name, ''),)
 
@@ -292,14 +290,14 @@ class Devices(AboutBase):
 
 		self.list.append(self.makeEmptyEntry())
 
-		self.list.append(self.makeHeadingEntry(_("Detected NIMs"+":")))
+		self.list.append(self.makeHeadingEntry(_("Detected NIMs:")))
 
 		nims = nimmanager.nimList()
 		for count in range(min(len(nims), 4)):
 			self.list.append(self.makeInfoEntry(*nims[count].split(": ")))
 
 		self.list.append(self.makeEmptyEntry())
-		self.list.append(self.makeHeadingEntry(_("Detected HDDs and Volumes"+":")))
+		self.list.append(self.makeHeadingEntry(_("Detected HDDs and Volumes:")))
 
 		partitions = getPartitionNames()
 		partitions.sort()
@@ -317,11 +315,9 @@ class Devices(AboutBase):
 		for hddtup in harddiskmanager.HDDList():
 			hdd = hddtup[1]
 			self.mountinfo.append(self.makeHDDEntry(hdd.dev_path, hdd.model(), self.sizeStr(hdd.diskSize())))
-			for part in [p for p in partitions
-					if p.startswith(hdd.device)]:
+			for part in [p for p in partitions if p.startswith(hdd.device)]:
 				if part in mountIndex:
 					mount = mountIndex[part]
-
 					fs = mount[2]
 					if fs:
 						fs = fs.upper()
@@ -341,8 +337,7 @@ class Devices(AboutBase):
 		self.mountinfo = []
 		self.list.append(self.makeEmptyEntry())
 		self.list.append(self.makeHeadingEntry(_("Network Servers:")))
-		for mount in [m for m in mounts
-				if match(Devices.FSTABIPMATCH, m[0])]:
+		for mount in [m for m in mounts if match(Devices.FSTABIPMATCH, m[0])]:
 			self.mountinfo += self.mountInfo(mount[0], mount[1], mount[2].upper(), twoLines=True)
 
 		try:
@@ -399,8 +394,8 @@ class SystemMemoryInfo(AboutBase):
 		mounts = getProcMounts()
 		if mounts:
 			part = Partition(mounts[0][1])
-			FlashTotal = self.sizeStr(part.total() / 10**6, _("unavailable"))
-			FlashFree = self.sizeStr(part.free() / 10**6, _("full"))
+			FlashTotal = self.sizeStr(part.total() / 10 ** 6, _("unavailable"))
+			FlashFree = self.sizeStr(part.free() / 10 ** 6, _("full"))
 
 		self.list.append(self.makeEmptyEntry())
 		self.list.append(self.makeHeadingEntry(_("FLASH")))
@@ -409,8 +404,8 @@ class SystemMemoryInfo(AboutBase):
 
 		self["list"].updateList(self.list)
 
-config.misc.interface_info_poll=ConfigInteger(default=5, limits=(1,3600))
-config.misc.internet_info_poll=ConfigInteger(default=20, limits=(10,3600))
+config.misc.interface_info_poll = ConfigInteger(default=5, limits=(1, 3600))
+config.misc.internet_info_poll = ConfigInteger(default=20, limits=(10, 3600))
 
 class SystemNetworkInfo(AboutBase):
 
@@ -427,7 +422,7 @@ class SystemNetworkInfo(AboutBase):
 	def makeGwInfoEntry(label, gw, dest):
 		l = list(AboutBase.makeEmptyEntry())
 		l[1] = label
-		l[SystemNetworkInfo.ENT_GW:SystemNetworkInfo.ENT_GWDEST+1] = gw, dest
+		l[SystemNetworkInfo.ENT_GW:SystemNetworkInfo.ENT_GWDEST + 1] = gw, dest
 		return tuple(l)
 
 	@staticmethod
@@ -491,8 +486,7 @@ class SystemNetworkInfo(AboutBase):
 		# "BSSID", "ESSID", "quality", "signal",
 		# "bitrate", "enc" appear or not
 
-		self.config = frozenset(("BSSID", "ESSID", "quality",
-					"signal", "bitrate", "enc"))
+		self.config = frozenset(("BSSID", "ESSID", "quality", "signal", "bitrate", "enc"))
 
 		self.currIface = None
 		self.iStatus = None
@@ -528,8 +522,7 @@ class SystemNetworkInfo(AboutBase):
 		self["hostname"].setText(hostname)
 		self["inetstatus"].setPixmapNum(self.iNetState)
 
-		for ifaceName in [ifn for ifn in iNetwork.getInstalledAdapters()
-					if ifn != 'lo']:
+		for ifaceName in [ifn for ifn in iNetwork.getInstalledAdapters() if ifn != 'lo']:
 			self.addIfList(ifaceName)
 
 		if anyLinkUp != any(self.linkState):
@@ -660,5 +653,5 @@ class SystemNetworkInfo(AboutBase):
 
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("About")

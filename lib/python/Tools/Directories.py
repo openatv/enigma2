@@ -288,7 +288,7 @@ def fileExists(f, mode='r'):
 def fileCheck(f, mode='r'):
 	return fileExists(f, mode) and f
 
-def getRecordingFilename(basename, dirname = None):
+def getRecordingFilename(basename, dirname=None):
 	# filter out non-allowed characters
 	non_allowed_characters = "/.\\:*?<>|\""
 	filename = ""
@@ -316,7 +316,7 @@ def getRecordingFilename(basename, dirname = None):
 		if i > 0:
 			path += "_%03d" % i
 		try:
-			open(path + ".ts")
+			open(path + ".ts").close()
 			i += 1
 		except IOError:
 			return path

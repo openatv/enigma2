@@ -41,19 +41,19 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.setMarkedPos(-2)
 		else:
-			self.setMarkedPos(self.currPos-self.offset)
+			self.setMarkedPos(self.currPos - self.offset)
 		if self.visible_width:
 			if self.type == self.PIN:
 				self.text = ""
-				for x in self.Text[self.offset:self.offset+self.visible_width]:
-					self.text += (x==" " and " " or "*")
+				for x in self.Text[self.offset:self.offset + self.visible_width]:
+					self.text += (x == " " and " " or "*")
 			else:
-				self.text = self.Text[self.offset:self.offset+self.visible_width].encode("utf-8") + " "
+				self.text = self.Text[self.offset:self.offset + self.visible_width].encode("utf-8") + " "
 		else:
 			if self.type == self.PIN:
 				self.text = ""
 				for x in self.Text:
-					self.text += (x==" " and " " or "*")
+					self.text += (x == " " and " " or "*")
 			else:
 				self.text = self.Text.encode("utf-8") + " "
 
@@ -72,7 +72,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			return eLabel(parent, -2)
 		else:
-			return eLabel(parent, self.currPos-self.offset)
+			return eLabel(parent, self.currPos - self.offset)
 
 	def getSize(self):
 		s = self.instance.calculateSize()
@@ -87,7 +87,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.currPos = 0
 			self.allmarked = False
 		elif self.maxSize:
-			if self.currPos < len(self.Text)-1:
+			if self.currPos < len(self.Text) - 1:
 				self.currPos += 1
 		else:
 			if self.currPos < len(self.Text):
@@ -159,7 +159,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if ins and not self.maxSize:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
 		elif owr or self.overwrite:
-			self.Text = self.Text[0:pos] + ch + self.Text[pos + n - 1:]
+			self.Text = self.Text[0:pos] + ch + self.Text[pos + n:]
 		elif self.maxSize:
 			self.Text = self.Text[0:pos] + ch + self.Text[pos:-n]
 		else:
@@ -212,7 +212,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.allmarked = False
 		else:
 			if self.currPos > 0:
-				self.deleteChar(self.currPos-1)
+				self.deleteChar(self.currPos - 1)
 				if not self.maxSize and self.offset > 0:
 					self.offset -= 1
 				self.currPos -= 1

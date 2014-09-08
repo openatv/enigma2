@@ -119,7 +119,7 @@ eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
 		consoleFd(consolefd), shiftState(false), capsState(false)
 {
 	setExclusive(true);
-	eDebug("Input device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
+	eDebug("Input device \"%s\" is%s%s%s", id.c_str(), iskeyboard ? " keyboard" : "", ismouse ? " mouse" : "", (iskeyboard || ismouse) ? "" : " remotecontrol");
 }
 
 void eRCDeviceInputDev::setExclusive(bool b)
