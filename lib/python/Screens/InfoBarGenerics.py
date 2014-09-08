@@ -725,7 +725,7 @@ class InfoBarChannelSelection:
 				"ChannelMinusPressed": self.ChannelMinusPressed,
 				"ChannelPlusPressedLong": self.ChannelPlusPressed,
 				"ChannelMinusPressedLong": self.ChannelMinusPressed,
-			})
+			}, description = _("Channel selection"))
 
 	def reCallService(self):
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
@@ -993,7 +993,7 @@ class InfoBarMenu:
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
 				"showRFmod": self.showRFSetup,
 				"toggleAspectRatio": self.toggleAspectRatio,
-			})
+			}, description = _("Menu"))
 		self.session.infobar = None
 		self.generalmenu = None
 
@@ -1107,7 +1107,7 @@ class InfoBarEPG:
 				"showSingleEPG": (self.openSingleServiceEPG, _("show single EPG...")),
 				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-			})
+			}, description = _("EPG access"))
 
 	def getEPGPluginList(self):
 		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
@@ -1605,7 +1605,7 @@ class InfoBarSeek:
 
 				"SeekbarFwd": self.seekFwdSeekbar,
 				"SeekbarBack": self.seekBackSeekbar
-			}, prio=-1) # give them a little more priority to win over color buttons
+			}, prio = -1, description = _("Pause, rewind and fast forward")) # give them a little more priority to win over color buttons
 		self["SeekActions"].setEnabled(False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
@@ -1618,7 +1618,7 @@ class InfoBarSeek:
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": self.seekBack,
 				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
-			}, prio=-1) # give them a little more priority to win over color buttons
+			}, prio = -1, description = _("Pause, rewind and fast forward")) # give them a little more priority to win over color buttons
 		self["SeekActionsPTS"].setEnabled(False)
 
 		self.activity = 0
@@ -2129,7 +2129,7 @@ class InfoBarShowMovies:
 				"movieList": (self.showMovies, _("Open the movie list")),
 				"up": (self.up, _("Open the movie list")),
 				"down": (self.down, _("Open the movie list"))
-			})
+			}, description = _("Open the movie list"))
 
 from Screens.PiPSetup import PiPSetup
 class InfoBarExtensions:
@@ -2150,7 +2150,7 @@ class InfoBarExtensions:
 					"openIMDB": (self.showIMDB, _("Search IMDb for information about current event.")),
 					"openDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				}, 1) # lower priority
+				}, prio = 1, description =_("Access extensions")) # lower priority
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
@@ -2158,7 +2158,7 @@ class InfoBarExtensions:
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				}, 1) # lower priority
+				}, prio = 1, description =_("Access extensions")) # lower priority
 
 		#self.addExtension(extension = self.getLogManager, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
@@ -2443,7 +2443,7 @@ class InfoBarPiP:
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
 					"activatePiP": (self.activePiP, self.activePiPName),
-				})
+				}, description = _("Picture in Picture (PIP)"))
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
@@ -2579,7 +2579,7 @@ class InfoBarInstantRecord:
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
 				"instantRecord": (self.instantRecord, _("Instant Record...")),
-			})
+			}, description = _("Instant recording"))
 		if isStandardInfoBar(self):
 			self.recording = []
 		else:
@@ -2834,7 +2834,7 @@ class InfoBarAudioSelection:
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
 				"audioSelectionLong": (self.audioSelectionLong, _("Toggle Digital downmix...")),
-			})
+			}, description = _("Audio downmix and other options"))
 
 	def audioSelection(self):
 		if not self.LongButtonPressed:
@@ -2862,13 +2862,13 @@ class InfoBarSubserviceSelection:
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
 				"GreenPressed": self.GreenPressed,
-			})
+			}, description = _("Subservice selection"))
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
 			{
 				"nextSubservice": (self.nextSubservice, _("Switch to next subservice")),
 				"prevSubservice": (self.prevSubservice, _("Switch to previous subservice"))
-			}, -1)
+			}, prio = -1, description = _("Subservice selection"))
 		self["SubserviceQuickzapAction"].setEnabled(False)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -3001,7 +3001,7 @@ class InfoBarRedButton:
 		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",
 			{
 				"activateRedButton": (self.activateRedButton, _("HBBTV...")),
-			})
+			}, description = _("HbbTV"))
 		self.onHBBTVActivation = [ ]
 		self.onRedButtonActivation = [ ]
 
@@ -3020,7 +3020,7 @@ class InfoBarTimerButton:
 		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions",
 			{
 				"timerSelection": (self.timerSelection, _("Timer selection...")),
-			})
+			}, description = _("Timer control"))
 
 	def timerSelection(self):
 		from Screens.TimerEdit import TimerEditList
@@ -3031,7 +3031,7 @@ class InfoBarVmodeButton:
 		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",
 			{
 				"vmodeSelection": (self.vmodeSelection, _("Letterbox zoom")),
-			})
+			}, description = _("Screen proportions"))
 
 	def vmodeSelection(self):
 		self.session.open(VideoMode)
@@ -3165,7 +3165,7 @@ class InfoBarCueSheetSupport:
 				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
 				"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
 				"toggleMark": (self.toggleMark, _("Toggle a cut mark at the current position"))
-			}, prio=1)
+			}, prio = 1, description = _("Bookmarks"))
 
 		self.cut_list = [ ]
 		self.is_closing = False
@@ -3435,7 +3435,7 @@ class InfoBarTeletextPlugin:
 			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",
 				{
 					"startTeletext": (self.startTeletext, _("View teletext..."))
-				})
+				}, description = _("Teletext"))
 		else:
 			print "no teletext plugin found!"
 
@@ -3448,7 +3448,7 @@ class InfoBarSubtitleSupport(object):
 		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions",
 			{
 				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
-			})
+			}, description = _("Subtitles"))
 
 		self.selected_subtitle = None
 
@@ -3561,7 +3561,7 @@ class InfoBarZoom:
 			{
 				"ZoomInOut":(self.ZoomInOut, _("Zoom In/Out TV...")),
 				"ZoomOff":(self.ZoomOff, _("Zoom Off...")),
-			}, prio=2)
+			}, prio = 2, description = _("Zoom"))
 
 	def ZoomInOut(self):
 		zoomval=0
@@ -3615,7 +3615,7 @@ class InfoBarHdmi:
 			{
 				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
 				"HDMIinLong":(self.HDMIInLong, _("Switch to HDMI in mode")),
-			}, prio=2)
+			}, prio = 2, description = _("HDMI input"))
 
 	def HDMIInLong(self):
 		if self.LongButtonPressed:
