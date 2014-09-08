@@ -63,25 +63,25 @@ class InfoBarTimeshift:
 				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),     # currently undefined :), probably 'TV'
 				"instantRecord": self.instantRecord,
 				"restartTimeshift": self.restartTimeshift
-			}, prio=1)
+			}, prio = 1, description = _("Timeshift"))
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
 				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
-			}, prio=-1) # priority over record
+			}, prio = -1) # priority over record
 
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
 				"SeekPointerOK": self.ptsSeekPointerOK,
 				"SeekPointerLeft": self.ptsSeekPointerLeft,
 				"SeekPointerRight": self.ptsSeekPointerRight
-			}, prio=-1)
+			}, prio = -1)
 
 		self["TimeshiftFileActions"] = ActionMap(["InfobarTimeshiftActions"],
 			{
 				"jumpPreviousFile": self.__evSOF,
 				"jumpNextFile": self.__evEOF
-			}, prio=-1) # priority over history
+			}, prio = -1) # priority over history
 
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)

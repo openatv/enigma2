@@ -520,7 +520,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"showRadio": (self.btn_radio, "?"),
 				"showTv": (self.btn_tv, _("Home")),
 				"showText": (self.btn_text, _("On end of movie")),
-			})
+			}, description = _("Basic functions"))
 
 		self["NumberActions"] =  NumberActionMap(["NumberActions", "InputAsciiActions"],
 			{
@@ -544,12 +544,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"movePrev": (self.playPrev, _("Play previous")),
 				"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")),
 				"channelDown": (self.moveToLastOrFirstFile, _("Go to first movie or last item")),
-			})
+			}, description = _("Recording/media selection"))
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
 				"contextMenu": (self.doContext, _("Menu")),
 				"showEventInfo": (self.showEventInformation, _("Show event details")),
-			})
+			}, description = _("Settings, information and extra functions"))
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
@@ -561,17 +561,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"greenlong": (self.btn_greenlong, _("Copy to other directory")),
 				"yellowlong": (self.btn_yellowlong, _("Select the movie path")),
 				"bluelong": (self.btn_bluelong, _("Sort by default")),
-			})
+			}, description = _("User-selectable functions"))
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"cancel": (self.abort, _("Exit movie list")),
 				"ok": (self.itemSelected, _("Select movie")),
-			})
+			}, description = _("Selection & exit"))
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
 			{
 				"up": (self.keyUp, _("Go up the list")),
 				"down": (self.keyDown, _("Go down the list"))
-			}, prio = -2)
+			}, prio = -2, description = _("Navigation"))
 
 		tPreview = _("Preview")
 		tFwd = _("skip forward") + " (" + tPreview +")"
@@ -587,7 +587,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"seekFwdManual": (ssfwd, tFwd),
 				"seekBack": (sback, tBack),
 				"seekBackManual": (ssback, tBack),
-			}, prio=5)
+			}, prio = 5, description = _("Pause, rewind and fast forward"))
 		self.onShown.append(self.onFirstTimeShown)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
