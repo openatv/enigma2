@@ -59,10 +59,10 @@ class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
-				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),  # the "yellow key"
-				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),     # currently undefined :), probably 'TV'
-				"instantRecord": self.instantRecord,
-				"restartTimeshift": self.restartTimeshift
+				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),
+				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),
+				"instantRecord": (self.instantRecord, _("Instant record...")),
+				"restartTimeshift": (self.restartTimeshift, _("Restart timeshift")),
 			}, prio = 1, description = _("Timeshift"))
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{

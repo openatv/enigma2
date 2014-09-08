@@ -710,17 +710,17 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": self.switchChannelUp,
-				"switchChannelDownLong": self.switchChannelDown,
+				"switchChannelUpLong": (self.switchChannelUp, _("Open service list and select previous PiP channel")),
+				"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next PiP channel")),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
-				"zapDown": (self.zapDown, _("Switch next channel")),
+				"zapDown": (self.zapDown, _("Switch to next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
-				"reCallService": self.reCallService,
+				"reCallService": (self.reCallService, _("Switch between last two channels watched")),
 				"ChannelPlusPressed": self.ChannelPlusPressed,
 				"ChannelMinusPressed": self.ChannelMinusPressed,
 				"ChannelPlusPressedLong": self.ChannelPlusPressed,
@@ -991,8 +991,8 @@ class InfoBarMenu:
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
-				"showRFmod": self.showRFSetup,
-				"toggleAspectRatio": self.toggleAspectRatio,
+				"showRFmod": (self.showRFSetup, _("RF modulator setup...")),
+				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle TV aspect ratio")),
 			}, description = _("Menu"))
 		self.session.infobar = None
 		self.generalmenu = None
@@ -1099,14 +1099,14 @@ class InfoBarEPG:
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"RedPressed": (self.RedPressed, _("Show epg")),
-				"IPressed": (self.IPressed, _("show program information...")),
-				"InfoPressed": (self.InfoPressed, _("show program information...")),
-				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
-				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
-				"showSingleEPG": (self.openSingleServiceEPG, _("show single EPG...")),
-				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
+				"RedPressed": (self.RedPressed, _("Show EPG...")),
+				"IPressed": (self.IPressed, _("Show program information...")),
+				"InfoPressed": (self.InfoPressed, _("Show program information...")),
+				"showEventInfoPlugin": (self.showEventInfoPlugins, _("Select INFO key event info or EPG...")),
+				"EPGPressed":  (self.showDefaultEPG, _("Show EPG...")),
+				"showSingleEPG": (self.openSingleServiceEPG, _("Show single-channel EPG...")),
+				"showEventGuidePlugin": (self.showEventGuidePlugins, _("Select EPG key EPG or event info...")),
+				"showInfobarOrEpgWhenInfobarAlreadyVisible": (self.showEventInfoWhenNotVisible, _("Show infobar or infobar EPG")),
 			}, description = _("EPG access"))
 
 	def getEPGPluginList(self):
@@ -1594,31 +1594,49 @@ class InfoBarSeek:
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
 			{
-				"playpauseService": self.playpauseService,
+				"playpauseService": (self.playpauseService, _("Play/pause playback")),
 				"pauseService": (self.pauseService, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
 
-				"seekFwd": (self.seekFwd, _("Seek forward")),
-				"seekFwdManual": (self.seekFwdManual, _("Seek forward (enter time)")),
-				"seekBack": (self.seekBack, _("Seek backward")),
-				"seekBackManual": (self.seekBackManual, _("Seek backward (enter time)")),
+				"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
+				"seekFwdManual": (self.seekFwdManual, _("Skip forward (enter time)")),
+				"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
+				"seekBackManual": (self.seekBackManual, _("Skip backward (enter time)")),
 
 				"SeekbarFwd": self.seekFwdSeekbar,
 				"SeekbarBack": self.seekBackSeekbar
 			}, prio = -1, description = _("Pause, rewind and fast forward")) # give them a little more priority to win over color buttons
+
+		# Actions determined in self.action()
+		self.helpList.append((self["SeekActions"], actionmap,
+				(
+					("seekdef:left", _("Skip back")),
+					("seekdef:right", _("Skip forwards"))
+				)
+			))
+
 		self["SeekActions"].setEnabled(False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
 			{
-				"playpauseService": self.playpauseService,
+				"playpauseService": (self.playpauseService, _("Play/pause playback")),
 				"pauseService": (self.pauseService, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
 		
-				"seekFwd": self.seekFwd,
-				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
-				"seekBack": self.seekBack,
-				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
+				"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
+				"seekFwdManual": (self.seekFwdManual, _("Skip forward (enter time)")),
+				"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
+				"seekBackManual": (self.seekBackManual, _("Skip backward (enter time)")),
 			}, prio = -1, description = _("Pause, rewind and fast forward")) # give them a little more priority to win over color buttons
+
+		# Actions determined in self.action()
+		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS",
+				(
+					("seekdef:left", _("Skip back")),
+					("seekdef:right", _("Skip forwards"))
+				)
+			))
+
 		self["SeekActionsPTS"].setEnabled(False)
 
 		self.activity = 0
@@ -2143,19 +2161,19 @@ class InfoBarExtensions:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
 					"extensions": (self.showExtensionSelection, _("Show extensions...")),
-					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"openTimerList": (self.showTimerList, _("Show the list of timers.")),
-					"openAutoTimerList": (self.showAutoTimerList, _("Show the list of AutoTimers.")),
-					"openEPGSearch": (self.showEPGSearch, _("Search the epg for current event.")),
-					"openIMDB": (self.showIMDB, _("Search IMDb for information about current event.")),
+					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
+					"openTimerList": (self.openTimerList, _("Open timer list...")),
+					"openAutoTimerList": (self.showAutoTimerList, _("Open AutoTimer list...")),
+					"openEPGSearch": (self.showEPGSearch, _("Search the EPG for current event...")),
+					"openIMDB": (self.showIMDB, _("Search IMDb for information about current event...")),
 					"openDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, prio = 1, description =_("Access extensions")) # lower priority
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 				{
-					"extensions": (self.showExtensionSelection, _("view extensions...")),
-					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+					"extensions": (self.showExtensionSelection, _("Show extensions...")),
+					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 					"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, prio = 1, description =_("Access extensions")) # lower priority
@@ -2833,8 +2851,8 @@ class InfoBarAudioSelection:
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
-				"audioSelectionLong": (self.audioSelectionLong, _("Toggle Digital downmix...")),
-			}, description = _("Audio downmix and other options"))
+				"audioSelectionLong": (self.audioSelectionLong, _("Toggle digital downmix...")),
+			}, description = _("Audio downmix and other audio options"))
 
 	def audioSelection(self):
 		if not self.LongButtonPressed:
@@ -3019,7 +3037,7 @@ class InfoBarTimerButton:
 	def __init__(self):
 		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions",
 			{
-				"timerSelection": (self.timerSelection, _("Timer selection...")),
+				"timerSelection": (self.timerSelection, _("Open timer list...")),
 			}, description = _("Timer control"))
 
 	def timerSelection(self):
@@ -3030,7 +3048,7 @@ class InfoBarVmodeButton:
 	def __init__(self):
 		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",
 			{
-				"vmodeSelection": (self.vmodeSelection, _("Letterbox zoom")),
+				"vmodeSelection": (self.vmodeSelection, _("Show video aspect ratio")),
 			}, description = _("Screen proportions"))
 
 	def vmodeSelection(self):
@@ -3162,9 +3180,9 @@ class InfoBarCueSheetSupport:
 	def __init__(self, actionmap = "InfobarCueSheetActions"):
 		self["CueSheetActions"] = HelpableActionMap(self, actionmap,
 			{
-				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
-				"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
-				"toggleMark": (self.toggleMark, _("Toggle a cut mark at the current position"))
+				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous bookmark")),
+				"jumpNextMark": (self.jumpNextMark, _("Jump to next bookmark")),
+				"toggleMark": (self.toggleMark, _("Toggle a bookmark at the current position"))
 			}, prio = 1, description = _("Bookmarks"))
 
 		self.cut_list = [ ]
@@ -3613,8 +3631,8 @@ class InfoBarHdmi:
 
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
 			{
-				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
-				"HDMIinLong":(self.HDMIInLong, _("Switch to HDMI in mode")),
+				"HDMIin":(self.HDMIIn, _("Switch to HDMI input mode")),
+				"HDMIinLong":(self.HDMIInLong, _("Switch PIP to HDMI input mode")),
 			}, prio = 2, description = _("HDMI input"))
 
 	def HDMIInLong(self):
