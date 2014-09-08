@@ -90,10 +90,13 @@ class ServiceInfo(Converter, object):
 					f.close()
 			except:
 				video_height = 0
-			if path.exists("/proc/stb/vmpeg/0/aspect"):
-				f = open("/proc/stb/vmpeg/0/aspect", "r")
-				video_aspect = int(f.read())
-				f.close()
+			try:
+				if path.exists("/proc/stb/vmpeg/0/aspect"):
+					f = open("/proc/stb/vmpeg/0/aspect", "r")
+					video_aspect = int(f.read())
+					f.close()
+			except:
+				video_aspect = 0
 
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
