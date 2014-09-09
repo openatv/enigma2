@@ -388,7 +388,7 @@ def videoEnhancementSetupMain(session, **kwargs):
 	session.open(VideoEnhancementSetup)
 
 def startSetup(menuid):
-	if menuid != "system":
+	if menuid != "video_menu":
 		return [ ]
 	return [(_("Video enhancement settings") , videoEnhancementSetupMain, "videoenhancement_setup", 41)]
 
