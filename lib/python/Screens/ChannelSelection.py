@@ -488,10 +488,10 @@ class ChannelSelectionEPG:
 		self.ChoiceBoxDialog = None
 		self.RemoveTimerDialog = None
 
-		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
+		self["ChannelSelectEPGActions"] = HelpableActionMap(self, "ChannelSelectEPGActions",
 			{
-				"showEPGList": self.showEPGList,
-			})
+				"showEPGList": (self.showEPGList, _("Show single-channel EPG...")),
+			}, description = _("Show EPG"))
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),

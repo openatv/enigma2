@@ -64,24 +64,24 @@ class InfoBarTimeshift:
 				"instantRecord": (self.instantRecord, _("Instant record...")),
 				"restartTimeshift": (self.restartTimeshift, _("Restart timeshift")),
 			}, prio = 1, description = _("Timeshift"))
-		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
+		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions",
 			{
-				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
-				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
-			}, prio = -1) # priority over record
+				"timeshiftActivateEnd": (self.activateTimeshiftEnd, _("Start timeshift")), # something like "rewind key"
+				"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and start timeshift")),  # something like "pause key"
+			}, prio = -1, description = _("Activate timeshift")) # priority over record
 
-		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
+		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, "InfobarTimeshiftSeekPointerActions",
 			{
-				"SeekPointerOK": self.ptsSeekPointerOK,
-				"SeekPointerLeft": self.ptsSeekPointerLeft,
-				"SeekPointerRight": self.ptsSeekPointerRight
-			}, prio = -1)
+				"SeekPointerOK": (self.ptsSeekPointerOK, _("Skip to skip pointer")),
+				"SeekPointerLeft": (self.ptsSeekPointerLeft, _("Move skip pointer back")),
+				"SeekPointerRight": (self.ptsSeekPointerRight, _("Move skip pointer forward")),
+			}, prio = -1, description = _("Skip"))
 
-		self["TimeshiftFileActions"] = ActionMap(["InfobarTimeshiftActions"],
+		self["TimeshiftFileActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
-				"jumpPreviousFile": self.__evSOF,
-				"jumpNextFile": self.__evEOF
-			}, prio = -1) # priority over history
+				"jumpPreviousFile": (self.__evSOF, _("Skip to previous event in timeshift")),
+				"jumpNextFile": (self.__evEOF, _("Skip to next event in timeshift")),
+			}, prio = -1, description = _("Skip timeshift events")) # priority over history
 
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
