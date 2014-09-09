@@ -275,12 +275,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	STATE_SHOWN = 3
 
 	def __init__(self):
-		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
+		self["ShowHideActions"] = HelpableActionMap(self, "InfobarShowHideActions" ,
 			{
-				"LongOKPressed": self.toggleShowLong,
-				"toggleShow": self.toggleShow,
-				"hide": self.keyHide,
-			}, 1) # lower prio to make it possible to override ok and cancel..
+				"LongOKPressed": (self.toggleShowLong, _("Open infobar EPG...")),
+				"toggleShow": (self.toggleShow, _("Cycle through infobar displays")),
+				"hide": (self.keyHide, _("Hide infobar display")),
+			}, prio = 1, description = _("Infobar displays")) # lower prio to make it possible to override ok and cancel..
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1450,10 +1450,10 @@ class InfoBarRdsDecoder:
 				iPlayableService.evUpdatedRassSlidePic: self.RassSlidePicChanged
 			})
 
-		self["RdsActions"] = ActionMap(["InfobarRdsActions"],
+		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
 		{
-			"startRassInteractive": self.startRassInteractive
-		},-1)
+			"startRassInteractive": (self.startRassInteractive, _("Open Rass text display...")),
+		}, prio = -1, description = _("Rass display"))
 
 		self["RdsActions"].setEnabled(False)
 
@@ -1509,7 +1509,13 @@ class Seekbar(Screen):
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
 
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {"back": self.exit, "ok": self.keyOK, "left": self.keyLeft, "right": self.keyRight}, -1)
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
+			{
+				"back": self.exit,
+				"ok": self.keyOK,
+				"left": self.keyLeft,
+				"right": self.keyRight
+			}, -1)
 
 		self.cursorTimer = eTimer()
 		self.cursorTimer.callback.append(self.updateCursor)
@@ -3018,7 +3024,7 @@ class InfoBarRedButton:
 	def __init__(self):
 		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",
 			{
-				"activateRedButton": (self.activateRedButton, _("HBBTV...")),
+				"activateRedButton": (self.activateRedButton, _("HbbTV...")),
 			}, description = _("HbbTV"))
 		self.onHBBTVActivation = [ ]
 		self.onRedButtonActivation = [ ]
