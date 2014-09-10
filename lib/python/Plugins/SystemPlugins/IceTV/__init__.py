@@ -31,22 +31,25 @@ config.plugins.icetv.last_update_time = ConfigNumber()
 config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
 
+minute = 60
+hour = minute * 60
+
 checktimes = [
-    ("%d" % int(2 * 60      ), "2 minutes" ),
-    ("%d" % int(5 * 60      ), "5 minutes" ),
-    ("%d" % int(10 * 60     ), "10 minutes"),
-    ("%d" % int(15 * 60     ), "15 minutes"),
-    ("%d" % int(30 * 60     ), "30 minutes"),
-    ("%d" % int(60 * 60     ), "1 hour"    ),
-    ("%d" % int(2 * 60 * 60 ), "2 hours"   ),
-    ("%d" % int(3 * 60 * 60 ), "3 hours"   ),
-    ("%d" % int(4 * 60 * 60 ), "4 hours"   ),
-    ("%d" % int(5 * 60 * 60 ), "5 hours"   ),
-    ("%d" % int(6 * 60 * 60 ), "6 hours"   ),
-    ("%d" % int(7 * 60 * 60 ), "7 hours"   ),
-    ("%d" % int(8 * 60 * 60 ), "8 hours"   ),
-    ("%d" % int(12 * 60 * 60), "12 hours"  ),
-    ("%d" % int(24 * 60 * 60), "24 hours"  ),
+    ("%d" % int(minute * 2), "2 minutes"),
+    ("%d" % int(minute * 5), "5 minutes"),
+    ("%d" % int(minute * 10), "10 minutes"),
+    ("%d" % int(minute * 15), "15 minutes"),
+    ("%d" % int(minute * 30), "30 minutes"),
+    ("%d" % int(hour), "1 hour"),
+    ("%d" % int(hour * 2), "2 hours"),
+    ("%d" % int(hour * 3), "3 hours"),
+    ("%d" % int(hour * 4), "4 hours"),
+    ("%d" % int(hour * 5), "5 hours"),
+    ("%d" % int(hour * 6), "6 hours"),
+    ("%d" % int(hour * 7), "7 hours"),
+    ("%d" % int(hour * 8), "8 hours"),
+    ("%d" % int(hour * 12), "12 hours"),
+    ("%d" % int(hour * 24), "24 hours"),
 ]
 
 config.plugins.icetv.refresh_interval = ConfigSelection(default=checktimes[3][0], choices=checktimes)
