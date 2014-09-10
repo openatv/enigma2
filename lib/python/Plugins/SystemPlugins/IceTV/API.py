@@ -1,3 +1,6 @@
+# kate: replace-tabs on; indent-width 4; remove-trailing-spaces all; show-tabs on; newline-at-eof on;
+# -*- coding:utf-8 -*-
+
 '''
 Copyright (C) 2014 Peter Urbanec
 All Right Reserved
