@@ -897,14 +897,14 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("The IceTV server has requested password for %s.") % config.plugins.icetv.member.email_address.value
+    _instructions = _("The IceTV server has requested password for %s.")
     _password = _("Password")
     _update_interval = _("Connect to IceTV server every")
 
     def __init__(self, session, args=None):
         self.session = session
         Screen.__init__(self, session)
-        self["instructions"] = Label(self._instructions)
+        self["instructions"] = Label(self._instructions % config.plugins.icetv.member.email_address.value)
         self["description"] = Label()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Login"))
