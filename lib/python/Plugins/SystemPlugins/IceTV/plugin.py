@@ -217,7 +217,6 @@ class EPGFetcher(object):
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
                 channel_id = long(iceTimer["channel_id"])
-                message = iceTimer.get("message", "").encode("utf8")
                 ice_timer_id = iceTimer["id"].encode("utf8")
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
