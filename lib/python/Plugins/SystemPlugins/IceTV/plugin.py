@@ -691,7 +691,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
         self.session.open(IceTVRegionSetup)
         self.close()
 
-
 class IceTVOldUserSetup(IceTVNewUserSetup):
 
     def keySave(self):
@@ -798,6 +797,7 @@ class IceTVLogin(Screen):
 
     def __init__(self, session):
         self.session = session
+        self.failed = True
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
         self["message"] = Label()
@@ -832,6 +832,7 @@ class IceTVLogin(Screen):
             pass
         try:
             self.loginCmd()
+            self.failed = False
             self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
                                            "for use with the IceTV Smart Recording service. "
                                            "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
@@ -906,8 +907,8 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
         ConfigListScreen.__init__(self, self.list, session)
         self["InpActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
                                        actions={
-                                             "cancel": self.keyCancel,
-                                             "red": self.keyCancel,
+                                             "cancel": self.cancel,
+                                             "red": self.cancel,
                                              "green": self.doLogin,
                                              "blue": self.keyboard,
                                              "ok": self.keyboard,
@@ -918,10 +919,15 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
         if selection[1] is not config.plugins.icetv.refresh_interval:
             self.KeyText()
 
+    def cancel(self):
+        for x in self["config"].list:
+            x[1].cancel()
+        self.close()
+
     def doLogin(self):
-        self.saveAll()
         try:
             self.loginCmd()
+            self.saveAll()
             self.hide()
             self.close()
             global password_requested
