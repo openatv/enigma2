@@ -543,7 +543,7 @@ class IceTVSelectProviderScreen(Screen):
                       "received by your %(brand)s %(box)s via your TV antenna."
                       ) % {"brand": getMachineBrand(), "box": getMachineName()}
 
-    def __init__(self, session, args=None):
+    def __init__(self, session):
         self.session = session
         self.invisible = False
         Screen.__init__(self, session)
@@ -596,7 +596,7 @@ class IceTVUserTypeScreen(Screen):
                       "If you already have an IceTV subscription or trial, please select "
                       "'Existing or trial user', if not, then select 'New user'.")
 
-    def __init__(self, session, args=None):
+    def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
         self["title"] = Label(_("Welcome to IceTV"))
@@ -649,7 +649,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     _label = _("Label")
     _update_interval = _("Connect to IceTV server every")
 
-    def __init__(self, session, args=None):
+    def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
@@ -722,7 +722,7 @@ class IceTVRegionSetup(Screen):
                       "for the channels you can receive.")
     _wait = _("Please wait while the list downloads...")
 
-    def __init__(self, session, args=None):
+    def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
@@ -796,7 +796,7 @@ class IceTVLogin(Screen):
 
     _instructions = _("Contacting IceTV server and setting up your %s %s.") % (getMachineBrand(), getMachineName())
 
-    def __init__(self, session, args=None):
+    def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
@@ -887,7 +887,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     _password = _("Password")
     _update_interval = _("Connect to IceTV server every")
 
-    def __init__(self, session, args=None):
+    def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions % config.plugins.icetv.member.email_address.value)
