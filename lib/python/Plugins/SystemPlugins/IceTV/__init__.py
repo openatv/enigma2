@@ -65,6 +65,12 @@ def enableIceTV():
     config.usage.show_eit_nownext.save()
     config.plugins.icetv.enable_epg.value = True
     config.plugins.icetv.last_update_time.value = 0
+    if config.recording.margin_before.value == config.recording.margin_before.default:
+        config.recording.margin_before.value = 2
+        config.recording.margin_before.save()
+    if config.recording.margin_after.value == config.recording.margin_after.default:
+        config.recording.margin_after.value = 20
+        config.recording.margin_after.save()
     epgcache = eEPGCache.getInstance()
     epgcache.setEpgSources(0)
     epgcache.clear()
