@@ -572,14 +572,19 @@ class IceTVSelectProviderScreen(Screen):
         self.close()
 
     def ok(self):
-        self.hide()
         selection = self["menu"].getCurrent()
         if selection[1] == "eitEpg":
             config.plugins.icetv.configured.value = True
             disableIceTV()
+            self.hide()
+            self.close()
         elif selection[1] == "iceEpg":
-            self.session.open(IceTVUserTypeScreen)
-        self.close()
+            self.session.openWithCallback(self.userTypeDone, IceTVUserTypeScreen)
+
+    def userTypeDone(self, success):
+        if success:
+            self.hide()
+            self.close()
 
 
 class IceTVUserTypeScreen(Screen):
@@ -612,18 +617,18 @@ class IceTVUserTypeScreen(Screen):
                                  }, prio=-1)
 
     def cancel(self):
-        self.hide()
-        self.close()
+        self.close(False)
 
     def ok(self):
         selection = self["menu"].getCurrent()
         if selection[1] == "newUser":
-            self.session.open(IceTVNewUserSetup)
+            self.session.openWithCallback(self.userDone, IceTVNewUserSetup)
         elif selection[1] == "oldUser":
-            self.session.open(IceTVOldUserSetup)
-        self.hide()
-        self.close()
+            self.session.openWithCallback(self.userDone, IceTVOldUserSetup)
 
+    def userDone(self, success):
+        if success:
+            self.close(True)
 
 class IceTVNewUserSetup(ConfigListScreen, Screen):
     skin = """
@@ -673,9 +678,9 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
         ConfigListScreen.__init__(self, self.list, session)
         self["InusActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
                                         actions={
-                                             "cancel": self.keyCancel,
-                                             "red": self.keyCancel,
-                                             "green": self.keySave,
+                                             "cancel": self.cancel,
+                                             "red": self.cancel,
+                                             "green": self.save,
                                              "blue": self.keyboard,
                                              "ok": self.keyboard,
                                          }, prio=-2)
@@ -685,19 +690,29 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
         if selection[1] is not config.plugins.icetv.refresh_interval:
             self.KeyText()
 
-    def keySave(self):
+    def cancel(self):
+        for x in self["config"].list:
+            x[1].cancel()
+        self.close(False)
+
+    def save(self):
         self.saveAll()
-        self.hide()
-        self.session.open(IceTVRegionSetup)
-        self.close()
+        self.session.openWithCallback(self.regionDone, IceTVRegionSetup)
+
+    def regionDone(self, region_success):
+        if region_success:
+            self.session.openWithCallback(self.loginDone, IceTVCreateLogin)
+
+    def loginDone(self, login_success):
+        if login_success:
+            self.close(True)
+
 
 class IceTVOldUserSetup(IceTVNewUserSetup):
 
-    def keySave(self):
+    def save(self):
         self.saveAll()
-        self.hide()
-        self.session.open(IceTVLogin)
-        self.close()
+        self.session.openWithCallback(self.loginDone, IceTVLogin)
 
 
 class IceTVRegionSetup(Screen):
@@ -723,6 +738,7 @@ class IceTVRegionSetup(Screen):
 
     def __init__(self, session):
         self.session = session
+        self.have_region_list = False
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
         self["description"] = Label(self._wait)
@@ -748,16 +764,13 @@ class IceTVRegionSetup(Screen):
         self.region_list_timer.start(3, True)
 
     def cancel(self):
-        self.hide()
-        self.close()
+        self.close(False)
 
     def save(self):
         item = self["config"].getCurrent()
         config.plugins.icetv.member.region_id.value = item[1]
         config.plugins.icetv.member.region_id.save()
-        self.session.open(IceTVCreateLogin)
-        self.hide()
-        self.close()
+        self.close(self.have_region_list)
 
     def getRegionList(self):
         try:
@@ -768,6 +781,8 @@ class IceTVRegionSetup(Screen):
                 rl.append((str(region["name"]), int(region["id"])))
             self["config"].setList(rl)
             self["description"].setText("")
+            if rl:
+                self.have_region_list = True
         except (IOError, RuntimeError) as ex:
             msg = "Can not download list of regions: " + str(ex)
             if hasattr(ex, "response") and hasattr(ex.response, "text"):
@@ -797,7 +812,7 @@ class IceTVLogin(Screen):
 
     def __init__(self, session):
         self.session = session
-        self.failed = True
+        self.success = False
         Screen.__init__(self, session)
         self["instructions"] = Label(self._instructions)
         self["message"] = Label()
@@ -810,15 +825,18 @@ class IceTVLogin(Screen):
         self["key_yellow"] = Label()
         self["key_blue"] = Label()
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
-                                       actions={"cancel": self.close,
-                                                "red": self.close,
-                                                "green": self.close,
-                                                "ok": self.close,
+                                       actions={"cancel": self.done,
+                                                "red": self.done,
+                                                "green": self.done,
+                                                "ok": self.done,
                                                 }, prio=-2
                                        )
         self.login_timer = eTimer()
         self.login_timer.callback.append(self.doLogin)
         self.onLayoutFinish.append(self.layoutFinished)
+
+    def done(self):
+        self.close(self.success)
 
     def layoutFinished(self):
         self.login_timer.start(3, True)
@@ -832,7 +850,7 @@ class IceTVLogin(Screen):
             pass
         try:
             self.loginCmd()
-            self.failed = False
+            self.success = True
             self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
                                            "for use with the IceTV Smart Recording service. "
                                            "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
