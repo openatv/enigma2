@@ -151,7 +151,7 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
-		menu.append(ChoiceEntryComponent(text = (_("Settings..."), boundFunction(self.openSetup, "channelselection"))))
+		menu.append(ChoiceEntryComponent(text = (_("Settings"), boundFunction(self.openSetup, "channelselection"))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
 			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level = 2)
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
@@ -1099,7 +1099,7 @@ class ChannelSelectionBase(Screen):
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
-		self["key_yellow"] = Button(_("Provider"))
+		self["key_yellow"] = Button(_("Providers"))
 		self["key_blue"] = Button(_("Favourites"))
 
 		self["list"] = ServiceList(self)

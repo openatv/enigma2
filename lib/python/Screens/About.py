@@ -107,7 +107,7 @@ class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
-		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
+		self["TunerHeader"] = StaticText(_("Detected Tuners:"))
 		self["HDDHeader"] = StaticText(_("Detected Devices:"))
 		self["MountsHeader"] = StaticText(_("Network Servers:"))
 		self["nims"] = StaticText()
@@ -126,7 +126,7 @@ class Devices(Screen):
 	def populate(self):
 		self.mountinfo = ''
 		self["actions"].setEnabled(False)
-		scanning = _("Wait please while scanning for devices...")
+		scanning = _("Please wait while scanning for devices...")
 		self["nims"].setText(scanning)
 		self["hdd"].setText(scanning)
 		self['mounts'].setText(scanning)
@@ -556,7 +556,7 @@ class ViewGitLog(Screen):
 	def changelogtype(self):
 		if self.logtype == 'oe':
 			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enimga2 Changes"))
+			self.setTitle(_("Enigma2 Changes"))
 			self.logtype = 'e2'
 		else:
 			self["key_yellow"].setText(_("Show E2 Log"))
