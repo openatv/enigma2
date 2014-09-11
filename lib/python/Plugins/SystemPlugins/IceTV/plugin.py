@@ -686,9 +686,14 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
                                              "cancel": self.keyCancel,
                                              "red": self.keyCancel,
                                              "green": self.keySave,
-                                             "blue": self.KeyText,
-                                             "ok": self.KeyText,
+                                             "blue": self.keyboard,
+                                             "ok": self.keyboard,
                                          }, prio=-2)
+
+    def keyboard(self):
+        selection = self["config"].getCurrent()
+        if selection[1] is not config.plugins.icetv.refresh_interval:
+            self.KeyText()
 
     def keySave(self):
         self.saveAll()
@@ -923,9 +928,14 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
                                              "cancel": self.keyCancel,
                                              "red": self.keyCancel,
                                              "green": self.doLogin,
-                                             "blue": self.KeyText,
-                                             "ok": self.KeyText,
+                                             "blue": self.keyboard,
+                                             "ok": self.keyboard,
                                          }, prio=-2)
+
+    def keyboard(self):
+        selection = self["config"].getCurrent()
+        if selection[1] is not config.plugins.icetv.refresh_interval:
+            self.KeyText()
 
     def doLogin(self):
         self.saveAll()
