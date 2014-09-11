@@ -319,9 +319,9 @@ def audioSetupMain(session, **kwargs):
 
 def startSetup(menuid):
 	if menuid == "video_menu":
-		return [(_("Video settings"), videoSetupMain, "video_setup", 40)]
+		return [(_("Basic settings"), videoSetupMain, "video_setup", 40)]
 	if menuid == "audio_menu":
-		return [(_("Audio settings"), audioSetupMain, "audio_setup", 40)]
+		return [(_("Basic settings"), audioSetupMain, "audio_setup", 40)]
 
 	return [ ]
 

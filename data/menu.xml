@@ -36,32 +36,45 @@
 				<id val="system" />
 				
 				<!-- Configuration / Setup /Audio Menu -->
-				<menu weight="0" level="0" text="Audio Setup" entryID="audio_menu">
+				<menu weight="0" level="0" text="Audio" entryID="audio_menu">
 					<id val="audio_menu" />
-					<item weight="0" level="0" text="Audio Settings" entryID="audio_setup"><setup id="audio_setup" /></item>
+					<item level="0" text="Basic settings" entryID="audio_setup"><setup id="audio_setup" /></item>
+					<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
+					<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				</menu>
 
 				<!-- Configuration / Setup /Video Menu -->
-				<menu weight="0" level="0" text="Video Setup" entryID="video_menu">
+				<menu weight="5" level="0" text="Video" entryID="video_menu">
 					<id val="video_menu" />
 					<item weight="0" level="0" text="Video Settings" entryID="video_setup"><setup id="video_setup" /></item>
 				</menu>
 
 				<!-- Configuration / Setup /GUI Menu -->
-				<menu weight="0" level="0" text="GUI Setup" entryID="gui_setup">
-					<id val="gui_menu" />
+				<menu weight="10" level="0" text="User interface" entryID="ui_setup">
+					<id val="ui_menu" />
+					<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
 					<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+				</menu>
+
+				<!-- Configuration / Setup /Network Menu -->
+				<menu weight="15" level="0" text="Network" entryID="network_menu">
+					<id val="network" />
+					<item level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
+					<item level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+				</menu>
+
+				<!-- Configuration / Setup /Frontpanel Menu -->
+				<menu weight="20" level="0" text="Frontpanel" entryID="frontpanel_setup">
+					<id val="frontpanel_menu" />
 					<item requires="Display"><setup level="1" id="lcd" /></item>
 					<item level="0" text="LCD Skin Setup" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
-					<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
 				</menu>
-				
+
 				<!-- Configuration / Setup /General Menu -->
-				<menu weight="0" level="0" text="General Setup" entryID="genral_setup">
+				<menu weight="25" level="0" text="General Setup" entryID="genral_setup">
 					<id val="general_menu" />
 					<item level="0" entryID="usage_setup"><setup id="usage" /></item>
-					<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
-					<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>				
 					<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
 						<id val="harddisk" />
 						<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
@@ -74,16 +87,10 @@
 					<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 					<item level="0" entryID="epg_settings"><setup id="epgsettings" /></item>
 				</menu>
-				
+
 				<!-- Configuration / Setup /Setup Menu -->
-				<menu weight="0" level="0" text="System Setup" entryID="system_setup">
+				<menu weight="30" level="0" text="System Setup" entryID="system_setup">
 					<id val="system_menu" />
-					<menu level="0" text="Network" entryID="network_menu">
-						<id val="network" />
-						<item level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-						<item level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
-						<item level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
-					</menu>
 					<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 					<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 					<item text="Keyboard"><setup id="keyboard" /></item>
