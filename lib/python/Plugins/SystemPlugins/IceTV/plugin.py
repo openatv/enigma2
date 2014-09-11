@@ -737,8 +737,7 @@ class IceTVRegionSetup(Screen):
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label()
-        self.regionList = []
-        self["config"] = MenuList(self.regionList)
+        self["config"] = MenuList([])
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
                                        actions={"cancel": self.cancel,
                                                 "red": self.cancel,
@@ -746,16 +745,12 @@ class IceTVRegionSetup(Screen):
                                                 "ok": self.save,
                                                 }, prio=-2
                                        )
-        self.createTimer = eTimer()
-        self.createTimer.callback.append(self.onCreate)
+        self.region_list_timer = eTimer()
+        self.region_list_timer.callback.append(self.getRegionList)
         self.onLayoutFinish.append(self.layoutFinished)
 
     def layoutFinished(self):
-        self.createTimer.start(3, True)
-
-    def onCreate(self):
-        self.createTimer.stop()
-        self.getRegionList()
+        self.region_list_timer.start(3, True)
 
     def cancel(self):
         self.hide()
@@ -825,16 +820,12 @@ class IceTVLogin(Screen):
                                                 "ok": self.close,
                                                 }, prio=-2
                                        )
-        self.createTimer = eTimer()
-        self.createTimer.callback.append(self.onCreate)
+        self.login_timer = eTimer()
+        self.login_timer.callback.append(self.doLogin)
         self.onLayoutFinish.append(self.layoutFinished)
 
     def layoutFinished(self):
-        self.createTimer.start(3, True)
-
-    def onCreate(self):
-        self.createTimer.stop()
-        self.doLogin()
+        self.login_timer.start(3, True)
 
     def doLogin(self):
         try:
