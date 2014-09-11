@@ -143,11 +143,15 @@ class EPGFetcher(object):
             self.addLog("End update")
             return res
         except (IOError, RuntimeError) as ex:
-            msg = "Can not download EPG: " + str(ex)
-            if hasattr(ex, "response") and hasattr(ex.response, "text"):
-                msg += "\n%s" % str(ex.response.text).strip()
-            self.addLog(msg)
-            res = False
+            if hasattr(ex, "response") and ex.response.status_code == 404:
+                # Ignore 404s when there are no EPG updates - buggy server
+                self.addLog("No EPG updates")
+            else:
+                msg = "Can not download EPG: " + str(ex)
+                if hasattr(ex, "response") and hasattr(ex.response, "text"):
+                    msg += "\n%s" % str(ex.response.text).strip()
+                self.addLog(msg)
+                res = False
         try:
             ice_timers = self.getTimers()
             if not self.processTimers(ice_timers, channel_service_map):
