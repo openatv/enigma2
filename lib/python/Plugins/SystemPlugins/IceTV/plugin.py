@@ -934,7 +934,6 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
                 msg += "\n%s" % str(ex.response.text).strip()
             fetcher.addLog(msg)
             self.session.open(MessageBox, _(msg), type=MessageBox.TYPE_ERROR)
-            fetcher.addLog(msg)
 
     def loginCmd(self):
         ice.Login(config.plugins.icetv.member.email_address.value,
