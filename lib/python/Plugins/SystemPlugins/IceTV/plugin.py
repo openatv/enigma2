@@ -474,8 +474,8 @@ class IceTVMain(ChoiceBox):
         menu = [
                 ("Show log", "CALLFUNC", self.showLog),
                 ("Fetch EPG and update timers now", "CALLFUNC", self.fetch),
+                ("IceTV setup wizard", "CALLFUNC", self.configure),
                 ("Login to IceTV server", "CALLFUNC", self.login),
-                ("Configure IceTV", "CALLFUNC", self.configure),
                 ("Enable IceTV", "CALLFUNC", self.enable),
                 ("Disable IceTV", "CALLFUNC", self.disable),
                ]
