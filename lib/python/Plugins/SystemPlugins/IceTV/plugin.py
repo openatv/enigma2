@@ -428,10 +428,6 @@ def sessionstart_main(reason, session, **kwargs):
         fetcher = None
 
 
-def wizard_main(*args, **kwargs):
-    return IceTVSelectProviderScreen(*args, **kwargs)
-
-
 def plugin_main(session, **kwargs):
     global _session
     if _session is None:
@@ -461,7 +457,7 @@ def Plugins(**kwargs):
                 name="IceTV",
                 where=PluginDescriptor.WHERE_WIZARD,
                 description=_("IceTV"),
-                fnc=(95, wizard_main)
+                fnc=(95, IceTVSelectProviderScreen)
             ))
     return res
 
