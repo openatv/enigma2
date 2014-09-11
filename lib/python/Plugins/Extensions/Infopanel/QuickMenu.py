@@ -30,6 +30,7 @@ from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
+from Plugins.Extensions.Infopanel.plugin import ShowSoftcamPanelExtensions
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
@@ -277,6 +278,7 @@ class QuickMenu(Screen):
 		self.sublist = []
 		if Check_Softcam(): # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Panel",_("Control your Softcams"),_("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
+			self.sublist.append(QuickSubMenuEntryComponent(_("Softcam-Panel Setup"),_("Softcam-Panel Setup"),_('Softcam-Panel Setup')))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams",_("Download and install cam"),_("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -450,6 +452,8 @@ class QuickMenu(Screen):
 ######## Select Softcam Menu ##############################
 		elif item[0] == _("Softcam Panel"):
 			self.session.open(SoftcamPanel)
+		elif item[0] == _("Softcam-Panel Setup"):
+			self.session.open(ShowSoftcamPanelExtensions)
 		elif item[0] == _("Download Softcams"):
 			self.session.open(ShowSoftcamPackages)
 ######## Select AV Setup Menu ##############################
