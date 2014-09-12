@@ -44,7 +44,7 @@
 
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="16,1">
-		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
+		<widget source="parent.menu" render="RollerCharLCD" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -75,7 +75,7 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="132,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="120,16" font="Regular;12" />
+		<widget source="SetupTitle" render="RollerCharLCD" position="0,0" size="120,16" font="Regular;12" />
 <!--
 		<widget source="SetupEntry" render="Label" position="0,0" size="120,32" font="Regular;12" />
  -->
@@ -84,10 +84,7 @@
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="124,40" font="Regular;16" valign="center" />
-	</screen>
-	<screen name="PLIMenuSummary" position="0,0" size="132,64">
-		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
+		<widget source="parent.Title" render="RollerCharLCD" position="0,0" size="124,40" font="Regular;16" valign="center" />
 	</screen>
 	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_selection" render="Label" position="0,0" size="126,64" font="Regular;11" noWrap="1" />
@@ -110,7 +107,7 @@
 	</screen>
 
 	<screen name="WizardSummary" position="fill">
-		<widget source="parent.list" render="Label" position="fill" font="Regular;12">
+		<widget source="parent.list" render="RollerCharLCD" position="fill" font="Regular;12">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -129,7 +126,7 @@
 		</widget>
 	</screen>
 
-	<!-- RDS info -->
+<!-- RDS info -->
 	<screen name="RdsInfoDisplaySummary" position="0,0" size="132,64">
 		<widget source="message" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
@@ -138,5 +135,22 @@
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
+	
+<!-- EMC  -->
+	<screen name="EMCSelection_summary" position="0,0" size="132,64">
+		<widget source="parent.Service" render="RollerCharLCD" position="0,0" size="124,32" font="Regular;18" />
+	</screen>
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,64" >
+		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+	</screen>
+
+<!-- mediaplayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+	</screen>	
 
 </skin>
