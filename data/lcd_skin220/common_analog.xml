@@ -127,7 +127,7 @@
 		<widget source="SetupValue" render="Label" position="top" size="220,51" font="FdLcD;25" halign="left" />
 	</screen>
 	<screen name="SimpleSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="220,100" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="center,center" size="220,176" font="FdLcD;30" halign="center" valign="center" />
 	</screen>
 	<screen name="SoftwareUpdateChanges_summary" position="fill">
 		<widget source="parent.title_summary" render="Label" position="0,0" size="220,15" font="FdLcD;15" halign="left" noWrap="1" />
