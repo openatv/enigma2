@@ -133,30 +133,6 @@
 		<widget source="parent.title_summary" render="Label" position="0,0" size="220,15" font="FdLcD;15" halign="left" noWrap="1" />
 		<widget source="parent.text_summary" render="Label" position="0,16" size="220,54" font="FdLcD;12" halign="left" transparent="1" />
 	</screen>
-<!-- standby <screen name="StandbySummary" position="fill">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
-			<convert type="ClockToText">Format:%d.%m.%Y</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="220,100" font="FdLcD;85" halign="center" noWrap="1">
-			<convert type="ClockToText">Format:%H:%M</convert>
-		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="220,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-	</screen> -->
-
-	<screen name="StandbySummary" position="0,0" size="220,176" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="0,5" size="220,90" font="LCD;85" halign="center" valign="center" noWrap="1" zPosition="1" transparent="1" foregroundColor="#0000ff">
-			<convert type="ClockToText"></convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,115" size="220,45" font="LCD;38" halign="center" valign="center" zPosition="1" foregroundColor="#0000ff" transparent="1">
-			<convert type="ClockToText">ShortDate</convert>
-		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/button_blue.png" position="16,2" size="15,16" zPosition="10" transparent="1" alphatest="on" >
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-	</screen>
-
 	<!-- T -->
 	<screen name="TimerEditListSummary" position="fill">
 		<widget source="service" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />

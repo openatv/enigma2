@@ -176,16 +176,16 @@ class Standby(Standby2):
 		self.session.nav.stopService()
 
 class StandbySummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
-			<convert type="ClockToText" />
-		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,0" size="132,64" zPosition="1" >
-			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-	</screen>"""
+	def __init__(self, session, what = None):
+		root = "/usr/share/enigma2/lcd_skin/"
+		try:
+			what = open(root+"active").read()		
+		except:
+			what == "analog.xml"	
+		tmpskin = root+what
+		self.skin = open(tmpskin,'r').read()
+
+		Screen.__init__(self, session)
 
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox

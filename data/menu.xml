@@ -69,6 +69,7 @@
 					<id val="frontpanel_menu" />
 					<item requires="Display"><setup level="1" id="lcd" /></item>
 					<item level="0" text="LCD Skin Setup" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
+					<item level="0" text="LCD Clock Setup" requires="OledDisplay"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item> 
 				</menu>
 
 				<!-- Configuration / Setup /General Menu -->
