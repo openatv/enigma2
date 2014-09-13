@@ -253,9 +253,10 @@ class UpdatePlugin(Screen):
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
-				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/status").read())
-				if ('404 Not Found') in config.softwareupdate.updateisunstable.value:
-					config.softwareupdate.updateisunstable.setValue('1')
+				status = urlopen("http://enigma2.world-of-satellite.com/feeds/status").read()
+				if '404 Not Found' in status:
+					status = '1'
+				config.softwareupdate.updateisunstable.setValue(status)
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
