@@ -41,7 +41,7 @@ class LCDClockSelector(Screen):
 
 	def layoutFinished(self):
 		try:
-			what = open(self.root+'active','r').read()		
+			what = open(self.root+'active','r').read()
 		except:
 			what = "clock_lcd_analog.xml"
 		tmp = what
@@ -85,7 +85,7 @@ class LCDClockSelector(Screen):
 				else:
 					skinname = x
 					self.clocklist.append(skinname)
-	
+
 	def ok(self):
 		clockfile = self["ClockList"].getCurrent()
 		fp = open(self.root+'active','w')
@@ -100,9 +100,9 @@ class LCDClockSelector(Screen):
 			pngpath = self.root+pngpath
 		except AttributeError:
 			pngpath = resolveFilename("${datadir}/enigma2/lcd_skin/noprev.png")
-		
+
 		if not path.exists(pngpath):
-			pngpath = eEnv.resolve("${datadir}/enigma2/lcd_skin/noprev.png")		
+			pngpath = eEnv.resolve("${datadir}/enigma2/lcd_skin/noprev.png")
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
 

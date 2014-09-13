@@ -35,7 +35,7 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
-		# set LCDminiTV 
+		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
 		#kill me
@@ -179,9 +179,9 @@ class StandbySummary(Screen):
 	def __init__(self, session, what = None):
 		root = "/usr/share/enigma2/lcd_skin/"
 		try:
-			what = open(root+"active").read()		
+			what = open(root+"active").read()
 		except:
-			what == "analog.xml"	
+			what == "clock_lcd_analog.xml"
 		tmpskin = root+what
 		self.skin = open(tmpskin,'r').read()
 
@@ -232,8 +232,8 @@ class TryQuitMainloop(MessageBox):
 				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 			else:
 				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
-			if job.name == "VFD Checker":		
-				reason = ""	
+			if job.name == "VFD Checker":
+				reason = ""
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 
