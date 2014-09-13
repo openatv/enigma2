@@ -107,7 +107,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.vixsettings.ColouredButtons.value:
 			self["key_yellow"].setText(_("Search"))
 
-			if config.usage.defaultEPGType.value == "Graphical EPG..." or config.usage.defaultEPGType.value == "None":
+			configINFOEpgType = config.usage.defaultEPGType
+			if configINFOEpgType.value == "Graphical EPG..." or configINFOEpgType.value == "None":
 				self["key_red"].setText(_("Single EPG"))
 			else:
 				self["key_red"].setText(_("ViX EPG"))

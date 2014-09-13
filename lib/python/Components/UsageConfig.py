@@ -51,6 +51,22 @@ def InitUsageConfig():
 
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 
+	# config.usage.defaultEPGType sets the guide type for
+	# the INFO button
+
+	config.usage.defaultEPGType = ConfigSelection(default = "None", choices = [])
+	if config.usage.defaultEPGType.saved_value is not None:
+		config.usage.defaultEPGType.setChoices([config.usage.defaultEPGType.saved_value])
+		config.usage.defaultEPGType.load()
+
+	# config.usage.defaultGuideType sets the guide type for
+	# the EPG button
+
+	config.usage.defaultGuideType = ConfigSelection(default = "None", choices = [])
+	if config.usage.defaultGuideType.saved_value is not None:
+		config.usage.defaultGuideType.setChoices([config.usage.defaultGuideType.saved_value])
+		config.usage.defaultGuideType.load()
+
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)

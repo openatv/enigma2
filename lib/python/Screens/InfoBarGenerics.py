@@ -1119,11 +1119,25 @@ class InfoBarEPG:
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
 		return pluginlist
 
+	def setPluginlistConfigChoices(self, configEntry, pluginList):
+		pluginNames = [x[0] for x in pluginList]
+		oldPluginNames = [x for x in configEntry.choices]
+		if pluginNames != oldPluginNames:
+			selected = configEntry.value
+			configEntry.setChoices(default = "None", choices = pluginNames)
+			if selected != configEntry.value:
+				configEntry.setValue(selected)
+
 	def getDefaultEPGtype(self):
 		pluginlist = self.getEPGPluginList()
-		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
+
+		# config.usage.defaultEPGType sets the guide type for
+		# the INFO button
+
+		configINFOEpgType = config.usage.defaultEPGType
+		self.setPluginlistConfigChoices(configINFOEpgType, pluginlist)
 		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultEPGType.value:
+			if plugin[0] == configINFOEpgType.value:
 				return plugin[1]
 		return None
 
@@ -1144,15 +1158,21 @@ class InfoBarEPG:
 	def DefaultInfoPluginChosen(self, answer):
 		if answer is not None:
 			self.defaultEPGType = answer[1]
-			config.usage.defaultEPGType.value = answer[0]
-			config.usage.defaultEPGType.save()
+			configINFOEpgType = config.usage.defaultEPGType
+			configINFOEpgType.value = answer[0]
+			configINFOEpgType.save()
 			configfile.save()
 
 	def getDefaultGuidetype(self):
 		pluginlist = self.getEPGPluginList()
-		config.usage.defaultGuideType=ConfigSelection(default = "None", choices = pluginlist)
+
+		# config.usage.defaultGuideType sets the guide type for
+		# the EPG button
+
+		configEPGEpgType = config.usage.defaultGuideType
+		self.setPluginlistConfigChoices(configEPGEpgType, pluginlist)
 		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultGuideType.value:
+			if plugin[0] == configEPGEpgType.value:
 				return plugin[1]
 		return None
 
@@ -1173,8 +1193,10 @@ class InfoBarEPG:
 	def DefaultGuidePluginChosen(self, answer):
 		if answer is not None:
 			self.defaultGuideType = answer[1]
-			config.usage.defaultGuideType.value = answer[0]
-			config.usage.defaultGuideType.save()
+			configEPGEpgType = config.usage.defaultGuideType
+			configEPGEpgType.value = answer[0]
+			configEPGEpgType.save()
+			configfile.save()
 
 	def EventGuidePluginChosen(self, answer):
 		if answer is not None:
@@ -1189,7 +1211,8 @@ class InfoBarEPG:
 
 	def RedPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if config.usage.defaultEPGType.value != _("Graphical EPG") and config.usage.defaultEPGType.value != _("None"):
+			configINFOEpgType = config.usage.defaultEPGType
+			if configINFOEpgType.value != _("Graphical EPG") and configINFOEpgType.value != _("None"):
 					self.openGraphEPG()
 			else:
 				self.openSingleServiceEPG()
