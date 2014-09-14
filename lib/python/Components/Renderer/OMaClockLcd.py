@@ -5,9 +5,9 @@ from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
 
-from boxbranding import getboxtype
+from boxbranding import getBoxType
 
-if getboxtype() in ('gbquadplus'):
+if getBoxType() in ('gbquadplus'):
 	LCDSIZE = 400
 else:
 	LCDSIZE = 220
@@ -49,7 +49,7 @@ class OMaClockLcd(Renderer):
 		return ((m + x),(m1 - y))
 
 	def hand(self,opt):
-		if LCDSIZE = 400:
+		if LCDSIZE == 400:
 			width = 396
 			height = 240
 			l = 60
@@ -61,13 +61,13 @@ class OMaClockLcd(Renderer):
 		r1 = (height / 2)
 
 		if opt == 'sec':
-			if LCDSIZE = 400:
+			if LCDSIZE == 400:
 				l = l + 60
 			else:
 				l = l + 50
 			self.fColor = self.fColors
 		elif opt == 'min':
-			if LCDSIZE = 400:
+			if LCDSIZE == 400:
 				l = l + 40
 			else:
 				l = l + 20
