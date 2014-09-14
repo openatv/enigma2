@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-08-24 20:40+0100\n"
+"PO-Revision-Date: 2014-09-14 14:17+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -15411,11 +15411,14 @@ msgstr "langsam"
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
-msgstr "Wollen Sie alle anderen Sprachen löschen?"
+msgstr "Wollen Sie alle anderen Sprachen löschen,"
 
 # python\Screens\LanguageSelection.py
-msgid "Do you want to delete %s language?"
-msgstr "Wollen Sie %s wirklich löschen?"
+msgid " Except %s"
+msgstr " bis auf %s?"
+
+msgid "Delete Language"
+msgstr "Sprachen löschen"
 
 # Components/Language.py
 msgid "Default Language can not be deleted !!"
