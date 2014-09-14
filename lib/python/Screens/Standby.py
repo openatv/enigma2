@@ -181,7 +181,7 @@ class StandbySummary(Screen):
 		try:
 			what = open(root+"active").read()
 		except:
-			what == "clock_lcd_analog.xml"
+			what = "clock_lcd_analog.xml"
 		tmpskin = root+what
 		self.skin = open(tmpskin,'r').read()
 
