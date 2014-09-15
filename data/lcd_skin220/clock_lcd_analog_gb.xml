@@ -1,9 +1,9 @@
 <screen position="0,0" size="220,176">
 	<ePixmap pixmap="lcd_skin/analog_lcd_gb.png" position="0,0" size="220,176" zPosition="0" />
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" hColor="white" linewidth="4" zPosition="4" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" hColor="white" linewidth="5" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" mColor="white" linewidth="3" zPosition="3" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" mColor="white" linewidth="4" zPosition="3" alphatest="on">
 		<convert type="OMaclock">Minutes</convert>
 	</widget>
 	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="2" alphatest="on">
