@@ -229,7 +229,6 @@
 		<item level="1" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins.">config.lcd.scroll_delay</item>
 	</setup>
 	<setup key="specialfeatures" title="Special Features">
-		<item level="0" text="BlueSwitch: Blue-Short/Blue-Long" description="Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)">config.workaround.blueswitch</item>
 		<item level="0" text="Use work-around for recordings from deep-standby" description="Check if there is a recording started in the next 5 mins (at bootup), then put your box in standby.">config.workaround.deeprecord</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
@@ -263,6 +262,7 @@
 		<item level="0" text="Select Red-key action" description="Select what you want the RED button to activate:">config.plugins.infopanel_redpanel.selection</item>
 		<item level="0" text="Select Yellow Key Action" description="Select what you want the YELLOW button to activate:">config.plugins.infopanel_yellowkey.list</item>
 		<item level="0" text="Show Softcam-Panel Red-key long" requires="SoftCam" description="Show Softcam-Panel With Red-key long">config.plugins.infopanel_redpanel.enabledlong</item>
+		<item level="0" text="BlueSwitch: Blue-Short/Blue-Long" description="Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)">config.workaround.blueswitch</item>
 		</setup>
 	<setup key="softcamsetup" title="Softcam settings">
 		<item level="2" text="Show CCcam in extensions ?" description="Allows you to show/hide CCcam in extensions (blue button).">config.cccaminfo.showInExtensions</item>
