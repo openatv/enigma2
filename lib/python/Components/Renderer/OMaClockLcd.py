@@ -56,11 +56,11 @@ class OMaClockLcd(Renderer):
 		if LCDSIZE400:
 			width = 396
 			height = 240
-			l = 60
+			l = 55
 		else:
 			width = 218
 			height = 176
-			l = 30
+			l = 35
 		r = (width / 2)
 		r1 = (height / 2)
 
@@ -72,9 +72,9 @@ class OMaClockLcd(Renderer):
 			self.fColor = self.fColors
 		elif opt == 'min':
 			if LCDSIZE400:
-				l = l + 40
+				l = l + 50
 			else:
-				l = l + 20
+				l = l + 40
 			self.fColor = self.fColorm
 		else:
 			self.fColor = self.fColorh
