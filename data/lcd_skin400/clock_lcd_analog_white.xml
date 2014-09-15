@@ -1,0 +1,15 @@
+<screen position="0,0" size="400,240">
+	<ePixmap pixmap="lcd_skin/analog_lcd_white.png" position="0,0" size="400,240" zPosition="0" />
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="400,240" hColor="black" linewidth="4" zPosition="4" alphatest="on">
+		<convert type="OMaclock">Hours</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="400,240" mColor="black" linewidth="3" zPosition="3" alphatest="on">
+		<convert type="OMaclock">Minutes</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="400,240" sColor="red" linewidth="3" zPosition="2" alphatest="on">
+		<convert type="OMaclock">Seconds</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" pixmap="lcd_skin/analog_lcd_rec.png" position="0,0" size="400,240" zPosition="1" transparent="1" alphatest="on" >
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>
