@@ -91,15 +91,15 @@
 				<!-- Configuration / Setup /Devices Menu -->
 				<menu weight="25" level="0" text="Devices" entryID="devices_menu">
 					<id val="devices" />
-					<menu weight="0" level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
-						<id val="harddisk" />
-						<item weight="0" level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
-						<item weight="5" level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-						<item weight="10" level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-						<item weight="15" level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+					<menu weight="5" level="0" text="Storage media" entryID="hardisk_selection" requires="Harddisk">
+						<id val="harddisk_menu" />
+						<item weight="5" level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
+						<item weight="10" level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+						<item weight="15" level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
+						<item weight="20" level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 					</menu>
-					<item weight="5" text="Keyboard"><setup id="keyboard" /></item>
-					<item weight="10" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
+					<item weight="10" text="Keyboard"><setup id="keyboard" /></item>
+					<item weight="15" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				</menu>
 
 				<!-- Configuration / Setup /General Menu -->
