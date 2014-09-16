@@ -605,7 +605,10 @@ class Network:
 		if self.activateInterfaceConsole:
 			if len(self.activateInterfaceConsole.appContainers) == 0:
 				if callback is not None:
-					callback(True)
+					try:
+						callback(True)
+					except:
+						pass
 
 	def sysfsPath(self, iface):
 		return '/sys/class/net/' + iface
