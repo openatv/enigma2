@@ -9,9 +9,9 @@ def deviceManagerMain(session, **kwargs):
 	session.open(HddSetup)
 
 def deviceManagerSetup(menuid, **kwargs):
-	if menuid != "devices":
+	if menuid != "harddisk_menu":
 		return []
-	return [(_("Device Manager"), deviceManagerMain, "deviceManager", 5)]
+	return [(_("Device Manager"), deviceManagerMain, "deviceManager", 0)]
 
 def deviceManagerFastRemove(session, **kwargs):
 	session.open(HddFastRemove)
