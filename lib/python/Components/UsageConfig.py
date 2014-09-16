@@ -180,7 +180,8 @@ def InitUsageConfig():
 		("2", "DVB-C/-S/-T"),
 		("3", "DVB-C/-T/-S"),
 		("4", "DVB-T/-C/-S"),
-		("5", "DVB-T/-S/-C") ])
+		("5", "DVB-T/-S/-C"),
+		("127", "No priority") ])
 
 	nims = [("-1", _("auto"))]
 	for x in nimmanager.nim_slots:

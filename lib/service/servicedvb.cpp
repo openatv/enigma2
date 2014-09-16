@@ -239,30 +239,41 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 			int system;
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
 			int tmp = res->canAllocateChannel(chid, chid_ignore, system, simulate);
-			if (tmp > 0)
+			if (prio_order == 127) // ignore dvb-type priority, try all alternatives one-by-one
 			{
-				switch (system)
+				if (((tmp > 0) || (!it->path.empty())))
 				{
-					case iDVBFrontend::feTerrestrial:
-						tmp = prio_map[prio_order][2];
-						break;
-					case iDVBFrontend::feCable:
-						tmp = prio_map[prio_order][1];
-						break;
-					default:
-					case iDVBFrontend::feSatellite:
-						tmp = prio_map[prio_order][0];
-						break;
+					m_playable_service = *it;
+					return 1;
 				}
 			}
-			if (tmp > cur)
+			else
 			{
-				m_playable_service = *it;
-				cur = tmp;
-			}
-			if (!it->path.empty())
-			{
-				streamable_service = *it;
+				if (tmp > 0)
+				{
+					switch (system)
+					{
+						case iDVBFrontend::feTerrestrial:
+							tmp = prio_map[prio_order][2];
+							break;
+						case iDVBFrontend::feCable:
+							tmp = prio_map[prio_order][1];
+							break;
+						default:
+						case iDVBFrontend::feSatellite:
+							tmp = prio_map[prio_order][0];
+							break;
+					}
+				}
+				if (tmp > cur)
+				{
+					m_playable_service = *it;
+					cur = tmp;
+				}
+				if (!it->path.empty())
+				{
+					streamable_service = *it;
+				}
 			}
 		}
 		if (cur)
