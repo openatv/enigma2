@@ -2406,8 +2406,8 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.value:
-		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
+	if menuid == "system" and config.plugins.softwaremanager.onSetupMenu.value:
+		return [(_("Software management"), UpgradeMain, "software_manager", 98)]
 	return [ ]
 
 
