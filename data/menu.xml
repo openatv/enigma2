@@ -68,37 +68,44 @@
 				<!-- Configuration / Setup /GUI Menu -->
 				<menu weight="10" level="0" text="User interface" entryID="ui_setup">
 					<id val="ui_menu" />
-					<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
-					<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
+					<item weight="5" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				</menu>
 
 				<!-- Configuration / Setup /Frontpanel Menu -->
 				<menu weight="15" level="0" text="Frontpanel" entryID="frontpanel_setup">
 					<id val="frontpanel_menu" />
-					<item requires="Display"><setup level="1" id="lcd" /></item>
-					<item level="0" text="LCD Skin Setup" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
-					<item level="0" text="LCD Clock Setup" requires="OledDisplay"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item> 
+					<item weight="0" level="0" text="Basic settings" requires="Display"><setup level="1" id="lcd" /></item>
+					<item weight="5" level="0" text="LCD Skin" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
+					<item weight="10" level="0" text="LCD Clock" requires="OledDisplay"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item> 
 				</menu>
 
 				<!-- Configuration / Setup /Network Menu -->
 				<menu weight="20" level="0" text="Network" entryID="network_menu">
 					<id val="network" />
-					<item level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					<item level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
-					<item level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+					<item weight="0" level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item weight="5" level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
+					<item weight="10" level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
+				</menu>
+
+				<!-- Configuration / Setup /Devices Menu -->
+				<menu weight="25" level="0" text="Devices" entryID="devices_menu">
+					<id val="devices" />
+					<menu weight="0" level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
+						<id val="harddisk" />
+						<item weight="0" level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
+						<item weight="5" level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+						<item weight="10" level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
+						<item weight="15" level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
+					</menu>
+					<item weight="5" text="Keyboard"><setup id="keyboard" /></item>
+					<item weight="10" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				</menu>
 
 				<!-- Configuration / Setup /General Menu -->
-				<menu weight="25" level="0" text="General Setup" entryID="general_setup">
+				<menu weight="30" level="0" text="General Setup" entryID="general_setup">
 					<id val="general_menu" />
 					<item level="0" entryID="usage_setup"><setup id="usage" /></item>
-					<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisk">
-						<id val="harddisk" />
-						<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
-						<item level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-						<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-						<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
-					</menu>
 					<item level="0" entryID="recording_setup"><setup id="recording" /></item>
 					<item level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
 					<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
@@ -106,11 +113,9 @@
 				</menu>
 
 				<!-- Configuration / Setup /Setup Menu -->
-				<menu weight="30" level="0" text="System Setup" entryID="system_setup">
+				<menu weight="35" level="0" text="System Setup" entryID="system_setup">
 					<id val="system_menu" />
-					<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 					<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-					<item text="Keyboard"><setup id="keyboard" /></item>
 					<item level="0" entryID="logs_setup"><setup id="logs" /></item>
 				</menu>
 
