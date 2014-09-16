@@ -49,7 +49,7 @@
 
 			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="!isGBIPBOX">
 				<id val="scan" />
-				<item weight="0" level="0" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
+				<item weight="0" level="0" text="Basic settings" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item weight="5" level="0" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item weight="10" level="0" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 			</menu>
@@ -76,14 +76,14 @@
 				<menu weight="15" level="0" text="Frontpanel" entryID="frontpanel_setup">
 					<id val="frontpanel_menu" />
 					<item weight="0" level="0" text="Basic settings" requires="Display"><setup level="1" id="lcd" /></item>
-					<item weight="5" level="0" text="LCD Skin" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
-					<item weight="10" level="0" text="LCD Clock" requires="OledDisplay"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item> 
+					<item weight="5" level="0" text="Skin" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
+					<item weight="10" level="0" text="Clock" requires="OledDisplay"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item> 
 				</menu>
 
 				<!-- Configuration / Setup /Network Menu -->
 				<menu weight="20" level="0" text="Network" entryID="network_menu">
 					<id val="network" />
-					<item weight="0" level="0" text="Network setup" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item weight="0" level="0" text="Basic settings" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item weight="5" level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
 					<item weight="10" level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
 				</menu>
