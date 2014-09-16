@@ -90,23 +90,14 @@ class ServiceInfo(Converter, object):
 
 		video_height = None
 		video_aspect = None
-		if path.exists("/proc/stb/vmpeg/0/yres"):
+		try:
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			video_height = int(f.read(),16)
 			f.close()
-		if path.exists("/proc/stb/vmpeg/0/aspect"):
-			f = open("/proc/stb/vmpeg/0/aspect", "r")
-			video_aspect = int(f.read())
-			f.close()
-
-		if not video_height:
+		except:
 			video_height = info.getInfo(iServiceInformation.sVideoHeight)
-		if not video_aspect:
-			video_aspect = info.getInfo(iServiceInformation.sAspect)
+		video_aspect = info.getInfo(iServiceInformation.sAspect)
 
-		print 'DRIVER:',video_aspect
-		print 'SOFTWARE:',info.getInfo(iServiceInformation.sAspect)
-		print 'WIDESCREEN:',WIDESCREEN
 		if self.type == self.HAS_TELETEXT:
 			tpid = info.getInfo(iServiceInformation.sTXTPID)
 			return tpid != -1
@@ -133,10 +124,8 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_CRYPTED:
 			return info.getInfo(iServiceInformation.sIsCrypted) == 1
 		elif self.type == self.IS_WIDESCREEN:
-			print 'IsWidescreen',video_aspect in WIDESCREEN
 			return video_aspect in WIDESCREEN
 		elif self.type == self.IS_NOT_WIDESCREEN:
-			print 'IsNotWidescreen',video_aspect not in WIDESCREEN
 			return video_aspect not in WIDESCREEN
 		elif self.type == self.SUBSERVICES_AVAILABLE:
 			subservices = service.subServices()
