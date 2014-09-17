@@ -353,7 +353,7 @@ class EPGFetcher(object):
         return changed
 
     def modifyTimer(self, timer):
-        timersanitycheck = TimerSanityCheck(self._session.nav.RecordTimer.timer_list, timer)
+        timersanitycheck = TimerSanityCheck(_session.nav.RecordTimer.timer_list, timer)
         success = False
         if not timersanitycheck.check():
             simulTimerList = timersanitycheck.getSimulTimerList()
@@ -366,7 +366,7 @@ class EPGFetcher(object):
         else:
             success = True
         if success:
-            self._session.nav.RecordTimer.timeChanged(timer)
+            _session.nav.RecordTimer.timeChanged(timer)
         return success
 
     def getShows(self):
