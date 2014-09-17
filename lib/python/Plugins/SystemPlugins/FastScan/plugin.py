@@ -333,7 +333,7 @@ def startSession(session, **kwargs):
 
 def FastScanStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Fast Scan"), FastScanMain, "fastscan", None)]
+		return [(_("Fast Scan"), FastScanMain, "fastscan", 15)]
 	else:
 		return []
 
