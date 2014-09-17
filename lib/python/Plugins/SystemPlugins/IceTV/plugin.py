@@ -281,8 +281,9 @@ class EPGFetcher(object):
                                     break
                                 else:
                                     print "[IceTV] Timer conflict:", conflicts
+                                    names = [r.name for r in conflicts]
                                     iceTimer["state"] = "failed"
-                                    iceTimer["message"] = "Timer conflict"
+                                    iceTimer["message"] = "Timer conflict: " + ", ".join(names)
                             else:
                                 iceTimer["state"] = "failed"
                                 iceTimer["message"] = "No matching service"
