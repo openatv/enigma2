@@ -1339,12 +1339,12 @@ def PositionerMain(session, **kwargs):
 
 def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Positioner setup"), PositionerMain, "positioner_setup", None)]
+		return [(_("Positioner"), PositionerMain, "positioner_setup", None)]
 	else:
 		return []
 
 def Plugins(**kwargs):
 	if (nimmanager.hasNimType("DVB-S")):
-		return PluginDescriptor(name=_("Positioner setup"), description = _("Setup your positioner"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = PositionerSetupStart)
+		return PluginDescriptor(name=_("Positioner"), description = _("Setup your positioner"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = PositionerSetupStart)
 	else:
 		return []
