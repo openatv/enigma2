@@ -66,14 +66,14 @@
 				<id val="system" />
 
 				<!-- Configuration / Setup /GUI Menu -->
-				<menu weight="10" level="0" text="User interface" entryID="ui_setup">
+				<menu weight="10" level="0" text="User interface" entryID="ui_menu">
 					<id val="ui_menu" />
 					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
 					<item weight="5" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				</menu>
 
 				<!-- Configuration / Setup /Frontpanel Menu -->
-				<menu weight="15" level="0" text="Frontpanel" entryID="frontpanel_setup">
+				<menu weight="15" level="0" text="Frontpanel" entryID="frontpanel_menu">
 					<id val="frontpanel_menu" />
 					<item weight="0" level="0" text="Basic settings" requires="Display"><setup level="1" id="lcd" /></item>
 					<item weight="5" level="0" text="Skin" requires="OledDisplay"><screen module="LcdSkinSelector" screen="LCDSkinSelector"/></item>
@@ -82,7 +82,7 @@
 
 				<!-- Configuration / Setup /Network Menu -->
 				<menu weight="20" level="0" text="Network" entryID="network_menu">
-					<id val="network" />
+					<id val="network_menu" />
 					<item weight="0" level="0" text="Basic settings" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item weight="5" level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
 					<item weight="10" level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
@@ -90,7 +90,7 @@
 
 				<!-- Configuration / Setup /Devices Menu -->
 				<menu weight="25" level="0" text="Devices" entryID="devices_menu">
-					<id val="devices" />
+					<id val="devices_menu" />
 					<menu weight="5" level="0" text="Storage media" entryID="hardisk_selection" requires="Harddisk">
 						<id val="harddisk_menu" />
 						<item weight="5" level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
