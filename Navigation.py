@@ -226,7 +226,7 @@ class Navigation:
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 
-				if ref.toString().find('//') == -1 and SystemInfo["isGBIPBOX"]:
+				if ref.toString().find('/') == -1 and SystemInfo["isGBIPBOX"]:
 					playref = ZAP.gref(ref, self.pnav)
 
 				if self.pnav.playService(playref):
