@@ -3294,6 +3294,7 @@ class InfoBarCueSheetSupport:
 				if instate and diff >= 0 and (nearest is None or bestdiff > diff):
 					nearest = cp
 					bestdiff = diff
+		# print "[InfoBarCueSheet] getNearestCutPoint(%d, %d) =" % (pts, 0 - pts), nearest
 		return nearest
 
 	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):
@@ -3333,7 +3334,10 @@ class InfoBarCueSheetSupport:
 		service = self.session.nav.getCurrentService()
 		if service is None:
 			return None
-		return service.cueSheet()
+		cue = service.cueSheet()
+		if cue is not None:
+			cue.setCutListEnable(config.seek.autoskip.value and 1 or 0)
+		return cue
 
 	def uploadCuesheet(self):
 		cue = self.__getCuesheet()

@@ -428,6 +428,7 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 
 	config.seek = ConfigSubsection()
+	config.seek.autoskip = ConfigYesNo(default = True)
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
 	config.seek.sensibility = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 10, wraparound = True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(min = 1, max = 300, stepwidth = 1, default = 10, wraparound = True)
