@@ -157,10 +157,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		ice = ""
 		if self.ice_timer_id:
 			ice = ", ice_timer_id=%s" % self.ice_timer_id
-		if not self.disabled:
-			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer, ice)
-		else:
-			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s, Disabled)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer, ice)
+		disabled = ""
+		if self.disabled:
+			disabled = ", Disabled"
+		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, ice, disabled)
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
