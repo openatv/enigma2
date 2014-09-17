@@ -32,6 +32,10 @@
 #error no byte order defined!
 #endif
 
+#include <ios>
+#include <sstream>
+#include <iomanip>
+
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBInformation);
@@ -1335,6 +1339,44 @@ RESULT eDVBServicePlay::start()
 	bool scrambled = true;
 	int packetsize = 188;
 	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
+	ePtr<eDVBResourceManager> res_mgr;
+
+	std::string remote_fallback_url = eConfigManager::getConfigValue("config.usage.remote_fallback");
+
+	if(!m_is_stream && !m_is_pvr &&
+			(remote_fallback_url.length() > 0) &&
+			!eDVBResourceManager::getInstance(res_mgr))
+	{
+		eDVBChannelID chid, chid_ignore;
+		int system;
+
+		service.getChannelID(chid);
+		eServiceReferenceDVB().getChannelID(chid_ignore);
+
+		if(!res_mgr->canAllocateChannel(chid, chid_ignore, system))
+		{
+			size_t index;
+
+			while((index = remote_fallback_url.find(':')) != std::string::npos)
+			{
+				remote_fallback_url.erase(index, 1);
+				remote_fallback_url.insert(index, "%3a");
+			}
+
+			std::ostringstream remote_service_ref;
+			remote_service_ref << std::hex << service.type << ":" << service.flags << ":" << 
+					service.getData(0) << ":" << service.getData(1) << ":" << service.getData(2) << ":0:0:0:0:0:" <<
+					remote_fallback_url << "/" <<
+					service.type << "%3a" << service.flags;
+			for(index = 0; index < 8; index++)
+					remote_service_ref << "%3a" << service.getData(index);
+
+			service = eServiceReferenceDVB(remote_service_ref.str());
+
+			m_is_stream = true;
+			m_is_pvr = false;
+		}
+	}
 
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using
 		   two (one for decoding, one for data source), as we must be prepared
