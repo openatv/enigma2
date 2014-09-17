@@ -10,7 +10,6 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService
 from enigma import eServiceCenter, iServiceInformation
 from ServiceReference import ServiceReference
-from Components.NimManager import nimmanager
 
 INVALID_POSITION = 9999
 config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)
@@ -128,13 +127,9 @@ class Dish(Screen):
 
 		tuner_type = data.get("tuner_type")
 		if tuner_type and "DVB-S" in tuner_type:
-			cur_orbpos = data.get("orbital_position", INVALID_POSITION)
-			tuner_number = self.getCurrentTuner()
-			if tuner_number is not None:
-				if cur_orbpos in nimmanager.getRotorSatListForNim(tuner_number):
-					self.cur_orbpos = cur_orbpos
-					self.cur_polar  = data.get("polarization", 0)
-					self.rotorTimer.start(500, False)
+			self.cur_orbpos = data.get("orbital_position", INVALID_POSITION)
+			self.cur_polar  = data.get("polarization", 0)
+			self.rotorTimer.start(500, False)
 
 	def __toHide(self):
 		self.rotorTimer.stop()
@@ -183,6 +178,7 @@ class Dish(Screen):
 	def getTurningSpeed(self, pol=0):
 		tuner = self.getCurrentTuner()
 		if tuner is not None:
+			from Components.NimManager import nimmanager
 			nimConfig = nimmanager.getNimConfig(tuner)
 			if nimConfig.configMode.value == "simple":
 				if "positioner" in nimConfig.diseqcMode.value:
@@ -217,6 +213,7 @@ class Dish(Screen):
 	def getTunerName(self):
 		nr = self.getCurrentTuner()
 		if nr is not None:
+			from Components.NimManager import nimmanager
 			nims = nimmanager.nimList()
 			if nr < 4:
 				return "".join(nims[nr].split(':')[:1])
