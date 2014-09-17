@@ -176,7 +176,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_width:
 				video_width = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
-			return "%d" % video_width
+			return str(video_width)
 		elif self.type == self.YRES:
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
@@ -185,7 +185,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_height:
 				video_height = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
-			return "%d" % video_height
+			return str(video_height)
 		elif self.type == self.APID:
 			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
 		elif self.type == self.VPID:
