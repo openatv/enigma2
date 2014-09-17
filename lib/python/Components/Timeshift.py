@@ -854,10 +854,14 @@ class InfoBarTimeshift:
 
 					# Create a Meta File
 					metafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount), "w")
-					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
+					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""),
+						self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
 					metafile.close()
 				except Exception, errormsg:
-					Notifications.AddNotification(MessageBox, _("Creating hard link to timeshift file failed!") + "\n" + _("The file system used for timeshift must support hardlinks.") + "\n\n%s" % errormsg, MessageBox.TYPE_ERROR)
+					Notifications.AddNotification(
+						MessageBox, _("Creating hard link to timeshift file failed!") + "\n" +
+						_("The file system used for timeshift must support hardlinks.") + "\n\n" +
+						"%s\n%s" % (config.usage.timeshift_path.value, errormsg), MessageBox.TYPE_ERROR)
 
 				# Create EIT File
 				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
@@ -865,14 +869,17 @@ class InfoBarTimeshift:
 				# Permanent Recording Hack
 				if config.timeshift.permanentrecording.value:
 					try:
-						fullname = getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name), config.usage.default_path.value)
+						fullname = getRecordingFilename(
+							"%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name),
+							config.usage.default_path.value)
 						os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%s.ts" % fullname)
 						# Create a Meta File
 						metafile = open("%s.ts.meta" % fullname, "w")
-						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
+						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""),
+							self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
 						metafile.close()
 					except Exception, errormsg:
-						print "[Timeshift] %s" % errormsg
+						print "[Timeshift] %s%s\n%s" % (config.usage.timeshift_path.value, filename, errormsg)
 
 	def ptsRecordCurrentEvent(self):
 		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname=config.usage.default_path.value)
