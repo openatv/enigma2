@@ -162,7 +162,7 @@ class AudioSetup(Screen, ConfigListScreen):
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
-		self.skinName = ["VideoSetup", "Setup" ]
+		self.skinName = ["AudioSetup", "Setup" ]
 		self.setup_title = _("Audio settings")
 		self.hw = hw
 		self.onChangedEntry = [ ]
