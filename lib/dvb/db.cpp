@@ -756,11 +756,53 @@ void eDVBDB::loadBouquet(const char *path)
 	std::list<eServiceReference> &list = bouquet.m_services;
 	list.clear();
 
-	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
-	p+=path;
-	eDebug("loading bouquet... %s", p.c_str());
-	CFile fp(p.c_str(), "rt");
-	int entries=0;
+	int entries = 0;
+	std::string enigma_conf = eEnv::resolve("${sysconfdir}/enigma2/");
+	std::string file_path;
+	bool found = false;
+
+	static const char *const searchpath[] = { "alternatives", "bouquets", "", 0 };
+
+	for(int index = 0; searchpath[index]; index++)
+	{
+		file_path = enigma_conf + searchpath[index] + "/" + path;
+
+		if (!access(file_path.c_str(), R_OK))
+		{
+			found = true;
+			break;
+		}
+	}
+
+	if(!found)
+	{
+		eDebug("can't open %s: %m", (enigma_conf + ".../" + path).c_str());
+		if (!strcmp(path, "bouquets.tv"))
+		{
+			file_path = enigma_conf + path;
+
+			eDebug("recreate bouquets.tv");
+			bouquet.m_bouquet_name="Bouquets (TV)";
+			bouquet.flushChanges();
+		}
+		else
+		{
+			if (!strcmp(path, "bouquets.radio"))
+			{
+				file_path = enigma_conf + path;
+
+				eDebug("recreate bouquets.radio");
+				bouquet.m_bouquet_name="Bouquets (Radio)";
+				bouquet.flushChanges();
+			}
+			else
+				file_path = "";
+		}
+	}
+
+	eDebug("loading bouquet... %s", file_path.c_str());
+	CFile fp(file_path, "rt");
+
 	if (fp)
 	{
 		size_t linesize = 256;
@@ -836,22 +878,7 @@ void eDVBDB::loadBouquet(const char *path)
 		}
 		free(line);
 	}
-	else
-	{
-		eDebug("can't open %s: %m", p.c_str());
-		if (!strcmp(path, "bouquets.tv"))
-		{
-			eDebug("recreate bouquets.tv");
-			bouquet.m_bouquet_name="Bouquets (TV)";
-			bouquet.flushChanges();
-		}
-		else if (!strcmp(path, "bouquets.radio"))
-		{
-			eDebug("recreate bouquets.radio");
-			bouquet.m_bouquet_name="Bouquets (Radio)";
-			bouquet.flushChanges();
-		}
-	}
+
 	if (userbouquetsfiles.size())
 	{
 		for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
