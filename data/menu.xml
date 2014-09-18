@@ -33,18 +33,18 @@
 		<menu weight="20" level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup" />
 
+			<!-- Configuration / Setup /Video Menu -->
+			<menu weight="10" level="0" text="Video" entryID="video_menu">
+				<id val="video_menu" />
+				<item weight="0" level="0" text="Video Settings" entryID="video_setup"><setup id="video_setup" /></item>
+			</menu>
+
 			<!-- Configuration / Setup /Audio Menu -->
-			<menu weight="10" level="0" text="Audio" entryID="audio_menu">
+			<menu weight="15" level="0" text="Audio" entryID="audio_menu">
 				<id val="audio_menu" />
 				<item level="0" text="Basic settings" entryID="audio_setup"><setup id="audio_setup" /></item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
-			</menu>
-
-			<!-- Configuration / Setup /Video Menu -->
-			<menu weight="15" level="0" text="Video" entryID="video_menu">
-				<id val="video_menu" />
-				<item weight="0" level="0" text="Video Settings" entryID="video_setup"><setup id="video_setup" /></item>
 			</menu>
 
 			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="!isGBIPBOX">
