@@ -25,7 +25,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 
-class MetrixWeatherSetup(Screen,ConfigListScreen):
+class OMMetrixWeatherSetup(Screen,ConfigListScreen):
 	skin = """
 		<screen name="MetrixWeatherSetup" position="160,150" size="450,200" title="Weather Setup">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
@@ -46,7 +46,7 @@ class MetrixWeatherSetup(Screen,ConfigListScreen):
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], {
 			"green": self.save,
 			"red": self.exit,
-			"cancel": self.close}, -1)
+			"cancel": self.close},-1)
 
 	def save(self):
 		config.plugins.MetrixWeather.lastUpdated.value = "2000-01-01 01:01:01"
