@@ -84,8 +84,6 @@ class OMMetrixWeatherWidget(Renderer):
 		print "\033[94mMetrixWeather\033[0m lookup for ID " + str(woeid)
 		url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(woeid)+"%22&format=xml"
 		#url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(self.woeid)+"%22%20u%3Dc&format=xml"
-
-		# where location in (select id from weather.search where query="oslo, norway")
 		try:
 			file = urllib2.urlopen(url, timeout=2)
 			data = file.read()
@@ -93,7 +91,6 @@ class OMMetrixWeatherWidget(Renderer):
 			config.plugins.MetrixWeather.lastUpdated.value = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 		except Exception as error:
 			print "Cant get weather data: %r" % error
-
 			# cancel weather function
 			return
 
@@ -129,6 +126,8 @@ class OMMetrixWeatherWidget(Renderer):
 		config.plugins.MetrixWeather.forecastTomorrowTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
 		currentWeatherText = currentWeather.getAttributeNode('text')
 		config.plugins.MetrixWeather.forecastTomorrowText.value = currentWeatherText.nodeValue
+		config.plugins.MetrixWeather.save()
+		configfile.save()
 
 	def getText(self,nodelist):
 		rc = []
