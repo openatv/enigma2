@@ -14,6 +14,7 @@
 		"exec"s code
 -->
 
+		<!-- Menu -->
 		<menu weight="0" level="0" text="Information" entryID="info_screen">
 			<id val="information" />
 			<item weight="0" level="0" text="About" entryID="about_screen"><screen module="About" /></item>
@@ -30,16 +31,17 @@
 
 		<item weight="15" level="1" text="VCR scart" entryID="scart_switch" configcondition="config.usage.show_vcr_scart" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
+		<!-- Menu / Settings -->
 		<menu weight="20" level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup" />
 
-			<!-- Configuration / Setup /Video Menu -->
+			<!-- Menu / Settings / Video Menu -->
 			<menu weight="10" level="0" text="Video" entryID="video_menu">
 				<id val="video_menu" />
 				<item weight="0" level="0" text="Video Settings" entryID="video_setup"><setup id="video_setup" /></item>
 			</menu>
 
-			<!-- Configuration / Setup /Audio Menu -->
+			<!-- Menu / Settings / Audio Menu -->
 			<menu weight="15" level="0" text="Audio" entryID="audio_menu">
 				<id val="audio_menu" />
 				<item level="0" text="Basic settings" entryID="audio_setup"><setup id="audio_setup" /></item>
@@ -47,6 +49,7 @@
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 			</menu>
 
+			<!-- Menu / Settings / Scan Menu -->
 			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="!isGBIPBOX">
 				<id val="scan" />
 				<item weight="0" level="0" text="Basic settings" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
@@ -56,16 +59,18 @@
 
 			<item weight="25" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
+			<!-- Menu / Settings / CAM/CI Menu -->
 			<menu weight="30" text="CAM/CI" entryID="cam_setup" requires="CommonInterface">
 				<id val="cam" />
 				<item weight="0" level="1" text="CI" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
 				<item weight="5" level="1" text="CI PIN" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
 			</menu>
 
+			<!-- Menu / Settings / System -->
 			<menu weight="35" level="0" text="System" entryID="system_selection">
 				<id val="system" />
 
-				<!-- Configuration / Setup /GUI Menu -->
+				<!-- Menu / Settings / System / UI Menu -->
 				<menu weight="10" level="0" text="User interface" entryID="ui_menu">
 					<id val="ui_menu" />
 					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
@@ -73,7 +78,7 @@
 					<item weight="10" level="0" text="Weather GigaBlue Pax" entryID="ommetrixweather_setup"><screen module="OMMetrixWeatherSetup" /></item>
 				</menu>
 
-				<!-- Configuration / Setup /Frontpanel Menu -->
+				<!-- Menu / Settings / System / Frontpanel Menu -->
 				<menu weight="15" level="0" text="Frontpanel" entryID="frontpanel_menu">
 					<id val="frontpanel_menu" />
 					<item weight="0" level="0" text="Basic settings" requires="Display"><setup level="1" id="lcd" /></item>
@@ -81,16 +86,29 @@
 					<item weight="10" level="0" text="Clock" requires="OledDisplay"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item> 
 				</menu>
 
-				<!-- Configuration / Setup /Network Menu -->
-				<menu weight="20" level="0" text="Network" entryID="network_menu">
+				<!-- Menu / Settings / System / Recording Menu -->
+				<menu weight="20" level="0" text="Recording" entryID="recording_menu">
+					<id val="recording_menu" />
+					<item weight="0" level="0" text="Basic settings" entryID="recording_setup"><setup id="recording" /></item>
+					<item weight="5" level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
+				</menu>
+
+				<!-- Menu / Settings / System / EPG Menu -->
+				<menu weight="25" level="0" text="EPG" entryID="epg_menu">
+					<id val="epg_menu" />
+					<item weight="0" level="0" text="Basic settings" entryID="epg_settings"><setup id="epgsettings" /></item>
+				</menu>
+
+				<!-- Menu / Settings / System / Network Menu -->
+				<menu weight="30" level="0" text="Network" entryID="network_menu">
 					<id val="network_menu" />
 					<item weight="0" level="0" text="Basic settings" entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item weight="5" level="1" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
 					<item weight="10" level="1" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkTools" screen="NetworkSamba"/></item>
 				</menu>
 
-				<!-- Configuration / Setup /Devices Menu -->
-				<menu weight="25" level="0" text="Devices" entryID="devices_menu">
+				<!-- Menu / Settings / System / Devices Menu -->
+				<menu weight="35" level="0" text="Devices" entryID="devices_menu">
 					<id val="devices_menu" />
 					<menu weight="5" level="0" text="Storage media" entryID="hardisk_selection" requires="Harddisk">
 						<id val="harddisk_menu" />
@@ -103,22 +121,19 @@
 					<item weight="15" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				</menu>
 
-				<!-- Configuration / Setup /General Menu -->
-				<menu weight="30" level="0" text="General Setup" entryID="general_setup">
+				<!-- Menu / Settings / System / General Menu -->
+				<menu weight="40" level="0" text="Basic settings" entryID="general_menu">
 					<id val="general_menu" />
-					<item level="0" entryID="usage_setup"><setup id="usage" /></item>
-					<item level="0" entryID="recording_setup"><setup id="recording" /></item>
-					<item level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
-					<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
-					<item level="0" entryID="epg_settings"><setup id="epgsettings" /></item>
+					<item weight="0" level="0" entryID="usage_setup"><setup id="usage" /></item>
+					<item weight="5" level="0" entryID="logs_setup"><setup id="logs" /></item>
+					<item weight="10" level="0" entryID="timezone_setup"><setup id="timezone"/></item>
+					<item weight="15" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				</menu>
 
-				<!-- Configuration / Setup /Setup Menu -->
-				<menu weight="35" level="0" text="System Setup" entryID="system_setup">
-					<id val="system_menu" />
-					<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-					<item level="0" entryID="logs_setup"><setup id="logs" /></item>
-				</menu>
+				#<!-- Menu / Settings / System / Setup Menu -->
+				#<menu weight="45" level="0" text="System Setup" entryID="system_setup">
+				#	<id val="system_menu" />
+				#</menu>
 
 				<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
 					<code>
@@ -138,6 +153,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 
 		</menu>
 
+		<!-- Menu / Standby/Restart -->
 		<menu weight="25" text="Standby / restart" entryID="standby_restart_list">
 			<id val="shutdown" />
 			<item weight="0" level="0" text="Deep standby" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
