@@ -72,6 +72,7 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
 			</item>
+			<item weight="15" level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item>
 			<item weight="15" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
 		</menu>
 		<menu text="Standby / restart" entryID="standby_restart_list">
