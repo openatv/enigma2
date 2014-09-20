@@ -42,7 +42,7 @@ SystemInfo["StandbyLED"] = fileCheck("/proc/stb/power/standbyled")
 SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et5x00') and fileCheck("/proc/stb/vmpeg/1/external")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
-SystemInfo["isGBIPBOX"] = fileExists("/usr/lib/enigma2/python/Plugins/Extensions/GBIpboxClient/plugin.pyo")
+SystemInfo["isGBIPBOX"] = fileExists("/usr/lib/enigma2/python/gbipbox.so")
 
 #if getBoxType() in ('gbquadplus'):
 #	SystemInfo["WakeOnLAN"] = False
