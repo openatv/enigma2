@@ -152,7 +152,7 @@ class HotkeySetup(Screen):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
 		config.misc.hotkey.additional_keys.save()
 		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 10])
-		
+
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
@@ -169,7 +169,7 @@ class HotkeySetupSelect(Screen):
 			self.list.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
 			if plugin[1] in selected:
 				self.selected.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
-		self.prevselected = self.selected[:]		
+		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.list, selection=0)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
@@ -199,7 +199,7 @@ class HotkeySetupSelect(Screen):
 			self.mode = "list"
 			self["choosen"].selectionEnabled(0)
 			self["list"].selectionEnabled(1)
-			
+
 	def keyOk(self):
 		if self.mode == "list":
 			currentSelected = self["list"].l.getCurrentSelection()
@@ -254,9 +254,9 @@ class HotkeySetupSelect(Screen):
 	def cancel(self):
 		if self.selected != self.prevselected:
 			self.session.openWithCallback(self.cancelCallback, MessageBox, "are you sure to cancel all changes", default=False)
-		else:	
+		else:
 			self.close()
-	
+
 	def cancelCallback(self, answer):
 		answer and self.close()
 
@@ -273,7 +273,7 @@ class hotkeyActionMap(ActionMap):
 class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
-		
+
 	def hotkeyGlobal(self, key):
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		if selection:
