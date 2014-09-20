@@ -110,10 +110,23 @@ def main(session, **kwargs):
 def startup(reason, **kwargs):
 	setConfiguredPosition()
 
+def OSDPosSetup(menuid, **kwargs):
+	if menuid == "ui_menu":
+		return [(_("Position and size"), main, "osd_position_setup", 80)]
+	else:
+		return []
+
 def Plugins(**kwargs):
 	from os import path
 	if path.exists("/proc/stb/fb/dst_left"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "OSD position setup", description = "Compensate for overscan", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = "OSD position setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+		return PluginDescriptor(name = "OSD position setup", description = "Compensate for overscan", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=OSDPosSetup)
 	return []
+
+#def Plugins(**kwargs):
+#	from os import path
+#	if path.exists("/proc/stb/fb/dst_left"):
+#		from Plugins.Plugin import PluginDescriptor
+#		return [PluginDescriptor(name = "OSD position setup", description = "Compensate for overscan", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
+#					PluginDescriptor(name = "OSD position setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+#	return []

@@ -21,9 +21,9 @@
 			<item weight="5" level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
 
-		<menu weight="5" level="0" text="Timers" entryID="timer_menu">
+		<menu weight="5" level="0" text="Timer" entryID="timer_menu">
 			<id val="timermenu" />
-			<item weight="100" level="0" text="Timer" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+			<item weight="100" level="0" text="Recording" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
 			<item weight="150" level="0" text="Sleep timer" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 		</menu>
 

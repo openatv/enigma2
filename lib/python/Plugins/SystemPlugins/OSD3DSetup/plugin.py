@@ -154,10 +154,23 @@ def main(session, **kwargs):
 def startup(reason, **kwargs):
 	setConfiguredSettings()
 
+def OSD3DSetup(menuid, **kwargs):
+	if menuid == "ui_menu":
+		return [(_("3D"), main, "osd_3d_setup", 85)]
+	else:
+		return []
+
 def Plugins(**kwargs):
 	from os import path
 	if path.exists(PROC_ET_3DMODE) or path.exists(PROC_DM_3DMODE):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+		return PluginDescriptor(name = "OSD 3D setup", description = "Adjust 3D settings", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=OSD3DSetup)
 	return []
+
+#def Plugins(**kwargs):
+#	from os import path
+#	if path.exists(PROC_ET_3DMODE) or path.exists(PROC_DM_3DMODE):
+#		from Plugins.Plugin import PluginDescriptor
+#		return [PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
+#					PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+#	return []
