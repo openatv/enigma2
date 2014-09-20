@@ -130,10 +130,10 @@
 					<item weight="15" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				</menu>
 
-				#<!-- Menu / Settings / System / Setup Menu -->
-				#<menu weight="45" level="0" text="System Setup" entryID="system_setup">
-				#	<id val="system_menu" />
-				#</menu>
+				<!-- Menu / Settings / System / Setup Menu
+				<menu weight="45" level="0" text="System Setup" entryID="system_setup">
+					<id val="system_menu" />
+				</menu> -->
 
 				<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
 					<code>
