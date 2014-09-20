@@ -35,3 +35,28 @@ int CFile::writeInt(const char *filename, int value)
 		return -1;
 	return fprintf(f, "%d", value);
 }
+
+//ddamir
+int CFile::checkGB(const char *filename)
+{
+	char str [80];
+	CFile f(filename, "r");
+	if (!f)
+		return -1;	
+	else {
+		fscanf(f, "%s", str);
+		return 1;
+	}
+	return 0;
+}
+
+int CFile::writeZAP(const char *filename, int value)
+{
+	CFile f(filename, "w");
+	if (!f){
+		fprintf(f, "%d", 0);
+		return -1;
+	}
+	return fprintf(f, "%d", value);
+}
+//ddamir

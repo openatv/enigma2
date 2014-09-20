@@ -49,7 +49,7 @@ def getPlayingref(ref):
 def isPlayableForCur(ref):
 	info = eServiceCenter.getInstance().info(ref)
 	if SystemInfo["isGBIPBOX"]:
-		return not (info and info.isPlayable(ref, getPlayingref(ref)))
+		return True
 	else:
 		return not not (info and info.isPlayable(ref, getPlayingref(ref)))
 

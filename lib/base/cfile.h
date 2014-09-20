@@ -28,6 +28,8 @@ struct CFile
 	static int parseInt(int *result, const char *filename);
 	static int writeIntHex(const char *filename, int value);
 	static int writeInt(const char *filename, int value);
+	static int checkGB(const char *filename);
+	static int writeZAP(const char *filename, int value);
 };
 
 #endif
