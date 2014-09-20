@@ -289,13 +289,14 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.width = open("/proc/stb/fb/dst_width", "r").read()
 			self.top = open("/proc/stb/fb/dst_top", "r").read()
 			self.height = open("/proc/stb/fb/dst_height", "r").read()
-			open("/proc/stb/fb/dst_left", "w").write("00000000")
-			open("/proc/stb/fb/dst_width", "w").write("000002d0")
-			open("/proc/stb/fb/dst_top", "w").write("00000000")
-			open("/proc/stb/fb/dst_height", "w").write("0000000240")
-			self.onClose.append(self.__close)
+			if self.left != "00000000" or self.top != "00000000" or self.width != "000002d0" or self.height != "0000000240":
+				open("/proc/stb/fb/dst_left", "w").write("00000000")
+				open("/proc/stb/fb/dst_width", "w").write("000002d0")
+				open("/proc/stb/fb/dst_top", "w").write("00000000")
+				open("/proc/stb/fb/dst_height", "w").write("0000000240")
+				self.onClose.append(self.__restoreOSDSize)
 
-	def __close(self):
+	def __restoreOSDSize(self):
 		open("/proc/stb/fb/dst_left", "w").write(self.left)
 		open("/proc/stb/fb/dst_width", "w").write(self.width)
 		open("/proc/stb/fb/dst_top", "w").write(self.top)
