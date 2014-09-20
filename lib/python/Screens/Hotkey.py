@@ -12,13 +12,15 @@ from Plugins.Plugin import PluginDescriptor
 hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Green long"), "green_long", ""),
 	(_("Yellow long"), "yellow_long", ""),
-	(_("Blue long"), "blue_long", "Plugins/PLi/SoftcamSetup"),
+	(_("Blue long"), "blue_long", ""),
 	(_("F1"), "f1", ""),
 	(_("F1 long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
 	(_("F2 long"), "f2_long", ""),
 	(_("F3"), "f3", ""),
 	(_("F3 long"), "f3_long", ""),
+	(_("F4"), "f4", ""),
+	(_("F4 long"), "f4_long", ""),
 	(_("Red"), "red", ""),
 	(_("Green"), "green", ""),
 	(_("Yellow"), "yellow", ""),
@@ -136,7 +138,7 @@ class HotkeySetup(Screen):
 		self.list = []
 		for x in hotkeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 10], selection = 0)
+		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 12], selection = 0)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.ok,
@@ -151,7 +153,7 @@ class HotkeySetup(Screen):
 	def toggleAdditionalKeys(self):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
 		config.misc.hotkey.additional_keys.save()
-		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 10])
+		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 12])
 
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
