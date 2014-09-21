@@ -26,7 +26,7 @@ import os
 
 config.pluginfilter = ConfigSubsection()
 config.pluginfilter.kernel = ConfigYesNo(default = False)
-config.pluginfilter.drivers = ConfigYesNo(default = False)
+config.pluginfilter.drivers = ConfigYesNo(default = True)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
 config.pluginfilter.e2_locales = ConfigYesNo(default = True)
 config.pluginfilter.picons = ConfigYesNo(default = True)
