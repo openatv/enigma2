@@ -55,6 +55,7 @@
 				<item level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
+				<item level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup"/></item>
 			</menu>
 			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
 				<id val="cam" />
@@ -72,7 +73,6 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
 			</item>
-			<item weight="15" level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item>
 			<item weight="15" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
 		</menu>
 		<menu text="Standby / restart" entryID="standby_restart_list">
