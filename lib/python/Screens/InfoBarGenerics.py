@@ -3166,28 +3166,56 @@ class InfoBarINFOpanel:
 
 	def doRedKeyTask(self):
 		try:
-			if config.plugins.infopanel_redpanel.selection.value == '1':
+			if config.plugins.infopanel_redpanel.selection.value =='0':
+				self.instantRecord()
+			elif config.plugins.infopanel_redpanel.selection.value =='1':
 				from Plugins.Extensions.Infopanel.plugin import Infopanel
 				self.session.open(Infopanel, services = self.servicelist)
 			elif config.plugins.infopanel_redpanel.selection.value == '2':
 				self.session.open(TimerEditList)
 			elif config.plugins.infopanel_redpanel.selection.value == '3':
 				self.showMovies()
+			elif config.plugins.infopanel_redpanel.selection.value == '4':
+				self.StartsoftcamPanel()
 			else:
-				self.instantRecord()
+				self.StartPlugin(config.plugins.infopanel_redpanel.selection.value)
+
 		except:
-			pass
+			print "Error on RedKeyTask !!"
 		
 	def softcamPanel(self):
-		if config.plugins.infopanel_redpanel.enabledlong.value == True:
-			try:
-				from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
-				self.session.open(SoftcamPanel)
-			except:
-				pass
-		else:
+		try:
+			if config.plugins.infopanel_redpanel.selectionLong.value =='0':
+				self.instantRecord()
+			elif config.plugins.infopanel_redpanel.selectionLong.value =='1':
+				from Plugins.Extensions.Infopanel.plugin import Infopanel
+				self.session.open(Infopanel, services = self.servicelist)
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '2':
+				self.session.open(TimerEditList)
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '3':
+				self.showMovies()
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '4':
+				self.StartsoftcamPanel()
+			else:
+				self.StartPlugin(config.plugins.infopanel_redpanel.selectionLong.value)
+
+		except:
+			print "Error on RedKeyTask Long!!"
+			
+	def StartsoftcamPanel(self):
+		try:
+			from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
+			self.session.open(SoftcamPanel)
+		except:
 			pass
-		
+
+	def StartPlugin(self, name):
+		pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		for p in pluginlist:
+			if p.name == name:
+				p(session=self.session)
+				break
+
 class InfoBarQuickMenu:
 	def __init__(self):
 		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu",
