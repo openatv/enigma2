@@ -193,11 +193,11 @@ class HotkeySetupSelect(Screen):
 		self["choosen"].selectionEnabled(0)
 
 	def toggleMode(self):
-		if self.mode == "list":
+		if self.mode == "list" and self.selected:
 			self.mode = "choosen"
 			self["choosen"].selectionEnabled(1)
 			self["list"].selectionEnabled(0)
-		else:
+		elif self.mode == "choosen":
 			self.mode = "list"
 			self["choosen"].selectionEnabled(0)
 			self["list"].selectionEnabled(1)
@@ -211,6 +211,8 @@ class HotkeySetupSelect(Screen):
 				self.selected.append(currentSelected)
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
+			if not self.selected:
+				self.toggleMode()
 		self["choosen"].setList(self.selected)
 
 	def keyLeft(self):
