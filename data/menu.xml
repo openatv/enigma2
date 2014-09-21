@@ -1,5 +1,5 @@
 <menu text="Main menu" title="Main menu">
-	<id val="mainmenu" />
+	<id val="mainmenu"/>
 <!-- the following types are allowed:
 	<screen [module="mod"] [screen="classname"]>[arguments]</screen>
 		executes Screen called "classname" from module "Screen.mod"
@@ -8,7 +8,7 @@
 		arguments must be comma seperated (will be fed to eval), and can
 			use stuff from module
 		(of course you must specify at least one of module, screen.)
-	<setup id="id" />
+	<setup id="id"/>
 		opens a setup with specified id
 	<code> .. code .. </code>
 		"exec"s code
