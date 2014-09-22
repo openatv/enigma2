@@ -103,6 +103,7 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("startTeletext"), "Infobar/startTeletext"))
 	hotkeyFunctions.append((_("subserviceSelection"), "Infobar/subserviceSelection"))
 	hotkeyFunctions.append((_("subtitleSelection"), "Infobar/subtitleSelection"))
+	hotkeyFunctions.append((_("show/hide infoBar"), "Infobar/toggleShow"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("showPiP"), "Infobar/showPiP"))
 		hotkeyFunctions.append((_("swapPiP"), "Infobar/swapPiP"))
@@ -119,6 +120,11 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList"))
 	hotkeyFunctions.append((_("SkinSelector"), "Module/Plugins.SystemPlugins.SkinSelector.plugin/SkinSelector"))
+	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
+	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby"))
+	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2"))
+	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3"))
+	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1"))
 	hotkeyFunctions.append(("--", "--"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording"))
@@ -305,7 +311,7 @@ class InfoBarHotkey():
 			elif selected[0] == "Module":
 				try:
 					exec "from " + selected[1] + " import *"
-					exec "self.session.open(" + selected[2] + ")"
+					exec "self.session.open(" + ",".join(selected[2:]) + ")"
 				except:
 					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":
