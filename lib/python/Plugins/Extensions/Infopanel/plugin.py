@@ -107,9 +107,8 @@ from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, Re
 SystemInfo["SoftCam"] = Check_Softcam()
 
 # Hide Softcam-Panel Setup when no softcams installed
-if not Check_Softcam() and (config.plugins.showinfopanelextensions.value or config.plugins.infopanel_redpanel.enabledlong.value):
+if not Check_Softcam() and config.plugins.showinfopanelextensions.value:
 	config.plugins.showinfopanelextensions.value = False
-	config.plugins.infopanel_redpanel.enabledlong.value = False
 	config.plugins.showinfopanelextensions.save()
 	config.plugins.infopanel_redpanel.save()
 
