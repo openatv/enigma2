@@ -680,6 +680,7 @@ class RecordTimer(timer.Timer):
 
 		self.onTimerAdded = []
 		self.onTimerRemoved = []
+		self.onTimerChanged = []
 
 		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers.xml")
 
@@ -687,6 +688,11 @@ class RecordTimer(timer.Timer):
 			self.loadTimer()
 		except IOError:
 			print "unable to load timers from file!"
+
+	def timeChanged(self, entry):
+		timer.Timer.timeChanged(self, entry)
+		for f in self.onTimerChanged:
+			f(entry)
 
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
