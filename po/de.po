@@ -5,18 +5,17 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-09-22 14:53+0100\n"
-"Last-Translator: mike99 <mike99@gmx.net>\n"
+"PO-Revision-Date: 2014-09-23 16:33+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#
 msgid ""
 "\n"
 "Advanced options and settings."
@@ -8453,9 +8452,10 @@ msgstr ""
 
 msgid ""
 "This option allows you to choose what the first button press jumps to in "
-"channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
+"channel list screen, (so pressing '2' jumps to 'A' or '2' first), when "
+"'Quick Actions' preset actions are performed. "
 msgstr ""
-"Diese Option erlaubt Ihnen zu wählen,\n"
+"Diese Option erlaubt es Ihnen zu wählen,\n"
 "was der erste Tastendruck in der Kanalliste bewirkt ('2' springt zu '2' oder "
 "'A' zuerst)"
 
@@ -8517,7 +8517,7 @@ msgid "This option lets you adjust the transparency of the OSD"
 msgstr "Transparenz der Oberfläche einstellen"
 
 msgid "This option lets you choose the 3D mode"
-msgstr "Diese Option lässt dich den 3D Modus zu aktivieren"
+msgstr "Diese Option erlaubt es den 3D Modus zu aktivieren"
 
 msgid "This option lets you show the option in the extension screen"
 msgstr "Diese Option erlaubt es die Option in Erweiterungen anzuzeigen"
@@ -14815,7 +14815,7 @@ msgstr ""
 msgid "Bypass HDMI EDID Check"
 msgstr "Überspringe HDMI EDID Prüfung"
 
-msgid "This option configures you can Bypass HDMI EDID check"
+msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Diese Option erlaubt es, die HDMI EDID Überprüfung zu überspringen."
 
 msgid "Color space"
@@ -15223,7 +15223,7 @@ msgid "Load playlist"
 msgstr "Playlist laden"
 
 # A/V Settings
-msgid "This option configures you can enable 3D Surround Sound."
+msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Diese Option konfiguriert die 3D Surround Sound Ausgabe."
 
 # A/V Settings
@@ -15319,7 +15319,7 @@ msgstr ""
 msgid "Force de-interlace"
 msgstr "Immer de-interlacer benutzen"
 
-msgid "If enabled the video wil always be de-interlaced."
+msgid "If enabled the video will always be de-interlaced."
 msgstr ""
 "Hiermit können Sie einstellen, ob das Video immer de-interlaced werden soll."
 
@@ -15600,3 +15600,55 @@ msgstr "Default (Aufnahme hinzufügen)"
 #
 msgid "Select Red-key action long"
 msgstr "Funktion der roten Taste - lang"
+
+#: AV/ Settings
+msgid "Always use smart1080p mode"
+msgstr "Smart1080p-Modus benutzen"
+
+#: AV/ Settings
+msgid ""
+"This option allows you to always use e.g. 1080p50 for TV/.ts, and 1080p24/"
+"p50/p60 for videos"
+msgstr ""
+"Mit dieser Option wird, je nach Auswahl, z.B. 1080p50 für TV und Aufnahmen "
+"und 1080p24/p50/p60 für Videodateien benutzt."
+
+#: usage
+msgid "Require authentication for http streams"
+msgstr "Verlange Authentifizierung für HTTP-Streams"
+
+#: usage
+msgid "When enabled, authentication is required to watch http streams."
+msgstr ""
+"Wenn Sie diese Option aktivieren, wir eine Authentifizierung für HTTP-"
+"Streams benötigt."
+
+#: remote
+msgid "Select what you want the RED button to activate:"
+msgstr ""
+"Hier können Sie einstellen, welche Aktion beim Drücken der roten Taste "
+"ausgeführt werden soll."
+
+#: remote
+msgid "Select what you want the RED-Long button to activate:"
+msgstr ""
+"Hier können Sie einstellen, welche Aktion beim langen Drücken der roten "
+"Taste ausgeführt werden soll."
+
+#: remote
+msgid "Select what you want the YELLOW button to activate:"
+msgstr ""
+"Hier können Sie einstellen, welche Aktion beim Drücken der gelben Taste "
+"ausgeführt werden soll."
+
+#: Channel selection
+msgid "Show columns"
+msgstr "Spalten einblenden"
+
+#: Channel selection
+msgid ""
+"Configure if and how wide columns will be shown in the channel selection "
+"list."
+msgstr ""
+"Hier können Sie einstellen, ob Spalten innerhalb der Kanalliste benutzt "
+"werden und wie breit die Spalten sein sollen."
