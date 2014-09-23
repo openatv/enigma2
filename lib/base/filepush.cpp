@@ -107,7 +107,9 @@ void eFilePushThread::thread()
 				eWarning("OVERFLOW while playback?");
 				continue;
 			}
-			eDebug("eFilePushThread *read error* (%m) - not yet handled");
+			eDebug("eFilePushThread *read error* (%m)");
+			sendEvent(evtReadError);
+			break;
 		}
 
 			/* a read might be mis-aligned in case of a short read. */
@@ -149,7 +151,7 @@ void eFilePushThread::thread()
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
-			if (m_stream_mode)
+			if (m_stream_mode && ++eofcount < 10)
 			{
 				eDebug("reached EOF, but we are in stream mode. delaying 1 second.");
 				sleep(1);
@@ -161,6 +163,7 @@ void eFilePushThread::thread()
 				sleep(1);
 				continue;
 			}
+			sendEvent(evtReadError);
 			break;
 		} else
 		{
