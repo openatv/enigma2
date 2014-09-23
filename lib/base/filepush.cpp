@@ -3,10 +3,10 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <lib/base/cfile.h>
 
 //#define SHOW_WRITE_TIME
-static int checkbox;
+static char myipbox[20];
+static int num;
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -44,6 +44,26 @@ static void ignore_but_report_signals()
 	sigaction(SIGUSR1, &act, 0);
 }
 
+static int checkStream(int &m_stop)
+{
+	if (strncmp(myipbox,"gbipbox", sizeof(myipbox)) == 0){
+		num ++;
+		if (num == 1){
+			FILE *f = fopen("/tmp/.zap", "w");
+			if (f)
+			{
+				fprintf(f, "%d", 1);
+			}
+			fclose(f);
+			m_stop = 1;
+			return 1;
+		}
+	} else {
+		return 0;
+	}
+	return 0;
+}
+
 void eFilePushThread::thread()
 {
 	ignore_but_report_signals();
@@ -58,10 +78,18 @@ void eFilePushThread::thread()
 	size_t bytes_read = 0;
 	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
-	
-	checkbox = 0;
-	checkbox = CFile::checkGB("/proc/stb/info/gbmodel");
 
+	FILE *fb = fopen("/proc/stb/info/gbmodel","r");
+	if (fb)
+	{
+		char buf[20];
+		fgets(buf, 20, fb);
+		strncpy(myipbox, buf, 20);
+		fclose(fb);
+		strtok(myipbox, "\n");
+	}
+
+	num = 0;
 	while (!m_stop)
 	{
 		if (m_sg && !current_span_remaining)
@@ -131,11 +159,11 @@ void eFilePushThread::thread()
 				switch (poll(&pfd, 1, 250)) // wait for 250ms
 				{
 					case 0:
-						if (checkbox == 1) CFile::writeZAP("/tmp/.zap", 1); 
+						checkStream(m_stop);
 						eDebug("wait for driver eof timeout");
 						continue;
 					case 1:
-						if (checkbox == 1) CFile::writeZAP("/tmp/.zap", 1); 
+						checkStream(m_stop);
 						eDebug("wait for driver eof ok");
 						break;
 					default:
