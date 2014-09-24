@@ -1552,7 +1552,6 @@ void eDVBChannel::pvrEvent(int event)
 		else {
 			stop();
 		}
-		m_event(this, evtReadError);
 		break;
 	case eFilePushThread::evtUser: /* start */
 		eDebug("SOF");
