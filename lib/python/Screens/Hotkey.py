@@ -120,7 +120,7 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple"))
 	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser"))
-	hotkeyFunctions.append((_("Sleeptimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
+	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList"))
 	hotkeyFunctions.append((_("SkinSelector"), "Module/Plugins.SystemPlugins.SkinSelector.plugin/SkinSelector"))
@@ -309,6 +309,7 @@ class InfoBarHotkey():
 				for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 					if plugin.path[24:] == "/".join(selected):
 						self.runPlugin(plugin)
+						break
 			elif selected[0] == "Infobar" or selected[0] == "Code":
 				if hasattr(self, selected[1]):
 					exec "self." + selected[1] + "()"
