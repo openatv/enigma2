@@ -1547,7 +1547,7 @@ void eDVBChannel::pvrEvent(int event)
 			eDebug("eDVBChannel: We are in stream mode, trying to reconnect it!");
 			ePtr<iTsSource> source = m_source;
 			stop();
-			playSource(source, NULL);
+			playSource(source, m_streaminfo_file.c_str());
 		}
 		else {
 			stop();
@@ -2104,6 +2104,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	}
 
 	m_source = source;
+	m_streaminfo_file = std::string(streaminfo_file);
 	m_tstools.setSource(m_source, streaminfo_file);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
