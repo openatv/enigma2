@@ -307,6 +307,7 @@ class InfoBarHotkey():
 				for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 					if plugin.path[24:] == "/".join(selected):
 						self.runPlugin(plugin)
+						break
 			elif selected[0] == "Infobar" or selected[0] == "Code":
 				if hasattr(self, selected[1]):
 					exec "self." + selected[1] + "()"
