@@ -118,7 +118,7 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple"))
 	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser"))
-	hotkeyFunctions.append((_("Sleeptimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
+	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList"))
 	hotkeyFunctions.append((_("SkinSelector"), "Module/Plugins.SystemPlugins.SkinSelector.plugin/SkinSelector"))
