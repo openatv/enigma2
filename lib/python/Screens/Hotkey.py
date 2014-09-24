@@ -154,6 +154,7 @@ class HotkeySetup(Screen):
 			"ok": self.keyOk,
 			"cancel": self.close,
 			"red": self.close,
+			"green": self.toggleAdditionalKeys,
 			"up": self.keyUp,
 			"down": self.keyDown,
 			"left": self.keyLeft,
