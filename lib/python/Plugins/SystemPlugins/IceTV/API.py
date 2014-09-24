@@ -20,7 +20,7 @@ _version_string = "20140917"
 _protocol = "http://"
 _server = "api.icetv.com.au"
 _device_type_id = 22
-_debug_level = 0
+_debug_level = 0  # 1 = request/reply, 2 = 1+headers, 3 = 2+partial body, 4 = 2+full body
 
 
 def isServerReachable():
@@ -80,6 +80,11 @@ class Request(object):
         self.data = {}
         self.response = None
 
+    def _shorten(self, text):
+        if len(text) < 2000:
+            return text
+        return text[:1000] + "\n...\n" + text[-1000:]
+
     def send(self, method):
         data = json.dumps(self.data)
         r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False)
@@ -88,13 +93,17 @@ class Request(object):
             print "[IceTV]", r.request.method, r.request.url
         if err or _debug_level > 1:
             print "[IceTV] headers", r.request.headers
-        if err or _debug_level > 2:
+        if err or _debug_level == 3:
+            print "[IceTV]", self._shorten(r.request.body)
+        elif err or _debug_level > 3:
             print "[IceTV]", r.request.body
         if err or _debug_level > 0:
             print "[IceTV]", r.status_code, r.reason
         if err or _debug_level > 1:
             print "[IceTV] headers", r.headers
-        if err or _debug_level > 2:
+        if err or _debug_level == 3:
+            print "[IceTV]", self._shorten(r.text)
+        elif err or _debug_level > 3:
             print "[IceTV]", r.text
         self.response = r
         if r.status_code == 401:

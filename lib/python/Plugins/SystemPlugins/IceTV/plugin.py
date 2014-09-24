@@ -489,7 +489,7 @@ class IceTVMain(ChoiceBox):
             }, prio=-1)
 
     def increaseDebug(self):
-        if ice._debug_level < 3:
+        if ice._debug_level < 4:
             ice._debug_level += 1
         print "[IceTV] debug level =", ice._debug_level
 
