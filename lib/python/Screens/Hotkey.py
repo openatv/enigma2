@@ -145,25 +145,62 @@ class HotkeySetup(Screen):
 		for x in hotkeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 10], selection = 0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["choosen"] = ChoiceList(list=[])
+		self.getFunctions()
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
-			"ok": self.ok,
+			"ok": self.keyOk,
 			"cancel": self.close,
 			"red": self.close,
-			"green": self.toggleAdditionalKeys
+			"up": self.keyUp,
+			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
 		}, -1)
+		self.onLayoutFinish.append(self.__layoutFinished)
 
-	def ok(self):
+	def __layoutFinished(self):
+		self["choosen"].selectionEnabled(0)
+
+	def keyOk(self):
 		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
+
+	def keyLeft(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self.getFunctions()
+
+	def keyRight(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self.getFunctions()
+
+	def keyUp(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self.getFunctions()
+
+	def keyDown(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self.getFunctions()
 
 	def toggleAdditionalKeys(self):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
 		config.misc.hotkey.additional_keys.save()
 		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 10])
 
+	def getFunctions(self):
+		key = self["list"].l.getCurrentSelection()[0][1]
+		if key:
+			selected = eval("config.misc.hotkey." + key + ".value.split(',')")
+			self.selected = []
+			for plugin in getHotkeyFunctionsList():
+				self.list.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
+				if plugin[1] in selected:
+					self.selected.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
+			self["choosen"].setList(self.selected)
+
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
+		self.skinName="HotkeySetup"
 		self.session = session
 		self.setTitle(_("Hotkey Setup") + " " + key[0][0])
 		self["key_red"] = Button(_("Cancel"))
