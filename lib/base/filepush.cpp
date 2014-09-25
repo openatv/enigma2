@@ -108,6 +108,7 @@ void eFilePushThread::thread()
 				continue;
 			}
 			eDebug("eFilePushThread *read error* (%m)");
+			sleep(1);
 			sendEvent(evtReadError);
 			break;
 		}
@@ -151,7 +152,7 @@ void eFilePushThread::thread()
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
-			if (m_stream_mode && ++eofcount < 10)
+			if (m_stream_mode && ++eofcount < 5)
 			{
 				eDebug("reached EOF, but we are in stream mode. delaying 1 second.");
 				sleep(1);

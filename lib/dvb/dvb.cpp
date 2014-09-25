@@ -5,6 +5,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/filepush.h>
 #include <lib/base/wrappers.h>
+#include <lib/base/httpstream.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
@@ -1547,6 +1548,7 @@ void eDVBChannel::pvrEvent(int event)
 			eDebug("eDVBChannel: We are in stream mode, trying to reconnect it!");
 			ePtr<iTsSource> source = m_source;
 			stop();
+			source->reconnect();
 			playSource(source, m_streaminfo_file.c_str());
 		}
 		else {
