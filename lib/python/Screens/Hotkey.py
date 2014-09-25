@@ -51,28 +51,27 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Pause"), "pause", ""),
 	(_("Rewind"), "rewind", ""),
 	(_("Fastforward"), "fastforward", ""),
-	(_("Rewind"), "rewind", ""),
 	(_("activatePiP"), "activatePiP", ""),
 	(_("Timer"), "timer", ""),
-	(_("Portal"), "portal", ""),
 	(_("Playlist"), "playlist", ""),
 	(_("Timeshift"), "timeshift", ""),
 	(_("Search"), "search", ""),
 	(_("Slow"), "slow", ""),
-	(_("Mark"), "mark", "")]
+	(_("Mark"), "mark", ""),
+	(_("Home"), "home", "")]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
 for x in hotkeys:
 	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
 
-def getHotkeyFunctionsList():
+def getHotkeyFunctions():
 	hotkeyFunctions = []
 	twinPlugins = []
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
-		if plugin.name not in twinPlugins:
+		if plugin.name not in twinPlugins and plugin.path:
 			hotkeyFunctions.append((plugin.name, plugin.path[24:]))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append(("--", "--"))
@@ -126,7 +125,6 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList"))
 	hotkeyFunctions.append((_("SkinSelector"), "Module/Plugins.SystemPlugins.SkinSelector.plugin/SkinSelector"))
-	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
 	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby"))
 	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2"))
 	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3"))
@@ -197,9 +195,9 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				plugin = list(plugin for plugin in getHotkeyFunctionsList() if plugin[1] == x )
-				if plugin:
-					selected.append(ChoiceEntryComponent('',((plugin[0][0]), plugin[0][1])))
+				function = list(function for function in self.session.infobar.hotkeyFunctions if function[1] == x )
+				if function:
+					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
@@ -215,12 +213,12 @@ class HotkeySetupSelect(Screen):
 		self.list = []
 		self.config = eval("config.misc.hotkey." + key[0][1])
 		self.selected = []
-		for plugin in getHotkeyFunctionsList():
-			self.list.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
+		for function in self.session.infobar.hotkeyFunctions:
+			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		for x in self.config.value.split(','):
-			plugin = list(plugin for plugin in getHotkeyFunctionsList() if plugin[1] == x )
-			if plugin:
-				self.selected.append(ChoiceEntryComponent('',((plugin[0][0]), plugin[0][1])))
+			function = list(function for function in self.session.infobar.hotkeyFunctions if function[1] == x )
+			if function:
+				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.list, selection=0)
@@ -327,15 +325,16 @@ class hotkeyActionMap(ActionMap):
 class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
+		self.hotkeyFunctions = getHotkeyFunctions()
 
 	def hotkeyGlobal(self, key):
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		if selection:
 			selected = []
 			for x in selection:
-				plugin = list(plugin for plugin in getHotkeyFunctionsList() if plugin[1] == x )
-				if plugin:
-					selected.append(plugin[0])
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				if function:
+					selected.append(function[0])
 			if not selected:
 				return 0
 			if len(selected) == 1:
