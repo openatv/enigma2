@@ -118,6 +118,8 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection"))
 	hotkeyFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup"))
 	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple"))
+	for plugin in plugins.getPluginsForMenu("scan"):
+		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2]))
 	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser"))
 	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
@@ -161,6 +163,7 @@ class HotkeySetup(Screen):
 			"right": self.keyRight,
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
+		self.onExecBegin.append(self.getFunctions)
 
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
@@ -192,13 +195,12 @@ class HotkeySetup(Screen):
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
 		if key:
-			selected = eval("config.misc.hotkey." + key + ".value.split(',')")
-			self.selected = []
-			for plugin in getHotkeyFunctionsList():
-				self.list.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
-				if plugin[1] in selected:
-					self.selected.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
-			self["choosen"].setList(self.selected)
+			selected = []
+			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
+				plugin = list(plugin for plugin in getHotkeyFunctionsList() if plugin[1] == x )
+				if plugin:
+					selected.append(ChoiceEntryComponent('',((plugin[0][0]), plugin[0][1])))
+			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
@@ -212,11 +214,13 @@ class HotkeySetupSelect(Screen):
 		self.selected = []
 		self.list = []
 		self.config = eval("config.misc.hotkey." + key[0][1])
-		selected = self.config.value.split(',')
+		self.selected = []
 		for plugin in getHotkeyFunctionsList():
 			self.list.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
-			if plugin[1] in selected:
-				self.selected.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
+		for x in self.config.value.split(','):
+			plugin = list(plugin for plugin in getHotkeyFunctionsList() if plugin[1] == x )
+			if plugin:
+				self.selected.append(ChoiceEntryComponent('',((plugin[0][0]), plugin[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.list, selection=0)
@@ -348,7 +352,12 @@ class InfoBarHotkey():
 					if plugin.path[24:] == "/".join(selected):
 						self.runPlugin(plugin)
 						break
-			elif selected[0] == "Infobar" or selected[0] == "Code":
+			elif selected[0] == "MenuPlugin":
+				for plugin in plugins.getPluginsForMenu(selected[1]):
+					if plugin[2] == selected[2]:
+						self.runPlugin(plugin[1])
+						break
+			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
 					exec "self." + selected[1] + "()"
 			elif selected[0] == "Module":
