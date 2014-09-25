@@ -6,6 +6,7 @@ from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.PluginComponent import plugins
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
+import Screens.InfoBar
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
@@ -195,7 +196,7 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				function = list(function for function in self.session.infobar.hotkeyFunctions if function[1] == x )
+				function = list(function for function in Screens.InfoBar.InfoBar.instance.hotkeyFunctions if function[1] == x )
 				if function:
 					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
@@ -213,10 +214,10 @@ class HotkeySetupSelect(Screen):
 		self.list = []
 		self.config = eval("config.misc.hotkey." + key[0][1])
 		self.selected = []
-		for function in self.session.infobar.hotkeyFunctions:
+		for function in Screens.InfoBar.InfoBar.instance.hotkeyFunctions:
 			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		for x in self.config.value.split(','):
-			function = list(function for function in self.session.infobar.hotkeyFunctions if function[1] == x )
+			function = list(function for function in Screens.InfoBar.InfoBar.instance.hotkeyFunctions if function[1] == x )
 			if function:
 				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
