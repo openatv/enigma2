@@ -366,5 +366,5 @@ class InfoBarHotkey():
 				except:
 					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":
-				from Screens.Setup import *
+				exec "from Screens.Setup import *"
 				exec "self.session.open(Setup, \"" + selected[1] + "\")"
