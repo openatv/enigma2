@@ -88,6 +88,10 @@ int eStaticServiceDVBInformation::getLength(const eServiceReference &ref)
 
 int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
+	if (ref.path.substr(0, 7) == "http://") {
+		return 1;
+	}
+
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
 		eDebug("isPlayable... no res manager!!");
