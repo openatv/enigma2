@@ -6,7 +6,6 @@ from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.PluginComponent import plugins
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
-import Screens.InfoBar
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
@@ -145,6 +144,7 @@ class HotkeySetup(Screen):
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Toggle Extra Keys"))
 		self.list = []
+		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 10], selection = 0)
@@ -196,7 +196,7 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				function = list(function for function in Screens.InfoBar.InfoBar.instance.hotkeyFunctions if function[1] == x )
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
 				if function:
 					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
@@ -212,12 +212,13 @@ class HotkeySetupSelect(Screen):
 		self.mode = "list"
 		self.selected = []
 		self.list = []
+		self.hotkeyFunctions = getHotkeyFunctions()
 		self.config = eval("config.misc.hotkey." + key[0][1])
 		self.selected = []
-		for function in Screens.InfoBar.InfoBar.instance.hotkeyFunctions:
+		for function in self.hotkeyFunctions:
 			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		for x in self.config.value.split(','):
-			function = list(function for function in Screens.InfoBar.InfoBar.instance.hotkeyFunctions if function[1] == x )
+			function = list(function for function in self.hotkeyFunctions if function[1] == x )
 			if function:
 				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
@@ -326,14 +327,13 @@ class hotkeyActionMap(ActionMap):
 class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
-		self.hotkeyFunctions = getHotkeyFunctions()
 
 	def hotkeyGlobal(self, key):
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		if selection:
 			selected = []
 			for x in selection:
-				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				function = list(function for function in getHotkeyFunctions() if function[1] == x )
 				if function:
 					selected.append(function[0])
 			if not selected:
