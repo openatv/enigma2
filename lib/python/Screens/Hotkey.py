@@ -339,7 +339,7 @@ class InfoBarHotkey():
 			if not selected:
 				return 0
 			if len(selected) == 1:
-				self.execHotkey(selected[0])
+				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
 				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
@@ -360,6 +360,8 @@ class InfoBarHotkey():
 			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
 					exec "self." + selected[1] + "()"
+				else:
+					return 0
 			elif selected[0] == "Module":
 				try:
 					exec "from " + selected[1] + " import *"
