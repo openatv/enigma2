@@ -140,10 +140,10 @@
 	<screen name="EMCSelection_summary" position="0,0" size="132,64">
 		<widget source="parent.Service" render="RollerCharLCD" position="0,0" size="124,32" font="Regular;18" />
 	</screen>
-	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,64" >
-		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
-		</widget>
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="132,1">
+			<convert type="ServicePosition">Summary</convert>
+		</widget-->
 	</screen>
 
 <!-- mediaplayer -->
