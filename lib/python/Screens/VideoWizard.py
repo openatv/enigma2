@@ -17,7 +17,7 @@ boxtype = getBoxType()
 
 has_rca = False
 has_dvi = False
-if boxtype in ('enibox', 'gbquad', 'gbquadplus', 'et5x00', 'et6000', 'et7000', 'et7500', 'et8500', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'starsatlx', 'mixosf7', 'mixoslumi', 'tmnano', 'azboxme',  'azboxminime', 'optimussos1',  'optimussos2', 'gb800seplus', 'gb800ueplus', 'sezam1000hd', 'ixussone', 'ixusszero', 'enfinity', 'marvel1', 'force1', 'force1plus', 'worldvisionf1', 'optimussos1plus',  'optimussos2plus',  'optimussos3plus', 'formuler1', 'tmnano2super', 'vusolose'):	
+if boxtype in ('vp7358ci', 'enibox', 'gbquad', 'gbquadplus', 'et5x00', 'et6000', 'et7000', 'et7500', 'et8500', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'starsatlx', 'mixosf7', 'mixoslumi', 'tmnano', 'azboxme',  'azboxminime', 'optimussos1',  'optimussos2', 'gb800seplus', 'gb800ueplus', 'sezam1000hd', 'ixussone', 'ixusszero', 'enfinity', 'marvel1', 'force1', 'force1plus', 'worldvisionf1', 'optimussos1plus',  'optimussos2plus',  'optimussos3plus', 'formuler1', 'tmnano2super', 'vusolose'):	
 	has_rca = True
 if boxtype == 'dm8000' or boxtype == 'dm800':
 	has_dvi = True
