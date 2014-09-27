@@ -48,7 +48,10 @@ class About(Screen):
 			AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
 
 		cmd = 'cat /proc/cpuinfo | grep "cpu MHz" -m 1 | awk -F ": " ' + "'{print $2}'"
-		res = popen(cmd).read()
+		try:
+			res = popen(cmd).read()
+		except:
+			res = ""
 		cpuMHz = ""
 		if res:
 			cpuMHz = "   (" + res.replace("\n", "") + " MHz)"
