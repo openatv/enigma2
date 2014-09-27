@@ -57,7 +57,8 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Timeshift"), "timeshift", ""),
 	(_("Search"), "search", ""),
 	(_("Slow"), "slow", ""),
-	(_("Mark"), "mark", ""),
+	(_("Mark/Portal"), "mark", ""),
+	(_("Sleep"), "sleep", ""),
 	(_("Home"), "home", "")]
 
 config.misc.hotkey = ConfigSubsection()
