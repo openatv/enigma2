@@ -52,7 +52,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMovies": (self.showMovies, _("Watch recordings and media")),
 				"showRadio": (self.showRadio, _("Listen to the radio...")),
 				"showTv": (self.TvRadioToggle, _("Switch between TV and radio")),
-				"openBouquetList": (self.openBouquetList, _("Open bouquet list...")),
+				"openBouquetList": (self.openBouquetList, self._helpOpenBouquetList),
 				"openTimerList": (self.openTimerList, _("Open timer list...")),
 				"openSleepTimer": (self.openSleepTimer, _("Show/add sleep timers...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Open the media player...")),
@@ -148,6 +148,13 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def __checkServiceStarted(self):
 		self.serviceStarted()
 		self.onShown.remove(self.__checkServiceStarted)
+
+	def _helpOpenBouquetList(self):
+		return {
+		"MovieList": _("Watch recordings and media"),
+		"ChannelList": _("Open channel list"),
+		"BouquetList": _("Open bouquet list")
+			}[config.usage.tvradiobutton_mode.value] + _(" (Configurable)")
 
 	def openBouquetList(self):
 		if config.usage.tvradiobutton_mode.value == "MovieList":
