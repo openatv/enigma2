@@ -20,6 +20,20 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit autotools pkgconfig pythonnative
 
+ACLOCALDIR = "${B}/aclocal-copy"
+e2_copy_aclocal () {
+	rm -rf ${ACLOCALDIR}/
+	mkdir -p ${ACLOCALDIR}/
+	if [ -d ${STAGING_DATADIR_NATIVE}/aclocal ]; then
+		cp-noerror ${STAGING_DATADIR_NATIVE}/aclocal/ ${ACLOCALDIR}/
+	fi
+	if [ -d ${STAGING_DATADIR}/aclocal -a "${STAGING_DATADIR_NATIVE}/aclocal" != "${STAGING_DATADIR}/aclocal" ]; then
+		cp-noerror ${STAGING_DATADIR}/aclocal/ ${ACLOCALDIR}/
+	fi
+}
+
+EXTRACONFFUNCS += "e2_copy_aclocal"
+
 bindir = "/usr/bin"
 sbindir = "/usr/sbin"
 
