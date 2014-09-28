@@ -80,7 +80,7 @@ eDBoxLCD::eDBoxLCD()
 		{
 			lcdfd = open("/dev/null", O_RDWR);
 		}
-		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000de\n") == 0) || (strcmp(boxtype_name, "ini-2000am\n") == 0))
 		{
 				if((fp_file = fopen("/proc/stb/fp/version", "r")) != NULL)
 				{
