@@ -1176,9 +1176,7 @@ class EPGSelection(Screen, HelpableScreen):
 		from InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
-			if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.value == 'Channel Info':
-				self.infoKeyPressed()
-			elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.value == 'Single EPG':
+			if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.value == 'Single EPG':
 				self.OpenSingleEPG()
 			else:
 				self.infoKeyPressed()
@@ -1199,8 +1197,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if InfoBarInstance.LongButtonPressed:
 			if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.value == 'Channel Info':
 				self.infoKeyPressed()
-			elif self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.value == 'Single EPG':
-				self.OpenSingleEPG()
 			else:
 				self.OpenSingleEPG()
 
