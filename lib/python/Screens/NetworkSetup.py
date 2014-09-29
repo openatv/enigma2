@@ -76,20 +76,20 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("Exit network interface list")),
-			"ok": (self.okbuttonClick, _("Select interface")),
+				"cancel": (self.close, _("Exit network interface list")),
+				"ok": (self.okbuttonClick, _("Select interface")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("Exit network interface list")),
-			"green": (self.okbuttonClick, _("Select interface")),
-			"blue": (self.openNetworkWizard, _("Use the network wizard to configure selected network adapter")),
+				"red": (self.close, _("Exit network interface list")),
+				"green": (self.okbuttonClick, _("Select interface")),
+				"blue": (self.openNetworkWizard, _("Use the network wizard to configure selected network adapter")),
 			})
 
 		self["DefaultInterfaceAction"] = HelpableActionMap(self, "ColorActions",
 			{
-			"yellow": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more than one interface is active.")]),
+				"yellow": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more than one interface is active.")]),
 			})
 
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
@@ -282,22 +282,22 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.cancel, _("Exit nameserver configuration")),
-			"ok": (self.ok, _("Activate current configuration")),
+				"cancel": (self.cancel, _("Exit nameserver configuration")),
+				"ok": (self.ok, _("Activate current configuration")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.cancel, _("Exit nameserver configuration")),
-			"green": (self.ok, _("Activate current configuration")),
-			"yellow": (self.add, _("Add a nameserver entry")),
-			"blue": (self.remove, _("Remove a nameserver entry")),
+				"red": (self.cancel, _("Exit nameserver configuration")),
+				"green": (self.ok, _("Activate current configuration")),
+				"yellow": (self.add, _("Add a nameserver entry")),
+				"blue": (self.remove, _("Remove a nameserver entry")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.ok,
-		}, -2)
+		}, prio=-2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
@@ -363,20 +363,20 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.cancel, _("Exit nameserver configuration")),
-			"ok": (self.ok, _("Activate current configuration")),
+				"cancel": (self.cancel, _("Exit nameserver configuration")),
+				"ok": (self.ok, _("Activate current configuration")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.cancel, _("Exit MAC address configuration")),
-			"green": (self.ok, _("Activate MAC address configuration")),
+				"red": (self.cancel, _("Exit MAC address configuration")),
+				"green": (self.ok, _("Activate MAC address configuration")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
-		{
-			"ok": self.ok,
-		}, -2)
+			{
+				"ok": self.ok,
+			}, prio=-2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
@@ -444,21 +444,21 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.keyCancel, _("Exit network adapter configuration")),
-			"ok": (self.keySave, _("Activate network adapter configuration")),
+				"cancel": (self.keyCancel, _("Exit network adapter configuration")),
+				"ok": (self.keySave, _("Activate network adapter configuration")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.keyCancel, _("Exit network adapter configuration")),
-			"green": (self.keySave, _("Activate network adapter configuration")),
-			"blue": (self.KeyBlue, _("Open nameserver configuration")),
+				"red": (self.keyCancel, _("Exit network adapter configuration")),
+				"green": (self.keySave, _("Activate network adapter configuration")),
+				"blue": (self.KeyBlue, _("Open nameserver configuration")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
-		{
-			"ok": self.keySave,
-		}, -2)
+			{
+				"ok": self.keySave,
+			}, prio=-2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list,session=self.session)
@@ -846,33 +846,33 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
 			{
-			"up": (self.up, _("Move up to previous entry")),
-			"down": (self.down, _("Move down to next entry")),
-			"left": (self.left, _("Move up to first entry")),
-			"right": (self.right, _("Move down to last entry")),
+				"up": (self.up, _("Move up to previous entry")),
+				"down": (self.down, _("Move down to next entry")),
+				"left": (self.left, _("Move up to first entry")),
+				"right": (self.right, _("Move down to last entry")),
 			})
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("Exit network adapter setup menu")),
-			"ok": (self.ok, _("Select menu entry")),
+				"cancel": (self.close, _("Exit network adapter setup menu")),
+				"ok": (self.ok, _("Select menu entry")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("Exit network adapter setup menu")),
+				"red": (self.close, _("Exit network adapter setup menu")),
 			})
 
 		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
-		{
-			"ok": self.ok,
-			"back": self.close,
-			"up": self.up,
-			"down": self.down,
-			"red": self.close,
-			"left": self.left,
-			"right": self.right,
-		}, -2)
+			{
+				"ok": self.ok,
+				"back": self.close,
+				"up": self.up,
+				"down": self.down,
+				"red": self.close,
+				"left": self.left,
+				"right": self.right,
+			}, prio=-2)
 
 		self.updateStatusbar()
 		self.onClose.append(self.cleanup)
@@ -1173,36 +1173,36 @@ class NetworkAdapterTest(Screen):
 		self.onHide.append(self.cleanup)
 
 		self["updown_actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
-		{
-			"ok": self.KeyOK,
-			"blue": self.KeyOK,
-			"up": lambda: self.updownhandler('up'),
-			"down": lambda: self.updownhandler('down'),
+			{
+				"ok": self.KeyOK,
+				"blue": self.KeyOK,
+				"up": lambda: self.updownhandler('up'),
+				"down": lambda: self.updownhandler('down'),
 
-		}, -2)
+			}, prio=-2)
 
 		self["shortcuts"] = ActionMap(["ShortcutActions","WizardActions"],
-		{
-			"red": self.cancel,
-			"back": self.cancel,
-		}, -2)
+			{
+				"red": self.cancel,
+				"back": self.cancel,
+			}, prio=-2)
 		self["infoshortcuts"] = ActionMap(["ShortcutActions","WizardActions"],
-		{
-			"red": self.closeInfo,
-			"back": self.closeInfo,
-		}, -2)
+			{
+				"red": self.closeInfo,
+				"back": self.closeInfo,
+			}, prio=-2)
 		self["shortcutsgreen"] = ActionMap(["ShortcutActions"],
-		{
-			"green": self.KeyGreen,
-		}, -2)
+			{
+				"green": self.KeyGreen,
+			}, prio=-2)
 		self["shortcutsgreen_restart"] = ActionMap(["ShortcutActions"],
-		{
-			"green": self.KeyGreenRestart,
-		}, -2)
+			{
+				"green": self.KeyGreenRestart,
+			}, prio=-2)
 		self["shortcutsyellow"] = ActionMap(["ShortcutActions"],
-		{
-			"yellow": self.KeyYellow,
-		}, -2)
+			{
+				"yellow": self.KeyYellow,
+			}, prio=-2)
 
 		self["shortcutsgreen_restart"].setEnabled(False)
 		self["updown_actions"].setEnabled(False)
@@ -1600,33 +1600,33 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 
 		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
 			{
-			"up": (self.up, _("Move up to previous entry")),
-			"down": (self.down, _("Move down to next entry")),
-			"left": (self.left, _("Move up to first entry")),
-			"right": (self.right, _("Move down to last entry")),
+				"up": (self.up, _("Move up to previous entry")),
+				"down": (self.down, _("Move down to next entry")),
+				"left": (self.left, _("Move up to first entry")),
+				"right": (self.right, _("Move down to last entry")),
 			})
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("Exit mounts setup menu")),
-			"ok": (self.ok, _("Select menu entry")),
+				"cancel": (self.close, _("Exit mounts setup menu")),
+				"ok": (self.ok, _("Select menu entry")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("Exit network adapter setup menu")),
+				"red": (self.close, _("Exit network adapter setup menu")),
 			})
 
 		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
-		{
-			"ok": self.ok,
-			"back": self.close,
-			"up": self.up,
-			"down": self.down,
-			"red": self.close,
-			"left": self.left,
-			"right": self.right,
-		}, -2)
+			{
+				"ok": self.ok,
+				"back": self.close,
+				"up": self.up,
+				"down": self.down,
+				"red": self.close,
+				"left": self.left,
+				"right": self.right,
+			}, prio=-2)
 
 		if not self.selectionChanged in self["menulist"].onSelectionChanged:
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
@@ -1706,7 +1706,14 @@ class NetworkAfp(Screen):
 		self.Console = Console()
 		self.my_afp_active = False
 		self.my_afp_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.AfpStartStop, 'yellow': self.activateAfp})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'red': self.UninstallCheck,
+				'green': self.AfpStartStop,
+				'yellow': self.activateAfp
+			})
 		self.service_name = basegroup + '-appletalk netatalk'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -1839,7 +1846,13 @@ class NetworkFtp(Screen):
 		self['key_red'] = Label(_("Exit"))
 		self.my_ftp_active = False
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {"red": self.close, 'ok': self.close, 'back': self.close, 'green': self.FtpStartStop})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				"red": self.close,
+				'ok': self.close,
+				'back': self.close,
+				'green': self.FtpStartStop
+			})
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
@@ -1921,7 +1934,14 @@ class NetworkNfs(Screen):
 		self.Console = Console()
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.NfsStartStop, 'yellow': self.Nfsset})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'red': self.UninstallCheck,
+				'green': self.NfsStartStop,
+				'yellow': self.Nfsset
+			})
 		self.service_name = basegroup + '-nfs'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -2058,7 +2078,15 @@ class NetworkOpenvpn(Screen):
 		self.Console = Console()
 		self.my_vpn_active = False
 		self.my_vpn_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.VpnStartStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'red': self.UninstallCheck,
+				'green': self.VpnStartStop,
+				'yellow': self.activateVpn,
+				'blue': self.Vpnshowlog
+			})
 		self.service_name = 'openvpn'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -2188,7 +2216,13 @@ class NetworkVpnLog(Screen):
 		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'up': self['infotext'].pageUp,
+				'down': self['infotext'].pageDown
+			})
 		strview = ''
 		self.Console.ePopen('tail /etc/openvpn/openvpn.log > /etc/openvpn/tmp.log')
 		time.sleep(1)
@@ -2218,7 +2252,16 @@ class NetworkSamba(Screen):
 		self.Console = Console()
 		self.my_Samba_active = False
 		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.close, 'back': self.close, 'menu': self.setupsamba, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'menu': self.setupsamba,
+				'red': self.UninstallCheck,
+				'green': self.SambaStartStop,
+				'yellow': self.activateSamba,
+				'blue': self.Sambashowlog
+			})
 		self.service_name = basegroup + '-smbfs'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -2373,7 +2416,13 @@ class NetworkSambaLog(Screen):
 		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'up': self['infotext'].pageUp,
+				'down': self['infotext'].pageDown
+			})
 		strview = ''
 		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
 		time.sleep(1)
@@ -2394,7 +2443,13 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Samba Setup"))
 		self['key_red'] = Label(_("Exit"))
 		self['key_green'] = Label(_("Save"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.close, 'green': self.saveSmb, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'],
+			{
+				'red': self.close,
+				'green': self.saveSmb,
+				'back': self.close,
+				'showVirtualKeyboard': self.KeyText
+			})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2487,7 +2542,13 @@ class NetworkTelnet(Screen):
 		self['key_red'] = Label(_("Exit"))
 		self.Console = Console()
 		self.my_telnet_active = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {"red": self.close, 'ok': self.close, 'back': self.close, 'green': self.TelnetStartStop})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				"red": self.close,
+				'ok': self.close,
+				'back': self.close,
+				'green': self.TelnetStartStop
+			})
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
@@ -2577,7 +2638,16 @@ class NetworkInadyn(Screen):
 		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupinadyn, 'back': self.close, 'menu': self.setupinadyn, 'red': self.UninstallCheck, 'green': self.InadynStartStop, 'yellow': self.autostart, 'blue': self.inaLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'],
+			{
+				'ok': self.setupinadyn,
+				'back': self.close,
+				'menu': self.setupinadyn,
+				'red': self.UninstallCheck,
+				'green': self.InadynStartStop,
+				'yellow': self.autostart,
+				'blue': self.inaLog
+			})
 		self.Console = Console()
 		self.service_name = 'inadyn-mt'
 		self.onLayoutFinish.append(self.InstallCheck)
@@ -2748,7 +2818,13 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Inadyn Setup"))
 		self['key_red'] = Label(_("Exit"))
 		self['key_green'] = Label(_("Save"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.close, 'green': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'],
+			{
+				'red': self.close,
+				'green': self.saveIna,
+				'back': self.close,
+				'showVirtualKeyboard': self.KeyText
+			})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2876,10 +2952,13 @@ class NetworkInadynLog(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Inadyn Log"))
 		self['infotext'] = ScrollLabel('')
-		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.close,
-		 'back': self.close,
-		 'up': self['infotext'].pageUp,
-		 'down': self['infotext'].pageDown})
+		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'up': self['infotext'].pageUp,
+				'down': self['infotext'].pageDown
+			})
 		strview = ''
 		if fileExists('/var/log/inadyn.log'):
 			f = open('/var/log/inadyn.log', 'r')
@@ -2928,7 +3007,16 @@ class NetworkuShare(Screen):
 		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupushare, 'back': self.close, 'menu': self.setupushare, 'red': self.UninstallCheck, 'green': self.uShareStartStop, 'yellow': self.autostart, 'blue': self.ushareLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'],
+			{
+				'ok': self.setupushare,
+				'back': self.close,
+				'menu': self.setupushare,
+				'red': self.UninstallCheck,
+				'green': self.uShareStartStop,
+				'yellow': self.autostart,
+				'blue': self.ushareLog
+			})
 		self.Console = Console()
 		self.service_name = 'ushare'
 		self.onLayoutFinish.append(self.InstallCheck)
@@ -3125,7 +3213,13 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("uShare Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveuShare, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'],
+			{
+				'red': self.saveuShare,
+				'green': self.selectfolders,
+				'back': self.close,
+				'showVirtualKeyboard': self.KeyText
+			})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -3305,17 +3399,17 @@ class uShareSelection(Screen):
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
-		{
-			"cancel": self.exit,
-			"red": self.exit,
-			"yellow": self.changeSelectionState,
-			"green": self.saveSelection,
-			"ok": self.okClicked,
-			"left": self.left,
-			"right": self.right,
-			"down": self.down,
-			"up": self.up
-		}, -1)
+			{
+				"cancel": self.exit,
+				"red": self.exit,
+				"yellow": self.changeSelectionState,
+				"green": self.saveSelection,
+				"ok": self.okClicked,
+				"left": self.left,
+				"right": self.right,
+				"down": self.down,
+				"up": self.up
+			}, prio=-1)
 		if not self.selectionChanged in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -3367,7 +3461,13 @@ class NetworkuShareLog(Screen):
 		Screen.setTitle(self, _("uShare Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'up': self['infotext'].pageUp,
+				'down': self['infotext'].pageDown
+			})
 		strview = ''
 		self.Console.ePopen('tail /tmp/uShare.log > /tmp/tmp.log')
 		time.sleep(1)
@@ -3416,7 +3516,16 @@ class NetworkMiniDLNA(Screen):
 		self['key_green'] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
 		self['key_blue'] = Label(_("Show Log"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupminidlna, 'back': self.close, 'menu': self.setupminidlna, 'red': self.UninstallCheck, 'green': self.MiniDLNAStartStop, 'yellow': self.autostart, 'blue': self.minidlnaLog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'],
+			{
+				'ok': self.setupminidlna,
+				'back': self.close,
+				'menu': self.setupminidlna,
+				'red': self.UninstallCheck,
+				'green': self.MiniDLNAStartStop,
+				'yellow': self.autostart,
+				'blue': self.minidlnaLog
+			})
 		self.Console = Console()
 		self.service_name = 'minidlna'
 		self.onLayoutFinish.append(self.InstallCheck)
@@ -3602,7 +3711,13 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.skinName = "NetworkuShareSetup"
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveMinidlna, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'],
+			{
+				'red': self.saveMinidlna,
+				'green': self.selectfolders,
+				'back': self.close,
+				'showVirtualKeyboard': self.KeyText
+			})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -3769,17 +3884,17 @@ class MiniDLNASelection(Screen):
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
-		{
-			"cancel": self.exit,
-			"red": self.exit,
-			"yellow": self.changeSelectionState,
-			"green": self.saveSelection,
-			"ok": self.okClicked,
-			"left": self.left,
-			"right": self.right,
-			"down": self.down,
-			"up": self.up
-		}, -1)
+			{
+				"cancel": self.exit,
+				"red": self.exit,
+				"yellow": self.changeSelectionState,
+				"green": self.saveSelection,
+				"ok": self.okClicked,
+				"left": self.left,
+				"right": self.right,
+				"down": self.down,
+				"up": self.up
+			}, prio=-1)
 		if not self.selectionChanged in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -3831,7 +3946,13 @@ class NetworkMiniDLNALog(Screen):
 		Screen.setTitle(self, _("MiniDLNA Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'],
+			{
+				'ok': self.close,
+				'back': self.close,
+				'up': self['infotext'].pageUp,
+				'down': self['infotext'].pageDown
+			})
 		strview = ''
 		self.Console.ePopen('tail /var/volatile/log/minidlna.log > /tmp/tmp.log')
 		time.sleep(1)

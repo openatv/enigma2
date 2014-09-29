@@ -209,7 +209,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"nextSubtitleTrack": (self.nextSubtitleTrack, _("Switch to the next subtitle language")),
 				"nextAngle": (self.nextAngle, _("Switch to the next angle")),
 				"seekBeginning": (self.seekBeginning, _("Jump back to the start"))
-			}, -2)
+			}, prio=-2)
 
 		self["NumberActions"] = NumberActionMap(["NumberActions"],
 			{

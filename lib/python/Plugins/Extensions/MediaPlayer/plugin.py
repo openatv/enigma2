@@ -228,21 +228,21 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			}, description="Media information")
 
 		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"],
-		{
-			"right": self.rightDown,
-			"rightRepeated": self.doNothing,
-			"rightUp": self.rightUp,
-			"left": self.leftDown,
-			"leftRepeated": self.doNothing,
-			"leftUp": self.leftUp,
+			{
+				"right": self.rightDown,
+				"rightRepeated": self.doNothing,
+				"rightUp": self.rightUp,
+				"left": self.leftDown,
+				"leftRepeated": self.doNothing,
+				"leftUp": self.leftUp,
 
-			"up": self.up,
-			"upRepeated": self.up,
-			"upUp": self.doNothing,
-			"down": self.down,
-			"downRepeated": self.down,
-			"downUp": self.doNothing,
-		}, -2)
+				"up": self.up,
+				"upRepeated": self.up,
+				"upUp": self.doNothing,
+				"down": self.down,
+				"downRepeated": self.down,
+				"downUp": self.doNothing,
+			}, prio=-2)
 
 		InfoBarSeek.__init__(self, actionmap="MediaPlayerSeekActions")
 

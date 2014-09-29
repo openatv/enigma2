@@ -114,19 +114,20 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		self["highlight"] = MovingPixmap()
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 
-		self["overviewActions"] = HelpableActionMap(self, "EcasaOverviewActions", {
-			"up": self.up,
-			"down": self.down,
-			"left": self.left,
-			"right": self.right,
-			"blue": (self.nextPage, _("Show next page")),
-			"red": (self.prevPage, _("Show previous page")),
-			"select": self.select,
-			"exit": self.close,
-			#"albums":(self.albums, _("Show your albums (if logged in)")),
-			"search":(self.search, _("Start a new search")),
-			#"contextMenu":(self.contextMenu, _("Open context menu")),
-			}, -1)
+		self["overviewActions"] = HelpableActionMap(self, "EcasaOverviewActions",
+			{
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"blue": (self.nextPage, _("Show next page")),
+				"red": (self.prevPage, _("Show previous page")),
+				"select": self.select,
+				"exit": self.close,
+				#"albums":(self.albums, _("Show your albums (if logged in)")),
+				"search":(self.search, _("Start a new search")),
+				#"contextMenu":(self.contextMenu, _("Open context menu")),
+			}, prio=-1)
 
 		self.offset = 0
 		self.__highlighted = 0
@@ -514,12 +515,13 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		self['key_yellow'] = StaticText(_("Change user"))
 		self['key_blue'] = StaticText(_("User history"))
 
-		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions", {
-			"select":(self.select, _("Show album")),
-			"exit":(self.close, _("Close")),
-			"users":(self.users, _("Change user")),
-			"history":(self.history, _("User history")),
-		}, -1)
+		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions",
+			{
+				"select":(self.select, _("Show album")),
+				"exit":(self.close, _("Close")),
+				"users":(self.users, _("Change user")),
+				"history":(self.history, _("User history")),
+			}, prio=-1)
 
 		self.acquireAlbumsForUser(user)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -626,16 +628,18 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		self['summary'] = StaticText()
 		self['keywords'] = StaticText()
 
-		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions", {
-			"info": (self.info, _("Show metadata")),
-			"exit": (self.close, _("Close")),
-			"contextMenu":(self.contextMenu, _("Open context menu")),
-			}, -1)
+		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions",
+			{
+				"info": (self.info, _("Show metadata")),
+				"exit": (self.close, _("Close")),
+				"contextMenu":(self.contextMenu, _("Open context menu")),
+			}, prio=-1)
 		if prevFunc and nextFunc:
-			self["directionActions"] = HelpableActionMap(self, "DirectionActions", {
-				"left": self.previous,
-				"right": self.next,
-				}, -2)
+			self["directionActions"] = HelpableActionMap(self, "DirectionActions",
+				{
+					"left": self.previous,
+					"right": self.next,
+				}, prio=-2)
 
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.gotPicture)

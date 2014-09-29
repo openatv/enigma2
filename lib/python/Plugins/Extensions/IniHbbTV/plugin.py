@@ -1191,12 +1191,13 @@ class OperaBrowserPreferenceWindow(ConfigListScreen, Screen):
 		self.menulist = []
 		ConfigListScreen.__init__(self, self.menulist)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions"], {
-			"red"	 : self.keyRed,
-			"green"	 : self.keyGreen,
-			"ok"	 : self.keyOK,
-			"cancel" : self.keyRed
-		}, -2)
+		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions"],
+			{
+				"red"	 : self.keyRed,
+				"green"	 : self.keyGreen,
+				"ok"	 : self.keyOK,
+				"cancel" : self.keyRed
+			}, prio=-2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["url"] = Label()
@@ -1304,12 +1305,13 @@ class BookmarkEditWindow(ConfigListScreen, Screen):
 		self.menulist = []
 		ConfigListScreen.__init__(self, self.menulist)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions",], {
-			"ok"	 : self.keyGreen,
-			"green"	 : self.keyGreen,
-			"red"	 : self.keyRed,
-			"cancel" : self.keyRed,
-		}, -2)
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions",],
+			{
+				"ok"	 : self.keyGreen,
+				"green"	 : self.keyGreen,
+				"red"	 : self.keyRed,
+				"cancel" : self.keyRed,
+			}, prio=-2)
 
 		self["VKeyIcon"] = Pixmap()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -1456,7 +1458,8 @@ class OperaBrowserBookmarkWindow(Screen):
 		self.mBookmarkManager = BookmarkManager.getInstance()
 		self.mSession = _session
 		Screen.__init__(self, _session)
-		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions","ColorActions", "NumberActions"], {
+		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions","ColorActions", "NumberActions"],
+			{
 				"ok"	: self.keyOK,
 				"cancel": self.keyCancel,
 				"red"	: self.keyRed,
@@ -1464,7 +1467,7 @@ class OperaBrowserBookmarkWindow(Screen):
 				"yellow": self.keyYellow,
 				"blue"	: self.keyBlue,
 				"0" : self.keyNumber,
-			},-2)
+			}, prio=-2)
 
 		self["key_red"]	   = StaticText(_("Exit"))
 		self["key_green"]  = StaticText(_("Add"))
@@ -1618,14 +1621,15 @@ class BrowserHelpWindow(Screen, HelpableScreen):
 		self["key_yellow"] = StaticText(_("Mouse"))
 		self["key_blue"]   = StaticText(_("Keyboard"))
 
-		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions","ColorActions"], {
+		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions","ColorActions"],
+			{
 				"ok"	: self.keyRed,
 				"cancel": self.keyRed,
 				"red"	: self.keyRed,
 				"green" : self.keyGreen,
 				"yellow": self.keyYellow,
 				"blue"	: self.keyBlue,
-			},-2)
+			}, prio=-2)
 
 		self.showHelpTimer = eTimer()
 		self.showHelpTimer.callback.append(self.cbShowHelpTimerClosed)
@@ -1643,52 +1647,62 @@ class BrowserHelpWindow(Screen, HelpableScreen):
 	def setHelpModeActions(self, _mode=0):
 		self.helpList = []
 		if _mode == self.MODE_GLOBAL:
-			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
-				"cancel" : (self.keyPass, _("Exit the Opera browser.")),
-			})
-			self["MenuActions"] = HelpableActionMap(self, "MenuActions", {
-				"menu" : (self.keyPass, _("Show the menu window.")),
-			})
-			self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
-				"green"	 : (self.keyPass, _("Enter key")),
-				"yellow" : (self.keyPass, _("Show the virtual keyboard window.")),
-				"blue"	 : (self.keyPass, _("Backspace key")),
-			})
-			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions", {
-				"info" : (self.keyPass, _("Switch to keyboard/mouse mode.")),
-			})
+			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+				{
+					"cancel" : (self.keyPass, _("Exit the Opera browser.")),
+				})
+			self["MenuActions"] = HelpableActionMap(self, "MenuActions",
+				{
+					"menu" : (self.keyPass, _("Show the menu window.")),
+				})
+			self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+				{
+					"green"	 : (self.keyPass, _("Enter key")),
+					"yellow" : (self.keyPass, _("Show the virtual keyboard window.")),
+					"blue"	 : (self.keyPass, _("Backspace key")),
+				})
+			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"info" : (self.keyPass, _("Switch to keyboard/mouse mode.")),
+				})
 
 		elif _mode == self.MODE_MOUSE:
-			self["DirectionActions"] = HelpableActionMap(self, "DirectionActions", {
-				"up"	: (self.keyPass, _("Move the mouse pointer up.")),
-				"down"	: (self.keyPass, _("Move the mouse pointer down.")),
-				"left"	: (self.keyPass, _("Move the mouse pointer left.")),
-				"right" : (self.keyPass, _("Move the mouse pointer right.")),
-			})
-			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
-				"ok" : (self.keyPass, _("Left mouse button")),
-			})
-			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions", {
-				"nextBouquet" : (self.keyPass, _("Right mouse button")),
-				"nextService" : (self.keyPass, _("Left key")),
-				"prevService" : (self.keyPass, _("Right key")),
-			})
+			self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
+				{
+					"up"	: (self.keyPass, _("Move the mouse pointer up.")),
+					"down"	: (self.keyPass, _("Move the mouse pointer down.")),
+					"left"	: (self.keyPass, _("Move the mouse pointer left.")),
+					"right" : (self.keyPass, _("Move the mouse pointer right.")),
+				})
+			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+				{
+					"ok" : (self.keyPass, _("Left mouse button")),
+				})
+			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"nextBouquet" : (self.keyPass, _("Right mouse button")),
+					"nextService" : (self.keyPass, _("Left key")),
+					"prevService" : (self.keyPass, _("Right key")),
+				})
 		elif _mode == self.MODE_KEYBOARD:
-			self["DirectionActions"] = HelpableActionMap(self, "DirectionActions", {
-				"up"	: (self.keyPass, _("Up key")),
-				"down"	: (self.keyPass, _("Down key")),
-				"left"	: (self.keyPass, _("Left key")),
-				"right" : (self.keyPass, _("Right key")),
-			})
-			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
-				"ok" : (self.keyPass, _("Enter key")),
-			})
-			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions", {
-				"nextBouquet" : (self.keyPass, _("PageUp key")),
-				"prevBouquet" : (self.keyPass, _("PageDown key")),
-				"nextService" : (self.keyPass, _("Go to previous page.")),
-				"prevService" : (self.keyPass, _("Go to next page.")),
-			})
+			self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
+				{
+					"up"	: (self.keyPass, _("Up key")),
+					"down"	: (self.keyPass, _("Down key")),
+					"left"	: (self.keyPass, _("Left key")),
+					"right" : (self.keyPass, _("Right key")),
+				})
+			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+				{
+					"ok" : (self.keyPass, _("Enter key")),
+				})
+			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions",
+				{
+					"nextBouquet" : (self.keyPass, _("PageUp key")),
+					"prevBouquet" : (self.keyPass, _("PageDown key")),
+					"nextService" : (self.keyPass, _("Go to previous page.")),
+					"prevService" : (self.keyPass, _("Go to next page.")),
+				})
 
 		if _mode > 0:
 			self.showHelp()
@@ -1731,15 +1745,16 @@ class OperaBrowser(Screen):
 	]
 	def __init__(self, session, url=None):
 		Screen.__init__(self, session)
-		self["actions"] = ActionMap(["DirectionActions", "MenuActions", "OkCancelActions"], {
-			"cancel" : self.keyCancel,
-			"ok" : self.keyOK,
-			"left" : self.keyLeft,
-			"right" : self.keyRight,
-			"up" : self.keyUp,
-			"down" : self.keyDown,
-			"menu" : self.keyMenu
-		}, -2)
+		self["actions"] = ActionMap(["DirectionActions", "MenuActions", "OkCancelActions"],
+			{
+				"cancel" : self.keyCancel,
+				"ok" : self.keyOK,
+				"left" : self.keyLeft,
+				"right" : self.keyRight,
+				"up" : self.keyUp,
+				"down" : self.keyDown,
+				"menu" : self.keyMenu
+			}, -2)
 
 		self._terminatedBrowser = True
 		self._enableKeyEvent = True
@@ -2106,10 +2121,11 @@ def HelpableScreen__init__(self):
 	if isinstance(self, HelpableScreen):
 		HelpableScreen.showManual = showManual
 
-		self["helpActions"] = ActionMap(["HelpbuttonActions"], {
-			"help_b" : self.showHelp,
-			"help_l" : self.showManual,
-		}, -2)
+		self["helpActions"] = ActionMap(["HelpbuttonActions"],
+			{
+				"help_b" : self.showHelp,
+				"help_l" : self.showManual,
+			}, -2)
 
 _g_clearBrowserDataTimer = eTimer()
 def showManual(self):

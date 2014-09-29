@@ -30,15 +30,15 @@ class InputDeviceSelection(Screen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("Exit input device selection")),
-			"ok": (self.okbuttonClick, _("Select input device")),
-			}, -2)
+				"cancel": (self.close, _("Exit input device selection")),
+				"ok": (self.okbuttonClick, _("Select input device")),
+			}, prio=-2)
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("Exit input device selection")),
-			"green": (self.okbuttonClick, _("Select input device")),
-			}, -2)
+				"red": (self.close, _("Exit input device selection")),
+				"green": (self.okbuttonClick, _("Select input device")),
+			}, prio=-2)
 
 		self.currentIndex = 0
 		self.list = []
@@ -132,7 +132,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 				"cancel": self.keyCancel,
 				"save": self.apply,
 				"menu": self.closeRecursive,
-			}, -2)
+			}, prio=-2)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -294,7 +294,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 		{
 			"cancel": self.keyCancel,
 			"save": self.keySave,
-		}, -1)
+		}, prio=-1)
 
 		self["key_green"] = StaticText(_("Save"))
 		self["key_red"] = StaticText(_("Cancel"))
