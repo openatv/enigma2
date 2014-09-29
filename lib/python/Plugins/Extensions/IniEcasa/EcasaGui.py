@@ -119,13 +119,13 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 			"down": self.down,
 			"left": self.left,
 			"right": self.right,
-			"blue": (self.nextPage, _("show next page")),
-			"red": (self.prevPage, _("show previous page")),
+			"blue": (self.nextPage, _("Show next page")),
+			"red": (self.prevPage, _("Show previous page")),
 			"select": self.select,
 			"exit": self.close,
-			#"albums":(self.albums, _("show your albums (if logged in)")),
-			"search":(self.search, _("start a new search")),
-			#"contextMenu":(self.contextMenu, _("open context menu")),
+			#"albums":(self.albums, _("Show your albums (if logged in)")),
+			"search":(self.search, _("Start a new search")),
+			#"contextMenu":(self.contextMenu, _("Open context menu")),
 			}, -1)
 
 		self.offset = 0
@@ -515,7 +515,7 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		self['key_blue'] = StaticText(_("User history"))
 
 		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions", {
-			"select":(self.select, _("show album")),
+			"select":(self.select, _("Show album")),
 			"exit":(self.close, _("Close")),
 			"users":(self.users, _("Change user")),
 			"history":(self.history, _("User history")),
@@ -627,9 +627,9 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		self['keywords'] = StaticText()
 
 		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions", {
-			"info": (self.info, _("show metadata")),
+			"info": (self.info, _("Show metadata")),
 			"exit": (self.close, _("Close")),
-			"contextMenu":(self.contextMenu, _("open context menu")),
+			"contextMenu":(self.contextMenu, _("Open context menu")),
 			}, -1)
 		if prevFunc and nextFunc:
 			self["directionActions"] = HelpableActionMap(self, "DirectionActions", {

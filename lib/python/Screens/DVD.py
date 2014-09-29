@@ -196,19 +196,19 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "DVDPlayerActions",
 			{
 				#PLAYER ACTIONS
-				"dvdMenu": (self.enterDVDMenu, _("show DVD main menu")),
-				"toggleInfo": (self.toggleInfo, _("toggle time, chapter, audio, subtitle info")),
-				"nextChapter": (self.nextChapter, _("forward to the next chapter")),
-				"prevChapter": (self.prevChapter, _("rewind to the previous chapter")),
-				"nextTitle": (self.nextTitle, _("jump forward to the next title")),
-				"prevTitle": (self.prevTitle, _("jump back to the previous title")),
-				"tv": (self.askLeavePlayer, _("exit DVD player or return to file browser")),
-				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
+				"dvdMenu": (self.enterDVDMenu, _("Show DVD main menu")),
+				"toggleInfo": (self.toggleInfo, _("Toggle time, chapter, audio, subtitle info")),
+				"nextChapter": (self.nextChapter, _("Forward to the next chapter")),
+				"prevChapter": (self.prevChapter, _("Rewind to the previous chapter")),
+				"nextTitle": (self.nextTitle, _("Jump forward to the next title")),
+				"prevTitle": (self.prevTitle, _("Jump back to the previous title")),
+				"tv": (self.askLeavePlayer, _("Exit DVD player or return to file browser")),
+				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(Show optional DVD audio menu)")),
 				"AudioSelection": (self.enterAudioSelection, _("Select audio track")),
-				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
-				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
-				"nextAngle": (self.nextAngle, _("switch to the next angle")),
-				"seekBeginning": self.seekBeginning,
+				"nextAudioTrack": (self.nextAudioTrack, _("Switch to the next audio track")),
+				"nextSubtitleTrack": (self.nextSubtitleTrack, _("Switch to the next subtitle language")),
+				"nextAngle": (self.nextAngle, _("Switch to the next angle")),
+				"seekBeginning": (self.seekBeginning, _("Jump back to the start"))
 			}, -2)
 
 		self["NumberActions"] = NumberActionMap( [ "NumberActions"],

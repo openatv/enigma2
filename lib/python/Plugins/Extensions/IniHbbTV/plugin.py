@@ -1647,12 +1647,12 @@ class BrowserHelpWindow(Screen, HelpableScreen):
 				"cancel" : (self.keyPass, _("Exit the Opera browser.")),
 			})
 			self["MenuActions"] = HelpableActionMap(self, "MenuActions", {
-				"menu" : (self.keyPass, _("Show the Menu window.")),
+				"menu" : (self.keyPass, _("Show the menu window.")),
 			})
 			self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
-				"green"	 : (self.keyPass, _("Enter Key")),
-				"yellow" : (self.keyPass, _("Show the Virtual keyboard window.")),
-				"blue"	 : (self.keyPass, _("Backspace Key")),
+				"green"	 : (self.keyPass, _("Enter key")),
+				"yellow" : (self.keyPass, _("Show the virtual keyboard window.")),
+				"blue"	 : (self.keyPass, _("Backspace key")),
 			})
 			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions", {
 				"info" : (self.keyPass, _("Switch to keyboard/mouse mode.")),
@@ -1660,32 +1660,32 @@ class BrowserHelpWindow(Screen, HelpableScreen):
 
 		elif _mode == self.MODE_MOUSE:
 			self["DirectionActions"] = HelpableActionMap(self, "DirectionActions", {
-				"up"	: (self.keyPass, _("It will move the mouse pointer up.")),
-				"down"	: (self.keyPass, _("It will move the mouse pointer down.")),
-				"left"	: (self.keyPass, _("It will move the mouse pointer left.")),
-				"right" : (self.keyPass, _("It will move the mouse pointer right.")),
+				"up"	: (self.keyPass, _("Move the mouse pointer up.")),
+				"down"	: (self.keyPass, _("Move the mouse pointer down.")),
+				"left"	: (self.keyPass, _("Move the mouse pointer left.")),
+				"right" : (self.keyPass, _("Move the mouse pointer right.")),
 			})
 			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
-				"ok" : (self.keyPass, _("Left Mouse Button")),
+				"ok" : (self.keyPass, _("Left mouse button")),
 			})
 			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions", {
-				"nextBouquet" : (self.keyPass, _("Right Mouse Button")),
-				"nextService" : (self.keyPass, _("Left Key")),
-				"prevService" : (self.keyPass, _("Right Key")),
+				"nextBouquet" : (self.keyPass, _("Right mouse button")),
+				"nextService" : (self.keyPass, _("Left key")),
+				"prevService" : (self.keyPass, _("Right key")),
 			})
 		elif _mode == self.MODE_KEYBOARD:
 			self["DirectionActions"] = HelpableActionMap(self, "DirectionActions", {
-				"up"	: (self.keyPass, _("Up Key")),
-				"down"	: (self.keyPass, _("Down Key")),
-				"left"	: (self.keyPass, _("Left Key")),
-				"right" : (self.keyPass, _("Right Key")),
+				"up"	: (self.keyPass, _("Up key")),
+				"down"	: (self.keyPass, _("Down key")),
+				"left"	: (self.keyPass, _("Left key")),
+				"right" : (self.keyPass, _("Right key")),
 			})
 			self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
-				"ok" : (self.keyPass, _("Enter Key")),
+				"ok" : (self.keyPass, _("Enter key")),
 			})
 			self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions", {
-				"nextBouquet" : (self.keyPass, _("PageUp Key")),
-				"prevBouquet" : (self.keyPass, _("PageDown Key")),
+				"nextBouquet" : (self.keyPass, _("PageUp key")),
+				"prevBouquet" : (self.keyPass, _("PageDown key")),
 				"nextService" : (self.keyPass, _("Go to previous page.")),
 				"prevService" : (self.keyPass, _("Go to next page.")),
 			})

@@ -202,7 +202,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			{
 				"ok": (self.ok, _("Add file to playlist")),
 				"cancel": (self.exit, _("Exit mediaplayer")),
-			}, -2)
+			}, prio=-2)
 
 		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions",
 			{
@@ -220,12 +220,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				"shift_stop": (self.clear_playlist, _("Clear playlist")),
 				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle playlist")),
 				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
-			}, -2)
+			}, prio=-2, description="Playing and playlists")
 
 		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.showEventInformation, _("show event details")),
-			})
+				"InfoPressed": (self.showEventInformation, _("Show event details")),
+			}, description="Media information")
 
 		self["actions"] = MoviePlayerActionMap(self, ["DirectionActions"],
 		{

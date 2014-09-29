@@ -64,16 +64,16 @@ class TitleList(Screen, HelpableScreen):
 
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
-				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
-				"titleProperties": (self.titleProperties, _("Properties of current title"), _("Title properties")),
-				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
-				"settings": (self.settings, _("Collection settings"), _("Settings")),
-				"burnProject": (self.askBurnProject, _("Burn DVD"), _("Burn DVD")),
+				"addTitle": (self.addTitle, [_("Add title"), _("Add a new title")]),
+				"titleProperties": (self.titleProperties, [_("Title properties"), _("Properties of current title")]),
+				"removeCurrentTitle": (self.removeCurrentTitle, [_("Remove title"), _("Remove currently selected title")]),
+				"settings": (self.settings, [_("Settings"), _("Collection settings")]),
+				"burnProject": (self.askBurnProject, _("Burn DVD")),
 			})
 
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
-				"contextMenu": (self.showMenu, _("menu")),
+				"contextMenu": (self.showMenu, _("Menu")),
 			})
 
 		self["actions"] = ActionMap(["OkCancelActions"],
@@ -194,7 +194,7 @@ class TitleList(Screen, HelpableScreen):
 				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 				{
 					"red": (self.close, _("Close title selection")),
-					"green": (self.insertWithoutEdit, "insert without cutlist editor"),
+					"green": (self.insertWithoutEdit, "Insert without cutlist editor"),
 					"yellow": (self.movieSelected, _("Add a new title"))
 				})
 			def updateTags(self):

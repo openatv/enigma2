@@ -5,7 +5,7 @@ from os import listdir, remove, rename, system
 
 from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT
 
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap, NumberActionMap, HelpableNumberActionMap
 from Components.config import config, ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, getConfigListEntry, ConfigNumber
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
@@ -316,18 +316,6 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 
 #############################################################
 
-class HelpableNumberActionMap(NumberActionMap):
-	def __init__(self, parent, context, actions, prio):
-		alist = []
-		adict = {}
-		for (action, funchelp) in actions.iteritems():
-			alist.append((action, funchelp[1]))
-			adict[action] = funchelp[0]
-		NumberActionMap.__init__(self, [context], adict, prio)
-		parent.helpList.append((self, context, alist))
-
-#############################################################
-
 TranslationHelper = [
 	["Current time", _("Current time")],
 	["NodeID", _("NodeID")],
@@ -565,24 +553,24 @@ class CCcamInfoMain(Screen):
 		else:
 			self.url = config.cccaminfo.profile.value
 
-		self["actions"] = NumberActionMap(["CCcamInfoActions"],
+		self["actions"] = HelpableNumberActionMap(self, ["CCcamInfoActions"],
 			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal,
-				"red": self.red,
-				"green": self.green,
-				"yellow": self.yellow,
-				"blue": self.blue,
-				"menu": self.menu,
-				"info": self.info,
+				"1": (self.keyNumberGlobal, menu_list[1]),
+				"2": (self.keyNumberGlobal, menu_list[2]),
+				"3": (self.keyNumberGlobal, menu_list[3]),
+				"4": (self.keyNumberGlobal, menu_list[4]),
+				"5": (self.keyNumberGlobal, menu_list[5]),
+				"6": (self.keyNumberGlobal, menu_list[6]),
+				"7": (self.keyNumberGlobal, menu_list[7]),
+				"8": (self.keyNumberGlobal, menu_list[8]),
+				"9": (self.keyNumberGlobal, menu_list[9]),
+				"0": (self.keyNumberGlobal, menu_list[0]),
+				"red": (self.red, menu_list[10]),
+				"green": (self.green, menu_list[11]),
+				"yellow": (self.yellow, menu_list[12]),
+				"blue": (self.blue, menu_list[13]),
+				"menu": (self.menu, menu_list[14]),
+				"info": (self.info, menu_list[15]),
 				"ok": self.okClicked,
 				"cancel": self.close,
 				"up": self.up,
@@ -1025,21 +1013,21 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 
 		self["actions"] = HelpableNumberActionMap(self, "CCcamInfoActions",
 			{
-				"cancel": (self.exit, _("close share view")),
-				"0": (self.getUphop, _("show cards with uphop 0")),
-				"1": (self.getUphop, _("show cards with uphop 1")),
-				"2": (self.getUphop, _("show cards with uphop 2")),
-				"3": (self.getUphop, _("show cards with uphop 3")),
-				"4": (self.getUphop, _("show cards with uphop 4")),
-				"5": (self.getUphop, _("show cards with uphop 5")),
-				"6": (self.getUphop, _("show cards with uphop 6")),
-				"7": (self.getUphop, _("show cards with uphop 7")),
-				"8": (self.getUphop, _("show cards with uphop 8")),
-				"9": (self.getUphop, _("show cards with uphop 9")),
-				"green": (self.showAll, _("show all cards")),
-				"incUphop": (self.incUphop, _("increase uphop by 1")),
-				"decUphop": (self.decUphop, _("decrease uphop by 1")),
-				"ok": (self.getServer, _("get the cards' server")),
+				"cancel": (self.exit, _("Close share view")),
+				"0": (self.getUphop, _("Show cards with uphop 0")),
+				"1": (self.getUphop, _("Show cards with uphop 1")),
+				"2": (self.getUphop, _("Show cards with uphop 2")),
+				"3": (self.getUphop, _("Show cards with uphop 3")),
+				"4": (self.getUphop, _("Show cards with uphop 4")),
+				"5": (self.getUphop, _("Show cards with uphop 5")),
+				"6": (self.getUphop, _("Show cards with uphop 6")),
+				"7": (self.getUphop, _("Show cards with uphop 7")),
+				"8": (self.getUphop, _("Show cards with uphop 8")),
+				"9": (self.getUphop, _("Show cards with uphop 9")),
+				"green": (self.showAll, _("Show all cards")),
+				"incUphop": (self.incUphop, _("Increase uphop by 1")),
+				"decUphop": (self.decUphop, _("Decrease uphop by 1")),
+				"ok": (self.getServer, _("Get the cards' servers")),
 			}, -1)
 
 		self.onLayoutFinish.append(self.getProviders)

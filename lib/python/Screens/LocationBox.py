@@ -113,7 +113,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Actions that will reset quickselect
 		self["WizardActions"] = LocationBoxActionMap(self, "WizardActions",
 			{
-				"ok": (self.ok, _("select")),
+				"ok": (self.ok, _("Select")),
 				"back": (self.cancel, _("Cancel")),
 			}, -2)
 
@@ -135,13 +135,13 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions",
 			{
-				"prevService": (self.switchToBookList, _("switch to bookmarks")),
-				"nextService": (self.switchToFileList, _("switch to filelist")),
+				"prevService": (self.switchToBookList, _("Switch to bookmarks")),
+				"nextService": (self.switchToFileList, _("Switch to filelist")),
 			}, -2)
 
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions",
 			{
-				"menu": (self.showMenu, _("menu")),
+				"menu": (self.showMenu, _("Menu")),
 			}, -2)
 
 		# Actions used by quickselect
