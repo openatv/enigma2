@@ -192,11 +192,11 @@ class TitleList(Screen, HelpableScreen):
 				self["key_green"] = StaticText(_("Add"))
 				self["key_yellow"] = StaticText(_("Edit title"))
 				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
-				{
-					"red": (self.close, _("Close title selection")),
-					"green": (self.insertWithoutEdit, "Insert without cutlist editor"),
-					"yellow": (self.movieSelected, _("Add a new title"))
-				})
+					{
+						"red": (self.close, _("Close title selection")),
+						"green": (self.insertWithoutEdit, "Insert without cutlist editor"),
+						"yellow": (self.movieSelected, _("Add a new title"))
+					})
 			def updateTags(self):
 				pass
 			def doContext(self):

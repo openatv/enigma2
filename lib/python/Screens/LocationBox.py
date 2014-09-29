@@ -115,7 +115,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			{
 				"ok": (self.ok, _("Select")),
 				"back": (self.cancel, _("Cancel")),
-			}, -2)
+			}, prio=-2)
 
 		self["DirectionActions"] = LocationBoxActionMap(self, "DirectionActions",
 			{
@@ -123,7 +123,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				"right": self.right,
 				"up": self.up,
 				"down": self.down,
-			}, -2)
+			}, prio=-2)
 
 		self["ColorActions"] = LocationBoxActionMap(self, "ColorActions",
 			{
@@ -131,18 +131,18 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				"green": self.select,
 				"yellow": self.changeName,
 				"blue": self.addRemoveBookmark,
-			}, -2)
+			}, prio=-2)
 
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions",
 			{
 				"prevService": (self.switchToBookList, _("Switch to bookmarks")),
 				"nextService": (self.switchToFileList, _("Switch to filelist")),
-			}, -2)
+			}, prio=-2)
 
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions",
 			{
 				"menu": (self.showMenu, _("Menu")),
-			}, -2)
+			}, prio=-2)
 
 		# Actions used by quickselect
 		self["NumberActions"] = NumberActionMap(["NumberActions"],

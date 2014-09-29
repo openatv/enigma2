@@ -71,12 +71,12 @@ class EGCCcamEditAddLine(ConfigListScreen,Screen):
 		self.protocol.addNotifier(self.typeChange)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions", "VirtualKeyboardActions"],
-		{
-			"cancel": self.cancel,
-			"red": self.save,
-			"green": self.cancel,
-			"showVirtualKeyboard": self.KeyText,
-		}, -2)
+			{
+				"cancel": self.cancel,
+				"red": self.save,
+				"green": self.cancel,
+				"showVirtualKeyboard": self.KeyText,
+			}, prio=-2)
 
 		self["key_red"] = Label(_("Save"))
 		self["key_green"] = Label(_("Cancel"))
@@ -171,14 +171,14 @@ class EGCCcamConfigEdit(Screen):
 		self["key_blue"] = StaticText(_("Exit"))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-		{
-			"cancel": self.keyExit,
-			"red": self.keyAdd,
-			"green": self.keyEdit,
-			"yellow": self.keyRemove,
-			"blue": self.keyExit,
+			{
+				"cancel": self.keyExit,
+				"red": self.keyAdd,
+				"green": self.keyEdit,
+				"yellow": self.keyRemove,
+				"blue": self.keyExit,
 
-		}, -2)
+			}, prio=-2)
 
 		self["statusbar"] = StaticText(_("Select a line to edit"))
 
@@ -577,7 +577,7 @@ class CCcamInfoMain(Screen):
 				"down": self.down,
 				"left": self.left,
 				"right": self.right
-			}, -2)
+			}, prio=-2)
 
 		self.onLayoutFinish.append(self.updateMenuList)
 
@@ -967,7 +967,11 @@ class CCcamInfoEcmInfoSelection(Screen):
 				list.append(x)
 		self["list"] = MenuList(list)
 
-		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.ok, "cancel": self.close}, -1)
+		self["actions"] = ActionMap(["CCcamInfoActions"],
+			{
+				"ok": self.ok,
+				"cancel": self.close
+			}, prio=-1)
 
 	def ok(self):
 		self.close(self["list"].getCurrent())
@@ -988,7 +992,7 @@ class CCcamInfoInfoScreen(Screen):
 				"down": self["text"].pageDown,
 				"left": self["text"].pageUp,
 				"right": self["text"].pageDown,
-			}, -1)
+			}, prio=-1)
 
 #############################################################
 
@@ -1028,7 +1032,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 				"incUphop": (self.incUphop, _("Increase uphop by 1")),
 				"decUphop": (self.decUphop, _("Decrease uphop by 1")),
 				"ok": (self.getServer, _("Get the cards' servers")),
-			}, -1)
+			}, prio=-1)
 
 		self.onLayoutFinish.append(self.getProviders)
 
@@ -1322,7 +1326,11 @@ class CCcamInfoSubMenu(Screen):
 		self["list"] = MenuList(list)
 		self["info"] = Label()
 
-		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.close}, -1)
+		self["actions"] = ActionMap(["CCcamInfoActions"],
+			{
+				"ok": self.okClicked,
+				"cancel": self.close
+			}, prio=-1)
 
 		self["list"].onSelectionChanged.append(self.showInfo)
 		self.onLayoutFinish.append(self.showInfo)
@@ -1370,7 +1378,11 @@ class CCcamInfoServerMenu(Screen):
 		self["list"] = CCcamList(list)
 		self["info"] = Label()
 
-		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.close}, -1)
+		self["actions"] = ActionMap(["CCcamInfoActions"],
+			{
+				"ok": self.okClicked,
+				"cancel": self.close
+			}, prio=-1)
 
 		self["list"].onSelectionChanged.append(self.showInfo)
 		self.onLayoutFinish.append(self.showInfo)
@@ -1426,7 +1438,11 @@ class CCcamInfoConfigMenu(ConfigListScreen, Screen):
 			getConfigListEntry(_("Password:"), config.cccaminfo.password),
 			getConfigListEntry(_("Port:"), config.cccaminfo.port)])
 
-		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.exit}, -2)
+		self["actions"] = ActionMap(["CCcamInfoActions"],
+			{
+				"ok": self.okClicked,
+				"cancel": self.exit
+			}, prio=-2)
 
 	def okClicked(self):
 		self.close(CCcamInfoRemoteBox(config.cccaminfo.name.value, config.cccaminfo.ip.value, config.cccaminfo.username.value, config.cccaminfo.password.value, config.cccaminfo.port.value))
@@ -1458,7 +1474,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 				"green": self.new,
 				"yellow": self.location,
 				"blue": self.edit
-			}, -1)
+			}, prio=-1)
 
 		self.onLayoutFinish.append(self.readProfiles)
 
@@ -1582,7 +1598,7 @@ class CCcamInfoShareInfo(Screen):
 				"green": self.uhopsMinus,
 				"yellow": self.maxdownPlus,
 				"blue": self.maxdownMinus
-			}, -1)
+			}, prio=-1)
 
 		self.onLayoutFinish.append(self.readShares)
 
@@ -1726,7 +1742,7 @@ class CCcamInfoConfigSwitcher(Screen):
 				"green": self.activate,
 				"yellow": self.rename,
 				"blue": self.showContent
-			}, -1)
+			}, prio=-1)
 
 		self.onLayoutFinish.append(self.showConfigs)
 
@@ -1839,7 +1855,7 @@ class CCcamInfoMenuConfig(Screen):
 				"red": self.close,
 				"green": self.save,
 				"yellow": self.location
-			}, -1)
+			}, prio=-1)
 
 		self.onLayoutFinish.append(self.showConfigs)
 
