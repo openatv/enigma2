@@ -126,7 +126,7 @@ class Harddisk:
 		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' :
 			internal = "ide" in self.phys_path
 		else:
-			internal = "pci" in self.phys_path
+			internal = "pci" in self.phys_path or "ahci" in self.phys_path
 
 		if ide_cf:
 			ret = _("External (CF)")
