@@ -15,7 +15,7 @@ from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
 
-from os import path, popen
+from os import path
 from re import search
 
 class About(Screen):
@@ -47,14 +47,20 @@ class About(Screen):
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
 
-		cmd = 'cat /proc/cpuinfo | grep "cpu MHz" -m 1 | awk -F ": " ' + "'{print $2}'"
-		try:
-			res = popen(cmd).read()
-		except:
-			res = ""
 		cpuMHz = ""
-		if res:
-			cpuMHz = "   (" + res.replace("\n", "") + " MHz)"
+		if path.exists('/proc/cpuinfo'):
+			f = open('/proc/cpuinfo', 'r')
+			temp = f.readlines()
+			f.close()
+			try:
+				for lines in temp:
+					lisp = lines.split(': ')
+					if lisp[0].startswith('cpu MHz'):
+						#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
+						cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
+						break
+			except:
+				pass
 
 		AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
