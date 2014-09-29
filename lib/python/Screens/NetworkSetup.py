@@ -369,8 +369,8 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.cancel, _("Exit MAC-address configuration")),
-			"green": (self.ok, _("Activate MAC-address configuration")),
+			"red": (self.cancel, _("Exit MAC address configuration")),
+			"green": (self.ok, _("Activate MAC address configuration")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -444,15 +444,15 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.keyCancel, _("exit network adapter configuration")),
-			"ok": (self.keySave, _("activate network adapter configuration")),
+			"cancel": (self.keyCancel, _("Exit network adapter configuration")),
+			"ok": (self.keySave, _("Activate network adapter configuration")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.keyCancel, _("exit network adapter configuration")),
-			"green": (self.keySave, _("activate network adapter configuration")),
-			"blue": (self.KeyBlue, _("open nameserver configuration")),
+			"red": (self.keyCancel, _("Exit network adapter configuration")),
+			"green": (self.keySave, _("Activate network adapter configuration")),
+			"blue": (self.KeyBlue, _("Open nameserver configuration")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -846,21 +846,21 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
 			{
-			"up": (self.up, _("move up to previous entry")),
-			"down": (self.down, _("move down to next entry")),
-			"left": (self.left, _("move up to first entry")),
-			"right": (self.right, _("move down to last entry")),
+			"up": (self.up, _("Move up to previous entry")),
+			"down": (self.down, _("Move down to next entry")),
+			"left": (self.left, _("Move up to first entry")),
+			"right": (self.right, _("Move down to last entry")),
 			})
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("exit networkadapter setup menu")),
-			"ok": (self.ok, _("select menu entry")),
+			"cancel": (self.close, _("Exit network adapter setup menu")),
+			"ok": (self.ok, _("Select menu entry")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("exit networkadapter setup menu")),
+			"red": (self.close, _("Exit network adapter setup menu")),
 			})
 
 		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
@@ -1601,21 +1601,21 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 
 		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
 			{
-			"up": (self.up, _("move up to previous entry")),
-			"down": (self.down, _("move down to next entry")),
-			"left": (self.left, _("move up to first entry")),
-			"right": (self.right, _("move down to last entry")),
+			"up": (self.up, _("Move up to previous entry")),
+			"down": (self.down, _("Move down to next entry")),
+			"left": (self.left, _("Move up to first entry")),
+			"right": (self.right, _("Move down to last entry")),
 			})
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("exit mounts setup menu")),
-			"ok": (self.ok, _("select menu entry")),
+			"cancel": (self.close, _("Exit mounts setup menu")),
+			"ok": (self.ok, _("Select menu entry")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("exit networkadapter setup menu")),
+			"red": (self.close, _("Exit network adapter setup menu")),
 			})
 
 		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
