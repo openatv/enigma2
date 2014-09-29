@@ -32,58 +32,58 @@ from urlparse import urlparse, urlunparse
 ### Some EGAMI Addition to CCcamInfo
 
 class EGCCcamEditAddLine(ConfigListScreen,Screen):
-    skin = """		    
-	<screen position="c-300,c-210" size="600,420" title="EGAMI CCcam Lines Editor">
-		<widget name="config" position="10,5" size="e-20,e-90" scrollbarMode="showOnDemand" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-300,e-45" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c-150,e-45" size="140,40" alphatest="on" />
-		<widget name="HelpText" position="10,e-90" zPosition="1" size="600,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_red" position="c-300,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="c-150,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-	</screen>"""
-    def __init__(self, session, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode):
-	self.skin = EGCCcamEditAddLine.skin
-	Screen.__init__(self, session)
-	
-	self.def_mode = def_mode
-	des = str(def_deskey)
-	des = list(des)
-	# N: 127.0.0.1 10000 dummy dummy 01 02 03 04 05 06 07 08 09 10 11 12 13 14
-	def_des2 = des[0] + des[1] + " " + des[2] + des[3] + " " + des[4] + des[5] + " " + des[6] + des[7] + " " + des[8] + des[9] + " " + des[10] + des[11] + " " + des[12] + des[13] + " " + des[14] + des[15] + " " + des[16] + des[17] + " " + des[18] + des[19] + " " + des[20] + des[21] + " " + des[22] + des[23] + " " + des[24] + des[25] + " " + des[26] + des[27]   
-	if def_protocol == "N:":
-	  self.def_line = def_protocol + " " + def_domain + " " + def_port + " " + def_username + " " + def_password + " " + def_des2
-	else:
-	  self.def_line = def_protocol + " " + def_domain + " " + def_port + " " + def_username + " " + def_password
-	 
-	print self.def_line  
-	
-	self.protocol = ConfigSelection(default = def_protocol, choices = [("C:", _("CCcam")), ("N:", _("Newcamd"))])
-	self.domain = ConfigText(default = def_domain, fixed_size = True)
-	self.port = ConfigNumber(default = def_port)
-	self.username = ConfigText(default = def_username, fixed_size = True)
-	self.password = ConfigText(default = def_password, fixed_size = True)
-	self.deskey = ConfigNumber(default = def_deskey)
+	skin = """
+		<screen position="c-300,c-210" size="600,420" title="EGAMI CCcam Lines Editor">
+		    <widget name="config" position="10,5" size="e-20,e-90" scrollbarMode="showOnDemand" />
+		    <ePixmap pixmap="skin_default/buttons/red.png" position="c-300,e-45" size="140,40" alphatest="on" />
+		    <ePixmap pixmap="skin_default/buttons/green.png" position="c-150,e-45" size="140,40" alphatest="on" />
+		    <widget name="HelpText" position="10,e-90" zPosition="1" size="600,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		    <widget name="key_red" position="c-300,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		    <widget name="key_green" position="c-150,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		</screen>"""
+	def __init__(self, session, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode):
+		self.skin = EGCCcamEditAddLine.skin
+		Screen.__init__(self, session)
 
-	self.createSetup()
-		
-	ConfigListScreen.__init__(self, self.list, session = session)
-	
-	self.protocol.addNotifier(self.typeChange)
-	
-	self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions", "VirtualKeyboardActions"],
-	{
-		"cancel": self.cancel,
-		"red": self.save,
-		"green": self.cancel,
-		"showVirtualKeyboard": self.KeyText,
-	}, -2)
-		
-	self["key_red"] = Label(_("Save"))
-	self["key_green"] = Label(_("Cancel"))
-	self["HelpText"] = Label(_("Please to press button TXT to open Virtual keyboard"))
+		self.def_mode = def_mode
+		des = str(def_deskey)
+		des = list(des)
+		# N: 127.0.0.1 10000 dummy dummy 01 02 03 04 05 06 07 08 09 10 11 12 13 14
+		def_des2 = des[0] + des[1] + " " + des[2] + des[3] + " " + des[4] + des[5] + " " + des[6] + des[7] + " " + des[8] + des[9] + " " + des[10] + des[11] + " " + des[12] + des[13] + " " + des[14] + des[15] + " " + des[16] + des[17] + " " + des[18] + des[19] + " " + des[20] + des[21] + " " + des[22] + des[23] + " " + des[24] + des[25] + " " + des[26] + des[27]
+		if def_protocol == "N:":
+			self.def_line = def_protocol + " " + def_domain + " " + def_port + " " + def_username + " " + def_password + " " + def_des2
+		else:
+			self.def_line = def_protocol + " " + def_domain + " " + def_port + " " + def_username + " " + def_password
+
+		print self.def_line
+
+		self.protocol = ConfigSelection(default=def_protocol, choices=[("C:", _("CCcam")), ("N:", _("Newcamd"))])
+		self.domain = ConfigText(default=def_domain, fixed_size=True)
+		self.port = ConfigNumber(default=def_port)
+		self.username = ConfigText(default=def_username, fixed_size=True)
+		self.password = ConfigText(default=def_password, fixed_size=True)
+		self.deskey = ConfigNumber(default=def_deskey)
+
+		self.createSetup()
+
+		ConfigListScreen.__init__(self, self.list, session=session)
+
+		self.protocol.addNotifier(self.typeChange)
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions", "VirtualKeyboardActions"],
+		{
+			"cancel": self.cancel,
+			"red": self.save,
+			"green": self.cancel,
+			"showVirtualKeyboard": self.KeyText,
+		}, -2)
+
+		self["key_red"] = Label(_("Save"))
+		self["key_green"] = Label(_("Cancel"))
+		self["HelpText"] = Label(_("Please to press button TXT to open Virtual keyboard"))
 
 
-    def KeyText(self):
+	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
 			if sel == self.domain or sel == self.username or sel == self.password:
@@ -92,60 +92,60 @@ class EGCCcamEditAddLine(ConfigListScreen,Screen):
 			self.vkvar = sel[0]
 			if self.vkvar == _("Domain") + ':' or self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
-    
-    def VirtualKeyBoardCallback(self, callback = None):
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
-			
-    def typeChange(self, value):
+
+	def typeChange(self, value):
 		self.createSetup()
 		self["config"].l.setList(self.list)
-		
-    def createSetup(self):
+
+	def createSetup(self):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Protocol:"), self.protocol))
-        	self.list.append(getConfigListEntry(_("Domain:"), self.domain))
-        	self.list.append(getConfigListEntry(_("Port:"), self.port))
-        	self.list.append(getConfigListEntry(_("Username:"), self.username))
-        	self.list.append(getConfigListEntry(_("Password:"), self.password))
+		self.list.append(getConfigListEntry(_("Domain:"), self.domain))
+		self.list.append(getConfigListEntry(_("Port:"), self.port))
+		self.list.append(getConfigListEntry(_("Username:"), self.username))
+		self.list.append(getConfigListEntry(_("Password:"), self.password))
 		if self.protocol.value == "N:":
-        		self.list.append(getConfigListEntry(_("NewCamd DES Key:"), self.deskey))
-		
-    def save(self):
-	if self.protocol.value == "N:":
-	  des = str(self.deskey.value)
-	  des = "0" + des
-	  des = list(des)
-	  # N: 127.0.0.1 10000 dummy dummy 01 02 03 04 05 06 07 08 09 10 11 12 13 14
-	  des = des[0] + des[1] + " " + des[2] + des[3] + " " + des[4] + des[5] + " " + des[6] + des[7] + " " + des[8] + des[9] + " " + des[10] + des[11] + " " + des[12] + des[13] + " " + des[14] + des[15] + " " + des[16] + des[17] + " " + des[18] + des[19] + " " + des[20] + des[21] + " " + des[22] + des[23] + " " + des[24] + des[25] + " " + des[26] + des[27]
-	  line = self.protocol.value + " " + self.domain.value + " " + str(self.port.value) + " " + self.username.value + " " + self.password.value + " " + des
-	else:
-	  line = self.protocol.value + " " + self.domain.value + " " + str(self.port.value) + " " + self.username.value + " " + self.password.value
+			self.list.append(getConfigListEntry(_("NewCamd DES Key:"), self.deskey))
 
-	print self.def_line
-	print line
-	
-	if self.def_mode == "EDIT":
-		  print "EDIT Mode"
-		  zrodlo = open('/etc/CCcam.cfg').readlines()
-		  cel = open('/etc/CCcam.cfg', 'w')
-		  for s in zrodlo:
-			  cel.write(s.replace(self.def_line , line))
-		  cel.close()
-	else:
-		  print "ADD Mode"
-		  with open("/etc/CCcam.cfg", "r+") as f:
-		      old = f.read() # read everything in the file
-		      f.seek(0) # rewind
-		      f.write(line + "\n" + old) # write the new line before
-		  f.close()
-	self.close()	
-		
-    def cancel(self):
-	    self.close()
-	    
+	def save(self):
+		if self.protocol.value == "N:":
+			des = str(self.deskey.value)
+			des = "0" + des
+			des = list(des)
+			# N: 127.0.0.1 10000 dummy dummy 01 02 03 04 05 06 07 08 09 10 11 12 13 14
+			des = des[0] + des[1] + " " + des[2] + des[3] + " " + des[4] + des[5] + " " + des[6] + des[7] + " " + des[8] + des[9] + " " + des[10] + des[11] + " " + des[12] + des[13] + " " + des[14] + des[15] + " " + des[16] + des[17] + " " + des[18] + des[19] + " " + des[20] + des[21] + " " + des[22] + des[23] + " " + des[24] + des[25] + " " + des[26] + des[27]
+			line = self.protocol.value + " " + self.domain.value + " " + str(self.port.value) + " " + self.username.value + " " + self.password.value + " " + des
+		else:
+			line = self.protocol.value + " " + self.domain.value + " " + str(self.port.value) + " " + self.username.value + " " + self.password.value
+
+		print self.def_line
+		print line
+
+		if self.def_mode == "EDIT":
+			print "EDIT Mode"
+			zrodlo = open('/etc/CCcam.cfg').readlines()
+			cel = open('/etc/CCcam.cfg', 'w')
+			for s in zrodlo:
+				cel.write(s.replace(self.def_line, line))
+			cel.close()
+		else:
+			print "ADD Mode"
+			with open("/etc/CCcam.cfg", "r+") as f:
+				old = f.read() # read everything in the file
+				f.seek(0) # rewind
+				f.write(line + "\n" + old) # write the new line before
+				f.close()
+		self.close()
+
+	def cancel(self):
+		self.close()
+
 class EGCCcamConfigEdit(Screen):
 	skin = """
 	<screen position="c-550,c-210" size="950,420" title="">
@@ -164,12 +164,12 @@ class EGCCcamConfigEdit(Screen):
 	def __init__(self, session):
 		self.skin = EGCCcamConfigEdit.skin
 		Screen.__init__(self, session)
-		
+
 		self["key_red"] = StaticText(_("Add"))
 		self["key_green"] = StaticText(_("Edit"))
 		self["key_yellow"] = StaticText(_("Remove"))
 		self["key_blue"] = StaticText(_("Exit"))
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"cancel": self.keyExit,
@@ -184,80 +184,80 @@ class EGCCcamConfigEdit(Screen):
 
 		self.list= []
 		self["menu"] = MenuList(self.list)
-		
+
 		self.readConfig()
 
 	def readConfig(self):
 		self.setTitle(_("Edit CCcam.cfg Lines"))
 		self.initSelectionList()
 		self.list= []
-		
+
 		f = open('/etc/CCcam.cfg', 'r')
 		for line in f.readlines():
 			if line.startswith('C:'):
-			  print "Find C: lines in CCcam.cfg"
-			  line = line.strip()
-			  print line
-			  self.list.append(line)
+				print "Find C: lines in CCcam.cfg"
+				line = line.strip()
+				print line
+				self.list.append(line)
 			elif line.startswith('N:'):
-			  print "Find N: lines in CCcam.cfg"
-			  line = line.strip()
-			  print line
-			  self.list.append(line)
+				print "Find N: lines in CCcam.cfg"
+				line = line.strip()
+				print line
+				self.list.append(line)
 		f.close()
-  
-		self["menu"].setList(self.list)	
-		
+
+		self["menu"].setList(self.list)
+
 	def initSelectionList(self):
 		self.list = []
 		self["menu"].setList(self.list)
 
 	def keyAdd(self):
-	      def_protocol = "N:"
-	      def_domain = "address.dyndns.org"
-	      def_username = "username"
-	      def_password = "password"
-	      def_deskey = "0102030405060708091011121314"
-	      def_port = "12000"
-	      def_mode = "ADD"
-	      self.session.openWithCallback(self.readConfig, EGCCcamEditAddLine, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode)
+		def_protocol = "N:"
+		def_domain = "address.dyndns.org"
+		def_username = "username"
+		def_password = "password"
+		def_deskey = "0102030405060708091011121314"
+		def_port = "12000"
+		def_mode = "ADD"
+		self.session.openWithCallback(self.readConfig, EGCCcamEditAddLine, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode)
 
 	def keyEdit(self):
-	  mysel = self['menu'].getCurrent()
-	  if mysel:
-	      mysel = mysel.split()
-	      def_protocol = mysel[0]
-	      def_domain = mysel[1]
-	      def_port = mysel[2]
-	      def_username = mysel[3]
-	      def_password = mysel[4]
-	      if mysel[0] == "N:":
-		def_deskey = mysel[5]+mysel[6]+mysel[7]+mysel[8]+mysel[9]+mysel[10]+mysel[11]+mysel[12]+mysel[13]+mysel[14]+mysel[15]+mysel[16]+mysel[17]+mysel[18]
-	      else:
-		def_deskey = "0102030405060708091011121314"
-	      def_mode = "EDIT"
-	      self.session.openWithCallback(self.readConfig, EGCCcamEditAddLine, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode)
-	  else:
-	    mysel
-	  
+		mysel = self['menu'].getCurrent()
+		if mysel:
+			mysel = mysel.split()
+			def_protocol = mysel[0]
+			def_domain = mysel[1]
+			def_port = mysel[2]
+			def_username = mysel[3]
+			def_password = mysel[4]
+			if mysel[0] == "N:":
+				def_deskey = mysel[5]+mysel[6]+mysel[7]+mysel[8]+mysel[9]+mysel[10]+mysel[11]+mysel[12]+mysel[13]+mysel[14]+mysel[15]+mysel[16]+mysel[17]+mysel[18]
+			else:
+				def_deskey = "0102030405060708091011121314"
+			def_mode = "EDIT"
+			self.session.openWithCallback(self.readConfig, EGCCcamEditAddLine, def_protocol, def_domain, def_port, def_username, def_password, def_deskey, def_mode)
+		else:
+			mysel
+
 	def keyRemove(self):
-	      print "keyRemove2"
-	      mysel = self['menu'].getCurrent()    
-	      if mysel:
-		zrodlo = open('/etc/CCcam.cfg').readlines()
-		cel = open('/etc/CCcam.cfg', 'w')
-		for s in zrodlo:
-			cel.write(s.replace(mysel , "#"))
-		cel.close()
-	      else:
-		mysel
-		
-	      self.readConfig()
-    
+		print "keyRemove2"
+		mysel = self['menu'].getCurrent()
+		if mysel:
+			zrodlo = open('/etc/CCcam.cfg').readlines()
+			cel = open('/etc/CCcam.cfg', 'w')
+			for s in zrodlo:
+				cel.write(s.replace(mysel, "#"))
+			cel.close()
+		else:
+			mysel
+
+		self.readConfig()
+
 	def keyExit(self):
-	      print "keyExit"
-	      self.close()
-	      
+		print "keyExit"
+		self.close()
+
 ### END EGAMI ADDITION TO CCcamInfo
 
 #TOGGLE_SHOW = InfoBar.toggleShow
@@ -481,19 +481,19 @@ def CCcamServerListEntry(name, color):
 
 def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
 	res = [(hostname, type, caid, system, uphops, maxdown),
-		   MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname),
-		   MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
-		   MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
-		   MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
-		   MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ") + uphops),
-		   MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
+			MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname),
+			MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
+			MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
+			MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
+			MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ") + uphops),
+			MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
 	return res
 
 def CCcamShareViewListEntry(caidprovider, providername, numberofcards, numberofreshare):
 	res = [(caidprovider, providername, numberofcards),
-		   MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername),
-		   MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
-		   MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
+			MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername),
+			MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
+			MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
 	return res
 
 def CCcamConfigListEntry(file):
@@ -692,12 +692,12 @@ class CCcamInfoMain(Screen):
 
 			elif sel == _("Switch config"):
 				self.session.openWithCallback(self.workingFinished, CCcamInfoConfigSwitcher)
-			
+
 			elif sel == _("CCcam.cfg Basic Line Editor"):
-			  if fileExists(CFG):
-			      self.session.open(EGCCcamConfigEdit)
-			  else:
-			      self.showInfo(_("Error reading " + CFG + " File is missing!"), _("Error"))
+				if fileExists(CFG):
+					self.session.open(EGCCcamConfigEdit)
+				else:
+					self.showInfo(_("Error reading " + CFG + " File is missing!"), _("Error"))
 
 			else:
 				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis plugin shows you the status of your CCcam.") % (VERSION, DATE), _("About"))

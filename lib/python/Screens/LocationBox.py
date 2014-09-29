@@ -42,7 +42,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if not inhibitDirs: inhibitDirs = []
 		if not inhibitMounts: inhibitMounts = []
 		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self, handleTimeout = False)
+		NumericalTextInput.__init__(self, handleTimeout=False)
 		HelpableScreen.__init__(self)
 
 		# Set useable chars
@@ -73,7 +73,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.inhibitDirs = inhibitDirs
 
 		# Initialize FileList
-		self["filelist"] = FileList(currDir, showDirectories = True, showFiles = False, inhibitMounts = inhibitMounts, inhibitDirs = inhibitDirs)
+		self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs)
 
 		# Initialize BookList
 		self["booklist"] = MenuList(self.bookmarks)
@@ -106,7 +106,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 			def action(self, contexts, action):
 				# Reset Quickselect
-				self.box.timeout(force = True)
+				self.box.timeout(force=True)
 
 				return HelpableActionMap.action(self, contexts, action)
 
@@ -482,7 +482,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					break
 				idx += 1
 
-	def timeout(self, force = False):
+	def timeout(self, force=False):
 		# Timeout Key
 		if not force and self.qs_timer_type == 0:
 			# Try to select what was typed
@@ -509,8 +509,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def __repr__(self):
 		return str(type(self)) + "(" + self.text + ")"
 
-def MovieLocationBox(session, text, dir, minFree = None):
-	return LocationBox(session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
+def MovieLocationBox(session, text, dir, minFree=None):
+	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree)
 
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):

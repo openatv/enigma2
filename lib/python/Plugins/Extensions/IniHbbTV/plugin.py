@@ -137,11 +137,11 @@ def _pack(opcode, params=None, reserved=0):
 
 class MMSStreamURL:
 	headers = [
-				   'GET %s HTTP/1.0'
-				  ,'Accept: */* '
-				  ,'User-Agent: NSPlayer/7.10.0.3059 '
-				  ,'Host: %s '
-				  ,'Connection: Close '
+				'GET %s HTTP/1.0',
+				'Accept: */* ',
+				'User-Agent: NSPlayer/7.10.0.3059 ',
+				'Host: %s ',
+				'Connection: Close '
 			]
 
 	def __init__(self):
@@ -186,74 +186,74 @@ class MMSStreamURL:
 class OpCodeSet:
 	def __init__(self):
 		self._opcode_ = {
-			 "OP_UNKNOWN"						: 0x0000
-			,"OP_HBBTV_EXIT"					: 0x0001
-			,"OP_HBBTV_OPEN_URL"				: 0x0002
-			,"OP_HBBTV_LOAD_AIT"				: 0x0003
-			,"OP_HBBTV_UNLOAD_AIT"				: 0x0004
-			,"OP_HBBTV_FULLSCREEN"				: 0x0005
-			,"OP_HBBTV_TITLE"					: 0x0006
-			,"OP_HBBTV_RETRY_OPEN_URL"			: 0x0009
-			,"OP_HBBTV_CHANGE_CHANNEL"			: 0x000A
-			,"OP_OIPF_GET_CHANNEL_INFO_URL"		: 0x0101
-			,"OP_OIPF_GET_CHANNEL_INFO_AIT"		: 0x0102
-			,"OP_OIPF_GET_CHANNEL_INFO_LIST"	: 0x0103
-			,"OP_VOD_URI"						: 0x0201
-			,"OP_VOD_PLAY"						: 0x0202
-			,"OP_VOD_STOP"						: 0x0203
-			,"OP_VOD_PAUSE"						: 0x0204
-			,"OP_VOD_STATUS"					: 0x0205
-			,"OP_VOD_FORBIDDEN"					: 0x0206
-			,"OP_VOD_STOPED"					: 0x0207
-			,"OP_VOD_SPEED_CTRL"				: 0x0208
-			,"OP_VOD_SEEK_CTRL"					: 0x0209
-			,"OP_BROWSER_OPEN_URL"				: 0x0301
-			,"OP_BROWSER_VKBD_REQ"				: 0x0309
-			,"OP_BROWSER_VKBD_RES"				: 0x030A
-			,"OP_BROWSER_VKBD_PASTE_REQ"		: 0x030B
-			,"OP_BROWSER_VKBD_PASTE_KEY"		: 0x030C
-			,"OP_BROWSER_VKBD_PASTE_MOUSE"		: 0x030D
-			,"OP_BROWSER_MENU_REQ"				: 0x030E
-			,"OP_BROWSER_MENU_RES"				: 0x030F
-			,"OP_DVBAPP_VOL_UP"					: 0x0401
-			,"OP_DVBAPP_VOL_DOWN"				: 0x0402
-			,"OP_SYSTEM_OUT_OF_MEMORY"			: 0x0501
-			,"OP_SYSTEM_NOTIFY_MY_PID"			: 0x0502
+			"OP_UNKNOWN"				: 0x0000,
+			"OP_HBBTV_EXIT"				: 0x0001,
+			"OP_HBBTV_OPEN_URL"			: 0x0002,
+			"OP_HBBTV_LOAD_AIT"			: 0x0003,
+			"OP_HBBTV_UNLOAD_AIT"			: 0x0004,
+			"OP_HBBTV_FULLSCREEN"			: 0x0005,
+			"OP_HBBTV_TITLE"			: 0x0006,
+			"OP_HBBTV_RETRY_OPEN_URL"		: 0x0009,
+			"OP_HBBTV_CHANGE_CHANNEL"		: 0x000A,
+			"OP_OIPF_GET_CHANNEL_INFO_URL"		: 0x0101,
+			"OP_OIPF_GET_CHANNEL_INFO_AIT"		: 0x0102,
+			"OP_OIPF_GET_CHANNEL_INFO_LIST"		: 0x0103,
+			"OP_VOD_URI"				: 0x0201,
+			"OP_VOD_PLAY"				: 0x0202,
+			"OP_VOD_STOP"				: 0x0203,
+			"OP_VOD_PAUSE"				: 0x0204,
+			"OP_VOD_STATUS"				: 0x0205,
+			"OP_VOD_FORBIDDEN"			: 0x0206,
+			"OP_VOD_STOPED"				: 0x0207,
+			"OP_VOD_SPEED_CTRL"			: 0x0208,
+			"OP_VOD_SEEK_CTRL"			: 0x0209,
+			"OP_BROWSER_OPEN_URL"			: 0x0301,
+			"OP_BROWSER_VKBD_REQ"			: 0x0309,
+			"OP_BROWSER_VKBD_RES"			: 0x030A,
+			"OP_BROWSER_VKBD_PASTE_REQ"		: 0x030B,
+			"OP_BROWSER_VKBD_PASTE_KEY"		: 0x030C,
+			"OP_BROWSER_VKBD_PASTE_MOUSE"		: 0x030D,
+			"OP_BROWSER_MENU_REQ"			: 0x030E,
+			"OP_BROWSER_MENU_RES"			: 0x030F,
+			"OP_DVBAPP_VOL_UP"			: 0x0401,
+			"OP_DVBAPP_VOL_DOWN"			: 0x0402,
+			"OP_SYSTEM_OUT_OF_MEMORY"		: 0x0501,
+			"OP_SYSTEM_NOTIFY_MY_PID"		: 0x0502
 		}
 		self._opstr_ = {
-			 0x0000 : "OP_UNKNOWN"
-			,0x0001 : "OP_HBBTV_EXIT"
-			,0x0002 : "OP_HBBTV_OPEN_URL"
-			,0x0003 : "OP_HBBTV_LOAD_AIT"
-			,0x0004 : "OP_HBBTV_UNLOAD_AIT"
-			,0x0005 : "OP_HBBTV_FULLSCREEN"
-			,0x0006 : "OP_HBBTV_TITLE"
-			,0x0009 : "OP_HBBTV_RETRY_OPEN_URL"
-			,0x000A : "OP_HBBTV_CHANGE_CHANNEL"
-			,0x0101 : "OP_OIPF_GET_CHANNEL_INFO_URL"
-			,0x0102 : "OP_OIPF_GET_CHANNEL_INFO_AIT"
-			,0x0103 : "OP_OIPF_GET_CHANNEL_INFO_LIST"
-			,0x0201 : "OP_VOD_URI"
-			,0x0202 : "OP_VOD_PLAY"
-			,0x0203 : "OP_VOD_STOP"
-			,0x0204 : "OP_VOD_PAUSE"
-			,0x0205 : "OP_VOD_STATUS"
-			,0x0206 : "OP_VOD_FORBIDDEN"
-			,0x0207 : "OP_VOD_STOPED"
-			,0x0208 : "OP_VOD_SPEED_CTRL"
-			,0x0209 : "OP_VOD_SEEK_CTRL"
-			,0x0301 : "OP_BROWSER_OPEN_URL"
-			,0x0309 : "OP_BROWSER_VKBD_REQ"
-			,0x030A : "OP_BROWSER_VKBD_RES"
-			,0x030B : "OP_BROWSER_VKBD_PASTE_REQ"
-			,0x030C : "OP_BROWSER_VKBD_PASTE_KEY"
-			,0x030D : "OP_BROWSER_VKBD_PASTE_MOUSE"
-			,0x030E : "OP_BROWSER_MENU_REQ"
-			,0x030F : "OP_BROWSER_MENU_RES"
-			,0x0401 : "OP_DVBAPP_VOL_UP"
-			,0x0402 : "OP_DVBAPP_VOL_DOWN"
-			,0x0501 : "OP_SYSTEM_OUT_OF_MEMORY"
-			,0x0502 : "OP_SYSTEM_NOTIFY_MY_PID"
+			0x0000 : "OP_UNKNOWN",
+			0x0001 : "OP_HBBTV_EXIT",
+			0x0002 : "OP_HBBTV_OPEN_URL",
+			0x0003 : "OP_HBBTV_LOAD_AIT",
+			0x0004 : "OP_HBBTV_UNLOAD_AIT",
+			0x0005 : "OP_HBBTV_FULLSCREEN",
+			0x0006 : "OP_HBBTV_TITLE",
+			0x0009 : "OP_HBBTV_RETRY_OPEN_URL",
+			0x000A : "OP_HBBTV_CHANGE_CHANNEL",
+			0x0101 : "OP_OIPF_GET_CHANNEL_INFO_URL",
+			0x0102 : "OP_OIPF_GET_CHANNEL_INFO_AIT",
+			0x0103 : "OP_OIPF_GET_CHANNEL_INFO_LIST",
+			0x0201 : "OP_VOD_URI",
+			0x0202 : "OP_VOD_PLAY",
+			0x0203 : "OP_VOD_STOP",
+			0x0204 : "OP_VOD_PAUSE",
+			0x0205 : "OP_VOD_STATUS",
+			0x0206 : "OP_VOD_FORBIDDEN",
+			0x0207 : "OP_VOD_STOPED",
+			0x0208 : "OP_VOD_SPEED_CTRL",
+			0x0209 : "OP_VOD_SEEK_CTRL",
+			0x0301 : "OP_BROWSER_OPEN_URL",
+			0x0309 : "OP_BROWSER_VKBD_REQ",
+			0x030A : "OP_BROWSER_VKBD_RES",
+			0x030B : "OP_BROWSER_VKBD_PASTE_REQ",
+			0x030C : "OP_BROWSER_VKBD_PASTE_KEY",
+			0x030D : "OP_BROWSER_VKBD_PASTE_MOUSE",
+			0x030E : "OP_BROWSER_MENU_REQ",
+			0x030F : "OP_BROWSER_MENU_RES",
+			0x0401 : "OP_DVBAPP_VOL_UP",
+			0x0402 : "OP_DVBAPP_VOL_DOWN",
+			0x0501 : "OP_SYSTEM_OUT_OF_MEMORY",
+			0x0502 : "OP_SYSTEM_NOTIFY_MY_PID"
 		}
 
 	def get(self, opstr):
@@ -790,7 +790,7 @@ class HbbTVWindow(Screen, InfoBarNotifications):
 
 		Screen.__init__(self, session)
 		InfoBarNotifications.__init__(self)
-		self.__event_tracker = ServiceEventTracker(screen = self, eventmap = {
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evUser+20: self._serviceForbiden,
 			iPlayableService.evStart: self._serviceStarted,
 			iPlayableService.evEOF: self._serviceEOF,
@@ -838,7 +838,7 @@ class HbbTVWindow(Screen, InfoBarNotifications):
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		position,length = 0,0
 		try:
-			(position,length) = self.getVodPlayTime()
+			(position, length) = self.getVodPlayTime()
 			self._vod_length = length
 			if position == -1 and length == -1:
 				raise Exception("Can't get play status")
@@ -1191,7 +1191,7 @@ class OperaBrowserPreferenceWindow(ConfigListScreen, Screen):
 		self.menulist = []
 		ConfigListScreen.__init__(self, self.menulist)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions", ], {
+		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "WizardActions", "ColorActions", "SetupActions"], {
 			"red"	 : self.keyRed,
 			"green"	 : self.keyGreen,
 			"ok"	 : self.keyOK,
@@ -1229,7 +1229,7 @@ class OperaBrowserPreferenceWindow(ConfigListScreen, Screen):
 	def keyGreen(self):
 		url = self["url"].getText()
 		if strIsEmpty(url):
-			self.session.open(MessageBox, _('Invalid URL!!(Empty)\nPlease, Input to the URL.'), type = MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _('Invalid URL!!(Empty)\nPlease, Input to the URL.'), type=MessageBox.TYPE_INFO)
 			return
 		mode = 0
 		if url.find('/usr/local/manual') > 0:
@@ -1262,7 +1262,7 @@ class OperaBrowserPreferenceWindow(ConfigListScreen, Screen):
 		if not strIsEmpty(self._currentPageUrl):
 			l.append(("current", _("Current Page")))
 		l.append(("direct", _("Direct Input")))
-		self.menuItemStartpage = ConfigSelection(default="startpage", choices = l)
+		self.menuItemStartpage = ConfigSelection(default="startpage", choices=l)
 		self.menuEntryStartpage = getConfigListEntry(_("Startpage"), self.menuItemStartpage)
 		self.resetMenuList()
 
@@ -1579,7 +1579,7 @@ class OperaBrowserBookmarkWindow(Screen):
 		data = self["bookmarklist"].getCurrent()[1]
 		url = data.mUrl.strip()
 		if len(url) == 0:
-			self.session.open(MessageBox, _("Can't open selected bookmark.\n   - URL data is empty!!"), type = MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Can't open selected bookmark.\n   - URL data is empty!!"), type=MessageBox.TYPE_INFO)
 			return
 		mode = data.mType
 		if mode:
@@ -1724,19 +1724,21 @@ class OperaBrowser(Screen):
 		</screen>
 		""" % (MENUBAR_ITEM_HEIGHT+30, SUBMENULIST_WIDTH, SUBMENULIST_WIDTH+50+SUBMENULIST_NEXT, MENUBAR_ITEM_HEIGHT+30, SUBMENULIST_WIDTH)# modify menu
 
-	MENUITEMS_LIST =[[(_('Open Startpage'), None), (_('Open URL'), None), (_('Start/Stop'),None), (_('Exit'), None)],
-			 [(_('Bookmark'), None), (_('Preference'), None)],
-			 [(_('About'), None), (_('Help'), None)]]
+	MENUITEMS_LIST =[
+		[(_('Open Startpage'), None), (_('Open URL'), None), (_('Start/Stop'),None), (_('Exit'), None)],
+		[(_('Bookmark'), None), (_('Preference'), None)],
+		[(_('About'), None), (_('Help'), None)]
+	]
 	def __init__(self, session, url=None):
 		Screen.__init__(self, session)
 		self["actions"] = ActionMap(["DirectionActions", "MenuActions", "OkCancelActions"], {
-			 "cancel" : self.keyCancel
-			,"ok" : self.keyOK
-			,"left" : self.keyLeft
-			,"right" : self.keyRight
-			,"up" : self.keyUp
-			,"down" : self.keyDown
-			,"menu" : self.keyMenu
+			"cancel" : self.keyCancel,
+			"ok" : self.keyOK,
+			"left" : self.keyLeft,
+			"right" : self.keyRight,
+			"up" : self.keyUp,
+			"down" : self.keyDown,
+			"menu" : self.keyMenu
 		}, -2)
 
 		self._terminatedBrowser = True
@@ -1913,7 +1915,7 @@ class OperaBrowser(Screen):
 			return
 		self.session.openWithCallback(self.cbUrlText, VirtualKeyBoard, title=(_("Please enter URL here")), text='http://')
 	def _cmd_on_About(self):
-		self.session.open(MessageBox, _('Opera Web Browser Plugin v1.0'), type = MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, _('Opera Web Browser Plugin v1.0'), type=MessageBox.TYPE_INFO)
 	def _cmd_on_Exit(self):
 		self.close()
 	def _cmd_on_StartStop(self):
@@ -1976,7 +1978,7 @@ class OperaBrowser(Screen):
 			return
 		if self.currentListView.getCurrent()[1] is None:
 			self.doCommand(self.currentListView.getCurrent()[0])
-			#self.session.open(MessageBox, _(self.currentListView.getCurrent()[0]), type = MessageBox.TYPE_INFO)
+			#self.session.open(MessageBox, _(self.currentListView.getCurrent()[0]), type=MessageBox.TYPE_INFO)
 			return
 		self.keyRight()
 

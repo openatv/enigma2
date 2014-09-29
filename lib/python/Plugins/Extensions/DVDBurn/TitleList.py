@@ -36,11 +36,11 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="546,296" zPosition="3" transparent="1" >
 				<convert type="TemplatedMultiContent">
 					{"template": [
-							MultiContentEntryText(pos = (0, 0), size = (360, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 Title,
-							MultiContentEntryText(pos = (0, 20), size = (360, 17), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 description,
-							MultiContentEntryText(pos = (366, 6), size = (152, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 channel,
-							MultiContentEntryText(pos = (366, 20), size = (102, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 begin time,
-							MultiContentEntryText(pos = (470, 20), size = (48, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 5), # index 5 duration,
+							MultiContentEntryText(pos=(0, 0), size=(360, 20), font=0, flags=RT_HALIGN_LEFT, text=1), # index 1 Title,
+							MultiContentEntryText(pos=(0, 20), size=(360, 17), font=1, flags=RT_HALIGN_LEFT, text=2), # index 2 description,
+							MultiContentEntryText(pos=(366, 6), size=(152, 20), font=1, flags=RT_HALIGN_RIGHT, text=3), # index 3 channel,
+							MultiContentEntryText(pos=(366, 20), size=(102, 17), font=1, flags=RT_HALIGN_RIGHT, text=4), # index 4 begin time,
+							MultiContentEntryText(pos=(470, 20), size=(48, 20), font=1, flags=RT_HALIGN_RIGHT, text=5), # index 5 duration,
 						],
 					"fonts": [gFont("Regular", 20), gFont("Regular", 14)],
 					"itemHeight": 37
@@ -58,7 +58,7 @@ class TitleList(Screen, HelpableScreen):
 
 		</screen>"""
 
-	def __init__(self, session, project = None):
+	def __init__(self, session, project=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
@@ -216,11 +216,11 @@ class TitleList(Screen, HelpableScreen):
 					self.close(current)
 		self.session.openWithCallback(self.selectedSource, DVDMovieSelection)
 
-	def selectedSource(self, source = None):
+	def selectedSource(self, source=None):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
-			self.session.open(MessageBox,text = _("You can only burn %s %s recordings!") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox,text=_("You can only burn %s %s recordings!") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_ERROR)
 			return None
 		t = self.project.addService(source)
 		try:
@@ -260,7 +260,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def askBurnProject(self):
 		if len(self["titles"].list):
-			self.session.openWithCallback(self.burnProject,MessageBox,text = _("Do you want to burn this collection to DVD medium?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.burnProject,MessageBox,text=_("Do you want to burn this collection to DVD medium?"), type=MessageBox.TYPE_YESNO)
 
 	def burnProject(self, answer=True):
 		if not answer:
@@ -292,7 +292,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.AddJob(job)
 
 	def updateTitleList(self):
-		list = [ ]
+		list = []
 		for title in self.project.titles:
 			list.append((title, title.properties.menutitle.value, title.properties.menusubtitle.value, title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
 		self["titles"].list = list
@@ -320,7 +320,7 @@ class TitleList(Screen, HelpableScreen):
 			self["medium_label"].setText(_("Exceeds dual layer medium!"))
 			self["medium_label"].setForegroundColorNum(2)
 			if self.previous_size < MAX_DL:
-				self.session.open(MessageBox,text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox,text=_("Exceeds dual layer medium!"), type=MessageBox.TYPE_ERROR)
 		elif size > MAX_SL:
 			percent = 100 * size / float(MAX_DL)
 			self["space_label_dual"].text = "%d MB (%.2f%%)" % (size, percent)
@@ -330,7 +330,7 @@ class TitleList(Screen, HelpableScreen):
 			self["medium_label"].setText(_("Required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free"))
 			self["medium_label"].setForegroundColorNum(1)
 			if self.previous_size < MAX_SL:
-				self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, text=_("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout=10, type=MessageBox.TYPE_INFO)
 		elif size < MAX_SL:
 			percent = 100 * size / float(MAX_SL)
 			self["space_label_single"].text = "%d MB (%.2f%%)" % (size, percent)
@@ -345,7 +345,7 @@ class TitleList(Screen, HelpableScreen):
 		t = self["titles"].getCurrent()
 		return t and t[0]
 
-	def editTitle(self, title = None, editor = True):
+	def editTitle(self, title=None, editor=True):
 		t = title or self.getCurrentTitle()
 		if t is not None:
 			self.current_edit_title = t
@@ -358,7 +358,7 @@ class TitleList(Screen, HelpableScreen):
 		t = self.current_edit_title
 		t.titleEditDone(cutlist)
 		if t.VideoType != 0:
-			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.DVDformatCB,MessageBox,text=_("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_YESNO)
 		else:
 			self.updateTitleList()
 
@@ -377,11 +377,11 @@ class TitleList(Screen, HelpableScreen):
 		else:
 			self.removeTitle(t)
 
-	def leave(self, close = False):
+	def leave(self, close=False):
 		if not len(self["titles"].list) or close:
 			self.close()
 		else:
-			self.session.openWithCallback(self.exitCB, MessageBox,text = _("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.exitCB, MessageBox,text=_("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type=MessageBox.TYPE_YESNO)
 
 	def exitCB(self, answer):
 		print "exitCB", answer
