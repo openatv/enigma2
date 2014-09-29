@@ -50,7 +50,7 @@
 			</menu>
 
 			<!-- Menu / Settings / Scan Menu -->
-			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="!isGBIPBOX">
+			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="hasTuners">
 				<id val="scan" />
 				<item weight="0" level="0" text="Basic settings" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item weight="5" level="0" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
