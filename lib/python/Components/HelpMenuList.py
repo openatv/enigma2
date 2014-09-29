@@ -68,7 +68,7 @@ class HelpMenuList(GUIComponent):
 							name = (name[0], "long")
 						if n not in buttonsProcessed:
 							buttonNames.append(name)
-							buttonsProcessed.add(n[0])
+							buttonsProcessed.add(n)
 
 				# only show entries with keys that are available on the used rc
 				if not buttonNames:
