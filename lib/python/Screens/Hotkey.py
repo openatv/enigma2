@@ -62,6 +62,7 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Slow"), "slow", ""),
 	(_("Mark/Portal"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
+	(_("Context"), "contextmenu", ""),
 	(_("Home"), "home", "")]
 
 config.misc.hotkey = ConfigSubsection()
