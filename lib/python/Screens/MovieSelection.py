@@ -65,10 +65,10 @@ l_moviesort = [
 	(str(MovieList.SORT_RECORDED), _("by date"), 'New->Old'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), 'Old->New'),
 	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A->Z'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z->A'),
+	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("reverse alphabetic"), 'Z->A'),
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A->Z Flat'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z->A Flat'),
-	(str(MovieList.SHUFFLE), _("shuffle"), 'Random'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("reverse flat alphabetic"), 'Z->A Flat'),
+	(str(MovieList.SHUFFLE), _("shuffle"), 'Shuffle'),
 	]
 
 def defaultMoviePath():
@@ -1974,7 +1974,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		item = self.getCurrentSelection()
 		current = item[0]
 		Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
-		
+
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
 			self.feedbackTimer = eTimer()
