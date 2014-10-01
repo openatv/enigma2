@@ -267,7 +267,28 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(True)
 		self.startHideTimer()
 
+	def doDimming(self):
+		if config.usage.show_infobar_do_dimming.value:
+			self.dimmed = self.dimmed-1
+		else:
+			self.dimmed = 0
+		self.DimmingTimer.stop()
+		self.doHide()
+
+	def unDimming(self):
+		self.unDimmingTimer.stop()
+		self.doWriteAlpha(config.av.osd_alpha.value)
+
+	def doWriteAlpha(self, value):
+		if fileExists("/proc/stb/video/alpha"):
+			f=open("/proc/stb/video/alpha","w")
+			f.write("%i" % (value))
+			f.close()
+
 	def __onHide(self):
+		self.unDimmingTimer = eTimer()
+		self.unDimmingTimer.callback.append(self.unDimming)
+		self.unDimmingTimer.start(100, True)
 		self.__state = self.STATE_HIDDEN
 		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
@@ -318,8 +339,32 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
-		if self.__state == self.STATE_SHOWN:
-			self.hide()
+		#if self.__state == self.STATE_SHOWN:
+		#	self.hide()
+		self.DimmingTimer = eTimer()
+		self.DimmingTimer.callback.append(self.doDimming)
+		self.DimmingTimer.start(70, True)
+		self.dimmed = config.usage.show_infobar_dimming_speed.value
+
+	def doHide(self):
+		if self.__state != self.STATE_HIDDEN:
+			self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+
+			if self.dimmed > 0:
+				self.DimmingTimer.start(70, True)
+			else:
+				self.DimmingTimer.stop()
+				if self.__state == self.STATE_SHOWN:
+					self.hide()
+				if hasattr(self, "pvrStateDialog"):
+					try:
+						self.pvrStateDialog.hide()
+					except:
+						pass
+				elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
+					self.secondInfoBarWasShown = False
+
 
 	def okButtonCheck(self):
 		if config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
@@ -2217,20 +2262,22 @@ class InfoBarPiP:
 			return _("Activate Picture in Picture")
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		pipref = self.session.pip.getCurrentService()
-		if swapservice and pipref and pipref.toString() != swapservice.toString():
-			currentServicePath = self.servicelist.getCurrentServicePath()
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
-			self.session.pip.playService(swapservice)
-			self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
-			self.session.pip.servicePath = currentServicePath
-			if self.servicelist.dopipzap:
-				# This unfortunately won't work with subservices
-				self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
+		if self.pipShown():
+			swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			pipref = self.session.pip.getCurrentService()
+			if swapservice and pipref and pipref.toString() != swapservice.toString():
+				currentServicePath = self.servicelist.getCurrentServicePath()
+				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+				self.session.pip.playService(swapservice)
+				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
+				self.session.pip.servicePath = currentServicePath
+				if self.servicelist.dopipzap:
+					# This unfortunately won't work with subservices
+					self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
-		self.session.open(PiPSetup, pip = self.session.pip)
+		if self.pipShown():
+			self.session.open(PiPSetup, pip = self.session.pip)
 
 	def pipDoHandle0Action(self):
 		use = config.usage.pip_zero_button.value

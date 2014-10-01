@@ -53,28 +53,28 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Pause"), "pause", ""),
 	(_("Rewind"), "rewind", ""),
 	(_("Fastforward"), "fastforward", ""),
-	(_("Rewind"), "rewind", ""),
 	(_("activatePiP"), "activatePiP", ""),
 	(_("Timer"), "timer", ""),
-	(_("Portal"), "portal", ""),
 	(_("Playlist"), "playlist", ""),
 	(_("Timeshift"), "timeshift", ""),
 	(_("Search"), "search", ""),
 	(_("Slow"), "slow", ""),
-	(_("Mark"), "mark", "")]
+	(_("Mark/Portal"), "mark", ""),
+	(_("Sleep"), "sleep", ""),
+	(_("Home"), "home", "")]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
 for x in hotkeys:
 	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
 
-def getHotkeyFunctionsList():
+def getHotkeyFunctions():
 	hotkeyFunctions = []
 	twinPlugins = []
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
-		if plugin.name not in twinPlugins:
+		if plugin.name not in twinPlugins and plugin.path:
 			hotkeyFunctions.append((plugin.name, plugin.path[24:]))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append(("--", "--"))
@@ -105,22 +105,33 @@ def getHotkeyFunctionsList():
 	hotkeyFunctions.append((_("startTeletext"), "Infobar/startTeletext"))
 	hotkeyFunctions.append((_("subserviceSelection"), "Infobar/subserviceSelection"))
 	hotkeyFunctions.append((_("subtitleSelection"), "Infobar/subtitleSelection"))
+	hotkeyFunctions.append((_("show/hide infoBar"), "Infobar/toggleShow"))
+	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("showPiP"), "Infobar/showPiP"))
 		hotkeyFunctions.append((_("swapPiP"), "Infobar/swapPiP"))
 		hotkeyFunctions.append((_("movePiP"), "Infobar/movePiP"))
 		hotkeyFunctions.append((_("togglePipzap"), "Infobar/togglePipzap"))
 	hotkeyFunctions.append(("--", "--"))
+	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup"))
+	#hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin"))
+	#hotkeyFunctions.append((_("Latest Commits"), "Module/Screens.About/CommitInfo"))
 	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection"))
 	hotkeyFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection"))
 	hotkeyFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup"))
 	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple"))
+	for plugin in plugins.getPluginsForMenu("scan"):
+		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2]))
 	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser"))
-	hotkeyFunctions.append((_("Sleeptimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
+	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList"))
 	hotkeyFunctions.append((_("SkinSelector"), "Module/Plugins.SystemPlugins.SkinSelector.plugin/SkinSelector"))
+	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby"))
+	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2"))
+	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3"))
+	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1"))
 	hotkeyFunctions.append(("--", "--"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording"))
@@ -136,28 +147,67 @@ class HotkeySetup(Screen):
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Toggle Extra Keys"))
 		self.list = []
+		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 12], selection = 0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["choosen"] = ChoiceList(list=[])
+		self.getFunctions()
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
-			"ok": self.ok,
+			"ok": self.keyOk,
 			"cancel": self.close,
 			"red": self.close,
-			"green": self.toggleAdditionalKeys
+			"green": self.toggleAdditionalKeys,
+			"up": self.keyUp,
+			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
 		}, -1)
+		self.onLayoutFinish.append(self.__layoutFinished)
+		self.onExecBegin.append(self.getFunctions)
 
-	def ok(self):
+	def __layoutFinished(self):
+		self["choosen"].selectionEnabled(0)
+
+	def keyOk(self):
 		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
+
+	def keyLeft(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self.getFunctions()
+
+	def keyRight(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self.getFunctions()
+
+	def keyUp(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self.getFunctions()
+
+	def keyDown(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self.getFunctions()
 
 	def toggleAdditionalKeys(self):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
 		config.misc.hotkey.additional_keys.save()
 		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) - 1 or 12])
 
+	def getFunctions(self):
+		key = self["list"].l.getCurrentSelection()[0][1]
+		if key:
+			selected = []
+			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				if function:
+					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+			self["choosen"].setList(selected)
+
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
+		self.skinName="HotkeySetup"
 		self.session = session
 		self.setTitle(_("Hotkey Setup") + " " + key[0][0])
 		self["key_red"] = Button(_("Cancel"))
@@ -165,12 +215,15 @@ class HotkeySetupSelect(Screen):
 		self.mode = "list"
 		self.selected = []
 		self.list = []
+		self.hotkeyFunctions = getHotkeyFunctions()
 		self.config = eval("config.misc.hotkey." + key[0][1])
-		selected = self.config.value.split(',')
-		for plugin in getHotkeyFunctionsList():
-			self.list.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
-			if plugin[1] in selected:
-				self.selected.append(ChoiceEntryComponent('',((plugin[0]), plugin[1])))
+		self.selected = []
+		for function in self.hotkeyFunctions:
+			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
+		for x in self.config.value.split(','):
+			function = list(function for function in self.hotkeyFunctions if function[1] == x )
+			if function:
+				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.list, selection=0)
@@ -193,11 +246,11 @@ class HotkeySetupSelect(Screen):
 		self["choosen"].selectionEnabled(0)
 
 	def toggleMode(self):
-		if self.mode == "list":
+		if self.mode == "list" and self.selected:
 			self.mode = "choosen"
 			self["choosen"].selectionEnabled(1)
 			self["list"].selectionEnabled(0)
-		else:
+		elif self.mode == "choosen":
 			self.mode = "list"
 			self["choosen"].selectionEnabled(0)
 			self["list"].selectionEnabled(1)
@@ -211,6 +264,8 @@ class HotkeySetupSelect(Screen):
 				self.selected.append(currentSelected)
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
+			if not self.selected:
+				self.toggleMode()
 		self["choosen"].setList(self.selected)
 
 	def keyLeft(self):
@@ -281,13 +336,13 @@ class InfoBarHotkey():
 		if selection:
 			selected = []
 			for x in selection:
-				plugin = list(plugin for plugin in getHotkeyFunctionsList() if plugin[1] == x )
-				if plugin:
-					selected.append(plugin[0])
+				function = list(function for function in getHotkeyFunctions() if function[1] == x )
+				if function:
+					selected.append(function[0])
 			if not selected:
 				return 0
 			if len(selected) == 1:
-				self.execHotkey(selected[0])
+				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
 				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
@@ -299,15 +354,23 @@ class InfoBarHotkey():
 				for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 					if plugin.path[24:] == "/".join(selected):
 						self.runPlugin(plugin)
-			elif selected[0] == "Infobar" or selected[0] == "Code":
+						break
+			elif selected[0] == "MenuPlugin":
+				for plugin in plugins.getPluginsForMenu(selected[1]):
+					if plugin[2] == selected[2]:
+						self.runPlugin(plugin[1])
+						break
+			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
 					exec "self." + selected[1] + "()"
+				else:
+					return 0
 			elif selected[0] == "Module":
 				try:
 					exec "from " + selected[1] + " import *"
-					exec "self.session.open(" + selected[2] + ")"
+					exec "self.session.open(" + ",".join(selected[2:]) + ")"
 				except:
 					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":
-				from Screens.Setup import *
+				exec "from Screens.Setup import *"
 				exec "self.session.open(Setup, \"" + selected[1] + "\")"
