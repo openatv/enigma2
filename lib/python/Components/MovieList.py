@@ -556,32 +556,33 @@ class MovieList(GUIComponent):
 
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
-		
-		self.list.sort(key=self.buildBeginTimeSortKey)
+
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey)
+			self.list.sort(key=self.buildAlphaNumericSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
+			self.list.sort(key=self.buildAlphaNumericSortKey, reverse=True)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
-			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse=True)
 		elif self.sort_type == MovieList.SORT_RECORDED:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey)
+			self.list.sort(key=self.buildBeginTimeSortKey)
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
+			self.list.sort(key=self.buildBeginTimeSortKey, reverse=True)
 		elif self.sort_type == MovieList.SHUFFLE:
+			self.list.sort(key=self.buildBeginTimeSortKey)
 			dirlist = self.list[:numberOfDirs]
 			shufflelist = self.list[numberOfDirs:]
 			random.shuffle(shufflelist)
 			self.list = dirlist + shufflelist
-		
-		for x in self.list:
+
+		for x in self.list[:]:
 			if x[1]:
 				tmppath = x[1].getName(x[0])[:-1] if x[1].getName(x[0]).endswith('/') else x[1].getName(x[0])
 				if tmppath.endswith('.Trash'):
+					self.list.append(self.list.pop(self.list.index(x)))
+			else:
 					self.list.insert(0, self.list.pop(self.list.index(x)))
-					break
 
 		if self.root and numberOfDirs > 0:
 			rootPath = os.path.normpath(self.root.getPath())
@@ -652,10 +653,12 @@ class MovieList(GUIComponent):
 	def buildAlphaNumericFlatSortKey(self, x):
 		# x = ref,info,begin,...
 		ref = x[0]
-		name = x[1] and x[1].getName(ref)
+		name = x[1] and x[1].getName(ref) or ".."
 		if name and ref.flags & eServiceReference.mustDescent:
 			# only use directory basename for sorting
 			name = os.path.basename(os.path.normpath(name))
+		if name.endswith(".Trash"):
+			name = "Deleted Items"
 		# print "[MovieList] Sorting for -%s-" % name
 
 		return 1, name and name.lower() or "", -x[2]
