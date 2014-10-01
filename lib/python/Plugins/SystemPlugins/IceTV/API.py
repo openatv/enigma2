@@ -81,9 +81,9 @@ class Request(object):
         self.response = None
 
     def _shorten(self, text):
-        if len(text) < 2000:
+        if len(text) < 4000:
             return text
-        return text[:1000] + "\n...\n" + text[-1000:]
+        return text[:2000] + "\n...\n" + text[-2000:]
 
     def send(self, method):
         data = json.dumps(self.data)
