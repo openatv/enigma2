@@ -297,7 +297,7 @@ class MovieList(GUIComponent):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
-		res = [ None ]
+		res = [None]
 
 		if serviceref.flags & eServiceReference.mustDescent:
 			# Directory
@@ -309,20 +309,20 @@ class MovieList(GUIComponent):
 			else:
 				txt = os.path.basename(os.path.normpath(pathName))
 				if txt == ".Trash":
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
-					res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
-					res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
+					res.append(MultiContentEntryPixmapAlphaTest(pos=(0, (self.itemHeight - 24) / 2), size=(iconSize, 24), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=self.iconTrash))
+					res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))
+					res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 					return res
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-			res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, (self.itemHeight - 24) / 2), size=(iconSize, iconSize), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=self.iconFolder))
+			res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
+			res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
 			return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
-			x = self.list[cur_idx] # x = ref,info,begin,...
-			data.len = 0 #dont recalc movielist to speedup loading the list
-			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
+			x = self.list[cur_idx]  # x = ref,info,begin,...
+			data.len = 0  # dont recalc movielist to speedup loading the list
+			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
 			if config.movielist.hide_extensions.value:
 				fileName, fileExtension = os.path.splitext(data.txt)
@@ -346,8 +346,10 @@ class MovieList(GUIComponent):
 				data.icon = self.iconMoviePlay
 			else:
 				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
-				if data.part is not None and data.part <= 3: data.part = 0
-				if data.part is not None and data.part >= 97: data.part = 100
+				if data.part is not None and data.part <= 3:
+					data.part = 0
+				if data.part is not None and data.part >= 97:
+					data.part = 100
 				if switch == 'i':
 					if data.part is not None and data.part > 0:
 						data.icon = self.iconPart[data.part // 25]
@@ -370,29 +372,29 @@ class MovieList(GUIComponent):
 		iconSize = 0
 		if switch == 'i':
 			iconSize = 22
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=data.icon))
 		elif switch == 'p':
 			iconSize = 48
 			if data.part is not None and data.part > 0:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), png=data.icon))
 		elif switch == 's':
 			iconSize = 22
 			if data.part is not None and data.part > 0:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
-			begin_string = ' '.join(FuzzyTime(begin, inPast = True))
+			begin_string = ' '.join(FuzzyTime(begin, inPast=True))
 
 		ih = self.itemHeight
-		lenSize = ih * 3 # 25 -> 75
+		lenSize = ih * 3  # 25 -> 75
 		dateSize = ih * 145 / 25   # 25 -> 145
-		res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-		res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+		res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width - iconSize - dateSize, ih), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, font=0, text=data.txt))
+		res.append(MultiContentEntryText(pos=(width - dateSize, 0), size=(dateSize, ih), flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, font=1, text=begin_string))
 		return res
 
 	def moveToFirstMovie(self):
