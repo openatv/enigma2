@@ -22,7 +22,7 @@ from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
-from time import strptime, sleep, gmtime, strftime
+from time import strptime, sleep, gmtime, strftime, time
 from datetime import datetime
 from . import config, saveConfigFile, enableIceTV, disableIceTV
 from Components.Task import Job, PythonTask, job_manager
@@ -30,6 +30,7 @@ import API as ice
 from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
+from Tools.BoundFunction import boundFunction
 
 _session = None
 password_requested = False
@@ -41,23 +42,67 @@ class EPGFetcher(object):
         config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
         self.fetch_timer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
         self.log = deque(maxlen=40)
-        self.added_timers = []
+        # TODO: channel_service_map should probably be locked in case the user edits timers at the time of a fetch
+        self.channel_service_map = None
         _session.nav.RecordTimer.onTimerAdded.append(self.onTimerAdded)
-        self.deleted_timers = []
         _session.nav.RecordTimer.onTimerRemoved.append(self.onTimerRemoved)
+        _session.nav.RecordTimer.onTimerChanged.append(self.onTimerChanged)
         self.addLog("IceTV started")
+
+    def shouldProcessTimer(self, entry):
+        if entry.isAutoTimer:
+            return False
+        if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
+            global password_requested
+            if password_requested:
+                self.addLog("Can not proceed - you need to login first")
+                return False
+            else:
+                return True
+        else:
+            # IceTV is not enabled
+            return False
 
     def onTimerAdded(self, entry):
         # print "[IceTV] timer added: ", entry
-        if entry.ice_timer_id is None and not entry.isAutoTimer:
-            self.added_timers.append(entry)
+        if not self.shouldProcessTimer(entry):
+            return
+        # print "[IceTV] Add timer job"
+        job = Job(_("IceTV update job"))
+        task = PythonTask(job, _("Add timer"))
+        task.work = boundFunction(self.postTimer, entry)
+        job_manager.AddJob(job)
 
     def onTimerRemoved(self, entry):
         # print "[IceTV] timer removed: ", entry
-        if entry in self.added_timers:
-            self.added_timers.remove(entry)
-        if entry.ice_timer_id:
-            self.deleted_timers.append(entry.ice_timer_id)
+        if not self.shouldProcessTimer(entry) or not entry.ice_timer_id:
+            return
+        # print "[IceTV] Delete timer job"
+        job = Job(_("IceTV update job"))
+        task = PythonTask(job, _("Delete timer"))
+        task.work = boundFunction(self.deleteTimer, entry.ice_timer_id)
+        job_manager.AddJob(job)
+
+    def onTimerChanged(self, entry):
+        # print "[IceTV] timer changed: ", entry
+        if not self.shouldProcessTimer(entry):
+            return
+        if entry.end <= entry.begin:
+            self.onTimerRemoved(entry)
+            return
+        if entry.ice_timer_id is None:
+            # New timer as far as IceTV is concerned
+            # print "[IceTV] Add timer job"
+            job = Job(_("IceTV update job"))
+            task = PythonTask(job, _("Add timer"))
+            task.work = boundFunction(self.postTimer, entry)
+            job_manager.AddJob(job)
+        else:
+            # print "[IceTV] Modify timer job"
+            job = Job(_("IceTV update job"))
+            task = PythonTask(job, _("Modify timer"))
+            task.work = boundFunction(self.putTimer, entry)
+            job_manager.AddJob(job)
 
     def freqChanged(self, refresh_interval):
         self.fetch_timer.stop()
@@ -94,52 +139,26 @@ class EPGFetcher(object):
                 return False
         res = True
         try:
-            channel_service_map = self.makeChanServMap(self.getChannels())
+            self.channel_service_map = self.makeChanServMap(self.getChannels())
         except (IOError, RuntimeError, KeyError) as ex:
             msg = "Can not retrieve channel map: " + str(ex)
             if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
             self.addLog(msg)
             return False
-        # Delete iceTimers
-        for ice_timer_id in self.deleted_timers[:]:
-            try:
-                print "[IceTV] deleting timer:", ice_timer_id
-                self.deleteTimer(ice_timer_id)
-            except (IOError, RuntimeError, KeyError) as ex:
-                msg = "Can not delete timer: " + str(ex)
-                if hasattr(ex, "response") and hasattr(ex.response, "text"):
-                    msg += "\n%s" % str(ex.response.text).strip()
-                self.addLog(msg)
-                res = False
-            self.deleted_timers.remove(ice_timer_id)
-        # Upload locally added timers
-        for local_timer in self.added_timers[:]:
-            try:
-                print "[IceTV] uploading new timer:", local_timer
-                res = self.postTimer(local_timer, channel_service_map)
-#                local_timer.ice_timer_id = res[0]["id"]
-            except (IOError, RuntimeError, KeyError) as ex:
-                msg = "Can not upload timer: " + str(ex)
-                if hasattr(ex, "response") and hasattr(ex.response, "text"):
-                    msg += "\n%s" % str(ex.response.text).strip()
-                self.addLog(msg)
-                res = False
-            self.added_timers.remove(local_timer)
         try:
             shows = self.getShows()
             channel_show_map = self.makeChanShowMap(shows["shows"])
             epgcache = eEPGCache.getInstance()
             for channel_id in channel_show_map.keys():
-                if channel_id in channel_service_map:
-                    epgcache.importEvents(channel_service_map[channel_id], channel_show_map[channel_id])
+                if channel_id in self.channel_service_map:
+                    epgcache.importEvents(self.channel_service_map[channel_id], channel_show_map[channel_id])
             epgcache.save()
             if "last_update_time" in shows:
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
-                saveConfigFile()
             self.addLog("EPG download OK")
             if "timers" in shows:
-                res = self.processTimers(shows["timers"], channel_service_map)
+                res = self.processTimers(shows["timers"])
             self.addLog("End update")
             return res
         except (IOError, RuntimeError) as ex:
@@ -154,7 +173,7 @@ class EPGFetcher(object):
                 res = False
         try:
             ice_timers = self.getTimers()
-            if not self.processTimers(ice_timers, channel_service_map):
+            if not self.processTimers(ice_timers):
                 res = False
             self.addLog("End update")
         except (IOError, RuntimeError) as ex:
@@ -185,10 +204,10 @@ class EPGFetcher(object):
                      int(triplet["service_id"])))
         return res
 
-    def serviceToIceChannelId(self, serviceref, channel_service_map):
+    def serviceToIceChannelId(self, serviceref):
         svc = str(serviceref).split(":")
         triplet = (int(svc[5], 16), int(svc[4], 16), int(svc[3], 16))
-        for channel_id, dvbt in channel_service_map.iteritems():
+        for channel_id, dvbt in self.channel_service_map.iteritems():
             if triplet in dvbt:
                 return channel_id
 
@@ -210,7 +229,7 @@ class EPGFetcher(object):
             res[channel_id].append((start, duration, title, short, extended, 0, event_id))
         return res
 
-    def processTimers(self, timers, channel_service_map):
+    def processTimers(self, timers):
         update_queue = []
         for iceTimer in timers:
             # print "[IceTV] iceTimer:", iceTimer
@@ -227,12 +246,12 @@ class EPGFetcher(object):
                         if timer.ice_timer_id == ice_timer_id:
                             # print "[IceTV] removing timer:", timer
                             _session.nav.RecordTimer.removeEntry(timer)
-                    iceTimer["state"] = "completed"
-                    iceTimer["message"] = "Removed"
-                    update_queue.append(iceTimer)
+                            break
+                    else:
+                        self.deleteTimer(ice_timer_id)
                 elif state == "completed":
                     continue    # Completely ignore completed timers - the server should not be sending those back to us anyway.
-                elif channel_id in channel_service_map:
+                elif channel_id in self.channel_service_map:
                     completed = False
                     for timer in _session.nav.RecordTimer.processed_timers:
                         if timer.ice_timer_id == ice_timer_id:
@@ -246,37 +265,27 @@ class EPGFetcher(object):
                         for timer in _session.nav.RecordTimer.timer_list:
                             if timer.ice_timer_id == ice_timer_id:
                                 # print "[IceTV] updating timer:", timer
-                                if self.updateTimer(timer, name, start, duration, channel_service_map[channel_id]):
+                                if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + (config.recording.margin_before.value + config.recording.margin_after.value) * 60, self.channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
-                                        _session.nav.RecordTimer.removeEntry(timer)
                                         iceTimer["state"] = "failed"
                                         iceTimer["message"] = "Failed to update the timer"
-                                    else:
-                                        iceTimer["state"] = "pending"
-                                        iceTimer["message"] = "Updated"
-                                else:
-                                    iceTimer["state"] = "pending"
-                                    iceTimer["message"] = "Up to date"
-                                if timer.isRunning():
-                                    iceTimer["state"] = "running"
-                                    iceTimer["message"] = "Recording"
-                                update_queue.append(iceTimer)
+                                        update_queue.append(iceTimer)
                                 updated = True
                     created = False
                     if not completed and not updated:
-                        channels = channel_service_map[channel_id]
+                        channels = self.channel_service_map[channel_id]
                         # print "[IceTV] channel_id %s maps to" % channel_id, channels
                         db = eDVBDB.getInstance()
                         for channel in channels:
                             serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
                             if db.isValidService(channel[1], channel[0], channel[2]):
                                 # print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
-                                recording = RecordTimerEntry(serviceref, start, start + duration, name, "", None, ice_timer_id=ice_timer_id)
+                                recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", None, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
                                     iceTimer["state"] = "pending"
                                     iceTimer["message"] = "Added"
-                                    update_queue.append(iceTimer)
+                                    #update_queue.append(iceTimer)
                                     created = True
                                     break
                                 else:
@@ -284,9 +293,11 @@ class EPGFetcher(object):
                                     names = [r.name for r in conflicts]
                                     iceTimer["state"] = "failed"
                                     iceTimer["message"] = "Timer conflict: " + ", ".join(names)
+                                    update_queue.append(iceTimer)
                             else:
                                 iceTimer["state"] = "failed"
                                 iceTimer["message"] = "No matching service"
+                                update_queue.append(iceTimer)
                     if not completed and not updated and not created:
                         iceTimer["state"] = "failed"
                         update_queue.append(iceTimer)
@@ -330,7 +341,7 @@ class EPGFetcher(object):
                     return True
         return False
 
-    def updateTimer(self, timer, name, start, duration, channels):
+    def updateTimer(self, timer, name, start, end, channels):
         changed = False
         db = eDVBDB.getInstance()
         for channel in channels:
@@ -340,13 +351,12 @@ class EPGFetcher(object):
                     changed = True
                     timer.service_ref = serviceref
                 break
-        if timer.name != name:
+        if name and timer.name != name:
             changed = True
             timer.name = name
         if timer.begin != start:
             changed = True
             timer.begin = start
-        end = start + duration
         if timer.end != end:
             changed = True
             timer.end = end
@@ -393,28 +403,85 @@ class EPGFetcher(object):
             return res.get("timers", [])
         return []
 
-    def postTimer(self, local_timer, channel_service_map):
-        channel_id = self.serviceToIceChannelId(local_timer.service_ref, channel_service_map)
-        req = ice.Timers()
-        req.data["name"] = local_timer.name
-        req.data["message"] = "Created by %s" % config.plugins.icetv.device.label.value
-        req.data["action"] = "record"
-        req.data["state"] = "pending"
-        if local_timer.isRunning():
-            req.data["state"] = "running"
-        req.data["device_id"] = config.plugins.icetv.device.id.value
-        req.data["channel_id"] = channel_id
-        req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin))
-        req.data["duration_minutes"] = (local_timer.end - local_timer.begin) / 60
-        res = req.post()
-#        return res.json().get("timers", [])
-# The API spec says we'll get a dict with "timers" that will have a list of timers.
-# In reality all that the server returns is an empty list "[]"
-        return res.json()
+    def putTimer(self, local_timer):
+        try:
+            # print "[IceTV] updating ice_timer", local_timer.ice_timer_id
+            req = ice.Timer(local_timer.ice_timer_id)
+            timer = {}
+            timer["id"] = local_timer.ice_timer_id
+            timer["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
+            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+            if local_timer.isRunning():
+                timer["state"] = "running"
+                timer["message"] = "Recording on %s" % config.plugins.icetv.device.label.value
+            elif local_timer.state == RecordTimerEntry.StateEnded:
+                timer["state"] = "completed"
+                timer["message"] = "Recorded on %s" % config.plugins.icetv.device.label.value
+            elif local_timer.state == RecordTimerEntry.StateFailed:
+                timer["state"] = "failed"
+                timer["message"] = "Failed to record"
+            else:
+                timer["state"] = "pending"
+                timer["message"] = "Will record on %s" % config.plugins.icetv.device.label.value
+            req.data["timers"] = [timer]
+            res = req.put().json()
+            self.addLog("Timer updated OK")
+        except (IOError, RuntimeError, KeyError) as ex:
+            msg = "Can not update timer: " + str(ex)
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
+                msg += "\n%s" % str(ex.response.text).strip()
+            self.addLog(msg)
+
+    def postTimer(self, local_timer):
+        if self.channel_service_map is None:
+            try:
+                self.channel_service_map = self.makeChanServMap(self.getChannels())
+            except (IOError, RuntimeError, KeyError) as ex:
+                msg = "Can not retrieve channel map: " + str(ex)
+                if hasattr(ex, "response") and hasattr(ex.response, "text"):
+                    msg += "\n%s" % str(ex.response.text).strip()
+                self.addLog(msg)
+                return
+        if local_timer.ice_timer_id is None:
+            try:
+                # print "[IceTV] uploading new timer"
+                channel_id = self.serviceToIceChannelId(local_timer.service_ref)
+                req = ice.Timers()
+                req.data["name"] = local_timer.name
+                req.data["message"] = "Created by %s" % config.plugins.icetv.device.label.value
+                req.data["action"] = "record"
+                if local_timer.isRunning():
+                    req.data["state"] = "running"
+                else:
+                    req.data["state"] = "pending"
+                req.data["device_id"] = config.plugins.icetv.device.id.value
+                req.data["channel_id"] = channel_id
+                req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
+                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+                res = req.post()
+                if "location" in res.headers:
+                    local_timer.ice_timer_id = res.headers["location"].split("/")[-1]
+                self.addLog("Timer created OK")
+            except (IOError, RuntimeError, KeyError) as ex:
+                msg = "Can not upload timer: " + str(ex)
+                if hasattr(ex, "response") and hasattr(ex.response, "text"):
+                    msg += "\n%s" % str(ex.response.text).strip()
+                self.addLog(msg)
+        else:
+            # Looks like a timer just added by IceTV, so this is an update
+            self.putTimer(local_timer)
 
     def deleteTimer(self, ice_timer_id):
-        req = ice.Timer(ice_timer_id)
-        req.delete()
+        try:
+            # print "[IceTV] deleting timer:", ice_timer_id
+            req = ice.Timer(ice_timer_id)
+            req.delete()
+            self.addLog("Timer deleted OK")
+        except (IOError, RuntimeError, KeyError) as ex:
+            msg = "Can not delete timer: " + str(ex)
+            if hasattr(ex, "response") and hasattr(ex.response, "text"):
+                msg += "\n%s" % str(ex.response.text).strip()
+            self.addLog(msg)
 
 fetcher = None
 
