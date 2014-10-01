@@ -28,6 +28,12 @@ config.plugins.icetv.device.id = ConfigNumber()
 config.plugins.icetv.device.type_id = ConfigNumber(default=22)
 
 config.plugins.icetv.last_update_time = ConfigNumber()
+if config.plugins.icetv.last_update_time.value != 0:
+    config.plugins.icetv.last_update_time.value = 0
+    config.plugins.icetv.last_update_time.save()
+    configfile.save()
+config.plugins.icetv.last_update_time.disableSave()
+
 config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
 
