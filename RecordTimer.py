@@ -694,6 +694,13 @@ class RecordTimer(timer.Timer):
 		for f in self.onTimerChanged:
 			f(entry)
 
+	def cleanup(self):
+		for entry in self.processed_timers[:]:
+			if not entry.disabled:
+				self.processed_timers.remove(entry)
+				for f in self.onTimerRemoved:
+					f(entry)
+
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
