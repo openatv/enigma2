@@ -519,7 +519,7 @@ def Plugins(**kwargs):
         PluginDescriptor(
             name="IceTV",
             where=PluginDescriptor.WHERE_PLUGINMENU,
-            description=_("IceTV version %s" % ice._version_string),
+            description=_("IceTV version %s") % ice._version_string,
             icon="icon.png",
             fnc=plugin_main
         ))
@@ -547,7 +547,7 @@ class IceTVMain(ChoiceBox):
                 ("Enable IceTV", "CALLFUNC", self.enable),
                 ("Disable IceTV", "CALLFUNC", self.disable),
                ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV version %s" % ice._version_string), list=menu)
+        super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu)
         self["debugactions"] = ActionMap(
             contexts=["DirectionActions"],
             actions={
