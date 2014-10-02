@@ -376,7 +376,7 @@ class MovieList(GUIComponent):
 		elif switch == 'p':
 			iconSize = 48
 			if data.part is not None and data.part > 0:
-				res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), png=data.icon))
 		elif switch == 's':
