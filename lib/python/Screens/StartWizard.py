@@ -12,7 +12,7 @@ from Screens.MessageBox import MessageBox
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName
 
 from Components.Pixmap import Pixmap
-from Components.config import config, ConfigBoolean, configfile
+from Components.config import config, ConfigBoolean, ConfigYesNo, configfile
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -27,6 +27,7 @@ import os.path
 config.misc.firstrun = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
 config.misc.videowizardenabled = ConfigBoolean(default = True)
+config.misc.skip_hdd_startup_format = ConfigYesNo(default = False)
 
 class StartWizard(WizardLanguage, Rc):
 	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
@@ -115,9 +116,10 @@ class StartHDDFormatWizard(Screen):
 		if not self.internalHdd:
 			self.close()
 
-		msg = "The internal hard disk on your %s %s is not formatted. This may be because this is the first time you have started your new %s or you have installed a new hard drive that is not in the correct format." % (getMachineBrand(), getMachineName(), getMachineName())
-		msg += "\n\nThe disk must be formatted now to operate correctly with your %s." % getMachineName()
-		msg += "\n\nPress OK to format the hard disk."
+		msg = "The internal hard disk is not formatted correctly. In order for your %s %s to function at its best, it is recommended that you format the hard disk." % (getMachineBrand(), getMachineName())
+		msg += "\n\nWARNING: Formatting will erase all data on the hard disk."
+		msg += "\n\nPress OK to format your %s's hard disk." % getMachineName()
+		msg += "\nOtherwise, press POWER to power down, or EXIT to skip the HDD format."
 		self["text"] = Label(msg)
 		self["errors"] = ScrollLabel()
 		self["errors"].hide()
@@ -125,6 +127,7 @@ class StartHDDFormatWizard(Screen):
 		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
 		{
 			"ok": self.doFormat,
+			"cancel": self.askCancel,
 			"up": self["errors"].pageUp,
 			"down": self["errors"].pageDown,
 			"left": self["errors"].pageUp,
@@ -141,7 +144,6 @@ class StartHDDFormatWizard(Screen):
 		self.failedJob = None
 		self.failedTask = None
 		self.failedConditions = [ ]
-		self["poweractions"].setEnabled(False)
 
 	def doFormat(self):
 		self.reset()
@@ -189,7 +191,7 @@ class StartHDDFormatWizard(Screen):
 			self.session.openWithCallback(self.tryReboot, MessageBox, _(msg), type=MessageBox.TYPE_INFO, timeout=10)
 		else:
 			msg = "Formatting the internal disk of your %s %s has failed." % (getMachineBrand(), getMachineName())
-			msg += "\n\nPress OK to retry the format or POWER to shut down."
+			msg += "\n\nPress OK to retry the format, POWER to shut down, or EXIT to skip the format."
 			msg += "\n\nIf the internal HDD was pre-installed in your %s, please note down any error messages below and call %s support." % (getMachineName(), getMachineBrand())
 			self["text"].setText(msg)
 			errs = ""
@@ -224,6 +226,16 @@ class StartHDDFormatWizard(Screen):
 	def shutdownFailed(self, *args):
 		pass
 
+	def askCancel(self):
+		self.session.openWithCallback(self.askCancelCallback, MessageBox, _("Do you really want to skip the internal disk format?\n\nUsing a non-standard disk format can cause problems and make support more difficult.\n\nIf you skipped the format because the hard disk might need checking, run a filesystem check as soon as you can."), default=False, simple=True)
+
+	def askCancelCallback(self, answer):
+		if answer:
+			self.close()
+			config.misc.skip_hdd_startup_format.value = True
+			config.misc.skip_hdd_startup_format.save()
+			configfile.save()
+
 #wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority = 0)
 #wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = -1)
 #wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.value, priority = 3)
@@ -231,7 +243,7 @@ class StartHDDFormatWizard(Screen):
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation, IniEndWizard, config
 
 # If the internal HDD needs to be formatted make the format screen the first screen, and unconditional
-if needHDDFormat():
+if not config.misc.skip_hdd_startup_format.value and needHDDFormat():
 	wizardManager.registerWizard(StartHDDFormatWizard, True, priority = -10)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 0)
 dvbt_nimList = nimmanager.getNimListOfType("DVB-T")

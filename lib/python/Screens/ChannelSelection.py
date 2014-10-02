@@ -4,6 +4,7 @@ from boxbranding import getMachineBrand, getMachineName
 from Tools.Profile import profile
 
 from Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.About import about
@@ -71,7 +72,7 @@ class BouquetSelector(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
-		entrys = [ (x[0], x[1]) for x in bouquets ]
+		entrys = [(x[0], x[1]) for x in bouquets]
 		self["menu"] = MenuList(entrys, enableWrapAround)
 
 	def getCurrent(self):
@@ -98,7 +99,7 @@ class EpgBouquetSelector(BouquetSelector):
 		self.bouquets=bouquets
 
 	def okbuttonClick(self):
-		self.selectedFunc(self.getCurrent(),self.bouquets)
+		self.selectedFunc(self.getCurrent(), self.bouquets)
 
 
 class SilentBouquetSelector:
@@ -124,7 +125,7 @@ OFF = 0
 EDIT_BOUQUET = 1
 EDIT_ALTERNATIVES = 2
 
-def append_when_current_valid(current, menu, args, level = 0, key = ""):
+def append_when_current_valid(current, menu, args, level=0, key=""):
 	if current and current.valid() and level <= config.usage.setup_level.index:
 		menu.append(ChoiceEntryComponent(key, args))
 
@@ -143,7 +144,7 @@ class ChannelContextMenu(Screen):
 				"cancel": self.cancelClick,
 				"blue": self.showServiceInPiP
 			})
-		menu = [ ]
+		menu = []
 
 		self.pipAvailable = False
 		current = csel.getCurrentSelection()
@@ -155,23 +156,23 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
-		menu.append(ChoiceEntryComponent(text = (_("Settings..."), boundFunction(self.openSetup, "channelselection"))))
+		menu.append(ChoiceEntryComponent(text=(_("Settings..."), boundFunction(self.openSetup, "channelselection"))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
-			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level = 2)
+			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level=2)
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
 					if config.servicelist.startupservice.value == self.csel.getCurrentSelection().toString():
-						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level = 0)
+						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level=0)
 					else:
-						append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level = 0)
+						append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level=0)
 					if config.ParentalControl.configured.value:
 						from Components.ParentalControl import parentalControl
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
+							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level = 0)
+							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level=0)
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
 						if bouquets is None:
@@ -179,73 +180,73 @@ class ChannelContextMenu(Screen):
 						else:
 							bouquetCnt = len(bouquets)
 						if not inBouquet or bouquetCnt > 1:
-							append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level = 0)
+							append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level=0)
 					else:
 						if not inBouquet:
-							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
+							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level=0)
 
 					if SystemInfo["PIPAvailable"]:
 						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
 						if not config.ParentalControl.configured.value or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if not csel.dopipzap:
-								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level = 0, key = "blue")
+								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
 								self.pipAvailable = True
 							else:
-								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
+								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0)
 				else:
 					if 'FROM SATELLITES' in current_root.getPath():
-						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
+						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level=0)
 					if haveBouquets:
 						if not inBouquet and not "PROVIDERS" in current_sel_path:
-							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level = 0)
+							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level=0)
 					if ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in current_sel_path:
-						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level = 0)
+						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level=0)
 				if inBouquet:
-					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
+					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0)
 					if not inAlternativeList:
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0)
 				if current_root and ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in current_root.getPath():
-					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
+					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level=0)
 			else:
-				menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
-				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
-				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
+				menu.append(ChoiceEntryComponent(text=(_("add bouquet"), self.showBouquetInputBox)))
+				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0)
+				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level=0)
 
 		if inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
-					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1)
+					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1)
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 						if current.type != -1:
-							menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
+							menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
 						if haveBouquets:
-							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level = 0)
+							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level = 0)
+							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
 						if current_sel_flags & eServiceReference.isGroup:
-							append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level = 2)
-							append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level = 2)
-							append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level = 2)
+							append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
+							append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
+							append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level=2)
 						elif not current_sel_flags & eServiceReference.isMarker:
-							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level = 2)
+							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level=2)
 				else:
-					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level = 0)
+					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level=0)
 			else:
 				if csel.bouquet_mark_edit == EDIT_BOUQUET:
 					if haveBouquets:
-						append_when_current_valid(current, menu, (_("end bouquet edit"), self.bouquetMarkEnd), level = 0)
-						append_when_current_valid(current, menu, (_("abort bouquet edit"), self.bouquetMarkAbort), level = 0)
+						append_when_current_valid(current, menu, (_("end bouquet edit"), self.bouquetMarkEnd), level=0)
+						append_when_current_valid(current, menu, (_("abort bouquet edit"), self.bouquetMarkAbort), level=0)
 					else:
-						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level = 0)
-						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level = 0)
+						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level=0)
+						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level=0)
 					if current_sel_flags & eServiceReference.isMarker:
-						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
+						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0)
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level=0)
 				else:
-					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
-					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
+					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level=0)
+					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level=0)
 
-		menu.append(ChoiceEntryComponent(text = (_("Reload Services"), self.reloadServices)))
+		menu.append(ChoiceEntryComponent(text=(_("Reload Services"), self.reloadServices)))
 
 		self["menu"] = ChoiceList(menu)
 
@@ -269,10 +270,10 @@ class ChannelContextMenu(Screen):
 	def reloadServices(self):
 		eDVBDB.getInstance().reloadBouquets()
 		eDVBDB.getInstance().reloadServicelist()
-		self.session.openWithCallback(self.close, MessageBox, _("The servicelist is reloaded."), MessageBox.TYPE_INFO, timeout = 5)
+		self.session.openWithCallback(self.close, MessageBox, _("The servicelist is reloaded."), MessageBox.TYPE_INFO, timeout=5)
 
 	def showServiceInformations(self):
-		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+		self.session.open(ServiceInfo, self.csel.getCurrentSelection())
 
 	def setStartupService(self):
 		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
@@ -290,7 +291,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showBouquetInputBox(self):
-		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width = 56, type=Input.TEXT)
+		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
@@ -303,7 +304,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def removeParentalProtection(self, service):
-		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList = [config.ParentalControl.servicepin[0].value], triesEntry = config.ParentalControl.retries.servicepin, title = _("Enter the service pin"), windowTitle = _("Change pin code"))
+		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Change pin code"))
 
 	def pinEntered(self, service, result):
 		if result:
@@ -332,7 +333,7 @@ class ChannelContextMenu(Screen):
 				del self.session.pip
 				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -343,7 +344,7 @@ class ChannelContextMenu(Screen):
 		if cnt > 1: # show bouquet list
 			self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
-			self.addCurrentServiceToBouquet(bouquets[0][1], closeBouquetSelection = False)
+			self.addCurrentServiceToBouquet(bouquets[0][1], closeBouquetSelection=False)
 
 	def bouquetSelClosed(self, recursive):
 		self.bsel = None
@@ -371,14 +372,14 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showMarkerInputBox(self):
-		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width = 56, type=Input.TEXT)
+		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
 
 	def markerInputCallback(self, marker):
 		if marker is not None:
 			self.csel.addMarker(marker)
 		self.close()
 
-	def addCurrentServiceToBouquet(self, dest, closeBouquetSelection = True):
+	def addCurrentServiceToBouquet(self, dest, closeBouquetSelection=True):
 		self.csel.addServiceToBouquet(dest)
 		if self.bsel is not None:
 			self.bsel.close(True)
@@ -488,15 +489,15 @@ class ChannelSelectionEPG:
 		self.ChoiceBoxDialog = None
 		self.RemoveTimerDialog = None
 
-		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
+		self["ChannelSelectEPGActions"] = HelpableActionMap(self, "ChannelSelectEPGActions",
 			{
-				"showEPGList": self.showEPGList,
-			})
+				"showEPGList": (self.showEPGList, _("Show single-channel EPG...")),
+			}, description=_("Show EPG"))
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
 				'LongRecord': (self.doZapTimer, _('Add a zap timer for next event'))
-			},-1)
+			}, prio=-1, description=_("Add timers"))
 		self['dialogactions'] = ActionMap(['SetupActions'],
 			{
 				'cancel': self.closeChoiceBoxDialog,
@@ -507,7 +508,7 @@ class ChannelSelectionEPG:
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
-		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
+		test = ['ITBDSECX', (refstr, 1, -1, 60)] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if len(self.list) < 2:
 			return
@@ -534,7 +535,7 @@ class ChannelSelectionEPG:
 				menu2 = _("Change next timer")
 		menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
 		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
-		self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
+		self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(), self.instance.position().y()+sely))
 		self.showChoiceBoxDialog()
 
 	def ChoiceBoxCB(self, choice):
@@ -583,7 +584,7 @@ class ChannelSelectionEPG:
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
-		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
+		test = ['ITBDSECX', (refstr, 1, -1, 60)] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if self.list is None:
 			return
@@ -617,11 +618,11 @@ class ChannelSelectionEPG:
 					cb_func2 = lambda ret: self.editTimer(timer)
 					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
 					self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % eventname, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
-					self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
+					self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(), self.instance.position().y()+sely))
 				self.showChoiceBoxDialog()
 				break
 		else:
-			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.list))
 			if not newEntry:
 				return
 			self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
@@ -690,7 +691,7 @@ class ChannelSelectionEPG:
 				break
 		epg.setService(ServiceReference(self.getCurrentSelection()))
 
-	def zapToService(self, service, preview = False, zapback = False):
+	def zapToService(self, service, preview=False, zapback=False):
 		if self.startServiceRef is None:
 			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
@@ -701,7 +702,7 @@ class ChannelSelectionEPG:
 				self.servicelist.enterPath(self.epg_bouquet)
 			self.servicelist.setCurrent(service)
 		if not zapback or preview:
-			self.zap(enable_pipzap = True)
+			self.zap(enable_pipzap=True)
 		if (self.dopipzap or zapback) and not preview:
 			self.zapBack()
 		if not preview:
@@ -714,7 +715,7 @@ class ChannelSelectionEdit:
 		self.movemode = False
 		self.bouquet_mark_edit = OFF
 		self.mutableList = None
-		self.__marked = [ ]
+		self.__marked = []
 		self.saved_title = None
 		self.saved_root = None
 		self.current_ref = None
@@ -925,7 +926,7 @@ class ChannelSelectionEdit:
 		except OSError:
 			print "error during remove of", filename
 
-#  multiple marked entry stuff ( edit mode, later multiepg selection )
+#  multiple marked entry stuff (edit mode, later multiepg selection)
 	def startMarkedEdit(self, type):
 		self.savedPath = self.servicePath[:]
 		if type == EDIT_ALTERNATIVES:
@@ -1004,7 +1005,7 @@ class ChannelSelectionEdit:
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
 				if not bouquet and ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.zap( enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None)
+					self.zap(enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None)
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
@@ -1060,7 +1061,7 @@ class ChannelSelectionEdit:
 	def doContext(self):
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
 
-	def exitContext(self, close = False):
+	def exitContext(self, close=False):
 		l = self["list"]
 		l.setServiceFontsize()
 		l.setItemsPerPage()
@@ -1084,9 +1085,10 @@ MODE_RADIO = 1
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
-class ChannelSelectionBase(Screen):
+class ChannelSelectionBase(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
@@ -1098,10 +1100,10 @@ class ChannelSelectionBase(Screen):
 
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 
-		self.servicePathTV = [ ]
-		self.servicePathRadio = [ ]
-		self.servicePath = [ ]
-		self.history = [ ]
+		self.servicePathTV = []
+		self.servicePathRadio = []
+		self.servicePath = []
+		self.history = []
 		self.rootChanged = False
 		self.startRoot = None
 
@@ -1382,7 +1384,7 @@ class ChannelSelectionBase(Screen):
 							refstr = cur_ref.toString()
 							op = "".join(refstr.split(':', 10)[6:7])
 							if len(op) >= 4:
-								hop = int(op[:-4],16)
+								hop = int(op[:-4], 16)
 								if len(op) >= 7 and not op.endswith('0000'):
 									op = op[:-4] + '0000'
 								refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name' % (op, hop, self.service_types[self.service_types.rfind(':')+1:])
@@ -1405,7 +1407,7 @@ class ChannelSelectionBase(Screen):
 							info = service.info()
 							if info:
 								provider = info.getInfoString(iServiceInformation.sProvider)
-								refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && %s ORDER BY name:%s' % (provider, self.service_types[self.service_types.rfind(':')+1:],provider)
+								refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && %s ORDER BY name:%s' % (provider, self.service_types[self.service_types.rfind(':')+1:], provider)
 								self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def changeBouquet(self, direction):
@@ -1608,8 +1610,8 @@ class ChannelSelectionBase(Screen):
 				info = service.info()
 				if info:
 					provider = info.getInfoString(iServiceInformation.sProvider)
-					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
-					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s' % (provider, op, self.service_types[self.service_types.rfind(':')+1:],provider)
+					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0", 16)
+					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s' % (provider, op, self.service_types[self.service_types.rfind(':')+1:], provider)
 					self.servicelist.setCurrent(eServiceReference(refstr))
 		elif not self.isBasePathEqual(self.bouquet_root) or self.bouquet_mark_edit == EDIT_ALTERNATIVES:
 			self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
@@ -1638,7 +1640,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 		if config.usage.servicelist_mode.value == 'simple':
-			self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
+			self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 		else:
 			self.skinName = "ChannelSelection"
 
@@ -1649,8 +1651,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyRadio": self.toogleTvRadio,
 				"keyTV": self.toogleTvRadio,
 			})
-			
-		self.radioTV = 0	
+
+		self.radioTV = 0
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1723,14 +1725,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
-			
-	def toogleTvRadio(self): 
+
+	def toogleTvRadio(self):
 		if self.radioTV == 1:
 			self.radioTV = 0
-			self.setModeTv() 
-		else: 
+			self.setModeTv()
+		else:
 			self.radioTV = 1
-			self.setModeRadio() 
+			self.setModeRadio()
 
 	def setModeTv(self):
 		if self.revertMode is None and config.servicelist.lastmode.value == 'radio':
@@ -1785,7 +1787,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif not (ref.flags & eServiceReference.isMarker or ref.type == -1):
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap(enable_pipzap = doClose, preview_zap = not doClose)
+				self.zap(enable_pipzap=doClose, preview_zap=not doClose)
 				self.asciiOff()
 				if doClose:
 					if self.dopipzap:
@@ -1977,7 +1979,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if selpos < 0: selpos = 0
 		if selpos > hlen-1: selpos = hlen-1
 		serviceHandler = eServiceCenter.getInstance()
-		historylist = [ ]
+		historylist = []
 		for x in self.history:
 			info = serviceHandler.info(x[-1])
 			if info: historylist.append((info.getName(x[-1]), x[-1]))
@@ -2009,8 +2011,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastroot.save()
 
 	def restoreRoot(self):
-		tmp = [ x for x in self.lastroot.value.split(';') if x != '' ]
-		current = [ x.toString() for x in self.servicePath ]
+		tmp = [x for x in self.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
 		if tmp != current or self.rootChanged:
 			self.clearPath()
 			cnt = 0
@@ -2156,7 +2158,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 class PiPZapSelection(ChannelSelection):
 	def __init__(self, session):
 		ChannelSelection.__init__(self, session)
-		self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
+		self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 
 		self.startservice = None
 		self.pipzapfailed = None
@@ -2268,7 +2270,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
 		{
 			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
-		},-1)
+		}, prio=-1, description=_("Rass"))
 		self["RdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 		self.onClose.append(self.__onClose)
@@ -2316,8 +2318,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			config.radio.lastroot.save()
 
 	def restoreRoot(self):
-		tmp = [ x for x in config.radio.lastroot.value.split(';') if x != '' ]
-		current = [ x.toString() for x in self.servicePath ]
+		tmp = [x for x in config.radio.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
 		if tmp != current or self.rootChanged:
 			cnt = 0
 			for i in tmp:
@@ -2435,12 +2437,12 @@ class HistoryZapSelector(Screen):
 				'red': self.okbuttonClick
 			})
 		self.setTitle(_("History zap..."))
-		
+
 		self['key_red'] = Label(_('Zap'))
 		self['key_green'] = Label('')
 		self['key_yellow'] = Label('')
 		self['key_blue'] = Label('')
-        
+
 		self.list = []
 		cnt = 0
 		serviceHandler = eServiceCenter.getInstance()
@@ -2461,7 +2463,7 @@ class HistoryZapSelector(Screen):
 					if eventName is None:
 						eventName = ""
 					else:
-						eventName = eventName.replace('(18+)', '').replace('18+', '').replace('(16+)', '').replace('16+', '').replace('(12+)', '').replace('12+', '').replace('(7+)', '').replace('7+', '').replace('(6+)', '').replace('6+', '').replace('(0+)', '').replace('0+', '')	
+						eventName = eventName.replace('(18+)', '').replace('18+', '').replace('(16+)', '').replace('16+', '').replace('(12+)', '').replace('12+', '').replace('(7+)', '').replace('7+', '').replace('(6+)', '').replace('6+', '').replace('(0+)', '').replace('0+', '')
 					# if config.plugins.SetupZapSelector.event.value == "2":
 					descriptionName = event.getShortDescription()
 					if descriptionName is None or descriptionName == "":
@@ -2478,7 +2480,7 @@ class HistoryZapSelector(Screen):
 							prefix = "+"
 						local_begin = localtime(begin)
 						local_end = localtime(end)
-						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3],local_begin[4],local_end[3],local_end[4],prefix, remaining)
+						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3], local_begin[4], local_end[3], local_end[4], prefix, remaining)
 
 			png = None
 			picon = getPiconName(str(ServiceReference(x[1])))

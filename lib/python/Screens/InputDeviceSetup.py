@@ -30,15 +30,15 @@ class InputDeviceSelection(Screen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("Exit input device selection.")),
-			"ok": (self.okbuttonClick, _("Select input device.")),
-			}, -2)
+				"cancel": (self.close, _("Exit input device selection")),
+				"ok": (self.okbuttonClick, _("Select input device")),
+			}, prio=-2)
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("Exit input device selection.")),
-			"green": (self.okbuttonClick, _("Select input device.")),
-			}, -2)
+				"red": (self.close, _("Exit input device selection")),
+				"green": (self.okbuttonClick, _("Select input device")),
+			}, prio=-2)
 
 		self.currentIndex = 0
 		self.list = []
@@ -53,7 +53,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 	def cleanup(self):
 		self.currentIndex = 0
 
-	def buildInterfaceList(self, device, description, type, isinputdevice = True):
+	def buildInterfaceList(self, device, description, type, isinputdevice=True):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		activepng = None
 		devicepng = None
@@ -115,7 +115,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup_title = _("Input device setup")
 		self.isStepSlider = None
 		self.enableEntry = None
@@ -124,15 +124,15 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.nameEntry = None
 		self.enableConfigEntry = None
 
-		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
 				"menu": self.closeRecursive,
-			}, -2)
+			}, prio=-2)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -157,7 +157,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		iInputDevices.currentDevice = ""
 
 	def createSetup(self):
-		self.list = [ ]
+		self.list = []
 		label = _("Change repeat and delay settings?")
 		cmd = "self.enableEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".enabled)"
 		exec cmd
@@ -195,7 +195,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def selectionChanged(self):
 		if self["config"].getCurrent() == self.enableEntry:
-			self["introduction"].setText(_("Current device: ") + str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name')) )
+			self["introduction"].setText(_("Current device: ") + str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name')))
 		else:
 			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + ' ' + _("ms"))
 
@@ -259,7 +259,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 	odinRemote = "OdinM9"
 	if getBoxType() == "maram9":
 		odinRemote = "MaraM9"
-	
+
 	rcList = [
 			("0", _("Default")),
 			("3", _(odinRemote)),
@@ -288,22 +288,22 @@ class RemoteControlType(Screen, ConfigListScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = ["RemoteControlType", "Setup" ]
+		self.skinName = ["RemoteControlType", "Setup"]
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"cancel": self.keyCancel,
 			"save": self.keySave,
-		}, -1)
+		}, prio=-1)
 
 		self["key_green"] = StaticText(_("Save"))
 		self["key_red"] = StaticText(_("Cancel"))
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 
 		rctype = config.plugins.remotecontroltype.rctype.value
-		self.rctype = ConfigSelection(choices = self.rcList, default = str(rctype))
+		self.rctype = ConfigSelection(choices=self.rcList, default=str(rctype))
 		self.list.append(getConfigListEntry(_("Remote control type"), self.rctype))
 		self["config"].list = self.list
 

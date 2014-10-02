@@ -114,19 +114,20 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		self["highlight"] = MovingPixmap()
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 
-		self["overviewActions"] = HelpableActionMap(self, "EcasaOverviewActions", {
-			"up": self.up,
-			"down": self.down,
-			"left": self.left,
-			"right": self.right,
-			"blue": (self.nextPage, _("show next page")),
-			"red": (self.prevPage, _("show previous page")),
-			"select": self.select,
-			"exit": self.close,
-			#"albums":(self.albums, _("show your albums (if logged in)")),
-			"search":(self.search, _("start a new search")),
-			#"contextMenu":(self.contextMenu, _("open context menu")),
-			}, -1)
+		self["overviewActions"] = HelpableActionMap(self, "EcasaOverviewActions",
+			{
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"blue": (self.nextPage, _("Show next page")),
+				"red": (self.prevPage, _("Show previous page")),
+				"select": self.select,
+				"exit": self.close,
+				#"albums":(self.albums, _("Show your albums (if logged in)")),
+				"search":(self.search, _("Start a new search")),
+				#"contextMenu":(self.contextMenu, _("Open context menu")),
+			}, prio=-1)
 
 		self.offset = 0
 		self.__highlighted = 0
@@ -365,7 +366,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 			ret[1]()
 
 	def openSetup(self):
-		 self.session.openWithCallback(self.setupClosed, EcasaSetup)
+		self.session.openWithCallback(self.setupClosed, EcasaSetup)
 
 	def openHistory(self):
 		options = [(x, x) for x in config.plugins.ecasa.searchhistory.value]
@@ -438,7 +439,7 @@ class EcasaOverview(EcasaPictureWall):
 		self.onClose.append(self.__onClose)
 
 	def openSetup(self):
-		 self.session.openWithCallback(self.setupClosed, EcasaSetup, allowApiChange=True)
+		self.session.openWithCallback(self.setupClosed, EcasaSetup, allowApiChange=True)
 
 	def setupClosed(self):
 		api = self.api
@@ -493,11 +494,11 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		<widget source="list" render="Listbox" position="0,50" size="560,360" scrollbarMode="showAlways">
 			<convert type="TemplatedMultiContent">
 				{"template": [
-						MultiContentEntryText(pos=(1,1), size=(540,22), text = 0, font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER),
+						MultiContentEntryText(pos=(1,1), size=(540,22), text=0, font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER),
 					],
-				  "fonts": [gFont("Regular", 20)],
-				  "itemHeight": 24
-				 }
+					"fonts": [gFont("Regular", 20)],
+					"itemHeight": 24
+				}
 			</convert>
 		</widget>
 	</screen>"""
@@ -514,12 +515,13 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		self['key_yellow'] = StaticText(_("Change user"))
 		self['key_blue'] = StaticText(_("User history"))
 
-		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions", {
-			"select":(self.select, _("show album")),
-			"exit":(self.close, _("Close")),
-			"users":(self.users, _("Change user")),
-			"history":(self.history, _("User history")),
-		}, -1)
+		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions",
+			{
+				"select":(self.select, _("Show album")),
+				"exit":(self.close, _("Close")),
+				"users":(self.users, _("Change user")),
+				"history":(self.history, _("User history")),
+			}, prio=-1)
 
 		self.acquireAlbumsForUser(user)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -626,16 +628,18 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		self['summary'] = StaticText()
 		self['keywords'] = StaticText()
 
-		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions", {
-			"info": (self.info, _("show metadata")),
-			"exit": (self.close, _("Close")),
-			"contextMenu":(self.contextMenu, _("open context menu")),
-			}, -1)
+		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions",
+			{
+				"info": (self.info, _("Show metadata")),
+				"exit": (self.close, _("Close")),
+				"contextMenu":(self.contextMenu, _("Open context menu")),
+			}, prio=-1)
 		if prevFunc and nextFunc:
-			self["directionActions"] = HelpableActionMap(self, "DirectionActions", {
-				"left": self.previous,
-				"right": self.next,
-				}, -2)
+			self["directionActions"] = HelpableActionMap(self, "DirectionActions",
+				{
+					"left": self.previous,
+					"right": self.next,
+				}, prio=-2)
 
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.gotPicture)
