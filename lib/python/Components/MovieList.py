@@ -656,7 +656,10 @@ class MovieList(GUIComponent):
 		name = x[1] and x[1].getName(ref) or ".."
 		if name and ref.flags & eServiceReference.mustDescent:
 			# only use directory basename for sorting
-			name = os.path.basename(os.path.normpath(name))
+			try:
+				name = os.path.basename(os.path.normpath(name))
+			except:
+				pass
 		if name.endswith(".Trash"):
 			name = "Deleted Items"
 		# print "[MovieList] Sorting for -%s-" % name
@@ -666,7 +669,11 @@ class MovieList(GUIComponent):
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
-			return 0, x[1] and -os.stat(ref.getPath()).st_mtime
+			try:
+				mtime = -os.stat(ref.getPath()).st_mtime
+			except:
+				mtime = 0
+			return 0, x[1] and mtime
 		return 1, -x[2]
 
 	def moveTo(self, serviceref):
