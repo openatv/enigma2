@@ -265,7 +265,7 @@ class EPGFetcher(object):
                         for timer in _session.nav.RecordTimer.timer_list:
                             if timer.ice_timer_id == ice_timer_id:
                                 # print "[IceTV] updating timer:", timer
-                                if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + (config.recording.margin_before.value + config.recording.margin_after.value) * 60, self.channel_service_map[channel_id]):
+                                if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, self.channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
                                         iceTimer["state"] = "failed"
                                         iceTimer["message"] = "Failed to update the timer"
