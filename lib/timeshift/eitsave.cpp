@@ -16,7 +16,7 @@ static void SaveEIT(const char *ref, const char *filename, int  eit_event_id, ti
 	std::string sref = ref;
 	if ( eit_event_id != -1 )
 	{
-		eDebug("[EITSave] query epg event id %d, %s", eit_event_id, sref.c_str());
+		eDebug("[EITSave] query epg event id %04x, %s", eit_event_id, sref.c_str());
 		eEPGCache::getInstance()->lookupEventId(mref, eit_event_id, event);
 	}
 	

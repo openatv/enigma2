@@ -2,13 +2,14 @@
 #include <lib/dvb/dvb.h>
 
 #undef EPG_DEBUG
+//#define EPG_DEBUG 1
 
 #ifdef EPG_DEBUG
 #include <lib/service/event.h>
 #endif
 
+#include <stdio.h>
 #include <fstream>
-#include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
 // #include <libmd5sum.h>
@@ -399,7 +400,7 @@ void eEPGCache::timeUpdated()
 			messages.send(Message(Message::timeChanged));
 	}
 	else
-		eDebug("[EPGC] time updated.. but cache file not set yet.. dont start epg!!");
+		eDebug("[EPGC] time updated.. but cache file not set yet.. do not start epg!!");
 }
 
 void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
@@ -449,21 +450,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				RESULT res = demux->createSectionReader( this, data.m_NowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize nownext reader!!");
+					eDebug("[eEPGCache] could not initialize nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize schedule reader!!");
+					eDebug("[eEPGCache] could not initialize schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
+					eDebug("[eEPGCache] could not initialize schedule other reader!!");
 					return;
 				}
 
@@ -471,14 +472,14 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_VirginNowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize virgin nownext reader!!");
+					eDebug("[eEPGCache] could not initialize virgin nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_VirginScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize virgin schedule reader!!");
+					eDebug("[eEPGCache] could not initialize virgin schedule reader!!");
 					return;
 				}
 #endif
@@ -486,28 +487,28 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_NetmedScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize netmed schedule reader!!");
+					eDebug("[eEPGCache] could not initialize netmed schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_NetmedScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize netmed schedule other reader!!");
+					eDebug("[eEPGCache] could not initialize netmed schedule other reader!!");
 					return;
 				}
 #endif
 				res = demux->createSectionReader( this, data.m_ViasatReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize viasat reader!!");
+					eDebug("[eEPGCache] could not initialize viasat reader!!");
 					return;
 				}
 #ifdef ENABLE_PRIVATE_EPG
 				res = demux->createSectionReader( this, data.m_PrivateReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize private reader!!");
+					eDebug("[eEPGCache] could not initialize private reader!!");
 					return;
 				}
 #endif
@@ -515,13 +516,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_MHWReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize mhw reader!!");
+					eDebug("[eEPGCache] could not initialize mhw reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_MHWReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize mhw reader!!");
+					eDebug("[eEPGCache] could not initialize mhw reader!!");
 					return;
 				}
 #endif
@@ -529,13 +530,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat reader!!");
+					eDebug("[eEPGCache] could not initialize FreeSat reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat reader 2!!");
+					eDebug("[eEPGCache] could not initialize FreeSat reader 2!!");
 					return;
 				}
 #endif
@@ -593,13 +594,68 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	}
 }
 
-bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
+/**
+ * @brief Removes any existing events that overlap the new event by more than OVERLAP_TIME (100) seconds.
+ *
+ * @param servicemap an eventMap, timeMap pair
+ * @param TM start time of the event
+ * @param duration duration (in seconds) of the event
+ * @param tm_it iterator pointing to the old version of the event in the timeMap
+ * @param service the DVB triplet that identifies the service
+ * @return bool true if there were any deletions performed.
+ */
+bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
 {
+//	eDebug("[EPGC] FixOverlapping TM=%ld, duration=%d, tm_it=%ld", (long)TM, duration, (long)tm_it->first);
+	static const int OVERLAP_TIME = 100;
 	bool ret = false;
 	timeMap::iterator tmp = tm_it;
-	while ((tmp->first+tmp->second->getDuration()-300) > TM)
+	// while end of old is OVERLAP_TIME or more after start of new
+	while ((tmp->first+tmp->second->getDuration()-OVERLAP_TIME) > TM)
 	{
+//		eDebug("[EPGC] check front against %ld", (long)tmp->first);
 		if(tmp->first != TM
+#ifdef ENABLE_PRIVATE_EPG
+			&& tmp->second->type != PRIVATE
+#endif
+#ifdef ENABLE_MHW_EPG
+			&& tmp->second->type != MHW
+#endif
+			)
+		{
+			// Remove from both maps and delete the old event
+			__u16 event_id = tmp->second->getEventID();
+			servicemap.first.erase(event_id);
+#ifdef EPG_DEBUG
+			Event evt((uint8_t*)tmp->second->get());
+			eServiceEvent event;
+			event.parseFrom(&evt, service.sid<<16|service.onid);
+			eDebug("[EPGC] (1) erase svc(%x:%x:%x) evt=%04x\n"
+				"old event start=%ld, end=%ld\n"
+				"new event start=%ld, end=%ld\n"
+				"%s %s\n%s",
+				service.onid, service.tsid, service.sid, event_id,
+				(long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
+				(long)TM, (long)TM + duration,
+				event.getBeginTimeString().c_str(),
+				event.getEventName().c_str(),
+				event.getExtendedDescription().c_str());
+#endif
+			delete tmp->second;
+			ret = true;
+			servicemap.second.erase(tmp++);
+		}
+		if (tmp == servicemap.second.begin())
+			break;
+		--tmp;
+	}
+
+	tmp = tm_it;
+	// while start of old is OVERLAP_TIME or more before end of new
+	while(tmp->first < (TM+duration-OVERLAP_TIME))
+	{
+//		eDebug("[EPGC] check back against %ld", (long)tmp->first);
+		if (tmp->first != TM
 #ifdef ENABLE_PRIVATE_EPG
 			&& tmp->second->type != PRIVATE
 #endif
@@ -614,50 +670,20 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
 			event.parseFrom(&evt, service.sid<<16|service.onid);
-			eDebug("(1)erase no more used event %04x %d\n%s %s\n%s",
-				service.sid, event_id,
+			eDebug("[EPGC] (2) erase svc(%x:%x:%x) evt=%04x\n"
+				"old event start=%ld, end=%ld\n"
+				"new event start=%ld, end=%ld\n"
+				"%s %s\n%s",
+				service.onid, service.tsid, service.sid, event_id,
+				(long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
+				(long)TM, (long)TM + duration,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
 				event.getExtendedDescription().c_str());
 #endif
 			delete tmp->second;
-			if (tmp == servicemap.second.begin())
-			{
-				servicemap.second.erase(tmp);
-				break;
-			}
-			else
-				servicemap.second.erase(tmp--);
 			ret = true;
-		}
-		else
-		{
-			if (tmp == servicemap.second.begin())
-				break;
-			--tmp;
-		}
-	}
-
-	tmp = tm_it;
-	while(tmp->first < (TM+duration-300))
-	{
-		if (tmp->first != TM && tmp->second->type != PRIVATE)
-		{
-			__u16 event_id = tmp->second->getEventID();
-			servicemap.first.erase(event_id);
-#ifdef EPG_DEBUG
-			Event evt((uint8_t*)tmp->second->get());
-			eServiceEvent event;
-			event.parseFrom(&evt, service.sid<<16|service.onid);
-			eDebug("(2)erase no more used event %04x %d\n%s %s\n%s",
-				service.sid, event_id,
-				event.getBeginTimeString().c_str(),
-				event.getEventName().c_str(),
-				event.getExtendedDescription().c_str());
-#endif
-			delete tmp->second;
 			servicemap.second.erase(tmp++);
-			ret = true;
 		}
 		else
 			++tmp;
@@ -667,7 +693,16 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 	return ret;
 }
 
-void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
+
+/**
+ * @brief Parse EIT section data and update the EPG cache timeMap and eventMap
+ *
+ * @param data EIT section data
+ * @param source The type of EIT source
+ * @param channel The channel for which the EPG is being updated
+ * @return void
+ */
+void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *channel)
 {
 	eit_t *eit = (eit_t*) data;
 
@@ -709,7 +744,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 		onid = chid.original_network_id.get();
 		tsid = chid.transport_stream_id.get();
 	}
-	uniqueEPGKey service( HILO(eit->service_id), onid, tsid);
+	uniqueEPGKey service(HILO(eit->service_id), onid, tsid);
 
 	eit_event_struct* eit_event = (eit_event_struct*) (data+ptr);
 	int eit_event_size;
@@ -721,15 +756,15 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			eit_event->start_time_3,
 			eit_event->start_time_4,
 			eit_event->start_time_5);
-	time_t now = ::time(0);
+	time_t now = ::time(0) - historySeconds;
 
+	// Set a flag in the channel to signify that the source is available
 	if ( TM != 3599 && TM > -1 && channel)
 		channel->haveData |= source;
 
 	singleLock s(cache_lock);
-	// hier wird immer eine eventMap zurck gegeben.. entweder eine vorhandene..
-	// oder eine durch [] erzeugte
-	std::pair<eventMap,timeMap> &servicemap = eventDB[service];
+	// here an eventMap is always given back to results .. either an existing one or one generated by []
+	serviceMap &servicemap = eventDB[service];
 	eventMap::iterator prevEventIt = servicemap.first.end();
 	timeMap::iterator prevTimeIt = servicemap.second.end();
 
@@ -747,12 +782,15 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			eit_event->start_time_5,
 			&event_hash);
 
+		bool isOld = ((TM + duration) < now);
+
 		std::vector<int>::iterator m_it=find(onid_blacklist.begin(),onid_blacklist.end(),onid);
 		if (m_it != onid_blacklist.end())
 			goto next;
 
 		if ( (TM != 3599) &&		// NVOD Service
-		     (now <= (TM+duration)) &&	// skip old events
+// Don't skip old events. This allows us to delete events by setting their start time to distant past and they will be deleted by cleanLoop() later.
+//		     isOld &&	// skip old events
 		     (TM < (now+28*24*60*60)) &&	// no more than 4 weeks in future
 		     ( (onid != 1714) || (duration != (24*3600-1)) )	// PlatformaHD invalid event
 		   )
@@ -771,25 +809,29 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			}
 
 			// search in eventmap
-			eventMap::iterator ev_it =
-				servicemap.first.find(event_id);
+			eventMap::iterator ev_it = servicemap.first.find(event_id);
 
-//			eDebug("event_id is %d sid is %04x", event_id, service.sid);
+//			eDebug("svc(%x:%x:%x) event_id %04x", service.onid, service.tsid, service.sid, event_id);
 
 			// entry with this event_id is already exist ?
 			if ( ev_it != servicemap.first.end() )
 			{
+//				eDebug("[EPGC] event %04x in eventMap with start time %ld", event_id, (long)ev_it->second->getStartTime());
 				if ( source > ev_it->second->type )  // update needed ?
+				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
+#endif
 					goto next; // when not.. then skip this entry
+				}
 
 				// search this event in timemap
-				timeMap::iterator tm_it_tmp =
-					servicemap.second.find(ev_it->second->getStartTime());
-
+				timeMap::iterator tm_it_tmp = servicemap.second.find(ev_it->second->getStartTime());
 				if ( tm_it_tmp != servicemap.second.end() )
 				{
 					if ( tm_it_tmp->first == TM ) // just update eventdata
 					{
+//						eDebug("[EPGC] event %04x in timeMap with same start time - update and FixOverlap", event_id);
 						// exempt memory
 						eventData *tmp = ev_it->second;
 						ev_it->second = tm_it_tmp->second =
@@ -804,38 +846,71 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 					}
 					else  // event has new event begin time
 					{
+#ifdef EPG_DEBUG
+						eDebug("[EPGC] event %04x in timeMap with a different start time - delete from timeMap", event_id);
+#endif
 						tm_erase_count++;
 						// delete the found record from timemap
 						servicemap.second.erase(tm_it_tmp);
 						prevTimeIt=servicemap.second.end();
 					}
 				}
+				else
+				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] event %04x not found in timeMap at time %ld", event_id, (long)ev_it->second->getStartTime());
+#endif
+				}
+			}
+			else
+			{
+#ifdef EPG_DEBUG
+				eDebug("[EPGC] event %04x not found in eventMap", event_id);
+#endif
 			}
 
 			// search in timemap, for check of a case if new time has coincided with time of other event
 			// or event was is not found in eventmap
-			timeMap::iterator tm_it =
-				servicemap.second.find(TM);
-
+			timeMap::iterator tm_it = servicemap.second.find(TM);
 			if ( tm_it != servicemap.second.end() )
 			{
+//				eDebug("[EPGC] event at time %ld in timeMap with id %04x", (long)TM, tm_it->second->getEventID());
 				// event with same start time but another event_id...
 				if ( source > tm_it->second->type &&
 					ev_it == servicemap.first.end() )
+				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] event at time %ld skip update: source=0x%x > type=0x%x && event %04x not found in eventMap", (long)TM, source, tm_it->second->type, event_id);
+#endif
 					goto next; // when not.. then skip this entry
+				}
 
 				// search this time in eventmap
-				eventMap::iterator ev_it_tmp =
-					servicemap.first.find(tm_it->second->getEventID());
-
+				eventMap::iterator ev_it_tmp = servicemap.first.find(tm_it->second->getEventID());
 				if ( ev_it_tmp != servicemap.first.end() )
 				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] event at time %ld found in event map as %04x - delete from eventMap", (long)TM, tm_it->second->getEventID());
+#endif
 					ev_erase_count++;
 					// delete the found record from eventmap
 					servicemap.first.erase(ev_it_tmp);
 					prevEventIt=servicemap.first.end();
 				}
+				else
+				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] event at time %ld not found in eventMap as %04x", (long)TM, tm_it->second->getEventID());
+#endif
+				}
 			}
+			else
+			{
+#ifdef EPG_DEBUG
+				eDebug("[EPGC] event at time %ld not found in timeMap", (long)TM);
+#endif
+			}
+
 			evt = new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
 #ifdef EPG_DEBUG
 			bool consistencyCheck=true;
@@ -852,14 +927,14 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			{
 				// exempt memory
 				delete ev_it->second;
-				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
+				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type(TM, evt));
 				ev_it->second=evt;
 			}
 			else if (ev_erase_count > 0 && tm_erase_count == 0)
 			{
 				// exempt memory
 				delete tm_it->second;
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
+				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
 				tm_it->second=evt;
 			}
 			else // added new eventData
@@ -867,8 +942,19 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 #ifdef EPG_DEBUG
 				consistencyCheck=false;
 #endif
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
-				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
+				if (isOld)
+				{
+					delete evt;
+					goto next;
+				}
+				else
+				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] add new event %04x at time %ld", event_id, (long)TM);
+#endif
+					ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
+					tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( TM, evt ) );
+				}
 			}
 
 #ifdef EPG_DEBUG
@@ -877,16 +963,16 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 				if ( tm_it->second != evt || ev_it->second != evt )
 					eFatal("tm_it->second != ev_it->second");
 				else if ( tm_it->second->getStartTime() != tm_it->first )
-					eFatal("event start_time(%d) non equal timemap key(%d)",
-						tm_it->second->getStartTime(), tm_it->first );
+					eFatal("event start_time(%ld) non equal timemap key(%ld)",
+						(long)tm_it->second->getStartTime(), (long)tm_it->first );
 				else if ( tm_it->first != TM )
-					eFatal("timemap key(%d) non equal TM(%d)",
-						tm_it->first, TM);
+					eFatal("timemap key(%ld) non equal TM(%ld)",
+						(long)tm_it->first, (long)TM);
 				else if ( ev_it->second->getEventID() != ev_it->first )
-					eFatal("event_id (%d) non equal event_map key(%d)",
+					eFatal("event_id (%04x) non equal event_map key(%04x)",
 						ev_it->second->getEventID(), ev_it->first);
 				else if ( ev_it->first != event_id )
-					eFatal("eventmap key(%d) non equal event_id(%d)",
+					eFatal("eventmap key(%04x) non equal event_id(%04x)",
 						ev_it->first, event_id );
 			}
 #endif
@@ -918,7 +1004,7 @@ next:
 						i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
 				}
 			}
-			eFatal("(1)map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d",
+			eFatal("[EPGC] (1) map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d",
 				service.sid, service.tsid, service.onid,
 				servicemap.first.size(), servicemap.second.size() );
 		}
@@ -930,10 +1016,10 @@ next:
 
 void eEPGCache::flushEPG(const uniqueEPGKey & s)
 {
-	eDebug("[EPGC] flushEPG %d", (int)(bool)s);
 	singleLock l(cache_lock);
 	if (s)  // clear only this service
 	{
+		eDebug("[EPGC] flushEPG svc(%x:%x:%x)", s.onid, s.tsid, s.sid);
 		eventCache::iterator it = eventDB.find(s);
 		if ( it != eventDB.end() )
 		{
@@ -959,6 +1045,7 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 	}
 	else // clear complete EPG Cache
 	{
+		eDebug("[EPGC] flushEPG all services");
 		for (eventCache::iterator it(eventDB.begin());
 			it != eventDB.end(); ++it)
 		{
@@ -980,6 +1067,12 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 	}
 }
 
+/**
+ * @brief Remove old events from the cache. An event is considered old
+ * if it's end time is earlier than @p eEPGCache::historySeconds ago.
+ *
+ * @return void
+ */
 void eEPGCache::cleanLoop()
 {
 	singleLock s(cache_lock);
@@ -994,6 +1087,11 @@ void eEPGCache::cleanLoop()
 			{
 				if ( now > (It->first+It->second->getDuration()) )  // outdated normal entry (nvod references to)
 				{
+#ifdef EPG_DEBUG
+					eDebug("[EPGC] cleanLoop: svc(%x:%x:%x) delete old event %04x at time %ld",
+						DBIt->first.onid, DBIt->first.tsid, DBIt->first.sid,
+						It->second->getEventID(), (long) It->first);
+#endif
 					// remove entry from eventMap
 					eventMap::iterator b(DBIt->second.first.find(It->second->getEventID()));
 					if ( b != DBIt->second.first.end() )
@@ -1195,40 +1293,54 @@ void eEPGCache::thread()
 
 static const char* EPGDAT_IN_FLASH = "/epg.dat";
 
+void eEPGCache::clear()
+{
+	flushEPG();
+}
+
+const static unsigned int EPG_MAGIC = 0x98765432;
+
 void eEPGCache::load()
 {
+#ifdef EPG_DEBUG
+	eDebug("[EPGC] load()");
+#endif
 	if (m_filename.empty())
 		m_filename = "/hdd/epg.dat";
 	const char* EPGDAT = m_filename.c_str();
 	std::string filenamex = m_filename + ".loading";
 	const char* EPGDATX = filenamex.c_str();
+	singleLock s(cache_lock);
 	FILE *f = fopen(EPGDAT, "rb");
 	int renameResult;
 	if (f == NULL)
 	{
 		/* No EPG on harddisk, so try internal flash */
-		eDebug("[EPGC] %s not found, try /epg.dat", EPGDAT);
+		eDebug("[EPGC] %s not found, try %s", EPGDAT, EPGDAT_IN_FLASH);
 		EPGDAT = EPGDAT_IN_FLASH;
 		f = fopen(EPGDAT, "rb");
 		if (f == NULL)
+		{
+			eDebug("[EPGC] %s not found, giving up", EPGDAT);
 			return;
+		}
 		renameResult = -1;
 	}
 	else
 	{
 		unlink(EPGDATX);
 		renameResult = rename(EPGDAT, EPGDATX);
-		if (renameResult) eDebug("[EPGC] failed to rename %s", EPGDAT);
+		if (renameResult) eDebug("[EPGC] failed to rename %s to %s: %m", EPGDAT, EPGDATX);
 	}
 	{
 		int size=0;
 		int cnt=0;
 		unsigned int magic=0;
 		unlink(EPGDAT_IN_FLASH);/* Don't keep it around when in flash */
-		fread( &magic, sizeof(int), 1, f);
-		if (magic != 0x98765432)
+		fread(&magic, sizeof(int), 1, f);
+		if (magic != EPG_MAGIC)
 		{
-			eDebug("[EPGC] epg file has incorrect byte order.. dont read it");
+			eDebug("[EPGC] epg file load failed magic test expected 0x%08x, got 0x%08x (%m)", EPG_MAGIC, magic);
 			fclose(f);
 			return;
 		}
@@ -1236,7 +1348,6 @@ void eEPGCache::load()
 		fread( text1, 13, 1, f);
 		if ( !memcmp( text1, "ENIGMA_EPG_V7", 13) )
 		{
-			singleLock s(cache_lock);
 			fread( &size, sizeof(int), 1, f);
 			while(size--)
 			{
@@ -1261,7 +1372,7 @@ void eEPGCache::load()
 					tmMap[ event->getStartTime() ]=event;
 					++cnt;
 				}
-				eventDB[key]=std::pair<eventMap,timeMap>(evMap,tmMap);
+				eventDB[key]=serviceMap(evMap,tmMap);
 			}
 			eventData::load(f);
 			eDebug("[EPGC] %d events read from %s", cnt, EPGDAT);
@@ -1314,17 +1425,24 @@ void eEPGCache::load()
 			if (renameResult) eDebug("[EPGC] failed to rename epg.dat back");
 		}
 	}
+#ifdef EPG_DEBUG
+	eDebug("[EPGC] load() - finished");
+#endif
 }
 
 void eEPGCache::save()
 {
+#ifdef EPG_DEBUG
+	eDebug("[EPGC] save()");
+#endif
 	const char* EPGDAT = m_filename.c_str();
 	if (eventData::isCacheCorrupt)
 		return;
-	// only save epg.dat if it's worth the trouble...
-	if (eventData::CacheSize < 10240)
+	// only save epg.dat if it is not empty
+	if (eventData::CacheSize < 1)
 		return;
 
+	singleLock s(cache_lock);
 	/* create empty file */
 	FILE *f = fopen(EPGDAT, "wb");
 	if (!f)
@@ -1333,7 +1451,10 @@ void eEPGCache::save()
 		EPGDAT = EPGDAT_IN_FLASH;
 		f = fopen(EPGDAT, "wb");
 		if (!f)
+		{
+			eDebug("[EPGC] Failed to open '%s' (%m)", EPGDAT);
 			return;
+		}
 	}
 
 	char* buf = realpath(EPGDAT, NULL);
@@ -1344,32 +1465,35 @@ void eEPGCache::save()
 		return;
 	}
 
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] store epg to realpath '%s'", buf);
+#endif
 
-	struct statfs s;
+	struct statfs st;
 	off64_t tmp;
-	if (statfs(buf, &s) < 0) {
+	if (statfs(buf, &st) < 0) {
 		eDebug("[EPGC] statfs '%s' failed in save (%m)", buf);
 		fclose(f);
 		free(buf);
 		return;
 	}
 
-	free(buf);
-
 	// check for enough free space on storage
-	tmp=s.f_bfree;
-	tmp*=s.f_bsize;
+	tmp=st.f_bfree;
+	tmp*=st.f_bsize;
 	if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 	{
-		eDebug("[EPGC] not enough free space at path '%s' %lld bytes availd but %d needed", buf, tmp, (eventData::CacheSize*12)/10);
+		eDebug("[EPGC] not enough free space at path '%s' %lld bytes avail but %d needed", buf, tmp, (eventData::CacheSize*12)/10);
 		fclose(f);
+		free(buf);
 		return;
 	}
+	free(buf);
+
 
 	int cnt=0;
-	unsigned int magic = 0x98765432;
-	fwrite( &magic, sizeof(int), 1, f);
+	unsigned int magic = EPG_MAGIC;
+	fwrite(&magic, sizeof(int), 1, f);
 	const char *text = "UNFINISHED_V7";
 	fwrite( text, 13, 1, f );
 	int size = eventDB.size();
@@ -1389,7 +1513,9 @@ void eEPGCache::save()
 			++cnt;
 		}
 	}
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] %d events written to %s", cnt, EPGDAT);
+#endif
 	eventData::save(f);
 #ifdef ENABLE_PRIVATE_EPG
 	const char* text3 = "PRIVATE_EPG";
@@ -1451,7 +1577,9 @@ bool eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
+#ifdef EPG_DEBUG
 		eDebug("[EPGC] stop caching events(%ld)", ::time(0));
+#endif
 		zapTimer->start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
@@ -1472,9 +1600,16 @@ bool eEPGCache::channel_data::finishEPG()
 	return false;
 }
 
+/**
+ * @brief Entry point for the EPG update timer
+ *
+ * @return void
+ */
 void eEPGCache::channel_data::startEPG()
 {
+#ifdef EPG_DEBUG
 	eDebug("[EPGC] start caching events(%ld)", ::time(0));
+#endif
 	state=0;
 	haveData=0;
 	for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
@@ -1546,7 +1681,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x4E;
 		mask.mask[0] = 0xFE;
-		m_NowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NOWNEXT), m_NowNextConn);
+		m_NowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::NOWNEXT), m_NowNextConn);
 		m_NowNextReader->start(mask);
 		isRunning |= NOWNEXT;
 	}
@@ -1555,7 +1690,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xF0;
-		m_ScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::SCHEDULE), m_ScheduleConn);
+		m_ScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::SCHEDULE), m_ScheduleConn);
 		m_ScheduleReader->start(mask);
 		isRunning |= SCHEDULE;
 	}
@@ -1564,7 +1699,7 @@ void eEPGCache::channel_data::startEPG()
 	{
 		mask.data[0] = 0x60;
 		mask.mask[0] = 0xF0;
-		m_ScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::SCHEDULE_OTHER), m_ScheduleOtherConn);
+		m_ScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::SCHEDULE_OTHER), m_ScheduleOtherConn);
 		m_ScheduleOtherReader->start(mask);
 		isRunning |= SCHEDULE_OTHER;
 	}
@@ -1575,7 +1710,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x2bc;
 		mask.data[0] = 0x4E;
 		mask.mask[0] = 0xFE;
-		m_VirginNowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIRGIN_NOWNEXT), m_VirginNowNextConn);
+		m_VirginNowNextReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::VIRGIN_NOWNEXT), m_VirginNowNextConn);
 		m_VirginNowNextReader->start(mask);
 		isRunning |= VIRGIN_NOWNEXT;
 	}
@@ -1585,7 +1720,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x2bc;
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xFE;
-		m_VirginScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIRGIN_SCHEDULE), m_VirginScheduleConn);
+		m_VirginScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::VIRGIN_SCHEDULE), m_VirginScheduleConn);
 		m_VirginScheduleReader->start(mask);
 		isRunning |= VIRGIN_SCHEDULE;
 	}
@@ -1596,7 +1731,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x1388;
 		mask.data[0] = 0x50;
 		mask.mask[0] = 0xF0;
-		m_NetmedScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NETMED_SCHEDULE), m_NetmedScheduleConn);
+		m_NetmedScheduleReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::NETMED_SCHEDULE), m_NetmedScheduleConn);
 		m_NetmedScheduleReader->start(mask);
 		isRunning |= NETMED_SCHEDULE;
 	}
@@ -1606,7 +1741,7 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 0x1388;
 		mask.data[0] = 0x60;
 		mask.mask[0] = 0xF0;
-		m_NetmedScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::NETMED_SCHEDULE_OTHER), m_NetmedScheduleOtherConn);
+		m_NetmedScheduleOtherReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::NETMED_SCHEDULE_OTHER), m_NetmedScheduleOtherConn);
 		m_NetmedScheduleOtherReader->start(mask);
 		isRunning |= NETMED_SCHEDULE_OTHER;
 	}
@@ -1617,7 +1752,7 @@ void eEPGCache::channel_data::startEPG()
 
 		mask.data[0] = 0x40;
 		mask.mask[0] = 0x40;
-		m_ViasatReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), (int)eEPGCache::VIASAT), m_ViasatConn);
+		m_ViasatReader->connectRead(bind(slot(*this, &eEPGCache::channel_data::readData), eEPGCache::VIASAT), m_ViasatConn);
 		m_ViasatReader->start(mask);
 		isRunning |= VIASAT;
 	}
@@ -1745,7 +1880,7 @@ void eEPGCache::channel_data::startChannel()
 	if (update < ZAP_DELAY)
 		update = ZAP_DELAY;
 
-	zapTimer->start(update, 1);
+	zapTimer->start(update, true);
 	if (update >= 60000)
 		eDebug("[EPGC] next update in %i min", update/60000);
 	else if (update >= 1000)
@@ -1852,7 +1987,7 @@ void eEPGCache::channel_data::abortEPG()
 	pthread_mutex_unlock(&channel_active);
 }
 
-void eEPGCache::channel_data::readData( const __u8 *data, int source)
+void eEPGCache::channel_data::readData( const __u8 *data, eit_type_t source)
 {
 	int map;
 	iDVBSectionReader *reader = NULL;
@@ -2065,7 +2200,7 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
 	if ( itmap == freeSatSubTableStatus.end() )
 	{
 		// New sub table. Store version.
-		//eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
+//		eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
 		fsstatus = new freesatEITSubtableStatus(eit->version_number, eit->last_section_number);
 		m_FreesatTablesToComplete++;
 		freeSatSubTableStatus.insert(std::pair<__u32,freesatEITSubtableStatus>(subtableNo, *fsstatus));
@@ -2524,7 +2659,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					{
 						if (!PyString_Check(entry))
 						{
-							eDebug("tuple entry 0 is no a string");
+							eDebug("tuple entry 0 is not a string");
 							goto skip_entry;
 						}
 						service = entry;
@@ -2699,9 +2834,22 @@ static inline __u8 HI(int x) { return (__u8) ((x >> 8) & 0xFF); }
 static inline __u8 LO(int x) { return (__u8) (x & 0xFF); }
 #define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
 // convert from set of strings to DVB format (EIT)
+/**
+ * @brief Import EPG events into the EPG database.
+ *
+ * @param serviceRefs list of services that will receive this event
+ * @param start start time of the event
+ * @param duration duration of the event
+ * @param title title of the event. Must not be NULL.
+ * @param short_summary summary of the event
+ * @param long_description full description of the event
+ * @param event_type event type/genre classification
+ * @param eventId optional EIT event id, defaults to 0 = auto-generated hash based on start time
+ * @return void
+ */
 void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start,
 	long duration, const char* title, const char* short_summary,
-	const char* long_description, char event_type)
+	const char* long_description, char event_type, __u16 eventId)
 {
 	if (!title)
 		return;
@@ -2723,7 +2871,6 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 
 	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
 
-	__u16 eventId = start & 0xFFFF;
 	SET_HILO(evt_struct->event_id, eventId);
 
 	//6 bytes start time, 3 bytes duration
@@ -2866,19 +3013,32 @@ static const char* getStringFromPython(ePyObject obj)
 	return result;
 }
 
-void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
+/** @copydoc eEPGCache::importEvents
+ */
+void eEPGCache::importEvent(ePyObject serviceReferences, ePyObject list)
 {
-	importEvents(serviceReference, list);
+	importEvents(serviceReferences, list);
 }
 
-//here we get a python tuple of tuples ;)
-// consider it an array of objects with the following data
-// 1. start time (long)
-// 2. duration (int)
-// 3. event title (string)
-// 4. short description (string)
-// 5. extended description (string)
-// 6. event type (byte)
+/**
+ * @brief Import EPG events from Python into the EPG database. Each event in the @p list
+ * is added to each service in the @p serviceReferences list.
+ *
+ * @param serviceReferences Any of: a single service reference string; a list of service reference
+ * strings; a single tuple with DVB triplet or a list of tuples with DVB triplets. A DVB triplet is
+ * (onid, tsid, sid)
+ * @param list Either a list or a tuple of EPG events. Each event is a tuple of at least 6 elements:
+ * 1. start time (long)
+ * 2. duration (int)
+ * 3. event title (string)
+ * 4. short description (string)
+ * 5. extended description (string)
+ * 6. event type (byte)
+ * 7. optional event ID (int), if not supplied, it will default to 0, which implies an
+ *    an auto-generated ID based on the start time.
+ *
+ * @return void
+ */
 void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 {
 	std::vector<eServiceReferenceDVB> refs;
@@ -2887,12 +3047,24 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 	{
 		char *refstr;
 		refstr = PyString_AS_STRING(serviceReferences);
-	        if (!refstr)
-	        {
-        	        eDebug("[EPG:import] serviceReference string is 0, aborting");
-                	return;
-	        }
+		if (!refstr)
+		{
+			eDebug("[EPG:import] serviceReferences string is 0, aborting");
+			return;
+		}
 		refs.push_back(eServiceReferenceDVB(refstr));
+	}
+	else if (PyTuple_Check(serviceReferences))
+	{
+		if (PyTuple_Size(serviceReferences) != 3)
+		{
+			eDebug("[EPG:import] serviceReferences tuple must contain 3 numbers (tsid, onid, sid), aborting");
+			return;
+		}
+		int onid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 0));
+		int tsid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 1));
+		int sid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 2));
+		refs.push_back(eServiceReferenceDVB(0, tsid, onid, sid, 0));
 	}
 	else if (PyList_Check(serviceReferences))
 	{
@@ -2900,28 +3072,51 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 		for (int i = 0; i < nRefs; ++i)
 		{
 			PyObject* item = PyList_GET_ITEM(serviceReferences, i);
-			char *refstr;
-	                refstr = PyString_AS_STRING(item);
-	                if (!refstr)
-        	        {
-                	        eDebug("[EPG:import] a serviceref item is not a string");
-                        }
+			if (PyString_Check(item))
+			{
+				char *refstr;
+				refstr = PyString_AS_STRING(item);
+				if (!refstr)
+				{
+					eDebug("[EPG:import] serviceReferences[%d] is not a string", i);
+				}
+				else
+				{
+					refs.push_back(eServiceReferenceDVB(refstr));
+				}
+			}
+			else if (PyTuple_Check(item))
+			{
+				if (PyTuple_Size(item) != 3)
+				{
+					eDebug("[EPG:import] serviceReferences[%d] tuple must contain 3 numbers (tsid, onid, sid)", i);
+				}
+				int onid = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
+				int tsid = PyInt_AsLong(PyTuple_GET_ITEM(item, 1));
+				int sid = PyInt_AsLong(PyTuple_GET_ITEM(item, 2));
+				refs.push_back(eServiceReferenceDVB(0, tsid, onid, sid, 0));
+			}
 			else
-		        {
-		                refs.push_back(eServiceReferenceDVB(refstr));
+			{
+				eDebug("[EPG:import] serviceReferences[%d] is not a string or a tuple", i);
 			}
 		}
 	}
 	else
 	{
-		eDebug("[EPG:import] serviceReference string is neither string nor list, aborting");
+		eDebug("[EPG:import] serviceReferences is not a string, a list of strings, a tuple or a list of tuples, aborting");
+		return;
+	}
+
+	if (refs.empty())
+	{
+		eDebug("[EPG:import] no valid serviceReferences found, aborting");
 		return;
 	}
 
 	bool isTuple = PyTuple_Check(list);
 	if (!isTuple && !PyList_Check(list))
 	{
-
 		eDebug("[EPG:import] argument 'list' is neither list nor tuple.");
 		return;
 	}
@@ -2937,7 +3132,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			return;
 		}
 		int tupleSize = PyTuple_Size(singleEvent);
-		if (tupleSize < 5)
+		if (tupleSize < 6)
 		{
 			eDebug("[EPG:import] eventdata tuple does not contain enough fields, aborting");
 			return;
@@ -2949,8 +3144,12 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 		const char *short_summary = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 3));
 		const char *long_description = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 4));
 		char event_type = (char) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 5));
-
-		submitEventData(refs, start, duration, title, short_summary, long_description, event_type);
+		__u16 eventId = 0;
+		if (tupleSize >= 7)
+		{
+			eventId = (__u16) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 6));
+		}
+		submitEventData(refs, start, duration, title, short_summary, long_description, event_type, eventId);
 	}
 }
 
@@ -3288,7 +3487,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							if (needServiceEvent)
 							{
 								if (lookupEventId(ref, evit->second->getEventID(), ev_data))
-									eDebug("[EPGC] event not found !!!!!!!!!!!");
+									eDebug("[EPGC] event %04x not found !!!!!!!!!!!", evit->second->getEventID());
 								else
 								{
 									const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
@@ -3443,7 +3642,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 								if (((PrivateDataSpecifierDescriptor*)(*desc))->getPrivateDataSpecifier() == 190)
 									tmp |= 1;
 								break;
-							case 0x90:
+							case 0x90: // OpenTV module descriptor?
 							{
 								UnknownDescriptor *descr = (UnknownDescriptor*)*desc;
 								int descr_len = descr->getLength();
