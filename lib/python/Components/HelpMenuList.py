@@ -26,7 +26,7 @@ from collections import defaultdict
 class HelpMenuList(GUIComponent):
 	def __init__(self, helplist, callback):
 		GUIComponent.__init__(self)
-		self.onSelChanged = [ ]
+		self.onSelChanged = []
 		self.l = eListboxPythonMultiContent()
 		self.callback = callback
 		self.extendedHelp = False
@@ -59,7 +59,7 @@ class HelpMenuList(GUIComponent):
 				name = None
 				flags = 0
 
-				buttonNames = [ ]
+				buttonNames = []
 
 				for n in buttons:
 					(name, flags) = (getKeyDescription(n[0]), n[1])
@@ -68,17 +68,17 @@ class HelpMenuList(GUIComponent):
 							name = (name[0], "long")
 						if n not in buttonsProcessed:
 							buttonNames.append(name)
-							buttonsProcessed.add(n[0])
+							buttonsProcessed.add(n)
 
 				# only show entries with keys that are available on the used rc
 				if not buttonNames:
 					continue
 
-				entry = [ (actionmap, context, action, buttonNames ), help ]
+				entry = [(actionmap, context, action, buttonNames ), help]
 
 				actionMapHelp[context].append(entry)
 
-		l = [ ]
+		l = []
 		for (actionmap, context, actions) in helplist:
 			if context in actionMapHelp and actionmap.description:
 				self.addListBoxContext(actionMapHelp[context], width, indent)

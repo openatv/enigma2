@@ -42,7 +42,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if not inhibitDirs: inhibitDirs = []
 		if not inhibitMounts: inhibitMounts = []
 		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self, handleTimeout = False)
+		NumericalTextInput.__init__(self, handleTimeout=False)
 		HelpableScreen.__init__(self)
 
 		# Set useable chars
@@ -73,7 +73,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.inhibitDirs = inhibitDirs
 
 		# Initialize FileList
-		self["filelist"] = FileList(currDir, showDirectories = True, showFiles = False, inhibitMounts = inhibitMounts, inhibitDirs = inhibitDirs)
+		self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs)
 
 		# Initialize BookList
 		self["booklist"] = MenuList(self.bookmarks)
@@ -106,16 +106,16 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 			def action(self, contexts, action):
 				# Reset Quickselect
-				self.box.timeout(force = True)
+				self.box.timeout(force=True)
 
 				return HelpableActionMap.action(self, contexts, action)
 
 		# Actions that will reset quickselect
 		self["WizardActions"] = LocationBoxActionMap(self, "WizardActions",
 			{
-				"ok": (self.ok, _("select")),
+				"ok": (self.ok, _("Select")),
 				"back": (self.cancel, _("Cancel")),
-			}, -2)
+			}, prio=-2)
 
 		self["DirectionActions"] = LocationBoxActionMap(self, "DirectionActions",
 			{
@@ -123,7 +123,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				"right": self.right,
 				"up": self.up,
 				"down": self.down,
-			}, -2)
+			}, prio=-2)
 
 		self["ColorActions"] = LocationBoxActionMap(self, "ColorActions",
 			{
@@ -131,18 +131,18 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				"green": self.select,
 				"yellow": self.changeName,
 				"blue": self.addRemoveBookmark,
-			}, -2)
+			}, prio=-2)
 
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions",
 			{
-				"prevService": (self.switchToBookList, _("switch to bookmarks")),
-				"nextService": (self.switchToFileList, _("switch to filelist")),
-			}, -2)
+				"prevService": (self.switchToBookList, _("Switch to bookmarks")),
+				"nextService": (self.switchToFileList, _("Switch to filelist")),
+			}, prio=-2)
 
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions",
 			{
-				"menu": (self.showMenu, _("menu")),
-			}, -2)
+				"menu": (self.showMenu, _("Menu")),
+			}, prio=-2)
 
 		# Actions used by quickselect
 		self["NumberActions"] = NumberActionMap(["NumberActions"],
@@ -482,7 +482,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					break
 				idx += 1
 
-	def timeout(self, force = False):
+	def timeout(self, force=False):
 		# Timeout Key
 		if not force and self.qs_timer_type == 0:
 			# Try to select what was typed
@@ -509,8 +509,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def __repr__(self):
 		return str(type(self)) + "(" + self.text + ")"
 
-def MovieLocationBox(session, text, dir, minFree = None):
-	return LocationBox(session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
+def MovieLocationBox(session, text, dir, minFree=None):
+	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree)
 
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):
