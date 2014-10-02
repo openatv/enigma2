@@ -284,7 +284,7 @@ class HotkeySetupSelect(Screen):
 		self["choosen"].setList(self.selected)
 
 	def zaptoCallback(self, *args):
-		if args[0]:
+		if args:
 			currentSelected = self["list"].l.getCurrentSelection()[:]
 			currentSelected[1]=currentSelected[1][:-1] + (_("Zap to") + " " + ServiceReference(args[0]).getServiceName(),)
 			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
