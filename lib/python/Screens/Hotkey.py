@@ -37,11 +37,11 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Menu"), "mainMenu", ""),
 	(_("Info"), "info", ""),
 	(_("Info Long"), "info_long", ""),
-	(_("List"), "list", ""),
+	(_("List/Fav"), "list", ""),
 	(_("Back"), "back", ""),
 	(_("End"), "end", ""),
-	(_("Epg"), "epg", ""),
-	(_("Epg long"), "epg_long", ""),
+	(_("Epg/Guide"), "epg", ""),
+	(_("Epg/Guide long"), "epg_long", ""),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
@@ -62,8 +62,9 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Timeshift"), "timeshift", ""),
 	(_("Search"), "search", ""),
 	(_("Slow"), "slow", ""),
-	(_("Mark/Portal"), "mark", ""),
+	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
+	(_("Context"), "contextmenu", ""),
 	(_("Home"), "home", "")]
 
 config.misc.hotkey = ConfigSubsection()
@@ -403,3 +404,6 @@ class InfoBarHotkey():
 			elif selected[0] == "Zap":
 				self.servicelist.servicelist.setCurrent(eServiceReference("/".join(selected[1:])))
 				self.servicelist.zap(enable_pipzap = True)
+				if hasattr(self, "lastservice"):
+					self.lastservice = eServiceReference("/".join(selected[1:]))
+					self.close()
