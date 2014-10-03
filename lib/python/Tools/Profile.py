@@ -56,7 +56,7 @@ def profile(id):
 					f.write("%d" % perc)
 				elif boxtype in ("xpeedlx3", "sezammarvel", "atemionemesis"):
 					f = open("/proc/vfd", "w")
-					f.write("%d" % perc)
+					f.write("Loading %d %%" % perc)
 				else:
 					f = open("/proc/progress", "w")
 					f.write("%d \n" % perc)
