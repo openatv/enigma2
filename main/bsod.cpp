@@ -274,51 +274,52 @@ void bsodFatal(const char *component)
 	}
 
 	ePtr<gMainDC> my_dc;
-	gMainDC::getInstance(my_dc);
-	
-	gPainter p(my_dc);
-	p.resetOffset();
-	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
-	p.setBackgroundColor(gRGB(0x010000));
-	p.setForegroundColor(gRGB(0xFFFFFF));
-
-	ePtr<gFont> font = new gFont("Regular", 20);
-	p.setFont(font);
-	p.clear();
-
-	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
-	
-	os.str("");
-	os.clear();
-	os << "We are really sorry. Your receiver encountered "
-		"a software problem, and needs to be restarted.\n"
-		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-		"Your receiver restarts in 10 seconds!\n"
-		"Component: " << crash_component;
-
-	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
-
-	usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
-
-	int i;
-
-	start = std::string::npos + 1;
-	for (i=0; i<20; ++i)
+	if (!gMainDC::getInstance(my_dc) && gRC::getInstance())  // This check prevents crash if there is no framebuffer
 	{
-		start = lines.rfind('\n', start - 1);
-		if (start == std::string::npos)
+		gPainter p(my_dc);
+		p.resetOffset();
+		p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
+		p.setBackgroundColor(gRGB(0x010000));
+		p.setForegroundColor(gRGB(0xFFFFFF));
+
+		ePtr<gFont> font = new gFont("Regular", 20);
+		p.setFont(font);
+		p.clear();
+
+		eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
+
+		os.str("");
+		os.clear();
+		os << "We are really sorry. Your receiver encountered "
+			"a software problem, and needs to be restarted.\n"
+			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+			"Your receiver restarts in 10 seconds!\n"
+			"Component: " << crash_component;
+
+		p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
+
+		usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
+
+		int i;
+
+		start = std::string::npos + 1;
+		for (i=0; i<20; ++i)
 		{
-			start = 0;
-			break;
+			start = lines.rfind('\n', start - 1);
+			if (start == std::string::npos)
+			{
+				start = 0;
+				break;
+			}
 		}
+
+		font = new gFont("Regular", 14);
+		p.setFont(font);
+
+		p.renderText(usable_area,
+			lines.substr(start), gPainter::RT_HALIGN_LEFT);
+		sleep(10);
 	}
-
-	font = new gFont("Regular", 14);
-	p.setFont(font);
-
-	p.renderText(usable_area, 
-		lines.substr(start), gPainter::RT_HALIGN_LEFT);
-	sleep(10);
 
 	/*
 	 * When 'component' is NULL, we are called because of a python exception.

@@ -4,6 +4,7 @@ from boxbranding import getMachineBrand, getMachineName
 from Tools.Profile import profile
 
 from Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.About import about
@@ -1084,9 +1085,10 @@ MODE_RADIO = 1
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
-class ChannelSelectionBase(Screen):
+class ChannelSelectionBase(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))

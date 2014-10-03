@@ -1689,6 +1689,22 @@ RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q
 	return 0;
 }
 
+bool eDVBDB::isValidService(int tsid, int onid, int sid)
+{
+	eServiceID Sid(sid);
+	eTransportStreamID Tsid(tsid);
+	eOriginalNetworkID Onid(onid);
+	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit(m_services.begin());
+		sit != m_services.end(); ++sit)
+	{
+		if (sit->first.getTransportStreamID() == Tsid &&
+			sit->first.getOriginalNetworkID() == Onid &&
+			sit->first.getServiceID() == Sid)
+			return true;
+	}
+	return false;
+}
+
 eServiceReference eDVBDB::searchReference(int tsid, int onid, int sid)
 {
 	eServiceID Sid(sid);

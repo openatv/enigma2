@@ -708,10 +708,10 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
-				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
-				"switchChannelUpLong": (self.switchChannelUp, _("Open service list and select previous PiP channel")),
-				"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next PiP channel")),
+				"switchChannelUp": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True)),
+				"switchChannelDown": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False)),
+				"switchChannelUpLong": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True, long=True)),
+				"switchChannelDownLong": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False, long=True)),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch to next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
@@ -721,10 +721,10 @@ class InfoBarChannelSelection:
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
 				"reCallService": (self.reCallService, _("Switch between last two channels watched")),
-				"ChannelPlusPressed": self.ChannelPlusPressed,
-				"ChannelMinusPressed": self.ChannelMinusPressed,
-				"ChannelPlusPressedLong": self.ChannelPlusPressed,
-				"ChannelMinusPressedLong": self.ChannelMinusPressed,
+				"ChannelPlusPressed": (self.ChannelPlusPressed,  lambda: self._helpChannelPlusMinusPressed(plus=True)),
+				"ChannelMinusPressed": (self.ChannelMinusPressed,  lambda: self._helpChannelPlusMinusPressed(plus=False)),
+				"ChannelPlusPressedLong": (self.ChannelPlusPressed,  lambda: self._helpChannelPlusMinusPressed(plus=True, long=True)),
+				"ChannelMinusPressedLong": (self.ChannelMinusPressed,  lambda: self._helpChannelPlusMinusPressed(plus=False, long=True))
 			}, description=_("Channel selection"))
 
 	def reCallService(self):
@@ -777,6 +777,13 @@ class InfoBarChannelSelection:
 		else:
 			self.zapDown()
 
+	def _helpChannelPlusMinusPressed(self, plus=True, long=False):
+		return {
+				"0": _("Switch channels ") + (_("up") if plus else _("down")),
+				"1": _("Channel list"),
+				"2": _("Bouquet list")
+			}[config.usage.channelbutton_mode.value] + _(" (Configurable)")
+
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.value == "0" or config.usage.show_second_infobar.value == "INFOBAREPG":
 			self.zapDown()
@@ -822,6 +829,20 @@ class InfoBarChannelSelection:
 			self.servicelist.historyNext()
 		else:
 			self.servicelist.historyZap(+1)
+
+	def _helpSwitchChannelUpDown(self, up=True, long=False):
+		pipText = _(" PiP") if long else ""
+		if config.usage.show_bouquetalways.value:
+			helpText = _("Open") + pipText + _(" bouquet list")
+		else:
+			helpText = _("Open") + pipText + _(" channel list")
+			if "keep" not in config.usage.servicelist_cursor_behavior.value:
+				# "up" is "to a higher channel number"
+				# but that's down the list
+				helpText += " and move "
+				helpText += "down" if up else "up"
+			helpText += " (Configurable)"
+		return helpText
 
 	def switchChannelUp(self):
 		if not self.secondInfoBarScreen.shown:
@@ -1101,9 +1122,9 @@ class InfoBarEPG:
 			{
 				"RedPressed": (self.RedPressed, _("Show EPG...")),
 				"IPressed": (self.IPressed, _("Show program information...")),
-				"InfoPressed": (self.InfoPressed, _("Show program information...")),
+				"InfoPressed": (self.InfoPressed, self._helpShowDefaultInfoEPG),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("Select INFO key event info or EPG...")),
-				"EPGPressed":  (self.showDefaultEPG, _("Show EPG...")),
+				"EPGPressed":  (self.showDefaultEPG, self._helpShowDefaultEPG),
 				"showSingleEPG": (self.openSingleServiceEPG, _("Show single-channel EPG...")),
 				"showEventGuidePlugin": (self.showEventGuidePlugins, _("Select EPG key EPG or event info...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": (self.showEventInfoWhenNotVisible, _("Show infobar or infobar EPG")),
@@ -1416,11 +1437,25 @@ class InfoBarEPG:
 			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
 
+	def _helpShowDefaultInfoEPG(self):
+		configINFOEpgType = config.usage.defaultEPGType
+		guide =configINFOEpgType.value
+		if guide == "None":
+			guide = _("Event Info")
+		return _("Show ") + guide + _(" (Configurable)")
+
 	def showDefaultInfoEPG(self):
 		if self.defaultEPGType is not None:
 			self.defaultEPGType()
 			return
 		self.openEventView()
+
+	def _helpShowDefaultEPG(self):
+		configEPGEpgType = config.usage.defaultGuideType
+		guide =configEPGEpgType.value
+		if guide == "None":
+			guide = _("Graphical EPG")
+		return _("Show ") + guide + _(" (Configurable)")
 
 	def showDefaultEPG(self):
 		if self.defaultGuideType is not None:
@@ -1639,8 +1674,14 @@ class InfoBarSeek:
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActions"], actionmap,
 				(
-					("seekdef:left", _("Skip back")),
-					("seekdef:right", _("Skip forwards"))
+					("seekdef:left", _("Skip (Configurable)")),
+					("seekdef:right", _("Skip (Configurable)")),
+					("seekdef:1", _("Skip back (Configurable)")),
+					("seekdef:3", _("Skip forward (Configurable)")),
+					("seekdef:4", _("Skip back (Configurable)")),
+					("seekdef:6", _("Skip forward (Configurable)")),
+					("seekdef:7", _("Skip back (Configurable)")),
+					("seekdef:9", _("Skip forward (Configurable)"))
 				)
 			))
 
@@ -1662,7 +1703,13 @@ class InfoBarSeek:
 		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS",
 				(
 					("seekdef:left", _("Skip back")),
-					("seekdef:right", _("Skip forwards"))
+					("seekdef:right", _("Skip forwards")),
+					("seekdef:1", _("Skip back (Configurable)")),
+					("seekdef:3", _("Skip forward (Configurable)")),
+					("seekdef:4", _("Skip back (Configurable)")),
+					("seekdef:6", _("Skip forward (Configurable)")),
+					("seekdef:7", _("Skip back (Configurable)")),
+					("seekdef:9", _("Skip forward (Configurable)"))
 				)
 			))
 
@@ -2174,8 +2221,8 @@ class InfoBarShowMovies:
 		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions",
 			{
 				"movieList": (self.showMovies, _("Open the movie list")),
-				"up": (self.up, _("Open the movie list")),
-				"down": (self.down, _("Open the movie list"))
+				"up": (self.up, _("Open the movie list when selected bouquet is empty")),
+				"down": (self.down, _("Open the movie list when selected bouquet is empty"))
 			}, description=_("Open the movie list"))
 
 from Screens.PiPSetup import PiPSetup
@@ -3341,6 +3388,7 @@ class InfoBarCueSheetSupport:
 				if instate and diff >= 0 and (nearest is None or bestdiff > diff):
 					nearest = cp
 					bestdiff = diff
+		# print "[InfoBarCueSheet] getNearestCutPoint(%d, %d) =" % (pts, 0 - pts), nearest
 		return nearest
 
 	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):
@@ -3380,7 +3428,10 @@ class InfoBarCueSheetSupport:
 		service = self.session.nav.getCurrentService()
 		if service is None:
 			return None
-		return service.cueSheet()
+		cue = service.cueSheet()
+		if cue is not None:
+			cue.setCutListEnable(config.seek.autoskip.value and 1 or 0)
+		return cue
 
 	def uploadCuesheet(self):
 		cue = self.__getCuesheet()

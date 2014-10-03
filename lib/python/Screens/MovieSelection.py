@@ -65,10 +65,10 @@ l_moviesort = [
 	(str(MovieList.SORT_RECORDED), _("by date"), 'New->Old'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), 'Old->New'),
 	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A->Z'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z->A'),
+	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("reverse alphabetic"), 'Z->A'),
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A->Z Flat'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z->A Flat'),
-	(str(MovieList.SHUFFLE), _("shuffle"), 'Random'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("reverse flat alphabetic"), 'Z->A Flat'),
+	(str(MovieList.SHUFFLE), _("shuffle"), 'Shuffle'),
 	]
 
 def defaultMoviePath():
@@ -517,9 +517,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.doPathSelect, _("Select the movie path...")),
-				"showRadio": (self.btn_radio, "?"),
-				"showTv": (self.btn_tv, _("Home")),
-				"showText": (self.btn_text, _("On end of movie")),
+				"showRadio": (self.btn_radio, lambda: self._helpText(config.movielist.btn_radio.value)),
+				"showTv": (self.btn_tv, lambda: self._helpText(config.movielist.btn_tv.value)),
+				"showText": (self.btn_text, lambda: self._helpText(config.movielist.btn_text.value)),
 			}, description=_("Basic functions"))
 
 		self["NumberActions"] =  NumberActionMap(["NumberActions", "InputAsciiActions"],
@@ -553,14 +553,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"red": (self.btn_red, _("Delete...")),
-				"green": (self.btn_green, _("Move to other directory")),
-				"yellow": (self.btn_yellow, _("Select the movie path")),
-				"blue": (self.btn_blue, _("Change sort by...")),
-				"redlong": (self.btn_redlong, _("Rename...")),
-				"greenlong": (self.btn_greenlong, _("Copy to other directory")),
-				"yellowlong": (self.btn_yellowlong, _("Select the movie path")),
-				"bluelong": (self.btn_bluelong, _("Sort by default")),
+				"red": (self.btn_red, lambda: self._helpText(config.movielist.btn_red.value)),
+				"green": (self.btn_green, lambda: self._helpText(config.movielist.btn_green.value)),
+				"yellow": (self.btn_yellow, lambda: self._helpText(config.movielist.btn_yellow.value)),
+				"blue": (self.btn_blue, lambda: self._helpText(config.movielist.btn_blue.value)),
+				"redlong": (self.btn_redlong, lambda: self._helpText(config.movielist.btn_redlong.value)),
+				"greenlong": (self.btn_greenlong, lambda: self._helpText(config.movielist.btn_greenlong.value)),
+				"yellowlong": (self.btn_yellowlong, lambda: self._helpText(config.movielist.btn_yellowlong.value)),
+				"bluelong": (self.btn_bluelong, lambda: self._helpText(config.movielist.btn_bluelong.value)),
 			}, description=_("User-selectable functions"))
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -614,25 +614,30 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		rcinput.setKeyboardMode(rcinput.kmNone)
 
 	def initUserDefinedActions(self):
-		global userDefinedButtons, userDefinedActions, config
+		global userDefinedButtons, userDefinedActions, userDefinedDescriptions, config
 		if userDefinedButtons is None:
-			userDefinedActions = {
-				'delete': _("Delete"),
-				'move': _("Move"),
-				'copy': _("Copy"),
-				'reset': _("Reset"),
-				'tags': _("Tags"),
+			userDefinedDescriptions = {
+				'delete': (_("Delete"), _("Delete recordings and empty trash")),
+				'move': (_("Move"), _("Move to other directory")),
+				'copy': (_("Copy"), _("Copy to other directory")),
+				'reset': (_("Reset"), _("Reset playback resume position")),
+				'tags': (_("Tags"), _("Show tagged movies")),
 				'addbookmark': _("Add bookmark"),
-				'bookmarks': _("Location"),
-				'rename': _("Rename"),
-				'gohome': _("Home"),
-				'sort': _("Sort"),
-				'sortby': _("Sort by"),
-				'sortdefault': _("Sort by default"),
-				'preview': _("Preview"),
-				'movieoff': _("On end of movie"),
-				'movieoff_menu': _("On end of movie (as menu)")
+				'bookmarks': (_("Location"), _("Select the movie path")),
+				'rename': (_("Rename"), _("Rename recording, video or folder")),
+				'gohome': (_("Home"), _("Go to player home folder")),
+				'sort': (_("Sort"), _("Cycle through sort orderings")),
+				'sortby': (_("Sort order"), _("Change sort order...")),
+				'sortdefault': (_("Default sort order"), _("Use default sort order")),
+				'preview': (_("Preview"), _("Preview recording under movie selection screen")),
+				'movieoff': (_("On end of movie"), _("Cycle through end-of-movie actions")),
+				'movieoff_menu': (_("On end of movie..."), _("Select end-of-movie action from menu")),
 			}
+			userDefinedActions = {}
+			for a, desc in userDefinedDescriptions.iteritems():
+				if isinstance(desc, tuple):
+					desc = desc[0]
+				userDefinedActions[a] = desc
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
 			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
@@ -675,6 +680,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# Undefined action
 			return
 		a()
+
+	def _helpText(self, configVal):
+		help = userDefinedDescriptions[configVal]
+		if isinstance(help, tuple):
+			help =  help[1] if len(help) > 1 else help[0]
+		return help + ' ' + _("(Configurable)")
 
 	def btn_red(self):
 		from InfoBar import InfoBar

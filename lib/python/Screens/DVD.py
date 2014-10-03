@@ -29,7 +29,7 @@ class DVDSummary(Screen):
 		self["Title"].setText(title)
 
 class DVDOverlay(Screen):
-	def __init__(self, session, args = None, height = None):
+	def __init__(self, session, args=None, height=None):
 		desktop_size = getDesktop(0).size()
 		w = desktop_size.width()
 		h = desktop_size.height()
@@ -68,7 +68,7 @@ class ChapterZap(Screen):
 
 		self["number"] = Label(self.field)
 
-		self["actions"] = NumberActionMap( [ "SetupActions" ],
+		self["actions"] = NumberActionMap(["SetupActions"],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
@@ -103,7 +103,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def change_infobar_seek_config(self):
 		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
 		config.seek.speeds_backward.value = [2, 4, 6, 8, 16, 32, 64]
-		config.seek.speeds_slowmotion.value = [ 2, 3, 4, 6 ]
+		config.seek.speeds_slowmotion.value = [2, 3, 4, 6]
 		config.seek.enter_forward.value = "2"
 		config.seek.enter_backward.value = "2"
 		config.seek.on_pause.value = "play"
@@ -121,7 +121,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
-		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
+		InfoBarCueSheetSupport.__init__(self, actionmap="MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarSubtitleSupport.__init__(self)
@@ -196,22 +196,22 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "DVDPlayerActions",
 			{
 				#PLAYER ACTIONS
-				"dvdMenu": (self.enterDVDMenu, _("show DVD main menu")),
-				"toggleInfo": (self.toggleInfo, _("toggle time, chapter, audio, subtitle info")),
-				"nextChapter": (self.nextChapter, _("forward to the next chapter")),
-				"prevChapter": (self.prevChapter, _("rewind to the previous chapter")),
-				"nextTitle": (self.nextTitle, _("jump forward to the next title")),
-				"prevTitle": (self.prevTitle, _("jump back to the previous title")),
-				"tv": (self.askLeavePlayer, _("exit DVD player or return to file browser")),
-				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
+				"dvdMenu": (self.enterDVDMenu, _("Show DVD main menu")),
+				"toggleInfo": (self.toggleInfo, _("Toggle time, chapter, audio, subtitle info")),
+				"nextChapter": (self.nextChapter, _("Forward to the next chapter")),
+				"prevChapter": (self.prevChapter, _("Rewind to the previous chapter")),
+				"nextTitle": (self.nextTitle, _("Jump forward to the next title")),
+				"prevTitle": (self.prevTitle, _("Jump back to the previous title")),
+				"tv": (self.askLeavePlayer, _("Exit DVD player or return to file browser")),
+				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(Show optional DVD audio menu)")),
 				"AudioSelection": (self.enterAudioSelection, _("Select audio track")),
-				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
-				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
-				"nextAngle": (self.nextAngle, _("switch to the next angle")),
-				"seekBeginning": self.seekBeginning,
-			}, -2)
+				"nextAudioTrack": (self.nextAudioTrack, _("Switch to the next audio track")),
+				"nextSubtitleTrack": (self.nextSubtitleTrack, _("Switch to the next subtitle language")),
+				"nextAngle": (self.nextAngle, _("Switch to the next angle")),
+				"seekBeginning": (self.seekBeginning, _("Jump back to the start"))
+			}, prio=-2)
 
-		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+		self["NumberActions"] = NumberActionMap(["NumberActions"],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -394,8 +394,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-				choices.insert(0,(_("Play DVD"), "playPhysical" ))
-		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list = choices)
+				choices.insert(0,(_("Play DVD"), "playPhysical"))
+		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list=choices)
 
 	def sendKey(self, key):
 		keys = self.getServiceInterface("keys")
@@ -474,7 +474,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.playPhysicalCB(True)
 		elif self.physicalDVD:
 			# opened from menu with dvd in drive
-			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5)
 
 	def playPhysicalCB(self, answer):
 		if answer:
@@ -508,7 +508,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 					ifofilename += "/VIDEO_TS"
 				files = [("/VIDEO_TS.IFO", 0x100), ("/VTS_01_0.IFO", 0x100), ("/VTS_01_0.IFO", 0x200)] # ( filename, offset )
 				for name in files:
-					(status, isNTSC, isLowResolution) = self.readVideoAtributes( ifofilename, name )
+					(status, isNTSC, isLowResolution) = self.readVideoAtributes(ifofilename, name)
 					if status:
 						break
 				height = getDesktop(0).size().height()
@@ -619,7 +619,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
+			list = [(r.description, r, res[r], self.session) for r in res]
 			if list:
 				(desc, scanner, files, session) = list[0]
 				for file in files:
