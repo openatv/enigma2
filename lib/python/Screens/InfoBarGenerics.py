@@ -852,8 +852,6 @@ class InfoBarEPG:
 				"showEventInfo": (self.showDefaultEPG, _("Show EPG...")),
 				"showEventInfoSingleEPG": (self.showSingleEPG, _("Show single service EPG")),
 				"showEventInfoMultiEPG": (self.showMultiEPG, _("Show multi channel EPG")),
-				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
-				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 
@@ -1023,7 +1021,6 @@ class InfoBarEPG:
 	def showEventInfoPlugins(self):
 		pluginlist = self.getEPGPluginList()
 		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
@@ -1031,36 +1028,6 @@ class InfoBarEPG:
 	def EventInfoPluginChosen(self, answer):
 		if answer is not None:
 			answer[1]()
-
-	def SelectDefaultInfoPlugin(self):
-		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(True), skin_name = "EPGExtensionsList")
-
-	def DefaultInfoPluginChosen(self, answer):
-		if answer is not None:
-			self.defaultEPGType = answer[1]
-			config.usage.defaultEPGType.value = answer[2]
-			config.usage.defaultEPGType.save()
-
-	def showEventGuidePlugins(self):
-		pluginlist = self.getEPGPluginList()
-		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultGuidePlugin))
-			self.session.openWithCallback(self.EventGuidePluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
-		else:
-			self.openSingleServiceEPG()
-
-	def EventGuidePluginChosen(self, answer):
-		if answer is not None:
-			answer[1]()
-
-	def SelectDefaultGuidePlugin(self):
-		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(True), skin_name = "EPGExtensionsList")
-
-	def DefaultGuidePluginChosen(self, answer):
-		if answer is not None:
-			self.defaultGuideType = answer[1]
-			config.usage.defaultGuideType.value = answer[2]
-			config.usage.defaultGuideType.save()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
