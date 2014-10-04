@@ -33,13 +33,13 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Help"), "displayHelp", ""),
 	(_("Subtitle"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
-	(_("Info"), "info", ""),
-	(_("Info Long"), "info_long", ""),
+	(_("Info"), "info", "Infobar/openEventView"),
+	(_("Info Long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("List/Fav"), "list", ""),
 	(_("Back"), "back", ""),
 	(_("End"), "end", ""),
-	(_("Epg/Guide"), "epg", ""),
-	(_("Epg/Guide long"), "epg_long", ""),
+	(_("Epg/Guide"), "epg", "Plugins/Extensions/GraphMultiEPG"),
+	(_("Epg/Guide long"), "epg_long", "Infobar/showEventInfoPlugins"),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
@@ -89,10 +89,12 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Open service list"), "Infobar/openServiceList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
-	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "InfoBar"))
-	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "InfoBar"))
-	hotkeyFunctions.append((_("Open single service EPG"), "Infobar/openSingleServiceEPG", "InfoBar"))
-	hotkeyFunctions.append((_("Open multi Service EPG"), "Infobar/openMultiServiceEPG", "InfoBar"))
+	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
+	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
+	hotkeyFunctions.append((_("Open single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Open multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
+	for plugin in [p for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) if 'selectedevent' not in p.__call__.func_code.co_varnames] or []:
+		hotkeyFunctions.append((plugin.name, plugin.path[24:], "EPG"))
 	hotkeyFunctions.append((_("Open Audioselection"), "Infobar/audioSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
