@@ -15,11 +15,14 @@ class Rc:
 		config.misc.rcused = ConfigInteger(default = 1)
 		self.isDefaultRc = rc_model.rcIsDefault()
 		rcheights = (500,) * 4
-		self.selectpics = [
-				self.KeyIndicator(self, rcheights, ("indicator_l0", "indicator_l1", "indicator_l2", "indicator_l3")),
-				self.KeyIndicator(self, rcheights, ("indicator_u0", "indicator_u1", "indicator_u2", "indicator_u3")),
-			]
+		self.selectpics = (
+				self.KeyIndicator(self, rcheights, ("indicator_l0", "indicator_u0")),
+				self.KeyIndicator(self, rcheights, ("indicator_l1", "indicator_u1")),
+				self.KeyIndicator(self, rcheights, ("indicator_l2", "indicator_u2")),
+				self.KeyIndicator(self, rcheights, ("indicator_l3", "indicator_u3")),
+			)
 		self.rcPositions = RcPositions()
+		self.oldNSelectedKeys = self.nSelectedKeys = 0
 		self.clearSelectedKeys()
 		self.onLayoutFinish.append(self.initRc)
 		# Test code to visit every button in turn
@@ -100,20 +103,19 @@ class Rc:
 	def selectKey(self, key):
 		pos = self.rcPositions.getRcKeyPos(key)
 
-		if pos:
+		if pos and self.nSelectedKeys < len(self.selectpics):
 			rcpos = self["rc"].getPosition()
-			for selectPic in self.selectpics:
-				if selectPic not in self.selectedKeys:
-					if len(self.selectedKeys) > 0:
-						selectPic.moveTo(pos, rcpos, moveFrom = self.selectedKeys[-1], time = 10)
-					else:
-						selectPic.moveTo(pos, rcpos, time = 10)
-					self.selectedKeys.append(selectPic)
-					break
+			selectPic = self.selectpics[self.nSelectedKeys]
+			self.nSelectedKeys += 1
+			if self.oldNSelectedKeys > 0 and self.nSelectedKeys > self.oldNSelectedKeys:
+				selectPic.moveTo(pos, rcpos, moveFrom = self.selectpics[self.oldNSelectedKeys-1], time = 10)
+			else:
+				selectPic.moveTo(pos, rcpos, time = 10)
 
 	def clearSelectedKeys(self):
 		self.showRc()
-		self.selectedKeys = []
+		self.oldNSelectedKeys = self.nSelectedKeys
+		self.nSelectedKeys = 0
 		self.hideSelectPics()
 
 	def hideSelectPics(self):
