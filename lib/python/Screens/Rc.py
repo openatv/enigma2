@@ -78,7 +78,6 @@ class Rc:
 			self["rc"].setPixmapNum(config.misc.rcused.value)
 		else:
 			self["rc"].setPixmapNum(0)
-		print "[Rc] initRc", self.selectpics
 		rcHeight = self["rc"].getSize()[1]
 		for kp in self.selectpics:
 			nbreaks = len(kp.pixmaps)
@@ -86,7 +85,6 @@ class Rc:
 			n = 1
 			for pic in kp.pixmaps:
 				pic.activeYPos = (rcHeight * n + roundup) / nbreaks
-				print "[Rc]", pic.pixmapName, pic.getOffset(), pic.activeYPos
 				n += 1
 
 	def getRcPositions(self):
@@ -164,7 +162,7 @@ class RcPositions:
 			try:
 				self.rc = self.rcs[2]
 			except:
-				self.rc = self.rcs[config.misc.rcused.getValue()]["keypos"]
+				self.rc = self.rcs[config.misc.rcused.getValue()]
 
 	def getRc(self):
 		return self.rc

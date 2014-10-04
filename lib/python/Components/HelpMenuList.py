@@ -35,7 +35,7 @@ class HelpMenuList(GUIComponent):
 		indent = 0
 
 		for (actionmap, context, actions) in helplist:
-			if actionmap.description:
+			if actionmap.enabled and getattr(actionmap, "description", None):
 				indent = 20
 				break
 
@@ -80,7 +80,7 @@ class HelpMenuList(GUIComponent):
 
 		l = []
 		for (actionmap, context, actions) in helplist:
-			if context in actionMapHelp and actionmap.description:
+			if context in actionMapHelp and getattr(actionmap, "description", None):
 				self.addListBoxContext(actionMapHelp[context], width, indent)
 
 				l.append([None, MultiContentEntryText(pos=(0, 0), size=(width, 26), text=actionmap.description)])
@@ -114,7 +114,7 @@ class HelpMenuList(GUIComponent):
 			if isinstance(help, list):
 				self.extendedHelp = True
 				print "extendedHelpEntry found"
-				ent[1] = (
+				ent[1:] = (
 					MultiContentEntryText(pos=(indent, 0), size=(width-indent, 26), font=0, text=help[0]),
 					MultiContentEntryText(pos=(indent, 28), size=(width-indent, 20), font=1, text=help[1]),
 				)
