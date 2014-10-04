@@ -109,20 +109,22 @@ class Harddisk:
 			self.timer.callback.remove(self.runIdle)
 
 	def bus(self):
-		# CF (7025 specific)
+		ret = _("External")
+		# SD/MMC(F1 specific)
 		if self.type == DEVTYPE_UDEV:
-			ide_cf = False	# FIXME
+			card = "sdhci" in self.phys_path
+			type_name = " (SD/MMC)"
+		# CF(7025 specific)
 		elif self.type == DEVTYPE_DEVFS:
-			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
+			card = self.device[:2] == "hd" and "host0" not in self.dev_path
+			type_name = " (CF)"
 
 		internal = "pci" in self.phys_path or "ahci" in self.phys_path
 
-		if ide_cf:
-			ret = "External (CF)"
+		if card:
+			ret += type_name
 		elif internal:
-			ret = "Internal"
-		else:
-			ret = "External"
+			ret = _("Internal")
 		return ret
 
 	def diskSize(self):
@@ -149,8 +151,10 @@ class Harddisk:
 				vendor = readFile(self.sysfsPath('device/vendor'))
 				model = readFile(self.sysfsPath('device/model'))
 				return vendor + '(' + model + ')'
+			elif self.device.startswith('mmcblk0'):
+				return readFile(self.sysfsPath('device/name'))
 			else:
-				raise Exception, "no hdX or sdX"
+				raise Exception, "no hdX or sdX or mmcX"
 		except Exception, e:
 			print "[Harddisk] Failed to get model:", e
 			return "-?-"
@@ -457,7 +461,7 @@ class Harddisk:
 		from enigma import eTimer
 
 		# disable HDD standby timer
-		if self.bus() == "External":
+		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--set=SCT=0", self.disk_path))
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
@@ -487,7 +491,7 @@ class Harddisk:
 			self.is_sleeping = True
 
 	def setSleep(self):
-		if self.bus() == "External":
+		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--flexible", "--readonly", "--command=stop", self.disk_path))
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
@@ -700,7 +704,7 @@ class HarddiskManager:
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
-			if l and not device[l-1].isdigit():
+			if l and (not device[l-1].isdigit() or device == 'mmcblk0'):
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
@@ -763,7 +767,7 @@ class HarddiskManager:
 
 	def getUserfriendlyDeviceName(self, dev, phys):
 		dev, part = self.splitDeviceName(dev)
-		description = "External Storage %s" % dev
+		description = _("External Storage %s") % dev
 		try:
 			description = readFile("/sys" + phys + "/model")
 		except IOError, s:
@@ -774,7 +778,7 @@ class HarddiskManager:
 				description = pdescription
 		# not wholedisk and not partition 1
 		if part and part != 1:
-			description += " (Partition %d)" % part
+			description += _(" (Partition %d)") % part
 		return description
 
 	def addMountedPartition(self, device, desc):
