@@ -1702,8 +1702,8 @@ class InfoBarSeek:
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS",
 				(
-					("seekdef:left", _("Skip back")),
-					("seekdef:right", _("Skip forwards")),
+					("seekdef:left", _("Skip back (Configurable)")),
+					("seekdef:right", _("Skip forward (Configurable)")),
 					("seekdef:1", _("Skip back (Configurable)")),
 					("seekdef:3", _("Skip forward (Configurable)")),
 					("seekdef:4", _("Skip back (Configurable)")),
@@ -3545,7 +3545,7 @@ class InfoBarSubtitleSupport(object):
 		object.__init__(self)
 		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions",
 			{
-				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
+				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection")),
 			}, description=_("Subtitles"))
 
 		self.selected_subtitle = None
