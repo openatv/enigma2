@@ -840,8 +840,6 @@ class InfoBarEPG:
 		self.bouquetSel = None
 		self.eventView = None
 		self.epglist = []
-		self.defaultEPGType = self.getDefaultEPGtype()
-		self.defaultGuideType = self.getDefaultGuidetype()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
@@ -864,20 +862,6 @@ class InfoBarEPG:
 		pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG, "multi_epg"))
 		pluginlist.append((_("Current event EPG"), self.openEventView, "event_epg"))
 		return pluginlist
-
-	def getDefaultEPGtype(self):
-		config.usage.defaultEPGType=ConfigText()
-		for plugin in self.getEPGPluginList():
-			if plugin[2] == config.usage.defaultEPGType.value:
-				return plugin[1]
-		return None
-
-	def getDefaultGuidetype(self):
-		config.usage.defaultGuideType=ConfigText(default="/usr/lib/enigma2/python/Plugins/Extensions/GraphMultiEPG")
-		for plugin in self.getEPGPluginList():
-			if plugin[2] == config.usage.defaultGuideType.value:
-				return plugin[1]
-		return None
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -1051,22 +1035,13 @@ class InfoBarEPG:
 				self.eventView.setEvent(self.epglist[0])
 
 	def showDefaultEPG(self):
-		if self.defaultEPGType:
-			self.defaultEPGType()
-		else:
-			self.openEventView()
+		self.openEventView()
 
 	def showSingleEPG(self):
-		if self.defaultGuideType:
-			self.defaultGuideType()
-		else:
-			self.openSingleServiceEPG()
+		self.openSingleServiceEPG()
 
 	def showMultiEPG(self):
-		if self.defaultGuideType:
-			self.defaultGuideType()
-		else:
-			self.openMultiServiceEPG()
+		self.openMultiServiceEPG()
 
 	def openEventView(self):
 		from Components.ServiceEventTracker import InfoBarCount
