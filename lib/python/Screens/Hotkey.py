@@ -116,6 +116,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("swapPiP"), "Infobar/swapPiP"))
 		hotkeyFunctions.append((_("movePiP"), "Infobar/movePiP"))
 		hotkeyFunctions.append((_("togglePipzap"), "Infobar/togglePipzap"))
+	#hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn"))
 	hotkeyFunctions.append(("--", "--"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup"))
 	#hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin"))
@@ -208,7 +209,7 @@ class HotkeySetup(Screen):
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
 				if x.startswith("Zap"):
-					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference("/".join(x.split("/")[1:])).toString()).getServiceName()), x)))
+					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
 				else:
 					function = list(function for function in self.hotkeyFunctions if function[1] == x )
 					if function:
@@ -225,16 +226,15 @@ class HotkeySetupSelect(Screen):
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self.mode = "list"
-		self.selected = []
-		self.list = []
 		self.hotkeyFunctions = getHotkeyFunctions()
 		self.config = eval("config.misc.hotkey." + key[0][1])
+		self.list = []
 		self.selected = []
 		for function in self.hotkeyFunctions:
 			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		for x in self.config.value.split(','):
 			if x.startswith("Zap"):
-				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference("/".join(x.split("/")[1:])).toString()).getServiceName()), x)))
+				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
 			else:
 				function = list(function for function in self.hotkeyFunctions if function[1] == x )
 				if function:
@@ -361,7 +361,7 @@ class InfoBarHotkey():
 			selected = []
 			for x in selection:
 				if x.startswith("Zap"):
-					selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference("/".join(x.split("/")[1:])).toString()).getServiceName()), x))
+					selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 				else:
 					function = list(function for function in getHotkeyFunctions() if function[1] == x )
 					if function:
