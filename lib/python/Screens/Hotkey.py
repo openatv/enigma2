@@ -79,8 +79,7 @@ def getHotkeyFunctions():
 		if plugin.name not in twinPlugins and plugin.path:
 			hotkeyFunctions.append((plugin.name, plugin.path[24:]))
 			twinPlugins.append(plugin.name)
-	hotkeyFunctions.append(("--", "--"))
-	hotkeyFunctions.append((_("mainMenu"), "Infobar/mainMenu"))
+	hotkeyFunctions.append((_("MainMenu"), "Infobar/mainMenu"))
 	hotkeyFunctions.append((_("showHelp"), "Infobar/showHelp"))
 	hotkeyFunctions.append((_("showExtensionSelection"), "Infobar/showExtensionSelection"))
 	hotkeyFunctions.append((_("zapDown"), "Infobar/zapDown"))
@@ -115,7 +114,6 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("movePiP"), "Infobar/movePiP"))
 		hotkeyFunctions.append((_("togglePipzap"), "Infobar/togglePipzap"))
 	hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn"))
-	hotkeyFunctions.append(("--", "--"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup"))
 	hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin"))
 	hotkeyFunctions.append((_("Latest Commits"), "Module/Screens.About/CommitInfo"))
@@ -137,13 +135,10 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2"))
 	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3"))
 	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1"))
-	hotkeyFunctions.append(("--", "--"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup"))
-	hotkeyFunctions.append(("--", "--"))
-	hotkeyFunctions.append((_("Zap to"), "Zap"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -226,10 +221,8 @@ class HotkeySetupSelect(Screen):
 		self.mode = "list"
 		self.hotkeyFunctions = getHotkeyFunctions()
 		self.config = eval("config.misc.hotkey." + key[0][1])
-		self.list = []
+		self.expanded = []
 		self.selected = []
-		for function in self.hotkeyFunctions:
-			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		for x in self.config.value.split(','):
 			if x.startswith("Zap"):
 				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
@@ -239,7 +232,7 @@ class HotkeySetupSelect(Screen):
 					self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
-		self["list"] = ChoiceList(list=self.list, selection=0)
+		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
 		{
 			"ok": self.keyOk,
@@ -258,6 +251,25 @@ class HotkeySetupSelect(Screen):
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
 
+	def getFunctionList(self):
+		list = []
+		catagories = {}
+		for function in self.hotkeyFunctions:
+			catagorie = function[1].split("/", 1)[0]
+			if not catagories.has_key(catagorie):
+				catagories[catagorie] = []
+			catagories[catagorie].append(function)
+		for catagorie in catagories:
+			if catagorie in self.expanded:
+				list.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
+				for function in catagories[catagorie]:
+					list.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
+				if catagorie == "Infobar":
+					list.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
+			else:
+				list.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
+		return list
+
 	def toggleMode(self):
 		if self.mode == "list" and self.selected:
 			self.mode = "choosen"
@@ -271,13 +283,20 @@ class HotkeySetupSelect(Screen):
 	def keyOk(self):
 		if self.mode == "list":
 			currentSelected = self["list"].l.getCurrentSelection()
-			if currentSelected in self.selected:
-				self.selected.remove(currentSelected)
-			else:
-				if currentSelected[0][1].startswith("Zap"):
-					self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
+			if currentSelected[0][1] == "Expander":
+				if currentSelected[0][0] in self.expanded:
+					self.expanded.remove(currentSelected[0][0])
 				else:
-					self.selected.append(currentSelected)
+					self.expanded.append(currentSelected[0][0])
+				self["list"].setList(self.getFunctionList())
+			else:
+				if currentSelected in self.selected:
+					self.selected.remove(currentSelected)
+				else:
+					if currentSelected[0][1].startswith("Zap"):
+						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
+					else:
+						self.selected.append(currentSelected[:2])
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
 			if not self.selected:
@@ -293,32 +312,24 @@ class HotkeySetupSelect(Screen):
 	def keyLeft(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.pageUp)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyUp()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.pageUp)
 
 	def keyRight(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.pageDown)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyDown()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.pageDown)
 
 	def keyUp(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.moveUp)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyUp()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.moveUp)
 
 	def keyDown(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.moveDown)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyDown()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.moveDown)
 
