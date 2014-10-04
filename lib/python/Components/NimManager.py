@@ -366,6 +366,10 @@ class SecConfigure:
 					sec.setLNBLOFL(currLnb.lofl.value * 1000)
 					sec.setLNBLOFH(currLnb.lofh.value * 1000)
 					sec.setLNBThreshold(currLnb.threshold.value * 1000)
+				elif currLnb.lof.value == "circular_lnb":
+					sec.setLNBLOFL(10750000)
+					sec.setLNBLOFH(10750000)
+					sec.setLNBThreshold(10750000)
 
 #				if currLnb.output_12v.value == "0V":
 #					pass # nyi in drivers
@@ -1153,6 +1157,7 @@ def InitNimManager(nimmgr):
 		"universal_lnb": _("Universal LNB"),
 		"unicable": _("Unicable"),
 		"c_band": _("C-Band"),
+		"circular_lnb": _("Circular LNB"),
 		"user_defined": _("User defined")}
 
 	lnb_choices_default = "universal_lnb"
