@@ -3,6 +3,7 @@ from GUIComponent import GUIComponent
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 from Components.MultiContent import MultiContentEntryText
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
+from Components.config import config
 from collections import defaultdict
 
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
@@ -24,18 +25,34 @@ from collections import defaultdict
 # places a button name list instead of a single button in the help entry.
 
 class HelpMenuList(GUIComponent):
-	def __init__(self, helplist, callback):
+	def __init__(self, helplist, callback, rcPos=None):
 		GUIComponent.__init__(self)
 		self.onSelChanged = []
 		self.l = eListboxPythonMultiContent()
 		self.callback = callback
 		self.extendedHelp = False
+		self.rcPos = rcPos
+		self.rcKeyIndex = None
+
+		headings, sortCmp, sortKey = {
+				"headings+alphabetic":	(True, None, self._sortKeyAlpha),
+				"flat+alphabetic":	(False, None, self._sortKeyAlpha),
+				"flat+remotepos":	(False, self._sortCmpPos, None),
+				"flat+remotegroups":	(False, self._sortCmpInd, None)
+			}.get(config.usage.help_sortorder.value, (False, None, None))
+
+		if rcPos == None:
+			if sortCmp in (self._sortCmpPos, self._sortCmpInd):
+				sortCmp = None
+		else:
+			if sortCmp == self._sortCmpInd:
+				self.rcKeyIndex = dict((x[1], x[0]) for x in enumerate(rcPos.getRcKeyList()))
 
 		width = 640
 		indent = 0
 
 		for (actionmap, context, actions) in helplist:
-			if actionmap.enabled and getattr(actionmap, "description", None):
+			if headings and actionmap.enabled and getattr(actionmap, "description", None):
 				indent = 20
 				break
 
@@ -66,9 +83,10 @@ class HelpMenuList(GUIComponent):
 					if name is not None and (len(name) < 2 or name[1] not in("fp", "kbd")):
 						if flags & 8: # for long keypresses, make the second tuple item "long".
 							name = (name[0], "long")
-						if n not in buttonsProcessed:
+						nlong = (n[0], flags & 8)
+						if nlong not in buttonsProcessed:
 							buttonNames.append(name)
-							buttonsProcessed.add(n)
+							buttonsProcessed.add(nlong)
 
 				# only show entries with keys that are available on the used rc
 				if not buttonNames:
@@ -80,7 +98,9 @@ class HelpMenuList(GUIComponent):
 
 		l = []
 		for (actionmap, context, actions) in helplist:
-			if context in actionMapHelp and getattr(actionmap, "description", None):
+			if headings and context in actionMapHelp and getattr(actionmap, "description", None):
+				if sortCmp or sortKey:
+					actionMapHelp[context].sort(cmp=sortCmp, key=sortKey)
 				self.addListBoxContext(actionMapHelp[context], width, indent)
 
 				l.append([None, MultiContentEntryText(pos=(0, 0), size=(width, 26), text=actionmap.description)])
@@ -91,12 +111,16 @@ class HelpMenuList(GUIComponent):
 			if indent:
 				l.append([None, MultiContentEntryText(pos=(0, 0), size=(width, 26), text=_("Other functions"))])
 
+			otherHelp = []
 			for (actionmap, context, actions) in helplist:
 				if context in actionMapHelp:
-					self.addListBoxContext(actionMapHelp[context], width, indent)
-
-					l.extend(actionMapHelp[context])
+					otherHelp.extend(actionMapHelp[context])
 					del actionMapHelp[context]
+
+			if sortCmp or sortKey:
+				otherHelp.sort(cmp=sortCmp, key=sortKey)
+			self.addListBoxContext(otherHelp, width, indent)
+			l.extend(otherHelp)
 
 		self.l.setList(l)
 
@@ -120,6 +144,30 @@ class HelpMenuList(GUIComponent):
 				)
 			else:
 				ent[1] = MultiContentEntryText(pos=(indent, 0), size=(width-indent, 28), font=0, text=help)
+
+	def _getMinPos(self, a):
+		# Reverse the coordinate tuple, too, to (y, x) to get
+		# ordering by y then x.
+		return min(map(lambda x: tuple(reversed(self.rcPos.getRcKeyPos(x[0]))), a))
+
+	def _sortCmpPos(self, a, b):
+		return cmp(self._getMinPos(a[0][3]), self._getMinPos(b[0][3]))
+
+	# Sort order "Flat by key group on remote" is really
+	# "Sort in order of buttons in rcpositions.xml", and so
+	# the buttons need to be grouped sensibly in that file for
+	# this to work properly.
+
+	def _getMinInd(self, a):
+		return min(map(lambda x: self.rcKeyIndex[x[0]], a))
+
+	def _sortCmpInd(self, a, b):
+		return cmp(self._getMinInd(a[0][3]), self._getMinInd(b[0][3]))
+
+	def _sortKeyAlpha(self, hlp):
+		# Convert normal help to extended help form for comparison
+		# and ignore case
+		return map(str.lower, hlp[1] if isinstance(hlp, list) else (hlp, ''))
 
 	def ok(self):
 		# a list entry has a "private" tuple as first entry...

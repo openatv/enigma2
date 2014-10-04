@@ -9,7 +9,7 @@ class HelpMenu(Screen, Rc):
 		Screen.__init__(self, session)
 		Rc.__init__(self)
 		self.onSelChanged = [ ]
-		self["list"] = HelpMenuList(list, self.close)
+		self["list"] = HelpMenuList(list, self.close, rcPos=self.getRcPositions())
 		self["longshift_key0"] = Label("")
 		self["longshift_key1"] = Label("")
 

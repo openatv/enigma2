@@ -178,6 +178,12 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
 
+	config.usage.help_sortorder = ConfigSelection(default="headings+alphabetic", choices=[
+		("headings+alphabetic", _("Alphabetical under headings")),
+		("flat+alphabetic", _("Flat alphabetical")),
+		("flat+remotepos", _("Flat by position on remote")),
+		("flat+remotegroups", _("Flat by key group on remote"))])
+
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=[
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
