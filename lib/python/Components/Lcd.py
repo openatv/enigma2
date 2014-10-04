@@ -43,14 +43,14 @@ def standbyCounterChanged(configElement):
 	config.lcd.standby.apply()
 
 def InitLcd():
-	if getBoxType() in ('gb800se', 'gb800solo', 'gb800seplus', 'gbipbox', 'gbultra'):
+	if getBoxType() in ('gb800se', 'gb800solo'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
 
-	if fileExists("/proc/stb/lcd/mode"):
+	if fileExists("/proc/stb/lcd/mode") and getBoxType() in ('gbquad', 'gbquadplus', 'gb800ueplus', 'gb800ue'):
 		f = open("/proc/stb/lcd/mode", "r")
 		can_lcdmodechecking = f.read().strip().split(" ")
 		f.close()
