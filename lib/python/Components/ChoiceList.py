@@ -11,8 +11,15 @@ def ChoiceEntryComponent(key = None, text = ["--"]):
 	else:
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
 		if key:
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/key_%s.png" % key))
-			if png is not None:
+			if key == "expandable":
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/expandable.png"))
+			elif key == "expanded":
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/expanded.png"))
+			elif key == "verticalline":
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/verticalline.png"))
+			else:
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/key_%s.png" % key))
+			if png:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 35, 25, png))
 	return res
 
