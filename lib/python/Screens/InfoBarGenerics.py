@@ -576,10 +576,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
-		if self.lastSecondInfoBar == config.usage.show_second_infobar.value:
+		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
 			return
 		self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-		self.lastSecondInfoBar = config.usage.show_second_infobar.value
+		self.lastSecondInfoBar = int(config.usage.show_second_infobar.value)
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
@@ -612,13 +612,15 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-		self.unDimmingTimer = eTimer()
-		self.unDimmingTimer.callback.append(self.unDimming)
-		self.unDimmingTimer.start(100, True)
-#		if self.secondInfoBarScreen:
-#			self.secondInfoBarScreen.hide()
+		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
+
+	def resetAlpha(self):
+		if config.usage.show_infobar_do_dimming.value:
+			self.unDimmingTimer = eTimer()
+			self.unDimmingTimer.callback.append(self.unDimming)
+			self.unDimmingTimer.start(100, True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -691,33 +693,37 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
-			self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-
 			if self.dimmed > 0:
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(70, True)
 			else:
 				self.DimmingTimer.stop()
-				if self.__state == self.STATE_SHOWN:
-					self.hide()
-				if hasattr(self, "pvrStateDialog"):
-					try:
-						self.pvrStateDialog.hide()
-					except:
-						pass
-				elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-					self.secondInfoBarScreen.hide()
-					self.secondInfoBarWasShown = False
-				elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
-					try:
-						self.eventView.close()
-					except:
-						pass
-					self.EventViewIsShown = False
-				elif hasattr(self, "pvrStateDialog"):
-					try:
-						self.pvrStateDialog.hide()
-					except:
-						pass
+				self.hide()
+		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			if self.dimmed > 0:
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.DimmingTimer.start(70, True)
+			else:
+				self.DimmingTimer.stop()
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
+				self.resetAlpha()
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
+#		elif hasattr(self, "pvrStateDialog"):
+#			if self.dimmed > 0:
+#				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+#				self.DimmingTimer.start(70, True)
+#			else:
+#				self.DimmingTimer.stop()
+#				try:
+#					self.pvrStateDialog.hide()
+#				except:
+#					pass
 
 	def toggleShow(self):
 		if not hasattr(self, "LongButtonPressed"):
@@ -759,6 +765,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					except:
 						pass
 					self.EventViewIsShown = False
+
 	def toggleShowLong(self):
 		if self.LongButtonPressed:
 			if isinstance(self, InfoBarEPG):
