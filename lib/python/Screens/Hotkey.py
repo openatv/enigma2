@@ -35,13 +35,13 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Help"), "displayHelp", ""),
 	(_("Subtitle"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
-	(_("Info"), "info", ""),
-	(_("Info Long"), "info_long", ""),
+	(_("Info"), "info", "Infobar/openEventView"),
+	(_("Info Long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("List/Fav"), "list", ""),
 	(_("Back"), "back", ""),
 	(_("End"), "end", ""),
-	(_("Epg/Guide"), "epg", ""),
-	(_("Epg/Guide long"), "epg_long", ""),
+	(_("Epg/Guide"), "epg", "Plugins/Extensions/GraphMultiEPG"),
+	(_("Epg/Guide long"), "epg_long", "Infobar/showEventInfoPlugins"),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
@@ -79,73 +79,70 @@ def getHotkeyFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path:
-			hotkeyFunctions.append((plugin.name, plugin.path[24:]))
+			hotkeyFunctions.append((plugin.name, plugin.path[24:], "Plugins"))
 			twinPlugins.append(plugin.name)
-	hotkeyFunctions.append(("--", "--"))
-	hotkeyFunctions.append((_("mainMenu"), "Infobar/mainMenu"))
-	hotkeyFunctions.append((_("showHelp"), "Infobar/showHelp"))
-	hotkeyFunctions.append((_("showExtensionSelection"), "Infobar/showExtensionSelection"))
-	hotkeyFunctions.append((_("zapDown"), "Infobar/zapDown"))
-	hotkeyFunctions.append((_("zapUp"), "Infobar/zapUp"))
-	hotkeyFunctions.append((_("switchChannelUp"), "Infobar/switchChannelUp"))
-	hotkeyFunctions.append((_("switchChannelDown"), "Infobar/switchChannelDown"))
-	hotkeyFunctions.append((_("openServiceList"), "Infobar/openServiceList"))
-	hotkeyFunctions.append((_("historyBack"), "Infobar/historyBack"))
-	hotkeyFunctions.append((_("historyNext"), "Infobar/historyNext"))
-	hotkeyFunctions.append((_("showEventInfoPlugins"), "Infobar/showEventInfoPlugins"))
-	hotkeyFunctions.append((_("openEventView"), "Infobar/openEventView"))
-	hotkeyFunctions.append((_("openSingleServiceEPG"), "Infobar/openSingleServiceEPG"))
-	hotkeyFunctions.append((_("openMultiServiceEPG"), "Infobar/openMultiServiceEPG"))
-	hotkeyFunctions.append((_("audioSelection"), "Infobar/audioSelection"))
-	hotkeyFunctions.append((_("showRadio"), "Infobar/showRadio"))
-	hotkeyFunctions.append((_("showTv"), "Infobar/showTv"))
-	hotkeyFunctions.append((_("showMovies"), "Infobar/showMovies"))
-	hotkeyFunctions.append((_("instantRecord"), "Infobar/instantRecord"))
-	hotkeyFunctions.append((_("startInstantRecording"), "Infobar/startInstantRecording"))
-	hotkeyFunctions.append((_("activateTimeshiftEnd"), "Infobar/activateTimeshiftEnd"))
-	hotkeyFunctions.append((_("activateTimeshiftEndAndPause"), "Infobar/activateTimeshiftEndAndPause"))
-	hotkeyFunctions.append((_("startTimeshift"), "Infobar/startTimeshift"))
-	hotkeyFunctions.append((_("stopTimeshift"), "Infobar/stopTimeshift"))
-	hotkeyFunctions.append((_("startTeletext"), "Infobar/startTeletext"))
-	hotkeyFunctions.append((_("subserviceSelection"), "Infobar/subserviceSelection"))
-	hotkeyFunctions.append((_("subtitleSelection"), "Infobar/subtitleSelection"))
-	hotkeyFunctions.append((_("show/hide infoBar"), "Infobar/toggleShow"))
-	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection"))
+	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
+	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
+	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
+	hotkeyFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
+	hotkeyFunctions.append((_("Switch channel up"), "Infobar/switchChannelUp", "InfoBar"))
+	hotkeyFunctions.append((_("Switch channel down"), "Infobar/switchChannelDown", "InfoBar"))
+	hotkeyFunctions.append((_("Open service list"), "Infobar/openServiceList", "InfoBar"))
+	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
+	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
+	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
+	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
+	hotkeyFunctions.append((_("Open single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Open multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
+	for plugin in [p for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) if 'selectedevent' not in p.__call__.func_code.co_varnames] or []:
+		hotkeyFunctions.append((plugin.name, plugin.path[24:], "EPG"))
+	hotkeyFunctions.append((_("Open Audioselection"), "Infobar/audioSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
+	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
+	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
+	hotkeyFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
+	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
+	hotkeyFunctions.append((_("Activate timeshift End"), "Infobar/activateTimeshiftEnd", "InfoBar"))
+	hotkeyFunctions.append((_("Activate timeshift end and pause"), "Infobar/activateTimeshiftEndAndPause", "InfoBar"))
+	hotkeyFunctions.append((_("Start timeshift"), "Infobar/startTimeshift", "InfoBar"))
+	hotkeyFunctions.append((_("Stop timeshift"), "Infobar/stopTimeshift", "InfoBar"))
+	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
+	hotkeyFunctions.append((_("Open subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Open subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show/hide infoBar"), "Infobar/toggleShow", "InfoBar"))
+	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
-		hotkeyFunctions.append((_("showPiP"), "Infobar/showPiP"))
-		hotkeyFunctions.append((_("swapPiP"), "Infobar/swapPiP"))
-		hotkeyFunctions.append((_("movePiP"), "Infobar/movePiP"))
-		hotkeyFunctions.append((_("togglePipzap"), "Infobar/togglePipzap"))
-	#hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn"))
-	hotkeyFunctions.append(("--", "--"))
-	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup"))
-	#hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin"))
-	#hotkeyFunctions.append((_("Latest Commits"), "Module/Screens.About/CommitInfo"))
-	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection"))
-	hotkeyFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection"))
-	hotkeyFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup"))
-	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple"))
+		hotkeyFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
+		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
+		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
+		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
+	#hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
+	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
+	#hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
+	#hotkeyFunctions.append((_("Latest Commits"), "Module/Screens.About/CommitInfo", "Setup"))
+	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
+	hotkeyFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
+	hotkeyFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
+	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
 	for plugin in plugins.getPluginsForMenu("scan"):
-		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2]))
-	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection"))
-	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser"))
-	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit"))
-	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo"))
-	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList"))
+		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
+	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
+	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
+	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Setup"))
+	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
+	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
-			hotkeyFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2]))
-	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby"))
-	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2"))
-	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3"))
-	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1"))
-	hotkeyFunctions.append(("--", "--"))
-	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage"))
-	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording"))
-	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk"))
-	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup"))
-	hotkeyFunctions.append(("--", "--"))
-	hotkeyFunctions.append((_("Zap to"), "Zap"))
+			hotkeyFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
+	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
+	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
+	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
+	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
+	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
+	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
+	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
+	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -228,10 +225,8 @@ class HotkeySetupSelect(Screen):
 		self.mode = "list"
 		self.hotkeyFunctions = getHotkeyFunctions()
 		self.config = eval("config.misc.hotkey." + key[0][1])
-		self.list = []
+		self.expanded = []
 		self.selected = []
-		for function in self.hotkeyFunctions:
-			self.list.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		for x in self.config.value.split(','):
 			if x.startswith("Zap"):
 				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
@@ -241,7 +236,7 @@ class HotkeySetupSelect(Screen):
 					self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
-		self["list"] = ChoiceList(list=self.list, selection=0)
+		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
 		{
 			"ok": self.keyOk,
@@ -260,6 +255,24 @@ class HotkeySetupSelect(Screen):
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
 
+	def getFunctionList(self):
+		functionslist = []
+		catagories = {}
+		for function in self.hotkeyFunctions:
+			if not catagories.has_key(function[2]):
+				catagories[function[2]] = []
+			catagories[function[2]].append(function)
+		for catagorie in sorted(list(catagories)):
+			if catagorie in self.expanded:
+				functionslist.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
+				for function in catagories[catagorie]:
+					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
+				if catagorie == "Infobar":
+					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
+			else:
+				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
+		return functionslist
+
 	def toggleMode(self):
 		if self.mode == "list" and self.selected:
 			self.mode = "choosen"
@@ -273,13 +286,20 @@ class HotkeySetupSelect(Screen):
 	def keyOk(self):
 		if self.mode == "list":
 			currentSelected = self["list"].l.getCurrentSelection()
-			if currentSelected in self.selected:
-				self.selected.remove(currentSelected)
-			else:
-				if currentSelected[0][1].startswith("Zap"):
-					self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
+			if currentSelected[0][1] == "Expander":
+				if currentSelected[0][0] in self.expanded:
+					self.expanded.remove(currentSelected[0][0])
 				else:
-					self.selected.append(currentSelected)
+					self.expanded.append(currentSelected[0][0])
+				self["list"].setList(self.getFunctionList())
+			else:
+				if currentSelected in self.selected:
+					self.selected.remove(currentSelected)
+				else:
+					if currentSelected[0][1].startswith("Zap"):
+						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
+					else:
+						self.selected.append(currentSelected[:2])
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
 			if not self.selected:
@@ -295,32 +315,24 @@ class HotkeySetupSelect(Screen):
 	def keyLeft(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.pageUp)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyUp()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.pageUp)
 
 	def keyRight(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.pageDown)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyDown()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.pageDown)
 
 	def keyUp(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.moveUp)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyUp()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.moveUp)
 
 	def keyDown(self):
 		if self.mode == "list":
 			self["list"].instance.moveSelection(self["list"].instance.moveDown)
-			if self["list"].l.getCurrentSelection()[0][0] == "--":
-				self.keyDown()
 		else:
 			self["choosen"].instance.moveSelection(self["list"].instance.moveDown)
 

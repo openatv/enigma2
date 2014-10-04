@@ -296,10 +296,15 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 class RemoteControlType(Screen, ConfigListScreen):
 	rcList = [
 			("0", _("Default")),
-			("4", _("DMM normal")), ("6", _("DMM advanced")),
-			("11", "et9x00/6500"), ("7", "et5000/6000"), ("13", "et4000"), ("9", "et8000/et10000"),
-			("14", "xp1000"),
-			("8", "VU+"),
+			("11", _("et9x00/6500")),
+			("13", _("et4000")),
+			("7", _("et5000/6000")),
+			("9", _("et8000/et10000")),
+			("4", _("DMM normal")),
+			("6", _("DMM advanced")),
+			("14", _("xp1000")),
+			("8", _("VU+")),
+			("18", _("F1/F3"))
 		]
 
 	defaultRcList = [
@@ -312,7 +317,9 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et9200", 11),
 			("et9500", 11),
 			("et10000", 9),
-			("xp1000", 14),
+			("formuler1", 18),
+			("formuler3", 18),
+			("xp1000", 14)
 		]
 
 	def __init__(self, session):
