@@ -61,7 +61,7 @@ class VideoHardware:
 									"25Hz":		{ 25: "1080p25" },
 									"30Hz":		{ 30: "1080p30" } }
 
-	elif chipset in ('bcm7358', 'bcm7346', 'bcm7356', 'bcm7405', 'bcm7362'):
+	elif chipset in ('bcm7358', 'bcm7346', 'bcm7356', 'bcm7362'):
 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
 									"25Hz": 	{ 25: "1080p25" },
 									"30Hz": 	{ 30: "1080p30" },
