@@ -361,6 +361,12 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+class dummyScreen(Screen): #intended to dump key release after a long key function
+	skin = """<screen position="1,1" size="1,1" title="" flags="wfNoBorder" backgroundColor="#ff000000"/>"""
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.close()
+
 class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
@@ -379,6 +385,7 @@ class InfoBarHotkey():
 			if not selected:
 				return 0
 			if len(selected) == 1:
+				self.session.open(dummyScreen)
 				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
