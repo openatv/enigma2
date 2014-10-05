@@ -24,6 +24,7 @@ from collections import defaultdict
 # The code recognises that more than one button can map to an action and
 # places a button name list instead of a single button in the help entry.
 
+
 class HelpMenuList(GUIComponent):
 	def __init__(self, helplist, callback, rcPos=None):
 		GUIComponent.__init__(self)
@@ -35,13 +36,13 @@ class HelpMenuList(GUIComponent):
 		self.rcKeyIndex = None
 
 		headings, sortCmp, sortKey = {
-				"headings+alphabetic":	(True, None, self._sortKeyAlpha),
-				"flat+alphabetic":	(False, None, self._sortKeyAlpha),
-				"flat+remotepos":	(False, self._sortCmpPos, None),
-				"flat+remotegroups":	(False, self._sortCmpInd, None)
-			}.get(config.usage.help_sortorder.value, (False, None, None))
+			"headings+alphabetic": (True, None, self._sortKeyAlpha),
+			"flat+alphabetic": (False, None, self._sortKeyAlpha),
+			"flat+remotepos": (False, self._sortCmpPos, None),
+			"flat+remotegroups": (False, self._sortCmpInd, None)
+		}.get(config.usage.help_sortorder.value, (False, None, None))
 
-		if rcPos == None:
+		if rcPos is None:
 			if sortCmp in (self._sortCmpPos, self._sortCmpInd):
 				sortCmp = None
 		else:
@@ -82,7 +83,7 @@ class HelpMenuList(GUIComponent):
 				for n in buttons:
 					(name, flags) = (getKeyDescription(n[0]), n[1])
 					if name is not None and (len(name) < 2 or name[1] not in("fp", "kbd")):
-						if flags & 8: # for long keypresses, make the second tuple item "long".
+						if flags & 8:  # for long keypresses, make the second tuple item "long".
 							name = (name[0], "long")
 						nlong = (n[0], flags & 8)
 						if nlong not in buttonsProcessed:
@@ -93,7 +94,7 @@ class HelpMenuList(GUIComponent):
 				if not buttonNames:
 					continue
 
-				entry = [(actionmap, context, action, buttonNames ), help]
+				entry = [(actionmap, context, action, buttonNames), help]
 				if self._filterHelpList(entry, helpSeen):
 					actionMapHelp[context].append(entry)
 
@@ -153,11 +154,11 @@ class HelpMenuList(GUIComponent):
 			if isinstance(help, list):
 				self.extendedHelp = True
 				ent[1:] = (
-					MultiContentEntryText(pos=(indent, 0), size=(width-indent, 26), font=0, text=help[0]),
-					MultiContentEntryText(pos=(indent, 28), size=(width-indent, 20), font=1, text=help[1]),
+					MultiContentEntryText(pos=(indent, 0), size=(width - indent, 26), font=0, text=help[0]),
+					MultiContentEntryText(pos=(indent, 28), size=(width - indent, 20), font=1, text=help[1]),
 				)
 			else:
-				ent[1] = MultiContentEntryText(pos=(indent, 0), size=(width-indent, 28), font=0, text=help)
+				ent[1] = MultiContentEntryText(pos=(indent, 0), size=(width - indent, 28), font=0, text=help)
 
 	def _getMinPos(self, a):
 		# Reverse the coordinate tuple, too, to (y, x) to get

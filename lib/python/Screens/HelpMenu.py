@@ -4,20 +4,21 @@ from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
 from Screens.Rc import Rc
 
+
 class HelpMenu(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		Rc.__init__(self)
-		self.onSelChanged = [ ]
+		self.onSelChanged = []
 		self["list"] = HelpMenuList(list, self.close, rcPos=self.getRcPositions())
 		self["longshift_key0"] = Label("")
 		self["longshift_key1"] = Label("")
 
 		self["actions"] = ActionMap(["WizardActions"],
-		{
-			"ok": self["list"].ok,
-			"back": self.close,
-		}, -1)
+			{
+				"ok": self["list"].ok,
+				"back": self.close,
+			}, -1)
 
 		self.onLayoutFinish.append(self.doOnLayoutFinish)
 
@@ -31,7 +32,7 @@ class HelpMenu(Screen, Rc):
 
 		longText = [""] * 2
 		longButtons = []
-		shiftButtons=[]
+		shiftButtons = []
 		if selection:
 			for button in selection[3]:
 				print "button:", button
@@ -55,12 +56,13 @@ class HelpMenu(Screen, Rc):
 		self["longshift_key0"].setText(longText[0])
 		self["longshift_key1"].setText(longText[1])
 
+
 class HelpableScreen:
 	def __init__(self):
-		self["helpActions"] = ActionMap( [ "HelpActions" ],
+		self["helpActions"] = ActionMap(["HelpActions"],
 			{
 				"displayHelp": self.showHelp,
-			})
+		})
 
 	def showHelp(self):
 		try:
