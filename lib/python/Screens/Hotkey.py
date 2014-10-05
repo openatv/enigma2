@@ -313,28 +313,16 @@ class HotkeySetupSelect(Screen):
 			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.pageUp)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.pageUp)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
 
 	def keyRight(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.pageDown)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.pageDown)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.pageDown)
 
 	def keyUp(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.moveUp)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.moveUp)
 
 	def keyDown(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.moveDown)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
 
 	def save(self):
 		configValue = []
@@ -363,6 +351,12 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+class dummyScreen(Screen): #intended to dump key release after a long key function
+	skin = """<screen position="1,1" size="1,1" title="" flags="wfNoBorder" backgroundColor="#ff000000"/>"""
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.close()
+
 class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
@@ -381,6 +375,7 @@ class InfoBarHotkey():
 			if not selected:
 				return 0
 			if len(selected) == 1:
+				self.session.open(dummyScreen)
 				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
