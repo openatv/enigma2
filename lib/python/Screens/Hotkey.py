@@ -373,7 +373,6 @@ class InfoBarHotkey():
 			if not selected:
 				return 0
 			if len(selected) == 1:
-				self.session.open(dummyScreen)
 				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
@@ -407,6 +406,7 @@ class InfoBarHotkey():
 				exec "from Screens.Setup import *"
 				exec "self.session.open(Setup, \"" + selected[1] + "\")"
 			elif selected[0] == "Zap":
+				self.session.open(dummyScreen)
 				self.servicelist.servicelist.setCurrent(eServiceReference("/".join(selected[1:])))
 				self.servicelist.zap(enable_pipzap = True)
 				if hasattr(self, "lastservice"):
