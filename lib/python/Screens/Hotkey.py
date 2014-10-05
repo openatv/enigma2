@@ -170,11 +170,26 @@ class HotkeySetup(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 		}, -1)
+		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys))
+		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
 
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
+
+	def hotkeyGlobal(self, key):
+		if self.longkeyPressed:
+			self.longkeyPressed = False
+		else:
+			index = 0
+			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10]:
+				if key == x[0][1]:
+					self["list"].moveToIndex(index)
+					if "_long" in key:
+						self.longkeyPressed = True
+					break
+				index += 1
 
 	def keyOk(self):
 		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
@@ -351,35 +366,34 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-class dummyScreen(Screen): #intended to dump key release after a long key function
-	skin = """<screen position="1,1" size="1,1" title="" flags="wfNoBorder" backgroundColor="#ff000000"/>"""
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.close()
-
 class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
+		self.longkeyPressed = False
 
 	def hotkeyGlobal(self, key):
-		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
-		if selection:
-			selected = []
-			for x in selection:
-				if x.startswith("Zap"):
-					selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
+		if self.longkeyPressed:
+			self.longkeyPressed = False
+		else:
+			selection = eval("config.misc.hotkey." + key + ".value.split(',')")
+			if selection:
+				selected = []
+				for x in selection:
+					if x.startswith("Zap"):
+						selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
+					else:
+						function = list(function for function in getHotkeyFunctions() if function[1] == x )
+						if function:
+							selected.append(function[0])
+				if not selected:
+					return 0
+				if len(selected) == 1:
+					if "_long" in key:
+						self.longkeyPressed = True
+					return self.execHotkey(selected[0])
 				else:
-					function = list(function for function in getHotkeyFunctions() if function[1] == x )
-					if function:
-						selected.append(function[0])
-			if not selected:
-				return 0
-			if len(selected) == 1:
-				self.session.open(dummyScreen)
-				return self.execHotkey(selected[0])
-			else:
-				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
-				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
+					key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
+					self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
 
 	def execHotkey(self, selected):
 		if selected:
