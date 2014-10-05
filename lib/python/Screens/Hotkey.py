@@ -168,11 +168,26 @@ class HotkeySetup(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 		}, -1)
+		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys))
+		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
 
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
+
+	def hotkeyGlobal(self, key):
+		if self.longkeyPressed:
+			self.longkeyPressed = False
+		else:
+			index = 0
+			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10]:
+				if key == x[0][1]:
+					self["list"].moveToIndex(index)
+					if "_long" in key:
+						self.longkeyPressed = True
+					break
+				index += 1
 
 	def keyOk(self):
 		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
