@@ -311,28 +311,16 @@ class HotkeySetupSelect(Screen):
 			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.pageUp)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.pageUp)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
 
 	def keyRight(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.pageDown)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.pageDown)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.pageDown)
 
 	def keyUp(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.moveUp)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.moveUp)
 
 	def keyDown(self):
-		if self.mode == "list":
-			self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		else:
-			self["choosen"].instance.moveSelection(self["list"].instance.moveDown)
+		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
 
 	def save(self):
 		configValue = []
