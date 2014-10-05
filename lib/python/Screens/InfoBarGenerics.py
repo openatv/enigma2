@@ -620,7 +620,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if config.usage.show_infobar_do_dimming.value:
 			self.unDimmingTimer = eTimer()
 			self.unDimmingTimer.callback.append(self.unDimming)
-			self.unDimmingTimer.start(100, True)
+			self.unDimmingTimer.start(300, True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -688,21 +688,21 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideTimer.stop()
 		self.DimmingTimer = eTimer()
 		self.DimmingTimer.callback.append(self.doDimming)
-		self.DimmingTimer.start(70, True)
+		self.DimmingTimer.start(300, True)
 		self.dimmed = config.usage.show_infobar_dimming_speed.value
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
 				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-				self.DimmingTimer.start(70, True)
+				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
 				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-				self.DimmingTimer.start(70, True)
+				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.secondInfoBarScreen.hide()
@@ -717,7 +717,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #		elif hasattr(self, "pvrStateDialog"):
 #			if self.dimmed > 0:
 #				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-#				self.DimmingTimer.start(70, True)
+#				self.DimmingTimer.start(5, True)
 #			else:
 #				self.DimmingTimer.stop()
 #				try:
