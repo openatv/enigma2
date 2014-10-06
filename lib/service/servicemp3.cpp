@@ -2210,8 +2210,10 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 #if GST_VERSION_MAJOR < 1
 				std::string line((const char*)GST_BUFFER_DATA(buffer), len);
 #else
-				std::string line(len);
-				gst_buffer_extract(buffer, 0, (char*)line.data(), len);
+				GstMapInfo map;
+				gst_buffer_map(buffer, &map, GST_MAP_READ);
+				std::string line((const char*) map.data, map.size);
+				gst_buffer_unmap(buffer, &map);
 #endif
 				// eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
 
