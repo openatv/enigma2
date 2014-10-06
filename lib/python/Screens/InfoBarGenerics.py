@@ -1182,7 +1182,7 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		if not self.secondInfoBarScreen.shown:
+		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
 			self.keyHide()
 			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
@@ -1202,7 +1202,7 @@ class InfoBarChannelSelection:
 					self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		if not self.secondInfoBarScreen.shown:
+		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
 			self.keyHide()
 			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
