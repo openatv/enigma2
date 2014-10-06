@@ -189,7 +189,7 @@ class HotkeySetup(Screen):
 			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
-					if "_long" in key:
+					if key.endswith("_long"):
 						self.longkeyPressed = True
 					break
 				index += 1
@@ -391,7 +391,7 @@ class InfoBarHotkey():
 				if not selected:
 					return 0
 				if len(selected) == 1:
-					if "_long" in key:
+					if key.endswith("_long"):
 						self.longkeyPressed = True
 					return self.execHotkey(selected[0])
 				else:
@@ -431,3 +431,5 @@ class InfoBarHotkey():
 				if hasattr(self, "lastservice"):
 					self.lastservice = eServiceReference("/".join(selected[1:]))
 					self.close()
+				else:
+					self.show()
