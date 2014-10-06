@@ -349,6 +349,7 @@ public:
 
 	void save();
 	void load();
+	void timeUpdated();
 #ifndef SWIG
 	eEPGCache();
 	~eEPGCache();

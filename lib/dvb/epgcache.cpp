@@ -318,7 +318,7 @@ void eventData::save(FILE *f)
 void eventData::cacheCorrupt(const char* context)
 {
 
-	eDebug("WARNING: EPG Cache is corrupt (%s), you should restart Enigma!", context);
+	eDebug("[EPGC] WARNING: EPG Cache is corrupt (%s), you should restart Enigma!", context);
 	if (!isCacheCorrupt)
 	{
 		isCacheCorrupt = true;
@@ -359,7 +359,7 @@ eEPGCache::eEPGCache()
 	ePtr<eDVBResourceManager> res_mgr;
 	eDVBResourceManager::getInstance(res_mgr);
 	if (!res_mgr)
-		eDebug("[eEPGCache] no resource manager !!!!!!!");
+		eDebug("[EPGC] no resource manager !!!!!!!");
 	else
 		res_mgr->connectChannelAdded(slot(*this,&eEPGCache::DVBChannelAdded), m_chanAddedConn);
 
@@ -406,7 +406,7 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 {
 	if ( chan )
 	{
-//		eDebug("[eEPGCache] add channel %p", chan);
+//		eDebug("[EPGC] add channel %p", chan);
 		channel_data *data = new channel_data(this);
 		data->channel = chan;
 		data->prevChannelState = -1;
@@ -429,19 +429,19 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 	channelMapIterator it =
 		m_knownChannels.find(chan);
 	if ( it == m_knownChannels.end() )
-		eDebug("[eEPGCache] will start non existing channel %p !!!", chan);
+		eDebug("[EPGC] will start non existing channel %p !!!", chan);
 	else
 	{
 		channel_data &data = *it->second;
 		ePtr<eDVBResourceManager> res_mgr;
 		if ( eDVBResourceManager::getInstance( res_mgr ) )
-			eDebug("[eEPGCache] no res manager!!");
+			eDebug("[EPGC] no res manager!!");
 		else
 		{
 			ePtr<iDVBDemux> demux;
 			if ( data.channel->getDemux(demux, 0) )
 			{
-				eDebug("[eEPGCache] no demux!!");
+				eDebug("[EPGC] no demux!!");
 				return;
 			}
 			else
@@ -449,21 +449,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				RESULT res = demux->createSectionReader( this, data.m_NowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize nownext reader!!");
+					eDebug("[EPGC] couldnt initialize nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize schedule reader!!");
+					eDebug("[EPGC] couldnt initialize schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
+					eDebug("[EPGC] couldnt initialize schedule other reader!!");
 					return;
 				}
 
@@ -471,14 +471,14 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_VirginNowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize virgin nownext reader!!");
+					eDebug("[EPGC] couldnt initialize virgin nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_VirginScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize virgin schedule reader!!");
+					eDebug("[EPGC] couldnt initialize virgin schedule reader!!");
 					return;
 				}
 #endif
@@ -486,28 +486,28 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_NetmedScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize netmed schedule reader!!");
+					eDebug("[EPGC] couldnt initialize netmed schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_NetmedScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize netmed schedule other reader!!");
+					eDebug("[EPGC] couldnt initialize netmed schedule other reader!!");
 					return;
 				}
 #endif
 				res = demux->createSectionReader( this, data.m_ViasatReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize viasat reader!!");
+					eDebug("[EPGC] couldnt initialize viasat reader!!");
 					return;
 				}
 #ifdef ENABLE_PRIVATE_EPG
 				res = demux->createSectionReader( this, data.m_PrivateReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize private reader!!");
+					eDebug("[EPGC] couldnt initialize private reader!!");
 					return;
 				}
 #endif
@@ -515,13 +515,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_MHWReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize mhw reader!!");
+					eDebug("[EPGC] couldnt initialize mhw reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_MHWReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize mhw reader!!");
+					eDebug("[EPGC] couldnt initialize mhw reader!!");
 					return;
 				}
 #endif
@@ -529,13 +529,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat reader!!");
+					eDebug("[EPGC] couldnt initialize FreeSat reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat reader 2!!");
+					eDebug("[EPGC] couldnt initialize FreeSat reader 2!!");
 					return;
 				}
 #endif
@@ -566,13 +566,13 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 			{
 				case iDVBChannel::state_ok:
 				{
-					eDebug("[eEPGCache] channel %p running", chan);
+					eDebug("[EPGC] channel %p running", chan);
 					DVBChannelRunning(chan);
 					break;
 				}
 				case iDVBChannel::state_release:
 				{
-					eDebug("[eEPGCache] remove channel %p", chan);
+					eDebug("[EPGC] remove channel %p", chan);
 					if (it->second->state >= 0)
 						messages.send(Message(Message::leaveChannel, chan));
 					pthread_mutex_lock(&it->second->channel_active);
@@ -614,7 +614,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
 			event.parseFrom(&evt, service.sid<<16|service.onid);
-			eDebug("(1)erase no more used event %04x %d\n%s %s\n%s",
+			eDebug("[EPGC] (1)erase no more used event %04x %d\n%s %s\n%s",
 				service.sid, event_id,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
@@ -649,7 +649,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
 			event.parseFrom(&evt, service.sid<<16|service.onid);
-			eDebug("(2)erase no more used event %04x %d\n%s %s\n%s",
+			eDebug("[EPGC] (2)erase no more used event %04x %d\n%s %s\n%s",
 				service.sid, event_id,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
@@ -774,7 +774,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 			eventMap::iterator ev_it =
 				servicemap.first.find(event_id);
 
-//			eDebug("event_id is %d sid is %04x", event_id, service.sid);
+//			eDebug("[EPGC] event_id is %d sid is %04x", event_id, service.sid);
 
 			// entry with this event_id is already exist ?
 			if ( ev_it != servicemap.first.end() )
@@ -1176,7 +1176,7 @@ void eEPGCache::gotMessage( const Message &msg )
 			cleanLoop();
 			break;
 		default:
-			eDebug("unhandled EPGCache Message!!");
+			eDebug("[EPGC] unhandled EPGCache Message!!");
 			break;
 	}
 }
@@ -1943,7 +1943,7 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 #endif
 			default: eDebugNoNewLine("unknown");break;
 		}
-		eDebug(" finished(%ld)", ::time(0));
+		eDebug("[EPGC] finished(%ld)", ::time(0));
 		if ( reader )
 			reader->stop();
 		isRunning &= ~source;
@@ -2368,7 +2368,7 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 				continue;
 			default:  // ignore unknown
 				tmp = ePyObject();
-				eDebug("fillTuple unknown '%c'... insert 'None' in result", c);
+				eDebug("[EPGC] fillTuple unknown '%c'... insert 'None' in result", c);
 		}
 		if (!tmp)
 		{
@@ -2397,7 +2397,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 			Py_DECREF(dest_list);
 			PyErr_SetString(PyExc_StandardError,
 				"error in convertFunc execute");
-			eDebug("error in convertFunc execute");
+			eDebug("[EPGC] error in convertFunc execute");
 			return -1;
 		}
 		PyList_Append(dest_list, result);
@@ -2452,7 +2452,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	{
 		PyErr_SetString(PyExc_StandardError,
 			"type error");
-		eDebug("no list");
+		eDebug("[EPGC] no list");
 		return NULL;
 	}
 	int listIt=0;
@@ -2461,7 +2461,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	{
 		PyErr_SetString(PyExc_StandardError,
 			"not params given");
-		eDebug("not params given");
+		eDebug("[EPGC] not params given");
 		return NULL;
 	}
 	else
@@ -2475,7 +2475,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 		else
 			argstring = "I"; // just event id as default
 		argcount = strlen(argstring);
-//		eDebug("have %d args('%s')", argcount, argstring);
+//		eDebug("[EPGC] have %d args('%s')", argcount, argstring);
 	}
 
 	bool forceReturnOne = strchr(argstring, 'X') ? true : false;
@@ -2488,7 +2488,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 		{
 			PyErr_SetString(PyExc_StandardError,
 				"convertFunc must be callable");
-			eDebug("convertFunc is not callable");
+			eDebug("[EPGC] convertFunc is not callable");
 			return NULL;
 		}
 		convertFuncArgs = PyTuple_New(argcount);
@@ -2524,7 +2524,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					{
 						if (!PyString_Check(entry))
 						{
-							eDebug("tuple entry 0 is no a string");
+							eDebug("[EPGC] tuple entry 0 is no a string");
 							goto skip_entry;
 						}
 						service = entry;
@@ -2534,7 +2534,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						type=PyInt_AsLong(entry);
 						if (type < -1 || type > 2)
 						{
-							eDebug("unknown type %d", type);
+							eDebug("[EPGC] unknown type %d", type);
 							goto skip_entry;
 						}
 						break;
@@ -2545,7 +2545,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						minutes=PyInt_AsLong(entry);
 						break;
 					default:
-						eDebug("unneeded extra argument");
+						eDebug("[EPGC] unneeded extra argument");
 						break;
 				}
 			}
@@ -2556,7 +2556,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 			eServiceReference ref(handleGroup(eServiceReference(PyString_AS_STRING(service))));
 			if (ref.type != eServiceReference::idDVB && ref.type != eServiceReference::idServiceMP3)
 			{
-				eDebug("service reference for epg query is not valid");
+				eDebug("[EPGC] service reference for epg query is not valid");
 				continue;
 			}
 
@@ -3039,7 +3039,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 			{
 				PyErr_SetString(PyExc_StandardError,
 					"type error");
-				eDebug("tuple arg 0 is not a string");
+				eDebug("[EPGC] tuple arg 0 is not a string");
 				return NULL;
 			}
 		}
@@ -3087,19 +3087,19 @@ PyObject *eEPGCache::search(ePyObject arg)
 							}
 						}
 						if (descridx<0)
-							eDebug("event not found");
+							eDebug("[EPGC] event not found");
 					}
 					else
 					{
 						PyErr_SetString(PyExc_StandardError, "type error");
-						eDebug("tuple arg 4 is not a valid service reference string");
+						eDebug("[EPGC] tuple arg 4 is not a valid service reference string");
 						return NULL;
 					}
 				}
 				else
 				{
 					PyErr_SetString(PyExc_StandardError, "type error");
-					eDebug("tuple arg 4 is not a string");
+					eDebug("[EPGC] tuple arg 4 is not a string");
 					return NULL;
 				}
 			}
@@ -3118,13 +3118,13 @@ PyObject *eEPGCache::search(ePyObject arg)
 					switch (querytype)
 					{
 						case 1:
-							eDebug("lookup events with '%s' as title (%s)", str, casetype?"ignore case":"case sensitive");
+							eDebug("[EPGC] lookup events with '%s' as title (%s)", str, casetype?"ignore case":"case sensitive");
 							break;
 						case 2:
-							eDebug("lookup events with '%s' in title (%s)", str, casetype?"ignore case":"case sensitive");
+							eDebug("[EPGC] lookup events with '%s' in title (%s)", str, casetype?"ignore case":"case sensitive");
 							break;
 						case 3:
-							eDebug("lookup events, title starting with '%s' (%s)", str, casetype?"ignore case":"case sensitive");
+							eDebug("[EPGC] lookup events, title starting with '%s' (%s)", str, casetype?"ignore case":"case sensitive");
 							break;
 					}
 					singleLock s(cache_lock);
@@ -3191,7 +3191,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 				{
 					PyErr_SetString(PyExc_StandardError,
 						"type error");
-					eDebug("tuple arg 4 is not a string");
+					eDebug("[EPGC] tuple arg 4 is not a string");
 					return NULL;
 				}
 			}
@@ -3199,7 +3199,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 			{
 				PyErr_SetString(PyExc_StandardError,
 					"type error");
-				eDebug("tuple arg 3(%d) is not a known querytype(0..3)", querytype);
+				eDebug("[EPGC] tuple arg 3(%d) is not a known querytype(0..3)", querytype);
 				return NULL;
 			}
 		}
@@ -3207,7 +3207,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 		{
 			PyErr_SetString(PyExc_StandardError,
 				"type error");
-			eDebug("not enough args in tuple");
+			eDebug("[EPGC] not enough args in tuple");
 			return NULL;
 		}
 	}
@@ -3215,7 +3215,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 	{
 		PyErr_SetString(PyExc_StandardError,
 			"type error");
-		eDebug("arg 0 is not a tuple");
+		eDebug("[EPGC] arg 0 is not a tuple");
 		return NULL;
 	}
 
@@ -3288,7 +3288,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							if (needServiceEvent)
 							{
 								if (lookupEventId(ref, evit->second->getEventID(), ev_data))
-									eDebug("event not found !!!!!!!!!!!");
+									eDebug("[EPGC] event not found !!!!!!!!!!!");
 								else
 								{
 									const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
@@ -3477,7 +3477,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 		}
 	}
 	else
-		eDebug("PMTready but no pmt!!");
+		eDebug("[EPGC] PMTready but no pmt!!");
 }
 
 struct date_time
@@ -3968,7 +3968,7 @@ void eEPGCache::channel_data::startMHWReader(uint16_t pid, uint8_t tid)
 	m_MHWFilterMask.pid = pid;
 	m_MHWFilterMask.data[0] = tid;
 	m_MHWReader->start(m_MHWFilterMask);
-//	eDebug("start 0x%02x 0x%02x", pid, tid);
+//	eDebug("[EPGC] start 0x%02x 0x%02x", pid, tid);
 }
 
 void eEPGCache::channel_data::startMHWReader2(uint16_t pid, uint8_t tid, int ext)
@@ -3979,13 +3979,13 @@ void eEPGCache::channel_data::startMHWReader2(uint16_t pid, uint8_t tid, int ext
 	{
 		m_MHWFilterMask2.data[1] = ext;
 		m_MHWFilterMask2.mask[1] = 0xFF;
-//		eDebug("start 0x%03x 0x%02x 0x%02x", pid, tid, ext);
+//		eDebug("[EPGC] start 0x%03x 0x%02x 0x%02x", pid, tid, ext);
 	}
 	else
 	{
 		m_MHWFilterMask2.data[1] = 0;
 		m_MHWFilterMask2.mask[1] = 0;
-//		eDebug("start 0x%02x 0x%02x", pid, tid);
+//		eDebug("[EPGC] start 0x%02x 0x%02x", pid, tid);
 	}
 	m_MHWReader2->start(m_MHWFilterMask2);
 }
@@ -4203,7 +4203,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 			channel.channel_id_hi = *(tmp++);
 			channel.channel_id_lo = *(tmp++);
 			m_channels[i]=channel;
-//			eDebug("%d(%02x) %04x: %02x %02x", i, i, (channel.channel_id_hi << 8) | channel.channel_id_lo, *tmp, *(tmp+1));
+//			eDebug("[EPGC] %d(%02x) %04x: %02x %02x", i, i, (channel.channel_id_hi << 8) | channel.channel_id_lo, *tmp, *(tmp+1));
 			tmp+=2;
 		}
 		for (int i=0; i < num_channels; ++i)
@@ -4214,7 +4214,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 			for (; x < channel_name_len; ++x)
 				channel.name[x]=*(tmp++);
 			channel.name[x+1]=0;
-//			eDebug("%d(%02x) %s", i, i, channel.name);
+//			eDebug("[EPGC] %d(%02x) %s", i, i, channel.name);
 		}
 		haveData |= MHW;
 		eDebug("[EPGC] mhw2 %d channels found", m_channels.size());
@@ -4231,7 +4231,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 		bool valid=false;
 		bool finish=false;
 
-//		eDebug("%02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x",
+//		eDebug("[EPGC] %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x",
 //			data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10],
 //			data[11], data[12], data[13], data[14], data[15], data[16], data[17] );
 
@@ -4246,7 +4246,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 		if (!valid)
 		{
 			if (dataLen > 18)
-				eDebug("mhw2 title table invalid!!");
+				eDebug("[EPGC] mhw2 title table invalid!!");
 			if (checkMHWTimeout())
 				goto abort;
 			if (!m_MHWTimeoutTimer->isActive())
@@ -4280,18 +4280,18 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 			memcpy(dest, &data[pos+19], slen>35 ? 35 : slen);
 			memset(dest+slen, 0, 35-slen);
 			pos += 19 + slen;
-//			eDebug("%02x [%02x %02x]: %s", data[pos], data[pos+1], data[pos+2], dest);
+//			eDebug("[EPGC] %02x [%02x %02x]: %s", data[pos], data[pos+1], data[pos+2], dest);
 
 //			not used theme id (data[7] & 0x3f) + (data[pos] & 0x3f);
 			uint32_t summary_id = (data[pos+1] << 8) | data[pos+2];
 
 //			if (title.channel_id > m_channels.size())
-//				eDebug("channel_id(%d %02x) to big!!", title.channel_id);
+//				eDebug("[EPGC] channel_id(%d %02x) to big!!", title.channel_id);
 
-//			eDebug("pos %d prog_id %02x %02x chid %02x summary_id %04x dest %p len %d\n",
+//			eDebug("[EPGC] pos %d prog_id %02x %02x chid %02x summary_id %04x dest %p len %d\n",
 //				pos, title.program_id_ml, title.program_id_lo, title.channel_id, summary_id, dest, slen);
 
-//			eDebug("title_id %08x -> summary_id %04x\n", title_id, summary_id);
+//			eDebug("[EPGC] title_id %08x -> summary_id %04x\n", title_id, summary_id);
 
 			pos += 3;
 
@@ -4378,7 +4378,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 			{
 				// data seems consistent...
 				uint32_t summary_id = (data[3]<<8)|data[4];
-//				eDebug ("summary id %04x\n", summary_id);
+//				eDebug ("[EPGC] summary id %04x\n", summary_id);
 //				eDebug("[%02x %02x] %02x %02x %02x %02x %02x %02x %02x %02x XX\n", data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13] );
 
 				// ugly workaround to convert const __u8* to char*
@@ -4413,7 +4413,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 					startMHWTimeout(15000);
 					std::string the_text = (char *) (data + pos + 1);
 
-//					eDebug ("summary id %04x : %s\n", summary_id, data+pos+1);
+//					eDebug ("[EPGC] summary id %04x : %s\n", summary_id, data+pos+1);
 
 					while( itProgId != m_program_ids.end() && itProgId->first == summary_id )
 					{
