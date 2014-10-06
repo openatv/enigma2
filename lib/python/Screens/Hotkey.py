@@ -63,7 +63,9 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Context"), "contextmenu", ""),
-	(_("Home"), "home", "")]
+	(_("Home"), "home", ""),
+	(_("Power"), "power", ""),
+	(_("Power long"), "power_long", "")]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
