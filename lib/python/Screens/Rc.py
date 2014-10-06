@@ -6,24 +6,29 @@ from Components.RcModel import rc_model
 from boxbranding import getBoxType
 from enigma import ePoint
 
-config.misc.rcused = ConfigInteger(default = 1)
+config.misc.rcused = ConfigInteger(default=1)
+
 
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
 
-		config.misc.rcused = ConfigInteger(default = 1)
+		config.misc.rcused = ConfigInteger(default=1)
 		self.isDefaultRc = rc_model.rcIsDefault()
 		rcheights = (500,) * 4
-		self.selectpics = [
-				self.KeyIndicator(self, rcheights, ("indicator_l0", "indicator_l1", "indicator_l2", "indicator_l3")),
-				self.KeyIndicator(self, rcheights, ("indicator_u0", "indicator_u1", "indicator_u2", "indicator_u3")),
-			]
+		self.selectpics = (
+			self.KeyIndicator(self, rcheights, ("indicator_l0", "indicator_u0")),
+			self.KeyIndicator(self, rcheights, ("indicator_l1", "indicator_u1")),
+			self.KeyIndicator(self, rcheights, ("indicator_l2", "indicator_u2")),
+			self.KeyIndicator(self, rcheights, ("indicator_l3", "indicator_u3")),
+		)
 		self.rcPositions = RcPositions()
+		self.oldNSelectedKeys = self.nSelectedKeys = 0
 		self.clearSelectedKeys()
 		self.onLayoutFinish.append(self.initRc)
+
 		# Test code to visit every button in turn
-#		self.onExecBegin.append(self.test)
+		# self.onExecBegin.append(self.test)
 
 	class KeyIndicator:
 
@@ -39,16 +44,16 @@ class Rc:
 				pm = self.KeyIndicatorPixmap(actYpos, pixmap)
 				owner[pixmap] = pm
 				self.pixmaps.append(pm)
-			self.pixmaps.sort(key = lambda x: x.activeYPos)
+			self.pixmaps.sort(key=lambda x: x.activeYPos)
 
-		def slideTime(self, frm, to, time = 20):
+		def slideTime(self, frm, to, time=20):
 			if not self.pixmaps:
 				return time
-			dist = ((to[0]-frm[0])**2 + (to[1]-frm[1])**2) ** 0.5
+			dist = ((to[0] - frm[0]) ** 2 + (to[1] - frm[1]) ** 2) ** 0.5
 			slide = int(round(dist / self.pixmaps[-1].activeYPos * time))
 			return slide if slide > 0 else 1
 
-		def moveTo(self, pos, rcpos, moveFrom = None, time = 20):
+		def moveTo(self, pos, rcpos, moveFrom=None, time=20):
 			foundActive = False
 			for i in range(len(self.pixmaps)):
 				pm = self.pixmaps[i]
@@ -78,7 +83,6 @@ class Rc:
 			self["rc"].setPixmapNum(config.misc.rcused.value)
 		else:
 			self["rc"].setPixmapNum(0)
-		print "[Rc] initRc", self.selectpics
 		rcHeight = self["rc"].getSize()[1]
 		for kp in self.selectpics:
 			nbreaks = len(kp.pixmaps)
@@ -86,7 +90,6 @@ class Rc:
 			n = 1
 			for pic in kp.pixmaps:
 				pic.activeYPos = (rcHeight * n + roundup) / nbreaks
-				print "[Rc]", pic.pixmapName, pic.getOffset(), pic.activeYPos
 				n += 1
 
 	def getRcPositions(self):
@@ -102,20 +105,19 @@ class Rc:
 	def selectKey(self, key):
 		pos = self.rcPositions.getRcKeyPos(key)
 
-		if pos:
+		if pos and self.nSelectedKeys < len(self.selectpics):
 			rcpos = self["rc"].getPosition()
-			for selectPic in self.selectpics:
-				if selectPic not in self.selectedKeys:
-					if len(self.selectedKeys) > 0:
-						selectPic.moveTo(pos, rcpos, moveFrom = self.selectedKeys[-1], time = 10)
-					else:
-						selectPic.moveTo(pos, rcpos, time = 10)
-					self.selectedKeys.append(selectPic)
-					break
+			selectPic = self.selectpics[self.nSelectedKeys]
+			self.nSelectedKeys += 1
+			if self.oldNSelectedKeys > 0 and self.nSelectedKeys > self.oldNSelectedKeys:
+				selectPic.moveTo(pos, rcpos, moveFrom=self.selectpics[self.oldNSelectedKeys - 1], time=10)
+			else:
+				selectPic.moveTo(pos, rcpos, time=10)
 
 	def clearSelectedKeys(self):
 		self.showRc()
-		self.selectedKeys = []
+		self.oldNSelectedKeys = self.nSelectedKeys
+		self.nSelectedKeys = 0
 		self.hideSelectPics()
 
 	def hideSelectPics(self):
@@ -126,18 +128,18 @@ class Rc:
 	# Leaves the indicator at the incorrect position at the end of
 	# the test run. Change to another entry in the help list to
 	# get the indicator in the correct position
-#	def test(self):
-#		if not self.selectpics or not self.selectpics[0].pixmaps:
-#			return
-#		self.hideSelectPics()
-#		pm = self.selectpics[0].pixmaps[0]
-#		pm.show()
-#		rcpos = self["rc"].getPosition()
-#		for key in self.rcPositions.getRcKeyList():
-#			pos = self.rcPositions.getRcKeyPos(key)
-#			pm.addMovePoint(rcpos[0] + pos[0], rcpos[1] + pos[1], time = 5)
-#			pm.addMovePoint(rcpos[0] + pos[0], rcpos[1] + pos[1], time = 10)
-#		pm.startMoving()
+	# def test(self):
+	# 	if not self.selectpics or not self.selectpics[0].pixmaps:
+	# 		return
+	# 	self.hideSelectPics()
+	# 	pm = self.selectpics[0].pixmaps[0]
+	# 	pm.show()
+	# 	rcpos = self["rc"].getPosition()
+	# 	for key in self.rcPositions.getRcKeyList():
+	# 		pos = self.rcPositions.getRcKeyPos(key)
+	# 		pm.addMovePoint(rcpos[0] + pos[0], rcpos[1] + pos[1], time=5)
+	# 		pm.addMovePoint(rcpos[0] + pos[0], rcpos[1] + pos[1], time=10)
+	# 	pm.startMoving()
 
 
 class RcPositions:
@@ -147,7 +149,7 @@ class RcPositions:
 			target = resolveFilename(SCOPE_SKIN, "rcpositions.xml")
 		else:
 			target = rc_model.getRcLocation() + 'rcpositions.xml'
-		tree = ElementTree(file = target)
+		tree = ElementTree(file=target)
 		rcs = tree.getroot()
 		self.rcs = {}
 		for rc in rcs:
@@ -164,7 +166,7 @@ class RcPositions:
 			try:
 				self.rc = self.rcs[2]
 			except:
-				self.rc = self.rcs[config.misc.rcused.getValue()]["keypos"]
+				self.rc = self.rcs[config.misc.rcused.getValue()]
 
 	def getRc(self):
 		return self.rc
