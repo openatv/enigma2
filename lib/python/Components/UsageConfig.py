@@ -30,10 +30,10 @@ def InitUsageConfig():
 	config.usage.record_indicator_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
-	choicelist = [("-1", _("Devide")), ("0", _("Disable"))]
-	for i in range(100,1300,100):
+	choicelist = [("-1", _("Disable"))]
+	for i in range(0,1300,100):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
-	config.usage.servicelist_column = ConfigSelection(default="0", choices=choicelist)
+	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
