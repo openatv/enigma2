@@ -903,11 +903,6 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 	return seekTo(ppos);
 }
 
-gint eServiceMP3::match_sinktype(GstElement *element, gpointer type)
-{
-	return strcmp(g_type_name(G_OBJECT_TYPE(element)), (const char*)type);
-}
-
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 {
 	gint64 pos;
@@ -1505,10 +1500,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
-#if GST_VERSION_MAJOR >= 1
-					GValue element = { 0, };
-#endif
-					GstIterator *children;
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
@@ -1546,28 +1537,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						gst_object_unref(GST_OBJECT(videoSink));
 						videoSink = NULL;
 					}
-					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
-#if GST_VERSION_MAJOR < 1
-					audioSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBAudioSink"));
-#else
-					if (gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, &element, (gpointer)"GstDVBAudioSink"))
+					if (gst_bin_get_by_name_recurse_up(GST_BIN(m_gst_playbin), "GstDVBAudioSink"))
 					{
-						audioSink = g_value_dup_object(&element);
-						g_value_unset(&element);
+						audioSink = GST_ELEMENT_CAST(GST_BIN(m_gst_playbin));
 					}
-#endif
-					gst_iterator_free(children);
-					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
-#if GST_VERSION_MAJOR < 1
-					videoSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBVideoSink"));
-#else
-					if (gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, &element, (gpointer)"GstDVBVideoSink"))
+					if (gst_bin_get_by_name_recurse_up(GST_BIN(m_gst_playbin), "GstDVBVideoSink"))
 					{
-						videoSink = g_value_dup_object(&element);
-						g_value_unset(&element);
+						videoSink = GST_ELEMENT_CAST(GST_BIN(m_gst_playbin));
 					}
-#endif
-					gst_iterator_free(children);
 
 					m_is_live = (gst_element_get_state(m_gst_playbin, NULL, NULL, 0LL) == GST_STATE_CHANGE_NO_PREROLL);
 
