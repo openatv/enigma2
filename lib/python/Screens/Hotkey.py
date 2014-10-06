@@ -117,6 +117,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
+	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
 	hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
