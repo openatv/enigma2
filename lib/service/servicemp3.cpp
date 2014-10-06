@@ -2186,11 +2186,12 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
 	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 	{
-		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 #if GST_VERSION_MAJOR < 1
+		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 		size_t len = GST_BUFFER_SIZE(buffer);
 #else
+		gint64 buf_pos = GST_BUFFER_PTS(buffer);
 		size_t len = gst_buffer_get_size(buffer);
 #endif
 		int subType = m_subtitleStreams[m_currentSubtitleStream].type;
