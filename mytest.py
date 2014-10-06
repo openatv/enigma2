@@ -612,6 +612,10 @@ profile("UsageConfig")
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
 
+profile("Init:NTPSync")
+import Components.NetworkTime
+Components.NetworkTime.AutoNTPSync()
+
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
