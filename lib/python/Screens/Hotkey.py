@@ -63,7 +63,9 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Context"), "contextmenu", ""),
-	(_("Home"), "home", "")]
+	(_("Home"), "home", ""),
+	(_("Power"), "power", ""),
+	(_("Power long"), "power_long", "")]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
@@ -116,6 +118,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
+	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
 	hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
@@ -185,7 +188,7 @@ class HotkeySetup(Screen):
 			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
-					if "_long" in key:
+					if key.endswith("_long"):
 						self.longkeyPressed = True
 					break
 				index += 1
@@ -387,7 +390,7 @@ class InfoBarHotkey():
 				if not selected:
 					return 0
 				if len(selected) == 1:
-					if "_long" in key:
+					if key.endswith("_long"):
 						self.longkeyPressed = True
 					return self.execHotkey(selected[0])
 				else:
@@ -427,3 +430,5 @@ class InfoBarHotkey():
 				if hasattr(self, "lastservice"):
 					self.lastservice = eServiceReference("/".join(selected[1:]))
 					self.close()
+				else:
+					self.show()
