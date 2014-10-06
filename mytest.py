@@ -46,7 +46,7 @@ config.misc.useTransponderTime = ConfigYesNo(default=True)
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandby
-config.misc.epgcache_filename = ConfigText(default = "/etc/enigma2/epg.dat")
+config.misc.epgcache_filename = ConfigText(default = '/etc/enigma2/epg.dat', fixed_size=False)
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
 config.misc.NTPserver = ConfigText(default = 'pool.ntp.org', fixed_size=False)
