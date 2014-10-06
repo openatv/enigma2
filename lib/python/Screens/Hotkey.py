@@ -33,13 +33,13 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Help"), "displayHelp", ""),
 	(_("Subtitle"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
-	(_("Info"), "info", "Infobar/openEventView"),
+	(_("Info"), "info", "Infobar/InfoPressed"),
 	(_("Info Long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("List/Fav"), "list", ""),
 	(_("Back"), "back", ""),
 	(_("End"), "end", ""),
-	(_("Epg/Guide"), "epg", "Plugins/Extensions/GraphMultiEPG"),
-	(_("Epg/Guide long"), "epg_long", "Infobar/showEventInfoPlugins"),
+	(_("Epg/Guide"), "epg", "Infobar/EPGPressed"),
+	(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins"),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
@@ -91,6 +91,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
 	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
+	hotkeyFunctions.append((_("Open graphical EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Open single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
 	hotkeyFunctions.append((_("Open multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
 	for plugin in [p for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) if 'selectedevent' not in p.__call__.func_code.co_varnames] or []:
