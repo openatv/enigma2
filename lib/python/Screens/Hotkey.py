@@ -65,7 +65,9 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Context"), "contextmenu", ""),
-	(_("Home"), "home", "")]
+	(_("Home"), "home", ""),
+	(_("Power"), "power", ""),
+	(_("Power long"), "power_long", "")]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
@@ -117,6 +119,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
+	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
 	#hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	#hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
