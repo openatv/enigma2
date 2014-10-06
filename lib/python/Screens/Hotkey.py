@@ -15,7 +15,7 @@ from enigma import eServiceReference
 hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Green long"), "green_long", ""),
 	(_("Yellow long"), "yellow_long", ""),
-	(_("Blue long"), "blue_long", "Plugins/PLi/SoftcamSetup"),
+	(_("Blue long"), "blue_long", "Plugins/PLi/SoftcamSetup/1"),
 	(_("F1"), "f1", ""),
 	(_("F1 long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
