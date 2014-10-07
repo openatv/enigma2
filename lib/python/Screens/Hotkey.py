@@ -78,6 +78,16 @@ def getHotkeyFunctions():
 	hotkeyFunctions = []
 	twinPlugins = []
 	twinPaths = {}
+	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
+	pluginlist.sort(key=lambda p: p.name)
+	for plugin in pluginlist:
+		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
+			if twinPaths.has_key(plugin.path[24:]):
+				twinPaths[plugin.path[24:]] += 1
+			else:
+				twinPaths[plugin.path[24:]] = 1
+			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
+			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
@@ -87,17 +97,6 @@ def getHotkeyFunctions():
 			else:
 				twinPaths[plugin.path[24:]] = 1
 			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
-			twinPlugins.append(plugin.name)
-	twinPlugins = []
-	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
-	pluginlist.sort(key=lambda p: p.name)
-	for plugin in pluginlist:
-		if plugin.name not in twinPlugins and plugin.path:
-			if twinPaths.has_key(plugin.path[24:]):
-				twinPaths[plugin.path[24:]] += 1
-			else:
-				twinPaths[plugin.path[24:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
