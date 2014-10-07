@@ -26,7 +26,7 @@ class Tuner:
 	def tuneSatObj(self, transponderObj):
 		if self.frontend:
 			feparm = eDVBFrontendParameters()
-			feparm.setDVBS(transponderObj)
+			feparm.setDVBS(transponderObj, self.ignore_rotor)
 			self.lastparm = feparm
 			self.frontend.tune(feparm)
 
