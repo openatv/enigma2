@@ -74,14 +74,6 @@ def getInitialTerrestrialTransponderList(tlist, region):
 			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], x[10], x[11])
 			tlist.append(parm)
 
-def getRegionTerrestrialTransponderList(region):
-	tlist = []
-	for x in nimmanager.getTranspondersTerrestrial(region):
-		if x[0] == 2: #TERRESTRIAL
-			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], x[10], x[11])
-			tlist.append((parm, str(x[1] / 1000)))
-	return tlist
-
 cable_bands = {
 	"DVBC_BAND_EU_VHF_I" : 1 << 0,
 	"DVBC_BAND_EU_MID" : 1 << 1,
@@ -497,10 +489,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				if self.scan_ter.system.value == eDVBFrontendParametersTerrestrial.System_DVB_T2:
 					self.list.append(getConfigListEntry(_('PLP ID'), self.scan_ter.plp_id))
 			elif self.scan_typeterrestrial.value == "predefined_transponder":
-				tp_list = getRegionTerrestrialTransponderList(nimmanager.getTerrestrialDescription(index_to_scan))
-				if tp_list:
-					self.TerrestrialTransponders = ConfigSelection(choices=tp_list)
-					self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders))
+				self.predefinedTerrTranspondersList()
+				self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders))
 		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 		self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
@@ -773,9 +763,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		else:
 			defaultSatSearchType = "single_transponder"
 
+		if frontendData is not None and ttype == "DVB-T" and self.predefinedTerrTranspondersList() is not None:
+			defaultTerrSearchType = "predefined_transponder"
+		else:
+			defaultTerrSearchType = "single_transponder"
+
 		self.scan_type = ConfigSelection(default = defaultSatSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
 		self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("User defined transponder")), ("complete", _("Complete"))])
-		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
+		self.scan_typeterrestrial = ConfigSelection(default = defaultTerrSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.scan_input_as = ConfigSelection(default = "channel", choices = [("frequency", _("Frequency")), ("channel", _("Channel"))])
 		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 		self.scan_onlyfree = ConfigYesNo(default = False)
@@ -945,7 +940,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "predefined_transponder":
 				if self.TerrestrialTransponders is not None:
-					tlist = [self.TerrestrialTransponders.value]
+					region = nimmanager.getTerrestrialDescription(index_to_scan)
+					tps = nimmanager.getTranspondersTerrestrial(region)
+					if len(tps) and len(tps) > self.TerrestrialTransponders.index :
+						tp = tps[self.TerrestrialTransponders.index]
+						tlist.append(buildTerTransponder(tp[1], tp[9], tp[2], tp[4], tp[5], tp[3], tp[7], tp[6], tp[8], tp[10], tp[11]))
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "complete":
 				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(index_to_scan))
@@ -1015,6 +1014,23 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def compareTransponders(self, tp, compare):
 		return abs(tp[1] / 1000 - compare[1]) <= 2 and abs(tp[2] / 1000 - compare[2]) <= 10 and tp[3] == compare[3] and (not tp[4] or tp[4] == compare[4])
 
+	def predefinedTerrTranspondersList(self):
+		default = None
+		list = []
+		compare = [0, self.scan_ter.frequency.value]
+		i = 0
+		index_to_scan = int(self.scan_nims.value)
+		region = nimmanager.getTerrestrialDescription(index_to_scan)
+		tps = nimmanager.getTranspondersTerrestrial(region)
+		for tp in tps:
+			if tp[0] == 2: #TERRESTRIAL
+				if default is None and abs(tp[1] / 1000 - compare[1]) <= 2:
+					default = str(i)
+				list.append((str(i), str(tp[1] / 1000)))
+				i += 1
+		self.TerrestrialTransponders = ConfigSelection(choices = list, default = default)
+		return default
+		
 	def startScan(self, tlist, flags, feid, networkid = 0):
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
