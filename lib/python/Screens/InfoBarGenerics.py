@@ -1303,7 +1303,7 @@ class InfoBarEPG:
 			if getBrandOEM() not in ('xtrend', 'odin', 'ini', 'dags' ,'gigablue', 'xp'):
 				pluginlist = self.getEPGPluginList()
 				if pluginlist:
-					pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
+#					pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
 					self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 				else:
 					self.openSingleServiceEPG()
@@ -1318,7 +1318,7 @@ class InfoBarEPG:
 		else:
 			pluginlist = self.getEPGPluginList()
 			if pluginlist:
-				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
+#				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
 				self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
 			else:
 				self.openSingleServiceEPG()
