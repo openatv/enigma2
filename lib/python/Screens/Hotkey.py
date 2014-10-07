@@ -206,6 +206,7 @@ class HotkeySetup(Screen):
 						self.longkeyPressed = True
 					break
 				index += 1
+			self.getFunctions()
 
 	def keyOk(self):
 		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
