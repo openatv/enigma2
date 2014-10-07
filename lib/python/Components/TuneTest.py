@@ -1,4 +1,4 @@
-from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParameters, eDVBResourceManager, eTimer
+from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParameters, eDVBResourceManager, eTimer
 
 class Tuner:
 	def __init__(self, frontend, ignore_rotor=False):
@@ -21,8 +21,39 @@ class Tuner:
 			parm.modulation = transponder[7]
 			parm.rolloff = transponder[8]
 			parm.pilot = transponder[9]
+			self.tuneSatObj(parm)
+			
+	def tuneSatObj(self, transponderObj):
+		if self.frontend:
 			feparm = eDVBFrontendParameters()
-			feparm.setDVBS(parm, self.ignore_rotor)
+			feparm.setDVBS(transponderObj)
+			self.lastparm = feparm
+			self.frontend.tune(feparm)
+
+	def tuneTerr(self, frequency, 
+		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
+		modulation = 2, transmission = 2, guard = 4,
+		hierarchy = 4, system = 0, plpid = 0):
+		if self.frontend:
+			print "tuning to transponder with data", [frequency, inversion, bandwidth, fechigh, feclow, modulation, transmission, guard, hierarchy, system, plpid]
+			parm = eDVBFrontendParametersTerrestrial()
+			parm.frequency = frequency
+			parm.inversion = inversion
+			parm.bandwidth = bandwidth
+			parm.code_rate_HP = fechigh
+			parm.code_rate_LP = feclow
+			parm.modulation = modulation
+			parm.transmission_mode = transmission
+			parm.guard_interval = guard
+			parm.hierarchy = hierarchy
+			parm.system = system
+			parm.plpid = plpid
+			self.tuneTerrObj(parm)
+			
+	def tuneTerrObj(self, transponderObj):
+		if self.frontend:
+			feparm = eDVBFrontendParameters()
+			feparm.setDVBT(transponderObj)
 			self.lastparm = feparm
 			self.frontend.tune(feparm)
 
