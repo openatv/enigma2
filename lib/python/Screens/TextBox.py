@@ -1,9 +1,10 @@
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 
 class TextBox(Screen):
-	def __init__(self, session, text = ""):
+	def __init__(self, session, text="", title=None):
 		Screen.__init__(self, session)
 
 		self.text = text
@@ -16,6 +17,9 @@ class TextBox(Screen):
 					"up": self["text"].pageUp,
 					"down": self["text"].pageDown,
 				}, -1)
+
+		if title:
+			self.setTitle(title)
 
 	def ok(self):
 		self.close()
