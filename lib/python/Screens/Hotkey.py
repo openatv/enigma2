@@ -12,32 +12,16 @@ from Plugins.Plugin import PluginDescriptor
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 
-hotkeys = [(_("Red long"), "red_long", ""),
+hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
+	(_("Red long"), "red_long", ""),
+	(_("Green"), "green", "Infobar/openSingleServiceEPG"),
 	(_("Green long"), "green_long", ""),
-	(_("Yellow long"), "yellow_long", ""),
-	(_("Blue long"), "blue_long", ""),
-	(_("F1"), "f1", ""),
-	(_("F1 long"), "f1_long", ""),
-	(_("F2"), "f2", ""),
-	(_("F2 long"), "f2_long", ""),
-	(_("F3"), "f3", ""),
-	(_("F3 long"), "f3_long", ""),
-	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
-	(_("Green"), "green", ""),
 	(_("Yellow"), "yellow", ""),
+	(_("Yellow long"), "yellow_long", "Plugins/Extensions/IMDb/1"),
 	(_("Blue"), "blue", ""),
-	(_("PVR"), "pvr", ""),
-	(_("Radio"), "radio", ""),
-	(_("TV"), "showTv", ""),
-	(_("Teletext"), "text", ""),
-	(_("Help"), "displayHelp", ""),
-	(_("Subtitle"), "subtitle", ""),
-	(_("Menu"), "mainMenu", ""),
+	(_("Blue long"), "blue_long", ""),
 	(_("Info"), "info", "Infobar/InfoPressed/1"),
 	(_("Info Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
-	(_("List/Fav"), "list", ""),
-	(_("Back"), "back", ""),
-	(_("End"), "end", ""),
 	(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
 	(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins/1"),
 	(_("Left"), "cross_left", ""),
@@ -46,6 +30,16 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Down"), "cross_down", ""),
 	(_("Channel up"), "channelup", ""),
 	(_("Channel down"), "channeldown", ""),
+	(_("TV"), "showTv", ""),
+	(_("Radio"), "radio", ""),
+	(_("Rec"), "rec", ""),
+	(_("Teletext"), "text", ""),
+	(_("Help"), "displayHelp", ""),
+	(_("Subtitle"), "subtitle", ""),
+	(_("Menu"), "mainMenu", ""),
+	(_("List/Fav/PVR"), "list", ""),
+	(_("Back"), "back", ""),
+	(_("End"), "end", ""),
 	(_("Next"), "next", ""),
 	(_("Previous"), "previous", ""),
 	(_("Audio"), "audio", ""),
@@ -67,10 +61,16 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Context"), "contextmenu", ""),
 	(_("Home"), "home", ""),
 	(_("Power"), "power", ""),
-	(_("Power long"), "power_long", "")]
+	(_("Power long"), "power_long", ""),
+	(_("F1"), "f1", ""),
+	(_("F1 long"), "f1_long", ""),
+	(_("F2"), "f2", ""),
+	(_("F2 long"), "f2_long", ""),
+	(_("F3"), "f3", ""),
+	(_("F3 long"), "f3_long", ""),]
 
 config.misc.hotkey = ConfigSubsection()
-config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
+config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
 for x in hotkeys:
 	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
 
@@ -78,6 +78,16 @@ def getHotkeyFunctions():
 	hotkeyFunctions = []
 	twinPlugins = []
 	twinPaths = {}
+	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
+	pluginlist.sort(key=lambda p: p.name)
+	for plugin in pluginlist:
+		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
+			if twinPaths.has_key(plugin.path[24:]):
+				twinPaths[plugin.path[24:]] += 1
+			else:
+				twinPaths[plugin.path[24:]] = 1
+			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
+			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
@@ -88,17 +98,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[24:]] = 1
 			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
 			twinPlugins.append(plugin.name)
-	twinPlugins = []
-	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
-	pluginlist.sort(key=lambda p: p.name)
-	for plugin in pluginlist:
-		if plugin.name not in twinPlugins and plugin.path:
-			if twinPaths.has_key(plugin.path[24:]):
-				twinPaths[plugin.path[24:]] += 1
-			else:
-				twinPaths[plugin.path[24:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
-			twinPlugins.append(plugin.name)
+	hotkeyFunctions.append((_("Open graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
 	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
@@ -137,7 +137,6 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
-	hotkeyFunctions.append((_("Latest Commits"), "Module/Screens.About/CommitInfo", "Setup"))
 	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
 	hotkeyFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
 	hotkeyFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
@@ -146,7 +145,6 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
 	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
-	hotkeyFunctions.append((_("Sleeptimer edit"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Setup"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
@@ -166,7 +164,7 @@ class HotkeySetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.session = session
-		self.setTitle(_("Hotkey Setup"))
+		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Toggle Extra Keys"))
 		self.list = []
@@ -207,6 +205,7 @@ class HotkeySetup(Screen):
 						self.longkeyPressed = True
 					break
 				index += 1
+			self.getFunctions()
 
 	def keyOk(self):
 		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
@@ -251,7 +250,7 @@ class HotkeySetupSelect(Screen):
 		self.skinName="HotkeySetup"
 		self.session = session
 		self.key = key
-		self.setTitle(_("Hotkey Setup") + " " + key[0][0])
+		self.setTitle(_("Button setup") + ": " + key[0][0])
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self.mode = "list"
