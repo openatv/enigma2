@@ -77,6 +77,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
 				if config.av.autores.value in 'hd':
 					self.list.append(getConfigListEntry(_("Show SD as"), config.av.autores_sd,_("This option allows you to choose how to display standard defintion video on your TV.")))
+				self.list.append(getConfigListEntry(_("Show 480/576p 24fps as"), config.av.autores_480p24,_("This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 720p 24fps as"), config.av.autores_720p24,_("This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24,_("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25,_("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
@@ -320,15 +321,12 @@ class AutoVideoMode(Screen):
 
 		if video_height and video_width and video_pol and video_rate:
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, (video_rate + 500) / 1000))
-			if video_height != -1:
-				if video_height > 720 or video_width > 1280:
-					new_res = "1080"
-				elif (576 < video_height <= 720) or video_width > 1024:
-					new_res = "720"
-				elif (480 < video_height <= 576) or video_width > 720 or video_rate in (25000, 23976, 24000):
-					new_res = "576"
-				else:
-					new_res = "480"
+			if (700 < video_width <= 720) and video_height <= 480 and video_rate in (23976, 24000, 29970, 59940):
+				new_res = "480"
+			elif (700 < video_width <= 720) and video_height <= 576 and video_rate in (25000, 50000):
+				new_res = "576"
+			elif (video_width == 1280) and video_height <=720:
+				new_res = "720"
 			else:
 				new_res = config_res
 
@@ -361,6 +359,8 @@ class AutoVideoMode(Screen):
 					new_pol = new_pol.replace('i','p')
 				if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 					new_mode = new_res+new_pol+new_rate
+					if new_mode == '480p24' or new_mode == '576p24':
+						new_mode = config.av.autores_480p24.value
 					if new_mode == '720p24':
 						new_mode = config.av.autores_720p24.value
 					if new_mode == '1080p24':
@@ -372,7 +372,7 @@ class AutoVideoMode(Screen):
 				elif new_res+new_pol in iAVSwitch.modes_available:
 					new_mode = new_res+new_pol
 				else:
-					write_mode = config_mode+new_rate
+					new_mode = config_mode+new_rate
 
 				write_mode = new_mode
 			elif config.av.autores.value == 'hd' and int(new_res) <= 576:
