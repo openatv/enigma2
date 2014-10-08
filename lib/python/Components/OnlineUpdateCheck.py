@@ -64,7 +64,7 @@ class OnlineUpdateCheckPoller:
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)
-					status = urlopen("http://enigma2.world-of-satellite.com/feeds/status").read()
+					status = urlopen("http://www.openvix.co.uk/feeds/status").read()
 					if '404 Not Found' in status:
 						status = '1'
 					config.softwareupdate.updateisunstable.setValue(status)

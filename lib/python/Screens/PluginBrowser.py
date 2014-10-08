@@ -329,7 +329,7 @@ class PluginDownloadBrowser(Screen):
 			currentTimeoutDefault = socket.getdefaulttimeout()
 			socket.setdefaulttimeout(3)
 			try:
-				config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/status").read())
+				config.softwareupdate.updateisunstable.setValue(urlopen("http://www.openvix.co.uk/feeds/status").read())
 			except:
 				networkerror = True
 
