@@ -13,10 +13,10 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference
 
 hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
-	(_("Red long"), "red_long", ""),
-	(_("Green"), "green", "Infobar/openSingleServiceEPG"),
-	(_("Green long"), "green_long", ""),
-	(_("Yellow"), "yellow", ""),
+	(_("Red long"), "red_long", "Infobar/activateRedButton"),
+	(_("Green"), "green", ""),
+	(_("Green long"), "green_long", "Infobar/showAutoTimerList"),
+	(_("Yellow"), "yellow", "Plugins/Extensions/EPGSearch/1"),
 	(_("Yellow long"), "yellow_long", "Plugins/Extensions/IMDb/1"),
 	(_("Blue"), "blue", ""),
 	(_("Blue long"), "blue_long", ""),
@@ -147,6 +147,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
+	hotkeyFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			hotkeyFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
