@@ -12,7 +12,7 @@ from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager
 from Components.Converter.ChannelNumbers import channelnumbers
 
-def buildTerTransponder(frequency,
+def buildTerTransponder(frequency, 
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
 		hierarchy = 4, system = 0, plpid = 0):
@@ -1012,7 +1012,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		return _("Invalid transponder data")
 
 	def compareTransponders(self, tp, compare):
-		return abs(tp[1] / 1000 - compare[1]) <= 2 and abs(tp[2] / 1000 - compare[2]) <= 10 and tp[3] == compare[3] and (not tp[4] or tp[4] == compare[4])
+		frequencyTolerance = 2 # MHz
+		symbolRateTolerance = 10
+		return abs(tp[1] / 1000 - compare[1]) <= frequencyTolerance and abs(tp[2] / 1000 - compare[2]) <= symbolRateTolerance and tp[3] == compare[3] and (not tp[4] or tp[4] == compare[4])
 
 	def predefinedTerrTranspondersList(self):
 		default = None
@@ -1022,9 +1024,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		index_to_scan = int(self.scan_nims.value)
 		region = nimmanager.getTerrestrialDescription(index_to_scan)
 		tps = nimmanager.getTranspondersTerrestrial(region)
+		tolerance = 200 # kHz
 		for tp in tps:
 			if tp[0] == 2: #TERRESTRIAL
-				if default is None and abs(tp[1] / 1000 - compare[1]) <= 2:
+				if default is None and abs(tp[1] / 1000 - compare[1]) <= tolerance:
 					default = str(i)
 				list.append((str(i), str(tp[1] / 1000)))
 				i += 1
