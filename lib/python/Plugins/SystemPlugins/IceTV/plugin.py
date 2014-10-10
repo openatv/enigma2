@@ -22,9 +22,9 @@ from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
-from time import strptime, sleep, gmtime, strftime, time
+from time import strptime, sleep, gmtime, strftime
 from datetime import datetime
-from . import config, saveConfigFile, enableIceTV, disableIceTV
+from . import config, enableIceTV, disableIceTV
 from Components.Task import Job, PythonTask, job_manager
 import API as ice
 from collections import deque, defaultdict
@@ -287,7 +287,6 @@ class EPGFetcher(object):
                                 if conflicts is None:
                                     iceTimer["state"] = "pending"
                                     iceTimer["message"] = "Added"
-                                    #update_queue.append(iceTimer)
                                     created = True
                                     break
                                 else:
