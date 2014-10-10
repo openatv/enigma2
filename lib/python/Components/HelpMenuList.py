@@ -19,6 +19,8 @@ class HelpMenuList(GUIComponent):
 			for (action, help) in actions:
 				if hasattr(help, '__call__'):
 					help = help()
+				if not help:
+					continue
 				buttons = queryKeyBinding(context, action)
 
 				# do not display entries which are not accessible from keys
