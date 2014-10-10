@@ -512,6 +512,10 @@ def InitUsageConfig():
 			if p.mountpoint != '/':
 				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
+	if not os.path.exists("/home"):
+		os.mkdir("/home",0755)
+	if not os.path.exists("/home/root"):
+		os.mkdir("/home/root",0755)
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):

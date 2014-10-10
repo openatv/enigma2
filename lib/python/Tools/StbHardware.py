@@ -10,6 +10,8 @@ def getFPVersion():
 			file = open("/proc/stb/info/micomver", "r")
 			ret = file.readline().strip()
 			file.close()
+		elif getBoxType() == "dm7080":
+			ret = open("/proc/stb/fp/version", "r").read()
 		else:	
 			ret = long(open("/proc/stb/fp/version", "r").read())
 	except IOError:
