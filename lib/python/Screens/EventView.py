@@ -16,11 +16,11 @@ from Components.UsageConfig import preferredTimerPath
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.config import config
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
-
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):
@@ -32,6 +32,15 @@ class EventViewContextMenu(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
+
+		try:
+			if config.skin.primary_skin.value.startswith('MetrixHD/'):
+				count = 0
+				for entry in menu:
+					menu[count] = ("          " + entry[0], entry[1])
+					count += 1
+		except:
+			pass
 
 		self["menu"] = MenuList(menu)
 
