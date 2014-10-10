@@ -42,8 +42,8 @@ hour = minute * 60
 
 checktimes = [
     # ("%d" % int(minute * 2), "2 minutes"),
-    # ("%d" % int(minute * 5), "5 minutes"),
-    # ("%d" % int(minute * 10), "10 minutes"),
+    ("%d" % int(minute * 5), "5 minutes"),
+    ("%d" % int(minute * 10), "10 minutes"),
     ("%d" % int(minute * 15), "15 minutes"),
     ("%d" % int(minute * 30), "30 minutes"),
     ("%d" % int(hour), "1 hour"),
