@@ -290,11 +290,12 @@ class EPGFetcher(object):
                                     created = True
                                     break
                                 else:
-                                    print "[IceTV] Timer conflict:", conflicts
                                     names = [r.name for r in conflicts]
                                     iceTimer["state"] = "failed"
                                     iceTimer["message"] = "Timer conflict: " + ", ".join(names)
                                     update_queue.append(iceTimer)
+                                    # print "[IceTV] Timer conflict:", conflicts
+                                    self.addLog("Timer %s conflicts with %s" % (name, ", ".join(names)))
                             else:
                                 iceTimer["state"] = "failed"
                                 iceTimer["message"] = "No matching service"
