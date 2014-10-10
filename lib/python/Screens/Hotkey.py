@@ -374,7 +374,17 @@ class HotkeySetupSelect(Screen):
 	def cancelCallback(self, answer):
 		answer and self.close()
 
-class hotkeyActionMap(HelpableActionMap):
+class hotkeyActionMap(ActionMap):
+	def action(self, contexts, action):
+		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
+			res = self.actions[action](action)
+			if res is not None:
+				return res
+			return 1
+		else:
+			return ActionMap.action(self, contexts, action)
+
+class helpableHotkeyActionMap(HelpableActionMap):
 	def action(self, contexts, action):
 		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
 			res = self.actions[action](action)
@@ -386,7 +396,7 @@ class hotkeyActionMap(HelpableActionMap):
 
 class InfoBarHotkey():
 	def __init__(self):
-		self["HotkeyButtonActions"] = hotkeyActionMap(self, "HotkeyActions",
+		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
 			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
 		self.longkeyPressed = False
 
