@@ -14,7 +14,7 @@ from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 
 def InitUsageConfig():
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	if getBrandOEM() == 'vuplus':
 		config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 	else:
@@ -25,9 +25,11 @@ def InitUsageConfig():
 	config.usage.multibouquet = ConfigYesNo(default=True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default=True)
+
 	def alternativeNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
+
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default="0", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
@@ -130,11 +132,13 @@ def InitUsageConfig():
 		tmpvalue = config.usage.default_path.value
 		config.usage.default_path.setValue(tmpvalue + '/')
 		config.usage.default_path.save()
+
 	def defaultpathChanged(configElement):
 		if not config.usage.default_path.value.endswith('/'):
 			tmpvalue = config.usage.default_path.value
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
+
 	config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback=False)
 
 	config.usage.timer_path = ConfigText(default="<default>")
@@ -150,11 +154,13 @@ def InitUsageConfig():
 		tmpvalue = config.usage.timeshift_path.value
 		config.usage.timeshift_path.setValue(tmpvalue + '/')
 		config.usage.timeshift_path.save()
+
 	def timeshiftpathChanged(configElement):
 		if not config.usage.timeshift_path.value.endswith('/'):
 			tmpvalue = config.usage.timeshift_path.value
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
+
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
 
@@ -177,6 +183,12 @@ def InitUsageConfig():
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
+
+	config.usage.help_sortorder = ConfigSelection(default="headings+alphabetic", choices=[
+		("headings+alphabetic", _("Alphabetical under headings")),
+		("flat+alphabetic", _("Flat alphabetical")),
+		("flat+remotepos", _("Flat by position on remote")),
+		("flat+remotegroups", _("Flat by key group on remote"))])
 
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=[
 		("show_menu", _("Show shutdown menu")),
@@ -232,13 +244,13 @@ def InitUsageConfig():
 		("simple", _("Simple"))])
 	config.usage.servicelistpreview_mode = ConfigYesNo(default=False)
 	config.usage.tvradiobutton_mode = ConfigSelection(default="BouquetList", choices=[
-					("ChannelList", _("Channel List")),
-					("BouquetList", _("Bouquet List")),
-					("MovieList", _("Movie List"))])
+		("ChannelList", _("Channel List")),
+		("BouquetList", _("Bouquet List")),
+		("MovieList", _("Movie List"))])
 	config.usage.channelbutton_mode = ConfigSelection(default="0", choices=[
-					("0", _("Just change channels")),
-					("1", _("Channel List")),
-					("2", _("Bouquet List"))])
+		("0", _("Just change channels")),
+		("1", _("Channel List")),
+		("2", _("Bouquet List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default=False)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default='barright', choices=[
 		('barleft', _("Progress bar left")),
@@ -248,9 +260,9 @@ def InitUsageConfig():
 		('no', _("No"))])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default=True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="alpha", choices=[
-					("quick", _("Quick Actions")),
-					("alpha", _("Alpha")),
-					("number", _("Number"))])
+		("quick", _("Quick Actions")),
+		("alpha", _("Alpha")),
+		("number", _("Number"))])
 
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
@@ -292,18 +304,22 @@ def InitUsageConfig():
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
+
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
 
 	def EnableTtCachingChanged(configElement):
 		setEnableTtCachingOnOff(int(configElement.value))
+
 	config.usage.enable_tt_caching.addNotifier(EnableTtCachingChanged)
 
 	def TunerTypePriorityOrderChanged(configElement):
 		setTunerTypePriorityOrder(int(configElement.value))
+
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged, immediate_feedback=False)
 
 	def PreferredTunerChanged(configElement):
 		setPreferredTuner(int(configElement.value))
+
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default=False)
@@ -336,6 +352,7 @@ def InitUsageConfig():
 		if not config.epg.virgin.value:
 			mask &= ~(eEPGCache.VIRGIN_NOWNEXT | eEPGCache.VIRGIN_SCHEDULE)
 		eEPGCache.getInstance().setEpgSources(mask)
+
 	config.epg.eit.addNotifier(EpgSettingsChanged)
 	config.epg.mhw.addNotifier(EpgSettingsChanged)
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
@@ -344,18 +361,23 @@ def InitUsageConfig():
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 
 	config.epg.histminutes = ConfigSelectionNumber(default=0, min=0, max=120, stepwidth=15, wraparound=True)
+
 	def EpgHistorySecondsChanged(configElement):
-		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value*60)
+		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value * 60)
+
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
 	config.epg.cachesavesched = ConfigYesNo(default=False)
+
 	def EpgCacheLoadSchedChanged(configElement):
 		import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
+
 	def EpgCacheSaveSchedChanged(configElement):
 		import EpgLoadSave
 		EpgLoadSave.EpgCacheSaveCheck()
+
 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback=False)
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback=False)
 	config.epg.cacheloadtimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
@@ -380,6 +402,7 @@ def InitUsageConfig():
 	config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
+
 	def EpgCacheChanged(configElement):
 		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 		config.misc.epgcache_filename.save()
@@ -389,6 +412,7 @@ def InitUsageConfig():
 		if not config.misc.epgcache_filename.value.startswith("/etc/enigma2/"):
 			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'):
 				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat')
+
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback=False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
@@ -397,11 +421,13 @@ def InitUsageConfig():
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value))
+
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
 	if SystemInfo["12V_Output"]:
 		def set12VOutput(configElement):
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
+
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
 	config.usage.keymap = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap.xml"))
@@ -410,6 +436,7 @@ def InitUsageConfig():
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
 			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default=True)
@@ -444,7 +471,7 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
 
 	config.seek = ConfigSubsection()
-	config.seek.autoskip = ConfigYesNo(default = True)
+	config.seek.autoskip = ConfigYesNo(default=True)
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")), ("ffrw", _("Long << / >>"))], "leftright")
 	config.seek.sensibility = ConfigSelectionNumber(default=10, min=1, max=10, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
@@ -465,7 +492,6 @@ def InitUsageConfig():
 		("step", _("Single step (GOP)")),
 		("last", _("Last speed"))])
 
-
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default=True)
 	config.crash.enabledebug = ConfigYesNo(default=False)
@@ -484,6 +510,7 @@ def InitUsageConfig():
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):
 			os.mkdir(config.crash.debug_path.value, 0755)
+
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("at beginning")), ("end", _("at end"))])
@@ -504,8 +531,10 @@ def InitUsageConfig():
 
 	def updateEraseSpeed(el):
 		eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
+
 	def updateEraseFlags(el):
 		eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
+
 	config.misc.erase_speed = ConfigSelection(default="20", choices=[
 		("10", "10 MB/s"),
 		("20", "20 MB/s"),
@@ -523,6 +552,7 @@ def InitUsageConfig():
 			file = open(SystemInfo["ZapMode"], "w")
 			file.write(el.value)
 			file.close()
+
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback=False)
@@ -538,7 +568,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_alignment = ConfigSelection(default="center", choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))])
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(default="3", choices=["1", "2", "3", "4", "5"])
-	config.subtitles.subtitle_fontsize  = ConfigSelection(default="34", choices=["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"])
+	config.subtitles.subtitle_fontsize = ConfigSelection(default="34", choices=["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"])
 
 	subtitle_delay_choicelist = []
 	for i in range(-900000, 1845000, 45000):
@@ -579,7 +609,7 @@ def InitUsageConfig():
 	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
 
 	config.autolanguage = ConfigSubsection()
-	audio_language_choices=[
+	audio_language_choices = [
 		("---", _("None")),
 		("und", _("Undetermined")),
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
@@ -618,12 +648,14 @@ def InitUsageConfig():
 
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
+
 	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
 	def setEpgLanguageAlternative(configElement):
 		eServiceEvent.setEPGLanguageAlternative(configElement.value)
-	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
+
+	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices[2:], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
 	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
@@ -634,7 +666,7 @@ def InitUsageConfig():
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 
-	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
+	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="---")
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="---")
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="---")
@@ -662,10 +694,10 @@ def InitUsageConfig():
 	config.vixsettings.Subservice = ConfigYesNo(default=True)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default=False)
 	config.vixsettings.InfoBarEpg_mode = ConfigSelection(default="0", choices=[
-					("0", _("as plugin in extended bar")),
-					("1", _("with long OK press")),
-					("2", _("with exit button")),
-					("3", _("with left/right buttons"))])
+		("0", _("as plugin in extended bar")),
+		("1", _("with long OK press")),
+		("2", _("with exit button")),
+		("3", _("with left/right buttons"))])
 
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices=[("0", _("Time")), ("1", _("Alphanumeric"))])
@@ -789,7 +821,7 @@ def updateChoices(sel, choices):
 	if choices:
 		defval = None
 		val = int(sel.value)
-		if not val in choices:
+		if val not in choices:
 			tmp = choices[:]
 			tmp.reverse()
 			for x in tmp:
