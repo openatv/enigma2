@@ -436,7 +436,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def LayoutFinish(self):
 		self['lab1'].show()
-		self.createTimer.start(800)
+		self.createTimer.start(100)
 
 	def onCreate(self):
 		if not HardwareInfo().is_nextgen():
