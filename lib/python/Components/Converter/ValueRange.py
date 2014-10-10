@@ -11,7 +11,7 @@ class ValueRange(Converter, object):
 		try:
 			sourcevalue = int(self.source.value)
 		except:
-			pass
+			sourcevalue = self.source.value
 		if self.lower <= self.upper:
 			return self.lower <= sourcevalue <= self.upper
 		else:
