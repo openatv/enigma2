@@ -333,6 +333,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			if self.secondInfoBarScreen:
 				self.secondInfoBarScreen.hide()
 		elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
+			if hasattr(self, "hotkeyGlobal") and self.hotkeyGlobal("info") != 0:
+				return
 			self.showDefaultEPG()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.show()
