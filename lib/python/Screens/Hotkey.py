@@ -37,8 +37,8 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Help"), "displayHelp", ""),
 	(_("Subtitle"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
-	(_("Info"), "info", "Infobar/openEventView"),
-	(_("Info Long"), "info_long", "Infobar/showEventInfoPlugins"),
+	(_("Info (EPG)"), "info", "Infobar/openEventView"),
+	(_("Info (EPG) long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("List/Fav/PVR"), "list", ""),
 	(_("Back"), "back", ""),
 	(_("End"), "end", ""),
@@ -110,6 +110,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Switch channel up"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch channel down"), "Infobar/switchChannelDown", "InfoBar"))
 	hotkeyFunctions.append((_("Open service list"), "Infobar/openServiceList", "InfoBar"))
+	hotkeyFunctions.append((_("Open favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
