@@ -1,4 +1,4 @@
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
@@ -9,6 +9,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 
@@ -88,7 +89,6 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[24:]] = 1
 			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
 			twinPlugins.append(plugin.name)
-#	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU])
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
@@ -100,6 +100,7 @@ def getHotkeyFunctions():
 			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Open graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
+	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
 	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
@@ -367,31 +368,56 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+class helpableHotkeyActionMap(HelpableActionMap):
+	def action(self, contexts, action):
+		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
+			res = self.actions[action](action)
+			if res is not None:
+				return res
+			return 1
+		else:
+			return ActionMap.action(self, contexts, action)
+
 class InfoBarHotkey():
 	def __init__(self):
-		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys), -10)
+		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
+			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
 		self.longkeyPressed = False
+
+	def getKeyFunctions(self, key):
+		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
+		selected = []
+		for x in selection:
+			if x.startswith("Zap"):
+				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
+			else:
+				function = list(function for function in getHotkeyFunctions() if function[1] == x )
+				if function:
+					selected.append(function[0])
+		return selected
+
+	def getHelpText(self, key):
+		selected = self.getKeyFunctions(key)
+		if not selected:
+			return
+		if len(selected) == 1:
+			return selected[0][0]
+		else:
+			return _("Hotkey") + " " + tuple(x[0] for x in hotkeys if x[1] == key)[0]
 
 	def hotkeyGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
+		selected = self.getKeyFunctions(key)
+		if not selected:
+			return 0
+		if len(selected) == 1:
+			if key.endswith("_long"):
+				self.longkeyPressed = True
+			return self.execHotkey(selected[0])
 		else:
-			selection = eval("config.misc.hotkey." + key + ".value.split(',')")
-			if selection:
-				selected = []
-				for x in selection:
-					function = list(function for function in getHotkeyFunctions() if function[1] == x )
-					if function:
-						selected.append(function[0])
-				if not selected:
-					return 0
-				if len(selected) == 1:
-					if key.endswith("_long"):
-						self.longkeyPressed = True
-					return self.execHotkey(selected[0])
-				else:
-					key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
-					self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
+			key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
+			self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
 
 	def execHotkey(self, selected):
 		if selected:
