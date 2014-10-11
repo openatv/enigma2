@@ -729,6 +729,10 @@ class InfoBarChannelSelection:
 			self.servicelist.moveDown()
 		self.servicelist.zap(enable_pipzap = True)
 
+	def openFavouritesList(self):
+		self.servicelist.showFavourites()
+		self.openServiceList()
+
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
 
