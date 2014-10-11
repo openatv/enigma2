@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getMachineBuild
+from boxbranding import getImageVersion, getImageDistro, getImageBuild, getMachineBrand, getMachineName, getMachineBuild
 from os import rename, path, remove
 from gettext import dgettext
 import urllib
@@ -253,7 +253,7 @@ class UpdatePlugin(Screen):
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
-				status = urlopen("http://enigma2.world-of-satellite.com/feeds/status").read()
+				status = urlopen('http://www.openvix.co.uk/feeds/%s/status' % getImageDistro()).read()
 				if '404 Not Found' in status:
 					status = '1'
 				config.softwareupdate.updateisunstable.setValue(status)
