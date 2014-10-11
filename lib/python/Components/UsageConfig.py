@@ -45,10 +45,10 @@ def InitUsageConfig():
 	config.usage.record_indicator_mode = ConfigSelection(default = "2", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
-	choicelist = [("-1", _("Devide")), ("0", _("Disable"))]
-	for i in range(100,1300,100):
+	choicelist = [("-1", _("Disable"))]
+	for i in range(0,1300,100):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
-	config.usage.servicelist_column = ConfigSelection(default="0", choices=choicelist)
+	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
@@ -67,6 +67,8 @@ def InitUsageConfig():
 	for i in range(1, 12):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = choicelist)
+	config.usage.show_infobar_do_dimming = ConfigYesNo(default = False)
+	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min = 1, max = 20, stepwidth = 1, default = 3, wraparound = True)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
@@ -494,7 +496,8 @@ def InitUsageConfig():
 		("spa", _("Spanish")),
 		("swe", _("Swedish")),
 		("tha", _("Thai")),
-		("tur Audio_TUR", _("Turkish"))]
+		("tur Audio_TUR", _("Turkish")),
+		("ukr Ukr", _("Ukrainian"))]
 
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)

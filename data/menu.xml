@@ -1,5 +1,5 @@
 <menu text="Main menu" title="Main menu">
-	<id val="mainmenu" />
+	<id val="mainmenu"/>
 <!-- the following types are allowed:
 	<screen [module="mod"] [screen="classname"]>[arguments]</screen>
 		executes Screen called "classname" from module "Screen.mod"
@@ -8,7 +8,7 @@
 		arguments must be comma seperated (will be fed to eval), and can
 			use stuff from module
 		(of course you must specify at least one of module, screen.)
-	<setup id="id" />
+	<setup id="id"/>
 		opens a setup with specified id
 	<code> .. code .. </code>
 		"exec"s code
@@ -50,7 +50,7 @@
 			</menu>
 
 			<!-- Menu / Settings / Scan Menu -->
-			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="!isGBIPBOX">
+			<menu weight="20" level="0" text="Tuner" entryID="service_searching_selection" requires="hasTuners">
 				<id val="scan" />
 				<item weight="0" level="0" text="Basic settings" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item weight="5" level="0" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
@@ -76,7 +76,7 @@
 					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
 					<item weight="5" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 					<item weight="10" level="0" text="Weather GigaBlue Pax" entryID="ommetrixweather_setup"><screen module="OMMetrixWeatherSetup" /></item>
-					<!-- <item weight="15" level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item> -->
+					<item weight="15" level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item>
 				</menu>
 
 				<!-- Menu / Settings / System / Frontpanel Menu -->
@@ -127,7 +127,7 @@
 					<id val="general_menu" />
 					<item weight="0" level="0" entryID="usage_setup"><setup id="usage" /></item>
 					<item weight="5" level="0" entryID="logs_setup"><setup id="logs" /></item>
-					<item weight="10" level="0" entryID="timezone_setup"><setup id="timezone"/></item>
+					<item weight="10" level="0" entryID="time_setup"><setup id="time_setup"/></item>
 					<item weight="15" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				</menu>
 

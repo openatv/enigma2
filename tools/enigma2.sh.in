@@ -4,6 +4,17 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+# workaround for corrupt ssl files
+if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=false" ]; then
+	rm -rf /etc/enigma2/cert.pem &
+	rm -rf /etc/enigma2/key.pem &
+fi
+
+# update NTP time if NTP Time Enabled
+if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
+	/usr/sbin/ntpdate -s -u pool.ntp.org &
+fi
+
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi

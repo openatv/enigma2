@@ -678,7 +678,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			{
 				int flags=gPainter::RT_VALIGN_CENTER;
 				int yoffs = 0;
-				eRect &area = m_element_position[e];
+				eRect area = m_element_position[e];
 				std::string text = "<n/a>";
 				switch (e)
 				{
@@ -700,6 +700,14 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					if (service_info)
 						service_info->getName(*m_cursor, text);
+					if (!isPlayable)
+					{
+						area.setWidth(area.width() + m_element_position[celServiceEventProgressbar].width() + 10);
+						if (m_element_position[celServiceEventProgressbar].left() == 0)
+							area.setLeft(0);
+						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() + 10)
+							area.setLeft(m_element_position[celServiceNumber].width() + 10);
+					}
 					break;
 				}
 				case celServiceInfo:
@@ -742,7 +750,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (e == celServiceName)
 				{
 					xoffs = xoffset;
-					tmp.setWidth(((!isPlayable || !m_column_width) ? tmp.width() : m_column_width < 0 ? area.width() / 2 : m_column_width) - xoffs);
+					tmp.setWidth(((!isPlayable || m_column_width == -1) ? tmp.width() : m_column_width) - xoffs);
 				}
 
 				eTextPara *para = new eTextPara(tmp);
@@ -753,7 +761,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					eRect bbox = para->getBoundBox();
 
-					int servicenameWidth = ((!isPlayable || !m_column_width) ? bbox.width() : m_column_width < 0 ? area.width() / 2 : m_column_width);
+					int servicenameWidth = ((!isPlayable || m_column_width == -1) ? bbox.width() : m_column_width);
 					m_element_position[celServiceInfo].setLeft(area.left() + servicenameWidth + 8 + xoffs);
 					m_element_position[celServiceInfo].setTop(area.top());
 					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + 8 + xoffs));
@@ -920,6 +928,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					eRect area = m_element_position[e == celFolderPixmap ? celServiceName: celServiceNumber];
 					int correction = (area.height() - pixmap_size.height()) / 2;
 					if (e == celFolderPixmap)
+						if (m_element_position[celServiceEventProgressbar].left() == 0)
+							area.setLeft(0);
 						xoffset = pixmap_size.width() + 8;
 					area.moveBy(offset);
 					painter.clip(area);

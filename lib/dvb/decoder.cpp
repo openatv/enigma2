@@ -328,13 +328,8 @@ int eDVBVideo::startPid(int pid, int type)
 		eDebugNoNewLine("VIDEO_SET_STREAMTYPE %d - ", streamtype);
 		if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
 			eDebug("failed (%m)");
-		else {
+		else
 			eDebug("ok");
-			//ddamir
-			int checkbox = CFile::checkGB("/proc/stb/info/gbmodel");
-			if (checkbox == 1) CFile::writeZAP("/tmp/.zap", 0); 
-			//ddamir
-		}
 	}
 
 	if (m_fd_demux >= 0)

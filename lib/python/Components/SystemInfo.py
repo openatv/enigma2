@@ -12,6 +12,14 @@ def getNumVideoDecoders():
 		idx += 1
 	return idx
 
+def getHasTuners():
+	if fileExists("/proc/bus/nim_sockets"):
+		nimfile = open("/proc/bus/nim_sockets")
+		data = nimfile.read().strip()
+		nimfile.close()
+		return len(data) > 0
+	return False
+
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()
@@ -42,7 +50,7 @@ SystemInfo["StandbyLED"] = fileCheck("/proc/stb/power/standbyled")
 SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et5x00') and fileCheck("/proc/stb/vmpeg/1/external")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
-SystemInfo["isGBIPBOX"] = fileExists("/usr/lib/enigma2/python/gbipbox.so")
+SystemInfo["hasTuners"] = getHasTuners()
 
 #if getBoxType() in ('gbquadplus'):
 #	SystemInfo["WakeOnLAN"] = False

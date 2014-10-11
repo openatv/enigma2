@@ -19,6 +19,8 @@ class HelpMenuList(GUIComponent):
 			for (action, help) in actions:
 				if hasattr(help, '__call__'):
 					help = help()
+				if not help:
+					continue
 				buttons = queryKeyBinding(context, action)
 
 				# do not display entries which are not accessible from keys
@@ -81,6 +83,7 @@ class HelpMenuList(GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
+		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)

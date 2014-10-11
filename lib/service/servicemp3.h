@@ -307,7 +307,7 @@ private:
 		uint32_t end_ms;
 		std::string text;
 
-		subtitle_page_t(uint32_t start_ms_in, uint32_t end_ms_in, std::string text_in)
+		subtitle_page_t(uint32_t start_ms_in, uint32_t end_ms_in, const std::string& text_in)
 			: start_ms(start_ms_in), end_ms(end_ms_in), text(text_in)
 		{
 		}

@@ -3,10 +3,8 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <lib/base/cfile.h>
 
 //#define SHOW_WRITE_TIME
-static int checkbox;
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -58,9 +56,6 @@ void eFilePushThread::thread()
 	size_t bytes_read = 0;
 	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
-	
-	checkbox = 0;
-	checkbox = CFile::checkGB("/proc/stb/info/gbmodel");
 
 	while (!m_stop)
 	{
@@ -112,7 +107,10 @@ void eFilePushThread::thread()
 				eWarning("OVERFLOW while playback?");
 				continue;
 			}
-			eDebug("eFilePushThread *read error* (%m) - not yet handled");
+			eDebug("eFilePushThread *read error* (%m)");
+			sleep(1);
+			sendEvent(evtReadError);
+			break;
 		}
 
 			/* a read might be mis-aligned in case of a short read. */
@@ -131,11 +129,9 @@ void eFilePushThread::thread()
 				switch (poll(&pfd, 1, 250)) // wait for 250ms
 				{
 					case 0:
-						if (checkbox == 1) CFile::writeZAP("/tmp/.zap", 1); 
 						eDebug("wait for driver eof timeout");
 						continue;
 					case 1:
-						if (checkbox == 1) CFile::writeZAP("/tmp/.zap", 1); 
 						eDebug("wait for driver eof ok");
 						break;
 					default:
@@ -156,7 +152,7 @@ void eFilePushThread::thread()
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
 			sendEvent(evtEOF);
 
-			if (m_stream_mode)
+			if (m_stream_mode && ++eofcount < 5)
 			{
 				eDebug("reached EOF, but we are in stream mode. delaying 1 second.");
 				sleep(1);
@@ -168,6 +164,7 @@ void eFilePushThread::thread()
 				sleep(1);
 				continue;
 			}
+			sendEvent(evtReadError);
 			break;
 		} else
 		{
