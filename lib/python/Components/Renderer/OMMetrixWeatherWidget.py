@@ -89,43 +89,44 @@ class OMMetrixWeatherWidget(Renderer):
 			data = file.read()
 			file.close()
 			config.plugins.MetrixWeather.lastUpdated.value = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+			
+			dom = parseString(data)
+            title = self.getText(dom.getElementsByTagName('title')[0].childNodes)
+            config.plugins.MetrixWeather.currentLocation.value = str(title).split(',')[0].replace("Conditions for ","")
+            
+            currentWeather = dom.getElementsByTagName('yweather:condition')[0]
+            currentWeatherCode = currentWeather.getAttributeNode('code')
+            config.plugins.MetrixWeather.currentWeatherCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
+            currentWeatherTemp = currentWeather.getAttributeNode('temp')
+            config.plugins.MetrixWeather.currentWeatherTemp.value = self.getTemp(currentWeatherTemp.nodeValue)
+            currentWeatherText = currentWeather.getAttributeNode('text')
+            config.plugins.MetrixWeather.currentWeatherText.value = currentWeatherText.nodeValue
+            
+            currentWeather = dom.getElementsByTagName('yweather:forecast')[0]
+            currentWeatherCode = currentWeather.getAttributeNode('code')
+            config.plugins.MetrixWeather.forecastTodayCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
+            currentWeatherTemp = currentWeather.getAttributeNode('high')
+            config.plugins.MetrixWeather.forecastTodayTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
+            currentWeatherTemp = currentWeather.getAttributeNode('low')
+            config.plugins.MetrixWeather.forecastTodayTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
+            currentWeatherText = currentWeather.getAttributeNode('text')
+            config.plugins.MetrixWeather.forecastTodayText.value = currentWeatherText.nodeValue
+            
+            currentWeather = dom.getElementsByTagName('yweather:forecast')[1]
+            currentWeatherCode = currentWeather.getAttributeNode('code')
+            config.plugins.MetrixWeather.forecastTomorrowCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
+            currentWeatherTemp = currentWeather.getAttributeNode('high')
+            config.plugins.MetrixWeather.forecastTomorrowTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
+            currentWeatherTemp = currentWeather.getAttributeNode('low')
+            config.plugins.MetrixWeather.forecastTomorrowTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
+            currentWeatherText = currentWeather.getAttributeNode('text')
+            config.plugins.MetrixWeather.forecastTomorrowText.value = currentWeatherText.nodeValue
+            
 		except Exception as error:
 			print "Cant get weather data: %r" % error
 			# cancel weather function
 			return
-
-
-		dom = parseString(data)
-		title = self.getText(dom.getElementsByTagName('title')[0].childNodes)
-		config.plugins.MetrixWeather.currentLocation.value = str(title).split(',')[0].replace("Conditions for ","")
-
-		currentWeather = dom.getElementsByTagName('yweather:condition')[0]
-		currentWeatherCode = currentWeather.getAttributeNode('code')
-		config.plugins.MetrixWeather.currentWeatherCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
-		currentWeatherTemp = currentWeather.getAttributeNode('temp')
-		config.plugins.MetrixWeather.currentWeatherTemp.value = self.getTemp(currentWeatherTemp.nodeValue)
-		currentWeatherText = currentWeather.getAttributeNode('text')
-		config.plugins.MetrixWeather.currentWeatherText.value = currentWeatherText.nodeValue
-
-		currentWeather = dom.getElementsByTagName('yweather:forecast')[0]
-		currentWeatherCode = currentWeather.getAttributeNode('code')
-		config.plugins.MetrixWeather.forecastTodayCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
-		currentWeatherTemp = currentWeather.getAttributeNode('high')
-		config.plugins.MetrixWeather.forecastTodayTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
-		currentWeatherTemp = currentWeather.getAttributeNode('low')
-		config.plugins.MetrixWeather.forecastTodayTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
-		currentWeatherText = currentWeather.getAttributeNode('text')
-		config.plugins.MetrixWeather.forecastTodayText.value = currentWeatherText.nodeValue
-
-		currentWeather = dom.getElementsByTagName('yweather:forecast')[1]
-		currentWeatherCode = currentWeather.getAttributeNode('code')
-		config.plugins.MetrixWeather.forecastTomorrowCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
-		currentWeatherTemp = currentWeather.getAttributeNode('high')
-		config.plugins.MetrixWeather.forecastTomorrowTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
-		currentWeatherTemp = currentWeather.getAttributeNode('low')
-		config.plugins.MetrixWeather.forecastTomorrowTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
-		currentWeatherText = currentWeather.getAttributeNode('text')
-		config.plugins.MetrixWeather.forecastTomorrowText.value = currentWeatherText.nodeValue
+			
 		config.plugins.MetrixWeather.save()
 		configfile.save()
 
