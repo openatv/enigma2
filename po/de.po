@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-07 07:35+0100\n"
-"PO-Revision-Date: 2014-10-07 23:30+0100\n"
+"POT-Creation-Date: 2014-10-09 17:33+0100\n"
+"PO-Revision-Date: 2014-10-11 10:17+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -449,6 +449,9 @@ msgstr "3D Einstellungen"
 msgid "3X"
 msgstr "3X"
 
+msgid "480p 24Hz"
+msgstr ""
+
 msgid "4:3"
 msgstr "4:3"
 
@@ -673,12 +676,6 @@ msgstr "Über..."
 
 msgid "Accesspoint:"
 msgstr "Zugangspunkt:"
-
-msgid "Action on long power button press"
-msgstr "Aktion bei langem Tastendruck auf Ein/Aus"
-
-msgid "Action on short power button press"
-msgstr "Aktion bei kurzem Tastendruck auf Ein/Aus"
 
 msgid "Activate"
 msgstr "Aktiviere"
@@ -1327,6 +1324,12 @@ msgstr "Bus:"
 msgid "Button"
 msgstr "Taste"
 
+msgid "Button setup"
+msgstr "Tasten-Einstellungen"
+
+msgid "Button setup for"
+msgstr "Tasten-Einstellungen für"
+
 msgid "By Team ViX"
 msgstr "Vom Team ViX"
 
@@ -1960,12 +1963,6 @@ msgstr "Konfiguriere die vierte Sprache für den Ton."
 
 msgid "Configure the fourth subtitle language."
 msgstr "Konfiguriere die vierte Sprache für den Untertitel."
-
-msgid "Configure the function of a long press of the power button."
-msgstr "Stelle ein was bei langem Druck auf die Ein/Aus passieren soll."
-
-msgid "Configure the function of a short press of the power button."
-msgstr "Stelle ein was bei kurzem Druck auf die Ein/Aus passieren soll."
 
 msgid "Configure the function of the <  > buttons."
 msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
@@ -3715,19 +3712,10 @@ msgstr "Hostname:"
 msgid "Hostname: "
 msgstr "Hostname: "
 
-msgid "HotKey"
-msgstr ""
-
 msgid "HotKey Setup"
 msgstr "HotKey Einstellungen"
 
 msgid "Hotkey"
-msgstr ""
-
-msgid "Hotkey Setup"
-msgstr "HotKey Einstellungen"
-
-msgid "Hotkey zap"
 msgstr ""
 
 msgid "Hour"
@@ -4257,9 +4245,6 @@ msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Später"
 
-msgid "Latest Commits"
-msgstr "Letzte Änderungen"
-
 msgid "Latitude"
 msgstr "Breitengrad"
 
@@ -4348,7 +4333,7 @@ msgid_plural "List version %d, found %d channels"
 msgstr[0] "Listen Version %d, %d Sender gefunden"
 msgstr[1] "Listen Version %d, %d Sender gefunden"
 
-msgid "List/Fav"
+msgid "List/Fav/PVR"
 msgstr ""
 
 msgid "Listen to the radio..."
@@ -5219,11 +5204,17 @@ msgstr "Nur frei empfangbare Sender speichern"
 msgid "Open Audioselection"
 msgstr "Öffne Audioauswahl"
 
+msgid "Open AutoTimer"
+msgstr "Öffne Autotimer"
+
 msgid "Open event view"
 msgstr "Öffne Sendungsdetails"
 
 msgid "Open favouries list"
 msgstr "Favoritenliste öffnen"
+
+msgid "Open graphical multi EPG"
+msgstr "Öffne grafischen EPG"
 
 msgid "Open multi Service EPG"
 msgstr "Öffne Multi-EPG"
@@ -5320,9 +5311,6 @@ msgstr "PMT PID"
 
 msgid "PRIMETIME"
 msgstr "PrimeTime"
-
-msgid "PVR"
-msgstr ""
 
 msgid "Package list update"
 msgstr "Paketlistenaktualisierung"
@@ -6059,6 +6047,9 @@ msgstr "Die %s %s wirklich aktualisieren und neu starten?"
 msgid "Reboot"
 msgstr "Neustart"
 
+msgid "Rec"
+msgstr "Aufnahme"
+
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -6676,13 +6667,6 @@ msgstr "Wähle die Taste die QuickEPG aktivieren soll:"
 msgid "Select if timeshift should continue when set to record."
 msgstr "Wähle ob TimeShift auch bei einer Aufnahme weiter gehen soll."
 
-msgid ""
-"Select if you want to use the ViX colored buttons (set to 'no' if you want "
-"to use Hotkey or Multi Quick Button)."
-msgstr ""
-"Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du "
-"(Multi-)QuickButton benutzen möchtest)."
-
 msgid "Select input device"
 msgstr "Wähle Eingabegerät"
 
@@ -7063,6 +7047,9 @@ msgstr "Zeige 1080p 25FPS als"
 msgid "Show 1080p 30fps as"
 msgstr "Zeige 1080p 30FPS als"
 
+msgid "Show 480/576p 24fps as"
+msgstr "Zeige 480/576p 24FPS als"
+
 msgid "Show 720p 24fps as"
 msgstr "Zeige 720p 24FPS als"
 
@@ -7418,9 +7405,6 @@ msgstr "Sleeptimer"
 
 msgid "Sleep delay"
 msgstr "Ausschalt-Verzögerung"
-
-msgid "Sleeptimer edit"
-msgstr "Sleeptimer bearbeiten"
 
 msgid "Slide picture in loop"
 msgstr "Bilder als Diashow anzeigen"
@@ -8310,28 +8294,35 @@ msgid ""
 "not all TV's support these resolutions)"
 msgstr ""
 "Diese Option erlaubt es einzustellen wie ein 1080p 24Hz Video angezeigt "
-"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+"wird. (Nicht alle Fernseher unterstützen alle Formate)"
 
 msgid ""
 "This option allows you to choose how to display 1080p 25Hz on your TV. (as "
 "not all TV's support these resolutions)"
 msgstr ""
 "Diese Option erlaubt es einzustellen wie ein 1080p 25Hz Video angezeigt "
-"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+"wird. (Nicht alle Fernseher unterstützen alle Formate)"
 
 msgid ""
 "This option allows you to choose how to display 1080p 30Hz on your TV. (as "
 "not all TV's support these resolutions)"
 msgstr ""
 "Diese Option erlaubt es einzustellen wie ein 1080p 30Hz Video angezeigt "
-"wird. (Niicht alle Fernseher unterstützen alle Formate)"
+"wird. (Nicht alle Fernseher unterstützen alle Formate)"
 
 msgid ""
 "This option allows you to choose how to display 720p 24Hz on your TV. (as "
 "not all TV's support these resolutions)"
 msgstr ""
 "Diese Option erlaubt es einzustellen wie ein 720p 24Hz Video angezeigt wird. "
-"(Niicht alle Fernseher unterstützen alle Formate)"
+"(Nicht alle Fernseher unterstützen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display SD progressive 24Hz on your "
+"TV. (as not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 480/576p 24Hz Video angezeigt "
+"wird. (Nicht alle Fernseher unterstützen alle Formate)"
 
 msgid "This option allows you to choose how to display elapsed time. As + or -"
 msgstr ""
@@ -9049,9 +9040,6 @@ msgstr "Fernbedienungsbefehle des Fernsehers weiterleiten"
 
 msgid "Use USALS for this sat"
 msgstr "Benutze USALS für diesen Satelliten"
-
-msgid "Use ViX colored Buttons*"
-msgstr "Farbbutton von ViX benutzen *"
 
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Benutze ViaSat EPG-Informationen benutzen wenn sie vorhanden sind."
@@ -10251,9 +10239,6 @@ msgstr "Fokus auf Hauptbild legen"
 
 msgid "Zap mode"
 msgstr "Zap Modus"
-
-msgid "Zap to"
-msgstr "Zap nach"
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Zap zu Sender"
@@ -11477,6 +11462,12 @@ msgstr "umgeschaltet"
 #~ msgid "AB"
 #~ msgstr "AB"
 
+#~ msgid "Action on long power button press"
+#~ msgstr "Aktion bei langem Tastendruck auf Ein/Aus"
+
+#~ msgid "Action on short power button press"
+#~ msgstr "Aktion bei kurzem Tastendruck auf Ein/Aus"
+
 #~ msgid "Adjust 3D settings"
 #~ msgstr "3D Einstellungen"
 
@@ -11501,11 +11492,14 @@ msgstr "umgeschaltet"
 #~ msgid "BB"
 #~ msgstr "BB"
 
-#~ msgid "Button setup"
-#~ msgstr "Tasten-Einstellungen"
-
 #~ msgid "Channel +/- button mode"
 #~ msgstr "Programm +/- Tastenmodus"
+
+#~ msgid "Configure the function of a long press of the power button."
+#~ msgstr "Stelle ein was bei langem Druck auf die Ein/Aus passieren soll."
+
+#~ msgid "Configure the function of a short press of the power button."
+#~ msgstr "Stelle ein was bei kurzem Druck auf die Ein/Aus passieren soll."
 
 #~ msgid ""
 #~ "Configure which tuner for recordings will be preferred, when more than "
@@ -11523,11 +11517,24 @@ msgstr "umgeschaltet"
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enigma2 Änderungen"
 
+#~ msgid "Hotkey Setup"
+#~ msgstr "HotKey Einstellungen"
+
+#~ msgid "Latest Commits"
+#~ msgstr "Letzte Änderungen"
+
 #~ msgid "Select default EPG type..."
 #~ msgstr "Wähle Standard-EPG-Typ..."
 
 #~ msgid "Select if you want the Subservice mode to be activated."
 #~ msgstr "Wähle ob Unterkanäle aktiviert werden sollen."
+
+#~ msgid ""
+#~ "Select if you want to use the ViX colored buttons (set to 'no' if you "
+#~ "want to use Hotkey or Multi Quick Button)."
+#~ msgstr ""
+#~ "Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du "
+#~ "(Multi-)QuickButton benutzen möchtest)."
 
 #~ msgid "Select what you want the Channel +/- buttons to activate."
 #~ msgstr "Wähle was die Programm +/- Tasten bewirken sollen."
@@ -11544,6 +11551,9 @@ msgstr "umgeschaltet"
 #~ msgid "Single transponder"
 #~ msgstr "Einzelnen Transponder"
 
+#~ msgid "Sleeptimer edit"
+#~ msgstr "Sleeptimer bearbeiten"
+
 #~ msgid "Subservice mode"
 #~ msgstr "Unterkanal Modus"
 
@@ -11556,6 +11566,9 @@ msgstr "umgeschaltet"
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-Befehl"
 
+#~ msgid "Use ViX colored Buttons*"
+#~ msgstr "Farbbutton von ViX benutzen *"
+
 #~ msgid "Use WOL"
 #~ msgstr "WOL benutzen"
 
@@ -11564,6 +11577,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Video wizard"
 #~ msgstr "Bild Assistent"
+
+#~ msgid "Zap to"
+#~ msgstr "Zap nach"
 
 #~ msgid "not available"
 #~ msgstr "nicht verfügbar"
