@@ -127,6 +127,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
 	hotkeyFunctions.append((_("Open subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Open subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show InfoBar"), "Infobar/show", "InfoBar"))
+	hotkeyFunctions.append((_("Show second InfoBar"), "Infobar/showSecondInfoBar", "InfoBar"))
 	hotkeyFunctions.append((_("Show/hide infoBar"), "Infobar/toggleShow", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
