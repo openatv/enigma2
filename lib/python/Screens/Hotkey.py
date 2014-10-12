@@ -21,8 +21,8 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Yellow long"), "yellow_long", "Plugins/Extensions/IMDb/1"),
 	(_("Blue"), "blue", ""),
 	(_("Blue long"), "blue_long", ""),
-	(_("Info"), "info", "Infobar/InfoPressed/1"),
-	(_("Info Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
+	(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
+	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
 	(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
 	(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins/1"),
 	(_("Left"), "cross_left", ""),
@@ -55,7 +55,7 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Timer"), "timer", ""),
 	(_("Playlist"), "playlist", ""),
 	(_("Timeshift"), "timeshift", ""),
-	(_("Search"), "search", ""),
+	(_("Search/WEB"), "search", ""),
 	(_("Slow"), "slow", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
@@ -63,8 +63,8 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Home"), "home", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", ""),
-	(_("F1"), "f1", ""),
-	(_("F1 long"), "f1_long", ""),
+	(_("F1/LAN"), "f1", ""),
+	(_("F1/LAN long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
 	(_("F2 long"), "f2_long", ""),
 	(_("F3"), "f3", ""),
@@ -128,7 +128,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
 	hotkeyFunctions.append((_("Open subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Open subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Show/hide infoBar"), "Infobar/toggleShow", "InfoBar"))
+#	hotkeyFunctions.append((_("Show/hide infoBar"), "Infobar/toggleShow", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
@@ -158,6 +158,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
 	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
+	hotkeyFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
@@ -169,7 +170,6 @@ class HotkeySetup(Screen):
 		self.session = session
 		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
-		self["key_green"] = Button(_("Toggle Extra Keys"))
 		self.list = []
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
@@ -182,7 +182,6 @@ class HotkeySetup(Screen):
 			"ok": self.keyOk,
 			"cancel": self.close,
 			"red": self.close,
-			"green": self.toggleAdditionalKeys,
 			"up": self.keyUp,
 			"down": self.keyDown,
 			"left": self.keyLeft,
@@ -229,11 +228,6 @@ class HotkeySetup(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.getFunctions()
 
-	def toggleAdditionalKeys(self):
-		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
-		config.misc.hotkey.additional_keys.save()
-		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10])
-
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
 		if key:
@@ -247,7 +241,7 @@ class HotkeySetup(Screen):
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
-		self.skinName="HotkeySetup"
+		self.skinName="HotkeySetupSelect"
 		self.session = session
 		self.key = key
 		self.setTitle(_("Button setup for") + ": " + key[0][0])
