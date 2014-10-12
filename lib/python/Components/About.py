@@ -26,6 +26,10 @@ def getEnigmaVersionString():
 		enigma_version = enigma_version [:-12]
 	return enigma_version
 
+def getGStreamerVersionString():
+	import enigma
+	return enigma.getGStreamerVersionString()
+
 def getKernelVersionString():
 	try:
 		return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
