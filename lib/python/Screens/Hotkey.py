@@ -428,16 +428,17 @@ class InfoBarHotkey():
 	def hotkeyGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
-		selected = self.getKeyFunctions(key)
-		if not selected:
-			return 0
-		if len(selected) == 1:
-			if key.endswith("_long"):
-				self.longkeyPressed = True
-			return self.execHotkey(selected[0])
 		else:
-			key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
-			self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
+			selected = self.getKeyFunctions(key)
+			if not selected:
+				return 0
+			elif len(selected) == 1:
+				if key.endswith("_long"):
+					self.longkeyPressed = True
+				return self.execHotkey(selected[0])
+			else:
+				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
+				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
 
 	def execHotkey(self, selected):
 		if selected:
