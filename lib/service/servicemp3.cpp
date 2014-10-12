@@ -1514,7 +1514,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
 #if GST_VERSION_MAJOR >= 1
-					GValue element = { 0, };
+					GValue result = { 0, };
 #endif
 					GstIterator *children;
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
@@ -1558,10 +1558,10 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 #if GST_VERSION_MAJOR < 1
 					audioSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBAudioSink"));
 #else
-					if (gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, &element, (gpointer)"GstDVBAudioSink"))
+					if (gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, &result, (gpointer)"GstDVBAudioSink"))
 					{
-						audioSink = GST_ELEMENT_CAST(g_value_get_object(&element));
-						g_value_unset(&element);
+						audioSink = GST_ELEMENT_CAST(g_value_get_object(&result));
+						g_value_unset(&result);
 					}
 #endif
 					gst_iterator_free(children);
@@ -1569,10 +1569,10 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 #if GST_VERSION_MAJOR < 1
 					videoSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBVideoSink"));
 #else
-					if (gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, &element, (gpointer)"GstDVBVideoSink"))
+					if (gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, &result, (gpointer)"GstDVBVideoSink"))
 					{
-						videoSink = GST_ELEMENT_CAST(g_value_get_object(&element));
-						g_value_unset(&element);
+						videoSink = GST_ELEMENT_CAST(g_value_get_object(&result));
+						g_value_unset(&result);
 					}
 #endif
 					gst_iterator_free(children);
