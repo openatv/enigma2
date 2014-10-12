@@ -333,7 +333,6 @@ private:
 	void cleanLoop();
 
 // called from main thread
-	//void timeUpdated();
 	void DVBChannelAdded(eDVBChannel*);
 	void DVBChannelStateChanged(iDVBChannel*);
 	void DVBChannelRunning(iDVBChannel *);

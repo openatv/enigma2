@@ -60,6 +60,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Alignment of events"), config.misc.graph_mepg.event_alignment))
 		self.list.append(getConfigListEntry(_("Center time-labels and remove date"), config.misc.graph_mepg.center_timeline))
 		self.list.append(getConfigListEntry(_("Show in extensions menu"), config.misc.graph_mepg.extension_menu))
+		self.list.append(getConfigListEntry(_("Silently zap between bouquets"), config.misc.graph_mepg.silent_bouquet_change))
 
 		config.misc.graph_mepg.extension_menu.addNotifier(plugins.reloadPlugins)
 

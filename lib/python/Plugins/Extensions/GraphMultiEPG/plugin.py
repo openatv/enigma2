@@ -111,18 +111,29 @@ def closed(ret=False):
 	cleanup()
 
 def onSelectBouquetClose(bouquet):
-	if not bouquet is None:
+	if bouquet:
 		services = getBouquetServices(bouquet)
-		if len(services):
-			global epg_bouquet
-			epg_bouquet = bouquet
-			epg.setServices(services)
-			epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
+		global epg_bouquet
+		epg_bouquet = bouquet
+		epg.setServices(services)
+		epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
 
 def changeBouquetCB(direction, epgcall):
 	global epg
 	epg = epgcall
-	Session.openWithCallback(onSelectBouquetClose, SelectBouquet, bouquets, epg_bouquet, direction)
+	if config.misc.graph_mepg.silent_bouquet_change.value:
+		idx = 0
+		for x in bouquets:
+			if x[1] == epg_bouquet:
+				break
+			idx += 1
+		if direction > 0:
+			idx = (idx + 1) % len(bouquets)
+		else:
+			idx = (idx - 1) % len(bouquets)
+		onSelectBouquetClose(bouquets[idx][1])
+	else:
+		Session.openWithCallback(onSelectBouquetClose, SelectBouquet, bouquets, epg_bouquet, direction)
 
 def main(session, servicelist = None, **kwargs):
 	global Session
