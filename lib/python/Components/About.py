@@ -16,6 +16,10 @@ def getKernelVersionString():
 		return kernelversion
 	except:
 		return _("unknown")
+		
+def getGStreamerVersionString():	
+	import enigma	
+	return enigma.getGStreamerVersionString()
 
 def getChipSetString():
 	try:
