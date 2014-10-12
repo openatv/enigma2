@@ -407,6 +407,7 @@ extern eApplication *getApplication();
 extern int getPrevAsciiCode();
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
 extern const char *getEnigmaVersionString();
+extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 %}
 
@@ -416,6 +417,7 @@ extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
+extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 
 %include <lib/python/python_console.i>

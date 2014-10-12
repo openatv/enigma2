@@ -78,6 +78,8 @@ class About(Screen):
 
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
 
+		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
+
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
