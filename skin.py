@@ -132,7 +132,7 @@ profile("LoadSkinDefaultDone")
 def parseCoordinate(s, e, size=0, font=None):
 	s = s.strip()
 	if s == "center":
-		if size == None:
+		if not size:
 			val = 0
 		else:
 			val = (e - size)/2
