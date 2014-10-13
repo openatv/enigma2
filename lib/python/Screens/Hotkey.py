@@ -27,8 +27,8 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins/1"),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
-	(_("Up"), "cross_up", "Infobar/openServiceList"),
-	(_("Down"), "cross_down", "Infobar/openServiceList"),
+	(_("Up"), "cross_up", ""),
+	(_("Down"), "cross_down", ""),
 	(_("Channel up"), "channelup", ""),
 	(_("Channel down"), "channeldown", ""),
 	(_("TV"), "showTv", ""),
@@ -128,7 +128,6 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
 	hotkeyFunctions.append((_("Open subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Open subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
-#	hotkeyFunctions.append((_("Show/hide infoBar"), "Infobar/toggleShow", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
