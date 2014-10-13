@@ -242,10 +242,10 @@ class ServiceName2(Converter, object):
 					result += type
 			elif f == 'F':	# %F - frequency (dvb-s/s2/c/t) in KHz
 				if type in ('DVB-S') and self.tpdata.get('frequency', 0) >0 :
-					result += '%d Mhz.'%(self.tpdata.get('frequency', 0) / 1000) 
+					result += '%d MHz'%(self.tpdata.get('frequency', 0) / 1000) 
 				if type in ('DVB-C','DVB-T'):
-					result += '%.3f Mhz.'%(((self.tpdata.get('frequency', 0) +500) / 1000) / 1000.0)
-#					result += '%.3f'%(((self.tpdata.get('frequency', 0) / 1000) +1) / 1000.0) + " Mhz. " 
+					result += '%.3f MHz'%(((self.tpdata.get('frequency', 0) +500) / 1000) / 1000.0)
+#					result += '%.3f'%(((self.tpdata.get('frequency', 0) / 1000) +1) / 1000.0) + " MHz " 
 			elif f == 'f':	# %f - fec_inner (dvb-s/s2/c/t)
 				if type in ('DVB-S','DVB-C'):
 					x = self.tpdata.get('fec_inner', 15)
@@ -276,7 +276,7 @@ class ServiceName2(Converter, object):
 			elif f == 'p':	# %p - polarization (dvb-s/s2)
 				if type == 'DVB-S':
 					x = self.tpdata.get('polarization', 0)
-					result += x in range(4) and {0:'Hor.',1:'Vert.',2:'LHC',3:'RHC'}[x] or '?'
+					result += x in range(4) and {0:'H',1:'V',2:'LHC',3:'RHC'}[x] or '?'
 			elif f == 'Y':	# %Y - symbol_rate (dvb-s/s2/c)
 				if type in ('DVB-S','DVB-C'):
 					result += '%d'%(self.tpdata.get('symbol_rate', 0) / 1000)
