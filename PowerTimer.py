@@ -7,6 +7,7 @@ from bisect import insort
 from enigma import eActionMap, quitMainloop
 
 from Components.config import config
+from Components.Harddisk import internalHDDNotSleeping
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
@@ -100,7 +101,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			self.backoff *= 2
 			if self.backoff > 1800:
 				self.backoff = 1800
-		self.log(10, "backoff: retry in %d minuets" % (int(self.backoff)/60))
+		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff)/60))
 
 	def activate(self):
 		next_state = self.state + 1
@@ -159,7 +160,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
+				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or (self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and (self.session.screen["TunerInfo"].tuner_use_mask or internalHDDNotSleeping())):
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
