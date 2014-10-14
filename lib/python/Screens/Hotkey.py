@@ -63,7 +63,7 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Home"), "home", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", ""),
-	(_("F1/LAN"), "f1", ""),
+	(_("F1/LAN"), "f1", "showNetworkSetup"),
 	(_("F1/LAN long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
 	(_("F2 long"), "f2_long", ""),
@@ -118,9 +118,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Open Audioselection"), "Infobar/audioSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
-
-	hotkeyFunctions.append((_("Open favourites list 1"), "Infobar/openFavouritesList", "InfoBar"))
-
+	hotkeyFunctions.append((_("Open favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
 	hotkeyFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
 	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
