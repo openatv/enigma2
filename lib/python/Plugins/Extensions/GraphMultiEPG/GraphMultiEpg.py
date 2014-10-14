@@ -237,12 +237,17 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.setCurrentIndex(newIdx)
 
 	def setCurrentIndex(self, index):
-		if self.instance is not None:
+		if self.instance:
 			self.instance.moveSelectionTo(index)
 
 	def moveTo(self, dir):
-		if self.instance is not None:
+		if self.instance:
 			self.instance.moveSelection(dir)
+
+	def moveToFromEPG(self, dir, epg):
+		self.moveTo(dir==1 and eListbox.moveDown or eListbox.moveUp)
+		if self.cur_service:
+			epg.setService(ServiceReference(self.cur_service[0]))
 
 	def getCurrent(self):
 		if self.cur_service is None:
@@ -979,7 +984,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def openSingleServiceEPG(self):
 		ref = self["list"].getCurrent()[1].ref.toString()
 		if ref:
-			self.session.open(EPGSelection, ref)
+			self.session.openWithCallback(self.doRefresh, EPGSelection, ref, self.zapFunc, serviceChangeCB=self["list"].moveToFromEPG)
 
 	def openMultiServiceEPG(self):
 		if self.services:
