@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-10-14 23:09+0100\n"
+"PO-Revision-Date: 2014-10-15 00:29+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -308,7 +308,7 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
-msgstr "'%s' enthält %d Datei(en) und %d Verzeichniss(e).\n"
+msgstr "'%s' enthält %d Datei(en) und %d Verzeichnis(se).\n"
 
 msgid "( All readers)"
 msgstr "(Alle Lesegeräte)"
@@ -330,7 +330,7 @@ msgstr "(DVD-Audiomenü zeigen falls vorh.)"
 
 #
 msgid "* Only available if more than one interface is active."
-msgstr "* Nur verfügbar wenn mehr als ein Netzwer-Aadapter aktiv ist."
+msgstr "* Nur verfügbar wenn mehr als ein Netzwerk-Adapter aktiv ist."
 
 msgid "/usr/share/enigma2 directory"
 msgstr "Verzeichnis /usr/share/enigma2"
@@ -1098,7 +1098,7 @@ msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Sind Sie sicher, dass die Einstellungen ihres Receivers wiederhergestellt "
+"Sind Sie sicher, dass die Einstellungen Ihres Receivers wiederhergestellt "
 "werden sollen?\n"
 "\n"
 "Nach der Wiederherstellung wird Ihr Receiver neu gestartet!"
@@ -2009,8 +2009,8 @@ msgid ""
 "Configure the number of days old timers are kept before they are "
 "automatically removed from the timer list."
 msgstr ""
-"Konfigurieren Sie, wieviele Tage alte Timer erhalten bleiben sollen, bevor "
-"sie automatisch aus der Timer-Liste gelöscht werden"
+"Legen Sie die Vorhaltezeit (in Tagen) für Timer fest, bevor diese "
+"automatisch aus der Timer-Liste gelöscht werden."
 
 msgid ""
 "Configure the number of days after which items are automaticaly removed from "
@@ -2810,7 +2810,7 @@ msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 
 #
 msgid "Do you want to reboot your %s %s?"
-msgstr "Wollen Sie einen Neustart ihrer %s %s durchführen?"
+msgstr "Wollen Sie einen Neustart Ihrer %s %s durchführen?"
 
 #
 msgid "Do you want to remove the package:\n"
@@ -2836,7 +2836,8 @@ msgid ""
 "Do you want to submit your email address and name so that we can contact you "
 "if needed?"
 msgstr ""
-"Email-Adresse und Name übermitteln, so dass wir Sie ggf. kontaktieren können?"
+"E-Mail Adresse und Name übermitteln, so dass wir Sie ggf. kontaktieren "
+"können?"
 
 #
 msgid "Do you want to update your %s %s?"
@@ -3219,7 +3220,7 @@ msgstr "Geben Sie den PIN-Code des Kanals ein"
 
 #
 msgid "Enter your email address so that we can contact you if needed."
-msgstr "Ihre Email-Adresse eingeben, um Sie ggf. kontaktieren können."
+msgstr "Ihre E-Mail Adresse eingeben, um Sie ggf. kontaktieren zu können."
 
 msgid "Entitlements"
 msgstr "Berechtigungen"
@@ -3806,7 +3807,7 @@ msgid ""
 "Here you can select the behaviour of the 'puase'-button when playback has "
 "been paused."
 msgstr ""
-"Hier kannst Du einstellen was die Pause Taste machen soll wenn die "
+"Hier können Sie das Verhalten der Pause-Taste festlegen, nachdem die "
 "Wiedergabe angehalten wurde."
 
 msgid "Hidden network"
@@ -5265,14 +5266,10 @@ msgstr ""
 "Am Ende der Wiedergabe eines Filmes kann das Verhalten bestimmt werden."
 
 msgid "On starting playback of a file, you can choose the box's behaviour."
-msgstr ""
-"Du kannst bestimmen was am Anfang der WIedergabe einer Aufnahme passieren "
-"soll."
+msgstr "Das Verhalten zu Beginn einer Wiedergabe kann bestimmt werden."
 
 msgid "On stopping playback of a file, you can choose the box's behaviour."
-msgstr ""
-"Du kannst bestimmen was beim Stoppen der Wiedergabe einer Aufnahme passieren "
-"soll."
+msgstr "Das Verhalten nach dem Stoppen einer Wiedergabe kann bestimmt werden."
 
 msgid "Once per day"
 msgstr "Einmal pro Tag"
@@ -5337,10 +5334,10 @@ msgid "Output"
 msgstr "Ausgang"
 
 msgid "Overwrite configuration files?"
-msgstr "Konfigurations-Dateien überschreiben ?"
+msgstr "Konfigurations-Dateien überschreiben?"
 
 msgid "Overwrite configuration files during software upgrade?"
-msgstr "Konfigurationsdateien beim Software-Update überschreiben ?"
+msgstr "Konfigurationsdateien beim Software-Update überschreiben?"
 
 #
 msgid "PAL"
@@ -5619,7 +5616,7 @@ msgid ""
 "values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Konfigurieren Sie ihre DNS-Server durch Ausfüllen der entsprechenden Werte.\n"
+"Konfigurieren Sie Ihre DNS-Server durch Ausfüllen der entsprechenden Werte.\n"
 "OK drücken zum fortfahren"
 
 #
@@ -5664,11 +5661,11 @@ msgstr "Alten PIN-Code eingeben"
 
 #
 msgid "Please enter your email address here:"
-msgstr "Hier ihre Email-Adresse eingeben:"
+msgstr "Hier Ihre E-Mail Adresse eingeben:"
 
 #
 msgid "Please enter your name here (optional):"
-msgstr "Hiier Ihren Namen eingeben (optional):"
+msgstr "Hier Ihren Namen eingeben (optional):"
 
 #
 msgid "Please follow the instructions on the TV"
@@ -6774,7 +6771,7 @@ msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
 "DefaultServiceScanner führt eine Sendersuche über alle Satelliten durch, "
-"wenn Sie einen Rotor an ihre Satellitenschüssel angeschlossen haben."
+"wenn Sie einen Rotor an Ihre Satellitenschüssel angeschlossen haben."
 
 msgid "Search"
 msgstr "Suche"
@@ -6859,7 +6856,7 @@ msgstr "Dateien zum sichern auswählen."
 
 #
 msgid "Select files/folders to backup"
-msgstr "Dateien/Ordner auswählen ..."
+msgstr "Dateien/Ordner auswählen..."
 
 msgid "Select folders"
 msgstr "Ordner auswählen"
@@ -6892,7 +6889,7 @@ msgstr ""
 "('Nein' wenn Sie (Multi-)QuickButton benutzen möchten)."
 
 msgid "Select InputDevice"
-msgstr "Eingabegerät auswählen"
+msgstr "Eingabegerät auswählen."
 
 #
 msgid "Select interface"
@@ -7274,8 +7271,8 @@ msgid ""
 "Stop's timeshift being used if a recording is in progress. (adviseable for "
 "usb sticks)"
 msgstr ""
-"Beendet Timeshift wenn eine Aufnahme läuft,.ratsam bei der Verwendung eines "
-"USB Stick`s."
+"Beendet Timeshift wenn eine Aufnahme läuft, ratsam bei der Verwendung eines "
+"USB-Sticks."
 
 msgid "Set your Latitude:"
 msgstr "Wähle die Latitude:"
@@ -8298,7 +8295,7 @@ msgstr ""
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Der Assistent kann jetzt ihre Einstellungen sichern. Sicherung jetzt "
+"Der Assistent kann jetzt Ihre Einstellungen sichern. Sicherung jetzt "
 "durchführen?"
 
 #, python-format
@@ -8307,7 +8304,7 @@ msgid ""
 "settings from %s?"
 msgstr ""
 "Der Assistent hat eine Konfigurations-Sicherungsdatei entdeckt. Wollen Sie "
-"ihre Einstellungen von %s wiederherstellen?"
+"Ihre Einstellungen von %s wiederherstellen?"
 
 #
 msgid "The wizard is finished now."
@@ -8634,9 +8631,9 @@ msgid ""
 msgstr ""
 "Dieser Test sucht nach konfigurierten Nameservern\n"
 "Wenn Sie eine \"Unbestätigt\"-Meldung erhalten:\n"
-"- Überprüfen Sie Ihr DHCP, ihre Verkabelung und ihre Adapter-Konfiguration.\n"
-"- Haben Sie ihre Namensserver manuell konfiguriert, überprüfen Sie bitte "
-"ihre Konfiguration in den \"DNS\"-Einstellungen"
+"- Überprüfen Sie Ihr DHCP, Ihre Verkabelung und Ihre Adapter-Konfiguration.\n"
+"- Haben Sie Ihre Namensserver manuell konfiguriert, überprüfen Sie bitte "
+"Ihre Konfiguration in den \"DNS\"-Einstellungen"
 
 #
 msgid ""
@@ -8660,7 +8657,7 @@ msgstr ""
 "Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
 "Wenn Sie eine \"Unbestätigt\"-Meldung erhalten:\n"
 "- Wurde keine gültige IP-Adresse gefunden.\n"
-"- Überprüfen Sie Ihr DHCP, ihre Verkabelung und ihre Adapter-Konfiguration."
+"- Überprüfen Sie Ihr DHCP, Ihre Verkabelung und Ihre Adapter-Konfiguration."
 
 #
 msgid ""
@@ -8892,9 +8889,9 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Um ihre %s %s-Firmware zu aktualisieren, folgen Sie bitte diesen "
+"Um Ihre %s %s-Firmware zu aktualisieren, folgen Sie bitte diesen "
 "Anweisungen:\n"
-"1) Schalten Sie ihre %s %s mit dem Schalter auf der Rückseite aus und achten "
+"1) Schalten Sie Ihre %s %s mit dem Schalter auf der Rückseite aus und achten "
 "Sie darauf, dass der bootfähige USB-Stick eingesteckt ist.\n"
 "2) Schalten Sie den Netzschalter wieder ein und halten dabei den \"nach unten"
 "\"-Knopf auf der Vorderseite für 10 Sekunden gedrückt.\n"
@@ -9662,7 +9659,7 @@ msgid ""
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Wenn Sie ihre %s %s mit dem Internet verbinden möchten, wird Sie dieser "
+"Wenn Sie Ihre %s %s mit dem Internet verbinden möchten, wird Sie dieser "
 "Assistent durch die grundlegenden Netzwerkeinstellungen führen.\n"
 "\n"
 "Drücken Sie OK um Ihr Netzwerk zu konfigurieren"
@@ -9787,8 +9784,8 @@ msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr ""
-"Wenn gesetzt merken sich die Verzeichnisse ihren Zusatnd. Wenn ausgeschaltet "
-"wird eine Standardansicht genommen."
+"Wenn gesetzt, merken sich die Verzeichnisse ihren Zustand. Wenn "
+"ausgeschaltet, wird eine Standardansicht genommen."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Wenn aktiviert wird Live-TV gezeigt, wenn der Film beendet wurde."
@@ -9819,8 +9816,9 @@ msgid ""
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
 msgstr ""
-"Wenn ein Sender eingestellt ist durchsucht die %s %s den Transponder nach "
-"Änderungen und speichert Sie. Nur 'Ja' einstellen wenn Du weißt was Du tust."
+"Wenn ein Sender eingestellt ist, durchsucht die %s %s den Transponder nach "
+"Änderungen und speichert diese. Nur 'Ja' wählen, wenn Sie sich über die "
+"Auswirkungen bewusst sind."
 
 msgid "When using scart connection, choose what color format to use."
 msgstr "Welches Farbformat bei einer SCART-Verbindung."
@@ -9881,7 +9879,7 @@ msgid ""
 "With this option you can hide Job Tasks from the extension screen (short "
 "blue button press)."
 msgstr ""
-"Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Druck "
+"Mit dieser Option können Sie Jobs in Erweiterungen verstecken (kurzer Druck "
 "auf Blau)."
 
 msgid "Write error while recording. Disk full?\n"
@@ -9990,7 +9988,7 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Du hast schon ein Bootlogo installiert\n"
+"Sie haben bereits ein Bootlogo installiert\n"
 "soll es entfernt werden\n"
 "\"%s\"?"
 
@@ -10076,7 +10074,7 @@ msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
 "now."
 msgstr ""
-"Sie haben sich entschieden ihre Einstellungen zu sichern. Drücken Sie OK, um "
+"Sie haben sich entschieden Ihre Einstellungen zu sichern. Drücken Sie OK, um "
 "den Vorgang zu starten."
 
 msgid ""
@@ -10092,7 +10090,7 @@ msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
 msgstr ""
-"Sie haben sich entschlossen, ihre Einstellungen wiederherzustellen. Enigma2 "
+"Sie haben sich entschlossen, Ihre Einstellungen wiederherzustellen. Enigma2 "
 "wird nach der Wiederherstellung neu starten. Bitte drücken Sie OK um mit der "
 "Wiederherstellung zu beginnen."
 
@@ -10250,7 +10248,7 @@ msgstr ""
 
 #
 msgid "Your email address:"
-msgstr "Ihre Email-Adresse:"
+msgstr "Ihre E-Mail Adresse:"
 
 #
 msgid ""
@@ -11785,7 +11783,7 @@ msgid ""
 "assistance before rebooting your %s %s."
 msgstr ""
 "Ihre %s %s könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das "
-"Handbuch bevor Sie ihre %s %s rebooten."
+"Handbuch bevor Sie Ihre %s %s rebooten."
 
 #
 msgid "zap"
@@ -11807,31 +11805,31 @@ msgstr "Auswahl Software Update"
 
 #
 msgid "Overwrite Configuration Files ?"
-msgstr "Überschreiben der Konfigurations Files ?"
+msgstr "Überschreiben der Konfigurations Files?"
 
 #
 msgid "Overwrite Setting Files ?"
-msgstr "Settings-Dateien überschreiben ?"
+msgstr "Settings-Dateien überschreiben?"
 
 #
 msgid "Overwrite Driver Files ?"
-msgstr "Treiber-Module überschreiben ?"
+msgstr "Treiber-Module überschreiben?"
 
 #
 msgid "Overwrite Softcam Files ?"
-msgstr "Softcam-Dateien überschreiben ?"
+msgstr "Softcam-Dateien überschreiben?"
 
 #
 msgid "Overwrite Emu Files ?"
-msgstr "Emu-Dateien überschreiben ?"
+msgstr "Emu-Dateien überschreiben?"
 
 #
 msgid "Overwrite Picon Files ?"
-msgstr "Picons überschreiben ?"
+msgstr "Picons überschreiben?"
 
 #
 msgid "Overwrite Bootlogo Files ?"
-msgstr "Bootlogos überschreiben ?"
+msgstr "Bootlogos überschreiben?"
 
 #
 msgid "Select files/folders to backup..."
@@ -11874,7 +11872,7 @@ msgid ""
 "Copy your keymap to\n"
 "/usr/share/enigma2/keymap.usr"
 msgstr ""
-"Kopieren Sie ihre Tastaturbelegung nach \n"
+"Kopieren Sie Ihre Tastaturbelegung nach \n"
 " / usr/share/enigma2/keymap.usr"
 
 #
@@ -12073,7 +12071,7 @@ msgid ""
 "\n"
 "backupstick or backupstick.txt"
 msgstr ""
-"Kein USB-Stick für das Fullbackup gefunden !!\n"
+"Kein USB-Stick für das Fullbackup gefunden!!\n"
 "\n"
 "\n"
 "Für ein Backup auf dem USB-Stick,\n"
@@ -12086,7 +12084,7 @@ msgid ""
 "Not enough free space on /hdd !!\n"
 "You need at least 300Mb free space.\n"
 msgstr ""
-"Nicht genügend freier Speicherplatz auf /hdd !\n"
+"Nicht genügend freier Speicherplatz auf /hdd!\n"
 "\n"
 "Sie benötigen mindestens 300 MB freien Speicherplatz.\n"
 
@@ -12094,7 +12092,7 @@ msgid ""
 "Not enough free space on /media/usb !!\n"
 "You need at least 300Mb free space.\n"
 msgstr ""
-"Nicht genügend freier Speicherplatz auf /media/usb !\n"
+"Nicht genügend freier Speicherplatz auf /media/usb!\n"
 "\n"
 "Sie benötigen mindestens 300 MB freien Speicherplatz.\n"
 
@@ -12104,7 +12102,7 @@ msgstr "Komplett Backup auf %s"
 
 #
 msgid "%s not found !!"
-msgstr "%s nicht gefunden !!"
+msgstr "%s nicht gefunden!!"
 
 #
 msgid "Back-up Tool for a %s\n"
@@ -12166,7 +12164,7 @@ msgstr ""
 msgid ""
 "It seems the sundtek driver is not installed or not installed properly. "
 "Install the driver now?"
-msgstr "Es wurde kein Sundtek Treiber Installiert. Treiber Installieren ?"
+msgstr "Es wurde kein Sundtek Treiber Installiert. Treiber Installieren?"
 
 #
 msgid "No IPTV media server found"
@@ -12532,13 +12530,13 @@ msgstr ""
 "kein Speicherplatz vorhanden\n"
 
 msgid "Update is reported as faulty !!"
-msgstr "Fehlerhaftes Update gemeldet !!"
+msgstr "Fehlerhaftes Update gemeldet!!"
 
 msgid "Aborting updateprogress"
 msgstr "Update wurde abgebrochen"
 
 msgid "Caution update not yet tested !!"
-msgstr "Achtung Update nocht nicht Überprüft !!"
+msgstr "Achtung Update nocht nicht Überprüft!!"
 
 msgid "Update at your own risk"
 msgstr "Update auf eigene Gefahr"
@@ -12873,7 +12871,7 @@ msgid "don't descramble, record ecm"
 msgstr "nicht entschlüsseln, ECM aufnehmen"
 
 msgid "The user interface of your %s %s is restarting"
-msgstr "Die Bedienoberfläche ihrer %s %s wird neu gestartet"
+msgstr "Die Bedienoberfläche Ihrer %s %s wird neu gestartet"
 
 #: c:\POTEST/Blindscan/plugin.py:42
 msgid "Blindscan"
@@ -13331,7 +13329,7 @@ msgstr "Konfigurieren Sie das Netzwerk"
 msgid ""
 "Use the Networkwizard to configure your Network. The wizard will help you to "
 "setup your network"
-msgstr "Verwenden Sie den Netzwerk-Assistent um ihr Netzwerk zu konfigurieren"
+msgstr "Verwenden Sie den Netzwerk-Assistent um Ihr Netzwerk zu konfigurieren"
 
 msgid "Select Lan/Wlan"
 msgstr "Auswahl Lan/Wlan"
@@ -13661,7 +13659,7 @@ msgid ""
 "Your %s %s is not connected to the internet, please check your network "
 "settings and try again."
 msgstr ""
-"Ihre %s %s hat keine Internetverbindung, bitte prüfen Sie ihre "
+"Ihre %s %s hat keine Internetverbindung, bitte prüfen Sie die "
 "Netzwerkeinstellungen."
 
 #: Download Netzwerk Dienste
@@ -13806,7 +13804,7 @@ msgstr ""
 
 # Zeitenstellung
 msgid "Setup your timezone."
-msgstr "Hier können Sie ihre Zeitzone auswählen."
+msgstr "Hier können Sie Ihre Zeitzone auswählen."
 
 # Zeitenstellung
 msgid "Synchronize systemtime using transponder or internet."
@@ -14116,7 +14114,7 @@ msgid ""
 "Backup your running %s %s image to HDD or USB."
 msgstr ""
 "\n"
-"Backup des laufenden Images ihrer %s %s auf HDD oder USB."
+"Backup des laufenden Images Ihrer %s %s auf HDD oder USB."
 
 #
 msgid "You can have the list sorted by time or alphanumerical."
@@ -14294,7 +14292,7 @@ msgid ""
 "Are you sure you want to restore your STB backup?\n"
 "STB will restart after the restore"
 msgstr ""
-"Sind Sie sicher, dass die Einstellungen ihres Receivers wieder hergestellt "
+"Sind Sie sicher, dass die Einstellungen Ihres Receivers wieder hergestellt "
 "werden sollen?\n"
 "\n"
 "Ihr Receiver wird neu gestartet, nachdem die Einstellungen wiederhergestellt "
@@ -14305,7 +14303,7 @@ msgid ""
 "Are you sure you want to restore your %s %s backup?\n"
 "STB will restart after the restore"
 msgstr ""
-"Sind Sie sicher, dass die Einstellungen ihrer %s %s wiederhergestellt werden "
+"Sind Sie sicher, dass die Einstellungen Ihrer %s %s wiederhergestellt werden "
 "sollen?\n"
 "\n"
 "Ihr Receiver wird neu gestartet, nachdem die Einstellungen wiederhergestellt "
@@ -14366,7 +14364,7 @@ msgid "Show EPG for current channel..."
 msgstr "Zeige EPG vom aktuellen Kanal"
 
 msgid "Select default EPG type..."
-msgstr "Standard EPG-Typ auswählen ..."
+msgstr "Standard EPG-Typ auswählen..."
 
 msgid "Please select a default EPG type..."
 msgstr "Als Standard wählen:"
@@ -14407,7 +14405,7 @@ msgstr ""
 " nicht gestartet!!\n"
 "\n"
 "Der Dateiname der Cam muss in der Startzeile enthalten sein\n"
-"Prüfen Sie ihre EMU Start Datei!"
+"Prüfen Sie Ihre EMU Start Datei!"
 
 msgid "Available Devices"
 msgstr "Verfügbare Speichermedien"
@@ -14485,7 +14483,7 @@ msgid "At End:"
 msgstr "wenn erledigt:"
 
 msgid "Do you really want to delete this timer ?"
-msgstr "Timer wirklich löschen ?"
+msgstr "Timer wirklich löschen?"
 
 msgid "Software Manager Setup"
 msgstr "Update-Einstellungen"
@@ -14566,7 +14564,7 @@ msgstr "Ausschalt-Zeit"
 
 #
 msgid "Overwrite Spinner Files ?"
-msgstr "Spinner-Dateien überschreiben ?"
+msgstr "Spinner-Dateien überschreiben?"
 
 #
 msgid "Overwrite spinner files during software upgrade?"
@@ -14641,7 +14639,7 @@ msgstr "System Einstellungen"
 
 # Quick Menue
 msgid "Setup your System"
-msgstr "Stellen Sie ihr System ein."
+msgstr "Stellen Sie Ihr System ein."
 
 # Quick Menue
 msgid "Customise"
@@ -14657,16 +14655,16 @@ msgstr "Enigma2 anpassen"
 
 # Quick Menue
 msgid "Customise enigma2 personal settings"
-msgstr "Stellen Sie Enigma2 auf ihre persönlichen Bedürfnisse ein."
+msgstr "Stellen Sie Enigma2 auf Ihre persönlichen Bedürfnisse ein."
 
 # Quick Menue
 msgid "Setup your OSD"
 msgstr ""
-"Stellen Sie die Bedienoberfläche auf ihre persönlichen Bedürfnisse ein."
+"Stellen Sie die Bedienoberfläche auf Ihre persönlichen Bedürfnisse ein."
 
 # Quick Menue
 msgid "Setup your remote buttons"
-msgstr "Stellen Sie ihre Belegung der Fernbedienungstasten ein."
+msgstr "Stellen Sie die Belegung der Fernbedienungstasten ein."
 
 # Quick Menue
 msgid "Display Settings"
@@ -14678,19 +14676,19 @@ msgstr "Boxdisplay LED/LCD einstellen"
 
 # Quick Menue
 msgid "Setup your display"
-msgstr "Stellen Sie das Box-Dsplay auf ihre persönlichen Bedürfnisse ein."
+msgstr "Stellen Sie das Box-Dsplay auf Ihre persönlichen Bedürfnisse ein."
 
 # Quick Menue
 msgid "Setup your Channel selection configuration"
-msgstr "Stellen Sie ihre Kanallisten-Konfiguration ein."
+msgstr "Stellen Sie Ihre Kanallisten-Konfiguration ein."
 
 # Quick Menue
 msgid "Setup your recording config"
-msgstr "Stellen Sie ihre Aufnahme-Einstellungen ein."
+msgstr "Stellen Sie Ihre Aufnahme-Einstellungen ein."
 
 # Quick Menue
 msgid "Setup your EPG config"
-msgstr "Stellen Sie ihre EPG-Einstellungen ein."
+msgstr "Stellen Sie Ihre EPG-Einstellungen ein."
 
 # Subtitle QuickMenu
 msgid "Subtitle Quickmenu"
@@ -14712,10 +14710,10 @@ msgid ""
 msgstr ""
 "Ihr Image ist veraltet!\n"
 "\n"
-"Bei einem veraltetem Image besteht das Risiko, dass ihre %s %s nach einem "
+"Bei einem veraltetem Image besteht das Risiko, dass Ihre %s %s nach einem "
 "Online-Update nicht bootet, oder das Image nicht richtig funktioniert.\n"
 "\n"
-"Ein neues Flashen wird die Stabilität ihres Images erhöhen!\n"
+"Ein neues Flashen wird die Stabilität Ihres Images erhöhen!\n"
 "\n"
 "Sollten Sie sich dennoch für ein Online-Update entscheiden, erfolgt dies auf "
 "eigene Verantwortung!!!\n"
@@ -14729,9 +14727,9 @@ msgid ""
 "\n"
 "Do you want to put it in %s?"
 msgstr ""
-"Ihre %s %s ist nicht sauber heruntergefahren.\n"
+"Ihre %s %s ist nicht ordnungsgemäß heruntergefahren.\n"
 "\n"
-"Wollen Sie sie in %s versetzen?"
+"Wollen Sie diese in %s versetzen?"
 
 # Powerlost usage.config
 msgid "just boot"
@@ -14754,8 +14752,8 @@ msgid ""
 "Select what should be done when the %s %s was shutdown incorrectly, or after "
 "the Power was lost."
 msgstr ""
-"Wählen Sie, was passieren soll, nachdem ihre %s %s nicht sauber "
-"heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
+"Wählen Sie, was geschehen soll, nachdem Ihre %s %s nicht ordnungsgemäß "
+"heruntergefahren wurde (z.B. nach einem Stromausfall)."
 
 #
 msgid "Configure your NTP server."
@@ -14789,7 +14787,7 @@ msgid ""
 "Do you want to Restart the GUI now?"
 msgstr ""
 "Neustart erforderlich um den neuen Skin Anzuwenden\n"
-"Möchten Sie gleich neustarten ?"
+"Möchten Sie gleich neustarten?"
 
 msgid "LCD Skin-Selector"
 msgstr "LCD Skin-Auswahl"
@@ -14838,7 +14836,7 @@ msgid ""
 "Your %s %s wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Die Bedienoberfläche ihrer %s %s wird neu gestartet.\n"
+"Die Bedienoberfläche Ihrer %s %s wird neu gestartet.\n"
 "\n"
 "Jetzt neu starten?"
 
@@ -14846,7 +14844,7 @@ msgid ""
 "Your %s %s wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Wollen Sie einen Neustart ihrer %s %s durchführen?\n"
+"Wollen Sie einen Neustart Ihrer %s %s durchführen?\n"
 "\n"
 "Jetzt neu starten?"
 
@@ -15066,7 +15064,7 @@ msgstr "Online/Offline flashen"
 
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
-"Flashen Sie online oder von einer lokalen Quelle ihre Receiver Software."
+"Flashen Sie online oder von einer lokalen Quelle Ihre Receiver Software."
 
 msgid "Flash Online"
 msgstr "Flashen Online/Lokal"
@@ -15147,13 +15145,13 @@ msgid ""
 "\n"
 "Exit plugin."
 msgstr ""
-"ofgwrite nicht gefunden !!\n"
+"ofgwrite nicht gefunden!!\n"
 "Bitte installieren Sie ofgwrite nach /usr/bin/ofgwrite.\n"
 "\n"
 "Plugin wird beendet."
 
 msgid "Download Failed !!"
-msgstr "Herunterladen gescheitert !!"
+msgstr "Herunterladen gescheitert!!"
 
 msgid "Simulate (no write)"
 msgstr "Simulation (kein Schreibvorgang)"
@@ -15561,11 +15559,11 @@ msgstr "Jetzt nicht Flashen"
 
 #: BackupRestore.py
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Myrestore Script wird ausgeführt ..."
+msgstr "Myrestore Script wird ausgeführt..."
 
 #: BackupRestore.py
 msgid "Your %s %s will Reboot..."
-msgstr "%s %s startet neu ..."
+msgstr "%s %s startet neu..."
 
 #: MovieSelection.py
 msgid "Do you really want to permamently remove '%s' from trash can ?"
@@ -15612,14 +15610,14 @@ msgid ""
 "\n"
 "Do you want to flash-online ?"
 msgstr ""
-"Es gibt zu viele Update-Pakete !!!\n"
+"Es gibt zu viele Update-Pakete!!!\n"
 "\n"
 "Es besteht die Gefahr, dass Ihre %s %s nach dem\n"
 "Online-Update nicht mehr startet, oder Fehlfunktionen auftreten.\n"
 "\n"
-"Sie sollten das Image neu Flashen !! \n"
+"Sie sollten das Image neu Flashen!!\n"
 "\n"
-"Wollen Sie jetzt online Flashen ?"
+"Wollen Sie jetzt online Flashen?"
 
 msgid "Setup Usage"
 msgstr "Einstellungen"
