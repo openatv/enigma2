@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-10-13 23:31+0100\n"
+"PO-Revision-Date: 2014-10-14 23:09+0100\n"
 "Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -939,7 +939,7 @@ msgid "Allow unstable (untested) updates"
 msgstr "Instabile (ungetestete) Updates erlauben"
 
 msgid "Allows more detailed to be in the crash log"
-msgstr "Erweiterte Informationen im Crash-Log eintragen"
+msgstr "Erweiterte Informationen im Crash-Log eintragen."
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Regelmäßiges Lesen der EPG-Daten erlauben."
@@ -1781,7 +1781,7 @@ msgid "Choose the correct DiSEqC mode for this LNB."
 msgstr "Wählen Sie den korrekten DiSEqC-Modus für diesen LNB."
 
 msgid "Choose the location for crash and debuglogs."
-msgstr "Wählen Sie den Speicherort für Crash- und Debug-Logs"
+msgstr "Wählen Sie den Speicherort für Crash- und Debug-Logs."
 
 msgid ""
 "Choose the location where the EPG data will be stored when the %s %s is shut "
@@ -2241,6 +2241,10 @@ msgstr "Keine Aufnahme möglich. Ungültiger Service %s"
 
 msgid "Crash Logs"
 msgstr "Crashlogs"
+
+#
+msgid "Setup Logs"
+msgstr "Crashlog-Einstellungen"
 
 #
 msgid "Logs settings"
@@ -4119,7 +4123,7 @@ msgstr "Speichergerät initialisieren..."
 msgid "Input"
 msgstr "Eingabe"
 
-msgid "Input device setup"
+msgid "InputDevice setup"
 msgstr "Eingabegeräte-Einstellungen"
 
 msgid "Input devices"
@@ -6888,10 +6892,7 @@ msgstr ""
 "('Nein' wenn Sie (Multi-)QuickButton benutzen möchten)."
 
 msgid "Select InputDevice"
-msgstr "Eingabegerät auswählen."
-
-msgid "Select input device."
-msgstr "Eingabegerät auswählen."
+msgstr "Eingabegerät auswählen"
 
 #
 msgid "Select interface"
@@ -7128,8 +7129,8 @@ msgid ""
 "Set the default location for your timeshift-files. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
 msgstr ""
-"Wähle das Standardverzeichnis für Timeshift Dateien. Drücke 'OK' um ein "
-"neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende "
+"Wählen Sie das Standardverzeichnis für Timeshift-Aufnahmen.\n"
+"OK um ein neues Verzeichnis zu wählen oder links/rechts um bestehende "
 "Verzeichnisse zu wählen."
 
 msgid "Set the default sorting method."
@@ -7273,8 +7274,8 @@ msgid ""
 "Stop's timeshift being used if a recording is in progress. (adviseable for "
 "usb sticks)"
 msgstr ""
-"Beendet Timeshift wenn eine Aufnahme läuft. (ratsam bei der Verwendung eines "
-"USB Sticks)"
+"Beendet Timeshift wenn eine Aufnahme läuft,.ratsam bei der Verwendung eines "
+"USB Stick`s."
 
 msgid "Set your Latitude:"
 msgstr "Wähle die Latitude:"
@@ -8716,6 +8717,9 @@ msgstr "Verbleibende / Verstrichene Zeit in OSD"
 
 msgid "Time scale"
 msgstr "Zeitskala"
+
+msgid "Setup Time"
+msgstr "Zeiteinstellungen"
 
 msgid "Time settings"
 msgstr "Zeiteinstellungen"
@@ -13315,6 +13319,9 @@ msgstr "Zeige verfügbare Erweiterungen, Zum downloaden und Installieren."
 msgid "Hard disk setup"
 msgstr "Konfiguration der HDD"
 
+msgid "Setup Harddisk"
+msgstr "Konfiguration der HDD"
+
 msgid "Setup your Harddisk"
 msgstr "Einstellen der Festplatte."
 
@@ -13810,7 +13817,7 @@ msgstr ""
 # Zeitenstellung
 msgid "Setup network time synchronization interval."
 msgstr ""
-"Hier können Sie das Synchronisierungs-Intervall des NTP-Servers einstellen."
+"Hier können Sie den Synchronisierungs-Intervall des NTP-Servers einstellen."
 
 # crashlog
 msgid "Show Log Manager in extensions list ?"
@@ -14985,6 +14992,9 @@ msgstr "Zeige Aufnahmen"
 msgid "Special Features"
 msgstr "Spezielle Einstellungen"
 
+msgid "Setup Special Features"
+msgstr "Spezielle Einstellungen"
+
 msgid "BlueSwitch: Blue-Short/Blue-Long"
 msgstr "Blaue-Taste:  kurz/lang"
 
@@ -15469,8 +15479,8 @@ msgid ""
 "Set the default location for your autorecord-files. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
 msgstr ""
-"Wähle das Standardverzeichnis für die Automatischeaufnahme. Drücke 'OK' um "
-"ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende "
+"Wählen Sie das Standardverzeichnis für die Automatische Aufnahmen.\n"
+"OK' um ein neues Verzeichnis zu wählen oder links/rechts um bestehende "
 "Verzeichnisse zu wählen."
 
 # GraphMultiEpg.py
