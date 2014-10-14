@@ -912,7 +912,7 @@ class InfoBarChannelSelection:
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
-				"openBouquets": (self.openBouquets, _("Open favouries list")),
+				"openBouquets": (self.openBouquets, _("Open favourites list")),
 				"LeftPressed": self.LeftPressed,
 				"RightPressed": self.RightPressed,
 				"ChannelPlusPressed": self.ChannelPlusPressed,
@@ -1088,6 +1088,10 @@ class InfoBarChannelSelection:
 				self.servicelist2.moveUp()
 			self.servicelist2.zap(enable_pipzap = True)
 			ChannelSelectionInstance.dopipzap = False
+
+	def openFavouritesList(self):
+		self.servicelist.showFavourites()
+		self.openServiceList()
 
 	def zapDown(self):
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
