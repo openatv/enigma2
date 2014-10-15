@@ -428,6 +428,8 @@ lib/python/Plugins/Extensions/FileCommander/Makefile
 lib/python/Plugins/Extensions/FileCommander/addons/Makefile
 lib/python/Plugins/Extensions/FileCommander/pic/Makefile
 lib/python/Plugins/Extensions/FileCommander/images/Makefile
+lib/python/Plugins/Extensions/RemoteIPTVClient/Makefile
+lib/python/Plugins/Extensions/RemoteIPTVClient/icons/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/IceTV/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
