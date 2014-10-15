@@ -78,8 +78,8 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.p
 else:
 	BLINDSCAN = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/RemoteChannelStreamConverter"):
-	from Plugins.Extensions.RemoteChannelStreamConverter.plugin import StreamingChannelFromServerScreen
+if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/RemoteIPTVClient"):
+	from Plugins.Extensions.RemoteIPTVClient.plugin import RemoteTunerScanner
 	REMOTEBOX = True
 else:
 	REMOTEBOX = False
@@ -220,7 +220,10 @@ class GeneralSetup(Screen):
 		self.list = []
 		self.oldlist = []
 		self.list.append(GeneralSetupEntryComponent("System",_("System setup"),_("Set up your system"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Antenna",_("Set up tuner"),_("Set up your tuner and search for channels"), ">"))
+		if not SystemInfo["IPTVSTB"]:
+			self.list.append(GeneralSetupEntryComponent("Antenna",_("Set up tuner"),_("Set up your tuner and search for channels"), ">"))
+		else:
+			self.list.append(GeneralSetupEntryComponent("IPTV Configuration",_("Set up tuner"),_("Set up your tuner and search for channels"), ">"))
 		self.list.append(GeneralSetupEntryComponent("TV",_("Set up basic TV options"),_("Set up your TV options"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Media",_("Set up pictures, music and movies"),_("Set up picture, music and movie player"), ">"))
 		#self.list.append(GeneralSetupEntryComponent("Mounts",_("Mount Setup"),_("Set up your mounts for network")))
@@ -581,8 +584,8 @@ class GeneralSetup(Screen):
 		elif selected == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
-		elif selected == _("Remote IP Channels"):
-			self.session.open(StreamingChannelFromServerScreen)
+		elif selected == _("Remote IP Channels") or selected == _("IPTV Configuration"):
+			self.session.open(RemoteTunerScanner)
 		elif selected == _("Tuner Configuration"):
 			self.session.open(NimSelection)
 		elif HAVE_POSITIONERSETUP and selected == _("Positioner Setup"):

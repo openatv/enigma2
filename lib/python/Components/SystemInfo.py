@@ -2,7 +2,7 @@ from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck
 from Tools.HardwareInfo import HardwareInfo
 
-from boxbranding import getMachineBuild, getBoxType
+from boxbranding import getMachineBuild, getMachineName, getBoxType
 
 SystemInfo = { }
 
@@ -28,6 +28,7 @@ def countFrontpanelLEDs():
 
 	return leds
 
+SystemInfo["IPTVSTB"] = getMachineName() in ('T1')
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
