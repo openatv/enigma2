@@ -427,7 +427,7 @@ class EPGFetcher(object):
                 timer["message"] = "Will record on %s" % config.plugins.icetv.device.label.value
             req.data["timers"] = [timer]
             res = req.put().json()
-            self.addLog("Timer updated OK")
+            self.addLog("Timer '%s' updated OK" % local_timer.name)
         except (IOError, RuntimeError, KeyError) as ex:
             msg = "Can not update timer: " + str(ex)
             if hasattr(ex, "response") and hasattr(ex.response, "text"):
@@ -463,7 +463,7 @@ class EPGFetcher(object):
                 res = req.post()
                 if "location" in res.headers:
                     local_timer.ice_timer_id = res.headers["location"].split("/")[-1]
-                self.addLog("Timer created OK")
+                self.addLog("Timer '%s' created OK" % local_timer.name)
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not upload timer: " + str(ex)
                 if hasattr(ex, "response") and hasattr(ex.response, "text"):
