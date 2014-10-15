@@ -1,5 +1,5 @@
 from time import time
-from boxbranding import getImageVersion, getImageDistro
+from boxbranding import getImageVersion
 
 from enigma import eTimer
 
@@ -64,7 +64,7 @@ class OnlineUpdateCheckPoller:
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)
-					status = urlopen('http://www.openvix.co.uk/feeds/%s/status' % getImageDistro()).read()
+					status = urlopen('http://www.openvix.co.uk/feeds/status').read()
 					if '404 Not Found' in status:
 						status = '1'
 					config.softwareupdate.updateisunstable.setValue(status)

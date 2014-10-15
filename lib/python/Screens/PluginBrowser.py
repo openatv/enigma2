@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion, getImageDistro
+from boxbranding import getImageVersion
 from urllib import urlopen
 import socket
 import os
@@ -329,7 +329,7 @@ class PluginDownloadBrowser(Screen):
 			currentTimeoutDefault = socket.getdefaulttimeout()
 			socket.setdefaulttimeout(3)
 			try:
-				config.softwareupdate.updateisunstable.setValue(urlopen('http://www.openvix.co.uk/feeds/%s/status' % getImageDistro()).read())
+				config.softwareupdate.updateisunstable.setValue(urlopen('http://www.openvix.co.uk/feeds/status').read())
 			except:
 				networkerror = True
 
