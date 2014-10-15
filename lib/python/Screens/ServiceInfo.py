@@ -113,6 +113,7 @@ class ServiceInfo(Screen):
 				refstr = _("N/A")
 			aspect = "-"
 			videocodec = "-"
+			videomode = "-"
 			resolution = "-"
 			if self.info:
 				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
@@ -127,10 +128,14 @@ class ServiceInfo(Screen):
 						aspect = "4:3"
 					else:
 						aspect = "16:9"
+				f = open("/proc/stb/video/videomode")
+				videomode = f.read()[:-1].replace('\n','')
+				f.close()
 
 			Labels = ( (_("Name"), name, TYPE_TEXT),
 					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 					(_("Videoformat"), aspect, TYPE_TEXT),
+					(_("Videomode"), videomode, TYPE_TEXT),
 					(_("Videosize"), resolution, TYPE_TEXT),
 					(_("Videocodec"), videocodec, TYPE_TEXT),
 					(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
