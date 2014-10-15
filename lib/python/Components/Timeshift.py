@@ -570,7 +570,7 @@ class InfoBarTimeshift:
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		# print 'saveTimeshiftActions'
-		# print 'action',action
+		# print 'action', action
 		if action == "savetimeshift":
 			self.SaveTimeshift()
 		elif action == "savetimeshiftandrecord":

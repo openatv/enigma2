@@ -4,7 +4,6 @@ from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
 
 from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock
@@ -13,6 +12,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -361,11 +361,11 @@ class EPGSelection(Screen, HelpableScreen):
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 			self['epgactions'].csel = self
 		if self.type == EPG_TYPE_GRAPH:
-			time_epoch=int(config.epgselection.graph_prevtimeperiod.value)
+			time_epoch = int(config.epgselection.graph_prevtimeperiod.value)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			time_epoch=int(config.epgselection.infobar_prevtimeperiod.value)
+			time_epoch = int(config.epgselection.infobar_prevtimeperiod.value)
 		else:
-			time_epoch=None
+			time_epoch = None
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.value, graphic=graphic)
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
@@ -424,19 +424,19 @@ class EPGSelection(Screen, HelpableScreen):
 	def getBouquetServices(self, bouquet):
 		services = []
 		servicelist = eServiceCenter.getInstance().list(bouquet)
-		if not servicelist is None:
+		if servicelist is not None:
 			while True:
 				service = servicelist.getNext()
-				if not service.valid(): #check if end of list
+				if not service.valid():  # check if end of list
 					break
-				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker): #ignore non playable services
+				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker):  # ignore non playable services
 					continue
 				services.append(ServiceReference(service))
 		return services
 
 	def LayoutFinish(self):
 		self['lab1'].show()
-		self.createTimer.start(800)
+		self.createTimer.start(100)
 
 	def onCreate(self):
 		if not HardwareInfo().is_nextgen():
@@ -848,7 +848,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def openIMDb(self):
 		try:
-			from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
+			from Plugins.Extensions.IMDb.plugin import IMDB
 			try:
 				cur = self['list'].getCurrent()
 				event = cur[0]
@@ -907,7 +907,6 @@ class EPGSelection(Screen, HelpableScreen):
 		global autopoller
 		global autotimer
 		try:
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			autopoller = AutoPoller()
@@ -944,7 +943,31 @@ class EPGSelection(Screen, HelpableScreen):
 		self.RecordTimerQuestion(True)
 
 	def editTimer(self, timer):
-		self.session.open(TimerEntry, timer)
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, timer)
+
+	def finishedEdit(self, answer):
+		if answer[0]:
+			entry = answer[1]
+			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+			success = False
+			if not timersanitycheck.check():
+				simulTimerList = timersanitycheck.getSimulTimerList()
+				if simulTimerList is not None:
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					if not timersanitycheck.check():
+						simulTimerList = timersanitycheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+					else:
+						success = True
+			else:
+				success = True
+			if success:
+				self.session.nav.RecordTimer.timeChanged(entry)
+# 		else:
+# 			print "Timeredit aborted"
 
 	def removeTimer(self, timer):
 		self.closeChoiceBoxDialog()
@@ -973,7 +996,7 @@ class EPGSelection(Screen, HelpableScreen):
 		x = evtpos[0] - self.ChoiceBoxDialog.instance.size().width()
 		if x < 0:
 			x = 0
-		y =  evtpos[1] + evth
+		y = evtpos[1] + evth
 		if y + menuh > self['list'].listHeight + listy:
 			y = evtpos[1] - menuh
 		print "[EPGSelection] recordTimerQuestionPos 2", x, screeny + y
@@ -1314,7 +1337,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def closeScreen(self):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
-			return # stop and do not continue.
+			return  # stop and do not continue.
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and self.StartRef and self.StartBouquet:
 				if ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.value) or
@@ -1506,7 +1529,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.NumberZapField += str(number)
 			self.handleServiceName()
-			self["number"].setText("Channel change\n"+self.zaptoservicename+'\n'+self.NumberZapField)
+			self["number"].setText("Channel change\n" + self.zaptoservicename + '\n' + self.NumberZapField)
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
 				self.doNumberZap()

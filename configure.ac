@@ -429,6 +429,7 @@ lib/python/Plugins/Extensions/FileCommander/addons/Makefile
 lib/python/Plugins/Extensions/FileCommander/pic/Makefile
 lib/python/Plugins/Extensions/FileCommander/images/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
+lib/python/Plugins/SystemPlugins/IceTV/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile

@@ -89,7 +89,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO,
 				checkOldTimers=False, dirname=None, tags=None,
 				descramble='notset', record_ecm='notset',
-				isAutoTimer=False, always_zap=False):
+				isAutoTimer=False, ice_timer_id=None, always_zap=False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:  # 2 weeks
@@ -104,9 +104,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.service_ref = serviceref
 		else:
 			self.service_ref = ServiceReference(None)
-		self.eit = eit
 		self.dontSave = False
-		if not description or not name:
+		if not description or not name or not eit:
 			evt = self.getEventFromEPG()
 			if evt:
 				if not description:
@@ -115,6 +114,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					description = evt.getExtendedDescription()
 				if not name:
 					name = evt.getEventName()
+				if not eit:
+					eit = evt.getEventId()
+		self.eit = eit
 		self.name = name
 		self.description = description
 		self.disabled = disabled
@@ -147,16 +149,20 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
 		self.isAutoTimer = isAutoTimer
+		self.ice_timer_id = ice_timer_id
 		self.wasInStandby = False
 
 		self.log_entries = []
 		self.resetState()
 
 	def __repr__(self):
+		ice = ""
+		if self.ice_timer_id:
+			ice = ", ice_timer_id=%s" % self.ice_timer_id
 		disabled = ""
 		if self.disabled:
 			disabled = ", Disabled"
-		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, disabled)
+		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, ice, disabled)
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -365,8 +371,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_rectimer_wakeup")
 
-			self.autostate = Screens.Standby.inStandby
-
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
@@ -447,7 +451,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
-			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and Screens.Standby.inStandby and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
 				self.keypress()  # this unbinds the keypress detection
 				if not Screens.Standby.inStandby:  # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
@@ -651,12 +655,15 @@ def createTimer(xml):
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
 	isAutoTimer = int(xml.get("isAutoTimer") or "0")
+	ice_timer_id = xml.get("ice_timer_id")
+	if ice_timer_id:
+		ice_timer_id = ice_timer_id.encode("utf-8")
 	name = xml.get("name").encode("utf-8")
 	# filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(
 		serviceref, begin, end, name, description, eit, disabled, justplay, afterevent,
 		dirname=location, tags=tags, descramble=descramble, record_ecm=record_ecm,
-		isAutoTimer=isAutoTimer, always_zap=always_zap)
+		isAutoTimer=isAutoTimer, ice_timer_id=ice_timer_id, always_zap=always_zap)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -807,6 +814,8 @@ class RecordTimer(timer.Timer):
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
+			if timer.ice_timer_id is not None:
+				list.append(' ice_timer_id="' + str(timer.ice_timer_id) + '"')
 			list.append('>\n')
 
 			for time, code, msg in timer.log_entries:
