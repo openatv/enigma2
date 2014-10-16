@@ -333,21 +333,22 @@ class GeneralSetup(Screen):
 
 ######## Tuner Menu ##############################
 	def Qtuner(self):
-		dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
-		dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 		self.sublist = []
-		if len(dvbs_nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
-			self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
-		if len(dvbt_nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
-		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+		if not SystemInfo["IPTVSTB"]:
+			dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
+			dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
+			if len(dvbs_nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
+				self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+			if len(dvbt_nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
+			self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+			if BLINDSCAN == True and len(nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
+			if HAVE_SATFINDER and len(nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		if REMOTEBOX == True:
 			self.sublist.append(QuickSubMenuEntryComponent("Remote IP Channels",_("Setup Channels Server IP"),_("Setup server IP for your IP channels")))
-		if BLINDSCAN == True and len(nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
-		if HAVE_SATFINDER and len(nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
@@ -414,7 +415,7 @@ class GeneralSetup(Screen):
 		elif selected == _("AV setup"):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
-		elif selected == _("Antenna"):
+		elif selected == _("Antenna" ) or selected == _("IPTV Configuration"):
 			self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif selected == _("Software Manager"):
@@ -584,7 +585,7 @@ class GeneralSetup(Screen):
 		elif selected == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
-		elif selected == _("Remote IP Channels") or selected == _("IPTV Configuration"):
+		elif selected == _("Remote IP Channels"):
 			self.session.open(RemoteTunerScanner)
 		elif selected == _("Tuner Configuration"):
 			self.session.open(NimSelection)
