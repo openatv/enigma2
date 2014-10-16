@@ -277,14 +277,3 @@ class EventViewEPGSelect(Screen, EventViewBase):
 				"openSingleServiceEPG": singleEPGCB,
 				"openMultiServiceEPG": multiEPGCB,
 			})
-
-class EventViewRecording(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, multiEPGCB=None, similarEPGCB=None):
-		Screen.__init__(self, session)
-		self.skinName = "EventView"
-		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
-		self["key_blue"].setText(_("Multi EPG"))
-		self["epgactions"] = ActionMap(["EventViewEPGActions"],
-			{
-				"openMultiServiceEPG": multiEPGCB,
-			})
