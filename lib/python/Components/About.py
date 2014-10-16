@@ -16,8 +16,7 @@ def getImageVersionString():
 		if tm.tm_year >= 2011:
 			return time.strftime("%Y-%m-%d %H:%M:%S", tm)
 	except:
-		pass
-	return _("unavailable")
+		return _("unavailable")
 
 def getEnigmaVersionString():
 	import enigma
@@ -39,8 +38,22 @@ def getImageTypeString():
 	try:
 		return open("/etc/issue").readlines()[-2].capitalize().strip()[:-6]
 	except:
-		pass
-	return _("undefined")
+		return _("undefined")
+
+def getCPUInfoString():
+	try:
+		cpu_count = 0
+		for line in open("/proc/cpuinfo").readlines():
+			line = line.replace("\t","").replace("\n","").split(":")
+			if line[0] == "system type":
+				processor = line[1].strip().split(" ")[0]
+			if line[0] == "cpu MHz":
+				cpu_speed = "%1.0f" % float(line[1].strip())
+				cpu_count += 1
+		return "%s %s MHz (%d %s)" % (processor, cpu_speed, cpu_count, cpu_count > 1 and "cores" or "core")
+	except:
+		return _("undefined")
+
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]
