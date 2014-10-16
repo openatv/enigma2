@@ -54,6 +54,5 @@ def getCPUInfoString():
 	except:
 		return _("undefined")
 
-
 # For modules that do "from About import about"
 about = sys.modules[__name__]
