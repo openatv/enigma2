@@ -788,30 +788,27 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (isPlayable)
 					{
 						//picon stuff
-						if (PyCallable_Check(m_GetPiconNameFunc))
+						if (PyCallable_Check(m_GetPiconNameFunc) and (m_column_width || piconPixmap))
 						{
 							eRect area = m_element_position[celServiceInfo];
-							if (m_column_width || piconPixmap)
+							/* PIcons are usually about 100:60. Make it a
+							 * bit wider in case the icons are diffently
+							 * shaped, and to add a bit of margin between
+							 * icon and text. */
+							const int iconWidth = area.height() * 9 / 5;
+							m_element_position[celServiceInfo].setLeft(area.left() + iconWidth);
+							m_element_position[celServiceInfo].setWidth(area.width() - iconWidth);
+							area = m_element_position[celServiceName];
+							xoffs += iconWidth;
+							if (piconPixmap)
 							{
-								/* PIcons are usually about 100:60. Make it a
-								 * bit wider in case the icons are diffently
-								 * shaped, and to add a bit of margin between
-								 * icon and text. */
-								const int iconWidth = area.height() * 9 / 5;
-								m_element_position[celServiceInfo].setLeft(area.left() + iconWidth);
-								m_element_position[celServiceInfo].setWidth(area.width() - iconWidth);
-								area = m_element_position[celServiceName];
-								xoffs += iconWidth;
-								if (piconPixmap)
-								{
-									area.moveBy(offset);
-									painter.clip(area);
-									painter.blitScale(piconPixmap,
-										eRect(area.left(), area.top(), iconWidth, area.height()),
-										area,
-										gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
-									painter.clippop();
-								}
+								area.moveBy(offset);
+								painter.clip(area);
+								painter.blitScale(piconPixmap,
+									eRect(area.left(), area.top(), iconWidth, area.height()),
+									area,
+									gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
+								painter.clippop();
 							}
 						}
 
