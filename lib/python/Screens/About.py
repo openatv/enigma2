@@ -45,9 +45,9 @@ class About(Screen):
 
 		AboutText = AboutHeader + "\n"
 
-		AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
-		AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
-		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
+		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
+		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
 		KernelVersion = _("Kernel version: ") + about.getKernelVersionString() + "\n"
 		self["KernelVersion"] = StaticText(KernelVersion)
