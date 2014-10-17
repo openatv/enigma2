@@ -773,7 +773,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							if (pRet)
 							{
 								if (PyString_Check(pRet))
-								{	
+								{
 									std::string piconFilename = PyString_AS_STRING(pRet);
 									if (!piconFilename.empty())
 									{
@@ -788,10 +788,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 												area,
 												gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
 											painter.clippop();
-										}
-									}
 								}
 							}
+						}
+
 						//service type marker stuff
 						if (m_servicetype_icon_mode)
 						{
@@ -854,6 +854,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 						}
 					}
+				}
+
 				if (flags & gPainter::RT_HALIGN_RIGHT)
 					para->realign(eTextPara::dirRight);
 				else if (flags & gPainter::RT_HALIGN_CENTER)
@@ -866,7 +868,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					eRect bbox = para->getBoundBox();
 					yoffs = (area.height() - bbox.height()) / 2 - bbox.top();
 				}
+
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
+			}
 			else if ((e == celFolderPixmap && m_cursor->flags & eServiceReference::isDirectory) ||
 				(e == celMarkerPixmap && m_cursor->flags & eServiceReference::isMarker &&
 				!(m_cursor->flags & eServiceReference::isNumberedMarker)))
@@ -888,6 +892,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					painter.clippop();
 				}
 			}
+		}
 		if (selected && (!local_style || !local_style->m_selection))
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
@@ -930,7 +935,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					ProgressbarBorderColor = m_color[serviceEventProgressbarBorderColorSelected];
 				else if (m_color_set[eventborderForegroundSelected])
 					ProgressbarBorderColor = m_color[eventborderForegroundSelected];
-				}
+			}
 			painter.setForegroundColor(ProgressbarBorderColor);
 
 			painter.fill(eRect(pb_xpos, pb_ypos,                              pb_width + 2 * PB_BorderWidth,  PB_BorderWidth));
@@ -938,7 +943,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth,             PB_BorderWidth,                      PB_Height));
 			painter.fill(eRect(pb_xpos + PB_BorderWidth + pb_width, pb_ypos + PB_BorderWidth, PB_BorderWidth, PB_Height));
 		}
+	}
 	painter.clippop();
+}
 
 void eListboxServiceContent::setIgnoreService( const eServiceReference &service )
 {
