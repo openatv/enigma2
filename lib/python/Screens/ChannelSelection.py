@@ -206,23 +206,23 @@ class ChannelContextMenu(Screen):
 					self.removeFunction = self.removeBouquet
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
-				if not csel.entry_marked:
-					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
-					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
-						if current.type != -1:
-							menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
-						if haveBouquets:
-							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
-						else:
-							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
-						if current_sel_flags & eServiceReference.isGroup:
-							append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
-							append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
-							append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level=2)
-						elif not current_sel_flags & eServiceReference.isMarker:
-							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level=2)
-				else:
+				if csel.movemode:
 					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level=0, key="6")
+				else:
+					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
+				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
+					if current.type != -1:
+						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
+					if haveBouquets:
+						append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
+					else:
+						append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
+					if current_sel_flags & eServiceReference.isGroup:
+						append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level=2)
+					elif not current_sel_flags & eServiceReference.isMarker:
+						append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level=2)
 			else:
 				if csel.bouquet_mark_edit == EDIT_BOUQUET:
 					if haveBouquets:
@@ -1208,7 +1208,6 @@ class ChannelSelectionBase(Screen):
 
 	def showAllServices(self):
 		if not self.pathChangeDisabled:
-			self.movemode and self.toggleMoveMode()
 			refstr = '%s ORDER BY name'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
@@ -1220,7 +1219,6 @@ class ChannelSelectionBase(Screen):
 
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
-			self.movemode and self.toggleMoveMode()
 			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
@@ -1298,7 +1296,6 @@ class ChannelSelectionBase(Screen):
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
-			self.movemode and self.toggleMoveMode()
 			refstr = '%s FROM PROVIDERS ORDER BY name'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
@@ -1319,7 +1316,6 @@ class ChannelSelectionBase(Screen):
 
 	def changeBouquet(self, direction):
 		if not self.pathChangeDisabled:
-			self.movemode and self.toggleMoveMode()
 			if len(self.servicePath) > 1:
 				#when enter satellite root list we must do some magic stuff..
 				ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types))
@@ -1380,7 +1376,6 @@ class ChannelSelectionBase(Screen):
 
 	def showFavourites(self):
 		if not self.pathChangeDisabled:
-			self.movemode and self.toggleMoveMode()
 			if not self.preEnterPath(self.bouquet_rootstr):
 				if self.isBasePathEqual(self.bouquet_root):
 					self.pathUp()
@@ -1671,7 +1666,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if not self.startServiceRef and not doClose:
 			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		ref = self.getCurrentSelection()
-		if self.movemode:
+		if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			if Components.ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
