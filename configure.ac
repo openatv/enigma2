@@ -106,6 +106,7 @@ AM_CONDITIONAL(GI9196M, test "$BOXTYPE" == gi9196m)
 AM_CONDITIONAL(GI9196LITE, test "$BOXTYPE" == gi9196lite)
 AM_CONDITIONAL(MIXOSF7, test "$BOXTYPE" == mixosf7)
 AM_CONDITIONAL(ENFINITY, test "$BOXTYPE" == enfinity)
+AM_CONDITIONAL(X2PLUS, test "$BOXTYPE" == x2plus)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
@@ -345,7 +346,7 @@ if test "$BOXTYPE" == "formuler1" -o "$BOXTYPE" == "formuler3"; then
 	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 fi
 
-if test "$BOXTYPE" == "ew7358" ; then
+if test "$BOXTYPE" == "ew7358" -o  "$BOXTYPE" == "ew7356"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
