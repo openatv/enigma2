@@ -16,7 +16,8 @@ def getImageVersionString():
 		if tm.tm_year >= 2011:
 			return time.strftime("%Y-%m-%d %H:%M:%S", tm)
 	except:
-		return _("unavailable")
+		pass
+	return _("unavailable")
 
 def getEnigmaVersionString():
 	import enigma
@@ -50,7 +51,7 @@ def getCPUInfoString():
 		        if line[0] == "cpu MHz":
 		                cpu_speed = "%1.0f" % float(line[1])
 		                cpu_count += 1
-		print "%s %s MHz (%d %s)" % (processor, cpu_speed, cpu_count, cpu_count > 1 and "cores" or "core")
+		return "%s %s MHz (%d %s)" % (processor, cpu_speed, cpu_count, cpu_count > 1 and "cores" or "core")
 	except:
 		return _("undefined")
 
