@@ -47,14 +47,35 @@ def initWeatherConfig():
 	config.plugins.MetrixWeather.currentWeatherTemp = ConfigText(default="0")
 
 	config.plugins.MetrixWeather.forecastTodayCode = ConfigText(default="(")
+	config.plugins.MetrixWeather.forecastTodayDay = ConfigText(default="N/A")
 	config.plugins.MetrixWeather.forecastTodayText = ConfigText(default="N/A")
 	config.plugins.MetrixWeather.forecastTodayTempMin = ConfigText(default="0")
 	config.plugins.MetrixWeather.forecastTodayTempMax = ConfigText(default="0")
 
 	config.plugins.MetrixWeather.forecastTomorrowCode = ConfigText(default="(")
+	config.plugins.MetrixWeather.forecastTomorrowDay = ConfigText(default="N/A")
 	config.plugins.MetrixWeather.forecastTomorrowText = ConfigText(default="N/A")
 	config.plugins.MetrixWeather.forecastTomorrowTempMin = ConfigText(default="0")
 	config.plugins.MetrixWeather.forecastTomorrowTempMax = ConfigText(default="0")
+	
+	config.plugins.MetrixWeather.forecast2daysCode = ConfigText(default="(")
+	config.plugins.MetrixWeather.forecast2daysDay = ConfigText(default="N/A")
+	config.plugins.MetrixWeather.forecast2daysText = ConfigText(default="N/A")
+	config.plugins.MetrixWeather.forecast2daysTempMin = ConfigText(default="0")
+	config.plugins.MetrixWeather.forecast2daysTempMax = ConfigText(default="0")
+
+	config.plugins.MetrixWeather.forecast3daysCode = ConfigText(default="(")
+	config.plugins.MetrixWeather.forecast3daysDay = ConfigText(default="N/A")
+	config.plugins.MetrixWeather.forecast3daysText = ConfigText(default="N/A")
+	config.plugins.MetrixWeather.forecast3daysTempMin = ConfigText(default="0")
+	config.plugins.MetrixWeather.forecast3daysTempMax = ConfigText(default="0")
+
+	config.plugins.MetrixWeather.forecast4daysCode = ConfigText(default="(")
+	config.plugins.MetrixWeather.forecast4daysDay = ConfigText(default="N/A")
+	config.plugins.MetrixWeather.forecast4daysText = ConfigText(default="N/A")
+	config.plugins.MetrixWeather.forecast4daysTempMin = ConfigText(default="0")
+	config.plugins.MetrixWeather.forecast4daysTempMax = ConfigText(default="0")
+
 	config.plugins.MetrixWeather.save()
 	configfile.save()
 
@@ -111,6 +132,8 @@ class OMMetrixWeatherWidget(Renderer):
 			config.plugins.MetrixWeather.forecastTodayTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
 			currentWeatherText = currentWeather.getAttributeNode('text')
 			config.plugins.MetrixWeather.forecastTodayText.value = currentWeatherText.nodeValue
+			currentWeatherDay = currentWeather.getAttributeNode('day')
+			config.plugins.MetrixWeather.forecastTodayDay.value = currentWeatherDay.nodeValue
 	
 			currentWeather = dom.getElementsByTagName('yweather:forecast')[1]
 			currentWeatherCode = currentWeather.getAttributeNode('code')
@@ -121,6 +144,45 @@ class OMMetrixWeatherWidget(Renderer):
 			config.plugins.MetrixWeather.forecastTomorrowTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
 			currentWeatherText = currentWeather.getAttributeNode('text')
 			config.plugins.MetrixWeather.forecastTomorrowText.value = currentWeatherText.nodeValue
+			currentWeatherDay = currentWeather.getAttributeNode('day')
+			config.plugins.MetrixWeather.forecastTomorrowDay.value = currentWeatherDay.nodeValue
+
+			currentWeather = dom.getElementsByTagName('yweather:forecast')[2]
+			currentWeatherCode = currentWeather.getAttributeNode('code')
+			config.plugins.MetrixWeather.forecast2daysCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
+			currentWeatherTemp = currentWeather.getAttributeNode('high')
+			config.plugins.MetrixWeather.forecast2daysTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
+			currentWeatherTemp = currentWeather.getAttributeNode('low')
+			config.plugins.MetrixWeather.forecast2daysTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
+			currentWeatherText = currentWeather.getAttributeNode('text')
+			config.plugins.MetrixWeather.forecast2daysText.value = currentWeatherText.nodeValue
+			currentWeatherDay = currentWeather.getAttributeNode('day')
+			config.plugins.MetrixWeather.forecast2daysDay.value = currentWeatherDay.nodeValue
+
+			currentWeather = dom.getElementsByTagName('yweather:forecast')[3]
+			currentWeatherCode = currentWeather.getAttributeNode('code')
+			config.plugins.MetrixWeather.forecast3daysCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
+			currentWeatherTemp = currentWeather.getAttributeNode('high')
+			config.plugins.MetrixWeather.forecast3daysTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
+			currentWeatherTemp = currentWeather.getAttributeNode('low')
+			config.plugins.MetrixWeather.forecast3daysTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
+			currentWeatherText = currentWeather.getAttributeNode('text')
+			config.plugins.MetrixWeather.forecast3daysText.value = currentWeatherText.nodeValue
+			currentWeatherDay = currentWeather.getAttributeNode('day')
+			config.plugins.MetrixWeather.forecast3daysDay.value = currentWeatherDay.nodeValue
+
+			currentWeather = dom.getElementsByTagName('yweather:forecast')[4]
+			currentWeatherCode = currentWeather.getAttributeNode('code')
+			config.plugins.MetrixWeather.forecast4daysCode.value = self.ConvertCondition(currentWeatherCode.nodeValue)
+			currentWeatherTemp = currentWeather.getAttributeNode('high')
+			config.plugins.MetrixWeather.forecast4daysTempMax.value = self.getTemp(currentWeatherTemp.nodeValue)
+			currentWeatherTemp = currentWeather.getAttributeNode('low')
+			config.plugins.MetrixWeather.forecast4daysTempMin.value = self.getTemp(currentWeatherTemp.nodeValue)
+			currentWeatherText = currentWeather.getAttributeNode('text')
+			config.plugins.MetrixWeather.forecast4daysText.value = currentWeatherText.nodeValue
+			currentWeatherDay = currentWeather.getAttributeNode('day')
+			config.plugins.MetrixWeather.forecast4daysDay.value = currentWeatherDay.nodeValue
+
 			config.plugins.MetrixWeather.save()
 			configfile.save()
 			
