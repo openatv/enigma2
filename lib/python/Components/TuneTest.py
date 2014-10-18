@@ -1,4 +1,4 @@
-from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParameters, eDVBResourceManager, eTimer
+from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParameters, eDVBResourceManager, eTimer
 
 class Tuner:
 	def __init__(self, frontend, ignore_rotor=False):
@@ -9,7 +9,7 @@ class Tuner:
 	#                    0         1             2         3       4         5       6        7          8       9      10    11
 	def tune(self, transponder):
 		if self.frontend:
-			print "tuning to transponder with data", transponder
+			print "[TuneTest] tuning to transponder with data", transponder
 			parm = eDVBFrontendParametersSatellite()
 			parm.frequency = transponder[0] * 1000
 			parm.symbol_rate = transponder[1] * 1000
@@ -35,7 +35,7 @@ class Tuner:
 		modulation = 2, transmission = 2, guard = 4,
 		hierarchy = 4, system = 0, plpid = 0):
 		if self.frontend:
-			print "tuning to transponder with data", [frequency, inversion, bandwidth, fechigh, feclow, modulation, transmission, guard, hierarchy, system, plpid]
+			print "[TuneTest] tuning to transponder with data", [frequency, inversion, bandwidth, fechigh, feclow, modulation, transmission, guard, hierarchy, system, plpid]
 			parm = eDVBFrontendParametersTerrestrial()
 			parm.frequency = frequency
 			parm.inversion = inversion
@@ -54,6 +54,25 @@ class Tuner:
 		if self.frontend:
 			feparm = eDVBFrontendParameters()
 			feparm.setDVBT(transponderObj)
+			self.lastparm = feparm
+			self.frontend.tune(feparm)
+
+	def tuneCab(self, transponder):
+		if self.frontend:
+			print "[TuneTest] tuning to transponder with data", transponder
+			parm = eDVBFrontendParametersCable()
+			parm.frequency = transponder[0] 
+			parm.symbol_rate = transponder[1]
+			parm.modulation = transponder[2] 
+			parm.fec_inner = transponder[3] 
+			parm.inversion = transponder[4] 
+			#parm.system = transponder[5]
+			self.tuneCabObj(parm)
+			
+	def tuneCabObj(self, transponderObj):
+		if self.frontend:
+			feparm = eDVBFrontendParameters()
+			feparm.setDVBC(transponderObj)
 			self.lastparm = feparm
 			self.frontend.tune(feparm)
 
