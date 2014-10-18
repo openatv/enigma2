@@ -96,19 +96,19 @@ def isFileSystemSupported(filesystem):
 class GeneralSetup(Screen):
 	skin = """
 		<screen name="GeneralSetup" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
-		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
-		<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
-		<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
-		<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
-		<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
-		<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
-		<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<eLabel position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
-		<eLabel position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
-		<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
-		<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
+			<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
+			<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
+			<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
+			<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
+			<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
+			<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
+			<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<eLabel position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
+			<eLabel position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
+			<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
+			<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
 		</screen> """
 	
 	ALLOW_SUSPEND = True
