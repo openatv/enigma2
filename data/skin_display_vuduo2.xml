@@ -108,7 +108,7 @@
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
 		<panel position="top" size="*,16">
 			<widget source="session.CurrentService" render="Label" position="right" size="48,*" font="Bigger" halign="right" noWrap="1">
-				<convert type="ServicePosition">Remaining,ShowHours,Negate,ShowNoSeconds</convert>
+				<convert type="ServicePosition">Remaining,ShowHours,Plus,ShowNoSeconds</convert>
 			</widget>
 			<widget source="session.CurrentService" render="Label" position="fill" size="64,*" font="Bigger"  noWrap="1">
 				<convert type="ServicePosition">Position,ShowHours</convert>
