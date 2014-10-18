@@ -14,49 +14,49 @@ class Language:
 		self.langlist = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
-		self.addLanguage("Arabic",      "ar", "AE")
-		self.addLanguage("Български",   "bg", "BG")
-		self.addLanguage("Català",      "ca", "AD")
-		self.addLanguage("Česky",       "cs", "CZ")
-		self.addLanguage("Dansk",       "da", "DK")
-		self.addLanguage("Deutsch",     "de", "DE")
-		self.addLanguage("Ελληνικά",    "el", "GR")
-		self.addLanguage("English",     "en", "EN")
-		self.addLanguage("Español",     "es", "ES")
-		self.addLanguage("Eesti",       "et", "EE")
-		self.addLanguage("Persian",     "fa", "IR")
-		self.addLanguage("Suomi",       "fi", "FI")
-		self.addLanguage("Français",    "fr", "FR")
-		self.addLanguage("Frysk",       "fy", "NL")
-		self.addLanguage("Hebrew",      "he", "IL")
-		self.addLanguage("Hrvatski",    "hr", "HR")
-		self.addLanguage("Magyar",      "hu", "HU")
-		self.addLanguage("Íslenska",    "is", "IS")
-		self.addLanguage("Italiano",    "it", "IT")
-		self.addLanguage("Kurdish",	"ku", "KU")
-		self.addLanguage("Lietuvių",    "lt", "LT")
-		self.addLanguage("Latviešu",    "lv", "LV")
-		self.addLanguage("Nederlands",  "nl", "NL")
-		self.addLanguage("Norsk Bokmål","nb", "NO")
-		self.addLanguage("Norsk",       "no", "NO")
-		self.addLanguage("Polski",      "pl", "PL")
-		self.addLanguage("Português",   "pt", "PT")
-		self.addLanguage("Português do Brasil",  "pt", "BR")
-		self.addLanguage("Romanian",    "ro", "RO")
-		self.addLanguage("Русский",     "ru", "RU")
-		self.addLanguage("Slovensky",   "sk", "SK")
-		self.addLanguage("Slovenščina", "sl", "SI")
-		self.addLanguage("Srpski",      "sr", "YU")
-		self.addLanguage("Svenska",     "sv", "SE")
-		self.addLanguage("ภาษาไทย",     "th", "TH")
-		self.addLanguage("Türkçe",      "tr", "TR")
-		self.addLanguage("Ukrainian",   "uk", "UA")
+		self.addLanguage("Arabic",      "ar", "AE", "ISO-8859-15")
+		self.addLanguage("Български",   "bg", "BG", "ISO-8859-15")
+		self.addLanguage("Català",      "ca", "AD", "ISO-8859-15")
+		self.addLanguage("Česky",       "cs", "CZ", "ISO-8859-15")
+		self.addLanguage("Dansk",       "da", "DK", "ISO-8859-15")
+		self.addLanguage("Deutsch",     "de", "DE", "ISO-8859-15")
+		self.addLanguage("Ελληνικά",    "el", "GR", "ISO-8859-7")
+		self.addLanguage("English",     "en", "EN", "ISO-8859-15")
+		self.addLanguage("Español",     "es", "ES", "ISO-8859-15")
+		self.addLanguage("Eesti",       "et", "EE", "ISO-8859-15")
+		self.addLanguage("Persian",     "fa", "IR", "ISO-8859-15")
+		self.addLanguage("Suomi",       "fi", "FI", "ISO-8859-15")
+		self.addLanguage("Français",    "fr", "FR", "ISO-8859-15")
+		self.addLanguage("Frysk",       "fy", "NL", "ISO-8859-15")
+		self.addLanguage("Hebrew",      "he", "IL", "ISO-8859-15")
+		self.addLanguage("Hrvatski",    "hr", "HR", "ISO-8859-15")
+		self.addLanguage("Magyar",      "hu", "HU", "ISO-8859-15")
+		self.addLanguage("Íslenska",    "is", "IS", "ISO-8859-15")
+		self.addLanguage("Italiano",    "it", "IT", "ISO-8859-15")
+		self.addLanguage("Kurdish",     "ku", "KU", "ISO-8859-15")
+		self.addLanguage("Lietuvių",    "lt", "LT", "ISO-8859-15")
+		self.addLanguage("Latviešu",    "lv", "LV", "ISO-8859-15")
+		self.addLanguage("Nederlands",  "nl", "NL", "ISO-8859-15")
+		self.addLanguage("Norsk Bokmål","nb", "NO", "ISO-8859-15")
+		self.addLanguage("Norsk",       "no", "NO", "ISO-8859-15")
+		self.addLanguage("Polski",      "pl", "PL", "ISO-8859-15")
+		self.addLanguage("Português",   "pt", "PT", "ISO-8859-15")
+		self.addLanguage("Português do Brasil",  "pt", "BR", "ISO-8859-15")
+		self.addLanguage("Romanian",    "ro", "RO", "ISO-8859-15")
+		self.addLanguage("Русский",     "ru", "RU", "ISO-8859-15")
+		self.addLanguage("Slovensky",   "sk", "SK", "ISO-8859-15")
+		self.addLanguage("Slovenščina", "sl", "SI", "ISO-8859-15")
+		self.addLanguage("Srpski",      "sr", "YU", "ISO-8859-15")
+		self.addLanguage("Svenska",     "sv", "SE", "ISO-8859-15")
+		self.addLanguage("ภาษาไทย",     "th", "TH", "ISO-8859-15")
+		self.addLanguage("Türkçe",      "tr", "TR", "ISO-8859-15")
+		self.addLanguage("Ukrainian",   "uk", "UA", "ISO-8859-15")
 
 		self.callbacks = []
 
-	def addLanguage(self, name, lang, country):
+	def addLanguage(self, name, lang, country, encoding):
 		try:
-			self.lang[str(lang + "_" + country)] = ((name, lang, country))
+			self.lang[str(lang + "_" + country)] = ((name, lang, country, encoding))
 			self.langlist.append(str(lang + "_" + country))
 		except:
 			print "Language " + str(name) + " not found"
@@ -81,6 +81,7 @@ class Language:
 				pass
 		# HACK: sometimes python 2.7 reverts to the LC_TIME environment value, so make sure it has the correct value
 		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
+		os.environ["GST_SUBTITLE_ENCODING"] = self.getGStreamerSubtitleEncoding()
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
@@ -108,6 +109,12 @@ class Language:
 			return str(self.lang[self.activeLanguage][1]) + "_" + str(self.lang[self.activeLanguage][2])
 		except:
 			return ''
+
+	def getGStreamerSubtitleEncoding(self):
+		try:
+			return str(self.lang[self.activeLanguage][3])
+		except:
+			return 'ISO-8859-15'
 
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
