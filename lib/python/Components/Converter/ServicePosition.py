@@ -18,6 +18,7 @@ class ServicePosition(Poll, Converter, object):
 		type = args.pop(0)
 
 		self.negate = 'Negate' in args
+		self.plus = 'Plus' in args
 		self.detailed = 'Detailed' in args
 		self.showHours = 'ShowHours' in args
 		self.showNoSeconds = 'ShowNoSeconds' in args
@@ -99,8 +100,10 @@ class ServicePosition(Poll, Converter, object):
 
 			if self.negate: l = -l
 
+			sign = ""
 			if l >= 0:
-				sign = ""
+				if self.plus:
+					sign = "+"
 			else:
 				l = -l
 				sign = "-"
