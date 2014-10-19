@@ -907,6 +907,20 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case CI_D:
 				fprintf(input, "CI3");
 				break;
+#if DM7080
+			case TUNER_A:
+				fprintf(input, "A1");
+				break;
+			case TUNER_B:
+				fprintf(input, "A2");
+				break;
+			case TUNER_C:
+				fprintf(input, "B");
+				break;
+			case TUNER_D:
+				fprintf(input, "C");
+				break;
+#else
 			case TUNER_A:
 				fprintf(input, "A");
 				break;
@@ -919,6 +933,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case TUNER_D:
 				fprintf(input, "D");
 				break;
+#endif
 			default:
 				eDebug("setInputSource for input %d failed!!!\n", (int)source);
 				break;
@@ -1719,6 +1734,20 @@ int eDVBCISlot::setSource(data_source source)
 			case CI_D:
 				fprintf(ci, "CI3");
 				break;
+#if DM7080
+			case TUNER_A:
+				fprintf(ci, "A1");
+				break;
+			case TUNER_B:
+				fprintf(ci, "A2");
+				break;
+			case TUNER_C:
+				fprintf(ci, "B");
+				break;
+			case TUNER_D:
+				fprintf(ci, "C");
+				break;
+#else
 			case TUNER_A:
 				fprintf(ci, "A");
 				break;
@@ -1728,9 +1757,10 @@ int eDVBCISlot::setSource(data_source source)
 			case TUNER_C:
 				fprintf(ci, "C");
 				break;
-				case TUNER_D:
+			case TUNER_D:
 				fprintf(ci, "D");
 				break;
+#endif
 			default:
 				eDebug("CI Slot %d: setSource %d failed!!!\n", getSlotID(), (int)source);
 				break;
