@@ -1299,7 +1299,7 @@ int eDVBCISlot::setSource(data_source source)
 			case TUNER_C:
 				fprintf(ci, "C");
 				break;
-				case TUNER_D:
+			case TUNER_D:
 				fprintf(ci, "D");
 				break;
 			default:
