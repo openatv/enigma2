@@ -1705,6 +1705,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.startServiceRef = None
 					self.startRoot = None
 					self.correctChannelNumber()
+					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.close(ref)
 
