@@ -300,7 +300,7 @@ fi
 AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 
 if test "$BOXTYPE" == "dm7080"; then
-	AC_DEFINE(DM7080, 1,[define BOXTYPE DM7080])
+	AC_DEFINE(TUNER_DM7080, 1,[define BOXTYPE DM7080])
 fi
 
 if test "$BOXTYPE" == "azboxme" -o "$BOXTYPE" == "azboxminime"; then

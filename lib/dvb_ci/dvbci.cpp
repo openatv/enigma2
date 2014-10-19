@@ -907,7 +907,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case CI_D:
 				fprintf(input, "CI3");
 				break;
-#if DM7080
+#if TUNER_DM7080
 			case TUNER_A:
 				fprintf(input, "A1");
 				break;
@@ -1734,7 +1734,7 @@ int eDVBCISlot::setSource(data_source source)
 			case CI_D:
 				fprintf(ci, "CI3");
 				break;
-#if DM7080
+#if TUNER_DM7080
 			case TUNER_A:
 				fprintf(ci, "A1");
 				break;
