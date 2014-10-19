@@ -62,7 +62,7 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Sleep"), "sleep", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", ""),
-	(_("F1/LAN"), "f1", "Module/Screens.NetworkSetup/NetworkAdapterSelection"),
+	(_("F1/LAN"), "f1", "Infobar/showNetworkMounts"),
 	(_("F1/LAN long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
 	(_("F2 long"), "f2_long", ""),
@@ -145,6 +145,7 @@ def getHotkeyFunctions():
 	for plugin in plugins.getPluginsForMenu("scan"):
 		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
 	hotkeyFunctions.append((_("Network setup"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
+	hotkeyFunctions.append((_("Network menu"), "Infobar/showNetworkMounts", "Setup"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
