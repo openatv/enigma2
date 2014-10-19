@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
@@ -8,6 +9,18 @@ from sys import maxint
 
 
 class HelpMenu(Screen, Rc):
+	helpText = """Help Screen
+
+Brief help information for buttons in your current context.
+
+Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help.
+
+Other buttons will jump to the help for that button, if there is help.
+
+A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s).
+
+The order and grouping of the help information list can be controlled using MENU>Setup>System>GUI Setup>Help screen sort order."""
+
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		Rc.__init__(self)
@@ -37,6 +50,11 @@ class HelpMenu(Screen, Rc):
 			{
 				"ignore": lambda: 1,
 			}, 1)
+
+		self["helpActions"] = ActionMap(["HelpActions"],
+			{
+				"displayHelp": self.showHelp,
+		})
 
 		self.onLayoutFinish.append(self.doOnLayoutFinish)
 
@@ -75,6 +93,9 @@ class HelpMenu(Screen, Rc):
 
 		self["longshift_key0"].setText(longText[0])
 		self["longshift_key1"].setText(longText[1])
+
+	def showHelp(self):
+		self.session.open(MessageBox, _(HelpMenu.helpText), type=MessageBox.TYPE_INFO)
 
 
 class HelpableScreen:
