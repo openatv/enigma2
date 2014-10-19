@@ -29,11 +29,10 @@ The order and grouping of the help information list can be controlled using MENU
 		self["longshift_key0"] = Label("")
 		self["longshift_key1"] = Label("")
 
-		self["actions"] = ActionMap(["WizardActions"],
-			{
-				"ok": self["list"].ok,
-				"back": self.close,
-			}, -1)
+		self["actions"] = ActionMap(["WizardActions"], {
+			"ok": self["list"].ok,
+			"back": self.close,
+		}, -1)
 
 		# Wildcard binding with slightly higher priority than
 		# the wildcard bindings in
@@ -46,14 +45,12 @@ The order and grouping of the help information list can be controlled using MENU
 		# Ignore keypress breaks for the keys in the
 		# ListboxActions context.
 
-		self["listboxFilterActions"] = ActionMap(["ListboxHelpMenuActions"],
-			{
-				"ignore": lambda: 1,
-			}, 1)
+		self["listboxFilterActions"] = ActionMap(["ListboxHelpMenuActions"], {
+			"ignore": lambda: 1,
+		}, 1)
 
-		self["helpActions"] = ActionMap(["HelpActions"],
-			{
-				"displayHelp": self.showHelp,
+		self["helpActions"] = ActionMap(["HelpActions"], {
+			"displayHelp": self.showHelp,
 		})
 
 		self.onLayoutFinish.append(self.doOnLayoutFinish)
@@ -100,9 +97,8 @@ The order and grouping of the help information list can be controlled using MENU
 
 class HelpableScreen:
 	def __init__(self):
-		self["helpActions"] = ActionMap(["HelpActions"],
-			{
-				"displayHelp": self.showHelp,
+		self["helpActions"] = ActionMap(["HelpActions"], {
+			"displayHelp": self.showHelp,
 		})
 
 	def showHelp(self):
