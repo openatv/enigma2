@@ -32,7 +32,7 @@ public:
 	void setStreamMode(int);
 	void setScatterGather(iFilePushScatterGather *);
 
-	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
+	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped, evtFlush };
 	Signal1<void,int> m_event;
 
 		/* you can send private events if you want */

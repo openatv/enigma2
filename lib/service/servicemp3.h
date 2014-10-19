@@ -298,7 +298,11 @@ private:
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void playbinNotifySource(GObject *object, GParamSpec *unused, gpointer user_data);
+#if GST_VERSION_MAJOR < 1
 	static gint match_sinktype(GstElement *element, gpointer type);
+#else
+	static gint match_sinktype(const GValue *velement, const gchar *type);
+#endif
 	static void handleElementAdded(GstBin *bin, GstElement *element, gpointer user_data);
 
 	struct subtitle_page_t

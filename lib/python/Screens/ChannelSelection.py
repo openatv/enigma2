@@ -140,7 +140,7 @@ class ChannelContextMenu(Screen):
 		self.parentalControlEnabled = config.ParentalControl.configured.value and config.ParentalControl.servicepinactive.value
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
 			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level=2)
-		if csel.bouquet_mark_edit == OFF and not csel.movemode:
+		if csel.bouquet_mark_edit == OFF and not csel.entry_marked:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
@@ -209,23 +209,23 @@ class ChannelContextMenu(Screen):
 					self.removeFunction = self.removeBouquet
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
-				if not csel.movemode:
-					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
-					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
-						if current.type != -1:
-							menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
-						if haveBouquets:
-							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
-						else:
-							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
-						if current_sel_flags & eServiceReference.isGroup:
-							append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
-							append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
-							append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level=2)
-						elif not current_sel_flags & eServiceReference.isMarker:
-							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level=2)
-				else:
+				if csel.movemode:
 					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level=0, key="6")
+				else:
+					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
+				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
+					if current.type != -1:
+						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
+					if haveBouquets:
+						append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
+					else:
+						append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
+					if current_sel_flags & eServiceReference.isGroup:
+						append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level=2)
+					elif not current_sel_flags & eServiceReference.isMarker:
+						append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level=2)
 			else:
 				if csel.bouquet_mark_edit == EDIT_BOUQUET:
 					if haveBouquets:
@@ -416,7 +416,7 @@ class ChannelContextMenu(Screen):
 			self.close(closeBouquetSelection) # close bouquet selection
 
 	def renameEntry(self):
-		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.movemode:
+		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and not self.csel.entry_marked:
 			self.csel.renameEntry()
 			self.close()
 		else:
@@ -483,7 +483,7 @@ class ChannelContextMenu(Screen):
 
 	def findCurrentlyPlayed(self):
 		sel = self.csel.getCurrentSelection()
-		if sel and sel.valid() and not self.csel.movemode:
+		if sel and sel.valid() and not self.csel.entry_marked:
 			currentPlayingService = (hasattr(self.csel, "dopipzap") and self.csel.dopipzap) and self.session.pip.getCurrentService() or self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.csel.servicelist.setCurrent(currentPlayingService, adjust=False)
 			if self.csel.getCurrentSelection() != currentPlayingService:
@@ -567,7 +567,6 @@ class ChannelSelectionEPG:
 class ChannelSelectionEdit:
 	def __init__(self):
 		self.entry_marked = False
-		self.movemode = False
 		self.bouquet_mark_edit = OFF
 		self.mutableList = None
 		self.__marked = [ ]
@@ -951,7 +950,6 @@ class ChannelSelectionEdit:
 			if self.entry_marked:
 				self.toggleMoveMarked() # unmark current entry
 			self.movemode = False
-			self.pathChangeDisabled = False # re-enable path change
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 			self.mutableList = None
 			self.setTitle(self.saved_title)
@@ -961,7 +959,6 @@ class ChannelSelectionEdit:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
 			select and self.toggleMoveMarked()
-			self.pathChangeDisabled = True # no path change allowed in movemode
 			self.saved_title = self.getTitle()
 			pos = self.saved_title.find(')')
 			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
@@ -977,9 +974,11 @@ class ChannelSelectionEdit:
 		if self.entry_marked:
 			self.servicelist.setCurrentMarked(False)
 			self.entry_marked = False
+			self.pathChangeDisabled = False # re-enable path change
 		else:
 			self.servicelist.setCurrentMarked(True)
 			self.entry_marked = True
+			self.pathChangeDisabled = True # no path change allowed in movemod
 
 	def doContext(self):
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
@@ -1031,8 +1030,8 @@ class ChannelSelectionBase(Screen):
 
 		self.mode = MODE_TV
 		self.dopipzap = False
-
 		self.pathChangeDisabled = False
+		self.movemode = False
 
 		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"],
 			{
@@ -1686,7 +1685,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if not self.startServiceRef and not doClose:
 			self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		ref = self.getCurrentSelection()
-		if self.movemode:
+		if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			if Components.ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
@@ -1706,6 +1705,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.startServiceRef = None
 					self.startRoot = None
 					self.correctChannelNumber()
+					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.close(ref)
 

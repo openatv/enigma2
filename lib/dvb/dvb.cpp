@@ -1555,6 +1555,11 @@ void eDVBChannel::pvrEvent(int event)
 			stop();
 		}
 		break;
+	case eFilePushThread::evtFlush:
+		eDebug("eDVBChannel: pvrEvent evtFlush");
+		if (m_decoder_demux)
+			m_decoder_demux->get().flush();
+		break;
 	case eFilePushThread::evtUser: /* start */
 		eDebug("SOF");
 		m_event(this, evtSOF);

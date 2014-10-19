@@ -28,6 +28,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			list.append(self.singleSatEntry)
 			if nim.diseqcA.value in ("360", "560"):
 				list.append(getConfigListEntry(_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB))
+			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 

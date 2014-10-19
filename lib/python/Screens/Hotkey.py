@@ -69,6 +69,7 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Context"), "contextmenu", ""),
+	(_("Recall"), "refresh", ""),
 	(_("Home"), "home", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", "")]
@@ -109,15 +110,15 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch channel up"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch channel down"), "Infobar/switchChannelDown", "InfoBar"))
-	hotkeyFunctions.append((_("Open service list"), "Infobar/openServiceList", "InfoBar"))
-	hotkeyFunctions.append((_("Open favourites list"), "Infobar/openFavouritesList", "InfoBar"))
+	hotkeyFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
+	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
-	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
-	hotkeyFunctions.append((_("Open single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Open multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Open Audioselection"), "Infobar/audioSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
+	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
 	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
@@ -128,11 +129,11 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Start timeshift"), "Infobar/startTimeshift", "InfoBar"))
 	hotkeyFunctions.append((_("Stop timeshift"), "Infobar/stopTimeshift", "InfoBar"))
 	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
-	hotkeyFunctions.append((_("Open subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Open subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Show InfoBar"), "Infobar/show", "InfoBar"))
+	hotkeyFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show InfoBar"), "Infobar/showFirstInfoBar", "InfoBar"))
 	hotkeyFunctions.append((_("Show second InfoBar"), "Infobar/showSecondInfoBar", "InfoBar"))
-	hotkeyFunctions.append((_("Show/hide infoBar"), "Infobar/toggleShow", "InfoBar"))
+	hotkeyFunctions.append((_("Toggle infoBar"), "Infobar/toggleShow", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
@@ -431,16 +432,17 @@ class InfoBarHotkey():
 	def hotkeyGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
-		selected = self.getKeyFunctions(key)
-		if not selected:
-			return 0
-		if len(selected) == 1:
-			if key.endswith("_long"):
-				self.longkeyPressed = True
-			return self.execHotkey(selected[0])
 		else:
-			key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
-			self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
+			selected = self.getKeyFunctions(key)
+			if not selected:
+				return 0
+			elif len(selected) == 1:
+				if key.endswith("_long"):
+					self.longkeyPressed = True
+				return self.execHotkey(selected[0])
+			else:
+				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
+				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
 
 	def execHotkey(self, selected):
 		if selected:
