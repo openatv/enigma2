@@ -2203,41 +2203,10 @@ int eDVBServicePlay::selectAudioStream(int i)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cDDPPID)== -1)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
 	{
-		if (apidtype == eDVBAudio::aMPEG)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apid);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
-		else if (apidtype == eDVBAudio::aAC3)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
-		else if (apidtype == eDVBAudio::aDDP)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apid);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
-		else if (apidtype == eDVBAudio::aAACHE)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apid);
-		}
-		else
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
+		m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apidtype == eDVBAudio::aMPEG ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apidtype == eDVBAudio::aAC3 ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apidtype == eDVBAudio::aDDP ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apidtype == eDVBAudio::aAACHE ? apid : -1);
 	}
 
 	h.resetCachedProgram();
