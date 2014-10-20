@@ -28,12 +28,12 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
+		<!--widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		</widget-->
 <!--
 		<widget source="session.CurrentService" render="Pixmap" pixmap="crypt.png" position="185,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>

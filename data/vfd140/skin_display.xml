@@ -44,12 +44,12 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
+		<!--widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
 			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		</widget-->
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="68,19" size="9,14">
