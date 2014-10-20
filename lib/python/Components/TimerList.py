@@ -90,7 +90,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l = eListboxPythonMultiContent()
 		self.l.setBuildFunc(self.buildTimerEntry)
 		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 18))
+		self.l.setFont(1, gFont("Regular", 22))
 		self.l.setFont(2, gFont("Regular", 16))
 		self.l.setItemHeight(50)
 		self.l.setList(list)
