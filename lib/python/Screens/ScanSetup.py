@@ -1067,7 +1067,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		channels = channelnumbers.supportedChannels(index_to_scan)
 		region = self.terrestrial_nims_regions[index_to_scan].value
 		tps = nimmanager.getTranspondersTerrestrial(region)
-		tolerance = 200 # kHz
+		frequencyTolerance = 200000 # 0.2  MHz
 		for tp in tps:
 			if tp[0] == 2: #TERRESTRIAL
 				channel = ''
