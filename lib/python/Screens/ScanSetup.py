@@ -775,6 +775,25 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
 		self.scan_ter.plp_id = ConfigInteger(default = defaultTer["plp_id"], limits = (0, 255))
 
+		self.scan_scansat = {}
+		for sat in nimmanager.satList:
+			#print sat[1]
+			self.scan_scansat[sat[0]] = ConfigYesNo(default = False)
+
+		self.scan_satselection = []
+		for slot in nimmanager.nim_slots:
+			if slot.isCompatible("DVB-S"):
+				self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"], self.satList[slot.slot]))
+			else:
+				self.scan_satselection.append(None)
+				
+		self.terrestrial_nims_regions = []
+		for slot in nimmanager.nim_slots:
+			if slot.isCompatible("DVB-T"):
+				self.terrestrial_nims_regions.append(self.getTerrestrialRegionsList(slot.slot))
+			else:
+				self.terrestrial_nims_regions.append(None)
+
 		if frontendData is not None and ttype == "DVB-S" and self.predefinedTranspondersList(defaultSat["orbpos"]) is not None:
 			defaultSatSearchType = "predefined_transponder"
 		else:
@@ -799,25 +818,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 		self.scan_onlyfree = ConfigYesNo(default = False)
 		self.scan_networkScan = ConfigYesNo(default = False)
-
-		self.scan_scansat = {}
-		for sat in nimmanager.satList:
-			#print sat[1]
-			self.scan_scansat[sat[0]] = ConfigYesNo(default = False)
-
-		self.scan_satselection = []
-		for slot in nimmanager.nim_slots:
-			if slot.isCompatible("DVB-S"):
-				self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"], self.satList[slot.slot]))
-			else:
-				self.scan_satselection.append(None)
-				
-		self.terrestrial_nims_regions = []
-		for slot in nimmanager.nim_slots:
-			if slot.isCompatible("DVB-T"):
-				self.terrestrial_nims_regions.append(self.getTerrestrialRegionsList(slot.slot))
-			else:
-				self.terrestrial_nims_regions.append(None)
 
 		return True
 
