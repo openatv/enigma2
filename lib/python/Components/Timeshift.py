@@ -57,31 +57,28 @@ import os
 
 class InfoBarTimeshift:
 	def __init__(self):
-		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
-			{
-				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),
-				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),
-				"instantRecord": (self.instantRecord, _("Instant record...")),
-				"restartTimeshift": (self.restartTimeshift, _("Restart timeshift")),
-			}, prio=1, description=_("Timeshift"))
-		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions",
-			{
-				"timeshiftActivateEnd": (self.activateTimeshiftEnd, _("Start timeshift")), # something like "rewind key"
-				"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and start timeshift")),  # something like "pause key"
-			}, prio=-1, description=_("Activate timeshift")) # priority over record
+		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
+			"timeshiftStart": (self.startTimeshift, _("Start timeshift")),
+			"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),
+			"instantRecord": (self.instantRecord, _("Instant record...")),
+			"restartTimeshift": (self.restartTimeshift, _("Restart timeshift")),
+		}, prio=1, description=_("Timeshift"))
 
-		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, "InfobarTimeshiftSeekPointerActions",
-			{
-				"SeekPointerOK": (self.ptsSeekPointerOK, _("Skip to skip pointer")),
-				"SeekPointerLeft": (self.ptsSeekPointerLeft, _("Move skip pointer back")),
-				"SeekPointerRight": (self.ptsSeekPointerRight, _("Move skip pointer forward")),
-			}, prio=-1, description=_("Skip"))
+		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
+			"timeshiftActivateEnd": (self.activateTimeshiftEnd, _("Start timeshift")),  # something like "rewind key"
+			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and start timeshift")),  # something like "pause key"
+		}, prio=-1, description=_("Activate timeshift"))  # priority over record
 
-		self["TimeshiftFileActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
-			{
-				"jumpPreviousFile": (self.__evSOF, _("Skip to previous event in timeshift")),
-				"jumpNextFile": (self.__evEOF, _("Skip to next event in timeshift")),
-			}, prio=-1, description=_("Skip timeshift events")) # priority over history
+		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, "InfobarTimeshiftSeekPointerActions", {
+			"SeekPointerOK": (self.ptsSeekPointerOK, _("Skip to skip pointer")),
+			"SeekPointerLeft": (self.ptsSeekPointerLeft, _("Move skip pointer back")),
+			"SeekPointerRight": (self.ptsSeekPointerRight, _("Move skip pointer forward")),
+		}, prio=-1, description=_("Skip"))
+
+		self["TimeshiftFileActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
+			"jumpPreviousFile": (self.__evSOF, _("Skip to previous event in timeshift")),
+			"jumpNextFile": (self.__evEOF, _("Skip to next event in timeshift")),
+		}, prio=-1, description=_("Skip timeshift events"))  # priority over history
 
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
@@ -851,8 +848,12 @@ class InfoBarTimeshift:
 
 					# Create a Meta File
 					metafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount), "w")
-					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""),
-						self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
+					metafile.write("%s\n%s\n%s\n%i\n" % (
+						self.pts_curevent_servicerefname,
+						self.pts_curevent_name.replace("\n", ""),
+						self.pts_curevent_description.replace("\n", ""),
+						int(self.pts_starttime)
+					))
 					metafile.close()
 				except Exception, errormsg:
 					Notifications.AddNotification(
@@ -872,8 +873,12 @@ class InfoBarTimeshift:
 						os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%s.ts" % fullname)
 						# Create a Meta File
 						metafile = open("%s.ts.meta" % fullname, "w")
-						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""),
-							self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
+						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (
+							self.pts_curevent_servicerefname,
+							self.pts_curevent_name.replace("\n", ""),
+							self.pts_curevent_description.replace("\n", ""),
+							int(self.pts_starttime)
+						))
 						metafile.close()
 					except Exception, errormsg:
 						print "[Timeshift] %s%s\n%s" % (config.usage.timeshift_path.value, filename, errormsg)
