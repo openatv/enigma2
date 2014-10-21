@@ -446,7 +446,7 @@ class InfoBarTimeshift:
 				# print 'TEST5'
 				if self.save_current_timeshift:
 					# print 'TEST6'
-					InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
+					self.checkTimeshiftRunningCallback(returnFunction, "savetimeshiftandrecord")
 				else:
 					# print 'TEST7'
 					message = _("You seem to be in timeshift, Do you want to leave timeshift ?")
