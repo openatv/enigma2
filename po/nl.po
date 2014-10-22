@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-14 13:48+0100\n"
-"PO-Revision-Date: 2014-10-15 19:25+0100\n"
+"POT-Creation-Date: 2014-10-21 16:55+0100\n"
+"PO-Revision-Date: 2014-10-22 18:53+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -16,13 +16,6 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: The Netherlands\n"
-
-msgid ""
-"\n"
-"A recording is in progress."
-msgstr ""
-"\n"
-"Er loopt een opname."
 
 msgid ""
 "\n"
@@ -76,6 +69,13 @@ msgstr ""
 "\n"
 "Druk op OK om door te gaan."
 
+msgid ""
+"\n"
+"Recording in progress."
+msgstr ""
+"\n"
+"Opname is bezig."
+
 #, python-format
 msgid ""
 "\n"
@@ -121,6 +121,10 @@ msgid ""
 msgstr ""
 "\n"
 "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
+
+#, python-format
+msgid " (Channel %s)"
+msgstr " (Kanaal %s)"
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -1374,6 +1378,10 @@ msgid "CI assignment"
 msgstr "CI toewijzing"
 
 #, python-format
+msgid "CPU Speed:\t%s"
+msgstr "CPU snelheid:\t%s"
+
+#, python-format
 msgid "CPU:\t%s"
 msgstr "CPU:\t%s"
 
@@ -1677,6 +1685,9 @@ msgstr "Log wissen"
 
 msgid "Clear playlist"
 msgstr "Afspeellijst leegmaken"
+
+msgid "Click on your remote on the button you want to change, then click on \"OK\""
+msgstr "Druk op uw AB op de toets die u wilt veranderen en vervolgens op  \"OK\""
 
 msgid "Clients"
 msgstr "Klanten"
@@ -2048,9 +2059,6 @@ msgstr "Inhoud"
 
 msgid "Content does not fit on DVD!"
 msgstr "De inhoud past niet op een DVD!"
-
-msgid "Context"
-msgstr "Inhoud"
 
 msgid "Continue"
 msgstr "Doorgaan"
@@ -3439,7 +3447,7 @@ msgstr "Hoogte"
 msgid "Help"
 msgstr "Help"
 
-msgid "Helps setting up your dish"
+msgid "Helps setting up your antenna"
 msgstr "Helpt uw schotel op te zetten"
 
 msgid "Hidden network"
@@ -4525,6 +4533,9 @@ msgstr "Netwerkinstellingen"
 msgid "Network Test"
 msgstr "Netwerktest"
 
+msgid "Network menu"
+msgstr "Netwerkmenu"
+
 msgid "Network mounts"
 msgstr "Netwerkmounts"
 
@@ -4653,8 +4664,8 @@ msgstr "Aantal onderdelen (verklein of vergroot)"
 msgid "No positioner capable frontend found."
 msgstr "Geen geschikte positioner gevonden."
 
-msgid "No satellites configured. Plese check your tuner setup."
-msgstr "Er zijn geen satellieten geconfigureerd. Controleer uw tunerinstellingen."
+msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
+msgstr "Er is geen satelliet- terristische- of kabeltuner geconfigureerd. Controleer uw tunerconfiguratie."
 
 msgid "No service"
 msgstr "Geen zender"
@@ -4914,23 +4925,11 @@ msgstr "Alleen extensions"
 msgid "Only free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
 
-msgid "Open Audioselection"
-msgstr "Open Audioselectie"
-
 msgid "Open AutoTimer"
 msgstr "Open AutoTimer"
 
-msgid "Open event view"
-msgstr "Open event view"
-
 msgid "Open favourites list"
 msgstr "Open favorietenlijst"
-
-msgid "Open graphical multi EPG"
-msgstr "Open graphical multi EPG"
-
-msgid "Open multi Service EPG"
-msgstr "Open multi Service EPG"
 
 msgid "Open satellites list"
 msgstr "Open satellitenlijst"
@@ -4949,15 +4948,6 @@ msgstr "Open zenderlijst en selecteer vorige zender"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Open zenderlijst en selecteer vorige zendervoor PiP"
-
-msgid "Open single service EPG"
-msgstr "Open single service EPG"
-
-msgid "Open subservice selection"
-msgstr "Open subservice selectie"
-
-msgid "Open subtitle selection"
-msgstr "Open ondertitel selectie"
 
 msgid "Open the movie list"
 msgstr "Open opnamelijst"
@@ -5494,6 +5484,13 @@ msgstr "Vooringesteld"
 msgid "Predefined transponder"
 msgstr "Vooringestelde transponder"
 
+msgid ""
+"Predefined transponder scans are only possible when \n"
+"\"Service scan type\" is set to \"Provider\" in \"Tuner settings\"."
+msgstr ""
+"Vooringestelde transponderscans zijn alleen mogelijk als in \n"
+"\"Service scan type\"  \"Provider\" in \"Tuner configuratie\" is ingesteld."
+
 msgid "Prefer AC3 track"
 msgstr "Voorkeur voor AC3"
 
@@ -5823,6 +5820,9 @@ msgstr "Herhalingsfrequentie selectie"
 
 msgid "Regard deep standby as standby"
 msgstr "Beschouw deep stand-by als stand-by"
+
+msgid "Region"
+msgstr "Regio"
 
 msgid "Relative"
 msgstr "Relatief"
@@ -6396,6 +6396,9 @@ msgstr "Selecteer sorteermodus:"
 msgid "Select target folder"
 msgstr "Kies doelmap"
 
+msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it."
+msgstr "Kies de gewenste functie en klik dan op \"OK\" om deze toe te wijzen. Gebruik \"CH+/-\" om te wisseleln tussen de kolommens in de lijst. Kies de toegewezen functie en klik op \"OK\" om de toewijzing te verwijderen."
+
 msgid "Select the movie path"
 msgstr "Bepaal het opnamepad"
 
@@ -6703,6 +6706,9 @@ msgstr "Toon480/576p 24fps als"
 msgid "Show 720p 24fps as"
 msgstr "Toon 720p 24fps als"
 
+msgid "Show Audioselection"
+msgstr "Toon audioselectie"
+
 msgid "Show AutoTimer List"
 msgstr "Toon Autotimers"
 
@@ -6836,6 +6842,12 @@ msgstr "Toon extensies..."
 msgid "Show extensions..."
 msgstr "Toon extensies..."
 
+msgid "Show favourites list"
+msgstr "Toon favorietenlijst"
+
+msgid "Show graphical multi EPG"
+msgstr "Toon graphische multi EPG"
+
 msgid "Show help"
 msgstr "Toon help"
 
@@ -6878,6 +6890,9 @@ msgstr "Toon opnamelengte in opnamelijst"
 msgid "Show movies"
 msgstr "Toon movies"
 
+msgid "Show multi Service EPG"
+msgstr "Toon multi-service EPG"
+
 msgid "Show network mounts ..."
 msgstr "Toon netwerkmounts ..."
 
@@ -6896,6 +6911,9 @@ msgstr "Toon screensaver"
 msgid "Show second infobar"
 msgstr "Toon tweede informatiebalk"
 
+msgid "Show service list"
+msgstr "Toon kanaallist"
+
 msgid "Show service type icons"
 msgstr "Toon iconen voor service type"
 
@@ -6908,6 +6926,9 @@ msgstr "Afsluitmenu weergeven"
 msgid "Show single epg for current channel"
 msgstr "Toon EPG voor huidige kanaal"
 
+msgid "Show single service EPG"
+msgstr "Toon kanaallijst EPG"
+
 msgid "Show source packages"
 msgstr "Toon source-packages"
 
@@ -6916,6 +6937,12 @@ msgstr "Laat status-iconen zien in opnamelijst"
 
 msgid "Show status icons in movielist"
 msgstr "Laat status-iconen zien in opnamelijst"
+
+msgid "Show subservice selection"
+msgstr "Toon subservice selectie"
+
+msgid "Show subtitle selection"
+msgstr "Toon ondertitelselectie"
 
 msgid "Show the DreamPlex player..."
 msgstr "Toon de Dreamplex player..."
@@ -7135,11 +7162,11 @@ msgstr "Excuses: vanwege onderhoud zijn de feeds niet actief."
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
 
+msgid "Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com."
+msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw. Als het probleem aanhoudt, controleer dan op openvix.co.uk of world-of-satellite.com wat er aan de hand is."
+
 msgid "Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."
 msgstr "Sorry: de feeds lijken onstabiel te zijn. Als u die toch wilt gebruiken, moet u 'Accepteer niet geteste updates' activeren in\"Software update settings\"."
-
-msgid "Sorry that tuner is not available."
-msgstr "Die tuner is niet beschikbaar"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Sorry uShare configuratie ontbreekt"
@@ -8337,6 +8364,9 @@ msgstr "Tunerconfiguratie"
 msgid "Tuner is not supported"
 msgstr "Tuner wordt niet ondersteund"
 
+msgid "Tuner not available."
+msgstr "Tuner is niet beschikbaar"
+
 msgid "Tuner settings"
 msgstr "Tunerinstellingen"
 
@@ -8741,6 +8771,9 @@ msgstr "Videocodec"
 
 msgid "Videoformat"
 msgstr "Videoformaat"
+
+msgid "Videomode"
+msgstr "Videomodus"
 
 msgid "Videosize"
 msgstr "Video-afmetingen"
@@ -10730,6 +10763,13 @@ msgstr "zap en neem op"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid ""
+#~ "\n"
+#~ "A recording is in progress."
+#~ msgstr ""
+#~ "\n"
+#~ "Er loopt een opname."
+
 #~ msgid "3d mode"
 #~ msgstr "3d mode"
 
@@ -10784,6 +10824,9 @@ msgstr "zapte"
 #~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 #~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
 
+#~ msgid "Context"
+#~ msgstr "Inhoud"
+
 #~ msgid "Devide"
 #~ msgstr "Verdeel"
 
@@ -10798,6 +10841,12 @@ msgstr "zapte"
 
 #~ msgid "Lamedb"
 #~ msgstr "Lamedb"
+
+#~ msgid "Open event view"
+#~ msgstr "Open event view"
+
+#~ msgid "Open subtitle selection"
+#~ msgstr "Open ondertitel selectie"
 
 #~ msgid "Select default EPG type..."
 #~ msgstr "Kies het standaard EPG-type..."
@@ -10826,6 +10875,9 @@ msgstr "zapte"
 #~ msgid "Single transponder"
 #~ msgstr "Één transponder"
 
+#~ msgid "Sorry that tuner is not available."
+#~ msgstr "Die tuner is niet beschikbaar"
+
 #~ msgid "Subservice mode"
 #~ msgstr "Subservice-mode"
 
@@ -10852,6 +10904,3 @@ msgstr "zapte"
 
 #~ msgid "Video wizard"
 #~ msgstr "Video-wizard"
-
-#~ msgid "not available"
-#~ msgstr "niet beschikbaar"
