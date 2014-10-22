@@ -4,7 +4,7 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer
+from enigma import eDVBVolumecontrol, eTimer, eServiceReference
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Tools import Notifications
 from time import localtime, time
@@ -84,7 +84,10 @@ class Standby2(Screen):
 		if self.session.current_dialog:
 			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
 				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					if config.servicelist.startupservice_standby.value:
+						self.prev_running_service = eServiceReference(config.servicelist.startupservice_standby.value)
+					else:
+						self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 					self.session.nav.stopService()
 				else:
 					self.standbyTimeUnknownTimer.callback.append(self.stopService)
@@ -127,7 +130,10 @@ class Standby2(Screen):
 		return StandbySummary
 
 	def stopService(self):
-		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.servicelist.startupservice_standby.value:
+			self.prev_running_service = eServiceReference(config.servicelist.startupservice_standby.value)
+		else:
+			self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 class Standby(Standby2):
