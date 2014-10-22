@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-14 13:48+0100\n"
-"PO-Revision-Date: 2014-10-15 18:22+0100\n"
+"POT-Creation-Date: 2014-10-21 16:55+0100\n"
+"PO-Revision-Date: 2014-10-22 18:35+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13,13 +13,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-msgid ""
-"\n"
-"A recording is in progress."
-msgstr ""
-"\n"
-" Eine Aufnahmen findet statt"
 
 msgid ""
 "\n"
@@ -73,6 +66,13 @@ msgstr ""
 "\n"
 "Drücke OK auf der Fernbedienung, um fortzufahren."
 
+msgid ""
+"\n"
+"Recording in progress."
+msgstr ""
+"\n"
+"Aufnahme läuft."
+
 #, python-format
 msgid ""
 "\n"
@@ -118,6 +118,10 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
+
+#, python-format
+msgid " (Channel %s)"
+msgstr "(Kanal %s)"
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -1409,6 +1413,10 @@ msgid "CI assignment"
 msgstr "CI-Zuweisung"
 
 #, python-format
+msgid "CPU Speed:\t%s"
+msgstr ""
+
+#, python-format
 msgid "CPU:\t%s"
 msgstr ""
 
@@ -1727,6 +1735,12 @@ msgstr "Log löschen"
 
 msgid "Clear playlist"
 msgstr "Wiedergabeliste leeren"
+
+msgid ""
+"Click on your remote on the button you want to change, then click on \"OK\""
+msgstr ""
+"Drücke den Button der Fernbedienung der neu belegt werden soll und dann "
+"drücke \"OK\""
 
 msgid "Clients"
 msgstr "Klienten"
@@ -2227,9 +2241,6 @@ msgstr "Inhalt"
 
 msgid "Content does not fit on DVD!"
 msgstr "Inhalt passt nicht auf die DVD!"
-
-msgid "Context"
-msgstr "Kontext"
 
 msgid "Continue"
 msgstr "Weiter"
@@ -3643,7 +3654,7 @@ msgstr "Höhe"
 msgid "Help"
 msgstr "Hilfe"
 
-msgid "Helps setting up your dish"
+msgid "Helps setting up your antenna"
 msgstr "Hilft die Schüssel einzurichten"
 
 msgid "Hidden network"
@@ -4789,6 +4800,9 @@ msgstr "Netzwerkeinstellungen"
 msgid "Network Test"
 msgstr "Netzwerktest"
 
+msgid "Network menu"
+msgstr "Netzwerk-Menü"
+
 msgid "Network mounts"
 msgstr "Netzwerk Mounts"
 
@@ -4926,8 +4940,10 @@ msgstr "Anzahl von Elementen wechseln (erhöhen oder verringern)"
 msgid "No positioner capable frontend found."
 msgstr "Keinen rotortauglichen Tuner gefunden."
 
-msgid "No satellites configured. Plese check your tuner setup."
-msgstr "Keine Satelliten konfiguriert. Bitte Tuner-Einstellungen prüfen."
+msgid ""
+"No satellite, terrestrial or cable tuner is configured. Please check your "
+"tuner setup."
+msgstr "Kein Tuner konfiguriert. Bitte Tuner-Einstellungen prüfen."
 
 msgid "No service"
 msgstr "Kein Sender"
@@ -5204,23 +5220,11 @@ msgstr "Nur Erweiterungen."
 msgid "Only free scan"
 msgstr "Nur frei empfangbare Sender speichern"
 
-msgid "Open Audioselection"
-msgstr "Öffne Audioauswahl"
-
 msgid "Open AutoTimer"
 msgstr "Öffne Autotimer"
 
-msgid "Open event view"
-msgstr "Öffne Sendungsdetails"
-
 msgid "Open favourites list"
 msgstr "Favoritenliste öffnen"
-
-msgid "Open graphical multi EPG"
-msgstr "Öffne grafischen EPG"
-
-msgid "Open multi Service EPG"
-msgstr "Öffne Multi-EPG"
 
 msgid "Open satellites list"
 msgstr "Öffne Satellitenliste"
@@ -5239,15 +5243,6 @@ msgstr "Öffne Senderliste und wähle den vorherigen Sender"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Öffne Senderliste und wähle den vorherigen Sender für PiP"
-
-msgid "Open single service EPG"
-msgstr "Öffne Einzel-EPG"
-
-msgid "Open subservice selection"
-msgstr "Öffne Unterkanalauswahl"
-
-msgid "Open subtitle selection"
-msgstr "Öffne Untertitelauswahl"
 
 msgid "Open the movie list"
 msgstr "Öffne die Filmliste"
@@ -5800,6 +5795,13 @@ msgstr "Vordefiniert"
 msgid "Predefined transponder"
 msgstr "Vordefinierte Transponder"
 
+msgid ""
+"Predefined transponder scans are only possible when \n"
+"\"Service scan type\" is set to \"Provider\" in \"Tuner settings\"."
+msgstr ""
+"Vordefinierte Transpondersuche ist nur möglich wenn\n"
+"\"Art der Sendersuche\" auf \"Anbieter\" eingestellt ist."
+
 msgid "Prefer AC3 track"
 msgstr "Bevorzuge AC3"
 
@@ -6129,6 +6131,9 @@ msgstr "Auswahl der Bildwiederholungsrate."
 
 msgid "Regard deep standby as standby"
 msgstr "Ausschalten wie Bereitschaft behandeln"
+
+msgid "Region"
+msgstr "Region"
 
 msgid "Relative"
 msgstr "relativ"
@@ -6711,6 +6716,15 @@ msgstr "Wähle den Sortier-Modus"
 msgid "Select target folder"
 msgstr "Wähle Zielverzeichnisse"
 
+msgid ""
+"Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" "
+"to toggle between the lists. Select an assigned function and click on \"OK\" "
+"to de-assign it."
+msgstr ""
+"Gewünschte Funktion auswählen und \"OK\" drücken um sie zu belegen. Benutze  "
+"\"CH+/-\" um zwischen den Listen umzuschalten. Wähle zugeordnete Funktion "
+"aus und drücke  \"OK\" um die Belegung zu entfernen."
+
 msgid "Select the movie path"
 msgstr "Wähle Filmpfad"
 
@@ -7059,6 +7073,9 @@ msgstr "Zeige 480/576p 24FPS als"
 msgid "Show 720p 24fps as"
 msgstr "Zeige 720p 24FPS als"
 
+msgid "Show Audioselection"
+msgstr "Zeige Audioauswahl"
+
 msgid "Show AutoTimer List"
 msgstr "Zeige AutoTimer Liste"
 
@@ -7192,6 +7209,12 @@ msgstr "Zeige Erweiterungsauswahl"
 msgid "Show extensions..."
 msgstr "Zeige Erweiterungen..."
 
+msgid "Show favourites list"
+msgstr "Zeige Favoritenliste"
+
+msgid "Show graphical multi EPG"
+msgstr "Zeige grafischen EPG"
+
 msgid "Show help"
 msgstr "Zeige Hilfe"
 
@@ -7234,6 +7257,9 @@ msgstr "Zeige Filmlänge in Filmliste"
 msgid "Show movies"
 msgstr "Zeige Filme"
 
+msgid "Show multi Service EPG"
+msgstr "Zeige Multi-EPG"
+
 msgid "Show network mounts ..."
 msgstr "Zeige Netzwerk Mounts..."
 
@@ -7252,6 +7278,9 @@ msgstr "Zeige Bildschirmschoner"
 msgid "Show second infobar"
 msgstr "Zeige SecondInfobar"
 
+msgid "Show service list"
+msgstr "Zeige Senderliste"
+
 msgid "Show service type icons"
 msgstr "Zeige Sendertype Icon"
 
@@ -7264,6 +7293,9 @@ msgstr "Zeige Ausschaltmenü"
 msgid "Show single epg for current channel"
 msgstr "Zeige Einzel-EPG für den aktuellen Sender"
 
+msgid "Show single service EPG"
+msgstr "Zeige Einzel-EPG"
+
 msgid "Show source packages"
 msgstr "Zeige Source-Pakete (SRC)"
 
@@ -7272,6 +7304,12 @@ msgstr "Zeige Status-Icons in der Filmliste"
 
 msgid "Show status icons in movielist"
 msgstr "Zeige Status-Icons in der Filmliste"
+
+msgid "Show subservice selection"
+msgstr "Zeige Unterkanalauswahl"
+
+msgid "Show subtitle selection"
+msgstr "Zeige Untertitel-Auswahl"
 
 msgid "Show the DreamPlex player..."
 msgstr "Zeige den Dreamplexplayer..."
@@ -7494,6 +7532,14 @@ msgstr ""
 "versuchen."
 
 msgid ""
+"Sorry feeds are down for maintenance, please try again later. If this issue "
+"persists please check openvix.co.uk or world-of-satellite.com."
+msgstr ""
+"Entschuldigung zur Zeit finden Wartungsarbeiten statt. Bitte später erneut "
+"versuchen. Wenn das Problem bestehen bleibt bitte auf openvix.co.uk oder "
+"world-of-satellite.com nachsehen."
+
+msgid ""
 "Sorry feeds seem be in an unstable state, if you wish to use them please "
 "enable 'Allow unstable (experimental) updates' in \"Software update settings"
 "\"."
@@ -7501,9 +7547,6 @@ msgstr ""
 "Entschuldigung Feeds sind auf instabil eingestellt. Wenn instabile Updates "
 "erlaubt werden sollen muss das in den Einstellungen für Online-Update "
 "aktiviert werden."
-
-msgid "Sorry that tuner is not available."
-msgstr "Entschuldigung dieser Tuner ist nicht verfügbar!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Entschuldigung Konfiguration für uShare fehlt"
@@ -8859,6 +8902,9 @@ msgstr "Tuner-Konfiguration"
 msgid "Tuner is not supported"
 msgstr "nicht unterstützter Tuner"
 
+msgid "Tuner not available."
+msgstr "Tuner nicht verfügbar."
+
 msgid "Tuner settings"
 msgstr "Tuner Einstellungen"
 
@@ -9140,7 +9186,7 @@ msgid "Use trash can in movielist"
 msgstr "Benutze Mülleimer in Filmliste"
 
 msgid "Used service scan type"
-msgstr "Typ der Sendersuche"
+msgstr "Art der Sendersuche"
 
 msgid "Used:"
 msgstr "Benutzt:"
@@ -9280,6 +9326,9 @@ msgstr "Videocodec"
 
 msgid "Videoformat"
 msgstr "Videoformat"
+
+msgid "Videomode"
+msgstr "Videomodus"
 
 msgid "Videosize"
 msgstr "Bildgröße"
@@ -11455,6 +11504,13 @@ msgstr "umschalten und aufnehmen"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid ""
+#~ "\n"
+#~ "A recording is in progress."
+#~ msgstr ""
+#~ "\n"
+#~ " Eine Aufnahmen findet statt"
+
 #~ msgid "3d mode"
 #~ msgstr "3D Betriebsart"
 
@@ -11517,6 +11573,9 @@ msgstr "umgeschaltet"
 #~ "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn "
 #~ "mehrere Tuner verfügbar sind."
 
+#~ msgid "Context"
+#~ msgstr "Kontext"
+
 #~ msgid "Devide"
 #~ msgstr "Gerät"
 
@@ -11531,6 +11590,12 @@ msgstr "umgeschaltet"
 
 #~ msgid "Latest Commits"
 #~ msgstr "Letzte Änderungen"
+
+#~ msgid "Open event view"
+#~ msgstr "Öffne Sendungsdetails"
+
+#~ msgid "Open subtitle selection"
+#~ msgstr "Öffne Untertitelauswahl"
 
 #~ msgid "Select default EPG type..."
 #~ msgstr "Wähle Standard-EPG-Typ..."
@@ -11566,6 +11631,9 @@ msgstr "umgeschaltet"
 #~ msgid "Sleeptimer edit"
 #~ msgstr "Sleeptimer bearbeiten"
 
+#~ msgid "Sorry that tuner is not available."
+#~ msgstr "Entschuldigung dieser Tuner ist nicht verfügbar!"
+
 #~ msgid "Subservice mode"
 #~ msgstr "Unterkanal Modus"
 
@@ -11592,6 +11660,3 @@ msgstr "umgeschaltet"
 
 #~ msgid "Video wizard"
 #~ msgstr "Bild Assistent"
-
-#~ msgid "not available"
-#~ msgstr "nicht verfügbar"
