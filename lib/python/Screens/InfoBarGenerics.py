@@ -567,7 +567,7 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
-		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
+		if number != 0 and "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
 			# noinspection PyProtectedMember
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width() - 4) / 2, self.pvrStateDialog["PTSSeekPointer"].position[1])
@@ -584,10 +584,12 @@ class InfoBarNumberZap:
 		# 	return
 
 		if number == 0:
-			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
+			if config.usage.panicbutton.value:
+				self.panicButton()
+			elif isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			elif len(self.servicelist.history) > 1:
-				self.checkTimeshiftRunning(self.recallPrevService)
+			else:
+				self.reCallService()
 		else:
 			if "TimeshiftActions" in self and self.timeshiftEnabled():
 				ts = self.getTimeshift()
@@ -595,53 +597,54 @@ class InfoBarNumberZap:
 					return
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
-	def recallPrevService(self, reply):
+	def doReCallService(self, reply):
 		if reply:
-			if config.usage.panicbutton.value:
-				if self.session.pipshown:
-					del self.session.pip
-					self.session.pipshown = False
-				self.servicelist.history_tv = []
-				self.servicelist.history_radio = []
-				self.servicelist.history = self.servicelist.history_tv
-				self.servicelist.history_pos = 0
-				self.servicelist2.history_tv = []
-				self.servicelist2.history_radio = []
-				self.servicelist2.history = self.servicelist.history_tv
-				self.servicelist2.history_pos = 0
-				if config.usage.multibouquet.value:
-					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-				else:
-					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
-				serviceHandler = eServiceCenter.getInstance()
-				rootbouquet = eServiceReference(bqrootstr)
-				bouquet = eServiceReference(bqrootstr)
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist is not None:
-					while True:
-						bouquet = bouquetlist.getNext()
-						if bouquet.flags & eServiceReference.isDirectory:
-							self.servicelist.clearPath()
-							self.servicelist.setRoot(bouquet)
-							servicelist = serviceHandler.list(bouquet)
-							if servicelist is not None:
-								serviceIterator = servicelist.getNext()
-								while serviceIterator.valid():
-									service, bouquet2 = self.searchNumber(1)
-									if service == serviceIterator:
-										break
-									serviceIterator = servicelist.getNext()
-								if serviceIterator.valid() and service == serviceIterator:
-									break
-					self.servicelist.enterPath(rootbouquet)
-					self.servicelist.enterPath(bouquet)
-					self.servicelist.saveRoot()
-					self.servicelist2.enterPath(rootbouquet)
-					self.servicelist2.enterPath(bouquet)
-					self.servicelist2.saveRoot()
-				self.selectAndStartService(service, bouquet)
+			self.servicelist.recallPrevService()
+
+	def doPanicButton(self, reply):
+		if reply:
+			if self.session.pipshown:
+				del self.session.pip
+				self.session.pipshown = False
+			self.servicelist.history_tv = []
+			self.servicelist.history_radio = []
+			self.servicelist.history = self.servicelist.history_tv
+			self.servicelist.history_pos = 0
+			self.servicelist2.history_tv = []
+			self.servicelist2.history_radio = []
+			self.servicelist2.history = self.servicelist.history_tv
+			self.servicelist2.history_pos = 0
+			if config.usage.multibouquet.value:
+				bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 			else:
-				self.servicelist.recallPrevService()
+				bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
+			serviceHandler = eServiceCenter.getInstance()
+			rootbouquet = eServiceReference(bqrootstr)
+			bouquet = eServiceReference(bqrootstr)
+			bouquetlist = serviceHandler.list(bouquet)
+			if bouquetlist is not None:
+				while True:
+					bouquet = bouquetlist.getNext()
+					if bouquet.flags & eServiceReference.isDirectory:
+						self.servicelist.clearPath()
+						self.servicelist.setRoot(bouquet)
+						servicelist = serviceHandler.list(bouquet)
+						if servicelist is not None:
+							serviceIterator = servicelist.getNext()
+							while serviceIterator.valid():
+								service, bouquet2 = self.searchNumber(1)
+								if service == serviceIterator:
+									break
+								serviceIterator = servicelist.getNext()
+							if serviceIterator.valid() and service == serviceIterator:
+								break
+				self.servicelist.enterPath(rootbouquet)
+				self.servicelist.enterPath(bouquet)
+				self.servicelist.saveRoot()
+				self.servicelist2.enterPath(rootbouquet)
+				self.servicelist2.enterPath(bouquet)
+				self.servicelist2.saveRoot()
+			self.selectAndStartService(service, bouquet, checkTimeshift=False)
 
 	def numberEntered(self, service=None, bouquet=None):
 		if service:
@@ -681,7 +684,7 @@ class InfoBarNumberZap:
 					bouquet = bouquetlist.getNext()
 		return service, bouquet
 
-	def selectAndStartService(self, service, bouquet):
+	def selectAndStartService(self, service, bouquet, checkTimeshift=True):
 		if service:
 			if self.servicelist.getRoot() != bouquet:  # already in correct bouquet?
 				self.servicelist.clearPath()
@@ -689,7 +692,7 @@ class InfoBarNumberZap:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(bouquet)
 			self.servicelist.setCurrentSelection(service)  # select the service in servicelist
-			self.servicelist.zap(enable_pipzap=True)
+			self.servicelist.zap(enable_pipzap=True, checkTimeshift=checkTimeshift)
 			self.servicelist.correctChannelNumber()
 			self.servicelist.startRoot = None
 
@@ -730,44 +733,11 @@ class InfoBarChannelSelection:
 			}, description=_("Channel selection"))
 
 	def reCallService(self):
-			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
-				self.pipDoHandle0Action()
-			else:
-				if config.usage.panicbutton.getValue():
-					self.servicelist.history_tv = []
-					self.servicelist.history_radio = []
-					self.servicelist.history = self.servicelist.history_tv
-					self.servicelist.history_pos = 0
-					if config.usage.multibouquet.getValue():
-						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-					else:
-						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
-					serviceHandler = eServiceCenter.getInstance()
-					rootbouquet = eServiceReference(bqrootstr)
-					bouquet = eServiceReference(bqrootstr)
-					bouquetlist = serviceHandler.list(bouquet)
-					if bouquetlist is not None:
-						while True:
-							bouquet = bouquetlist.getNext()
-							if bouquet.flags & eServiceReference.isDirectory:
-								self.servicelist.clearPath()
-								self.servicelist.setRoot(bouquet)
-								servicelist = serviceHandler.list(bouquet)
-								if servicelist is not None:
-									serviceIterator = servicelist.getNext()
-									while serviceIterator.valid():
-										service, bouquet2 = self.searchNumber(1)
-										if service == serviceIterator:
-											break
-										serviceIterator = servicelist.getNext()
-									if serviceIterator.valid() and service == serviceIterator:
-										break
-						self.servicelist.enterPath(rootbouquet)
-						self.servicelist.enterPath(bouquet)
-						self.servicelist.saveRoot()
-					self.selectAndStartService(service, bouquet)
-				else:
-					self.servicelist.recallPrevService()
+		if len(self.servicelist.history) > 1:
+			self.checkTimeshiftRunning(self.doReCallService)
+
+	def panicButton(self):
+		self.checkTimeshiftRunning(self.doPanicButton)
 
 	def LeftPressed(self):
 		if config.vixsettings.InfoBarEpg_mode.value == "3" and config.usage.show_second_infobar.value != "INFOBAREPG":

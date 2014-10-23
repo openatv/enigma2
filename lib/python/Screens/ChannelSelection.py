@@ -1845,7 +1845,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.session.pip.inactive()
 
 	#called from infoBar and channelSelected
-	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
+	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, checkTimeshift=True):
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -1861,7 +1861,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
-			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+			if checkTimeshift:
+				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+			else:
+				self.zapCheckTimeshiftCallback(enable_pipzap, preview_zap, nref, True)
 		elif not preview_zap:
 			self.saveRoot()
 			self.saveChannel(nref)
