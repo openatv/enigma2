@@ -950,10 +950,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					tp = tps[self.CableTransponders.index]
 					# 0 transponder type, 1 freq, 2 sym, 3 mod, 4 fec, 5 inv, 6 sys
 					self.addCabTransponder(tlist, tp[1], tp[2], tp[3], tp[4], tp[5])
-				else:
-					msg = _('Predefined transponder scans are only possible when \n"Service scan type" is set to "Provider" in "Tuner settings".')
-					self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
-					return
 				removeAll = False
 			elif self.scan_typecable.value == "complete":
 				if config.Nims[index_to_scan].cable.scan_type.value == "provider":
@@ -1067,7 +1063,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		channels = channelnumbers.supportedChannels(index_to_scan)
 		region = self.terrestrial_nims_regions[index_to_scan].value
 		tps = nimmanager.getTranspondersTerrestrial(region)
-		frequencyTolerance = 200000 # 0.2  MHz
 		for tp in tps:
 			if tp[0] == 2: #TERRESTRIAL
 				channel = ''
@@ -1082,7 +1077,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		return default
 		
 	def compareTerrTransponders(self, tp, compare):
-		frequencyTolerance = 2 # MHz
+		frequencyTolerance = 200000 # 0.2  MHz
 		return abs(tp[1] - compare[1]) <= frequencyTolerance
 		
 	def getTerrestrialRegionsList(self, index_to_scan = None):
