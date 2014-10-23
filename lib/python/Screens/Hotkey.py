@@ -100,7 +100,6 @@ def getHotkeyFunctions():
 			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
-	hotkeyFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
 	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
@@ -109,15 +108,16 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Switch channel up"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch channel down"), "Infobar/switchChannelDown", "InfoBar"))
 	hotkeyFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
+	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
+	hotkeyFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
 	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Show multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
-	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
 	hotkeyFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
 	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
@@ -405,16 +405,17 @@ class InfoBarHotkey():
 	def hotkeyGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
-		selected = self.getKeyFunctions(key)
-		if not selected:
-			return 0
-		if len(selected) == 1:
-			if key.endswith("_long"):
-				self.longkeyPressed = True
-			return self.execHotkey(selected[0])
 		else:
-			key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
-			self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
+			selected = self.getKeyFunctions(key)
+			if not selected:
+				return 0
+			elif len(selected) == 1:
+				if key.endswith("_long"):
+					self.longkeyPressed = True
+				return self.execHotkey(selected[0])
+			else:
+				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
+				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
 
 	def execHotkey(self, selected):
 		if selected:
