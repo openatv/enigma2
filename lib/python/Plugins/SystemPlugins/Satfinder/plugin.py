@@ -343,6 +343,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.tuner.tune(transponder)
 			self.transponder = transponder
 		elif self.tuning_type.value == "predefined_transponder":
+			self.updatePreDefTransponders()
 			tps = nimmanager.getTransponders(satpos)
 			if len(tps) > self.preDefTransponders.index:
 				tp = tps[self.preDefTransponders.index]
