@@ -59,7 +59,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picCrypto, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/record.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/record.png"))
 		if pic:
 			self.l.setPixmap(self.l.picRecord, pic)
 
