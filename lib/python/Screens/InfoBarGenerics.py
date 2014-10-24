@@ -48,6 +48,10 @@ import os
 from bisect import insort
 from sys import maxint
 
+####key debug
+# from keyids import KEYIDS
+# from datetime import datetime
+
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
 # hack alert!
@@ -143,6 +147,14 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
+		####key debug
+		#try:
+		#	print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())
+		#except:
+		#	try:
+		#		print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.now()) # inverse dictionary lookup in KEYIDS
+		#	except:
+		#		print 'KEY: %s %s' % (key,datetime.now())
 		self.unhandledKeyDialog.hide()
 		if flag != 4:
 			if self.flags & (1<<1):
