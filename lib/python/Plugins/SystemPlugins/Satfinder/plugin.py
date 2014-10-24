@@ -94,6 +94,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.satfinderTunerEntry = getConfigListEntry(_("Tuner"), self.satfinder_scan_nims)
 		self.list.append(self.satfinderTunerEntry)
 		self.tuning_sat = self.scan_satselection[self.getSelectedSatIndex(self.feid)]
+		self.updatePreDefTransponders()
 		if nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-S"):
 			self.satEntry = getConfigListEntry(_('Satellite'), self.tuning_sat)
 			self.list.append(self.satEntry)
@@ -125,7 +126,6 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
 					self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
 			elif self.tuning_type.value == "predefined_transponder":
-				self.updatePreDefTransponders()
 				self.list.append(getConfigListEntry(_("Transponder"), self.preDefTransponders))
 		elif nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-C"):
 			self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning_type)
@@ -343,7 +343,6 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.tuner.tune(transponder)
 			self.transponder = transponder
 		elif self.tuning_type.value == "predefined_transponder":
-			self.updatePreDefTransponders()
 			tps = nimmanager.getTransponders(satpos)
 			if len(tps) > self.preDefTransponders.index:
 				tp = tps[self.preDefTransponders.index]
