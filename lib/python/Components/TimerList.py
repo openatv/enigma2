@@ -74,7 +74,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			state = _("failed")
 			icon = self.iconFailed
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 90, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 90, 26, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, icon))
 
@@ -92,7 +92,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 22))
 		self.l.setFont(2, gFont("Regular", 16))
-		self.l.setItemHeight(50)
+		self.l.setItemHeight(55)
 		self.l.setList(list)
 		self.iconWait = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_wait.png"))
 		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_rec.png"))
