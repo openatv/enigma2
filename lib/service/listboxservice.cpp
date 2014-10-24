@@ -520,7 +520,7 @@ void eListboxServiceContent::setColumnWidth(int value)
 {
 	m_column_width = value;
 }
-
+bool eListboxServiceContent::checkServiceIsRecorded(eServiceReference ref)
 void eListboxServiceContent::setGetPiconNameFunc(ePyObject func)
 {
 	if (m_GetPiconNameFunc)
