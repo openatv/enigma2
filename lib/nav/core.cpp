@@ -2,6 +2,8 @@
 #include <lib/base/eerror.h>
 #include <lib/python/python.h>
 
+eNavigation* eNavigation::instance;
+
 void eNavigation::serviceEvent(iPlayableService* service, int event)
 {
 	if (m_runningService && service != m_runningService)
@@ -91,6 +93,7 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 			ePtr<eConnection> conn;
 			service->connectEvent(slot(*this, &eNavigation::recordEvent), conn);
 			m_recordings[service]=conn;
+			m_recordings_services[service]=ref;
 		}
 	}
 	return res;
@@ -115,6 +118,12 @@ RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
 			m_recordings.erase(it);
 			/* send stop event */
 			m_record_event(service, iRecordableService::evEnd);
+			std::map<ePtr<iRecordableService>, eServiceReference >::iterator it =
+				m_recordings_services.find(service);
+			if (it != m_recordings_services.end())
+			{
+				m_recordings_services.erase(it);
+			}
 			return 0;
 		}
 	}
@@ -151,11 +160,13 @@ eNavigation::eNavigation(iServiceHandler *serviceHandler, int decoder)
 	ASSERT(serviceHandler);
 	m_servicehandler = serviceHandler;
 	m_decoder = decoder;
+	instance = this;
 }
 
 eNavigation::~eNavigation()
 {
 	stopService();
+	instance=NULL;
 }
 
 DEFINE_REF(eNavigation);

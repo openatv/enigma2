@@ -68,6 +68,7 @@ public:
 		picMarker,
 		picServiceEventProgressbar,
 		picCrypto,
+		picRecord,
 		picElements
 	};
 
@@ -84,6 +85,7 @@ public:
 	void setServiceTypeIconMode(int mode);
 	void setCryptoIconMode(int mode);
 	void setColumnWidth(int value);
+	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
@@ -101,6 +103,7 @@ public:
 		serviceEventProgressbarColorSelected,
 		serviceEventProgressbarBorderColor,
 		serviceEventProgressbarBorderColorSelected,
+		serviceRecorded,
 		colorElements
 	};
 
@@ -160,6 +163,7 @@ private:
 	int m_itemheight;
 	int m_servicetype_icon_mode;
 	int m_crypto_icon_mode;
+	int m_record_indicator_mode;
 	int m_column_width;
 };
 
