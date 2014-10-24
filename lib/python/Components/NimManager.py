@@ -2,6 +2,7 @@ from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
 from os import path
+from boxbranding import getBoxType
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -587,7 +588,17 @@ class NIM(object):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
-		return _("Tuner") + " " + chr(ord('A') + self.slot)
+		# for DM7080HD "Tuner A1/A2/B/C/..."
+
+		if not getBoxType() == "dm7080":
+			return _("Tuner") + " " + chr(ord('A') + self.slot)
+		else:
+			if self.slot == 0:
+				return _("Tuner") + " A1"
+			elif self.slot == 1:
+				return _("Tuner") + " A2"
+			else:
+				return _("Tuner") + " " + chr(ord('A') + self.slot - 1)			
 
 	slot_name = property(getSlotName)
 
