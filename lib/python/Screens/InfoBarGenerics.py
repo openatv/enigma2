@@ -2,7 +2,7 @@
 from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector
 
 from Components.About import about
-from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap, HelpableNumberActionMap
 
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
@@ -552,19 +552,19 @@ class NumberZap(Screen):
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
 	def __init__(self):
-		self["NumberActions"] = NumberActionMap(["NumberActions"],
+		self["NumberActions"] = HelpableNumberActionMap(self, "NumberActions",
 			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal,
-			})
+				"1": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(1)),
+				"2": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(2)),
+				"3": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(3)),
+				"4": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(4)),
+				"5": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(5)),
+				"6": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(6)),
+				"7": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(7)),
+				"8": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(8)),
+				"9": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(9)),
+				"0": (self.keyNumberGlobal, lambda: self.helpKeyNumberGlobal(0)),
+			}, description=_("Recall channel, panic button & number zap"))
 
 	def keyNumberGlobal(self, number):
 		if number != 0 and "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
@@ -577,7 +577,7 @@ class InfoBarNumberZap:
 			return
 
 		if self.pts_blockZap_timer.isActive():
-			return
+			return 0
 
 		# if self.save_current_timeshift and self.timeshiftEnabled():
 		# 	InfoBarTimeshift.saveTimeshiftActions(self)
@@ -594,8 +594,34 @@ class InfoBarNumberZap:
 			if "TimeshiftActions" in self and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
-					return
+					return 0
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+
+	def helpKeyNumberGlobal(self, number):
+		if number != 0 and "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
+			return _("Seek to middle of seek bar (Configurable)")
+
+		if self.pts_blockZap_timer.isActive():
+			return None
+
+		if number == 0:
+			if config.usage.panicbutton.value:
+				return "Panic button - clear zap history"
+			elif isinstance(self, InfoBarPiP) and self.pipHandles0Action():
+				return {
+					"standard": _("No PiP function"),
+					"swap": _("Swap PiP and main picture"),
+					"swapstop": _("Move PiP to main picture"),
+					"stop": _("Stop PiP")
+				}.get(config.usage.pip_zero_button.value, _("Unknown PiP action")) + " (Configurable)"
+			else:
+				return _("Switch between last two channels watched (Configurable)")
+		else:
+			if "TimeshiftActions" in self and self.timeshiftEnabled():
+				ts = self.getTimeshift()
+				if ts and ts.isTimeshiftActive():
+					return None
+			return _("Zap to channel number (Configurable)")
 
 	def doReCallService(self, reply):
 		if reply:
