@@ -795,7 +795,8 @@
 		<key id="KEY_PLAYPAUSE" mapto="play" flags="m"/>
 	        <key id="KEY_LIST" mapto="playlist" flags="m"/>
 	        <key id="KEY_TIME" mapto="timeshift" flags="m"/>
-	        <key id="KEY_SEARCH" mapto="search" flags="m"/>
+	        <key id="KEY_SEARCH" mapto="search" flags="b"/>
+	        <key id="KEY_SEARCH" mapto="search_long" flags="l"/>
 	        <key id="KEY_RESTART" mapto="slow" flags="m"/>
 	        <key id="KEY_BOOKMARKS" mapto="mark" flags="m"/>
 		<key id="KEY_SLEEP" mapto="sleep" flags="m"/>
