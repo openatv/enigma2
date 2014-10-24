@@ -2018,7 +2018,7 @@ class RadioInfoBar(Screen):
 		Screen.__init__(self, session)
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 
-class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase):
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase, SelectionEventInfo):
 	ALLOW_SUSPEND = True
 
 	def __init__(self, session, infobar):
@@ -2026,6 +2026,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
 		InfoBarBase.__init__(self)
+		SelectionEventInfo.__init__(self)
 		self.infobar = infobar
 		self.startServiceRef = None
 		self.onLayoutFinish.append(self.onCreate)
