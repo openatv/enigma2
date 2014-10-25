@@ -19,7 +19,6 @@ from Tools.BoundFunction import boundFunction
 from time import mktime, localtime
 from datetime import datetime
 from os import path
-from boxbranding import getBoxType
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -662,10 +661,10 @@ class NimSelection(Screen):
 						text = { "loopthrough": _("Loop through to"),
 								 "equal": _("Equal to"),
 								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
-						if not getBoxType() == "dm7080":
-							text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
-						else:
+						if len(x.input_name) > 1:
 							text += " " + _("Tuner") + " " + ["A1", "A2", "B", "C"][int(nimConfig.connectedTo.value)]
+						else:
+							text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
 					elif nimConfig.configMode.value == "nothing":
 						text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
