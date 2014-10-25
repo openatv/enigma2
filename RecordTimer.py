@@ -133,7 +133,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False, zap_wakeup = "always"):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = True, record_ecm = False, always_zap = False, zap_wakeup = "always", rename_repeat = True):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -168,6 +168,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.tags = tags or []
 		self.descramble = descramble
 		self.record_ecm = record_ecm
+		self.rename_repeat = rename_repeat
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
 		self.log_entries = []
@@ -180,15 +181,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
 
-	def calculateFilename(self):
+	def calculateFilename(self, name=None):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
-
-		print "begin_date: ", begin_date
-		print "service_name: ", service_name
-		print "name:", self.name
-		print "description: ", self.description
-
+		self.name = name or self.name
 		filename = begin_date + " - " + service_name
 		if self.name:
 			if config.recording.filename_composition.value == "short":
@@ -200,8 +196,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
-
-
 		if not self.dirname:
 			dirname = findSafeRecordPath(defaultMoviePath())
 		else:
@@ -245,6 +239,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.description = evt.getShortDescription()
 					if self.description == "":
 						self.description = evt.getExtendedDescription()
+					if self.rename_repeat:
+						event_name = evt.getEventName()
+						if event_name != "" and event_name != self.name and not self.calculateFilename(event_name):
+							self.do_backoff()
+							self.start_prepare = time() + self.backoff
+							return False
 					event_id = evt.getEventId()
 				else:
 					event_id = -1
@@ -531,6 +531,7 @@ def createTimer(xml):
 	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
 	description = xml.get("description").encode("utf-8")
 	repeated = xml.get("repeated").encode("utf-8")
+	rename_repeat = long(xml.get("rename_repeat") or "0")
 	disabled = long(xml.get("disabled") or "0")
 	justplay = long(xml.get("justplay") or "0")
 	always_zap = long(xml.get("always_zap") or "0")
@@ -562,7 +563,7 @@ def createTimer(xml):
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap, zap_wakeup = zap_wakeup)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap, zap_wakeup = zap_wakeup, rename_repeat = rename_repeat)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -728,6 +729,7 @@ class RecordTimer(timer.Timer):
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
 			list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
+			list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append('>\n')
