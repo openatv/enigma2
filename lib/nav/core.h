@@ -9,6 +9,7 @@
 
 class eNavigation: public iObject, public Object
 {
+	static eNavigation *instance;
 	DECLARE_REF(eNavigation);
 	int m_decoder;
 	ePtr<iServiceHandler> m_servicehandler;
@@ -19,6 +20,7 @@ class eNavigation: public iObject, public Object
 	void serviceEvent(iPlayableService* service, int event);
 
 	std::map<ePtr<iRecordableService>, ePtr<eConnection>, std::less<iRecordableService*> > m_recordings;
+	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > m_recordings_services;
 	std::set<ePtr<iRecordableService>, std::less<iRecordableService*> > m_simulate_recordings;
 
 	Signal2<void,ePtr<iRecordableService>,int> m_record_event;
@@ -35,9 +37,11 @@ public:
 	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate=false);
 	RESULT stopRecordService(ePtr<iRecordableService> &service);
 	void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false);
+	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > getRecordingsServices() { return m_recordings_services; }
 
 	RESULT pause(int p);
 	eNavigation(iServiceHandler *serviceHandler, int decoder = 0);
+	static eNavigation *getInstance() { return instance; }
 	virtual ~eNavigation();
 };
 
