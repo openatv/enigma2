@@ -699,15 +699,16 @@ class NimManager:
 		self.transpondersatsc = { }
 		db = eDVBDB.getInstance()
 
-		print "Reading satellites.xml"
-		db.readSatellites(self.satList, self.satellites, self.transponders)
-		self.satList.sort() # sort by orbpos
+		if self.hasNimType("DVB-S"):
+			print "Reading satellites.xml"
+			db.readSatellites(self.satList, self.satellites, self.transponders)
+			self.satList.sort() # sort by orbpos
 
-		print "Reading cables.xml"
-		db.readCables(self.cablesList, self.transponderscable)
-
-		print "Reading terrestrial.xml"
-		db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
+		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
+			print "Reading cables.xml"
+			db.readCables(self.cablesList, self.transponderscable)
+			print "Reading terrestrial.xml"
+			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 
 	def enumerateNIMs(self):
 		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
