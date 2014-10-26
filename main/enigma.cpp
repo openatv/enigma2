@@ -318,6 +318,11 @@ const char *getEnigmaVersionString()
 	return std::string(date).c_str();
 }
 
+const char *getGStreamerVersionString()
+{
+	return gst_version_string();
+}
+
 #include <malloc.h>
 
 void dump_malloc_stats(void)

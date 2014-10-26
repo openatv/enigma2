@@ -26,6 +26,10 @@ def getEnigmaVersionString():
 		enigma_version = enigma_version [:-12]
 	return enigma_version
 
+def getGStreamerVersionString():
+	import enigma
+	return enigma.getGStreamerVersionString()
+
 def getKernelVersionString():
 	try:
 		return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
@@ -51,7 +55,7 @@ def getCPUInfoString():
 		        if line[0] == "cpu MHz":
 		                cpu_speed = "%1.0f" % float(line[1])
 		                cpu_count += 1
-		return "%s %s MHz (%d %s)" % (processor, cpu_speed, cpu_count, cpu_count > 1 and "cores" or "core")
+		return "%s %s MHz (%d %s)" % (processor, cpu_speed, cpu_count, cpu_count > 1 and _("cores") or _("core"))
 	except:
 		return _("undefined")
 
