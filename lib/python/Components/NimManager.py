@@ -709,8 +709,6 @@ class NimManager:
 		print "Reading terrestrial.xml"
 		db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 
-		print "Reading atsc.xml"
-
 	def enumerateNIMs(self):
 		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
 		# the result will be stored into nim_slots.
