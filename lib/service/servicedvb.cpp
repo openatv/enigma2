@@ -1341,9 +1341,11 @@ RESULT eDVBServicePlay::start()
 	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
 	ePtr<eDVBResourceManager> res_mgr;
 
+	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
 	std::string remote_fallback_url = eConfigManager::getConfigValue("config.usage.remote_fallback");
 
 	if(!m_is_stream && !m_is_pvr &&
+			remote_fallback_enabled &&
 			(remote_fallback_url.length() > 0) &&
 			!eDVBResourceManager::getInstance(res_mgr))
 	{
