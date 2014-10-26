@@ -692,29 +692,24 @@ class NimManager:
 			return orbpos + 1800
 
 	def readTransponders(self):
-		# read initial networks from file. we only read files which we are interested in,
-		# which means only these where a compatible tuner exists.
 		self.satellites = { }
 		self.transponders = { }
 		self.transponderscable = { }
 		self.transpondersterrestrial = { }
 		self.transpondersatsc = { }
 		db = eDVBDB.getInstance()
-		if self.hasNimType("DVB-S"):
-			print "Reading satellites.xml"
-			db.readSatellites(self.satList, self.satellites, self.transponders)
-			self.satList.sort() # sort by orbpos
 
-		if self.hasNimType("DVB-C"):
-			print "Reading cables.xml"
-			db.readCables(self.cablesList, self.transponderscable)
+		print "Reading satellites.xml"
+		db.readSatellites(self.satList, self.satellites, self.transponders)
+		self.satList.sort() # sort by orbpos
 
-		if self.hasNimType("DVB-T") or self.hasNimType("DVB-T2"):
-			print "Reading terrestrial.xml"
-			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
+		print "Reading cables.xml"
+		db.readCables(self.cablesList, self.transponderscable)
 
-		if self.hasNimType("ATSC"):
-			print "Reading atsc.xml"
+		print "Reading terrestrial.xml"
+		db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
+
+		print "Reading atsc.xml"
 
 	def enumerateNIMs(self):
 		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
