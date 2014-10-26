@@ -66,6 +66,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 else:
 	DFLASH = False
 
+if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"):
+	from Plugins.Extensions.dBackup.plugin import dBackup
+	DBACKUP = True
+else:
+	DBACKUP = False
+
 if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.pyo"):
 	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
 	POSSETUP = True
@@ -484,6 +490,8 @@ class QuickMenu(Screen):
 		elif item[0] == _("Complete Backup"):
 			if DFLASH == True:
 				self.session.open(dFlash)
+			elif DBACKUP == True:
+				self.session.open(dBackup)
 			else:
 				self.session.open(ImageBackup)
 		elif item[0] == _("Backup Settings"):
