@@ -595,7 +595,7 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 }
 
 /**
- * @brief Removes any existing events that overlap the new event by more than OVERLAP_TIME (100) seconds.
+ * @brief Removes any existing events that overlap the new event by more than OVERLAP_TIME (60) seconds.
  *
  * @param servicemap an eventMap, timeMap pair
  * @param TM start time of the event
@@ -607,7 +607,7 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
 {
 //	eDebug("[EPGC] FixOverlapping TM=%ld, duration=%d, tm_it=%ld", (long)TM, duration, (long)tm_it->first);
-	static const int OVERLAP_TIME = 100;
+	static const int OVERLAP_TIME = 60;
 	bool ret = false;
 	timeMap::iterator tmp = tm_it;
 	// while end of old is OVERLAP_TIME or more after start of new
