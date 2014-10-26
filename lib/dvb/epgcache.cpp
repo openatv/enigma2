@@ -817,7 +817,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			if ( ev_it != servicemap.first.end() )
 			{
 //				eDebug("[EPGC] event %04x in eventMap with start time %ld", event_id, (long)ev_it->second->getStartTime());
-				if ( (source & ~EPG_IMPORT) > ev_it->second->type )  // update needed ?
+				if ((source & ~EPG_IMPORT) > ev_it->second->type)  // update needed ?
 				{
 #ifdef EPG_DEBUG
 					eDebug("[EPGC] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
@@ -876,7 +876,8 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			{
 //				eDebug("[EPGC] event at time %ld in timeMap with id %04x", (long)TM, tm_it->second->getEventID());
 				// event with same start time but another event_id...
-					ev_it == servicemap.first.end() )
+				if ((source & ~EPG_IMPORT) > tm_it->second->type &&
+					ev_it == servicemap.first.end())
 				{
 #ifdef EPG_DEBUG
 					eDebug("[EPGC] event at time %ld skip update: source=0x%x > type=0x%x && event %04x not found in eventMap", (long)TM, source, tm_it->second->type, event_id);
