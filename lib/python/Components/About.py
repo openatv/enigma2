@@ -55,7 +55,7 @@ def getCPUInfoString():
 		        if line[0] == "cpu MHz":
 		                cpu_speed = "%1.0f" % float(line[1])
 		                cpu_count += 1
-		return "%s %s MHz (%d %s)" % (processor, cpu_speed, cpu_count, cpu_count > 1 and _("cores") or _("core"))
+		return "%s %s MHz (%s)" % (processor, cpu_speed, ngettext("%d core", "%d cores", cpu_count) % cpu_count)
 	except:
 		return _("undefined")
 
