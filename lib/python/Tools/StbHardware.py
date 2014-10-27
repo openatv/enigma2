@@ -10,6 +10,8 @@ def getFPVersion():
 			file = open("/proc/stb/info/micomver", "r")
 			ret = file.readline().strip()
 			file.close()
+		elif getBoxType() == "dm7080":
+			ret = open("/proc/stb/fp/version", "r").read()
 		else:	
 			ret = long(open("/proc/stb/fp/version", "r").read())
 	except IOError:
@@ -51,7 +53,7 @@ def setRTCoffset():
 		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue') or getBrandOEM().startswith('ini'):
+	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue') or getBrandOEM().startswith('ini') or getBrandOEM() in ('fulan'):
 		setRTCoffset() 
 	try:
 		f = open("/proc/stb/fp/rtc", "w")

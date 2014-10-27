@@ -576,10 +576,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
-		if self.lastSecondInfoBar == config.usage.show_second_infobar.value:
+		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
 			return
 		self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-		self.lastSecondInfoBar = config.usage.show_second_infobar.value
+		self.lastSecondInfoBar = int(config.usage.show_second_infobar.value)
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
@@ -592,12 +592,35 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(True)
 		self.startHideTimer()
 
+	def doDimming(self):
+		if config.usage.show_infobar_do_dimming.value:
+			self.dimmed = self.dimmed-1
+		else:
+			self.dimmed = 0
+		self.DimmingTimer.stop()
+		self.doHide()
+
+	def unDimming(self):
+		self.unDimmingTimer.stop()
+		self.doWriteAlpha(config.av.osd_alpha.value)
+
+	def doWriteAlpha(self, value):
+		if fileExists("/proc/stb/video/alpha"):
+			f=open("/proc/stb/video/alpha","w")
+			f.write("%i" % (value))
+			f.close()
+
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-#		if self.secondInfoBarScreen:
-#			self.secondInfoBarScreen.hide()
+		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
+
+	def resetAlpha(self):
+		if config.usage.show_infobar_do_dimming.value:
+			self.unDimmingTimer = eTimer()
+			self.unDimmingTimer.callback.append(self.unDimming)
+			self.unDimmingTimer.start(300, True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -663,27 +686,44 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
-		if self.__state == self.STATE_SHOWN:
-			self.hide()
-			if hasattr(self, "pvrStateDialog"):
-				try:
-					self.pvrStateDialog.hide()
-				except:
-					pass
+		self.DimmingTimer = eTimer()
+		self.DimmingTimer.callback.append(self.doDimming)
+		self.DimmingTimer.start(300, True)
+		self.dimmed = config.usage.show_infobar_dimming_speed.value
+
+	def doHide(self):
+		if self.__state != self.STATE_HIDDEN:
+			if self.dimmed > 0:
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.DimmingTimer.start(5, True)
+			else:
+				self.DimmingTimer.stop()
+				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
+			if self.dimmed > 0:
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.DimmingTimer.start(5, True)
+			else:
+				self.DimmingTimer.stop()
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
+				self.resetAlpha()
 		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
 			try:
 				self.eventView.close()
 			except:
 				pass
 			self.EventViewIsShown = False
-		elif hasattr(self, "pvrStateDialog"):
-			try:
-				self.pvrStateDialog.hide()
-			except:
-				pass
+#		elif hasattr(self, "pvrStateDialog"):
+#			if self.dimmed > 0:
+#				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+#				self.DimmingTimer.start(5, True)
+#			else:
+#				self.DimmingTimer.stop()
+#				try:
+#					self.pvrStateDialog.hide()
+#				except:
+#					pass
 
 	def toggleShow(self):
 		if not hasattr(self, "LongButtonPressed"):
@@ -725,6 +765,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					except:
 						pass
 					self.EventViewIsShown = False
+
 	def toggleShowLong(self):
 		if self.LongButtonPressed:
 			if isinstance(self, InfoBarEPG):
@@ -1141,7 +1182,7 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		if not self.secondInfoBarScreen.shown:
+		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
 			self.keyHide()
 			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
@@ -1161,7 +1202,7 @@ class InfoBarChannelSelection:
 					self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		if not self.secondInfoBarScreen.shown:
+		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
 			self.keyHide()
 			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
@@ -3145,7 +3186,9 @@ class InfoBarINFOpanel:
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/E3Opera/plugin.pyo"):
 			isHBBTV = True
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/NXHbbTV/plugin.pyo"):
-			isHBBTV = True			
+			isHBBTV = True
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/OpenOpera/plugin.pyo"):
+			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:
 			service = self.session.nav.getCurrentService()
@@ -3166,28 +3209,56 @@ class InfoBarINFOpanel:
 
 	def doRedKeyTask(self):
 		try:
-			if config.plugins.infopanel_redpanel.selection.value == '1':
+			if config.plugins.infopanel_redpanel.selection.value =='0':
+				self.instantRecord()
+			elif config.plugins.infopanel_redpanel.selection.value =='1':
 				from Plugins.Extensions.Infopanel.plugin import Infopanel
 				self.session.open(Infopanel, services = self.servicelist)
 			elif config.plugins.infopanel_redpanel.selection.value == '2':
 				self.session.open(TimerEditList)
 			elif config.plugins.infopanel_redpanel.selection.value == '3':
 				self.showMovies()
+			elif config.plugins.infopanel_redpanel.selection.value == '4':
+				self.StartsoftcamPanel()
 			else:
-				self.instantRecord()
+				self.StartPlugin(config.plugins.infopanel_redpanel.selection.value)
+
 		except:
-			pass
+			print "Error on RedKeyTask !!"
 		
 	def softcamPanel(self):
-		if config.plugins.infopanel_redpanel.enabledlong.value == True:
-			try:
-				from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
-				self.session.open(SoftcamPanel)
-			except:
-				pass
-		else:
+		try:
+			if config.plugins.infopanel_redpanel.selectionLong.value =='0':
+				self.instantRecord()
+			elif config.plugins.infopanel_redpanel.selectionLong.value =='1':
+				from Plugins.Extensions.Infopanel.plugin import Infopanel
+				self.session.open(Infopanel, services = self.servicelist)
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '2':
+				self.session.open(TimerEditList)
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '3':
+				self.showMovies()
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '4':
+				self.StartsoftcamPanel()
+			else:
+				self.StartPlugin(config.plugins.infopanel_redpanel.selectionLong.value)
+
+		except:
+			print "Error on RedKeyTask Long!!"
+			
+	def StartsoftcamPanel(self):
+		try:
+			from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
+			self.session.open(SoftcamPanel)
+		except:
 			pass
-		
+
+	def StartPlugin(self, name):
+		pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		for p in pluginlist:
+			if p.name == name:
+				p(session=self.session)
+				break
+
 class InfoBarQuickMenu:
 	def __init__(self):
 		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu",
@@ -4438,7 +4509,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineBuild() == 'inihdp':
+		if getMachineBuild() in ('inihdp', 'hd2400'):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:

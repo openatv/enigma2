@@ -89,17 +89,18 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.log_entries = []
 		self.resetState()
 
-		#autopowertimer start on systemstart + 60s
-		#if self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-		#	self.begin = time() + 60
+		#check autopowertimer
+		if (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY) and not self.disabled and time() > 3600 and self.begin > time():
+			self.begin = time()						#the begin is in the future -> set to current time = no start delay of this timer
+
 		#check startuptimer
 		if self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
-			if abs(time() - self.begin) <= 180:		#begin within 3 minutes -> this is wakeuptimer
+			if abs(time() - self.begin) <= 300:		#begin within 5 minutes -> this is wakeuptimer
 				if self.end > time():
 					wakeupEnd = self.end
 				else:
-					wakeupEnd = time() + 3600	#no endtime listed, 1hour suppression of autodeepstandby and other overlapping powertimer
-		wuEnd = time () + 43200					#limitation to 12hours  suppression of ...
+					wakeupEnd = time() + 3600		#no endtime listed, 1hour suppression of autodeepstandby and other overlapping powertimer
+		wuEnd = time () + 43200						#limitation to 12hours  suppression of ...
 		if wakeupEnd > wuEnd:
 			wakeupEnd = wuEnd
 

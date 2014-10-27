@@ -9,7 +9,7 @@ from Components.Console import Console
 from Components.Label import Label
 from enigma import getDesktop
 from os import access, R_OK
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
@@ -20,6 +20,10 @@ def InitOsd():
 		SystemInfo["OsdMenu"] = True
 	else:
 		SystemInfo["OsdMenu"] = False
+		
+	if getBrandOEM() in ('fulan'):
+		SystemInfo["CanChangeOsdPosition"] = False
+		SystemInfo["CanChange3DOsd"] = False
 
 	def setOSDLeft(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:

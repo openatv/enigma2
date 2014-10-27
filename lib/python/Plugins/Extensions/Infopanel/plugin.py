@@ -43,11 +43,34 @@ config.softcam.actCam = ConfigText(visible_width = 200)
 config.softcam.actCam2 = ConfigText(visible_width = 200)
 config.softcam.waittime = ConfigSelection([('0',_("dont wait")),('1',_("1 second")), ('5',_("5 seconds")),('10',_("10 seconds")),('15',_("15 seconds")),('20',_("20 seconds")),('30',_("30 seconds"))], default='15')
 config.plugins.infopanel_redpanel = ConfigSubsection()
-if getBoxType() == "dm800":
-	config.plugins.infopanel_redpanel.selection = ConfigSelection([('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))], default='0')
+
+def Check_Softcam():
+	found = False
+	for x in os.listdir('/etc'):
+		if x.find('.emu') > -1:
+			found = True
+			break;
+	return found
+
+if Check_Softcam():
+	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("Softcam Panel"))]
 else:
-	config.plugins.infopanel_redpanel.selection = ConfigSelection([('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))], default='1')
-config.plugins.infopanel_redpanel.enabledlong = ConfigYesNo(default=False)
+	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
+
+def timerEvent():
+	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+	for p in pluginlist:
+		redSelection.append((p.name, _(p.name)))
+	if getBoxType() == "dm800":
+		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='0')
+		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='1')
+	else:
+		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='1')
+		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='2')
+timer = eTimer()
+timer.timeout.get().append(timerEvent)
+timer.startLongTimer(1)
+
 config.plugins.infopanel_yellowkey = ConfigSubsection()
 if getBoxType() == "dm800":
 	config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))], default='1')
@@ -81,20 +104,11 @@ from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 
-def Check_Softcam():
-	found = False
-	for x in os.listdir('/etc'):
-		if x.find('.emu') > -1:
-			found = True
-			break;
-	return found
-
 SystemInfo["SoftCam"] = Check_Softcam()
 
 # Hide Softcam-Panel Setup when no softcams installed
-if not Check_Softcam() and (config.plugins.showinfopanelextensions.value or config.plugins.infopanel_redpanel.enabledlong.value):
+if not Check_Softcam() and config.plugins.showinfopanelextensions.value:
 	config.plugins.showinfopanelextensions.value = False
-	config.plugins.infopanel_redpanel.enabledlong.value = False
 	config.plugins.showinfopanelextensions.save()
 	config.plugins.infopanel_redpanel.save()
 

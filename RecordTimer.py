@@ -192,7 +192,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 		filename = begin_date + " - " + service_name
 		if self.name:
-			if config.recording.filename_composition.value == "veryshort":
+			if config.recording.filename_composition.value == "veryveryshort":
+				filename = self.name
+			elif config.recording.filename_composition.value == "veryshort":
 				filename = self.name + " - " + begin_date
 			elif config.recording.filename_composition.value == "short":
 				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + self.name

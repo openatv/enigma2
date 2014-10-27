@@ -53,6 +53,10 @@ enigma2_LDADD = \
 	@LIBDDVD_LIBS@ \
 	-ltuxtxt -ltuxtxt32bpp -lcrypt -lrt
 
+if ENABLE_SH
+enigma2_LDADD += -lmmeimage
+endif
+
 enigma2_LDFLAGS = -Wl,--export-dynamic
 
 if HAVE_GIT_DIR

@@ -453,7 +453,10 @@ class Network:
 	def restartNetworkFinished(self,extra_args):
 		( callback ) = extra_args
 		if callback is not None:
-			callback(True)
+			try:
+				callback(True)
+			except:
+				pass
 
 	def getLinkState(self,iface,callback):
 		cmd = self.ethtool_bin + " " + iface
@@ -605,7 +608,10 @@ class Network:
 		if self.activateInterfaceConsole:
 			if len(self.activateInterfaceConsole.appContainers) == 0:
 				if callback is not None:
-					callback(True)
+					try:
+						callback(True)
+					except:
+						pass
 
 	def sysfsPath(self, iface):
 		return '/sys/class/net/' + iface

@@ -226,6 +226,15 @@ class choicesList(object): # XXX: we might want a better name for this
 	def __len__(self):
 		return len(self.choices) or 1
 
+	def updateItemDescription(self, index, descr):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			orig = self.choices[index]
+			assert isinstance(orig, tuple)
+			self.choices[index] = (orig[0], descr)
+		else:
+			key = self.choices.keys()[index]
+			self.choices[key] = descr
+
 	def __getitem__(self, index):
 		if self.type == choicesList.LIST_TYPE_LIST:
 			ret = self.choices[index]

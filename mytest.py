@@ -18,6 +18,9 @@ enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 boxtype = getBoxType()
 
+if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo") and boxtype=='dm7080':
+	import pyo_patcher
+
 from traceback import print_exc
 profile("SimpleSummary")
 from Screens import InfoBar
@@ -600,6 +603,9 @@ def runScreenTest():
 	config.usage.shutdownOK.save()
 	if not RestoreSettings:
 		configfile.save()
+
+	# kill showiframe if it is running (sh4 hack...)
+	os.system("killall -9 showiframe")
 	
 	runReactor()
 

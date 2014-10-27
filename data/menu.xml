@@ -34,7 +34,7 @@
 		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<menu level="0" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup" />
-			<menu weight="7" level="0" text="Service searching" entryID="service_searching_selection" requires="!isGBIPBOX">
+			<menu weight="7" level="0" text="Service searching" entryID="service_searching_selection">
 				<id val="scan" />
 				<item weight="10" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item weight="20" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>

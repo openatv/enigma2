@@ -1157,7 +1157,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def saveLocalSettings(self):
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-			pickle.dump(self.settings, open(path, "wb"))
+			file = open(path, "wb")
+			pickle.dump(self.settings, file)
+			file.close()
 		except Exception, e:
 			print "Failed to save settings to %s: %s" % (path, e)
 		# Also set config items, in case the user has a read-only disk
