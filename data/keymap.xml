@@ -17,6 +17,29 @@
 		<key id="2" mapto="moveDown" flags="mr" />
 	</map>
 
+	<!--+
+	    | Map to catch break events for the ListboxActions keys
+	    | in Screens.HelpMenu so that those are not passed through
+	    | to the HelpMenu wildcard actions as unhandled keypresses.
+	    +-->
+	<map context="ListboxHelpMenuActions">
+		<device name="keyboard">
+			<key id="a" mapto="ignore" flags="b" />
+			<key id="b" mapto="ignore" flags="b" />
+		</device>
+		<key id="KEY_UP" mapto="ignore" flags="b" />
+		<key id="KEY_DOWN" mapto="ignore" flags="b" />
+		<key id="KEY_HOME" mapto="ignore" flags="b" />
+		<key id="KEY_END" mapto="ignore" flags="b" />
+		<key id="KEY_PAGEUP" mapto="ignore" flags="b" />
+		<key id="KEY_PAGEDOWN" mapto="ignore" flags="b" />
+		<key id="KEY_LEFT" mapto="ignore" flags="b" />
+		<key id="KEY_RIGHT" mapto="ignore" flags="b" />
+
+		<key id="1" mapto="ignore" flags="b" />
+		<key id="2" mapto="ignore" flags="b" />
+	</map>
+
 	<map context="KeyboardInputActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
