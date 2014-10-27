@@ -799,6 +799,8 @@ class NimManager:
 				input = int(line[len("Frontend_Device:") + 1:])
 				entries[current_slot]["frontend_device"] = input
 			elif line.startswith("Mode"):
+				# Mode 0: DVB-C
+				# Mode 1: DVB-T
 				# "Mode 1: DVB-T" -> ["Mode 1", "DVB-T"]
 				split = line.split(":")
 				split[1] = split[1].replace(' ','')
@@ -831,7 +833,15 @@ class NimManager:
 			else:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
-				entry["multi_type"] = {}
+				print "multi_type = ", id
+				if entry["name"] == "TDA18273":
+					print "[NimManager] workaround for hybrid tuner TDA18273"
+					entry["multi_type"] = {'1': 'DVB-T2', '0': 'DVB-C'}
+				elif entry["name"] == "Si2169":
+					print "[NimManager] workaround for hybrid tuner Si2169"
+					entry["multi_type"] = {'1': 'DVB-T2', '0': 'DVB-C'}
+				else:
+					entry["multi_type"] = {}
 			if not (entry.has_key("input_name")):
 				entry["input_name"] = chr(ord('A') + id)
 			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None)))
