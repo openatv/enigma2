@@ -268,6 +268,8 @@ class HotkeySetupSelect(Screen):
 			"cancel": self.cancel,
 			"red": self.cancel,
 			"green": self.save,
+			"pageUp": self.toggleMode,
+			"pageDown": self.toggleMode
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -319,18 +321,6 @@ class HotkeySetupSelect(Screen):
 			if not self.selected:
 				self.toggleMode()
 		self["choosen"].setList(self.selected)
-
-	def keyLeft(self):
-		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
-
-	def keyRight(self):
-		self[self.mode].instance.moveSelection(self[self.mode].instance.pageDown)
-
-	def keyUp(self):
-		self[self.mode].instance.moveSelection(self[self.mode].instance.moveUp)
-
-	def keyDown(self):
-		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
 
 	def save(self):
 		configValue = []
