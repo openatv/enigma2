@@ -37,9 +37,9 @@ def getCPUSpeedString():
 				if splitted[0].startswith("cpu MHz"):
 					mhz = float(splitted[1].split(' ')[0])
 					if mhz and mhz >= 1000:
-						mhz = "%s Ghz" % str(round(mhz/1000,1))
+						mhz = "%s GHz" % str(round(mhz/1000,1))
 					else:
-						mhz = "%s Mhz" % str(round(mhz,1))
+						mhz = "%s MHz" % str(round(mhz,1))
 		file.close()
 		return mhz
 	except IOError:
