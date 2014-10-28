@@ -11,7 +11,7 @@ from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
-from enigma import eServiceReference
+from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 
 ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
@@ -179,23 +179,33 @@ class ButtonSetup(Screen):
 		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.keyOk,
 			"cancel": self.close,
-			"red": self.close,
-			"up": self.keyUp,
-			"down": self.keyDown,
-			"left": self.keyLeft,
-			"right": self.keyRight,
+			"red": self.redPressed,
 		}, -1)
 		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in ButtonSetupKeys))
 		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
+		self.onShown.append(self.disableKeyMap)
+		self.onClose.append(self.enableKeyMap)
 
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
+
+	def disableKeyMap(self):
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 4)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 5)
+
+	def enableKeyMap(self):
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 103, 5, "ListboxActions", "moveUp")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 108, 5, "ListboxActions", "moveDown")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 105, 5, "ListboxActions", "pageUp")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 106, 5, "ListboxActions", "pageDown")
 
 	def ButtonSetupGlobal(self, key):
 		if self.longkeyPressed:
@@ -214,22 +224,6 @@ class ButtonSetup(Screen):
 	def keyOk(self):
 		self.session.open(ButtonSetupSelect, self["list"].l.getCurrentSelection())
 
-	def keyLeft(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageUp)
-		self.getFunctions()
-
-	def keyRight(self):
-		self["list"].instance.moveSelection(self["list"].instance.pageDown)
-		self.getFunctions()
-
-	def keyUp(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		self.getFunctions()
-
-	def keyDown(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		self.getFunctions()
-
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
 		if key:
@@ -239,6 +233,11 @@ class ButtonSetup(Screen):
 				if function:
 					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
+	def redPressed(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self.close()
 
 class ButtonSetupSelect(Screen):
 	def __init__(self, session, key, args=None):
@@ -271,10 +270,24 @@ class ButtonSetupSelect(Screen):
 			"pageUp": self.toggleMode,
 			"pageDown": self.toggleMode
 		}, -1)
+		self.onShown.append(self.enableKeyMap)
+		self.onClose.append(self.disableKeyMap)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
+
+	def disableKeyMap(self):
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 4)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 5)
+
+	def enableKeyMap(self):
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 103, 5, "ListboxActions", "moveUp")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 108, 5, "ListboxActions", "moveDown")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 105, 5, "ListboxActions", "pageUp")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 106, 5, "ListboxActions", "pageDown")
 
 	def getFunctionList(self):
 		functionslist = []
