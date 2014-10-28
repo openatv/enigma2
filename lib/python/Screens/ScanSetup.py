@@ -1053,8 +1053,12 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def getNetworksForNim(self, nim):
 		if nim.isCompatible("DVB-S"):
 			networks = nimmanager.getSatListForNim(nim.slot)
+		elif nim.isCompatible("DVB-C"):
+			networks = nimmanager.getTranspondersCable(nim.slot)
+		elif nim.isCompatible("DVB-T"):
+			networks = nimmanager.getTerrestrialDescription(nim.slot)
 		elif not nim.empty:
-			networks = [ nim.type ] # "DVB-C" or "DVB-T". TODO: seperate networks for different C/T tuners, if we want to support that.
+			networks = [ nim.type ]
 		else:
 			# empty tuners provide no networks.
 			networks = [ ]
