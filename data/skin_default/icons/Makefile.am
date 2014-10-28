@@ -87,6 +87,21 @@ dist_install_DATA = \
 	rep.png \
 	repeat_off.png \
 	repeat_on.png \
+	repepgclock_add.png \
+	repepgclock.png \
+	repepgclock_post.png \
+	repepgclock_pre.png \
+	repepgclock_prepost.png \
+	repzapclock.png \
+	repzapclock_add.png \
+	repzapclock_post.png \
+	repzapclock_pre.png \
+	repzapclock_prepost.png \
+	repzaprecclock.png \
+	repzaprecclock_add.png \
+	repzaprecclock_post.png \
+	repzaprecclock_pre.png \
+	repzaprecclock_prepost.png \
 	scan-c.png \
 	scan-s.png \
 	scan-t.png \

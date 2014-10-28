@@ -875,6 +875,7 @@ class RecordTimer(timer.Timer):
 					type_offset = 10
 
 				if x.repeated != 0:
+					type_offset += 15
 					if bt is None:
 						bt = localtime(begin)
 						bday = bt.tm_wday
@@ -973,7 +974,7 @@ class RecordTimer(timer.Timer):
 							time_match = end - begin
 							type = type_offset + 2
 				if time_match:
-					if type in (2,7,12):
+					if type in (2,7,12,17,22,27):
 						# When full recording do not look further
 						returnValue = (time_match, [type])
 						break
