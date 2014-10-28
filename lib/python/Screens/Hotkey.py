@@ -382,9 +382,7 @@ class HotkeySetupSelect(Screen):
 			return 0
 
 	def swapChoosen(self, currentIndex, swapIndex):
-		temp = self["choosen"].list[currentIndex]
-		self["choosen"].list[currentIndex] = self["choosen"].list[swapIndex]
-		self["choosen"].list[swapIndex] = temp
+		self["choosen"].list[currentIndex], self["choosen"].list[swapIndex] = self["choosen"].list[swapIndex], self["choosen"].list[currentIndex]
 		self["choosen"].setList(self["choosen"].list)
 
 	def save(self):
