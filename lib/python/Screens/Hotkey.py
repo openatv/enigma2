@@ -262,18 +262,12 @@ class HotkeySetupSelect(Screen):
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "KeyboardInputActions"], 
 		{
 			"ok": self.keyOk,
 			"cancel": self.cancel,
 			"red": self.cancel,
 			"green": self.save,
-			"up": self.keyUp,
-			"down": self.keyDown,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"pageUp": self.toggleMode,
-			"pageDown": self.toggleMode
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
