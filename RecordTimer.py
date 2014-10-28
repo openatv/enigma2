@@ -843,7 +843,8 @@ class RecordTimer(timer.Timer):
 				sref = x.service_ref.ref
 				parent_sid = sref.getUnsignedData(5)
 				parent_tsid = sref.getUnsignedData(6)
-				if parent_sid and parent_tsid: # check for subservice
+				if parent_sid and parent_tsid:
+					# check for subservice
 					sid = sref.getUnsignedData(1)
 					tsid = sref.getUnsignedData(2)
 					sref.setUnsignedData(1, parent_sid)
@@ -876,6 +877,7 @@ class RecordTimer(timer.Timer):
 					type_offset = 10
 
 				if x.repeated != 0:
+					type_offset += 15
 					if bt is None:
 						bt = localtime(begin)
 						et = localtime(end)
@@ -890,36 +892,45 @@ class RecordTimer(timer.Timer):
 						if xend < xbegin:
 							xend += 1440
 						if begin2 < xbegin <= end2:
-							if xend < end2: # recording within event
+							if xend < end2:
+								# recording within event
 								time_match = (xend - xbegin) * 60
 								type = type_offset + 3
-							else:           # recording last part of event
+							else:
+								# recording last part of event
 								time_match = (end2 - xbegin) * 60
 								type = type_offset + 1
 						elif xbegin <= begin2 <= xend:
-							if xend < end2: # recording first part of event
+							if xend < end2:
+								# recording first part of event
 								time_match = (xend - begin2) * 60
 								type = type_offset + 4
-							else:           # recording whole event
+							else:
+								# recording whole event
 								time_match = (end2 - begin2) * 60
 								type = type_offset + 2
 				else:
 					if begin < x.begin <= end:
-						if timer_end < end: # recording within event
+						if timer_end < end:
+							# recording within event
 							time_match = timer_end - x.begin
 							type = type_offset + 3
-						else:           # recording last part of event
+						else:
+							# recording last part of event
 							time_match = end - x.begin
 							type = type_offset + 1
 					elif x.begin <= begin <= timer_end:
-						if timer_end < end: # recording first part of event
+						if timer_end < end:
+							# recording first part of event
 							time_match = timer_end - begin
 							type = type_offset + 4
-						else:           # recording whole event
+						else:
+							# recording whole event
 							time_match = end - begin
 							type = type_offset + 2
 				if time_match:
-					if type in (2,7,12): # When full recording do not look further
+					if type in (2,7,12,17,22,27):
+						# When full recording do not look further
 						returnValue = (time_match, [type], isAutoTimer)
 						break
 					elif returnValue:
