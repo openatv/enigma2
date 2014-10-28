@@ -423,11 +423,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
 				self.EventViewIsShown = False
-			elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
-				self.showDefaultEPG()
-			elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "INFOBAREPG":
-				self.openInfoBarEPG()
-			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value != "none" and not self.secondInfoBarScreen.shown:
+			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 				self.hide()
 				self.secondInfoBarScreen.show()
 				self.secondInfoBarWasShown = True
@@ -762,13 +758,13 @@ class InfoBarChannelSelection:
 		self.checkTimeshiftRunning(self.doPanicButton)
 
 	def LeftPressed(self):
-		if config.vixsettings.InfoBarEpg_mode.value == "3" and config.usage.show_second_infobar.value != "INFOBAREPG":
+		if config.vixsettings.InfoBarEpg_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.vixsettings.InfoBarEpg_mode.value == "3" and config.usage.show_second_infobar.value != "INFOBAREPG":
+		if config.vixsettings.InfoBarEpg_mode.value == "3":
 			self.openInfoBarEPG()
 		else:
 			self.zapDown()
@@ -781,7 +777,7 @@ class InfoBarChannelSelection:
 		}[config.usage.channelbutton_mode.value] + _(" (Configurable)")
 
 	def ChannelPlusPressed(self):
-		if config.usage.channelbutton_mode.value == "0" or config.usage.show_second_infobar.value == "INFOBAREPG":
+		if config.usage.channelbutton_mode.value == "0":
 			self.zapDown()
 		elif config.usage.channelbutton_mode.value == "1":
 			self.openServiceList()
@@ -791,7 +787,7 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
-		if config.usage.channelbutton_mode.value == "0" or config.usage.show_second_infobar.value == "INFOBAREPG":
+		if config.usage.channelbutton_mode.value == "0":
 			self.zapUp()
 		elif config.usage.channelbutton_mode.value == "1":
 			self.openServiceList()
