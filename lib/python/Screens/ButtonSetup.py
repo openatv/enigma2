@@ -14,7 +14,7 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference
 from Components.Label import Label
 
-hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
+ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Red long"), "red_long", "Infobar/activateRedButton"),
 	(_("Green"), "green", ""),
 	(_("Green long"), "green_long", "Infobar/showAutoTimerList"),
@@ -70,13 +70,13 @@ hotkeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("F3"), "f3", ""),
 	(_("F3 long"), "f3_long", ""),]
 
-config.misc.hotkey = ConfigSubsection()
-config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
-for x in hotkeys:
-	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
+config.misc.ButtonSetup = ConfigSubsection()
+config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
+for x in ButtonSetupKeys:
+	exec "config.misc.ButtonSetup." + x[1] + " = ConfigText(default='" + x[2] + "')"
 
-def getHotkeyFunctions():
-	hotkeyFunctions = []
+def getButtonSetupFunctions():
+	ButtonSetupFunctions = []
 	twinPlugins = []
 	twinPaths = {}
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
@@ -87,7 +87,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[24:]] += 1
 			else:
 				twinPaths[plugin.path[24:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
+			ButtonSetupFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
@@ -97,75 +97,75 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[24:]] += 1
 			else:
 				twinPaths[plugin.path[24:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
+			ButtonSetupFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
 			twinPlugins.append(plugin.name)
-	hotkeyFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
-	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
-	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
-	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
-	hotkeyFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
-#	hotkeyFunctions.append((_("Switch channel down"), "Infobar/switchChannelUp", "InfoBar"))
-#	hotkeyFunctions.append((_("Switch channel up"), "Infobar/switchChannelDown", "InfoBar"))
-	hotkeyFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
-	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
-	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
-	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
-	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
-	hotkeyFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
-	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
-	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
-	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
-	hotkeyFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
-	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
-	hotkeyFunctions.append((_("Activate timeshift End"), "Infobar/activateTimeshiftEnd", "InfoBar"))
-	hotkeyFunctions.append((_("Activate timeshift end and pause"), "Infobar/activateTimeshiftEndAndPause", "InfoBar"))
-	hotkeyFunctions.append((_("Start timeshift"), "Infobar/startTimeshift", "InfoBar"))
-	hotkeyFunctions.append((_("Stop timeshift"), "Infobar/stopTimeshift", "InfoBar"))
-	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
-	hotkeyFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
-	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
+	ButtonSetupFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
+	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
+#	ButtonSetupFunctions.append((_("Switch channel down"), "Infobar/switchChannelUp", "InfoBar"))
+#	ButtonSetupFunctions.append((_("Switch channel up"), "Infobar/switchChannelDown", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
+	ButtonSetupFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
+	ButtonSetupFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
+	ButtonSetupFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
+	ButtonSetupFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
+	ButtonSetupFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", "EPG"))
+	ButtonSetupFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
+	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
+	ButtonSetupFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
+	ButtonSetupFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
+	ButtonSetupFunctions.append((_("Activate timeshift End"), "Infobar/activateTimeshiftEnd", "InfoBar"))
+	ButtonSetupFunctions.append((_("Activate timeshift end and pause"), "Infobar/activateTimeshiftEndAndPause", "InfoBar"))
+	ButtonSetupFunctions.append((_("Start timeshift"), "Infobar/startTimeshift", "InfoBar"))
+	ButtonSetupFunctions.append((_("Stop timeshift"), "Infobar/stopTimeshift", "InfoBar"))
+	ButtonSetupFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
-		hotkeyFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
-		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
-		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
-		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
-	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
-	hotkeyFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", "InfoBar"))
-	hotkeyFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", "InfoBar"))
-	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
-	hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
-	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
-	hotkeyFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
-	hotkeyFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
-	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
+		ButtonSetupFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
+	ButtonSetupFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
+	ButtonSetupFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", "InfoBar"))
+	ButtonSetupFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", "InfoBar"))
+	ButtonSetupFunctions.append((_("ButtonSetup Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
+	ButtonSetupFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
+	ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
+	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
+	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
+	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
 	for plugin in plugins.getPluginsForMenu("scan"):
-		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
-	hotkeyFunctions.append((_("Network setup"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
-	hotkeyFunctions.append((_("Network menu"), "Infobar/showNetworkMounts", "Setup"))
-	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
-	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
-	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
-	hotkeyFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
+		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
+	ButtonSetupFunctions.append((_("Network setup"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
+	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMounts", "Setup"))
+	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
+	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
+	ButtonSetupFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
+	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
-			hotkeyFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
-	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
-	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
-	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
-	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
-	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
-	hotkeyFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
-	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
-	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
-	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
-	return hotkeyFunctions
+			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
+	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
+	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
+	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
+	ButtonSetupFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
+	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
+	ButtonSetupFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
+	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
+	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
+	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	return ButtonSetupFunctions
 
-class HotkeySetup(Screen):
+class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Click on your remote on the button you want to change, then click on "OK"'))
@@ -173,10 +173,10 @@ class HotkeySetup(Screen):
 		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
 		self.list = []
-		self.hotkeyFunctions = getHotkeyFunctions()
-		for x in hotkeys:
+		self.ButtonSetupFunctions = getButtonSetupFunctions()
+		for x in ButtonSetupKeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10], selection = 0)
+		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
@@ -189,7 +189,7 @@ class HotkeySetup(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 		}, -1)
-		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys))
+		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in ButtonSetupKeys))
 		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
@@ -197,12 +197,12 @@ class HotkeySetup(Screen):
 	def __layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
 
-	def hotkeyGlobal(self, key):
+	def ButtonSetupGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
 		else:
 			index = 0
-			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10]:
+			for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
 					if key.endswith("_long"):
@@ -212,7 +212,7 @@ class HotkeySetup(Screen):
 			self.getFunctions()
 
 	def keyOk(self):
-		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
+		self.session.open(ButtonSetupSelect, self["list"].l.getCurrentSelection())
 
 	def keyLeft(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
@@ -234,16 +234,16 @@ class HotkeySetup(Screen):
 		key = self["list"].l.getCurrentSelection()[0][1]
 		if key:
 			selected = []
-			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+			for x in eval("config.misc.ButtonSetup." + key + ".value.split(',')"):
+				function = list(function for function in self.ButtonSetupFunctions if function[1] == x )
 				if function:
 					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
-class HotkeySetupSelect(Screen):
+class ButtonSetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
-		self.skinName="HotkeySetupSelect"
+		self.skinName="ButtonSetupSelect"
 		self['description'] = Label(_('Select the desired function and click on "OK" to assign it. Use "CH+/-" to toggle between the lists. Select an assigned function and click on "OK" to de-assign it.'))
 		self.session = session
 		self.key = key
@@ -251,12 +251,12 @@ class HotkeySetupSelect(Screen):
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self.mode = "list"
-		self.hotkeyFunctions = getHotkeyFunctions()
-		self.config = eval("config.misc.hotkey." + key[0][1])
+		self.ButtonSetupFunctions = getButtonSetupFunctions()
+		self.config = eval("config.misc.ButtonSetup." + key[0][1])
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			function = list(function for function in self.hotkeyFunctions if function[1] == x )
+			function = list(function for function in self.ButtonSetupFunctions if function[1] == x )
 			if function:
 				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
@@ -279,7 +279,7 @@ class HotkeySetupSelect(Screen):
 	def getFunctionList(self):
 		functionslist = []
 		catagories = {}
-		for function in self.hotkeyFunctions:
+		for function in self.ButtonSetupFunctions:
 			if not catagories.has_key(function[2]):
 				catagories[function[2]] = []
 			catagories[function[2]].append(function)
@@ -339,9 +339,9 @@ class HotkeySetupSelect(Screen):
 	def cancelCallback(self, answer):
 		answer and self.close()
 
-class hotkeyActionMap(ActionMap):
+class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -349,9 +349,9 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-class helpableHotkeyActionMap(HelpableActionMap):
+class helpableButtonSetupActionMap(HelpableActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -359,20 +359,20 @@ class helpableHotkeyActionMap(HelpableActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-class InfoBarHotkey():
+class InfoBarButtonSetup():
 	def __init__(self):
-		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
-			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
+		self["ButtonSetupButtonActions"] = helpableButtonSetupActionMap(self, "ButtonSetupActions",
+			dict((x[1],(self.ButtonSetupGlobal, boundFunction(self.getHelpText, x[1]))) for x in ButtonSetupKeys), -10)
 		self.longkeyPressed = False
 
 	def getKeyFunctions(self, key):
-		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
+		selection = eval("config.misc.ButtonSetup." + key + ".value.split(',')")
 		selected = []
 		for x in selection:
 			if x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			else:
-				function = list(function for function in getHotkeyFunctions() if function[1] == x )
+				function = list(function for function in getButtonSetupFunctions() if function[1] == x )
 				if function:
 					selected.append(function[0])
 		return selected
@@ -384,9 +384,9 @@ class InfoBarHotkey():
 		if len(selected) == 1:
 			return selected[0][0]
 		else:
-			return _("Hotkey") + " " + tuple(x[0] for x in hotkeys if x[1] == key)[0]
+			return _("ButtonSetup") + " " + tuple(x[0] for x in ButtonSetupKeys if x[1] == key)[0]
 
-	def hotkeyGlobal(self, key):
+	def ButtonSetupGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
 		else:
@@ -396,12 +396,12 @@ class InfoBarHotkey():
 			elif len(selected) == 1:
 				if key.endswith("_long"):
 					self.longkeyPressed = True
-				return self.execHotkey(selected[0])
+				return self.execButtonSetup(selected[0])
 			else:
-				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
-				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
+				key = tuple(x[0] for x in ButtonSetupKeys if x[1] == key)[0]
+				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, _("ButtonSetup") + " " + key, selected)
 
-	def execHotkey(self, selected):
+	def execButtonSetup(self, selected):
 		if selected:
 			selected = selected[1].split("/")
 			if selected[0] == "Plugins":
@@ -434,7 +434,7 @@ class InfoBarHotkey():
 					exec "from " + selected[1] + " import *"
 					exec "self.session.open(" + ",".join(selected[2:]) + ")"
 				except:
-					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
+					print "[ButtonSetup] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":
 				exec "from Screens.Setup import *"
 				exec "self.session.open(Setup, \"" + selected[1] + "\")"
