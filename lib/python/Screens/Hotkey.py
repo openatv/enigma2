@@ -276,7 +276,7 @@ class HotkeySetupSelect(Screen):
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "InfobarSeekActions"], 
 		{
 			"ok": self.keyOk,
 			"cancel": self.cancel,
@@ -287,7 +287,9 @@ class HotkeySetupSelect(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 			"pageUp": self.toggleMode,
-			"pageDown": self.toggleMode
+			"pageDown": self.toggleMode,
+			"jumpPreviousMark": self.moveUp,
+			"jumpNextMark": self.moveDown
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -362,6 +364,28 @@ class HotkeySetupSelect(Screen):
 
 	def keyDown(self):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
+
+	def moveUp(self):
+		if self.mode == "choosen":
+			currentIndex = self["choosen"].getSelectionIndex()
+			self.swapChoosen(currentIndex, (currentIndex - 1) % len(self["choosen"].list))
+			self.keyUp()
+		else:
+			return 0
+
+	def moveDown(self):
+		if self.mode == "choosen":
+			currentIndex = self["choosen"].getSelectionIndex()
+			self.swapChoosen(currentIndex, (currentIndex + 1) % len(self["choosen"].list))
+			self.keyDown()
+		else:
+			return 0
+
+	def swapChoosen(self, currentIndex, swapIndex):
+		temp = self["choosen"].list[currentIndex]
+		self["choosen"].list[currentIndex] = self["choosen"].list[swapIndex]
+		self["choosen"].list[swapIndex] = temp
+		self["choosen"].setList(self["choosen"].list)
 
 	def save(self):
 		configValue = []
