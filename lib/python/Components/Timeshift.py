@@ -206,6 +206,12 @@ class InfoBarTimeshift:
 		self.__seekableStatusChanged()
 
 	def __serviceEnd(self):
+		if self.save_current_timeshift:
+			if self.pts_curevent_end > time():
+				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount, mergelater=True)
+				self.ptsRecordCurrentEvent()
+			else:
+				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 		self.service_changed = 0
 		if not config.timeshift.isRecording.value:
 			self.__seekableStatusChanged()
