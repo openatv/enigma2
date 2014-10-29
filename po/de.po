@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-21 16:55+0100\n"
-"PO-Revision-Date: 2014-10-22 18:35+0100\n"
+"POT-Creation-Date: 2014-10-28 18:45+0000\n"
+"PO-Revision-Date: 2014-10-29 18:15+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -446,6 +446,9 @@ msgstr "3D Betriebsart"
 
 msgid "3D Surround"
 msgstr "3D Surround Ton"
+
+msgid "3D Surround Speaker Position"
+msgstr "3D Surround Lautsprecherposition"
 
 msgid "3D setup"
 msgstr "3D Einstellungen"
@@ -1118,6 +1121,9 @@ msgstr "automatisch Ausschalten"
 msgid "Auto Standby"
 msgstr "automatisch Bereitschaft"
 
+msgid "Auto Volume Level"
+msgstr "Automatische Lautstärkeregelung"
+
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatische Kapitelwechsel alle ? Minuten (0=nie)"
 
@@ -1333,6 +1339,12 @@ msgstr "Tasten-Einstellungen"
 
 msgid "Button setup for"
 msgstr "Tasten-Einstellungen für"
+
+msgid "ButtonSetup"
+msgstr "Tasten-Einstellungen"
+
+msgid "ButtonSetup Setup"
+msgstr "Tasten-Einstellungen"
 
 msgid "By Team ViX"
 msgstr "Vom Team ViX"
@@ -1866,6 +1878,13 @@ msgstr ""
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Konfigurieren ob und wie Sendertyp Icons gezeigt werden."
+
+msgid ""
+"Configure if and how the record indicator will be shown in the channel "
+"selection list."
+msgstr ""
+"Konfigurieren ob und wie Icons für die Aufnahme in der Senderliste gezeigt "
+"werden."
 
 msgid ""
 "Configure if and how wide the service name column will be shown in the "
@@ -3722,12 +3741,6 @@ msgstr "Hostname:"
 
 msgid "Hostname: "
 msgstr "Hostname: "
-
-msgid "HotKey Setup"
-msgstr "HotKey Einstellungen"
-
-msgid "Hotkey"
-msgstr ""
 
 msgid "Hour"
 msgstr "Stunde"
@@ -5795,13 +5808,6 @@ msgstr "Vordefiniert"
 msgid "Predefined transponder"
 msgstr "Vordefinierte Transponder"
 
-msgid ""
-"Predefined transponder scans are only possible when \n"
-"\"Service scan type\" is set to \"Provider\" in \"Tuner settings\"."
-msgstr ""
-"Vordefinierte Transpondersuche ist nur möglich wenn\n"
-"\"Art der Sendersuche\" auf \"Anbieter\" eingestellt ist."
-
 msgid "Prefer AC3 track"
 msgstr "Bevorzuge AC3"
 
@@ -6100,6 +6106,9 @@ msgstr "Rot"
 
 msgid "Red button..."
 msgstr "Roter Knopf..."
+
+msgid "Red colored"
+msgstr "Rot gefärbt"
 
 msgid "Red long"
 msgstr "Rot lang"
@@ -7257,7 +7266,7 @@ msgstr "Zeige Filmlänge in Filmliste"
 msgid "Show movies"
 msgstr "Zeige Filme"
 
-msgid "Show multi Service EPG"
+msgid "Show multi channel EPG"
 msgstr "Zeige Multi-EPG"
 
 msgid "Show network mounts ..."
@@ -7271,6 +7280,9 @@ msgstr "Zeige Hintergrundfarbe von PIcon"
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
+
+msgid "Show record indicator"
+msgstr "Zeige Aufnahmeindikator"
 
 msgid "Show screensaver"
 msgstr "Zeige Bildschirmschoner"
@@ -7858,12 +7870,6 @@ msgstr "Fernseher auf passenden Eingang schalten"
 msgid "Switch between filelist/playlist"
 msgstr "Wechsel zwischen Datei-/Playliste"
 
-msgid "Switch channel down"
-msgstr "Wechsel Kanal runter"
-
-msgid "Switch channel up"
-msgstr "Wechsel Kanal hoch"
-
 msgid "Switch config"
 msgstr "Wechsele Konfiguration"
 
@@ -8329,6 +8335,9 @@ msgstr "Diese Option erlaubt es den Grünanteil des Bildes zu verstärken."
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Diese Option erlaubt es den HDMI EDID zu deaktivieren"
 
+msgid "This option allows you to change the virtuell loadspeaker position."
+msgstr "Dies Option erlaubt es virtuelle Lautsprecherpositionen anzugeben."
+
 msgid ""
 "This option allows you to choose from the two channel lists that are "
 "available."
@@ -8421,8 +8430,9 @@ msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 "Diese Option erlaubt dir die Sortierungen in den Erweiterungen auszuschalten."
 
-msgid "This option allows you to enable 3D Surround Sound."
-msgstr "Diese Option erlaubt es 3D Surround Sound zu aktivieren."
+msgid "This option allows you to enable 3D Surround Sound for an output."
+msgstr ""
+"Diese Option erlaubt es 3D Surround Ton für einen Ausgang zu aktivieren."
 
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr ""
@@ -8439,6 +8449,11 @@ msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 "Diese Option erlaubt es das Bild mit den alten und neuen Werten "
 "nebeneinander anzeigen zu lassen."
+
+msgid "This option configures output for Auto Volume Level."
+msgstr ""
+"Diese Option erlaubt es die automatische Lautstärkeregelung für einen "
+"Ausgang einzustellen."
 
 msgid ""
 "This option configures the general audio delay of Dolby Digital sound tracks."
@@ -10284,7 +10299,7 @@ msgid "Zap back to service before tuner setup?"
 msgstr "Zurückschalten zum vorher laufenden Sender?"
 
 msgid "Zap down"
-msgstr "Zap runter"
+msgstr "Vorheriger Sender"
 
 msgid "Zap focus to Picture in Picture"
 msgstr "Fokus auf Bild-in-Bild legen"
@@ -10305,7 +10320,7 @@ msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap zu Sender und verlasse"
 
 msgid "Zap up"
-msgstr ""
+msgstr "Nächster Sender"
 
 msgid "Zoom In/Out TV..."
 msgstr "Zoom In/Out TV..."
@@ -10677,6 +10692,9 @@ msgstr "Experimental Filme/Video"
 
 msgid "extensions."
 msgstr "Erweiterungen."
+
+msgid "extra wide"
+msgstr "Extrabreit"
 
 msgid "failed"
 msgstr "fehlgeschlagen"
@@ -11459,6 +11477,9 @@ msgstr "Weiß"
 msgid "whitelist"
 msgstr "Positivliste"
 
+msgid "wide"
+msgstr "Breit"
+
 msgid "width"
 msgstr "Breite"
 
@@ -11585,6 +11606,9 @@ msgstr "umgeschaltet"
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enigma2 Änderungen"
 
+#~ msgid "HotKey Setup"
+#~ msgstr "HotKey Einstellungen"
+
 #~ msgid "Hotkey Setup"
 #~ msgstr "HotKey Einstellungen"
 
@@ -11596,6 +11620,13 @@ msgstr "umgeschaltet"
 
 #~ msgid "Open subtitle selection"
 #~ msgstr "Öffne Untertitelauswahl"
+
+#~ msgid ""
+#~ "Predefined transponder scans are only possible when \n"
+#~ "\"Service scan type\" is set to \"Provider\" in \"Tuner settings\"."
+#~ msgstr ""
+#~ "Vordefinierte Transpondersuche ist nur möglich wenn\n"
+#~ "\"Art der Sendersuche\" auf \"Anbieter\" eingestellt ist."
 
 #~ msgid "Select default EPG type..."
 #~ msgstr "Wähle Standard-EPG-Typ..."
@@ -11636,6 +11667,12 @@ msgstr "umgeschaltet"
 
 #~ msgid "Subservice mode"
 #~ msgstr "Unterkanal Modus"
+
+#~ msgid "Switch channel down"
+#~ msgstr "Wechsel Kanal runter"
+
+#~ msgid "Switch channel up"
+#~ msgstr "Wechsel Kanal hoch"
 
 #~ msgid "TV button mode"
 #~ msgstr "TV Taste bewirkt"
