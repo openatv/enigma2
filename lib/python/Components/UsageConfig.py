@@ -384,6 +384,42 @@ def InitUsageConfig():
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 
+	if SystemInfo["VFD_scroll_repeats"]:
+		def scroll_repeats(el):
+			open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
+		choicelist = []
+		for i in range(1, 11, 1):
+			choicelist.append(("%d" % i))
+		config.usage.vfd_scroll_repeats = ConfigSelection(default = "3", choices = choicelist)
+		config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback = False)
+
+	if SystemInfo["VFD_scroll_delay"]:
+		def scroll_delay(el):
+			open(SystemInfo["VFD_scroll_delay"], "w").write(el.value)
+		choicelist = []
+		for i in range(0, 1001, 50):
+			choicelist.append(("%d" % i))
+		config.usage.vfd_scroll_delay = ConfigSelection(default = "150", choices = choicelist)
+		config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
+
+	if SystemInfo["VFD_initial_scroll_delay"]:
+		def initial_scroll_delay(el):
+			open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
+		choicelist = []
+		for i in range(0, 20001, 500):
+			choicelist.append(("%d" % i))
+		config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
+		config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
+
+	if SystemInfo["VFD_final_scroll_delay"]:
+		def final_scroll_delay(el):
+			open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
+		choicelist = []
+		for i in range(0, 20001, 500):
+			choicelist.append(("%d" % i))
+		config.usage.vfd_final_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
+		config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
+
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
 		("0", _("original")),
