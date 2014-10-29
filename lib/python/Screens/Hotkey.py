@@ -289,8 +289,14 @@ class HotkeySetupSelect(Screen):
 			"down": self.keyDown,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"upRepeated": self.keyUp,
+			"downRepeated": self.keyDown,
+			"leftRepeated": self.keyLeft,
+			"rightRepeated": self.keyRight,
 			"pageUp": self.toggleMode,
-			"pageDown": self.toggleMode
+			"pageDown": self.toggleMode,
+			"moveUp": self.moveUp,
+			"moveDown": self.moveDown
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -365,6 +371,22 @@ class HotkeySetupSelect(Screen):
 
 	def keyDown(self):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
+
+	def moveUp(self):
+		self.moveChoosen(self.keyUp)
+
+	def moveDown(self):
+		self.moveChoosen(self.keyDown)
+
+	def moveChoosen(self, direction):
+		if self.mode == "choosen":
+			currentIndex = self["choosen"].getSelectionIndex()
+			swapIndex = (currentIndex + (direction == self.keyDown and 1 or -1)) % len(self["choosen"].list)
+			self["choosen"].list[currentIndex], self["choosen"].list[swapIndex] = self["choosen"].list[swapIndex], self["choosen"].list[currentIndex]
+			self["choosen"].setList(self["choosen"].list)
+			direction()
+		else:
+			return 0
 
 	def save(self):
 		configValue = []
