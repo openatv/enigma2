@@ -348,7 +348,7 @@ class InfoBarTimeshift:
 				self.checkTimeshiftRunning(self.stopTimeshiftcheckTimeshiftRunningCallback)
 			else:
 				# print 'TES2c'
-				return 0
+				pass  # Placeholder for commented-out debug print
 		else:
 			# print 'TEST3'
 			return 0
@@ -1170,7 +1170,7 @@ class InfoBarTimeshift:
 		# Reset Seek Pointer
 		self.ptsSeekPointerReset()
 
-		# print 'self.pts_switchtolive',self.pts_switchtolive
+		# print 'self.pts_switchtolive', self.pts_switchtolive
 		if self.pts_switchtolive:
 			# print '!!!!! TEST1'
 			self.pts_switchtolive = False
@@ -1182,7 +1182,7 @@ class InfoBarTimeshift:
 
 		# Get next pts file ...
 		# print '!!!!! TEST3'
-		# print ("!!! %spts_livebuffer_%s" % (config.usage.timeshift_path.value,self.pts_nextplaying))
+		# print ("!!! %spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_nextplaying))
 		if fileExists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_nextplaying), 'r'):
 			# print '!!!!! TEST4'
 			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
@@ -1196,7 +1196,7 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return
-		# print ("!!! SET NextPlaybackFile%s%s" % (config.usage.timeshift_path.value,nexttsfile))
+		# print ("!!! SET NextPlaybackFile%s%s" % (config.usage.timeshift_path.value, nexttsfile))
 		ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.value, nexttsfile))
 
 	def ptsSeekBackTimer(self):
