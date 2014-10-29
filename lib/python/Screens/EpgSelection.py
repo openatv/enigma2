@@ -1143,13 +1143,22 @@ class EPGSelection(Screen, HelpableScreen):
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
+	def getOKConfig(self):
+		return {
+			EPG_TYPE_MULTI: config.epgselection.multi_ok.value,
+			EPG_TYPE_ENHANCED: config.epgselection.enhanced_ok.value,
+			EPG_TYPE_INFOBAR: config.epgselection.infobar_ok.value,
+			EPG_TYPE_GRAPH: config.epgselection.graph_ok.value,
+			EPG_TYPE_INFOBARGRAPH: config.epgselection.infobar_ok.value
+		}.get(self.type)
+
 	def _helpOK(self):
-		helpText = _("No current function (Configurable)")
-		if config.epgselection.graph_ok.value == 'Zap' or config.epgselection.enhanced_ok.value == 'Zap' or config.epgselection.infobar_ok.value == 'Zap' or config.epgselection.multi_ok.value == 'Zap':
-			helpText = _("Zap to selected channel (Configurable)")
-		if config.epgselection.graph_ok.value == 'Zap + Exit' or config.epgselection.enhanced_ok.value == 'Zap + Exit' or config.epgselection.infobar_ok.value == 'Zap + Exit' or config.epgselection.multi_ok.value == 'Zap + Exit':
-			helpText = _("Zap to selected channel and exit EPG (Configurable)")
-		return helpText
+		confVal = self.getOKConfig()
+		if confVal == 'Zap':
+			return _("Zap to selected channel (Configurable)")
+		elif confVal == 'Zap + Exit':
+			return _("Zap to selected channel and exit EPG (Configurable)")
+		return _("No current function (Configurable)")
 
 	def OK(self):
 		from InfoBar import InfoBar
@@ -1158,18 +1167,28 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.zapnumberstarted:
 				self.doNumberZap()
 			else:
-				if config.epgselection.graph_ok.value == 'Zap' or config.epgselection.enhanced_ok.value == 'Zap' or config.epgselection.infobar_ok.value == 'Zap' or config.epgselection.multi_ok.value == 'Zap':
+				confVal = self.getOKConfig()
+				if confVal == 'Zap':
 					self.zapTo()
-				if config.epgselection.graph_ok.value == 'Zap + Exit' or config.epgselection.enhanced_ok.value == 'Zap + Exit' or config.epgselection.infobar_ok.value == 'Zap + Exit' or config.epgselection.multi_ok.value == 'Zap + Exit':
+				elif confVal == 'Zap + Exit':
 					self.zap()
 
+	def getOKLongConfig(self):
+		return {
+			EPG_TYPE_MULTI: config.epgselection.multi_oklong.value,
+			EPG_TYPE_ENHANCED: config.epgselection.enhanced_oklong.value,
+			EPG_TYPE_INFOBAR: config.epgselection.infobar_oklong.value,
+			EPG_TYPE_GRAPH: config.epgselection.graph_oklong.value,
+			EPG_TYPE_INFOBARGRAPH: config.epgselection.infobar_oklong.value
+		}.get(self.type)
+
 	def _helpOKLong(self):
-		helpText = _("No current function (Configurable)")
-		if config.epgselection.graph_oklong.value == 'Zap' or config.epgselection.enhanced_oklong.value == 'Zap' or config.epgselection.infobar_oklong.value == 'Zap' or config.epgselection.multi_oklong.value == 'Zap':
-			helpText = _("Zap to selected channel (Configurable)")
-		if config.epgselection.graph_oklong.value == 'Zap + Exit' or config.epgselection.enhanced_oklong.value == 'Zap + Exit' or config.epgselection.infobar_oklong.value == 'Zap + Exit' or config.epgselection.multi_oklong.value == 'Zap + Exit':
-			helpText = _("Zap to selected channel and exit EPG (Configurable)")
-		return helpText
+		confVal = self.getOKLongConfig()
+		if confVal == 'Zap':
+			return _("Zap to selected channel (Configurable)")
+		elif confVal == 'Zap + Exit':
+			return _("Zap to selected channel and exit EPG (Configurable)")
+		return _("No current function (Configurable)")
 
 	def OKLong(self):
 		from InfoBar import InfoBar
@@ -1178,9 +1197,10 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.zapnumberstarted:
 				self.doNumberZap()
 			else:
-				if config.epgselection.graph_oklong.value == 'Zap' or config.epgselection.enhanced_oklong.value == 'Zap' or config.epgselection.infobar_oklong.value == 'Zap' or config.epgselection.multi_oklong.value == 'Zap':
+				confVal = self.getOKLongConfig()
+				if confVal == 'Zap':
 					self.zapTo()
-				if config.epgselection.graph_oklong.value == 'Zap + Exit' or config.epgselection.enhanced_oklong.value == 'Zap + Exit' or config.epgselection.infobar_oklong.value == 'Zap + Exit' or config.epgselection.multi_oklong.value == 'Zap + Exit':
+				elif confVal == 'Zap + Exit':
 					self.zap()
 
 	def epgButtonPressed(self):
