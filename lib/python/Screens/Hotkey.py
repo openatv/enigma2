@@ -366,24 +366,20 @@ class HotkeySetupSelect(Screen):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
 
 	def moveUp(self):
-		if self.mode == "choosen":
-			currentIndex = self["choosen"].getSelectionIndex()
-			self.swapChoosen(currentIndex, (currentIndex - 1) % len(self["choosen"].list))
-			self.keyUp()
-		else:
-			return 0
+		self.moveChoosen(self.keyUp)
 
 	def moveDown(self):
+		self.moveChoosen(self.keyDown)
+
+	def moveChoosen(self, direction):
 		if self.mode == "choosen":
 			currentIndex = self["choosen"].getSelectionIndex()
-			self.swapChoosen(currentIndex, (currentIndex + 1) % len(self["choosen"].list))
-			self.keyDown()
+			swapIndex = (currentIndex + (direction == self.keyDown and 1 or -1)) % len(self["choosen"].list)
+			self["choosen"].list[currentIndex], self["choosen"].list[swapIndex] = self["choosen"].list[swapIndex], self["choosen"].list[currentIndex]
+			self["choosen"].setList(self["choosen"].list)
+			direction()
 		else:
 			return 0
-
-	def swapChoosen(self, currentIndex, swapIndex):
-		self["choosen"].list[currentIndex], self["choosen"].list[swapIndex] = self["choosen"].list[swapIndex], self["choosen"].list[currentIndex]
-		self["choosen"].setList(self["choosen"].list)
 
 	def save(self):
 		configValue = []
