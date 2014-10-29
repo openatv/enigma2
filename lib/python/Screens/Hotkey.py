@@ -457,8 +457,7 @@ class InfoBarHotkey():
 			if not selected:
 				return 0
 			elif len(selected) == 1:
-				if key.endswith("_long"):
-					self.longkeyPressed = True
+				self.longkeyPressed = key.endswith("_long") and (selected[0][1].startswith("Infobar") or selected[0][1].startswith("Zap"))
 				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
