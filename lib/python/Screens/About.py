@@ -44,11 +44,11 @@ class About(Screen):
 		AboutText = ""
 		self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.com")
 		if getMachineBrand() == 'Vu+':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.com")
+			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 		elif getMachineBrand() == 'Xtrend':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.com")
+			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 		elif getMachineBrand() == 'Odin':
-			self["lab3"] = StaticText(_("Support at") + " www.odin-support.com")
+			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
 
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
