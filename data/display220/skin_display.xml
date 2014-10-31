@@ -41,7 +41,7 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>
-		<eLabel text="TUNER:" position="0,150" size="80,25" halign="Left" font="FdLcD;20" />
+		<eLabel text="TUNER:" position="0,150" size="80,25" halign="left" font="FdLcD;20" />
 		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="A" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
@@ -62,11 +62,11 @@
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>

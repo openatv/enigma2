@@ -42,11 +42,11 @@
 		<widget source="session.Event_Now" render="Progress" position="115,150" size="105,24" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="Left" position="0,145" foregroundColor="#ff0000" size="100,25" font="FdLcD;20" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="left" position="0,145" foregroundColor="#ff0000" size="100,25" font="FdLcD;20" zPosition="1" noWrap="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="Left" position="0,145" foregroundColor="#ff0000" size="100,25" font="FdLcD;20" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Record" halign="left" position="0,145" foregroundColor="#ff0000" size="100,25" font="FdLcD;20" zPosition="1" noWrap="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
