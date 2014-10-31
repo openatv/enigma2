@@ -53,10 +53,10 @@ void setRTC(time_t time)
 	{
 		if (fprintf(f, "%u", (unsigned int)time))
 		{
-			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-				prev_time = 0; //sorry no RTC
-			else
-				prev_time = time;
+			//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
+			//	prev_time = 0; //sorry no RTC
+			//else
+			prev_time = time;
 		}
 		else
 			eDebug("write /proc/stb/fp/rtc failed (%m)");
@@ -88,10 +88,10 @@ time_t getRTC()
 		if (fscanf(f, "%u", &tmp) != 1)
 			eDebug("read /proc/stb/fp/rtc failed (%m)");
 		else
-			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-				rtc_time=0; // sorry no RTC
-			else
-				rtc_time=tmp;
+			//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
+			//	rtc_time=0; // sorry no RTC
+			//else
+			rtc_time=tmp;
 		fclose(f);
 	}
 	else
@@ -211,10 +211,10 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 		{
 			eDebug("Use valid Linux Time :) (RTC?)");
 			noRTC();
-			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-				m_time_ready = false; //sorry no RTC
-			else
-			    m_time_ready = true;
+			//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
+			//	m_time_ready = false; //sorry no RTC
+			//else
+			m_time_ready = true;
 			/*emit*/ m_timeUpdated();
 		}
 	}
@@ -227,10 +227,10 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
-		if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-				eDebug("Dont set RTC to previous valid time, giga box");
-			else
-				setRTC(::time(0));
+		//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
+		//	eDebug("Dont set RTC to previous valid time, giga box");
+		//else
+		setRTC(::time(0));
 	}
 }
 
