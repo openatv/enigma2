@@ -171,6 +171,23 @@ class AudioSelection(Screen, ConfigListScreen):
 #				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
 #				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
 
+			from Components.PluginComponent import plugins
+			from Plugins.Plugin import PluginDescriptor
+
+			if hasattr(self.infobar, "runPlugin"):
+				class PluginCaller:
+					def __init__(self, fnc, *args):
+						self.fnc = fnc
+						self.args = args
+					def __call__(self, *args, **kwargs):
+						self.fnc(*self.args)
+
+				Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
+				if len(Plugins):
+					for x in Plugins:
+						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
+							conflist.append(getConfigListEntry(x[0], ConfigNothing(),x[1]))
+
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
 			self.setTitle(_("Subtitle selection"))
