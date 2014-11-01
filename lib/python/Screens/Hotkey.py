@@ -432,8 +432,7 @@ class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
 			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
-		self.longkeyPressed = False
-		self.onExecEnd.append(self.clearLongkeyPressed)
+		self.onExecBegin.append(self.clearLongkeyPressed)
 
 	def clearLongkeyPressed(self):
 		self.longkeyPressed = False
