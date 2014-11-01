@@ -345,10 +345,12 @@ class ChannelContextMenu(Screen):
 		self.session.pip = self.session.instantiateDialog(PictureInPicture)
 		self.session.pip.show()
 		newservice = self.csel.servicelist.getCurrent()
+		currentBouquet = self.csel.servicelist and self.csel.servicelist.getRoot()
 		if newservice and newservice.valid():
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.csel.getCurrentServicePath()
+				self.session.pip.servicePath[1] = currentBouquet
 				self.close(True)
 			else:
 				self.session.pipshown = False

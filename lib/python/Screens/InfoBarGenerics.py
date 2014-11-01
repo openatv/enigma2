@@ -2106,10 +2106,12 @@ class InfoBarPiP:
 			pipref = self.session.pip.getCurrentService()
 			if swapservice and pipref and pipref.toString() != swapservice.toString():
 				currentServicePath = self.servicelist.getCurrentServicePath()
+				currentBouquet = self.servicelist and self.servicelist.getRoot()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.playService(swapservice)
 				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 				self.session.pip.servicePath = currentServicePath
+				self.session.pip.servicePath[1] = currentBouquet
 				if self.servicelist.dopipzap:
 					# This unfortunately won't work with subservices
 					self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
