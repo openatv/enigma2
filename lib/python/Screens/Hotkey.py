@@ -181,7 +181,6 @@ class HotkeySetup(Screen):
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
-		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.keyOk,
