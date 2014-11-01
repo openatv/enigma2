@@ -433,6 +433,10 @@ class InfoBarHotkey():
 		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
 			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
 		self.longkeyPressed = False
+		self.onExecEnd.append(self.clearLongkeyPressed)
+
+	def clearLongkeyPressed(self):
+		self.longkeyPressed = False
 
 	def getKeyFunctions(self, key):
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
@@ -465,7 +469,7 @@ class InfoBarHotkey():
 			if not selected:
 				return 0
 			elif len(selected) == 1:
-				self.longkeyPressed = key.endswith("_long") and (selected[0][1].startswith("Infobar") or selected[0][1].startswith("Zap"))
+				self.longkeyPressed = key.endswith("_long")
 				return self.execHotkey(selected[0])
 			else:
 				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
