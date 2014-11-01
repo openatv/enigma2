@@ -243,7 +243,9 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				if x.startswith("Zap"):
+				if x.startswith("ZapPanic"):
+					selected.append(ChoiceEntryComponent('',((_("Panic to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
+				elif x.startswith("Zap"):
 					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
 				else:
 					function = list(function for function in self.hotkeyFunctions if function[1] == x )
@@ -266,7 +268,9 @@ class HotkeySetupSelect(Screen):
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			if x.startswith("Zap"):
+			if x.startswith("ZapPanic"):
+				self.selected.append(ChoiceEntryComponent('',((_("Panic to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
+			elif x.startswith("Zap"):
 				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
 			else:
 				function = list(function for function in self.hotkeyFunctions if function[1] == x )
@@ -313,6 +317,7 @@ class HotkeySetupSelect(Screen):
 					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
 				if catagorie == "InfoBar":
 					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
+					functionslist.append(ChoiceEntryComponent('verticalline',((_("Panic to")), "ZapPanic")))
 			else:
 				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
 		return functionslist
@@ -340,7 +345,9 @@ class HotkeySetupSelect(Screen):
 				if currentSelected[:2] in self.selected:
 					self.selected.remove(currentSelected[:2])
 				else:
-					if currentSelected[0][1].startswith("Zap"):
+					if currentSelected[0][1].startswith("ZapPanic"):
+						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey Panic") + " " + self.key[0][0], currentBouquet=True)
+					elif currentSelected[0][1].startswith("Zap"):
 						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
 					else:
 						self.selected.append(currentSelected[:2])
@@ -353,7 +360,7 @@ class HotkeySetupSelect(Screen):
 	def zaptoCallback(self, *args):
 		if args:
 			currentSelected = self["list"].l.getCurrentSelection()[:]
-			currentSelected[1]=currentSelected[1][:-1] + (_("Zap to") + " " + ServiceReference(args[0]).getServiceName(),)
+			currentSelected[1]=currentSelected[1][:-1] + (currentSelected[0][0] + " " + ServiceReference(args[0]).getServiceName(),)
 			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
@@ -431,7 +438,9 @@ class InfoBarHotkey():
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		selected = []
 		for x in selection:
-			if x.startswith("Zap"):
+			if x.startswith("ZapPanic"):
+				selected.append(((_("Panic to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
+			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			else:
 				function = list(function for function in getHotkeyFunctions() if function[1] == x )
@@ -499,7 +508,9 @@ class InfoBarHotkey():
 			elif selected[0] == "Setup":
 				exec "from Screens.Setup import *"
 				exec "self.session.open(Setup, \"" + selected[1] + "\")"
-			elif selected[0] == "Zap":
+			elif selected[0].startswith("Zap"):
+				if selected[0] == "ZapPanic":
+					self.servicelist.history = []
 				self.servicelist.servicelist.setCurrent(eServiceReference("/".join(selected[1:])))
 				self.servicelist.zap(enable_pipzap = True)
 				if hasattr(self, "lastservice"):
