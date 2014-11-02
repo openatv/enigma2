@@ -391,6 +391,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_ignore_buffering_messages = 0;
 	m_is_live = false;
 	m_use_prefillbuffer = false;
+	m_paused = false;
+	m_seek_paused = false;
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -821,6 +823,12 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	{
 		eDebug("eServiceMP3::seekTo failed");
 		return -1;
+	}
+
+	if (m_paused)
+	{
+		m_seek_paused = true;
+		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 	}
 
 	return 0;
@@ -1579,9 +1587,16 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				{
 					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
 						m_streamingsrc_timeout->stop();
+					m_paused = false;
+					if (m_seek_paused)
+					{
+						m_seek_paused = false;
+						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+					}
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
+					m_paused = true;
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_READY:
 				{
