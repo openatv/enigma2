@@ -456,7 +456,7 @@ class installedPlugins(Screen):
 
 	def doList(self):
 		print"[SOFTWARE MANAGER] read installed package list"
-		self.container.execute("ipkg list-installed | egrep 'enigma2-plugin-|task-base'")
+		self.container.execute("ipkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
 		if self.type == self.LIST:
@@ -515,6 +515,8 @@ class RestorePlugins(Screen):
 		Screen.setTitle(self, _("Restore Plugins"))
 		self.index = 0
 		self.list = menulist
+		for r in menulist:
+			print "[SOFTWARE MANAGER] Plugin to restore: %s" % r[0]
 		self.container = eConsoleAppContainer()
 		self["menu"] = List(list())
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
