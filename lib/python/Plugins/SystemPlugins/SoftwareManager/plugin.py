@@ -171,7 +171,7 @@ class UpdatePluginMenu(Screen):
 		self["key_blue"] = StaticText()
 		self["status"] = StaticText(self.menutext)
 
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "MenuActions", "NumberActions"],
+		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "MenuActions", "NumberActions"],
 		{
 			"ok": self.go,
 			"back": self.close,
@@ -562,14 +562,14 @@ class PluginManager(Screen, PackageInfoHandler):
 		if self.skin_path is None:
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions" ],
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "HelpActions" ],
 		{
 			"ok": self.handleCurrent,
 			"back": self.exit,
 			"red": self.exit,
 			"green": self.handleCurrent,
 			"yellow": self.handleSelected,
-			"showEventInfo": self.handleSelected,
+			"info": self.packageInfo,
 			"displayHelp": self.handleHelp,
 		}, -1)
 
@@ -700,12 +700,14 @@ class PluginManager(Screen, PackageInfoHandler):
 						self["key_green"].setText("")
 				self["key_yellow"].setText(_("View details"))
 				self["key_blue"].setText("")
+				statusText = ""
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates is not 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
+					statusText = _("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available.")
 				elif len(self.selectedFiles) is not 0:
-					self["status"].setText(str(len(self.selectedFiles)) + ' ' + _("packages selected."))
+					statusText = str(len(self.selectedFiles)) + ' ' + _("packages selected.")
 				else:
-					self["status"].setText(_("There are currently no outstanding actions."))
+					statusText = _("There are currently no outstanding actions.")
+				self["status"].setText(statusText + "\n\n" + _("Press INFO for more information about the package"))
 			elif self.currList == "category":
 				self["key_red"].setText(_("Close"))
 				self["key_green"].setText("")
@@ -776,17 +778,21 @@ class PluginManager(Screen, PackageInfoHandler):
 		current = self["list"].getCurrent()
 		if current:
 			if self.currList == "packages":
-				if current[7] is not '':
-					detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
-					if os_path.exists(detailsfile):
-						self.saved_currentSelectedPackage = self.currentSelectedPackage
-						self.session.openWithCallback(self.detailsClosed, PluginDetails, self.skin_path, current)
-					else:
-						self.session.open(MessageBox, _("Sorry, no details available!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.packageInfo()
 			elif self.currList == "category":
 				self.prepareInstall()
 				if len(self.cmdList):
 					self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
+
+	def packageInfo(self):
+		current = self["list"].getCurrent()
+		if current and self.currList == "packages" and current[7] != '':
+			detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
+			if os_path.exists(detailsfile):
+				self.saved_currentSelectedPackage = self.currentSelectedPackage
+				self.session.openWithCallback(self.detailsClosed, PluginDetails, self.skin_path, current)
+			else:
+				self.session.open(MessageBox, _("Sorry, no details available!"), MessageBox.TYPE_INFO, timeout = 10)
 
 	def detailsClosed(self, result = None):
 		if result is not None:
