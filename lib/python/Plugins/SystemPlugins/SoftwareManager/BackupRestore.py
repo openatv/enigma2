@@ -15,7 +15,7 @@ from Tools.Directories import *
 
 
 config.plugins.configurationbackup = ConfigSubsection()
-config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
+config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	eEnv.resolve('${sysconfdir}/enigma2/'),
 	'/etc/network/interfaces',
@@ -31,7 +31,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	'/etc/minidlna.conf',
 	'/etc/vsftpd.conf',
 	'/etc/dropbear',
-	])
+])
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -50,12 +50,11 @@ class BackupScreen(Screen, ConfigListScreen):
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, runBackup = False):
+	def __init__(self, session, runBackup=False):
 		Screen.__init__(self, session)
 		self.session = session
 		self.runBackup = runBackup
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
-		{
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {
 			"ok": self.close,
 			"back": self.close,
 			"cancel": self.close,
@@ -81,27 +80,27 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if not path.exists(self.backuppath):
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+			self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
-				rename(self.fullbackupfilename,self.newfilename)
+				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB,closeOnSuccess = True)
+				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."), cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs], finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 			else:
-				self.session.open(Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
+				self.session.open(Console, title=_("Backup is running..."), cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs], finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
-	def backupFinishedCB(self,retval = None):
+	def backupFinishedCB(self, retval=None):
 		self.close(True)
 
-	def backupErrorCB(self,retval = None):
+	def backupErrorCB(self, retval=None):
 		self.close(False)
 
 	def runAsync(self, finished_cb):
@@ -130,11 +129,10 @@ class BackupSelection(Screen):
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs = inhibitDirs )
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
 		self["checkList"] = self.filelist
 
-		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
-		{
+		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"], {
 			"cancel": self.exit,
 			"red": self.exit,
 			"yellow": self.changeSelectionState,
@@ -145,7 +143,7 @@ class BackupSelection(Screen):
 			"down": self.down,
 			"up": self.up
 		}, -1)
-		if not self.selectionChanged in self["checkList"].onSelectionChanged:
+		if self.selectionChanged not in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -224,14 +222,12 @@ class RestoreMenu(Screen):
 
 		self.path = ""
 
-		self["actions"] = NumberActionMap(["SetupActions"],
-		{
+		self["actions"] = NumberActionMap(["SetupActions"], {
 			"ok": self.KeyOk,
 			"cancel": self.keyCancel
 		}, -1)
 
-		self["shortcuts"] = ActionMap(["ShortcutActions"],
-		{
+		self["shortcuts"] = ActionMap(["ShortcutActions"], {
 			"red": self.keyCancel,
 			"green": self.KeyOk,
 			"yellow": self.deleteFile,
@@ -247,7 +243,6 @@ class RestoreMenu(Screen):
 	def setWindowTitle(self):
 		self.setTitle(_("Restore backups"))
 
-
 	def fill_list(self):
 		self.flist = []
 		self.path = getBackupPath()
@@ -261,7 +256,7 @@ class RestoreMenu(Screen):
 		self["filelist"].l.setList(self.flist)
 
 	def KeyOk(self):
-		if (self.exe == False) and (self.entry == True):
+		if self.exe is False and self.entry is True:
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
@@ -270,22 +265,22 @@ class RestoreMenu(Screen):
 	def keyCancel(self):
 		self.close()
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if ret:
 			self.exe = True
-			self.session.open(Console, title = _("Restoring..."), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "reboot"])
+			self.session.open(Console, title=_("Restoring..."), cmdlist=["tar -xzvf " + self.path + "/" + self.sel + " -C /", "reboot"])
 
 	def deleteFile(self):
-		if (self.exe == False) and (self.entry == True):
+		if self.exe is False and self.entry is True:
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
 				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
-	def startDelete(self, ret = False):
+	def startDelete(self, ret=False):
 		if ret:
 			self.exe = True
-			print "removing:",self.val
+			print "removing:", self.val
 			if path.exists(self.val):
 				remove(self.val)
 			self.exe = False
@@ -297,12 +292,11 @@ class RestoreScreen(Screen, ConfigListScreen):
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, runRestore = False):
+	def __init__(self, session, runRestore=False):
 		Screen.__init__(self, session)
 		self.session = session
 		self.runRestore = runRestore
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
-		{
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {
 			"ok": self.close,
 			"back": self.close,
 			"cancel": self.close,
@@ -329,14 +323,14 @@ class RestoreScreen(Screen, ConfigListScreen):
 		else:
 			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "reboot"]
 		if self.finished_cb:
-			self.session.openWithCallback(self.finished_cb, Console, title = _("Restoring..."), cmdlist = restorecmdlist)
+			self.session.openWithCallback(self.finished_cb, Console, title=_("Restoring..."), cmdlist=restorecmdlist)
 		else:
-			self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist)
+			self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist)
 
-	def backupFinishedCB(self,retval = None):
+	def backupFinishedCB(self, retval=None):
 		self.close(True)
 
-	def backupErrorCB(self,retval = None):
+	def backupErrorCB(self, retval=None):
 		self.close(False)
 
 	def runAsync(self, finished_cb):
