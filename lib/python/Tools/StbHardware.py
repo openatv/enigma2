@@ -37,10 +37,16 @@ def setFPWakeuptime(wutime):
 
 def setRTCoffset():
 	import time
-	if time.localtime().tm_isdst == 0:
-		forsleep = 7200+time.timezone
+	if getBrandOEM() in ('fulan'):
+		if time.localtime().tm_isdst == 0:
+			forsleep = 0-time.timezone
+		else:
+			forsleep = 3600+time.timezone
 	else:
-		forsleep = 3600-time.timezone
+		if time.localtime().tm_isdst == 0:
+			forsleep = 7200+time.timezone
+		else:
+			forsleep = 3600-time.timezone
 
 	t_local = time.localtime(int(time.time()))
 
