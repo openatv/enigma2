@@ -88,7 +88,7 @@ class ServiceScan:
 							tp.symbol_rate/1000,
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
 								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
-								tp.FEC_8_9 : "8/9", tp.FEC_6_7 : "6/7", tp.FEC_None : "NONE" }.get(tp.fec_inner, ""))
+								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5", tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec_inner, ""))
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
@@ -98,6 +98,7 @@ class ServiceScan:
 						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
 						tp_text = "%s %s %s %s" %(
 							{
+								tp.System_DVB_T_T2 : "DVB-T/T2",
 								tp.System_DVB_T : "DVB-T",
 								tp.System_DVB_T2 : "DVB-T2"
 							}.get(tp.system, ""),

@@ -162,9 +162,12 @@ class CableTransponderSearchSupport:
 						"FEC_1_2" : parm.FEC_1_2,
 						"FEC_2_3" : parm.FEC_2_3,
 						"FEC_3_4" : parm.FEC_3_4,
-						"FEC_5_6": parm.FEC_5_6,
+						"FEC_5_6" : parm.FEC_5_6,
 						"FEC_7_8" : parm.FEC_7_8,
 						"FEC_8_9" : parm.FEC_8_9,
+						"FEC_3_5" : parm.FEC_3_5,
+						"FEC_4_5" : parm.FEC_4_5,
+						"FEC_9_10" : parm.FEC_9_10,
 						"FEC_NONE" : parm.FEC_None }
 					parm.frequency = int(data[1])
 					parm.symbol_rate = int(data[2])
@@ -697,9 +700,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(eDVBFrontendParametersCable.FEC_2_3, "2/3"),
 			(eDVBFrontendParametersCable.FEC_3_4, "3/4"),
 			(eDVBFrontendParametersCable.FEC_5_6, "5/6"),
-			(eDVBFrontendParametersCable.FEC_6_7, "6/7"),
 			(eDVBFrontendParametersCable.FEC_7_8, "7/8"),
 			(eDVBFrontendParametersCable.FEC_8_9, "8/9"),
+			(eDVBFrontendParametersCable.FEC_3_5, "3/5"),
+			(eDVBFrontendParametersCable.FEC_4_5, "4/5"),
+			(eDVBFrontendParametersCable.FEC_9_10, "9/10"),
 			(eDVBFrontendParametersCable.FEC_None, _("None"))])
 		self.scan_cab.symbolrate = ConfigInteger(default = defaultCab["symbolrate"], limits = (1, 99999))
 		self.scan_cab.system = ConfigSelection(default = defaultCab["system"], choices = [
@@ -1214,7 +1219,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.nim_enable = [ ]
 
 		if len(nims_to_scan):
+			self.scan_networkScan = ConfigYesNo(default = True)
 			self.scan_clearallservices = ConfigSelection(default = "yes", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
+			self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 
 			for nim in nims_to_scan:
@@ -1278,7 +1285,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				else:
 					assert False
 
-				flags |= eComponentScan.scanNetworkSearch #FIXMEEE.. use flags from cables / satellites / terrestrial.xml
+				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
 				tmp = self.scan_clearallservices.value
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices

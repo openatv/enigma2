@@ -75,9 +75,11 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersCable.FEC_2_3 : "2/3",
 			eDVBFrontendParametersCable.FEC_3_4 : "3/4",
 			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
-			eDVBFrontendParametersCable.FEC_6_7 : "6/7",
 			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
-			eDVBFrontendParametersCable.FEC_8_9 : "8/9"}.get(tp.get("fec_inner"))
+			eDVBFrontendParametersCable.FEC_8_9 : "8/9",
+			eDVBFrontendParametersCable.FEC_3_5 : "3/5",
+			eDVBFrontendParametersCable.FEC_4_5 : "4/5",
+			eDVBFrontendParametersCable.FEC_9_10 : "9/10"}.get(tp.get("fec_inner"))
 		ret["system"] = {
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
@@ -152,6 +154,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}.get(tp.get("inversion"))
 		print 'inversion:',tp.get("inversion")
 		ret["system"] = {
+			eDVBFrontendParametersTerrestrial.System_DVB_T_T2 : "DVB-T/T2",
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
 		print 'system:',tp.get("system")
