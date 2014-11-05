@@ -12,6 +12,7 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
+import os
 
 hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Green long"), "green_long", ""),
@@ -166,6 +167,10 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	if os.path.isdir("/etc/ppanels"):
+		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
+			x = x[:-4]
+			hotkeyFunctions.append((_("Hotkey") + " " + x, "PPanel/" + x, "PPanels"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -521,3 +526,8 @@ class InfoBarHotkey():
 					self.close()
 				else:
 					self.show()
+			elif selected[0] == "PPanel":
+				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
+				if os.path.isfile(ppanelFileName) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import PPanel
+					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
