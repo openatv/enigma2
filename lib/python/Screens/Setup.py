@@ -40,29 +40,29 @@ class SetupError(Exception):
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.onShow.append(self.addWatcher)
 			self.onHide.append(self.removeWatcher)
 
 	def addWatcher(self):
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.parent.onChangedEntry.append(self.selectionChanged)
 			self.parent["config"].onSelectionChanged.append(self.selectionChanged)
 			self.selectionChanged()
 
 	def removeWatcher(self):
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.parent.onChangedEntry.remove(self.selectionChanged)
 			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription") and self.parent.has_key("description"):
+		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
 			self.parent["description"].text = self.parent.getCurrentDescription()
 
 class Setup(ConfigListScreen, Screen):
@@ -89,7 +89,7 @@ class Setup(ConfigListScreen, Screen):
 	def __init__(self, session, setup, plugin=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
-		self.skinName = ["setup_" + setup, "Setup" ]
+		self.skinName = ["setup_" + setup, "Setup"]
 
 		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
@@ -97,33 +97,31 @@ class Setup(ConfigListScreen, Screen):
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
 		list = []
 
 		self.refill(list)
-		
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
-		#check for list.entries > 0 else self.close
+		# check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
 		self["description"] = Label()
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-				"menu": self.closeRecursive,
-			}, -2)
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], {
+			"cancel": self.keyCancel,
+			"save": self.keySave,
+			"menu": self.closeRecursive,
+		}, -2)
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
-		{
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"], {
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
@@ -180,7 +178,7 @@ class Setup(ConfigListScreen, Screen):
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 
-				if not self.levelChanged in config.usage.setup_level.notifiers:
+				if self.levelChanged not in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
@@ -199,13 +197,13 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
-				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				item_text = item_text.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = _(x.get("description", " ").encode("UTF-8"))
-				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				item_description = item_description.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
 				b = eval(x.text or "")
 				if b == "":
 					continue
-				#add to configlist
+				# add to configlist
 				item = b
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
