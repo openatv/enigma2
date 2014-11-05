@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
+from Components.Pixmap import Pixmap
 
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
@@ -183,29 +184,30 @@ class ConfigListScreen:
 			x()
 
 	def handleInputHelpers(self):
-		if self["config"].getCurrent() is not None:
+		currConfig = self["config"].getCurrent()
+		if currConfig is not None:
 			try:
-				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self.has_key("VKeyIcon"):
-						self["VirtualKB"].setEnabled(True)
-						self["VKeyIcon"].boolean = True
+				if isinstance(currConfig[1], ConfigText) or isinstance(currConfig[1], ConfigPassword):
+					self.showVKeyboard(True)
 					if self.has_key("HelpWindow"):
-						if self["config"].getCurrent()[1].help_window.instance is not None:
+						if currConfig[1].help_window.instance is not None:
 							helpwindowpos = self["HelpWindow"].getPosition()
 							from enigma import ePoint
-							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+							currConfig[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 				else:
-					if self.has_key("VKeyIcon"):
-						self["VirtualKB"].setEnabled(False)
-						self["VKeyIcon"].boolean = False
+					self.showVKeyboard(False)
 			except:
-				if self.has_key("VKeyIcon"):
-					self["VirtualKB"].setEnabled(False)
-					self["VKeyIcon"].boolean = False
+				self.showVKeyboard(False)
 		else:
-			if self.has_key("VKeyIcon"):
-				self["VirtualKB"].setEnabled(False)
-				self["VKeyIcon"].boolean = False
+			self.showVKeyboard(False)
+
+	def showVKeyboard(self, state):
+		if "VKeyIcon" in self:
+			self["VirtualKB"].setEnabled(state)
+			if isinstance(self["VKeyIcon"], Pixmap):
+				self["VKeyIcon"].setVisible(state)
+			else:
+				self["VKeyIcon"].boolean = state
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard

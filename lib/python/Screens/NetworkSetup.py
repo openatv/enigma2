@@ -489,23 +489,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
-		self["HelpText"] = Label(_("Please to press button TXT to open Virtual keyboard"))
-		self["HelpText"].hide()
-
-
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-
-		self["config"].onSelectionChanged.append(self.selectionChanged)
-
-	def selectionChanged(self):
-		current = self["config"].getCurrent()
-		if current == self.wlanSSID or current == self.encryptionKey:
-			self["VKeyIcon"].show()
-			self["HelpText"].show()
-		else:
-			self["VKeyIcon"].hide()
-			self["HelpText"].hide()
 
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
@@ -637,7 +622,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def KeyBlue(self):
 		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup)
@@ -2450,6 +2434,8 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 				'back': self.close,
 				'showVirtualKeyboard': self.KeyText
 			})
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2492,19 +2478,6 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def KeyText(self):
-		sel = self['config'].getCurrent()
-		if sel:
-			self.vkvar = sel[0]
-			if self.vkvar == _("Server Name") + ':' or self.vkvar == _("Workgroup Name") + ':':
-				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
-
-	def VirtualKeyBoardCallback(self, callback=None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
 
 	def saveSmb(self):
 		if fileExists('/etc/samba/smb.conf'):
@@ -2825,6 +2798,8 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				'back': self.close,
 				'showVirtualKeyboard': self.KeyText
 			})
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2895,23 +2870,6 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def KeyText(self):
-		sel = self['config'].getCurrent()
-		if sel:
-			#if not (sel[0] == _("Time Update in Minutes") + ':'):
-				#if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					#if self["config"].getCurrent()[1].help_window.instance is not None:
-						#self["config"].getCurrent()[1].help_window.hide()
-			self.vkvar = sel[0]
-			if self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':' or self.vkvar == _("Alias") + ':' or self.vkvar == _("System") + ':':
-				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
-
-	def VirtualKeyBoardCallback(self, callback=None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
 
 	def saveIna(self):
 		if fileExists('/etc/inadyn.conf'):
@@ -2988,7 +2946,7 @@ class NetworkuShare(Screen):
 		self['labport'] = Label()
 		self['telnetport'] = Label(_("Telnet Port") + ":")
 		self['labtelnetport'] = Label()
-		self['sharedir'] = Label(_("Share Folder's") + ":")
+		self['sharedir'] = Label(_("Share Folders") + ":")
 		self['labsharedir'] = Label()
 		self['web'] = Label(_("Web Interface") + ":")
 		self['webactive'] = Pixmap()
@@ -3220,6 +3178,8 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				'back': self.close,
 				'showVirtualKeyboard': self.KeyText
 			})
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -3308,22 +3268,6 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def KeyText(self):
-		sel = self['config'].getCurrent()
-		if sel:
-			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
-			self.vkvar = sel[0]
-			if self.vkvar == _("uShare Name") + ":" or self.vkvar == _("Share Folder's") + ":":
-				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
-
-	def VirtualKeyBoardCallback(self, callback=None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
 
 	def saveuShare(self):
 		if fileExists('/etc/ushare.conf'):
@@ -3718,6 +3662,8 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 				'back': self.close,
 				'showVirtualKeyboard': self.KeyText
 			})
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -3798,22 +3744,6 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 			f.close()
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
-
-	def KeyText(self):
-		sel = self['config'].getCurrent()
-		if sel:
-			#if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				#if self["config"].getCurrent()[1].help_window.instance is not None:
-					#self["config"].getCurrent()[1].help_window.hide()
-			self.vkvar = sel[0]
-			if self.vkvar == _("Name") + ":" or self.vkvar == _("Share Folder's") + ":":
-				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
-
-	def VirtualKeyBoardCallback(self, callback=None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
 
 	def saveMinidlna(self):
 		if fileExists('/etc/minidlna.conf'):
