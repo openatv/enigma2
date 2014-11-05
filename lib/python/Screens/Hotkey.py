@@ -113,6 +113,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
+	hotkeyFunctions.append((_("Recall to previous service"), "Infobar/servicelist/recallPrevService", "InfoBar"))
 	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
 	hotkeyFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
 	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
@@ -504,7 +505,7 @@ class InfoBarHotkey():
 						break
 			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
-					exec "self." + selected[1] + "()"
+					exec "self." + ".".join(selected[1:]) + "()"
 				else:
 					return 0
 			elif selected[0] == "Module":
