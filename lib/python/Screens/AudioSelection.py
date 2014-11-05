@@ -84,8 +84,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.audioTracks = audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 
-		subtitlelist = self.getSubtitleList()
-
 		if self.settings.menupage.value == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
 			service = self.session.nav.getCurrentService()
@@ -167,6 +165,11 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.setTitle(_("Subtitle selection"))
 
 			idx = 0
+
+			subtitlelist = self.getSubtitleList()
+
+			if subtitlelist is None:
+				subtitlelist = []
 
 			for x in subtitlelist:
 				number = str(x[1])
