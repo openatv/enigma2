@@ -6,6 +6,8 @@ from enigma import eDBoxLCD, eTimer
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
+from Components.Network import iNetwork
+from Components.About import about
 import usb
 
 
@@ -34,59 +36,40 @@ class IconCheckPoller:
 		self.timer.startLongTimer(30)
 
 	def JobTask(self):
-		LinkState = 0
-		if fileExists('/sys/class/net/wlan0/operstate'):
-			f = open('/sys/class/net/wlan0/operstate')
-			LinkState = f.read()
-			f.close()
-			if LinkState != 'down':
-				try:
-					f = open('/sys/class/net/wlan0/carrier')
-					LinkState = f.read()
-					f.close()
-				except IOError:
-					LinkState = 0
-		elif fileExists('/sys/class/net/eth0/operstate'):
-			f = open('/sys/class/net/eth0/operstate')
-			LinkState = f.read()
-			f.close()
-			if LinkState != 'down':
-				try:
-					f = open('/sys/class/net/eth0/carrier')
-					LinkState = f.read()
-					f.close()
-				except IOError:
-					LinkState = 0
-		LinkState = LinkState[:1]
-		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '1':
-			f = open("/proc/stb/lcd/symbol_network", "w")
-			f.write(str(LinkState))
-			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
-			f = open("/proc/stb/lcd/symbol_network", "w")
-			f.write('0')
-			f.close()
+		# Network state symbol
+		netSymbol = "/proc/stb/lcd/symbol_network"
+		if fileExists(netSymbol):
+			linkUp = 0
+			if config.lcd.mode.value == '1':
+				for ifName in iNetwork.getInstalledAdapters():
+					ifState = about.getIfConfig(ifName)
+					if (
+						'flags' in ifState and
+						ifState['flags'].get('up') and
+						ifState['flags'].get('running')
+					):
+						linkUp = 1
+						break
+			open(netSymbol, "w").write(str(linkUp))
 
-		USBState = 0
-		busses = usb.busses()
-		for bus in busses:
-			devices = bus.devices
-			for dev in devices:
-				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-					# print ' '
-					# print "Device:", dev.filename
-					# print "  Number:", dev.deviceClass
-					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
-					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
-			f = open("/proc/stb/lcd/symbol_usb", "w")
-			f.write(str(USBState))
-			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
-			f = open("/proc/stb/lcd/symbol_usb", "w")
-			f.write('0')
-			f.close()
+		# USB devices connected symbol
+		usbSymbol = "/proc/stb/lcd/symbol_usb"
+		if fileExists(usbSymbol):
+			USBState = 0
+			busses = usb.busses()
+			if config.lcd.mode.value == '1':
+				for bus in busses:
+					devices = bus.devices
+					for dev in devices:
+						if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
+							# print ' '
+							# print "Device:", dev.filename
+							# print "  Number:", dev.deviceClass
+							# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+							# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+							USBState = 1
+							break
+			open(usbSymbol, "w").write(str(USBState))
 
 		self.timer.startLongTimer(30)
 
