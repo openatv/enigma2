@@ -12,6 +12,7 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
+import os
 
 hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Green long"), "green_long", ""),
@@ -115,6 +116,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
+	hotkeyFunctions.append((_("Recall to previous service"), "Infobar/servicelist/recallPrevService", "InfoBar"))
 	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
 	hotkeyFunctions.append((_("Show event details"), "Infobar/openEventView", "EPG"))
 	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
@@ -169,6 +171,14 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	if os.path.isdir("/etc/ppanels"):
+		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
+			x = x[:-4]
+			hotkeyFunctions.append((_("PPanel") + " " + x, "PPanel/" + x, "PPanels"))
+	if os.path.isdir("/etc/shellscripts"):
+		for x in [x for x in os.listdir("/etc/shellscripts") if x.endswith(".sh")]:
+			x = x[:-3]
+			hotkeyFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -502,7 +512,7 @@ class InfoBarHotkey():
 						break
 			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
-					exec "self." + selected[1] + "()"
+					exec "self." + ".".join(selected[1:]) + "()"
 				else:
 					return 0
 			elif selected[0] == "Module":
@@ -524,3 +534,13 @@ class InfoBarHotkey():
 					self.close()
 				else:
 					self.show()
+			elif selected[0] == "PPanel":
+				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
+				if os.path.isfile(ppanelFileName) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import PPanel
+					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
+			elif selected[0] == "Shellscript":
+				command = '/etc/shellscripts/' + selected[1] + ".sh"
+				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import Execute
+					self.session.open(Execute, selected[1] + " shellscript", None, command)
