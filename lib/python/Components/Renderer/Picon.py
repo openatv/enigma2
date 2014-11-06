@@ -92,7 +92,8 @@ def getPiconName(serviceName):
 		name = name.replace('+', 'plus')
 		name = name.replace('*', 'star')
 		name = name.lower()
-		pngname = findPicon(name)
+		if len(name) > 0:
+			pngname = findPicon(name)
 	return pngname
 
 class Picon(Renderer):
