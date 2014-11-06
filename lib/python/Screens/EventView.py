@@ -27,11 +27,10 @@ class EventViewContextMenu(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_('Event view'))
 
-		self["actions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
-			})
+		self["actions"] = ActionMap(["OkCancelActions"], {
+			"ok": self.okbuttonClick,
+			"cancel": self.cancelClick
+		})
 
 		self["menu"] = MenuList(menu)
 
@@ -68,21 +67,18 @@ class EventViewBase:
 			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
 			self.SimilarBroadcastTimer = None
-		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
-			{
-				"cancel": self.close,
-				"ok": self.close,
-				"info": self.close,
-				"pageUp": self.pageUp,
-				"pageDown": self.pageDown,
-				"prevEvent": self.prevEvent,
-				"nextEvent": self.nextEvent,
-				"contextMenu": self.doContext,
-			})
-		self['dialogactions'] = ActionMap(['WizardActions'],
-			{
-				'back': self.closeChoiceBoxDialog,
-			}, -1)
+		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"], {
+			"cancel": self.close,
+			"ok": self.close,
+			"pageUp": self.pageUp,
+			"pageDown": self.pageDown,
+			"prevEvent": self.prevEvent,
+			"nextEvent": self.nextEvent,
+			"contextMenu": self.doContext,
+		})
+		self['dialogactions'] = ActionMap(['WizardActions'], {
+			'back': self.closeChoiceBoxDialog,
+		}, -1)
 		self['dialogactions'].csel = self
 		self["dialogactions"].setEnabled(False)
 		self.onLayoutFinish.append(self.onCreate)
@@ -123,11 +119,11 @@ class EventViewBase:
 				cb_func2 = lambda ret: self.editTimer(timer)
 				menu = [(_("Delete timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func2)]
 				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
-				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0],self.instance.position().y()+self["key_green"].getPosition()[1]-self.ChoiceBoxDialog.instance.size().height()))
+				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x() + self["key_green"].getPosition()[0], self.instance.position().y() + self["key_green"].getPosition()[1] - self.ChoiceBoxDialog.instance.size().height()))
 				self.showChoiceBoxDialog()
 				break
 		else:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def ChoiceBoxCB(self, choice):
@@ -184,7 +180,7 @@ class EventViewBase:
 		self.finishedAdd(answer)
 
 	def setService(self, service):
-		self.currentService=service
+		self.currentService = service
 		self["Service"].newService(service.ref)
 		if self.isRecording:
 			self["channel"].setText(_("Recording"))
@@ -195,7 +191,7 @@ class EventViewBase:
 			else:
 				self["channel"].setText(_("unknown service"))
 
-	def sort_func(self,x,y):
+	def sort_func(self, x, y):
 		if x[1] < y[1]:
 			return -1
 		elif x[1] == y[1]:
@@ -250,10 +246,10 @@ class EventViewBase:
 		endtime = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration()
 		endtime = localtime(endtime)
 		self["datetime"].setText(event.getBeginTimeString() + ' - ' + strftime(_("%-H:%M"), endtime))
-		self["duration"].setText(_("%d min")%(event.getDuration()/60))
+		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
-			
+
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
@@ -268,7 +264,6 @@ class EventViewBase:
 		elif not isRecordEvent:
 			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
-
 
 	def pageUp(self):
 		self["epg_description"].pageUp()
@@ -291,11 +286,11 @@ class EventViewBase:
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
-				text += '\n%d.%d.%d, %2d:%02d  -  %s'%(t[2], t[1], t[0], t[3], t[4], x[0])
+				text += '\n%d.%d.%d, %2d:%02d  -  %s' % (t[2], t[1], t[0], t[3], t[4], x[0])
 			descr = self["epg_description"]
-			descr.setText(descr.getText()+text)
+			descr.setText(descr.getText() + text)
 			descr = self["FullDescription"]
-			descr.setText(descr.getText()+text)
+			descr.setText(descr.getText() + text)
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):
@@ -309,7 +304,7 @@ class EventViewBase:
 		if self.event:
 			menu = []
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-				#only list service or event specific eventinfo plugins here, no servelist plugins
+				# only list service or event specific eventinfo plugins here, no servelist plugins
 				if 'servicelist' not in p.__call__.func_code.co_varnames:
 					menu.append((p.name, boundFunction(self.runPlugin, p)))
 			if menu:
@@ -321,7 +316,7 @@ class EventViewBase:
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
-		self.skinName = [skin,"EventView"]
+		self.skinName = [skin, "EventView"]
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = None
 
@@ -332,37 +327,34 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = self.ADD_TIMER
 
-		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
-			{
+		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"], {
 
-				"timerAdd": self.timerAdd,
-				"openSimilarList": self.openSimilarList,
+			"timerAdd": self.timerAdd,
+			"openSimilarList": self.openSimilarList,
 
-			})
+		})
 
 		if singleEPGCB:
 			self["key_yellow"] = Button(_("Single EPG"))
-			self["epgactions2"] = ActionMap(["EventViewEPGActions"],
-				{
-					"openSingleServiceEPG": singleEPGCB,
-				})
-			
+			self["epgactions2"] = ActionMap(["EventViewEPGActions"], {
+				"openSingleServiceEPG": singleEPGCB,
+			})
+
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
-			self["epgactions3"] = ActionMap(["EventViewEPGActions"],
-				{
+			self["epgactions3"] = ActionMap(["EventViewEPGActions"], {
 
-					"openMultiServiceEPG": multiEPGCB,
-				})
+				"openMultiServiceEPG": multiEPGCB,
+			})
 
 	def showChoiceBoxDialog(self):
 		for k in ("epgactions1", "epgactions2", "epgactions3"):
-			if self.has_key(k):
+			if k in self:
 				self[k].setEnabled(False)
 		EventViewBase.showChoiceBoxDialog(self)
 
 	def closeChoiceBoxDialog(self):
 		EventViewBase.closeChoiceBoxDialog(self)
 		for k in ("epgactions1", "epgactions2", "epgactions3"):
-			if self.has_key(k):
+			if k in self:
 				self[k].setEnabled(True)

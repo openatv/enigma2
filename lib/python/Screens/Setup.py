@@ -7,7 +7,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
-from Components.Sources.Boolean import Boolean
 
 from enigma import eEnv
 from boxbranding import getMachineBrand, getMachineName
@@ -41,29 +40,29 @@ class SetupError(Exception):
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.onShow.append(self.addWatcher)
 			self.onHide.append(self.removeWatcher)
 
 	def addWatcher(self):
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.parent.onChangedEntry.append(self.selectionChanged)
 			self.parent["config"].onSelectionChanged.append(self.selectionChanged)
 			self.selectionChanged()
 
 	def removeWatcher(self):
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.parent.onChangedEntry.remove(self.selectionChanged)
 			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription") and self.parent.has_key("description"):
+		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
 			self.parent["description"].text = self.parent.getCurrentDescription()
 
 class Setup(ConfigListScreen, Screen):
@@ -90,46 +89,43 @@ class Setup(ConfigListScreen, Screen):
 	def __init__(self, session, setup, plugin=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
-		self.skinName = ["setup_" + setup, "Setup" ]
+		self.skinName = ["setup_" + setup, "Setup"]
 
 		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
 		list = []
 
 		self.refill(list)
-		
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
-		#check for list.entries > 0 else self.close
+		# check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
 		self["description"] = Label()
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-				"menu": self.closeRecursive,
-			}, -2)
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], {
+			"cancel": self.keyCancel,
+			"save": self.keySave,
+			"menu": self.closeRecursive,
+		}, -2)
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
-		{
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"], {
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 
-		if not self.handleInputHelpers in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.HideHelp)
@@ -155,31 +151,6 @@ class Setup(ConfigListScreen, Screen):
 			newIdx = 0
 		self["config"].setCurrentIndex(newIdx)
 
-	def handleInputHelpers(self):
-		if self["config"].getCurrent() is not None:
-			try:
-				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self.has_key("VKeyIcon"):
-						self["VirtualKB"].setEnabled(True)
-						self["VKeyIcon"].boolean = True
-					if self.has_key("HelpWindow"):
-						if self["config"].getCurrent()[1].help_window.instance is not None:
-							helpwindowpos = self["HelpWindow"].getPosition()
-							from enigma import ePoint
-							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
-				else:
-					if self.has_key("VKeyIcon"):
-						self["VirtualKB"].setEnabled(False)
-						self["VKeyIcon"].boolean = False
-			except:
-				if self.has_key("VKeyIcon"):
-					self["VirtualKB"].setEnabled(False)
-					self["VKeyIcon"].boolean = False
-		else:
-			if self.has_key("VKeyIcon"):
-				self["VirtualKB"].setEnabled(False)
-				self["VKeyIcon"].boolean = False
-
 	def HideHelp(self):
 		try:
 			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
@@ -187,18 +158,6 @@ class Setup(ConfigListScreen, Screen):
 					self["config"].getCurrent()[1].help_window.hide()
 		except:
 			pass
-
-	def KeyText(self):
-		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-			if self["config"].getCurrent()[1].help_window.instance is not None:
-				self["config"].getCurrent()[1].help_window.hide()
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
-
-	def VirtualKeyBoardCallback(self, callback = None):
-		if callback is not None and len(callback):
-			self["config"].getCurrent()[1].setValue(callback)
-			self["config"].invalidate(self["config"].getCurrent())
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -219,7 +178,7 @@ class Setup(ConfigListScreen, Screen):
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 
-				if not self.levelChanged in config.usage.setup_level.notifiers:
+				if self.levelChanged not in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
@@ -238,13 +197,13 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				item_text = _(x.get("text", "??").encode("UTF-8"))
-				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				item_text = item_text.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = _(x.get("description", " ").encode("UTF-8"))
-				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				item_description = item_description.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
 				b = eval(x.text or "")
 				if b == "":
 					continue
-				#add to configlist
+				# add to configlist
 				item = b
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
