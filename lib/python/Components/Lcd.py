@@ -213,11 +213,11 @@ def InitLcd():
 
 		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 		config.lcd.standby.addNotifier(setLCDbright)
-		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
+		config.lcd.standby.apply = lambda: setLCDbright(config.lcd.standby)
 
 		config.lcd.bright = ConfigSlider(default=7, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright)
-		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+		config.lcd.bright.apply = lambda: setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
 
 		config.lcd.invert = ConfigYesNo(default=False)
@@ -244,23 +244,23 @@ def InitLcd():
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby)
-			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
+			config.lcd.ledbrightnessdeepstandby.apply = lambda: setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
 			config.lcd.ledbrightnessstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightnessstandby.apply = lambda: setLEDnormalstate(config.lcd.ledbrightnessstandby)
 			config.lcd.ledbrightness = ConfigSlider(default=3, increment=1, limits=(0, 15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
+			config.lcd.ledbrightness.apply = lambda: setLEDnormalstate(config.lcd.ledbrightness)
 			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
 		else:
 			def doNothing():
 				pass
 			config.lcd.ledbrightness = ConfigNothing()
-			config.lcd.ledbrightness.apply = lambda : doNothing()
+			config.lcd.ledbrightness.apply = lambda: doNothing()
 			config.lcd.ledbrightnessstandby = ConfigNothing()
-			config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
+			config.lcd.ledbrightnessstandby.apply = lambda: doNothing()
 			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
-			config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
+			config.lcd.ledbrightnessdeepstandby.apply = lambda: doNothing()
 			config.lcd.ledblinkingtime = ConfigNothing()
 	else:
 		def doNothing():
@@ -268,17 +268,17 @@ def InitLcd():
 		config.lcd.contrast = ConfigNothing()
 		config.lcd.bright = ConfigNothing()
 		config.lcd.standby = ConfigNothing()
-		config.lcd.bright.apply = lambda : doNothing()
-		config.lcd.standby.apply = lambda : doNothing()
+		config.lcd.bright.apply = lambda: doNothing()
+		config.lcd.standby.apply = lambda: doNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
-		config.lcd.ledbrightness.apply = lambda : doNothing()
+		config.lcd.ledbrightness.apply = lambda: doNothing()
 		config.lcd.ledbrightnessstandby = ConfigNothing()
-		config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
+		config.lcd.ledbrightnessstandby.apply = lambda: doNothing()
 		config.lcd.ledbrightnessdeepstandby = ConfigNothing()
-		config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
+		config.lcd.ledbrightnessdeepstandby.apply = lambda: doNothing()
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
