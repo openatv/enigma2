@@ -11,43 +11,43 @@ from Components.config import config, ConfigSubsection, ConfigText, ConfigLocati
 from Components.Harddisk import harddiskmanager
 import BackupRestore
 
-config.misc.firstrun = ConfigBoolean(default = True)
+config.misc.firstrun = ConfigBoolean(default=True)
 
 backupfile = "enigma2settingsbackup.tar.gz"
 
 def checkConfigBackup():
-	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+	parts = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 	for x in parts:
 		if x[1] == '/':
 			parts.remove(x)
 	if len(parts):
 		for x in parts:
 			if x[1].endswith('/'):
-				fullbackupfile =  x[1] + 'backup/' + backupfile
+				fullbackupfile = x[1] + 'backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.value = str(x[1])
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 			else:
-				fullbackupfile =  x[1] + '/backup/' + backupfile
+				fullbackupfile = x[1] + '/backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.value = str(x[1])
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
-		return None		
+		return None
 
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.value
 	if backuplocation.endswith('/'):
-		fullbackupfile =  backuplocation + 'backup/' + backupfile
+		fullbackupfile = backuplocation + 'backup/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
 			return False
 	else:
-		fullbackupfile =  backuplocation + '/backup/' + backupfile
+		fullbackupfile = backuplocation + '/backup/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
@@ -75,41 +75,40 @@ class ImageWizard(WizardLanguage, Rc):
 			<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 			<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 		</screen>"""
+
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/imagewizard.xml")
-		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
 		self.selectedDevice = None
-		
+
 	def markDone(self):
 		pass
 
 	def listDevices(self):
-		list = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+		list = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 		for x in list:
 			result = access(x[1], W_OK) and access(x[1], R_OK)
 			if result is False or x[1] == '/':
 				list.remove(x)
 		for x in list:
 			if x[1].startswith('/autofs/'):
-				list.remove(x)	
+				list.remove(x)
 		return list
 
 	def deviceSelectionMade(self, index):
 		self.deviceSelect(index)
-		
+
 	def deviceSelectionMoved(self):
 		self.deviceSelect(self.selection)
-		
+
 	def deviceSelect(self, device):
 		self.selectedDevice = device
 		config.plugins.configurationbackup.backuplocation.value = self.selectedDevice
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 
-	
 if config.misc.firstrun.value:
-	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = -1)
-
+	wizardManager.registerWizard(ImageWizard, backupAvailable, priority=-1)
