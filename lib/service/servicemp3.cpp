@@ -1146,7 +1146,7 @@ std::string eServiceMP3::getInfoString(int w)
 		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
 		{
 			gchar res[5];
- 			g_date_strftime (res, sizeof(res), "%Y-%M-%D", date);
+			g_date_strftime (res, sizeof(res), "%Y-%M-%D", date);
 			return (std::string)res;
 		}
 		break;
