@@ -595,26 +595,26 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 }
 
 /**
- * @brief Removes any existing events that overlap the new event by more than OVERLAP_TIME (100) seconds.
+ * @brief Removes any existing events that overlap the new event by more than OVERLAP_TIME (60) seconds.
  *
  * @param servicemap an eventMap, timeMap pair
- * @param TM start time of the event
+ * @param start_time start time of the event
  * @param duration duration (in seconds) of the event
- * @param tm_it iterator pointing to the old version of the event in the timeMap
+ * @param tm_it iterator pointing to the old position of the event in the timeMap (but with new eventData already attached)
  * @param service the DVB triplet that identifies the service
  * @return bool true if there were any deletions performed.
  */
-bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
+bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t start_time, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
 {
-//	eDebug("[EPGC] FixOverlapping TM=%ld, duration=%d, tm_it=%ld", (long)TM, duration, (long)tm_it->first);
-	static const int OVERLAP_TIME = 100;
+//	eDebug("[EPGC] FixOverlapping start_time=%ld, duration=%d, tm_it=%ld", (long)start_time, duration, (long)tm_it->first);
+	static const int OVERLAP_TIME = 60;
 	bool ret = false;
 	timeMap::iterator tmp = tm_it;
 	// while end of old is OVERLAP_TIME or more after start of new
-	while ((tmp->first+tmp->second->getDuration()-OVERLAP_TIME) > TM)
+	while ((tmp->first+tmp->second->getDuration()-OVERLAP_TIME) > start_time)
 	{
 //		eDebug("[EPGC] check front against %ld", (long)tmp->first);
-		if(tmp->first != TM
+		if(tmp->first != start_time
 #ifdef ENABLE_PRIVATE_EPG
 			&& tmp->second->type != PRIVATE
 #endif
@@ -636,7 +636,7 @@ bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, 
 				"%s %s\n%s",
 				service.onid, service.tsid, service.sid, event_id,
 				(long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
-				(long)TM, (long)TM + duration,
+				(long)start_time, (long)start_time + duration,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
 				event.getExtendedDescription().c_str());
@@ -652,10 +652,10 @@ bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, 
 
 	tmp = tm_it;
 	// while start of old is OVERLAP_TIME or more before end of new
-	while(tmp->first < (TM+duration-OVERLAP_TIME))
+	while(tmp->first < (start_time+duration-OVERLAP_TIME))
 	{
 //		eDebug("[EPGC] check back against %ld", (long)tmp->first);
-		if (tmp->first != TM
+		if (tmp->first != start_time
 #ifdef ENABLE_PRIVATE_EPG
 			&& tmp->second->type != PRIVATE
 #endif
@@ -676,7 +676,7 @@ bool eEPGCache::FixOverlapping(serviceMap &servicemap, time_t TM, int duration, 
 				"%s %s\n%s",
 				service.onid, service.tsid, service.sid, event_id,
 				(long)event.getBeginTime(), (long)(event.getBeginTime()) + event.getDuration(),
-				(long)TM, (long)TM + duration,
+				(long)start_time, (long)start_time + duration,
 				event.getBeginTimeString().c_str(),
 				event.getEventName().c_str(),
 				event.getExtendedDescription().c_str());
@@ -750,7 +750,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 	int eit_event_size;
 	int duration;
 
-	time_t TM = parseDVBtime(
+	time_t start_time = parseDVBtime(
 			eit_event->start_time_1,
 			eit_event->start_time_2,
 			eit_event->start_time_3,
@@ -759,7 +759,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 	time_t now = ::time(0) - historySeconds;
 
 	// Set a flag in the channel to signify that the source is available
-	if ( TM != 3599 && TM > -1 && channel)
+	if ( start_time != 3599 && start_time > -1 && channel)
 		channel->haveData |= source;
 
 	singleLock s(cache_lock);
@@ -774,7 +774,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 		eit_event_size = HILO(eit_event->descriptors_loop_length)+EIT_LOOP_SIZE;
 
 		duration = fromBCD(eit_event->duration_1)*3600+fromBCD(eit_event->duration_2)*60+fromBCD(eit_event->duration_3);
-		TM = parseDVBtime(
+		start_time = parseDVBtime(
 			eit_event->start_time_1,
 			eit_event->start_time_2,
 			eit_event->start_time_3,
@@ -782,16 +782,16 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			eit_event->start_time_5,
 			&event_hash);
 
-		bool isOld = ((TM + duration) < now);
+		bool isOld = ((start_time + duration) < now);
 
 		std::vector<int>::iterator m_it=find(onid_blacklist.begin(),onid_blacklist.end(),onid);
 		if (m_it != onid_blacklist.end())
 			goto next;
 
-		if ( (TM != 3599) &&		// NVOD Service
+		if ( (start_time != 3599) &&		// NVOD Service
 // Don't skip old events. This allows us to delete events by setting their start time to distant past and they will be deleted by cleanLoop() later.
 //		     isOld &&	// skip old events
-		     (TM < (now+28*24*60*60)) &&	// no more than 4 weeks in future
+		     (start_time < (now+4*7*24*60*60)) &&	// no more than 4 weeks in future
 		     ( (onid != 1714) || (duration != (24*3600-1)) )	// PlatformaHD invalid event
 		   )
 		{
@@ -817,7 +817,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			if ( ev_it != servicemap.first.end() )
 			{
 //				eDebug("[EPGC] event %04x in eventMap with start time %ld", event_id, (long)ev_it->second->getStartTime());
-				if ( (source & ~EPG_IMPORT) > ev_it->second->type )  // update needed ?
+				if ((source & ~EPG_IMPORT) > ev_it->second->type)  // update needed ?
 				{
 #ifdef EPG_DEBUG
 					eDebug("[EPGC] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
@@ -829,14 +829,14 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 				timeMap::iterator tm_it_tmp = servicemap.second.find(ev_it->second->getStartTime());
 				if ( tm_it_tmp != servicemap.second.end() )
 				{
-					if ( tm_it_tmp->first == TM ) // just update eventdata
+					if ( tm_it_tmp->first == start_time ) // just update eventdata
 					{
 //						eDebug("[EPGC] event %04x in timeMap with same start time - update and FixOverlap", event_id);
 						// exempt memory
 						eventData *tmp = ev_it->second;
 						ev_it->second = tm_it_tmp->second =
 							new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
-						if (FixOverlapping(servicemap, TM, duration, tm_it_tmp, service))
+						if (FixOverlapping(servicemap, start_time, duration, tm_it_tmp, service))
 						{
 							prevEventIt = servicemap.first.end();
 							prevTimeIt = servicemap.second.end();
@@ -869,15 +869,15 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 #endif
 			}
 
-			// search in timemap, for check of a case if new time has coincided with time of other event
-			// or event was is not found in eventmap
-			timeMap::iterator tm_it = servicemap.second.find(TM);
+			// search in timemap, in case the new time has coincided with time of another event
+			// or event was not found in eventmap
+			timeMap::iterator tm_it = servicemap.second.find(start_time);
 			if ( tm_it != servicemap.second.end() )
 			{
 //				eDebug("[EPGC] event at time %ld in timeMap with id %04x", (long)TM, tm_it->second->getEventID());
 				// event with same start time but another event_id...
-				if ( source > tm_it->second->type &&
-					ev_it == servicemap.first.end() )
+				if ((source & ~EPG_IMPORT) > tm_it->second->type &&
+					ev_it == servicemap.first.end())
 				{
 #ifdef EPG_DEBUG
 					eDebug("[EPGC] event at time %ld skip update: source=0x%x > type=0x%x && event %04x not found in eventMap", (long)TM, source, tm_it->second->type, event_id);
@@ -927,7 +927,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 			{
 				// exempt memory
 				delete ev_it->second;
-				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type(TM, evt));
+				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type(start_time, evt));
 				ev_it->second=evt;
 			}
 			else if (ev_erase_count > 0 && tm_erase_count == 0)
@@ -953,7 +953,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 					eDebug("[EPGC] add new event %04x at time %ld", event_id, (long)TM);
 #endif
 					ev_it=prevEventIt=servicemap.first.insert( prevEventIt, eventMap::value_type( event_id, evt) );
-					tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( TM, evt ) );
+					tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, timeMap::value_type( start_time, evt ) );
 				}
 			}
 
@@ -976,7 +976,7 @@ void eEPGCache::sectionRead(const __u8 *data, eit_type_t source, channel_data *c
 						ev_it->first, event_id );
 			}
 #endif
-			if (FixOverlapping(servicemap, TM, duration, tm_it, service))
+			if (FixOverlapping(servicemap, start_time, duration, tm_it, service))
 			{
 				prevEventIt = servicemap.first.end();
 				prevTimeIt = servicemap.second.end();

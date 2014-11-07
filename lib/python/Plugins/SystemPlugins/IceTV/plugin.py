@@ -140,7 +140,7 @@ class EPGFetcher(object):
         res = True
         try:
             self.channel_service_map = self.makeChanServMap(self.getChannels())
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (Exception) as ex:
             msg = "Can not retrieve channel map: " + str(ex)
             if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()
@@ -176,7 +176,7 @@ class EPGFetcher(object):
             if not self.processTimers(ice_timers):
                 res = False
             self.addLog("End update")
-        except (IOError, RuntimeError) as ex:
+        except (Exception) as ex:
             msg = "Can not download timers: " + str(ex)
             if hasattr(ex, "response") and hasattr(ex.response, "text"):
                 msg += "\n%s" % str(ex.response.text).strip()

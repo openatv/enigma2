@@ -1,11 +1,26 @@
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
 from Screens.Rc import Rc
+from enigma import eActionMap
+from sys import maxint
 
 
 class HelpMenu(Screen, Rc):
+	helpText = """Help Screen
+
+Brief help information for buttons in your current context.
+
+Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help.
+
+Other buttons will jump to the help for that button, if there is help.
+
+A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s).
+
+The order and grouping of the help information list can be controlled using MENU>Setup>System>GUI Setup>Help screen sort order."""
+
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		Rc.__init__(self)
@@ -14,17 +29,38 @@ class HelpMenu(Screen, Rc):
 		self["longshift_key0"] = Label("")
 		self["longshift_key1"] = Label("")
 
-		self["actions"] = ActionMap(["WizardActions"],
-			{
-				"ok": self["list"].ok,
-				"back": self.close,
-			}, -1)
+		self["actions"] = ActionMap(["WizardActions"], {
+			"ok": self["list"].ok,
+			"back": self.close,
+		}, -1)
+
+		# Wildcard binding with slightly higher priority than
+		# the wildcard bindings in
+		# InfoBarGenerics.InfoBarUnhandledKey, but with a gap
+		# so that other wildcards can be interposed if needed.
+
+		self.onClose.append(self.doOnClose)
+		eActionMap.getInstance().bindAction('', maxint - 100, self["list"].handleButton)
+
+		# Ignore keypress breaks for the keys in the
+		# ListboxActions context.
+
+		self["listboxFilterActions"] = ActionMap(["ListboxHelpMenuActions"], {
+			"ignore": lambda: 1,
+		}, 1)
+
+		self["helpActions"] = ActionMap(["HelpActions"], {
+			"displayHelp": self.showHelp,
+		})
 
 		self.onLayoutFinish.append(self.doOnLayoutFinish)
 
 	def doOnLayoutFinish(self):
 		self["list"].onSelChanged.append(self.SelectionChanged)
 		self.SelectionChanged()
+
+	def doOnClose(self):
+		eActionMap.getInstance().unbindAction('', self["list"].handleButton)
 
 	def SelectionChanged(self):
 		self.clearSelectedKeys()
@@ -35,7 +71,6 @@ class HelpMenu(Screen, Rc):
 		shiftButtons = []
 		if selection:
 			for button in selection[3]:
-				print "button:", button
 				if len(button) > 1:
 					if button[1] == "SHIFT":
 						self.selectKey("SHIFT")
@@ -56,12 +91,14 @@ class HelpMenu(Screen, Rc):
 		self["longshift_key0"].setText(longText[0])
 		self["longshift_key1"].setText(longText[1])
 
+	def showHelp(self):
+		self.session.open(MessageBox, _(HelpMenu.helpText), type=MessageBox.TYPE_INFO)
+
 
 class HelpableScreen:
 	def __init__(self):
-		self["helpActions"] = ActionMap(["HelpActions"],
-			{
-				"displayHelp": self.showHelp,
+		self["helpActions"] = ActionMap(["HelpActions"], {
+			"displayHelp": self.showHelp,
 		})
 
 	def showHelp(self):
