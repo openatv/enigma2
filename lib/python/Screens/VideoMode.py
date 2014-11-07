@@ -348,7 +348,7 @@ class AutoVideoMode(Screen):
 				video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
 				video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 
-		if video_height and video_width and video_pol and video_rate:
+		if (video_height and video_width and video_pol and video_rate) or (config.av.smart1080p.value != 'false'):
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, (video_rate + 500) / 1000))
 			if video_height != -1:
 				if video_height > 720 or video_width > 1280:
