@@ -69,6 +69,7 @@ hotkeys = [(_("Red long"), "red_long", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Context"), "contextmenu", ""),
 	(_("Recall"), "refresh", ""),
+	(_("Video Mode"), "vmode", ""),
 	(_("Home"), "home", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", "")]
