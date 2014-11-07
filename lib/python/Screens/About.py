@@ -56,10 +56,6 @@ class About(Screen):
 		AboutText += _("Version:\t%s") % getImageVersion() + "\n"
 		AboutText += _("Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
-		
-		GStreamerVersion = "GStreamer: " + about.getGStreamerVersionString()
-		self["GStreamerVersion"] = StaticText(GStreamerVersion)
-		AboutText += GStreamerVersion + "\n"
 
 		string = getDriverDate()
 		year = string[0:4]
