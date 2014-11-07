@@ -1143,24 +1143,11 @@ std::string eServiceMP3::getInfoString(int w)
 		break;
 	case sTagDate:
 		GDate *date;
-		GstDateTime *date_time;
 		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
 		{
 			gchar res[5];
-			snprintf(res, sizeof(res), "%04d", g_date_get_year(date));
-			g_date_free(date);
+ 			g_date_strftime (res, sizeof(res), "%Y-%M-%D", date);
 			return (std::string)res;
-		}
-		else if (gst_tag_list_get_date_time(m_stream_tags, GST_TAG_DATE_TIME, &date_time))
-		{
-			if (gst_date_time_has_year(date_time))
-			{
-				gchar res[5];
-				snprintf(res, sizeof(res), "%04d", gst_date_time_get_year(date_time));
-				gst_date_time_unref(date_time);
-				return (std::string)res;
-			}
-			gst_date_time_unref(date_time);
 		}
 		break;
 	case sTagComposer:
