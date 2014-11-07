@@ -312,7 +312,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		sTagTrackNumber = currPlay.info().getInfo(iServiceInformation.sTagTrackNumber)
 		sTagTrackCount = currPlay.info().getInfo(iServiceInformation.sTagTrackCount)
 		sTagTitle = currPlay.info().getInfoString(iServiceInformation.sTagTitle)
-		print "[__evUpdatedInfo] title %d of %d (%s)" % (sTagTrackNumber, sTagTrackCount, sTagTitle)
+		if sTagTrackNumber or sTagTrackCount or sTagTitle:
+			print "[__evUpdatedInfo] title %d of %d (%s)" % (sTagTrackNumber, sTagTrackCount, sTagTitle)
 		self.readTitleInformation()
 
 	def __evAudioDecodeError(self):
