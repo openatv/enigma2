@@ -521,14 +521,17 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveUp(self):
 		self['list'].moveTo(self['list'].instance.moveUp)
+		self.moveTimeLines(True)
 
 	def moveDown(self):
 		self['list'].moveTo(self['list'].instance.moveDown)
+		self.moveTimeLines(True)
 
 	def updEvent(self, dir, visible = True):
 		ret = self['list'].selEntry(dir, visible)
 		if ret:
 			self.moveTimeLines(True)
+		self.moveTimeLines(True)
 
 	def nextPage(self):
 		self['list'].moveTo(self['list'].instance.pageDown)
