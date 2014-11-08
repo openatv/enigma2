@@ -121,6 +121,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.nowServPix = None
 		self.recEvPix = None
 		self.recSelEvPix = None
+		self.recordingEvPix= None
 		self.zapEvPix = None
 		self.zapSelEvPix = None
 
@@ -938,7 +939,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					infoPix = self.InfoPix
 					if stime <= now < (stime + duration):
 						if clock_types is not None and clock_types == 2:
-							bgpng = self.recEvPix
+							bgpng = self.recordingEvPix
 						else:
 							bgpng = self.nowEvPix
 					else:
@@ -1193,6 +1194,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.nowServPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentService.png'))
 				self.recEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/RecordEvent.png'))
 				self.recSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedRecordEvent.png'))
+				self.recordingEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/RecordingEvent.png'))
 				self.zapEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/ZapEvent.png'))
 				self.zapSelEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/SelectedZapEvent.png'))
 
