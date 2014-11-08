@@ -183,7 +183,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						ret += 15;
 					eSecDebugNoSimulate("ret2 %d", ret);
 				}
-				else if ((satpos_depends_ptr != -1) && !(is_unicable && is_unicable_position_switch))
+				else if ((rotor && satpos_depends_ptr != -1) && !(is_unicable && is_unicable_position_switch))
 				{
 					eSecDebugNoSimulate("satpos depends");
 					eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
@@ -191,7 +191,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					{
 						if (satpos_depends_to_fe->m_inuse) // if the dependent frontend is in use?
 						{
-							if (!rotor || rotor_pos != sat.orbital_position) // new orbital position not equal to current orbital pos?
+							if (rotor_pos != sat.orbital_position) // new orbital position not equal to current orbital pos?
 								ret = 0;
 							else
 								ret += 10;
@@ -202,7 +202,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					{
 						// get current orb pos of the tuner with rotor connection
 						satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
-						if (!rotor || rotor_pos == -1 /* we dont know the rotor position yet */
+						if (rotor_pos == -1 /* we dont know the rotor position yet */
 							|| rotor_pos != sat.orbital_position ) // not the same orbital position?
 						{
 							ret = 0;
