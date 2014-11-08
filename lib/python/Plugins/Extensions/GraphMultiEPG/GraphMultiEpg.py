@@ -1075,40 +1075,98 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 
-	def disableTimer(self, timer):
-		timer.disable()
-		self.session.nav.RecordTimer.timeChanged(timer)
-		self["key_green"].setText(_("Add timer"))
-		self.key_green_choice = self.ADD_TIMER
+	def disableTimer(self, timer, repeat=False, record=False):
+		if repeat:
+			if record:
+				title_text = _("Repeating event currently recording.\nWhat do you want to do?")
+				menu = [(_("Stop current event but not coming events"), "stoponlycurrent"),(_("Stop current event and disable coming events"), "stopall")]
+				if not timer.disabled:
+					menu.append((_("Don't stop current event but disable coming events"), "stoponlycoming"))
+			else:
+				title_text = _("Attention, this is repeated timer!\nWhat do you want to do?")
+				menu = [(_("Disable current event but not coming events"), "nextonlystop"),(_("Disable timer"), "simplestop")]
+			self.session.openWithCallback(boundFunction(self.runningEventCallback, timer), ChoiceBox, title=title_text, list=menu)
+		else:
+			timer.disable()
+			self.session.nav.RecordTimer.timeChanged(timer)
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
+
+	def runningEventCallback(self, t, result):
+		if result is not None:
+			findNextRunningEvent = True
+			findEventNext = False
+			if result[1] == "nextonlystop":
+				findEventNext = True
+				t.disable()
+				self.session.nav.RecordTimer.timeChanged(t)
+				t.processRepeated(findNextEvent=True)
+				t.enable()
+			if result[1] in ("stoponlycurrent", "stopall"):
+				findNextRunningEvent = False
+				t.enable()
+				t.processRepeated(findRunningEvent=False)
+				self.session.nav.RecordTimer.doActivate(t)
+			if result[1] in ("stoponlycoming", "stopall", "simplestop"):
+				findNextRunningEvent = True
+				t.disable()
+			self.session.nav.RecordTimer.timeChanged(t)
+			t.findRunningEvent = findNextRunningEvent
+			t.findNextEvent = findEventNext
+			if result[1] in ("stoponlycurrent", "stopall", "simplestop", "nextonlystop"):
+				self["key_green"].setText(_("Add timer"))
+				self.key_green_choice = self.ADD_TIMER
 
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
+		serviceref = cur[1]
 		if event is None:
 			return
+		isRecordEvent = isRepeat = firstNextRepeatEvent = False
 		eventid = event.getEventId()
-		serviceref = cur[1]
+		begin = event.getBeginTime()
+		end = begin + event.getDuration()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
-				buttons = ["red", "green"]
-				if not timer.isRunning():
-					menu.append((_("Disable timer"), "disable"))
-					buttons.append("yellow")
-				menu.append((_("Timer Overview"), "timereditlist"))
-				def timerAction(choice):
-					if choice is not None:
-						if choice[1] == "delete":
-							self.removeTimer(timer)
-						elif choice[1] == "edit":
-							self.session.open(TimerEntry, timer)
-						elif choice[1] == "disable":
-							self.disableTimer(timer)
-						elif choice[1] == "timereditlist":
-							self.session.open(TimerEditList)
-				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
+			needed_ref = ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr
+			if needed_ref and timer.eit == eventid and (begin < timer.begin <= end or timer.begin <= begin <= timer.end):
+				isRecordEvent = True
 				break
+			elif needed_ref and timer.repeated and self.session.nav.RecordTimer.isInRepeatTimer(timer, event):
+				isRecordEvent = True
+				break
+		if isRecordEvent:
+			isRepeat = timer.repeated
+			title_text = isRepeat and _("Attention, this is repeated timer!\n") or ""
+			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay 
+			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+			buttons = ["red", "green"]
+			if not timer.isRunning():
+				if firstNextRepeatEvent and timer.isFindRunningEvent() and not timer.isFindNextEvent():
+					menu.append((_("Options disable timer"), "disablerepeat"))
+				else:
+					menu.append((_("Disable timer"), "disable"))
+				buttons.append("yellow")
+			elif firstNextRepeatEvent:
+				menu.append((_("Options disable timer"), "disablerepeatrunning"))
+				buttons.append("yellow")
+			menu.append((_("Timer Overview"), "timereditlist"))
+			def timerAction(choice):
+				if choice is not None:
+					if choice[1] == "delete":
+						self.removeTimer(timer)
+					elif choice[1] == "edit":
+						self.session.open(TimerEntry, timer)
+					elif choice[1] == "disable":
+						self.disableTimer(timer)
+					elif choice[1] == "timereditlist":
+						self.session.open(TimerEditList)
+					elif choice[1] == "disablerepeatrunning":
+						self.disableTimer(timer, repeat=True, record=True)
+					elif choice[1] == "disablerepeat":
+						self.disableTimer(timer, repeat=True)
+			self.session.openWithCallback(timerAction, ChoiceBox, title=title_text + _("Select action for timer '%s'.") % timer.name, list=menu, keys=buttons)
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
 			self.session.openWithCallback(self.finishedTimerAdd, TimerEntry, newEntry)
@@ -1138,8 +1196,15 @@ class GraphMultiEPG(Screen, HelpableScreen):
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
-			self["key_green"].setText(_("Change timer"))
-			self.key_green_choice = self.REMOVE_TIMER
+						return
+			cur = self["list"].getCurrent()
+			event = cur and cur[0]
+			if event:
+				begin = event.getBeginTime()
+				end = begin + event.getDuration()
+				if begin < entry.begin <= end or entry.begin <= begin <= entry.end:
+					self["key_green"].setText(_("Change timer"))
+					self.key_green_choice = self.REMOVE_TIMER
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
@@ -1176,10 +1241,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			return
 
 		eventid = event.getEventId()
+		begin = event.getBeginTime()
+		end = begin + event.getDuration()
 		refstr = ':'.join(servicerefref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+			needed_ref = ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr
+			if needed_ref and (timer.eit == eventid and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) or timer.repeated and self.session.nav.RecordTimer.isInRepeatTimer(timer, event)):
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
