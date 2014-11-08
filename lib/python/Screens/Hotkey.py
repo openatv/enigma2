@@ -172,8 +172,8 @@ def getHotkeyFunctions():
 		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
 			x = x[:-4]
 			hotkeyFunctions.append((_("PPanel") + " " + x, "PPanel/" + x, "PPanels"))
-	if os.path.isdir("/etc/shellscripts"):
-		for x in [x for x in os.listdir("/etc/shellscripts") if x.endswith(".sh")]:
+	if os.path.isdir("/usr/script"):
+		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			hotkeyFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
@@ -537,7 +537,7 @@ class InfoBarHotkey():
 					from Plugins.Extensions.PPanel.ppanel import PPanel
 					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
-				command = '/etc/shellscripts/' + selected[1] + ".sh"
+				command = '/usr/script/' + selected[1] + ".sh"
 				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
