@@ -3025,10 +3025,13 @@ class InfoBarServiceErrorPopupSupport:
 		Notifications.RemovePopup(id = "ZapError")
 
 	def __tuneFailed(self):
-		if not config.usage.hide_zap_errors.value:
+		if not config.usage.hide_zap_errors.value or not config.usage.remote_fallback_enabled.value:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			error = info and info.getInfo(iServiceInformation.sDVBState)
+			if not config.usage.remote_fallback_enabled.value and (error == eDVBServicePMTHandler.eventMisconfiguration or error == eDVBServicePMTHandler.eventNoResources):
+				self.session.nav.currentlyPlayingServiceReference = None
+				self.session.nav.currentlyPlayingServiceOrGroup = None
 
 			if error == self.last_error:
 				error = None
@@ -3048,7 +3051,7 @@ class InfoBarServiceErrorPopupSupport:
 				eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
 			}.get(error) #this returns None when the key not exist in the dict
 
-			if error:
+			if error and not config.usage.hide_zap_errors.value:
 				self.closeNotificationInstantiateDialog()
 				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
 					Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
