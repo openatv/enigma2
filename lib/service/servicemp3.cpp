@@ -1151,6 +1151,7 @@ std::string eServiceMP3::getInfoString(int w)
 			g_date_free(date);
 			return (std::string)res;
 		}
+#if GST_VERSION_MAJOR >= 1
 		else if (gst_tag_list_get_date_time(m_stream_tags, GST_TAG_DATE_TIME, &date_time))
 		{
 			if (gst_date_time_has_year(date_time))
@@ -1162,6 +1163,7 @@ std::string eServiceMP3::getInfoString(int w)
 			}
 			gst_date_time_unref(date_time);
 		}
+#endif
 		break;
 	case sTagComposer:
 		tag = GST_TAG_COMPOSER;
