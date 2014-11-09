@@ -172,27 +172,26 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
         self["key_blue"] = Label(_("Ban"))
         self["infolabel"] = Label("")
 
-        self["actions"] = HelpableActionMap(self, ["InfobarChannelSelection", "WizardActions", "ShortcutActions", "MenuActions"],
-            {
-                "ok": (self.action_ok, _("Switch to selected station")),
-                "back": (self.action_exit, _("Quit") + " " + config.plugins.LastFM.name.value),
-                "red": (self.action_startstop, _("Start/stop streaming")),
-                "green": (self.skipTrack, _("Skip current track")),
-                "yellow": (self.love, _("Mark track as loved")),
-                "blue": (self.banTrack, _("Ban track, never play")),
-                "historyNext": (self.action_nextTab, _("Select next tab")),
-                "historyBack": (self.action_prevTab, _("Select prev tab")),
+        self["actions"] = HelpableActionMap(self, ["InfobarChannelSelection", "WizardActions", "ShortcutActions", "MenuActions"], {
+            "ok": (self.action_ok, _("Switch to selected station")),
+            "back": (self.action_exit, _("Quit") + " " + config.plugins.LastFM.name.value),
+            "red": (self.action_startstop, _("Start/stop streaming")),
+            "green": (self.skipTrack, _("Skip current track")),
+            "yellow": (self.love, _("Mark track as loved")),
+            "blue": (self.banTrack, _("Ban track, never play")),
+            "historyNext": (self.action_nextTab, _("Select next tab")),
+            "historyBack": (self.action_prevTab, _("Select prev tab")),
 
-                "menu": (self.action_menu, _("Open setup menu")),
-            }, prio=-1, description=config.plugins.LastFM.name.value)
+            "menu": (self.action_menu, _("Open setup menu")),
+        }, prio=-1, description=config.plugins.LastFM.name.value)
 
-	# Unimplemented actions that were given help entries.
-	# Perhaps there was an intention to implement them at some stage.
+        # Unimplemented actions that were given help entries.
+        # Perhaps there was an intention to implement them at some stage.
 
-	# self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelDown", _("Next selection"))]))
-	# self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelUp", _("Previous selection"))]))
-	# self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapDown", _("Page forward selections"))]))
-	# self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapUp", _("Page backward selections"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelDown", _("Next selection"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelUp", _("Previous selection"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapDown", _("Page forward selections"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapUp", _("Page backward selections"))]))
 
         self.onLayoutFinish.append(self.initLastFM)
         self.onLayoutFinish.append(self.tabchangedtimerFired)
@@ -537,15 +536,14 @@ class LastFMSaveScreen(Screen, HelpableScreen):
         self.parent = parent
         self["cover"] = MovingPixmap()
 
-        self["actions"] = HelpableActionMap(self, ["WizardActions", "ShortcutActions"],
-            {
-                "ok": (self.action_exit, _("Exit screensaver")),
-                "back": (self.action_exit, _("Exit screensaver")),
-                "red": (self.parent.action_startstop, _("Start/stop streaming")),
-                "green": (self.parent.skipTrack, _("Skip current track")),
-                "yellow": (self.parent.love, _("Mark track as loved")),
-                "blue": (self.parent.banTrack, _("Ban track, never play"))
-            }, prio=-1, description=config.plugins.LastFM.name.value + " " + _("Screensaver"))
+        self["actions"] = HelpableActionMap(self, ["WizardActions", "ShortcutActions"], {
+            "ok": (self.action_exit, _("Exit screensaver")),
+            "back": (self.action_exit, _("Exit screensaver")),
+            "red": (self.parent.action_startstop, _("Start/stop streaming")),
+            "green": (self.parent.skipTrack, _("Skip current track")),
+            "yellow": (self.parent.love, _("Mark track as loved")),
+            "blue": (self.parent.banTrack, _("Ban track, never play"))
+        }, prio=-1, description=config.plugins.LastFM.name.value + " " + _("Screensaver"))
 
         self.onLayoutFinish.append(self.update)
         self.updatetimer = eTimer()

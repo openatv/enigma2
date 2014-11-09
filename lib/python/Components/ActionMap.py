@@ -3,8 +3,10 @@ from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
-		if not actions: actions = {}
-		if not contexts: contexts = []
+		if not actions:
+			actions = {}
+		if not contexts:
+			contexts = []
 		self.actions = actions
 		self.contexts = contexts
 		self.prio = prio
@@ -45,7 +47,7 @@ class ActionMap:
 
 	def action(self, context, action):
 		print " ".join(("action -> ", context, action))
-		if self.actions.has_key(action):
+		if action in self.actions:
 			res = self.actions[action]()
 			if res is not None:
 				return res
@@ -60,7 +62,7 @@ class ActionMap:
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		numbers = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-		if action in numbers and self.actions.has_key(action):
+		if action in numbers and action in self.actions:
 			res = self.actions[action](int(action))
 			if res is not None:
 				return res
@@ -85,12 +87,13 @@ class HelpableActionMap(ActionMap):
 
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
 		self.description = description
-		if not actions: actions = {}
+		if not actions:
+			actions = {}
 		if not (isinstance(contexts, list) or isinstance(contexts, tuple)):
 			contexts = [contexts]
-		adict = { }
+		adict = {}
 		for context in contexts:
-			alist = [ ]
+			alist = []
 			for (action, funchelp) in actions.iteritems():
 				# check if this is a tuple
 				if isinstance(funchelp, tuple):
