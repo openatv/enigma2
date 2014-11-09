@@ -1235,7 +1235,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventNewProgramInfo:
-		eDebug("[eDVBServicePlay] eventNewProgramInfo TS");
+		eDebug("[eDVBServicePlay] [Timeshift] eventNewProgramInfo TS");
 		if (m_timeshift_active)
 		{
 			updateDecoder();
@@ -1243,12 +1243,12 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			{
 				if (m_slowmotion)
 				{
-					eDebug("[eDVBServicePlay] re-apply slowmotion after timeshift file change");
+					eDebug("[eDVBServicePlay] [Timeshift] re-apply slowmotion after timeshift file change");
 					m_decoder->setSlowMotion(m_slowmotion);
 				}
 				if (m_fastforward)
 				{
-					eDebug("[eDVBServicePlay] re-apply skip %d, ratio %d after timeshift file change", m_skipmode, m_fastforward);
+					eDebug("[eDVBServicePlay] [Timeshift] re-apply skip %d, ratio %d after timeshift file change", m_skipmode, m_fastforward);
 					if (m_skipmode)
 						m_cue->setSkipmode(m_skipmode * 90000); /* convert to 90000 per second */
 					if (m_fastforward != 1)
@@ -1264,10 +1264,11 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		}
 		break;
 	case eDVBServicePMTHandler::eventSOF:
+		eDebug("[eDVBServicePlay] [Timeshift] SOF");
 #if 0
 		if (!m_timeshift_file_next.empty())
 		{
-			eDebug("[eDVBServicePlay] timeshift SOF, switch to next file");
+			eDebug("[eDVBServicePlay] [Timeshift] SOF, switch to next file");
 			m_decoder->pause();
 
 			m_first_program_info |= 2;
@@ -1291,6 +1292,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventEOF:
+		eDebug("[eDVBServicePlay] [Timeshift] EOF m_is_paused=%d, m_skipmode=%d", m_is_paused, m_skipmode);
 		if ((!m_is_paused) && (m_skipmode >= 0))
 		{
 			goToNextPlaybackFile();
@@ -1725,7 +1727,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 
 			if (((off_t)fs.f_bavail) * ((off_t)fs.f_bsize) < 300*1024*1024LL)
 			{
-				eDebug("[eDVBServicePlay] not enough diskspace for timeshift! (less than 200MB)");
+				eDebug("[eDVBServicePlay] not enough diskspace for timeshift! (less than 300MB)");
 				return -3;
 			}
 		}
@@ -2428,6 +2430,7 @@ RESULT eDVBServicePlay::startTimeshift()
 
 RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 {
+	eDebug("[eDVBServicePlay] [Timeshift] %s", __FUNCTION__);
 	if (!m_timeshift_enabled)
 		return -1;
 
@@ -2469,18 +2472,20 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 
 int eDVBServicePlay::isTimeshiftActive()
 {
+	eDebug("[eDVBServicePlay] [Timeshift] %s", __FUNCTION__);
 	return m_timeshift_enabled && m_timeshift_active;
 }
 
 int eDVBServicePlay::isTimeshiftEnabled()
 {
-        return m_timeshift_enabled;
+	return m_timeshift_enabled;
 }
 
 RESULT eDVBServicePlay::saveTimeshiftFile()
 {
+	eDebug("[eDVBServicePlay] [Timeshift] %s", __FUNCTION__);
 	if (!m_timeshift_enabled)
-                return -1;
+		return -1;
 
 	m_save_timeshift = 1;
 
@@ -2489,6 +2494,7 @@ RESULT eDVBServicePlay::saveTimeshiftFile()
 
 RESULT eDVBServicePlay::activateTimeshift()
 {
+	eDebug("[eDVBServicePlay] [Timeshift] %s", __FUNCTION__);
 	if (!m_timeshift_enabled)
 		return -1;
 
@@ -2503,6 +2509,7 @@ RESULT eDVBServicePlay::activateTimeshift()
 
 std::string eDVBServicePlay::getTimeshiftFilename()
 {
+	eDebug("[eDVBServicePlay] [Timeshift] %s", __FUNCTION__);
 	if (m_timeshift_enabled)
 		return m_timeshift_file;
 	else
