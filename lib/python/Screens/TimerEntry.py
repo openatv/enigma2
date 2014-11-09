@@ -14,6 +14,7 @@ from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from RecordTimer import AFTEREVENT
 from enigma import eEPGCache, eServiceReference
 from time import localtime, mktime, time, strftime
@@ -160,8 +161,10 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Name"), self.timerentry_name))
-		self.list.append(getConfigListEntry(_("Description"), self.timerentry_description))
+		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name)
+		self.list.append(self.entryName)
+		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description)
+		self.list.append(self.entryDescription)
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay)
 		self.list.append(self.timerJustplayEntry)
 		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
@@ -233,18 +236,44 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.createSetup("config")
 
 	def keyLeft(self):
-		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
+		cur = self["config"].getCurrent()
+		if cur in (self.channelEntry, self.tagsSet):
 			self.keySelect()
+		elif cur in (self.entryName, self.entryDescription):
+			self.renameEntry()
 		else:
 			ConfigListScreen.keyLeft(self)
 			self.newConfig()
 
 	def keyRight(self):
-		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
+		cur = self["config"].getCurrent()
+		if cur in (self.channelEntry, self.tagsSet):
 			self.keySelect()
+		elif cur in (self.entryName, self.entryDescription):
+			self.renameEntry()
 		else:
 			ConfigListScreen.keyRight(self)
 			self.newConfig()
+
+	def renameEntry(self):
+		cur = self["config"].getCurrent()
+		if cur == self.entryName:
+			title_text = _("Please enter new name:")
+			old_text = self.timerentry_name.value
+		else:
+			title_text = _("Please enter new description:")
+			old_text = self.timerentry_description.value
+		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=title_text, text=old_text)
+
+	def renameEntryCallback(self, answer):
+		if answer:
+			cur = self["config"].getCurrent()
+			if cur == self.entryName:
+				self.timerentry_name.value = answer
+				self["config"].invalidate(self.entryName)
+			else:
+				self.timerentry_description.value = answer
+				self["config"].invalidate(self.entryDescription)
 
 	def handleKeyFileCallback(self, answer):
 		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
