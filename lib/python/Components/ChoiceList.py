@@ -32,9 +32,13 @@ class ChoiceList(MenuList):
 		font = skin.fonts["ChoiceList"]
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
+		self.ItemHeight = font[2]
 		self.selection = selection
 
 	def postWidgetCreate(self, instance):
 		MenuList.postWidgetCreate(self, instance)
 		self.moveToIndex(self.selection)
 		self.instance.setWrapAround(True)
+
+	def getItemHeight(self):
+		return self.ItemHeight
