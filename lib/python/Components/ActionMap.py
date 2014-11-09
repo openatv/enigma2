@@ -1,4 +1,5 @@
 from enigma import eActionMap
+from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
@@ -70,7 +71,8 @@ class NumberActionMap(ActionMap):
 class HelpableActionMap(ActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
 
-	Note that you can only use ONE context here!"""
+	A context list is allowed, and for backward compatibility,
+	a single string contest name also is allowed"""
 
 	# sorry for this complicated code.
 	# it's not more than converting a "documented" actionmap
@@ -81,28 +83,32 @@ class HelpableActionMap(ActionMap):
 	# added to the screen's "helpList", which will be picked up by
 	# the "HelpableScreen".
 
-	def __init__(self, parent, context, actions=None, prio=0, description=None):
+	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
 		self.description = description
 		if not actions: actions = {}
-		alist = [ ]
+		if not (isinstance(contexts, list) or isinstance(contexts, tuple)):
+			contexts = [contexts]
 		adict = { }
-		for (action, funchelp) in actions.iteritems():
-			# check if this is a tuple
-			if isinstance(funchelp, tuple):
-				alist.append((action, funchelp[1]))
-				adict[action] = funchelp[0]
-			else:
-				adict[action] = funchelp
+		for context in contexts:
+			alist = [ ]
+			for (action, funchelp) in actions.iteritems():
+				# check if this is a tuple
+				if isinstance(funchelp, tuple):
+					if queryKeyBinding(context, action):
+						alist.append((action, funchelp[1]))
+					adict[action] = funchelp[0]
+				else:
+					adict[action] = funchelp
+			parent.helpList.append((self, context, alist))
 
-		ActionMap.__init__(self, [context], adict, prio)
-
-		parent.helpList.append((self, context, alist))
+		ActionMap.__init__(self, contexts, adict, prio)
 
 
 class HelpableNumberActionMap(HelpableActionMap, NumberActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
 
-	Note that you can only use ONE context here!"""
+	A context list is allowed, and for backward compatibility,
+	a single string contest name also is allowed"""
 
 	# sorry for this complicated code.
 	# it's not more than converting a "documented" actionmap
@@ -113,10 +119,10 @@ class HelpableNumberActionMap(HelpableActionMap, NumberActionMap):
 	# added to the screen's "helpList", which will be picked up by
 	# the "HelpableScreen".
 
-	def __init__(self, parent, context, actions=None, prio=0, description=None):
+	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
 		# Initialise NumberActionMap with empty context and actions
 		# so that the underlying ActionMap is only initialised with
 		# these once, via the HelpableActionMap.
 
 		NumberActionMap.__init__(self, [], {})
-		HelpableActionMap.__init__(self, parent, context, actions, prio, description)
+		HelpableActionMap.__init__(self, parent, contexts, actions, prio, description)
