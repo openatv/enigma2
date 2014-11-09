@@ -104,7 +104,7 @@ class HelpableActionMap(ActionMap):
 		ActionMap.__init__(self, contexts, adict, prio)
 
 
-class HelpableNumberActionMap(HelpableActionMap, NumberActionMap):
+class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
 
 	A context list is allowed, and for backward compatibility,
