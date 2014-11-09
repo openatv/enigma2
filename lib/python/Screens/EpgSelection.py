@@ -521,13 +521,19 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveUp(self):
 		self['list'].moveTo(self['list'].instance.moveUp)
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.moveTimeLines(True)
 
 	def moveDown(self):
 		self['list'].moveTo(self['list'].instance.moveDown)
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.moveTimeLines(True)
 
 	def updEvent(self, dir, visible = True):
 		ret = self['list'].selEntry(dir, visible)
 		if ret:
+			self.moveTimeLines(True)
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
 
 	def nextPage(self):
