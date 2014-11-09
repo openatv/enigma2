@@ -1293,31 +1293,36 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 	case eDVBServicePMTHandler::eventEOF:
 		if ((!m_is_paused) && (m_skipmode >= 0))
 		{
-			if (m_timeshift_file_next.empty())
-			{
-				eDebug("[eDVBServicePlay] timeshift EOF, so let's go live");
-				switchToLive();
-			}
-			else
-			{
-				eDebug("[eDVBServicePlay] timeshift EOF, switch to next file");
-
-				m_first_program_info |= 2;
-
-				eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
-				r.path = m_timeshift_file_next;
-
-				/* free the timeshift service handler, we need the resources */
-				m_service_handler_timeshift.free();
-				resetTimeshift(1);
-
-				ePtr<iTsSource> source = createTsSource(r);
-				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
-
-				m_event((iPlayableService*)this, evUser+1);
-			}
+			goToNextPlaybackFile();
 		}
 		break;
+	}
+}
+
+void eDVBServicePlay::goToNextPlaybackFile()
+{
+	if (m_timeshift_file_next.empty())
+	{
+		eDebug("[eDVBServicePlay] [Timeshift] EOF, so let's go live");
+		switchToLive();
+	}
+	else
+	{
+		eDebug("[eDVBServicePlay] [Timeshift] EOF, switch to next file %s", m_timeshift_file_next.c_str());
+
+		m_first_program_info |= 2;
+
+		eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
+		r.path = m_timeshift_file_next;
+
+		/* free the timeshift service handler, we need the resources */
+		m_service_handler_timeshift.free();
+		resetTimeshift(1);
+
+		ePtr<iTsSource> source = createTsSource(r);
+		m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
+
+		m_event((iPlayableService*)this, evUser+1);
 	}
 }
 
