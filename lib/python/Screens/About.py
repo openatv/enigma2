@@ -32,6 +32,8 @@ class About(Screen):
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
 
+		AboutText += _("DVB drivers: ") + about.getDriverInstalledDate() + "\n"
+
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
