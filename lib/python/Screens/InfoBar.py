@@ -296,8 +296,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": (self.leavePlayer, _("Leave movie player...")),
-				"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player..."))
+				"leavePlayer": (self.leavePlayer, self._helpLeavePlayer),
+				"leavePlayerOnExit": (self.leavePlayerOnExit, self._helpLeavePlayerOnExit)
 			}, description=_("Movie player"))
 
 		self.allowPiP = True
@@ -358,9 +358,23 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		else:
 			self.leavePlayerConfirmed([True, how])
 
+	def _helpLeavePlayer(self):
+		return {
+			"ask": _("Stop movie and ask user next action"),
+			"movielist": _("Stop movie and return to movie list"),
+			"quit": _("Stop movie and return  to previous service")
+		}.get(config.usage.on_movie_stop.value, _("No current function"))
+
 	def leavePlayer(self):
 		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_stop.value)
+
+	def _helpLeavePlayerOnExit(self):
+		return {
+			"no": _("Close PiP") if self.session.pipshown else _("Stop movie on EXIT disabled"),
+			"popup": _("Ask whether to close PiP") if self.session.pipshown else _("Ask whether to stop movie"),
+			"without popup": _("Close PiP") if self.session.pipshown else _("Stop movie")
+		}.get(config.usage.on_movie_stop.value, _("No current function"))
 
 	def leavePlayerOnExit(self):
 		if self.shown:
