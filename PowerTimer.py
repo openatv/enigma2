@@ -22,6 +22,8 @@ RBsave = False
 aeDSsave = False
 wasPowerTimerWakeup = False
 wakeupEnd = time()
+netbytes = 0
+netpackets = 0
 #global variables end
 
 #reset wakeupstatus
@@ -197,7 +199,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if wasPowerTimerWakeup or (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
+				if self.getNetworkTraffic() or wasPowerTimerWakeup or (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or ((self.autosleepinstandbyonly == 'yesNWno' or self.autosleepinstandbyonly == 'yes') and not Screens.Standby.inStandby):
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
@@ -395,6 +397,33 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, "time changed, start prepare is now: %s" % ctime(self.start_prepare))
+
+	def getNetworkTraffic(self):
+		global netbytes, netpackets
+		oldbytes = netbytes
+		oldpackets = netpackets
+		newbytes = 0
+		newpackets = 0
+		if Screens.Standby.inStandby and self.autosleepinstandbyonly == 'yesNWno':
+			try:
+				if os.path.exists('/proc/net/dev'):
+					f = open('/proc/net/dev', 'r')
+					temp = f.readlines()
+					f.close()
+					for lines in temp:
+						lisp = lines.split()
+						if lisp[0].endswith(':') and (lisp[0].startswith('eth') or lisp[0].startswith('wlan')):
+							newbytes += int(lisp[1]) + int(lisp[9])
+							newpackets += int(lisp[2]) + int(lisp[10])
+					netbytes = newbytes
+					netpackets = newpackets
+					print '[PowerTimer] Receive/Transmit Bytes : ', str(newbytes - oldbytes), '(' + str(int((newbytes - oldbytes)/1024/1024)) + ' MBytes)'
+					#print '[PowerTimer] Receive/Transmit Packets : ', str(newpackets - oldpackets)
+					if (newbytes - oldbytes) > 1000000:	# or (newpackets - oldpackets) > 3000:	#packets deactivated
+						return True
+			except:
+				print '[PowerTimer] Receive/Transmit BYTES : error reading values! Use "cat /proc/net/dev" for testing on command line.'
+		return False
 
 def createTimer(xml):
 	timertype = str(xml.get("timertype") or "wakeup")
