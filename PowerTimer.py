@@ -422,7 +422,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if (newbytes - oldbytes) > 1000000:	# or (newpackets - oldpackets) > 3000:	#packets deactivated
 						return True
 			except:
-				print '[PowerTimer] Receive/Transmit BYTES : error reading values! Use "cat /proc/net/dev" for testing on command line.'
+				print '[PowerTimer] Receive/Transmit Bytes or Packets : Error reading values! Use "cat /proc/net/dev" for testing on command line.'
 		return False
 
 def createTimer(xml):
