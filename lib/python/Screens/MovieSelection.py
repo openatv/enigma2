@@ -685,7 +685,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		help = userDefinedDescriptions[configVal]
 		if isinstance(help, tuple):
 			help =  help[1] if len(help) > 1 else help[0]
-		return help + ' ' + _("(Configurable)")
+		return help
 
 	def btn_red(self):
 		from InfoBar import InfoBar

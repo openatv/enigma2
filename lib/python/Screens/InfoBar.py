@@ -154,7 +154,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		"MovieList": _("Watch recordings and media"),
 		"ChannelList": _("Open channel list"),
 		"BouquetList": _("Open bouquet list")
-			}[config.usage.tvradiobutton_mode.value] + _(" (Configurable)")
+			}.get(config.usage.tvradiobutton_mode.value, _("No current function"))
 
 	def openBouquetList(self):
 		if config.usage.tvradiobutton_mode.value == "MovieList":

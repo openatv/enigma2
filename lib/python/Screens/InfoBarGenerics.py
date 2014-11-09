@@ -592,7 +592,7 @@ class InfoBarNumberZap:
 
 	def helpKeyNumberGlobal(self, number):
 		if number != 0 and "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
-			return _("Seek to middle of seek bar (Configurable)")
+			return _("Seek to middle of seek bar")
 
 		if self.pts_blockZap_timer.isActive():
 			return None
@@ -606,15 +606,15 @@ class InfoBarNumberZap:
 					"swap": _("Swap PiP and main picture"),
 					"swapstop": _("Move PiP to main picture"),
 					"stop": _("Stop PiP")
-				}.get(config.usage.pip_zero_button.value, _("Unknown PiP action")) + " (Configurable)"
+				}.get(config.usage.pip_zero_button.value, _("Unknown PiP action"))
 			else:
-				return _("Switch between last two channels watched (Configurable)")
+				return _("Switch between last two channels watched")
 		else:
 			if "TimeshiftActions" in self and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return None
-			return _("Zap to channel number (Configurable)")
+			return _("Zap to channel number")
 
 	def doReCallService(self, reply):
 		if reply:
@@ -774,7 +774,7 @@ class InfoBarChannelSelection:
 			"0": _("Switch channels ") + (_("up") if plus else _("down")),
 			"1": _("Channel list"),
 			"2": _("Bouquet list")
-		}[config.usage.channelbutton_mode.value] + _(" (Configurable)")
+		}.get(config.usage.channelbutton_mode.value, _("No current function"))
 
 	def ChannelPlusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
@@ -833,7 +833,6 @@ class InfoBarChannelSelection:
 				# but that's down the list
 				helpText += " and move "
 				helpText += "down" if up else "up"
-			helpText += " (Configurable)"
 		return helpText
 
 	def switchChannelUp(self):
@@ -1431,7 +1430,7 @@ class InfoBarEPG:
 		guide = configINFOEpgType.value
 		if guide == "None":
 			guide = _("Event Info")
-		return _("Show ") + guide + _(" (Configurable)")
+		return _("Show ") + guide
 
 	def showDefaultInfoEPG(self):
 		if self.defaultEPGType is not None:
@@ -1444,7 +1443,7 @@ class InfoBarEPG:
 		guide = configEPGEpgType.value
 		if guide == "None":
 			guide = _("Graphical EPG")
-		return _("Show ") + guide + _(" (Configurable)")
+		return _("Show ") + guide
 
 	def showDefaultEPG(self):
 		if self.defaultGuideType is not None:
@@ -1651,7 +1650,7 @@ class InfoBarSeek:
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekFwdManual": (self.seekFwdManual, _("Skip forward (enter time)")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
-			"seekBackManual": (self.seekBackManual, _("Skip backward (enter time)")),
+			"seekBackManual": (self.seekBackManual, _("Skip back (enter time)")),
 
 			"SeekbarFwd": self.seekFwdSeekbar,
 			"SeekbarBack": self.seekBackSeekbar
@@ -1659,14 +1658,14 @@ class InfoBarSeek:
 
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActions"], actionmap, (
-			("seekdef:left", _("Skip (Configurable)")),
-			("seekdef:right", _("Skip (Configurable)")),
-			("seekdef:1", _("Skip back (Configurable)")),
-			("seekdef:3", _("Skip forward (Configurable)")),
-			("seekdef:4", _("Skip back (Configurable)")),
-			("seekdef:6", _("Skip forward (Configurable)")),
-			("seekdef:7", _("Skip back (Configurable)")),
-			("seekdef:9", _("Skip forward (Configurable)"))
+			("seekdef:left", _("Skip back")),
+			("seekdef:right", _("Skip forward")),
+			("seekdef:1", _("Skip back")),
+			("seekdef:3", _("Skip forward")),
+			("seekdef:4", _("Skip back")),
+			("seekdef:6", _("Skip forward")),
+			("seekdef:7", _("Skip back")),
+			("seekdef:9", _("Skip forward"))
 		)))
 
 		self["SeekActions"].setEnabled(False)
@@ -1679,19 +1678,19 @@ class InfoBarSeek:
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekFwdManual": (self.seekFwdManual, _("Skip forward (enter time)")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
-			"seekBackManual": (self.seekBackManual, _("Skip backward (enter time)")),
+			"seekBackManual": (self.seekBackManual, _("Skip back (enter time)")),
 		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS", (
-			("seekdef:left", _("Skip back (Configurable)")),
-			("seekdef:right", _("Skip forward (Configurable)")),
-			("seekdef:1", _("Skip back (Configurable)")),
-			("seekdef:3", _("Skip forward (Configurable)")),
-			("seekdef:4", _("Skip back (Configurable)")),
-			("seekdef:6", _("Skip forward (Configurable)")),
-			("seekdef:7", _("Skip back (Configurable)")),
-			("seekdef:9", _("Skip forward (Configurable)"))
+			("seekdef:left", _("Skip back")),
+			("seekdef:right", _("Skip forward")),
+			("seekdef:1", _("Skip back")),
+			("seekdef:3", _("Skip forward")),
+			("seekdef:4", _("Skip back")),
+			("seekdef:6", _("Skip forward")),
+			("seekdef:7", _("Skip back")),
+			("seekdef:9", _("Skip forward"))
 		)))
 
 		self["SeekActionsPTS"].setEnabled(False)

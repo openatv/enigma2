@@ -1135,10 +1135,10 @@ class EPGSelection(Screen, HelpableScreen):
 	def _helpOK(self):
 		confVal = self.getOKConfig()
 		if confVal == 'Zap':
-			return _("Zap to selected channel (Configurable)")
+			return _("Zap to selected channel")
 		elif confVal == 'Zap + Exit':
-			return _("Zap to selected channel and exit EPG (Configurable)")
-		return _("No current function (Configurable)")
+			return _("Zap to selected channel and exit EPG")
+		return _("No current function")
 
 	def OK(self):
 		from InfoBar import InfoBar
@@ -1165,10 +1165,10 @@ class EPGSelection(Screen, HelpableScreen):
 	def _helpOKLong(self):
 		confVal = self.getOKLongConfig()
 		if confVal == 'Zap':
-			return _("Zap to selected channel (Configurable)")
+			return _("Zap to selected channel")
 		elif confVal == 'Zap + Exit':
-			return _("Zap to selected channel and exit EPG (Configurable)")
-		return _("No current function (Configurable)")
+			return _("Zap to selected channel and exit EPG")
+		return _("No current function")
 
 	def OKLong(self):
 		from InfoBar import InfoBar
@@ -1188,11 +1188,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def _helpInfo(self):
 		helpText = _("Show current event information")
-		if self.type == EPG_TYPE_GRAPH:
-			if config.epgselection.graph_info.value == 'Single EPG':
-				helpText = _("Open single channel EPG (Configurable)")
-			else:
-				helpText += _(" (Configurable)")
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.value == 'Single EPG':
+				helpText = _("Open single channel EPG")
 		return helpText
 
 	def Info(self):
@@ -1206,11 +1203,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def _helpInfoLong(self):
 		helpText = _("Open single channel EPG")
-		if self.type == EPG_TYPE_GRAPH:
-			if config.epgselection.graph_infolong.value == 'Channel Info':
-				helpText = _("Show current event information (Configurable)")
-			else:
-				helpText += _(" (Configurable)")
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.value == 'Channel Info':
+				helpText = _("Show current event information")
 
 		return helpText
 
