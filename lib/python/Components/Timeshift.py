@@ -55,6 +55,10 @@ from random import randint
 
 import os
 
+def dprint(*args):
+	if True:
+		print "[Timeshift]", " ".join([str(x) for x in args])
+
 class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
@@ -165,7 +169,7 @@ class InfoBarTimeshift:
 		# Init PTS Infobar
 
 	def __seekableStatusChanged(self):
-		# print '__seekableStatusChanged'
+		dprint("__seekableStatusChanged")
 		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled() and int(config.timeshift.startdelay.value))
 		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActionsPTS"].setEnabled(state)
@@ -186,7 +190,7 @@ class InfoBarTimeshift:
 			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_eventcount)
 
 	def __serviceStarted(self):
-		# print '__serviceStarted'
+		dprint("__serviceStarted")
 		self.createTimeshiftFolder()
 		self.service_changed = 1
 		self.pts_service_changed = True
@@ -202,12 +206,13 @@ class InfoBarTimeshift:
 		self.__seekableStatusChanged()
 
 	def __serviceEnd(self):
+		dprint("__serviceEnd")
 		self.service_changed = 0
 		if not config.timeshift.isRecording.value:
 			self.__seekableStatusChanged()
 
 	def __evSOF(self):
-		# print '!!!!! jumpToPrevTimeshiftedEvent'
+		dprint("__evSOF")
 		if not self.timeshiftEnabled():
 			return
 
@@ -230,7 +235,7 @@ class InfoBarTimeshift:
 			self.pts_SeekBack_timer.start(1000, True)
 
 	def __evEOF(self):
-		# print '!!!!! jumpToNextTimeshiftedEvent'
+		dprint("__evEOF")
 		if not self.timeshiftEnabled():
 			return
 
@@ -250,8 +255,7 @@ class InfoBarTimeshift:
 		self.doSeek(3600 * 24 * 90000)
 
 	def __evInfoChanged(self):
-		# print '__evInfoChanged'
-		# print 'service_changed', self.service_changed
+		dprint("__evInfoChanged")
 		if self.service_changed:
 			self.service_changed = 0
 
@@ -265,7 +269,7 @@ class InfoBarTimeshift:
 			# self.pts_cleanUp_timer.start(1000, True)
 
 	def __evEventInfoChanged(self):
-		# print '__evEventInfoChanged'
+		dprint("__evEventInfoChanged")
 		# if not int(config.timeshift.startdelay.value):
 		# 	return
 
@@ -320,6 +324,7 @@ class InfoBarTimeshift:
 		return ts and ts.isTimeshiftEnabled()
 
 	def startTimeshift(self):
+		dprint("startTimeshift")
 		ts = self.getTimeshift()
 		if ts is None:
 			# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
@@ -333,7 +338,7 @@ class InfoBarTimeshift:
 			self.activateTimeshiftEnd()
 
 	def stopTimeshift(self):
-		# print 'stopTimeshift'
+		dprint("stopTimeshift")
 		ts = self.getTimeshift()
 		if ts and ts.isTimeshiftEnabled():
 			# print 'TEST1'
@@ -354,7 +359,7 @@ class InfoBarTimeshift:
 			return 0
 
 	def stopTimeshiftcheckTimeshiftRunningCallback(self, answer):
-		# print 'stopTimeshiftcheckTimeshiftRunningCallback'
+		dprint("stopTimeshiftcheckTimeshiftRunningCallback")
 		# print ' answer', answer
 		if answer and int(config.timeshift.startdelay.value) and self.switchToLive and self.isSeekable():
 			# print 'TEST4'
@@ -385,6 +390,7 @@ class InfoBarTimeshift:
 
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, pause=False):
+		dprint("activateTimeshiftEnd")
 		ts = self.getTimeshift()
 		if ts is None:
 			return
@@ -402,16 +408,18 @@ class InfoBarTimeshift:
 					seekable.seekTo(-90000 * config.seek.selfdefined_left.value)
 
 	def rewindService(self):
+		dprint("rewindService")
 		if getBrandOEM() in ('gigablue', 'xp'):
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
+		dprint("activateTimeshiftEndAndPause")
 		self.activateTimeshiftEnd(True)
 
 	def checkTimeshiftRunning(self, returnFunction):
-		# print 'checkTimeshiftRunning'
+		dprint("checkTimeshiftRunning")
 		# print 'self.switchToLive', self.switchToLive
 		if self.ptsStop:
 			returnFunction(True)
@@ -458,7 +466,7 @@ class InfoBarTimeshift:
 			returnFunction(True)
 
 	def checkTimeshiftRunningCallback(self, returnFunction, answer):
-		# print 'checkTimeshiftRunningCallback'
+		dprint("checkTimeshiftRunningCallback")
 		# print 'returnFunction', returnFunction
 		# print 'answer', answer
 		if answer:
@@ -469,12 +477,13 @@ class InfoBarTimeshift:
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
+		dprint("eraseTimeshiftFile")
 		for filename in os.listdir(config.usage.timeshift_path.value):
 			if filename.startswith("timeshift.") and not filename.endswith((".del", ".copy")):
 				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 
 	def autostartPermanentTimeshift(self):
-		# print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!autostartPermanentTimeshift'
+		dprint("autostartPermanentTimeshift")
 		self["TimeshiftActions"].setEnabled(True)
 		ts = self.getTimeshift()
 		if ts is None:
@@ -526,6 +535,7 @@ class InfoBarTimeshift:
 			self.pts_eventcount = 0
 
 	def createTimeshiftFolder(self):
+		dprint("createTimeshiftFolder")
 		timeshiftdir = resolveFilename(SCOPE_TIMESHIFT)
 		if not pathExists(timeshiftdir):
 			try:
@@ -534,10 +544,12 @@ class InfoBarTimeshift:
 				print "[TimeShift] Failed to create %s !!" % timeshiftdir
 
 	def restartTimeshift(self):
+		dprint("restartTimeshift")
 		self.activatePermanentTimeshift()
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftEventPopup(self):
+		dprint("saveTimeshiftEventPopup")
 		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
@@ -566,7 +578,7 @@ class InfoBarTimeshift:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save permanently?"), list=entrylist)
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
-		# print 'saveTimeshiftActions'
+		dprint("saveTimeshiftActions")
 		# print 'action', action
 		if action == "savetimeshift":
 			self.SaveTimeshift()
@@ -588,7 +600,7 @@ class InfoBarTimeshift:
 		returnFunction(action and action != "no")
 
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
-		# print 'SaveTimeshift'
+		dprint("SaveTimeshift")
 		self.save_current_timeshift = False
 		savefilename = None
 		if timeshiftfile is not None:
@@ -760,7 +772,7 @@ class InfoBarTimeshift:
 		# print 'SAVE COMPLETED'
 
 	def ptsCleanTimeshiftFolder(self):
-		# print '!!!!!!!!!!!!!!!!!!!!! ptsCleanTimeshiftFolder'
+		dprint("ptsCleanTimeshiftFolder")
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
 			return
 
@@ -774,6 +786,7 @@ class InfoBarTimeshift:
 					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 
 	def ptsGetEventInfo(self):
+		dprint("ptsGetEventInfo")
 		event = None
 		try:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -798,6 +811,7 @@ class InfoBarTimeshift:
 			self.pts_curevent_eventid = curEvent[4]
 
 	def ptsFrontpanelActions(self, action=None):
+		dprint("ptsFrontpanelActions")
 		if self.session.nav.RecordTimer.isRecording() or SystemInfo.get("NumFrontpanelLEDs", 0) == 0:
 			return
 
@@ -829,7 +843,7 @@ class InfoBarTimeshift:
 				f.close()
 
 	def ptsCreateHardlink(self):
-		# print 'ptsCreateHardlink'
+		dprint("ptsCreateHardlink")
 		for filename in os.listdir(config.usage.timeshift_path.value):
 			# if filename.startswith("timeshift") and not os.path.splitext(filename)[1]:
 			if filename.startswith("timeshift") and not filename.endswith((".sc", ".del", ".copy")):
@@ -884,12 +898,14 @@ class InfoBarTimeshift:
 						print "[Timeshift] %s%s\n%s" % (config.usage.timeshift_path.value, filename, errormsg)
 
 	def ptsRecordCurrentEvent(self):
+		dprint("ptsRecordCurrentEvent")
 		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname=config.usage.default_path.value)
 		recording.dontSave = True
 		self.session.nav.RecordTimer.record(recording)
 		self.recording.append(recording)
 
 	def ptsMergeRecords(self):
+		dprint("ptsMergeRecords")
 		if self.session.nav.RecordTimer.isRecording():
 			self.pts_mergeRecords_timer.start(120000, True)
 			return
@@ -961,6 +977,7 @@ class InfoBarTimeshift:
 			Notifications.AddNotification(MessageBox, _("[Timeshift] Merging records failed!"), MessageBox.TYPE_ERROR)
 
 	def ptsCreateAPSCFiles(self, filename):
+		dprint("ptsCreateAPSCFiles")
 		if fileExists(filename, 'r'):
 			if fileExists(filename + ".meta", 'r'):
 				# Get Event Info from meta file
@@ -975,6 +992,7 @@ class InfoBarTimeshift:
 			self.ptsSaveTimeshiftFinished()
 
 	def ptsCreateEITFile(self, filename):
+		dprint("ptsCreateEITFile")
 		if self.pts_curevent_eventid is not None:
 			try:
 				import Components.eitsave
@@ -984,6 +1002,7 @@ class InfoBarTimeshift:
 				print "[Timeshift] %s" % errormsg
 
 	def ptsCopyFilefinished(self, srcfile, destfile):
+		dprint("ptsCopyFilefinished")
 		# Erase Source File
 		if fileExists(srcfile):
 			self.BgFileEraser.erase(srcfile)
@@ -997,6 +1016,7 @@ class InfoBarTimeshift:
 			self.ptsCreateAPSCFiles(destfile)
 
 	def ptsMergeFilefinished(self, srcfile, destfile):
+		dprint("ptsMergeFilefinished")
 		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
 			# Rename files and delete them later ...
 			self.pts_mergeCleanUp_timer.start(120000, True)
@@ -1017,6 +1037,7 @@ class InfoBarTimeshift:
 		self.pts_mergeRecords_timer.start(10000, True)
 
 	def ptsSaveTimeshiftFinished(self):
+		dprint("ptsSaveTimeshiftFinished")
 		if not self.pts_mergeCleanUp_timer.isActive():
 			self.ptsFrontpanelActions("stop")
 			config.timeshift.isRecording.value = False
@@ -1027,6 +1048,7 @@ class InfoBarTimeshift:
 			Notifications.AddNotification(MessageBox, _("Timeshift saved to your harddisk!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def ptsMergePostCleanUp(self):
+		dprint("ptsMergePostCleanUp")
 		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
 			config.timeshift.isRecording.value = True
 			self.pts_mergeCleanUp_timer.start(120000, True)
@@ -1052,6 +1074,7 @@ class InfoBarTimeshift:
 					self.pts_QuitMainloop_timer.start(60000, True)
 
 	def ptsTryQuitMainloop(self):
+		dprint("ptsTryQuitMainloop")
 		if Screens.Standby.inTryQuitMainloop and (len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeCleanUp_timer.isActive()):
 			self.pts_QuitMainloop_timer.start(60000, True)
 			return
@@ -1062,10 +1085,12 @@ class InfoBarTimeshift:
 			self.session.open(Screens.Standby.TryQuitMainloop, self.session.ptsmainloopvalue)
 
 	def ptsGetSeekInfo(self):
+		dprint("ptsGetSeekInfo")
 		s = self.session.nav.getCurrentService()
 		return s and s.seek()
 
 	def ptsGetPosition(self):
+		dprint("ptsGetPosition")
 		seek = self.ptsGetSeekInfo()
 		if seek is None:
 			return None
@@ -1075,6 +1100,7 @@ class InfoBarTimeshift:
 		return pos[1]
 
 	def ptsGetLength(self):
+		dprint("ptsGetLength")
 		seek = self.ptsGetSeekInfo()
 		if seek is None:
 			return None
@@ -1084,12 +1110,14 @@ class InfoBarTimeshift:
 		return length[1]
 
 	def ptsGetTimeshiftStatus(self):
+		dprint("ptsGetTimeshiftStatus")
 		if (self.isSeekable() and self.timeshiftEnabled() or self.save_current_timeshift) and config.usage.check_timeshift.value:
 			return True
 		else:
 			return False
 
 	def ptsSeekPointerOK(self):
+		dprint("ptsSeekPointerOK")
 		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
 			if not self.pvrStateDialog.shown:
 				if self.seekstate != self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_PAUSE:
@@ -1114,22 +1142,26 @@ class InfoBarTimeshift:
 			return
 
 	def ptsSeekPointerLeft(self):
+		dprint("ptsSeekPointerLeft")
 		if "PTSSeekPointer" in self.pvrStateDialog and self.pvrStateDialog.shown and self.timeshiftEnabled() and self.isSeekable():
 			self.ptsMoveSeekPointer(direction="left")
 		else:
 			return
 
 	def ptsSeekPointerRight(self):
+		dprint("ptsSeekPointerRight")
 		if "PTSSeekPointer" in self.pvrStateDialog and self.pvrStateDialog.shown and self.timeshiftEnabled() and self.isSeekable():
 			self.ptsMoveSeekPointer(direction="right")
 		else:
 			return
 
 	def ptsSeekPointerReset(self):
+		dprint("ptsSeekPointerReset")
 		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled():
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x()) + 8, self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsSeekPointerSetCurrentPos(self):
+		dprint("ptsSeekPointerSetCurrentPos")
 		if "PTSSeekPointer" not in self.pvrStateDialog or not self.timeshiftEnabled() or not self.isSeekable():
 			return
 
@@ -1141,6 +1173,7 @@ class InfoBarTimeshift:
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x()) + 8 + tpixels, self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsMoveSeekPointer(self, direction=None):
+		dprint("ptsMoveSeekPointer")
 		if direction is None or "PTSSeekPointer" not in self.pvrStateDialog:
 			return
 		isvalidjump = False
@@ -1166,13 +1199,12 @@ class InfoBarTimeshift:
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(minmaxval, cur_pos[1])
 
 	def ptsTimeshiftFileChanged(self):
-		# print '!!!!! ptsTimeshiftFileChanged'
+		dprint("ptsTimeshiftFileChanged")
 		# Reset Seek Pointer
 		self.ptsSeekPointerReset()
 
-		# print 'self.pts_switchtolive', self.pts_switchtolive
+		dprint("self.pts_switchtolive", self.pts_switchtolive)
 		if self.pts_switchtolive:
-			# print '!!!!! TEST1'
 			self.pts_switchtolive = False
 			return
 
@@ -1181,8 +1213,6 @@ class InfoBarTimeshift:
 		self.pts_nextplaying = self.pts_currplaying + 1
 
 		# Get next pts file ...
-		# print '!!!!! TEST3'
-		# print ("!!! %spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_nextplaying))
 		if fileExists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_nextplaying), 'r'):
 			# print '!!!!! TEST4'
 			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
@@ -1192,7 +1222,7 @@ class InfoBarTimeshift:
 			self.pts_switchtolive = True
 
 	def ptsSetNextPlaybackFile(self, nexttsfile):
-		# print '!!!!! ptsSetNextPlaybackFile'
+		dprint("ptsSetNextPlaybackFile")
 		ts = self.getTimeshift()
 		if ts is None:
 			return
@@ -1213,6 +1243,7 @@ class InfoBarTimeshift:
 			self.setSeekState(self.makeStateBackward(int(-self.pts_lastseekspeed)))
 
 	def ptsCheckTimeshiftPath(self):
+		dprint("ptsCheckTimeshiftPath")
 		if fileExists(config.usage.timeshift_path.value, 'w'):
 			return True
 		else:
@@ -1225,7 +1256,7 @@ class InfoBarTimeshift:
 			return False
 
 	def ptsTimerEntryStateChange(self, timer):
-		# print 'ptsTimerEntryStateChange'
+		dprint("ptsTimerEntryStateChange")
 		if not config.timeshift.stopwhilerecording.value:
 			return
 
@@ -1262,6 +1293,7 @@ class InfoBarTimeshift:
 			config.timeshift.isRecording.value = True
 
 	def ptsLiveTVStatus(self):
+		dprint("ptsLiveTVStatus")
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		sTSID = info and info.getInfo(iServiceInformation.sTSID) or -1
