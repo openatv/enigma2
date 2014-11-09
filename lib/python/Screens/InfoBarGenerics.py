@@ -1656,17 +1656,19 @@ class InfoBarSeek:
 			"SeekbarBack": self.seekBackSeekbar
 		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
+		skipHelp = (
+			("seekdef:left", lambda: _("Skip back ") + str(config.seek.selfdefined_left.value) + _(" sec")),
+			("seekdef:right", lambda: _("Skip forward ") + str(config.seek.selfdefined_right.value) + _(" sec")),
+			("seekdef:1", lambda: _("Skip back ") + str(config.seek.selfdefined_13.value) + _(" sec")),
+			("seekdef:3", lambda: _("Skip forward " + str(config.seek.selfdefined_13.value) + _(" sec"))),
+			("seekdef:4", lambda: _("Skip back " + str(config.seek.selfdefined_46.value) + _(" sec"))),
+			("seekdef:6", lambda: _("Skip forward " + str(config.seek.selfdefined_46.value) + _(" sec"))),
+			("seekdef:7", lambda: _("Skip back " + str(config.seek.selfdefined_79.value) + _(" sec"))),
+			("seekdef:9", lambda: _("Skip forward " + str(config.seek.selfdefined_79.value) + _(" sec")))
+		)
+
 		# Actions determined in self.action()
-		self.helpList.append((self["SeekActions"], actionmap, (
-			("seekdef:left", _("Skip back")),
-			("seekdef:right", _("Skip forward")),
-			("seekdef:1", _("Skip back")),
-			("seekdef:3", _("Skip forward")),
-			("seekdef:4", _("Skip back")),
-			("seekdef:6", _("Skip forward")),
-			("seekdef:7", _("Skip back")),
-			("seekdef:9", _("Skip forward"))
-		)))
+		self.helpList.append((self["SeekActions"], actionmap, skipHelp))
 
 		self["SeekActions"].setEnabled(False)
 
@@ -1682,16 +1684,7 @@ class InfoBarSeek:
 		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
 		# Actions determined in self.action()
-		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS", (
-			("seekdef:left", _("Skip back")),
-			("seekdef:right", _("Skip forward")),
-			("seekdef:1", _("Skip back")),
-			("seekdef:3", _("Skip forward")),
-			("seekdef:4", _("Skip back")),
-			("seekdef:6", _("Skip forward")),
-			("seekdef:7", _("Skip back")),
-			("seekdef:9", _("Skip forward"))
-		)))
+		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS", skipHelp))
 
 		self["SeekActionsPTS"].setEnabled(False)
 
