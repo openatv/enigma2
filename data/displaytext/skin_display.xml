@@ -116,7 +116,9 @@
 		</widget>
 	</screen>
 	<screen name="VideoWizardSummary" position="fill">
-		<panel name="WizardSummary" />
+		<widget source="parent.list" render="Label" position="fill" font="Regular;12">
+			<convert type="StringListSelection" />
+		</widget>
 	</screen>
 
 <!-- standby -->
