@@ -851,21 +851,27 @@
 		<key id="KEY_PREVIOUSSONG" mapto="skip_back" flags="m"/>
 		<key id="KEY_NEXTSONG" mapto="skip_forward" flags="m"/>
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="m"/>
-		<key id="KEY_PROGRAM" mapto="timer" flags="m"/>
+		<key id="KEY_PROGRAM" mapto="timer" flags="b"/>
+		<key id="KEY_PROGRAM" mapto="timer_long" flags="l"/>
 		<key id="KEY_PLAYPAUSE" mapto="play" flags="m"/>
 		<key id="KEY_LIST" mapto="playlist" flags="m"/>
 		<key id="KEY_TIME" mapto="timeshift" flags="m"/>
 		<key id="KEY_SEARCH" mapto="search" flags="b"/>
 		<key id="KEY_SEARCH" mapto="search_long" flags="l"/>
 		<key id="KEY_RESTART" mapto="slow" flags="m"/>
-		<key id="KEY_BOOKMARKS" mapto="mark" flags="m"/>
-		<key id="KEY_SLEEP" mapto="sleep" flags="m"/>
-		<key id="KEY_CONTEXT_MENU" mapto="contextmenu" flags="m"/>
-		<key id="KEY_REFRESH" mapto="refresh" flags="m"/>
+		<key id="KEY_BOOKMARKS" mapto="mark" flags="b"/>
+		<key id="KEY_BOOKMARKS" mapto="mark_long" flags="l"/>
+		<key id="KEY_SLEEP" mapto="sleep" flags="b"/>
+		<key id="KEY_SLEEP" mapto="sleep_long" flags="l"/>
+		<key id="KEY_CONTEXT_MENU" mapto="contextmenu" flags="b"/>
+		<key id="KEY_CONTEXT_MENU" mapto="contextmenu_long" flags="l"/>
+		<key id="KEY_REFRESH" mapto="refresh" flags="b"/>
+		<key id="KEY_REFRESH" mapto="refresh_long" flags="l"/>
 		<key id="KEY_HOME" mapto="home" flags="m"/>
 		<key id="KEY_POWER" mapto="power" flags="b"/>
 		<key id="KEY_POWER" mapto="power_long" flags="l"/>
-		<key id="KEY_VMODE" mapto="vmode" flags="m"/>
+		<key id="KEY_VMODE" mapto="vmode" flags="b"/>
+		<key id="KEY_VMODE" mapto="vmode_long" flags="l"/>
 		<key id="KEY_F1" mapto="f1" flags="b"/>
 		<key id="KEY_F1" mapto="f1_long" flags="l"/>
 		<key id="KEY_F2" mapto="f2" flags="b"/>
