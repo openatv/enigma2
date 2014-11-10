@@ -104,8 +104,6 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
 	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
-#	ButtonSetupFunctions.append((_("Switch channel down"), "Infobar/switchChannelUp", "InfoBar"))
-#	ButtonSetupFunctions.append((_("Switch channel up"), "Infobar/switchChannelDown", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	ButtonSetupFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
@@ -174,7 +172,7 @@ class ButtonSetup(Screen):
 		self.list = []
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in ButtonSetupKeys:
-			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent('',(_(x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
