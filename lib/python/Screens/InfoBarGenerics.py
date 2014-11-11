@@ -997,8 +997,7 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		ref = self.servicelist.lastservice.value
-		ref = ref and eServiceReference(ref)
+		ref = self.servicelist.getCurrentSelection()
 		if ref:
 			if self.servicelist.getMutableList(): # bouquet in channellist
 				current_path = self.servicelist.getRoot()
