@@ -8,7 +8,7 @@ from Screens.Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
@@ -16,10 +16,12 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
+from Components.Sources.Boolean import Boolean
 from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 
@@ -35,13 +37,13 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
 		self["description"] = Label("")
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		self["key_yellow"] = Label(_("Timer type"))
 
 		self.createConfig()
 
@@ -54,14 +56,20 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
 			"size-": self.decrementEnd,
-			"yellow": self.changeTimerType
 		}, -2)
+
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
+		{
+			"showVirtualKeyboard": self.KeyText,
+		}, -2)
+		self["VirtualKB"].setEnabled(False)
 
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
 		self.createSetup("config")
 		self.onLayoutFinish.append(self.layoutFinished)
+
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
@@ -227,8 +235,22 @@ class TimerEntry(Screen, ConfigListScreen):
 		self[widget].l.setList(self.list)
 
 	def selectionChanged(self):
-		if self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
-			self["description"].setText(self["config"].getCurrent()[2])
+		if self["config"].getCurrent():
+			if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
+				self["description"].setText(self["config"].getCurrent()[2])
+			if isinstance(self["config"].getCurrent()[1], ConfigText):
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(True)
+					self["VKeyIcon"].boolean = True
+				if self.has_key("HelpWindow"):
+					if self["config"].getCurrent()[1].help_window.instance is not None:
+						helpwindowpos = self["HelpWindow"].getPosition()
+						from enigma import ePoint
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+		else:
+			if self.has_key("VKeyIcon"):
+				self["VirtualKB"].setEnabled(False)
+				self["VKeyIcon"].boolean = False
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -251,6 +273,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self["config"].getCurrent() in (self.timerTypeEntry, self.timerJustplayEntry, self.frequencyEntry, self.entryShowEndTime):
 			self.createSetup("config")
 
+	def KeyText(self):
+		if self['config'].getCurrent()[0] in (_('Name'), _("Description")):
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text = self["config"].getCurrent()[1].value)
+
 	def keyLeft(self):
 		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
 			self.keySelect()
@@ -264,6 +290,15 @@ class TimerEntry(Screen, ConfigListScreen):
 		else:
 			ConfigListScreen.keyRight(self)
 			self.newConfig()
+
+	def renameEntryCallback(self, answer):
+		if answer:
+			if self["config"].getCurrent() == self.entryName:
+				self.timerentry_name.value = answer
+				self["config"].invalidate(self.entryName)
+			else:
+				self.timerentry_description.value = answer
+				self["config"].invalidate(self.entryDescription)
 
 	def handleKeyFileCallback(self, answer):
 		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
@@ -494,7 +529,6 @@ class TimerLog(Screen):
 
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
-		self["key_yellow"] = Button("")
 		self["key_blue"] = Button(_("Clear log"))
 
 		self.onShown.append(self.updateText)

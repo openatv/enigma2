@@ -1,3 +1,4 @@
+from GlobalActions import globalActionMap
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -61,6 +62,8 @@ ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Slow"), "slow", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
+	(_("Power"), "power", ""),
+	(_("Power long"), "power_long", ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 	(_("F1/LAN"), "f1", "Infobar/showNetworkMounts"),
 	(_("F1/LAN long"), "f1_long", ""),
@@ -193,12 +196,14 @@ class ButtonSetup(Screen):
 		self["choosen"].selectionEnabled(0)
 
 	def disableKeyMap(self):
+		globalActionMap.setEnabled(False)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 4)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 5)
 
 	def enableKeyMap(self):
+		globalActionMap.setEnabled(True)
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 103, 5, "ListboxActions", "moveUp")
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 108, 5, "ListboxActions", "moveDown")
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 105, 5, "ListboxActions", "pageUp")
@@ -230,6 +235,7 @@ class ButtonSetup(Screen):
 				if function:
 					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
+
 	def redPressed(self):
 		from InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
@@ -351,6 +357,9 @@ class ButtonSetupSelect(Screen):
 
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
+		for x in ButtonSetupKeys:
+			if action in tuple(x[1]):
+				print 'ACTION EXTSTS:'
 		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
