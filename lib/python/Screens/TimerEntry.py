@@ -44,7 +44,6 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		self["key_yellow"] = Label(_("Timer type"))
 
 		self.createConfig()
 
@@ -57,7 +56,6 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
 			"size-": self.decrementEnd,
-			"yellow": self.changeTimerType,
 		}, -2)
 
 		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
@@ -531,7 +529,6 @@ class TimerLog(Screen):
 
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
-		self["key_yellow"] = Button("")
 		self["key_blue"] = Button(_("Clear log"))
 
 		self.onShown.append(self.updateText)
