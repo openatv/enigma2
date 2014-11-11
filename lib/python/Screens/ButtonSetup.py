@@ -357,12 +357,9 @@ class ButtonSetupSelect(Screen):
 
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
-		print 'action:',action
-		print 'contexts:',contexts
 		for x in ButtonSetupKeys:
 			if action in tuple(x[1]):
 				print 'ACTION EXTSTS:'
-		print 'actions_has_key:',self.actions.has_key(action)
 		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
