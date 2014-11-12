@@ -327,12 +327,12 @@ class MovieContextMenu(Screen):
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
 		self.csel = csel
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
-				"yellow": csel.showNetworkSetup,
-				"blue": csel.configure,
+				"yellow": self.do_showNetworkSetup,
+				"menu": self.do_configure,
 				"2": self.do_rename,
 				"5": self.do_copy,
 				"6": self.do_move,
@@ -370,7 +370,7 @@ class MovieContextMenu(Screen):
 		append_to_menu(menu, (_("create directory"), csel.do_createdir), key="7")
 		append_to_menu(menu, (_("Sort by") + "...", csel.selectSortby))
 		append_to_menu(menu, (_("Network") + "...", csel.showNetworkSetup), key="yellow")
-		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="blue")
+		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="menu")
 		self["menu"] = ChoiceList(menu)
 
 	def createSummary(self):
@@ -389,6 +389,10 @@ class MovieContextMenu(Screen):
 		self.close(self.csel.do_createdir())
 	def do_delete(self):
 		self.close(self.csel.do_delete())
+	def do_configure(self):
+		self.close(self.csel.configure())
+	def do_showNetworkSetup(self):
+		self.close(self.csel.showNetworkSetup())
 
 	def cancelClick(self):
 		self.close(None)
@@ -1404,7 +1408,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			config.movielist.videodirs.value += [path]
 			config.movielist.videodirs.save()
-			self.session.open(MessageBox, _("Bookmark was created."), type = MessageBox.TYPE_INFO, timeout = 2)
 	def removeBookmark(self, yes):
 		if not yes:
 			return
