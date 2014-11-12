@@ -74,7 +74,7 @@ class HelpableActionMap(ActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
 
 	A context list is allowed, and for backward compatibility,
-	a single string contest name also is allowed"""
+	a single string context name also is allowed"""
 
 	# sorry for this complicated code.
 	# it's not more than converting a "documented" actionmap
@@ -89,7 +89,7 @@ class HelpableActionMap(ActionMap):
 		self.description = description
 		if not actions:
 			actions = {}
-		if not (isinstance(contexts, list) or isinstance(contexts, tuple)):
+		if not  hasattr(contexts, '__iter__'):
 			contexts = [contexts]
 		adict = {}
 		for context in contexts:
@@ -111,7 +111,7 @@ class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
 
 	A context list is allowed, and for backward compatibility,
-	a single string contest name also is allowed"""
+	a single string context name also is allowed"""
 
 	# sorry for this complicated code.
 	# it's not more than converting a "documented" actionmap
