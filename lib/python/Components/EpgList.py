@@ -443,6 +443,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					ev_end_time = event[2] + event[3]
 					if ev_time < time_base:
 						ev_time = time_base
+					if not old_service and ev_time <= last_time < ev_end_time:
+						best = idx
+						break
 					diff = abs(ev_time - last_time)
 					if best is None or (diff < best_diff):
 						best = idx
