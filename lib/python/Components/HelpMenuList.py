@@ -69,8 +69,10 @@ class HelpMenuList(GUIComponent):
 				continue
 
 			for (action, help) in actions:
+				helpTags = []
 				if hasattr(help, '__call__'):
 					help = help()
+					helpTags.append('C')
 
 				if help is None:
 					continue
@@ -99,6 +101,13 @@ class HelpMenuList(GUIComponent):
 				# only show entries with keys that are available on the used rc
 				if not buttonNames:
 					continue
+
+				if helpTags:
+					helpTagStr = " (" + ", ".join(helpTags) + ")"
+					if isinstance(help, list):
+						help[0] += helpTagStr
+					else:
+						help += helpTagStr
 
 				entry = [(actionmap, context, action, buttonNames), help]
 				if self._filterHelpList(entry, helpSeen):
