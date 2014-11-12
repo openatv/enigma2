@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.MenuList import MenuList
 from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
 from Components.DiskInfo import DiskInfo
@@ -319,57 +320,75 @@ class MovieContextMenuSummary(Screen):
 
 	def selectionChanged(self):
 		item = self.parent["menu"].getCurrent()
-		self["selected"].text = item[0]
-
+		self["selected"].text = item[0][0]
 
 class MovieContextMenu(Screen):
 	# Contract: On OK returns a callable object (e.g. delete)
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self.csel = csel
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
 				"yellow": csel.showNetworkSetup,
-				"blue": csel.configure
+				"blue": csel.configure,
+				"2": self.do_rename,
+				"5": self.do_copy,
+				"6": self.do_move,
+				"7": self.do_createdir,
+				"8": self.do_delete
 			})
 
-		self["key_yellow"] = Button(_("Network") + "...")
-		self["key_blue"] = Button(_("Settings") + "...")
+		def append_to_menu(menu, args, key=""):
+			menu.append(ChoiceEntryComponent(key, args))
 
 		menu = []
 		if service:
 			if (service.flags & eServiceReference.mustDescent):
 				if isTrashFolder(service):
-					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
+					append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="8")
 				else:
-					menu.append((_("Delete"), csel.do_delete))
-					menu.append((_("Move"), csel.do_move))
-					menu.append((_("Rename"), csel.do_rename))
+					append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
+					append_to_menu(menu, (_("Move"), csel.do_move), key="6")
+					append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
 			else:
-				menu = [(_("Delete"), csel.do_delete),
-					(_("Move"), csel.do_move),
-					(_("Copy"), csel.do_copy),
-					(_("Reset playback position"), csel.do_reset),
-					(_("Rename"), csel.do_rename),
-					(_("Start offline decode"), csel.do_decode),
-					]
-				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+				append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
+				append_to_menu(menu, (_("Move"), csel.do_move), key="6")
+				append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
+				append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
+				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
+				append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
 
-		menu.append((_("Add bookmark"), csel.do_addbookmark))
-		menu.append((_("create directory"), csel.do_createdir))
-		menu.append((_("Sort by") + "...", csel.selectSortby))
-		menu.append((_("Network") + "...", csel.showNetworkSetup))
-		menu.append((_("Settings") + "...", csel.configure))
-		self["menu"] = MenuList(menu)
+				# Plugins expect a valid selection, so only include them if we selected a non-dir
+				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+					append_to_menu( menu, (p.description, boundFunction(p, session, service)))
+		if csel.exist_bookmark():
+			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark))
+		else:
+			append_to_menu(menu, (_("Add bookmark"), csel.do_addbookmark))
+		append_to_menu(menu, (_("create directory"), csel.do_createdir), key="7")
+		append_to_menu(menu, (_("Sort by") + "...", csel.selectSortby))
+		append_to_menu(menu, (_("Network") + "...", csel.showNetworkSetup), key="yellow")
+		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="blue")
+		self["menu"] = ChoiceList(menu)
 
 	def createSummary(self):
 		return MovieContextMenuSummary
 
 	def okbuttonClick(self):
-		self.close(self["menu"].getCurrent()[1])
+		self.close(self["menu"].getCurrent()[0][1])
+
+	def do_rename(self):
+		self.close(self.csel.do_rename())
+	def do_copy(self):
+		self.close(self.csel.do_copy())
+	def do_move(self):
+		self.close(self.csel.do_move())
+	def do_createdir(self):
+		self.close(self.csel.do_createdir())
+	def do_delete(self):
+		self.close(self.csel.do_delete())
 
 	def cancelClick(self):
 		self.close(None)
@@ -1371,6 +1390,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def can_addbookmark(self, item):
 		return True
+	def exist_bookmark(self):
+		path = config.movielist.last_videodir.value
+		if path in config.movielist.videodirs.value:
+			return True
+		return False
 	def do_addbookmark(self):
 		path = config.movielist.last_videodir.value
 		if path in config.movielist.videodirs.value:
@@ -1380,6 +1404,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			config.movielist.videodirs.value += [path]
 			config.movielist.videodirs.save()
+			self.session.open(MessageBox, _("Bookmark was created."), type = MessageBox.TYPE_INFO, timeout = 2)
 	def removeBookmark(self, yes):
 		if not yes:
 			return
