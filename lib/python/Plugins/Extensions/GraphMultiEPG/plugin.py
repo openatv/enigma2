@@ -1,6 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from GraphMultiEpg import GraphMultiEPG
 from Screens.ChannelSelection import BouquetSelector
+import Screens.InfoBar
 from enigma import eServiceCenter, eServiceReference
 from ServiceReference import ServiceReference
 from Screens.Screen import Screen
@@ -139,7 +140,7 @@ def main(session, servicelist = None, **kwargs):
 	global Session
 	Session = session
 	global Servicelist
-	Servicelist = servicelist
+	Servicelist = servicelist or Screens.InfoBar.InfoBar.instance.servicelist
 	global bouquets
 	bouquets = Servicelist and Servicelist.getBouquetList()
 	global epg_bouquet

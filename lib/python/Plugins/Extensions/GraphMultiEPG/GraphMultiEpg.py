@@ -11,6 +11,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Components.Sources.ServiceEvent import ServiceEvent
+import Screens.InfoBar
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.EventView import EventViewEPGSelect
@@ -1010,14 +1011,14 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.onCreate()
 
 	def doRefresh(self, answer):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		serviceref = Screens.InfoBar.InfoBar.instance.servicelist.getCurrentSelection()
 		l = self["list"]
 		l.moveToService(serviceref)
 		l.setCurrentlyPlaying(serviceref)
 		self.moveTimeLines()
 
 	def onCreate(self):
-		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		serviceref = Screens.InfoBar.InfoBar.instance.servicelist.getCurrentSelection()
 		l = self["list"]
 		l.setShowServiceMode(config.misc.graph_mepg.servicetitle_mode.value)
 		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
