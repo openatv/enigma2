@@ -687,7 +687,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.ask_time = ret[1]
 					self['list'].fillMultiEPG(self.services, ret[1])
 				elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-					now = time() - int(config.epg.histminutes.value) * 60
+					self.ask_time = ret[1]
 					if self.type == EPG_TYPE_GRAPH:
 						self.ask_time -= self.ask_time % (int(config.epgselection.graph_roundto.value) * 60)
 					elif self.type == EPG_TYPE_INFOBARGRAPH:
