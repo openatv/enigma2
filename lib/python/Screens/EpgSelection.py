@@ -112,7 +112,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['okactions'].csel = self
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', {
 			'red': (self.redButtonPressed, _('IMDB search for current event')),
-			'redlong': (self.redButtonPressedLong, _('Sort EPG list')),
+			'redlong': (self.redButtonPressedLong, _('Toggle EPG sort order: time/alphabetical') if self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR) else None),
 			'green': (self.greenButtonPressed, _('Add/remove/modify timer for selected event')),
 			'greenlong': (self.greenButtonPressedLong, _('Show timer list')),
 			'yellow': (self.yellowButtonPressed, _('Search for similar events')),
