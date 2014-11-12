@@ -89,14 +89,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			"yellow": (self.setDefaultInterface, [_("Set interface as default Interface"), _("* Only available if more than one interface is active.")]),
 		})
 
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
-		# self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
-
-		if not self.adapters:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
-
-		if len(self.adapters) == 0:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
+		self.adapters = self.getAdapters()
 
 		self.onChangedEntry = []
 		self.list = []
@@ -123,6 +116,13 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			desc = ""
 		for cb in self.onChangedEntry:
 			cb(name, desc)
+
+	def getAdapters(self):
+		adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
+		if not adapters:
+			adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
+
+		return adapters
 
 	def buildInterfaceList(self, iface, name, default, active):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
@@ -183,6 +183,8 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			fp.close()
 			default_gw = result
 
+		self.adapters = self.getAdapters()
+
 		for x in self.adapters:
 			if x[1] == default_gw:
 				default_int = True
@@ -222,6 +224,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0])
 
 	def AdapterSetupClosed(self, *ret):
+		self.adapters = self.getAdapters()
 		if len(self.adapters) == 1:
 			self.close()
 		else:
