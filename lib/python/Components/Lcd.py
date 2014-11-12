@@ -6,6 +6,8 @@ from enigma import eDBoxLCD, eTimer
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
+from Components.Network import iNetwork
+from Components.About import about
 import usb
 
 
@@ -34,59 +36,40 @@ class IconCheckPoller:
 		self.timer.startLongTimer(30)
 
 	def JobTask(self):
-		LinkState = 0
-		if fileExists('/sys/class/net/wlan0/operstate'):
-			f = open('/sys/class/net/wlan0/operstate')
-			LinkState = f.read()
-			f.close()
-			if LinkState != 'down':
-				try:
-					f = open('/sys/class/net/wlan0/carrier')
-					LinkState = f.read()
-					f.close()
-				except IOError:
-					LinkState = 0
-		elif fileExists('/sys/class/net/eth0/operstate'):
-			f = open('/sys/class/net/eth0/operstate')
-			LinkState = f.read()
-			f.close()
-			if LinkState != 'down':
-				try:
-					f = open('/sys/class/net/eth0/carrier')
-					LinkState = f.read()
-					f.close()
-				except IOError:
-					LinkState = 0
-		LinkState = LinkState[:1]
-		if fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '1':
-			f = open("/proc/stb/lcd/symbol_network", "w")
-			f.write(str(LinkState))
-			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_network") and config.lcd.mode.value == '0':
-			f = open("/proc/stb/lcd/symbol_network", "w")
-			f.write('0')
-			f.close()
+		# Network state symbol
+		netSymbol = "/proc/stb/lcd/symbol_network"
+		if fileExists(netSymbol):
+			linkUp = 0
+			if config.lcd.mode.value == '1':
+				for ifName in iNetwork.getInstalledAdapters():
+					ifState = about.getIfConfig(ifName)
+					if (
+						'flags' in ifState and
+						ifState['flags'].get('up') and
+						ifState['flags'].get('running')
+					):
+						linkUp = 1
+						break
+			open(netSymbol, "w").write(str(linkUp))
 
-		USBState = 0
-		busses = usb.busses()
-		for bus in busses:
-			devices = bus.devices
-			for dev in devices:
-				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-					# print ' '
-					# print "Device:", dev.filename
-					# print "  Number:", dev.deviceClass
-					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
-					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
-			f = open("/proc/stb/lcd/symbol_usb", "w")
-			f.write(str(USBState))
-			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
-			f = open("/proc/stb/lcd/symbol_usb", "w")
-			f.write('0')
-			f.close()
+		# USB devices connected symbol
+		usbSymbol = "/proc/stb/lcd/symbol_usb"
+		if fileExists(usbSymbol):
+			USBState = 0
+			busses = usb.busses()
+			if config.lcd.mode.value == '1':
+				for bus in busses:
+					devices = bus.devices
+					for dev in devices:
+						if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
+							# print ' '
+							# print "Device:", dev.filename
+							# print "  Number:", dev.deviceClass
+							# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
+							# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
+							USBState = 1
+							break
+			open(usbSymbol, "w").write(str(USBState))
 
 		self.timer.startLongTimer(30)
 
@@ -230,11 +213,11 @@ def InitLcd():
 
 		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 		config.lcd.standby.addNotifier(setLCDbright)
-		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
+		config.lcd.standby.apply = lambda: setLCDbright(config.lcd.standby)
 
 		config.lcd.bright = ConfigSlider(default=7, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright)
-		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+		config.lcd.bright.apply = lambda: setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
 
 		config.lcd.invert = ConfigYesNo(default=False)
@@ -261,23 +244,23 @@ def InitLcd():
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby)
-			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
+			config.lcd.ledbrightnessdeepstandby.apply = lambda: setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
 			config.lcd.ledbrightnessstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
+			config.lcd.ledbrightnessstandby.apply = lambda: setLEDnormalstate(config.lcd.ledbrightnessstandby)
 			config.lcd.ledbrightness = ConfigSlider(default=3, increment=1, limits=(0, 15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
+			config.lcd.ledbrightness.apply = lambda: setLEDnormalstate(config.lcd.ledbrightness)
 			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
 		else:
 			def doNothing():
 				pass
 			config.lcd.ledbrightness = ConfigNothing()
-			config.lcd.ledbrightness.apply = lambda : doNothing()
+			config.lcd.ledbrightness.apply = lambda: doNothing()
 			config.lcd.ledbrightnessstandby = ConfigNothing()
-			config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
+			config.lcd.ledbrightnessstandby.apply = lambda: doNothing()
 			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
-			config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
+			config.lcd.ledbrightnessdeepstandby.apply = lambda: doNothing()
 			config.lcd.ledblinkingtime = ConfigNothing()
 	else:
 		def doNothing():
@@ -285,17 +268,17 @@ def InitLcd():
 		config.lcd.contrast = ConfigNothing()
 		config.lcd.bright = ConfigNothing()
 		config.lcd.standby = ConfigNothing()
-		config.lcd.bright.apply = lambda : doNothing()
-		config.lcd.standby.apply = lambda : doNothing()
+		config.lcd.bright.apply = lambda: doNothing()
+		config.lcd.standby.apply = lambda: doNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
-		config.lcd.ledbrightness.apply = lambda : doNothing()
+		config.lcd.ledbrightness.apply = lambda: doNothing()
 		config.lcd.ledbrightnessstandby = ConfigNothing()
-		config.lcd.ledbrightnessstandby.apply = lambda : doNothing()
+		config.lcd.ledbrightnessstandby.apply = lambda: doNothing()
 		config.lcd.ledbrightnessdeepstandby = ConfigNothing()
-		config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
+		config.lcd.ledbrightnessdeepstandby.apply = lambda: doNothing()
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)

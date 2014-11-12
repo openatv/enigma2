@@ -82,7 +82,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self.pipServiceRelation = {}
 		self.zapnumberstarted = False
-		if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
+		if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self.NumberZapTimer = eTimer()
 			self.NumberZapTimer.callback.append(self.doNumberZap)
 			self.NumberZapField = None
@@ -112,7 +112,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['okactions'].csel = self
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', {
 			'red': (self.redButtonPressed, _('IMDB search for current event')),
-			'redlong': (self.redButtonPressedLong, _('Sort EPG list')),
+			'redlong': (self.redButtonPressedLong, _('Toggle EPG sort order: time/alphabetical') if self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR) else None),
 			'green': (self.greenButtonPressed, _('Add/remove/modify timer for selected event')),
 			'greenlong': (self.greenButtonPressedLong, _('Show timer list')),
 			'yellow': (self.yellowButtonPressed, _('Search for similar events')),
@@ -149,7 +149,7 @@ class EPGSelection(Screen, HelpableScreen):
 				'down': (self.moveDown, _('Go to next channel'))
 			}, prio=-1, description=_('Navigation'))
 			self['epgcursoractions'].csel = self
-		elif self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
+		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			if self.type == EPG_TYPE_INFOBAR:
 				self.skinName = 'QuickEPG'
 				self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
@@ -206,7 +206,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.list = []
 			self.servicelist = service
 			self.currentService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
 				if not config.epgselection.graph_pig.value:
 					self.skinName = 'GraphicalEPG'
@@ -351,12 +351,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.callback.append(self.hidewaitingtext)
-		if not HardwareInfo().is_nextgen():
-			self.createTimer = eTimer()
-			self.createTimer.callback.append(self.onCreate)
-			self.onLayoutFinish.append(self.LayoutFinish)
-		else:
-			self.onLayoutFinish.append(self.onCreate)
+		self.onLayoutFinish.append(self.onCreate)
 
 	def createSetup(self):
 		self.closeEventViewDialog()
@@ -377,7 +372,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.onSetupClose, Setup, key)
 
 	def onSetupClose(self, test=None):
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
 				self.close('reopengraph')
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
@@ -414,18 +409,12 @@ class EPGSelection(Screen, HelpableScreen):
 				services.append(ServiceReference(service))
 		return services
 
-	def LayoutFinish(self):
-		self['lab1'].show()
-		self.createTimer.start(100)
-
 	def onCreate(self):
-		if not HardwareInfo().is_nextgen():
-			self.createTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
 		self['list'].recalcEntrySize()
 		self.BouquetRoot = False
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.StartBouquet.toString().startswith('1:7:0'):
 				self.BouquetRoot = True
 			self.services = self.getBouquetServices(self.StartBouquet)
@@ -454,10 +443,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+		elif self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			if self.type == EPG_TYPE_SINGLE:
 				service = self.currentService
-			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 				service = ServiceReference(self.servicelist.getCurrentSelection())
 				title = ServiceReference(self.servicelist.getRoot()).getServiceName()
 			self['Service'].newService(service.ref)
@@ -474,16 +463,16 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def refreshlist(self):
 		self.refreshTimer.stop()
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in(EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self['list'].fillGraphEPG(None)
 			self.moveTimeLines()
 		elif self.type == EPG_TYPE_MULTI:
 			self['list'].fillMultiEPG(self.services, self.ask_time)
-		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+		elif self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			try:
 				if self.type == EPG_TYPE_SINGLE:
 					service = self.currentService
-				elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 					service = ServiceReference(self.servicelist.getCurrentSelection())
 				if not self.cureventindex:
 					index = self['list'].getCurrentIndex()
@@ -569,7 +558,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.BouquetRoot = False
 		now = time() - int(config.epg.histminutes.value) * 60
 		self.services = self.getBouquetServices(self.getCurrentBouquet())
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
 				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
@@ -600,27 +589,27 @@ class EPGSelection(Screen, HelpableScreen):
 		self['bouquetlist'].fillBouquetList(self.bouquets)
 
 	def nextBouquet(self):
-		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in (EPG_TYPE_MULTI, EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self.moveBouquetDown()
 			self.BouquetOK()
-		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
+		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
 			self.servicelist.nextBouquet()
 			self.onCreate()
 
 	def prevBouquet(self):
-		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in (EPG_TYPE_MULTI, EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self.moveBouquetUp()
 			self.BouquetOK()
-		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
+		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
 			self.servicelist.prevBouquet()
 			self.onCreate()
 
 	def nextService(self):
-		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+		if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
 			self['list'].instance.moveSelectionTo(0)
@@ -644,13 +633,13 @@ class EPGSelection(Screen, HelpableScreen):
 					self.nextService()
 			else:
 				self.nextService()
-		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self.updEvent(+24)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(1, self)
 
 	def prevService(self):
-		if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+		if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
 			self['list'].instance.moveSelectionTo(0)
@@ -674,7 +663,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.prevService()
 			else:
 				self.prevService()
-		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self.updEvent(-24)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(-1, self)
@@ -697,8 +686,8 @@ class EPGSelection(Screen, HelpableScreen):
 				if self.type == EPG_TYPE_MULTI:
 					self.ask_time = ret[1]
 					self['list'].fillMultiEPG(self.services, ret[1])
-				elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-					now = time() - int(config.epg.histminutes.value) * 60
+				elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+					self.ask_time = ret[1]
 					if self.type == EPG_TYPE_GRAPH:
 						self.ask_time -= self.ask_time % (int(config.epgselection.graph_roundto.value) * 60)
 					elif self.type == EPG_TYPE_INFOBARGRAPH:
@@ -707,7 +696,7 @@ class EPGSelection(Screen, HelpableScreen):
 					l.resetOffset()
 					l.fillGraphEPG(None, self.ask_time)
 					self.moveTimeLines(True)
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
+		if self.eventviewDialog and self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
 
 	def infoKeyPressed(self, eventviewopen=False):
@@ -727,7 +716,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.eventviewDialog = None
 		elif event is not None and self.eventviewDialog and eventviewopen:
 			if self.type != EPG_TYPE_SIMILAR:
-				if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH:
+				if self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH):
 					self.eventviewDialog.hide()
 					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='InfoBarEventView')
 					self.eventviewDialog.show()
@@ -795,14 +784,14 @@ class EPGSelection(Screen, HelpableScreen):
 	def eventViewCallback(self, setEvent, setService, val):
 		l = self['list']
 		old = l.getCurrent()
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			self.updEvent(val, False)
 		elif val == -1:
 			self.moveUp()
 		elif val == +1:
 			self.moveDown()
 		cur = l.getCurrent()
-		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and cur[0] is None and cur[1].ref != old[1].ref:
+		if self.type in (EPG_TYPE_MULTI, EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH) and cur[0] is None and cur[1].ref != old[1].ref:
 			self.eventViewCallback(setEvent, setService, val)
 		else:
 			setService(cur[1])
@@ -812,7 +801,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.infoKeyPressed()
 
 	def sortEpg(self):
-		if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+		if self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			if config.epgselection.sort.value == '0':
 				config.epgselection.sort.setValue('1')
 			else:
@@ -1135,10 +1124,10 @@ class EPGSelection(Screen, HelpableScreen):
 	def _helpOK(self):
 		confVal = self.getOKConfig()
 		if confVal == 'Zap':
-			return _("Zap to selected channel (Configurable)")
+			return _("Zap to selected channel")
 		elif confVal == 'Zap + Exit':
-			return _("Zap to selected channel and exit EPG (Configurable)")
-		return _("No current function (Configurable)")
+			return _("Zap to selected channel and exit EPG")
+		return _("No current function")
 
 	def OK(self):
 		from InfoBar import InfoBar
@@ -1165,10 +1154,10 @@ class EPGSelection(Screen, HelpableScreen):
 	def _helpOKLong(self):
 		confVal = self.getOKLongConfig()
 		if confVal == 'Zap':
-			return _("Zap to selected channel (Configurable)")
+			return _("Zap to selected channel")
 		elif confVal == 'Zap + Exit':
-			return _("Zap to selected channel and exit EPG (Configurable)")
-		return _("No current function (Configurable)")
+			return _("Zap to selected channel and exit EPG")
+		return _("No current function")
 
 	def OKLong(self):
 		from InfoBar import InfoBar
@@ -1188,11 +1177,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def _helpInfo(self):
 		helpText = _("Show current event information")
-		if self.type == EPG_TYPE_GRAPH:
-			if config.epgselection.graph_info.value == 'Single EPG':
-				helpText = _("Open single channel EPG (Configurable)")
-			else:
-				helpText += _(" (Configurable)")
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.value == 'Single EPG':
+				helpText = _("Open single channel EPG")
 		return helpText
 
 	def Info(self):
@@ -1206,11 +1192,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def _helpInfoLong(self):
 		helpText = _("Open single channel EPG")
-		if self.type == EPG_TYPE_GRAPH:
-			if config.epgselection.graph_infolong.value == 'Channel Info':
-				helpText = _("Show current event information (Configurable)")
-			else:
-				helpText += _(" (Configurable)")
+		if self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.value == 'Channel Info':
+				helpText = _("Show current event information")
 
 		return helpText
 
@@ -1308,7 +1291,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
-		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
+		if self.eventviewDialog and self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
 
 	def moveTimeLines(self, force=False):
@@ -1378,7 +1361,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if count == 0:
 			ref = lst.getCurrent()[1]
 			if ref is not None:
-				if (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.value == '2':
+				if self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.value == '2':
 					if not prev:
 						if self.session.pipshown:
 							self.session.pipshown = False
@@ -1523,7 +1506,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].resetOffset()
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines()
-		elif self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
+		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
 			if not self.NumberZapField:
@@ -1585,7 +1568,7 @@ class EPGSelection(Screen, HelpableScreen):
 		return service, bouquet
 
 	def zapToNumber(self, service, bouquet):
-		if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_ENHANCED:
+		if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self["number"].hide()
 			self.NumberZapField = None
 			self.CurrBouquet = bouquet
