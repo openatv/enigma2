@@ -93,12 +93,7 @@ def getLcdPiconName(serviceName):
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
 		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8')).encode('ASCII', 'ignore')
-		excludeChars = ['/', '\\', '\'', '"', '`', '?', ' ', '(', ')', ':', '<', '>', '|', '.', '\n']
-		name = re.sub('[%s]' % ''.join(excludeChars), '', name)
-		name = name.replace('&', 'and')
-		name = name.replace('+', 'plus')
-		name = name.replace('*', 'star')
-		name = name.lower()
+		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findLcdPicon(name)
 	return pngname
