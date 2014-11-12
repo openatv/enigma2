@@ -56,7 +56,7 @@ from random import randint
 import os
 
 def dprint(*args):
-	if True:
+	if False:
 		print "[Timeshift]", " ".join([str(x) for x in args])
 
 class InfoBarTimeshift:
