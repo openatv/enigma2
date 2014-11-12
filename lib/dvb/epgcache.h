@@ -167,6 +167,18 @@ public:
 };
 #endif
 
+// Syntactic sugar
+#define EVENT_DATA(iterator) iterator->second
+static inline eventData * getEventData(const timeMap::iterator &iterator) { return iterator->second; };
+static inline int getEventID(const timeMap::iterator &iterator) { return iterator->second->getEventID(); };
+static inline time_t getStartTime(const timeMap::iterator &iterator) { return iterator->second->getStartTime(); };
+static inline int getDuration(const timeMap::iterator &iterator) { return iterator->second->getDuration(); };
+static inline eventData * getEventData(const eventMap::iterator &iterator) { return iterator->second; };
+static inline int getEventID(const eventMap::iterator &iterator) { return iterator->second->getEventID(); };
+static inline time_t getStartTime(const eventMap::iterator &iterator) { return iterator->second->getStartTime(); };
+static inline int getDuration(const eventMap::iterator &iterator) { return iterator->second->getDuration(); };
+
+
 #ifdef ENABLE_FREESAT
 #include <bitset>
 class freesatEITSubtableStatus
@@ -288,7 +300,6 @@ private:
 
 	typedef std::map<iDVBChannel*, channel_data*>::iterator channelMapIterator;
 
-	bool FixOverlapping(serviceMap &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
 public:
 	struct Message
 	{
