@@ -102,18 +102,20 @@ class HelpMenuList(GUIComponent):
 
 				entry = [(actionmap, context, action, buttonNames), help]
 				if self._filterHelpList(entry, helpSeen):
-					actionMapHelp[context].append(entry)
+					actionMapHelp[id(actionmap)].append(entry)
 
 		l = []
+
 		for (actionmap, context, actions) in helplist:
-			if headings and context in actionMapHelp and getattr(actionmap, "description", None):
+			amId = id(actionmap)
+			if headings and amId in actionMapHelp and getattr(actionmap, "description", None):
 				if sortCmp or sortKey:
-					actionMapHelp[context].sort(cmp=sortCmp, key=sortKey)
-				self.addListBoxContext(actionMapHelp[context], width, indent)
+					actionMapHelp[amId].sort(cmp=sortCmp, key=sortKey)
+				self.addListBoxContext(actionMapHelp[amId], width, indent)
 
 				l.append([None, MultiContentEntryText(pos=(0, 0), size=(width, 26), text=actionmap.description)])
-				l.extend(actionMapHelp[context])
-				del actionMapHelp[context]
+				l.extend(actionMapHelp[amId])
+				del actionMapHelp[amId]
 
 		if actionMapHelp:
 			if indent:
@@ -121,9 +123,10 @@ class HelpMenuList(GUIComponent):
 
 			otherHelp = []
 			for (actionmap, context, actions) in helplist:
-				if context in actionMapHelp:
-					otherHelp.extend(actionMapHelp[context])
-					del actionMapHelp[context]
+				amId = id(actionmap)
+				if amId in actionMapHelp:
+					otherHelp.extend(actionMapHelp[amId])
+					del actionMapHelp[amId]
 
 			if sortCmp or sortKey:
 				otherHelp.sort(cmp=sortCmp, key=sortKey)

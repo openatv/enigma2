@@ -7,7 +7,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Screens.InputBox import InputBox
 
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSelection, ConfigPassword
 from Plugins.Plugin import PluginDescriptor
 
@@ -172,33 +172,26 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
         self["key_blue"] = Label(_("Ban"))
         self["infolabel"] = Label("")
 
-        self["actions"] = ActionMap(["InfobarChannelSelection", "WizardActions", "DirectionActions", "MenuActions", "ShortcutActions", "GlobalActions", "HelpActions", "NumberActions"],
-            {
-                "ok": self.action_ok,
-                "back": self.action_exit,
-                "red": self.action_startstop,
-                "green": self.skipTrack,
-                "yellow": self.love,
-                "blue": self.banTrack,
-                "historyNext": self.action_nextTab,
-                "historyBack": self.action_prevTab,
+        self["actions"] = HelpableActionMap(self, ["InfobarChannelSelection", "WizardActions", "ShortcutActions", "MenuActions"], {
+            "ok": (self.action_ok, _("Switch to selected station")),
+            "back": (self.action_exit, _("Quit") + " " + config.plugins.LastFM.name.value),
+            "red": (self.action_startstop, _("Start/stop streaming")),
+            "green": (self.skipTrack, _("Skip current track")),
+            "yellow": (self.love, _("Mark track as loved")),
+            "blue": (self.banTrack, _("Ban track, never play")),
+            "historyNext": (self.action_nextTab, _("Select next tab")),
+            "historyBack": (self.action_prevTab, _("Select prev tab")),
 
-                "menu": self.action_menu,
-            }, -1)
+            "menu": (self.action_menu, _("Open setup menu")),
+        }, prio=-1, description=config.plugins.LastFM.name.value)
 
-        self.helpList.append((self["actions"], "WizardActions", [("ok", _("Switch to selected station"))]))
-        self.helpList.append((self["actions"], "InfobarChannelSelection", [("historyNext", _("Select next tab"))]))
-        self.helpList.append((self["actions"], "InfobarChannelSelection", [("historyBack", _("Select prev tab"))]))
-        self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelDown", _("Next selection"))]))
-        self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelUp", _("Previous selection"))]))
-        self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapDown", _("Page forward selections"))]))
-        self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapUp", _("Page backward selections"))]))
-        self.helpList.append((self["actions"], "ShortcutActions", [("red", _("Start/stop streaming"))]))
-        self.helpList.append((self["actions"], "ShortcutActions", [("green", _("Skip current track"))]))
-        self.helpList.append((self["actions"], "ShortcutActions", [("yellow", _("Mark track as loved"))]))
-        self.helpList.append((self["actions"], "ShortcutActions", [("blue", _("Ban track, never play"))]))
-        self.helpList.append((self["actions"], "MenuActions", [("menu", _("Open") + " " + _("setup"))]))
-        self.helpList.append((self["actions"], "WizardActions", [("back", _("Quit") + " " + config.plugins.LastFM.name.value)]))
+        # Unimplemented actions that were given help entries.
+        # Perhaps there was an intention to implement them at some stage.
+
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelDown", _("Next selection"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("switchChannelUp", _("Previous selection"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapDown", _("Page forward selections"))]))
+        # self.helpList.append((self["actions"], "InfobarChannelSelection", [("zapUp", _("Page backward selections"))]))
 
         self.onLayoutFinish.append(self.initLastFM)
         self.onLayoutFinish.append(self.tabchangedtimerFired)
@@ -519,7 +512,7 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
     def createSummary(self):
         return lastfmLCDScreen
 
-class LastFMSaveScreen(Screen):
+class LastFMSaveScreen(Screen, HelpableScreen):
     skin = """<screen position="0,0" size="720,576" flags="wfNoBorder" title="LastFMSaveScreen" >
                 <widget name="cover" position="50,50" size="200,200" />
               </screen>"""
@@ -536,21 +529,21 @@ class LastFMSaveScreen(Screen):
               </screen>""" % (size_w, size_h, self.coverartsize[0], self.coverartsize[1])
 
         Screen.__init__(self, session)
+        HelpableScreen.__init__(self)
         self.imageconverter = ImageConverter(self.coverartsize[0], self.coverartsize[1], self.setCoverArt)
         self.session = session
         self.streamplayer = parent.streamplayer
         self.parent = parent
         self["cover"] = MovingPixmap()
 
-        self["actions"] = ActionMap(["InfobarChannelSelection", "WizardActions", "DirectionActions", "MenuActions", "ShortcutActions", "GlobalActions", "HelpActions"],
-            {
-                "ok": self.action_exit,
-                "back": self.action_exit,
-                "red": self.parent.action_startstop,
-                "green": self.parent.skipTrack,
-                "yellow": self.parent.love,
-                "blue": self.parent.banTrack,
-            }, -1)
+        self["actions"] = HelpableActionMap(self, ["WizardActions", "ShortcutActions"], {
+            "ok": (self.action_exit, _("Exit screensaver")),
+            "back": (self.action_exit, _("Exit screensaver")),
+            "red": (self.parent.action_startstop, _("Start/stop streaming")),
+            "green": (self.parent.skipTrack, _("Skip current track")),
+            "yellow": (self.parent.love, _("Mark track as loved")),
+            "blue": (self.parent.banTrack, _("Ban track, never play"))
+        }, prio=-1, description=config.plugins.LastFM.name.value + " " + _("Screensaver"))
 
         self.onLayoutFinish.append(self.update)
         self.updatetimer = eTimer()
