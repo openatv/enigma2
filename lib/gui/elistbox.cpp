@@ -402,11 +402,13 @@ int eListbox::event(int event, void *data, void *data2)
 				style->setStyle(painter, eWindowStyle::styleListboxNormal);
 				if (m_scrollbar->isVisible())
 				{
-					painter.clip(eRect(m_scrollbar->position() + ePoint(m_scrollbar->size().width(), 0), eSize(5,m_scrollbar->size().height())));
+					painter.clip(eRect(m_scrollbar->position() + ePoint(m_scrollbar->size().width(), 0),
+							eSize(5, m_scrollbar->size().height())));
 				}
 				else
 				{
-					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width() + 5, m_scrollbar->size().height())));
+					painter.clip(eRect(m_scrollbar->position(),
+							eSize(m_scrollbar->size().width() + 5, m_scrollbar->size().height())));
 				}
 				painter.clear();
 				painter.clippop();
@@ -414,10 +416,19 @@ int eListbox::event(int event, void *data, void *data2)
 		}
 		else
 		{
-			if (m_scrollbar && m_scrollbar->isVisible())
+			if (m_scrollbar)
 			{
 				style->setStyle(painter, eWindowStyle::styleListboxNormal);
-				painter.clip(eRect(m_scrollbar->position() - ePoint(5,0), eSize(5,m_scrollbar->size().height())));
+				if (m_scrollbar->isVisible())
+				{
+					painter.clip(eRect(m_scrollbar->position() - ePoint(5,0),
+							eSize(5, m_scrollbar->size().height())));
+				}
+				else
+				{
+					painter.clip(eRect(m_scrollbar->position() - ePoint(5,0),
+							eSize(m_scrollbar->size().width() + 5, m_scrollbar->size().height())));
+				}
 				painter.clear();
 				painter.clippop();
 			}
