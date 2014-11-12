@@ -104,7 +104,9 @@ struct gRGB
 		escapecolor.resize(10);
 		for (int i = 9; i >= 2; i--)
 		{
-			escapecolor[i] = 0x40 | (val & 0xf);
+			int hexbits = val & 0xf;
+			escapecolor[i] = hexbits < 10	? '0' + hexbits
+							: 'a' - 10 + hexbits;
 			val >>= 4;
 		}
 		return escapecolor;
