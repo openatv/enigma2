@@ -301,9 +301,16 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		self.close(True)
 
 	def cancel(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.cancelCallback(True)
+
+	def cancelCallback(self, answer):
+		if answer:
+			for x in self["config"].list:
+				x[1].cancel()
+			self.close(False)
 
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
