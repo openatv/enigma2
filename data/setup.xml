@@ -29,7 +29,8 @@
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output" requires="12V_Output.">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners. Choose 'no priority' to try each alternative one by one independent from tuner type.">config.usage.alternatives_priority</item>
-		<item level="2" text="Fallback remote receiver" description="URL of an enigma2 receiver that will be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001.">config.usage.remote_fallback</item>
+		<item level="2" text="Enable fallback remote receiver" description="Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001.">config.usage.remote_fallback_enabled</item>
+		<item level="2" text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback</item>
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner for recordings will be preferred, when more than one tuner is available.">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Disable background scanning" description="When enabled, the receiver will no longer monitor the tuned transponder for possible changes. Do not use this option unless you know what you are doing.">config.misc.disable_background_scan</item>
@@ -205,7 +206,10 @@
 		<item level="1" requires="LCDMiniTV" text="MiniTV on frontpanel" description="You can display MiniTV with or without OSD Menu">config.lcd.modeminitv</item>
 		<item level="1" requires="LCDMiniTV" text="MiniTV framerate" description="Lower Framerate save CPU Time">config.lcd.fpsminitv</item>
 		<item level="1" requires="LCDMiniTV" text="PIP on frontpanel" description="You can display PIP with or without OSD Menu">config.lcd.modepip</item>	
-
+		<item level="0" text="Scroll repeats" description="Number of repeating text on display." requires="VFD_scroll_repeats">config.usage.vfd_scroll_repeats</item>
+		<item level="2" text="Scroll delay" description="Delay in miliseconds between scrolling characters on display." requires="VFD_scroll_delay">config.usage.vfd_scroll_delay</item>
+		<item level="2" text="Initial scroll delay" description="Delay in miliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
+		<item level="2" text="Final scroll delay" description="Delay in miliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>

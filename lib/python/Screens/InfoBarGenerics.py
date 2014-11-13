@@ -48,6 +48,10 @@ import os
 from bisect import insort
 from sys import maxint
 
+####key debug
+# from keyids import KEYIDS
+# from datetime import datetime
+
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
 # hack alert!
@@ -143,6 +147,14 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
+		####key debug
+		#try:
+		#	print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())
+		#except:
+		#	try:
+		#		print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.now()) # inverse dictionary lookup in KEYIDS
+		#	except:
+		#		print 'KEY: %s %s' % (key,datetime.now())
 		self.unhandledKeyDialog.hide()
 		if flag != 4:
 			if self.flags & (1<<1):
@@ -1094,8 +1106,7 @@ class InfoBarEPG:
 		self.serviceSel = None
 
 	def openSingleServiceEPG(self):
-		ref = self.servicelist.lastservice.value
-		ref = ref and eServiceReference(ref)
+		ref = self.servicelist.getCurrentSelection()
 		if ref:
 			if self.servicelist.getMutableList(): # bouquet in channellist
 				current_path = self.servicelist.getRoot()
@@ -2224,10 +2235,12 @@ class InfoBarPiP:
 			pipref = self.session.pip.getCurrentService()
 			if swapservice and pipref and pipref.toString() != swapservice.toString():
 				currentServicePath = self.servicelist.getCurrentServicePath()
+				currentBouquet = self.servicelist and self.servicelist.getRoot()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.playService(swapservice)
 				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 				self.session.pip.servicePath = currentServicePath
+				self.session.pip.servicePath[1] = currentBouquet
 				if self.servicelist.dopipzap:
 					# This unfortunately won't work with subservices
 					self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
@@ -2829,8 +2842,8 @@ class InfoBarCueSheetSupport:
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
-				if config.usage.on_movie_start.value == "ask" or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10)
+				if "ask" in config.usage.on_movie_start.value or not length[1]:
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 # TRANSLATORS: The string "Resuming playback" flashes for a moment
 # TRANSLATORS: at the start of a movie, when the user has selected
@@ -3141,10 +3154,13 @@ class InfoBarServiceErrorPopupSupport:
 		Notifications.RemovePopup(id = "ZapError")
 
 	def __tuneFailed(self):
-		if not config.usage.hide_zap_errors.value:
+		if not config.usage.hide_zap_errors.value or not config.usage.remote_fallback_enabled.value:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			error = info and info.getInfo(iServiceInformation.sDVBState)
+			if not config.usage.remote_fallback_enabled.value and (error == eDVBServicePMTHandler.eventMisconfiguration or error == eDVBServicePMTHandler.eventNoResources):
+				self.session.nav.currentlyPlayingServiceReference = None
+				self.session.nav.currentlyPlayingServiceOrGroup = None
 
 			if error == self.last_error:
 				error = None
@@ -3164,7 +3180,7 @@ class InfoBarServiceErrorPopupSupport:
 				eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
 			}.get(error) #this returns None when the key not exist in the dict
 
-			if error:
+			if error and not config.usage.hide_zap_errors.value:
 				self.closeNotificationInstantiateDialog()
 				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
 					Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")

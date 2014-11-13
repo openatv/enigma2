@@ -364,10 +364,12 @@ class ChannelContextMenu(Screen):
 		self.session.pip = self.session.instantiateDialog(PictureInPicture)
 		self.session.pip.show()
 		newservice = self.csel.servicelist.getCurrent()
+		currentBouquet = self.csel.servicelist and self.csel.servicelist.getRoot()
 		if newservice and newservice.valid():
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.csel.getCurrentServicePath()
+				self.session.pip.servicePath[1] = currentBouquet
 				self.close(True)
 			else:
 				self.session.pipshown = False
@@ -1836,7 +1838,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def historyBack(self):
 		hlen = len(self.history)
 		currentPlayedRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if hlen > 0 and self.history[self.history_pos][-1] != currentPlayedRef:
+		if hlen > 0 and currentPlayedRef and self.history[self.history_pos][-1] != currentPlayedRef:
 			self.addToHistory(currentPlayedRef)
 			hlen = len(self.history)
 		if hlen > 1 and self.history_pos > 0:
@@ -1932,7 +1934,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def recallPrevService(self):
 		hlen = len(self.history)
 		currentPlayedRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if hlen > 0 and self.history[self.history_pos][-1] != currentPlayedRef:
+		if hlen > 0 and currentPlayedRef and self.history[self.history_pos][-1] != currentPlayedRef:
 			self.addToHistory(currentPlayedRef)
 			hlen = len(self.history)
 		if hlen > 1:
@@ -2018,7 +2020,7 @@ class RadioInfoBar(Screen):
 		Screen.__init__(self, session)
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 
-class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase):
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase, SelectionEventInfo):
 	ALLOW_SUSPEND = True
 
 	def __init__(self, session, infobar):
@@ -2026,6 +2028,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
 		InfoBarBase.__init__(self)
+		SelectionEventInfo.__init__(self)
 		self.infobar = infobar
 		self.startServiceRef = None
 		self.onLayoutFinish.append(self.onCreate)

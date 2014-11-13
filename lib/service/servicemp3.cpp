@@ -391,6 +391,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_ignore_buffering_messages = 0;
 	m_is_live = false;
 	m_use_prefillbuffer = false;
+	m_paused = false;
+	m_seek_paused = false;
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -823,6 +825,12 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		return -1;
 	}
 
+	if (m_paused)
+	{
+		m_seek_paused = true;
+		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+	}
+
 	return 0;
 }
 
@@ -1135,12 +1143,27 @@ std::string eServiceMP3::getInfoString(int w)
 		break;
 	case sTagDate:
 		GDate *date;
+		GstDateTime *date_time;
 		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
 		{
 			gchar res[5];
- 			g_date_strftime (res, sizeof(res), "%Y-%M-%D", date);
+			snprintf(res, sizeof(res), "%04d", g_date_get_year(date));
+			g_date_free(date);
 			return (std::string)res;
 		}
+#if GST_VERSION_MAJOR >= 1
+		else if (gst_tag_list_get_date_time(m_stream_tags, GST_TAG_DATE_TIME, &date_time))
+		{
+			if (gst_date_time_has_year(date_time))
+			{
+				gchar res[5];
+				snprintf(res, sizeof(res), "%04d", gst_date_time_get_year(date_time));
+				gst_date_time_unref(date_time);
+				return (std::string)res;
+			}
+			gst_date_time_unref(date_time);
+		}
+#endif
 		break;
 	case sTagComposer:
 		tag = GST_TAG_COMPOSER;
@@ -1579,9 +1602,16 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				{
 					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
 						m_streamingsrc_timeout->stop();
+					m_paused = false;
+					if (m_seek_paused)
+					{
+						m_seek_paused = false;
+						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+					}
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
+					m_paused = true;
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_READY:
 				{
@@ -1963,6 +1993,10 @@ void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpoin
 	g_object_get(object, "source", &source, NULL);
 	if (source)
 	{
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "ssl-strict") != 0)
+		{
+			g_object_set(G_OBJECT(source), "ssl-strict", FALSE, NULL);
+		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "user-agent") != 0 && !_this->m_useragent.empty())
 		{
 			g_object_set(G_OBJECT(source), "user-agent", _this->m_useragent.c_str(), NULL);

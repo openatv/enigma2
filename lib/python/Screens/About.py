@@ -57,9 +57,15 @@ class About(Screen):
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
+		GStreamerVersion = "GStreamer: " + about.getGStreamerVersionString()
+		self["GStreamerVersion"] = StaticText(GStreamerVersion)
+		AboutText += GStreamerVersion + "\n"
+
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
+
+		AboutText += _("DVB drivers: ") + about.getDriverInstalledDate() + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -218,4 +224,3 @@ class TranslationInfo(Screen):
 #	def right(self):
 #		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
 #		self.updateCommitLogs()
-

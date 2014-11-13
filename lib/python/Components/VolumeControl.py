@@ -36,23 +36,41 @@ class VolumeControl:
 
 	def volSave(self):
 		if self.volctrl.isMuted():
-			config.audio.volume.value = 0
+			config.audio.volume.setValue(0)
 		else:
-			config.audio.volume.value = self.volctrl.getVolume()
+			config.audio.volume.setValue(self.volctrl.getVolume())
 		config.audio.volume.save()
 
 	def volUp(self):
-		self.setVolume(+1)
+		vol = self.volctrl.getVolume()
+		if vol < 3:
+			vol += 1
+		elif vol < 9:
+			vol += 2
+		elif vol < 18:
+			vol += 3
+		elif vol < 30:
+			vol += 4
+		else:
+			vol += 5
+		self.setVolume(vol)
 
 	def volDown(self):
-		self.setVolume(-1)
-
-	def setVolume(self, direction):
-		oldvol = self.volctrl.getVolume()
-		if direction > 0:
-			self.volctrl.volumeUp()
+		vol = self.volctrl.getVolume()
+		if vol <= 3:
+			vol -= 1
+		elif vol <= 9:
+			vol -= 2
+		elif vol <= 18:
+			vol -= 3
+		elif vol <= 30:
+			vol -= 4
 		else:
-			self.volctrl.volumeDown()
+			vol -= 5
+		self.setVolume(vol)
+
+	def setVolume(self, newvol):
+		self.volctrl.setVolume(newvol, newvol)
 		is_muted = self.volctrl.isMuted()
 		vol = self.volctrl.getVolume()
 		self.volumeDialog.show()
