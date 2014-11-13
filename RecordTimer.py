@@ -696,6 +696,7 @@ class RecordTimer(timer.Timer):
 				self.processed_timers.remove(entry)
 				for f in self.onTimerRemoved:
 					f(entry)
+		self.saveTimer()
 
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
