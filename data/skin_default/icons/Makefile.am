@@ -4,6 +4,7 @@ dist_install_DATA = \
 	ask.png \
 	az.png \
 	clock.png \
+	default.png \
 	dish.png \
 	dish_scan.png \
 	dmm_logo.png \

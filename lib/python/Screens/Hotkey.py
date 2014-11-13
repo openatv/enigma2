@@ -42,7 +42,8 @@ def getHotkeys():
 		("Info (EPG)", "info", "Infobar/openEventView"),
 		("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
 		("List/Fav/PVR", "list", ""),
-		("Back", "back", ""),
+		("Back/Recall", "back", ""),
+		("Back/Recall" + " " + _("long"), "back_long", ""),
 		("End", "end", ""),
 		("Epg/Guide", "epg", "Plugins/Extensions/GraphMultiEPG/1"),
 		("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins"),
@@ -56,6 +57,7 @@ def getHotkeys():
 		("Previous", "previous", ""),
 		("Audio", "audio", ""),
 		("Play", "play", ""),
+		("Playpause", "playpause", ""),
 		("Stop", "stop", ""),
 		("Pause", "pause", ""),
 		("Rewind", "rewind", ""),
@@ -76,8 +78,6 @@ def getHotkeys():
 		("Sleep" + " " + _("long"), "sleep_long", ""),
 		("Context", "contextmenu", ""),
 		("Context" + " " + _("long"), "contextmenu_long", ""),
-		("Recall", "refresh", ""),
-		("Recall" + " " + _("long"), "refresh_long", ""),
 		("Video Mode", "vmode", ""),
 		("Video Mode" + " " + _("long"), "vmode_long", ""),
 		("Home", "home", ""),
@@ -179,6 +179,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	hotkeyFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
 	if os.path.isdir("/etc/ppanels"):
 		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
 			x = x[:-4]
@@ -201,7 +202,7 @@ class HotkeySetup(Screen):
 		self.hotkeyFunctions = getHotkeyFunctions()
 
 		for x in self.hotkeys:
-			self.list.append(ChoiceEntryComponent('',(_(x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent('',(x[0], x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 12], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
