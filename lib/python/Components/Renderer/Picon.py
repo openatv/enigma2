@@ -73,7 +73,7 @@ def getPiconName(serviceName):
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
 		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8')).encode('ASCII', 'ignore')
-		name = re.sub('[/\'"`? ():<>|.\n]', '', name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower()
+		name = re.sub('[^a-z0-9]', '', name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower()
 		if name:
 			pngname = findPicon(name)
 	return pngname
