@@ -1055,7 +1055,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		return _("Invalid transponder data")
 
 	def compareTransponders(self, tp, compare):
-		frequencyTolerance = 2 # MHz
+		frequencyTolerance = 2000 # 2 MHz
 		symbolRateTolerance = 10
 		return abs(tp[1] - compare[1]) <= frequencyTolerance and abs(tp[2] - compare[2]) <= symbolRateTolerance and tp[3] == compare[3] and (not tp[4] or tp[4] == compare[4])
 
