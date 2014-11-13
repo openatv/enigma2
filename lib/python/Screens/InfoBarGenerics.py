@@ -2007,7 +2007,7 @@ class InfoBarSeek:
 
 	def doSeekRelative(self, pts):
 		seekable = self.getSeek()
-		if seekable is None and int(self.seek.getLength()[1]) < 1:
+		if seekable is None:
 			return
 		prevstate = self.seekstate
 
@@ -3042,15 +3042,14 @@ class InfoBarAudioSelection:
 			})
 
 	def audioSelection(self):
-		if not self.LongButtonPressed:
-			from Screens.AudioSelection import AudioSelection
-			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
 	def audioSelectionLong(self):
-		if SystemInfo["CanDownmixAC3"] and self.LongButtonPressed:
+		if SystemInfo["CanDownmixAC3"]:
 			if config.av.downmix_ac3.value:
 				message = _("Dobly Digital downmix is now") + " " + _("disabled")
 				print '[Audio] Dobly Digital downmix is now disabled'
