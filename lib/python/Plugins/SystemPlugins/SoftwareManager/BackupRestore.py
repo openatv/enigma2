@@ -594,7 +594,7 @@ class RestorePlugins(Screen):
 		ipkname = ipkname + "*"
 		search_dirs = [ "/media/hdd", "/media/usb" ]
 		sdirs = " ".join(search_dirs)
-		cmd = 'find %s -name "%s" | head -n 1' % (sdirs, ipkname)
+		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()
 		if res == "":
 			return None
