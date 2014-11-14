@@ -8,7 +8,7 @@ dest=open(filename, "w")
 
 for line, str in enumerate(source):
 	oldstr = str[:]
-	str = str.replace('dm7080Nt', 'dn7080Nt')
+	str = str.replace('dm7080N', 'dn7080N')
 	
 	if oldstr != str:
 		print "!!! Patch pyo line %d" %(line)
