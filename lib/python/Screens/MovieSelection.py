@@ -261,13 +261,14 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions",  "MenuActions"],
 		{
 			"red": self.cancel,
 			"green": self.save,
 			"save": self.save,
 			"cancel": self.cancel,
 			"ok": self.save,
+			"menu": self.cancel,
 		}, -2)
 		self.onChangedEntry = []
 
@@ -300,9 +301,16 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		self.close(True)
 
 	def cancel(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.cancelCallback(True)
+
+	def cancelCallback(self, answer):
+		if answer:
+			for x in self["config"].list:
+				x[1].cancel()
+			self.close(False)
 
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
