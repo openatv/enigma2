@@ -3,7 +3,6 @@ from os import path
 from enigma import iPlayableService, iServiceInformation, eTimer
 
 from Screens.Screen import Screen
-from Components.About import about
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
@@ -39,12 +38,11 @@ class VideoSetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.apply,
-				"menu": self.closeRecursive,
-			}, -2)
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"], {
+			"cancel": self.keyCancel,
+			"save": self.apply,
+			"menu": self.closeRecursive,
+		}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -67,24 +65,52 @@ class VideoSetup(Screen, ConfigListScreen):
 		level = config.usage.setup_level.index
 
 		self.list = [
-			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
+			getConfigListEntry(
+				_("Video output"), config.av.videoport,
+				_("Configures which video output connector will be used."))
 		]
 		if config.av.videoport.value in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS) + 'SystemPlugins/AutoResolution'):
-			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores, _("If enabled the output resolution will try to match the resolution of the video content.")))
+			self.list.append(getConfigListEntry(
+				_("Automatic resolution"), config.av.autores,
+				_("If enabled the output resolution will try to match the resolution of the video content.")))
 			if config.av.autores.value in ('all', 'hd'):
-				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution information.")))
-				self.list.append(getConfigListEntry(_("Force de-interlace"), config.av.autores_deinterlace, _("If enabled the video will always be de-interlaced.")))
-				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout, _("Allows you to adjust the amount of time the resolution information display stays on screen.")))
+				self.list.append(getConfigListEntry(
+					_("Delay time"), config.av.autores_delay,
+					_("Set the time before checking video source for resolution information.")))
+				self.list.append(getConfigListEntry(
+					_("Force de-interlace"), config.av.autores_deinterlace,
+					_("If enabled the video will always be de-interlaced.")))
+				self.list.append(getConfigListEntry(
+					_("Automatic resolution label"), config.av.autores_label_timeout,
+					_("Allows you to adjust the amount of time the resolution information display stays on screen.")))
 				if config.av.autores.value in 'hd':
-					self.list.append(getConfigListEntry(_("Show SD as"), config.av.autores_sd, _("This option allows you to choose how to display standard definition video on your TV.")))
-				self.list.append(getConfigListEntry(_("Show 720p 24fps as"), config.av.autores_720p24, _("This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 720p 25fps as"), config.av.autores_720p25, _("This option allows you to choose how to display 720p 25Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 720p 30fps as"), config.av.autores_720p30, _("This option allows you to choose how to display 720p 30Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 720p 50fps as"), config.av.autores_720p50, _("This option allows you to choose how to display 720p 50Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 720p 60fps as"), config.av.autores_720p60, _("This option allows you to choose how to display 720p 60Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24, _("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25, _("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 1080p 30fps as"), config.av.autores_1080p30, _("This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)")))
+					self.list.append(getConfigListEntry(
+						_("Show SD as"), config.av.autores_sd,
+						_("This option allows you to choose how to display standard definition video on your TV.")))
+				self.list.append(getConfigListEntry(
+					_("Show 720p 24fps as"), config.av.autores_720p24,
+					_("This option allows you to choose how to display 720p 24Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 720p 25fps as"), config.av.autores_720p25,
+					_("This option allows you to choose how to display 720p 25Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 720p 30fps as"), config.av.autores_720p30,
+					_("This option allows you to choose how to display 720p 30Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 720p 50fps as"), config.av.autores_720p50,
+					_("This option allows you to choose how to display 720p 50Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 720p 60fps as"), config.av.autores_720p60,
+					_("This option allows you to choose how to display 720p 60Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 1080p 24fps as"), config.av.autores_1080p24,
+					_("This option allows you to choose how to display 1080p 24Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 1080p 25fps as"), config.av.autores_1080p25,
+					_("This option allows you to choose how to display 1080p 25Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 1080p 30fps as"), config.av.autores_1080p30,
+					_("This option allows you to choose how to display 1080p 30Hz content.")))
 
 		# if we have modes for this port:
 		if (config.av.videoport.value in config.av.videomode and config.av.autores.value == 'disabled') or config.av.videoport.value == 'Scart':
@@ -115,8 +141,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.value == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-#		if config.av.videoport.value == "HDMI":
-#			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
+		# if config.av.videoport.value == "HDMI":
+		# 	self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
 		if config.av.videoport.value == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -147,8 +173,8 @@ class VideoSetup(Screen, ConfigListScreen):
 			if SystemInfo["Canedidchecking"]:
 				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking, _("This option allows you to bypass HDMI EDID check")))
 
-#		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-#			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
+		# if not isinstance(config.av.scaler_sharpness, ConfigNothing):
+		# 	self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
