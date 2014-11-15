@@ -300,6 +300,8 @@ class AttributeParser:
 				print "[Skin] Attribute not implemented:", attrib, "value:", value
 			except SkinError, ex:
 				print "[Skin] Error:", ex
+			except:
+				print "[Skin] Error:", attrib
 	def conditional(self, value):
 		pass
 	def position(self, value):
