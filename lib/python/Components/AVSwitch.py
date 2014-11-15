@@ -96,7 +96,7 @@ class AVSwitch:
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
-	# 	print "remove DVI-PC because of not existing modes"
+	# 	print "[AVSwitch] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
 	if "YPbPr" in modes and getBoxType() in (
 		'et4x00', 'xp1000mk', 'xp1000max', 'xp1000plus', 'sf8',
@@ -120,10 +120,10 @@ class AVSwitch:
 	def readAvailableModes(self):
 		try:
 			f = open("/proc/stb/video/videomode_choices")
-			modes = f.read()[:-1]
+			modes = f.read().strip()
 			f.close()
 		except IOError:
-			print "couldn't read available videomodes."
+			print "[AVSwitch] could not read available videomodes"
 			self.modes_available = []
 			return
 		self.modes_available = modes.split(' ')
@@ -131,11 +131,11 @@ class AVSwitch:
 	def readPreferredModes(self):
 		try:
 			f = open("/proc/stb/video/videomode_preferred")
-			modes = f.read()[:-1]
+			modes = f.read().strip()
 			f.close()
 			self.modes_preferred = modes.split(' ')
 		except IOError:
-			print "reading preferred modes failed, using all modes"
+			print "[AVSwitch] reading preferred modes failed, using all modes"
 			self.modes_preferred = self.modes_available
 
 		if self.modes_preferred != self.last_modes_preferred:
@@ -149,7 +149,7 @@ class AVSwitch:
 			if port == "DVI":
 				if self.hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime"):
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
-						print "no, not preferred"
+						print "[AVSwitch] no, not preferred"
 						return False
 			if mode not in self.modes_available:
 				return False
@@ -159,8 +159,6 @@ class AVSwitch:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force=None):
-		print "[VideoMode] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
-
 		# config.av.videoport.setValue(port)
 		# we can ignore "port"
 		self.current_mode = mode
@@ -174,17 +172,27 @@ class AVSwitch:
 		if mode_60 is None or force == 50:
 			mode_60 = mode_50
 
-		mode_etc = None
 		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
-			f = open("/proc/stb/video/videomode_50hz", "w")
-			f.write(mode_50)
-			f.close()
+			try:
+				f = open("/proc/stb/video/videomode_50hz", "w")
+				f.write(mode_50)
+				f.close()
+			except:
+				print "[AVSwitch] failed to set videomode_50hz to", mode_50
+
 		if os.path.exists('/proc/stb/video/videomode_60hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
-			f = open("/proc/stb/video/videomode_60hz", "w")
-			f.write(mode_60)
-			f.close()
+			try:
+				f = open("/proc/stb/video/videomode_60hz", "w")
+				f.write(mode_60)
+				f.close()
+			except:
+				print "[AVSwitch] failed to set videomode_60hz to", mode_60
+
 		try:
-			mode_etc = modes.get(int(rate[:2]))
+			if rate == "multi":
+				mode_etc = mode_50
+			else:
+				mode_etc = modes.get(int(rate[:2]))
 			f = open("/proc/stb/video/videomode", "w")
 			f.write(mode_etc)
 			f.close()
@@ -194,8 +202,8 @@ class AVSwitch:
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_50)
 				f.close()
-			except IOError:
-				print "setting videomode failed."
+			except IOError as err:
+				print "[AVSwitch] setting videomode failed:", err
 
 		self.setColorFormat({"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}[config.av.colorformat.value])
 
@@ -334,7 +342,7 @@ class AVSwitch:
 						ret = (16, 10)
 			elif is_auto:
 				try:
-					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read().strip()
 					if aspect_str == "1":  # 4:3
 						ret = (4, 3)
 				except IOError:
@@ -386,71 +394,46 @@ def InitAVSwitch():
 	if config.av.yuvenabled.value:
 		colorformat_choices["yuv"] = _("YPbPr")
 
-	config.av.autores = ConfigSelection(choices={
-		"disabled": _("Disabled"),
-		"all": _("All resolutions"),
-		"hd": _("only HD")
-	}, default="disabled")
+	config.av.autores = ConfigEnableDisable()
 	choicelist = []
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.av.autores_label_timeout = ConfigSelection(default="5", choices=[("0", _("Not Shown"))] + choicelist)
 	config.av.autores_delay = ConfigSelectionNumber(min=50, max=3000, stepwidth=50, default=400, wraparound=True)
-	config.av.autores_deinterlace = ConfigYesNo(default=False)
-	config.av.autores_sd = ConfigSelection(choices={
-		"720p": _("720p"),
-		"1080i": _("1080i")
-	}, default="720p")
-	config.av.autores_720p24 = ConfigSelection(choices={
-		"720p24": _("720p 24Hz"),
-		"1080p24": _("1080p 24Hz"),
-		"1080i50": _("1080i 50Hz"),
-		"1080i": _("1080i 60Hz")
-	}, default="720p24")
-	config.av.autores_720p25 = ConfigSelection(choices={
-		"720p50": _("720p 50Hz"),
-		"1080i50": _("1080i 50Hz"),
-		"1080p25": _("1080p 25Hz")
-	}, default="720p50")
-	config.av.autores_720p30 = ConfigSelection(choices={
-		"720p": _("720p 60Hz"),
-		"1080p30": _("1080p 30Hz"),
-		"1080i": _("1080i 60Hz"),
-		"1080p": _("1080p 60Hz")
-	}, default="720p")
-	config.av.autores_720p50 = ConfigSelection(choices={
-		"720p50": _("720p 50Hz"),
-		"1080i50": _("1080i 50Hz"),
-		"1080p50": _("1080p 50Hz")
-	}, default="720p50")
-	config.av.autores_720p60 = ConfigSelection(choices={
-		"720p24": _("720p 24Hz"),
-		"1080p24": _("1080p 24Hz"),
-		"1080i50": _("1080i 50Hz"),
-		"1080i": _("1080i 60Hz")
-	}, default="720p24")
-	config.av.autores_1080p24 = ConfigSelection(choices={
-		"1080p24": _("1080p 24Hz"),
-		"1080p25": _("1080p 25Hz"),
-		"1080i50": _("1080p 50Hz"),
-		"1080i": _("1080i 60Hz")
-	}, default="1080p24")
-	config.av.autores_1080p25 = ConfigSelection(choices={
-		"1080p25": _("1080p 25Hz"),
-		"1080p50": _("1080p 50Hz"),
-		"1080i50": _("1080i 50Hz")
-	}, default="1080p25")
-	config.av.autores_1080p30 = ConfigSelection(choices={
-		"1080p30": _("1080p 30Hz"),
-		"1080p60": _("1080p 60Hz"),
-		"1080i": _("1080i 60Hz")
-	}, default="1080p30")
-	config.av.smart1080p = ConfigSelection(choices={
-		"false": _("off"),
-		"true": _("1080p50: 24/50/60Hz"),
-		"1080i50": _("1080i50: 24/50/60Hz"),
-		"720p50": _("720p50: 24/50/60Hz")
-	}, default="false")
+
+	# SD - 480 / 576, standard definition
+	# ED - 720, enhanced definition
+	# HD - 1080, high definition
+
+	# Supported conversions:
+	#    * -> 1080i60, 720p60, 480i60, 480p60
+	# *?50 -> 1080i50, 720p50, 576i50, 576p50
+	# *p25 -> 1080i50, 720p50, 576i50, 576p50 (1080p25 ?)
+	# *p30 -> 1080p30
+	# *p24 -> 1080p24
+
+	conv_60 = ["1080i", "720p", "480p", "480i"]
+	conv_50 = ["1080i50", "720p50", "576p", "576i"] + conv_60
+	conv_30 = ["1080p30"] + conv_60
+	conv_24 = ["1080p24"] + conv_60
+
+	config.av.autores_sd24 = ConfigSelection(choices=conv_24)
+	config.av.autores_sd25 = ConfigSelection(choices=conv_50)
+	config.av.autores_sd30 = ConfigSelection(choices=conv_30)
+	config.av.autores_sd50i = ConfigSelection(choices=conv_50)
+	config.av.autores_sd50p = ConfigSelection(choices=conv_50)
+	config.av.autores_sd60i = ConfigSelection(choices=conv_60)
+	config.av.autores_sd60p = ConfigSelection(choices=conv_60)
+	config.av.autores_ed24 = ConfigSelection(choices=conv_24)
+	config.av.autores_ed25 = ConfigSelection(choices=conv_50)
+	config.av.autores_ed30 = ConfigSelection(choices=conv_30)
+	config.av.autores_ed50 = ConfigSelection(choices=conv_50)
+	config.av.autores_ed60 = ConfigSelection(choices=conv_60)
+	config.av.autores_hd24 = ConfigSelection(choices=conv_24)
+	config.av.autores_hd25 = ConfigSelection(choices=conv_50)
+	config.av.autores_hd30 = ConfigSelection(choices=conv_30)
+	config.av.autores_hd50 = ConfigSelection(choices=conv_50)
+	config.av.autores_hd60 = ConfigSelection(choices=conv_60)
 
 	# some boxes do not support YPbPr
 	try:
@@ -637,7 +620,7 @@ def InitAVSwitch():
 
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
-		choices = f.read()[:-1]
+		choices = f.read().strip()
 		f.close()
 		can_downmix_ac3 = "downmix" in choices
 	except:
@@ -661,7 +644,7 @@ def InitAVSwitch():
 
 	try:
 		f = open("/proc/stb/audio/aac_choices", "r")
-		choices = f.read()[:-1]
+		choices = f.read().strip()
 		f.close()
 		can_downmix_aac = "downmix" in choices
 	except:
