@@ -312,6 +312,7 @@ class Infopanel(Screen, InfoBarPiP):
 			}, 1)
 		
 		self["label1"] = Label(INFO_Panel_Version)
+		self["summary_description"] = StaticText("")
 
 		self.Mlist = []
 		if Check_Softcam():
@@ -331,9 +332,13 @@ class Infopanel(Screen, InfoBarPiP):
 		menu = 0
 		self["Mlist"].onSelectionChanged.append(self.selectionChanged)
 
+	def createSummary(self):
+		pass
+
 	def getCurrentEntry(self):
 		if self['Mlist'].l.getCurrentSelection():
 			selection = self['Mlist'].l.getCurrentSelection()[0]
+			self["summary_description"].text = selection[1]
 			if (selection[0] is not None):
 				return selection[0]
 
@@ -342,6 +347,7 @@ class Infopanel(Screen, InfoBarPiP):
 
 	def setWindowTitle(self):
 		self.setTitle(_("Info Panel"))
+		self.selectionChanged()
 
 	def up(self):
 		#self["Mlist"].up()
