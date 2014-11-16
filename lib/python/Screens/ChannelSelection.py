@@ -957,6 +957,8 @@ class ChannelSelectionEdit:
 			self.setTitle(self.saved_title)
 			self.saved_title = None
 			self.servicelist.resetRoot()
+			self.servicelist.l.setHideNumberMarker(config.usage.hide_number_markers.value)
+			self.servicelist.setCurrent(self.servicelist.getCurrent())
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
@@ -964,6 +966,8 @@ class ChannelSelectionEdit:
 			self.saved_title = self.getTitle()
 			pos = self.saved_title.find(')')
 			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
+			self.servicelist.l.setHideNumberMarker(False)
+			self.servicelist.setCurrent(self.servicelist.getCurrent())
 		self["Service"].editmode = True
 
 	def handleEditCancel(self):
