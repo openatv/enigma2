@@ -295,19 +295,31 @@ class AutoVideoMode(Screen):
 		video_rate = None
 		if path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
-			video_height = int(f.read(),16)
+			try:
+				video_height = int(f.read(),16)
+			except:
+    				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/xres"):
 			f = open("/proc/stb/vmpeg/0/xres", "r")
-			video_width = int(f.read(),16)
+			try:
+				video_width = int(f.read(),16)
+			except:
+    				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
 			f = open("/proc/stb/vmpeg/0/progressive", "r")
-			video_pol = "p" if int(f.read(),16) else "i"
+			try:
+				video_pol = "p" if int(f.read(),16) else "i"
+			except:
+    				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
-			video_rate = int(f.read())
+			try:
+				video_rate = int(f.read())
+			except:
+    				pass
 			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
