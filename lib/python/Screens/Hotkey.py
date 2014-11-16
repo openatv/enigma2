@@ -48,6 +48,7 @@ def getHotkeys():
 		("Right", "cross_right", ""),
 		("Up", "cross_up", ""),
 		("Down", "cross_down", ""),
+		("Ok", "ok", ""),
 		("Channel up", "channelup", ""),
 		("Channel down", "channeldown", ""),
 		("Next", "next", ""),
