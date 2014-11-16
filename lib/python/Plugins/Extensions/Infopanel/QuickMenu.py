@@ -3,6 +3,7 @@ from enigma import eListboxPythonMultiContent, gFont, eEnv
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -128,6 +129,7 @@ class QuickMenu(Screen):
 		self["key_yellow"] = Label(_("Devices"))
 		self["key_blue"] = Label()
 		self["description"] = Label()
+		self["summary_description"] = StaticText("")
 
 		self.menu = 0
 		self.list = []
@@ -163,6 +165,9 @@ class QuickMenu(Screen):
 		self.selectionChanged()
 		self.onLayoutFinish.append(self.layoutFinished)
 
+	def createSummary(self):
+		pass
+
 	def layoutFinished(self):
 		self["sublist"].selectionEnabled(0)
 
@@ -171,6 +176,7 @@ class QuickMenu(Screen):
 			item = self["list"].getCurrent()
 			if item:
 				self["description"].setText(_(item[4]))
+				self["summary_description"].text = item[0]
 				self.okList()
 
 	def selectionSubChanged(self):
@@ -178,6 +184,7 @@ class QuickMenu(Screen):
 			item = self["sublist"].getCurrent()
 			if item:
 				self["description"].setText(_(item[3]))
+				self["summary_description"].text = item[0]
 
 	def goLeft(self):
 		if self.menu <> 0:
