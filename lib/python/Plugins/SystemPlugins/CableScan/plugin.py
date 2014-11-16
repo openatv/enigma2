@@ -170,7 +170,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.close()
 
 	def keyGo(self):
-		self.keySave()
+		config.plugins.CableScan.save()
 		self.startScan()
 
 	def startScan(self):
