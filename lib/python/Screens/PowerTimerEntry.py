@@ -369,6 +369,7 @@ class TimerLog(Screen):
 	def keyClose(self):
 		if self.timer.log_entries != self.log_entries:
 			self.timer.log_entries = self.log_entries
+			self.session.nav.PowerTimer.saveTimer()
 			self.close((True, self.timer))
 		else:
 			self.close((False,))

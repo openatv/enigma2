@@ -293,14 +293,14 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createResolution(self, info):
 		xres = info.getInfo(iServiceInformation.sVideoWidth)
-		if xres == -1:
-			return ""
 		yres = info.getInfo(iServiceInformation.sVideoHeight)
-		mode = ("i", "p", "", " ")[info.getInfo(iServiceInformation.sProgressive)]
-		fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
-		if int(fps) <= 0:
-			fps = ""
-		return str(xres) + "x" + str(yres) + mode + fps
+		if xres > 0 and yres > 0:
+			mode = ("i", "p", "", " ")[info.getInfo(iServiceInformation.sProgressive)]
+			fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+			if int(fps) <= 0:
+				fps = ""
+			return str(xres) + "x" + str(yres) + mode + fps
+		return ""
 
 	def createVideoCodec(self, info):
 		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]

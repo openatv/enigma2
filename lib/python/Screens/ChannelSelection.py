@@ -1094,7 +1094,8 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]
 
-		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
+		self.jumpSearchChar = ""
+		self.numericalTextInput = NumericalTextInput(nextFunc=self.doJumpSearch)
 
 		self.servicePathTV = []
 		self.servicePathRadio = []
@@ -1132,12 +1133,17 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
 		self.onShown.append(self.applyKeyMap)
+		self.onClose.append(self.numericalTextInputCleanup)
 
 	def applyKeyMap(self):
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
 			self.numericalTextInput.setUseableChars(u'abcdefghijklmnopqrstuvwxyz1234567890')
 		else:
 			self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
+	def numericalTextInputCleanup(self):
+		if self.jumpSearchChar and self.numericalTextInput:
+			self.numericalTextInput.nextKey()
 
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.value:
@@ -1484,14 +1490,15 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 					self.BouquetNumberActions(number)
 				else:
 					unichar = self.numericalTextInput.getKey(number)
-					charstr = unichar.encode("utf-8")
-					if len(charstr) == 1:
-						self.servicelist.moveToChar(charstr[0])
+					self.jumpSearchChar = unichar.encode("utf-8")
 		else:
 			unichar = self.numericalTextInput.getKey(number)
-			charstr = unichar.encode("utf-8")
-			if len(charstr) == 1:
-				self.servicelist.moveToChar(charstr[0])
+			self.jumpSearchChar = unichar.encode("utf-8")
+
+	def doJumpSearch(self):
+		if len(self.jumpSearchChar) == 1:
+			self.servicelist.moveToChar(self.jumpSearchChar[0])
+		self.jumpSearchChar = ""
 
 	def BouquetNumberActions(self, number):
 		if number == 1:  # Set focus on current playing service when available in current userbouquet

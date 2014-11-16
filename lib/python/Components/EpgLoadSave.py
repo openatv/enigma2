@@ -26,7 +26,7 @@ class EpgCacheLoadCheckPoller:
 		self.timer = eTimer()
 
 	def start(self):
-		print '[EPGC Loads] Poller enabled.'
+		print '[EPGC Load] Poller enabled.'
 		if self.epgcacheloadcheck not in self.timer.callback:
 			self.timer.callback.append(self.epgcacheloadcheck)
 		self.timer.startLongTimer(0)
@@ -68,7 +68,7 @@ class EpgCacheSaveCheckPoller:
 		print '[EPGC Save] Poller enabled.'
 		if self.epgcachesavecheck not in self.timer.callback:
 			self.timer.callback.append(self.epgcachesavecheck)
-		self.timer.startLongTimer(0)
+		self.timer.startLongTimer(300)  # Allow some time to populate the cache before saving it.
 
 	def stop(self):
 		print '[EPGC Save] Poller disabled.'
