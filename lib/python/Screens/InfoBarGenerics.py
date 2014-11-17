@@ -1755,6 +1755,8 @@ class InfoBarShowMovies:
 # activated (currently time-shifting).
 
 class InfoBarTimeshift:
+	ts_disabled = False
+
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
@@ -1784,6 +1786,8 @@ class InfoBarTimeshift:
 			})
 
 	def getTimeshift(self):
+		if self.ts_disabled:
+			return None
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
 
