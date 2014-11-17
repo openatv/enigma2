@@ -163,7 +163,7 @@ class ImageBackup(Screen):
 		self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 		self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 		self.MAINDEST = "%s/%s" %(self.DIRECTORY,self.IMAGEFOLDER)
-		self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.IMAGEFOLDER, self.DATE)
+		self.EXTRA = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.IMAGEFOLDER)
 		self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 
 
@@ -260,7 +260,7 @@ class ImageBackup(Screen):
 		system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
 		system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 		cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-		cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+		cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.EXTRA))
 
 		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'
