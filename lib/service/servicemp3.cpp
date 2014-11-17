@@ -737,6 +737,8 @@ RESULT eServiceMP3::stop()
 	m_state = stStopped;
 	m_subtitles_paused = false;
 	m_nownext_timer->stop();
+	if (m_streamingsrc_timeout)
+		m_streamingsrc_timeout->stop();
 
 	return 0;
 }
