@@ -734,6 +734,8 @@ RESULT eServiceMP3::stop()
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
 	m_nownext_timer->stop();
+	if (m_streamingsrc_timeout)
+		m_streamingsrc_timeout->stop();
 
 	return 0;
 }
