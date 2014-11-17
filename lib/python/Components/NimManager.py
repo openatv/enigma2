@@ -1674,7 +1674,7 @@ def InitNimManager(nimmgr):
 		x = slot.slot
 		nim = config.Nims[x]
 		addMultiType = False
-		print"[NimManager] slotname = %s, slotdescription = %s" % (slot.input_name, slot.description)
+
 		try:
 			nim.multiType
 		except:
@@ -1692,6 +1692,8 @@ def InitNimManager(nimmgr):
 
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
+
+		print"[NimManager] slotname = %s, slotdescription = %s, multitype = %s" % (slot.input_name, slot.description,(slot.isMultiType() and addMultiType))
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
