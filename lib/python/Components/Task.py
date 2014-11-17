@@ -2,6 +2,7 @@
 # A task is the run of an external tool, with proper methods for failure handling
 
 from Tools.CList import CList
+import os
 
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
@@ -479,7 +480,6 @@ class DiskspacePrecondition(Condition):
 		self.diskspace_available = 0
 
 	def check(self, task):
-		import os
 		try:
 			s = os.statvfs(task.job.workspace)
 			self.diskspace_available = s.f_bsize * s.f_bavail
@@ -495,7 +495,6 @@ class ToolExistsPrecondition(Condition):
 		pass
 
 	def check(self, task):
-		import os
 		if task.cmd[0] == '/':
 			self.realpath = task.cmd
 			print "[Task] [ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!"
