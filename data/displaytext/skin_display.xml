@@ -161,6 +161,18 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
-	</screen>	
+	</screen>
+
+<!-- ATV -->
+<!-- Quickmenü -->
+	<screen name="QuickMenu_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
+	</screen>
+	
+<!-- Infopanel -->
+	<screen name="Infopanel_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
+	</screen>
+	
 
 </skin>
