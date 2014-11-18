@@ -460,7 +460,7 @@ class InfoBarHotkey():
 		self.longkeyPressed = False
 
 	def getKeyFunctions(self, key):
-		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
+		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "next", "previous", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
 			return False
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		selected = []
