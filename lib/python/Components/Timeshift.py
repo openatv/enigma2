@@ -56,6 +56,9 @@ from random import randint
 import os
 
 class InfoBarTimeshift:
+
+	ts_disabled = False
+
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
@@ -345,6 +348,10 @@ class InfoBarTimeshift:
 					self.pts_delay_timer.start(1000, True)
 
 	def getTimeshift(self):
+
+		if self.ts_disabled:
+			return None
+
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
 
