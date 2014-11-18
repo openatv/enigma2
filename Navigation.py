@@ -3,6 +3,8 @@ from os import path
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Components.config import config
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
 from time import time
@@ -34,7 +36,15 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
-		self.RecordTimer = RecordTimer.RecordTimer()
+
+		self.RecordTimer = None
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
+			self.RecordTimer = p()
+			if self.RecordTimer:
+				break
+		if not self.RecordTimer:
+			self.RecordTimer = RecordTimer.RecordTimer()
+
 		self.PowerTimer = PowerTimer.PowerTimer()
 		self.nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
 		self.nextPowerManagerAfterEventActionAuto = nextPowerManagerAfterEventActionAuto
