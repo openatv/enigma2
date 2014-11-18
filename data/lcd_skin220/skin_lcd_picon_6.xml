@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#007FFF" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#007FFF" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#007FFF" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#007FFF" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#007FFF" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#007FFF" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
+	<fonts>
+		<!-- pick a funky name for the font, so we don't conflict  -->
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+	</fonts>
+
+<!-- template -->
+	<screen name="SummaryClockPanel">
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
+			<convert type="ClockToText"></convert>
+		</widget>
+	</screen>
+
+<!-- main-->
+	<screen name="InfoBarSummary" position="0,0" size="220,176">
+
+		<widget source="session.CurrentService" render="PiconLCD" position="0,0" zPosition="1" size="110,88" alphatest="on">
+				<convert type="ServiceName">Reference</convert>
+		</widget>
+
+		<widget source="session.Event_Now" render="Label" position="0,89" size="110,76" font="RegularLight;20" valign="center" halign="center" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,166" size="110,10" borderWidth="1" >
+			<convert type="EventTime">Progress</convert>
+		</widget>
+
+		<widget source="global.CurrentTime" render="Label" position="110,0" size="55,44" font="RegularLight;10" halign="center" valign="center" zPosition="1" foregroundColor="#007FFF" transparent="0">
+			<convert type="ClockToText">ShortDate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="110,44" size="55,44" font="RegularLight;20" halign="center" valign="center" noWrap="1" zPosition="1" transparent="0" foregroundColor="#007FFF">
+			<convert type="ClockToText"></convert>
+		</widget>
+
+
+		<!-- /* WEATHER WIDGET  -->
+
+		<widget source="global.CurrentTime" render="Label" font="Meteo; 40" foregroundColor="#007FFF" position="165,0" size="55,44" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">currentWeatherCode</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="RegularLight; 20" foregroundColor="#007FFF" position="165,44" size="35,44" halign="right" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">currentWeatherTemp</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 15" foregroundColor="#007FFF" position="200,44" size="20,44" halign="left" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">CF</convert>
+		</widget>
+
+
+		<widget source="global.CurrentTime" render="Label" font="Regular; 12" foregroundColor="#007FFF" position="110,89" size="27,20" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecastTomorrowDay</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Meteo; 25" foregroundColor="#007FFF" position="110,109" size="27,39" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecastTomorrowCode</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="110,148" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecastTomorrowTempMax</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="110,162" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecastTomorrowTempMin</convert>
+		</widget>
+
+		<widget source="global.CurrentTime" render="Label" font="Regular; 12" foregroundColor="#007FFF" position="137,89" size="27,20" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast2daysDay</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Meteo; 25" foregroundColor="#007FFF" position="137,109" size="27,39" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast2daysCode</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="137,148" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast2daysTempMax</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="137,162" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast2daysTempMin</convert>
+		</widget>
+
+		<widget source="global.CurrentTime" render="Label" font="Regular; 12" foregroundColor="#007FFF" position="164,89" size="27,20" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast3daysDay</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Meteo; 25" foregroundColor="#007FFF" position="164,109" size="27,39" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast3daysCode</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="164,148" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast3daysTempMax</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="164,162" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast3daysTempMin</convert>
+		</widget>
+
+		<widget source="global.CurrentTime" render="Label" font="Regular; 12" foregroundColor="#007FFF" position="191,89" size="27,20" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast4daysDay</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Meteo; 25" foregroundColor="#007FFF" position="191,109" size="27,39" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast4daysCode</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="191,148" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast4daysTempMax</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" font="Regular; 10" foregroundColor="#007FFF" position="191,162" size="27,14" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
+			<convert type="OMMetrixWeather">forecast4daysTempMin</convert>
+		</widget>
+
+		<!--	WEATHER WIDGET */ -->
+
+	</screen>
+	<include filename="/usr/share/enigma2/lcd_skin/common.xml" />
+</skin>
