@@ -7,6 +7,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
@@ -25,6 +26,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(False)
 		self["key_blue"] = Boolean(False)
+		self["summary_description"] = StaticText("")
 
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
@@ -252,9 +254,23 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		self["streams"].list = streams
 		self["streams"].setIndex(selectedidx)
+		self.checkSummary()
 
 	def __updatedInfo(self):
 		self.fillList()
+
+	def createSummary(self):
+		pass
+
+	def checkSummary(self):
+		if self.focus == FOCUS_STREAMS:
+			if self["streams"].getCurrent() is not None:
+				stream = self["streams"].getCurrent()
+				self["summary_description"].text = stream[3] + " - " + stream[4]
+		else:
+			if self["config"].getCurrent() is not None:
+				conf = self["config"].getCurrent()
+				self["summary_description"].text = conf[0]
 
 	def getSubtitleList(self):
 		service = self.session.nav.getCurrentService()
@@ -377,6 +393,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.focus = FOCUS_CONFIG
 			else:
 				self["streams"].selectPrevious()
+		self.checkSummary()
 
 	def keyDown(self):
 		if self.focus == FOCUS_CONFIG:
@@ -388,6 +405,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.focus = FOCUS_STREAMS
 		elif self.focus == FOCUS_STREAMS:
 			self["streams"].selectNext()
+		self.checkSummary()
 
 	def keyNumberGlobal(self, number):
 		if number <= len(self["streams"].list):
