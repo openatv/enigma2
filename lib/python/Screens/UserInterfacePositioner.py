@@ -6,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
-from enigma import getDesktop, iServiceInformation
+from enigma import getDesktop
 from os import access, R_OK
 
 def InitOsd():
@@ -14,7 +14,7 @@ def InitOsd():
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
+	if SystemInfo["CanChangeOsdAlpha"] is True or SystemInfo["CanChangeOsdPosition"] is True:
 		SystemInfo["OsdMenu"] = True
 	else:
 		SystemInfo["OsdMenu"] = False
@@ -46,7 +46,7 @@ def InitOsd():
 			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_height.addNotifier(setOSDHeight)
-	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+	print 'Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def setOSDAlpha(configElement):
 		print 'Setting OSD alpha:', str(configElement.value)
@@ -58,7 +58,7 @@ def InitOsd():
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D mode:',configElement.value
+			print 'Setting 3D mode:', configElement.value
 			f = open("/proc/stb/fb/3dmode", "w")
 			f.write(configElement.value)
 			f.close()
@@ -66,7 +66,7 @@ def InitOsd():
 
 	def set3DZnorm(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D depth:',configElement.value
+			print 'Setting 3D depth:', configElement.value
 			f = open("/proc/stb/fb/znorm", "w")
 			f.write('%d' % int(configElement.value))
 			f.close()
@@ -77,27 +77,26 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.setup_title = _("Position Setup")
 		self.Console = Console()
-		
+
 		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
-		
+
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"], {
 				"cancel": self.keyCancel,
 				"save": self.keySave,
 				"left": self.keyLeft,
 				"right": self.keyRight,
 				"yellow": self.keyDefault,
-			}, -2)
+		}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		if SystemInfo["CanChangeOsdAlpha"]:
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 		if SystemInfo["CanChangeOsdPosition"]:
@@ -109,7 +108,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 		self.onLayoutFinish.append(self.layoutFinished)
-		if not self.selectionChanged in self["config"].onSelectionChanged:
+		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 
@@ -169,7 +168,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+		print 'Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -183,7 +182,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			self.session.nav.playService(self.oldref)
 		except:
 			pass
-		      
+
 	def keySave(self):
 		self.saveAll()
 		self.playOldService()
@@ -201,7 +200,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 	def keyCancel(self):
 		if self["config"].isChanged():
 			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.playOldService()
 			self.close()
@@ -226,15 +225,14 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		self["actions"] = ActionMap(["SetupActions"],
-			{
+		self["actions"] = ActionMap(["SetupActions"], {
 				"cancel": self.keyCancel,
 				"save": self.keySave,
-			}, -2)
+		}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode, _("This option lets you choose the 3D mode")))
 		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm, _("This option lets you adjust the 3D depth")))
 		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions, _("This option lets you show the option in the extension screen")))
@@ -242,7 +240,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 		self.onLayoutFinish.append(self.layoutFinished)
-		if not self.selectionChanged in self["config"].onSelectionChanged:
+		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 

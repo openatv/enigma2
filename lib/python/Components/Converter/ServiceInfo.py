@@ -54,9 +54,9 @@ class ServiceInfo(Converter, object):
 				"TsId": (self.TSID, (iPlayableService.evUpdatedInfo,)),
 				"OnId": (self.ONID, (iPlayableService.evUpdatedInfo,)),
 				"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
-				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
+				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo,)),
 				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
-				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo,)),
+				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo,)),
 				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 				"Freq_Info": (self.FREQ_INFO, (iPlayableService.evUpdatedInfo,)),
@@ -68,7 +68,7 @@ class ServiceInfo(Converter, object):
 				"IsSDAndNotWidescreen": (self.IS_SD_AND_NOT_WIDESCREEN, (iPlayableService.evVideoSizeChanged,)),
 			}[type]
 
-	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
+	def getServiceInfoString(self, info, what, convert=lambda x: "%d" % x):
 		v = info.getInfo(what)
 		if v == -1:
 			return "N/A"
@@ -88,7 +88,7 @@ class ServiceInfo(Converter, object):
 		if self.type in (self.IS_SD, self.IS_HD, self.IS_SD_AND_WIDESCREEN, self.IS_SD_AND_NOT_WIDESCREEN):
 			if path.exists("/proc/stb/vmpeg/0/yres"):
 				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
+				video_height = int(f.read(), 16)
 				f.close()
 			if path.exists("/proc/stb/vmpeg/0/aspect"):
 				f = open("/proc/stb/vmpeg/0/aspect", "r")
@@ -161,7 +161,7 @@ class ServiceInfo(Converter, object):
 			video_width = None
 			if path.exists("/proc/stb/vmpeg/0/xres"):
 				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(),16)
+				video_width = int(f.read(), 16)
 				f.close()
 			if not video_width:
 				video_width = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
@@ -170,7 +170,7 @@ class ServiceInfo(Converter, object):
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
 				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
+				video_height = int(f.read(), 16)
 				f.close()
 			if not video_height:
 				video_height = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
@@ -199,7 +199,7 @@ class ServiceInfo(Converter, object):
 				f.close()
 			if not video_rate:
 				video_rate = self.getServiceInfoString(info, iServiceInformation.sFrameRate)
-			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
+			return video_rate, lambda x: "%d fps" % ((x + 500) / 1000)
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
 		elif self.type == self.HAS_HBBTV:
@@ -243,7 +243,7 @@ class ServiceInfo(Converter, object):
 			video_width = None
 			if path.exists("/proc/stb/vmpeg/0/xres"):
 				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(),16)
+				video_width = int(f.read(), 16)
 				f.close()
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
@@ -252,7 +252,7 @@ class ServiceInfo(Converter, object):
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
 				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
+				video_height = int(f.read(), 16)
 				f.close()
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)

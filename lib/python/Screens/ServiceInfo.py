@@ -1,12 +1,10 @@
-from Screens.Screen import Screen
 from Screens.About import AboutBase
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Sources.List import List
 from ServiceReference import ServiceReference
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter
+from enigma import iServiceInformation, eServiceCenter
 from Tools.Transponder import ConvertToHumanReadable
-from Components.Converter.ChannelNumbers import channelnumbers
 
 RT_HALIGN_LEFT = 0
 
@@ -69,8 +67,7 @@ class ServiceInfo(AboutBase):
 	def __init__(self, session, serviceref=None):
 		AboutBase.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-		{
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], {
 			"ok": self.close,
 			"cancel": self.close,
 			"red": self.information,
@@ -81,7 +78,7 @@ class ServiceInfo(AboutBase):
 
 		if serviceref:
 			self.type = TYPE_TRANSPONDER_INFO
-			self.skinName="ServiceInfoSimple"
+			self.skinName = "ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
 			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
@@ -101,7 +98,7 @@ class ServiceInfo(AboutBase):
 				self.info = None
 				self.feinfo = None
 
-		self["list"] = List([ ])
+		self["list"] = List([])
 		self.onShown.append(self.information)
 
 	def information(self):
@@ -120,16 +117,16 @@ class ServiceInfo(AboutBase):
 				width = self.info.getInfo(iServiceInformation.sVideoWidth)
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
-					resolution = "%dx%d" % (width,height)
+					resolution = "%dx%d" % (width, height)
 					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-					if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
+					if aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE):
 						aspect = "4:3"
 					else:
 						aspect = "16:9"
 
-			Labels = ( (_("Name"), name, TYPE_TEXT),
+			Labels = ((_("Name"), name, TYPE_TEXT),
 					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 					(_("Videoformat"), aspect, TYPE_TEXT),
 					(_("Videosize"), resolution, TYPE_TEXT),
@@ -171,22 +168,22 @@ class ServiceInfo(AboutBase):
 	def getFEData(self, frontendDataOrg):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
-			return [(label, frontendData[data], format)
-					for (label, data, format) in ServiceInfo.infoLabels
+			return [(label, frontendData[data], format_type)
+					for (label, data, format_type) in ServiceInfo.infoLabels
 						if data in frontendData]
-		return [ ]
+		return []
 
 	def fillList(self, Labels):
-		tlist = [ ]
+		tlist = []
 
 		for item in Labels:
 			if item[1] is None:
 				continue
 			value = item[1]
 			if len(item) < 4:
-				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))
+				tlist.append(ServiceInfoListEntry(item[0] + ":", value, item[2]))
 			else:
-				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2], item[3]))
+				tlist.append(ServiceInfoListEntry(item[0] + ":", value, item[2], item[3]))
 
 		self["list"].setList(tlist)
 
