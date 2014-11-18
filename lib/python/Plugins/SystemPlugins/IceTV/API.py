@@ -87,7 +87,7 @@ class Request(object):
 
     def send(self, method):
         data = json.dumps(self.data)
-        r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False)
+        r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False, timeout=10.0)
         err = not r.ok
         if err or _debug_level > 0:
             print "[IceTV]", r.request.method, r.request.url
