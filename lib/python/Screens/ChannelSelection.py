@@ -210,15 +210,11 @@ class ChannelContextMenu(Screen):
 					self.removeFunction = self.removeBouquet
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
-				isSimpleService = not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup)
-				if isSimpleService:
-					for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
-						append_when_current_valid(current, menu, (p.name, boundFunction(self.runPlugin, p)))
 				if csel.movemode:
 					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level=0, key="6")
 				else:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
-				if isSimpleService:
+				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
 						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
 					if haveBouquets:
