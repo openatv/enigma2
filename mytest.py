@@ -389,6 +389,8 @@ class PowerKey:
 		globalActionMap.actions["power_long"]=self.powerlong
 		globalActionMap.actions["deepstandby"]=self.shutdown # frontpanel long power button press
 		globalActionMap.actions["discrete_off"]=self.standby
+		globalActionMap.actions["sleeptimer_standby"]=self.sleepStandby
+		globalActionMap.actions["sleeptimer_deepstandby"]=self.sleepDeepStandby
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
@@ -446,6 +448,12 @@ class PowerKey:
 						return
 		elif action == "standby":
 			self.standby()
+		elif action == "sleeptimerStandby":
+			val = 3
+			self.setSleepTimer(val)
+		elif action == "sleeptimerDeepStandby":
+			val = 4
+			self.setSleepTimer(val)
 
 	def powerdown(self):
 		self.standbyblocked = 0
@@ -460,6 +468,27 @@ class PowerKey:
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.open(Screens.Standby.Standby)
+
+	def setSleepTimer(self, val):
+		from PowerTimer import PowerTimerEntry
+		sleeptime = 15
+		data = (int(time() + 60), int(time() + 120))
+		self.addSleepTimer(PowerTimerEntry(checkOldTimers = True, *data, timerType = val, autosleepdelay = sleeptime))
+
+	def addSleepTimer(self, timer):
+		from Screens.PowerTimerEntry import TimerEntry
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
+
+	def finishedAdd(self, answer):
+		if answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.PowerTimer.record(entry)
+
+	def sleepStandby(self):
+		self.doAction(action = "sleeptimerStandby")
+
+	def sleepDeepStandby(self):
+		self.doAction(action = "sleeptimerDeepStandby")
 
 profile("Scart")
 from Screens.Scart import Scart

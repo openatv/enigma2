@@ -65,7 +65,7 @@ class TIMERTYPE:
 
 # please do not translate log messages
 class PowerTimerEntry(timer.TimerEntry, object):
-	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False):
+	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False, autosleepdelay = 60):
 		global wakeupEnd
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
@@ -85,7 +85,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
 		self.autosleepinstandbyonly = 'no'
-		self.autosleepdelay = 60
+		self.autosleepdelay = autosleepdelay
 		self.autosleeprepeat = 'once'
 
 		self.log_entries = []

@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from Components.config import ConfigSelection, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
+from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
@@ -112,7 +112,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 
 		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-		self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits = (10, 300))
+		self.timerrntry_autosleepdelay = ConfigSelectionNumber(default = autosleepdelay, stepwidth = 15, min = 15, max = 300, wraparound = True)
 		self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = autosleeprepeat)
 		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("Yes")), ("yesNWno",_("Yes, and no network traffic")), ("no", _("No"))],default=autosleepinstandbyonly)
 
