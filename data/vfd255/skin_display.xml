@@ -28,22 +28,6 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<!--widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget-->
-<!--
-		<widget source="session.CurrentService" render="Pixmap" pixmap="crypt.png" position="185,0"  size="10,12">
-			<convert type="ServiceInfo">IsCrypted</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="txt.png" position="198,0" size="14,12">
-			<convert type="ServiceInfo">HasTelext</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
- -->
 		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="180,0"  size="32,12">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
@@ -394,33 +378,7 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-<!-- ViX -->
-	<screen name="VIXDevicesPanelSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="entry" render="Label" position="0,21" size="255,16" font="FdLcD;14" halign="left" noWrap="1" />
-		<widget source="desc" render="Label" position="0,38" size="255,26" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
-	</screen>
-	<screen name="VIXSwap_summary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="parent.swapname_summary" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="parent.swapactive_summary" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
-	</screen>
-	<screen name="UpdatePlugin_summary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="parent.package" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="parent.status" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
-	</screen>
-	<screen name="SoftwareUpdateChanges_summary" position="0,0" size="255,64">
-		<widget source="parent.title_summary" render="Label" position="0,0" size="160,15" font="FdLcD;15" halign="left" noWrap="1" />
-		<widget source="parent.text_summary" render="Label" position="0,16" size="255,54" font="FdLcD;12" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-	</screen>
+
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
@@ -515,12 +473,29 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
+	
 	<!-- ATV -->
+	<!-- Quickmenü -->
 	<screen name="QuickMenu_summary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
+	<!-- Infopanel -->
 	<screen name="Infopanel_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<!-- LanguageSelection -->
+	<screen name="LanguageSelection_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
+		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="LanguageWizardSummary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
+		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<!-- AudioSelection -->
+	<screen name="AudioSelection_summary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
