@@ -119,6 +119,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Switch channel up"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch channel down"), "Infobar/switchChannelDown", "InfoBar"))
 	hotkeyFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
+	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
+	hotkeyFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", "InfoBar"))
 	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
@@ -130,7 +132,6 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
-	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
 	hotkeyFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
 	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
 	hotkeyFunctions.append((_("Activate timeshift End"), "Infobar/activateTimeshiftEnd", "InfoBar"))
@@ -555,3 +556,9 @@ class InfoBarHotkey():
 				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
+
+	def showServiceListOrMovies(self):
+		if hasattr(self, "openServiceList"):
+			self.openServiceList()
+		elif hasattr(self, "showMovies"):
+			self.showMovies()
