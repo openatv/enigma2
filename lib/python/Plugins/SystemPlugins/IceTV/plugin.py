@@ -25,12 +25,11 @@ from calendar import timegm
 from time import strptime, sleep, gmtime, strftime
 from datetime import datetime
 from . import config, enableIceTV, disableIceTV
-from Components.Task import Job, PythonTask, job_manager
 import API as ice
 from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
-from Tools.BoundFunction import boundFunction
+from twisted.internet import reactor
 
 _session = None
 password_requested = False
@@ -43,6 +42,7 @@ class EPGFetcher(object):
         self.fetch_timer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
         self.log = deque(maxlen=40)
         # TODO: channel_service_map should probably be locked in case the user edits timers at the time of a fetch
+        # Then again, the GIL may actually prevent issues here.
         self.channel_service_map = None
         _session.nav.RecordTimer.onTimerAdded.append(self.onTimerAdded)
         _session.nav.RecordTimer.onTimerRemoved.append(self.onTimerRemoved)
@@ -68,20 +68,14 @@ class EPGFetcher(object):
         if not self.shouldProcessTimer(entry):
             return
         # print "[IceTV] Add timer job"
-        job = Job(_("IceTV update job"))
-        task = PythonTask(job, _("Add timer"))
-        task.work = boundFunction(self.postTimer, entry)
-        job_manager.AddJob(job)
+        reactor.callInThread(self.posTimer, entry)
 
     def onTimerRemoved(self, entry):
         # print "[IceTV] timer removed: ", entry
         if not self.shouldProcessTimer(entry) or not entry.ice_timer_id:
             return
         # print "[IceTV] Delete timer job"
-        job = Job(_("IceTV update job"))
-        task = PythonTask(job, _("Delete timer"))
-        task.work = boundFunction(self.deleteTimer, entry.ice_timer_id)
-        job_manager.AddJob(job)
+        reactor.callInThread(self.deleteTimer, entry.ice_timer_id)
 
     def onTimerChanged(self, entry):
         # print "[IceTV] timer changed: ", entry
@@ -93,16 +87,10 @@ class EPGFetcher(object):
         if entry.ice_timer_id is None:
             # New timer as far as IceTV is concerned
             # print "[IceTV] Add timer job"
-            job = Job(_("IceTV update job"))
-            task = PythonTask(job, _("Add timer"))
-            task.work = boundFunction(self.postTimer, entry)
-            job_manager.AddJob(job)
+            reactor.callInThread(self.posTimer, entry)
         else:
             # print "[IceTV] Modify timer job"
-            job = Job(_("IceTV update job"))
-            task = PythonTask(job, _("Modify timer"))
-            task.work = boundFunction(self.putTimer, entry)
-            job_manager.AddJob(job)
+            reactor.callInThread(self.putTimer, entry)
 
     def freqChanged(self, refresh_interval):
         self.fetch_timer.stop()
@@ -117,13 +105,8 @@ class EPGFetcher(object):
             if password_requested:
                 self.addLog("Can not proceed - you need to login first")
                 return
-            job = Job(_("IceTV update job"))
-            task = PythonTask(job, _("Fetch"))
-            task.work = self.work
-            job_manager.AddJob(job)
-
-    def work(self):
-        self.doWork()
+            # print "[IceTV] Create fetch job"
+            reactor.callInThread(self.doWork)
 
     def doWork(self):
         global password_requested
