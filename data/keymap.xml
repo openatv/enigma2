@@ -21,8 +21,10 @@
 		<key id="KEY_RIGHT" mapto="right" flags="mr"/>
 		<key id="KEY_HOME" mapto="home" flags="mr"/>
 		<key id="KEY_END" mapto="end" flags="mr"/>
-		<key id="KEY_BACK" mapto="home" flags="mr"/>
-		<key id="KEY_FORWARD" mapto="end" flags="mr"/>
+		<device name="dreambox ir keyboard">
+			<key id="KEY_BACK" mapto="home" flags="mr"/>
+			<key id="KEY_FORWARD" mapto="end" flags="mr"/>
+		</device>
 		<key id="KEY_DELETE" mapto="deleteForward" flags="mr"/>
 		<key id="KEY_BACKSPACE" mapto="deleteBackward" flags="mr"/>
 		<key id="KEY_TAB" mapto="tab" flags="mr"/>
@@ -117,8 +119,10 @@
 		<key id="KEY_DOWN" mapto="keyDown" flags="mr"/>
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr"/>
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr"/>
-		<key id="KEY_BACK" mapto="historyBack" flags="mr"/>
-		<key id="KEY_FORWARD" mapto="historyNext" flags="mr"/>
+		<device name="dreambox ir keyboard">
+			<key id="KEY_BACK" mapto="historyBack" flags="mr"/>
+			<key id="KEY_FORWARD" mapto="historyNext" flags="mr"/>
+		</device>
 		<key id="KEY_CHANNELUP" mapto="keyChannelUp" flags="m"/>
 		<key id="KEY_CHANNELDOWN" mapto="keyChannelDown" flags="m"/>
 		<key id="BTN_0" mapto="zapUp" flags="mr"/>
@@ -258,8 +262,10 @@
 	<map context="InfobarSubserviceQuickzapActions">
 		<key id="KEY_PREVIOUS" mapto="prevSubservice" flags="m"/>
 		<key id="KEY_NEXT" mapto="nextSubservice" flags="m"/>
-		<key id="KEY_BACK" mapto="prevSubservice" flags="m"/>
-		<key id="KEY_FORWARD" mapto="nextSubservice" flags="m"/>
+		<device name="dreambox ir keyboard">
+			<key id="KEY_BACK" mapto="prevSubservice" flags="m"/>
+			<key id="KEY_FORWARD" mapto="nextSubservice" flags="m"/>
+		</device>
 		<key id="KEY_EXIT" mapto="exit" flags="m"/>
 		<key id="KEY_ESC" mapto="exit" flags="m"/>
 		<key id="KEY_TV" mapto="exit" flags="m"/>
@@ -424,8 +430,8 @@
 	<map context="MoviePlayerActions">
 		<key id="KEY_TV" mapto="leavePlayer" flags="m"/>
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m"/>
-		<key id="KEY_BACK" mapto="leavePlayer" flags="m"/>
-		<key id="KEY_EXIT" mapto="leavePlayer" flags="m"/>
+		<key id="KEY_EXIT" mapto="leavePlayerOnExit" flags="m"/>
+		<key id="KEY_ESC" mapto="leavePlayerOnExit" flags="m"/>
 		<key id="KEY_CHANNELUP" mapto="channelUp" flags="m"/>
 		<key id="KEY_CHANNELDOWN" mapto="channelDown" flags="m"/>
 		<key id="KEY_PREVIOUS" mapto="movePrev" flags="b"/>
@@ -531,8 +537,10 @@
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m"/>
 		<key id="KEY_PREVIOUS" mapto="prevMarker" flags="m"/>
 		<key id="KEY_NEXT" mapto="nextMarker" flags="m"/>
-		<key id="KEY_BACK" mapto="prevMarker" flags="m"/>
-		<key id="KEY_FORWARD" mapto="nextMarker" flags="m"/>
+		<device name="dreambox ir keyboard">
+			<key id="KEY_BACK" mapto="prevMarker" flags="m"/>
+			<key id="KEY_FORWARD" mapto="nextMarker" flags="m"/>
+		</device>
 		<key id="KEY_LEFT" mapto="keyLeft" flags="m"/>
 		<key id="KEY_RIGHT" mapto="keyRight" flags="m"/>
 		<key id="KEY_RECORD" mapto="keyRecord" flags="m"/>
@@ -748,7 +756,6 @@
 		<key id="KEY_PLAY" mapto="play" flags="m"/>
 		<key id="KEY_STOP" mapto="stop" flags="b"/>
 		<key id="KEY_STOP" mapto="shift_stop" flags="l"/>
-		<key id="KEY_BACK" mapto="stop" flags="m"/>
 		<key id="KEY_TV" mapto="stop" flags="b"/>
 		<key id="KEY_TV" mapto="shift_stop" flags="l"/>
 
