@@ -567,6 +567,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			"up": (self.keyUp, _("Go up the list")),
 			"down": (self.keyDown, _("Go down the list"))
 		}, prio=-2, description=_("Navigation"))
+		self["FileNavigateActions"] = HelpableActionMap(self, "FileNavigateActions", {
+			"directoryUp": (self.directoryUp, _("Go to the parent directory")),
+		}, prio=-2, description=_("Navigation"))
 
 		tPreview = _("Preview")
 		tFwd = _("skip forward") + " (" + tPreview + ")"
@@ -748,6 +751,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["list"].moveToFirst()
 		else:
 			self["list"].moveDown()
+
+	def directoryUp(self):
+		cur = config.movielist.last_videodir.value.rstrip("/")
+		root = config.movielist.root.value.rstrip("/")
+		if cur == root:
+			return
+		parent = os.path.dirname(cur)
+		if os.path.isdir(parent):
+			self.gotFilename(parent)
+			return
 
 	def moveToFirstOrFirstFile(self):
 		if self.list.getCurrentIndex() <= self.list.firstFileEntry:  # selection above or on first movie
