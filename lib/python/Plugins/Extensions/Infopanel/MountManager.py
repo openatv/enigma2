@@ -169,9 +169,12 @@ class HddMount(Screen):
 		self.Console = Console()
 		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
 		sleep(0.5)
-		f = open('/tmp/devices.tmp', 'r')
-		swapdevices = f.read()
-		f.close()
+		try:
+			f = open('/tmp/devices.tmp', 'r')
+			swapdevices = f.read()
+			f.close()
+		except:
+			swapdevices = ' '
 		if path.exists('/tmp/devices.tmp'):
 			remove('/tmp/devices.tmp')
 		swapdevices = swapdevices.replace('\n','')
