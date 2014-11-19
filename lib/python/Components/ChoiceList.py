@@ -17,6 +17,8 @@ def ChoiceEntryComponent(key = None, text = ["--"]):
 				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/expanded.png"))
 			elif key == "verticalline":
 				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/verticalline.png"))
+			elif key == "bullet":
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/bullet.png"))
 			else:
 				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/key_%s.png" % key))
 			if png:
