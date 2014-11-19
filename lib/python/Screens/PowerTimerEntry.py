@@ -5,6 +5,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from PowerTimer import AFTEREVENT, TIMERTYPE
@@ -26,6 +27,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
+		self["summary_description"] = StaticText("")
 
 		self.createConfig()
 
@@ -37,7 +39,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeUp": self.incrementStart,
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
-			"size-": self.decrementEnd
+			"size-": self.decrementEnd,
+			"up": self.keyUp,
+			"down": self.keyDown
 		}, -2)
 
 		self.list = []
@@ -187,6 +191,13 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
+		self.checkSummary()
+
+	def createSummary(self):
+		pass
+
+	def checkSummary(self):
+		self["summary_description"].text = self["config"].getCurrent()[0]
 
 	def newConfig(self):
 		if self["config"].getCurrent() in (self.timerType, self.timerTypeEntry, self.frequencyEntry, self.entryShowEndTime):
@@ -203,6 +214,14 @@ class TimerEntry(Screen, ConfigListScreen):
 	def keySelect(self):
 		cur = self["config"].getCurrent()
 		self.keyGo()
+
+	def keyUp(self):
+		self["config"].moveUp()
+		self.checkSummary()
+
+	def keyDown(self):
+		self["config"].moveDown()
+		self.checkSummary()
 
 	def getTimestamp(self, date, mytime):
 		d = localtime(date)
