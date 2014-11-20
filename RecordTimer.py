@@ -821,6 +821,105 @@ class RecordTimer(timer.Timer):
 			self.saveTimer()
 		return None
 
+	def isInRepeatTimer(self, timer, event):
+		time_match = 0
+		is_editable = False
+		begin = event.getBeginTime()
+		duration = event.getDuration()
+		end = begin + duration
+		timer_end = timer.end
+		if timer.disabled and timer.isRunning():
+			if begin < timer.begin <= end or timer.begin <= begin <= timer_end:
+				return True
+			else:
+				return False
+		if timer.justplay and (timer_end - timer.begin) <= 1:
+			timer_end += 60
+		bt = localtime(begin)
+		bday = bt.tm_wday
+		begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
+		end2 = begin2 + duration / 60
+		xbt = localtime(timer.begin)
+		xet = localtime(timer_end)
+		offset_day = False
+		checking_time = timer.begin < begin or begin <= timer.begin <= end
+		if xbt.tm_yday != xet.tm_yday:
+			oday = bday - 1
+			if oday == -1: oday = 6
+			offset_day = timer.repeated & (1 << oday)
+		xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
+		xend = xbegin + ((timer_end - timer.begin) / 60)
+		if xend < xbegin:
+			xend += 1440
+		if timer.repeated & (1 << bday) and checking_time:
+			if begin2 < xbegin <= end2:
+				if xend < end2:
+					# recording within event
+					time_match = (xend - xbegin) * 60
+					is_editable = True
+				else:
+					# recording last part of event
+					time_match = (end2 - xbegin) * 60
+					summary_end = (xend - end2) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
+			elif xbegin <= begin2 <= xend:
+				if xend < end2:
+					# recording first part of event
+					time_match = (xend - begin2) * 60
+					summary_end = (begin2 - xbegin) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
+				else:
+					# recording whole event
+					time_match = (end2 - begin2) * 60
+					is_editable = True
+			elif offset_day:
+				xbegin -= 1440
+				xend -= 1440
+				if begin2 < xbegin <= end2:
+					if xend < end2:
+						# recording within event
+						time_match = (xend - xbegin) * 60
+						is_editable = True
+					else:
+						# recording last part of event
+						time_match = (end2 - xbegin) * 60
+						summary_end = (xend - end2) * 60
+						is_editable = not summary_end and True or time_match >= summary_end
+				elif xbegin <= begin2 <= xend:
+					if xend < end2:
+						# recording first part of event
+						time_match = (xend - begin2) * 60
+						summary_end = (begin2 - xbegin) * 60
+						is_editable = not summary_end and True or time_match >= summary_end
+					else:
+						# recording whole event
+						time_match = (end2 - begin2) * 60
+						is_editable = True
+		elif offset_day and checking_time:
+			xbegin -= 1440
+			xend -= 1440
+			if begin2 < xbegin <= end2:
+				if xend < end2:
+					# recording within event
+					time_match = (xend - xbegin) * 60
+					is_editable = True
+				else:
+					# recording last part of event
+					time_match = (end2 - xbegin) * 60
+					summary_end = (xend - end2) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
+			elif xbegin <= begin2 <= xend:
+				if xend < end2:
+					# recording first part of event
+					time_match = (xend - begin2) * 60
+					summary_end = (begin2 - xbegin) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
+				else:
+					# recording whole event
+					time_match = (end2 - begin2) * 60
+					is_editable = True
+		return time_match and is_editable
+
 	def isInTimer(self, eventid, begin, duration, service):
 		returnValue = None
 		type = 0
@@ -874,7 +973,14 @@ class RecordTimer(timer.Timer):
 				if x.always_zap:
 					type_offset = 10
 
-				if x.repeated != 0:
+				timer_repeat = x.repeated
+				# if set 'don't stop current event but disable coming events' for repeat timer
+				running_only_curevent = x.disabled and x.isRunning() and timer_repeat
+				if running_only_curevent:
+					timer_repeat = 0
+					type_offset += 15
+
+				if timer_repeat != 0:
 					type_offset += 15
 					if bt is None:
 						bt = localtime(begin)

@@ -90,19 +90,29 @@ class EventViewBase:
 		if event is None:
 			return
 		eventid = event.getEventId()
+		begin = event.getBeginTime()
+		end = begin + event.getDuration()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
+		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
-				buttons = ["red", "green"]
-				def timerAction(choice):
-					if choice is not None:
-						if choice[1] == "delete":
-							self.removeTimer(timer)
-						elif choice[1] == "edit":
-							self.session.open(TimerEntry, timer)
-				self.session.openWithCallback(timerAction, ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=buttons)
+			needed_ref = ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr
+			if needed_ref and timer.eit == eventid and (begin < timer.begin <= end or timer.begin <= begin <= timer.end):
+				isRecordEvent = True
 				break
+			elif needed_ref and timer.repeated and self.session.nav.RecordTimer.isInRepeatTimer(timer, event):
+				isRecordEvent = True
+				break
+		if isRecordEvent:
+			title_text = timer.repeated and _("Attention, this is repeated timer!\n") or ""
+			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+			buttons = ["red", "green"]
+			def timerAction(choice):
+				if choice is not None:
+					if choice[1] == "delete":
+						self.removeTimer(timer)
+					elif choice[1] == "edit":
+						self.session.open(TimerEntry, timer)
+			self.session.openWithCallback(timerAction, ChoiceBox, title=title_text + _("Select action for timer '%s'.") % timer.name, list=menu, keys=buttons)
 		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
@@ -192,10 +202,13 @@ class EventViewBase:
 
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
+		begin = event.getBeginTime()
+		end = begin + event.getDuration()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+			needed_ref = ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr
+			if needed_ref and (timer.eit == eventid and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) or timer.repeated and self.session.nav.RecordTimer.isInRepeatTimer(timer, event)):
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:

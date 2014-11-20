@@ -14,6 +14,8 @@ class TimerEntry:
 		self.prepare_time = 20
 		self.end = end
 		self.state = 0
+		self.findRunningEvent = True
+		self.findNextEvent = False
 		self.resetRepeated()
 		#begindate = localtime(self.begin)
 		#newdate = datetime.datetime(begindate.tm_year, begindate.tm_mon, begindate.tm_mday 0, 0, 0);
@@ -26,6 +28,8 @@ class TimerEntry:
 		self.state = self.StateWaiting
 		self.cancelled = False
 		self.first_try_prepare = True
+		self.findRunningEvent = True
+		self.findNextEvent = False
 		self.timeChanged()
 
 	def resetRepeated(self):
@@ -44,11 +48,20 @@ class TimerEntry:
 			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
 		return newdate
 
+	def isFindRunningEvent(self):
+		return self.findRunningEvent
+
+	def isFindNextEvent(self):
+		return self.findNextEvent
+
 	# update self.begin and self.end according to the self.repeated-flags
-	def processRepeated(self, findRunningEvent = True):
+	def processRepeated(self, findRunningEvent=True, findNextEvent=False):
 		if (self.repeated != 0):
 			now = int(time()) + 1
-
+			if findNextEvent:
+				now = self.end + 120
+			self.findRunningEvent = findRunningEvent
+			self.findNextEvent = findNextEvent
 			#to avoid problems with daylight saving, we need to calculate with localtime, in struct_time representation
 			localrepeatedbegindate = localtime(self.repeatedbegindate)
 			localbegin = localtime(self.begin)
