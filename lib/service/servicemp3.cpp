@@ -734,6 +734,8 @@ RESULT eServiceMP3::stop()
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
 	m_nownext_timer->stop();
+	if (m_streamingsrc_timeout)
+		m_streamingsrc_timeout->stop();
 
 	return 0;
 }
@@ -1945,9 +1947,11 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					owner = 0;
 				if ( owner )
 				{
+					GstState state;
+					gst_element_get_state(m_gst_playbin, &state, NULL, 0LL);
 					GstElementFactory *factory = gst_element_get_factory(GST_ELEMENT(owner));
 					const gchar *name = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
-					if (!strcmp(name, "souphttpsrc"))
+					if (!strcmp(name, "souphttpsrc") && (state == GST_STATE_READY) && !m_streamingsrc_timeout->isActive())
 					{
 						m_streamingsrc_timeout->start(HTTP_TIMEOUT*1000, true);
 						g_object_set (G_OBJECT (owner), "timeout", HTTP_TIMEOUT, NULL);
