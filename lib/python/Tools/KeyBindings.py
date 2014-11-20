@@ -241,13 +241,14 @@ def queryKeyBinding(context, action):
 	else:
 		return [ ]
 
-def getKeyDescription(key, rcmodel=None):
+def getKeyDescription(key):
 	if rc_model.rcIsDefault():
 		idx = config.misc.rcused.value
 	else:
-		if rcmodel == "14":	# XP1000
+		rctype = config.plugins.remotecontroltype.rctype.value
+		if rctype == 14:	# XP1000
 			idx = 3
-		elif rcmodel == "18":	# F1
+		elif rctype == 18:	# F1
 			idx = 4
 		else:
 			idx = 2

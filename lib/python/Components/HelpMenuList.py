@@ -2,7 +2,6 @@ from GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
-import os
 #getKeyPositions
 
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
@@ -14,7 +13,6 @@ class HelpMenuList(GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.callback = callback
 		self.extendedHelp = False
-		rc_type = self.getRCtype()
 
 		l = [ ]
 		for (actionmap, context, actions) in helplist:
@@ -33,7 +31,7 @@ class HelpMenuList(GUIComponent):
 				flags = 0
 
 				for n in buttons:
-					(name, flags) = (getKeyDescription(n[0], rc_type), n[1])
+					(name, flags) = (getKeyDescription(n[0]), n[1])
 					if name is not None:
 						break
 
@@ -94,10 +92,3 @@ class HelpMenuList(GUIComponent):
 	def selectionChanged(self):
 		for x in self.onSelChanged:
 			x()
-
-	def getRCtype(self):
-		try:
-			if os.path.isfile('/proc/stb/ir/rc/type'):
-				return open('/proc/stb/ir/rc/type').readline().replace('\n','')
-		except:
-			return None
