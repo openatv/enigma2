@@ -561,7 +561,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices.append((str(id), nimmanager.getNimDescription(id)))
 			self.nimConfig.connectedTo.setChoices(choices)
 			# sanity check for empty sat list
-			if len(nimmanager.getSatListForNim(self.slotid)) < 1:
+			if self.nimConfig.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.configMode.value = "nothing"
 		for x in self["config"].list:
 			x[1].save()
