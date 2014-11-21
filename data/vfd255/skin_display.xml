@@ -317,11 +317,11 @@
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="256,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
+		<widget source="parent.Text" render="Label" position="0,0" size="256,38" font="FdLcD;20" halign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1" />
 	</screen>
 	<screen name="MessageBoxSimple_summary" position="0,0" size="256,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
+		<widget source="parent.Text" render="Label" position="0,0" size="256,38" font="FdLcD;20" halign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1" />
 	</screen>
 
@@ -340,7 +340,7 @@
 	</screen>
 
 	<screen name="WizardSummary" position="0,0" size="256,64">
-		<widget source="text" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
+		<widget source="text" render="Label" position="0,0" size="256,38" font="FdLcD;20" halign="center" />
 		<widget source="parent.list" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
