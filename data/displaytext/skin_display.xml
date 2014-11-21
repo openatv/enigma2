@@ -184,13 +184,14 @@
 		<widget source="parent.summarylangsel" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 
-	<screen name="Console_summary" position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />
-	</screen>
-
 <!-- AudioSelection -->
 	<screen name="AudioSelection_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
+	</screen>
+
+<!-- Console -->
+	<screen name="Console_summary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 
 </skin>
