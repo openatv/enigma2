@@ -1997,7 +1997,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time.time()) < 120):
-			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
+			msg = "\n" + _("Recording(s) are in progress or coming up soon!")
 		else:
 			msg = ""
 		mbox = self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
