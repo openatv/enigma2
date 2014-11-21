@@ -370,7 +370,7 @@ class MovieContextMenu(Screen):
 
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-					append_to_menu( menu, (p.description, boundFunction(p, session, service)))
+					append_to_menu( menu, (p.description, boundFunction(p, session, service)), key="bullet")
 		if csel.exist_bookmark():
 			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark))
 		else:

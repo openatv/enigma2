@@ -147,7 +147,7 @@ class ChannelContextMenu(Screen):
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
 					for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
-						append_when_current_valid(current, menu, (p.name, boundFunction(self.runPlugin, p)))
+						append_when_current_valid(current, menu, (p.name, boundFunction(self.runPlugin, p)), key="bullet")
 					if config.servicelist.startupservice.value == self.csel.getCurrentSelection().toString():
 						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level=0)
 					else:
@@ -213,15 +213,11 @@ class ChannelContextMenu(Screen):
 					self.removeFunction = self.removeBouquet
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
-				isSimpleService = not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup)
-				if isSimpleService:
-					for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
-						append_when_current_valid(current, menu, (p.name, boundFunction(self.runPlugin, p)))
 				if csel.movemode:
 					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level=0, key="6")
 				else:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
-				if isSimpleService:
+				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
 						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
 					if haveBouquets:

@@ -826,7 +826,8 @@ class RecordTimer(timer.Timer):
 		return None
 
 	def isInRepeatTimer(self, timer, event):
-		time_match = False
+		time_match = 0
+		is_editable = False
 		begin = event.getBeginTime()
 		duration = event.getDuration()
 		end = begin + duration
@@ -857,41 +858,71 @@ class RecordTimer(timer.Timer):
 		if timer.repeated & (1 << bday) and checking_time:
 			if begin2 < xbegin <= end2:
 				if xend < end2:
+					# recording within event
 					time_match = (xend - xbegin) * 60
+					is_editable = True
 				else:
+					# recording last part of event
 					time_match = (end2 - xbegin) * 60
+					summary_end = (xend - end2) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
 			elif xbegin <= begin2 <= xend:
 				if xend < end2:
+					# recording first part of event
 					time_match = (xend - begin2) * 60
+					summary_end = (begin2 - xbegin) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
 				else:
+					# recording whole event
 					time_match = (end2 - begin2) * 60
+					is_editable = True
 			elif offset_day:
 				xbegin -= 1440
 				xend -= 1440
 				if begin2 < xbegin <= end2:
 					if xend < end2:
+						# recording within event
 						time_match = (xend - xbegin) * 60
+						is_editable = True
 					else:
+						# recording last part of event
 						time_match = (end2 - xbegin) * 60
+						summary_end = (xend - end2) * 60
+						is_editable = not summary_end and True or time_match >= summary_end
 				elif xbegin <= begin2 <= xend:
 					if xend < end2:
+						# recording first part of event
 						time_match = (xend - begin2) * 60
+						summary_end = (begin2 - xbegin) * 60
+						is_editable = not summary_end and True or time_match >= summary_end
 					else:
+						# recording whole event
 						time_match = (end2 - begin2) * 60
+						is_editable = True
 		elif offset_day and checking_time:
 			xbegin -= 1440
 			xend -= 1440
 			if begin2 < xbegin <= end2:
 				if xend < end2:
+					# recording within event
 					time_match = (xend - xbegin) * 60
+					is_editable = True
 				else:
+					# recording last part of event
 					time_match = (end2 - xbegin) * 60
+					summary_end = (xend - end2) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
 			elif xbegin <= begin2 <= xend:
 				if xend < end2:
+					# recording first part of event
 					time_match = (xend - begin2) * 60
+					summary_end = (begin2 - xbegin) * 60
+					is_editable = not summary_end and True or time_match >= summary_end
 				else:
+					# recording whole event
 					time_match = (end2 - begin2) * 60
-		return time_match
+					is_editable = True
+		return time_match and is_editable
 
 	def isInTimer(self, eventid, begin, duration, service):
 		returnValue = None
