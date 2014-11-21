@@ -345,20 +345,14 @@
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-
-	<!-- LanguageSelection -->
-	<screen name="LanguageSelection_summary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
-		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
-	</screen>
-	<screen name="LanguageWizardSummary" position="0,0" size="256,64">
-		<widget source="parent.summarytext" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
-		<widget source="parent.summarylangname" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1"  />
+	<screen name="LanguageWizardSummary" position="0,0" size="255,64">
+		<widget source="parent.summarytext" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
+		<widget source="parent.summarylangname" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  />
 	</screen>
 
 	<screen name="VideoWizardSummary" position="0,0" size="256,64">
-		<widget source="text" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
-		<widget source="parent.list" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1"  >
+		<widget source="text" render="Label" position="0,0" size="256,44" font="FdLcD;12" halign="center" />
+		<widget source="parent.list" render="Label" position="0,40" size="256,24" font="FdLcD;22" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -492,11 +486,15 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
-
-	<!--screen name="LanguageWizardSummary" position="0,0" size="256,64">
+	<!-- LanguageSelection -->
+	<screen name="LanguageSelection_summary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
-	</screen-->
+	</screen>
+	<screen name="LanguageWizardSummary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
+		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
 	<!-- AudioSelection -->
 	<screen name="AudioSelection_summary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
