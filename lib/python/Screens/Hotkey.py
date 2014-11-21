@@ -79,6 +79,8 @@ def getHotkeys():
 		("Sleep" + " " + _("long"), "sleep_long", ""),
 		("Context", "contextmenu", ""),
 		("Context" + " " + _("long"), "contextmenu_long", ""),
+		("Video", "video", ""),
+		("Video" + " " + _("long"), "video_long", ""),
 		("Video Mode", "vmode", ""),
 		("Video Mode" + " " + _("long"), "vmode_long", ""),
 		("Home", "home", ""),
