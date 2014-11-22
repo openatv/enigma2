@@ -364,13 +364,31 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.execing:
 			self.startHideTimer()
 
-#	def startShow(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-#		self.__state = self.STATE_SHOWN
-#
-#	def startHide(self):
-#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-#		self.__state = self.STATE_HIDDEN
+class BufferIndicator(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["status"] = Label()
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evBuffering: self.bufferChanged,
+				iPlayableService.evStart: self.hide,
+			})
+
+	def bufferChanged(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		if info:
+			value = info.getInfo(iServiceInformation.sBuffer)
+			self["status"].setText(_("Buffering %d%%") % value)
+			if value == 100:
+				self.hide()
+			if value == 0:
+				self.show()
+
+class InfoBarBuffer():
+	def __init__(self):
+		self.bufferScreen = self.session.instantiateDialog(BufferIndicator)
+		self.bufferScreen.hide()
 
 class NumberZap(Screen):
 	def quit(self):
