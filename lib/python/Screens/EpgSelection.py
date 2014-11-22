@@ -189,6 +189,7 @@ class EPGSelection(Screen, HelpableScreen):
 						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
 						'info': (self.Info, _('Show detailed event info')),
 						'infolong': (self.InfoLong, _('Show single epg for current channel')),
+						'epg': (self.Info, _('Show detailed event info')),
 						'menu': (self.createSetup, _('Setup menu'))
 					}, -1)
 				self['epgactions'].csel = self
