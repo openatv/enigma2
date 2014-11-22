@@ -71,11 +71,14 @@ timer = eTimer()
 timer.timeout.get().append(timerEvent)
 timer.startLongTimer(1)
 
+choicelist = [('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan")),('3',_("Teletext"))]
 config.plugins.infopanel_yellowkey = ConfigSubsection()
 if getBoxType() == "dm800":
-	config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))], default='1')
+	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices = choicelist)
+	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='1', choices = choicelist)
 else:
-	config.plugins.infopanel_yellowkey.list = ConfigSelection([('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan"))], default='0')
+	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='0', choices = choicelist)
+	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices = choicelist)
 config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
 config.plugins.infopanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
