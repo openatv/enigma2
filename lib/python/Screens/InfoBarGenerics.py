@@ -3561,6 +3561,23 @@ class InfoBarAudioSelection:
 				global AUDIO
 				AUDIO = True
 				ToggleVideo()
+			elif config.plugins.infopanel_yellowkey.list.value == '3':
+				self.startTeletext()
+			else:
+				try:
+					self.startTimeshift()
+				except:
+					pass
+		else:
+			if config.plugins.infopanel_yellowkey.listLong.value == '0':
+				from Screens.AudioSelection import AudioSelection
+				self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+			elif config.plugins.infopanel_yellowkey.listLong.value == '2':
+				global AUDIO
+				AUDIO = True
+				ToggleVideo()
+			elif config.plugins.infopanel_yellowkey.listLong.value == '3':
+				self.startTeletext()
 			else:
 				try:
 					self.startTimeshift()
