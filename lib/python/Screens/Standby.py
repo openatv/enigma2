@@ -238,7 +238,7 @@ class TryQuitMainloop(MessageBox):
 			reason = _("You seem to be in timeshift!") + '\n'
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			default_yes = False
-			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
+			reason = _("Recording(s) are in progress or coming up soon!") + '\n'
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
