@@ -387,6 +387,7 @@ public:
 
 		sHBBTVUrl,
 		sLiveStreamDemuxId,
+		sBuffer,
 
 		sUser = 0x100
 	};
