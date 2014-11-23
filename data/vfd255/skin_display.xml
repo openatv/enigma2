@@ -317,12 +317,12 @@
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="256,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="256,38" font="FdLcD;20" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 	<screen name="MessageBoxSimple_summary" position="0,0" size="256,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="256,38" font="FdLcD;20" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="255,64">
@@ -339,28 +339,31 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-	<screen name="WizardSummary" position="0,0" size="256,64">
+	<!--screen name="WizardSummary" position="0,0" size="256,64">
 		<widget source="text" render="Label" position="0,0" size="256,38" font="FdLcD;20" halign="center" />
 		<widget source="parent.list" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
-	</screen>
+	</screen-->
 
 	<!-- LanguageSelection -->
 	<screen name="LanguageSelection_summary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
 		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 	<screen name="LanguageWizardSummary" position="0,0" size="256,64">
-		<widget source="parent.summarytext" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
-		<widget source="parent.summarylangname" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1"  />
+		<widget source="parent.summarytext" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" />
+		<widget source="parent.summarylangname" render="Label" position="0,42" size="256,22" font="FdLcD;20" halign="center" noWrap="1"  />
 	</screen>
 
+<!-- wizard -->
+	<screen name="WizardSummary" position="0,0" size="256,64">
+		<widget source="text" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="entry" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
 	<screen name="VideoWizardSummary" position="0,0" size="256,64">
-		<widget source="text" render="Label" position="0,0" size="256,38" font="FdLcD;12" halign="center" />
-		<widget source="parent.list" render="Label" position="0,40" size="256,26" font="FdLcD;24" halign="center" noWrap="1"  >
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="text" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="entry" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 
 <!-- DVD -->
@@ -499,14 +502,32 @@
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 
+<!-- console -->
 	<screen name="Console_summary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,26" font="FdLcD;24" halign="center" valign="top" />
-		<panel name="SummaryClockPanel" />
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" font="FdLcD;20" halign="center" noWrap="1" />
 	</screen>
 
+<!-- softwaremanagment -->
+	<screen name="BackupSelection_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="RestoreScreen_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
 	<screen name="installedPlugins_summary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,26" font="FdLcD;24" halign="center" valign="top" />
-		<panel name="SummaryClockPanel" />
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="RestartNetwork_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="RestorePlugins_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valgin="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 
 </skin>
