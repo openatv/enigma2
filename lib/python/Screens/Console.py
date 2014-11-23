@@ -2,6 +2,7 @@ from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
+from Components.Sources.StaticText import StaticText
 
 class Console(Screen):
 	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
@@ -12,6 +13,7 @@ class Console(Screen):
 		self.errorOcurred = False
 
 		self["text"] = ScrollLabel("")
+		self["summary_description"] = StaticText("")
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.cancel,
@@ -36,6 +38,7 @@ class Console(Screen):
 
 	def startRun(self):
 		self["text"].setText(_("Execution progress:") + "\n\n")
+		self["summary_description"].setText(_("Execution progress:"))
 		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
 		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
@@ -51,6 +54,7 @@ class Console(Screen):
 			lastpage = self["text"].isAtLastPage()
 			str = self["text"].getText()
 			str += _("Execution finished!!")
+			self["summary_description"].setText(_("Execution finished!!"))
 			self["text"].setText(str)
 			if lastpage:
 				self["text"].lastPage()
