@@ -346,6 +346,7 @@ class TimerLog(Screen):
 
 		self["loglist"] = MenuList(self.list)
 		self["logentry"] = Label()
+		self["summary_description"] = StaticText("")
 
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
@@ -411,5 +412,6 @@ class TimerLog(Screen):
 	def updateText(self):
 		if self.list:
 			self["logentry"].setText(str(self["loglist"].getCurrent()[1][2]))
+			self["summary_description"].setText(str(self["loglist"].getCurrent()[1][2]))
 		else:
 			self["logentry"].setText("")
