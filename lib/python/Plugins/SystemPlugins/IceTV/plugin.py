@@ -68,7 +68,7 @@ class EPGFetcher(object):
         if not self.shouldProcessTimer(entry):
             return
         # print "[IceTV] Add timer job"
-        reactor.callInThread(self.posTimer, entry)
+        reactor.callInThread(self.postTimer, entry)
 
     def onTimerRemoved(self, entry):
         # print "[IceTV] timer removed: ", entry
