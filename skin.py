@@ -256,14 +256,11 @@ class AttributeParser:
 			print "[Skin] Attribute not implemented:", attrib, "value:", value
 		except SkinError, ex:
 			print "[Skin] Error:", ex
+		except:
+			print "[Skin] Error:", attrib
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
-			try:
-				getattr(self, attrib)(value)
-			except AttributeError:
-				print "[Skin] Attribute not implemented:", attrib, "value:", value
-			except SkinError, ex:
-				print "[Skin] Error:", ex
+			self.applyOne(attrib, value)
 	def conditional(self, value):
 		pass
 	def position(self, value):
