@@ -19,6 +19,7 @@
 #
 #######################################################################
 from Screens.Screen import Screen
+from Components.Renderer import OMMetrixWeatherWidget
 from Components.Label import Label
 from Components.config import ConfigSelection, getConfigListEntry, config, configfile, ConfigSubsection, ConfigNumber, ConfigSelectionNumber, ConfigYesNo, ConfigText
 from Components.ConfigList import ConfigListScreen
