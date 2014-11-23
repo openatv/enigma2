@@ -1,5 +1,6 @@
 from Screen import Screen
 import ChannelSelection
+import Screens.InfoBar
 from Components.config import config, ConfigClock
 from Components.Button import Button
 from Components.Pixmap import Pixmap
@@ -190,7 +191,7 @@ class EPGSelection(Screen):
 		l.recalcEntrySize()
 		if self.type == EPG_TYPE_MULTI:
 			l.fillMultiEPG(self.services, self.ask_time)
-			l.moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+			l.moveToService(Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.instance.servicelist.getCurrentSelection() or self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
 			self["Service"].newService(service.ref)
