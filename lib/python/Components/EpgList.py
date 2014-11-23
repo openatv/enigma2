@@ -1276,7 +1276,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return self.time_epoch
 
 	def getTimeBase(self):
-		return self.time_base + (self.offs * self.time_epoch * 60)
+		return self.time_base + (int(self.offs) * int(self.time_epoch) * 60)
 
 	def resetOffset(self):
 		self.offs = 0
