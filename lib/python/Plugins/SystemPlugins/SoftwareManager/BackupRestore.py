@@ -151,6 +151,7 @@ class BackupSelection(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
+		self["summary_description"] = StaticText("")
 
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
@@ -185,6 +186,7 @@ class BackupSelection(Screen):
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
+		self["summary_description"].text = current[3]
 		if current[2] is True:
 			self["key_yellow"].setText(_("Deselect"))
 		else:
@@ -241,6 +243,7 @@ class RestoreMenu(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Restore"))
 		self["key_yellow"] = StaticText(_("Delete"))
+		self["summary_description"] = StaticText("")
 
 		self.sel = []
 		self.val = []
@@ -252,7 +255,9 @@ class RestoreMenu(Screen):
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.KeyOk,
-			"cancel": self.keyCancel
+			"cancel": self.keyCancel,
+			"up": self.keyUp,
+			"down": self.keyDown
 		}, -1)
 
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
@@ -268,6 +273,7 @@ class RestoreMenu(Screen):
 
 	def layoutFinished(self):
 		self.setWindowTitle()
+		self.checkSummary()
 
 	def setWindowTitle(self):
 		self.setTitle(_("Restore backups"))
@@ -295,6 +301,14 @@ class RestoreMenu(Screen):
 	def keyCancel(self):
 		self.close()
 
+	def keyUp(self):
+		self["filelist"].up()
+		self.checkSummary()
+
+	def keyDown(self):
+		self["filelist"].down()
+		self.checkSummary()
+
 	def startRestore(self, ret = False):
 		if ret == True:
 			self.exe = True
@@ -315,6 +329,10 @@ class RestoreMenu(Screen):
 				remove(self.val)
 			self.exe = False
 			self.fill_list()
+
+	def checkSummary(self):
+		cur = self["filelist"].getCurrent()
+		self["summary_description"].text = cur
 
 class RestoreScreen(Screen, ConfigListScreen):
 	skin = """
@@ -412,6 +430,7 @@ class RestartNetwork(Screen):
 			</screen> """
 		self.skin = skin
 		self["label"] = Label(_("Please wait while your network is restarting..."))
+		self["summary_description"] = StaticText(_("Please wait while your network is restarting..."))
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.restartLan)
 
@@ -442,6 +461,7 @@ class installedPlugins(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Install Plugins"))
 		self["label"] = Label(_("Please wait while we check your installed plugins..."))
+		self["summary_description"] = StaticText(_("Please wait while we check your installed plugins..."))
 		self.type = self.UPDATE
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
@@ -522,6 +542,7 @@ class RestorePlugins(Screen):
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
 		self["key_green"] = Button(_("Install"))
 		self["key_red"] = Button(_("Cancel"))
+		self["summary_description"] = StaticText("")
 				
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
@@ -582,6 +603,7 @@ class RestorePlugins(Screen):
 		if index == None:
 			index = 0
 		self.index = index
+		self["summary_description"].text = self["menu"].getCurrent()[0]
 			
 	def drawList(self):
 		self["menu"].setList(self.Menulist)
