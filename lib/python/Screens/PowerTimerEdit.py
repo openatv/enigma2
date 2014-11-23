@@ -2,7 +2,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.config import config
-from Components.PowerTimerList import PowerTimerList
+from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
 from Components.Sources.StaticText import StaticText
 from PowerTimer import PowerTimerEntry, AFTEREVENT
 from Screens.Screen import Screen
@@ -167,6 +167,11 @@ class PowerTimerEditList(Screen):
 		timer = self['timerlist'].getCurrent()
 
 		if timer:
+			name = gettimerType(timer)
+			if getafterEvent(timer) == "Nothing":
+				after = ""
+			else:
+				after = getafterEvent(timer)
 			time = "%s %s ... %s" % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
 			duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
 
@@ -181,11 +186,13 @@ class PowerTimerEditList(Screen):
 			else:
 				state = _("<unknown>")
 		else:
+			name = ""
+			after = ""
 			time = ""
 			duration = ""
 			state = ""
 		for cb in self.onChangedEntry:
-			cb(time, duration, state)
+			cb(name, after, time, duration, state)
 
 	def fillTimerList(self):
 		#helper function to move finished timers to end of list
@@ -291,6 +298,8 @@ class PowerTimerEditList(Screen):
 class PowerTimerEditListSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
+		self["name"] = StaticText("")
+		self["after"] = StaticText("")
 		self["time"] = StaticText("")
 		self["duration"] = StaticText("")
 		self["state"] = StaticText("")
@@ -304,7 +313,9 @@ class PowerTimerEditListSummary(Screen):
 	def removeWatcher(self):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 
-	def selectionChanged(self, time, duration, state):
+	def selectionChanged(self, name, after, time, duration, state):
+		self["name"].text = name
+		self["after"].text = after
 		self["time"].text = time
 		self["duration"].text = duration
 		self["state"].text = state

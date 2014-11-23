@@ -9,6 +9,28 @@ from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
 
+def gettimerType(timer):
+	timertype = {
+		TIMERTYPE.WAKEUP: _("Wake Up"),
+		TIMERTYPE.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
+		TIMERTYPE.STANDBY: _("Standby"),
+		TIMERTYPE.AUTOSTANDBY: _("Auto Standby"),
+		TIMERTYPE.AUTODEEPSTANDBY: _("Auto Deep Standby"),
+		TIMERTYPE.DEEPSTANDBY: _("Deep Standby"),
+		TIMERTYPE.REBOOT: _("Reboot"),
+		TIMERTYPE.RESTART: _("Restart GUI")
+		}[timer.timerType]
+	return timertype
+
+def getafterEvent(timer):
+	afterevent = {
+		AFTEREVENT.NONE: _("Nothing"),
+		AFTEREVENT.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
+		AFTEREVENT.STANDBY: _("Standby"),
+		AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
+		}[timer.afterEvent]
+	return afterevent
+
 
 class PowerTimerList(HTMLComponent, GUIComponent, object):
 #
@@ -16,29 +38,11 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 #  | <start, end>              <state>  |
 #
 	def buildTimerEntry(self, timer, processed):
-		timertype = {
-			TIMERTYPE.WAKEUP: _("Wake Up"),
-			TIMERTYPE.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
-			TIMERTYPE.STANDBY: _("Standby"),
-			TIMERTYPE.AUTOSTANDBY: _("Auto Standby"),
-			TIMERTYPE.AUTODEEPSTANDBY: _("Auto Deep Standby"),
-			TIMERTYPE.DEEPSTANDBY: _("Deep Standby"),
-			TIMERTYPE.REBOOT: _("Reboot"),
-			TIMERTYPE.RESTART: _("Restart GUI")
-			}[timer.timerType]
-
-		afterevent = {
-			AFTEREVENT.NONE: _("Nothing"),
-			AFTEREVENT.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
-			AFTEREVENT.STANDBY: _("Standby"),
-			AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
-			}[timer.afterEvent]
-
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
 		res = [ None ]
 		x = width / 2
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 4, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timertype))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 4, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, gettimerType(timer)))
 		if timer.timerType == TIMERTYPE.AUTOSTANDBY or timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 			if self.iconRepeat and timer.autosleeprepeat != "once":
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 27, 20, 20, self.iconRepeat))
@@ -61,7 +65,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				icon = self.iconDone
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 27, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 2, x-2-24, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + afterevent))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 2, x-2-24, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
 			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
