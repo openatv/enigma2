@@ -2,11 +2,11 @@ import os
 import struct
 import random
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer, getDesktop
 
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
 from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
@@ -151,6 +151,7 @@ class MovieList(GUIComponent):
 		self.parentDirectory = 0
 		self.fontName = "Regular"
 		self.fontSize = 20
+		self.fontSize1080 = 28
 		self.listHeight = None
 		self.listWidth = None
 		self.reloadDelayTimer = None
@@ -272,8 +273,15 @@ class MovieList(GUIComponent):
 		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def setFontsize(self):
-		self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
-		self.l.setFont(1, gFont(self.fontName, (self.fontSize - 3) + config.movielist.fontsize.value))
+		screenwidth = getDesktop(0).size().width()
+		if screenwidth and screenwidth == 1920:
+			self.l.setFont(0, gFont(self.fontName, self.fontSize1080 + config.movielist.fontsize.value))
+		else:
+			self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
+		if screenwidth and screenwidth == 1920:
+			self.l.setFont(1, gFont(self.fontName, (self.fontSize1080 - 2) + config.movielist.fontsize.value))
+		else:
+			self.l.setFont(1, gFont(self.fontName, (self.fontSize - 3) + config.movielist.fontsize.value))
 
 	def invalidateItem(self, index):
 		x = self.list[index]
@@ -283,14 +291,18 @@ class MovieList(GUIComponent):
 		self.invalidateItem(self.getCurrentIndex())
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
+		screenwidth = getDesktop(0).size().width()
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]
 
 		if serviceref.flags & eServiceReference.mustDescent:
-			# Directory
-			iconSize = 22
+			if screenwidth and screenwidth == 1920:
+				# Directory
+				iconSize = 22
+			else:
+				iconSize = 37
 			# Name is full path name
 			if info is None:
 				# Special case: "parent"
@@ -302,14 +314,26 @@ class MovieList(GUIComponent):
 					p = os.path.split(p[0])
 				txt = p[1]
 				if txt == ".Trash":
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
-					res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
-					res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
-					return res
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-			res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
-			return res
+					if screenwidth and screenwidth == 1920:
+						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,2), size=(37,37), png=self.iconTrash))
+						res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
+						return res
+					else:
+						res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
+						res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
+						return res
+			if screenwidth and screenwidth == 1920:
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,2), size=(37,37), png=self.iconFolder))
+				res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
+				return res
+			else:
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(37,37), png=self.iconFolder))
+				res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
+				return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
@@ -360,20 +384,42 @@ class MovieList(GUIComponent):
 
 		iconSize = 0
 		if switch == 'i':
-			iconSize = 22
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+			if screenwidth and screenwidth == 1920:
+				iconSize = 42
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(37,37), png=data.icon))
+			else:
+				iconSize = 22
+				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 		elif switch == 'p':
-			iconSize = 48
-			if data.part is not None and data.part > 0:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+			if screenwidth and screenwidth == 1920:
+				iconSize = 42
 			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+				iconSize = 48
+			if data.part is not None and data.part > 0:
+				if screenwidth and screenwidth == 1920:
+					res.append(MultiContentEntryProgress(pos=(0,10), size=(37+5,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				else:
+					res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+			else:
+				if screenwidth and screenwidth == 1920:
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(37,37), png=data.icon))
+				else:
+					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 		elif switch == 's':
-			iconSize = 22
-			if data.part is not None and data.part > 0:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+			if screenwidth and screenwidth == 1920:
+				iconSize = 42
 			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+				iconSize = 22
+			if data.part is not None and data.part > 0:
+				if screenwidth and screenwidth == 1920:
+					res.append(MultiContentEntryProgress(pos=(0,10), size=(37+5,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				else:
+					res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+			else:
+				if screenwidth and screenwidth == 1920:
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(37,37), png=data.icon))
+				else:
+					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -382,9 +428,14 @@ class MovieList(GUIComponent):
 		ih = self.itemHeight
 		lenSize = ih * 3 # 25 -> 75
 		dateSize = ih * 145 / 25   # 25 -> 145
-		res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
-		res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
-		return res
+		if screenwidth and screenwidth == 1920:
+			res.append(MultiContentEntryText(pos=(37+20, 5), size=(width-37-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+			res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+			return res
+		else:
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
+			res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+			return res
 
 	def moveToFirstMovie(self):
 		if self.firstFileEntry < len(self.list):

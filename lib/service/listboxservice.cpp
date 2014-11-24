@@ -632,7 +632,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 	} else
 	{
 		if (local_style->m_background)
-			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -666,7 +666,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		}
 
 		if (selected && local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
 		time_t now = time(0);
@@ -841,7 +841,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								int correction = (area.height() - pixmap_size.height()) / 2;
 								area.moveBy(offset);
 								painter.clip(area);
-								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 								painter.clippop();
 							}
 						}
@@ -870,7 +870,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 								}
 								painter.clip(area);
-								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 								painter.clippop();
 							}
 						}
@@ -897,7 +897,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 							}
 							painter.clip(area);
-							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 							painter.clippop();
 						}
 					}
@@ -935,7 +935,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						xoffset = pixmap_size.width() + 8;
 					area.moveBy(offset);
 					painter.clip(area);
-					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHATEST);
+					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 					painter.clippop();
 				}
 			}
@@ -957,7 +957,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			ePtr<gPixmap> &pixmap = m_pixmaps[picServiceEventProgressbar];
 			if (pixmap) {
 				painter.clip(tmp);
-				painter.blit(pixmap, ePoint(pb_xpos + m_progressbar_border_width, pb_ypos + m_progressbar_border_width), tmp, gPainter::BT_ALPHATEST);
+				painter.blit(pixmap, ePoint(pb_xpos + m_progressbar_border_width, pb_ypos + m_progressbar_border_width), tmp, gPainter::BT_ALPHABLEND);
 				painter.clippop();
 			}
 			else {

@@ -1,9 +1,11 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from base64 import encodestring
-from os import listdir, remove, rename, system
+from os import listdir, remove, rename, system, path
 
-from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+
+from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT, getDesktop
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, getConfigListEntry
@@ -11,7 +13,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
 from Components.ScrollLabel import ScrollLabel
 from Screens.HelpMenu import HelpableScreen
 
@@ -20,15 +22,15 @@ from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
 from urlparse import urlparse, urlunparse
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
-VERSION = "v1.3c"
-DATE = "24.12.2009"
+VERSION = "v2"
+DATE = "21.11.2014"
 CFG = "/etc/CCcam.cfg"
 
 #############################################################
@@ -180,8 +182,15 @@ menu_list = [
 
 #############################################################
 
-lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
-lock_off = loadPNG("/usr/share/enigma2/skin_default/icons/lock_off.png")
+if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png")):
+	lock_on = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
+else:
+	lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
+	
+if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png")):
+	lock_off = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
+else:
+	lock_off = loadPNG("/usr/share/enigma2/skin_default/icons/lock_off.png")
 
 def getConfigNameAndContent(fileName):
 	try:
@@ -208,26 +217,31 @@ class CCcamList(MenuList):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(25)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(1, gFont("Regular", 28))
 
 class CCcamShareList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(60)
 		self.l.setFont(0, gFont("Regular", 18))
+		self.l.setFont(1, gFont("Regular", 28))
 
 class CCcamConfigList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(30)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(1, gFont("Regular", 28))
 
 class CCcamShareViewList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(20)
 		self.l.setFont(0, gFont("Regular", 18))
+		self.l.setFont(1, gFont("Regular", 28))
 
 def CCcamListEntry(name, idx):
+	screenwidth = getDesktop(0).size().width()
 	res = [name]
 	if idx == 10:
 		idx = "red"
@@ -243,36 +257,65 @@ def CCcamListEntry(name, idx):
 		idx = "info"
 	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-	res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
+		if screenwidth and screenwidth == 1920:
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
+			res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
+		else:
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
+			res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))			
 	return res
 
 def CCcamServerListEntry(name, color):
+	screenwidth = getDesktop(0).size().width()
 	res = [name]
 	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-	res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
+		if screenwidth and screenwidth == 1920:
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
+			res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
+		else:
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
+			res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
 	return res
 
 def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
-	res = [(hostname, type, caid, system, uphops, maxdown),
-		   MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname),
-		   MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
-		   MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
-		   MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
-		   MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ") + uphops),
-		   MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
-	return res
+	screenwidth = getDesktop(0).size().width()
+	if screenwidth and screenwidth == 1920:
+		res = [(hostname, type, caid, system, uphops, maxdown),
+				MultiContentEntryText(pos=(10, 0), size=(550, 35), font=1, text=hostname),
+				MultiContentEntryText(pos=(650, 0), size=(500, 35), font=1, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(10, 40), size=(250, 35), font=1, text=_("CaID: ") + caid),
+				MultiContentEntryText(pos=(230, 40), size=(250, 35), font=1, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(520, 40), size=(250, 35), font=1, text=_("Uphops: ") + uphops, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(900, 40), size=(250, 35), font=1, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
+		return res
+	else:
+		res = [(hostname, type, caid, system, uphops, maxdown),
+				MultiContentEntryText(pos=(10, 0), size=(550, 35), font=0, text=hostname),
+				MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
+				MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ") + uphops),
+				MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
+		return res
 
 def CCcamShareViewListEntry(caidprovider, providername, numberofcards, numberofreshare):
-	res = [(caidprovider, providername, numberofcards),
-		   MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername),
-		   MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
-		   MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
-	return res
+	screenwidth = getDesktop(0).size().width()
+	if screenwidth and screenwidth == 1920:
+		res = [(caidprovider, providername, numberofcards),
+				MultiContentEntryText(pos=(10, 5), size=(800, 35), font=1, text=providername),
+				MultiContentEntryText(pos=(1050, 5), size=(50, 35), font=1, text=numberofcards, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(1100, 5), size=(50, 35), font=1, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
+		return res
+	else:
+		res = [(caidprovider, providername, numberofcards),
+				MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername),
+				MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
+		return res
 
 def CCcamConfigListEntry(file):
+	screenwidth = getDesktop(0).size().width()
 	res = [file]
 
 	try:
@@ -288,22 +331,29 @@ def CCcamConfigListEntry(file):
 		png = lock_on
 	else:
 		png = lock_off
-
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
-	res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
+	if screenwidth and screenwidth == 1920:
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(35, 35), png=png))
+		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
+	else:
+		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
 
 	return res
 
 def CCcamMenuConfigListEntry(name, blacklisted):
+	screenwidth = getDesktop(0).size().width()
 	res = [name]
 
 	if blacklisted:
 		png = lock_off
 	else:
 		png = lock_on
-
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
-	res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
+	if screenwidth and screenwidth == 1920:
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(35, 35), png=png))
+		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
+	else:
+		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
 
 	return res
 
