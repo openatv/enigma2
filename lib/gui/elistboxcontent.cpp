@@ -1056,7 +1056,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				break;
 			}
 			case TYPE_PIXMAP_ALPHABLEND:
-			case TYPE_PIXMAP_ALPHABLEND:
+			case TYPE_PIXMAP_ALPHATEST:
 			case TYPE_PIXMAP: // pixmap
 			{
 			/*
