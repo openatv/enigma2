@@ -291,7 +291,7 @@ def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
 		return res
 	else:
 		res = [(hostname, type, caid, system, uphops, maxdown),
-				MultiContentEntryText(pos=(10, 0), size=(550, 35), font=0, text=hostname),
+				MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname),
 				MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
 				MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
 				MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
