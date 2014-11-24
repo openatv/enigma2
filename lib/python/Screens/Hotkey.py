@@ -34,6 +34,7 @@ def getHotkeys():
 		("TV", "showTv", ""),
 		("Teletext", "text", ""),
 		("Help", "displayHelp", ""),
+		("Help" + " " + _("long"), "displayHelp_long", ""),
 		("Subtitle", "subtitle", ""),
 		("Menu", "mainMenu", ""),
 		("Info (EPG)", "info", "Infobar/openEventView"),
