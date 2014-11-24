@@ -242,20 +242,24 @@ void eHdmiCEC::hdmiEvent(int what)
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
 			eDebug(" ");
-			switch (rxmessage.data[0])
+			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
+			if (hdmicec_report_active_menu)
 			{
-				case 0x44: /* key pressed */
-					keypressed = true;
-					pressedkey = rxmessage.data[1];
-				case 0x45: /* key released */
+				switch (rxmessage.data[0])
 				{
-					long code = translateKey(pressedkey);
-					if (keypressed) code |= 0x80000000;
-					for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
+					case 0x44: /* key pressed */
+						keypressed = true;
+						pressedkey = rxmessage.data[1];
+					case 0x45: /* key released */
 					{
-						(*i)->handleCode(code);
+						long code = translateKey(pressedkey);
+						if (keypressed) code |= 0x80000000;
+						for (std::list<eRCDevice*>::iterator i(listeners.begin()); i != listeners.end(); ++i)
+						{
+							(*i)->handleCode(code);
+						}
+						break;
 					}
-					break;
 				}
 			}
 			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
