@@ -217,10 +217,11 @@ class ChannelContextMenu(Screen):
 				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
 						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
-					if haveBouquets:
-						append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
-					else:
-						append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
+					if not csel.movemode:
+						if haveBouquets:
+							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
+						else:
+							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
 					if current_sel_flags & eServiceReference.isGroup:
 						append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
 						append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
