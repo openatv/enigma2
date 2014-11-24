@@ -276,11 +276,9 @@ class MovieList(GUIComponent):
 		screenwidth = getDesktop(0).size().width()
 		if screenwidth and screenwidth == 1920:
 			self.l.setFont(0, gFont(self.fontName, self.fontSize1080 + config.movielist.fontsize.value))
-		else:
-			self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
-		if screenwidth and screenwidth == 1920:
 			self.l.setFont(1, gFont(self.fontName, (self.fontSize1080 - 2) + config.movielist.fontsize.value))
 		else:
+			self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
 			self.l.setFont(1, gFont(self.fontName, (self.fontSize - 3) + config.movielist.fontsize.value))
 
 	def invalidateItem(self, index):
