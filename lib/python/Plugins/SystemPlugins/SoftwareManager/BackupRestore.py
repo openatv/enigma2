@@ -602,8 +602,9 @@ class RestorePlugins(Screen):
 		index = self["menu"].getIndex()
 		if index == None:
 			index = 0
+		else:
+			self["summary_description"].text = self["menu"].getCurrent()[0]
 		self.index = index
-		self["summary_description"].text = self["menu"].getCurrent()[0]
 			
 	def drawList(self):
 		self["menu"].setList(self.Menulist)
