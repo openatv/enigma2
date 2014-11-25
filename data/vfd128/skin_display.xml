@@ -44,12 +44,6 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-<!--		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="62,0" size="10,10" >
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>  -->
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="68,19" size="9,14">
@@ -379,25 +373,7 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-<!-- ViX -->
-	<screen name="VIXDevicesPanelSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" valign="top" noWrap="1" />
-		<widget source="entry" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="left" valign="bottom" noWrap="1" />
-		<!--<widget source="desc" render="Label" position="0,38" size="128,26" font="FdLcD;12" halign="left" transparent="1" />-->
-	</screen>
-	<screen name="VIXSwap_summary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="parent.swapname_summary" render="Label" position="0,16" size="128,14" font="FdLcD;16" halign="left" noWrap="1" />
-		<!--<widget source="parent.swapactive_summary" render="Label" position="0,50" size="128,14" font="FdLcD;12" halign="left" transparent="1" />-->
-	</screen>
-	<screen name="UpdatePlugin_summary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.package" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
-	</screen>
-	<screen name="SoftwareUpdateChanges_summary" position="fill">
-		<!--<widget source="parent.title_summary" render="Label" position="top" size="*,14" font="FdLcD;16" halign="left" valign="top" noWrap="1" />-->
-		<widget source="parent.text_summary" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="left" valign="top" />
-	</screen>
+
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="left" valign="bottom" />
@@ -445,4 +421,51 @@
 		<widget source="parent.summary_action" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="left" noWrap="1" />
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="128,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
+<!-- ATV -->
+	<!-- Quickmenü -->
+	<screen name="QuickMenu_summary" position="0,0" size="128,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+	
+	<!-- Infopanel -->
+	<screen name="Infopanel_summary" position="0,0" size="128,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+
+	<!-- AudioSelection -->
+	<screen name="AudioSelection_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+
+<!-- console -->
+	<screen name="Console_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+
+<!-- softwaremanagment -->
+	<screen name="BackupSelection_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+	<screen name="RestoreScreen_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+	<screen name="installedPlugins_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+	<screen name="RestartNetwork_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+	<screen name="RestorePlugins_summary" position="0,0" size="132,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
+	</screen>
+
 </skin>
