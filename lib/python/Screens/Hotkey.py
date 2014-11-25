@@ -509,7 +509,7 @@ class InfoBarHotkey():
 				pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
-					if plugin.name not in twinPlugins and plugin.path:
+					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:	
 						if twinPaths.has_key(plugin.path[24:]):
 							twinPaths[plugin.path[24:]] += 1
 						else:
