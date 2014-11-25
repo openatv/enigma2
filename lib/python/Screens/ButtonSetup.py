@@ -386,6 +386,10 @@ class InfoBarButtonSetup():
 		self["ButtonSetupButtonActions"] = helpableButtonSetupActionMap(self, "ButtonSetupActions",
 			dict((x[1],(self.ButtonSetupGlobal, boundFunction(self.getHelpText, x[1]))) for x in ButtonSetupKeys), -10)
 		self.longkeyPressed = False
+		self.onExecEnd.append(self.clearLongkeyPressed)
+
+	def clearLongkeyPressed(self):
+		self.longkeyPressed = False
 
 	def getKeyFunctions(self, key):
 		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "next", "previous", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
