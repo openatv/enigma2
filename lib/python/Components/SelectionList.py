@@ -10,20 +10,26 @@ selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN
 
 def SelectionEntryComponent(description, value, index, selected):
 	screenwidth = getDesktop(0).size().width()
-	res = [
-		(description, value, index, selected),
-		(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 650, 30, 0, RT_HALIGN_LEFT, description)
-	]
+	if screenwidth and screenwidth == 1920:
+		res = [
+			(description, value, index, selected),
+			(eListboxPythonMultiContent.TYPE_TEXT, 60, 5, 750, 38, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, description)
+		]
+	else:
+		res = [
+			(description, value, index, selected),
+			(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 650, 30, 0, RT_HALIGN_LEFT, description)
+		]
 	if selected:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 3, 35, 35, selectiononpng))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 35, 35, selectiononpng))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectiononpng))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, 2, 25, 24, selectiononpng))
 	else:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 3, 35, 35, selectionoffpng))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 35, 35, selectionoffpng))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectionoffpng))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, 2, 25, 24, selectionoffpng))
 	return res
 
 class SelectionList(MenuList):
