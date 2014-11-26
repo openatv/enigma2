@@ -23,6 +23,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.Timeshift import InfoBarTimeshift
 
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Screens import ScreenSaver
 from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, EpgBouquetSelector
 from Screens.ChoiceBox import ChoiceBox
@@ -1530,9 +1531,10 @@ class InfoBarRdsDecoder:
 			self.RassSlidePicChanged()
 		self.rds_display.show()
 
-class Seekbar(Screen):
+class Seekbar(Screen, HelpableScreen):
 	def __init__(self, session, fwd):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self.setTitle(_("Seek"))
 		self.session = session
 		self.fwd = fwd
@@ -1553,12 +1555,12 @@ class Seekbar(Screen):
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
 
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], {
-			"back": self.exit,
-			"ok": self.keyOK,
-			"left": self.keyLeft,
-			"right": self.keyRight
-		}, -1)
+		self["actions"] = HelpableActionMap(self, ["WizardActions", "DirectionActions"], {
+			"back": (self.exit, _("Exit seekbar without jumping to seek position")),
+			"ok": (self.keyOK, _("Jump to seek position")),
+			"left": (self.keyLeft, lambda: _("Move seek position left by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%"),
+			"right": (self.keyRight, lambda: _("Move seek position right by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%")
+		}, prio=-1)
 
 		self.cursorTimer = eTimer()
 		self.cursorTimer.callback.append(self.updateCursor)
@@ -3104,7 +3106,7 @@ class VideoMode(Screen):
 		Screen.__init__(self, session)
 		self["videomode"] = Label()
 
-		self["actions"] = NumberActionMap(["InfobarVmodeButtonActions"], {
+		self["actions"] = ActionMap(["InfobarVmodeButtonActions"], {
 			"vmodeSelection": self.selectVMode
 		})
 
