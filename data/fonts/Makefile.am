@@ -5,4 +5,8 @@ dist_install_DATA = \
 	andale.ttf \
 	lcd.ttf \
 	md_khmurabi_10.ttf \
-	nmsbd.ttf
+	nmsbd.ttf \
+	verdana.ttf \
+	verdanab.ttf \
+	verdanai.ttf \
+	verdanaz.ttf
