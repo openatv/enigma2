@@ -15,13 +15,16 @@ class Rc:
 
 		config.misc.rcused = ConfigInteger(default=1)
 		self.isDefaultRc = rc_model.rcIsDefault()
-		rcheights = (500,) * 4
-		self.selectpics = (
-			self.KeyIndicator(self, rcheights, ("indicator_l0", "indicator_u0")),
-			self.KeyIndicator(self, rcheights, ("indicator_l1", "indicator_u1")),
-			self.KeyIndicator(self, rcheights, ("indicator_l2", "indicator_u2")),
-			self.KeyIndicator(self, rcheights, ("indicator_l3", "indicator_u3")),
-		)
+		nSelectPics = 16
+		rcheights = (500,) * 2
+		self.selectpics = []
+		for i in range(nSelectPics):
+			self.selectpics.append(
+				self.KeyIndicator(
+					self, rcheights,
+					("indicator_l" + str(i), "indicator_u" + str(i))
+				)
+			)
 		self.rcPositions = RcPositions()
 		self.oldNSelectedKeys = self.nSelectedKeys = 0
 		self.clearSelectedKeys()
@@ -42,6 +45,7 @@ class Rc:
 			self.pixmaps = []
 			for actYpos, pixmap in zip(activeYPos, pixmaps):
 				pm = self.KeyIndicatorPixmap(actYpos, pixmap)
+				print "[KeyIndicator]", actYpos, pixmap
 				owner[pixmap] = pm
 				self.pixmaps.append(pm)
 			self.pixmaps.sort(key=lambda x: x.activeYPos)
