@@ -301,7 +301,13 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&gt", ">");
 
 				if (eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1) == 2)
+				{
 					text = (std::string) gRGB(255, 255, 0) + text;
+					text = replace_all(text, "</u>", (std::string) gRGB(255,255,0));
+				}
+				else
+					text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
+
 				if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
 					if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
 						face = Subtitle_MAX;
@@ -310,8 +316,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
 					face = Subtitle_Bold;
 
-				text = replace_all(text, "<u>", (std::string) gRGB(0,255,0));
-				text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
+				text = replace_all(text, "<u>", (std::string) gRGB(255,255,0));
 				text = replace_all(text, "<i>", "");
 				text = replace_all(text, "<b>", "");
 				text = replace_all(text, "</i>", "");
