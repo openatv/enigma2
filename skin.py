@@ -271,8 +271,6 @@ class AttributeParser:
 			print "[Skin] Attribute not implemented:", attrib, "value:", value
 		except SkinError, ex:
 			print "[Skin] Error:", ex
-		except:
-			print "[Skin] Error:", attrib
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
 			self.applyOne(attrib, value)

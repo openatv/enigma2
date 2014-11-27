@@ -1,11 +1,15 @@
 <skin>
 	<fonts>
-		<font filename="valis_enigma.ttf" name="Subs" scale="100" />
+		<font filename="verdana.ttf" name="Subs" scale="80" />
+		<font filename="verdanai.ttf" name="Subsi" scale="80" />
+		<font filename="verdanab.ttf" name="Subsb" scale="80" />
+		<font filename="verdanaz.ttf" name="Subsz" scale="80" />
 	</fonts>
 	<subtitles>
 		<sub name="Subtitle_TTX" font="Subs;34" borderColor="#000000" borderWidth="3" />
 		<sub name="Subtitle_Regular" font="Subs;34" foregroundColor="#ffffff" borderColor="#000000" borderWidth="3" />
-		<sub name="Subtitle_Bold" font="Subs;34" foregroundColor="#ffffff" borderColor="#000000" borderWidth="3" />
-		<sub name="Subtitle_Italic" font="Subs;34" foregroundColor="#ffffff" borderColor="#000000" borderWidth="3" />
+		<sub name="Subtitle_Bold" font="Subsb;34" foregroundColor="#ffffff" borderColor="#000000" borderWidth="3" />
+		<sub name="Subtitle_Italic" font="Subsi;34" foregroundColor="#ffffff" borderColor="#000000" borderWidth="3" />
+		<sub name="Subtitle_MAX" font="Subsz;34" foregroundColor="#ffffff" borderColor="#000000" borderWidth="3" />
 	</subtitles>
 </skin>

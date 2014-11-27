@@ -6,8 +6,8 @@ dist_install_DATA = \
 	lcd.ttf \
 	md_khmurabi_10.ttf \
 	nmsbd.ttf \
-	Daconi-digital-Bold.ttf \
-	Daconi-digital-watch.ttf \
-	nmsbd2.ttf Verdana_R.ttf \
-	DacoMark_Reg.ttf
-
+	Verdana_R.ttf \
+	verdana.ttf \
+	verdanab.ttf \
+	verdanai.ttf \
+	verdanaz.ttf
