@@ -373,8 +373,11 @@ class BufferIndicator(Screen):
 				iPlayableService.evBuffering: self.bufferChanged,
 				iPlayableService.evStart: self.hide,
 			})
+		self.bufferIndicatorTimer = eTimer()
+		self.bufferIndicatorTimer.callback.append(self.hide)
 
 	def bufferChanged(self):
+		self.shown and self.bufferIndicatorTimer.startLongTimer(5)
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		if info:
