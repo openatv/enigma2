@@ -171,7 +171,7 @@ def getButtonSetupFunctions():
 class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self['description'] = Label(_('Click on your remote on the button you want to change, then click on "OK"'))
+		self['description'] = Label(_('Click on your remote on the button you want to change'))
 		self.session = session
 		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
@@ -184,7 +184,6 @@ class ButtonSetup(Screen):
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"ok": self.keyOk,
 			"cancel": self.close,
 			"red": self.redPressed,
 		}, -1)
@@ -225,9 +224,7 @@ class ButtonSetup(Screen):
 					break
 				index += 1
 			self.getFunctions()
-
-	def keyOk(self):
-		self.session.open(ButtonSetupSelect, self["list"].l.getCurrentSelection())
+			self.session.open(ButtonSetupSelect, self["list"].l.getCurrentSelection())
 
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
@@ -267,14 +264,20 @@ class ButtonSetupSelect(Screen):
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "KeyboardInputActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
 		{
 			"ok": self.keyOk,
 			"cancel": self.cancel,
 			"red": self.cancel,
 			"green": self.save,
+			"up": self.keyUp,
+			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
 			"pageUp": self.toggleMode,
-			"pageDown": self.toggleMode
+			"pageDown": self.toggleMode,
+			"shiftUp": self.moveUp,
+			"shiftDown": self.moveDown,
 		}, -1)
 		self.onShown.append(self.enableKeyMap)
 		self.onClose.append(self.disableKeyMap)
@@ -284,12 +287,14 @@ class ButtonSetupSelect(Screen):
 		self["choosen"].selectionEnabled(0)
 
 	def disableKeyMap(self):
+		globalActionMap.setEnabled(False)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 4)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 5)
 
 	def enableKeyMap(self):
+		globalActionMap.setEnabled(True)
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 103, 5, "ListboxActions", "moveUp")
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 108, 5, "ListboxActions", "moveDown")
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 105, 5, "ListboxActions", "pageUp")
@@ -341,6 +346,33 @@ class ButtonSetupSelect(Screen):
 				self.toggleMode()
 		self["choosen"].setList(self.selected)
 
+	def keyLeft(self):
+		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
+
+	def keyRight(self):
+		self[self.mode].instance.moveSelection(self[self.mode].instance.pageDown)
+
+	def keyUp(self):
+		self[self.mode].instance.moveSelection(self[self.mode].instance.moveUp)
+
+	def keyDown(self):
+		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
+
+	def moveUp(self):
+		self.moveChoosen(self.keyUp)
+
+	def moveDown(self):
+		self.moveChoosen(self.keyDown)
+
+	def moveChoosen(self, direction):
+		if self.mode == "choosen":
+			currentIndex = self["choosen"].getSelectionIndex()
+			swapIndex = (currentIndex + (direction == self.keyDown and 1 or -1)) % len(self["choosen"].list)
+			self["choosen"].list[currentIndex], self["choosen"].list[swapIndex] = self["choosen"].list[swapIndex], self["choosen"].list[currentIndex]
+			self["choosen"].setList(self["choosen"].list)
+			direction()
+		else:
+			return 0
 	def save(self):
 		configValue = []
 		for x in self.selected:
@@ -360,9 +392,6 @@ class ButtonSetupSelect(Screen):
 
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
-		for x in ButtonSetupKeys:
-			if action in tuple(x[1]):
-				print 'ACTION EXTSTS:'
 		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:

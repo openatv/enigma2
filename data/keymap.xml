@@ -673,6 +673,8 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr"/>
 		<key id="KEY_LEFT" mapto="left" flags="mr"/>
 		<key id="KEY_RIGHT" mapto="right" flags="mr"/>
+		<key id="KEY_PREVIOUS" mapto="shiftUp" flags="m"/>
+		<key id="KEY_NEXT" mapto="shiftDown" flags="m"/>
 	</map>
 
 	<map context="ColorActions">
@@ -700,8 +702,7 @@
 	</map>
 
 	<map context="HelpActions">
-		<key id="KEY_HELP" mapto="displayHelp" flags="b"/>
-		<key id="KEY_HELP" mapto="displayHelp_long" flags="l"/>
+		<key id="KEY_HELP" mapto="displayHelp" flags="m"/>
 	</map>
 
 	<map context="ShortcutActions">
@@ -709,6 +710,7 @@
 		<key id="KEY_F2" mapto="yellow" flags="mr"/>
 		<key id="KEY_F3" mapto="green" flags="mr"/>
 		<key id="KEY_F4" mapto="blue" flags="mr"/>
+
 		<key id="KEY_RED" mapto="red" flags="mr"/>
 		<key id="KEY_YELLOW" mapto="yellow" flags="mr"/>
 		<key id="KEY_GREEN" mapto="green" flags="mr"/>
@@ -880,7 +882,6 @@
 		<key id="KEY_TV" mapto="showTv" flags="b"/>
 		<key id="KEY_TEXT" mapto="text" flags="b"/>
 		<key id="KEY_HELP" mapto="displayHelp" flags="b"/>
-		<key id="KEY_HELP" mapto="displayHelp_long" flags="l"/>
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b"/>
 		<key id="KEY_MENU" mapto="mainMenu" flags="b"/>
 		<key id="KEY_INFO" mapto="info" flags="b"/>
