@@ -256,26 +256,28 @@ def CCcamListEntry(name, idx):
 	elif idx == 15:
 		idx = "info"
 	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
-	if fileExists(png):
-		if screenwidth and screenwidth == 1920:
+	if screenwidth and screenwidth == 1920:
+		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
-		else:
+		res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
+	else:
+		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))			
+		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))			
 	return res
 
 def CCcamServerListEntry(name, color):
 	screenwidth = getDesktop(0).size().width()
 	res = [name]
 	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
-	if fileExists(png):
-		if screenwidth and screenwidth == 1920:
+	if screenwidth and screenwidth == 1920:
+		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
-		else:
+		res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
+	else:
+		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
+		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
 	return res
 
 def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
