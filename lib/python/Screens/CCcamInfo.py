@@ -3,8 +3,6 @@
 from base64 import encodestring
 from os import listdir, remove, rename, system, path
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-
 from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT, getDesktop
 
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -262,7 +260,7 @@ def CCcamListEntry(name, idx):
 		res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
 	else:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
 		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))			
 	return res
 
@@ -276,7 +274,7 @@ def CCcamServerListEntry(name, color):
 		res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
 	else:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
 		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
 	return res
 
@@ -337,7 +335,7 @@ def CCcamConfigListEntry(file):
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(35, 35), png=png))
 		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
 	else:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 2), size=(25, 25), png=png))
 		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
 
 	return res
@@ -354,7 +352,7 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(35, 35), png=png))
 		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
 	else:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 2), size=(25, 25), png=png))
 		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
 
 	return res
