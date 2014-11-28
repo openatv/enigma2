@@ -38,6 +38,7 @@ ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Rec"), "rec", ""),
 	(_("Teletext"), "text", ""),
 	(_("Help"), "displayHelp", ""),
+	(_("Help long"), "displayHelp_long", ""),
 	(_("Subtitle"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
 	(_("List/Fav/PVR"), "list", ""),
@@ -384,6 +385,10 @@ class InfoBarButtonSetup():
 	def __init__(self):
 		self["ButtonSetupButtonActions"] = helpableButtonSetupActionMap(self, "ButtonSetupActions",
 			dict((x[1],(self.ButtonSetupGlobal, boundFunction(self.getHelpText, x[1]))) for x in ButtonSetupKeys), -10)
+		self.longkeyPressed = False
+		self.onExecEnd.append(self.clearLongkeyPressed)
+
+	def clearLongkeyPressed(self):
 		self.longkeyPressed = False
 
 	def getKeyFunctions(self, key):
