@@ -532,8 +532,7 @@ def InitUsageConfig():
 		("200", "80%"),
 		("225", "90%"),
 		("255", _("Full transparency"))])
-	config.subtitles.pango_subtitle_colors = ConfigSelection(default = "0", choices = [
-		("0", _("alternative")),
+	config.subtitles.pango_subtitle_colors = ConfigSelection(default = "1", choices = [
 		("1", _("white")),
 		("2", _("yellow")) ])
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
