@@ -158,7 +158,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
 		print 'system:',tp.get("system")
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000000) + ' MHz') or '0 MHz'
+		ret["frequency"] = (tp.get("frequency") and ('%i MHz' % int(round(tp.get("frequency"), -6)/1000000))) or '0 MHz'
 		print 'frequency:',tp.get("frequency")
 	elif tunertype == "ATSC":
 		ret["tuner_type"] = "ATSC"

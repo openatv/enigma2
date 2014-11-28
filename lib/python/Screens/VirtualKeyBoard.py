@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode, getDesktop
 from Screens.Screen import Screen
 from Components.Language import language
 from Components.ActionMap import NumberActionMap
@@ -7,7 +7,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Input import Input
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
@@ -16,6 +16,7 @@ class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(1, gFont("Regular", 34))
 		self.l.setItemHeight(45)
 
 class VirtualKeyBoardEntryComponent:
@@ -264,6 +265,7 @@ class VirtualKeyBoard(Screen):
 		self.max_key=47+len(self.keys_list[4])
 
 	def virtualKeyBoardEntryComponent(self, keys):
+		screenwidth = getDesktop(0).size().width()
 		key_bg_width = self.key_bg and self.key_bg.size().width() or 45
 		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
 		res = [keys]
@@ -273,11 +275,18 @@ class VirtualKeyBoard(Screen):
 			png = key_images.get(key, None)
 			if png:
 				width = png.size().width()
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=png))
+				if screenwidth and screenwidth == 1920:
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 68), png=png))
+				else:
+					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=png))
 			else:
 				width = key_bg_width
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_bg))
-				text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				if screenwidth and screenwidth == 1920:
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 68), png=self.key_bg))
+					text.append(MultiContentEntryText(pos=(x, 0), size=(width, 68), font=1, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				else:
+					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_bg))
+					text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 			x += width
 		return res + text
 
@@ -289,11 +298,15 @@ class VirtualKeyBoard(Screen):
 		self.markSelectedKey()
 
 	def markSelectedKey(self):
+		screenwidth = getDesktop(0).size().width()
 		if self.previousSelectedKey is not None:
 			self.list[self.previousSelectedKey /12] = self.list[self.previousSelectedKey /12][:-1]
 		width = self.key_sel.size().width()
 		x = self.list[self.selectedKey/12][self.selectedKey % 12 + 1][1]
-		self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_sel))
+		if screenwidth and screenwidth == 1920:
+			self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 68), png=self.key_sel))
+		else:
+			self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_sel))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)
 
