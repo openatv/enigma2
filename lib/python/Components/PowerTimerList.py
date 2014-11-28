@@ -47,7 +47,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				if screenwidth and screenwidth == 1920:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 40, 30, 30, self.iconRepeat))
 				else:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, self.iconRepeat))
 			icon = None
 			if not processed:
 				if timer.state == TimerEntry.StateWaiting:
@@ -88,7 +88,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 					if screenwidth and screenwidth == 1920:
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 40, 30, 30, self.iconRepeat))
 					else:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 25, 20, 20, self.iconRepeat))
 			else:
 				repeatedtext = begin[0] # date
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
@@ -130,9 +130,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 26, 126, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			if screenwidth and screenwidth == 1920:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 3, 30, 30, icon))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 3, 30, 30, icon))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 5, 20, 20, icon))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 5, 20, 20, icon))
 		return res
 
 	def __init__(self, list):

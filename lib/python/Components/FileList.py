@@ -54,7 +54,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 2, 35, 35, png))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 2, 20, 20, png))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 2, 20, 20, png))
 	return res
 
 class FileList(MenuList):
@@ -291,7 +291,7 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 30, 2, 35, 35, png))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 30, 2, 20, 20, png))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 30, 2, 20, 20, png))
 	if not name.startswith('<'):
 		if selected:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
@@ -300,7 +300,7 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 35, 35, icon))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 0, 25, 25, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 0, 25, 25, icon))
 	return res
 
 
