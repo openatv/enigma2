@@ -227,10 +227,11 @@ class ServiceInfo(Screen):
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
 						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-T":
+				channel = channelnumbers.getChannelNumber(frontendDataOrg["frequency"], frontendDataOrg["tuner_number"]) if channelnumbers.supportedChannels(frontendDataOrg["tuner_number"]) else None
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
 						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
-						(_("Channel"), channelnumbers.getChannelNumber(frontendData["frequency"], frontendData["tuner_number"]), TYPE_VALUE_DEC),
+						(_("Channel"), channel, TYPE_VALUE_DEC),
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
 						(_("Bandwidth"), frontendData["bandwidth"], TYPE_VALUE_DEC),
 						(_("Code rate LP"), frontendData["code_rate_lp"], TYPE_TEXT),
