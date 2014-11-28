@@ -246,7 +246,7 @@ class ButtonSetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
 		self.skinName="ButtonSetupSelect"
-		self['description'] = Label(_('Select the desired function and click on "OK" to assign it. Use "CH+/-" to toggle between the lists. Select an assigned function and click on "OK" to de-assign it.'))
+		self['description'] = Label(_('Select the desired function and click on "OK" to assign it. Use "CH+/-" to toggle between the lists. Select an assigned function and click on "OK" to de-assign it. Use "Next/Previous" to change the order of the assigned functions.'))
 		self.session = session
 		self.key = key
 		self.setTitle(_("Button setup for") + ": " + key[0][0])
