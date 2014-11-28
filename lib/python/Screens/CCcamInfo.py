@@ -253,7 +253,10 @@ def CCcamListEntry(name, idx):
 		idx = "menu"
 	elif idx == 15:
 		idx = "info"
-	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
+	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))):
+		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))
+	else:
+		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if screenwidth and screenwidth == 1920:
 		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
@@ -267,7 +270,10 @@ def CCcamListEntry(name, idx):
 def CCcamServerListEntry(name, color):
 	screenwidth = getDesktop(0).size().width()
 	res = [name]
-	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
+	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))):
+		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))
+	else:
+		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if screenwidth and screenwidth == 1920:
 		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
@@ -1713,4 +1719,3 @@ class CCcamInfoMenuConfig(Screen):
 		if callback:
 			config.cccaminfo.blacklist.value = ("%s/CCcamInfo.blacklisted"%callback).replace("//", "/")
 			config.cccaminfo.blacklist.save()
-
