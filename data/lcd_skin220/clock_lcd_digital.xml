@@ -1,0 +1,11 @@
+<screen position="0,0" size="220,176">
+	<widget source="global.CurrentTime" render="Label" position="0,5" size="220,90" font="LCD;85" halign="center" valign="center" noWrap="1" zPosition="1" transparent="1" foregroundColor="#0000ff">
+		<convert type="ClockToText"></convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="0,115" size="220,45" font="LCD;38" halign="center" valign="center" zPosition="1" foregroundColor="#0000ff" transparent="1">
+		<convert type="ClockToText">ShortDate</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/button_blue.png" position="16,2" size="15,16" zPosition="10" transparent="1" alphatest="on" >
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>
