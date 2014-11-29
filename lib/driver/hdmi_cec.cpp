@@ -7,6 +7,7 @@
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
 #include <lib/base/ebase.h>
+#include <lib/base/nconfig.h>
 #include <lib/driver/input_fake.h>
 #include <lib/driver/hdmi_cec.h>
 #include <lib/driver/avswitch.h>
@@ -229,7 +230,8 @@ void eHdmiCEC::hdmiEvent(int what)
 			}
 		}
 #endif
-		if (hasdata)
+		bool hdmicec_enabled = eConfigManager::getConfigBoolValue("config.hdmicec.enabled", false);
+		if (hasdata && hdmicec_enabled)
 		{
 			bool keypressed = false;
 			static unsigned char pressedkey = 0;
