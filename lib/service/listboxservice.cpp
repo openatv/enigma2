@@ -648,10 +648,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
 		bool serviceFallback = false;
+		int isplayable_value;
 
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid())
 		{
-			if (!service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+			isplayable_value = service_info->isPlayable(*m_cursor, m_is_playable_ignore);
+
+			if (isplayable_value == 0) // service unavailable
 			{
 				if (m_color_set[serviceNotAvail])
 					painter.setForegroundColor(m_color[serviceNotAvail]);
@@ -659,11 +662,14 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					painter.setForegroundColor(gRGB(0xbbbbbb));
 				serviceAvail = false;
 			}
-			if (service_info->isPlayable(*m_cursor, m_is_playable_ignore) == 2) // fallback receiver service
+			else
 			{
-				if (m_color_set[serviceItemFallback])
-					painter.setForegroundColor(m_color[serviceItemFallback]);
-				serviceFallback = true;
+				if (isplayable_value == 2) // fallback receiver service
+				{
+					if (m_color_set[serviceItemFallback])
+						painter.setForegroundColor(m_color[serviceItemFallback]);
+					serviceFallback = true;
+				}
 			}
 		}
 		if (m_record_indicator_mode == 3 && isRecorded)
