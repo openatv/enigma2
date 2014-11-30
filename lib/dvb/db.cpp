@@ -199,9 +199,6 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 {
 	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
 
-	if(remote_fallback_enabled)
-		return(1);
-
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
 		eDebug("isPlayble... no res manager!!");
@@ -211,8 +208,14 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		int system;
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
-		return res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate);
+
+		if(res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
+			return(1);
+
+		if(remote_fallback_enabled)
+			return(2);
 	}
+
 	return 0;
 }
 
