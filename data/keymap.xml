@@ -507,8 +507,10 @@
 	</map>
 
 	<map context="ChannelSelectEPGActions">
-		<key id="KEY_INFO" mapto="showEPGList" flags="m"/>
-		<key id="KEY_EPG" mapto="showEPGList" flags="m"/>
+		<key id="KEY_INFO" mapto="showEPGList" flags="b"/>
+		<key id="KEY_INFO" mapto="showEPGListChosen" flags="l"/>
+		<key id="KEY_EPG" mapto="showGuideList" flags="b"/>
+		<key id="KEY_EPG" mapto="showGuideListChosen" flags="l"/>
 	</map>
 
 	<map context="ChannelSelectEditActions">

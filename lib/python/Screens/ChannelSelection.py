@@ -37,8 +37,11 @@ from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
 from Tools.Alternatives import CompareWithAlternatives
+from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
+from Screens.ChoiceBox import ChoiceBox
+from Screens.EventView import EventViewEPGSelect
 from os import remove
 profile("ChannelSelection.py after imports")
 
@@ -508,23 +511,208 @@ class ChannelSelectionEPG:
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
 			{
 				"showEPGList": self.showEPGList,
+				"showGuideList": self.showGuideList,
+				"showEPGListChosen": self.showEPGListChosen,
+				"showGuideListChosen": self.showGuideListChosen,
 			})
-		self.epg_bouquet = None
+		self.eventViewEPG = self.start_bouquet = self.epg_bouquet = None
+		self.GraphMultiEPG = fileExists("/usr/lib/enigma2/python/Plugins/Extensions/GraphMultiEPG/plugin.pyo")
+		self.defaultEPGType = self.getDefaultEPGtype()
+		self.defaultGuideType = self.getDefaultGuidetype()
+		self.currentSavedPath = []
 
 	def showEPGList(self):
-		ref=self.getCurrentSelection()
-		if ref:
-			self.epg_bouquet = self.servicelist.getRoot()
-			self.savedService = ref
-			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, self.zapToService, serviceChangeCB=self.changeServiceCB)
+		ref = self.getCurrentSelection()
+		if ref and not (ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+			if self.defaultEPGType:
+				self.defaultEPGType()
+			else:
+				self.openSingleEPG()
 
-	def SingleServiceEPGClosed(self, ret=False):
+	def showGuideList(self):
+		ref = self.getCurrentSelection()
+		if ref and not (ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+			if self.defaultGuideType:
+				self.defaultGuideType()
+			else:
+				self.openSingleEPG()
+
+	def getEPGList(self, getAll=False):
+		pluginlist = []
+		if self.GraphMultiEPG:
+			pluginlist.append((_("Graphical Multi EPG"), self.openGraphMultiEPG, "graphical_epg"))
+		pluginlist.append((_("Single EPG"), self.openSingleEPG, "single_epg"))
+		pluginlist.append((_("Multi EPG"), self.openMultiEPG, "multi_epg"))
+		ref = self.getCurrentSelection()
+		info = ref and eServiceCenter.getInstance().info(ref)
+		event = info and info.getEvent(ref)
+		if event or getAll:
+			pluginlist.append((_("Currently selected event EPG"), self.openEventViewEPG, "event_epg"))
+		return pluginlist
+
+	def getDefaultEPGtype(self):
+		config.usage.defaultEPGType = ConfigText()
+		for p in self.getEPGList(True):
+			if p[2] == config.usage.defaultEPGType.value:
+				return p[1]
+		return None
+
+	def getDefaultGuidetype(self):
+		config.usage.defaultGuideType = ConfigText(default = self.GraphMultiEPG and "graphical_epg" or "")
+		for p in self.getEPGList(True):
+			if p[2] == config.usage.defaultGuideType.value:
+				return p[1]
+		return None
+
+	def showEPGListChosen(self):
+		ref = self.getCurrentSelection()
+		if ref and not (ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+			pluginlist = self.getEPGList()
+			if pluginlist:
+				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultEPG))
+				self.session.openWithCallback(self.EventEPGChosen, ChoiceBox, title=_("Select EPG type..."), list = pluginlist)
+
+	def EventEPGChosen(self, answer):
+		if answer is not None:
+			answer[1]()
+
+	def SelectDefaultEPG(self):
+		self.session.openWithCallback(self.DefaultEPGChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGList(True))
+
+	def DefaultEPGChosen(self, answer):
+		if answer is not None:
+			self.defaultEPGType = answer[1]
+			config.usage.defaultEPGType.value = answer[2]
+			config.usage.defaultEPGType.save()
+
+	def showGuideListChosen(self):
+		ref = self.getCurrentSelection()
+		if ref and not (ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+			pluginlist = self.getEPGList()
+			if pluginlist:
+				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultGuide))
+				self.session.openWithCallback(self.EventGuideChosen, ChoiceBox, title=_("Select EPG type..."), list = pluginlist)
+
+	def EventGuideChosen(self, answer):
+		if answer is not None:
+			answer[1]()
+
+	def SelectDefaultGuide(self):
+		self.session.openWithCallback(self.DefaultGuideChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGList(True))
+
+	def DefaultGuideChosen(self, answer):
+		if answer is not None:
+			self.defaultGuideType = answer[1]
+			config.usage.defaultGuideType.value = answer[2]
+			config.usage.defaultGuideType.save()
+
+	def openGraphMultiEPG(self):
+		from Plugins.Extensions.GraphMultiEPG.plugin import main
+		main(self.session)
+
+	def openEventViewEPG(self):
+		epglist = [ ]
+		self.epglist = epglist
+		ref = self.getCurrentSelection()
+		epg = eEPGCache.getInstance()
+		now_event = epg.lookupEventTime(ref, -1, 0)
+		if now_event:
+			epglist.append(now_event)
+			next_event = epg.lookupEventTime(ref, -1, 1)
+			if next_event:
+				epglist.append(next_event)
+		if epglist:
+			self.eventViewEPG = self.session.openWithCallback(self.eventViewEPGClosed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewEPGCallback, self.openSingleEPG, self.openMultiEPG, self.openSimilarList)
+
+	def eventViewEPGCallback(self, setEvent, setService, val):
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
+
+	def eventViewEPGClosed(self, ret=False):
+		self.eventViewEPG = None
+		if ret:
+			self.close()
+
+	def openMultiEPG(self):
+		ref = self.getCurrentSelection()
+		if ref:
+			self.start_bouquet = self.epg_bouquet = self.servicelist.getRoot()
+			self.savedService = ref
+			self.currentSavedPath = self.servicePath[:]
+			services = self.getServicesList(self.servicelist.getRoot())
+			self.session.openWithCallback(self.SingleMultiEPGClosed, EPGSelection, services, self.zapToService, None, bouquetChangeCB=self.changeBouquetForMultiEPG)
+
+	def openSingleEPG(self):
+		ref = self.getCurrentSelection()
+		if ref:
+			self.start_bouquet = self.epg_bouquet = self.servicelist.getRoot()
+			self.savedService = ref
+			self.currentSavedPath = self.servicePath[:]
+			self.session.openWithCallback(self.SingleMultiEPGClosed, EPGSelection, ref, self.zapToService, serviceChangeCB=self.changeServiceCB, bouquetChangeCB=self.changeBouquetForSingleEPG)
+
+	def openSimilarList(self, eventid, refstr):
+		self.session.open(EPGSelection, refstr, None, eventid)
+
+	def getServicesList(self, root):
+		services = [ ]
+		servicelist = root and eServiceCenter.getInstance().list(root)
+		if not servicelist is None:
+			while True:
+				service = servicelist.getNext()
+				if not service.valid():
+					break
+				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker):
+					continue
+				services.append(ServiceReference(service))
+		return services
+
+	def SingleMultiEPGClosed(self, ret=False):
 		if ret:
 			service = self.getCurrentSelection()
-			if service is not None:
+			if self.eventViewEPG:
+				self.eventViewEPG.close(service)
+			elif service is not None:
 				self.close()
 		else:
+			if self.start_bouquet != self.epg_bouquet and len(self.currentSavedPath) > 0:
+				self.clearPath()
+				self.enterPath(self.bouquet_root)
+				self.epg_bouquet = self.start_bouquet
+				self.enterPath(self.epg_bouquet)
 			self.setCurrentSelection(self.savedService)
+
+	def changeBouquetForSingleEPG(self, direction, epg):
+		if config.usage.multibouquet.value:
+			inBouquet = self.getMutableList() is not None
+			if inBouquet and len(self.servicePath) > 1:
+				self.pathUp()
+				if direction < 0:
+					self.moveUp()
+				else:
+					self.moveDown()
+				cur = self.getCurrentSelection()
+				self.enterPath(cur)
+				self.epg_bouquet = self.servicelist.getRoot()
+				epg.setService(ServiceReference(self.getCurrentSelection()))
+
+	def changeBouquetForMultiEPG(self, direction, epg):
+		if config.usage.multibouquet.value:
+			inBouquet = self.getMutableList() is not None
+			if inBouquet and len(self.servicePath) > 1:
+				self.pathUp()
+				if direction < 0:
+					self.moveUp()
+				else:
+					self.moveDown()
+				cur = self.getCurrentSelection()
+				self.enterPath(cur)
+				self.epg_bouquet = self.servicelist.getRoot()
+				services = self.getServicesList(self.epg_bouquet)
+				epg.setServices(services)
 
 	def changeServiceCB(self, direction, epg):
 		beg = self.getCurrentSelection()
@@ -555,6 +743,7 @@ class ChannelSelectionEPG:
 		if not preview:
 			self.startServiceRef = None
 			self.startRoot = None
+			self.revertMode = None
 
 class ChannelSelectionEdit:
 	def __init__(self):
