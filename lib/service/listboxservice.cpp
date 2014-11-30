@@ -453,7 +453,7 @@ int eListboxServiceContent::cursorResolve(int cursorPosition)
 		if (count == cursorPosition)
 			break;
 		count++;
-		if (m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker) || (i->flags & eServiceReference::isInvisible))
+		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
 			continue;
 		strippedCursor++;
 	}
@@ -496,7 +496,7 @@ int eListboxServiceContent::size()
 	int size = 0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
 	{
-		if (m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker) || (i->flags & eServiceReference::isInvisible))
+		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
 			continue;
 		size++;
 	}
