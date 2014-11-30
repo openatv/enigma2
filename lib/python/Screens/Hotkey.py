@@ -4,7 +4,6 @@ from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.PluginComponent import plugins
-from Screens.ChannelSelection import SimpleChannelSelection
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -369,8 +368,10 @@ class HotkeySetupSelect(Screen):
 					self.selected.remove(currentSelected[:2])
 				else:
 					if currentSelected[0][1].startswith("ZapPanic"):
+						from Screens.ChannelSelection import SimpleChannelSelection
 						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey Panic") + " " + self.key[0][0], currentBouquet=True)
 					elif currentSelected[0][1].startswith("Zap"):
+						from Screens.ChannelSelection import SimpleChannelSelection
 						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
 					else:
 						self.selected.append(currentSelected[:2])
