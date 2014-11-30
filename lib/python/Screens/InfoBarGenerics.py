@@ -430,7 +430,7 @@ class BufferIndicator(Screen):
 			{
 				iPlayableService.evBuffering: self.bufferChanged,
 				iPlayableService.evStart: self.__evStart,
-				iPlayableService.evVideoSizeChanged: self.__evVideoStarted,
+				iPlayableService.evGstreamerPlayStarted: self.__evGstreamerPlayStarted,
 			})
 
 	def bufferChanged(self):
@@ -439,17 +439,16 @@ class BufferIndicator(Screen):
 			info = service and service.info()
 			if info:
 				value = info.getInfo(iServiceInformation.sBuffer)
-				self["status"].setText(_("Buffering %d%%") % value)
-				if value == 100:
-					self.hide()
-				if value == 0:
-					self.show()
+				if value and value != 100:
+					self["status"].setText(_("Buffering %d%%") % value)
+					if not self.shown:
+						self.show()
 
 	def __evStart(self):
 		self.mayShow = True
 		self.hide()
 
-	def __evVideoStarted(self):
+	def __evGstreamerPlayStarted(self):
 		self.mayShow = False
 		self.hide()
 
