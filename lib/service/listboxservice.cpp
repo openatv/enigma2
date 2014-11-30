@@ -647,14 +647,24 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
+		bool serviceFallback = false;
 
-		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid())
 		{
-			if (m_color_set[serviceNotAvail])
-				painter.setForegroundColor(m_color[serviceNotAvail]);
-			else
-				painter.setForegroundColor(gRGB(0xbbbbbb));
-			serviceAvail = false;
+			if (!service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+			{
+				if (m_color_set[serviceNotAvail])
+					painter.setForegroundColor(m_color[serviceNotAvail]);
+				else
+					painter.setForegroundColor(gRGB(0xbbbbbb));
+				serviceAvail = false;
+			}
+			if (service_info->isPlayable(*m_cursor, m_is_playable_ignore) == 2) // fallback receiver service
+			{
+				if (m_color_set[serviceItemFallback])
+					painter.setForegroundColor(m_color[serviceItemFallback]);
+				serviceFallback = true;
+			}
 		}
 		if (m_record_indicator_mode == 3 && isRecorded)
 		{
@@ -692,6 +702,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					snprintf(buffer, sizeof(buffer), "%d", m_cursor->getChannelNum() );
 					text = buffer;
 					flags|=gPainter::RT_HALIGN_RIGHT;
+					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
 				case celServiceName:
@@ -706,6 +718,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() + 10)
 							area.setLeft(m_element_position[celServiceNumber].width() + 10);
 					}
+					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
 				case celServiceInfo:
@@ -724,6 +738,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.setForegroundColor(m_color[eventForegroundSelected]);
 							else
 								painter.setForegroundColor(gRGB(0xe7b53f));
+
+							if (serviceFallback && !selected && m_color_set[eventForegroundFallback]) // fallback receiver
+								painter.setForegroundColor(m_color[eventForegroundFallback]);
+							else if (serviceFallback && selected && m_color_set[eventForegroundSelectedFallback])
+								painter.setForegroundColor(m_color[eventForegroundSelectedFallback]);
+
 						}
 						break;
 					}
