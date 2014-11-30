@@ -382,11 +382,10 @@ class BufferIndicator(Screen):
 			info = service and service.info()
 			if info:
 				value = info.getInfo(iServiceInformation.sBuffer)
-				self["status"].setText(_("Buffering %d%%") % value)
-				if value == 100:
-					self.hide()
-				if value == 0:
-					self.show()
+				if value:
+					self["status"].setText(_("Buffering %d%%") % value)
+					if not self.shown:
+						self.show()
 
 	def __evStart(self):
 		self.mayShow = True
