@@ -527,20 +527,6 @@ class ChannelSelectionEPG(InfoBarHotkey):
 				selected.append(function[0])
 		return selected
 
-	def hotkeyGlobal(self, key):
-		if self.longkeyPressed:
-			self.longkeyPressed = False
-		else:
-			selected = self.getKeyFunctions(key)
-			if not selected:
-				return 0
-			elif len(selected) == 1:
-				self.longkeyPressed = key.endswith("_long")
-				return self.execHotkey(selected[0])
-			else:
-				key = tuple(x[0] for x in self.hotkeys if x[1] == key)[0]
-				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
-
 	def runPlugin(self, plugin):
 		Screens.InfoBar.InfoBar.instance.runPlugin(plugin)
 
