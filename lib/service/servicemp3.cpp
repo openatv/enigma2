@@ -1611,6 +1611,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						m_seek_paused = false;
 						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 					}
+					else
+						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
