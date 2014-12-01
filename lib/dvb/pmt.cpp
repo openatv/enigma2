@@ -477,7 +477,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 							autoaudio_mpeg = i;
 						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
 							autoaudio_ac3 = i;
-						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
+						else if (program.audioStreams[i].type == audioStream::atDDP && (autoaudio_level > x || autoaudio_ddp == -1))
 							autoaudio_ddp = i;
 						else if (program.audioStreams[i].type == audioStream::atAACHE && (autoaudio_level > x || autoaudio_aache == -1))
 							autoaudio_aache = i;
@@ -525,27 +525,22 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 		if (useaudio_cache && audio_cached != -1)
 			program.defaultAudioStream = audio_cached;
-		else if ( defaultac3 )
-		{
-			if ( autoaudio_ac3 != -1 )
-				program.defaultAudioStream = autoaudio_ac3;
-			else if ( autoaudio_ddp != -1 )
-				program.defaultAudioStream = autoaudio_ddp;
-			else if ( autoaudio_mpeg != -1 )
-				program.defaultAudioStream = autoaudio_mpeg;
-			else if ( first_non_mpeg != -1 )
-				program.defaultAudioStream = first_non_mpeg;
-		}
+		else if (defaultac3 && autoaudio_ac3 != -1)
+			program.defaultAudioStream = autoaudio_ac3;
+		else if (defaultddp && autoaudio_ddp != -1)
+			program.defaultAudioStream = autoaudio_ddp;
 		else
 		{
-			if ( autoaudio_mpeg != -1 )
+			if (autoaudio_mpeg != -1)
 				program.defaultAudioStream = autoaudio_mpeg;
-			else if ( autoaudio_ac3 != -1 )
+			else if (autoaudio_ac3 != -1)
 				program.defaultAudioStream = autoaudio_ac3;
-			else if ( autoaudio_ddp != -1 )
+			else if (autoaudio_ddp != -1)
 				program.defaultAudioStream = autoaudio_ddp;
-			else if ( autoaudio_aache != -1 )
+			else if (autoaudio_aache != -1)
 				program.defaultAudioStream = autoaudio_aache;
+			else if (first_non_mpeg != -1)
+				program.defaultAudioStream = first_non_mpeg;
 		}
 
 		bool allow_hearingimpaired = eConfigManager::getConfigBoolValue("config.autolanguage.subtitle_hearingimpaired");

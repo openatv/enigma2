@@ -10,6 +10,7 @@ from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
+from Components.VolumeControl import VolumeControl
 from Tools.ISO639 import LanguageCodes
 
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
@@ -48,6 +49,9 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"volumeUp": self.volumeUp,
+			"volumeDown": self.volumeDown,
+			"volumeMute": self.volumeMute,
 			"menu": self.openAutoLanguageSetup,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
@@ -137,7 +141,7 @@ class AudioSelection(Screen, ConfigListScreen):
 						if cnt:
 							language += ' / '
 						if LanguageCodes.has_key(lang):
-							language += LanguageCodes[lang][0]
+							language += _(LanguageCodes[lang][0])
 						else:
 							language += lang
 						cnt += 1
@@ -207,7 +211,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				try:
 					if x[4] != "und":
 						if LanguageCodes.has_key(x[4]):
-							language = LanguageCodes[x[4]][0]
+							language = _(LanguageCodes[x[4]][0])
 						else:
 							language = x[4]
 				except:
@@ -413,6 +417,15 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.focus = FOCUS_STREAMS
 		elif self.focus == FOCUS_STREAMS:
 			self["streams"].selectNext()
+
+	def volumeUp(self):
+		VolumeControl.instance and VolumeControl.instance.volUp()
+
+	def volumeDown(self):
+		VolumeControl.instance and VolumeControl.instance.volDown()
+
+	def volumeMute(self):
+		VolumeControl.instance and VolumeControl.instance.volMute()
 
 	def keyNumberGlobal(self, number):
 		if number <= len(self["streams"].list):

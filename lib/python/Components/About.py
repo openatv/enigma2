@@ -7,7 +7,11 @@ def getVersionString():
 
 def getEnigmaVersionString():
 	return getImageVersion()
-	
+
+def getGStreamerVersionString():
+	import enigma
+	return enigma.getGStreamerVersionString()
+
 def getKernelVersionString():
 	try:
 		f = open("/proc/version","r")

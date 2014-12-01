@@ -1,3 +1,4 @@
+import Screens.InfoBar
 from enigma import eServiceReference
 
 from Screens.Screen import Screen
@@ -71,7 +72,7 @@ class ServiceScan(Screen):
 		self.scanList = scanList
 
 		if hasattr(session, 'infobar'):
-			self.currentInfobar = session.infobar
+			self.currentInfobar = Screens.InfoBar.InfoBar.instance
 			if self.currentInfobar:
 				self.currentServiceList = self.currentInfobar.servicelist
 				if self.session.pipshown and self.currentServiceList:
@@ -103,7 +104,7 @@ class ServiceScan(Screen):
 			"cancel": self.cancel,
 			"menu": self.doCloseRecursive
 		}, -2)
-
+		self.setTitle("Service scan")
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):

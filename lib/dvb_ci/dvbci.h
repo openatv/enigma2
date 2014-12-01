@@ -19,10 +19,10 @@ class eDVBCIInterfaces;
 
 struct queueData
 {
-	__u8 prio;
+	uint8_t prio;
 	unsigned char *data;
 	unsigned int len;
-	queueData( unsigned char *data, unsigned int len, __u8 prio = 0 )
+	queueData( unsigned char *data, unsigned int len, uint8_t prio = 0 )
 		:prio(prio), data(data), len(len)
 	{
 

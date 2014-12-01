@@ -47,24 +47,24 @@ class About(Screen):
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
+			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
 
-		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
-		AboutText += _("CPU Speed:\t%s") % about.getCPUSpeedString() + "\n"
-		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+		AboutText += _("CPU:\t%s\n") % about.getCPUString()
+		AboutText += _("CPU Speed:\t%s\n") % about.getCPUSpeedString(
+		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
 
-		AboutText += _("Version:\t%s") % getImageVersion() + "\n"
-		AboutText += _("Build:\t%s") % getImageBuild() + "\n"
-		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
+		AboutText += _("Version:\t%s\n") % getImageVersion()
+		AboutText += _("Build:\t%s\n") % getImageBuild()
+		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
 
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
-		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+		AboutText += _("Drivers:\t%s\n") % driversdate
 
-		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
+		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -84,7 +84,9 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			AboutText += _("System temperature: %s%sC\n\n") % (tempinfo.replace('\n', ''), mark)
+
+		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 

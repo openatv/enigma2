@@ -184,9 +184,9 @@ void eListbox::moveSelection(long dir)
 			}
 			if (m_content->currentCursorSelectable())
 				break;
-			if (newsel == 0) // at top and nothing found . Go down till someing selectable or old location
+			if (newsel == 0) // at top and nothing found . Go down till something selectable or old location
 			{
-				while (newsel != oldsel && !m_content->currentCursorSelectable());
+				while (newsel != oldsel && !m_content->currentCursorSelectable())
 				{
 					m_content->cursorMove(1);
 					newsel = m_content->cursorGet();

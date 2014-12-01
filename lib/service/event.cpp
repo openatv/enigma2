@@ -201,7 +201,7 @@ RESULT eServiceEvent::parseFrom(const std::string& filename, int tsidonid)
 		int fd = ::open( filename.c_str(), O_RDONLY );
 		if ( fd > -1 )
 		{
-			__u8 buf[4096];
+			uint8_t buf[4096];
 			int rd = ::read(fd, buf, 4096);
 			::close(fd);
 			if ( rd > 12 /*EIT_LOOP_SIZE*/ )

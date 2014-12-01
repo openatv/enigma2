@@ -246,6 +246,8 @@ private:
 	int m_ignore_buffering_messages;
 	bool m_is_live;
 	bool m_use_prefillbuffer;
+	bool m_paused;
+	bool m_seek_paused;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
@@ -298,7 +300,11 @@ private:
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void playbinNotifySource(GObject *object, GParamSpec *unused, gpointer user_data);
+#if GST_VERSION_MAJOR < 1
 	static gint match_sinktype(GstElement *element, gpointer type);
+#else
+	static gint match_sinktype(const GValue *velement, const gchar *type);
+#endif
 	static void handleElementAdded(GstBin *bin, GstElement *element, gpointer user_data);
 
 	struct subtitle_page_t

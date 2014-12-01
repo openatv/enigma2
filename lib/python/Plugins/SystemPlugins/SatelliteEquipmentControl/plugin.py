@@ -24,24 +24,24 @@ class SecParameterSetup(Screen, ConfigListScreen):
 
 		Screen.__init__(self, session)
 		list = [
-			("Delay after diseqc reset command", config.sec.delay_after_diseqc_reset_cmd),
-			("Delay after diseqc peripherial poweron command", config.sec.delay_after_diseqc_peripherial_poweron_cmd),
-			("Delay after continuous tone disable before diseqc", config.sec.delay_after_continuous_tone_disable_before_diseqc),
-			("Delay after final continuous tone change", config.sec.delay_after_final_continuous_tone_change),
-			("Delay after last voltage change", config.sec.delay_after_final_voltage_change),
-			("Delay between diseqc commands", config.sec.delay_between_diseqc_repeats),
-			("Delay after last diseqc command", config.sec.delay_after_last_diseqc_command),
-			("Delay after toneburst", config.sec.delay_after_toneburst),
-			("Delay after change voltage before switch command", config.sec.delay_after_change_voltage_before_switch_command),
-			("Delay after enable voltage before switch command", config.sec.delay_after_enable_voltage_before_switch_command),
-			("Delay between switch and motor command", config.sec.delay_between_switch_and_motor_command),
-			("Delay after set voltage before measure motor power", config.sec.delay_after_voltage_change_before_measure_idle_inputpower),
-			("Delay after enable voltage before motor command", config.sec.delay_after_enable_voltage_before_motor_command),
-			("Delay after motor stop command", config.sec.delay_after_motor_stop_command),
-			("Delay after voltage change before motor command", config.sec.delay_after_voltage_change_before_motor_command),
-			("Delay before sequence repeat", config.sec.delay_before_sequence_repeat),
-			("Motor running timeout", config.sec.motor_running_timeout),
-			("Motor command retries", config.sec.motor_command_retries) ]
+			(_("Delay after diseqc reset command"), config.sec.delay_after_diseqc_reset_cmd),
+			(_("Delay after diseqc peripherial poweron command"), config.sec.delay_after_diseqc_peripherial_poweron_cmd),
+			(_("Delay after continuous tone disable before diseqc"), config.sec.delay_after_continuous_tone_disable_before_diseqc),
+			(_("Delay after final continuous tone change"), config.sec.delay_after_final_continuous_tone_change),
+			(_("Delay after last voltage change"), config.sec.delay_after_final_voltage_change),
+			(_("Delay between diseqc commands"), config.sec.delay_between_diseqc_repeats),
+			(_("Delay after last diseqc command"), config.sec.delay_after_last_diseqc_command),
+			(_("Delay after toneburst"), config.sec.delay_after_toneburst),
+			(_("Delay after change voltage before switch command"), config.sec.delay_after_change_voltage_before_switch_command),
+			(_("Delay after enable voltage before switch command"), config.sec.delay_after_enable_voltage_before_switch_command),
+			(_("Delay between switch and motor command"), config.sec.delay_between_switch_and_motor_command),
+			(_("Delay after set voltage before measure motor power"), config.sec.delay_after_voltage_change_before_measure_idle_inputpower),
+			(_("Delay after enable voltage before motor command"), config.sec.delay_after_enable_voltage_before_motor_command),
+			(_("Delay after motor stop command"), config.sec.delay_after_motor_stop_command),
+			(_("Delay after voltage change before motor command"), config.sec.delay_after_voltage_change_before_motor_command),
+			(_("Delay before sequence repeat"), config.sec.delay_before_sequence_repeat),
+			(_("Motor running timeout"), config.sec.motor_running_timeout),
+			(_("Motor command retries"), config.sec.motor_command_retries) ]
 		ConfigListScreen.__init__(self, list)
 
 session = None

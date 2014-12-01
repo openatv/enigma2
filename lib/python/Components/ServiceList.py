@@ -161,7 +161,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				self.serviceList.setTvMode()
+				self.serviceList.setModeTv()
+				revert_tv_root = self.getRoot()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
 					self.serviceList.enterUserbouquet(bouquet[1])
@@ -169,7 +170,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
-				self.serviceList.setRadioMode()
+				self.serviceList.enterUserbouquet(revert_tv_root)
+				self.serviceList.setModeRadio()
+				revert_radio_root = self.getRoot()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
 					self.serviceList.enterUserbouquet(bouquet[1])
@@ -177,6 +180,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
+				self.serviceList.enterUserbouquet(revert_radio_root)
 				print "[servicelist] service not found in any userbouquets"
 				if revert_mode == "tv":
 					self.serviceList.setModeTv()

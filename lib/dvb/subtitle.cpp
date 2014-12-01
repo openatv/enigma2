@@ -14,7 +14,7 @@
 
 void bitstream_init(bitstream *bit, const void *buffer, int size)
 {
-	bit->data = (__u8*) buffer;
+	bit->data = (uint8_t*) buffer;
 	bit->size = size;
 	bit->avail = 8;
 	bit->consumed = 0;
@@ -34,7 +34,7 @@ int bitstream_get(bitstream *bit)
 	return val;
 }
 
-static int extract_pts(pts_t &pts, __u8 *pkt)
+static int extract_pts(pts_t &pts, uint8_t *pkt)
 {
 	if (pkt[7] & 0x80) /* PTS present? */
 	{
@@ -49,7 +49,7 @@ static int extract_pts(pts_t &pts, __u8 *pkt)
 		return -1;
 }
 
-void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, __u8 *data, int len)
+void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, uint8_t *data, int len)
 {
 	bool subcentered = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_centered");
 	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
@@ -77,17 +77,17 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle
 	}
 //	eDebug("inserting %d bytes (into region %d)", len, region->region_id);
 //	eDebug("put data to buffer %p", &(*region->buffer));
-	memcpy((__u8*)region->buffer->surface->data + region->buffer->surface->stride * y + x, data, len);
+	memcpy((uint8_t*)region->buffer->surface->data + region->buffer->surface->stride * y + x, data, len);
 }
 
 static int map_2_to_4_bit_table[4];
 static int map_2_to_8_bit_table[4];
 static int map_4_to_8_bit_table[16];
 
-int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, __u8 *data)
+int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, uint8_t *data)
 {
 	int data_type = *data++;
-	static __u8 line[1920];
+	static uint8_t line[1920];
 
 	bitstream bit;
 	bit.size=0;
@@ -290,7 +290,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 	return 0;
 }
 
-int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
+int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 {
 	int segment_type, page_id, segment_length, processed_length;
 	if (*segment++ !=  0x0F)
@@ -849,7 +849,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	return segment_length + 6;
 }
 
-void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
+void eDVBSubtitleParser::subtitle_process_pes(uint8_t *pkt, int len)
 {
 //	eDebugNoNewLine("subtitle_process_pes");
 	if (!extract_pts(m_show_time, pkt))

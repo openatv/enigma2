@@ -2,14 +2,8 @@ from Components.VariableText import VariableText
 from enigma import eLabel, iPlayableService
 from Renderer import Renderer
 
-ChannelNumberClasses = []
-def doRenumber():
-	for func in ChannelNumberClasses:
-		func(True)
-
 class ChannelNumber(Renderer, VariableText):
 	def __init__(self):
-		ChannelNumberClasses.append(self.changed)
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 		self.text = "---"

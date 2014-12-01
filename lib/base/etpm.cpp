@@ -103,11 +103,16 @@ void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 	{
 		perror("eTPM::recv_cmd read");
 		free(val);
+		val = (void *)0;
 	}
-        else if ((size_t)rd != *len) {
-		fprintf(stderr, "%s: incomplete read\n", __func__);
-		free(val);
-		return NULL;
+	else
+	{
+		if ((size_t)rd != *len)
+		{
+			fprintf(stderr, "%s: incomplete read\n", __func__);
+			free(val);
+			val = (void *)0;
+		}
 	}
 
 	return val;

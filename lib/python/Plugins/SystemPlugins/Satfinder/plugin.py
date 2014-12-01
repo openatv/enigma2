@@ -16,13 +16,12 @@ from Components.Converter.ChannelNumbers import channelnumbers
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False
-		self.frontendData = None
 		service = session and session.nav.getCurrentService()
 		feinfo = service and service.frontendInfo()
 		self.frontendData = feinfo and feinfo.getAll(True)
 		del feinfo
 		del service
-		
+
 		self.typeOfTuningEntry = None
 		self.systemEntry = None
 		self.satfinderTunerEntry = None
@@ -104,9 +103,9 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.tuning_type.value = "single_transponder"
 			else:
 				self.list.append(self.typeOfTuningEntry)
-	
+
 			nim = nimmanager.nim_slots[self.feid]
-			
+
 			if self.tuning_type.value == "single_transponder":
 				if nim.isCompatible("DVB-S2"):
 					self.systemEntry = getConfigListEntry(_('System'), self.scan_sat.system)
@@ -188,27 +187,27 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.scan_nims.value = self.satfinder_scan_nims.value
 				self.predefinedTerrTranspondersList()
 				self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders))
-		self.retune(None)	
+		self.retune(None)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		
+
 	def createConfig(self, foo):
 		self.tuning_type = ConfigSelection(default = "predefined_transponder", choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))])
 		self.orbital_position = 192
 		if self.frontendData and self.frontendData.has_key('orbital_position'):
 			self.orbital_position = self.frontendData['orbital_position']
 		ScanSetup.createConfig(self, self.frontendData)
-		
-		for x in (self.tuning_type, self.scan_sat.frequency,
+
+		for x in (self.scan_sat.frequency,
 			self.scan_sat.inversion, self.scan_sat.symbolrate,
 			self.scan_sat.polarization, self.scan_sat.fec, self.scan_sat.pilot,
 			self.scan_sat.fec_s2, self.scan_sat.fec, self.scan_sat.modulation,
 			self.scan_sat.rolloff, self.scan_sat.system,
-			self.scan_ter.channel, self.scan_ter.frequency, self.scan_ter.inversion, 
-			self.scan_ter.bandwidth, self.scan_ter.fechigh, self.scan_ter.feclow, 
-			self.scan_ter.modulation, self.scan_ter.transmission, 
+			self.scan_ter.channel, self.scan_ter.frequency, self.scan_ter.inversion,
+			self.scan_ter.bandwidth, self.scan_ter.fechigh, self.scan_ter.feclow,
+			self.scan_ter.modulation, self.scan_ter.transmission,
 			self.scan_ter.guard, self.scan_ter.hierarchy, self.scan_ter.plp_id,
-			self.scan_cab.frequency, self.scan_cab.inversion, self.scan_cab.symbolrate, 
+			self.scan_cab.frequency, self.scan_cab.inversion, self.scan_cab.symbolrate,
 			self.scan_cab.modulation, self.scan_cab.fec):
 			x.addNotifier(self.retune, initial_call = False)
 
@@ -224,9 +223,9 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.satfinder_scan_nims = ConfigSelection(choices = satfinder_nim_list)
 		if self.frontendData is not None and len(satfinder_nim_list) > 0: # open the plugin with the currently active NIM as default
 			self.satfinder_scan_nims.setValue(str(self.frontendData.get("tuner_number", satfinder_nim_list[0][0])))
-			
+
 		self.feid = int(self.satfinder_scan_nims.value)
-		
+
 		self.satList = []
 		self.scan_satselection = []
 		for slot in nimmanager.nim_slots:
@@ -235,7 +234,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.scan_satselection.append(getConfigSatlist(self.orbital_position, self.satList[slot.slot]))
 			else:
 				self.satList.append(None)
-				
+
 		if self.frontendData:
 			ttype = self.frontendData.get("tuner_type", "UNKNOWN")
 			if ttype == "DVB-S" and self.predefinedTranspondersList(self.getSelectedSatIndex(self.feid)) is None and len(nimmanager.getTransponders(self.getSelectedSatIndex(self.feid))) > 0:
@@ -283,8 +282,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					if self.initcomplete:
 						self.tuner.tuneCab(transponder)
 					self.transponder = transponder
-	
-	
+
 	def retuneTerr(self, configElement):
 		if not nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-T"):
 			return self.retuneCab(configElement)
@@ -319,7 +317,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					if self.initcomplete:
 						self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
 					self.transponder = transponder
-	
+
 	def retune(self, configElement): # satellite
 		if not nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-S"):
 			return self.retuneTerr(configElement)
@@ -420,7 +418,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.close(True)
 
 def SatfinderMain(session, close=None, **kwargs):
-	nims = nimmanager.nim_slots 
+	nims = nimmanager.nim_slots
 	nimList = []
 	for n in nims:
 		if not (n.isCompatible("DVB-S") or n.isCompatible("DVB-T") or n.isCompatible("DVB-C")):

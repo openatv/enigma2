@@ -25,7 +25,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		nim = self.nimConfig
 
 		if mode == "single":
-			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
+			self.singleSatEntry = getConfigListEntry(_("Satellite"), nim.diseqcA)
+			list.append(self.singleSatEntry)
+			if nim.diseqcA.value in ("360", "560"):
+				list.append(getConfigListEntry(_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB))
+			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
@@ -116,6 +120,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.showAdditionalMotorOptions = None
 		self.selectSatsEntry = None
 		self.advancedSelectSatsEntry = None
+		self.singleSatEntry = None
 
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
@@ -231,8 +236,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
-					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.commandOrder, self.showAdditionalMotorOptions,
-					 self.cableScanType, self.multiType)
+					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
+					 self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -552,10 +557,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.nimConfig = self.nim.config
 		self.createConfigMode()
 		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Reception Settings"))
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.newConfig()
+		if self["config"].getCurrent() in (self.advancedSelectSatsEntry, self.selectSatsEntry):
+			self.keyOk()
+		else:
+			self.newConfig()
 
 	def setTextKeyBlue(self):
 		self["key_blue"].setText("")
@@ -564,7 +576,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.newConfig()
+		if self["config"].getCurrent() in (self.advancedSelectSatsEntry, self.selectSatsEntry):
+			self.keyOk()
+		else:
+			self.newConfig()
 
 	def handleKeyFileCallback(self, answer):
 		ConfigListScreen.handleKeyFileCallback(self, answer)
@@ -584,7 +599,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			for id in nimlist:
 				choices.append((str(id), nimmanager.getNimDescription(id)))
 			self.nimConfig.connectedTo.setChoices(choices)
-			# sanity check for empty sat list 
+			# sanity check for empty sat list
 			if self.nimConfig.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.configMode.value = "nothing"
 		for x in self["config"].list:
@@ -635,6 +650,7 @@ class NimSelection(Screen):
 			"red": self.close,
 			"green": self.okbuttonClick,
 		}, -2)
+		self.setTitle(_("Choose Tuner"))
 
 	def setResultClass(self):
 		self.resultclass = NimSetup

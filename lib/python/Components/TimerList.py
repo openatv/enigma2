@@ -169,7 +169,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if op == 0xeeee:
 			return "%s" % _("DVB-T")
 		if op == 0xffff:
-			return "%s" % _("DVB_C")
+			return "%s" % _("DVB-C")
 		direction = 'E'
 		if op > 1800:
 			op = 3600 - op

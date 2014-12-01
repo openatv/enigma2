@@ -39,7 +39,7 @@ class eDVBTeletextParser: public iObject, public ePESParser, public Object
 public:
 	eDVBTeletextParser(iDVBDemux *demux);
 	virtual ~eDVBTeletextParser();
-	const int max_id = 26;
+	static const int max_id = 26;
 	static const char * const my_country_codes[];
 	int start(int pid);
 	void setPageAndMagazine(int page, int magazine, const char * lang);
@@ -49,7 +49,7 @@ public:
 	std::set<eDVBServicePMTHandler::subtitleStream> m_found_subtitle_pages;
 private:
 	std::map<int, unsigned int> m_modifications;
-	void processPESPacket(__u8 *pkt, int len);
+	void processPESPacket(uint8_t *pkt, int len);
 
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;

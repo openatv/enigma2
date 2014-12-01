@@ -115,20 +115,22 @@ class Harddisk:
 			self.timer.callback.remove(self.runIdle)
 
 	def bus(self):
-		# CF (7025 specific)
+		ret = _("External")
+		# SD/MMC(F1 specific)
 		if self.type == DEVTYPE_UDEV:
-			ide_cf = False	# FIXME
+			card = "sdhci" in self.phys_path
+			type_name = " (SD/MMC)"
+		# CF(7025 specific)
 		elif self.type == DEVTYPE_DEVFS:
-			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
+			card = self.device[:2] == "hd" and "host0" not in self.dev_path
+			type_name = " (CF)"
 
-		internal = ("pci" or "ata") in self.phys_path
+		internal = ("pci" or "ahci") in self.phys_path
 
-		if ide_cf:
-			ret = _("External (CF)")
+		if card:
+			ret += type_name
 		elif internal:
 			ret = _("Internal")
-		else:
-			ret = _("External")
 		return ret
 
 	def diskSize(self):
@@ -162,8 +164,10 @@ class Harddisk:
 				vendor = readFile(self.phys_path + '/vendor')
 				model = readFile(self.phys_path + '/model')
 				return vendor + '(' + model + ')'
+			elif self.device.startswith('mmcblk0'):
+				return readFile(self.sysfsPath('device/name'))
 			else:
-				raise Exception, "no hdX or sdX"
+				raise Exception, "no hdX or sdX or mmcX"
 		except Exception, e:
 			print "[Harddisk] Failed to get model:", e
 			return "-?-"
@@ -726,7 +730,7 @@ class HarddiskManager:
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
-			if l and not device[l-1].isdigit():
+			if l and (not device[l-1].isdigit() or device == 'mmcblk0'):
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
@@ -789,7 +793,7 @@ class HarddiskManager:
 
 	def getUserfriendlyDeviceName(self, dev, phys):
 		dev, part = self.splitDeviceName(dev)
-		description = "External Storage %s" % dev
+		description = _("External Storage %s") % dev
 		try:
 			description = readFile("/sys" + phys + "/model")
 		except IOError, s:
@@ -800,7 +804,7 @@ class HarddiskManager:
 				description = pdescription
 		# not wholedisk and not partition 1
 		if part and part != 1:
-			description += " (Partition %d)" % part
+			description += _(" (Partition %d)") % part
 		return description
 
 	def addMountedPartition(self, device, desc):
