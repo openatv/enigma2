@@ -52,32 +52,32 @@ class EGExtraInfo(Poll, Converter, object):
 			data['address_from'] = ''
 			data['hops'] = '0'
 			data['ecm_time'] = '0'
-			
+
 			data['caid'] = info.get('caid', '0')
 			data['provider'] = info.get('provider', '')
 			if data['provider'] == '':
 				data['provider'] = info.get('prov', ' ')
-				
+
 			data['using'] = info.get('using', '')
 			data['reader'] = info.get('reader', '')
 			## CCcam
-			if data['using']:	
-			    data['using'] = info.get('using', '')
-			    data['decode'] = info.get('decode', '')
-			    data['source'] = info.get('source', '')
-			    data['reader'] = info.get('reader', '')
-			    data['address'] = info.get('address', 'Unknown')
-			    data['address_from'] = info.get('from', 'Unknown')
-			    data['hops'] = info.get('hops', '0')
-			    data['ecm_time'] = info.get('ecm time', '?')
+			if data['using']:
+				data['using'] = info.get('using', '')
+				data['decode'] = info.get('decode', '')
+				data['source'] = info.get('source', '')
+				data['reader'] = info.get('reader', '')
+				data['address'] = info.get('address', 'Unknown')
+				data['address_from'] = info.get('from', 'Unknown')
+				data['hops'] = info.get('hops', '0')
+				data['ecm_time'] = info.get('ecm time', '?')
 			elif data['reader']:
-			    data['caid'] = info.get('caid', '')
-			    data['pid'] = info.get('pid', '')
-			    data['provider'] = info.get('prov', '')
-			    data['reader'] = info.get('reader', '')
-			    data['address'] = info.get('from', 'Unknown')
-			    data['hops'] = info.get('hops', '0')
-			    data['ecm_time'] = info.get('ecm time', '?')			    
+				data['caid'] = info.get('caid', '')
+				data['pid'] = info.get('pid', '')
+				data['provider'] = info.get('prov', '')
+				data['reader'] = info.get('reader', '')
+				data['address'] = info.get('from', 'Unknown')
+				data['hops'] = info.get('hops', '0')
+				data['ecm_time'] = info.get('ecm time', '?')
 			else:
 				data['decode'] = info.get('decode', '')
 				if data['decode']:
@@ -93,19 +93,19 @@ class EGExtraInfo(Poll, Converter, object):
 									data['address'] = line.strip()
 									break
 							else:
-								data['address'] = cardid	
+								data['address'] = cardid
 						except:
 							data['address'] = data['decode']
 					else:
 						# adddess = slot or emu
 						data['address'] = data['decode']
-						
+
 					if ecm[1].startswith('SysID'):
 						data['provider'] = ecm[1].strip()[6:]
 					if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
 						data['ecm_time'] = info.get('response', '?')
-						data['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
-						data['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+						data['caid'] = ecm[0][ecm[0].find('CaID 0x') + 7:ecm[0].find(',')]
+						data['pid'] = ecm[0][ecm[0].find('pid 0x') + 6:ecm[0].find(' =')]
 						data['provider'] = info.get('prov', '0')[:4]
 				else:
 					source = info.get('source', None)
@@ -113,8 +113,8 @@ class EGExtraInfo(Poll, Converter, object):
 						print "Found Source"
 						#wicardd
 						if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
-							data['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
-							data['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+							data['caid'] = ecm[0][ecm[0].find('CaID 0x') + 7:ecm[0].find(',')]
+							data['pid'] = ecm[0][ecm[0].find('pid 0x') + 6:ecm[0].find(' =')]
 							data['provider'] = info.get('prov', '0')[2:]
 						# MGcam
 						else:
@@ -126,9 +126,9 @@ class EGExtraInfo(Poll, Converter, object):
 							if line.find('msec') != -1:
 								line = line.split(' ')
 								if line[0]:
-									time = " (%ss)" % (float(line[0])/1000)
+									time = " (%ss)" % (float(line[0]) / 1000)
 									continue
-						data['address'] = source 
+						data['address'] = source
 						data['ecm_time'] = time
 					else:
 						reader = info.get('reader', '')
@@ -157,18 +157,18 @@ class EGExtraInfo(Poll, Converter, object):
 			data['address_from'] = ''
 			data['hops'] = '0'
 			data['ecm_time'] = '0'
-			
+
 		return data
-	
+
 	def get_caName(self):
 		try:
-			f = open("/etc/egami/.emuname",'r')
- 			name = f.readline().strip()
- 			f.close()
+			f = open("/etc/egami/.emuname", 'r')
+			name = f.readline().strip()
+			f.close()
 		except:
 			name = "Common Interface"
 		return name
-		
+
 	@cached
 	def getText(self):
 		service = self.source.service
@@ -176,10 +176,10 @@ class EGExtraInfo(Poll, Converter, object):
 			return ""
 		info = service and service.info()
 		is_crypted = info.getInfo(iServiceInformation.sIsCrypted)
-		
+
 		if self.type == "CamName":
 			return self.get_caName()
-		
+
 		elif self.type == "NetInfo":
 			if is_crypted != 1:
 				return ''
@@ -192,13 +192,13 @@ class EGExtraInfo(Poll, Converter, object):
 				return "Decode: %s   Ecm time: %s Pid: %s" % (data['address'], data['ecm_time'], data['pid'])
 			elif data['address']:
 				return "Address: %s   Ecm time: %s Pid: %s" % (data['address'], data['ecm_time'], data['pid'])
-				
+
 		elif self.type == "EcmInfo":
 			if is_crypted != 1:
 				return ''
 			data = self.GetEcmInfo()
 			return "CaId: %s     Provider: %s" % (data['caid'], data['provider'])
-			
+
 		elif self.type == "E-C-N":
 			if is_crypted != 1:
 				return 'Fta'
@@ -231,31 +231,32 @@ class EGExtraInfo(Poll, Converter, object):
 				else:
 					return 'Fta'
 			return ""
-		
+
 		elif self.type == "CryptoBar":
 			data = self.GetEcmInfo()
 			res = ""
 			available_caids = info.getInfoObject(iServiceInformation.sCAIDs)	
 			for caid_entry in self.caid_data:
 				if int(data['caid'], 16) >= int(caid_entry[0], 16) and int(data['caid'], 16) <= int(caid_entry[1], 16):
-					color="\c0000??00"
+					color = "\c0000??00"
 				else:
 					color = "\c007?7?7?"
 					try:
 						for caid in available_caids:
 							if caid >= int(caid_entry[0], 16) and caid <= int(caid_entry[1], 16):
-								color="\c00????00"
+								color = "\c00????00"
 					except:
 						pass
 
-				if res: res += " "
+				if res:
+					res += " "
 				res += color + caid_entry[3]
-		
+
 			res += "\c00??????"
 			return res
-				
+
 		return ""
-			
+
 	text = property(getText)
 
 	@cached
@@ -337,7 +338,7 @@ class EGExtraInfo(Poll, Converter, object):
 		if data is None:
 			return False
 
-		current_caid	= data['caid']
+		current_caid = data['caid']
 
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
@@ -346,7 +347,7 @@ class EGExtraInfo(Poll, Converter, object):
 				if(request_selected):
 					if int(current_caid, 16) >= int(caid_entry[0], 16) and int(current_caid, 16) <= int(caid_entry[1], 16):
 						return True
-				else: # request available
+				else:  # request available
 					try:
 						for caid in available_caids:
 							if caid >= int(caid_entry[0], 16) and caid <= int(caid_entry[1], 16):
@@ -357,5 +358,3 @@ class EGExtraInfo(Poll, Converter, object):
 		return False
 
 	boolean = property(getBool)
-	
-	
