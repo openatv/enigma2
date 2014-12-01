@@ -1,6 +1,7 @@
 #	-*-	coding:	utf-8	-*-
 # Supportchannel from YouTube - base on MediaPortal UserList
 from Screens.Screen import Screen
+from Screens.PluginBrowser import PluginBrowserSummary
 from os.path import exists
 from Plugins.Plugin import PluginDescriptor
 from imports import *
@@ -83,7 +84,7 @@ class supportchannel_YTChannel(Screen):
 		}, -1)
 		
 		
-		self['title'] = Label(USER_Version)
+		self['title'] = self['Title'] = Label(USER_Version)
 		self['ContentTitle'] = Label("Channel Auswahl")
 		self['name'] = Label("")
 		self['key_red'] = Label("Load")
@@ -98,8 +99,24 @@ class supportchannel_YTChannel(Screen):
 		self.chooseMenuList.l.setFont(0, gFont('Regular', 23))
 		self.chooseMenuList.l.setItemHeight(25)
 		self['genreList'] = self.chooseMenuList
+		self.onChangedEntry = []
+		self["genreList"].onSelectionChanged.append(self.selectionChanged)
 		
 		self.onLayoutFinish.append(self.layoutFinished)
+
+	def createSummary(self):
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["genreList"].getCurrent()
+		try:
+			name = item[0][1]
+			desc = ""
+		except:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 		
 	def layoutFinished(self):
 		self.genreliste.append((0, "Mit dieser Erweiterung kannst Du deine Lieblings Youtube Kanäle selber hinzufügen.", ""))
@@ -244,7 +261,7 @@ class supportchannel_ListChannel_ListScreen(Screen):
 			"9" 		: self.key_9
 		}, -1)
 
-		self['title'] = Label(USER_Version)
+		self['title'] = self['Title'] = Label(USER_Version)
 		self['ContentTitle'] = Label(self.genreName)
 		self['name'] = Label("")
 		self['handlung'] = ScrollLabel("")
@@ -276,8 +293,24 @@ class supportchannel_ListChannel_ListScreen(Screen):
 		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
 		self.chooseMenuList.l.setItemHeight(25)
 		self['liste'] = self.chooseMenuList
+		self.onChangedEntry = []
+		self["liste"].onSelectionChanged.append(self.selectionChanged)
 		
 		self.onLayoutFinish.append(self.layoutFinished)
+
+	def createSummary(self):
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["liste"].getCurrent()
+		try:
+			name = item[0][1]
+			desc = item[0][4]
+		except:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 		
 	def layoutFinished(self):
 		self.loadPageData()
