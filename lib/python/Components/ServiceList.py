@@ -104,6 +104,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
 				elif attrib == "colorServiceRecorded":
 					self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+				elif attrib == "colorFallbackItem":
+					self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
+				elif attrib == "colorServiceSelectedFallback":
+					self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
+				elif attrib == "colorServiceDescriptionFallback":
+					self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
+				elif attrib == "colorServiceDescriptionSelectedFallback":
+					self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
 					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 					if pic:
