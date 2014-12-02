@@ -112,7 +112,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				count = 0
 				for x in (0, 1, 2, 3, 4, 5, 6):
 					if flags == 1: # weekly
-# 							print "Set to weekday " + str(x)
+# 						print "Set to weekday " + str(x)
 						weekday = x
 					if flags & 1 == 1: # set user defined flags
 						day[x] = 1
@@ -183,8 +183,10 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get.")))
-		self.list.append(getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording.")))
+		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
+		self.list.append(self.entryName)
+		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
+		self.list.append(self.entryDescription)
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
 		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))

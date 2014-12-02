@@ -1,4 +1,4 @@
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, getDesktop
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, getDesktop
 
 from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN

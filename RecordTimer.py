@@ -775,7 +775,6 @@ class RecordTimer(timer.Timer):
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
-			list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
