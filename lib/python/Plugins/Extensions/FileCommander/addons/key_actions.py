@@ -152,7 +152,7 @@ class key_actions():
 
 	def play_music(self, dirsource):
 		self.sourceDir = dirsource
-		askList = [(_("Play titel"), "SINGLE"),(_("Play folder"), "LIST"),(_("Cancel"), "NO")]
+		askList = [(_("Play title"), "SINGLE"),(_("Play folder"), "LIST"),(_("Cancel"), "NO")]
 		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("Do you want to execute?\\n"+self.sourceDir.getFilename()), list=askList)
 
 	def do_play_music(self, answer):

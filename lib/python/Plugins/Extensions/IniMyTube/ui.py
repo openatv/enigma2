@@ -1146,7 +1146,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 
 	def buildEntryComponent(self, entry,TubeID):
 		Title = entry.getTitle()
-		print "Titel-->",Title
+		print "Title-->",Title
 		Description = entry.getDescription()
 		myTubeID = TubeID
 		PublishedDate = entry.getPublishedDate()
