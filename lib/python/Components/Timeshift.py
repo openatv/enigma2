@@ -765,11 +765,15 @@ class InfoBarTimeshift:
 		for filename in os.listdir(config.usage.timeshift_path.value):
 			if filename.startswith(("timeshift.", "pts_livebuffer_")):
 				# print 'filename:', filename
-				statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
-				age = time() - statinfo.st_mtime
-				# older than 3 days = orphaned file, older than 3 seconds = stranded timeshift
-				if (age > 3600 * 24 * 3) or (age > 3 and not filename.endswith((".del", ".copy"))):
-					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
+				try:
+					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
+					age = time() - statinfo.st_mtime
+					# older than 3 days = orphaned file, older than 3 seconds = stranded timeshift
+					if (age > 3600 * 24 * 3) or (age > 3 and not filename.endswith((".del", ".copy"))):
+						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
+				except:
+					# Most likely to get here if the file was deleted while iterating through the directory.
+					pass
 
 	def ptsGetEventInfo(self):
 		dprint("ptsGetEventInfo")
