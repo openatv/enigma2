@@ -46,42 +46,42 @@
 		</widget>
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="216,15" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="192,18" size="12,19" text="A" font="FdLcD;18" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="226,15" size="9,15">
-			<convert type="TunerInfo">TunerUseMask</convert>
-			<convert type="ValueBitTest">2</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="235,15" size="9,15">
-			<convert type="TunerInfo">TunerUseMask</convert>
-			<convert type="ValueBitTest">4</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="246,15" size="9,15">
-			<convert type="TunerInfo">TunerUseMask</convert>
-			<convert type="ValueBitTest">8</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-a-act.png" position="216,15" size="9,15">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="192,18" size="12,19" text="A" font="FdLcD;18" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-b-act.png" position="226,15" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="206,18" size="12,19" text="B" font="FdLcD;18" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="206,18" size="12,19" text="B" font="FdLcD;18" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-c-act.png" position="236,15" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="219,18" size="12,19" text="C" font="FdLcD;18" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="219,18" size="12,19" text="C" font="FdLcD;18" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-d-act.png" position="246,15" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="232,18" size="12,19" text="D" font="FdLcD;18" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="232,18" size="12,19" text="D" font="FdLcD;18" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -231,9 +231,6 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="update.png" position="241,0" size="14,12">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="223,52"  size="32,12">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
@@ -242,22 +239,22 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="188,50" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="188,50" size="9,15" text="A" font="FdLcD;15" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="197,50" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="197,50" size="9,15" text="B" font="FdLcD;15" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="206,50" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="206,50" size="9,15" text="C" font="FdLcD;15" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="215,50" size="9,15">
+		<widget source="session.TunerInfo" render="FixedLabel" position="215,50" size="9,15" text="D" font="FdLcD;15" halign="center">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
@@ -322,20 +319,20 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="255,64">
-		<widget source="parent.summary_list" render="Label" position="0,0" size="255,64" font="FdLcD;11" noWrap="1" />
+		<widget source="parent.summary_list" render="Label" position="0,0" size="255,64" font="FdLcD;22" halign="center" />
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="255,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
+		<widget source="parent.Text" render="Label" position="0,0" size="255,48" font="FdLcD;22" halign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1" />
 	</screen>
 	<screen name="MessageBoxSimple_summary" position="0,0" size="255,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
+		<widget source="parent.Text" render="Label" position="0,0" size="255,48" font="FdLcD;22" halign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="255,64">
-		<widget source="AboutText" render="Label" position="0,0" size="255,64" font="FdLcD;11" />
+		<widget source="AboutText" render="Label" position="0,0" size="255,64" font="FdLcD;22" halign="center" />
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="255,64">
@@ -353,10 +350,6 @@
 		<widget source="parent.list" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
-	</screen>
-	<screen name="LanguageWizardSummary" position="0,0" size="255,64">
-		<widget source="parent.summarytext" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
-		<widget source="parent.summarylangname" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  />
 	</screen>
 	<screen name="VideoWizardSummary" position="0,0" size="255,64">
 		<widget source="text" render="Label" position="0,0" size="255,64" font="FdLcD;12" halign="center" />
@@ -495,17 +488,52 @@
 	</screen>
 	<!-- LanguageSelection -->
 	<screen name="LanguageSelection_summary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
 		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 	<screen name="LanguageWizardSummary" position="0,0" size="256,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
-		<widget source="parent.summarylangsel" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+		<widget source="parent.summarytext" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" />
+		<widget source="parent.summarylangname" render="Label" position="0,42" size="256,22" font="FdLcD;20" halign="center" noWrap="1"  />
 	</screen>
 	<!-- AudioSelection -->
 	<screen name="AudioSelection_summary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;19" halign="center" valign="center" />
 		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+
+<!-- console -->
+	<screen name="Console_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" font="FdLcD;20" halign="center" noWrap="1" />
+	</screen>
+
+<!-- softwaremanagment -->
+	<screen name="BackupSelection_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="RestoreScreen_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="installedPlugins_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="RestartNetwork_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+	<screen name="RestorePlugins_summary" position="0,0" size="256,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="256,40" font="FdLcD;17" halign="center" valign="center" />
+		<widget source="parent.summary_description" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
+	</screen>
+		<screen name="AboutSummary" position="0,0" size="256,64">
+		<widget source="AboutText" render="RunningText" options="movetype=running,direction=top,startpoint=0,startdelay=1500,wrap=1,always=0,oneshot=1" position="0,0" size="256,64" font="FdLcD;26" />
+	</screen>
+	<screen name="SoftwareUpdateChanges_summary" position="0,0" size="256,64">
+		<widget source="parent.title_summary" render="Label" position="120,0" size="136,40" font="FdLcD;17" halign="center" valign="bottom" />
+		<widget source="parent.text_summary" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
 	
 </skin>
