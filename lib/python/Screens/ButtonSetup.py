@@ -182,10 +182,9 @@ class ButtonSetup(Screen):
 		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"cancel": self.close,
-			"red": self.redPressed,
 		}, -1)
 		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in ButtonSetupKeys))
 		self.longkeyPressed = False
@@ -235,12 +234,6 @@ class ButtonSetup(Screen):
 				if function:
 					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
-
-	def redPressed(self):
-		from InfoBar import InfoBar
-		InfoBarInstance = InfoBar.instance
-		if not InfoBarInstance.LongButtonPressed:
-			self.close()
 
 class ButtonSetupSelect(Screen):
 	def __init__(self, session, key, args=None):
