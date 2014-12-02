@@ -278,14 +278,14 @@ class VirtualKeyBoard(Screen):
 				if screenwidth and screenwidth == 1920:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 68), png=png))
 				else:
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=png))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 45), png=png))
 			else:
 				width = key_bg_width
 				if screenwidth and screenwidth == 1920:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 68), png=self.key_bg))
 					text.append(MultiContentEntryText(pos=(x, 0), size=(width, 68), font=1, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 				else:
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_bg))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 45), png=self.key_bg))
 					text.append(MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 			x += width
 		return res + text
@@ -306,7 +306,7 @@ class VirtualKeyBoard(Screen):
 		if screenwidth and screenwidth == 1920:
 			self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 68), png=self.key_sel))
 		else:
-			self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=self.key_sel))
+			self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(width, 45), png=self.key_sel))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)
 
