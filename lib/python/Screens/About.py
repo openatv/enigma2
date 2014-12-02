@@ -50,7 +50,7 @@ class About(Screen):
 			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
 
 		AboutText += _("CPU:\t%s\n") % about.getCPUString()
-		AboutText += _("CPU Speed:\t%s\n") % about.getCPUSpeedString(
+		AboutText += _("CPU Speed:\t%s\n") % about.getCPUSpeedString()
 		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()

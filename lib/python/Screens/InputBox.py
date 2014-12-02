@@ -89,7 +89,7 @@ class InputBox(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service="", triesEntry=None, pinList=None, popup=False, simple=True *args, **kwargs):
+	def __init__(self, session, service="", triesEntry=None, pinList=None, popup=False, simple=True, *args, **kwargs):
 		if not pinList: pinList = []
 		InputBox.__init__(self, session = session, text = "    ", maxSize = True, type = Input.PIN, *args, **kwargs)
 

@@ -390,19 +390,19 @@ class ChannelContextMenu(Screen):
 				self.session.pip.servicePath = self.csel.getCurrentServicePath()
 				self.session.pip.servicePath[1] = currentBouquet
 				if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
-						print '[LCDMiniTV] enable PIP'
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.minitvpipmode.value)
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-							f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
+					print '[LCDMiniTV] enable PIP'
+					f = open("/proc/stb/lcd/mode", "w")
+					f.write(config.lcd.minitvpipmode.value)
+					f.close()
+					f = open("/proc/stb/vmpeg/1/dst_width", "w")
+					f.write("0")
+					f.close()
+					f = open("/proc/stb/vmpeg/1/dst_height", "w")
+					f.write("0")
+					f.close()
+					f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+					f.write("1")
+					f.close()
 				self.close(True)
 			else:
 				self.session.pipshown = False
@@ -1285,9 +1285,6 @@ class ChannelSelectionBase(Screen):
 				"nextMarker": self.nextMarker,
 				"prevMarker": self.prevMarker,
 				"gotAsciiCode": self.keyAsciiCode,
-				"keyLeft": self.keyLeft,
-				"keyRight": self.keyRight,
-				"keyRecord": self.keyRecord,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
