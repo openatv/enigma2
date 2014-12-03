@@ -506,6 +506,15 @@
 		<key id="KEY_RECORD" mapto="keyRecord" flags="m"/>
 	</map>
 
+	<map context="ChannelSelectEPGActions">
+		<key id="KEY_INFO" mapto="info" flags="b"/>
+		<key id="KEY_INFO" mapto="info_long" flags="l"/>
+		<key id="KEY_EPG" mapto="epg" flags="b"/>
+		<key id="KEY_EPG" mapto="epg_long" flags="l"/>
+		<key id="KEY_INFO" mapto="showEPGList" flags="b"/>
+		<key id="KEY_EPG" mapto="showEPGList" flags="b"/>
+	</map>
+
 	<map context="ChannelSelectEditActions">
 		<key id="KEY_MENU" mapto="contextMenu" flags="m"/>
 		<key id="KEY_SPACE" mapto="contextMenu" flags="m"/>

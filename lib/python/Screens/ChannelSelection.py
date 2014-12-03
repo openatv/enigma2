@@ -513,7 +513,7 @@ class ChannelSelectionEPG(InfoBarHotkey):
 			("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
 			("Epg/Guide", "epg", "Plugins/Extensions/GraphMultiEPG/1"),
 			("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")]
-		self["ChannelSelectEPGActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in self.hotkeys))
+		self["ChannelSelectEPGActions"] = hotkeyActionMap(["ChannelSelectEPGActions"], dict((x[1], self.hotkeyGlobal) for x in self.hotkeys))
 		self.eventViewEPG = self.start_bouquet = self.epg_bouquet = None
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongkeyPressed)
