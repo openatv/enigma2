@@ -1380,6 +1380,12 @@ class ChannelSelectionBase(Screen):
 						justSet=True
 						self.clearPath()
 						self.enterPath(ref, True)
+					if currentRoot and currentRoot == ref:
+						config.usage.servicelist_satellite_details.value = not config.usage.servicelist_satellite_details.value
+						config.usage.servicelist_satellite_details.save()
+						justSet = True
+						self.clearPath()
+						self.enterPath(ref, True)
 				if justSet:
 					serviceHandler = eServiceCenter.getInstance()
 					servicelist = serviceHandler.list(ref)
@@ -1393,28 +1399,28 @@ class ChannelSelectionBase(Screen):
 							if orbpos < 0:
 								orbpos += 3600
 							if "FROM PROVIDER" in service.getPath():
-								service_type = _("Providers")
+								service_type = config.usage.servicelist_satellite_details.value and _("Providers")
 							elif ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in service.getPath():
-								service_type = _("New")
+								service_type = config.usage.servicelist_satellite_details.value and _("New")
 							else:
 								service_type = _("Services")
-							try:
-								# why we need this cast?
-								service_name = str(nimmanager.getSatDescription(orbpos))
-							except:
+							if service_type:
 								if unsigned_orbpos == 0xFFFF: #Cable
 									service_name = _("Cable")
 								elif unsigned_orbpos == 0xEEEE: #Terrestrial
 									service_name = _("Terrestrial")
 								else:
-									if orbpos > 1800: # west
-										orbpos = 3600 - orbpos
-										h = _("W")
-									else:
-										h = _("E")
-									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-							service.setName("%s - %s" % (service_name, service_type))
-							self.servicelist.addService(service)
+									try:
+										service_name = str(nimmanager.getSatDescription(orbpos))
+									except:
+										if orbpos > 1800: # west
+											orbpos = 3600 - orbpos
+											h = _("W")
+										else:
+											h = _("E")
+										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+								service.setName("%s - %s" % (service_name, service_type))
+								self.servicelist.addService(service)
 						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
 						if cur_ref:
 							pos = self.service_types.rfind(':')
