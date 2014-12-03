@@ -329,7 +329,7 @@ class ImageViewer(Screen):
 	def keyYellow(self):
 		if self.fileListLen < 0:
 			return
-		from Plugins.Extensions.PicturePlayer.plugin import Pic_Exif
+		from Plugins.Extensions.PicturePlayer.ui import Pic_Exif
 		self.session.open(Pic_Exif, self.pictureLoad.getInfo(self.fileList[self.lsatIndex]))
 
 	def keyBlue(self):

@@ -30,8 +30,8 @@ class ServiceTime(Converter, object):
 			return info.getInfo(service, iServiceInformation.sTimeCreate)
 		elif self.type == self.ENDTIME:
 			begin = info.getInfo(service, iServiceInformation.sTimeCreate)
-			len = info.getLength(service)
-			return begin + len
+			length = info.getLength(service)
+			return begin + length
 		elif self.type == self.DURATION:
 			return info.getLength(service)
 

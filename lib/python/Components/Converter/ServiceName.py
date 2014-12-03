@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
-from Components.config import config
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference, eEPGCache
 from Components.Element import cached
 from ServiceReference import resolveAlternate
@@ -14,7 +13,7 @@ class ServiceName(Converter, object):
 	EDITREFERENCE = 5
 	SID = 6
 	NUMBER = 7
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime
@@ -41,7 +40,7 @@ class ServiceName(Converter, object):
 		if isinstance(service, iPlayableServicePtr):
 			info = service and service.info()
 			ref = None
-		else: # reference
+		else:  # reference
 			info = service and self.source.info
 			ref = service
 		if not info:
@@ -69,7 +68,7 @@ class ServiceName(Converter, object):
 				if num is not None:
 					return str(num)
 				else:
-					return "  "      
+					return "  "
 		elif self.type == self.PROVIDER:
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE or self.type == self.EDITREFERENCE and hasattr(self.source, "editmode") and self.source.editmode:
@@ -87,12 +86,12 @@ class ServiceName(Converter, object):
 
 			if tmpref:
 				refsplit = tmpref.split(':')
-				if len(refsplit) >= 3: 
+				if len(refsplit) >= 3:
 					return refsplit[3]
 				else:
 					return tmpref
 			else:
-				return 'N/A'			
+				return 'N/A'
 
 	text = property(getText)
 

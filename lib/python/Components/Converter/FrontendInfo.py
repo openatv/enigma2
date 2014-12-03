@@ -37,7 +37,7 @@ class FrontendInfo(Converter, object):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
 		percent = None
 		swapsnr = config.usage.swap_snr_on_osd.value
-		if self.type == self.BER: # as count
+		if self.type == self.BER:  # as count
 			count = self.source.ber
 			if count is not None:
 				return str(count)
@@ -47,10 +47,10 @@ class FrontendInfo(Converter, object):
 			percent = self.source.agc
 		elif (self.type == self.SNR and not swapsnr) or (self.type == self.SNRdB and swapsnr):
 			percent = self.source.snr
-		elif self.type  == self.SNR or self.type == self.SNRdB:
+		elif self.type == self.SNR or self.type == self.SNRdB:
 			if self.source.snr_db is not None:
 				return "%3.01f dB" % (self.source.snr_db / 100.0)
-			elif self.source.snr is not None: #fallback to normal SNR...
+			elif self.source.snr is not None:  # fallback to normal SNR...
 				percent = self.source.snr
 		elif self.type == self.TUNER_TYPE:
 			return self.source.frontend_type and self.frontend_type or "Unknown"
@@ -64,7 +64,7 @@ class FrontendInfo(Converter, object):
 						string += "\c00????00"
 					else:
 						string += "\c007?7?7?"
-					string += chr(ord("A")+n.slot) + " "
+					string += chr(ord("A") + n.slot) + " "
 			return string
 		if percent is None:
 			return "N/A"

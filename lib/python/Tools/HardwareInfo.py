@@ -7,20 +7,20 @@ class HardwareInfo:
 
 	def __init__(self):
 		if HardwareInfo.device_name is not None:
-#			print "using cached result"
+			# print "using cached result"
 			return
 
 		HardwareInfo.device_name = "unknown"
 		try:
-			file = open("/proc/stb/info/model", "r")
-			HardwareInfo.device_name = file.readline().strip()
-			file.close()
+			f = open("/proc/stb/info/model", "r")
+			HardwareInfo.device_name = f.readline().strip()
+			f.close()
 			if getBoxType().startswith('tm') or getBoxType().startswith('iqon') or getBoxType().startswith('media') or getBoxType().startswith('opti'):
 				HardwareInfo.device_name = "dm800se"
 			try:
-				file = open("/proc/stb/info/version", "r")
-				HardwareInfo.device_version = file.readline().strip()
-				file.close()
+				f = open("/proc/stb/info/version", "r")
+				HardwareInfo.device_version = f.readline().strip()
+				f.close()
 			except:
 				pass
 		except:
@@ -49,11 +49,11 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def has_hdmi(self):
-		return not (HardwareInfo.device_name == 'dm800' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version == None))
+		return not (HardwareInfo.device_name == 'dm800' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version is None))
 
 	def linux_kernel(self):
 		try:
-			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
+			return open("/proc/version", "r").read().split(' ', 4)[2].split('-', 2)[0]
 		except:
 			return "unknown"
 

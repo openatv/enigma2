@@ -636,6 +636,7 @@ public:
 	virtual RESULT startTimeshift()=0;
 	virtual RESULT stopTimeshift(bool swToLive=true)=0;
 	virtual RESULT setNextPlaybackFile(const char *fn)=0; // not needed by our internal timeshift.. but external plugin...
+	virtual void goToNextPlaybackFile()=0;
 
 	virtual int isTimeshiftActive()=0;
 	virtual int isTimeshiftEnabled()=0;

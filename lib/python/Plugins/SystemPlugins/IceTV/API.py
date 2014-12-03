@@ -16,7 +16,7 @@ from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, er
 from . import config, saveConfigFile
 from boxbranding import getMachineBrand, getMachineName
 
-_version_string = "20141027"
+_version_string = "20141123"
 _protocol = "http://"
 _server = "api.icetv.com.au"
 _device_type_id = 22
@@ -87,7 +87,7 @@ class Request(object):
 
     def send(self, method):
         data = json.dumps(self.data)
-        r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False)
+        r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False, timeout=10.0)
         err = not r.ok
         if err or _debug_level > 0:
             print "[IceTV]", r.request.method, r.request.url

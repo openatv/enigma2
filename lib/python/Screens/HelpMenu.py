@@ -17,6 +17,8 @@ Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to 
 
 Other buttons will jump to the help for that button, if there is help.
 
+If an action is user-configurable, its help entry will be flagged (C)
+
 A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s).
 
 The order and grouping of the help information list can be controlled using MENU>Setup>System>GUI Setup>Help screen sort order."""

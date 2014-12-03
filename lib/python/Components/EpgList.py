@@ -443,6 +443,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					ev_end_time = event[2] + event[3]
 					if ev_time < time_base:
 						ev_time = time_base
+					if not old_service and ev_time <= last_time < ev_end_time:
+						best = idx
+						break
 					diff = abs(ev_time - last_time)
 					if best is None or (diff < best_diff):
 						best = idx
@@ -615,9 +618,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
-			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
-			self.datetime_rect = Rect(self.weekday_rect.w, 0, float(width * 25) / 100, height)
-			self.descr_rect = Rect(self.datetime_rect.x + self.datetime_rect.w, 0, float(width * 62) / 100, height)
+			self.weekday_rect = Rect(0, 0, float(width * 15) / 100, height)
+			self.datetime_rect = Rect(self.weekday_rect.w, 0, float(width * 15) / 100, height)
+			self.descr_rect = Rect(self.datetime_rect.x + self.datetime_rect.w, 0, float(width * 70) / 100, height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -651,10 +654,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
 		t = localtime(beginTime)
+		et = localtime(beginTime + duration)
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime("%a, %d %b", t)),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%s ~ %s" % (strftime("%H:%M", t), strftime("%H:%M", et)))
 		]
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
