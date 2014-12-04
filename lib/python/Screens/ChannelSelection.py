@@ -1158,6 +1158,7 @@ class ChannelSelectionBase(Screen):
 		self.dopipzap = False
 		self.pathChangeDisabled = False
 		self.movemode = False
+		self.showSatDetails = False
 
 		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"],
 			{
@@ -1381,8 +1382,7 @@ class ChannelSelectionBase(Screen):
 						self.clearPath()
 						self.enterPath(ref, True)
 					if currentRoot and currentRoot == ref:
-						config.usage.servicelist_satellite_details.value = not config.usage.servicelist_satellite_details.value
-						config.usage.servicelist_satellite_details.save()
+						self.showSatDetails = not self.showSatDetails
 						justSet = True
 						self.clearPath()
 						self.enterPath(ref, True)
@@ -1400,9 +1400,9 @@ class ChannelSelectionBase(Screen):
 							if orbpos < 0:
 								orbpos += 3600
 							if "FROM PROVIDER" in service.getPath():
-								service_type = config.usage.servicelist_satellite_details.value and _("Providers")
+								service_type = self.showSatDetails and _("Providers")
 							elif ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in service.getPath():
-								service_type = config.usage.servicelist_satellite_details.value and _("New")
+								service_type = self.showSatDetails and _("New")
 							else:
 								service_type = _("Services")
 							if service_type:
