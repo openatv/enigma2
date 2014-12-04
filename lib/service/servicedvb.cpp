@@ -1843,15 +1843,13 @@ RESULT eDVBServicePlay::getName(std::string &name)
 	}
 	else if (m_is_stream)
 	{
-		name = m_reference.name;
+		m_dvb_service->getName(m_reference, name);
 		if (name.empty())
-		{
-			name = m_reference.path;
-		}
-		if (name.empty())
-		{
-			name = "(...)";
-		}
+			name = m_reference.name;
+			if (name.empty())
+				name = m_reference.path;
+				if (name.empty())
+					name = "(...)";
 	}
 	else if (m_dvb_service)
 	{
