@@ -1,5 +1,6 @@
 import struct
 import os
+from fcntl import ioctl
 from sys import maxint
 from enigma import eTimer, eHdmiCEC, eActionMap
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
@@ -61,6 +62,7 @@ class HdmiCec:
 			if config.hdmicec.handle_deepstandby_events.value:
 				if not getFPWasTimerWakeup():
 					self.wakeupMessages()
+			dummy = self.checkifPowerupWithoutWakingTv() # initially write 'False' to file, see below
 #			if fileExists("/proc/stb/hdmi/preemphasis"):		
 #				self.sethdmipreemphasis()
 
@@ -152,19 +154,22 @@ class HdmiCec:
 
 	def wakeupMessages(self):
 		if config.hdmicec.enabled.value:
-			messages = []
-			if config.hdmicec.control_tv_wakeup.value:
-				messages.append("wakeup")
-			if config.hdmicec.report_active_source.value:
-				messages.append("sourceactive")
-			if config.hdmicec.report_active_menu.value:
-				messages.append("menuactive")
-			if messages:
-				self.sendMessages(0, messages)
+			if self.checkifPowerupWithoutWakingTv():
+				print "[HdmiCec] Skip waking TV, found 'True' in '/tmp/powerup_without_waking_tv.txt' (usually written by openWebif)"
+			else:
+				messages = []
+				if config.hdmicec.control_tv_wakeup.value:
+					messages.append("wakeup")
+				if config.hdmicec.report_active_source.value:
+					messages.append("sourceactive")
+				if config.hdmicec.report_active_menu.value:
+					messages.append("menuactive")
+				if messages:
+					self.sendMessages(0, messages)
 
-			if config.hdmicec.control_receiver_wakeup.value:
-				self.sendMessage(5, "keypoweron")
-				self.sendMessage(5, "setsystemaudiomode")
+				if config.hdmicec.control_receiver_wakeup.value:
+					self.sendMessage(5, "keypoweron")
+					self.sendMessage(5, "setsystemaudiomode")
 
 	def standbyMessages(self):
 		if config.hdmicec.enabled.value:
@@ -329,5 +334,25 @@ class HdmiCec:
 				file.close()
 		except:
 			return
+
+	def checkifPowerupWithoutWakingTv(self):
+		try:
+			#returns 'True' if openWebif function "Power on without TV" has written 'True' to this file:
+			f = open("/tmp/powerup_without_waking_tv.txt", "r")
+			powerupWithoutWakingTv = f.read()
+			f.close()
+		except:
+			powerupWithoutWakingTv = False
+
+		try:
+			#write 'False' to the file so that turning on the TV is only suppressed once
+			#(and initially, so that openWebif knows that the image supports this feature)
+			f = open("/tmp/powerup_without_waking_tv.txt", "w")
+			f.write('False')
+			f.close()
+		except:
+			print "[HdmiCec] failed writing /tmp/powerup_without_waking_tv.txt"
+
+		return powerupWithoutWakingTv
 
 hdmi_cec = HdmiCec()
