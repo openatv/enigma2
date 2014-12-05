@@ -1843,7 +1843,8 @@ RESULT eDVBServicePlay::getName(std::string &name)
 	}
 	else if (m_is_stream)
 	{
-		m_dvb_service->getName(m_reference, name);
+		if (m_dvb_service)
+			m_dvb_service->getName(m_reference, name);
 		if (name.empty())
 			name = m_reference.name;
 			if (name.empty())
