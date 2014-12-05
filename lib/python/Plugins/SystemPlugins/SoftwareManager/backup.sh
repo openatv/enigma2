@@ -122,6 +122,26 @@ elif [ $MODEL = "gbultra" ]; then
 	MAINDESTOLD=$DIRECTORY/$MODEL
 	MAINDEST=$DIRECTORY/gigablue/$MODEL
 	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
+elif [ $MODEL = "gbultraue" ]; then
+	TYPE=GIGABLUE
+	MODEL="ultraue"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="GigaBlue $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
+elif [ $MODEL = "gbultrase" ]; then
+	TYPE=GIGABLUE
+	MODEL="ultrase"
+	MKUBIFS_ARGS="-m 2048 -e 126976 -c 4096"
+	UBINIZE_ARGS="-m 2048 -p 128KiB"
+	SHOWNAME="GigaBlue $MODEL"
+	MTDKERNEL="mtd2"
+	MAINDESTOLD=$DIRECTORY/$MODEL
+	MAINDEST=$DIRECTORY/gigablue/$MODEL
+	EXTRA=$DIRECTORY/fullbackup_gigablue/$DATE/gigablue
 
 else
 	echo "No supported receiver found!"

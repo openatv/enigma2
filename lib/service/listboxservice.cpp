@@ -453,7 +453,7 @@ int eListboxServiceContent::cursorResolve(int cursorPosition)
 		if (count == cursorPosition)
 			break;
 		count++;
-		if (m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker) || (i->flags & eServiceReference::isInvisible))
+		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
 			continue;
 		strippedCursor++;
 	}
@@ -496,7 +496,7 @@ int eListboxServiceContent::size()
 	int size = 0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
 	{
-		if (m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker) || (i->flags & eServiceReference::isInvisible))
+		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
 			continue;
 		size++;
 	}
@@ -647,14 +647,31 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
+		bool serviceFallback = false;
+		int isplayable_value;
+
 #ifndef FORCE_SERVICEAVAIL
-		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid())
 		{
-			if (m_color_set[serviceNotAvail])
-				painter.setForegroundColor(m_color[serviceNotAvail]);
+			isplayable_value = service_info->isPlayable(*m_cursor, m_is_playable_ignore);
+
+			if (isplayable_value == 0) // service unavailable
+			{
+				if (m_color_set[serviceNotAvail])
+					painter.setForegroundColor(m_color[serviceNotAvail]);
+				else
+					painter.setForegroundColor(gRGB(0xbbbbbb));
+				serviceAvail = false;
+			}
 			else
-				painter.setForegroundColor(gRGB(0xbbbbbb));
-			serviceAvail = false;
+			{
+				if (isplayable_value == 2) // fallback receiver service
+				{
+					if (m_color_set[serviceItemFallback])
+						painter.setForegroundColor(m_color[serviceItemFallback]);
+					serviceFallback = true;
+				}
+			}
 		}
 #endif
 
@@ -694,6 +711,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					snprintf(buffer, sizeof(buffer), "%d", m_cursor->getChannelNum() );
 					text = buffer;
 					flags|=gPainter::RT_HALIGN_RIGHT;
+					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
 				case celServiceName:
@@ -708,6 +727,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() + 10)
 							area.setLeft(m_element_position[celServiceNumber].width() + 10);
 					}
+					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
 				case celServiceInfo:
@@ -726,6 +747,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.setForegroundColor(m_color[eventForegroundSelected]);
 							else
 								painter.setForegroundColor(gRGB(0xe7b53f));
+
+							if (serviceFallback && !selected && m_color_set[eventForegroundFallback]) // fallback receiver
+								painter.setForegroundColor(m_color[eventForegroundFallback]);
+							else if (serviceFallback && selected && m_color_set[eventForegroundSelectedFallback])
+								painter.setForegroundColor(m_color[eventForegroundSelectedFallback]);
+
 						}
 						break;
 					}
