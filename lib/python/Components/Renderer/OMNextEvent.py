@@ -28,7 +28,7 @@ from Components.config import config
 from Renderer import Renderer
 from time import localtime
 
-class NextEvent(Renderer, VariableText):
+class OMNextEvent(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
