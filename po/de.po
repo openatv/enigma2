@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-12 13:54+0000\n"
-"PO-Revision-Date: 2014-11-13 21:59+0100\n"
+"POT-Creation-Date: 2014-12-05 12:05+0000\n"
+"PO-Revision-Date: 2014-12-05 22:50+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -122,6 +122,10 @@ msgstr ""
 #, python-format
 msgid " (Channel %s)"
 msgstr "(Kanal %s)"
+
+#, python-format
+msgid " (Partition %d)"
+msgstr ""
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -978,6 +982,16 @@ msgstr "Irgendeine Aktivität"
 msgid "Arabic"
 msgstr "Arabisch"
 
+#, python-format
+msgid "Are you sure to remove all %d.%d%s%s services?"
+msgstr "Sicher das alle %d.%d%s%s Sender entfernt werden sollen?"
+
+msgid "Are you sure to remove all cable services?"
+msgstr "Sicher das alle Kabelsender entfernt werden sollen?"
+
+msgid "Are you sure to remove all terrestrial services?"
+msgstr "Sicher das alle terrestrischen Sender entfernt werden sollen?"
+
 msgid "Are you sure to remove this entry?"
 msgstr "Sicher das dieser Eintrag entfernt werden soll?"
 
@@ -1196,6 +1210,9 @@ msgstr "B"
 msgid "Back"
 msgstr "Zurück"
 
+msgid "Back/Recall"
+msgstr ""
+
 msgid "Background"
 msgstr "Hintergrund"
 
@@ -1301,11 +1318,15 @@ msgstr "Helligkeit (Normal)"
 msgid "Brightness (Standby)"
 msgstr "Helligkeit (Bereitschaft)"
 
+#, python-format
+msgid "Buffering %d%%"
+msgstr ""
+
 msgid "Buffers:"
 msgstr "Puffer:"
 
 #, python-format
-msgid "Build:\t%s"
+msgid "Build:\t%s\n"
 msgstr ""
 
 #, python-format
@@ -1425,11 +1446,11 @@ msgid "CI assignment"
 msgstr "CI-Zuweisung"
 
 #, python-format
-msgid "CPU Speed:\t%s"
+msgid "CPU Speed:\t%s\n"
 msgstr ""
 
 #, python-format
-msgid "CPU:\t%s"
+msgid "CPU:\t%s\n"
 msgstr ""
 
 msgid "CVBS"
@@ -1652,8 +1673,8 @@ msgid "Children/Youth"
 msgstr "Kinder/Jugend"
 
 #, python-format
-msgid "Chipset:\tBCM%s"
-msgstr "Chipsatz:\tBCM%s"
+msgid "Chipset:\tBCM%s\n"
+msgstr "Chipsatz:\tBCM%s\n"
 
 #, python-format
 msgid "Chipset: BCM%s"
@@ -1661,6 +1682,9 @@ msgstr "Chipsatz: BCM%s"
 
 msgid "Choose Bouquet"
 msgstr "Wähle Favoritenliste"
+
+msgid "Choose Tuner"
+msgstr "Wähle Tuner"
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Wähle einen TAG um Aufnahmen einfacher finden zu können."
@@ -1718,6 +1742,9 @@ msgstr "Wähle welcher Tuner konfiguriert werden soll."
 msgid "Chose between record and ZAP."
 msgstr "Wähle zwischen Aufnahme und Umschalten."
 
+msgid "Circular LNB"
+msgstr "Zirkuläres LNB"
+
 msgid "Circular left"
 msgstr "Linkszirkular"
 
@@ -1748,8 +1775,7 @@ msgstr "Log löschen"
 msgid "Clear playlist"
 msgstr "Wiedergabeliste leeren"
 
-msgid ""
-"Click on your remote on the button you want to change, then click on \"OK\""
+msgid "Click on your remote on the button you want to change"
 msgstr ""
 "Drücke den Button der Fernbedienung der neu belegt werden soll und dann "
 "drücke \"OK\""
@@ -2249,9 +2275,6 @@ msgstr "Verbundene Satelliten"
 msgid "Connected to"
 msgstr "Verbunden mit"
 
-msgid "Connected!"
-msgstr "Verbunden!"
-
 msgid "Connected: "
 msgstr "Verbunden:"
 
@@ -2314,8 +2337,8 @@ msgid "Copying files"
 msgstr "Dateien kopieren"
 
 #, python-format
-msgid "Cores:\t%s"
-msgstr "Kerne:\t%s"
+msgid "Cores:\t%s\n"
+msgstr "Kerne:\t%s\n"
 
 #, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
@@ -2488,9 +2511,6 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
-msgid "DVB_C"
-msgstr ""
-
 msgid "DVD data format"
 msgstr "DVD Format"
 
@@ -2539,8 +2559,57 @@ msgstr "Voreinstellungen"
 msgid "Defaults"
 msgstr "Standardwerte"
 
+msgid "Delay after change voltage before switch command"
+msgstr "Pause nach Spannungsänderung vor Switch-Kommando"
+
+msgid "Delay after continuous tone disable before diseqc"
+msgstr ""
+"Pause nach ausschalten vom kontinuierlichen Tonsignal vor Diseqc-Kommando"
+
+msgid "Delay after diseqc peripherial poweron command"
+msgstr "Pause nach An-Signal für Diseqc Peripherie"
+
+msgid "Delay after diseqc reset command"
+msgstr "Pause nach Diseqc Reset-Kommando"
+
+msgid "Delay after enable voltage before motor command"
+msgstr "Pause nachmdem Spannung anliegt bevor Motor-Kommando"
+
+msgid "Delay after enable voltage before switch command"
+msgstr "Pause nachdem Spannung anliegt bevor Switch-Kommando"
+
+msgid "Delay after final continuous tone change"
+msgstr "Pause nach letzter kontinuierlichen Tonänderung"
+
+msgid "Delay after last diseqc command"
+msgstr "Pause nach letztem Diseqc Kommando"
+
+msgid "Delay after last voltage change"
+msgstr "Pause nach letzter Spannungsänderung"
+
+msgid "Delay after motor stop command"
+msgstr "Pause nach Motor Stopp Kommando"
+
+msgid "Delay after set voltage before measure motor power"
+msgstr "Pause nachdem Spannung anliegt vor Messung der Motorkraft"
+
+msgid "Delay after toneburst"
+msgstr "Pause nach ToneBurst"
+
+msgid "Delay after voltage change before motor command"
+msgstr "Pause nach Spannungsänderung vor Motor-Kommandos"
+
 msgid "Delay before key repeat starts:"
 msgstr "Verzögerung bevor Tastenwiederholung startet:"
+
+msgid "Delay before sequence repeat"
+msgstr "Verzögerung bevor Sequenz wiederholt wird"
+
+msgid "Delay between diseqc commands"
+msgstr "Pause zwischen Diseqc Kommandos"
+
+msgid "Delay between switch and motor command"
+msgstr "Pause zwischen Switch- und Motor-Kommando"
 
 msgid "Delay for external subtitles"
 msgstr "Verzögerung für externe Untertitel"
@@ -2671,9 +2740,6 @@ msgstr "DiSEqC Port %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-Tester Einstellungen"
 
-msgid "Dialing:"
-msgstr "Wählen:"
-
 msgid "Digital contour removal"
 msgstr "Entfernen digitaler Konturen"
 
@@ -2707,9 +2773,6 @@ msgstr "Timer deaktivieren"
 
 msgid "Disabled"
 msgstr "Deaktiviert"
-
-msgid "Disconnect"
-msgstr "Trennen"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Reservierter Speicherplatz für Aufnahmen (GB)"
@@ -2927,8 +2990,8 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 
 #, python-format
-msgid "Drivers:\t%s"
-msgstr "Treiber:\t%s"
+msgid "Drivers:\t%s\n"
+msgstr "Treiber:\t%s\n"
 
 #, python-format
 msgid "Drivers: %s"
@@ -3014,6 +3077,9 @@ msgstr "Favoritenliste bearbeiten"
 msgid "Edit chapters of current title"
 msgstr "Kapitel des ausgewählten Titels schneiden"
 
+msgid "Edit new entry"
+msgstr "Neuen Eintrag bearbeiten"
+
 msgid "Edit services list"
 msgstr "Senderliste bearbeiten"
 
@@ -3076,11 +3142,17 @@ msgstr "Virgin EPG aktivieren"
 msgid "Enable Wake On LAN"
 msgstr "Aktiviere WakeOnLan"
 
+msgid "Enable auto cable scan"
+msgstr "Automatische Schnellsuche aktivieren"
+
 msgid "Enable auto fast scan"
 msgstr "Automatische Schnellsuche aktivieren"
 
 msgid "Enable debug logs"
 msgstr "Aktiviere Debug Log"
+
+msgid "Enable fallback remote receiver"
+msgstr "Aktiviere Reservereceiver"
 
 msgid "Enable infobar fade-out"
 msgstr "Aktiviere sanftes Ausblenden"
@@ -3093,6 +3165,17 @@ msgstr "Paniktaste aktivieren"
 
 msgid "Enable parental control"
 msgstr "Jugendschutz aktivieren"
+
+msgid ""
+"Enable remote enigma2 receiver to be tried to tune into services that cannot "
+"be tuned into locally (e.g. tuner is occupied or service type is unavailable "
+"on the local tuner. Specify complete URL including http:// and port number "
+"(normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+"Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal "
+"nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht "
+"verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer "
+"(normal ...:8001), e.g. http://zweite_box:8001."
 
 msgid "Enable teletext caching"
 msgstr "Videotext Cache aktivieren"
@@ -3308,17 +3391,21 @@ msgstr "Erweiterungsverwaltung"
 msgid "External"
 msgstr "Extern"
 
-msgid "External (CF)"
-msgstr "Extern (CF)"
-
 msgid "External PiP"
 msgstr "Externes PiP"
+
+#, python-format
+msgid "External Storage %s"
+msgstr "Externer Speicher %s"
 
 msgid "External subtitle color"
 msgstr "Farbe externe Untertitel"
 
 msgid "Extra motor options"
 msgstr "Extra Rotoroptionen"
+
+msgid "F1/F3"
+msgstr ""
 
 msgid "F1/LAN"
 msgstr ""
@@ -3364,6 +3451,9 @@ msgstr "Fehlgeschlagen"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Kann /tmp/positionersetup.log nicht schreiben: "
+
+msgid "Fallback remote receiver URL"
+msgstr ""
 
 #, python-format
 msgid "Fan %d"
@@ -3521,11 +3611,15 @@ msgstr "Vollbild"
 msgid "Full transparency"
 msgstr "volle Transparenz"
 
-msgid "Fullview resolution"
+msgid "Fulview resulution"
 msgstr "Vollbild Auflösung"
 
 msgid "GB"
 msgstr "GB"
+
+#, python-format
+msgid "GStreamer:\t%s\n"
+msgstr "GStreamer:\t%s\n"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -3684,6 +3778,9 @@ msgstr "Höhe"
 
 msgid "Help"
 msgstr "Hilfe"
+
+msgid "Help long"
+msgstr "Hilfe lang"
 
 msgid "Helps setting up your antenna"
 msgstr "Hilft die Schüssel einzurichten"
@@ -4211,8 +4308,8 @@ msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Filmliste offen lassen wenn Musikdateien abgespielt werden."
 
 #, python-format
-msgid "Kernel:\t%s"
-msgstr "Kernel:\t%s"
+msgid "Kernel:\t%s\n"
+msgstr "Kernel:\t%s\n"
 
 #, python-format
 msgid "Kernel: %s"
@@ -4273,8 +4370,12 @@ msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
 #, python-format
-msgid "Last update:\t%s"
-msgstr "Letztes Update:\t%s"
+msgid ""
+"Last update:\t%s\n"
+"\n"
+msgstr ""
+"Letztes Update:\t%s\n"
+"\n"
 
 #, python-format
 msgid "Last update: %s"
@@ -4380,6 +4481,9 @@ msgstr ""
 
 msgid "Listen to the radio..."
 msgstr "Radio hören..."
+
+msgid "Lists reloaded!"
+msgstr ""
 
 msgid "Lithuanian"
 msgstr "Litauisch"
@@ -4645,6 +4749,12 @@ msgstr "Monatlich"
 msgid "Mosquito noise reduction"
 msgstr "Mosquito Noise Reduzierung"
 
+msgid "Motor command retries"
+msgstr ""
+
+msgid "Motor running timeout"
+msgstr "Rotor TimeOut"
+
 msgid "Mount"
 msgstr "Einhängen"
 
@@ -4749,6 +4859,9 @@ msgstr "Multiplex"
 
 msgid "Multisat"
 msgstr "Multisat"
+
+msgid "Multisat all select"
+msgstr "Multi-Sat alle wählen"
 
 msgid "Music/Ballet/Dance"
 msgstr "Musik/Ballett/Tanz"
@@ -5396,6 +5509,9 @@ msgstr "Am Filmende pausieren"
 msgid "Pause playback"
 msgstr "Wiedergabe pausieren"
 
+msgid "Pauze/Continue playback"
+msgstr "Wiedergabe pausieren/fortsetzen"
+
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Spitzenlast (max. Warteschlange pro Arbeitsthread)"
 
@@ -5438,9 +5554,6 @@ msgstr "Gelöschte Filme endgültig löschen"
 
 msgid "Persian"
 msgstr "Persisch"
-
-msgid "Phone number"
-msgstr "Telefonnummer"
 
 msgid "PiP"
 msgstr "PiP"
@@ -5575,6 +5688,9 @@ msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
 msgid "Please enter name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
+
+msgid "Please enter new description:"
+msgstr "Bitte neue Beschreibung eingeben:"
 
 msgid "Please enter new name:"
 msgstr "Bitte neuen Dateinamen eingeben:"
@@ -6079,6 +6195,9 @@ msgstr "Neustart"
 msgid "Rec"
 msgstr "Aufnahme"
 
+msgid "Reception Settings"
+msgstr "Empfangseinstellungen"
+
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -6249,6 +6368,9 @@ msgstr "Umbenennen"
 
 msgid "Rename failed!"
 msgstr "Umbenennen fehlgeschlagen!"
+
+msgid "Rename name and description for new events"
+msgstr "Name und Beschreibung neuer Sendungen ändern"
 
 msgid "Rename to:"
 msgstr "Umbenennen in:"
@@ -6746,7 +6868,8 @@ msgstr "Wähle Zielverzeichnisse"
 msgid ""
 "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" "
 "to toggle between the lists. Select an assigned function and click on \"OK\" "
-"to de-assign it."
+"to de-assign it. Use \"Next/Previous\" to change the order of the assigned "
+"functions."
 msgstr ""
 "Gewünschte Funktion auswählen und \"OK\" drücken um sie zu belegen. Benutze  "
 "\"CH+/-\" um zwischen den Listen umzuschalten. Wähle zugeordnete Funktion "
@@ -6785,6 +6908,9 @@ msgstr "Senden"
 
 msgid "Send Confirmation"
 msgstr "Sendebestätigung"
+
+msgid "Send DiSEqC"
+msgstr "DiSEqC senden"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "DiSEqC nur bei Sat-Wechsel senden"
@@ -7949,6 +8075,14 @@ msgstr "System"
 msgid "System temperature: %s"
 msgstr "Systemtemperatur: %s"
 
+#, python-format
+msgid ""
+"System temperature: %s%sC\n"
+"\n"
+msgstr ""
+"Systemtemperatur: %s%sC\n"
+"\n"
+
 msgid "System: "
 msgstr ""
 
@@ -8019,6 +8153,12 @@ msgstr "Überprüfe die Netzwerk-Konfiguration der %s %s\n"
 
 msgid "Test type"
 msgstr "Testtyp"
+
+msgid "Testscreens"
+msgstr "Testbilder"
+
+msgid "Testscreens that are helpfull to fine-tune your display"
+msgstr "Testbilder die dabei helfen können die Bildqualität zu optimieren"
 
 msgid "Text"
 msgstr ""
@@ -8989,6 +9129,9 @@ msgstr "Art der Suche"
 msgid "Type: "
 msgstr "Typ:"
 
+msgid "URL of fallback remote receiver"
+msgstr "URL vom Reserve Receiver"
+
 msgid "USALS"
 msgstr "USALS"
 
@@ -8997,6 +9140,9 @@ msgstr "USALS Kalibrierung"
 
 msgid "USB stick wizard"
 msgstr "USB-Stick-Assistent"
+
+msgid "Ukrainian"
+msgstr ""
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Stille Aktualisierung ohne Benutzeroberfläche (automatischer Neustart)"
@@ -9131,6 +9277,9 @@ msgstr "Benutze Virgin EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
+
+msgid "Use circular LNB"
+msgstr "Benutze zirkuläres LNB"
 
 msgid "Use fastscan channel names"
 msgstr "Benutze Fast-Scan Sendernamen"
@@ -9284,8 +9433,8 @@ msgid "VU+"
 msgstr ""
 
 #, python-format
-msgid "Version:\t%s"
-msgstr "Version:\t%s"
+msgid "Version:\t%s\n"
+msgstr "Version:\t%s\n"
 
 msgid "Version: "
 msgstr "Version: "
@@ -9318,12 +9467,6 @@ msgstr "Erweiterte A/V Einstellungen Vorschau"
 
 msgid "Video enhancement setup"
 msgstr "Erweiterte A/V Einstellungen"
-
-msgid "Video fine tuning"
-msgstr "Bild Feineinstellung"
-
-msgid "Video fine-tuning"
-msgstr "Bild Feineinstellung"
 
 msgid ""
 "Video input selection\n"
@@ -10397,6 +10540,9 @@ msgstr "Lesezeichen hinzufügen"
 msgid "add bouquet"
 msgstr "Favoritenliste einfügen"
 
+msgid "add bouquet to parental protection"
+msgstr "Jugendschutz beim Bouquet aktivieren"
+
 msgid "add marker"
 msgstr "Marker einfügen"
 
@@ -10430,11 +10576,11 @@ msgstr "alphabetisch"
 msgid "alphabetic reverse"
 msgstr "umgekehrtes Alphabet"
 
-msgid "alternative"
-msgstr "Alternative"
-
 msgid "am"
 msgstr "am"
+
+msgid "and never ask again this session again"
+msgstr "in dieser Sitzung nicht wieder fragen"
 
 msgid "are you sure to cancel all changes"
 msgstr "Bist Du sicher das alle Änderungen verworfen werden sollen?"
@@ -10576,6 +10722,9 @@ msgstr "Tag"
 msgid "decrease uphop by 1"
 msgstr "uhop um 1 verringern"
 
+msgid "default"
+msgstr "Standard"
+
 msgid "delete"
 msgstr "löschen"
 
@@ -10687,6 +10836,9 @@ msgstr ""
 msgid "et5000/6000"
 msgstr ""
 
+msgid "et7x00"
+msgstr ""
+
 msgid "et8000/et10000"
 msgstr ""
 
@@ -10738,11 +10890,11 @@ msgstr "Dateiname"
 msgid "film/cinema"
 msgstr "Film/Kino"
 
+msgid "find currently played service"
+msgstr "suche gerade aktiven Sender"
+
 msgid "fine arts"
 msgstr "schöne Künste"
-
-msgid "fine-tune your display"
-msgstr "Ändere die Feineinstellungen des Bildschirms"
 
 msgid "fitness & health"
 msgstr "Fitness & Gesundheit"
@@ -10879,6 +11031,9 @@ msgstr "Live Übertragung"
 
 msgid "locked"
 msgstr "Signal"
+
+msgid "long"
+msgstr "lang"
 
 msgid "loopthrough to"
 msgstr "Verbunden mit"
@@ -11120,6 +11275,12 @@ msgstr "Vor dieser Position löschen"
 msgid "remove bookmark"
 msgstr "Lesezeichen löschen"
 
+msgid "remove bouquet from parental protection"
+msgstr "Jugendschutz beim Bouquet ausschalten"
+
+msgid "remove cable services"
+msgstr "Kabelsender löschen"
+
 msgid "remove directory"
 msgstr "Verzeichnis löschen"
 
@@ -11134,6 +11295,9 @@ msgstr "Entfernen der 'neu gefunden'-Kennzeichnung"
 
 msgid "remove selected satellite"
 msgstr "Entferne gewählten Satellit"
+
+msgid "remove terrestrial services"
+msgstr "Terrestrische Sender löschen"
 
 msgid "remove this mark"
 msgstr "Diese Markierung entfernen"
@@ -11384,6 +11548,9 @@ msgstr "template Datei"
 msgid "tennis/squash"
 msgstr "Tennis/Sqash"
 
+msgid "this bouquet is protected by a parental control pin"
+msgstr "Dieser Sender ist durch einen Jugendschutz-PIN Code geschützt."
+
 msgid "this recording"
 msgstr "Diese Aufnahme"
 
@@ -11612,14 +11779,26 @@ msgstr "umgeschaltet"
 #~ "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn "
 #~ "mehrere Tuner verfügbar sind."
 
+#~ msgid "Connected!"
+#~ msgstr "Verbunden!"
+
 #~ msgid "Devide"
 #~ msgstr "Gerät"
+
+#~ msgid "Dialing:"
+#~ msgstr "Wählen:"
+
+#~ msgid "Disconnect"
+#~ msgstr "Trennen"
 
 #~ msgid "Display"
 #~ msgstr "Display (VFD/LCD)"
 
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enigma2 Änderungen"
+
+#~ msgid "External (CF)"
+#~ msgstr "Extern (CF)"
 
 #~ msgid "HotKey Setup"
 #~ msgstr "HotKey Einstellungen"
@@ -11635,6 +11814,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Open subtitle selection"
 #~ msgstr "Öffne Untertitelauswahl"
+
+#~ msgid "Phone number"
+#~ msgstr "Telefonnummer"
 
 #~ msgid ""
 #~ "Predefined transponder scans are only possible when \n"
@@ -11661,9 +11843,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Select what you want the TV button to activate."
 #~ msgstr "Wähle was die TV Taste bewirken soll."
-
-#~ msgid "Send DiSEqC"
-#~ msgstr "DiSEqC senden"
 
 #~ msgid "Show tag menu"
 #~ msgstr "Zeige Tag-Menü"
@@ -11707,8 +11886,20 @@ msgstr "umgeschaltet"
 #~ msgid "Use WOL"
 #~ msgstr "WOL benutzen"
 
+#~ msgid "Video fine tuning"
+#~ msgstr "Bild Feineinstellung"
+
+#~ msgid "Video fine-tuning"
+#~ msgstr "Bild Feineinstellung"
+
 #~ msgid "Video setup"
 #~ msgstr "Bild Einstellungen"
 
 #~ msgid "Video wizard"
 #~ msgstr "Bild Assistent"
+
+#~ msgid "alternative"
+#~ msgstr "Alternative"
+
+#~ msgid "fine-tune your display"
+#~ msgstr "Ändere die Feineinstellungen des Bildschirms"
