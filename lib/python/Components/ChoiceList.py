@@ -11,12 +11,12 @@ def ChoiceEntryComponent(key="", text=None):
 	res = [ text ]
 	if text[0] == "--":
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 900, 35, 0, RT_HALIGN_LEFT, "-"*200))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 900, 45, 0, RT_HALIGN_LEFT, "-"*200))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 85, 7, 900, 35, 0, RT_HALIGN_LEFT, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 100, 7, 900, 45, 0, RT_HALIGN_LEFT, text[0]))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
 		
@@ -32,7 +32,7 @@ def ChoiceEntryComponent(key="", text=None):
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
 				if screenwidth and screenwidth == 1920:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 53, 38, png))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 63, 48, png))
 				else:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 0, 35, 25, png))
 	return res
