@@ -699,13 +699,13 @@
 	</map>
 
 	<map context="ColorActions">
-		<key id="KEY_RED" mapto="red" flags="b"/>
+		<key id="KEY_RED" mapto="red" flags="m"/>
 		<key id="KEY_RED" mapto="redlong" flags="l"/>
-		<key id="KEY_GREEN" mapto="green" flags="b"/>
+		<key id="KEY_GREEN" mapto="green" flags="m"/>
 		<key id="KEY_GREEN" mapto="greenlong" flags="l"/>
-		<key id="KEY_YELLOW" mapto="yellow" flags="b"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
 		<key id="KEY_YELLOW" mapto="yellowlong" flags="l"/>
-		<key id="KEY_BLUE" mapto="blue" flags="b"/>
+		<key id="KEY_BLUE" mapto="blue" flags="m"/>
 		<key id="KEY_BLUE" mapto="bluelong" flags="l"/>
 	</map>
 
@@ -774,17 +774,17 @@
 	</map>
 
 	<map context="PiPSetupActions">
-		<key id="KEY_UP" mapto="up" flags="mr" />
-		<key id="KEY_DOWN" mapto="down" flags="mr" />
-		<key id="KEY_LEFT" mapto="left" flags="mr" />
-		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="m" />
+		<key id="KEY_DOWN" mapto="down" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="m" />
+		<key id="KEY_RIGHT" mapto="right" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_CHANNELUP" mapto="size+" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="size-" flags="mr" />
-		<key id="KEY_INFO" mapto="mode" flags="mr" />
+		<key id="KEY_INFO" mapto="mode" flags="m" />
 	</map>
 
 	<map context="MediaPlayerActions">
