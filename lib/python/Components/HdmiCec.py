@@ -154,7 +154,7 @@ class HdmiCec:
 
 	def wakeupMessages(self):
 		if config.hdmicec.enabled.value:
-			if self.checkifPowerupWithoutWakingTv():
+			if self.checkifPowerupWithoutWakingTv() == 'True':
 				print "[HdmiCec] Skip waking TV, found 'True' in '/tmp/powerup_without_waking_tv.txt' (usually written by openWebif)"
 			else:
 				messages = []
@@ -342,7 +342,7 @@ class HdmiCec:
 			powerupWithoutWakingTv = f.read()
 			f.close()
 		except:
-			powerupWithoutWakingTv = False
+			powerupWithoutWakingTv = 'False'
 
 		try:
 			#write 'False' to the file so that turning on the TV is only suppressed once
