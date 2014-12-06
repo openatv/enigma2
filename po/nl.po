@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-01 05:23+0000\n"
-"PO-Revision-Date: 2014-12-02 12:50+0100\n"
+"POT-Creation-Date: 2014-12-05 11:54+0000\n"
+"PO-Revision-Date: 2014-12-06 07:17+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -125,6 +125,10 @@ msgstr ""
 #, python-format
 msgid " (Channel %s)"
 msgstr " (Kanaal %s)"
+
+#, python-format
+msgid " (Partition %d)"
+msgstr " (Partitie %d)"
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -945,6 +949,16 @@ msgstr "Elke activiteit"
 msgid "Arabic"
 msgstr "Arabisch"
 
+#, python-format
+msgid "Are you sure to remove all %d.%d%s%s services?"
+msgstr "Weet u zeker dat u alle %d.%d%s%s kanalen wilt verwijderen?"
+
+msgid "Are you sure to remove all cable services?"
+msgstr "weet u zeker dat u alle kabelkanalen wilt verwijderen?"
+
+msgid "Are you sure to remove all terrestrial services?"
+msgstr "weet u zeker dat u alle DVB-T janalen wilt verwijderen?"
+
 msgid "Are you sure to remove this entry?"
 msgstr "weet u zeker dat deze waarde verwijderd mag worden?"
 
@@ -1162,7 +1176,7 @@ msgid "Back"
 msgstr "Terug"
 
 msgid "Back/Recall"
-msgstr ""
+msgstr "Terug/Oproepen"
 
 msgid "Background"
 msgstr "Achtergrond"
@@ -1277,8 +1291,8 @@ msgid "Buffers:"
 msgstr "Buffers:"
 
 #, python-format
-msgid "Build:\t%s"
-msgstr "Build:\t%s"
+msgid "Build:\t%s\n"
+msgstr "Build:\t%s\n"
 
 #, python-format
 msgid "Build: %s"
@@ -1397,12 +1411,12 @@ msgid "CI assignment"
 msgstr "CI toewijzing"
 
 #, python-format
-msgid "CPU Speed:\t%s"
-msgstr "CPU snelheid:\t%s"
+msgid "CPU Speed:\t%s\n"
+msgstr "CPU snelheid:\t%s\n"
 
 #, python-format
-msgid "CPU:\t%s"
-msgstr "CPU:\t%s"
+msgid "CPU:\t%s\n"
+msgstr "CPU:\t%s\n"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -1623,8 +1637,8 @@ msgid "Children/Youth"
 msgstr "Kinderen/Jeugd"
 
 #, python-format
-msgid "Chipset:\tBCM%s"
-msgstr "Chipset:\tBCM%s"
+msgid "Chipset:\tBCM%s\n"
+msgstr "Chipset:\tBCM%s\n"
 
 #, python-format
 msgid "Chipset: BCM%s"
@@ -1632,6 +1646,9 @@ msgstr "Chipset: BCM%s"
 
 msgid "Choose Bouquet"
 msgstr "Kies favorieten"
+
+msgid "Choose Tuner"
+msgstr "Kies tuner"
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Kies een tag om een opname makkelijk te vinden."
@@ -1674,6 +1691,9 @@ msgstr "Kies de tuner die u in wilt stellen."
 
 msgid "Chose between record and ZAP."
 msgstr "Kies tussen opname en zap"
+
+msgid "Circular LNB"
+msgstr "Circulaire LNB"
 
 msgid "Circular left"
 msgstr "Circulair links"
@@ -2070,9 +2090,6 @@ msgstr "Verbonden satellieten"
 msgid "Connected to"
 msgstr "Verbonden met"
 
-msgid "Connected!"
-msgstr "Verbonden!"
-
 msgid "Connected: "
 msgstr "Verbonden:"
 
@@ -2134,8 +2151,8 @@ msgid "Copying files"
 msgstr "Kopieert bestanden"
 
 #, python-format
-msgid "Cores:\t%s"
-msgstr "Kernen:\t%s"
+msgid "Cores:\t%s\n"
+msgstr "Kernen:\t%s\n"
 
 #, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
@@ -2307,9 +2324,6 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
-msgid "DVB_C"
-msgstr "DVB_C"
-
 msgid "DVD data format"
 msgstr "DVD data format"
 
@@ -2358,8 +2372,56 @@ msgstr "Standaard instellingen"
 msgid "Defaults"
 msgstr "Standaard waardes"
 
+msgid "Delay after change voltage before switch command"
+msgstr "Vertraging na aanpassen voltage voor de schakelopdracht"
+
+msgid "Delay after continuous tone disable before diseqc"
+msgstr "Vertraging na het uitschakelen van de continutoon voor DiSEqC"
+
+msgid "Delay after diseqc peripherial poweron command"
+msgstr "Vertraging na DiSEqC power-aan opdracht"
+
+msgid "Delay after diseqc reset command"
+msgstr "Vertraging na DiSEqC reset opdracht"
+
+msgid "Delay after enable voltage before motor command"
+msgstr "Vertraging na inschakelen voltage voor het motorcommando"
+
+msgid "Delay after enable voltage before switch command"
+msgstr "Vertraging na inschakelen voltage voor hetschakelcommando"
+
+msgid "Delay after final continuous tone change"
+msgstr "Vertraging na de laatste verandering in continutoon"
+
+msgid "Delay after last diseqc command"
+msgstr "Vertraging na laatste DiSEqC opdracht"
+
+msgid "Delay after last voltage change"
+msgstr "Vertraging na laatste voltageverandering"
+
+msgid "Delay after motor stop command"
+msgstr "Vertraging na motor stop opdracht"
+
+msgid "Delay after set voltage before measure motor power"
+msgstr "Vertraging na instellen voltage voor aanvang meting motor stroom"
+
+msgid "Delay after toneburst"
+msgstr "Vertraging na toneburst"
+
+msgid "Delay after voltage change before motor command"
+msgstr "Vertraging na voltageaanpassing voor het motorcommando"
+
 msgid "Delay before key repeat starts:"
 msgstr "Vertraging voordat de toets herhaling begint:"
+
+msgid "Delay before sequence repeat"
+msgstr "Vertraging voordat de herhaling begint"
+
+msgid "Delay between diseqc commands"
+msgstr "Vertraging tussen DiSEqC-opdrachten"
+
+msgid "Delay between switch and motor command"
+msgstr "Vertraging tussen schakelaar en motor-opdracht"
 
 msgid "Delay for external subtitles"
 msgstr "Vertraging voor externe ondertitels"
@@ -2481,9 +2543,6 @@ msgstr "DiSEqC poort %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-tester instellingen"
 
-msgid "Dialing:"
-msgstr "Bellen:"
-
 msgid "Digital contour removal"
 msgstr "Digitale contour verwijderen"
 
@@ -2517,9 +2576,6 @@ msgstr "Schakel timer uit"
 
 msgid "Disabled"
 msgstr "Gedeactiveerd"
-
-msgid "Disconnect"
-msgstr "Verbreken"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Reserveer schijfruimte voor opnames (in GB)"
@@ -2737,8 +2793,8 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
 #, python-format
-msgid "Drivers:\t%s"
-msgstr "Drivers:\t%s"
+msgid "Drivers:\t%s\n"
+msgstr "Drivers:\t%s\n"
 
 #, python-format
 msgid "Drivers: %s"
@@ -2820,6 +2876,9 @@ msgstr "favorietenlijst aanpassen"
 msgid "Edit chapters of current title"
 msgstr "Wijzig hoofdstuk van de huidige titel"
 
+msgid "Edit new entry"
+msgstr "Pas nieuwe invoer aan"
+
 msgid "Edit services list"
 msgstr "Wijzig zenderlijst"
 
@@ -2882,11 +2941,17 @@ msgstr "Virgin EPG inschakelen"
 msgid "Enable Wake On LAN"
 msgstr "Schakel WoL in"
 
+msgid "Enable auto cable scan"
+msgstr "Automatische kabelscan inschakelen"
+
 msgid "Enable auto fast scan"
 msgstr "Auto Fastscan inschakelen"
 
 msgid "Enable debug logs"
 msgstr "Activeer debug logs"
+
+msgid "Enable fallback remote receiver"
+msgstr "Schakel fallback ontvanger in"
 
 msgid "Enable infobar fade-out"
 msgstr "Schakel infobar fade-out in."
@@ -2899,6 +2964,9 @@ msgstr "Paniektoets gebruiken"
 
 msgid "Enable parental control"
 msgstr "Kinderslot inschakelen"
+
+msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
 
 msgid "Enable teletext caching"
 msgstr "Teletekst caching inschakelen"
@@ -3104,17 +3172,21 @@ msgstr "Applicatiebeheer"
 msgid "External"
 msgstr "Extern"
 
-msgid "External (CF)"
-msgstr "Extern (CF)"
-
 msgid "External PiP"
 msgstr "Externe PiP"
+
+#, python-format
+msgid "External Storage %s"
+msgstr "Externe opslag %s"
 
 msgid "External subtitle color"
 msgstr "Kleur externe ondertitels"
 
 msgid "Extra motor options"
 msgstr "Extra motor opties"
+
+msgid "F1/F3"
+msgstr "F1/F3"
 
 msgid "F1/LAN"
 msgstr "F1/LAN"
@@ -3160,6 +3232,9 @@ msgstr "Mislukt"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Mislukt te schrijven naar /tmp/positionersetup.log: "
+
+msgid "Fallback remote receiver URL"
+msgstr "Fallback remote-ontvanger URL"
 
 #
 #, python-format
@@ -3318,11 +3393,15 @@ msgstr "Volledig scherm"
 msgid "Full transparency"
 msgstr "Volledig doorzichtig"
 
-msgid "Fullview resolution"
+msgid "Fulview resulution"
 msgstr "Vol scherm resolutie"
 
 msgid "GB"
 msgstr "GB"
+
+#, python-format
+msgid "GStreamer:\t%s\n"
+msgstr "GStreamer:\t%s\n"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -3958,8 +4037,8 @@ msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Houdt de opnamelijst geopend tijdens het afspelen van audiobestanden."
 
 #, python-format
-msgid "Kernel:\t%s"
-msgstr "Kernel:\t%s"
+msgid "Kernel:\t%s\n"
+msgstr "Kernel:\t%s\n"
 
 #, python-format
 msgid "Kernel: %s"
@@ -4020,8 +4099,12 @@ msgid "Last speed"
 msgstr "Laatste snelheid"
 
 #, python-format
-msgid "Last update:\t%s"
-msgstr "Laatste update:\t%s"
+msgid ""
+"Last update:\t%s\n"
+"\n"
+msgstr ""
+"Laatste update:\t%s\n"
+"\n"
 
 #, python-format
 msgid "Last update: %s"
@@ -4121,6 +4204,9 @@ msgstr "List/Fav/PVR"
 
 msgid "Listen to the radio..."
 msgstr "Luister naar radio..."
+
+msgid "Lists reloaded!"
+msgstr "Links zijn herladen!"
 
 msgid "Lithuanian"
 msgstr "Litouws"
@@ -4386,6 +4472,12 @@ msgstr "Maandelijks"
 msgid "Mosquito noise reduction"
 msgstr "Mosquito ruisonderdrukking"
 
+msgid "Motor command retries"
+msgstr "Herhalingen motoropdrachten"
+
+msgid "Motor running timeout"
+msgstr "Rotor time-out"
+
 msgid "Mount"
 msgstr "Mount"
 
@@ -4490,6 +4582,9 @@ msgstr "Multiplex"
 
 msgid "Multisat"
 msgstr "Multisat"
+
+msgid "Multisat all select"
+msgstr "Multisat alle geselecteerd"
 
 msgid "Music/Ballet/Dance"
 msgstr "Muziek/Ballet/Dans"
@@ -5108,6 +5203,9 @@ msgstr "Pauzeer afspelen aan het einde"
 msgid "Pause playback"
 msgstr "Pauzeer afspelen"
 
+msgid "Pauze/Continue playback"
+msgstr "Pauzeer/Vervolg afspelen"
+
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Piekbelasting (max rij verzoeken per workerthread)"
 
@@ -5146,9 +5244,6 @@ msgstr "Prullenbak leegmaken"
 
 msgid "Persian"
 msgstr "Perzisch"
-
-msgid "Phone number"
-msgstr "Telefoonnummer"
 
 msgid "PiP"
 msgstr "PiP"
@@ -5282,6 +5377,9 @@ msgstr "Voer een bestandsnaam in (leeg= huidige datum)"
 
 msgid "Please enter name of the new directory"
 msgstr "Voer de naam van de nieuwe map in a.u.b."
+
+msgid "Please enter new description:"
+msgstr "Voer een nieuwe beschrijving in "
 
 msgid "Please enter new name:"
 msgstr "Voer een nieuwe naam in "
@@ -5774,6 +5872,9 @@ msgstr "Herstarten"
 msgid "Rec"
 msgstr "Record"
 
+msgid "Reception Settings"
+msgstr "Ontvangstinstellingen"
+
 msgid "Record"
 msgstr "Opname"
 
@@ -5944,6 +6045,9 @@ msgstr "Hernoemen"
 
 msgid "Rename failed!"
 msgstr "Hernoemen mislukt!"
+
+msgid "Rename name and description for new events"
+msgstr "Pas de naam en de beschrijving voor nieuwe timers aan"
 
 msgid "Rename to:"
 msgstr "Hernoem in:"
@@ -6464,6 +6568,9 @@ msgstr "Verstuur"
 
 msgid "Send Confirmation"
 msgstr "Stuur bevestiging"
+
+msgid "Send DiSEqC"
+msgstr "Verstuur DiSEqC"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "Verstuur DiSEqC enkel bij satellietwijziging"
@@ -7546,7 +7653,7 @@ msgid "Switch to previous sub service"
 msgstr "Ga naar vorige subkanaal"
 
 msgid "Switch to radio mode"
-msgstr "Schakel naar Radio modus"
+msgstr "Schakel naar radiomodus"
 
 #
 msgid "Switchable tuner types:"
@@ -7572,7 +7679,15 @@ msgstr "Systeem"
 
 #, python-format
 msgid "System temperature: %s"
-msgstr "Systeem temperatuur: %s"
+msgstr "Systeemtemperatuur: %s"
+
+#, python-format
+msgid ""
+"System temperature: %s%sC\n"
+"\n"
+msgstr ""
+"Systeemtemperatuur: %s%sC\n"
+"\n"
 
 msgid "System: "
 msgstr "Systeem: "
@@ -7644,6 +7759,12 @@ msgstr "Test de netwerkconfiguratie van uw %s %s.\n"
 
 msgid "Test type"
 msgstr "Testtype"
+
+msgid "Testscreens"
+msgstr "Testschermen"
+
+msgid "Testscreens that are helpfull to fine-tune your display"
+msgstr "Testschermen di ekunnen helpen bij het afregelen van uw scherm"
 
 msgid "Text"
 msgstr "Tekst"
@@ -8457,6 +8578,9 @@ msgstr "Zoekmodus"
 msgid "Type: "
 msgstr "Type: "
 
+msgid "URL of fallback remote receiver"
+msgstr "URL van de fallback-ontvanger"
+
 msgid "USALS"
 msgstr "USALS"
 
@@ -8606,6 +8730,9 @@ msgstr "Gebruik Virgin EPG informatie indien beschikbaar."
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
+msgid "Use circular LNB"
+msgstr "Gebruik circulaire LNB"
+
 msgid "Use fastscan channel names"
 msgstr "Gebruik fastscan kanaalnamen"
 
@@ -8738,8 +8865,8 @@ msgid "VU+"
 msgstr "VU+"
 
 #, python-format
-msgid "Version:\t%s"
-msgstr "Versie:\t%s"
+msgid "Version:\t%s\n"
+msgstr "Versie:\t%s\n"
 
 msgid "Version: "
 msgstr "Versie: "
@@ -8772,12 +8899,6 @@ msgstr "Videoverbetering voorvertoning"
 
 msgid "Video enhancement setup"
 msgstr "Videoverbeteringinstelling..."
-
-msgid "Video fine tuning"
-msgstr "Video fijninstellingen."
-
-msgid "Video fine-tuning"
-msgstr "Video fijninstellingen."
 
 msgid ""
 "Video input selection\n"
@@ -9661,6 +9782,9 @@ msgstr "Markeerpunt toevoegen"
 msgid "add bouquet"
 msgstr "favorietenlijst toevoegen"
 
+msgid "add bouquet to parental protection"
+msgstr "Favorietenlijst op kinderslot zetten"
+
 msgid "add marker"
 msgstr "Markeerpunt invoegen"
 
@@ -9696,6 +9820,9 @@ msgstr "omgekeerd alfabetisch"
 
 msgid "am"
 msgstr "vm"
+
+msgid "and never ask again this session again"
+msgstr "en vraag het deze sessie nooit meer"
 
 msgid "are you sure to cancel all changes"
 msgstr "Weet u zeker dat u alle veranderingen wilt annuleren\""
@@ -9837,6 +9964,9 @@ msgstr "dag"
 msgid "decrease uphop by 1"
 msgstr "verlaag uphop met 1"
 
+msgid "default"
+msgstr "standaard"
+
 msgid "delete"
 msgstr "verwijderen"
 
@@ -9948,6 +10078,9 @@ msgstr "ET4000"
 msgid "et5000/6000"
 msgstr "ET5000/6000"
 
+msgid "et7x00"
+msgstr "et7x00"
+
 msgid "et8000/et10000"
 msgstr "et8000/et10000"
 
@@ -9999,11 +10132,11 @@ msgstr "bestandnaam"
 msgid "film/cinema"
 msgstr "film/bioscoop"
 
+msgid "find currently played service"
+msgstr "vind het nu spelende kanaal"
+
 msgid "fine arts"
 msgstr "schone kunsten"
-
-msgid "fine-tune your display"
-msgstr "uw scherm fijn-afstellen"
 
 msgid "fitness & health"
 msgstr "fitness & gezondheid"
@@ -10385,6 +10518,12 @@ msgstr "Verwijder voor deze positie"
 msgid "remove bookmark"
 msgstr "Markeerpunt verwijderen"
 
+msgid "remove bouquet from parental protection"
+msgstr "Verwijder kinderslot van favorietenlijst"
+
+msgid "remove cable services"
+msgstr "Verwijder kabelzenders zenders"
+
 msgid "remove directory"
 msgstr "Map verwijderen"
 
@@ -10399,6 +10538,9 @@ msgstr "verwijder 'nieuw gevonden' vlag"
 
 msgid "remove selected satellite"
 msgstr "Deze satelliet verwijderen"
+
+msgid "remove terrestrial services"
+msgstr "Verwijder DVB-T zenders"
 
 msgid "remove this mark"
 msgstr "verwijder dit merkteken"
@@ -10649,6 +10791,9 @@ msgstr "template bestand"
 msgid "tennis/squash"
 msgstr "Tennis/Squash"
 
+msgid "this bouquet is protected by a parental control pin"
+msgstr "Deze favorietenlijst is beveiligd met een kinderslot-pincode"
+
 msgid "this recording"
 msgstr "deze opname"
 
@@ -10869,14 +11014,29 @@ msgstr "zapte"
 #~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 #~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
 
+#~ msgid "Connected!"
+#~ msgstr "Verbonden!"
+
+#~ msgid "DVB_C"
+#~ msgstr "DVB_C"
+
 #~ msgid "Devide"
 #~ msgstr "Verdeel"
+
+#~ msgid "Dialing:"
+#~ msgstr "Bellen:"
+
+#~ msgid "Disconnect"
+#~ msgstr "Verbreken"
 
 #~ msgid "Display"
 #~ msgstr "Display"
 
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
+
+#~ msgid "External (CF)"
+#~ msgstr "Extern (CF)"
 
 #~ msgid "F1"
 #~ msgstr "F1"
@@ -10895,6 +11055,9 @@ msgstr "zapte"
 
 #~ msgid "Open subtitle selection"
 #~ msgstr "Open ondertitel selectie"
+
+#~ msgid "Phone number"
+#~ msgstr "Telefoonnummer"
 
 #~ msgid ""
 #~ "Predefined transponder scans are only possible when \n"
@@ -10917,9 +11080,6 @@ msgstr "zapte"
 
 #~ msgid "Select what you want the TV button to activate."
 #~ msgstr "Stel in wat de TV-toets moet doen."
-
-#~ msgid "Send DiSEqC"
-#~ msgstr "Verstuur DiSEqC"
 
 #~ msgid "Show tag menu"
 #~ msgstr "Markeringsmenu weergeven"
@@ -10960,6 +11120,12 @@ msgstr "zapte"
 #~ msgid "Use WOL"
 #~ msgstr "Gebruik WoL"
 
+#~ msgid "Video fine tuning"
+#~ msgstr "Video fijninstellingen."
+
+#~ msgid "Video fine-tuning"
+#~ msgstr "Video fijninstellingen."
+
 #~ msgid "Video setup"
 #~ msgstr "Video-instellingen"
 
@@ -10968,3 +11134,6 @@ msgstr "zapte"
 
 #~ msgid "alternative"
 #~ msgstr "alternatief"
+
+#~ msgid "fine-tune your display"
+#~ msgstr "uw scherm fijn-afstellen"
