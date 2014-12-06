@@ -94,10 +94,10 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbquad', 'gbquadplus'):
+if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbultraue', 'gbquad', 'gbquadplus'):
 	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
-else:	
-	config.skin.lcdskin = ConfigNothing()	
+else:
+	config.skin.lcdskin = ConfigNothing()
 
 display_skin_id = 1
 if fileExists('/usr/share/enigma2/lcd_skin/skin_lcd_default.xml'):
