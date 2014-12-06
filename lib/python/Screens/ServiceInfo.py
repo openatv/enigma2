@@ -7,6 +7,7 @@ from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop
 from Tools.Transponder import ConvertToHumanReadable
 from Components.Converter.ChannelNumbers import channelnumbers
+import skin
 
 RT_HALIGN_LEFT = 0
 
@@ -59,14 +60,41 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.list = source
 		self.l.setList(self.list)
-		self.l.setFont(0, gFont("Regular", 23))
-		self.l.setFont(1, gFont("Regular", 28))
+		self.fontName = "Regular"
+		self.fontSize = 23
+		self.fontSize1080 = 31
 		self.l.setItemHeight(25)
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "font":
+					font = skin.parseFont(value, ((1,1),(1,1)))
+					self.fontName = font.family
+					self.fontSize = font.pointSize
+					self.fontSize1080 = font.pointSize
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
+		rc = GUIComponent.applySkin(self, desktop, screen)
+		self.setFontsize()
+		return rc
 
 	GUI_WIDGET = eListbox
 
+	def setFontsize(self):
+		screenwidth = getDesktop(0).size().width()
+		if screenwidth and screenwidth == 1920:
+			self.l.setFont(0, gFont(self.fontName, self.fontSize1080))
+			self.l.setFont(1, gFont(self.fontName, self.fontSize1080 + 7))
+		else:
+			self.l.setFont(0, gFont(self.fontName, self.fontSize))
+			self.l.setFont(1, gFont(self.fontName, self.fontSize + 5))
+
 	def postWidgetCreate(self, instance):
 		self.instance.setContent(self.l)
+		self.setFontsize()
 
 TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
