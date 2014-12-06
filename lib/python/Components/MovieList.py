@@ -182,7 +182,7 @@ class MovieList(GUIComponent):
 		self.updateRecordings()
 		self.updatePlayPosCache()
 
-	def applySkin(self, desktop, screen):
+	def applySkin(self, desktop, parent):
 		if self.skinAttributes is not None:
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
@@ -193,7 +193,8 @@ class MovieList(GUIComponent):
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
-		rc = GUIComponent.applySkin(self, desktop, screen)
+			self.setFontsize()
+		rc = GUIComponent.applySkin(self, desktop, parent)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
