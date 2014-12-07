@@ -233,6 +233,7 @@
 	</setup>
 	<setup key="specialfeatures" title="Special Features">
 		<item level="0" text="Use work-around for recordings from deep-standby" description="Check if there is a recording started in the next 5 mins (at bootup), then put your box in standby.">config.workaround.deeprecord</item>
+		<item level="0" text="Use time jumps for fast forward/backward" description="This will go fast forward/backward with time frames of x secs">config.seek.withjumps</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>

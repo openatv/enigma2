@@ -491,6 +491,7 @@ def InitUsageConfig():
 		("step", _("Single step (GOP)")),
 		("last", _("Last speed")) ])
 
+	config.seek.withjumps = ConfigYesNo(default = False)
 
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default = True)
