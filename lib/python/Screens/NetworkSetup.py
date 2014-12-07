@@ -569,7 +569,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 			havewol = False
-			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbquad'):
+			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbipbox', 'gbquad'):
 				havewol = True
 			if getBoxType() == 'et10000' and self.iface == 'eth0':
 				havewol = False
