@@ -1366,7 +1366,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.graphic = graphic
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0,0,0,0))
-		self.l.setItemHeight(30)
+		self.itemHeight = 30
 		self.TlDate = None
 		self.TlTime = None
 		self.foreColor = 0xffc000
@@ -1402,12 +1402,15 @@ class TimelineText(HTMLComponent, GUIComponent):
 					self.timelineFontSize = font.pointSize
 				elif attrib == "TimelineAlignment":
 					self.timelineAlign = value
+				elif attrib == "itemHeight":
+					self.itemHeight = int(value)
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
+		self.l.setItemHeight(self.itemHeight)
 		if self.graphic:
 			self.TlDate = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'))
 			self.TlTime = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineTime.png'))
