@@ -48,7 +48,7 @@ def profile(id):
 				if boxtype in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6" ):
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
-				elif getBoxType() in ('gb800solo', 'gb800se', 'gb800seplus'):
+				elif getBoxType() in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):
 					f = open("/dev/mcu", "w")
 					f.write("%d  \n" % perc)
 				elif boxtype in ("mixosf5", "gi9196m"):
