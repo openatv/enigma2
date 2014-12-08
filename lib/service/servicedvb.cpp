@@ -1285,7 +1285,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			ePtr<iTsSource> source = createTsSource(r);
 			m_service_handler_timeshift.tuneExt(r, 1, source, r.path.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
 
-			m_event((iPlayableService*)this, evUser+1);
+			m_event((iPlayableService*)this, evUser+1);  /* TIMESHIFT_FILE_CHANGED */
 		}
 		else
 #endif
@@ -1324,7 +1324,7 @@ void eDVBServicePlay::goToNextPlaybackFile()
 		ePtr<iTsSource> source = createTsSource(r);
 		m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
 
-		m_event((iPlayableService*)this, evUser+1);
+		m_event((iPlayableService*)this, evUser+1); /* TIMESHIFT_FILE_CHANGED */
 	}
 }
 
