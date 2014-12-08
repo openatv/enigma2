@@ -465,7 +465,6 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def changeTimerType(self):
 		self.timerentry_justplay.selectNext()
-		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay)
 		self["config"].invalidate(self.timerJustplayEntry)
 
 	def incrementStart(self):
