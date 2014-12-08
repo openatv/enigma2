@@ -4,11 +4,11 @@ from enigma import eTimer, eActionMap
 import datetime
 
 class TimerEntry:
-	StateWaiting  = 0
+	StateWaiting = 0
 	StatePrepared = 1
-	StateRunning  = 2
-	StateEnded    = 3
-	StateFailed   = 4
+	StateRunning = 2
+	StateEnded = 3
+	StateFailed = 4
 
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -41,13 +41,13 @@ class TimerEntry:
 
 	def addOneDay(self, timedatestruct):
 		oldHour = timedatestruct.tm_hour
-		newdate =  (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		newdate = (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
 		if localtime(mktime(newdate)).tm_hour != oldHour:
 			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
 		return newdate
 
 	# Update self.begin and self.end using the self.repeated flags
-	def processRepeated(self, findRunningEvent = True):
+	def processRepeated(self, findRunningEvent=True):
 		if self.repeated != 0:
 			now = int(time()) + 1
 
@@ -83,8 +83,14 @@ class TimerEntry:
 			#     otherwise
 			#        the new timer start has not passed
 
-			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or
-				(day[localbegin.tm_wday] == 0 and (findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow))):
+			while (
+				(day[localbegin.tm_wday] != 0) or
+				(mktime(localrepeatedbegindate) > mktime(localbegin)) or
+				(
+					day[localbegin.tm_wday] == 0 and (findRunningEvent and localend < localnow) or
+					((not findRunningEvent) and localbegin < localnow)
+				)
+			):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
 
@@ -112,10 +118,10 @@ class TimerEntry:
 	# Check if a timer entry must be skipped
 	def shouldSkip(self):
 		if self.disabled:
-			if self.end <= time() and not self.repeated and not "PowerTimerEntry" in `self`:
+			if self.end <= time() and not self.repeated and "PowerTimerEntry" not in repr(self):
 				self.disabled = False
 			return True
-		if "PowerTimerEntry" in `self`:
+		if "PowerTimerEntry" in repr(self):
 			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != 'once':
 				return False
 			elif self.begin >= time() and (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once':
@@ -163,15 +169,15 @@ class Timer:
 	MaxWaitTime = 100
 
 	def __init__(self):
-		self.timer_list = [ ]
-		self.processed_timers = [ ]
+		self.timer_list = []
+		self.processed_timers = []
 
 		self.timer = eTimer()
 		self.timer.callback.append(self.calcNextActivation)
 		self.lastActivation = time()
 
 		self.calcNextActivation()
-		self.on_state_change = [ ]
+		self.on_state_change = []
 
 	def stateChanged(self, entry):
 		for f in self.on_state_change:
@@ -205,25 +211,25 @@ class Timer:
 				self.calcNextActivation()
 
 # Small piece of example code to demonstrate how to use record simulation
-#		if NavigationInstance.instance:
-#			lst = [ ]
-#			cnt = 0
-#			for timer in self.timer_list:
-#				print "timer", cnt
-#				cnt += 1
-#				if timer.state == 0: #waiting
-#					lst.append(NavigationInstance.instance.recordService(timer.service_ref))
-#				else:
-#					print "STATE: ", timer.state
+# 		if NavigationInstance.instance:
+# 			lst = [ ]
+# 			cnt = 0
+# 			for timer in self.timer_list:
+# 				print "timer", cnt
+# 				cnt += 1
+# 				if timer.state == 0: #waiting
+# 					lst.append(NavigationInstance.instance.recordService(timer.service_ref))
+# 				else:
+# 					print "STATE: ", timer.state
 #
-#			for rec in lst:
-#				if rec.start(True): #simulate
-#					print "FAILED!!!!!!!!!!!!"
-#				else:
-#					print "OK!!!!!!!!!!!!!!"
-#				NavigationInstance.instance.stopRecordService(rec)
-#		else:
-#			print "no NAV"
+# 			for rec in lst:
+# 				if rec.start(True): #simulate
+# 					print "FAILED!!!!!!!!!!!!"
+# 				else:
+# 					print "OK!!!!!!!!!!!!!!"
+# 				NavigationInstance.instance.stopRecordService(rec)
+# 		else:
+# 			print "no NAV"
 
 	def setNextActivation(self, now, when):
 		delay = int((when - now) * 1000)
@@ -235,7 +241,7 @@ class Timer:
 		if self.lastActivation > now:
 			print "[timer.py] timewarp - re-evaluating all processed timers."
 			tl = self.processed_timers
-			self.processed_timers = [ ]
+			self.processed_timers = []
 			for x in tl:
 				# Simulate a "waiting" state to give them a chance to re-occur
 				x.resetState()
@@ -271,7 +277,7 @@ class Timer:
 		# Give the timer a chance to re-enqueue
 		if timer.state == TimerEntry.StateEnded:
 			timer.state = TimerEntry.StateWaiting
-		elif "PowerTimerEntry" in `timer` and (timer.timerType == 3 or timer.timerType == 4):
+		elif "PowerTimerEntry" in repr(timer) and (timer.timerType == 3 or timer.timerType == 4):
 			if timer.state > 0:
 				eActionMap.getInstance().unbindAction('', timer.keyPressed)
 			timer.state = TimerEntry.StateWaiting
