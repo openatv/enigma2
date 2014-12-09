@@ -4,7 +4,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from ServiceReference import ServiceReference
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable
 from Components.Converter.ChannelNumbers import channelnumbers
 import skin
@@ -42,9 +42,9 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	if screenwidth and screenwidth == 1920:
 		return [
 			#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 320, 35, 1, RT_HALIGN_LEFT, ""),
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 320, 35, 1, RT_HALIGN_LEFT, a),
-			(eListboxPythonMultiContent.TYPE_TEXT, 330, 0, 570, 35, 1, RT_HALIGN_LEFT, b)
+			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 330, 60, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ""),
+			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 330, 60, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, a),
+			(eListboxPythonMultiContent.TYPE_TEXT, 350, 0, 650, 60, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, b)
 		]
 	else:
 		return [
@@ -63,7 +63,7 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.fontName = "Regular"
 		self.fontSize = 23
 		self.fontSize1080 = 31
-		self.l.setItemHeight(25)
+		self.ItemHeight = 25
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -74,11 +74,14 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 					self.fontName = font.family
 					self.fontSize = font.pointSize
 					self.fontSize1080 = font.pointSize
+				elif attrib == "itemHeight":
+					self.ItemHeight = int(value)
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.setFontsize()
+		self.l.setItemHeight(self.ItemHeight)
 		return rc
 
 	GUI_WIDGET = eListbox
