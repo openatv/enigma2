@@ -1446,9 +1446,16 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		return self.servicelist.atEnd()
 
 	def _prevNextBouquetHelp(self, prev=False):
-		changeWhat = _(" bouquet") if config.usage.channelbutton_mode.value == '0' else _(" channel")
-		changeHow = _(" up") if ("reverseB" in config.usage.servicelist_cursor_behavior.value) == prev else _(" down")
-		return _("Move") + changeHow + _(" in") + changeWhat + _(" list")
+		if ("reverseB" in config.usage.servicelist_cursor_behavior.value) == prev:
+			if config.usage.channelbutton_mode.value == '0':
+				return _("Move up in bouquet list")
+			else:
+				return _("Move up in channel list")
+		else:
+			if config.usage.channelbutton_mode.value == '0':
+				return _("Move down in bouquet list")
+			else:
+				return _("Move down in channel list")
 
 	def nextBouquet(self):
 		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
