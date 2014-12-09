@@ -311,7 +311,6 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
-data/extensions/Makefile
 data/keymaps/Makefile
 data/displaytext/Makefile
 data/display96/Makefile
