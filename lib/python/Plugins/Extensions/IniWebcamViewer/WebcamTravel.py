@@ -82,14 +82,11 @@ class TravelWebcamviewer(Screen):
 		self["currentnumbers"] = Label(_("current: "))
 
 
-		self["key_red"] = Button(_("prev"))
-		self["key_red"].hide()
-		self["key_green"] = Button(_("next"))
-		self["key_green"].hide()
-		self["key_yellow"] = Button(_("search"))
-		self["key_blue"] = Button(_("hdkfjhg"))
-
-		self["key_blue"].hide() #not used at the moment
+		self["key_red"] = Button()
+		self["key_green"] = Button()
+		self["key_yellow"] = Button()
+		self["key_blue"] = Button()
+		self.onLayoutFinish.append(self._setButtonTexts)
 
 		self["actions"] = ActionMap(["WizardActions", "MenuActions", "DirectionActions", "ShortcutActions"],
 			{
@@ -110,6 +107,13 @@ class TravelWebcamviewer(Screen):
 		self.timer_labels.timeout.callback.append(self.refreshLabels)
 
 		self.onLayoutFinish.append(self.loadData)
+
+	def _setButtonTexts(self):
+		self["key_red"].setText(_("Previous page"))
+		self["key_red"].hide()
+		self["key_green"].setText(_("Next page"))
+		self["key_green"].hide()
+		self["key_yellow"].setText(_("Search"))
 
 	def onOK(self):
 		selection = self["list"].getCurrent()
