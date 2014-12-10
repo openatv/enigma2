@@ -10,12 +10,12 @@ from Components.Pixmap import Pixmap
 from Components.AVSwitch import AVSwitch
 from Tools.BoundFunction import boundFunction
 
-from enigma import eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT,ePicLoad,eTimer
+from enigma import eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, ePicLoad, eTimer
 
 from PictureScreen import PictureScreen
 
-from twisted.web.client import getPage,downloadPage
-#from twisted.internet import reactor
+from twisted.web.client import getPage, downloadPage
+# from twisted.internet import reactor
 
 from xml.etree.cElementTree import fromstring as cElementTree_fromstring
 
@@ -28,8 +28,9 @@ from urllib import quote as urllib_quote
 
 class TravelWebcamviewer(Screen):
 	skin = ""
-	def __init__(self, session, args = 0):
-		skin =  """<screen position="93,70" size="550,450" title="Webcams provided by webcams.travel">
+
+	def __init__(self, session, args=0):
+		skin = """<screen position="93,70" size="550,450" title="Webcams provided by webcams.travel">
 
 			<widget source="list" render="Listbox" position="0,0" size="550,350" zPosition="1" scrollbarMode="showOnDemand" transparent="1"  >
 				<convert type="TemplatedMultiContent">
@@ -81,21 +82,19 @@ class TravelWebcamviewer(Screen):
 		self["page"] = Label(_("Page: "))
 		self["currentnumbers"] = Label(_("current: "))
 
-
 		self["key_red"] = Button()
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
 		self.onLayoutFinish.append(self._setButtonTexts)
 
-		self["actions"] = ActionMap(["WizardActions", "MenuActions", "DirectionActions", "ShortcutActions"],
-			{
-			 "ok": self.onOK,
-			 "red": self.onRed,
-			 "green": self.onGreen,
-			 "yellow": self.onYellow,
-			 "back": self.close
-			 }, -1)
+		self["actions"] = ActionMap(["WizardActions", "MenuActions", "DirectionActions", "ShortcutActions"], {
+			"ok": self.onOK,
+			"red": self.onRed,
+			"green": self.onGreen,
+			"yellow": self.onYellow,
+			"back": self.close
+		}, -1)
 		self.finish_loading = True
 		self.timer_default = eTimer()
 		self.timer_default.timeout.callback.append(self.buildCamList)
@@ -119,36 +118,36 @@ class TravelWebcamviewer(Screen):
 		selection = self["list"].getCurrent()
 		if selection:
 			print selection
-			self.session.open(PictureScreen,selection[0].title,selection[0].pic_url)
+			self.session.open(PictureScreen, selection[0].title, selection[0].pic_url)
 
 	def onRed(self):
 		if self.hasPrevPage():
 			self.timer_status.start(1)
-			WebcamTravelerAPI().list_popular(self.onDataLoaded,_page=self.page-1)
+			WebcamTravelerAPI().list_popular(self.onDataLoaded, _page=self.page - 1)
 
 	def onGreen(self):
 		if self.hasNextPage():
 			self.timer_status.start(1)
-			WebcamTravelerAPI().list_popular(self.onDataLoaded,_page=self.page+1)
+			WebcamTravelerAPI().list_popular(self.onDataLoaded, _page=self.page + 1)
 
 	def onYellow(self):
-		self.session.openWithCallback(self.onSearchkeyEntered,InputBox, title=_("Please enter a searchkey:"), text="Search Webcams", maxSize=False, type=Input.TEXT)
+		self.session.openWithCallback(self.onSearchkeyEntered, InputBox, title=_("Please enter a searchkey:"), text="Search Webcams", maxSize=False, type=Input.TEXT)
 
-	def onSearchkeyEntered(self,value):
-		if value is not None and self.finish_loading != False:
- 			self.timer_status.start(1)
- 			WebcamTravelerAPI().search(self.onDataLoaded,value)
- 			self.finish_loading = False
+	def onSearchkeyEntered(self, value):
+		if value is not None and self.finish_loading:
+			self.timer_status.start(1)
+			WebcamTravelerAPI().search(self.onDataLoaded, value)
+			self.finish_loading = False
 
 	def loadData(self):
-		if self.finish_loading != False:
+		if self.finish_loading:
 			self.timer_status.start(1)
 			WebcamTravelerAPI().list_popular(self.onDataLoaded)
 			self.finish_loading = False
 
-	def onDataLoaded(self,list,count=0,page=0,per_page=0):
-		print "onDataLoaded",list,count,page,per_page
-		self.count =count
+	def onDataLoaded(self, list, count=0, page=0, per_page=0):
+		print "onDataLoaded", list, count, page, per_page
+		self.count = count
 		self.page = page
 		self.per_page = per_page
 
@@ -161,37 +160,35 @@ class TravelWebcamviewer(Screen):
 	def downloadThumbnails(self):
 		for cam in self.list:
 			self.pixmaps_to_load.append(cam.webcamid)
-			downloadPage(cam.thumbnail_url,"/tmp/"+str(cam.webcamid)+"_thumb.jpg").addCallback(self.fetchFinished,cam.webcamid).addErrback(self.fetchFailed,cam.webcamid)
+			downloadPage(cam.thumbnail_url, "/tmp/" + str(cam.webcamid) + "_thumb.jpg").addCallback(self.fetchFinished, cam.webcamid).addErrback(self.fetchFailed, cam.webcamid)
 
-	def fetchFailed(self,string,webcamid):
-		print "fetchFailed",webcamid,string.getErrorMessage()
+	def fetchFailed(self, string, webcamid):
+		print "fetchFailed", webcamid, string.getErrorMessage()
 		self.buildEntryStatus(string.getErrorMessage())
 		self.pixmaps_to_load.remove(webcamid)
 
-	def fetchFinished(self,x,webcamid):
-		print "fetchFinished",x,webcamid
+	def fetchFinished(self, x, webcamid):
+		print "fetchFinished", x, webcamid
 		self.pixmaps_to_load.remove(webcamid)
 
 		sc = AVSwitch().getFramebufferScale()
-		if (os_path_exists("/tmp/"+str(webcamid)+"_thumb.jpg") == True):
+		if os_path_exists("/tmp/" + str(webcamid) + "_thumb.jpg"):
 			self.picloads[webcamid] = ePicLoad()
 			self.picloads[webcamid].PictureData.get().append(boundFunction(self.finish_decode, webcamid))
 			self.picloads[webcamid].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
-			self.picloads[webcamid].startDecode("/tmp/"+str(webcamid)+"_thumb.jpg")
+			self.picloads[webcamid].startDecode("/tmp/" + str(webcamid) + "_thumb.jpg")
 		else:
-			print "[decodePic] Thumbnail file NOT FOUND !!!-->:",thumbnailFile
+			print "[decodePic] Thumbnail file NOT FOUND !!!-->:", thumbnailFile
 
-	def finish_decode(self,webcamid,info):
-		print "finish_decode - of webcamid", webcamid,info
+	def finish_decode(self, webcamid, info):
+		print "finish_decode - of webcamid", webcamid, info
 		ptr = self.picloads[webcamid].getData()
-		if ptr != None:
+		if ptr is not None:
 			self.thumbnails[webcamid] = ptr
 			print "removing file"
-			os_remove("/tmp/"+str(webcamid)+"_thumb.jpg")
+			os_remove("/tmp/" + str(webcamid) + "_thumb.jpg")
 			del self.picloads[webcamid]
 			self.timer_default.start(1)
-
-
 
 	def buildStatusList(self):
 		self.timer_status.stop()
@@ -207,7 +204,6 @@ class TravelWebcamviewer(Screen):
 		self["list"].setList(statuslist)
 		self["list"].updateList(statuslist)
 
-
 	def buildCamList(self):
 		if len(self.picloads) != 0:
 			return
@@ -216,7 +212,7 @@ class TravelWebcamviewer(Screen):
 		statuslist = []
 		for cam in self.list:
 			try:
-				x= self.buildEntryCam(cam)
+				x = self.buildEntryCam(cam)
 				statuslist.append(x)
 			except KeyError:
 				pass
@@ -241,34 +237,31 @@ class TravelWebcamviewer(Screen):
 			self["key_red"].show()
 		else:
 			self["key_red"].hide()
-		self["count"].setText(_("Cams: ")+str(self.count))
-		self["page"].setText(_("Page: ")+str(self.page)+"/"+str(self.count/self.per_page))
-		self["currentnumbers"].setText(_("current: ")+str(((self.page-1)*self.per_page)+1)+"-"+str(((self.page-1)*self.per_page)+len(self.list)))
+		self["count"].setText(_("Cams: ") + str(self.count))
+		self["page"].setText(_("Page: ") + str(self.page) + "/" + str(self.count / self.per_page))
+		self["currentnumbers"].setText(_("current: ") + str(((self.page - 1) * self.per_page) + 1) + "-" + str(((self.page - 1) * self.per_page) + len(self.list)))
 
 		self.finish_loading = True
 
 	def buildEntryCam(self, cam):
-		return ((cam, cam.title, cam.webcamid,"last update",self.thumbnails[cam.webcamid], _("Last updated: ")+cam.last_update, _("Views: ")+cam.view_count, _("User: ")+cam.user, _("Ratings: ")+cam.rating_avg ))
+		return ((cam, cam.title, cam.webcamid, "last update", self.thumbnails[cam.webcamid], _("Last updated: ") + cam.last_update, _("Views: ") + cam.view_count, _("User: ") + cam.user, _("Ratings: ") + cam.rating_avg))
 
 	def buildEntryStatus(self, text):
-		return (("loading ...", "please wait just a moment","cccccccccccc","last update","1111111111111", _("Last updated: "), _("Views: "), _("Duration: ") , _("Ratings: ") ))
+		return (("loading ...", "please wait just a moment", "cccccccccccc", "last update", "1111111111111", _("Last updated: "), _("Views: "), _("Duration: "), _("Ratings: ")))
 
 	def hasNextPage(self):
-		if (self.per_page*(self.page+1)>self.count):
+		if (self.per_page * (self.page + 1) > self.count):
 			return False
 		else:
 			return True
 
 	def hasPrevPage(self):
-		if (self.page>1):
+		if (self.page > 1):
 			return True
 		else:
 			return False
 
-
 #########################################
-
-
 
 #########################################
 # API ###################################
@@ -277,26 +270,26 @@ class TravelWebcamviewer(Screen):
 #########################################
 
 class WebcamTravelerAPI:
-	APIKEY="4fc0163634276a71fdf7e849ef0a9d23"
+	APIKEY = "4fc0163634276a71fdf7e849ef0a9d23"
 	URL_HOST = "api.webcams.travel"
 	URL_FORMAT = "rest"
 
-	def get(self,method,callback,errorback,**kwargs):
-		url = "http://"+self.URL_HOST+"/"+self.URL_FORMAT+"?method="+method+"&devid="+self.APIKEY
+	def get(self, method, callback, errorback, **kwargs):
+		url = "http://" + self.URL_HOST + "/" + self.URL_FORMAT + "?method=" + method + "&devid=" + self.APIKEY
 		for key in kwargs:
-			print key,kwargs[key]
-			url +="&"+str(key)+"="+str(kwargs[key])
+			print key, kwargs[key]
+			url += "&" + str(key) + "=" + str(kwargs[key])
 		print url
 		cb = getPage(url).addCallback(callback)
-		if errorback!=None:
+		if errorback is not None:
 			cb.addErrback(errorback)
 		else:
 			cb.addErrback(self.loadingFailed)
 
-	def loadingFailed(self,reason):
-		print "loadingFailed",reason
+	def loadingFailed(self, reason):
+		print "loadingFailed", reason
 
-	def list_popular(self,callback,_page=1,_per_page=30):
+	def list_popular(self, callback, _page=1, _per_page=30):
 		"""	wct.webcams.list_popular
 			Get the popular webcams.
 
@@ -307,16 +300,16 @@ class WebcamTravelerAPI:
 			page (optional)
 				The page of results to return. If this argument is omitted, it defaults to 1.
 		"""
-		cb = lambda raw: self.list_popularCB(raw,callback)
-		self.get("wct.webcams.list_popular",cb,None,page=_page,per_page=_per_page)
+		cb = lambda raw: self.list_popularCB(raw, callback)
+		self.get("wct.webcams.list_popular", cb, None, page=_page, per_page=_per_page)
 
-	def list_popularCB(self,raw,callback):
+	def list_popularCB(self, raw, callback):
 		dom = cElementTree_fromstring(raw)
 		list, _count, _page, _per_page = self.parseWebcam(dom)
-		callback(list,count=_count,page=_page,per_page=_per_page)
+		callback(list, count=_count, page=_page, per_page=_per_page)
 
-	def parseWebcam(self,dom):
-		cams= dom.findall("webcams")
+	def parseWebcam(self, dom):
+		cams = dom.findall("webcams")
 		_count = int(cams[0].findtext("count", 0))
 		_page = int(cams[0].findtext("page", 0))
 		_per_page = int(cams[0].findtext("per_page", 0))
@@ -324,9 +317,9 @@ class WebcamTravelerAPI:
 		for cam in cams[0].findall("webcam"):
 			ca = Cam(cam)
 			list.append(ca)
-		return list,_count, _page, _per_page
+		return list, _count, _page, _per_page
 
-	def search(self,callback,searchkey,_page=1,_per_page=30):
+	def search(self, callback, searchkey, _page=1, _per_page=30):
 		"""wct.search.webcams
 
 			Search the webcams by the given query.
@@ -343,21 +336,21 @@ class WebcamTravelerAPI:
 			page (optional)
 			The page of results to return. If this argument is omitted, it defaults to 1.
 		"""
-		cb = lambda raw: self.searchCB(raw,callback)
-		self.get("wct.search.webcams",cb,None,query=urllib_quote(searchkey),page=_page,per_page=_per_page)
+		cb = lambda raw: self.searchCB(raw, callback)
+		self.get("wct.search.webcams", cb, None, query=urllib_quote(searchkey), page=_page, per_page=_per_page)
 
-	def searchCB(self,raw,callback):
+	def searchCB(self, raw, callback):
 		dom = cElementTree_fromstring(raw)
 		list, _count, _page, _per_page = self.parseWebcam(dom)
-		callback(list,count=_count,page=_page,per_page=_per_page)
+		callback(list, count=_count, page=_page, per_page=_per_page)
 
 
 class Cam:
-	def __init__(self,element):
-		self.title = element.findtext("title", 0).encode('utf-8',"ignore")
+	def __init__(self, element):
+		self.title = element.findtext("title", 0).encode('utf-8', "ignore")
 		self.webcamid = int(element.findtext("webcamid", 0))
-		self.pic_url = "http://images.webcams.travel/webcam/"+str(self.webcamid)+".jpg"
-		#self.icon_url = element.findtext("icon_url", 0)
+		self.pic_url = "http://images.webcams.travel/webcam/" + str(self.webcamid) + ".jpg"
+		# self.icon_url = element.findtext("icon_url", 0)
 		self.thumbnail_url = element.findtext("thumbnail_url", 0)
 		self.view_count = element.findtext("view_count", 0)
 		self.user = element.findtext("user", 0)
@@ -372,7 +365,3 @@ class Cam:
 
 		datex = datetime.fromtimestamp(int(element.findtext("last_update", 0)))
 		self.last_update = datex.strftime("%d.%m.%Y %H:%M:%S")
-
-
-
-
