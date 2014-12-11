@@ -38,7 +38,7 @@ EXTENSIONS = {
 def FileEntryComponent(name, absolute = None, isDir = False):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
-		res = [(absolute, isDir), (eListboxPythonMultiContent.TYPE_TEXT, 50, 1, 470, 35, 1, RT_HALIGN_LEFT, name)]
+		res = [(absolute, isDir), (eListboxPythonMultiContent.TYPE_TEXT, 90, 3, 470, 60, 1, RT_HALIGN_LEFT, name)]
 	else:
 		res = [(absolute, isDir), (eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 470, 20, 0, RT_HALIGN_LEFT, name)]
 	if isDir:
@@ -52,7 +52,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 			png = None
 	if png is not None:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 2, 35, 35, png))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 50, 50, png))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 2, 20, 20, png))
 	return res
@@ -275,7 +275,7 @@ class FileList(MenuList):
 def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected = False):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
-		res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 100, 7, 470, 35, 1, RT_HALIGN_LEFT, name)]
+		res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 150, 3, 470, 60, 1, RT_HALIGN_LEFT, name)]
 	else:
 		res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name)]
 	if isDir:
@@ -289,7 +289,7 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 			png = None
 	if png is not None:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 30, 2, 35, 35, png))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 80, 5, 50, 50, png))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 30, 2, 20, 20, png))
 	if not name.startswith('<'):
@@ -298,7 +298,7 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 		else:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 35, 35, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 50, 50, icon))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 0, 25, 25, icon))
 	return res
