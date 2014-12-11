@@ -933,6 +933,7 @@ class ChannelSelectionEdit:
 
 	def removeSatelliteServicesCallback(self, answer):
 		if answer:
+			currentIndex = self.servicelist.getCurrentIndex()
 			current = self.getCurrentSelection()
 			unsigned_orbpos = current.getUnsignedData(4) >> 16
 			if unsigned_orbpos == 0xFFFF:
@@ -949,7 +950,11 @@ class ChannelSelectionEdit:
 						satpos = int(tmp[:idx])
 						eDVBDB.getInstance().removeServices(-1, -1, -1, satpos)
 			refreshServiceList()
-			hasattr(self.session, 'showSatellites') and self.showSatellites()
+			if hasattr(self, 'showSatellites'):
+				self.showSatellites()
+				self.servicelist.moveToIndex(currentIndex)
+				if currentIndex != self.servicelist.getCurrentIndex():
+					self.servicelist.instance.moveSelection(self.servicelist.instance.moveEnd)
 
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
 	def startMarkedEdit(self, type):
@@ -1165,7 +1170,7 @@ class ChannelSelectionBase(Screen):
 				"showFavourites": self.showFavourites,
 				"showAllServices": self.showAllServices,
 				"showProviders": self.showProviders,
-				"showSatellites": self.showSatellites,
+				"showSatellites": boundFunction(self.showSatellites, changeMode=True),
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
 				"nextMarker": self.nextMarker,
@@ -1363,7 +1368,7 @@ class ChannelSelectionBase(Screen):
 					self.enterPath(ref)
 					self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
-	def showSatellites(self):
+	def showSatellites(self, changeMode=False):
 		if not self.pathChangeDisabled:
 			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
 			if not self.preEnterPath(refstr):
@@ -1381,7 +1386,7 @@ class ChannelSelectionBase(Screen):
 						justSet=True
 						self.clearPath()
 						self.enterPath(ref, True)
-					if currentRoot and currentRoot == ref:
+					if changeMode and currentRoot and currentRoot == ref:
 						self.showSatDetails = not self.showSatDetails
 						justSet = True
 						self.clearPath()
