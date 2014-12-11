@@ -1637,6 +1637,20 @@ def InitNimManager(nimmgr):
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
+	def SetTuner():
+		for x in range(0,4):
+			tunername = chr(ord('A') + x)
+			print "[NimManager] Set Tuner to %s" % tunername
+			if path.exists("/proc/stb/tsmux/input%d" % x):
+				f = open("/proc/stb/tsmux/input%d" % x, "w")
+				f.write(tunername)
+				f.close()
+
+			if path.exists("/proc/stb/tsmux/ci%d_input" % x):
+				f = open("/proc/stb/tsmux/ci%d_input" % x, "w")
+				f.write(tunername)
+				f.close()
+
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
@@ -1693,6 +1707,8 @@ def InitNimManager(nimmgr):
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
 
+		if x == 0 and slot.description == 'BCM4505': # workaround when using a single tuner instead of multi tuner on DM7080 or DM820
+			SetTuner()
 		print"[NimManager] slotname = %s, slotdescription = %s, multitype = %s" % (slot.input_name, slot.description,(slot.isMultiType() and addMultiType))
 
 	empty_slots = 0
