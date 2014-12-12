@@ -260,7 +260,8 @@ def InitUsageConfig():
 						("2", _("Show CoolInfoGuide")),
 						("3", _("Show CoolSingleGuide")),
 						("4", _("Show CoolTVGuide")),
-						("5", _("Show CoolEasyGuide"))])
+						("5", _("Show CoolEasyGuide")),
+						("6", _("Show CoolChannelGuide"))])
 	else:
 		config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
 						("0", _("InfoBar")),
