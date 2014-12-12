@@ -253,9 +253,18 @@ def InitUsageConfig():
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices = [
 					("0", _("Just change channels")),
 					("1", _("Channel List"))])
-	config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
-					("0", _("InfoBar")),
-					("1", _("Channel List"))])
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+		config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
+						("0", _("InfoBar")),
+						("1", _("Channel List")),
+						("2", _("Show CoolInfoGuide")),
+						("3", _("Show CoolSingleGuide")),
+						("4", _("Show CoolTVGuide")),
+						("5", _("Show CoolEasyGuide"))])
+	else:
+		config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
+						("0", _("InfoBar")),
+						("1", _("Channel List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
 		('barleft', _("Progress bar left")),

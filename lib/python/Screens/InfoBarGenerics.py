@@ -574,6 +574,15 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.openServiceList()
 			except:
 				self.toggleShow()
+		elif config.usage.okbutton_mode.value == "2" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+		elif config.usage.okbutton_mode.value == "3" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+		elif config.usage.okbutton_mode.value == "4" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+		elif config.usage.okbutton_mode.value == "5" and COOLTVGUIDE:
+				self.showCoolEasyGuide()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
@@ -850,6 +859,50 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			epglist[0] = epglist[1]
 			epglist[1] = tmp
 			setEvent(epglist[0])
+
+	def showCoolInfoGuide(self):
+		if self.servicelist is None:
+			return
+		if COOLTVGUIDE:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Info Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showCoolSingleGuide(self):
+		if self.servicelist is None:
+			return	
+		if COOLTVGUIDE:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Single Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showCoolTVGuide(self):
+		if self.servicelist is None:
+			return
+		if COOLTVGUIDE:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool TV Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showCoolEasyGuide(self):
+		if self.servicelist is None:
+			return
+		if COOLTVGUIDE:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Easy Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 class NumberZap(Screen):
 	def quit(self):
@@ -1845,7 +1898,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )	
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
