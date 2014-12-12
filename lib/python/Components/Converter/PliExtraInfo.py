@@ -132,7 +132,7 @@ class PliExtraInfo(Poll, Converter, object):
 		apid = info.getInfo(iServiceInformation.sAudioPID)
 		pcrpid = info.getInfo(iServiceInformation.sPCRPID)
 		sidpid = info.getInfo(iServiceInformation.sSID)
-		tsid = info.getInfo(iServiceInformation.sTSID) % 1000
+		tsid = info.getInfo(iServiceInformation.sTSID)
 		onid = info.getInfo(iServiceInformation.sONID)
 		if vpid < 0 : vpid = 0
 		if apid < 0 : apid = 0
