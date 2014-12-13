@@ -921,14 +921,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+						alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+						alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
 				else:
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+						alignnment = RT_HALIGN_CENTER | RT_VALIGN_TOP | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+						alignnment = RT_HALIGN_CENTER | RT_VALIGN_TOP
 
 				if stime <= now < (stime + duration):
 					foreColor = self.foreColorNow
