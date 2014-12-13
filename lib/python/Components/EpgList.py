@@ -1007,7 +1007,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif self.type == EPG_TYPE_INFOBARGRAPH:
 					infowidth = config.epgselection.infobar_infowidth.value
 				if evW < infowidth and infoPix is not None:
-					res.append(MultiContentEntryPixmapAlphaTest(
+					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (evX, evY), size = (evW, evH),
 						png = infoPix))
 				else:
