@@ -296,7 +296,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"ok": self.keyOK,
 			"back": self.leavePlayer,
 			"red": self.leavePlayer,
-			"showVirtualKeyboard": self.openKeyboard,
 			"yellow": self.handleHistory,
 			"up": self.keyUp,
 			"down": self.handleSuggestions,
@@ -304,7 +303,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"right": self.keyRight,
 			"prevBouquet": self.switchToFeedList,
 			"nextBouquet": self.switchToConfigList,
-			"nextBouquet": self.openKeyboard,
+			"nextBouquet": self.KeyText,
 			"displayHelp": self.handleHelpWindow,
 			"menu" : self.handleMenu,
 		}, -2)
@@ -315,7 +314,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"back": self.switchToConfigList,
 			"red": self.switchToConfigList,
 			"nextBouquet": self.switchToConfigList,
-			"showVirtualKeyboard": self.openKeyboard,
 			"prevBouquet": self.switchToFeedList,
 			"up": self.keyUp,
 			"down": self.keyDown,
@@ -334,7 +332,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"up": self.keyUp,
 			"down": self.keyDown,
 			"nextBouquet": self.switchToConfigList,
-			"showVirtualKeyboard": self.openKeyboard,
 			"green": self.keyStdFeed,
 			"blue": self.showVideoInfo,
 			"displayHelp": self.handleHelpWindow,
@@ -346,7 +343,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			"back": self.leavePlayer,
 			"red": self.leavePlayer,
 			"nextBouquet": self.switchToConfigList,
-			"showVirtualKeyboard": self.openKeyboard,
 			"green": self.keyStdFeed,
 			"yellow": self.handleHistory,
 			"menu": self.handleMenu
@@ -400,12 +396,11 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self["key_green"].hide()
 		self["key_yellow"].show()
 		self["key_blue"].hide()
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
 		self.currList = "status"
 		current = self["config"].getCurrent()
 		if current[1].help_window.instance is not None:
-			current[1].help_window.instance.hide()
+			helpwindowpos = self["HelpWindow"].getPosition()
+			current[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 			
 		# we need to login here; startService() is fired too often for external curl
 		self.tryUserLogin()
@@ -443,19 +438,32 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			print '[MyTubePlayerMainScreen] Login-Error: ' + str(e)
 			self.statuslist.append(( _("Login failed"), str(e)))
 
+	def setVisibleHelp(self, enable):
+		current = self["config"].getCurrent()
+		if current[1].help_window is not None:
+			if enable:
+				current[1].help_window.show()
+			else:
+				current[1].help_window.hide()
+
+	def setEnableConfig(self, enable):
+		self["config_actions"].setEnabled(enable)
+		self["VirtualKB"].setEnabled(enable)
+		self.showVKeyboard(enable)
+		self.setVisibleHelp(enable)
+
 	def setState(self,status = None):
 		print "[MyTubePlayerMainScreen] setState", status
 		if status:
 			self.currList = "status"
 			self["videoactions"].setEnabled(False)
 			self["searchactions"].setEnabled(False)
-			self["config_actions"].setEnabled(False)
 			self["historyactions"].setEnabled(False)
 			self["statusactions"].setEnabled(True)
+			self.setEnableConfig(False)
 			self["key_green"].show()
 			self["key_yellow"].show()
 			self["key_blue"].hide()
-			self["VKeyIcon"].hide()
 			self.statuslist = []
 			self.hideSuggestions()
 			result = None
@@ -490,6 +498,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		print "[MyTubePlayerMainScreen] handleHelpWindow"
 		if self.currList == "configlist":
 			self.hideSuggestions()
+			self.setVisibleHelp(False)
 			self.session.openWithCallback(self.ScreenClosed, MyTubeVideoHelpScreen, self.skin_path, wantedinfo = self.searchtext, wantedtitle = _("YouTube Player - Help") )
 		elif self.currList == "feedlist":
 			self.session.openWithCallback(self.ScreenClosed, MyTubeVideoHelpScreen, self.skin_path, wantedinfo = self.feedtext, wantedtitle = _("YouTube Player - Help") )
@@ -513,6 +522,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			menulist = (
 					(_("YouTube Settings"), "settings"),
 				)
+			self.setVisibleHelp(False)
 			self.hideSuggestions()
 			self.session.openWithCallback(self.openMenu, ChoiceBox, title=_("Select your choice."), list = menulist)
 
@@ -537,6 +547,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 				))
 
 			self.hideSuggestions()
+			self.setVisibleHelp(False)
 			self.session.openWithCallback(self.openMenu, ChoiceBox, title=_("Select your choice."), list = menulist)
 
 	def openMenu(self, answer):
@@ -579,8 +590,9 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		elif answer == None:
 			self.ScreenClosed()
 
-	def openKeyboard(self):
+	def KeyText(self):
 		self.hideSuggestions()
+		self.setVisibleHelp(False)
 		self.session.openWithCallback(self.SearchEntryCallback, VirtualKeyBoard, title = (_("Enter your search term(s)")), text = config.plugins.mytube.search.searchTerm.value)
 
 	def ScreenClosed(self):
@@ -604,13 +616,12 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			self.switchToConfigList()
 			self.keyOK()
 		
-		if current[1].help_window.instance is not None:
-			current[1].help_window.instance.show()	
 		if current[1].suggestionsWindow.instance is not None:
 			current[1].suggestionsWindow.instance.show()
 
 		self.switchToFeedList()
-		current[1].suggestionsWindow.instance.hide()
+		if current[1].suggestionsWindow.instance is not None:
+			current[1].suggestionsWindow.instance.hide()
 		self.propagateUpDownNormally = True
 
 	def openStandardFeedClosed(self, answer):
@@ -652,9 +663,11 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 				self["config"].invalidateCurrent()
 			else:
 				self.hideSuggestions()
+				self.setVisibleHelp(False)
 				self.handleLeave(config.plugins.mytube.general.on_exit.value)
 		else:
 			self.hideSuggestions()
+			self.setVisibleHelp(False)
 			self.handleLeave(config.plugins.mytube.general.on_exit.value)
 
 	def leavePlayerConfirmed(self, answer):
@@ -809,6 +822,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 				if self.HistoryWindow is not None and self.HistoryWindow.shown:
 					self.HistoryWindow.pageDown()
 	def keyStdFeed(self):
+		self.setVisibleHelp(False)
 		self.hideSuggestions()
 		menulist = []
 
@@ -850,13 +864,12 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 	def switchToSuggestionsList(self):
 		print "[MyTubePlayerMainScreen] switchToSuggestionsList"
 		self.currList = "suggestionslist"
-		self["VKeyIcon"].hide()
 		self["statusactions"].setEnabled(False)
-		self["config_actions"].setEnabled(False)
 		self["videoactions"].setEnabled(False)
 		self["searchactions"].setEnabled(False)
 		self["suggestionactions"].setEnabled(True)
 		self["historyactions"].setEnabled(False)
+		self.setEnableConfig(False)
 		self["key_green"].hide()
 		self["key_yellow"].hide()
 		self["key_blue"].hide()
@@ -869,25 +882,20 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 	def switchToConfigList(self):
 		print "[MyTubePlayerMainScreen] switchToConfigList"
 		self.currList = "configlist"
-		self["config_actions"].setEnabled(True)	
 		self["historyactions"].setEnabled(False)
 		self["statusactions"].setEnabled(False)
 		self["videoactions"].setEnabled(False)
 		self["suggestionactions"].setEnabled(False)
 		self["searchactions"].setEnabled(True)
+		self.setEnableConfig(True)
 		self["key_green"].hide()
 		self["key_yellow"].show()
 		self["key_blue"].hide()
-		self["VKeyIcon"].show()
 		self["config"].invalidateCurrent()
-		helpwindowpos = self["HelpWindow"].getPosition()
 		current = self["config"].getCurrent()
-		if current[1].help_window.instance is not None:
-			current[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
-			current[1].help_window.instance.show()
 		if current[1].suggestionsWindow.instance is not None:
 			current[1].suggestionsWindow.instance.show()
-			self["config"].getCurrent()[1].getSuggestions()
+			current[1].getSuggestions()
 		self.propagateUpDownNormally = True
 		if self.HistoryWindow is not None and self.HistoryWindow.shown:
 			self.HistoryWindow.deactivate()
@@ -905,13 +913,12 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self.hideSuggestions()
 		if len(self.videolist):
 			self.currList = "feedlist"
-			self["VKeyIcon"].hide()
 			self["videoactions"].setEnabled(True)
 			self["suggestionactions"].setEnabled(False)
 			self["searchactions"].setEnabled(False)
 			self["statusactions"].setEnabled(False)
 			self["historyactions"].setEnabled(False)
-			self["config_actions"].setEnabled(False)
+			self.setEnableConfig(False)
 			self["key_green"].show()
 			self["key_yellow"].show()
 			self["key_blue"].show()
@@ -929,13 +936,12 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		print "[MyTubePlayerMainScreen] switchToHistory currentlist",self.currList
 		print "[MyTubePlayerMainScreen] switchToHistory oldlist",self.oldlist
 		self.hideSuggestions()
-		self["VKeyIcon"].hide()
 		self["videoactions"].setEnabled(False)
 		self["suggestionactions"].setEnabled(False)
 		self["searchactions"].setEnabled(False)
 		self["statusactions"].setEnabled(False)
-		self["config_actions"].setEnabled(False)
 		self["historyactions"].setEnabled(True)
+		self.setEnableConfig(False)
 		self["key_green"].hide()
 		self["key_yellow"].show()
 		self["key_blue"].hide()
@@ -982,8 +988,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 
 	def hideSuggestions(self):
 		current = self["config"].getCurrent()
-		if current[1].help_window.instance is not None:
-			current[1].help_window.instance.hide()
 		if current[1].suggestionsWindow.instance is not None:
 			current[1].suggestionsWindow.instance.hide()
 		self.propagateUpDownNormally = True

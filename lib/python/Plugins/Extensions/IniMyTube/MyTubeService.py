@@ -19,8 +19,6 @@ from httplib import HTTPConnection, CannotSendRequest, BadStatusLine, HTTPExcept
 from urlparse import parse_qs, parse_qsl
 from threading import Thread
 
-# HTTPConnection.debuglevel = 1
-
 if 'HTTPSConnection' not in dir(httplib):
 	# python on enimga2 has no https socket support
 	gdata.youtube.service.YOUTUBE_USER_FEED_URI = 'http://gdata.youtube.com/feeds/api/users'
@@ -233,7 +231,8 @@ class GoogleSuggestions():
 		if queryString is not "":
 			query = self.prepQuerry + quote(queryString)
 			try:
-				self.conn = HTTPConnection("google.com", debuglevel=1)
+				self.conn = HTTPConnection("google.com")
+				self.conn.set_debuglevel(1)
 				self.conn.request("GET", query, "", {"Accept-Encoding": "UTF-8"})
 			except (CannotSendRequest, gaierror, error):
 				self.conn.close()
