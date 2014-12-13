@@ -170,12 +170,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventFontNameInfobar = "Regular"
 
 		if self.screenwidth and self.screenwidth == 1920:
-			self.serviceFontSizeGraph = 26
-			self.eventFontSizeGraph = 26
-			self.eventFontSizeSingle = 26
-			self.eventFontSizeMulti = 26
-			self.serviceFontSizeInfobar = 26
-			self.eventFontSizeInfobar = 26
+			self.serviceFontSizeGraph = 28
+			self.eventFontSizeGraph = 28
+			self.eventFontSizeSingle = 28
+			self.eventFontSizeMulti = 28
+			self.serviceFontSizeInfobar = 28
+			self.eventFontSizeInfobar = 28
 		else:
 			self.serviceFontSizeGraph = 20
 			self.eventFontSizeGraph = 18
