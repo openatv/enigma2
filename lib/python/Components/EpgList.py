@@ -1047,11 +1047,20 @@ class EPGList(HTMLComponent, GUIComponent):
 				# recording icons
 				if clock_types is not None and ewidth > 23:
 					if clock_types in (1,6,11):
-						pos = (left+xpos+ewidth-13, top+height-22)
+						if self.screenwidth and self.screenwidth == 1920:
+							pos = (left+xpos+ewidth-17, top+height-28)
+						else:
+							pos = (left+xpos+ewidth-13, top+height-22)
 					elif clock_types in (5,10,15):
-						pos = (left+xpos-8, top+height-23)
+						if self.screenwidth and self.screenwidth == 1920:
+							pos = (left+xpos-2, top+height-28)
+						else:
+							pos = (left+xpos-8, top+height-23)
 					else:
-						pos = (left+xpos+ewidth-23, top+height-22)
+						if self.screenwidth and self.screenwidth == 1920:
+							pos = (left+xpos+ewidth-29, top+height-28)
+						else:
+							pos = (left+xpos+ewidth-23, top+height-22)
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = pos, size = (25, 25),
@@ -1063,7 +1072,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					if self.wasEntryAutoTimer and clock_types in (2,7,12):
 						if self.screenwidth and self.screenwidth == 1920:
 							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-22,pos[1]), size = (25, 25),
+								pos = (pos[0]-29,pos[1]), size = (25, 25),
 								png = self.autotimericon))
 						else:
 							res.append(MultiContentEntryPixmapAlphaBlend(
