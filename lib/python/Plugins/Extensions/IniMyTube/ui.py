@@ -231,10 +231,11 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			<ePixmap position="190,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap position="330,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 			<ePixmap position="470,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="610,500" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 			<widget name="key_red" position="190,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="key_green" position="330,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="key_yellow" position="470,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="ButtonBlue" pixmap="skin_default/buttons/button_blue.png" position="610,510" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+			<widget name="key_blue" position="610,500" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="VKeyIcon" pixmap="skin_default/vkey_icon.png" position="620,495" zPosition="10" size="60,48" transparent="1" alphatest="on" />
 			<widget name="thumbnail" position="0,0" size="100,75" alphatest="on"/> # fake entry for dynamic thumbnail resizing, currently there is no other way doing this.
 			<widget name="HelpWindow" position="160,255" zPosition="1" size="1,1" transparent="1" alphatest="on" />
@@ -281,12 +282,11 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self["thumbnail"].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		self["key_red"] = Button(_("Close"))
-		self["key_green"] = Button(_("Std. Feeds"))
-		self["key_yellow"] = Button(_("History"))
-		self["ButtonBlue"] = Pixmap()
+		self["key_red"] = Button()
+		self["key_green"] = Button()
+		self["key_yellow"] = Button()
+		self["key_blue"] = Button()
 		self["VKeyIcon"] = Pixmap()
-		self["ButtonBlue"].hide()
 		self["VKeyIcon"].hide()
 		self["result"] = Label("")
 
@@ -393,6 +393,15 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self.session.nav.playService(self.lastservice)
 
 	def layoutFinished(self):
+		self["key_red"].setText(_("Close"))
+		self["key_green"].setText(_("Std. Feeds"))
+		self["key_yellow"].setText(_("History"))
+		self["key_blue"].setText(_("Information"))
+		self["key_green"].hide()
+		self["key_yellow"].show()
+		self["key_blue"].hide()
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 		self.currList = "status"
 		current = self["config"].getCurrent()
 		if current[1].help_window.instance is not None:
@@ -421,7 +430,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self.SearchConfigEntry = getConfigListEntry(_("Search Term(s)"), config.plugins.mytube.search.searchTerm)
 		self.searchContextEntries.append(self.SearchConfigEntry)
 		self["config"].list = self.searchContextEntries
-		self["config"].l.setList(self.searchContextEntries)
 
 
 	def tryUserLogin(self):
@@ -444,7 +452,9 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 			self["config_actions"].setEnabled(False)
 			self["historyactions"].setEnabled(False)
 			self["statusactions"].setEnabled(True)
-			self["ButtonBlue"].hide()
+			self["key_green"].show()
+			self["key_yellow"].show()
+			self["key_blue"].hide()
 			self["VKeyIcon"].hide()
 			self.statuslist = []
 			self.hideSuggestions()
@@ -840,7 +850,6 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 	def switchToSuggestionsList(self):
 		print "[MyTubePlayerMainScreen] switchToSuggestionsList"
 		self.currList = "suggestionslist"
-		self["ButtonBlue"].hide()
 		self["VKeyIcon"].hide()
 		self["statusactions"].setEnabled(False)
 		self["config_actions"].setEnabled(False)
@@ -849,6 +858,8 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self["suggestionactions"].setEnabled(True)
 		self["historyactions"].setEnabled(False)
 		self["key_green"].hide()
+		self["key_yellow"].hide()
+		self["key_blue"].hide()
 		self.propagateUpDownNormally = False
 		self["config"].invalidateCurrent()
 		if self.HistoryWindow is not None and self.HistoryWindow.shown:
@@ -865,7 +876,8 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self["suggestionactions"].setEnabled(False)
 		self["searchactions"].setEnabled(True)
 		self["key_green"].hide()
-		self["ButtonBlue"].show()
+		self["key_yellow"].show()
+		self["key_blue"].hide()
 		self["VKeyIcon"].show()
 		self["config"].invalidateCurrent()
 		helpwindowpos = self["HelpWindow"].getPosition()
@@ -893,15 +905,16 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		self.hideSuggestions()
 		if len(self.videolist):
 			self.currList = "feedlist"
-			self["ButtonBlue"].hide()
 			self["VKeyIcon"].hide()
 			self["videoactions"].setEnabled(True)
 			self["suggestionactions"].setEnabled(False)
 			self["searchactions"].setEnabled(False)
 			self["statusactions"].setEnabled(False)
 			self["historyactions"].setEnabled(False)
-			self["key_green"].show()
 			self["config_actions"].setEnabled(False)
+			self["key_green"].show()
+			self["key_yellow"].show()
+			self["key_blue"].show()
 			if not append:
 				self[self.currList].setIndex(0)
 			self["feedlist"].updateList(self.videolist)
@@ -916,15 +929,16 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		print "[MyTubePlayerMainScreen] switchToHistory currentlist",self.currList
 		print "[MyTubePlayerMainScreen] switchToHistory oldlist",self.oldlist
 		self.hideSuggestions()
-		self["ButtonBlue"].hide()
 		self["VKeyIcon"].hide()
-		self["key_green"].hide()
 		self["videoactions"].setEnabled(False)
 		self["suggestionactions"].setEnabled(False)
 		self["searchactions"].setEnabled(False)
 		self["statusactions"].setEnabled(False)
 		self["config_actions"].setEnabled(False)
 		self["historyactions"].setEnabled(True)
+		self["key_green"].hide()
+		self["key_yellow"].show()
+		self["key_blue"].hide()
 		self.HistoryWindow.activate()
 		self.HistoryWindow.instance.show()
 
