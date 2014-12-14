@@ -170,12 +170,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventFontNameInfobar = "Regular"
 
 		if self.screenwidth and self.screenwidth == 1920:
-			self.serviceFontSizeGraph = 26
-			self.eventFontSizeGraph = 26
-			self.eventFontSizeSingle = 26
-			self.eventFontSizeMulti = 26
-			self.serviceFontSizeInfobar = 26
-			self.eventFontSizeInfobar = 26
+			self.serviceFontSizeGraph = 28
+			self.eventFontSizeGraph = 28
+			self.eventFontSizeSingle = 28
+			self.eventFontSizeMulti = 28
+			self.serviceFontSizeInfobar = 28
+			self.eventFontSizeInfobar = 28
 		else:
 			self.serviceFontSizeGraph = 20
 			self.eventFontSizeGraph = 18
@@ -921,14 +921,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+						alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+						alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
 				else:
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+						alignnment = RT_HALIGN_CENTER | RT_VALIGN_TOP | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+						alignnment = RT_HALIGN_CENTER | RT_VALIGN_TOP
 
 				if stime <= now < (stime + duration):
 					foreColor = self.foreColorNow
@@ -1007,7 +1007,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif self.type == EPG_TYPE_INFOBARGRAPH:
 					infowidth = config.epgselection.infobar_infowidth.value
 				if evW < infowidth and infoPix is not None:
-					res.append(MultiContentEntryPixmapAlphaTest(
+					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos = (evX, evY), size = (evW, evH),
 						png = infoPix))
 				else:
@@ -1047,11 +1047,20 @@ class EPGList(HTMLComponent, GUIComponent):
 				# recording icons
 				if clock_types is not None and ewidth > 23:
 					if clock_types in (1,6,11):
-						pos = (left+xpos+ewidth-13, top+height-22)
+						if self.screenwidth and self.screenwidth == 1920:
+							pos = (left+xpos+ewidth-17, top+height-28)
+						else:
+							pos = (left+xpos+ewidth-13, top+height-22)
 					elif clock_types in (5,10,15):
-						pos = (left+xpos-8, top+height-23)
+						if self.screenwidth and self.screenwidth == 1920:
+							pos = (left+xpos-2, top+height-28)
+						else:
+							pos = (left+xpos-8, top+height-23)
 					else:
-						pos = (left+xpos+ewidth-23, top+height-22)
+						if self.screenwidth and self.screenwidth == 1920:
+							pos = (left+xpos+ewidth-29, top+height-28)
+						else:
+							pos = (left+xpos+ewidth-23, top+height-22)
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = pos, size = (25, 25),
@@ -1063,7 +1072,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					if self.wasEntryAutoTimer and clock_types in (2,7,12):
 						if self.screenwidth and self.screenwidth == 1920:
 							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-22,pos[1]), size = (25, 25),
+								pos = (pos[0]-29,pos[1]), size = (25, 25),
 								png = self.autotimericon))
 						else:
 							res.append(MultiContentEntryPixmapAlphaBlend(
