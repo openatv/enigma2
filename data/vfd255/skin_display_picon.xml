@@ -28,12 +28,12 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
+		<!--<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update.png" position="165,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		</widget>-->
 <!--
 		<widget source="session.CurrentService" render="Pixmap" pixmap="crypt.png" position="185,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
@@ -124,16 +124,16 @@
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
 		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
-            <convert type="ServiceName">Reference</convert>
-        </widget>
-		<widget source="session.Event_Now" render="Label" position="0,48" size="190,20" font="FdLcD;15" halign="left" noWrap="1">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="0,44" size="190,20" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="140,41" size="70,17" font="FdLcD;15" halign="left" valign="bottom">
+		<widget source="session.Event_Now" render="Label" position="172,31" size="84,14" font="FdLcD;15" halign="left">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,43" size="120,5" borderWidth="1">
+		<widget source="session.Event_Now" render="Progress" position="0,40" size="170,5" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
