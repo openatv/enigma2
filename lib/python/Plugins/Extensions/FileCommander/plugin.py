@@ -204,7 +204,8 @@ class FileCommanderScreen(Screen, key_actions):
 		self["key_green"] = Label(_("move"))
 		self["key_yellow"] = Label(_("copy"))
 		self["key_blue"] = Label(_("rename"))
-
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
 
 		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions","MenuActions","NumberActions","ColorActions","TimerEditActions","InfobarActions","InfobarTeletextActions", "InfobarSubtitleSelectionActions"],
 			{
@@ -250,19 +251,25 @@ class FileCommanderScreen(Screen, key_actions):
 			filtered = "(*)"
 		self.setTitle(pname + filtered)
 
-	def file_viewer(self):
+	def viewable_file(self):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None):
-			return
+			return None
 		longname = sourceDir + filename
 		try:
 			xfile=os_stat(longname)
 			if (xfile.st_size < 1000000):
-				self.session.open(vEditor, longname)
-				self.onFileActionCB(True)
+				return longname
 		except:
-			return
+			pass
+		return None
+
+	def file_viewer(self):
+		longname = self.viewable_file()
+		if longname is not None:
+			self.session.open(vEditor, longname)
+			self.onFileActionCB(True)
 		
 	def exit(self):
 		if self["list_left"].getCurrentDirectory() and config.plugins.filecommander.savedir_left.value:
@@ -561,7 +568,8 @@ class FileCommanderScreen(Screen, key_actions):
 			if sourceDir is not None:
 				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
 			if targetDir is not None:
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)	
+				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
+		self["VKeyIcon"].setVisible(self.viewable_file() is not None)
 
 	def doRefreshDir(self):
 		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value)
