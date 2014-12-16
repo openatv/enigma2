@@ -110,8 +110,8 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Time for Slideshow"), config.plugins.filecommander.diashow))
 		
 		ConfigListScreen.__init__(self, self.list)
-#		self["help"] = Label(_("Help:\nKey [0] refresh screen. Key [1] new folder.\nKey [2] new symlink wit name. Key [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder. Key [EPG] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files."))
-		self["help"] = Label(_("Help:\nKey [0] refresh screen.\nKey [1] new folder.\nKey [2] new symlink wit name.\nKey [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder.\nKey [INFO] shows tasklist. Check copy/move progress in extensions menu.\nKey [MEDIA] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
+#		self["help"] = Label(_("Help:\nKey [0] refresh screen. Key [1] new folder.\nKey [2] new symlink with name. Key [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder. Key [EPG] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files."))
+		self["help"] = Label(_("Help:\nKey [0] Refresh screen.\nKey [1] New folder.\nKey [2] New symlink with file name.\nKey [3] New symlink with foldername.\nKey [4] Change permissions: chmod 644/755.\nKey [5] Change to default folder.\nKey [INFO] Shows tasklist. Check progress of copy/move operations.\nKey [MEDIA] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["setupActions"] = ActionMap(["SetupActions"],
@@ -194,7 +194,7 @@ class FileCommanderScreen(Screen, key_actions):
 		else:
 			filter = config.plugins.filecommander.extension.value
 		
-		# set actual folder
+		# set current folder
 		self["list_left_head"] = Label(path_left)
 		self["list_right_head"] = Label(path_right)
 		self["list_left"] = FileList(path_left, matchingPattern = filter)
@@ -452,10 +452,10 @@ class FileCommanderScreen(Screen, key_actions):
 		if (filename == None) or (sourceDir == None):
 			return
 		self.session.openWithCallback(self.doRename,InputBox,text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title = _("Please enter file/folder name"), windowTitle=_("rename file"))
-		#overwrite : False = Einfügemodus beim Aufruf der Inputbox
-		#firstpos_end : True = Cursor beim Aufruf am Textende - False = Cursor am Textanfang
-		#visible_width : wenn der Wert kleiner der Skin-Eingabegrösse für den Text ist, wird gescrollt falls der Text zu lange ist
-		#allmarked : Text beim Aufruf markiert oder nicht
+		# overwrite : False = insert mode (not overwrite) when InputBox is created
+		# firstpos_end : True = cursor at end of text on InputBox creation - False = cursor at start of text on InputBox creation
+		# visible_width : if this width is smaller than the skin width, the text will be scrolled if it is too long
+		# allmarked : text all selected at InputBox creation or not
 
 	def doRename(self,newname):
 		if newname:
@@ -642,7 +642,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		else:
 			filter = config.plugins.filecommander.extension.value
 		
-		# set actuall folder
+		# set current folder
 		self["list_left_head"] = Label(path_left)
 		self["list_right_head"] = Label(path_right)
 
@@ -874,7 +874,7 @@ def Plugins(path,**kwargs):
 	list = []
 	#list.append(desc_pluginmenu)
 ####
-	#buggie 
+	# buggy
 #	list.append(desc_filescan)
 ####
 	if config.plugins.filecommander.add_extensionmenu_entry.value:
