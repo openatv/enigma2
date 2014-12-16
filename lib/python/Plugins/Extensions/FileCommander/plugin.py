@@ -200,10 +200,10 @@ class FileCommanderScreen(Screen, key_actions):
 		self["list_left"] = FileList(path_left, matchingPattern = filter)
 		self["list_right"] = FileList(path_right, matchingPattern = filter)
 			
-		self["key_red"] = Label(_("delete"))
-		self["key_green"] = Label(_("move"))
-		self["key_yellow"] = Label(_("copy"))
-		self["key_blue"] = Label(_("rename"))
+		self["key_red"] = Label(_("Delete"))
+		self["key_green"] = Label(_("Move"))
+		self["key_yellow"] = Label(_("Copy"))
+		self["key_blue"] = Label(_("Rename"))
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
 
@@ -362,10 +362,10 @@ class FileCommanderScreen(Screen, key_actions):
 		if (filename == None) or (sourceDir == None) or (targetDir == None):
 			return
 		if not sourceDir in filename:
-			copytext = _("copy file - existing file will be overwritten !")
+			copytext = _("Copy file - existing file will be overwritten !")
 		else:
-			copytext = _("copy folder - existing folders/files will be overwritten !")
-		self.session.openWithCallback(self.doCopy,ChoiceBox, title = copytext+"?\n%s\nfrom\n%s\n%s"%(filename,sourceDir,targetDir),list=[(_("yes"), True ),(_("no"), False )])
+			copytext = _("Copy folder - existing folders/files will be overwritten !")
+		self.session.openWithCallback(self.doCopy,ChoiceBox, title = copytext+"?\n%s\nfrom\n%s\n%s"%(filename,sourceDir,targetDir),list=[(_("Yes"), True ),(_("No"), False )])
 
 	def doCopy(self,result):
 		if result is not None:
@@ -393,10 +393,10 @@ class FileCommanderScreen(Screen, key_actions):
 		if (filename == None) or (sourceDir == None):
 			return
 		if not sourceDir in filename:
-			deltext = _("delete file")
+			deltext = _("Delete file")
 		else:
-			deltext = _("delete folder")
-		self.session.openWithCallback(self.doDelete,ChoiceBox, title = deltext+"?\n%s\nfrom dir\n%s"%(filename,sourceDir),list=[(_("yes"), True ),(_("no"), False )])
+			deltext = _("Delete folder")
+		self.session.openWithCallback(self.doDelete,ChoiceBox, title = deltext+"?\n%s\nfrom dir\n%s"%(filename,sourceDir),list=[(_("Yes"), True ),(_("No"), False )])
 
 	def doDelete(self,result):
 		if result is not None:
@@ -419,10 +419,10 @@ class FileCommanderScreen(Screen, key_actions):
 		if (filename == None) or (sourceDir == None) or (targetDir == None):
 			return
 		if not sourceDir in filename:
-			movetext = _("move file")
+			movetext = _("Move file")
 		else:
-			movetext = _("move folder")
-		self.session.openWithCallback(self.doMove,ChoiceBox, title = movetext+"?\n%s\nfrom dir\n%s\nto dir\n%s"%(filename,sourceDir,targetDir),list=[(_("yes"), True ),(_("no"), False )])
+			movetext = _("Move folder")
+		self.session.openWithCallback(self.doMove,ChoiceBox, title = movetext+"?\n%s\nfrom dir\n%s\nto dir\n%s"%(filename,sourceDir,targetDir),list=[(_("Yes"), True ),(_("No"), False )])
 
 	def doMove(self,result):
 		if result is not None:
@@ -451,7 +451,7 @@ class FileCommanderScreen(Screen, key_actions):
 		length = config.plugins.filecommander.input_length.value
 		if (filename == None) or (sourceDir == None):
 			return
-		self.session.openWithCallback(self.doRename,InputBox,text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title = _("Please enter file/folder name"), windowTitle=_("rename file"))
+		self.session.openWithCallback(self.doRename,InputBox,text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title = _("Please enter file/folder name"), windowTitle=_("Rename file"))
 		# overwrite : False = insert mode (not overwrite) when InputBox is created
 		# firstpos_end : True = cursor at end of text on InputBox creation - False = cursor at start of text on InputBox creation
 		# visible_width : if this width is smaller than the skin width, the text will be scrolled if it is too long
@@ -495,16 +495,16 @@ class FileCommanderScreen(Screen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if not sourceDir in filename:
-			movetext = _("create symlink to file")
+			movetext = _("Create symlink to file")
 		else:
-			movetext = _("symlink to ")
+			movetext = _("Symlink to ")
 		testfile = filename[:-1]
 		test = path.islink(testfile)
 		if (filename == None) or (sourceDir == None):
 			return
 		if path.islink(testfile):
 			return
-		self.session.openWithCallback(self.domakeSymlink,ChoiceBox, title = movetext+" %s in %s"%(filename,targetDir),list=[(_("yes"), True ),(_("no"), False )])
+		self.session.openWithCallback(self.domakeSymlink,ChoiceBox, title = movetext+" %s in %s"%(filename,targetDir),list=[(_("Yes"), True ),(_("No"), False )])
 
 	def domakeSymlink(self,result):
 		if result is not None:
@@ -527,7 +527,7 @@ class FileCommanderScreen(Screen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename == None) or (sourceDir == None):
 			return
-		self.session.openWithCallback(self.doMakedir,InputBox,text="", title =  _("Please enter name of the new directory"), windowTitle =_("new folder"))
+		self.session.openWithCallback(self.doMakedir,InputBox,text="", title =  _("Please enter name of the new directory"), windowTitle =_("New folder"))
 
 	def doMakedir(self,newname):
 		if newname:
@@ -659,9 +659,9 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			self.TARGETLIST = self["list_left"]
 			self.listRight()
 
-		self["key_red"] = Label(_("delete"))
-		self["key_green"] = Label(_("move"))
-		self["key_yellow"] = Label(_("copy"))
+		self["key_red"] = Label(_("Delete"))
+		self["key_green"] = Label(_("Move"))
+		self["key_yellow"] = Label(_("Copy"))
 		self["key_blue"] = Label(_("Skip selection"))
 
 
