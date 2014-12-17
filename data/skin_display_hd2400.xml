@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--  Skin: LCD from Magic by MiLo -->
+<!-- Skin: LCD from Magic by MiLo -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -16,7 +16,7 @@
 		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
 	<fonts>
-		<!-- pick a funky name for the font, so we don't conflict  -->
+		<!-- pick a funky name for the font, so we don't conflict -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
@@ -37,20 +37,19 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="160,30" font="FdLcD;28" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,31" size="160,7" borderWidth="2" >
+		<widget source="session.Event_Now" render="Progress" position="0,31" size="160,7" borderWidth="2">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,38" size="256,26" font="FdLcD;24" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
 	</screen>
-    
-  
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="256,64">
 		<panel position="bottom" size="*,27" name="SummaryClockPanel">
 		</panel>
-		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="160,30" font="FdLcD;28" halign="left" noWrap="1" >
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="160,30" font="FdLcD;28" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="0,38" size="256,26" font="FdLcD;24" halign="left" noWrap="1">
@@ -60,7 +59,7 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
-  
+
 <!-- menus-->			
 	<screen name="MenuSummary" position="0,0" size="256,64">		
 		<widget source="parent.title" render="Label" position="0,0" size="256,32" font="FdLcD;30" halign="center" valign="top" noWrap="1" />	
@@ -71,7 +70,7 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,36" font="FdLcD;16" halign="left" valign="top" >
+		<widget source="session.CurrentService" render="Label" position="top" size="*,36" font="FdLcD;16" halign="left" valign="top">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
@@ -88,7 +87,7 @@
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />
 		<panel position="bottom" size="*,18">
-			<widget source="global.CurrentTime" render="Label" position="right" size="60,*" halign="right" font="FdLcD;16" >
+			<widget source="global.CurrentTime" render="Label" position="right" size="60,*" halign="right" font="FdLcD;16">
 				<convert type="ClockToText"></convert>
 			</widget>
 		</panel>
@@ -109,14 +108,14 @@
 
 <!-- DVD -->
 	<screen name="DVDSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,28" font="FdLcD;12"  >
+		<widget source="session.CurrentService" render="Label" position="top" size="*,28" font="FdLcD;12">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1" >
+		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<panel position="fill">
-			<widget source="session.CurrentService" render="Label" position="left" size="60,*" font="FdLcD;12" halign="left" >
+			<widget source="session.CurrentService" render="Label" position="left" size="60,*" font="FdLcD;12" halign="left">
 				<convert type="ServicePosition">Position</convert>
 			</widget>
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
@@ -163,7 +162,7 @@
 	</screen>
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,32" font="FdLcD;30"  noWrap="1" />
+		<widget source="parent.Title" render="Label" position="top" size="*,32" font="FdLcD;30" noWrap="1" />
 		<widget source="entry" render="Label" position="top" size="*,32" font="FdLcD;25" noWrap="1" />
 		<widget source="desc" render="Label" position="fill" font="FdLcD;12" valign="top" />
 	</screen>
@@ -173,7 +172,7 @@
 		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,39" font="FdLcD;30" />
 		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,25" font="FdLcD;25" />
 		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="FdLcD;12" zPosition="2" halign="center" transparent="1"  >
+		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="FdLcD;12" zPosition="2" halign="center" transparent="1">
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
