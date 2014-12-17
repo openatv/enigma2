@@ -305,7 +305,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("14", _("xp1000")),
 			("8", _("VU+")),
 			("18", _("F1/F3")),
-			("16", _("et7x00"))
+			("16", _("HD1100/et7x00"))
+			("19", _("HD2400"))
 		]
 
 	defaultRcList = [
@@ -321,6 +322,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("formuler1", 18),
 			("formuler3", 18),
 			("xp1000", 14),
+			("hd1100", 16),
+			("hd2400", 19),
 			("et7x00", 16)
 		]
 
