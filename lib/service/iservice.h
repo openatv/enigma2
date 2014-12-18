@@ -387,6 +387,7 @@ public:
 
 		sHBBTVUrl,
 		sLiveStreamDemuxId,
+		sBuffer,
 
 		sUser = 0x100
 	};
@@ -921,6 +922,7 @@ public:
 		evVideoProgressiveChanged,
 
 		evBuffering,
+		evGstreamerPlayStarted,
 
 		evStopped,
 

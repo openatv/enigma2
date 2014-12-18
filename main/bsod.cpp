@@ -293,7 +293,7 @@ void bsodFatal(const char *component)
 		os << "We are really sorry. Your receiver encountered "
 			"a software problem, and needs to be restarted.\n"
 			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-			"Your receiver restarts in 10 seconds!\n"
+			"Your receiver will restart in 10 seconds!\n"
 			"Component: " << crash_component;
 
 		p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);

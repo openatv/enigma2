@@ -168,9 +168,9 @@ class TimerEditList(Screen, TimerListButtons):
 				if t.isRunning():
 					if t.repeated:
 						list = (
-							(_("Stop current event but not coming events"), "stoponlycurrent"),
-							(_("Stop current event and disable coming events"), "stopall"),
-							(_("Don't stop current event but disable coming events"), "stoponlycoming")
+							(_("Stop current event but not future events"), "stoponlycurrent"),
+							(_("Stop current event and disable future events"), "stopall"),
+							(_("Don't stop current event but disable future events"), "stoponlyfuture")
 						)
 						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
 				else:
@@ -185,7 +185,7 @@ class TimerEditList(Screen, TimerListButtons):
 				t.enable()
 				t.processRepeated(findRunningEvent = False)
 				self.session.nav.RecordTimer.doActivate(t)
-			if result[1] == "stoponlycoming" or result[1] == "stopall":
+			if result[1] == "stoponlyfuture" or result[1] == "stopall":
 				t.disable()
 			if t.repeated:
 				self.session.nav.RecordTimer.timeChanged(t)

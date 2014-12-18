@@ -263,6 +263,7 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("Display skin",_("Skin setup"),_("Set up your display skin")))
 		if SystemInfo["Fan"]: 
 			self.sublist.append(QuickSubMenuEntryComponent("Fan settings",_("Fan setup"),_("Set up your fan")))
+		self.sublist.append(QuickSubMenuEntryComponent("Remote control code settings",_("Remote control code setup"),_("Set up your remote control")))
 		self.sublist.append(QuickSubMenuEntryComponent("Factory reset",_("Load default"),_("Reset all settings to defaults")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -490,7 +491,10 @@ class GeneralSetup(Screen):
 			self.openSetup("remotesetup")
 		elif selected == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
-			self.session.open(HdmiCECSetupScreen)  
+			self.session.open(HdmiCECSetupScreen)
+		elif selected == _("Remote control code settings"):
+			from Plugins.SystemPlugins.RemoteControlCode.plugin import RCSetupScreen
+			self.session.open(RCSetupScreen)
 		elif selected == _("Fan settings"):
 			from Plugins.SystemPlugins.FanControl.plugin import FanSetupScreen
 			self.session.open(FanSetupScreen)

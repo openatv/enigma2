@@ -16,10 +16,10 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_OPENMP
 
 AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
-# AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
-# AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
-# AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
-# AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
+AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
+AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
+AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
+AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -345,7 +345,7 @@ if test "$with_po" = "yes"; then
 		AC_MSG_ERROR([Could not find required gettext tools])
 	fi
 fi
-AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "no")
+AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
 AC_SUBST(ENIGMA2_CFLAGS)
@@ -447,6 +447,16 @@ lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini1/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini2/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini3/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini4/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini5/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini6/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini7/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini8/Makefile
 lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile

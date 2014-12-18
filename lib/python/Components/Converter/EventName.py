@@ -117,7 +117,7 @@ class EventName(Converter, object):
 				info = reference and self.source.info
 				if info is None:
 					return
-				test = [ 'ITSECX', (reference.toString(), 1, -1, 1440) ] # search next 24 hours
+				test = ['ITSECX', (reference.toString(), 1, -1, 1440)]  # search next 24 hours
 				self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 				if self.list:
 						if self.type == self.NAME_NEXT and self.list[1][1]:
