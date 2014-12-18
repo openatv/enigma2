@@ -10,7 +10,7 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 from os import path as os_path, chmod as os_chmod, unlink as os_unlink, system as os_system
 
-modelist = {"0": _("Auto"), 
+modelist = {"0": _("All"), 
 	    "1": _("INI3000"), 
 	    "2": _("INI7000"), 
 	    "3": _("HDx"), 
