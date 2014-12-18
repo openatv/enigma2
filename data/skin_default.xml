@@ -58,20 +58,30 @@
 	</colors>
 	<!-- Screwed Stone II skin (skin_default.xml) /Nemesis -->
 	<!-- About screen -->
-	<screen name="About" position="center,center" size="420,350" title="About">
-		<widget source="EnigmaVersion" render="Label" position="10,10" size="380,20" font="Regular;20" />
-		<widget source="ImageVersion" render="Label" position="10,40" size="380,20" font="Regular;20" />
-		<widget source="FPVersion" render="Label" position="10,70" size="380,20" font="Regular;20" />
-		<widget source="TunerHeader" render="Label" position="10,100" size="380,20" font="Regular;20" />
-		<widget source="Tuner0" render="Label" position="10,125" size="380,20" font="Regular;20" />
-		<widget source="Tuner1" render="Label" position="10,145" size="380,20" font="Regular;20" />
-		<widget source="Tuner2" render="Label" position="10,165" size="380,20" font="Regular;20" />
-		<widget source="Tuner3" render="Label" position="10,185" size="380,20" font="Regular;20" />
-		<widget source="HDDHeader" render="Label" position="10,215" size="380,20" font="Regular;20" />
-		<widget source="hddA" render="Label" position="10,240" size="380,40" font="Regular;20" />
-		<ePixmap pixmap="skin_default/icons/plilogo-fs8.png" position="270,265" size="143,75" alphatest="on" />
-		<!-- TODO, fix proper box model widget that shows "DM7025 SS" or similar -->
-		<eLabel text=" " position="100,330" size="100,20" font="Regular;20" halign="center" />
+	<screen name="About" position="center,center" size="540,490" title="About">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="135,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="270,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="405,0" size="140,40" alphatest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="135,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_blue" position="405,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<widget name="AboutScrollLabel" font="Regular;20" position="0,40" size="540,450" zPosition="2" halign="center"/>
+	</screen>
+	<!-- MemoryInfo screen -->
+	<screen name="MemoryInfo" position="center,center" zPosition="2" size="540,490" title="Memory Info">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="135,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="270,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="405,0" size="140,40" alphatest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="135,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_blue" position="405,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<widget name="lmemtext" position="10,40" size="120,450" font="Regular;16" zPosition="1" halign="left" transparent="1" />
+		<widget name="lmemvalue" position="120,40" size="90,450" font="Regular;16" zPosition="1" halign="right" transparent="1" />
+		<widget name="rmemtext" position="330,40" size="120,450" font="Regular;16" zPosition="1" halign="left" transparent="1" />
+		<widget name="rmemvalue" position="440,40" size="90,450" font="Regular;16" zPosition="1" halign="right" transparent="1" />
+		<widget name="info" position="330,330" size="200,160" font="Regular;14" zPosition="1" halign="center" foregroundColor="#909090" transparent="1" />
 	</screen>
 	<!-- Adapter setup -->
 	<screen name="AdapterSetup" position="center,center" size="560,400" title="Network setup" >
