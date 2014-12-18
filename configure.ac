@@ -448,6 +448,15 @@ lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
 lib/python/Plugins/SystemPlugins/RemoteControlCode/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini1/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini2/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini3/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini4/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini5/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini6/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini7/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini8/Makefile
 lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile

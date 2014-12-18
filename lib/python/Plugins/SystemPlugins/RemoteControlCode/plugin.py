@@ -1,11 +1,16 @@
+from enigma import ePicLoad
+
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
+from Components.Pixmap import Pixmap
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+
 from os import path as os_path, chmod as os_chmod, unlink as os_unlink, system as os_system
 
-modelist = {"0": _("All"), 
+modelist = {"0": _("Auto"), 
 	    "1": _("INI3000"), 
 	    "2": _("INI7000"), 
 	    "3": _("HDx"), 
@@ -41,14 +46,19 @@ elif temp == 1:
 elif temp == 0:
 	config.plugins.RCSetup.mode = ConfigSelection(choices = modelist, default = "0")
 	
+	
 class RCSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Remote control code settings"))
-		self.skinName = ["Setup"]
-		
+		self.previewPath = ""
+
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+	
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Save"))
+		self["Preview"] = Pixmap()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -58,20 +68,33 @@ class RCSetupScreen(Screen, ConfigListScreen):
 			"green": self.keyGo,
 			"red": self.keyCancel,
 		}, -2)
-		self.createSetup()
-		self.grabLastGoodMode()
 
-
-	def grabLastGoodMode(self):
-		self.last_good = config.plugins.RCSetup.mode.value
-
-	def createSetup(self):
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
 		self.mode = ConfigSelection(choices = modelist, default = config.plugins.RCSetup.mode.value)
 		self.list.append(getConfigListEntry(_("Remote"), self.mode))
+		
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+		
+		self.grabLastGoodMode()
+
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showPic)
+		self.current_sel = self["config"].getCurrent()[1]
+		
+		self.onLayoutFinish.append(self.layoutFinished)
+		
+	def showPic(self, picInfo=""):
+		ptr = self.picload.getData()
+		if ptr is not None:
+			self["Preview"].instance.setPixmap(ptr.__deref__())
+			self["Preview"].show()
+
+	def layoutFinished(self):
+		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 0, 0, 1, 1, "#00000000"))
+		self.loadPreview()
+		
+	def grabLastGoodMode(self):
+		self.last_good = config.plugins.RCSetup.mode.value
 
 	def keyGo(self):
 		config.plugins.RCSetup.mode.value = self.mode.value
@@ -128,14 +151,30 @@ class RCSetupScreen(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
+		self.current_sel = self["config"].getCurrent()[1]
+		self.loadPreview()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
+		self.current_sel = self["config"].getCurrent()[1]
+		self.loadPreview()
 
 	def keyCancel(self):
 		self.applySettings()
 		self.close()
 
+	def loadPreview(self):
+		root = "/usr/lib/enigma2/python/Plugins/SystemPlugins/RemoteControlCode/img/ini"
+		pngpath = root +  self.current_sel.value + "/rc.png"
+
+		if not os_path.exists(pngpath):
+			pngpath = resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")
+
+		if self.previewPath != pngpath:
+			self.previewPath = pngpath
+
+		self.picload.startDecode(self.previewPath)
+		
 	def applySettings(self):
 		file = open("/proc/stb/ir/rc/type", "r")
 		lines = file.readlines()
