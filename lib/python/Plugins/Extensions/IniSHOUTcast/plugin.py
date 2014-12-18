@@ -6,8 +6,8 @@
 #  Coded by Dr.Best (c) 2010
 #  Support: www.dreambox-tools.info
 #
-#  This plugin is licensed under the Creative Commons 
-#  Attribution-NonCommercial-ShareAlike 3.0 Unported 
+#  This plugin is licensed under the Creative Commons
+#  Attribution-NonCommercial-ShareAlike 3.0 Unported
 #  License. To view a copy of this license, visit
 #  http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative
 #  Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
@@ -16,7 +16,7 @@
 #  is licensed by Dream Multimedia GmbH.
 
 #  This plugin is NOT free software. It is open source, you are allowed to
-#  modify it (if you keep the license), but it may not be commercially 
+#  modify it (if you keep the license), but it may not be commercially
 #  distributed other than under the conditions noted above.
 #
 
@@ -27,16 +27,13 @@ from Components.Label import Label
 from enigma import eServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
-from Tools.LoadPixmap import LoadPixmap
 import xml.etree.cElementTree
 from enigma import iPlayableService, iServiceInformation
 
-from twisted.internet import reactor, defer
-from twisted.web import client
-from twisted.web.client import HTTPClientFactory
+from twisted.internet import reactor
+from twisted.web.client import HTTPClientFactory, downloadPage
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
-from Components.ScrollLabel import ScrollLabel
 import string
 import os
 from enigma import getDesktop
@@ -46,7 +43,7 @@ from Screens.MessageBox import MessageBox
 from Components.GUIComponent import GUIComponent
 from Components.Sources.StaticText import StaticText
 from urllib import quote
-from twisted.web.client import downloadPage
+from urlparse import urlparse
 from Screens.ChoiceBox import ChoiceBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from enigma import eTimer
@@ -103,7 +100,7 @@ class myHTTPClientFactory(HTTPClientFactory):
 			agent="SHOUTcast", timeout=0, cookies=None,
 			followRedirect=1, lastModified=None, etag=None):
 		HTTPClientFactory.__init__(self, url, method=method, postdata=postdata,
-		headers=headers, agent=agent, timeout=timeout, cookies=cookies, followRedirect=followRedirect)
+			headers=headers, agent=agent, timeout=timeout, cookies=cookies, followRedirect=followRedirect)
 
 	def clientConnectionLost(self, connector, reason):
 		lostreason=("Connection was closed cleanly" in vars(reason))
@@ -116,7 +113,10 @@ class myHTTPClientFactory(HTTPClientFactory):
 		connector.connect()
 
 def sendUrlCommand(url, contextFactory=None, timeout=60, *args, **kwargs):
-	scheme, host, port, path = client._parse(url)
+	parsed = urlparse(url)
+	scheme = parsed.scheme
+	host = parsed.hostname
+	port = parsed.port or (443 if scheme == 'https' else 80)
 	factory = myHTTPClientFactory(url, *args, **kwargs)
 	# print "scheme=%s host=%s port=%s path=%s\n" % (scheme, host, port, path)
 	reactor.connectTCP(host, port, factory, timeout=timeout)
