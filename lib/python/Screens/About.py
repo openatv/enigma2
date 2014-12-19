@@ -5,6 +5,7 @@ from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
+from Components.Button import Button
 from Components.config import config
 
 from Components.Label import Label
