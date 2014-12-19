@@ -132,11 +132,15 @@ class PliExtraInfo(Poll, Converter, object):
 		apid = info.getInfo(iServiceInformation.sAudioPID)
 		pcrpid = info.getInfo(iServiceInformation.sPCRPID)
 		sidpid = info.getInfo(iServiceInformation.sSID)
+		tsid = info.getInfo(iServiceInformation.sTSID)
+		onid = info.getInfo(iServiceInformation.sONID)
 		if vpid < 0 : vpid = 0
 		if apid < 0 : apid = 0
 		if pcrpid < 0 : pcrpid = 0
 		if sidpid < 0 : sidpid = 0
-		return "Pids:%04d:%04d:%04d:%05d" % (vpid, apid, pcrpid, sidpid)
+		if tsid < 0 : tsid = 0
+		if onid < 0 : onid = 0
+		return "%d-%d:%05d:%04d:%04d:%04d" % (onid, tsid, sidpid, vpid, apid, pcrpid)
 
 	def createTransponderInfo(self, fedata, feraw):
 		if "DVB-T" in feraw.get("tuner_type"):

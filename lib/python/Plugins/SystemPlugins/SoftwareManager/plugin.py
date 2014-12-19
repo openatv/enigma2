@@ -75,6 +75,7 @@ config.plugins.softwaremanager.updatetype = ConfigSelection(
 					("hot", _("Upgrade with GUI")),
 					("cold", _("Unattended upgrade without GUI")),
 				], "hot")
+config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -446,6 +447,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(getConfigListEntry(_("show softwaremanager in setup menu"), config.plugins.softwaremanager.onSetupMenu))
 		self.list.append(getConfigListEntry(_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
+		self.list.append(getConfigListEntry(_("epg cache backup"), config.plugins.softwaremanager.epgcache))
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
 		self.list.append(self.overwriteEmusfilesEntry)
