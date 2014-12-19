@@ -5,6 +5,7 @@ from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
+from Components.Button import Button
 from Components.config import config
 
 from Components.Label import Label
@@ -280,16 +281,16 @@ class MemoryInfo(Screen):
 		try:
 			ltext = rtext = ""
 			lvalue = rvalue = ""
-			mem = 0
+			mem = 1
 			free = 0
 			i = 0
 			for line in open('/proc/meminfo','r'):
 				( name, size, units ) = line.strip().split()
-				if name.find("MemTotal") != -1:
+				if "MemTotal" in name:
 					mem = int(size)
-				if name.find("MemFree") != -1:
+				if "MemFree" in name:
 					free = int(size)
-				if i < 28:
+				if i < 25:
 					ltext += "".join((name,"\n"))
 					lvalue += "".join((size," ",units,"\n"))
 				else:
