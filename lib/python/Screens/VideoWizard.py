@@ -11,7 +11,7 @@ from Components.config import config, ConfigBoolean, configfile
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 
-import os
+from os import system
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
