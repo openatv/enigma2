@@ -81,10 +81,7 @@ class UpdatePlugin(Screen):
 			# run in parallel to the package update.
 			status = urlopen("http://openpli.org/status").read().split('!', 1)
 			if getBoxType() in status[0].split(','):
-				if len(status) > 1:
-					message = status[1]
-				else:
-					message = _("The current beta image might not be stable.\nFor more information see %s.") % ("www.openpli.org")
+				message = len(status) > 1 and status[1] or _("The current beta image might not be stable.\nFor more information see %s.") % ("www.openpli.org")
 				picon = MessageBox.TYPE_ERROR
 				default = False
 		except:
