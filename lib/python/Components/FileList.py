@@ -277,7 +277,7 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 	if screenwidth and screenwidth == 1920:
 		res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 150, 3, 470, 60, 1, RT_HALIGN_LEFT, name)]
 	else:
-		res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name)]
+		res = [(absolute, isDir, selected, name), (eListboxPythonMultiContent.TYPE_TEXT, 55, 0, 470, 20, 0, RT_HALIGN_LEFT, name)]
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
