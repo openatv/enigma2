@@ -14,8 +14,13 @@ from Components.ProgressBar import ProgressBar
 from Tools.StbHardware import getFPVersion
 
 from boxbranding import getBoxType
-
 boxtype = getBoxType()
+
+from enigma import eTimer, eLabel
+
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
+
 
 class About(Screen):
 	def __init__(self, session):
@@ -115,16 +120,16 @@ class About(Screen):
 		AboutText += hddinfo
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
-		#self["key_green"] = Button(_("Translations"))
-		#self["key_red"] = Button(_("Latest Commits"))
+		self["key_green"] = Button(_("Translations"))
+		self["key_red"] = Button(_("Latest Commits"))
 		self["key_blue"] = Button(_("Memory Info"))
-
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"green": self.showTranslationInfo,
+				#"red": self.showCommits,
+				#"green": self.showTranslationInfo,
 				"blue": self.showMemoryInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
@@ -133,9 +138,8 @@ class About(Screen):
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
 
-
-	#def showCommits(self):
-	#	self.session.open(CommitInfo)
+	def showCommits(self):
+		self.session.open(CommitInfo)
 
 	def showMemoryInfo(self):
 		self.session.open(MemoryInfo)
@@ -175,76 +179,76 @@ class TranslationInfo(Screen):
 				"ok": self.close,
 			})
 
-#class CommitInfo(Screen):
-#	def __init__(self, session):
-#		Screen.__init__(self, session)
-#		self.skinName = ["CommitInfo", "About"]
-#		self["AboutScrollLabel"] = ScrollLabel(_("Please wait"))
-#
-#		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
-#			{
-#				"cancel": self.close,
-#				"ok": self.close,
-#				"up": self["AboutScrollLabel"].pageUp,
-#				"down": self["AboutScrollLabel"].pageDown,
-#				"left": self.left,
-#				"right": self.right
-#			})
-#
-#		self.project = 0
-#		self.projects = [
-#			("enigma2", "Enigma2"),
-#			("openpli-oe-core", "Openpli Oe Core"),
-#			("enigma2-plugins", "Enigma2 Plugins"),
-#			("aio-grab", "Aio Grab"),
-#			("gst-plugin-dvbmediasink", "Gst Plugin Dvbmediasink"),
-#			("openembedded", "Openembedded"),
-#			("plugin-xmltvimport", "Plugin Xmltvimport"),
-#			("plugins-enigma2", "Plugins Enigma2"),
-#			("skin-magic", "Skin Magic"),
-#			("tuxtxt", "Tuxtxt")
-#		]
-#		self.cachedProjects = {}
-#		self.Timer = eTimer()
-#		self.Timer.callback.append(self.readCommitLogs)
-#		self.Timer.start(50, True)
-#
-#	def readCommitLogs(self):
-#		url = 'http://sourceforge.net/p/openpli/%s/feed' % self.projects[self.project][0]
-#		commitlog = ""
-#		from urllib2 import urlopen
-#		try:
-#			commitlog += 80 * '-' + '\n'
-#			commitlog += url.split('/')[-2] + '\n'
-#			commitlog += 80 * '-' + '\n'
-#			for x in  urlopen(url, timeout=5).read().split('<title>')[2:]:
-#				for y in x.split("><"):
-#					if '</title' in y:
-#						title = y[:-7]
-#					if '</dc:creator' in y:
-#						creator = y.split('>')[1].split('<')[0]
-#					if '</pubDate' in y:
-#						date = y.split('>')[1].split('<')[0][:-6]
-#				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
-#			self.cachedProjects[self.projects[self.project][1]] = commitlog
-#		except:
-#			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
-#		self["AboutScrollLabel"].setText(commitlog)
-#
-#	def updateCommitLogs(self):
-#		if self.cachedProjects.has_key(self.projects[self.project][1]):
-#			self["AboutScrollLabel"].setText(self.cachedProjects[self.projects[self.project][1]])
-#		else:
-#			self["AboutScrollLabel"].setText(_("Please wait"))
-#			self.Timer.start(50, True)
-#
-#	def left(self):
-#		self.project = self.project == 0 and len(self.projects) - 1 or self.project - 1
-#		self.updateCommitLogs()
-#
-#	def right(self):
-#		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
-#		self.updateCommitLogs()
+class CommitInfo(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = ["CommitInfo", "About"]
+		self["AboutScrollLabel"] = ScrollLabel(_("Please wait"))
+
+		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown,
+				"left": self.left,
+				"right": self.right
+			})
+
+		self.project = 0
+		self.projects = [
+			("enigma2", "Enigma2"),
+			("openpli-oe-core", "Openpli Oe Core"),
+			("enigma2-plugins", "Enigma2 Plugins"),
+			("aio-grab", "Aio Grab"),
+			("gst-plugin-dvbmediasink", "Gst Plugin Dvbmediasink"),
+			("openembedded", "Openembedded"),
+			("plugin-xmltvimport", "Plugin Xmltvimport"),
+			("plugins-enigma2", "Plugins Enigma2"),
+			("skin-magic", "Skin Magic"),
+			("tuxtxt", "Tuxtxt")
+		]
+		self.cachedProjects = {}
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.readCommitLogs)
+		self.Timer.start(50, True)
+
+	def readCommitLogs(self):
+		url = 'http://sourceforge.net/p/openpli/%s/feed' % self.projects[self.project][0]
+		commitlog = ""
+		from urllib2 import urlopen
+		try:
+			commitlog += 80 * '-' + '\n'
+			commitlog += url.split('/')[-2] + '\n'
+			commitlog += 80 * '-' + '\n'
+			for x in  urlopen(url, timeout=5).read().split('<title>')[2:]:
+				for y in x.split("><"):
+					if '</title' in y:
+						title = y[:-7]
+					if '</dc:creator' in y:
+						creator = y.split('>')[1].split('<')[0]
+					if '</pubDate' in y:
+						date = y.split('>')[1].split('<')[0][:-6]
+				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
+			self.cachedProjects[self.projects[self.project][1]] = commitlog
+		except:
+			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
+		self["AboutScrollLabel"].setText(commitlog)
+
+	def updateCommitLogs(self):
+		if self.cachedProjects.has_key(self.projects[self.project][1]):
+			self["AboutScrollLabel"].setText(self.cachedProjects[self.projects[self.project][1]])
+		else:
+			self["AboutScrollLabel"].setText(_("Please wait"))
+			self.Timer.start(50, True)
+
+	def left(self):
+		self.project = self.project == 0 and len(self.projects) - 1 or self.project - 1
+		self.updateCommitLogs()
+
+	def right(self):
+		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
+		self.updateCommitLogs()
 
 class MemoryInfo(Screen):
 	def __init__(self, session):
@@ -272,6 +276,8 @@ class MemoryInfo(Screen):
 		self["slide"] = ProgressBar()
 		self["slide"].setValue(100)
 
+		self["params"] = MemoryInfoSkinParams()
+
 		self['info'] = Label(_("This info is for developers only.\nFor a normal users it is not important.\nDon't panic, please, when here will be displayed any suspicious informations!"))
 
 		self.setTitle(_("Memory Info"))
@@ -290,7 +296,7 @@ class MemoryInfo(Screen):
 					mem = int(size)
 				if "MemFree" in name:
 					free = int(size)
-				if i < 25:
+				if i < self["params"].rows_in_column:
 					ltext += "".join((name,"\n"))
 					lvalue += "".join((size," ",units,"\n"))
 				else:
@@ -315,3 +321,18 @@ class MemoryInfo(Screen):
 		system("echo 3 > /proc/sys/vm/drop_caches")
 		self.getMemoryInfo()
 
+class MemoryInfoSkinParams(HTMLComponent, GUIComponent):
+	def __init__(self):
+		GUIComponent.__init__(self)
+		self.rows_in_column = 25
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "rowsincolumn":
+					self.rows_in_column = int(value)
+			self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop, screen)
+
+	GUI_WIDGET = eLabel
