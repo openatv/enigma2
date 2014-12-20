@@ -527,12 +527,12 @@ def InitUsageConfig():
 			os.mkdir(config.crash.debug_path.value,0755)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
-	crashlogheader = "We are really sorry. Your receiver encountered " \
+	crashlogheader = _("We are really sorry. Your receiver encountered " \
 					 "a software problem, and needs to be restarted.\n" \
 					 "Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n" \
 					 "Your receiver restarts in 10 seconds!\n" \
-					 "Component: enigma2" % config.crash.debug_path.value
-	config.crash.debug_text = ConfigText(default=_(crashlogheader), fixed_size=False)
+					 "Component: enigma2") % config.crash.debug_path.value
+	config.crash.debug_text = ConfigText(default=crashlogheader, fixed_size=False)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
