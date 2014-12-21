@@ -808,6 +808,9 @@ class NimManager:
 				modes = entries[current_slot].get("multi_type", {})
 				modes[split2[1]] = split[1]
 				entries[current_slot]["multi_type"] = modes
+			elif entries[current_slot]["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrit usb stick
+				entries[current_slot]["multi_type"] = {'0': 'DVB-T'}
+				entries[current_slot]["multi_type"] = {'1': 'DVB-C'}
 			elif line.startswith("I2C_Device:"):
 				input = int(line[len("I2C_Device:") + 1:])
 				entries[current_slot]["i2c"] = input
