@@ -643,6 +643,8 @@ class Wizard(Screen):
 				self["VKeyIcon"].boolean = False
 
 	def KeyText(self):
+		if self.updateValues in self.onShown:
+			self.onShown.remove(self.updateValues)
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.currentConfigIndex = self["config"].getCurrentIndex()
 		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
@@ -659,6 +661,8 @@ class Wizard(Screen):
 			self["config"].setCurrentIndex(self.currentConfigIndex)
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
+		if not self.updateValues in self.onShown:
+			self.onShown.append(self.updateValues)
 
 
 class WizardManager:
