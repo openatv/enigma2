@@ -46,7 +46,7 @@ def enumPlugins(filter_start=''):
 
 def listsDirPath():
 	try:
-		for line in open(path, "r"):
+		for line in open('/etc/opkg/opkg.conf', "r"):
 			if line.startswith('lists_dir'):
 				return line.replace('\n','').split(' ')[2]
 	except IOError:
