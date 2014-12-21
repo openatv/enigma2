@@ -1,6 +1,6 @@
 # converter STBInfo - renamed from pliLayoutInfo.py to not conflict on modifications
 #
-# <convert type="STBInfo">{FlashInfo,HddInfo,HddTemp,LoadAvg,MemFree,MemTotal,SwapFree,SwapTotal,UsbInfo},{Short,Full}</convert>
+# <convert type="STBInfo">{FlashInfo,HddInfo,HddTemp,LoadAvg,MemFree,MemTotal,SwapFree,SwapTotal,UsbInfo,SystemTemp},{Short,Full}</convert>
 # 
 #     <widget source="session.CurrentService" render="Label" ...
 #       <convert type="STBInfo">MemTotal,Short</convert>
@@ -37,6 +37,7 @@ class STBInfo(Poll, Converter):
     HDDINFO = 7
     FLASHINFO = 8
     DRIVERINFO = 9
+    SYSTEMTEMP = 10
 
     def __init__(self, type):
         Converter.__init__(self, type)
@@ -62,6 +63,8 @@ class STBInfo(Poll, Converter):
             self.type = self.HDDINFO
         elif 'DriverInfo' in type:
             self.type = self.DRIVERINFO
+        elif 'SystemTemp' in type:
+            self.type = self.SYSTEMTEMP
         else:
             self.type = self.FLASHINFO
         if self.type in (self.FLASHINFO, self.HDDINFO, self.USBINFO):
@@ -82,6 +85,8 @@ class STBInfo(Poll, Converter):
         text = 'N/A'
         if self.type == self.HDDTEMP:
             text = self.getHddTemp()
+        elif self.type == self.SYSTEMTEMP:
+            text = self.getSystemTemp()
         elif self.type == self.LOADAVG:
             text = self.getLoadAvg()
         elif self.type == self.DRIVERINFO:
@@ -143,6 +148,17 @@ class STBInfo(Poll, Converter):
         try:
             out_line = popen('hddtemp -n -q /dev/sda').readline()
             info = 'Hdd C: ' + out_line[:4]
+            textvalue = info
+        except:
+            pass
+        return textvalue
+
+    def getSystemTemp(self):
+        textvalue = 'No info'
+        info = '0'
+        try:
+            out_line = popen('cat /proc/stb/fp/temp_sensor').readline().strip()
+            info = 'CPU temperature: ' + out_line[:4] + ' C'
             textvalue = info
         except:
             pass
