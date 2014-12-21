@@ -156,9 +156,12 @@ class AVSwitch:
 			f.write(mode_50)
 			f.close()
 		if os.path.exists('/proc/stb/video/videomode_60hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
-			f = open("/proc/stb/video/videomode_60hz", "w")
-			f.write(mode_60)
-			f.close()
+			try:
+				f = open("/proc/stb/video/videomode_60hz", "w")
+				f.write(mode_60)
+				f.close()
+			except IOError:
+				print "setting videomode failed."
 		try:
 			mode_etc = modes.get(int(rate[:2]))
 			f = open("/proc/stb/video/videomode", "w")
