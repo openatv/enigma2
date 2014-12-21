@@ -557,6 +557,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			g_object_set(G_OBJECT(m_gst_playbin), "buffer-duration", 5LL * GST_SECOND, NULL);
 			g_object_set(G_OBJECT(m_gst_playbin), "buffer-size", m_buffer_size, NULL);
 		}
+		else {
+			/* if not streaming we should disable buffer, to avoid issues with EOS called too early */
+			g_object_set(G_OBJECT(m_gst_playbin), "buffer-duration", 0, NULL);
+			g_object_set(G_OBJECT(m_gst_playbin), "buffer-size", 0, NULL);
+		}
 		g_object_set (G_OBJECT (m_gst_playbin), "flags", flags, NULL);
 		g_object_set (G_OBJECT (m_gst_playbin), "uri", uri, NULL);
 		GstElement *subsink = gst_element_factory_make("subsink", "subtitle_sink");
