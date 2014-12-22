@@ -808,9 +808,6 @@ class NimManager:
 				modes = entries[current_slot].get("multi_type", {})
 				modes[split2[1]] = split[1]
 				entries[current_slot]["multi_type"] = modes
-			elif entries[current_slot]["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrit usb stick
-				entries[current_slot]["multi_type"] = {'0': 'DVB-T'}
-				entries[current_slot]["multi_type"] = {'1': 'DVB-C'}
 			elif line.startswith("I2C_Device:"):
 				input = int(line[len("I2C_Device:") + 1:])
 				entries[current_slot]["i2c"] = input
@@ -836,7 +833,11 @@ class NimManager:
 			else:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
-				entry["multi_type"] = {}
+				if entry["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrit usb stick
+					entry["multi_type"] = {'0': 'DVB-T'}
+					entry["multi_type"] = {'1': 'DVB-C'}
+				else:
+					entry["multi_type"] = {}
 			if not (entry.has_key("input_name")):
 				entry["input_name"] = chr(ord('A') + id)
 			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None)))
