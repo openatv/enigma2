@@ -6,7 +6,7 @@ from Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button
-from Components.ServiceList import ServiceList
+from Components.ServiceList import ServiceList, refreshServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase

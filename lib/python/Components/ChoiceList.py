@@ -11,12 +11,12 @@ def ChoiceEntryComponent(key="", text=None):
 	res = [ text ]
 	if text[0] == "--":
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 900, 45, 0, RT_HALIGN_LEFT, "-"*200))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 900, 50, 0, RT_HALIGN_LEFT, "-"*200))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 100, 7, 900, 45, 0, RT_HALIGN_LEFT, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 100, 5, 900, 50, 0, RT_HALIGN_LEFT, text[0]))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
 		

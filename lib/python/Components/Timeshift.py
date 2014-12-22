@@ -445,6 +445,9 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
+	def callServiceStarted(self):
+		self.__serviceStarted()
+
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
 		self.activateTimeshiftEnd(False)

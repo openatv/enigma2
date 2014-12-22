@@ -185,8 +185,11 @@ def InitUsageConfig():
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 8, wraparound = True)
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default = 40)
-	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
-		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
+	config.usage.on_movie_start = ConfigSelection(default = "resume", choices = [
+		("ask yes", _("Ask user (with default as 'yes')")),
+		("ask no", _("Ask user (with default as 'no')")),
+		("resume", _("Resume from last position")),
+		("beginning", _("Start from the beginning"))])
 	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
 	config.usage.on_movie_eof = ConfigSelection(default = "movielist", choices = [
@@ -609,7 +612,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))], default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
-	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "62", "64", "68", "70", "72" ], default = "34")
+	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["%d" % x for x in range(16,101) if not x % 2], default = "38")
 
 	subtitle_delay_choicelist = []
 	for i in range(-900000, 1845000, 45000):
@@ -826,7 +829,7 @@ def InitUsageConfig():
 	config.epgselection.graph_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.graph_timelinefs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.graph_timeline24h = ConfigYesNo(default = True)
-	config.epgselection.graph_itemsperpage = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 16, wraparound = True)
+	config.epgselection.graph_itemsperpage = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 20, wraparound = True)
 	config.epgselection.graph_pig = ConfigYesNo(default = True)
 	config.epgselection.graph_heightswitch = NoSave(ConfigYesNo(default = False))
 	config.epgselection.graph_servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
