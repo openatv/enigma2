@@ -139,7 +139,7 @@ void eDVBRdsDecoder::removeFromPictureMask(int id)
 	}
 }
 
-void eDVBRdsDecoder::processPESPacket(__u8 *data, int len)
+void eDVBRdsDecoder::processPESPacket(uint8_t *data, int len)
 {
 	int pos=9+data[8];// skip pes header
 
@@ -316,7 +316,7 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 	}
 }
 
-void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
+void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 {
 	if (len <= 0)
 		return;

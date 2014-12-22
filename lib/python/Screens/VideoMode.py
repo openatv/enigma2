@@ -77,6 +77,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
 				if config.av.autores.value in 'hd':
 					self.list.append(getConfigListEntry(_("Show SD as"), config.av.autores_sd,_("This option allows you to choose how to display standard defintion video on your TV.")))
+				self.list.append(getConfigListEntry(_("Show 480/576p 24fps as"), config.av.autores_480p24,_("This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 720p 24fps as"), config.av.autores_720p24,_("This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24,_("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25,_("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
@@ -139,6 +140,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 			if SystemInfo["Can3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound.")))
+
+			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
+				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtuell loadspeaker position.")))
 
 			if SystemInfo["CanAutoVolume"]:
 				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
@@ -285,6 +289,7 @@ class AutoVideoMode(Screen):
 			self.detecttimer.start(delay)
 
 	def VideoChangeDetect(self):
+		global resolutionlabel
 		config_port = config.av.videoport.value
 		config_mode = str(config.av.videomode[config_port].value).replace('\n','')
 		config_res = str(config.av.videomode[config_port].value[:-1]).replace('\n','')
@@ -391,6 +396,8 @@ class AutoVideoMode(Screen):
 					new_pol = new_pol.replace('i','p')
 				if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 					new_mode = new_res+new_pol+new_rate
+					if new_mode == '480p24' or new_mode == '576p24':
+						new_mode = config.av.autores_480p24.value
 					if new_mode == '720p24':
 						new_mode = config.av.autores_720p24.value
 					if new_mode == '1080p24':
@@ -402,7 +409,7 @@ class AutoVideoMode(Screen):
 				elif new_res+new_pol in iAVSwitch.modes_available:
 					new_mode = new_res+new_pol
 				else:
-					write_mode = config_mode+new_rate
+					new_mode = config_mode+new_rate
 
 				write_mode = new_mode
 			elif config.av.autores.value == 'hd' and int(new_res) <= 576:
@@ -501,9 +508,9 @@ class AutoVideoMode(Screen):
 		self.detecttimer.stop()
 
 def autostart(session):
+	global resolutionlabel
 	if not path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 		if resolutionlabel is None:
-			global resolutionlabel
 			resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
 		AutoVideoMode(session)
 	else:

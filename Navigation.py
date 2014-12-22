@@ -187,7 +187,7 @@ class Navigation:
 		oldref = self.currentlyPlayingServiceOrGroup
 		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service(1)"
-			return 0
+			return 1
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
 			try:
@@ -219,7 +219,7 @@ class Navigation:
 				print "playref", playref
 				if playref and oldref and playref == oldref and not forceRestart:
 					print "ignore request to play already running service(2)"
-					return 0
+					return 1
 				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False))):
 					self.stopService()
 					return 0

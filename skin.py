@@ -149,7 +149,10 @@ profile("LoadSkinDefaultDone")
 def parseCoordinate(s, e, size=0, font=None):
 	s = s.strip()
 	if s == "center":
-		val = (e - size)/2
+		if not size:
+			val = 0
+		else:
+			val = (e - size)/2
 	elif s == '*':
 		return None
 	else:
@@ -548,7 +551,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 
 	for c in skin.findall("subtitles"):
-		from enigma import eWidget, eSubtitleWidget
+		from enigma import eSubtitleWidget
 		scale = ((1,1),(1,1))
 		for substyle in c.findall("sub"):
 			get_attr = substyle.attrib.get

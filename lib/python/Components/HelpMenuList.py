@@ -1,6 +1,6 @@
 from GUIComponent import GUIComponent
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont
+from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
 #getKeyPositions
 
@@ -8,6 +8,7 @@ from Tools.KeyBindings import queryKeyBinding, getKeyDescription
 
 class HelpMenuList(GUIComponent):
 	def __init__(self, helplist, callback):
+		screenwidth = getDesktop(0).size().width()
 		GUIComponent.__init__(self)
 		self.onSelChanged = [ ]
 		self.l = eListboxPythonMultiContent()
@@ -19,6 +20,8 @@ class HelpMenuList(GUIComponent):
 			for (action, help) in actions:
 				if hasattr(help, '__call__'):
 					help = help()
+				if not help:
+					continue
 				buttons = queryKeyBinding(context, action)
 
 				# do not display entries which are not accessible from keys
@@ -45,12 +48,21 @@ class HelpMenuList(GUIComponent):
 				if isinstance(help, list):
 					self.extendedHelp = True
 					print "extendedHelpEntry found"
-					entry.extend((
-						(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 500, 26, 0, 0, help[0]),
-						(eListboxPythonMultiContent.TYPE_TEXT, 0, 28, 500, 20, 1, 0, help[1])
-					))
+					if screenwidth and screenwidth == 1920:
+						entry.extend((
+							(eListboxPythonMultiContent.TYPE_TEXT, 10, 0, 750, 38, 0, 0, help[0]),
+							(eListboxPythonMultiContent.TYPE_TEXT, 10, 0, 750, 38, 2, 0, help[1])
+						))
+					else:
+						entry.extend((
+							(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 500, 26, 0, 0, help[0]),
+							(eListboxPythonMultiContent.TYPE_TEXT, 0, 28, 500, 20, 1, 0, help[1])
+						))
 				else:
-					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 500, 28, 0, 0, help) )
+					if screenwidth and screenwidth == 1920:
+						entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 10, 5, 750, 50, 1, 0, help) )
+					else:
+						entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 500, 28, 0, 0, help) )
 
 				l.append(entry)
 
@@ -58,9 +70,12 @@ class HelpMenuList(GUIComponent):
 		if self.extendedHelp is True:
 			self.l.setFont(0, gFont("Regular", 24))
 			self.l.setFont(1, gFont("Regular", 18))
+			self.l.setFont(2, gFont("Regular", 30))
+			self.l.setFont(3, gFont("Regular", 26))
 			self.l.setItemHeight(50)
 		else:
 			self.l.setFont(0, gFont("Regular", 24))
+			self.l.setFont(1, gFont("Regular", 30))
 			self.l.setItemHeight(38)
 
 	def ok(self):
@@ -81,6 +96,7 @@ class HelpMenuList(GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
+		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)

@@ -10,7 +10,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
-from Tools.Directories import pathExists
+from Tools.Directories import pathExists, fileExists
 from Components.Harddisk import harddiskmanager
 
 lastpath = ""
@@ -244,6 +244,23 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.onFirstExecBegin.append(self.opened)
 		self.service = None
 		self.in_menu = False
+		if fileExists("/proc/stb/fb/dst_left"):
+			self.left = open("/proc/stb/fb/dst_left", "r").read()
+			self.width = open("/proc/stb/fb/dst_width", "r").read()
+			self.top = open("/proc/stb/fb/dst_top", "r").read()
+			self.height = open("/proc/stb/fb/dst_height", "r").read()
+			if self.left != "00000000" or self.top != "00000000" or self.width != "000002d0" or self.height != "0000000240":
+				open("/proc/stb/fb/dst_left", "w").write("00000000")
+				open("/proc/stb/fb/dst_width", "w").write("000002d0")
+				open("/proc/stb/fb/dst_top", "w").write("00000000")
+				open("/proc/stb/fb/dst_height", "w").write("0000000240")
+				self.onClose.append(self.__restoreOSDSize)
+
+	def __restoreOSDSize(self):
+		open("/proc/stb/fb/dst_left", "w").write(self.left)
+		open("/proc/stb/fb/dst_width", "w").write(self.width)
+		open("/proc/stb/fb/dst_top", "w").write(self.top)
+		open("/proc/stb/fb/dst_height", "w").write(self.height)
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)

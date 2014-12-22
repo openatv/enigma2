@@ -58,13 +58,15 @@ class FrontendInfo(Converter, object):
 			string = ""
 			for n in nimmanager.nim_slots:
 				if n.type:
+					if string:
+						string += " "
 					if n.slot == self.source.slot_number:
 						string += "\c0000??00"
 					elif self.source.tuner_mask & 1 << n.slot:
 						string += "\c00????00"
 					else:
 						string += "\c007?7?7?"
-					string += chr(ord("A")+n.slot) + " "
+					string += chr(ord("A")+n.slot)
 			return string
 		if percent is None:
 			return "N/A"

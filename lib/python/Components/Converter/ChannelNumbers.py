@@ -35,7 +35,7 @@ class ChannelNumbers:
 		return ""
 
 	def getMHz(self, frequency):
-		if str(frequency).endswith('Mhz'):
+		if str(frequency).endswith('MHz'):
 			return frequency.split()[0]
 		return (frequency+50000)/100000/10.
 

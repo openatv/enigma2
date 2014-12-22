@@ -10,9 +10,6 @@ info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
 
-def getECM():
-	return ecm
-
 class GetEcmInfo:
 	def __init__(self):
 		pass
@@ -83,8 +80,12 @@ class GetEcmInfo:
 					info['pid'] = line[line.find('pid 0x')+6:line.find(' =')]
 					info['provid'] = info.get('prov', '0')[:4]
 			data = self.getText()
+			return True
 		else:
 			info['ecminterval0'] = int(time.time()-ecm_time+0.5)
+
+	def getEcm(self):
+		return (self.pollEcmData(), ecm)
 
 	def getEcmData(self):
 		self.pollEcmData()

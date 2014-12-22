@@ -28,11 +28,6 @@ config.pic.infoline = ConfigYesNo(default=True)
 config.pic.loop = ConfigYesNo(default=True)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 config.pic.textcolor = ConfigSelection(default="#0038FF48", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
-if getMachineBrand == 'Vu+':
-	choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720")]
-else:
-	choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")]
-config.pic.fullview_resolution = ConfigSelection(default = None, choices = choices)
 
 class picshow(Screen):
 	skin = """
@@ -182,7 +177,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
 			getConfigListEntry(_("Background color"), config.pic.bgcolor),
 			getConfigListEntry(_("Text color"), config.pic.textcolor),
-			getConfigListEntry(_("Fullview resolution"), config.pic.fullview_resolution),
+			getConfigListEntry(_("Fulview resulution"), config.usage.pic_resolution),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
@@ -450,16 +445,11 @@ class Pic_Full_View(Screen):
 		self.bgcolor = config.pic.bgcolor.value
 		space = config.pic.framesize.value
 
-		self.size_w = getDesktop(0).size().width()
-		self.size_h = getDesktop(0).size().height()
-		(size_w, size_h) = (self.size_w, self.size_h)
-		print 'A:',self.size_w
-		print 'B:',self.size_h
+		self.size_w = size_w = getDesktop(0).size().width()
+		self.size_h = size_h = getDesktop(0).size().height()
 
-		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
-			(size_w, size_h) = eval(config.pic.fullview_resolution.value)
-			print 'C:',size_w
-			print 'D:',size_h
+		if config.usage.pic_resolution.value and (size_w, size_h) != eval(config.usage.pic_resolution.value):
+			(size_w, size_h) = eval(config.usage.pic_resolution.value)
 			gMainDC.getInstance().setResolution(size_w, size_h)
 			getDesktop(0).resize(eSize(size_w, size_h))
 
@@ -521,23 +511,9 @@ class Pic_Full_View(Screen):
 		self.slideTimer.callback.append(self.slidePic)
 
 		if self.maxentry >= 0:
-			# self.onLayoutFinish.append(self.setPicloadConf)
-			if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
-				self.createTimer = eTimer()
-				self.createTimer.callback.append(self.setPicloadConf)
-				self.onLayoutFinish.append(self.LayoutFinish)
-			else:
-				self.onLayoutFinish.append(self.setPicloadConf)
-
-	def LayoutFinish(self):
-		if not HardwareInfo().is_nextgen():
-			self.createTimer.start(800)
-		else:
-			self.createTimer.start(1600)
+			self.onLayoutFinish.append(self.setPicloadConf)
 
 	def setPicloadConf(self):
-		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
-			self.createTimer.stop()
 		sc = getScale()
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
 
@@ -602,7 +578,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.value * 1000)
+			self.slideTimer.start(config.pic.slidetime.value*1000)
 			self["play_icon"].show()
 			self.nextPic()
 
@@ -625,7 +601,7 @@ class Pic_Full_View(Screen):
 	def Exit(self):
 		del self.picload
 
-		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+		if config.usage.pic_resolution.value and (self.size_w, self.size_h) != eval(config.usage.pic_resolution.value):
 			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 

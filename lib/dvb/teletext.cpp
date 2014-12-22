@@ -256,7 +256,7 @@ char *get_bits(int val, int count)
 	return buf;
 }
 
-void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
+void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 {
 	unsigned char *p = pkt;
 

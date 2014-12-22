@@ -60,11 +60,14 @@ class PluginDescriptor:
 	# should be provided to name and describe the new menu entry.
 	WHERE_SOFTWAREMANAGER = 15
 
+	# start as channellist context menu plugin. session, serviceref (currently selected)
+	WHERE_CHANNEL_CONTEXT_MENU = 16
+
 	# fnc must take an interface name as parameter and return None if the plugin supports an extended setup
 	# or return a function which is called with session and the interface name for extended setup of this interface
-	WHERE_NETWORKMOUNTS = 16
+	WHERE_NETWORKMOUNTS = 17
 
-	WHERE_VIXMENU = 17
+	WHERE_VIXMENU = 18
 
 	# override internal RecordTimer navigation instance
 	# fnc must return the custom instance or None to skip it

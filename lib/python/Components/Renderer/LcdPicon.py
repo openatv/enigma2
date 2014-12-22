@@ -1,10 +1,11 @@
-import os
+import os, re, unicodedata
 from Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 from boxbranding import getBoxType
+from ServiceReference import ServiceReference
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -89,6 +90,12 @@ def getLcdPiconName(serviceName):
 		if len(fields) > 0 and fields[0] == '4097': #fallback to 1 for IPTV streams
 			fields[0] = '1'
 		pngname = findLcdPicon('_'.join(fields))
+	if not pngname: # picon by channel name
+		name = ServiceReference(serviceName).getServiceName()
+		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8')).encode('ASCII', 'ignore')
+		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+		if len(name) > 0:
+			pngname = findLcdPicon(name)
 	return pngname
 
 class LcdPicon(Renderer):

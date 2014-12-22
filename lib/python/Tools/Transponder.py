@@ -53,7 +53,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 				eDVBFrontendParametersSatellite.Pilot_Unknown : _("Auto"),
 				eDVBFrontendParametersSatellite.Pilot_On : _("On"),
 				eDVBFrontendParametersSatellite.Pilot_Off : _("Off")}.get(tp.get("pilot"))
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' Mhz') or '0 Mhz'
+		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
 		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 	elif tunertype == "DVB-C":
 		ret["tuner_type"] = _("Cable")
@@ -83,7 +83,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["system"] = {
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' Mhz') or '0 Mhz'
+		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
@@ -158,7 +158,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
 		print 'system:',tp.get("system")
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000000) + ' Mhz') or '0 Mhz'
+		ret["frequency"] = (tp.get("frequency") and ('%i MHz' % int(round(tp.get("frequency"), -6)/1000000))) or '0 MHz'
 		print 'frequency:',tp.get("frequency")
 	elif tunertype == "ATSC":
 		ret["tuner_type"] = "ATSC"

@@ -1,4 +1,4 @@
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, getDesktop
 
 from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
@@ -9,20 +9,34 @@ selectiononpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN,
 selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 
 def SelectionEntryComponent(description, value, index, selected):
-	res = [
-		(description, value, index, selected),
-		(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 780, 30, 0, RT_HALIGN_LEFT, description)
-	]
-	if selected:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectiononpng))
+	screenwidth = getDesktop(0).size().width()
+	if screenwidth and screenwidth == 1920:
+		res = [
+			(description, value, index, selected),
+			(eListboxPythonMultiContent.TYPE_TEXT, 60, 5, 750, 38, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, description)
+		]
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 2, 25, 24, selectionoffpng))
+		res = [
+			(description, value, index, selected),
+			(eListboxPythonMultiContent.TYPE_TEXT, 25, 3, 780, 30, 0, RT_HALIGN_LEFT, description)
+		]
+	if selected:
+		if screenwidth and screenwidth == 1920:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 35, 35, selectiononpng))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, 2, 25, 24, selectiononpng))
+	else:
+		if screenwidth and screenwidth == 1920:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 35, 35, selectionoffpng))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, 2, 25, 24, selectionoffpng))
 	return res
 
 class SelectionList(MenuList):
 	def __init__(self, list = None, enableWrapAround = False):
 		MenuList.__init__(self, list or [], enableWrapAround, content = eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(1, gFont("Regular", 28))
 		self.l.setItemHeight(30)
 
 	def addSelection(self, description, value, index, selected = True):

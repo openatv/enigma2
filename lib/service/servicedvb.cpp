@@ -36,6 +36,10 @@ using namespace std;
 #error no byte order defined!
 #endif
 
+#include <ios>
+#include <sstream>
+#include <iomanip>
+
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBInformation);
@@ -243,30 +247,41 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 			int system;
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
 			int tmp = res->canAllocateChannel(chid, chid_ignore, system, simulate);
-			if (tmp > 0)
+			if (prio_order == 127) // ignore dvb-type priority, try all alternatives one-by-one
 			{
-				switch (system)
+				if (((tmp > 0) || (!it->path.empty())))
 				{
-					case iDVBFrontend::feTerrestrial:
-						tmp = prio_map[prio_order][2];
-						break;
-					case iDVBFrontend::feCable:
-						tmp = prio_map[prio_order][1];
-						break;
-					default:
-					case iDVBFrontend::feSatellite:
-						tmp = prio_map[prio_order][0];
-						break;
+					m_playable_service = *it;
+					return 1;
 				}
 			}
-			if (tmp > cur)
+			else
 			{
-				m_playable_service = *it;
-				cur = tmp;
-			}
-			if (!it->path.empty())
-			{
-				streamable_service = *it;
+				if (tmp > 0)
+				{
+					switch (system)
+					{
+						case iDVBFrontend::feTerrestrial:
+							tmp = prio_map[prio_order][2];
+							break;
+						case iDVBFrontend::feCable:
+							tmp = prio_map[prio_order][1];
+							break;
+						default:
+						case iDVBFrontend::feSatellite:
+							tmp = prio_map[prio_order][0];
+							break;
+					}
+				}
+				if (tmp > cur)
+				{
+					m_playable_service = *it;
+					cur = tmp;
+				}
+				if (!it->path.empty())
+				{
+					streamable_service = *it;
+				}
 			}
 		}
 		if (cur)
@@ -277,6 +292,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		if (streamable_service)
 		{
 			m_playable_service = streamable_service;
+			return 1;
 		}
 	}
 	m_playable_service = eServiceReference();
@@ -1327,6 +1343,46 @@ RESULT eDVBServicePlay::start()
 	bool scrambled = true;
 	int packetsize = 188;
 	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
+	ePtr<eDVBResourceManager> res_mgr;
+
+	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
+	std::string remote_fallback_url = eConfigManager::getConfigValue("config.usage.remote_fallback");
+
+	if(!m_is_stream && !m_is_pvr &&
+			remote_fallback_enabled &&
+			(remote_fallback_url.length() > 0) &&
+			!eDVBResourceManager::getInstance(res_mgr))
+	{
+		eDVBChannelID chid, chid_ignore;
+		int system;
+
+		service.getChannelID(chid);
+		eServiceReferenceDVB().getChannelID(chid_ignore);
+
+		if(!res_mgr->canAllocateChannel(chid, chid_ignore, system))
+		{
+			size_t index;
+
+			while((index = remote_fallback_url.find(':')) != std::string::npos)
+			{
+				remote_fallback_url.erase(index, 1);
+				remote_fallback_url.insert(index, "%3a");
+			}
+
+			std::ostringstream remote_service_ref;
+			remote_service_ref << std::hex << service.type << ":" << service.flags << ":" << 
+					service.getData(0) << ":" << service.getData(1) << ":" << service.getData(2) << ":0:0:0:0:0:" <<
+					remote_fallback_url << "/" <<
+					service.type << "%3a" << service.flags;
+			for(index = 0; index < 8; index++)
+					remote_service_ref << "%3a" << service.getData(index);
+
+			service = eServiceReferenceDVB(remote_service_ref.str());
+
+			m_is_stream = true;
+			m_is_pvr = false;
+		}
+	}
 
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using
 		   two (one for decoding, one for data source), as we must be prepared
@@ -1791,15 +1847,16 @@ RESULT eDVBServicePlay::getName(std::string &name)
 	}
 	else if (m_is_stream)
 	{
-		name = m_reference.name;
+		if (m_dvb_service)
+			m_dvb_service->getName(m_reference, name);
+		else
+			name = "unknown service";
 		if (name.empty())
-		{
-			name = m_reference.path;
-		}
-		if (name.empty())
-		{
-			name = "(...)";
-		}
+			name = m_reference.name;
+			if (name.empty())
+				name = m_reference.path;
+				if (name.empty())
+					name = "(...)";
 	}
 	else if (m_dvb_service)
 	{
@@ -2153,41 +2210,10 @@ int eDVBServicePlay::selectAudioStream(int i)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cDDPPID)== -1)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
 	{
-		if (apidtype == eDVBAudio::aMPEG)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apid);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
-		else if (apidtype == eDVBAudio::aAC3)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
-		else if (apidtype == eDVBAudio::aDDP)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apid);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
-		else if (apidtype == eDVBAudio::aAACHE)
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apid);
-		}
-		else
-		{
-			m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cDDPPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, -1);
-		}
+		m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apidtype == eDVBAudio::aMPEG ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apidtype == eDVBAudio::aAC3 ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apidtype == eDVBAudio::aDDP ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apidtype == eDVBAudio::aAACHE ? apid : -1);
 	}
 
 	h.resetCachedProgram();

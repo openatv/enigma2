@@ -94,6 +94,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
+#include <lib/dvb/encoder.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
 #include <lib/components/tuxtxtapp.h>
@@ -394,6 +395,16 @@ void setEnableTtCachingOnOff(int onoff)
 {
 	eTuxtxtApp *tt = eTuxtxtApp::getInstance();
 	if (tt) tt->setEnableTtCachingOnOff(onoff);
+}
+%}
+
+int getUsedEncoderCount();
+%{
+int getUsedEncoderCount()
+{
+	eEncoder *encoders = eEncoder::getInstance();
+	if (encoders) return encoders->getUsedEncoderCount();
+	return 0;
 }
 %}
 

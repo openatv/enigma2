@@ -110,8 +110,6 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM8000;
 	else if (!strncmp(tmp, "dm800\n", rd))
 		m_boxtype = DM800;
-	else if (!strncmp(tmp, "dm800hd\n", rd))
-		m_boxtype = DM800;
 	else if (!strncmp(tmp, "dm500hd\n", rd))
 		m_boxtype = DM500HD;
 	else if (!strncmp(tmp, "dm800se\n", rd))
@@ -621,12 +619,12 @@ void *eDVBUsbAdapter::vtunerPump()
 			}
 			if (FD_ISSET(demuxFd, &rset))
 			{
-				int size = singleRead(demuxFd, buffer, sizeof(buffer));
+				ssize_t size = singleRead(demuxFd, buffer, sizeof(buffer));
 
 				if(size < 188)
 					continue;
 
-				if (writeAll(vtunerFd, buffer, size) <= 0)
+				if (size > 0 && writeAll(vtunerFd, buffer, size) <= 0)
 				{
 					break;
 				}

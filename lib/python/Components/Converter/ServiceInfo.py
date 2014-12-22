@@ -95,7 +95,7 @@ class ServiceInfo(Converter, object):
 			video_height = int(f.read(),16)
 			f.close()
 		except:
-			video_height = info.getInfo(iServiceInformation.sVideoHeight)
+			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
 		video_aspect = info.getInfo(iServiceInformation.sAspect)
 
 		if self.type == self.HAS_TELETEXT:
@@ -175,8 +175,8 @@ class ServiceInfo(Converter, object):
 				video_width = int(f.read(),16)
 				f.close()
 			if not video_width:
-				video_width = self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
-			return str(video_width)
+				video_width = int(self.getServiceInfoString(info, iServiceInformation.sVideoWidth))
+			return "%d" % video_width
 		elif self.type == self.YRES:
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
@@ -184,8 +184,8 @@ class ServiceInfo(Converter, object):
 				video_height = int(f.read(),16)
 				f.close()
 			if not video_height:
-				video_height = self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
-			return str(video_height)
+				video_height = int(self.getServiceInfoString(info, iServiceInformation.sVideoHeight))
+			return "%d" % video_height
 		elif self.type == self.APID:
 			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
 		elif self.type == self.VPID:
@@ -209,7 +209,7 @@ class ServiceInfo(Converter, object):
 				video_rate = int(f.read())
 				f.close()
 			if not video_rate:
-				video_rate = self.getServiceInfoString(info, iServiceInformation.sFrameRate)
+				video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
 			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
@@ -248,7 +248,7 @@ class ServiceInfo(Converter, object):
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				video_rate = int(f.read())
+				video_rate = f.read()
 				f.close()
 			if not video_rate:
 				video_rate = info.getInfo(iServiceInformation.sFrameRate)
