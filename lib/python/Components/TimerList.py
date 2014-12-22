@@ -114,6 +114,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		self.instance = instance
+		instance.setWrapAround(True)
 
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
