@@ -155,6 +155,7 @@ void bsodFatal(const char *component)
 	FILE *f;
 	const char* crashlog_name;
 	std::ostringstream os;
+	std::ostringstream os_text;
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
 	os << "enigma2_crash_";
 	os << time(0);
@@ -279,7 +280,7 @@ void bsodFatal(const char *component)
 	gPainter p(my_dc);
 	p.resetOffset();
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
-	p.setBackgroundColor(gRGB(0x008000));
+	p.setBackgroundColor(gRGB(0x27408B));
 	p.setForegroundColor(gRGB(0xFFFFFF));
 
 	ePtr<gFont> font = new gFont("Regular", 20);
@@ -290,11 +291,15 @@ void bsodFatal(const char *component)
 
 	os.str("");
 	os.clear();
-	os << "We are really sorry. Your receiver encountered "
+	os_text.clear();
+
+	os_text << "We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted.\n"
 		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
 		"Your receiver restarts in 10 seconds!\n"
 		"Component: " << crash_component;
+	
+	os << getConfigString("config.crash.debug_text", os_text.str());
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 

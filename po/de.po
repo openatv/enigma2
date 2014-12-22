@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2014-11-30 20:57+0100\n"
-"Last-Translator: mike99 <mike99@gmx.net>\n"
+"PO-Revision-Date: 2014-12-20 16:34+0100\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3051,7 +3051,7 @@ msgid "Edit services list"
 msgstr "Kanalliste bearbeiten"
 
 #
-msgid "Edit Settings"
+msgid "Edit settings"
 msgstr "Einstellungen bearbeiten"
 
 #
@@ -13997,7 +13997,7 @@ msgid ""
 "When enabled, a recording is allowed to interrupt live tv, when there are no "
 "free tuners."
 msgstr ""
-"Wenn aktiviert, eine Aufzeichnung darf live TV unterbrechen, wenn keine "
+"Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls keine "
 "freien Tuner verfügbar sind."
 
 msgid ""
@@ -14076,8 +14076,8 @@ msgstr ""
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
-"Konfigurieren Sie auf welche Geräte der Hintergrund Löschoption verwendet "
-"werden soll."
+"Konfigurieren Sie, auf welchen Geräten die Hintergrund Löschoption verwendet "
+"werden darf."
 
 msgid "Restoring..."
 msgstr "Wiederherstellen..."
@@ -14889,7 +14889,7 @@ msgstr "Anzeige des Servicetyps"
 
 msgid "Configure if and how service type icons will be shown."
 msgstr ""
-"Konfigurieren Sie, ob und wie Service Type Icons angezeigt werden sollen."
+"Konfigurieren Sie, ob und wie Service Type Symbole angezeigt werden sollen."
 
 msgid "Show screensaver"
 msgstr "Zeige Bildschirmschoner"
@@ -14907,9 +14907,6 @@ msgstr "Ja, aus der Timerliste löschen und die Aufnahme löschen."
 
 msgid "Do you really want to delete the recording?"
 msgstr "Wollen Sie die Aufnahme wirklich löschen?"
-
-msgid "Are you sure you want to remove your network mount ?"
-msgstr "Sind Sie sicher, dass der Netzwerk Mount entfernt werden soll?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -15701,6 +15698,12 @@ msgstr ""
 "Hier können Sie einstellen, welche Aktion beim Drücken der gelben Taste "
 "ausgeführt werden soll."
 
+#: remote
+msgid "Select what you want the YELLOW-Long button to activate:"
+msgstr ""
+"Hier können Sie einstellen, welche Aktion beim langen Drücken der gelben "
+"Taste ausgeführt werden soll."
+
 #: Channel selection
 msgid "Show columns"
 msgstr "Spalten einblenden"
@@ -15724,3 +15727,77 @@ msgstr "HDMI IN als Vollbild wiedergeben"
 #
 msgid "Turn on HDMI-IN PiP mode"
 msgstr "HDMI IN als Bild in Bild wiedergeben"
+
+#: BSOD
+msgid ""
+"We are really sorry. Your receiver encountered a software problem, and needs "
+"to be restarted.\n"
+"Please send the logfile %senigma2_crash_xxxxxx.log to www.opena.tv.\n"
+"Your receiver restarts in 10 seconds!\n"
+"Component: enigma2"
+msgstr ""
+"Es tut uns leid. Ihr Receiver hat ein Software-Problem und muss neu "
+"gestartet werden.\n"
+"Bitte senden Sie die Logdatei %senigma2_crash_xxxxxx.log an www.opena.tv.\n"
+"Ihr Receiver startet in 10 Sekunden neu!\n"
+"Komponente: enigma2"
+
+#: automatic audio selection
+msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr ""
+"Wenn auf 'Ja' gestellt, wird die %s %s AC3+ Ton benutzen (wenn verfügbar)."
+
+#: channellist
+msgid ""
+"Configure if and how crypto icons will be shown in the channel selection "
+"list."
+msgstr ""
+"Konfigurieren Sie, ob und wie das Verschlüsselungs Symbol angezeigt werden "
+"soll."
+
+#: extra setup
+msgid "Use time jumps for fast forward/backward"
+msgstr "Zeitsprünge für schnellen Vorlauf/Rücklauf( << / >> ) benutzen"
+
+#: extra setup
+msgid "This will go fast forward/backward with time frames of x secs"
+msgstr ""
+"Hiermit werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekunden "
+"benutzt."
+
+#: recordings
+msgid ""
+"Configure which tuner for recordings will be preferred, when more than one "
+"tuner is available."
+msgstr ""
+"Konfigurieren Sie, welcher Tuner für Aufnahmen bevorzugt benutzt werden "
+"soll, wenn mehr als ein Tuner verfügbar ist."
+
+#: userinterface
+msgid "Enable infobar fade-out"
+msgstr "Infobar langsam ausblenden"
+
+#: userinterface
+msgid "Fade the Infobar on hide"
+msgstr ""
+"Hiermit können Sie einstellen, ob die Infobar langsam ausgeblendet werden "
+"soll."
+
+#: userinterface
+msgid "Infobar fade-out speed"
+msgstr "Infobar Ausblendegeschwindigkeit"
+
+#: userinterface
+msgid "Control the Infobar fading speed"
+msgstr "Hier können Sie die Ausblendegeschwindigkeit der Infobar einstellen."
+
+#: userinterface
+msgid "Infobar frontend data source"
+msgstr "Infobar Datenquelle"
+
+#: userinterface
+msgid ""
+"Configure the source of the frontend data as shown on the infobars. "
+"'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr ""
+"Hier können Sie die Datenquelle für die Anzeigen in der Infobar einstellen."

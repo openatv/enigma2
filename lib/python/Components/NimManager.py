@@ -817,7 +817,11 @@ class NimManager:
 			else:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
-				entry["multi_type"] = {}
+				if entry["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrit usb stick
+					entry["multi_type"] = {'0': 'DVB-T'}
+					entry["multi_type"] = {'1': 'DVB-C'}
+				else:
+					entry["multi_type"] = {}
 			if not (entry.has_key("input_name")):
 				entry["input_name"] = chr(ord('A') + id)
 			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None)))
