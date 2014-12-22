@@ -90,6 +90,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
+#if KEY_MEDIA_TO_KEY_LIST
+	if (ev->code == KEY_MEDIA)
+	{
+		/* entwodia Remote rc has a Funktion key, which sends KEY_MEDIA events but we need a KEY_LIST. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_LIST;
+	}
+#endif
+
 #if KEY_F1_TO_KEY_F2
 	if (ev->code == KEY_F1)
 	{
