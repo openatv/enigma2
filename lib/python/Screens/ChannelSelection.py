@@ -1839,7 +1839,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyTV": self.toogleTvRadio,
 			})
 
-			self.radioTV = 0
+		self.radioTV = 0
 
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
