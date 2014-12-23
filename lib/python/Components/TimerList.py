@@ -20,12 +20,11 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res = [ None ]
 		serviceName = timer.service_ref.getServiceName()
 
-		self.dummy = eLabel(self.instance)
-		self.dummy.setFont(gFont("Regular", 20))
-		self.dummy.resize(self.l.getItemSize())
-		self.dummy.setText(serviceName)
-		serviceNameWidth = self.dummy.calculateSize().width()
-		self.dummy = None
+		dummy = eLabel(self.instance)
+		dummy.setFont(gFont("Regular", 20))
+		dummy.resize(self.l.getItemSize())
+		dummy.setText(serviceName)
+		serviceNameWidth = dummy.calculateSize().width()
 
 		if 225 > width - serviceNameWidth:
 			serviceNameWidth = width - 225
