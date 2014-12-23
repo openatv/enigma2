@@ -6,7 +6,7 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
 from Components.SystemInfo import SystemInfo
@@ -632,7 +632,7 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 		_(name),
 		MultiContentEntryText(pos=(60, 5), size=(width-60, 25), font=0, text = _(name)),
 		MultiContentEntryText(pos=(60, 26), size=(width-60, 17), font=1, text = _(description)),
-		MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(40, 40), png = png),
+		MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png = png),
 		_(long_description),
 	]
 

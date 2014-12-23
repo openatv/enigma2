@@ -25,7 +25,7 @@ from Components.Button import Button
 from Components.ActionMap import ActionMap
 from Components.SystemInfo import SystemInfo
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from __init__ import _
 from boxbranding import getBoxType, getMachineName, getMachineBrand, getBrandOEM
 
@@ -257,7 +257,7 @@ class PanelList(MenuList):
 
 def MenuEntryItem(entry):
 	res = [entry]
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(40, 40), png=entry[0]))  # png vorn
+	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png=entry[0]))  # png vorn
 	res.append(MultiContentEntryText(pos=(60, 10), size=(440, 40), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
