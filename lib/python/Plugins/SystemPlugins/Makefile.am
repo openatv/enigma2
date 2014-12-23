@@ -6,6 +6,10 @@ SUBDIRS = PositionerSetup Satfinder SoftwareManager \
 	VideoEnhancement WirelessLan NetworkWizard VideoClippingSetup \
 	SatelliteEquipmentControl DiseqcTester HdmiCEC FastScan LCNScanner
 
+if HAVE_LIBVUGLES2
+SUBDIRS += AnimationSetup
+endif
+
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
