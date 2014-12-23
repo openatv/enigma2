@@ -882,4 +882,66 @@
 				<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 			</device-->
 		</map>
+
+		<map context="ButtonSetupActions">
+		<key id="KEY_RED" mapto="red" flags="b"/>
+		<key id="KEY_RED" mapto="red_long" flags="l"/>
+		<key id="KEY_GREEN" mapto="green" flags="b"/>
+		<key id="KEY_GREEN" mapto="green_long" flags="l"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="b"/>
+		<key id="KEY_YELLOW" mapto="yellow_long" flags="l"/>
+		<key id="KEY_BLUE" mapto="blue" flags="b"/>
+		<key id="KEY_BLUE" mapto="blue_long" flags="l"/>
+		<key id="KEY_RECORD" mapto="rec" flags="b"/>
+		<key id="KEY_RECORD" mapto="pvr_long" flags="l"/>
+		<key id="KEY_RADIO" mapto="radio" flags="b"/>
+		<key id="KEY_TV" mapto="showTv" flags="b"/>
+		<key id="KEY_TEXT" mapto="text" flags="b"/>
+		<key id="KEY_HELP" mapto="displayHelp" flags="b"/>
+		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b"/>
+		<key id="KEY_MENU" mapto="mainMenu" flags="b"/>
+		<key id="KEY_INFO" mapto="info" flags="b"/>
+		<key id="KEY_INFO" mapto="info_long" flags="l"/>
+		<key id="KEY_VIDEO" mapto="list" flags="b"/>
+		<key id="KEY_BACK" mapto="back" flags="b"/>
+		<key id="KEY_BACK" mapto="back_long" flags="l"/>
+		<key id="KEY_END" mapto="end" flags="b"/>
+		<key id="KEY_EPG" mapto="epg" flags="b"/>
+		<key id="KEY_EPG" mapto="epg_long" flags="l"/>
+		<key id="KEY_LEFT" mapto="cross_left" flags="mr"/>
+		<key id="KEY_RIGHT" mapto="cross_right" flags="mr"/>
+		<key id="KEY_UP" mapto="cross_up" flags="b"/>
+		<key id="KEY_DOWN" mapto="cross_down" flags="b"/>
+		<key id="KEY_CHANNELUP" mapto="channelup" flags="b"/>
+		<key id="KEY_CHANNELDOWN" mapto="channeldown" flags="b"/>
+		<key id="KEY_NEXT" mapto="next" flags="mr"/>
+		<key id="KEY_PREVIOUS" mapto="previous" flags="mr"/>
+		<key id="KEY_AUDIO" mapto="audio" flags="b"/>
+		<key id="KEY_PLAY" mapto="play" flags="m"/>
+		<key id="KEY_STOP" mapto="stop" flags="b"/>
+		<key id="KEY_PAUSE" mapto="pause" flags="m"/>
+		<key id="KEY_REWIND" mapto="rewind" flags="b"/>
+		<key id="KEY_FASTFORWARD" mapto="fastforward" flags="b"/>
+		<key id="KEY_PREVIOUSSONG" mapto="rewind" flags="b"/>
+		<key id="KEY_NEXTSONG" mapto="fastforward" flags="b"/>
+		<key id="KEY_SCREEN" mapto="activatePiP" flags="b"/>
+		<key id="KEY_PROGRAM" mapto="timer" flags="b"/>
+		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="m"/>
+		<key id="KEY_LIST" mapto="playlist" flags="b"/>
+		<key id="KEY_TIME" mapto="timeshift" flags="b"/>
+		<key id="KEY_SEARCH" mapto="search" flags="b"/>
+		<key id="KEY_RESTART" mapto="slow" flags="b"/>
+		<key id="KEY_BOOKMARKS" mapto="mark" flags="b"/>
+		<key id="KEY_POWER" mapto="power" flags="b"/>
+		<key id="KEY_POWER" mapto="power_long" flags="l"/>
+		<key id="KEY_SLEEP" mapto="sleep" flags="b"/>
+		<key id="KEY_HOME" mapto="home" flags="b"/>
+		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="m"/>
+		<key id="KEY_F1" mapto="f1" flags="b"/>
+		<key id="KEY_F1" mapto="f1_long" flags="l"/>
+		<key id="KEY_F2" mapto="f2" flags="b"/>
+		<key id="KEY_F2" mapto="f2_long" flags="l"/>
+		<key id="KEY_F3" mapto="f3" flags="b"/>
+		<key id="KEY_F3" mapto="f3_long" flags="l"/>
+	</map>
 </keymap>
