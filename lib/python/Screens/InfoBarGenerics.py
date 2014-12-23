@@ -141,6 +141,7 @@ resumePointCacheLast = int(time())
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
+		self.dishDialog.setSubScreen()
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
@@ -157,6 +158,7 @@ class InfoBarLongKeyDetection:
 class InfoBarUnhandledKey:
 	def __init__(self):
 		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
+		self.unhandledKeyDialog.setSubScreen()
 		self.hideUnhandledKeySymbolTimer = eTimer()
 		self.hideUnhandledKeySymbolTimer.callback.append(self.unhandledKeyDialog.hide)
 		self.checkUnusedTimer = eTimer()
@@ -1674,6 +1676,7 @@ class InfoBarRdsDecoder:
 	def __init__(self):
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
 		self.session.instantiateSummaryDialog(self.rds_display)
+		self.rds_display.setSubScreen()
 		self.rass_interactive = None
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -2239,6 +2242,7 @@ class InfoBarPVRState:
 		self.onChangedEntry = [ ]
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
+		self.pvrStateDialog.setSubScreen()
 		self.onShow.append(self._mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
 		self.force_show = force_show
@@ -2739,13 +2743,18 @@ class InfoBarPiP:
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()
 		else:
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-			if self.session.pip.playService(newservice):
-				self.session.pipshown = True
-				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-				if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+			if int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.setSubScreen()
+				self.session.pip.show()
+				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
 						print '[LCDMiniTV] enable PIP'
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.minitvpipmode.value)
@@ -2759,12 +2768,12 @@ class InfoBarPiP:
 						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
 						f.write("1")
 						f.close()
-			else:
-				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-				if self.session.pip.playService(newservice):
-					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+				else:
+					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+					if self.session.pip.playService(newservice):
+						self.session.pipshown = True
+						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+						if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
 							print '[LCDMiniTV] enable PIP'
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.minitvpipmode.value)
@@ -2778,15 +2787,14 @@ class InfoBarPiP:
 							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
 							f.write("1")
 							f.close()
-				else:
-					self.session.pipshown = False
-					del self.session.pip
-			if self.session.pipshown and hasattr(self, "screenSaverTimer"):
-				self.screenSaverTimer.stop()
-			self.lastPiPService = None
-
-	def clearLastPiPService(self):
-		self.lastPiPService = None
+					else:
+						self.lastPiPService = None
+						self.session.pipshown = False
+						del self.session.pip
+			else:
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
+			self.screenSaverTimer.stop()
 
 	def clearLastPiPService(self):
 		self.lastPiPService = None
@@ -3718,6 +3726,7 @@ class InfoBarSubtitleSupport(object):
 
 		if isStandardInfoBar(self):
 			self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+			self.subtitle_window.setSubScreen()
 		else:
 			from Screens.InfoBar import InfoBar
 			self.subtitle_window = InfoBar.instance.subtitle_window

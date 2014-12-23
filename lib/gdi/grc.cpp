@@ -3,6 +3,9 @@
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#ifdef USE_LIBVUGLES2
+#include <vuplus_gles.h>
+#endif
 
 #ifndef SYNC_PAINT
 void *gRC::thread_wrapper(void *ptr)
@@ -100,6 +103,12 @@ void gRC::submit(const gOpcode &o)
 void *gRC::thread()
 {
 	int need_notify = 0;
+#ifdef USE_LIBVUGLES2
+	if (gles_open()) {
+		gles_state_open();
+		gles_viewport(720, 576, 720 * 4);
+	}
+#endif
 #ifndef SYNC_PAINT
 	while (1)
 	{
@@ -192,6 +201,10 @@ void *gRC::thread()
 		}
 	}
 #ifndef SYNC_PAINT
+#ifdef USE_LIBVUGLES2
+	gles_state_close();
+	gles_close();
+#endif
 	pthread_exit(0);
 #endif
 	return 0;
@@ -606,6 +619,46 @@ void gPainter::end()
 		return;
 }
 
+void gPainter::sendShow(ePoint point, eSize size)
+{
+	if ( m_dc->islocked() )
+		return;
+	gOpcode o;
+	o.opcode=gOpcode::sendShow;
+	o.dc = m_dc.grabRef();
+	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
+	o.parm.setShowHideInfo->point = point;
+	o.parm.setShowHideInfo->size = size;
+	m_rc->submit(o);
+}
+
+void gPainter::sendHide(ePoint point, eSize size)
+{
+	if ( m_dc->islocked() )
+		return;
+	gOpcode o;
+	o.opcode=gOpcode::sendHide;
+	o.dc = m_dc.grabRef();
+	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
+	o.parm.setShowHideInfo->point = point;
+	o.parm.setShowHideInfo->size = size;
+	m_rc->submit(o);
+}
+
+#ifdef USE_LIBVUGLES2
+void gPainter::setView(eSize size)
+{
+	if ( m_dc->islocked() )
+		return;
+	gOpcode o;
+	o.opcode=gOpcode::setView;
+	o.dc = m_dc.grabRef();
+	o.parm.setViewInfo = new gOpcode::para::psetViewInfo;
+	o.parm.setViewInfo->size = size;
+	m_rc->submit(o);
+}
+#endif
+
 gDC::gDC()
 {
 	m_spinner_pic = 0;
@@ -817,6 +870,14 @@ void gDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::flush:
 		break;
+	case gOpcode::sendShow:
+		break;
+	case gOpcode::sendHide:
+		break;
+#ifdef USE_LIBVUGLES2
+	case gOpcode::setView:
+		break;
+#endif
 	case gOpcode::enableSpinner:
 		enableSpinner();
 		break;
