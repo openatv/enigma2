@@ -3,7 +3,7 @@ from GUIComponent import GUIComponent
 
 from Tools.FuzzyDate import FuzzyTime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, \
+from enigma import eListboxPythonMultiContent, eListbox, gFont, eLabel,\
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 from Tools.Alternatives import GetWithAlternative
 from Tools.LoadPixmap import LoadPixmap
@@ -18,9 +18,19 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def buildTimerEntry(self, timer, processed):
 		width = self.l.getItemSize().width()
 		res = [ None ]
-		x = (2*width) // 3
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 0, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, timer.service_ref.getServiceName()))
+		serviceName = timer.service_ref.getServiceName()
+
+		dummy = eLabel(self.instance)
+		dummy.setFont(gFont("Regular", 20))
+		dummy.resize(self.l.getItemSize())
+		dummy.setText(serviceName)
+		serviceNameWidth = dummy.calculateSize().width()
+
+		if 225 > width - serviceNameWidth:
+			serviceNameWidth = width - 225
+
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, width - serviceNameWidth, 0, serviceNameWidth, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, serviceName))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 0, width - serviceNameWidth - 24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
 
 		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 		begin = FuzzyTime(timer.begin)
@@ -102,6 +112,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
+		self.instance = instance
+		instance.setWrapAround(True)
 
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
@@ -140,4 +152,3 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			op = 3600 - op
 			direction = 'W'
 		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
-
