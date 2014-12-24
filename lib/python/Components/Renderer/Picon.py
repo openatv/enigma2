@@ -75,7 +75,7 @@ def getPiconName(serviceName):
 		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8')).encode('ASCII', 'ignore')
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if name:
-			pngname = findPicon(name)
+			pngname = findPicon(name) or name.endswith('hd') and findPicon(name[:-2])
 	return pngname
 
 class Picon(Renderer):
