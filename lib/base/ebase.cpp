@@ -10,7 +10,8 @@
 
 DEFINE_REF(eSocketNotifier);
 
-eSocketNotifier::eSocketNotifier(eMainloop *context, int fd, int requested, bool startnow): context(*context), fd(fd), state(0), requested(requested)
+eSocketNotifier::eSocketNotifier(eMainloop *context, int fd, int requested, bool startnow):
+	context(*context), fd(fd), state(0), requested(requested)
 {
 	if (startnow)
 		start();
