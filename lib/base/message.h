@@ -83,7 +83,7 @@ public:
 	eFixedMessagePump(eMainloop *context, int mt)
 	{
 		pipe(m_pipe);
-		sn=eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read);
+		sn = eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read, false);
 		CONNECT(sn->activated, eFixedMessagePump<T>::do_recv);
 		sn->start();
 	}
@@ -92,8 +92,6 @@ public:
 		close(m_pipe[0]);
 		close(m_pipe[1]);
 	}
-	void start() { if (sn) sn->start(); }
-	void stop() { if (sn) sn->stop(); }
 };
 #endif
 

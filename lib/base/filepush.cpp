@@ -26,6 +26,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 
 eFilePushThread::~eFilePushThread()
 {
+	stop(); /* eThread is borked, always call stop() from d'tor */
 	free(m_buffer);
 }
 
