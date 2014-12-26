@@ -3710,6 +3710,7 @@ class InfoBarInstantRecord:
 
 	def instantRecord(self, serviceRef=None):
 		self.SelectedInstantServiceRef = serviceRef
+		pirr = preferredInstantRecordPath()
 		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
 			if not pirr:
 				pirr = ""
