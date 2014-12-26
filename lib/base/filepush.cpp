@@ -10,7 +10,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	:prio_class(io_prio_class),
 	 prio(io_prio_level),
 	 m_sg(NULL),
-	 m_stop(0),
+	 m_stop(1),
 	 m_send_pvr_commit(0),
 	 m_stream_mode(0),
 	 m_blocksize(blocksize),
@@ -227,8 +227,8 @@ void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 
 void eFilePushThread::stop()
 {
-		/* if we aren't running, don't bother stopping. */
-	if (!sync())
+	/* if we aren't running, don't bother stopping. */
+	if (m_stop == 1)
 		return;
 	m_stop = 1;
 	eDebug("eFilePushThread stopping thread");
@@ -239,7 +239,7 @@ void eFilePushThread::stop()
 
 void eFilePushThread::pause()
 {
-	if (!sync())
+	if (m_stop == 1)
 	{
 		eWarning("eFilePushThread::pause called while not running");
 		return;
@@ -258,9 +258,9 @@ void eFilePushThread::pause()
 
 void eFilePushThread::resume()
 {
-	if (!sync())
+	if (m_stop != 2)
 	{
-		eWarning("eFilePushThread::resume called while not running");
+		eWarning("eFilePushThread::resume called while not paused");
 		return;
 	}
 	/* Resume the paused thread by resetting the flag and
@@ -307,7 +307,7 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 	m_buffersize(buffersize),
 	m_buffer(buffer),
 	m_overflow_count(0),
-	m_stop(0),
+	m_stop(1),
 	m_messagepump(eApp, 0)
 {
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
@@ -380,7 +380,7 @@ void eFilePushThreadRecorder::start(int fd)
 void eFilePushThreadRecorder::stop()
 {
 	/* if we aren't running, don't bother stopping. */
-	if (!sync())
+	if (m_stop == 1)
 		return;
 	m_stop = 1;
 	eDebug("[eFilePushThreadRecorder] stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
