@@ -1138,7 +1138,7 @@ msgstr "Datei anhängen"
 
 #
 msgid "Audio"
-msgstr "Ton"
+msgstr "Audio"
 
 #
 msgid "Audio options..."
@@ -5229,13 +5229,13 @@ msgstr "OSD-3D-Konfiguration"
 
 #
 msgid "OSD Position"
-msgstr "OSD-Position"
+msgstr "OSD Kalibrieren"
 
 msgid "OSD Settings"
 msgstr "OSD"
 
 msgid "OSD settings"
-msgstr "OSD"
+msgstr "Menu Anpassungen"
 
 msgid "OSD name request"
 msgstr "OSD-Sprache"
@@ -15801,3 +15801,190 @@ msgid ""
 "'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
 msgstr ""
 "Hier können Sie die Datenquelle für die Anzeigen in der Infobar einstellen."
+
+msgid "Click on your remote on the button you want to change"
+msgstr ""
+"Drücke den Button der Fernbedienung der neu belegt werden soll und dann "
+"drücke \"OK\""
+
+msgid "Info (EPG)"
+msgstr "Info/EPG"
+
+msgid "Info (EPG) Long"
+msgstr "Info/EPG lang"
+
+msgid "Epg/Guide"
+msgstr "EPG/Info"
+
+msgid "Epg/Guide long"
+msgstr "EPG/Info lang"
+
+msgid ""
+"Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" "
+"to toggle between the lists. Select an assigned function and click on \"OK\" "
+"to de-assign it. Use \"Next/Previous\" to change the order of the assigned "
+"functions."
+msgstr ""
+"Gewünschte Funktion auswählen und \"OK\" drücken um sie zu belegen. Benutze  "
+"\"CH+/-\" um zwischen den Listen umzuschalten. Wähle zugeordnete Funktion "
+"aus und drücke  \"OK\" um die Belegung zu entfernen."
+
+msgid "Up"
+msgstr "hoch"
+
+msgid "Down"
+msgstr "Runter"
+
+msgid "Channel up"
+msgstr "Nächster Sender"
+
+msgid "Channel down"
+msgstr "Sender zurück"
+
+msgid "Rec"
+msgstr "Aufnahme"
+
+msgid "Teletext"
+msgstr "Videotext"
+
+msgid "Help"
+msgstr "Hilfe"
+
+msgid "Help long"
+msgstr "Hilfe lang"
+
+msgid "Subtitle"
+msgstr "Untertitel"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "End"
+msgstr "Ende"
+
+msgid "Next"
+msgstr "Nächstes"
+
+msgid "Previous"
+msgstr "Vorheriges"
+
+msgid "Playpause"
+msgstr "PlayPause"
+
+msgid "Rewind"
+msgstr "Rücklauf"
+
+msgid "Fastforward"
+msgstr "Vorlauf"
+
+msgid "Skip back"
+msgstr "Rückwärts spulen"
+
+msgid "activatePiP"
+msgstr "Aktiviere PiP"
+
+msgid "Timer"
+msgstr "Timer"
+
+msgid "Playlist"
+msgstr "Playliste"
+
+msgid "Search/WEB"
+msgstr "Suche/Web"
+
+msgid "Mark/Portal/Playlist"
+msgstr ""
+
+msgid "Sleep"
+msgstr "Sleeptimer"
+
+msgid "Power"
+msgstr "Aus-Taste"
+
+msgid "Power long"
+msgstr "Aus-Taste lang"
+
+msgid "Context"
+msgstr "Kontext"
+
+msgid "F1/F3"
+msgstr ""
+
+msgid "F1/LAN"
+msgstr ""
+
+msgid "F1/LAN long"
+msgstr "F1/LAN lang"
+
+msgid "F2"
+msgstr ""
+
+msgid "F2 long"
+msgstr "F2 lang"
+
+msgid "F3"
+msgstr ""
+
+msgid "F3 long"
+msgstr "F3 lang"
+
+msgid ""
+"Configure the minimum width before showing the 'i' icon, '0' is equal to not "
+"showing the icon at all."
+msgstr ""
+"Konfiguriere die Minimumbreite bevor das 'I' Icon gezeigt wird. '0' bedeutet "
+"das Icon wird gar nicht gezeigt."
+
+msgid "Show time in 24 hour clock format."
+msgstr "Zeige Zeit im 24 Stunden Format."
+
+msgid "This option allows you to disable show Restart Network in Extentions list"
+msgstr "Diese Option erlaubt dir Zeige Neustarten im Erweiterungsmenu auszuschalten"
+
+msgid "Show record indicator"
+msgstr "Zeige Aufnahmeindikator"
+
+msgid ""
+"Configure if and how the record indicator will be shown in the channel "
+"selection list."
+msgstr ""
+"Konfigurieren ob und wie Icons für die Aufnahme in der Senderliste gezeigt "
+"werden."
+
+msgid ""
+"Configure if and how wide the service name column will be shown in the "
+"channel selection list."
+msgstr ""
+"Konfigurieren ob und wie Sendernamen in der Senderliste gezeigt werden."
+
+msgid "Enable fallback remote receiver"
+msgstr "Aktiviere Reservereceiver"
+
+msgid ""
+"Enable remote enigma2 receiver to be tried to tune into services that cannot "
+"be tuned into locally (e.g. tuner is occupied or service type is unavailable "
+"on the local tuner. Specify complete URL including http:// and port number "
+"(normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+"Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal "
+"nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht "
+"verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer "
+"(normal ...:8001), e.g. http://zweite_box:8001."
+
+msgid "Fallback remote receiver URL"
+msgstr "Reservereceiver URL"
+
+msgid "URL of fallback remote receiver"
+msgstr "URL des Reservereceiver"
+
+msgid ""
+"Configure which tuner will be preferred for recordings, when more than one "
+"tuner is available. 'Disabled' would select a tuner based on preferred tuner "
+"in customise screen. 'Auto' would choose based on E2's default rules, "
+"ignoring preferred tuner in customise screen."
+msgstr ""
+"Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als "
+"ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der "
+"unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und "
+"ignoriert die Einstellung in Anpassen."
+

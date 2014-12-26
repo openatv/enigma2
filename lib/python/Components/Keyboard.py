@@ -40,6 +40,6 @@ class Keyboard:
 		return self.keyboardmaps
 
 	def getDefaultKeyboardMap(self):
-		return 'default.kmap'
+		return 'de.kmap'
 
 keyboard = Keyboard()
