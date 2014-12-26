@@ -37,6 +37,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 #  | <start, end>              <state>  |
 #
 	def buildTimerEntry(self, timer, processed):
+		screenwidth = getDesktop(0).size().width()
 		width = self.l.getItemSize().width()
 		res = [ None ]
 		x = width / 2
@@ -130,14 +131,11 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 50, 37, 126, 25, 2, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 27, 126, 23, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
-		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		if icon:
 			if screenwidth and screenwidth == 1920:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 3, 30, 30, icon))
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 3, 20, 20, icon))
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
 		return res
 
 	def __init__(self, list):
