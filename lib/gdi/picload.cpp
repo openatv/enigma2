@@ -652,8 +652,8 @@ void ePicLoad::thread_finished()
 
 void ePicLoad::thread()
 {
-	hasStarted();
 	threadrunning=true;
+	hasStarted();
 	nice(4);
 	runLoop();
 }
