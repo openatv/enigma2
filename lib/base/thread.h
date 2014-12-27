@@ -34,12 +34,6 @@ public:
 		   It should be used to do final cleanups (unlock locked mutexes ....) */
 	virtual void thread_finished() {}
 
-		/* runAsync starts the thread.
-		   it assumes that the thread is not running,
-		   i.e. sync() *must* return 0.
-		   it will not wait for anything. */
-	int runAsync(int prio=0, int policy=0);
-
 		/* run will wait until the thread has either
 		   passed it's initialization, or it has
 		   died again. */
@@ -47,17 +41,25 @@ public:
 
 	virtual void thread()=0;
 
+	int sendSignal(int sig);
+
+		/* join the thread, i.e. busywait until thread has finnished. */
+	void kill();
+
+	/* Call pthread_cancel, please don't do this. */
+	void abort_badly() { pthread_cancel(the_thread); }
+private:
+	pthread_t the_thread;
+
 		/* waits until thread is in "run" state */
 		/* result: 0 - thread is not alive
 		           1 - thread state unknown */
 	int sync();
-	int sendSignal(int sig);
-
-		/* join the thread, i.e. busywait until thread has finnished. */
-	void kill(bool sendcancel=false);
-private:
-	pthread_t the_thread;
-
+		/* runAsync starts the thread.
+		   it assumes that the thread is not running,
+		   i.e. sync() *must* return 0.
+		   it will not wait for anything. */
+	int runAsync(int prio=0, int policy=0);
 	static void *wrapper(void *ptr);
 	int m_alive, m_started;
 	static void thread_completed(void *p);
