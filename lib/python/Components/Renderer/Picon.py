@@ -79,6 +79,8 @@ def getPiconName(serviceName):
 			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 			if name:
 				pngname = findPicon(name)
+				if not pngname and len(name) > 2 and name.endswith('hd'):
+					findPicon(name[:-2])
 		except:
 			pass
 	return pngname

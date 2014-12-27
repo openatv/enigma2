@@ -268,7 +268,7 @@ class FileList(MenuList):
 
 def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected = False):
 	res = [ (absolute, isDir, selected, name) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 0, 470, 25, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "extensions/directory.png"))
 	else:
@@ -319,10 +319,10 @@ class MultiFileSelectList(FileList):
 				try:
 					self.selectedFiles.remove(realPathname)
 				except:
-				        try:
+					try:
 						self.selectedFiles.remove(os.path.normpath(realPathname))
 					except:
-					        print "Couldn't remove:", realPathname
+						print "Couldn't remove:", realPathname
 			else:
 				SelectState = True
 				if (realPathname not in self.selectedFiles) and (os.path.normpath(realPathname) not in self.selectedFiles):

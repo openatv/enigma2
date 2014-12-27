@@ -10,6 +10,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
+from Components.Sources.Boolean import Boolean
 from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
@@ -34,6 +35,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["cancel"] = Pixmap()
 		self["key_yellow"] = Label(_("Timer type"))
 		self["key_blue"] = Label()
+		self["VKeyIcon"] = Boolean(False)
 
 		self.createConfig()
 
