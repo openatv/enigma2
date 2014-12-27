@@ -1687,7 +1687,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			if ( gv_image )
 			{
 				GstBuffer *buf_image;
-				buf_image = gst_value_get_buffer (gv_image);
+#if GST_VERSION_MAJOR < 1
+				buf_image = gst_value_get_buffer(gv_image);
+#else
+				GstSample *sample;
+				sample = (GstSample *)g_value_get_boxed(gv_image);
+				buf_image = gst_sample_get_buffer(sample);
+#endif
 				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
 				if (fd >= 0)
 				{
