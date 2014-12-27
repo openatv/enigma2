@@ -382,10 +382,11 @@ void eEPGCache::timeUpdated()
 {
 	if (!m_filename.empty())
 	{
-		if (!sync())
+		if (!m_running)
 		{
 			eDebug("[EPGC] time updated.. start EPG Mainloop");
 			run();
+			m_running = true;
 			singleLock s(channel_map_lock);
 			channelMapIterator it = m_knownChannels.begin();
 			for (; it != m_knownChannels.end(); ++it)
@@ -1046,6 +1047,7 @@ void eEPGCache::cleanLoop()
 
 eEPGCache::~eEPGCache()
 {
+	m_running = false;
 	messages.send(Message::quit);
 	kill(); // waiting for thread shutdown
 	singleLock s(cache_lock);
@@ -1184,13 +1186,11 @@ void eEPGCache::gotMessage( const Message &msg )
 void eEPGCache::thread()
 {
 	hasStarted();
-	m_running = true;
 	nice(4);
 	load();
 	cleanLoop();
 	runLoop();
 	save();
-	m_running = false;
 }
 
 static const char* EPGDAT_IN_FLASH = "/epg.dat";
