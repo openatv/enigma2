@@ -471,7 +471,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		m_sourceinfo.containertype = ctVCD;
 		m_sourceinfo.is_video = TRUE;
 	}
-	if ( strstr(filename, "://") && !strstr(filename, "file://") )
+	if ( strstr(filename, "://") )
 		m_sourceinfo.is_streaming = TRUE;
 
 	gchar *uri;
