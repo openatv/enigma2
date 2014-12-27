@@ -234,7 +234,7 @@ void eFilePushThread::stop()
 	eDebug("eFilePushThread stopping thread");
 	m_run_cond.signal(); /* Break out of pause if needed */
 	sendSignal(SIGUSR1);
-	kill(0); /* Kill means join actually */
+	kill(); /* Kill means join actually */
 }
 
 void eFilePushThread::pause()
@@ -385,7 +385,7 @@ void eFilePushThreadRecorder::stop()
 	m_stop = 1;
 	eDebug("[eFilePushThreadRecorder] stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
 	sendSignal(SIGUSR1);
-	kill(0);
+	kill();
 }
 
 void eFilePushThreadRecorder::sendEvent(int evt)
