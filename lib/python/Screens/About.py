@@ -165,6 +165,7 @@ class TranslationInfo(Screen):
 			infomap[type] = value
 		print infomap
 
+		self["key_red"] = Button(_("Cancel"))
 		self["TranslationInfo"] = StaticText(info)
 
 		translator_name = infomap.get("Language-Team", "none")
@@ -194,6 +195,8 @@ class CommitInfo(Screen):
 				"left": self.left,
 				"right": self.right
 			})
+
+		self["key_red"] = Button(_("Cancel"))
 
 		self.project = 0
 		self.projects = [
