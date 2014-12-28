@@ -166,6 +166,14 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	if os.path.isdir("/etc/ppanels"):
+		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
+			x = x[:-4]
+			ButtonSetupFunctions.append((_("PPanel") + " " + x, "PPanel/" + x, "PPanels"))
+	if os.path.isdir("/usr/script"):
+		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
+			x = x[:-3]
+			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
@@ -496,3 +504,14 @@ class InfoBarButtonSetup():
 					self.close()
 				else:
 					self.show()
+			elif selected[0] == "PPanel":
+				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
+				if os.path.isfile(ppanelFileName) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import PPanel
+					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
+			elif selected[0] == "Shellscript":
+				command = '/usr/script/' + selected[1] + ".sh"
+				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import Execute
+					self.session.open(Execute, selected[1] + " shellscript", None, command)
+
