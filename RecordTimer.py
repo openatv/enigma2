@@ -160,10 +160,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
 
 	def log(self, code, msg):
-	    try:
-		    self.log_entries.append((int(time()), code, msg))
-        except:
-            pass
+		try:
+			self.log_entries.append((int(time()), code, msg))
+		except:
+			pass
 		print "[TIMER]", msg
 
 	def calculateFilename(self, name=None):
