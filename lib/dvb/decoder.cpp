@@ -29,13 +29,13 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux ? demux->adapter : 0, dev);
-	m_fd = ::open(filename, O_RDWR);
+	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
 		eWarning("%s: %m", filename);
 	if (demux)
 	{
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
-		m_fd_demux = ::open(filename, O_RDWR);
+		m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 		if (m_fd_demux < 0)
 			eWarning("%s: %m", filename);
 	}
@@ -254,7 +254,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux ? demux->adapter : 0, dev);
-	m_fd = ::open(filename, O_RDWR);
+	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
 		eWarning("%s: %m", filename);
 	else
@@ -266,7 +266,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 	if (demux)
 	{
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
-		m_fd_demux = ::open(filename, O_RDWR);
+		m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 		if (m_fd_demux < 0)
 			eWarning("%s: %m", filename);
 		eDebug("demux device: %s", filename);
@@ -648,7 +648,7 @@ eDVBPCR::eDVBPCR(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
-	m_fd_demux = ::open(filename, O_RDWR);
+	m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
 }
@@ -723,7 +723,7 @@ eDVBTText::eDVBTText(eDVBDemux *demux, int dev)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
-	m_fd_demux = ::open(filename, O_RDWR);
+	m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
 }
