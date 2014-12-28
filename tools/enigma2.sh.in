@@ -38,7 +38,7 @@ if [ -e /proc/stb/info/hwmodel ]; then
          $string/sat-soft/settings.sh
       fi
    fi
-fi	
+fi
 
 if [ -d /home/root ]; then
 	cd /home/root
@@ -63,6 +63,11 @@ fi
 
 if [ ! -e /etc/enigma2/settings ]; then
 	touch /etc/enigma2/settings
+fi
+
+#check for default sat settings
+if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ]; then
+	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
 fi
 
 sync
@@ -118,7 +123,7 @@ case $ret in
 		;;
 	43)
 		init 1
-		;;		
+		;;
 	44)
 		# little hack but it will be fixed soon in drivers
 		if [ "$(cat /proc/stb/info/boxtype)" == 'ini-9000de' ]; then
@@ -132,7 +137,7 @@ case $ret in
 	45)
 		echo "    " > /dev/lcd0
 		/usr/bin/gigablue_wol
-		;;		
+		;;
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
