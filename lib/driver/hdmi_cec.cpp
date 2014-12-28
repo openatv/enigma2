@@ -53,9 +53,9 @@ eHdmiCEC::eHdmiCEC()
 	logicalAddress = 1;
 	deviceType = 1; /* default: recorder */
 #ifdef DREAMBOX
-	hdmiFd = ::open("/dev/misc/hdmi_cec0", O_RDWR | O_NONBLOCK);
+	hdmiFd = ::open("/dev/misc/hdmi_cec0", O_RDWR | O_NONBLOCK | O_CLOEXEC);
 #else
-	hdmiFd = ::open("/dev/hdmi_cec", O_RDWR | O_NONBLOCK);
+	hdmiFd = ::open("/dev/hdmi_cec", O_RDWR | O_NONBLOCK | O_CLOEXEC);
 #endif
 	if (hdmiFd >= 0)
 	{

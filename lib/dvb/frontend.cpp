@@ -509,7 +509,7 @@ int eDVBFrontend::openFrontend()
 		eDebug("opening frontend %d", m_dvbid);
 		if (m_fd < 0)
 		{
-			m_fd = ::open(m_filename.c_str(), O_RDWR|O_NONBLOCK);
+			m_fd = ::open(m_filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
 			if (m_fd < 0)
 			{
 				eWarning("failed! (%s) %m", m_filename.c_str());
