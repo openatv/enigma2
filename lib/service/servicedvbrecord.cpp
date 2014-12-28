@@ -305,7 +305,7 @@ int eDVBServiceRecord::doRecord()
 	{
 		eDebug("Recording to %s...", m_filename.c_str());
 		::remove(m_filename.c_str());
-		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0666);
+		int fd = ::open(m_filename.c_str(), O_WRONLY | O_CREAT | O_LARGEFILE | O_CLOEXEC, 0666);
 		if (fd == -1)
 		{
 			eDebug("eDVBServiceRecord - can't open recording file!");

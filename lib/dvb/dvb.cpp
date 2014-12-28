@@ -353,7 +353,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux0", nr);
-	demuxFd = open(filename, O_RDONLY | O_NONBLOCK);
+	demuxFd = open(filename, O_RDONLY | O_NONBLOCK | O_CLOEXEC);
 	if (demuxFd < 0)
 	{
 		goto error;
@@ -363,7 +363,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	{
 		snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", vtunerid);
 		if (::access(filename, F_OK) < 0) break;
-		vtunerFd = open(filename, O_RDWR);
+		vtunerFd = open(filename, O_RDWR | O_CLOEXEC);
 		if (vtunerFd < 0)
 		{
 			vtunerid++;

@@ -1043,7 +1043,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 //	possible_providers.insert(providerPair("PREMIERE", 0xC00000));
 //	possible_services.insert(eServiceReference("1:0:1:2A:4:85:C00000:0:0:0:"));
 
-	fd = ::open(filename, O_RDWR | O_NONBLOCK);
+	fd = ::open(filename, O_RDWR | O_NONBLOCK | O_CLOEXEC);
 
 	eDebugCI("CI Slot %d has fd %d", getSlotID(), fd);
 	state = stateInvalid;

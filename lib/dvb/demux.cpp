@@ -54,7 +54,7 @@ int eDVBDemux::openDemux(void)
 {
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux%d", adapter, demux);
-	return ::open(filename, O_RDWR);
+	return ::open(filename, O_RDWR | O_CLOEXEC);
 }
 
 int eDVBDemux::openDVR(int flags)
@@ -688,7 +688,7 @@ RESULT eDVBTSRecorder::start()
 	char filename[128];
 	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", m_demux->adapter, m_demux->demux);
 
-	m_source_fd = ::open(filename, O_RDONLY);
+	m_source_fd = ::open(filename, O_RDONLY | O_CLOEXEC);
 
 	if (m_source_fd < 0)
 	{
