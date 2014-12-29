@@ -137,12 +137,13 @@ class PluginBrowser(Screen):
 
 	def updateList(self):
 		self.list = []
-		pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)[:]
 		for x in config.misc.pluginbrowser.plugin_order.value.split(","):
 			plugin = list(plugin for plugin in pluginlist if plugin.path[24:] == x)
 			if plugin:
 				self.list.append(PluginEntryComponent(plugin[0], self.listWidth))
-		self.list = self.list or [PluginEntryComponent(plugin, self.listWidth) for plugin in pluginlist]
+				pluginlist.remove(plugin[0])
+		self.list = self.list + [PluginEntryComponent(plugin, self.listWidth) for plugin in pluginlist]
 		self["list"].l.setList(self.list)
 
 	def delete(self):
