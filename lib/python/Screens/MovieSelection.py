@@ -217,6 +217,29 @@ def copyServiceFiles(serviceref, dest, name=None):
 	CopyFiles.copyFiles(moveList, name)
 	print "[MovieSelection] Copying in background..."
 
+# Appends possible destinations to the bookmarks object. Appends tuples
+# in the form (description, path) to it.
+def buildMovieLocationList(bookmarks):
+	inlist = []
+	for d in config.movielist.videodirs.value:
+		d = os.path.normpath(d)
+		bookmarks.append((d,d))
+		inlist.append(d)
+	for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
+		d = os.path.normpath(p.mountpoint)
+		if d in inlist:
+			# improve shortcuts to mountpoints
+			try:
+				bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
+			except:
+				pass # When already listed as some "friendly" name
+		else:
+			bookmarks.append((p.tabbedDescription(), d))
+		inlist.append(d)
+	for d in last_selected_dest:
+		if d not in inlist:
+			bookmarks.append((d,d))
+
 class MovieBrowserConfiguration(ConfigListScreen,Screen):
 	skin = """
 <screen position="center,center" size="560,400" title="Movie Browser Configuration" >
@@ -654,6 +677,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
+			locations = []
+			buildMovieLocationList(locations)
+			prefix = _("Goto") + ": "
+			for d,p in locations:
+				if p and p.startswith('/'):
+					userDefinedActions[p] = prefix + d
 			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
 			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
@@ -663,7 +692,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.btn_text = ConfigSelection(default='movieoff', choices=userDefinedActions)
 			config.movielist.btn_F1 = ConfigSelection(default='movieoff_menu', choices=userDefinedActions)
 			config.movielist.btn_F2 = ConfigSelection(default='preview', choices=userDefinedActions)
-			config.movielist.btn_F3 = ConfigSelection(default='listtype', choices=userDefinedActions)
+			config.movielist.btn_F3 = ConfigSelection(default='/media', choices=userDefinedActions)
 			userDefinedButtons ={
 				'red': config.movielist.btn_red,
 				'green': config.movielist.btn_green,
@@ -688,13 +717,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					if name == p.name:
 						p(self.session, item[0])
-			return
-		try:
-			a = getattr(self, 'do_' + name)
-		except Exception:
-			# Undefined action
-			return
-		a()
+		elif name.startswith('/'):
+			self.gotFilename(name)
+		else:
+			try:
+				a = getattr(self, 'do_' + name)
+			except Exception:
+				# Undefined action
+				return
+			a()
 
 	def btn_red(self):
 		self._callButton(config.movielist.btn_red.value)
@@ -861,6 +892,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			action = userDefinedButtons[name].value
 			if action.startswith('@'):
 				check = self.can_default
+			elif action.startswith('/'):
+				check = self.can_gohome
 			else:
 				try:
 					check = getattr(self, 'can_' + action)
@@ -1364,25 +1397,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def selectMovieLocation(self, title, callback):
 		bookmarks = [("("+_("Other")+"...)", None)]
-		inlist = []
-		for d in config.movielist.videodirs.value:
-			d = os.path.normpath(d)
-			bookmarks.append((d,d))
-			inlist.append(d)
-		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
-			d = os.path.normpath(p.mountpoint)
-			if d in inlist:
-				# improve shortcuts to mountpoints
-				try:
-					bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription(), d)
-				except:
-					pass # When already listed as some "friendly" name
-			else:
-				bookmarks.append((p.tabbedDescription(), d))
-			inlist.append(d)
-		for d in last_selected_dest:
-			if d not in inlist:
-				bookmarks.append((d,d))
+		buildMovieLocationList(bookmarks)
 		self.onMovieSelected = callback
 		self.movieSelectTitle = title
 		self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list = bookmarks)
