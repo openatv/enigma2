@@ -3,6 +3,7 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, 
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
+from Tools.Alternatives import GetWithAlternative
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
@@ -162,7 +163,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			refstr = str(ref.sref)
 		else:
 			refstr = str(ref)
-
+		refstr = refstr and GetWithAlternative(refstr)
 		if '%3a//' in refstr:
 			return "%s" % _("Stream")
 		op = int(refstr.split(':', 10)[6][:-4] or "0",16)
