@@ -3127,6 +3127,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							eDebug("lookup events, title starting with '%s' (%s)", str, casetype?"ignore case":"case sensitive");
 							break;
 					}
+					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					singleLock s(cache_lock);
 					std::string title;
 					for (descriptorMap::iterator it(eventData::descriptors.begin());
@@ -3186,6 +3187,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							}
 						}
 					}
+					Py_END_ALLOW_THREADS;
 				}
 				else
 				{
