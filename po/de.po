@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-05 12:05+0000\n"
-"PO-Revision-Date: 2014-12-05 22:50+0100\n"
+"POT-Creation-Date: 2014-12-28 18:28+0000\n"
+"PO-Revision-Date: 2014-12-29 11:09+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1075,6 +1075,12 @@ msgstr "Kunst/Kultur"
 msgid "Ask user"
 msgstr "Benutzer fragen"
 
+msgid "Ask user (with default as 'no')"
+msgstr "Fragen (Voreinstellung 'Nein')"
+
+msgid "Ask user (with default as 'yes')"
+msgstr "Fragen (Voreinstellung 'Ja')"
+
 msgid "Aspect ratio"
 msgstr "Aspect/Ratio"
 
@@ -1320,7 +1326,7 @@ msgstr "Helligkeit (Bereitschaft)"
 
 #, python-format
 msgid "Buffering %d%%"
-msgstr ""
+msgstr "Pufferung %d%%"
 
 msgid "Buffers:"
 msgstr "Puffer:"
@@ -3015,13 +3021,6 @@ msgstr "ECM Zeit"
 msgid "ECM avg"
 msgstr "ECM Durchschnitt"
 
-msgid ""
-"ECM data will be included in the stream. This enables a client receiver to "
-"decode it."
-msgstr ""
-"ECM Daten werden in den Stream eingefügt. Dies ermöglicht es andere "
-"Empfänger es zu entschlüsseln."
-
 msgid "ECM last"
 msgstr "Letztes ECM"
 
@@ -3453,7 +3452,7 @@ msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Kann /tmp/positionersetup.log nicht schreiben: "
 
 msgid "Fallback remote receiver URL"
-msgstr ""
+msgstr "Rückfall Receiver URL"
 
 #, python-format
 msgid "Fan %d"
@@ -4050,9 +4049,6 @@ msgstr "Inadyn Einstellungen"
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
 
-msgid "Include ECM in http streams"
-msgstr "ECM in HTTP-Streams integrieren"
-
 msgid "Include EIT in http streams"
 msgstr "EIT in HTTP-Streams integrieren"
 
@@ -4483,7 +4479,7 @@ msgid "Listen to the radio..."
 msgstr "Radio hören..."
 
 msgid "Lists reloaded!"
-msgstr ""
+msgstr "Listen neu geladen!"
 
 msgid "Lithuanian"
 msgstr "Litauisch"
@@ -6220,11 +6216,11 @@ msgstr "Aufnahme"
 msgid "Recording Setup"
 msgstr "Aufnahme Einstellungen"
 
+msgid "Recording and playback settings"
+msgstr "Aufnahme/Wiedergabe Einstellungen"
+
 msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
-
-msgid "Recording settings"
-msgstr "Aufnahme Einstellungen"
 
 msgid "Recording type"
 msgstr "Aufnahmetyp"
@@ -10570,11 +10566,17 @@ msgstr "Abenteuer/Western/Krieg"
 msgid "advertisement/shopping"
 msgstr "Werbung/Einkaufen"
 
+msgid "alpha then oldest"
+msgstr ""
+
 msgid "alphabetic"
 msgstr "alphabetisch"
 
 msgid "alphabetic reverse"
 msgstr "umgekehrtes Alphabet"
+
+msgid "alpharev then newest"
+msgstr ""
 
 msgid "am"
 msgstr "am"
@@ -11794,6 +11796,13 @@ msgstr "umgeschaltet"
 #~ msgid "Display"
 #~ msgstr "Display (VFD/LCD)"
 
+#~ msgid ""
+#~ "ECM data will be included in the stream. This enables a client receiver "
+#~ "to decode it."
+#~ msgstr ""
+#~ "ECM Daten werden in den Stream eingefügt. Dies ermöglicht es andere "
+#~ "Empfänger es zu entschlüsseln."
+
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enigma2 Änderungen"
 
@@ -11805,6 +11814,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Hotkey Setup"
 #~ msgstr "HotKey Einstellungen"
+
+#~ msgid "Include ECM in http streams"
+#~ msgstr "ECM in HTTP-Streams integrieren"
 
 #~ msgid "Latest Commits"
 #~ msgstr "Letzte Änderungen"
