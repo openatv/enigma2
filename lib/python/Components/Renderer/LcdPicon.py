@@ -119,7 +119,7 @@ class LcdPicon(Renderer):
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'dm7080'):
+				if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'sezammarvel', 'atemionemesis', 'mbultra', 'beyonwizt4', 'dm7080'):
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 				else:
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
