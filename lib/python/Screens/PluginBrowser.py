@@ -121,19 +121,25 @@ class PluginBrowser(Screen):
 		self.move(1)
 
 	def move(self, direction):
-		currentIndex = self["list"].getSelectionIndex()
-		swapIndex = (currentIndex + direction) % len(self.list)
-		self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
-		self["list"].l.setList(self.list)
-		if direction == 1:
-			self["list"].down()
-		else:
-			self["list"].up()
-		plugin_order = []
-		for x in self.list:
-			plugin_order.append(x[0].path[24:])
-		config.misc.pluginbrowser.plugin_order.value = ",".join(plugin_order)
-		config.misc.pluginbrowser.plugin_order.save()
+		if len(self.list) > 1:
+			currentIndex = self["list"].getSelectionIndex()
+			swapIndex = (currentIndex + direction) % len(self.list)
+			if currentIndex == 0 and swapIndex != 1:
+				self.list = self.list[1:] + [self.list[0]]
+			elif swapIndex == 0 and currentIndex != 1:
+				self.list = [self.list[-1]] + self.list[:-1]
+			else:
+				self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
+			self["list"].l.setList(self.list)
+			if direction == 1:
+				self["list"].down()
+			else:
+				self["list"].up()
+			plugin_order = []
+			for x in self.list:
+				plugin_order.append(x[0].path[24:])
+			config.misc.pluginbrowser.plugin_order.value = ",".join(plugin_order)
+			config.misc.pluginbrowser.plugin_order.save()
 
 	def updateList(self):
 		self.list = []
