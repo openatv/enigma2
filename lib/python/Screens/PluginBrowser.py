@@ -2,6 +2,7 @@ from Screen import Screen
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Components.ActionMap import ActionMap
+from Components.config import config, ConfigSubsection, ConfigText
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Label import Label
@@ -20,6 +21,9 @@ from time import time
 import os
 
 language.addCallback(plugins.reloadPlugins)
+
+config.misc.pluginbrowser = ConfigSubsection()
+config.misc.pluginbrowser.plugin_order = ConfigText(default="")
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -63,6 +67,11 @@ class PluginBrowser(Screen):
 			"red": self.delete,
 			"green": self.download
 		})
+		self["DirectionActions"] = ActionMap(["DirectionActions"],
+		{
+			"moveUp": self.moveUp,
+			"moveDown": self.moveDown
+		})
 
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
@@ -105,9 +114,35 @@ class PluginBrowser(Screen):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
 
+	def moveUp(self):
+		self.move(-1)
+
+	def moveDown(self):
+		self.move(1)
+
+	def move(self, direction):
+		currentIndex = self["list"].getSelectionIndex()
+		swapIndex = (currentIndex + direction) % len(self.list)
+		self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
+		self["list"].l.setList(self.list)
+		if direction == 1:
+			self["list"].down()
+		else:
+			self["list"].up()
+		plugin_order = []
+		for x in self.list:
+			plugin_order.append(x[0].path[24:])
+		config.misc.pluginbrowser.plugin_order.value = ",".join(plugin_order)
+		config.misc.pluginbrowser.plugin_order.save()
+
 	def updateList(self):
-		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
-		self.list = [PluginEntryComponent(plugin, self.listWidth) for plugin in self.pluginlist]
+		self.list = []
+		pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		for x in config.misc.pluginbrowser.plugin_order.value.split(","):
+			plugin = list(plugin for plugin in pluginlist if plugin.path[24:] == x)
+			if plugin:
+				self.list.append(PluginEntryComponent(plugin[0], self.listWidth))
+		self.list = self.list or [PluginEntryComponent(plugin, self.listWidth) for plugin in pluginlist]
 		self["list"].l.setList(self.list)
 
 	def delete(self):
