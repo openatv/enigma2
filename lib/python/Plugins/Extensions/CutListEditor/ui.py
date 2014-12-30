@@ -139,6 +139,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		<ePixmap pixmap="skin_default/icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
 	</screen>"""
 
+	tutorial_seen = False
+
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
@@ -179,8 +181,6 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"showMenu": (self.showMenu, _("menu")),
 			}, prio=-4)
 
-		self.tutorial_seen = False
-
 		self.onExecBegin.append(self.showTutorial)
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -200,8 +200,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["SeekState"].setText(state[3].strip())
 
 	def showTutorial(self):
-		if not self.tutorial_seen:
-			self.tutorial_seen = True
+		if not CutListEditor.tutorial_seen:
+			CutListEditor.tutorial_seen = True
 			self.session.open(MessageBox,_("Welcome to the cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
 
 	def checkSkipShowHideLock(self):
