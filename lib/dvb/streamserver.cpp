@@ -45,6 +45,12 @@ void eStreamClient::start()
 	CONNECT(rsn->activated, eStreamClient::notifier);
 }
 
+static void set_tcp_buffer_size(int fd, int optname, int buf_size)
+{
+	if (::setsockopt(fd, SOL_SOCKET, optname, &buf_size, sizeof(buf_size)))
+		eDebug("Failed to set TCP SNDBUF or RCVBUF size: %m");
+}
+
 void eStreamClient::notifier(int what)
 {
 	if (!(what & eSocketNotifier::Read))
@@ -146,6 +152,10 @@ void eStreamClient::notifier(int what)
 			{
 				const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
 				writeAll(streamFd, reply, strlen(reply));
+				/* We don't expect any incoming data, so set a tiny buffer */
+				set_tcp_buffer_size(streamFd, SO_RCVBUF, 1 * 1024);
+				 /* We like 188k packets, so set the TCP window size to that */
+				set_tcp_buffer_size(streamFd, SO_SNDBUF, 188 * 1024);
 				if (serviceref.substr(0, 10) == "file?file=") /* convert openwebif stream reqeust back to serviceref */
 					serviceref = "1:0:1:0:0:0:0:0:0:0:" + serviceref.substr(10);
 				pos = serviceref.find('?');
@@ -185,7 +195,8 @@ void eStreamClient::notifier(int what)
 						if (pos != std::string::npos)
 							sscanf(request.substr(pos).c_str(), "?aspectratio=%d", &aspectratio);
 						encoderFd = -1;
-						if (eEncoder::getInstance()) encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio);
+						if (eEncoder::getInstance())
+							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio);
 						if (encoderFd >= 0)
 						{
 							running = true;
