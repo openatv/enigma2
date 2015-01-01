@@ -172,7 +172,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
 			if SystemInfo["Canedidchecking"]:
-				choice_list = [("00000000", _("off")), ("00000001", _("on"))]
+				choice_list = [("00000001", _("on")), ("00000000", _("off"))]
 				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
 				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
 				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
