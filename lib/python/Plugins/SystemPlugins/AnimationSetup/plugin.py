@@ -11,7 +11,7 @@ from enigma import setAnimation_current, setAnimation_speed
 
 # default = slide to left
 g_default = {
-        "current": 6,
+        "current": 0,
         "speed"  : 20,
 }
 g_max_speed = 30
