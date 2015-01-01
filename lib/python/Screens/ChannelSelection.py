@@ -399,24 +399,50 @@ class ChannelContextMenu(Screen):
 		info = service and service.info()
 		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 		if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
-			if not self.pipAvailable:
-				return
 			if self.session.pipshown:
 				del self.session.pip
+				if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
+					print '[LCDMiniTV] disable PIP'
+					f = open("/proc/stb/lcd/mode", "w")
+					f.write(config.lcd.minitvmode.value)
+					f.close()
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.setSubScreen()
 			self.session.pip.show()
 			newservice = self.csel.servicelist.getCurrent()
-			if self.session.pip.playService(newservice):
-				self.session.pipshown = True
-				self.session.pip.servicePath = self.csel.getCurrentServicePath()
-				self.close(True)
-			else:
-				self.session.pipshown = False
-				del self.session.pip
-				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+			currentBouquet = self.csel.servicelist and self.csel.servicelist.getRoot()
+			if newservice and newservice.valid():
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.csel.getCurrentServicePath()
+					self.session.pip.servicePath[1] = currentBouquet
+					if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
+						print '[LCDMiniTV] enable PIP'
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.minitvpipmode.value)
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_width", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_height", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+						f.write("1")
+						f.close()
+					self.close(True)
+				else:
+					self.session.pipshown = False
+					del self.session.pip
+					if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
+						print '[LCDMiniTV] disable PIP'
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.minitvmode.value)
+						f.close()
+					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
