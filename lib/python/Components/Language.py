@@ -170,7 +170,7 @@ class Language:
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 				else:
 					if x != lang[:2] and x != "en":
-						os.system("opkg remove " + Lpackagename + x)
+						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 					elif x == "pt":
 						if x != lang:
 							os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
