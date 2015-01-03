@@ -446,9 +446,12 @@ class Wizard(Screen):
 			displaytext = []
 			displaytext.append(self.getTranslation(self.wizard[self.currStep]["text"]))
 			if self.first:
-				getlist = self.getTranslation(self.wizard[self.currStep]["list"][0][0])
-				if getlist is not None:
-					entry = getlist
+				try:
+					getlist = self.getTranslation(self.wizard[self.currStep]["list"][0][0])
+					if getlist is not None:
+						entry = getlist
+				except:
+					entry = ""
 				self.first = False
 			else:
 				if self.showList:
