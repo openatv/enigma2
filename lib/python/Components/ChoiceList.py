@@ -5,14 +5,17 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists
 import skin
 
-def ChoiceEntryComponent(key="", text=None):
-	if not text: text = ["--"]
+def row_delta_y():
+	font = skin.fonts["ChoiceList"]
+	return (int(font[2]) - int(font[1]))/2
+
+def ChoiceEntryComponent(key = None, text = ["--"]):
+	y = row_delta_y()
 	res = [ text ]
 	if text[0] == "--":
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, y, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
-		
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, y, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
 		if key:
 			if key == "expandable":
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/expandable.png")
@@ -24,7 +27,7 @@ def ChoiceEntryComponent(key="", text=None):
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 0, 35, 25, png))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, y, 35, 25, png))
 	return res
 
 class ChoiceList(MenuList):
