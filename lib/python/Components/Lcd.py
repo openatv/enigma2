@@ -142,11 +142,11 @@ class LCD:
 				f.close()
 				
 	def setPower(self, value):
-		if fileExists("/proc/stb/lcd/vfd"):
+		if fileExists("/proc/stb/power/vfd"):
 			print 'setLCDPower',value
-			f = open("/proc/stb/lcd/vfd", "w")
+			f = open("/proc/stb/power/vfd", "w")
 			f.write(value)
-			f.close()		
+			f.close()
 
 	def setShowoutputresolution(self, value):
 		if fileExists("/proc/stb/lcd/show_outputresolution"):
