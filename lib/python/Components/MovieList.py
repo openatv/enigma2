@@ -369,9 +369,9 @@ class MovieList(GUIComponent):
 		if data.icon is not None:
 			iconSize = 22
 			if self.list_type in (MovieList.LISTTYPE_COMPACT_DESCRIPTION,MovieList.LISTTYPE_COMPACT):
-				pos = (0,0)
+				pos = (0,4)
 			else:
-				pos = (0,1)
+				pos = (0,5)
 			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=data.icon))
 		switch = config.usage.show_icons_in_movielist.value
 		if switch == 'p' or switch == 's':

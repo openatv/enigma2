@@ -77,10 +77,10 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.disabled:
 			state = _("disabled")
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 25, 136, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 25, 134, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 165,27, 60, 18, 2, RT_HALIGN_LEFT|RT_VALIGN_TOP, self.getOrbitalPos(timer.service_ref)))
 		if icon:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 20, 20, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 2, 20, 20, icon))
 		return res
 
 	def __init__(self, list):
