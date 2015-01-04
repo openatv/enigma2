@@ -28,13 +28,10 @@ def filescan_open(list, session, **kwargs):
 	from Screens import DVD
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
 		splitted = list[0].path.split('/')
-		print "splitted", splitted
 		if len(splitted) > 2:
-			if splitted[1] == 'autofs':
+			if splitted[1] == 'media' and (splitted[2].startswith('sr') or splitted[2] == 'dvd'):
 				session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(splitted[2]))
 				return
-			else:
-				print "splitted[0]", splitted[1]
 	else:
 		dvd_filelist = []
 		for x in list:

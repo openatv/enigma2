@@ -459,7 +459,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		m_sourceinfo.audiotype = atMP3;
 	else if ( strcasecmp(ext, ".wma") == 0 )
 		m_sourceinfo.audiotype = atWMA;
-	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
+	else if ( (strncmp(filename, "/media/sr", 9) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
 		m_sourceinfo.containertype = ctCDA;
 	if ( strcasecmp(ext, ".dat") == 0 )
 	{
