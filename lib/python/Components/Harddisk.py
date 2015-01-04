@@ -679,6 +679,7 @@ class HarddiskManager:
 		r = self.getMountpoint(device)
 		if r is None:
 			return "/media/" + device
+		return r
 
 	def getMountpoint(self, device):
 		dev = "/dev/%s" % device
