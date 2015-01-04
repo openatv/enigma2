@@ -51,7 +51,7 @@
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg"/>
 					<item level="0" entryID="epg_setup"><setup id="epgsettings"/></item>
-					<menu level="2" text="Load/Save" entryID="epgloadsave_menu">
+					<menu level="2" text="Load/Save/Delete" entryID="epgloadsave_menu">
 						<id val="epgloadsave_menu"/>
 						<item level="0" entryID="saveepgcache" text="Save EPG">
 <code>
@@ -73,6 +73,21 @@ def msgClosed(ret):
 		epgcache = eEPGCache.getInstance()
 		epgcache.load()
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
+</code>
+						</item>
+						<item level="0" entryID="deleteepgcache" text="Delete EPG">
+<code>
+from Components.EpgLoadSave import EpgDeleteMsg
+def msgClosed(ret):
+	if ret:
+		import os
+		from Components.config import config
+		if os.path.exists(config.misc.epgcache_filename.value):
+			os.remove(config.misc.epgcache_filename.value)
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.flushEPG()
+self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 </code>
 						</item>
 					</menu>
