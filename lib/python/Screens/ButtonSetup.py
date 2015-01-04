@@ -16,12 +16,12 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
-	(_("Red long"), "red_long", "Infobar/activateRedButton"),
+ButtonSetupKeys = [	(_("Red"), "red", ""),
+	(_("Red long"), "red_long", ""),
 	(_("Green"), "green", ""),
-	(_("Green long"), "green_long", "Infobar/showAutoTimerList"),
+	(_("Green long"), "green_long", ""),
 	(_("Yellow"), "yellow", ""),
-	(_("Yellow long"), "yellow_long", "Plugins/Extensions/IMDb/1"),
+	(_("Yellow long"), "yellow_long", ""),
 	(_("Blue"), "blue", ""),
 	(_("Blue long"), "blue_long", ""),
 	(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
