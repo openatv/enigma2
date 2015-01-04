@@ -22,14 +22,21 @@ from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineB
 distro =  getImageDistro()
 ImageVersion = getImageVersion()
 
+ImageVersion3 = ''
+if getMachineBrand() == "Vu+":
+	ImageVersion3= os.popen("cat /etc/opkg/mips32el-feed.conf | grep -o -e 4.2gl -e 4.2-old").read().rstrip()
+
 #############################################################################################################
 image = 0 # 0=openATV / 1=openMips
 if distro.lower() == "openmips":
 	image = 1
 elif distro.lower() == "openatv":
 	image = 0
-feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
-if ImageVersion == '4.1' or ImageVersion == '4.0' or ImageVersion == '3.0':
+if ImageVersion3 == '':
+	feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
+else:
+	feedurl_atv = 'http://images2.mynonpublic.com/openatv/%s' %ImageVersion3
+if ImageVersion == '4.1' or ImageVersion == '4.0' or ImageVersion == '3.0' or ImageVersion == '4.3':
 	ImageVersion2= '4.2'
 else:
 	ImageVersion2= '4.1'
@@ -118,7 +125,7 @@ class FlashOnline(Screen):
 		return True
 
 	def quit(self):
-		self.close()	
+		self.close()
 		
 	def blue(self):
 		pass
@@ -184,7 +191,7 @@ class doFlashImage(Screen):
 
 		
 	def quit(self):
-		self.close()	
+		self.close()
 		
 	def blue(self):
 		if self.Online:
