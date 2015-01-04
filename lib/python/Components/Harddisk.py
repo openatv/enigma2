@@ -702,7 +702,9 @@ class HarddiskManager:
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
-		return "/autofs/%s" % device
+		r = self.getMountpoint(device)
+		if r is None:
+			return "/media/" + device
 
 	def getMountpoint(self, device):
 		dev = "/dev/%s" % device
