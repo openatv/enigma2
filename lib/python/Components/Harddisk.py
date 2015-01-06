@@ -676,7 +676,10 @@ class HarddiskManager:
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def getAutofsMountpoint(self, device):
-		return "/autofs/%s" % (device)
+		r = self.getMountpoint(device)
+		if r is None:
+			return "/media/" + device
+		return r
 
 	def getMountpoint(self, device):
 		dev = "/dev/%s" % device
