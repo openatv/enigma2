@@ -69,7 +69,8 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
-	(_("SAT"), "sat", ""),
+	(_("SAT"), "sat", "Infobar/openSatellites"),
+	(_("SAT long"), "sat_long", ""),
 	(_("F1/LAN"), "f1", "Infobar/showNetworkMounts"),
 	(_("F1/LAN long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
@@ -114,6 +115,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show satellites list"), "Infobar/openSatellites", "InfoBar"))
 	ButtonSetupFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	ButtonSetupFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
