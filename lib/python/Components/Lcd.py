@@ -140,11 +140,16 @@ class LCD:
 				f = open("/proc/stb/lcd/symbol_usb", "w")
 				f.write("0")
 				f.close()
-				
+
 	def setPower(self, value):
 		if fileExists("/proc/stb/power/vfd"):
 			print 'setLCDPower',value
 			f = open("/proc/stb/power/vfd", "w")
+			f.write(value)
+			f.close()
+		elif fileExists("/proc/stb/lcd/vfd"):
+			print 'setLCDPower',value
+			f = open("/proc/stb/lcd/vfd", "w")
 			f.write(value)
 			f.close()
 
