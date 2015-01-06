@@ -516,7 +516,7 @@ class InfoBarHotkey():
 							twinPaths[plugin.path[24:]] += 1
 						else:
 							twinPaths[plugin.path[24:]] = 1
-						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]])== "/".join(selected):
+						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) == "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -528,7 +528,7 @@ class InfoBarHotkey():
 							twinPaths[plugin.path[24:]] += 1
 						else:
 							twinPaths[plugin.path[24:]] = 1
-						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]])== "/".join(selected):
+						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) == "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
