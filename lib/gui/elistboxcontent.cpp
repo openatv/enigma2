@@ -194,7 +194,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		if (local_style->m_background && cursorValid)
 		{
-			if (validitem) painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+			if (validitem) painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 		}
 		else if (selected && !local_style->m_selection)
 			painter.clear();
@@ -215,7 +215,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 
 		if (selected && local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 		if (item == Py_None)
 		{
@@ -371,7 +371,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	} else
 	{
 		if (local_style->m_background && cursorValid)
-			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -385,7 +385,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		int valueWidth(0);
 
 		if (selected && local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 			/* the first tuple element is a string for the left side.
 			   the second one will be called, and the result shall be an tuple.
@@ -600,7 +600,7 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 		if (local_style->m_background && cursorValid)
 		{
 			if (local_style->m_transparent_background)
-				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 			else
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
@@ -626,7 +626,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 		if (local_style->m_background && cursorValid)
 		{
 			if (local_style->m_transparent_background)
-				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 			else
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
@@ -664,7 +664,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		style.setStyle(painter, eWindowStyle::styleListboxSelected);
 		clearRegionSelectedHelper(painter, local_style, offset, pbackColorSelected, cursorValid, clear);
 		if (local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 	}
 	else
 	{
@@ -1122,7 +1122,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, cursorValid, mustClear);
 				}
-				flags |= (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
+				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
 				if (flags & gPainter::BT_SCALE)
 					painter.blitScale(pixmap, rect, rect, flags);
 				else
