@@ -95,9 +95,9 @@ def getLcdPiconName(serviceName):
 		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
-			pngname = findPicon(name)
+			pngname = findLcdPicon(name)
 			if not pngname and len(name) > 2 and name.endswith('hd'):
-				pngname = findPicon(name[:-2])
+				pngname = findLcdPicon(name[:-2])
 	return pngname
 
 class LcdPicon(Renderer):
