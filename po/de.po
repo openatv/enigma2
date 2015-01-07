@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-28 18:28+0000\n"
-"PO-Revision-Date: 2014-12-29 11:09+0100\n"
+"POT-Creation-Date: 2015-01-05 18:25+0000\n"
+"PO-Revision-Date: 2015-01-07 10:20+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -360,6 +360,9 @@ msgstr "* = Neustart erforderlich"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
+
+msgid "* current animation"
+msgstr "* aktuelle Animation"
 
 msgid "/s"
 msgstr ""
@@ -976,6 +979,15 @@ msgstr ""
 msgid "An unknown error occurred!"
 msgstr "Es ist ein unbekannter Fehler aufgetreten!"
 
+msgid "Animation Setup"
+msgstr "Animation Einstellungen"
+
+msgid "Animation Speed"
+msgstr "Animationsgeschwindigkeit"
+
+msgid "Animations"
+msgstr "Animationen"
+
 msgid "Any activity"
 msgstr "Irgendeine Aktivität"
 
@@ -1012,6 +1024,10 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr ""
 "Bist Du sicher das alle gewählten Log-Dateien gelöscht werden sollen:\n"
+
+msgid "Are you sure you want to delete the EPG data from:\n"
+msgstr ""
+"Bist Du sicher das die EPG Daten von diesem Ort gelöscht werden sollen:\n"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Bist Du sicher das diese Log Datei gelöscht werden soll:\n"
@@ -2636,6 +2652,9 @@ msgstr "%s löschen?"
 msgid "Delete Confirmation"
 msgstr "Bestätige Löschvorgang"
 
+msgid "Delete EPG"
+msgstr "Lösche EPG"
+
 msgid "Delete entry"
 msgstr "Eintrag löschen"
 
@@ -2767,6 +2786,9 @@ msgstr "Verzeichnis Browser"
 
 msgid "Disable"
 msgstr "Aus"
+
+msgid "Disable Animations"
+msgstr "Animationen deaktivieren"
 
 msgid "Disable Picture in Picture"
 msgstr "Bild in Bild ausschalten"
@@ -3736,6 +3758,12 @@ msgstr "Grün lang"
 msgid "Grey"
 msgstr "Grau"
 
+msgid "Grow drop"
+msgstr "Wachsen von oben"
+
+msgid "Grow from left"
+msgstr "Wachsen von links"
+
 msgid "Guard interval"
 msgstr "Guard Intervall"
 
@@ -4493,8 +4521,8 @@ msgstr "EPG Laden"
 msgid "Load playlist"
 msgstr "Wiedergabeliste laden"
 
-msgid "Load/Save"
-msgstr "Laden/Speichern"
+msgid "Load/Save/Delete"
+msgstr "Laden/Speichern/Löschen"
 
 msgid "Local box"
 msgstr "Lokale Box"
@@ -4746,7 +4774,7 @@ msgid "Mosquito noise reduction"
 msgstr "Mosquito Noise Reduzierung"
 
 msgid "Motor command retries"
-msgstr ""
+msgstr "Wiederholungen Motor-Kommandos"
 
 msgid "Motor running timeout"
 msgstr "Rotor TimeOut"
@@ -5865,6 +5893,9 @@ msgstr "Polarisation"
 
 msgid "Polish"
 msgstr "Polnisch"
+
+msgid "Popup"
+msgstr ""
 
 msgid "Port"
 msgstr "Port"
@@ -7147,6 +7178,9 @@ msgstr ""
 "Wähle die Basis der Aufnahmeliste um die \"..\" in der Ansicht zu "
 "unterdrücken."
 
+msgid "Setting"
+msgstr "Einstellungen"
+
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -7544,6 +7578,9 @@ msgstr "Ähnliche Sendungen:"
 msgid "Simple"
 msgstr "Einfach"
 
+msgid "Simple fade"
+msgstr "Einfaches Ausblenden"
+
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
 
@@ -7599,11 +7636,20 @@ msgstr "Sleeptimer"
 msgid "Sleep delay"
 msgstr "Ausschalt-Verzögerung"
 
+msgid "Slide drop"
+msgstr "Gleiten von oben"
+
+msgid "Slide left to right"
+msgstr "Gleiten von links nach rechts"
+
 msgid "Slide picture in loop"
 msgstr "Bilder als Diashow anzeigen"
 
 msgid "Slide show interval (sec.)"
 msgstr "Diaschau-Intervall (sek.)"
+
+msgid "Slide top to bottom"
+msgstr "Von oben nach unten gleiten"
 
 #, python-format
 msgid "Slot %d"
@@ -7922,6 +7968,9 @@ msgstr "Streaming"
 
 msgid "Strict DLNA"
 msgstr ""
+
+msgid "Stripes"
+msgstr "Streifen"
 
 msgid "Strongest position"
 msgstr "Stärkste Position"
@@ -10285,6 +10334,10 @@ msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
 
 #, python-format
+msgid "Your %s %s does not support PiP HD"
+msgstr "Dein %s %s unterstützt kein HD PiP"
+
+#, python-format
 msgid ""
 "Your %s %s is not connected to the internet, please check your network "
 "settings and try again."
@@ -11885,9 +11938,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Toggle Extra Keys"
 #~ msgstr "Schalte Extra-Tasten um"
-
-#~ msgid "Top and bottom"
-#~ msgstr "Oben und Unten"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-Befehl"
