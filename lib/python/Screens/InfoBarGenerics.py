@@ -1197,6 +1197,8 @@ class InfoBarChannelSelection:
 				"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next channel for PiP")),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
+				"volumeUp": (self.volumeUp, _("change Volume up")),
+				"volumeDown": (self.volumeDown, _("change Volume down")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
@@ -1450,6 +1452,12 @@ class InfoBarChannelSelection:
 				self.servicelist2.moveDown()
 			self.servicelist2.zap(enable_pipzap = True)
 			ChannelSelectionInstance.dopipzap = False
+
+	def volumeUp(self):
+		VolumeControl.instance.volUp()
+
+	def volumeDown(self):
+		VolumeControl.instance.volDown()
 
 
 class InfoBarMenu:
