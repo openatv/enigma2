@@ -49,9 +49,9 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("Open"), "open", ""),
 	(_("Open long"), "open_long", ""),
 	(_("Www"), "www", ""),
-    (_("Www long"), "www_long", ""),
-    (_("Directory"), "directory", ""),
-    (_("Directory long"), "directory_long", ""),
+	(_("Www long"), "www_long", ""),
+	(_("Directory"), "directory", ""),
+	(_("Directory long"), "directory_long", ""),
 	(_("Back/Recall"), "back", ""),
 	(_("Back/Recall") + " " + _("long"), "back_long", ""),
 	(_("Home"), "home", ""),
@@ -122,6 +122,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
 	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
+	ButtonSetupFunctions.append((_("Volume down"), "Infobar/volumeDown", "InfoBar"))
+	ButtonSetupFunctions.append((_("Volume up"), "Infobar/volumeUp", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show satellites list"), "Infobar/openSatellites", "InfoBar"))
