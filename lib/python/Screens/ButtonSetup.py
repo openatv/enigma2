@@ -183,6 +183,8 @@ def getButtonSetupFunctions():
 		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+		ButtonSetupFunctions.append((_("EnhancedMovieCenter"), "EMC/", "Plugins"))
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
@@ -523,4 +525,11 @@ class InfoBarButtonSetup():
 				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
+			elif selected[0] == "EMC":
+				try:
+					from Plugins.Extensions.EnhancedMovieCenter.plugin import showMoviesNew
+					from Screens.InfoBar import InfoBar
+					open(showMoviesNew(InfoBar.instance))
+				except Exception as e:
+					print('[EMCPlayer] showMovies exception:\n' + str(e))
 
