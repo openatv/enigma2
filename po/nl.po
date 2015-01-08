@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-14 16:48+0000\n"
-"PO-Revision-Date: 2014-12-15 08:08+0100\n"
+"POT-Creation-Date: 2015-01-05 07:51+0000\n"
+"PO-Revision-Date: 2015-01-08 08:26+0100\n"
 "Last-Translator: Rob van der Does <robvddoes@gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -363,6 +363,9 @@ msgstr "* = Herstart noodzakelijk"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface actief is."
+
+msgid "* current animation"
+msgstr "* huidige animatie"
 
 msgid "/s"
 msgstr "/s"
@@ -943,6 +946,15 @@ msgstr "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer
 msgid "An unknown error occurred!"
 msgstr "Er is een onbekende fout opgetreden! "
 
+msgid "Animation Setup"
+msgstr "Animatie-instellingen"
+
+msgid "Animation Speed"
+msgstr "Animatiesnelheid"
+
+msgid "Animations"
+msgstr "Animatie"
+
 msgid "Any activity"
 msgstr "Elke activiteit"
 
@@ -978,6 +990,9 @@ msgstr ""
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Weet u zeker dat u alle geselecteerde logs wilt verwijderen:\n"
+
+msgid "Are you sure you want to delete the EPG data from:\n"
+msgstr "Weet u zeker dat u de EPG data wilt verwijderen van:\n"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Weet u zeker dat u dit log wilt verwijderen:\n"
@@ -1039,6 +1054,12 @@ msgstr "Kunst/Cultuur"
 
 msgid "Ask user"
 msgstr "Vraag gebruiker"
+
+msgid "Ask user (with default as 'no')"
+msgstr "Vraag gebruiker (met 'nee' als default)"
+
+msgid "Ask user (with default as 'yes')"
+msgstr "Vraag gebruiker (met ja' als default)"
 
 msgid "Aspect ratio"
 msgstr "Aspectverhouding"
@@ -2442,6 +2463,9 @@ msgstr "Verwijder %s?"
 msgid "Delete Confirmation"
 msgstr "Bevestig verwijderen"
 
+msgid "Delete EPG"
+msgstr "EPG verwijderen"
+
 msgid "Delete entry"
 msgstr "Verwijder invoer"
 
@@ -2564,6 +2588,9 @@ msgstr "Bestandsverkenner"
 
 msgid "Disable"
 msgstr "Uit"
+
+msgid "Disable Animations"
+msgstr "Animatie uitschakelen"
 
 msgid "Disable Picture in Picture"
 msgstr "Beeld-in-beeld uitschakelen"
@@ -2817,9 +2844,6 @@ msgstr "ECM Tijd"
 
 msgid "ECM avg"
 msgstr "ECM gem."
-
-msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
 
 msgid "ECM last"
 msgstr "ECM laatste"
@@ -3518,6 +3542,12 @@ msgstr "Lang-groen"
 msgid "Grey"
 msgstr "Grijs"
 
+msgid "Grow drop"
+msgstr ""
+
+msgid "Grow from left"
+msgstr "Groei vanaf links"
+
 msgid "Guard interval"
 msgstr "Bewakingsinterval"
 
@@ -3777,9 +3807,6 @@ msgstr "Inadyn instellingen"
 
 msgid "Include AIT in http streams"
 msgstr "Voeg AIT toe aan http streams"
-
-msgid "Include ECM in http streams"
-msgstr "Voeg ECM toe aan http streams"
 
 msgid "Include EIT in http streams"
 msgstr "Voeg EIT toe aan http streams"
@@ -4220,8 +4247,8 @@ msgstr "Laad EPG"
 msgid "Load playlist"
 msgstr "Afspeellijst laden"
 
-msgid "Load/Save"
-msgstr "Laad/Sla op"
+msgid "Load/Save/Delete"
+msgstr "Laad/Sla op/Verwijder"
 
 msgid "Local box"
 msgstr "Lokale box"
@@ -5547,6 +5574,9 @@ msgstr "Polarisatie"
 msgid "Polish"
 msgstr "Pools"
 
+msgid "Popup"
+msgstr "Popup"
+
 msgid "Port"
 msgstr "Port"
 
@@ -5897,11 +5927,11 @@ msgstr "Opname"
 msgid "Recording Setup"
 msgstr "Opname Instellingen"
 
+msgid "Recording and playback settings"
+msgstr "Opname-en afspeelinstellingen"
+
 msgid "Recording in progress"
 msgstr "Opname is bezig"
-
-msgid "Recording settings"
-msgstr "Opname-instellingen"
 
 msgid "Recording type"
 msgstr "Type opname"
@@ -6775,6 +6805,9 @@ msgstr "Voltage en 22KHz instellen"
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
 msgstr "Stelt de root-lokatie van de opnamelijst in, om '..' niet te tonen. "
 
+msgid "Setting"
+msgstr "Instelling"
+
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -7168,6 +7201,9 @@ msgstr "Gelijksoortige uitzendingen:"
 msgid "Simple"
 msgstr "Eenvoudig"
 
+msgid "Simple fade"
+msgstr "Fade in/uit"
+
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Eenvoudige titelset (compatibel met gewone spelers)"
 
@@ -7222,11 +7258,20 @@ msgstr "Slaap"
 msgid "Sleep delay"
 msgstr "Slaap vertraging"
 
+msgid "Slide drop"
+msgstr ""
+
+msgid "Slide left to right"
+msgstr "Shuif links naar rechts"
+
 msgid "Slide picture in loop"
 msgstr "Toon foto's continu"
 
 msgid "Slide show interval (sec.)"
 msgstr "Diavoorstelling interval (sec.)"
+
+msgid "Slide top to bottom"
+msgstr "Schuif boven naar beneden."
 
 #, python-format
 msgid "Slot %d"
@@ -7531,6 +7576,9 @@ msgstr "Streaming"
 
 msgid "Strict DLNA"
 msgstr "Strict DLNA"
+
+msgid "Stripes"
+msgstr "Strepen"
 
 msgid "Strongest position"
 msgstr "Sterkste positie"
@@ -9548,6 +9596,10 @@ msgid "You system does not support ext4"
 msgstr "Uw systeem ondersteunt geen ext4"
 
 #, python-format
+msgid "Your %s %s does not support PiP HD"
+msgstr "Uw %s %s ondersteunt geen HD-PiP."
+
+#, python-format
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr "Uw %s %s is niet met het internet verbonden. Controleer uw netwerkinstellingen en probeer het opnieuw."
 
@@ -11038,6 +11090,9 @@ msgstr "zapte"
 #~ msgid "Display"
 #~ msgstr "Display"
 
+#~ msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+#~ msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
+
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
 
@@ -11052,6 +11107,9 @@ msgstr "zapte"
 
 #~ msgid "Hotkey"
 #~ msgstr "Hotkey"
+
+#~ msgid "Include ECM in http streams"
+#~ msgstr "Voeg ECM toe aan http streams"
 
 #~ msgid "Lamedb"
 #~ msgstr "Lamedb"
@@ -11113,9 +11171,6 @@ msgstr "zapte"
 
 #~ msgid "Toggle Extra Keys"
 #~ msgstr "Wissel Extra Keys"
-
-#~ msgid "Top and bottom"
-#~ msgstr "Boven en -onderkant"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
