@@ -50,7 +50,7 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
-
+	config.usage.servicelist_eventinfo_delay = ConfigSelectionNumber(50, 1000, 50, default=150)
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
 	config.usage.servicelist_cursor_behavior = ConfigSelection(default = "keep", choices = [

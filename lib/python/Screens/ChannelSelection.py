@@ -518,7 +518,7 @@ class SelectionEventInfo:
 
 	def __selectionChanged(self):
 		if self.execing:
-			self.timer.start(100, True)
+			self.timer.start(int(config.usage.servicelist_eventinfo_delay.value), True)
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
