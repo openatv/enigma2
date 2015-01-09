@@ -2,7 +2,7 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from skin import parseColor, parseFont
 
-from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize, getDesktop
+from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 
@@ -348,7 +348,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setCurrentMarked(state)
 
 	def setMode(self, mode):
-		screenwidth = getDesktop(0).size().width()
 		self.mode = mode
 		self.setItemsPerPage()
 		self.l.setItemHeight(self.ItemHeight)
