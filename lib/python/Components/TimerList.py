@@ -91,19 +91,16 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l = eListboxPythonMultiContent()
 		self.l.setBuildFunc(self.buildTimerEntry)
 		self.serviceNameFont = gFont("Regular", 20)
-		self.l.setFont(0, self.serviceNameFont)
 		self.font = gFont("Regular", 18)
-		self.l.setFont(1, self.font)
-		self.itemHeight = 50
-		self.l.setItemHeight(self.itemHeight)
-		self.rowSplit = 25
 		self.l.setList(list)
+		self.itemHeight = 50
+		self.rowSplit = 25
+		self.iconMargin = 4
+		self.satPosLeft = 160
 		self.iconWait = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_wait.png"))
 		#currently intended that all icons have the same size
 		self.iconWidth = self.iconWait.size().width()
 		self.iconHeight = self.iconWait.size().height()
-		self.iconMargin = 4
-		self.satPosLeft = 160
 		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rec.png"))
 		self.iconPrepared = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_prep.png"))
 		self.iconDone = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_done.png"))
@@ -114,13 +111,10 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def applySkin(self, desktop, parent):
 		def itemHeight(value):
 			self.itemHeight = int(value)
-			self.l.setItemHeight(self.itemHeight)
 		def setServiceNameFont(value):
 			self.serviceNameFont = parseFont(value, ((1,1),(1,1)))
-			self.l.setFont(0, self.serviceNameFont)
 		def setFont(value):
 			self.font = parseFont(value, ((1,1),(1,1)))
-			self.l.setFont(1, self.font)
 		def rowSplit(value):
 			self.rowSplit = int(value)
 		def iconMargin(value):
@@ -130,6 +124,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
 			eval(attrib + "('" + value + "')")
 			self.skinAttributes.remove((attrib, value))
+		self.l.setItemHeight(self.itemHeight)
+		self.l.setFont(0, self.serviceNameFont)
+		self.l.setFont(1, self.font)
 		return GUIComponent.applySkin(self, desktop, parent)
 
 	def getCurrent(self):
