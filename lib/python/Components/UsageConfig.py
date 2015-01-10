@@ -41,7 +41,7 @@ def InitUsageConfig():
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
 	# just merge note, config.usage.servicelist_column was allready there
-	 choicelist = [("-1", _("Disable")), ("0", _("Eventname only"))]
+	choicelist = [("-1", _("Disable")), ("0", _("Eventname only"))]
 	for i in range(100,1300,100):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
