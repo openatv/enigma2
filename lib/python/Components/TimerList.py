@@ -125,6 +125,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				self.l.setFont(1, self.font)
 			elif attrib == "rowSplit":
 				self.rowSplit = int(value)
+			elif attrib == "iconMargin":
+				self.iconMargin = int(value)
 			elif attrib == "satPosLeft":
 				self.satPosLeft = int(value)
 			else:
