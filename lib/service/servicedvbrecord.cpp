@@ -90,6 +90,8 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 }
 
+#define HILO(x) (x##_hi << 8 | x##_lo)
+
 RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm)
 {
 	m_filename = filename;

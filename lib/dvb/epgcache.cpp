@@ -23,6 +23,55 @@
 #include <lib/base/nconfig.h>
 #include <dvbsi++/descriptor_tag.h>
 
+#define HILO(x) (x##_hi << 8 | x##_lo)
+
+/* Interval between "garbage collect" cycles */
+#define CLEAN_INTERVAL 60000    //  1 min
+/* Restart EPG data capture */
+#define UPDATE_INTERVAL 3600000  // 60 min
+/* Time to wait after tuning in before EPG data capturing starts */
+#define ZAP_DELAY 2000          // 2 sec
+
+#define descriptorPair std::pair<int,__u8*>
+#define descriptorMap std::map<uint32_t, descriptorPair >
+
+class eventData
+{
+	friend class eEPGCache;
+private:
+	uint8_t* EITdata;
+	uint8_t ByteSize;
+	uint8_t type;
+	static descriptorMap descriptors;
+	static uint8_t data[];
+	static int CacheSize;
+	static bool isCacheCorrupt;
+	static void load(FILE *);
+	static void save(FILE *);
+	static void cacheCorrupt(const char* context);
+	const eit_event_struct* get() const;
+	operator const eit_event_struct*() const
+	{
+		return get();
+	}
+public:
+	eventData(const eit_event_struct* e = NULL, int size = 0, int type = 0, int tsidonid = 0);
+	~eventData();
+	int getEventID()
+	{
+		return (EITdata[0] << 8) | EITdata[1];
+	}
+	time_t getStartTime()
+	{
+		return parseDVBtime(EITdata[2], EITdata[3], EITdata[4], EITdata[5], EITdata[6]);
+	}
+	int getDuration()
+	{
+		return fromBCD(EITdata[7])*3600+fromBCD(EITdata[8])*60+fromBCD(EITdata[9]);
+	}
+};
+
+
 int eventData::CacheSize=0;
 bool eventData::isCacheCorrupt = 0;
 descriptorMap eventData::descriptors;
