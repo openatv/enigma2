@@ -100,48 +100,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 			elif attrib == "picServiceEventProgressbar":
 				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
-			elif attrib == "picFolder":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picFolder, pic)
-			elif attrib == "picFolder":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and	self.l.setPixmap(self.l.picMarker, pic)
-			elif attrib == "picMarker":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and	self.l.setPixmap(self.l.picDVB_S, pic)
-			elif attrib == "picDVB_C":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picDVB_C, pic)
-			elif attrib == "picDVB_T":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picDVB_T, pic)
-			elif attrib == "picStream":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picStream, pic)
-			elif attrib == "picServiceGroup":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceGroup, pic)
-			elif attrib == "picCrypto":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picCrypto, pic)
-			elif attrib == "picRecord":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picRecord, pic)
-			elif attrib == "picServiceEventProgressbar":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
-			elif attrib == "picServiceEventProgressbar":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
-			elif attrib == "picServiceEventProgressbar":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
-			elif attrib == "picServiceEventProgressbar":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
-			elif attrib == "picServiceEventProgressbar":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 			elif attrib == "serviceItemHeight":
 				self.ItemHeight = int(value)
 			elif attrib == "serviceNameFont":
