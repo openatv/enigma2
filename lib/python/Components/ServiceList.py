@@ -59,66 +59,68 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.onSelectionChanged = [ ]
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "foregroundColorMarked":
-				self.l.setColor(eListboxServiceContent.markedForeground, parseColor(value))
-			elif attrib == "foregroundColorMarkedSelected":
-				self.l.setColor(eListboxServiceContent.markedForegroundSelected, parseColor(value))
-			elif attrib == "backgroundColorMarked":
-				self.l.setColor(eListboxServiceContent.markedBackground, parseColor(value))
-			elif attrib == "backgroundColorMarkedSelected":
-				self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
-			elif attrib == "foregroundColorServiceNotAvail":
-				self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
-			elif attrib == "foregroundColorEvent" or attrib == "colorServiceDescription":
-				self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
-			elif attrib == "foregroundColorEventSelected" or attrib == "colorServiceDescriptionSelected":
-				self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
-			elif attrib == "foregroundColorEventborder":
-				self.l.setColor(eListboxServiceContent.eventborderForeground, parseColor(value))
-			elif attrib == "foregroundColorEventborderSelected":
-				self.l.setColor(eListboxServiceContent.eventborderForegroundSelected, parseColor(value))
-			elif attrib == "colorEventProgressbar":
-				self.l.setColor(eListboxServiceContent.serviceEventProgressbarColor, parseColor(value))
-			elif attrib == "colorEventProgressbarSelected":
-				self.l.setColor(eListboxServiceContent.serviceEventProgressbarColorSelected, parseColor(value))
-			elif attrib == "colorEventProgressbarBorder":
-				self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
-			elif attrib == "colorEventProgressbarBorderSelected":
-				self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
-			elif attrib == "colorServiceRecorded":
-				self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
-			elif attrib == "colorFallbackItem":
-				self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
-			elif attrib == "colorServiceSelectedFallback":
-				self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
-			elif attrib == "colorServiceDescriptionFallback":
-				self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
-			elif attrib == "colorServiceDescriptionSelectedFallback":
-				self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
-			elif attrib == "picServiceEventProgressbar":
-				pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
-				pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
-			elif attrib == "serviceItemHeight":
-				self.ItemHeight = int(value)
-			elif attrib == "serviceNameFont":
-				self.ServiceNameFont = parseFont(value, ((1,1),(1,1)))
-			elif attrib == "serviceInfoFont":
-				self.ServiceInfoFont = parseFont(value, ((1,1),(1,1)))
-			elif attrib == "serviceNumberFont":
-				self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
-			elif attrib == "progressbarHeight":
-				self.l.setProgressbarHeight(int(value))
-			elif attrib == "progressbarBorderWidth":
-				self.l.setProgressbarBorderWidth(int(value))
-			elif attrib == "progressBarWidth":
-				self.progressBarWidth = int(value)
-			elif attrib == "fieldMargins":
-				self.fieldMargins = int(value)
-			else:
-				attribs.append((attrib, value))
-		self.skinAttributes = attribs
+		def foregroundColorMarked(value):
+			self.l.setColor(eListboxServiceContent.markedForeground, parseColor(value))
+		def foregroundColorMarkedSelected(value):
+			self.l.setColor(eListboxServiceContent.markedForegroundSelected, parseColor(value))
+		def backgroundColorMarked(value):
+			self.l.setColor(eListboxServiceContent.markedBackground, parseColor(value))
+		def backgroundColorMarkedSelected(value):
+			self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
+		def foregroundColorServiceNotAvail(value):
+			self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+		def foregroundColorEvent(value):
+			self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
+		def colorServiceDescription(value):
+			self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
+		def foregroundColorEventSelected(value):
+			self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
+		def colorServiceDescriptionSelected(value):
+			self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
+		def foregroundColorEventborder(value):
+			self.l.setColor(eListboxServiceContent.eventborderForeground, parseColor(value))
+		def foregroundColorEventborderSelected(value):
+			self.l.setColor(eListboxServiceContent.eventborderForegroundSelected, parseColor(value))
+		def colorEventProgressbar(value):
+			self.l.setColor(eListboxServiceContent.serviceEventProgressbarColor, parseColor(value))
+		def colorEventProgressbarSelected(value):
+			self.l.setColor(eListboxServiceContent.serviceEventProgressbarColorSelected, parseColor(value))
+		def colorEventProgressbarBorder(value):
+			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
+		def colorEventProgressbarBorderSelected(value):
+			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+		def colorServiceRecorded(value):
+			self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+		def colorFallbackItem(value):
+			self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
+		def colorServiceSelectedFallback(value):
+			self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
+		def colorServiceDescriptionFallback(value):
+			self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
+		def colorServiceDescriptionSelectedFallback(value):
+			self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
+		def picServiceEventProgressbar(value):
+			pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
+			pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
+		def serviceItemHeight(value):
+			self.ItemHeight = int(value)
+		def serviceNameFont(value):
+			self.ServiceNameFont = parseFont(value, ((1,1),(1,1)))
+		def serviceInfoFont(value):
+			self.ServiceInfoFont = parseFont(value, ((1,1),(1,1)))
+		def serviceNumberFont(value):
+			self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
+		def progressbarHeight(value):
+			self.l.setProgressbarHeight(int(value))
+		def progressbarBorderWidth(value):
+			self.l.setProgressbarBorderWidth(int(value))
+		def progressBarWidth(value):
+			self.progressBarWidth = int(value)
+		def fieldMargins(value):
+			self.fieldMargins = int(value)
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
+			eval (attrib + "('" + value + "')")
+			self.skinAttributes.remove((attrib, value))
 		return GUIComponent.applySkin(self, desktop, parent)
 
 	def connectSelChanged(self, fnc):

@@ -79,9 +79,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.disabled:
 			state = _("disabled")
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, width, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		orbpos = self.getOrbitalPos(timer.service_ref)
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width(), self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 		return res
@@ -112,26 +112,24 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_off.png"))
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "itemHeight":
-				self.itemHeight = int(value)
-				self.l.setItemHeight(self.itemHeight)
-			elif attrib == "setServiceNameFont":
-				self.serviceNameFont = parseFont(value, ((1,1),(1,1)))
-				self.l.setFont(0, self.serviceNameFont)
-			elif attrib == "setFont":
-				self.font = parseFont(value, ((1,1),(1,1)))
-				self.l.setFont(1, self.font)
-			elif attrib == "rowSplit":
-				self.rowSplit = int(value)
-			elif attrib == "iconMargin":
-				self.iconMargin = int(value)
-			elif attrib == "satPosLeft":
-				self.satPosLeft = int(value)
-			else:
-				attribs.append((attrib, value))
-		self.skinAttributes = attribs
+		def itemHeight(value):
+			self.itemHeight = int(value)
+			self.l.setItemHeight(self.itemHeight)
+		def setServiceNameFont(value):
+			self.serviceNameFont = parseFont(value, ((1,1),(1,1)))
+			self.l.setFont(0, self.serviceNameFont)
+		def setFont(value):
+			self.font = parseFont(value, ((1,1),(1,1)))
+			self.l.setFont(1, self.font)
+		def rowSplit(value):
+			self.rowSplit = int(value)
+		def iconMargin(value):
+			self.iconMargin = int(value)
+		def satPosLeft(value):
+			self.satPosLeft = int(value)
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
+			eval (attrib + "('" + value + "')")
+			self.skinAttributes.remove((attrib, value))
 		return GUIComponent.applySkin(self, desktop, parent)
 
 	def getCurrent(self):
