@@ -119,7 +119,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		def fieldMargins(value):
 			self.fieldMargins = int(value)
 		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
-			eval (attrib + "('" + value + "')")
+			eval(attrib + "('" + value + "')")
 			self.skinAttributes.remove((attrib, value))
 		return GUIComponent.applySkin(self, desktop, parent)
 
