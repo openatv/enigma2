@@ -29,9 +29,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, width - serviceNameWidth, 0, serviceNameWidth, self.rowSplit, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, serviceName))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, 0, width - serviceNameWidth - self.iconWidth - self.iconMargin, self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
 
-		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 		begin = FuzzyTime(timer.begin)
 		if timer.repeated:
+			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 			repeatedtext = []
 			flags = timer.repeated
 			for x in (0, 1, 2, 3, 4, 5, 6):
@@ -47,8 +47,6 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
-		textWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), text).width()
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, width - textWidth, self.rowSplit, textWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
@@ -70,20 +68,19 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			else:
 				state = _("<unknown>")
 				icon = None
+		elif timer.disabled:
+			state = _("disabled")
+			icon = self.iconDisabled
 		else:
 			state = _("done!")
 			icon = self.iconDone
-		if timer.disabled:
-			icon = self.iconDisabled
 
-		if timer.disabled:
-			state = _("disabled")
-
+		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 		orbpos = self.getOrbitalPos(timer.service_ref)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width(), self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
+		orbposWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width()
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
-		if icon:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft + orbposWidth, self.rowSplit, width - self.satPosLeft - orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 		return res
 
 	def __init__(self, list):
