@@ -16,6 +16,10 @@ g_default = {
 }
 g_max_speed = 30
 
+g_animation_paused = False
+g_orig_show = None
+g_orig_doClose = None
+
 config.misc.window_animation_default = ConfigNumber(default=g_default["current"])
 config.misc.window_animation_speed = ConfigSelectionNumber(1, g_max_speed, 1, default=g_default["speed"])
 
@@ -173,8 +177,38 @@ class AnimationSetupScreen(Screen):
 	def preview(self):
 		current = self["list"].getCurrent()
 		if current:
+			global g_animation_paused
+			tmp = g_animation_paused
+			g_animation_paused = False
+
 			setAnimation_current(current[1])
 			self.session.open(MessageBox, current[0], MessageBox.TYPE_INFO, timeout=3)
+			g_animation_paused = tmp
+
+def checkAttrib(self, paused):
+	global g_animation_paused
+	if g_animation_paused is paused and self.skinAttributes is not None:
+		for (attr, value) in self.skinAttributes:
+			if attr == "animationPaused" and value in ("1", "on"):
+				return True
+	return False
+
+def screen_show(self):
+	global g_animation_paused
+	if g_animation_paused:
+		setAnimation_current(0)
+
+	g_orig_show(self)
+
+	if checkAttrib(self, False):
+		g_animation_paused = True
+
+def screen_doClose(self):
+	global g_animation_paused
+	if checkAttrib(self, True):
+		g_animation_paused = False
+		setAnimation_current(config.misc.window_animation_default.value)
+	g_orig_doClose(self)
 
 def animationSetupMain(session, **kwargs):
 	session.open(AnimationSetupScreen)
@@ -188,6 +222,14 @@ def startAnimationSetup(menuid):
 def sessionAnimationSetup(session, reason, **kwargs):
 	setAnimation_current(config.misc.window_animation_default.value)
 	setAnimation_speed(int(config.misc.window_animation_speed.value))
+
+	global g_orig_show, g_orig_doClose
+	if g_orig_show is None:
+		g_orig_show = Screen.show
+	if g_orig_doClose is None:
+		g_orig_doClose = Screen.doClose
+	Screen.show = screen_show
+	Screen.doClose = screen_doClose
 
 def Plugins(**kwargs):
 	plugin_list = [
