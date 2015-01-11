@@ -546,12 +546,9 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 		{
 			if (b < 8) /* colors */
 			{
-				if (b != color) /* new color is split into a new string */
-				{
-					addSubtitleString(color, std::string((const char*)out, outidx), m_Y);
-					outidx = 0;
-					color = b;
-				}
+				addSubtitleString(color, std::string((const char*)out, outidx), m_Y); /* new color is split into a new string */
+				outidx = 0;
+				color = b;
 			}
 			else if (b == 0xd)
 				m_double_height = m_Y + 1;
