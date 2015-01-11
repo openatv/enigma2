@@ -95,7 +95,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["CanDownmixAC3"]:
 				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call = False)
-				conflist.append(getConfigListEntry(_("AC3/DTS downmix"), self.settings.downmix))
+				conflist.append(getConfigListEntry(_("Multi channel downmix"), self.settings.downmix))
 				self["key_red"].setBoolean(True)
 
 			if n > 0:
@@ -256,11 +256,11 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.infobar.enableSubtitle(subtitle)
 
 	def changeAC3Downmix(self, downmix):
-		if downmix.getValue() == True:
-			config.av.downmix_ac3.value = True
-		else:
-			config.av.downmix_ac3.value = False
+		config.av.downmix_ac3.value = downmix.getValue() == True
 		config.av.downmix_ac3.save()
+		if SystemInfo["CanDownmixDTS"]:
+			config.av.downmix_dts.value = config.av.downmix_ac3.value
+			config.av.downmix_dts.save()
 
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
