@@ -171,6 +171,18 @@ def InitAVSwitch():
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
 	try:
+		can_downmix_aac = "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
+	except:
+		can_downmix_aac = False
+
+	SystemInfo["CanDownmixAAC"] = can_downmix_aac
+	if can_downmix_aac:
+		def setAACDownmix(configElement):
+			open("/proc/stb/audio/aac", "w").write(configElement.value and "downmix" or "passthrough")
+		config.av.downmix_aac = ConfigYesNo(default = True)
+		config.av.downmix_aac.addNotifier(setAACDownmix)
+
+	try:
 		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
 	except:
 		can_osd_alpha = False

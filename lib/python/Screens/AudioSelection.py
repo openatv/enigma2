@@ -261,6 +261,9 @@ class AudioSelection(Screen, ConfigListScreen):
 		if SystemInfo["CanDownmixDTS"]:
 			config.av.downmix_dts.value = config.av.downmix_ac3.value
 			config.av.downmix_dts.save()
+		if SystemInfo["CanDownmixAAC"]:
+			config.av.downmix_aac.value = config.av.downmix_ac3.value
+			config.av.downmix_aac.save()
 
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
