@@ -2,6 +2,7 @@ from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
 from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
+from Tools.Directories import fileExists
 import os
 from boxbranding import getBoxType
 
@@ -124,10 +125,7 @@ def InitAVSwitch():
 	iAVSwitch = AVSwitch()
 
 	def setColorFormat(configElement):
-		#if getBoxType() in ('gbquad', 'gbquadplus'):
-		#	map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
-		#else:
-		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3} 
+		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		iAVSwitch.setColorFormat(map[configElement.value])
 
 	def setAspectRatio(configElement):
@@ -218,7 +216,7 @@ def InitAVSwitch():
 		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
 		config.av.autovolume.addNotifier(setAutoVulume)
 	else:
-		config.av.autovolume = ConfigNothing()		
+		config.av.autovolume = ConfigNothing()
 
 	try:
 		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
@@ -232,20 +230,10 @@ def InitAVSwitch():
 		config.av.pcm_multichannel = ConfigYesNo(default = False)
 		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 
-	try:
-		f = open("/proc/stb/audio/ac3_choices", "r")
-		file = f.read()[:-1]
-		f.close()
-		can_downmix_ac3 = "downmix" in file
-	except:
-		can_downmix_ac3 = False
-
-	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
-	if can_downmix_ac3:
+	SystemInfo["CanDownmixAC3"] = fileExists("/proc/stb/audio/ac3_choices") and "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
+	if SystemInfo["CanDownmixAC3"]:
 		def setAC3Downmix(configElement):
-			f = open("/proc/stb/audio/ac3", "w")
-			f.write(configElement.value and "downmix" or "passthrough")
-			f.close()
+			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
 			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
 				SystemInfo["CanPcmMultichannel"] = True
 			else:
@@ -254,21 +242,18 @@ def InitAVSwitch():
 					config.av.pcm_multichannel.setValue(False)
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
-	
-	try:
-		f = open("/proc/stb/audio/aac_choices", "r")
-		file = f.read()[:-1]
-		f.close()
-		can_downmix_aac = "downmix" in file
-	except:
-		can_downmix_aac = False
 
-	SystemInfo["CanDownmixAAC"] = can_downmix_aac
-	if can_downmix_aac:
+	SystemInfo["CanDownmixDTS"] = fileExists("/proc/stb/audio/dts_choices") and "downmix" in open("/proc/stb/audio/dts_choices", "r").read()
+	if SystemInfo["CanDownmixDTS"]:
+		def setDTSDownmix(configElement):
+			open("/proc/stb/audio/dts", "w").write(configElement.value and "downmix" or "passthrough")
+		config.av.downmix_dts = ConfigYesNo(default = True)
+		config.av.downmix_dts.addNotifier(setDTSDownmix)
+
+	SystemInfo["CanDownmixAAC"] = fileExists("/proc/stb/audio/aac_choices") and "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
+	if SystemInfo["CanDownmixAAC"]:
 		def setAACDownmix(configElement):
-			f = open("/proc/stb/audio/aac", "w")
-			f.write(configElement.value and "downmix" or "passthrough")
-			f.close()
+			open("/proc/stb/audio/aac", "w").write(configElement.value and "downmix" or "passthrough")
 		config.av.downmix_aac = ConfigYesNo(default = True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
@@ -292,17 +277,10 @@ def InitAVSwitch():
 	else:
 		config.av.transcodeaac = ConfigNothing()
 
-	try:
-		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
-	except:
-		can_osd_alpha = False
-
-	SystemInfo["CanChangeOsdAlpha"] = can_osd_alpha
-
-	def setAlpha(config):
-		open("/proc/stb/video/alpha", "w").write(str(config.value))
-
-	if can_osd_alpha:
+	SystemInfo["CanChangeOsdAlpha"] = fileExists("/proc/stb/video/alpha")
+	if SystemInfo["CanChangeOsdAlpha"]:
+		def setAlpha(config):
+			open("/proc/stb/video/alpha", "w").write(str(config.value))
 		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
 		config.av.osd_alpha.addNotifier(setAlpha)
 
@@ -310,13 +288,9 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:
-				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
-				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
-				f.write("%0.8X" % myval)
-				f.close()
-				f = open("/proc/stb/vmpeg/0/pep_apply", "w")
-				f.write("1")
-				f.close()
+				print "--> setting scaler_sharpness to: %0.8X" % myval
+				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
+				open("/proc/stb/vmpeg/0/pep_apply", "w").write("1")
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
