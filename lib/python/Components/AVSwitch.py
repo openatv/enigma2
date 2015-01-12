@@ -147,57 +147,46 @@ def InitAVSwitch():
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
 	try:
-		can_downmix_ac3 = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
+		SystemInfo["CanDownmixAC3"] = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
 	except:
-		can_downmix_ac3 = False
+		SystemInfo["CanDownmixAC3"] = False
 
-	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
-	if can_downmix_ac3:
+	if SystemInfo["CanDownmixAC3"]:
 		def setAC3Downmix(configElement):
 			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
 	try:
-		can_downmix_dts = "downmix" in open("/proc/stb/audio/dts_choices", "r").read()
+		SystemInfo["CanDownmixDTS"] = "downmix" in open("/proc/stb/audio/dts_choices", "r").read()
 	except:
-		can_downmix_dts = False
+		SystemInfo["CanDownmixDTS"] = False
 
-	SystemInfo["CanDownmixDTS"] = can_downmix_dts
-	if can_downmix_dts:
+	if SystemInfo["CanDownmixDTS"]:
 		def setDTSDownmix(configElement):
 			open("/proc/stb/audio/dts", "w").write(configElement.value and "downmix" or "passthrough")
 		config.av.downmix_dts = ConfigYesNo(default = True)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
 	try:
-		can_downmix_aac = "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
+		SystemInfo["CanDownmixAAC"] = "downmix" in open("/proc/stb/audio/aac_choices", "r").read()
 	except:
-		can_downmix_aac = False
+		SystemInfo["CanDownmixAAC"] = False
 
-	SystemInfo["CanDownmixAAC"] = can_downmix_aac
-	if can_downmix_aac:
+	if SystemInfo["CanDownmixAAC"]:
 		def setAACDownmix(configElement):
 			open("/proc/stb/audio/aac", "w").write(configElement.value and "downmix" or "passthrough")
 		config.av.downmix_aac = ConfigYesNo(default = True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	try:
-		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
+		SystemInfo["CanChangeOsdAlpha"] = open("/proc/stb/video/alpha", "r") and True or False
 	except:
-		can_osd_alpha = False
+		SystemInfo["CanChangeOsdAlpha"] = False
 
-	try:
-		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
-	except:
-		can_osd_alpha = False
-
-	SystemInfo["CanChangeOsdAlpha"] = can_osd_alpha
-
-	def setAlpha(config):
-		open("/proc/stb/video/alpha", "w").write(str(config.value))
-
-	if can_osd_alpha:
+	if SystemInfo["CanChangeOsdAlpha"]:
+		def setAlpha(config):
+			open("/proc/stb/video/alpha", "w").write(str(config.value))
 		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
 		config.av.osd_alpha.addNotifier(setAlpha)
 
