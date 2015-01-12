@@ -118,8 +118,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			self.iconMargin = int(value)
 		def satPosLeft(value):
 			self.satPosLeft = int(value)
-		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
-			eval(attrib + "('" + value + "')")
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
+			locals().get(attrib)(value)
 			self.skinAttributes.remove((attrib, value))
 		self.l.setItemHeight(self.itemHeight)
 		self.l.setFont(0, self.serviceNameFont)

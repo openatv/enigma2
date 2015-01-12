@@ -118,8 +118,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.progressBarWidth = int(value)
 		def fieldMargins(value):
 			self.fieldMargins = int(value)
-		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
-			eval(attrib + "('" + value + "')")
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
+			locals().get(attrib)(value)
 			self.skinAttributes.remove((attrib, value))
 		return GUIComponent.applySkin(self, desktop, parent)
 

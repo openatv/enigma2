@@ -356,8 +356,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.eventItemFont = parseFont(value, ((1,1),(1,1)))
 		def setEventTimeFont(value):
 			self.eventTimeFont = parseFont(value, ((1,1),(1,1)))
-		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
-			eval(attrib + "('" + value + "')")
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
+			locals().get(attrib)(value)
 			self.skinAttributes.remove((attrib, value))
 		self.l.setFont(0, self.eventItemFont)
 		self.l.setFont(1, self.eventTimeFont)
