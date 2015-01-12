@@ -420,6 +420,12 @@ def InitUsageConfig():
 		config.usage.vfd_final_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
 		config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
 
+	if SystemInfo["LcdLiveTV"]:
+		def lcdLiveTvChanged(configElement):
+			open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
+		config.lcd.showTv = ConfigYesNo(default = True)
+		config.lcd.showTv.addNotifier(lcdLiveTvChanged)
+
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
 		("0", _("original")),
