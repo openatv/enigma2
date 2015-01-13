@@ -44,9 +44,10 @@ typedef std::map<uint32_t, DescriptorPair> DescriptorMap;
 
 struct eventData
 {
-	uint8_t* EITdata;
-	uint8_t ByteSize;
+	uint8_t rawEITdata[10];
+	uint8_t n_crc;
 	uint8_t type;
+	uint32_t *crc_list;
 	static DescriptorMap descriptors;
 	static uint8_t data[];
 	static unsigned int CacheSize;
@@ -61,20 +62,19 @@ struct eventData
 	{
 		return get();
 	}
-	int getEventID()
+	int getEventID() const
 	{
-		return (EITdata[0] << 8) | EITdata[1];
+		return (rawEITdata[0] << 8) | rawEITdata[1];
 	}
-	time_t getStartTime()
+	time_t getStartTime() const
 	{
-		return parseDVBtime(EITdata[2], EITdata[3], EITdata[4], EITdata[5], EITdata[6]);
+		return parseDVBtime(rawEITdata[2], rawEITdata[3], rawEITdata[4], rawEITdata[5], rawEITdata[6]);
 	}
-	int getDuration()
+	int getDuration() const
 	{
-		return fromBCD(EITdata[7])*3600+fromBCD(EITdata[8])*60+fromBCD(EITdata[9]);
+		return fromBCD(rawEITdata[7])*3600+fromBCD(rawEITdata[8])*60+fromBCD(rawEITdata[9]);
 	}
 };
-
 
 unsigned int eventData::CacheSize = 0;
 bool eventData::isCacheCorrupt = 0;
@@ -105,11 +105,11 @@ const eServiceReference &handleGroup(const eServiceReference &ref)
 	return ref;
 }
 
-eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid)
-	:ByteSize(size&0xFF), type(type&0xFF)
+eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidonid)
+	:n_crc(0), type(_type & 0xFF), crc_list(NULL)
 {
 	if (!e)
-		return;
+		return; /* Used when loading from file */
 
 	uint32_t descr[65];
 	uint32_t *pdescr=descr;
@@ -261,26 +261,25 @@ eventData::eventData(const eit_event_struct* e, int size, int type, int tsidonid
 		else
 			break;
 	}
+	memcpy(rawEITdata, (uint8_t*)e, 10);
 	ASSERT(pdescr <= &descr[65]);
-	ByteSize = 10+((pdescr-descr)*4);
-	EITdata = new uint8_t[ByteSize];
-	CacheSize += ByteSize;
-	memcpy(EITdata, (uint8_t*) e, 10);
-	memcpy(EITdata+10, descr, ByteSize-10);
+	n_crc = pdescr - descr;
+	if (n_crc)
+	{
+		crc_list = new uint32_t[n_crc];
+		memcpy(crc_list, descr, n_crc * sizeof(uint32_t));
+	}
+	CacheSize += sizeof(*this) + n_crc * sizeof(uint32_t);
 }
 
 const eit_event_struct* eventData::get() const
 {
 	unsigned int pos = 12;
-	int tmp = ByteSize - 10;
-	memcpy(data, EITdata, 10);
+	memcpy(data, rawEITdata, 10);
 	unsigned int descriptors_length = 0;
-	/* Alignment error: EITdata + 10 is NOT on a 32-bit boundary, this
-	 * will cause a CPU exception on ARM for example */
-	uint32_t *p = (uint32_t*)(EITdata + 10);
-	while (tmp > 3)
+	for (uint8_t i = 0; i < n_crc; ++i)
 	{
-		DescriptorMap::iterator it = descriptors.find(*p++);
+		DescriptorMap::iterator it = descriptors.find(crc_list[i]);
 		if (it != descriptors.end())
 		{
 			unsigned int b = it->second.data[1] + 2;
@@ -293,7 +292,6 @@ const eit_event_struct* eventData::get() const
 		}
 		else
 			cacheCorrupt("eventData::get");
-		tmp -= 4;
 	}
 	data[10] = (descriptors_length >> 8) & 0x0F;
 	data[11] = descriptors_length & 0xFF;
@@ -302,32 +300,26 @@ const eit_event_struct* eventData::get() const
 
 eventData::~eventData()
 {
-	if ( ByteSize )
+	for ( uint8_t i = 0; i < n_crc; ++i )
 	{
-		CacheSize -= ByteSize;
-		uint32_t *d = (uint32_t*)(EITdata+10); /* Alignment error! */
-		ByteSize -= 10;
-		while (ByteSize > 3)
+		DescriptorMap::iterator it = descriptors.find(crc_list[i]);
+		if ( it != descriptors.end() )
 		{
-			DescriptorMap::iterator it = descriptors.find(*d++);
-			if ( it != descriptors.end() )
+			DescriptorPair &p = it->second;
+			if (!--p.reference_count) // no more used descriptor
 			{
-				DescriptorPair &p = it->second;
-				if (!--p.reference_count) // no more used descriptor
-				{
-					CacheSize -= it->second.data[1];
-					delete [] it->second.data;  	// free descriptor memory
-					descriptors.erase(it);	// remove entry from descriptor map
-				}
+				CacheSize -= it->second.data[1];
+				delete [] it->second.data;  	// free descriptor memory
+				descriptors.erase(it);	// remove entry from descriptor map
 			}
-			else
-			{
-				cacheCorrupt("eventData::~eventData");
-			}
-			ByteSize -= 4;
 		}
-		delete [] EITdata;
+		else
+		{
+			cacheCorrupt("eventData::~eventData");
+		}
 	}
+	delete [] crc_list;
+	CacheSize -= sizeof(*this) + n_crc * sizeof(uint32_t);
 }
 
 void eventData::load(FILE *f)
@@ -1309,9 +1301,14 @@ void eEPGCache::load()
 					fread( &type, sizeof(uint8_t), 1, f);
 					fread( &len, sizeof(uint8_t), 1, f);
 					event = new eventData(0, len, type);
-					event->EITdata = new uint8_t[len];
-					eventData::CacheSize += len;
-					fread( event->EITdata, len, 1, f);
+					event->n_crc = (len-10) / sizeof(uint32_t);
+					fread( event->rawEITdata, 10, 1, f);
+					if (event->n_crc)
+					{
+						event->crc_list = new uint32_t[event->n_crc];
+						fread( event->crc_list, event->n_crc, sizeof(uint32_t), f);
+					}
+					eventData::CacheSize += sizeof(eventData) + event->n_crc * sizeof(uint32_t);
 					evMap[ event->getEventID() ]=event;
 					tmMap[ event->getStartTime() ]=event;
 					++cnt;
@@ -1437,10 +1434,11 @@ void eEPGCache::save()
 		fwrite( &size, sizeof(int), 1, f);
 		for (timeMap::iterator time_it(timemap.begin()); time_it != timemap.end(); ++time_it)
 		{
-			uint8_t len = time_it->second->ByteSize;
+			uint8_t len = time_it->second->n_crc * sizeof(uint32_t) + 10;
 			fwrite( &time_it->second->type, sizeof(uint8_t), 1, f );
 			fwrite( &len, sizeof(uint8_t), 1, f);
-			fwrite( time_it->second->EITdata, len, 1, f);
+			fwrite( time_it->second->rawEITdata, 10, 1, f);
+			fwrite( time_it->second->crc_list, time_it->second->n_crc, sizeof(uint32_t), f);
 			++cnt;
 		}
 	}
@@ -3117,13 +3115,10 @@ PyObject *eEPGCache::search(ePyObject arg)
 						lookupEventId(ref, eventid, evData);
 						if (evData)
 						{
-							uint8_t *data = evData->EITdata;
-							int tmp = evData->ByteSize-10;
-							uint32_t *p = (uint32_t*)(data+10);
 							// search short and extended event descriptors
-							while(tmp>3)
+							for (uint8_t i = 0; i < evData->n_crc; ++i)
 							{
-								uint32_t crc = *p++;
+								uint32_t crc = evData->crc_list[i];
 								DescriptorMap::iterator it =
 									eventData::descriptors.find(crc);
 								if (it != eventData::descriptors.end())
@@ -3138,7 +3133,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 										break;
 									}
 								}
-								tmp -= 4;
 							}
 						}
 						if (descr.empty())
@@ -3301,14 +3295,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 					if (evit->second->getEventID() == eventid)
 						continue;
 				}
-				uint8_t *data = evit->second->EITdata;
-				int tmp = evit->second->ByteSize-10;
-				uint32_t *p = (uint32_t*)(data+10);
 				// check if any of our descriptor used by this event
-				int cnt = 0;
-				while(tmp>3)
+				unsigned int cnt = 0;
+				for (uint8_t i = 0; i < evit->second->n_crc; ++i)
 				{
-					uint32_t crc32 = *p++;
+					uint32_t crc32 = evit->second->crc_list[i];
 					for (std::deque<uint32_t>::const_iterator it = descr.begin();
 						it != descr.end(); ++it)
 					{
@@ -3318,12 +3309,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 							if (querytype)
 							{
 								/* we need only one match, when we're not looking for similar broadcasting events */
-								tmp = 0;
+								i = evit->second->n_crc;
 								break;
 							}
 						}
 					}
-					tmp-=4;
 				}
 				if ( (querytype == 0 && cnt == descr.size()) ||
 					 ((querytype > 0) && cnt != 0) )
