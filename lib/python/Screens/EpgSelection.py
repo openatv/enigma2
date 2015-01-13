@@ -285,7 +285,7 @@ class EPGSelection(Screen):
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 
-	def disableTimer(self, timer, repeat=False, record=False):
+	def disableTimer(self, timer, state, repeat=False, record=False):
 		if repeat:
 			if record:
 				title_text = _("Repeating event currently recording.\nWhat do you want to do?")
@@ -295,15 +295,15 @@ class EPGSelection(Screen):
 			else:
 				title_text = _("Attention, this is repeated timer!\nWhat do you want to do?")
 				menu = [(_("Disable current event but not coming events"), "nextonlystop"),(_("Disable timer"), "simplestop")]
-			self.session.openWithCallback(boundFunction(self.runningEventCallback, timer), ChoiceBox, title=title_text, list=menu)
-		else:
+			self.session.openWithCallback(boundFunction(self.runningEventCallback, timer, state), ChoiceBox, title=title_text, list=menu)
+		elif timer.state == state:
 			timer.disable()
 			self.session.nav.RecordTimer.timeChanged(timer)
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 
-	def runningEventCallback(self, t, result):
-		if result is not None:
+	def runningEventCallback(self, t, state, result):
+		if result is not None and t.state == state:
 			findNextRunningEvent = True
 			findEventNext = False 
 			if result[1] == "nextonlystop":
@@ -333,7 +333,7 @@ class EPGSelection(Screen):
 		if event is None:
 			return
 		serviceref = cur[1]
-		isRecordEvent = isRepeat = firstNextRepeatEvent = False
+		isRecordEvent = isRepeat = firstNextRepeatEvent = isRunning = False
 		eventid = event.getEventId()
 		begin = event.getBeginTime()
 		end = begin + event.getDuration()
@@ -348,17 +348,19 @@ class EPGSelection(Screen):
 				break
 		if isRecordEvent:
 			isRepeat = timer.repeated
+			prev_state = timer.state
+			isRunning = prev_state in (1, 2)
 			title_text = isRepeat and _("Attention, this is repeated timer!\n") or ""
 			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay 
 			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
 			buttons = ["red", "green"]
-			if not timer.isRunning():
+			if not isRunning:
 				if firstNextRepeatEvent and timer.isFindRunningEvent() and not timer.isFindNextEvent():
 					menu.append((_("Options disable timer"), "disablerepeat"))
 				else:
 					menu.append((_("Disable timer"), "disable"))
 				buttons.append("yellow")
-			elif firstNextRepeatEvent:
+			elif prev_state == 2 and firstNextRepeatEvent:
 				menu.append((_("Options disable timer"), "disablerepeatrunning"))
 				buttons.append("yellow")
 			menu.append((_("Timer Overview"), "timereditlist"))
@@ -369,13 +371,13 @@ class EPGSelection(Screen):
 					elif choice[1] == "edit":
 						self.session.open(TimerEntry, timer)
 					elif choice[1] == "disable":
-						self.disableTimer(timer)
+						self.disableTimer(timer, prev_state)
 					elif choice[1] == "timereditlist":
 						self.session.open(TimerEditList)
 					elif choice[1] == "disablerepeatrunning":
-						self.disableTimer(timer, repeat=True, record=True)
+						self.disableTimer(timer, prev_state, repeat=True, record=True)
 					elif choice[1] == "disablerepeat":
-						self.disableTimer(timer, repeat=True)
+						self.disableTimer(timer, prev_state, repeat=True)
 			self.session.openWithCallback(timerAction, ChoiceBox, title=title_text + _("Select action for timer '%s'.") % timer.name, list=menu, keys=buttons)
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(event))
