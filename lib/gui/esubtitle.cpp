@@ -172,6 +172,8 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 	{
 		size_t ix, colourise_dialogs_current = 0;
 		std::vector<std::string> colourise_dialogs_colours;
+		std::string replacement;
+		bool alignment_center = eConfigManager::getConfigValue("config.subtitles.subtitle_alignment") == "center";
 
 		if(colourise_dialogs_enabled)
 		{
@@ -194,8 +196,10 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 
 				if(colourise_dialogs_enabled && !line.compare(ix, 2, "- "))
 				{
-					line.replace(ix, 2, colourise_dialogs_colours.at(colourise_dialogs_current));
+					/* workaround for rendering fault when colouring is enabled, rewrap is off and alignment is center */
+					replacement = std::string((!rewrap_enabled && alignment_center) ? "  " : "") + colourise_dialogs_colours.at(colourise_dialogs_current);
 
+					line.replace(ix, 2, replacement);
 					colourise_dialogs_current++;
 
 					if(colourise_dialogs_current >= colourise_dialogs_colours.size())
