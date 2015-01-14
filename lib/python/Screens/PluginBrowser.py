@@ -620,16 +620,16 @@ class PluginDownloadBrowser(Screen):
 						tmpT = t[0].lower()
 						tmpT = tmpT.replace('_','-')
 						if tmpT == x[2]:
-							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
+							countryIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:
-								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+								countryIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
 							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
 							break
 					else:
 						if t[0][:2] == x[2] and t[0][3:] != 'GB':
-							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
+							countryIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:
-								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+								countryIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
 							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
 							break
 			else:
