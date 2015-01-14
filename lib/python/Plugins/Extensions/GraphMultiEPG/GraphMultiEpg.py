@@ -81,7 +81,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setBuildFunc(self.buildEntry)
 		self.setOverjump_Empty(overjump_empty)
 		self.epgcache = eEPGCache.getInstance()
-		self.clocks =  [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
+		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
@@ -153,54 +153,57 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventNamePadding = 0
 
 	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "EntryForegroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorSelected":
-					self.foreColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "EntryBackgroundColorSelected":
-					self.backColorSelected = parseColor(value).argb()
-				elif attrib == "EntryBorderColor":
-					self.borderColor = parseColor(value).argb()
-				elif attrib == "EntryFont":
-					font = parseFont(value, ((1,1),(1,1)) )
-					self.entryFontName = font.family
-					self.entryFontSize = font.pointSize
-				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
-					self.foreColorService = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColorSelected":
-					self.foreColorServiceSelected = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColor" or attrib == "ServiceNameBackgroundColor":
-					self.backColorService = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColorSelected":
-					self.backColorServiceSelected = parseColor(value).argb()
-				elif attrib == "ServiceBackgroundColorRecording" or attrib == "ServiceNameBackgroundColor":
-					self.backColorRec = parseColor(value).argb()
-				elif attrib == "ServiceForegroundColorRecording":
-					self.foreColorRec = parseColor(value).argb()
-				elif attrib == "ServiceBorderColor":
-					self.borderColorService = parseColor(value).argb()
-				elif attrib == "ServiceFont":
-					self.serviceFont = parseFont(value, ((1,1),(1,1)) )
-				elif attrib == "EntryBackgroundColorNow":
-					self.backColorNow = parseColor(value).argb()
-				elif attrib == "EntryForegroundColorNow":
-					self.foreColorNow = parseColor(value).argb()
-				elif attrib == "ServiceBorderWidth":
-					self.serviceBorderWidth = int(value)
-				elif attrib == "ServiceNamePadding":
-					self.serviceNamePadding = int(value)
-				elif attrib == "EventBorderWidth":
-					self.eventBorderWidth = int(value)
-				elif attrib == "EventNamePadding":
-					self.eventNamePadding = int(value)
-				else:
-					attribs.append((attrib,value))
-			self.skinAttributes = attribs
+		def EntryForegroundColor(value):
+			self.foreColor = parseColor(value).argb()
+		def EntryForegroundColorSelected(value):
+			self.foreColorSelected = parseColor(value).argb()
+		def EntryBackgroundColor(value):
+			self.backColor = parseColor(value).argb()
+		def EntryBackgroundColorSelected(value):
+			self.backColorSelected = parseColor(value).argb()
+		def EntryBorderColor(value):
+			self.borderColor = parseColor(value).argb()
+		def EntryFont(value):
+			font = parseFont(value, ((1,1),(1,1)) )
+			self.entryFontName = font.family
+			self.entryFontSize = font.pointSize
+		def ServiceForegroundColor(value):
+			self.foreColorService = parseColor(value).argb()
+		def ServiceNameForegroundColor(value):
+			self.foreColorService = parseColor(value).argb()
+		def ServiceForegroundColorSelected(value):
+			self.foreColorServiceSelected = parseColor(value).argb()
+		def ServiceBackgroundColor(value):
+			self.backColorService = parseColor(value).argb()
+		def ServiceNameBackgroundColor(value):
+			self.backColorService = parseColor(value).argb()
+		def ServiceBackgroundColorSelected(value):
+			self.backColorServiceSelected = parseColor(value).argb()
+		def ServiceBackgroundColorRecording(value):
+			self.backColorRec = parseColor(value).argb()
+		def ServiceNameBackgroundColor(value):
+			self.backColorRec = parseColor(value).argb()
+		def ServiceForegroundColorRecording(value):
+			self.foreColorRec = parseColor(value).argb()
+		def ServiceBorderColor(value):
+			self.borderColorService = parseColor(value).argb()
+		def ServiceFont(value):
+			self.serviceFont = parseFont(value, ((1,1),(1,1)) )
+		def EntryBackgroundColorNow(value):
+			self.backColorNow = parseColor(value).argb()
+		def EntryForegroundColorNow(value):
+			self.foreColorNow = parseColor(value).argb()
+		def ServiceBorderWidth(value):
+			self.serviceBorderWidth = int(value)
+		def ServiceNamePadding(value):
+			self.serviceNamePadding = int(value)
+		def EventBorderWidth(value):
+			self.eventBorderWidth = int(value)
+		def EventNamePadding(value):
+			self.eventNamePadding = int(value)
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
+			locals().get(attrib)(value)
+			self.skinAttributes.remove((attrib, value))
 		self.l.setFont(0, self.serviceFont)
 		self.setEventFontsize()
 		rc = GUIComponent.applySkin(self, desktop, screen)
@@ -675,18 +678,15 @@ class TimelineText(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if   attrib == "foregroundColor":
-					self.foreColor = parseColor(value).argb()
-				elif attrib == "backgroundColor":
-					self.backColor = parseColor(value).argb()
-				elif attrib == "font":
-					self.font = parseFont(value,  ((1, 1), (1, 1)) )
-				else:
-					attribs.append((attrib,value))
-			self.skinAttributes = attribs
+		def foregroundColor(value):
+			self.foreColor = parseColor(value).argb()
+		def backgroundColor(value):
+			self.backColor = parseColor(value).argb()
+		def font(value):
+			self.font = parseFont(value,  ((1, 1), (1, 1)) )
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
+			locals().get(attrib)(value)
+			self.skinAttributes.remove((attrib, value))
 		self.l.setFont(0, self.font)
 		return GUIComponent.applySkin(self, desktop, screen)
 
@@ -1076,7 +1076,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 
-	def disableTimer(self, timer, repeat=False, record=False):
+	def disableTimer(self, timer, state, repeat=False, record=False):
 		if repeat:
 			if record:
 				title_text = _("Repeating event currently recording.\nWhat do you want to do?")
@@ -1086,15 +1086,15 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			else:
 				title_text = _("Attention, this is repeated timer!\nWhat do you want to do?")
 				menu = [(_("Disable current event but not coming events"), "nextonlystop"),(_("Disable timer"), "simplestop")]
-			self.session.openWithCallback(boundFunction(self.runningEventCallback, timer), ChoiceBox, title=title_text, list=menu)
-		else:
+			self.session.openWithCallback(boundFunction(self.runningEventCallback, timer, state), ChoiceBox, title=title_text, list=menu)
+		elif timer.state == state:
 			timer.disable()
 			self.session.nav.RecordTimer.timeChanged(timer)
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 
-	def runningEventCallback(self, t, result):
-		if result is not None:
+	def runningEventCallback(self, t, state, result):
+		if result is not None and t.state == state:
 			findNextRunningEvent = True
 			findEventNext = False
 			if result[1] == "nextonlystop":
@@ -1124,7 +1124,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		isRecordEvent = isRepeat = firstNextRepeatEvent = False
+		isRecordEvent = isRepeat = firstNextRepeatEvent = isRunning = False
 		eventid = event.getEventId()
 		begin = event.getBeginTime()
 		end = begin + event.getDuration()
@@ -1139,17 +1139,19 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				break
 		if isRecordEvent:
 			isRepeat = timer.repeated
+			prev_state = timer.state
+			isRunning = prev_state in (1, 2)
 			title_text = isRepeat and _("Attention, this is repeated timer!\n") or ""
 			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay 
 			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
 			buttons = ["red", "green"]
-			if not timer.isRunning():
+			if not isRunning:
 				if firstNextRepeatEvent and timer.isFindRunningEvent() and not timer.isFindNextEvent():
 					menu.append((_("Options disable timer"), "disablerepeat"))
 				else:
 					menu.append((_("Disable timer"), "disable"))
 				buttons.append("yellow")
-			elif firstNextRepeatEvent:
+			elif prev_state == 2 and firstNextRepeatEvent:
 				menu.append((_("Options disable timer"), "disablerepeatrunning"))
 				buttons.append("yellow")
 			menu.append((_("Timer Overview"), "timereditlist"))
@@ -1160,13 +1162,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 					elif choice[1] == "edit":
 						self.session.open(TimerEntry, timer)
 					elif choice[1] == "disable":
-						self.disableTimer(timer)
+						self.disableTimer(timer, prev_state)
 					elif choice[1] == "timereditlist":
 						self.session.open(TimerEditList)
 					elif choice[1] == "disablerepeatrunning":
-						self.disableTimer(timer, repeat=True, record=True)
+						self.disableTimer(timer, prev_state, repeat=True, record=True)
 					elif choice[1] == "disablerepeat":
-						self.disableTimer(timer, repeat=True)
+						self.disableTimer(timer, prev_state, repeat=True)
 			self.session.openWithCallback(timerAction, ChoiceBox, title=title_text + _("Select action for timer '%s'.") % timer.name, list=menu, keys=buttons)
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))

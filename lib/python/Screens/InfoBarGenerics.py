@@ -42,8 +42,6 @@ from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInform
 	iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
-from os import stat as os_stat
-from os import rename as os_rename
 import os
 from bisect import insort
 from sys import maxint

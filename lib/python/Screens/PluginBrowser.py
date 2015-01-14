@@ -19,7 +19,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
@@ -591,9 +591,9 @@ class PluginDownloadBrowser(Screen):
 
 	def updateList(self):
 		list = []
-		expandableIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expandable-plugins.png"))
-		expandedIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expanded-plugins.png"))
-		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/verticalline-plugins.png"))
+		expandableIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/expandable-plugins.png"))
+		expandedIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/expanded-plugins.png"))
+		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/verticalline-plugins.png"))
 
 		self.plugins = {}
 

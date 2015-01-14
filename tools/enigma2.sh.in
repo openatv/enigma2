@@ -43,6 +43,8 @@ fi
 
 sync
 
+sysctl -p
+
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
