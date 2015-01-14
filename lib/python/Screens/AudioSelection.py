@@ -110,7 +110,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["CanAACTranscode"]:
 				choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
 				self.settings.transcodeaac = ConfigSelection(choices = choice_list, default = "off")
-				self.settings.transcodeaac.addNotifier(self.setAACTranscode)
+				self.settings.transcodeaac.addNotifier(self.setAACTranscode, initial_call = False)
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
 			if SystemInfo["CanPcmMultichannel"]:
@@ -162,13 +162,13 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
 				choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
 				self.settings.surround_3d_speaker = ConfigSelection(choices = choice_list, default = config.av.surround_3d_speaker.value)
-				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker)
+				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker, initial_call = False)
 				conflist.append(getConfigListEntry(_("3D Surround Speaker Position"), self.settings.surround_3d_speaker, None))
 
 			if SystemInfo["CanAutoVolume"]:
 				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 				self.settings.autovolume = ConfigSelection(choices = choice_list, default = config.av.autovolume.value)
-				self.settings.autovolume.addNotifier(self.changeAutoVolume)
+				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call = False)
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
 			if SystemInfo["Canedidchecking"]:
