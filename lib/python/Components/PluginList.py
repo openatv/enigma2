@@ -79,9 +79,12 @@ class PluginList(MenuList):
 			global ix,iy,iw,ih
 			(i_x, i_y, i_w, i_h) = value.split(',')
 			(ix, iy, iw, ih) = (int(i_x),int(i_y),int(i_w),int(i_h))
-		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
-			locals().get(attrib)(value)
-			self.skinAttributes.remove((attrib, value))
+		for (attrib, value) in self.skinAttributes[:]:
+			try:
+				locals().get(attrib)(value)
+				self.skinAttributes.remove((attrib, value))
+			except:
+				pass
 		self.l.setFont(0, self.itemNameFont)
 		self.l.setFont(1, self.itemDescrFont)
 		return GUIComponent.applySkin(self, desktop, parent)
