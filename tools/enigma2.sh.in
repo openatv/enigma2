@@ -48,8 +48,9 @@ fi
 
 sync
 
-(sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
-        [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
+# This is a BAD idea - not restarting enigma2 when it's leaking memory results in unusable system.
+# (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
+#         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
 if [ -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
 	/home/root/factory/enigma2
