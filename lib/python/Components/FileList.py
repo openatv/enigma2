@@ -2,6 +2,7 @@ import os
 import re
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
+from skin import parseFont
 from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename, fileExists
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
@@ -35,9 +36,9 @@ EXTENSIONS = {
 		"wmv": "movie",
 	}
 
-def FileEntryComponent(name, absolute = None, isDir = False):
+def FileEntryComponent(name, absolute=None, isDir=False, itemHeight=20, iconMargin=5):
 	res = [ (absolute, isDir) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
+	png = None
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "extensions/directory.png"))
 	else:
@@ -45,11 +46,11 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 		extension = extension[-1].lower()
 		if EXTENSIONS.has_key(extension):
 			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
-		else:
-			png = None
-	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 2, 20, 20, png))
-
+	if png:
+		png_width = png.size().width()
+		png_height = png.size().height()
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, (itemHeight - png_height) / 2, png_width, png_height, png))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, png_width + iconMargin, 1, 470, itemHeight, 0, RT_HALIGN_LEFT, name))
 	return res
 
 class FileList(MenuList):
@@ -71,12 +72,31 @@ class FileList(MenuList):
 		        self.matchingPattern = None
 		self.inhibitDirs = inhibitDirs or []
 		self.inhibitMounts = inhibitMounts or []
-
-		self.refreshMountpoints()
-		self.changeDir(directory)
-		self.l.setFont(0, gFont("Regular", 18))
-		self.l.setItemHeight(23)
+		self.directory = directory
 		self.serviceHandler = eServiceCenter.getInstance()
+		self.font = gFont("Regular", 18)
+		self.itemHeight = 23
+		self.iconMargin = 5
+		self.refreshMountpoints()
+
+	def applySkin(self, desktop, parent):
+		def font(value):
+			self.font = parseFont(value, ((1,1),(1,1)))
+		def itemHeight(value):
+			self.itemHeight = int(value)
+		def iconMargin(value):
+			self.iconMargin = int(value)
+		for (attrib, value) in self.skinAttributes[:]:
+			print attrib, value
+			try:
+				locals().get(attrib)(value)
+				self.skinAttributes.remove((attrib, value))
+			except:
+				pass
+		self.l.setFont(0, self.font)
+		self.l.setItemHeight(self.itemHeight)
+		self.changeDir(self.directory)
+		return MenuList.applySkin(self, desktop, parent)
 
 	def refreshMountpoints(self):
 		self.mountpoints = [os.path.join(p.mountpoint, "") for p in harddiskmanager.getMountedPartitions()]
@@ -142,7 +162,7 @@ class FileList(MenuList):
 			for p in harddiskmanager.getMountedPartitions():
 				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
-					self.list.append(FileEntryComponent(name = p.description, absolute = path, isDir = True))
+					self.list.append(FileEntryComponent(name=p.description, absolute=path, isDir=True, itemHeight=self.itemHeight, iconMargin=self.iconMargin))
 			files = [ ]
 			directories = [ ]
 		elif directory is None:
@@ -182,15 +202,15 @@ class FileList(MenuList):
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(FileEntryComponent(name = "<" +_("List of storage devices") + ">", absolute = None, isDir = True))
+				self.list.append(FileEntryComponent(name="<" +_("List of storage devices") + ">", absolute=None, isDir=True, itemHeight=self.itemHeight, iconMargin=self.iconMargin))
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(FileEntryComponent(name = "<" +_("Parent directory") + ">", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
+				self.list.append(FileEntryComponent(name="<" +_("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True, itemHeight=self.itemHeight, iconMargin=self.iconMargin))
 
 		if self.showDirectories:
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
-					self.list.append(FileEntryComponent(name = name, absolute = x, isDir = True))
+					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, itemHeight=self.itemHeight, iconMargin=self.iconMargin))
 
 		if self.showFiles:
 			for x in files:
@@ -202,10 +222,10 @@ class FileList(MenuList):
 					name = x
 
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
+					self.list.append(FileEntryComponent(name=name, absolute=x , isDir=False, itemHeight=self.itemHeight, iconMargin=self.iconMargin))
 
 		if self.showMountpoints and len(self.list) == 0:
-			self.list.append(FileEntryComponent(name = _("nothing connected"), absolute = None, isDir = False))
+			self.list.append(FileEntryComponent(name=_("nothing connected"), absolute=None, isDir=False, itemHeight=self.itemHeight, iconMargin=self.iconMargin))
 
 		self.l.setList(self.list)
 

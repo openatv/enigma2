@@ -1,41 +1,62 @@
+from Tools.Directories import SCOPE_SKIN, resolveFilename
+
+hw_info = None
+
 class HardwareInfo:
 	device_name = None
 	device_version = None
+	#device_revision = None
 
 	def __init__(self):
-		if HardwareInfo.device_name is not None:
-#			print "using cached result"
+		global hw_info
+		if hw_info is not None:
 			return
+		hw_info = self
 
-		HardwareInfo.device_name = "unknown"
+		print "[HardwareInfo] Scanning hardware info"
+		# Version
 		try:
-			file = open("/proc/stb/info/model", "r")
-			HardwareInfo.device_name = file.readline().strip()
-			file.close()
-			try:
-				file = open("/proc/stb/info/version", "r")
-				HardwareInfo.device_version = file.readline().strip()
-				file.close()
-			except:
-				pass
+			self.device_version = open("/proc/stb/info/version").read().strip()
 		except:
-			print "----------------"
-			print "you should upgrade to new drivers for the hardware detection to work properly"
-			print "----------------"
-			print "fallback to detect hardware via /proc/cpuinfo!!"
-			try:
-				rd = open("/proc/cpuinfo", "r").read()
-				if "Brcm4380 V4.2" in rd:
-					HardwareInfo.device_name = "dm8000"
-					print "dm8000 detected!"
-				elif "Brcm7401 V0.0" in rd:
-					HardwareInfo.device_name = "dm800"
-					print "dm800 detected!"
-				elif "MIPS 4KEc V4.8" in rd:
-					HardwareInfo.device_name = "dm7025"
-					print "dm7025 detected!"
-			except:
-				pass
+			pass
+
+		# Revision
+		#try:
+		#	self.device_revision = open("/proc/stb/info/board_revision").read().strip()
+		#except:
+		#	pass
+
+		# Name ... bit odd, but history prevails
+		try:
+			self.device_name = open("/proc/stb/info/model").read().strip()
+		except:
+			pass
+
+		# Model
+		#for line in open((resolveFilename(SCOPE_SKIN, 'hw_info/hw_info.cfg')), 'r'):
+		#	if not line.startswith('#') and not line.isspace():
+		#		l = line.strip().replace('\t', ' ')
+		#		if ' ' in l:
+		#			infoFname, prefix = l.split()
+		#		else:
+		#			infoFname = l
+		#			prefix = ""
+		#		try:
+		#			self.device_model = prefix + open("/proc/stb/info/" + infoFname).read().strip()
+		#			break
+		#		except:
+		#			pass
+		#
+		#if self.device_model is None:
+		#	self.device_model = self.device_name
+		#
+		## HDMI capbility
+		#self.device_hdmi = (	self.device_name == 'dm7020hd' or
+		#			self.device_name == 'dm800se' or
+		#			self.device_name == 'dm500hd' or
+		#			(self.device_name == 'dm8000' and self.device_version != None))
+
+		print "Detected: " + self.get_device_string()
 
 	def get_device_name(self):
 		return HardwareInfo.device_name
