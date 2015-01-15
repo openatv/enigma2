@@ -82,12 +82,13 @@ class FileList(MenuList):
 			self.name =  map(int, value.split(","))
 		def setIcon(value):
 			self.icon = map(int, value.split(","))
-		for (attrib, value) in self.skinAttributes:
-			try:
-				locals().get(attrib)(value)
-				self.skinAttributes.remove((attrib, value))
-			except:
-				pass
+		if self.skinAttributes:
+				for (attrib, value) in list(self.skinAttributes):
+					try:
+						locals().get(attrib)(value)
+						self.skinAttributes.remove((attrib, value))
+					except:
+						pass
 		self.l.setFont(0, self.itemFont)
 		self.refreshMountpoints()
 		self.changeDir(self.directory)
@@ -322,7 +323,7 @@ class MultiFileSelectList(FileList):
 			self.icon = map(int, value.split(","))
 		def setLock(value):
 			self.lock = map(int, value.split(","))
-		for (attrib, value) in self.skinAttributes:
+		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
 				self.skinAttributes.remove((attrib, value))
