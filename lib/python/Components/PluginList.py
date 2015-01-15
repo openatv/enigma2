@@ -89,7 +89,7 @@ class PluginList(MenuList):
 		for (attrib, value) in self.skinAttributes:
 			try:
 				locals().get(attrib)(value)
-				self.skinAttributes((attrib, value))
+				self.skinAttributes.remove((attrib, value))
 			except:
 				pass
 		self.l.setFont(0, self.itemNameFont)
