@@ -125,6 +125,7 @@
 		<item level="2" text="External subtitle color" description="Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow.">config.subtitles.pango_subtitle_colors</item>
 		<item level="2" text="Delay for external subtitles" description="Configure an additional delay to improve external subtitle synchronisation.">config.subtitles.pango_subtitles_delay</item>
 		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
+		<item level="2" text="HI-cleanup for external subtitles" description="Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard).">config.subtitles.pango_subtitle_removehi</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will be always turned on for playback movie.">config.subtitles.pango_autoturnon</item>
 	</setup>
 	<setup key="autolanguagesetup" title="Auto language selection">
