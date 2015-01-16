@@ -118,7 +118,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			self.iconMargin = int(value)
 		def satPosLeft(value):
 			self.satPosLeft = int(value)
-		for (attrib, value) in self.skinAttributes[:]:
+		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
 				self.skinAttributes.remove((attrib, value))

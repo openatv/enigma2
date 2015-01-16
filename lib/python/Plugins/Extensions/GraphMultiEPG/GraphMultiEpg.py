@@ -201,7 +201,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.eventBorderWidth = int(value)
 		def EventNamePadding(value):
 			self.eventNamePadding = int(value)
-		for (attrib, value) in self.skinAttributes[:]:
+		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
 				self.skinAttributes.remove((attrib, value))
@@ -687,7 +687,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			self.backColor = parseColor(value).argb()
 		def font(value):
 			self.font = parseFont(value,  ((1, 1), (1, 1)) )
-		for (attrib, value) in self.skinAttributes[:]:
+		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
 				self.skinAttributes.remove((attrib, value))
