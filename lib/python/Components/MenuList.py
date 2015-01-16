@@ -12,9 +12,6 @@ class MenuList(HTMLComponent, GUIComponent):
 		self.onSelectionChanged = [ ]
 		self.enableWrapAround = enableWrapAround
 
-	def applySkin(self, desktop, parent):
-		return GUIComponent.applySkin(self, desktop, parent)
-
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 
