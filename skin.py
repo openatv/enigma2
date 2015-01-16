@@ -22,6 +22,8 @@ fonts = {
 	"ChoiceList": ("Regular", 20, 24, 18),
 }
 
+parameters = {}
+
 def dump(x, i=0):
 	print " " * i + str(x)
 	try:
@@ -477,8 +479,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
-		        get = alias.attrib.get
-		        try:
+			get = alias.attrib.get
+			try:
 				name = get("name")
 				font = get("font")
 				size = int(get("size"))
@@ -489,6 +491,15 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			except Exception, ex:
 				print "[SKIN] bad font alias", ex
 
+	for c in skin.findall("parameters"):
+		for parameter in c.findall("parameter"):
+			get = parameter.attrib.get
+			try:
+				name = get("name")
+				value = get("value")
+				parameters[name] = map(int, value.split(","))
+			except Exception, ex:
+				print "[SKIN] bad parameter", ex
 
 	for c in skin.findall("subtitles"):
 		from enigma import eWidget, eSubtitleWidget
