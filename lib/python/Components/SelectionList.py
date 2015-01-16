@@ -25,7 +25,7 @@ class SelectionList(MenuList):
 	def applySkin(self, desktop, parent):
 		def font(value):
 			self.itemFont = parseFont(value, ((1,1),(1,1)))
-		for (attrib, value) in list(self.skinAttributes):
+		for (attrib, value) in self.skinAttributes:
 			try:
 				locals().get(attrib)(value)
 				self.skinAttributes.remove((attrib, value))

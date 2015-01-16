@@ -86,7 +86,7 @@ class PluginList(MenuList):
 			p.icon = map(int, value.split(','))
 		def setPluginIcon(value):
 			p.plicon = map(int, value.split(','))
-		for (attrib, value) in list(self.skinAttributes):
+		for (attrib, value) in self.skinAttributes:
 			try:
 				locals().get(attrib)(value)
 				self.skinAttributes.remove((attrib, value))
