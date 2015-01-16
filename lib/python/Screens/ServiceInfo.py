@@ -7,6 +7,7 @@ from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter
 from Tools.Transponder import ConvertToHumanReadable
 from Components.Converter.ChannelNumbers import channelnumbers
+import skin
 
 RT_HALIGN_LEFT = 0
 
@@ -37,12 +38,14 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 			b = ("%d.%d%s") % (b // 10, b % 10, direction)
 		else:
 			b = str(b)
-
+	x, y, w, h = skin.parameters.get("ServiceInfo",(0, 0, 300, 30))
+	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft",(0, 0, 300, 25))
+	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight",(300, 0, 600, 25))
 	return [
 		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 300, 30, 0, RT_HALIGN_LEFT, ""),
-		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 300, 25, 0, RT_HALIGN_LEFT, a),
-		(eListboxPythonMultiContent.TYPE_TEXT, 300, 0, 600, 25, 0, RT_HALIGN_LEFT, b)
+		(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, ""),
+		(eListboxPythonMultiContent.TYPE_TEXT, xa, ya, wa, ha, 0, RT_HALIGN_LEFT, a),
+		(eListboxPythonMultiContent.TYPE_TEXT, xb, yb, wb, hb, 0, RT_HALIGN_LEFT, b)
 	]
 
 class ServiceInfoList(HTMLComponent, GUIComponent):
@@ -51,8 +54,9 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.list = source
 		self.l.setList(self.list)
-		self.l.setFont(0, gFont("Regular", 23))
-		self.l.setItemHeight(25)
+		font = skin.fonts.get("ServiceInfo", ("Regular", 23, 25))
+		self.l.setFont(0, gFont(font[0], font[1]))
+		self.l.setItemHeight(font[2])
 
 	GUI_WIDGET = eListbox
 
