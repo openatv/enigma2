@@ -15,7 +15,6 @@ class TimerList(HTMLComponent, GUIComponent, object):
 #  | <state>  <start, end>  |
 #
 	def buildTimerEntry(self, timer, processed):
-		screenwidth = getDesktop(0).size().width()
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
 		res = [ None ]
@@ -152,4 +151,3 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			op = 3600 - op
 			direction = 'W'
 		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
-
