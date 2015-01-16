@@ -66,6 +66,7 @@ public:
 
 protected:
 	int event(int event, void *data=0, void *data2=0);
+	void removeHearingImpaired(std::string& str);
 private:
 	int m_page_ok;
 	eDVBTeletextSubtitlePage m_page;
