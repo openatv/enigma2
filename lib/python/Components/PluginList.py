@@ -57,7 +57,6 @@ class PluginList(MenuList):
 		GUIComponent.__init__(self)
 		self.itemNameFont = gFont("Regular", 20)
 		self.itemDescrFont = gFont("Regular", 14)
-		# n = name, d = description, i = icon, w = width, h = height
 		(nx, ny, nh, dx, dy, dh) = (80, 5, 25, 80, 26, 17 )
 		(ix, iy, iw, ih) = (10, 0, 60, 50)
 		self.l.setItemHeight(50)
@@ -79,8 +78,8 @@ class PluginList(MenuList):
 			global ix,iy,iw,ih
 			(i_x, i_y, i_w, i_h) = value.split(',')
 			(ix, iy, iw, ih) = (int(i_x),int(i_y),int(i_w),int(i_h))
-		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
-			locals().get(attrib)(value)
+		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir()]:
+			eval(attrib + "('" + value + "')")
 			self.skinAttributes.remove((attrib, value))
 		self.l.setFont(0, self.itemNameFont)
 		self.l.setFont(1, self.itemDescrFont)
