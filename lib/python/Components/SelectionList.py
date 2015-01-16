@@ -2,8 +2,6 @@ from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
 from Tools.LoadPixmap import LoadPixmap
-from GUIComponent import GUIComponent
-from skin import parseFont
 
 selectionpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
 
@@ -19,20 +17,8 @@ def SelectionEntryComponent(description, value, index, selected):
 class SelectionList(MenuList):
 	def __init__(self, list = None, enableWrapAround = False):
 		MenuList.__init__(self, list or [], enableWrapAround, content = eListboxPythonMultiContent)
-		self.itemFont = gFont("Regular", 20)
+		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(30)
-
-	def applySkin(self, desktop, parent):
-		def font(value):
-			self.itemFont = parseFont(value, ((1,1),(1,1)))
-		for (attrib, value) in self.skinAttributes:
-			try:
-				locals().get(attrib)(value)
-				self.skinAttributes((attrib, value))
-			except:
-				pass
-		self.l.setFont(0, self.itemFont)
-		return GUIComponent.applySkin(self, desktop, parent)
 
 	def addSelection(self, description, value, index, selected = True):
 		self.list.append(SelectionEntryComponent(description, value, index, selected))
