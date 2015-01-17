@@ -105,6 +105,14 @@ const eServiceReference &handleGroup(const eServiceReference &ref)
 	return ref;
 }
 
+static uint32_t calculate_crc_hash(const uint8_t *data, int size)
+{
+	uint32_t crc = 0;
+	for (int i = 0; i < size; ++i)
+		crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[i]) & 0xFF];
+	return crc;
+}
+
 eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidonid)
 	:n_crc(0), type(_type & 0xFF), crc_list(NULL)
 {
@@ -120,7 +128,7 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 
 	while(size > 1)
 	{
-		uint8_t *descr = data+ptr;
+		uint8_t *descr = data + ptr;
 		int descr_len = descr[1];
 		descr_len += 2;
 		if (size >= descr_len)
@@ -133,11 +141,7 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 				case CONTENT_DESCRIPTOR:
 				case PARENTAL_RATING_DESCRIPTOR:
 				{
-					uint32_t crc = 0;
-					int cnt=0;
-					while(cnt++ < descr_len)
-						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
-
+					uint32_t crc = calculate_crc_hash(descr, descr_len);
 					DescriptorMap::iterator it = descriptors.find(crc);
 					if ( it == descriptors.end() )
 					{
@@ -191,12 +195,8 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 						title_data[7 + eventNameUTF8len] = 0;
 
 						//Calculate the CRC, based on our new data
-						uint32_t title_crc = 0;
-						int cnt=0;
-						int tmpPtr = 0;
 						title_len += 2; //add 2 the length to include the 2 bytes in the header
-						while(cnt++ < title_len)
-							title_crc = (title_crc << 8) ^ crc32_table[((title_crc >> 24) ^ title_data[tmpPtr++]) & 0xFF];
+						uint32_t title_crc = calculate_crc_hash(title_data, title_len);
 
 						DescriptorMap::iterator it = descriptors.find(title_crc);
 						if ( it == descriptors.end() )
@@ -228,12 +228,8 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 						text_data[7] = 0x15; //identify text as UTF-8
 						memcpy(&text_data[8], textUTF8.data(), textUTF8len);
 
-						uint32_t text_crc = 0;
-						int cnt=0;
-						int tmpPtr = 0;
 						text_len += 2; //add 2 the length to include the 2 bytes in the header
-						while(cnt++ < text_len)
-							text_crc = (text_crc << 8) ^ crc32_table[((text_crc >> 24) ^ text_data[tmpPtr++]) & 0xFF];
+						uint32_t text_crc = calculate_crc_hash(text_data, text_len);
 
 						DescriptorMap::iterator it = descriptors.find(text_crc);
 						if ( it == descriptors.end() )
@@ -248,14 +244,12 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 						}
 						*pdescr++ = text_crc;
 					}
-
-					ptr += descr_len;
 					break;
 				}
 				default: // do not cache all other descriptors
-					ptr += descr_len;
 					break;
 			}
+			ptr += descr_len;
 			size -= descr_len;
 		}
 		else
