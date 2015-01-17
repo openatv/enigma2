@@ -282,7 +282,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		}
 		if (cur)
 		{
-			return cur;
+			return !!cur;
 		}
 		/* fallback to stream (or pvr) service alternative */
 		if (streamable_service)
