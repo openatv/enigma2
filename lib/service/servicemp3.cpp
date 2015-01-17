@@ -2388,7 +2388,7 @@ void eServiceMP3::pushSubtitles()
 
 		// showtime
 
-		if (m_subtitle_widget)
+		if (m_subtitle_widget && !m_paused)
 		{
 			//eDebug("*** current sub actual, show!");
 
