@@ -171,17 +171,9 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 
 RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 {
-	uint16_t stime_mjd = evt->getStartTimeMjd();
-	uint32_t stime_bcd = evt->getStartTimeBcd();
-	uint32_t duration = evt->getDuration();
-	m_begin = parseDVBtime(
-		stime_mjd >> 8,
-		stime_mjd&0xFF,
-		stime_bcd >> 16,
-		(stime_bcd >> 8)&0xFF,
-		stime_bcd & 0xFF
-	);
+	m_begin = parseDVBtime(evt->getStartTimeMjd(), evt->getStartTimeBcd());
 	m_event_id = evt->getEventId();
+	uint32_t duration = evt->getDuration();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
 	if (m_language != "---" && loadLanguage(evt, m_language, tsidonid))
 		return 0;
