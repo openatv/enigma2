@@ -329,27 +329,35 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&lt", "<");
 				text = replace_all(text, "&gt", ">");
 
+				if (eConfigManager::getConfigBoolValue("config.subtitles.pango_subtitle_fontswitch"))
+					if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
+						if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
+							face = Subtitle_MAX;
+						else
+							face = Subtitle_Italic;
+					else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
+						face = Subtitle_Bold;
+
 				if (eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1) == 2)
-				{
 					text = (std::string) gRGB(255, 255, 0) + text;
-					text = replace_all(text, "</u>", (std::string) gRGB(255,255,0));
-				}
 				else
+				{
+					text = replace_all(text, "<u>", (std::string) gRGB(0,255,0));
 					text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
-
-				if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
-					if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
-						face = Subtitle_MAX;
-					else
-						face = Subtitle_Italic;
-				else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
-					face = Subtitle_Bold;
-
-				text = replace_all(text, "<u>", (std::string) gRGB(255,255,0));
-				text = replace_all(text, "<i>", "");
-				text = replace_all(text, "<b>", "");
+					if (eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1) == 0)
+					{
+						text = replace_all(text, "<i>", gRGB(255,255,0));
+						text = replace_all(text, "<b>", gRGB(0,255,255));
+						text = replace_all(text, "</i>", (std::string) gRGB(255,255,255));
+						text = replace_all(text, "</b>", (std::string) gRGB(255,255,255));
+					}
+				}
+				text = replace_all(text, "</u>", "");
 				text = replace_all(text, "</i>", "");
 				text = replace_all(text, "</b>", "");
+				text = replace_all(text, "<u>", "");
+				text = replace_all(text, "<i>", "");
+				text = replace_all(text, "<b>", "");
 
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
