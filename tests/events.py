@@ -27,9 +27,9 @@ def start_log():
 
 def end_log(test_name):
 	global base_time
-	
+
 	results = ""
-	
+
 	for (t, self, method, args, kwargs) in get_events():
 		results += "%s T+%f: %s::%s(%s, *%s, *%s)\n"  % (time.ctime(t), t - base_time, str(self.__class__), method, self, args, kwargs)
 
@@ -44,9 +44,9 @@ def end_log(test_name):
 		f = open(test_name + ".new_results", "wb")
 		f.write(results)
 		f.close()
-	
+
 	print results
-	
+
 	if expected is not None:
 		print "expected:"
 		if expected != results:

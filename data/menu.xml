@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <menu text="Mainmenu" title="Main menu">
-	<id val="mainmenu" />
+	<id val="mainmenu"/>
 	<menu weight="1"  level="0" text="TV" entryID="mainmenu_tv" >
 		<id val="id_mainmenu_tv" default="&gt;&lt;"/>
 		<item level="0" text="Recorded TV" entryID="mainmenu_tv_recorded" weight="10" endtext="•••>">
@@ -106,7 +106,7 @@ InfoBar.instance.showMovies()
 						<setup id="epggraphical" />
 					</item>
 					<menu weight="4" level="1" text="Load/Save EPG" entryID="epgloadsave_menu">
-						<id val="epgloadsave_menu" />
+						<id val="epgloadsave_menu"/>
 						<item level="1" entryID="saveepgcache" text="Save EPG">
 							<code>
 from Components.EpgLoadSave import EpgSaveMsg
@@ -128,6 +128,21 @@ def msgClosed(ret):
 		epgcache.load()
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
 							</code>
+						</item>
+						<item level="1" entryID="deleteepgcache" text="Delete EPG">
+<code>
+from Components.EpgLoadSave import EpgDeleteMsg
+def msgClosed(ret):
+	if ret:
+		import os
+		from Components.config import config
+		if os.path.exists(config.misc.epgcache_filename.value):
+			os.remove(config.misc.epgcache_filename.value)
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.flushEPG()
+self.session.openWithCallback(msgClosed, EpgDeleteMsg)
+</code>
 						</item>
 					</menu>
 				</menu>      
@@ -195,7 +210,7 @@ self.session.open(movieBrowserConfig)
 				</menu>
 				<item weight="4" level="0" text="Customize" entryID="usage_setup"><setup id="usage" /></item>
 				<menu weight="10" level="0" text="Network Settings" entryID="network_menu" endtext="•••>">
-					<id val="network" />
+					<id val="network"/>
 					<item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
 					<item level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>

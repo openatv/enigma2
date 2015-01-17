@@ -31,7 +31,7 @@ class SecConfigure:
 		sec.addSatellite(orbpos)
 		self.configuredSatellites.add(orbpos)
 
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True, diseqc13V = False):
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True, diseqc13V = False, CircularLNB = False):
 		if orbpos is None or orbpos == 3600 or orbpos == 3601:
 			return
 		#simple defaults
@@ -45,13 +45,13 @@ class SecConfigure:
 				tunermask |= (1 << slot)
 		sec.setLNBSatCR(-1)
 		sec.setLNBNum(1)
-		sec.setLNBLOFL(9750000)
-		sec.setLNBLOFH(10600000)
-		sec.setLNBThreshold(11700000)
-		sec.setLNBIncreasedVoltage(lnbParam.OFF)
+		sec.setLNBLOFL(CircularLNB and 10750000 or 9750000)
+		sec.setLNBLOFH(CircularLNB and 10750000 or 10600000)
+		sec.setLNBThreshold(CircularLNB and 10750000 or 11700000)
+		sec.setLNBIncreasedVoltage(False)
 		sec.setRepeats(0)
 		sec.setFastDiSEqC(fastDiSEqC)
-		sec.setSeqRepeat(0)
+		sec.setSeqRepeat(False)
 		sec.setCommandOrder(0)
 
 		#user values
@@ -60,7 +60,6 @@ class SecConfigure:
 		sec.setToneburst(toneburstmode)
 		sec.setCommittedCommand(diseqcpos)
 		sec.setUncommittedCommand(0) # SENDNO
-		#print "set orbpos to:" + str(orbpos)
 
 		if 0 <= diseqcmode < 3:
 			self.addSatellite(sec, orbpos)
@@ -156,10 +155,10 @@ class SecConfigure:
 		for slot in nim_slots:
 			if slot.frontend_id is not None:
 				types = [type for type in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
-				if "DVB-T2" in types:
+				if "DVB-T2" in types and "DVB-T" in types:
 					# DVB-T2 implies DVB-T support
 					types.remove("DVB-T")
-				if "DVB-S2" in types:
+				if "DVB-S2" in types and "DVB-S" in types:
 					# DVB-S2 implies DVB-S support
 					types.remove("DVB-S")
 				if len(types) > 1:
@@ -206,7 +205,13 @@ class SecConfigure:
 					elif nim.configMode.value == "simple":		#simple config
 						print "diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
+							currentCircular = False
+							if nim.diseqcA.value in ("360", "560"): 
+								currentCircular = nim.simpleDiSEqCSetCircularLNB.value
+							if nim.simpleSingleSendDiSEqC.value:
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, diseqc13V = nim.diseqc13V.value, CircularLNB = currentCircular)
+							else:
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value, CircularLNB = currentCircular)
 						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
@@ -360,23 +365,18 @@ class SecConfigure:
 					sec.setLNBLOFH(5150000)
 					sec.setLNBThreshold(5150000)
 				elif currLnb.lof.value == "user_defined":
-					sec.setLNBLOFL(currLnb.lofl.getValue() * 1000)
-					sec.setLNBLOFH(currLnb.lofh.getValue() * 1000)
-					sec.setLNBThreshold(currLnb.threshold.getValue() * 1000)
-				elif currLnb.lof.value == "circle":
+					sec.setLNBLOFL(currLnb.lofl.value * 1000)
+					sec.setLNBLOFH(currLnb.lofh.value * 1000)
+					sec.setLNBThreshold(currLnb.threshold.value * 1000)
+				elif currLnb.lof.value == "circular_lnb":
 					sec.setLNBLOFL(10750000)
 					sec.setLNBLOFH(10750000)
-					sec.setLNBThreshold(12700000)
-					sec.setToneMode(switchParam.OFF)
-#				if currLnb.output_12v..value == "0V":
-#					pass # nyi in drivers
-#				elif currLnb.output_12v.value == "12V":
-#					pass # nyi in drivers
+					sec.setLNBThreshold(10750000)
 
 				if currLnb.increased_voltage.value:
-					sec.setLNBIncreasedVoltage(lnbParam.ON)
+					sec.setLNBIncreasedVoltage(True)
 				else:
-					sec.setLNBIncreasedVoltage(lnbParam.OFF)
+					sec.setLNBIncreasedVoltage(False)
 
 				dm = currLnb.diseqcMode.value
 				if dm == "none":
@@ -699,36 +699,23 @@ class NimManager:
 			return orbpos + 1800
 
 	def readTransponders(self):
-		# read initial networks from file. we only read files which we are interested in,
-		# which means only these where a compatible tuner exists.
 		self.satellites = { }
 		self.transponders = { }
 		self.transponderscable = { }
 		self.transpondersterrestrial = { }
 		self.transpondersatsc = { }
 		db = eDVBDB.getInstance()
+
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
 			db.readSatellites(self.satList, self.satellites, self.transponders)
 			self.satList.sort() # sort by orbpos
-			#print "SATLIST", self.satList
-			#print "SATS", self.satellites
-			#print "TRANSPONDERS", self.transponders
 
 		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
 			print "Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
-#			print "CABLIST", self.cablesList
-#			print "TRANSPONDERS", self.transponders
-
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
-#			print "TERLIST", self.terrestrialsList
-#			print "TRANSPONDERS", self.transpondersterrestrial
-
-		if self.hasNimType("ATSC"):
-			print "Reading atsc.xml"
-			#db.readATSC(self.atscList, self.transpondersatsc)
 
 	def enumerateNIMs(self):
 		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
@@ -787,11 +774,11 @@ class NimManager:
 			elif line.startswith("Mode"):
 				# "Mode 1: DVB-T" -> ["Mode 1", "DVB-T"]
 				split = line.split(":")
-				split[1] = split[1].replace(' ','')
-				split2 = split[0].split(" ")
-				modes = entries[current_slot].get("multi_type", {})
-				modes[split2[1]] = split[1]
-				entries[current_slot]["multi_type"] = modes
+				if len(split) > 1 and split[1]:
+					split2 = split[0].split(" ")
+					modes = entries[current_slot].get("multi_type", {})
+					modes[split2[1]] = split[1].strip()
+					entries[current_slot]["multi_type"] = modes
 			elif line.startswith("I2C_Device:"):
 				input = int(line[len("I2C_Device:") + 1:])
 				entries[current_slot]["i2c"] = input
@@ -1026,9 +1013,6 @@ class NimManager:
 	def getRotorSatListForNim(self, slotid):
 		list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
-			#print "slotid:", slotid
-			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
-			#print "diseqcA:", config.Nims[slotid].diseqcA.value
 			nim = config.Nims[slotid]
 			configMode = nim.configMode.value
 			if configMode == "simple":
@@ -1157,8 +1141,8 @@ def InitNimManager(nimmgr):
 		"universal_lnb": _("Universal LNB"),
 		"unicable": _("Unicable"),
 		"c_band": _("C-Band"),
-		"user_defined": _("User defined"),
-		"circle": _("Circular")}
+		"circular_lnb": _("Circular LNB"),
+		"user_defined": _("User defined")}
 
 	lnb_choices_default = "universal_lnb"
 
@@ -1382,7 +1366,6 @@ def InitNimManager(nimmgr):
 			section.lofl = ConfigInteger(default=9750, limits = (0, 99999))
 			section.lofh = ConfigInteger(default=10600, limits = (0, 99999))
 			section.threshold = ConfigInteger(default=11700, limits = (0, 99999))
-#			section.output_12v = ConfigSelection(choices = [("0V", _("0 V")), ("12V", _("12 V"))], default="0V")
 			section.increased_voltage = ConfigYesNo(False)
 			section.toneburst = ConfigSelection(advanced_lnb_toneburst_choices, "none")
 			section.longitude = ConfigNothing()
@@ -1464,8 +1447,10 @@ def InitNimManager(nimmgr):
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
+			nim.simpleSingleSendDiSEqC = ConfigYesNo(False)
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
+			nim.simpleDiSEqCSetCircularLNB = ConfigYesNo(True)
 			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.diseqcB = ConfigSatlist(list = diseqc_satlist_choices)
 			nim.diseqcC = ConfigSatlist(list = diseqc_satlist_choices)
@@ -1580,7 +1565,6 @@ def InitNimManager(nimmgr):
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing")
 			if slot.type is not None:
 				print "pls add support for this frontend type!", slot.type
-#			assert False
 
 	nimmgr.sec = SecConfigure(nimmgr)
 

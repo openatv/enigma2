@@ -126,6 +126,7 @@ class About(AboutBase):
 			self.list.append(self.makeInfoEntry(_("Chipset:"), "BCM%s" % about.getChipSetString()))
 
 		self.list.append(self.makeInfoEntry(_("CPU:"), about.getCPUString()))
+		self.list.append(self.makeInfoEntry(_("CPU Speed:"), about.getCPUSpeedString()))
 		self.list.append(self.makeInfoEntry(_("Cores:"), str(about.getCpuCoresString())))
 
 		string = getDriverDate()
@@ -156,6 +157,8 @@ class About(AboutBase):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
+
+		self.list.append(self.makeInfoEntry(_("GStreamer:"), about.getGStreamerVersionString()))
 
 		self["list"].updateList(self.list)
 
@@ -277,7 +280,7 @@ class Devices(AboutBase):
 			return (self.makeInfoEntry(name, ''),)
 
 	def populate(self):
-		scanning = _("Wait please while scanning for devices...")
+		scanning = _("Please wait while scanning for devices...")
 		self.list.append(self.makeHeadingEntry(scanning))
 		self["list"].updateList(self.list)
 		self.activityTimer.start(10, True)
@@ -290,7 +293,7 @@ class Devices(AboutBase):
 
 		self.list.append(self.makeEmptyEntry())
 
-		self.list.append(self.makeHeadingEntry(_("Detected NIMs:")))
+		self.list.append(self.makeHeadingEntry(_("Detected Tuners:")))
 
 		nims = nimmanager.nimList()
 		for count in range(min(len(nims), 4)):

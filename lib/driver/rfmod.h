@@ -4,7 +4,7 @@
 class eRFmod
 {
 	static eRFmod *instance;
-	
+
 	int fd;
 #ifdef SWIG
 	eRFmod();

@@ -10,6 +10,7 @@ from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
+from Components.VolumeControl import VolumeControl
 from Tools.ISO639 import LanguageCodes
 
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
@@ -46,6 +47,9 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"volumeUp": self.volumeUp,
+			"volumeDown": self.volumeDown,
+			"volumeMute": self.volumeMute,
 			"menu": self.openAutoLanguageSetup,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
@@ -97,6 +101,12 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call=False)
 				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
 
+			if SystemInfo["CanAACTranscode"]:
+				choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+				self.settings.transcodeaac = ConfigSelection(choices = choice_list, default = "off")
+				self.settings.transcodeaac.addNotifier(self.setAACTranscode)
+				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
+
 			if SystemInfo["CanPcmMultichannel"]:
 				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.value)
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call=False)
@@ -127,7 +137,7 @@ class AudioSelection(Screen, ConfigListScreen):
 						if cnt:
 							language += ' / '
 						if lang in LanguageCodes:
-							language += LanguageCodes[lang][0]
+							language += _(LanguageCodes[lang][0])
 						else:
 							language += lang
 						cnt += 1
@@ -136,6 +146,30 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			else:
 				conflist.append(('',))
+
+			if SystemInfo["Can3DSurround"]:
+				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.surround_3d = ConfigSelection(choices = choice_list, default = config.av.surround_3d.value)
+				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
+				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d, None))
+
+			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
+				choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
+				self.settings.surround_3d_speaker = ConfigSelection(choices = choice_list, default = config.av.surround_3d_speaker.value)
+				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker)
+				conflist.append(getConfigListEntry(_("3D Surround Speaker Position"), self.settings.surround_3d_speaker, None))
+
+			if SystemInfo["CanAutoVolume"]:
+				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.autovolume = ConfigSelection(choices = choice_list, default = config.av.autovolume.value)
+				self.settings.autovolume.addNotifier(self.changeAutoVolume)
+				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
+
+#			if SystemInfo["Canedidchecking"]:
+#				choice_list = [("00000000", _("off")), ("00000001", _("on"))]
+#				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
+#				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
+#				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
 
 			from Components.PluginComponent import plugins
 			from Plugins.Plugin import PluginDescriptor
@@ -152,12 +186,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
 				if len(Plugins):
 					for x in Plugins:
-						if x[0] == 'AudioEffect':  # always make AudioEffect Blue button.
-							Plugins.insert(0, Plugins.pop(Plugins.index(x)))
-							break
-					self["key_blue"].setBoolean(True)
-					for x in Plugins:
-						conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
+						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
+							conflist.append(getConfigListEntry(x[0], ConfigNothing(),x[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
@@ -183,7 +213,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				try:
 					if x[4] != "und":
 						if x[4] in LanguageCodes:
-							language = LanguageCodes[x[4]][0]
+							language = _(LanguageCodes[x[4]][0])
 						else:
 							language = x[4]
 				except:
@@ -259,6 +289,22 @@ class AudioSelection(Screen, ConfigListScreen):
 		if surround_3d.value:
 			config.av.surround_3d.value = surround_3d.value
 		config.av.surround_3d.save()
+		self.fillList()
+
+	def change3DSurroundSpeaker(self, surround_3d_speaker):
+		if surround_3d_speaker.value:
+			config.av.surround_3d_speaker.value = surround_3d_speaker.value
+		config.av.surround_3d_speaker.save()
+
+	def changeAutoVolume(self, autovolume):
+		if autovolume.value:
+			config.av.autovolume.value = autovolume.value
+		config.av.autovolume.save()
+
+	def changeEDIDChecking(self, edidchecking):
+		if edidchecking.value:
+			config.av.bypass_edid_checking.value = edidchecking.value
+		config.av.bypass_edid_checking.save()
 
 	def changeAC3Downmix(self, downmix):
 		if downmix.value:
@@ -286,6 +332,10 @@ class AudioSelection(Screen, ConfigListScreen):
 		else:
 			config.av.downmix_aac.setValue(False)
 		config.av.downmix_aac.save()
+
+	def setAACTranscode(self, transcode):
+		config.av.transcodeaac.setValue(transcode)
+		config.av.transcodeaac.save()
 
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
@@ -371,6 +421,15 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.focus = FOCUS_STREAMS
 		elif self.focus == FOCUS_STREAMS:
 			self["streams"].selectNext()
+
+	def volumeUp(self):
+		VolumeControl.instance and VolumeControl.instance.volUp()
+
+	def volumeDown(self):
+		VolumeControl.instance and VolumeControl.instance.volDown()
+
+	def volumeMute(self):
+		VolumeControl.instance and VolumeControl.instance.volMute()
 
 	def keyNumberGlobal(self, number):
 		if number <= len(self["streams"].list):

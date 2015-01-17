@@ -21,7 +21,7 @@ eRFmod::eRFmod()
 {
 	ASSERT(!instance);
 	instance = this;
-	
+
 	fd = open("/dev/rfmod0", O_RDWR);
 	if (fd < 0)
 		eDebug("couldnt open /dev/rfmod0!!!!");

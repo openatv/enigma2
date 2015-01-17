@@ -44,7 +44,7 @@ class eSubtitleWidget: public eWidget, public iSubtitleUser, public Object
 {
 public:
 	eSubtitleWidget(eWidget *parent);
-	
+
 	void setPage(const eDVBTeletextSubtitlePage &p);
 	void setPage(const eDVBSubtitlePage &p);
 	void setPage(const ePangoSubtitlePage &p);

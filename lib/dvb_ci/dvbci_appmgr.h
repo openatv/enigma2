@@ -8,9 +8,9 @@ class eDVBCIApplicationManagerSession: public eDVBCISession
 	enum {
 		stateFinal=statePrivate,
 	};
-	
+
 	eDVBCISlot *slot;
-	
+
 	int wantmenu;
 	int receivedAPDU(const unsigned char *tag, const void *data, int len);
 	int doAction();

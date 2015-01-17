@@ -88,7 +88,7 @@ class eWindowStyleSimple: public eWindowStyle
 	DECLARE_REF(eWindowStyleSimple);
 	ePtr<gFont> m_fnt;
 	gColor m_border_color_tl, m_border_color_br, m_title_color_back, m_title_color, m_background_color;
-	
+
 	int m_border_top, m_border_left, m_border_right, m_border_bottom;
 public:
 	eWindowStyleSimple();

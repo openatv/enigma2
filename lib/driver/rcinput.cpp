@@ -81,7 +81,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 					ke.kb_index = ev->code;
 					::ioctl(consoleFd, KDGKBENT, &ke);
 					if (ke.kb_value)
-						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */ 
+						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */
 				}
 			}
 			return;
@@ -102,13 +102,13 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	switch (ev->value)
 	{
 		case 0:
-			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/
 			break;
 		case 1:
-			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/
 			break;
 		case 2:
-			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/
 			break;
 	}
 }
@@ -175,7 +175,7 @@ public:
 		}
 		eDebug("Found %d input devices.", i);
 	}
-	
+
 	~eInputDeviceInit()
 	{
 		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)

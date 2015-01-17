@@ -20,7 +20,7 @@ class eTSFileSectionReader: public iDVBSectionReader, public Object
 	DECLARE_REF(eTSFileSectionReader);
 	unsigned char sectionData[4096];
 	unsigned int sectionSize;
-	Signal1<void, const __u8*> read;
+	Signal1<void, const uint8_t*> read;
 
 public:
 	eTSFileSectionReader(eMainloop *context);
@@ -29,7 +29,7 @@ public:
 	RESULT setBufferSize(int size) { return 0; }
 	RESULT start(const eDVBSectionFilterMask &mask);
 	RESULT stop();
-	RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn);
+	RESULT connectRead(const Slot1<void,const uint8_t*> &read, ePtr<eConnection> &conn);
 };
 
 class eDVBTSTools : public eDVBPMTParser
@@ -97,11 +97,11 @@ private:
 	pts_t m_pts_begin, m_pts_end;
 	off_t m_offset_begin, m_offset_end;
 	pts_t m_pts_length;
-	
+
 		/* for simple linear interpolation */
 	std::map<pts_t, off_t> m_samples;
 	int m_samples_taken;
-	
+
 	eMPEGStreamInformation m_streaminfo;
 	off_t m_last_filelength;
 	int m_futile;

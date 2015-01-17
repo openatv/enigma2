@@ -17,7 +17,7 @@ public:
 
 	std::string family;
 	int pointSize;
-	
+
 	/**
 	 * \brief Constructs a font with the given name and size.
 	 * \param family The name of the font, for example "NimbusSansL-Regular Sans L Regular".
@@ -27,11 +27,11 @@ public:
 		family(family), pointSize(pointSize)
 	{
 	}
-	
+
 	virtual ~gFont()
 	{
 	}
-	
+
 	gFont()
 		:pointSize(0)
 	{

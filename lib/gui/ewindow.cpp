@@ -9,21 +9,22 @@
 eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
+	m_isSub = false;
 	m_desktop = desktop;
 		/* ask style manager for current style */
 	ePtr<eWindowStyleManager> mgr;
 	eWindowStyleManager::getInstance(mgr);
-	
+
 	ePtr<eWindowStyle> style;
 	if (mgr)
 		mgr->getStyle(desktop->getStyleID(), style);
-	
+
 		/* when there is either no style manager or no style, revert to simple style. */
 	if (!style)
 		style = new eWindowStyleSimple();
-	
+
 	setStyle(style);
-	
+
 	setZPosition(z); /* must be done before addRootWidget */
 
 		/* we are the parent for the child window. */
@@ -41,7 +42,7 @@ eWindow::~eWindow()
 
 void eWindow::setTitle(const std::string &string)
 {
-	if (m_title == string)	
+	if (m_title == string)
 		return;
 	m_title = string;
 	event(evtTitleChanged);
@@ -114,3 +115,21 @@ int eWindow::event(int event, void *data, void *data2)
 	return eWidget::event(event, data, data2);
 }
 
+void eWindow::show()
+{
+	if (!m_isSub)
+		m_desktop->sendShow(position(), size());
+	eWidget::show();
+}
+
+void eWindow::hide()
+{
+	if (!m_isSub)
+		m_desktop->sendHide(position(), size());
+	eWidget::hide();
+}
+
+void eWindow::setToSub()
+{
+	m_isSub = true;
+}

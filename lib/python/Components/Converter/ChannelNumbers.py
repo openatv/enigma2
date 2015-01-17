@@ -8,7 +8,7 @@ class ChannelNumbers:
 # TODO: Need to figure out a sensible way of dealing with the Australian
 #       requirement to support a +/- 125kHz optional offset for each channel
 
-	def getChannelNumber(self, frequency, region):
+	def getChannelNumber(self, frequency, nim):
 #		print "getChannelNumber", frequency
 		res = None
 		f = self.getMHz(frequency)
@@ -32,13 +32,18 @@ class ChannelNumbers:
 			return float(frequency.split()[0])
 		return (frequency + 50000) / 100000 / 10.
 
-	def getTunerDescription(self, region):
-		return nimmanager.getTerrestrialDescription(region)
+	def getTunerDescription(self, nim):
+		description = ""
+		try:
+			description = nimmanager.getTerrestrialDescription(nim)
+		except:
+			print "[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim
+		return description
 
-	def supportedChannels(self, region):
+	def supportedChannels(self, nim):
 		return True
 
-	def channel2frequency(self, channel, region):
+	def channel2frequency(self, channel, nim):
 #		print "channel2frequency", channel
 		res = 205500000
 		if channel != "9A":

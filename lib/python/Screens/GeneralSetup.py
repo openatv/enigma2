@@ -244,7 +244,6 @@ class GeneralSetup(Screen):
 		if not getMachineBrand() == "Beyonwiz":
 			self.sublist.append(QuickSubMenuEntryComponent("Common Interface",_("Common Interface configuration"),_("Active/reset and manage your CI")))
 		self.sublist.append(QuickSubMenuEntryComponent("Parental control",_("Lock/unlock channels"),_("Set up parental controls")))
-		self.sublist.append(QuickSubMenuEntryComponent("Zap history",_("List of last zapped channels"),_("Set up zap (channel change) history")))
 		self["sublist"].l.setList(self.sublist)
 		
 ######## System Setup Menu ##############################
@@ -552,8 +551,6 @@ class GeneralSetup(Screen):
 		elif selected == _("Parental control"):
 			from Screens.ParentalControlSetup import ParentalControlSetup
 			self.session.open(ParentalControlSetup)
-		elif selected == _("Zap history"):
-			self.openSetup("zaphistorysetup")
 ######## Select Mounts Menu ##############################
 		elif selected == _("Mount Manager"):
 			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)

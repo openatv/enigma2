@@ -17,32 +17,32 @@ class eMain: public eApplication, public Object
 	ePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
 	eAUTable<eTable<ProgramMapSection> > m_table;
-	
+
 	ePtr<eDVBDB> m_dvbdb;
-	
+
 	ePtr<eConnection> m_state_change_connection;
 	int m_last_channel_state;
 public:
 	eMain()
 	{
 		eDebug("mich gibts nu!");
-		
+
 			/* Resourcemanager erstellen */
 		m_mgr = new eDVBResourceManager();
-	
+
 		/* Dummy DVB-Channellist anlegen.. */
-			
+
 			/* Datenbank erstellen */
 		m_dvbdb = new eDVBDB();
 			/* als Primary datenbank setzen */
 		m_mgr->setChannelList(m_dvbdb);
-		
+
 			/* testtransponder adden */
 		eDVBChannelID chid(1,2,3);
-		
+
 			/* frontenddaten... */
 		eDVBFrontendParametersSatellite fesat;
-		
+
 		fesat.frequency = 12070000;
 		fesat.symbol_rate = 27500000;
 		fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation_Horizontal;
@@ -51,15 +51,15 @@ public:
 		fesat.orbital_position = 192;
 
 		eDVBFrontendParameters *fe = new eDVBFrontendParameters();
-		
+
 		fe->setDVBS(fesat);
 			/* Zur Kanalliste hinzufuegen.. */
 		m_dvbdb->addChannelToList(chid, fe);
-		
+
 			/* Channel allokieren... tunen startet hier, sofern noetig */
 		if (m_mgr->allocateChannel(chid, m_channel))
 			eDebug("shit it failed!");
-		
+
 		if (m_channel)
 		{
 				/* Auf State-Change listenen */
@@ -68,14 +68,14 @@ public:
 			channelStateChanged(m_channel);
 		}
 	}
-	
+
 	void channelStateChanged(iDVBChannel *channel)
 	{
 		int state;
 			/* Channelstate holen */
 		channel->getState(state);
 		eDebug("channel state is now %d", state);
-		
+
 			/* Wenn Wechsel von nicht-ok auf ok (das erste mal) */
 		if ((m_last_channel_state != iDVBChannel::state_ok)
 			 && (state == iDVBChannel::state_ok) && (!m_demux))
@@ -85,7 +85,7 @@ public:
 			if (m_channel)
 				if (m_channel->getDemux(m_demux))
 					eDebug("shit it failed.. again.");
-		
+
 			if (m_demux)
 			{
 					/* auf table ready connecten */
@@ -94,10 +94,10 @@ public:
 				m_table.begin(this, eDVBPMTSpec(0x20, 0x33f6), m_demux);
 			}
 		}
-		
+
 		m_last_channel_state = state;
 	}
-	
+
 	void tableReady(int)
 	{
 			/* table "fertig" (wie auch immer) */
@@ -118,7 +118,7 @@ public:
 		}
 		eDebug("table ready.");
 	}
-	
+
 	~eMain()
 	{
 		eDebug("... nicht mehr.");
@@ -135,7 +135,7 @@ void object_dump()
 #endif
 
 int main()
-{	
+{
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif

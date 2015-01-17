@@ -26,19 +26,19 @@ protected:
 	int cursorSet(int n);
 	int cursorGet();
 	virtual int currentCursorSelectable();
-		
+
 	void cursorSave();
 	void cursorRestore();
 	int size();
-	
+
 	RESULT connectItemChanged(const Slot0<void> &itemChanged, ePtr<eConnection> &connection);
-	
+
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	void setSize(const eSize &size);
-	
+
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	
+
 	int getItemHeight() { return m_itemheight; }
 
 protected:

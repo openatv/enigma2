@@ -224,21 +224,21 @@ int main(int argc, char **argv)
 
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
-	
+
 	dsk.setDC(my_dc);
 	dsk_lcd.setDC(my_lcd_dc);
-	
+
 	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
 #endif
-	
+
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
-	
+
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
-	
+
 	eDebug("Loading spinners...");
-	
+
 	{
 		int i;
 #define MAX_SPINNER 64
@@ -367,6 +367,11 @@ const char *getEnigmaVersionString()
 	return enigma2_date;
 }
 
+const char *getGStreamerVersionString()
+{
+	return gst_version_string();
+}
+
 #include <malloc.h>
 
 void dump_malloc_stats(void)
@@ -374,3 +379,20 @@ void dump_malloc_stats(void)
 	struct mallinfo mi = mallinfo();
 	eDebug("MALLOC: %d total", mi.uordblks);
 }
+
+#ifdef USE_LIBVUGLES2
+#include <vuplus_gles.h>
+
+void setAnimation_current(int a)
+{
+	gles_set_animation_func(a);
+}
+
+void setAnimation_speed(int speed)
+{
+	gles_set_animation_speed(speed);
+}
+#else
+void setAnimation_current(int a) {}
+void setAnimation_speed(int speed) {}
+#endif

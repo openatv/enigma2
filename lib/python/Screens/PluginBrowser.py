@@ -323,6 +323,7 @@ class PluginDownloadBrowser(Screen):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list '" + self.PLUGIN_PREFIX + "*'")
 
 	def startRun(self):
+		networkerror = False
 		listsize = self["list"].instance.size()
 		self["list"].instance.hide()
 		self.listWidth = listsize.width()
@@ -378,12 +379,14 @@ class PluginDownloadBrowser(Screen):
 				if not plugin[0].endswith('-meta') and plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
 					pluginlist.append(plugin + (plugin[0][15:],))
 			if pluginlist:
+				self["text"].hide()
 				pluginlist.sort()
 				self.updateList()
 				self["list"].instance.show()
 			else:
 				self["text"].setText(_("No new plugins found"))
 		else:
+			self["text"].hide()
 			if self.pluginlist:
 				self.updateList()
 				self["list"].instance.show()
