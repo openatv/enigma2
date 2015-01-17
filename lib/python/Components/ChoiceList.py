@@ -10,12 +10,13 @@ def row_delta_y():
 	return (int(font[2]) - int(font[1]))/2
 
 def ChoiceEntryComponent(key = None, text = ["--"]):
-	y = row_delta_y()
 	res = [ text ]
 	if text[0] == "--":
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, y, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
+		x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 4, 800, 25))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, y, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
+		x, y, w, h = skin.parameters.get("ChoicelistName",(45, 4, 800, 25))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, text[0]))
 		if key:
 			if key == "expandable":
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/expandable.png")
@@ -23,11 +24,14 @@ def ChoiceEntryComponent(key = None, text = ["--"]):
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/expanded.png")
 			elif key == "verticalline":
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/verticalline.png")
+			elif key == "bullet":
+				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/bullet.png")
 			else:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, y, 35, 25, png))
+				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 4, 35, 25))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	return res
 
 class ChoiceList(MenuList):
