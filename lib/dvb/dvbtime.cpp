@@ -67,13 +67,8 @@ time_t getRTC()
 	return rtc_time != prev_time ? rtc_time : 0;
 }
 
-time_t parseDVBtime(uint8_t t1, uint8_t t2, uint8_t t3, uint8_t t4, uint8_t t5, uint16_t *hash)
+static void parseDVBdate(tm& t, int mjd)
 {
-	tm t;
-	t.tm_sec=fromBCD(t5);
-	t.tm_min=fromBCD(t4);
-	t.tm_hour=fromBCD(t3);
-	int mjd=(t1<<8)|t2;
 	int k;
 
 	t.tm_year = (int) ((mjd - 15078.2) / 365.25);
@@ -86,12 +81,39 @@ time_t parseDVBtime(uint8_t t1, uint8_t t2, uint8_t t3, uint8_t t4, uint8_t t5, 
 
 	t.tm_isdst =  0;
 	t.tm_gmtoff = 0;
+}
 
-	if (hash) {
-		*hash = t.tm_hour * 60 + t.tm_min;
-		*hash |= t.tm_mday << 11;
-	}
+static inline void parseDVBtime_impl(tm& t, const uint8_t *data)
+{
+	parseDVBdate(t, (data[0] << 8) | data[1]);
+	t.tm_hour = fromBCD(data[2]);
+	t.tm_min = fromBCD(data[3]);
+	t.tm_sec = fromBCD(data[4]);
+}
 
+time_t parseDVBtime(uint16_t mjd, uint32_t stime_bcd)
+{
+	tm t;
+	parseDVBdate(t, mjd);
+	t.tm_hour = fromBCD(stime_bcd >> 16);
+	t.tm_min = fromBCD((stime_bcd >> 8) & 0xFF);
+	t.tm_sec = fromBCD(stime_bcd & 0xFF);
+	return timegm(&t);
+}
+
+time_t parseDVBtime(const uint8_t *data)
+{
+	tm t;
+	parseDVBtime_impl(t, data);
+	return timegm(&t);
+}
+
+time_t parseDVBtime(const uint8_t *data, uint16_t *hash)
+{
+	tm t;
+	parseDVBtime_impl(t, data);
+	*hash = t.tm_hour * 60 + t.tm_min;
+	*hash |= t.tm_mday << 11;
 	return timegm(&t);
 }
 
@@ -116,7 +138,7 @@ int TDT::createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 		int length = ((data[1] & 0x0F) << 8) | data[2];
 		if ( length >= 5 )
 		{
-			time_t tptime = parseDVBtime(data[3], data[4], data[5], data[6], data[7]);
+			time_t tptime = parseDVBtime(&data[3]);
 			if (tptime && tptime != -1)
 				eDVBLocalTimeHandler::getInstance()->updateTime(tptime, chan, update_count);
 			error=0;
