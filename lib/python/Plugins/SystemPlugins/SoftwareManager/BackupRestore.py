@@ -11,6 +11,8 @@ from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLo
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
+from Plugins.Plugin import PluginDescriptor
+from enigma import eTimer, eEnv, eEPGCache
 from Tools.Directories import *
 
 
@@ -63,6 +65,8 @@ class BackupScreen(Screen, ConfigListScreen):
 
 	def doBackup(self):
 		configfile.save()
+		if config.plugins.softwaremanager.epgcache.value:
+			eEPGCache.getInstance().save()
 		try:
 			if not path.exists(self.backuppath):
 				makedirs(self.backuppath)
