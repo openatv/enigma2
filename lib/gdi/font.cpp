@@ -94,7 +94,7 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 	int error;
 	if ((error=FT_New_Face(library, font->filename.c_str(), 0, aface)))
 	{
-		eDebug(" failed: %s", strerror(error));
+		eDebug("[FONT] failed to open '%s': %s", font->filename.c_str(), strerror(error));
 		return error;
 	}
 	FT_Select_Charmap(*aface, ft_encoding_unicode);
