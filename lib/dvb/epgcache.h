@@ -270,7 +270,7 @@ private:
 	std::vector<int> onid_blacklist;
 	eventCache eventDB;
 	updateMap channelLastUpdated;
-	static pthread_mutex_t cache_lock, channel_map_lock;
+	static pthread_mutex_t cache_lock;
 	std::string m_filename;
 	bool m_running;
 

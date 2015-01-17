@@ -372,7 +372,7 @@ void eventData::cacheCorrupt(const char* context)
 eEPGCache* eEPGCache::instance;
 pthread_mutex_t eEPGCache::cache_lock=
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
-pthread_mutex_t eEPGCache::channel_map_lock=
+static pthread_mutex_t channel_map_lock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 
 DEFINE_REF(eEPGCache)
@@ -618,11 +618,13 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 					if (it->second->state >= 0)
 						messages.send(Message(Message::leaveChannel, chan));
 					pthread_mutex_lock(&it->second->channel_active);
-					singleLock s(channel_map_lock);
-					m_knownChannels.erase(it);
+					{
+						singleLock s(channel_map_lock);
+						m_knownChannels.erase(it);
+					}
 					pthread_mutex_unlock(&it->second->channel_active);
 					delete it->second;
-					it->second=0;
+					it->second = 0;
 					// -> gotMessage -> abortEPG
 					break;
 				}
