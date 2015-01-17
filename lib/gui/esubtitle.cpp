@@ -2,6 +2,7 @@
 #include <lib/gdi/grc.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
+#include <lib/gui/ewidgetdesktop.h>
 
 std::map<eSubtitleWidget::subfont_t, eSubtitleWidget::eSubtitleStyle> eSubtitleWidget::subtitleStyles;
 
@@ -283,8 +284,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else
 			rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
 
-		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2);
-		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34);
+		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
+		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
 
 		if (m_pixmap)
 		{
