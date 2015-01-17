@@ -1375,15 +1375,11 @@ class IPKGMenu(Screen):
 
 		self.path = ""
 
-		self["actions"] = NumberActionMap(["SetupActions"], {
+		self["actions"] = ActionMap(["SetupActions"], {
 			"ok": self.KeyOk,
-			"cancel": self.keyCancel
+			"cancel": self.keyCancel,
+			"save": self.KeyOk,
 		}, -1)
-
-		self["shortcuts"] = ActionMap(["ShortcutActions"], {
-			"red": self.keyCancel,
-			"green": self.KeyOk,
-		})
 		self["filelist"] = MenuList([])
 		self.fill_list()
 		self.onLayoutFinish.append(self.layoutFinished)

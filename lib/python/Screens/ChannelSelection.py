@@ -11,7 +11,7 @@ from Components.About import about
 from Components.Button import Button
 from Components.Label import Label
 from Components.ServiceList import ServiceList, refreshServiceList
-from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
@@ -1293,26 +1293,26 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self.movemode = False
 		self.showSatDetails = False
 
-		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"], {
+		self["ChannelSelectBaseActions"] = HelpableNumberActionMap(self, ["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"], {
 			"showFavourites": self.showFavourites,
 			"showAllServices": self.showAllServices,
 			"showProviders": self.showProviders,
 			"showSatellites": self.showSatellites,
-			"nextBouquet": self.nextBouquet,
-			"prevBouquet": self.prevBouquet,
-			"nextMarker": self.nextMarker,
-			"prevMarker": self.prevMarker,
+			"nextBouquet": (self.nextBouquet, lambda: self._prevNextBouquetHelp(prev=False)),
+			"prevBouquet": (self.prevBouquet, lambda: self._prevNextBouquetHelp(prev=True)),
+			"nextMarker": (self.nextMarker, _("Jump to next bookmark")),
+			"prevMarker": (self.prevMarker, _("Jump to previous bookmark")),
 			"gotAsciiCode": self.keyAsciiCode,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
+			"1": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(1)),
+			"2": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(2)),
+			"3": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(3)),
+			"4": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(4)),
+			"5": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(5)),
+			"6": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(6)),
+			"7": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(7)),
+			"8": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(8)),
+			"9": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(9)),
+			"0": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(0))
 		})
 		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
@@ -1652,6 +1652,18 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 	def atEnd(self):
 		return self.servicelist.atEnd()
 
+	def _prevNextBouquetHelp(self, prev=False):
+		if ("reverseB" in config.usage.servicelist_cursor_behavior.value) == prev:
+			if config.usage.channelbutton_mode.value == '0':
+				return _("Move up in bouquet list")
+			else:
+				return _("Move up in channel list")
+		else:
+			if config.usage.channelbutton_mode.value == '0':
+				return _("Move down in bouquet list")
+			else:
+				return _("Move down in channel list")
+
 	def nextBouquet(self):
 		if "reverseB" in config.usage.servicelist_cursor_behavior.value:
 			if config.usage.channelbutton_mode.value == '0':
@@ -1686,6 +1698,28 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 					if currentRoot is None or currentRoot != self.bouquet_root:
 						self.clearPath()
 						self.enterPath(self.bouquet_root)
+
+	def _keyNumberGlobalHelp(self, number):
+		if config.usage.show_channel_jump_in_servicelist.value == "quick":
+			quickAction = {
+				1: "Jump to currently playing service",
+				2: "Jump to most recent history item in current bouquet",
+				4: "Rename channel",
+				5: "Remove current channel",
+				6: "Move current channel in list"
+			}.get(number)
+			if self.isBasePathEqual(self.bouquet_root):
+				return _(quickAction) if quickAction else None
+			else:
+				current_root = self.getRoot()
+				if current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
+					return _(quickAction) if quickAction else None
+		elif config.usage.show_channel_jump_in_servicelist.value == "alpha":
+			return _("Search channel list, SMS style ABC2")
+		elif config.usage.show_channel_jump_in_servicelist.value == "number":
+			return _("Search channel list, SMS style 2ABC")
+		else:
+			return None
 
 	def keyNumberGlobal(self, number):
 		if config.usage.show_channel_jump_in_servicelist.value == "quick":
