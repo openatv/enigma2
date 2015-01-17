@@ -8,6 +8,8 @@ using namespace std;
 #include <lib/dvb/epgcache.h>
 #include <fcntl.h>
 
+#define HILO(x) (x##_hi << 8 | x##_lo)
+
 static void SaveEIT(const char *ref, const char *filename, int  eit_event_id, time_t begTime, time_t endTime)
 {
 	eEPGCache::getInstance()->Lock();
