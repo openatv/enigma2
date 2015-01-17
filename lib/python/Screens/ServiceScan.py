@@ -91,6 +91,7 @@ class ServiceScan(Screen):
 		else:
 			self.currentInfobar = None
 
+		self.session.postScanService = session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 		self["scan_progress"] = ProgressBar()
