@@ -12,10 +12,10 @@ def row_delta_y():
 def ChoiceEntryComponent(key = None, text = ["--"]):
 	res = [ text ]
 	if text[0] == "--":
-		x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 4, 800, 25))
+		x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 2, 800, 25))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
-		x, y, w, h = skin.parameters.get("ChoicelistName",(45, 4, 800, 25))
+		x, y, w, h = skin.parameters.get("ChoicelistName",(45, 2, 800, 25))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, text[0]))
 		if key:
 			if key == "expandable":
@@ -30,7 +30,7 @@ def ChoiceEntryComponent(key = None, text = ["--"]):
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
-				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 4, 35, 25))
+				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 0, 35, 25))
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	return res
 
