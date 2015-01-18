@@ -134,24 +134,30 @@ class MovingPixmap(Pixmap):
 
 	def startMoving(self):
 		if not self.moving:
-			self.bresSetup(*self.path[self.currDest][0:2])
-			self.time = self.path[self.currDest][2]
-			self.stepX = self.inc * (self.dx / self.time)
-			self.stepXRem = self.dx % self.time
-			self.moving = True
-			self.moveTimer.start(100)
+			try:
+				self.bresSetup(*self.path[self.currDest][0:2])
+				self.time = self.path[self.currDest][2]
+				self.stepX = self.inc * (self.dx / self.time)
+				self.stepXRem = self.dx % self.time
+				self.moving = True
+				self.moveTimer.start(100)
+			except:  # moving not possible... widget not there any more... stop moving
+				self.stopMoving()
 
 	def stopMoving(self):
 		self.moving = False
 		self.moveTimer.stop()
 
 	def doMove(self):
-		tox = self.getBresPos()[0] + self.stepX
-		if self.stepXRem > 0:
-			tox += self.inc
-			self.stepXRem -= 1
+		try:
+			tox = self.getBresPos()[0] + self.stepX
+			if self.stepXRem > 0:
+				tox += self.inc
+				self.stepXRem -= 1
 
-		self.bresStep(tox)
+			self.bresStep(tox)
+		except:  # moving not possible... widget not there any more... stop moving
+			self.stopMoving()
 
 		self.time -= 1
 
@@ -170,7 +176,10 @@ class MovingPixmap(Pixmap):
 
 	def move(self, x, y = None):
 		self.stopMoving()
-		Pixmap.move(self, x, y)
+		try:
+			Pixmap.move(self, x, y)
+		except:  # moving not possible... widget not there any more... stop moving
+			pass
 
 class MultiPixmap(Pixmap):
 	def __init__(self):
