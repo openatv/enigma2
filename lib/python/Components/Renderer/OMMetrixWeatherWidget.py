@@ -102,7 +102,7 @@ class OMMetrixWeatherWidget(Renderer):
 		if int(tdelta.seconds) < (config.plugins.MetrixWeather.refreshInterval.value * 60):
 			return
 		woeid = config.plugins.MetrixWeather.woeid.value
-		print "\033[94mMetrixWeather\033[0m lookup for ID " + str(woeid)
+		print "[OMMetrixWeather] lookup for ID " + str(woeid)
 		url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(woeid)+"%22&format=xml"
 		#url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(self.woeid)+"%22%20u%3Dc&format=xml"
 		try:
