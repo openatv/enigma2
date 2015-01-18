@@ -96,19 +96,19 @@ def isFileSystemSupported(filesystem):
 class GeneralSetup(Screen):
 	skin = """
 		<screen name="GeneralSetup" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
-		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
-		<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
-		<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
-		<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
-		<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
-		<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
-		<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<eLabel position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
-		<eLabel position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
-		<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
-		<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
+			<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
+			<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
+			<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
+			<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
+			<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
+			<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
+			<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<eLabel position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
+			<eLabel position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
+			<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
+			<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
 		</screen> """
 	
 	ALLOW_SUSPEND = True
@@ -244,7 +244,6 @@ class GeneralSetup(Screen):
 		if not getMachineBrand() == "Beyonwiz":
 			self.sublist.append(QuickSubMenuEntryComponent("Common Interface",_("Common Interface configuration"),_("Active/reset and manage your CI")))
 		self.sublist.append(QuickSubMenuEntryComponent("Parental control",_("Lock/unlock channels"),_("Set up parental controls")))
-		self.sublist.append(QuickSubMenuEntryComponent("Zap history",_("List of last zapped channels"),_("Set up zap (channel change) history")))
 		self["sublist"].l.setList(self.sublist)
 		
 ######## System Setup Menu ##############################
@@ -263,6 +262,7 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("Display skin",_("Skin setup"),_("Set up your display skin")))
 		if SystemInfo["Fan"]: 
 			self.sublist.append(QuickSubMenuEntryComponent("Fan settings",_("Fan setup"),_("Set up your fan")))
+		self.sublist.append(QuickSubMenuEntryComponent("Remote control code settings",_("Remote control code setup"),_("Set up your remote control")))
 		self.sublist.append(QuickSubMenuEntryComponent("Factory reset",_("Load default"),_("Reset all settings to defaults")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -333,21 +333,22 @@ class GeneralSetup(Screen):
 
 ######## Tuner Menu ##############################
 	def Qtuner(self):
-		dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
-		dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 		self.sublist = []
-		if len(dvbs_nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
-			self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
-		if len(dvbt_nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
-		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+		if not SystemInfo["IPTVSTB"]:
+			dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
+			dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
+			if len(dvbs_nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
+				self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+			if len(dvbt_nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
+			self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+			if BLINDSCAN == True and len(nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
+			if HAVE_SATFINDER and len(nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		if REMOTEBOX == True:
 			self.sublist.append(QuickSubMenuEntryComponent("Remote IP Channels",_("Setup Channels Server IP"),_("Setup server IP for your IP channels")))
-		if BLINDSCAN == True and len(nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
-		if HAVE_SATFINDER and len(nimList) != 0:
-			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
@@ -414,7 +415,7 @@ class GeneralSetup(Screen):
 		elif selected == _("AV setup"):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
-		elif selected == _("Antenna"):
+		elif selected == _("Antenna" ) or selected == _("IPTV Configuration"):
 			self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif selected == _("Software Manager"):
@@ -489,7 +490,10 @@ class GeneralSetup(Screen):
 			self.openSetup("remotesetup")
 		elif selected == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
-			self.session.open(HdmiCECSetupScreen)  
+			self.session.open(HdmiCECSetupScreen)
+		elif selected == _("Remote control code settings"):
+			from Plugins.SystemPlugins.RemoteControlCode.plugin import RCSetupScreen
+			self.session.open(RCSetupScreen)
 		elif selected == _("Fan settings"):
 			from Plugins.SystemPlugins.FanControl.plugin import FanSetupScreen
 			self.session.open(FanSetupScreen)
@@ -547,8 +551,6 @@ class GeneralSetup(Screen):
 		elif selected == _("Parental control"):
 			from Screens.ParentalControlSetup import ParentalControlSetup
 			self.session.open(ParentalControlSetup)
-		elif selected == _("Zap history"):
-			self.openSetup("zaphistorysetup")
 ######## Select Mounts Menu ##############################
 		elif selected == _("Mount Manager"):
 			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)
@@ -584,7 +586,7 @@ class GeneralSetup(Screen):
 		elif selected == _("Location Scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
-		elif selected == _("Remote IP Channels") or selected == _("IPTV Configuration"):
+		elif selected == _("Remote IP Channels"):
 			self.session.open(RemoteTunerScanner)
 		elif selected == _("Tuner Configuration"):
 			self.session.open(NimSelection)

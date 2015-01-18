@@ -19,7 +19,7 @@ private:
 		while ((rBandEnd != rEnd) && (rBandEnd->y1 == ry1))
 			rBandEnd++;
 	}
-	
+
 	inline void AppendRegions(
 		std::vector<eRect>::const_iterator r,
 		std::vector<eRect>::const_iterator rEnd)
@@ -36,7 +36,7 @@ private:
 			prevBand = curBand;
 		}
 	};
-	void appendNonO(std::vector<eRect>::const_iterator r, 
+	void appendNonO(std::vector<eRect>::const_iterator r,
 			std::vector<eRect>::const_iterator rEnd, int y1, int y2);
 
 	void intersectO(
@@ -64,7 +64,7 @@ private:
 public:
 	std::vector<eRect> rects;
 	eRect extends;
-	
+
 	enum
 	{
 			// note: bit 0 and bit 1 have special meanings
@@ -72,7 +72,7 @@ public:
 		OP_SUBTRACT  = 1,
 		OP_UNION     = 3
 	};
-	
+
 	gRegion(const eRect &rect);
 	gRegion();
 	virtual ~gRegion();
@@ -90,14 +90,14 @@ public:
 	void intersect(const gRegion &r1, const gRegion &r2);
 	void subtract(const gRegion &r1, const gRegion &r2);
 	void merge(const gRegion &r1, const gRegion &r2);
-	
+
 	void moveBy(ePoint offset);
-	
+
 	bool empty() const { return extends.empty(); }
 	bool valid() const { return extends.valid(); }
-	
+
 	static gRegion invalidRegion() { return gRegion(eRect::invalidRect()); }
-	
+
 	void scale(int x_n, int x_d, int y_n, int y_d);
 };
 

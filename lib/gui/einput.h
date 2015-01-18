@@ -21,9 +21,9 @@ public:
 	};
 
 	enum InputActions {
-		moveLeft, 
-		moveRight, 
-		moveHome, 
+		moveLeft,
+		moveRight,
+		moveHome,
 		moveEnd,
 		deleteForward,
 		deleteBackward,
@@ -36,9 +36,9 @@ public:
 	};
 
 	void setContent(eInputContent *cnt);
-	
+
 	void setOverwriteMode(int o);
-	
+
 	void setFont(gFont *font);
 protected:
 	ePtr<gFont> m_font;
@@ -63,15 +63,15 @@ public:
 		dirUser
 	};
 	virtual void moveCursor(int dir)=0;
-	
+
 	enum {
 		deleteForward, deleteBackward
 	};
 	virtual void deleteChar(int dir)=0;
-	
+
 		/* no movement keys except stuff like '.' or so*/
 	virtual int haveKey(int code, int overwrite)=0;
-	
+
 	virtual int isValid()=0;
 	virtual void validate()=0;
 protected:

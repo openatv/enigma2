@@ -16,7 +16,7 @@ void eComponentScan::scanEvent(int evt)
 			m_done = 1;
 			ePtr<iDVBChannelList> db;
 			ePtr<eDVBResourceManager> res;
-			
+
 			int err;
 			if ((err = eDVBResourceManager::getInstance(res)) != 0)
 			{
@@ -93,10 +93,10 @@ int eComponentScan::start(int feid, int flags, int networkid)
 
 	if (m_done != -1)
 		return -1;
-	
+
 	m_done = 0;
 	ePtr<eDVBResourceManager> mgr;
-	
+
 	eDVBResourceManager::getInstance(mgr);
 
 	eUsePtr<iDVBChannel> channel;

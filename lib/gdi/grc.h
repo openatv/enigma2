@@ -58,6 +58,11 @@ struct gOpcode
 		incrementSpinner,
 		shutdown,
 		setCompositing,
+		sendShow,
+		sendHide,
+#ifdef USE_LIBVUGLES2
+		setView,
+#endif
 	} opcode;
 
 	static const char *opcode_names[];
@@ -89,7 +94,7 @@ struct gOpcode
 			ePoint offset;
 			eTextPara *textpara;
 		} *renderPara;
-		
+
 		struct psetFont
 		{
 			gFont *font;
@@ -99,7 +104,7 @@ struct gOpcode
 		{
 			gPalette *palette;
 		} *setPalette;
-		
+
 		struct pblit
 		{
 			gPixmap *pixmap;
@@ -112,7 +117,7 @@ struct gOpcode
 		{
 			gPixmap *target;
 		} *mergePalette;
-		
+
 		struct pline
 		{
 			ePoint start, end;
@@ -122,24 +127,36 @@ struct gOpcode
 		{
 			gRegion region;
 		} *clip;
-		
+
 		struct psetColor
 		{
 			gColor color;
 		} *setColor;
-		
+
 		struct psetColorRGB
 		{
 			gRGB color;
 		} *setColorRGB;
-		
+
 		struct psetOffset
 		{
 			ePoint value;
 			int rel;
 		} *setOffset;
-		
+
 		gCompositingData *setCompositing;
+
+		struct psetShowHideInfo
+		{
+			ePoint point;
+			eSize size;
+		} *setShowHideInfo;
+#ifdef USE_LIBVUGLES2
+		struct psetViewInfo
+		{
+			eSize size;
+		} *setViewInfo;
+#endif
 	} parm;
 };
 
@@ -171,10 +188,10 @@ class gRC: public iObject, public Object
 	int m_spinner_enabled;
 
 	int m_spinneronoff;
-	
+
 	void enableSpinner();
 	void disableSpinner();
-	
+
 	ePtr<gCompositingData> m_compositing;
 
 	int m_prev_idle_count;
@@ -185,10 +202,10 @@ public:
 	void submit(const gOpcode &o);
 
 	Signal0<void> notify;
-	
+
 	void setSpinnerDC(gDC *dc) { m_spinner_dc = dc; }
 	void setSpinnerOnOff(int onoff) { m_spinneronoff = onoff; }
-	
+
 	static gRC *getInstance();
 };
 
@@ -205,7 +222,7 @@ class gPainter
 public:
 	gPainter(gDC *dc, eRect rect=eRect());
 	virtual ~gPainter();
-	
+
 	void setBackgroundColor(const gColor &color);
 	void setForegroundColor(const gColor &color);
 
@@ -222,20 +239,20 @@ public:
 		RT_HALIGN_RIGHT = 2,
 		RT_HALIGN_CENTER = 4,
 		RT_HALIGN_BLOCK = 8,
-		
+
 		RT_VALIGN_TOP = 0,  /* default */
 		RT_VALIGN_CENTER = 16,
 		RT_VALIGN_BOTTOM = 32,
-		
+
 		RT_WRAP = 64
 	};
 	void renderText(const eRect &position, const std::string &string, int flags=0, gRGB bordercolor=gRGB(), int border=0);
-	
+
 	void renderPara(eTextPara *para, ePoint offset=ePoint(0, 0));
 
 	void fill(const eRect &area);
 	void fill(const gRegion &area);
-	
+
 	void clear();
 
 	enum
@@ -252,13 +269,13 @@ public:
 	void setPalette(gRGB *colors, int start=0, int len=256);
 	void setPalette(gPixmap *source);
 	void mergePalette(gPixmap *target);
-	
+
 	void line(ePoint start, ePoint end);
 
 	void setOffset(ePoint abs);
 	void moveOffset(ePoint rel);
 	void resetOffset();
-	
+
 	void resetClip(const gRegion &clip);
 	void clip(const gRegion &clip);
 	void clippop();
@@ -267,8 +284,13 @@ public:
 	void flip();
 	void notify();
 	void setCompositing(gCompositingData *comp);
-	
+
 	void flush();
+	void sendShow(ePoint point, eSize size);
+	void sendHide(ePoint point, eSize size);
+#ifdef USE_LIBVUGLES2
+	void setView(eSize size);
+#endif
 };
 
 class gDC: public iObject
@@ -281,10 +303,10 @@ protected:
 	gRGB m_foreground_color_rgb, m_background_color_rgb;
 	ePtr<gFont> m_current_font;
 	ePoint m_current_offset;
-	
+
 	std::stack<gRegion> m_clip_stack;
 	gRegion m_current_clip;
-	
+
 	ePtr<gPixmap> m_spinner_saved, m_spinner_temp;
 	ePtr<gPixmap> *m_spinner_pic;
 	eRect m_spinner_pos;
@@ -299,7 +321,7 @@ public:
 	gRGB getRGB(gColor col);
 	virtual eSize size() { return m_pixmap->size(); }
 	virtual int islocked() const { return 0; }
-	
+
 	virtual void enableSpinner();
 	virtual void disableSpinner();
 	virtual void incrementSpinner();

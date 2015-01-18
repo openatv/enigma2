@@ -103,11 +103,11 @@ public:
 		eventNoPMT,        // no pmt could be received (timeout)
 		eventNewProgramInfo, // we just received a PMT
 		eventTuned,        // a channel was sucessfully (re-)tuned in, you may start additional filters now
-		
+
 		eventPreStart,     // before start filepush thread
 		eventSOF,          // seek pre start
 		eventEOF,          // a file playback did end
-		
+
 		eventMisconfiguration, // a channel was not found in any list, or no frontend was found which could provide this channel
 
 		eventHBBTVInfo, /* HBBTV information was detected in the AIT */
@@ -122,7 +122,7 @@ public:
 	int getDecodeDemux(ePtr<iDVBDemux> &demux);
 	void getAITApplications(std::map<int, std::string> &aitlist);
 	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
-	
+
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	int getServiceReference(eServiceReferenceDVB &service) { service = m_reference; return 0; }
 	int getService(ePtr<eDVBService> &service) { service = m_service; return 0; }
@@ -159,7 +159,7 @@ private:
 	bool m_have_cached_program;
 	program m_cached_program;
 	serviceType m_service_type;
-	
+
 	struct aitInfo
 	{
 		int id;

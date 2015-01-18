@@ -14,17 +14,17 @@ public:
 	int haveKey(int code, int overwrite);
 	void deleteChar(int dir);
 	int isValid();
-	
+
 	void validate();
-	
+
 	void setText(const std::string &text);
 	std::string getText();
-	
+
 private:
 	void insertChar(int pos, int ch);
-	
+
 	std::string m_string;
-	
+
 	int m_cursor, m_len;
 };
 

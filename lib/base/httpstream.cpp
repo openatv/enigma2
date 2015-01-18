@@ -126,7 +126,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		result = readLine(streamSocket, &linebuf, &buflen);
 		if (!contenttypeparsed)
 		{
-			char contenttype[32];
+			char contenttype[33];
 			if (sscanf(linebuf, "Content-Type: %32s", contenttype) == 1)
 			{
 				contenttypeparsed = true;
@@ -147,14 +147,15 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 			eDebug("%s: playlist entry: %s", __FUNCTION__, newurl.c_str());
 			break;
 		}
-		if (statuscode == 302 && strncasecmp(linebuf, "location: ", 10) == 0)
+		if (((statuscode == 301) || (statuscode == 302) || (statuscode == 303) || (statuscode == 307) || (statuscode == 308)) &&
+				strncasecmp(linebuf, "location: ", 10) == 0)
 		{
 			newurl = &linebuf[10];
 			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
 			break;
 		}
 
-		if (statuscode == 206 && strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
+		if (((statuscode == 200) || (statuscode == 206)) && !strncasecmp(linebuf, "transfer-encoding: chunked", strlen("transfer-encoding: chunked")))
 		{
 			isChunked = true;
 		}

@@ -177,7 +177,7 @@ class IniTerrestrialLocation(Screen):
 		else:
 			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your location before you start a service scan."), MessageBox.TYPE_ERROR)
 
-	def exit(self):
+	def exit(self, *retval):
 		self.close()
 
 class IniEndWizard(Screen):

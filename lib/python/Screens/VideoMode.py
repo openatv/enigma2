@@ -163,8 +163,6 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.value == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-		# if config.av.videoport.value == "HDMI":
-		# 	self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
 		if config.av.videoport.value == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -173,21 +171,27 @@ class VideoSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
 		if level >= 1:
-			if SystemInfo["CanPcmMultichannel"]:
-				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi-channel sound tracks should be output as PCM.")))
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi-channel sound tracks should be down-mixed to stereo.")))
 			if SystemInfo["CanDownmixAAC"]:
 				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi-channel sound tracks should be down-mixed to stereo.")))
 			if SystemInfo["CanAACTranscode"]:
 				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
+			if SystemInfo["CanPcmMultichannel"]:
+				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi-channel sound tracks should be output as PCM.")))
 			self.list.extend((
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital (AC3) sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
 			))
 
 			if SystemInfo["Can3DSurround"]:
-				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d, _("This option allows you to enable 3D Surround Sound.")))
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound for an output.")))
+
+			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
+				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtuell loadspeaker position.")))
+
+			if SystemInfo["CanAutoVolume"]:
+				self.list.append(getConfigListEntry(_("Auto Volume Level"), config.av.autovolume,_("This option configures output for Auto Volume Level.")))
 
 			if SystemInfo["CanAutoVolume"]:
 				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume, _("This option configures you can set Auto Volume Level.")))
@@ -394,15 +398,12 @@ class AutoVideoMode(Screen):
 		global resolutionlabel
 		resolutionlabel["content"].setText("%s %ix%i%s %iHz" % (_("Video content:"), video_width, video_height, p_string, (video_fieldrate + 500) / 1000))
 
-		if video_height != -1:
-			if video_height > 720 or video_width > 1280:
-				new_res = "1080"
-			elif (576 < video_height <= 720) or video_width > 1024:
-				new_res = "720"
-			elif (480 < video_height <= 576) or video_width > 720 or video_framerate in (25000, 50000):
-				new_res = "576"
-			else:
-				new_res = "480"
+		if (700 < video_width <= 720) and video_height <= 480 and video_framerate in (23976, 24000, 29970, 30000, 59940, 60000):
+			new_res = "480"
+		elif (700 < video_width <= 720) and video_height <= 576 and video_framerate in (25000, 50000):
+			new_res = "576"
+		elif (video_width == 1280) and video_height <=720:
+			new_res = "720"
 		else:
 			new_res = config_res
 
@@ -469,7 +470,7 @@ class AutoVideoMode(Screen):
 			print "[VideoMode] still don't have a new_mode making one from config_mode=%s, newrate=%s" % (config_mode, new_rate)
 			new_mode = config_mode + new_rate
 
-		if new_mode != current_mode and self.bufferfull:
+		if new_mode != current_mode:
 			try:
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(new_mode)

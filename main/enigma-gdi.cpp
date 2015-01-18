@@ -10,7 +10,7 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gmaindc.h>
-#include <lib/gdi/font.h> 
+#include <lib/gdi/font.h>
 
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
@@ -27,7 +27,7 @@ void object_dump()
 
 void dumpRegion(const gRegion &region)
 {
-	fprintf(stderr, "extends: %d %d -> %d %d\n", 
+	fprintf(stderr, "extends: %d %d -> %d %d\n",
 		region.extends.left(), region.extends.top(),
 		region.extends.right(), region.extends.bottom());
 	for (int y=0; y<region.extends.bottom(); ++y)
@@ -57,13 +57,13 @@ int main()
 	gMainDC::getInstance(my_dc);
 
 	gPainter p(my_dc);
-	
+
 	gRGB pal[256];
 	pal[0] = 0;
 	pal[1] = 0xff00ff;
 	pal[2] = 0xffFFff;
 	pal[3] = 0x00ff00;
-	
+
 	for (int a=0; a<0x10; ++a)
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
@@ -71,22 +71,22 @@ int main()
 	fontRenderClass::getInstance()->AddFont(eEnv::resolve("${datadir}/fonts/arial.ttf"), "Regular", 100);
 
 	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
-	
-	 
+
+
 	gRegion c;
 	eDebug("0");
 	int i;
-	
+
 	c |= eRect(0, 20, 100, 10);
 	c |= eRect(0, 50, 100, 10);
 	c |= eRect(10, 10, 80, 100);
-	
+
 	c -= eRect(20, 20, 40, 40);
-	
+
 	p.setForegroundColor(gColor(3));
 	p.fill(eRect(0, 0, 100, 100));
 	p.fill(eRect(200, 0, 100, 100));
-	
+
 	for (int a=0; a<c.rects.size(); ++a)
 		eDebug("%d %d -> %d %d", c.rects[a].left(), c.rects[a].top(), c.rects[a].right(), c.rects[a].bottom());
 	eDebug("extends: %d %d %d %d", c.extends.left(), c.extends.top(), c.extends.right(), c.extends.bottom());
@@ -105,7 +105,7 @@ int main()
 	ePtr<gFont> fnt = new gFont("Regular", 70);
 	p.setFont(fnt);
 	p.renderText(eRect(100, 100, 500, 200), "Hello World!");
-	
+
 	sleep(1);
 	return 0;
 }

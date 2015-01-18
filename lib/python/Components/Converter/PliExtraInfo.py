@@ -310,11 +310,15 @@ class PliExtraInfo(Poll, Converter, object):
 		apid = info.getInfo(iServiceInformation.sAudioPID)
 		pcrpid = info.getInfo(iServiceInformation.sPCRPID)
 		sidpid = info.getInfo(iServiceInformation.sSID)
+		tsid = info.getInfo(iServiceInformation.sTSID)
+		onid = info.getInfo(iServiceInformation.sONID)
 		if vpid < 0 : vpid = 0
 		if apid < 0 : apid = 0
 		if pcrpid < 0 : pcrpid = 0
 		if sidpid < 0 : sidpid = 0
-		return "Pids:%04d:%04d:%04d:%05d" % (vpid, apid, pcrpid, sidpid)
+		if tsid < 0 : tsid = 0
+		if onid < 0 : onid = 0
+		return "%d-%d:%05d:%04d:%04d:%04d" % (onid, tsid, sidpid, vpid, apid, pcrpid)
 
 	def createTransponderInfo(self, fedata, feraw):
 		if "DVB-T" in feraw.get("tuner_type"):
@@ -738,21 +742,21 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "All":
 			self.getCryptoInfo(info)
 			if int(config.usage.show_cryptoinfo.value) > 0:
-				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n"\
+				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + addspace(self.createTransponderName(feraw)) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
 				+ addspace(self.createPIDInfo(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 			else:
-				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + "\n" \
+				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + addspace(self.createTransponderName(feraw)) + "\n" \
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n" \
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
 		if self.type == "ServiceInfo":
 			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
-			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw)) \
+			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw)) + addspace(self.createTransponderName(feraw))\
 			+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
 		if self.type == "TransponderInfo2line":
-			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) +  addspace(self.createTransponderName(feraw)) + '\n'\
+			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createTransponderName(feraw)) + '\n'\
 			+ addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 			+ addspace(self.createSymbolRate(fedata, feraw)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata, feraw))
 

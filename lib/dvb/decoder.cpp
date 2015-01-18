@@ -271,15 +271,15 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 
 	if (m_close_invalidates_attributes < 0)
 	{
-		/* 
-		 * Some hardware does not invalidate the video attributes, 
+		/*
+		 * Some hardware does not invalidate the video attributes,
 		 * when we open the video device.
 		 * If that is the case, we cannot rely on receiving VIDEO_EVENTs
 		 * when the new video attributes are available, because they might
 		 * be equal to the old attributes.
 		 * Instead, we should just query the old attributes, and assume
 		 * them to be correct untill we receive VIDEO_EVENTs.
-		 * 
+		 *
 		 * Though this is merely a cosmetic issue, we do try to detect
 		 * whether attributes are invalidated or not.
 		 * So we can avoid polling for valid attributes, when we know
@@ -865,7 +865,7 @@ int eTSMPEGDecoder::setState()
 	if (changed & (changeState|changeVideo|changeAudio))
 	{
 					/* play, slowmotion, fast-forward */
-		int state_table[6][4] = 
+		int state_table[6][4] =
 			{
 				/* [stateStop] =                 */ {0, 0, 0},
 				/* [statePause] =                */ {0, 0, 0},
@@ -941,7 +941,7 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 }
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
-	: m_demux(demux), 
+	: m_demux(demux),
 		m_vpid(-1), m_vtype(-1), m_apid(-1), m_atype(-1), m_pcrpid(-1), m_textpid(-1),
 		m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eTimer::create(eApp))
 {
@@ -1059,7 +1059,7 @@ RESULT eTSMPEGDecoder::play()
 	{
 		if (!m_changed)
 			return 0;
-	} else  
+	} else
 	{
 		m_state = statePlay;
 		m_changed |= changeState;

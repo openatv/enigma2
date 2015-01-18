@@ -8,16 +8,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
+ *
  * The author may be reached as dent@cosy.sbg.ac.at, or
  * Thomas Mirlacher, Jakob-Haringerstr. 2, A-5020 Salzburg,
  * Austria
@@ -103,20 +103,20 @@ struct eit_loop_struct1 {
 struct eit_short_event_descriptor_struct {
 	u_char	descriptor_tag			: 8;
 	u_char	descriptor_length		: 8;
-	
+
 	u_char	language_code_1			: 8;
 	u_char	language_code_2			: 8;
 	u_char	language_code_3			: 8;
 
 	u_char	event_name_length		: 8;
 };
-	
+
 #define EIT_EXTENDED_EVENT_DESCRIPOR 0x4e
 
 typedef struct eit_event_struct {
 	u_char	event_id_hi			: 8;
 	u_char	event_id_lo			: 8;
-	
+
 	u_char	start_time_1			: 8;
 	u_char	start_time_2			: 8;
 	u_char	start_time_3			: 8;
@@ -138,7 +138,7 @@ typedef struct eit_event_struct {
 #endif
 
 	u_char	descriptors_loop_length_lo	: 8;
-	
+
 } eit_event_t;
 #define EIT_LOOP_SIZE 12
 
@@ -160,4 +160,4 @@ struct eit_extended_descriptor_struct {
 };
 
 
-#endif	
+#endif

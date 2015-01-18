@@ -107,7 +107,7 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 	{
 		pts_t current = i->second - currentDelta;
 		pts_t diff = current - lastpts_t;
-		
+
 		if (llabs(diff) > (90000*10)) // 10sec diff
 		{
 //			eDebug("%llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
@@ -138,7 +138,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 	{
 		/*
 		 * The access points are measured in stream time, rather than actual mpeg pts.
-		 * Overrule the timestamp with the nearest access point pts. 
+		 * Overrule the timestamp with the nearest access point pts.
 		 */
 		off_t nearestoffset = offset;
 		getPTS(nearestoffset, ts);
@@ -147,9 +147,9 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 	if (m_timestamp_deltas.empty())
 		return -1;
 
-	std::multimap<pts_t, off_t>::const_iterator 
-		l = m_pts_to_offset.upper_bound(ts - 60 * 90000), 
-		u = m_pts_to_offset.upper_bound(ts + 60 * 90000), 
+	std::multimap<pts_t, off_t>::const_iterator
+		l = m_pts_to_offset.upper_bound(ts - 60 * 90000),
+		u = m_pts_to_offset.upper_bound(ts + 60 * 90000),
 		nearest = m_pts_to_offset.end();
 
 	while (l != u)
@@ -175,16 +175,16 @@ int eMPEGStreamInformation::getPTS(off_t &offset, pts_t &pts)
 		/* usually, we prefer the AP before the given offset. however if there is none, we take any. */
 	if (before != m_access_points.begin())
 		--before;
-	
+
 	if (before == m_access_points.end())
 	{
 		pts = 0;
 		return -1;
 	}
-	
+
 	offset = before->first;
 	pts = before->second - getDelta(offset);
-	
+
 	return 0;
 }
 
@@ -207,21 +207,21 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 		/* if after == end, then we need to extrapolate ... FIXME */
 	if ((before->first == offset) || (after == m_access_points.end()))
 		return before->second - getDelta(offset);
-	
+
 	pts_t before_ts = before->second - getDelta(before->first);
 	pts_t after_ts = after->second - getDelta(after->first);
-	
+
 //	eDebug("%08llx .. ? .. %08llx", before_ts, after_ts);
 //	eDebug("%08llx .. %08llx .. %08llx", before->first, offset, after->first);
-	
+
 	pts_t diff = after_ts - before_ts;
 	off_t diff_off = after->first - before->first;
-	
+
 	diff = (offset - before->first) * diff / diff_off;
 //	eDebug("%08llx .. %08llx .. %08llx", before_ts, before_ts + diff, after_ts);
 	return before_ts + diff;
 }
- 
+
 off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 {
 	//eDebug("eMPEGStreamInformation::getAccessPoint(ts=%llu, marg=%d)", ts, marg);
@@ -569,11 +569,11 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 			pts = 0;
 			return 1;
 		}
-		
+
 		int index = l - 1;
 		if (index < 0)
 			index = 0;
-		
+
 		int num = moveCache(index);
 		if (num <= 0)
 		{
@@ -685,9 +685,9 @@ void eMPEGStreamInformationWriter::addAccessPoint(off_t offset, pts_t pts, bool 
 	}
 	else
 	{
-		/* 
+		/*
 		 * We've got real pts now, drop the leading 'extrapolated' accesspoints,
-		 * avoid unnecessary pts discontinuity 
+		 * avoid unnecessary pts discontinuity
 		 */
 		m_streamtime_access_points.clear();
 		m_access_points.push_back(AccessPoint(offset, pts));
@@ -864,7 +864,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 
 	bool pusi = (pkt[1] & 0x40) != 0;
 
-	if (pkt[3] & 0xc0) 
+	if (pkt[3] & 0xc0)
 	{
 		/* scrambled stream, we cannot parse pts, extrapolate with measured stream time instead */
 		if (pusi && m_enable_accesspoints)
@@ -900,7 +900,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 
 	pts_t pts = 0;
 	int ptsvalid = 0;
-	
+
 	if (pusi)
 	{
 			// ok, we now have the start of the payload, aligned with the PES packet start.
@@ -918,13 +918,13 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			pts |= ((unsigned long long)(pkt[12]&0xFF)) << 7;
 			pts |= ((unsigned long long)(pkt[13]&0xFE)) >> 1;
 			ptsvalid = 1;
-			
+
 			m_last_pts = pts;
 			m_last_pts_valid = 1;
 			if (!m_pts_found) m_first_pts = pts;
 			m_pts_found = true;
 		}
-		
+
 			/* advance to payload */
 		pkt += pkt[8] + 9;
 	}
@@ -1018,10 +1018,10 @@ inline int eMPEGStreamParserTS::wantPacket(const unsigned char *pkt) const
 
 	if (ppid != m_pid)
 		return 0;
-		
+
 	if (m_need_next_packet)  /* next packet (on this pid) was required? */
 		return 1;
-	
+
 	if (hdr[1] & 0x40)	 /* pusi set: yes. */
 		return 1;
 
@@ -1032,16 +1032,16 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 {
 	const unsigned char *packet = (const unsigned char*)data;
 	const unsigned char *packet_start = packet;
-	
+
 			/* sorry for the redundant code here, but there are too many special cases... */
 	while (len)
 	{
-			/* emergency resync. usually, this should not happen, because the data should 
+			/* emergency resync. usually, this should not happen, because the data should
 			   be sync-aligned.
-			   
-			   to make this code work for non-strictly-sync-aligned data, (for example, bad 
+
+			   to make this code work for non-strictly-sync-aligned data, (for example, bad
 			   files) we fix a possible resync here by skipping data until the next 0x47.
-			   
+
 			   if this is a false 0x47, the packet will be dropped by wantPacket, and the
 			   next time, sync will be re-established. */
 		int skipped = 0;
@@ -1053,13 +1053,13 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			packet++;
 			skipped++;
 		}
-		
+
 		if (skipped)
 			eDebug("SYNC LOST: skipped %d bytes.", skipped);
-		
+
 		if (!len)
 			break;
-		
+
 		if (m_pktptr)
 		{
 				/* skip last packet */
@@ -1078,11 +1078,11 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 				if (storelen > len)
 					storelen = len;
 				memcpy(m_pkt + m_pktptr, packet,  storelen);
-				
+
 				m_pktptr += storelen;
 				len -= storelen;
 				packet += storelen;
-				
+
 				if (m_pktptr == m_header_offset + 4)
 					if (!wantPacket(m_pkt))
 					{
@@ -1101,7 +1101,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			m_pktptr += storelen;
 			len -= storelen;
 			packet += storelen;
-			
+
 			if (m_pktptr == m_packetsize)
 			{
 				m_need_next_packet = processPacket(m_pkt, offset + (packet - packet_start));

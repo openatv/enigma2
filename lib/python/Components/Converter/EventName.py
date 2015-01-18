@@ -13,9 +13,10 @@ class EventName(Converter, object):
 	ID = 4
 	NAME_NOW = 5
 	NAME_NEXT = 6
-	GENRE = 7
-	RATING = 8
-	SRATING = 9
+	NAME_NEXT2 = 7
+	GENRE = 8
+	RATING = 9
+	SRATING = 10
 
 	NEXT_DESCRIPTION = 21
 	THIRD_NAME = 22
@@ -36,6 +37,8 @@ class EventName(Converter, object):
 			self.type = self.NAME_NOW
 		elif type == "NameNext" or type == "NextName":
 			self.type = self.NAME_NEXT
+		elif type == "NameNextOnly" or type == "NextNameOnly":
+			self.type = self.NAME_NEXT2
 		elif type == "Genre":
 			self.type = self.GENRE
 		elif type == "Rating":
@@ -111,7 +114,7 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
-		elif int(self.type) == 6 or int(self.type) >= 21:
+		elif int(self.type) in (6,7) or int(self.type) >= 21:
 			try:
 				reference = self.source.service
 				info = reference and self.source.info
@@ -122,6 +125,8 @@ class EventName(Converter, object):
 				if self.list:
 						if self.type == self.NAME_NEXT and self.list[1][1]:
 							return pgettext("now/next: 'next' event label", "Next") + ": " + self.list[1][1]
+						elif self.type == self.NAME_NEXT2 and self.list[1][1]:
+							return self.list[1][1]
 						elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
 							description = self.list[1][2]
 							extended = self.list[1][3]

@@ -42,7 +42,9 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 #define eSecDebugNoSimulate(x...) \
 	do { \
 		if (!simulate) \
+		{ \
 			eSecDebug(x); \
+		} \
 	} while(0)
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id, int *highest_score_lnb)
@@ -181,7 +183,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						ret += 15;
 					eSecDebugNoSimulate("ret2 %d", ret);
 				}
-				else if ((satpos_depends_ptr != -1) && !(is_unicable && is_unicable_position_switch))
+				else if ((rotor && satpos_depends_ptr != -1) && !(is_unicable && is_unicable_position_switch))
 				{
 					eSecDebugNoSimulate("satpos depends");
 					eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
@@ -189,7 +191,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					{
 						if (satpos_depends_to_fe->m_inuse) // if the dependent frontend is in use?
 						{
-							if (!rotor || rotor_pos != sat.orbital_position) // new orbital position not equal to current orbital pos?
+							if (rotor_pos != sat.orbital_position) // new orbital position not equal to current orbital pos?
 								ret = 0;
 							else
 								ret += 10;
@@ -200,7 +202,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					{
 						// get current orb pos of the tuner with rotor connection
 						satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
-						if (!rotor || rotor_pos == -1 /* we dont know the rotor position yet */
+						if (rotor_pos == -1 /* we dont know the rotor position yet */
 							|| rotor_pos != sat.orbital_position ) // not the same orbital position?
 						{
 							ret = 0;
@@ -419,7 +421,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 						+ lnb_param.guard_offset;
 				int tmp2 = ((((tmp1 * 2) / 4000) + 1) / 2) * 4000;
 				frequency = lnb_param.SatCRvco - (tmp1-tmp2) + lnb_param.guard_offset;
-				lnb_param.UnicableTuningWord = ((tmp2 / 4000) 
+				lnb_param.UnicableTuningWord = ((tmp2 / 4000)
 						| ((band & 1) ? 0x400 : 0)			//HighLow
 						| ((band & 2) ? 0x800 : 0)			//VertHor
 						| ((lnb_param.LNBNum & 1) ? 0 : 0x1000)			//Umschaltung LNB1 LNB2
@@ -723,7 +725,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );  // wait 20 ms after voltage change
-	
+
 				eDVBDiseqcCommand diseqc;
 				memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
 				diseqc.len = 5;
@@ -841,7 +843,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );  // timeout .. we assume now the rotor is already at the correct position
 					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, turn_fast ? 10 : 9 ) );  // timeout .. we assume now the rotor is already at the correct position	
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, turn_fast ? 10 : 9 ) );  // timeout .. we assume now the rotor is already at the correct position
 					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
 			////////////////////
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );

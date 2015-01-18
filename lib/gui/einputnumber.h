@@ -14,20 +14,20 @@ public:
 	int haveKey(int code, int overwrite);
 	void deleteChar(int dir);
 	int isValid();
-	
+
 	void validate();
-	
+
 	void setValue(int num);
 	int getValue();
-	
+
 private:
 	void recalcLen();
-	
+
 	void insertDigit(int pos, int dig);
-	
+
 	int m_value;
 	int m_cursor, m_len;
-	
+
 	int m_min, m_max;
 };
 

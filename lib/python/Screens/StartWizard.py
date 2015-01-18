@@ -9,8 +9,10 @@ from Screens.Rc import Rc
 from Components.Task import job_manager
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
+
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName
 
+from Components.SystemInfo import SystemInfo
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, ConfigYesNo, configfile
 from Components.NimManager import nimmanager
@@ -246,7 +248,19 @@ from Screens.IniTerrestrialLocation import IniTerrestrialLocation, IniEndWizard,
 if not config.misc.skip_hdd_startup_format.value and needHDDFormat():
 	wizardManager.registerWizard(StartHDDFormatWizard, True, priority = -10)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 0)
+
+# Terrestrial Location Wizard Screen
 dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 if len(dvbt_nimList) != 0:
 	wizardManager.registerWizard(IniTerrestrialLocation, config.misc.inifirstrun.value, priority = 1)
+
+# IPTV Channel List downloader for T-POD
+if SystemInfo["IPTVSTB"]:
+	from os import path
+	if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/RemoteIPTVClient"):
+		from Plugins.Extensions.RemoteIPTVClient.plugin import RemoteTunerScanner
+		wizardManager.registerWizard(RemoteTunerScanner, config.misc.inifirstrun.value, priority = 2) # It always should show as last one
+
+	
+# End Message in wizards
 wizardManager.registerWizard(IniEndWizard, config.misc.inifirstrun.value, priority = 10) # It always should show as last one

@@ -110,7 +110,7 @@ int eSlider::event(int event, void *data, void *data2)
 			num_pix += start_pix;
 			start_pix = 0;
 		}
-		
+
 		if (num_pix < 0)
 			num_pix = 0;
 
@@ -123,7 +123,7 @@ int eSlider::event(int event, void *data, void *data2)
 		invalidate(m_currently_filled - old_currently_filled);
 			// redraw what wasn't filled before and is now.
 		invalidate(old_currently_filled - m_currently_filled);
-		
+
 		return 0;
 	}
 	default:

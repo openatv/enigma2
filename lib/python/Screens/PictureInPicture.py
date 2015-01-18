@@ -39,7 +39,7 @@ def PipPigMode(value):
 					InfoBar.instance.session.pip.pipservice = False
 				PipPigModeEnabled = True
 		else:
-			PipPigModeTimer.start(100)
+			PipPigModeTimer.start(100, True)
 
 class PictureInPictureZapping(Screen):
 	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">

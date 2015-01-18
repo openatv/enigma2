@@ -43,7 +43,7 @@ config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 config.movielist.itemsperpage = ConfigSelectionNumber(default=20, stepwidth=1, min=3, max=30, wraparound=True)
 config.movielist.useslim = ConfigYesNo(default=False)
-config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
+config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
@@ -62,12 +62,15 @@ preferredTagEditor = None
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
+	(str(MovieList.SORT_GROUPWISE), _("default") , 'New->Old & A->Z'),
 	(str(MovieList.SORT_RECORDED), _("by date"), 'New->Old'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), 'Old->New'),
 	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A->Z'),
 	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("reverse alphabetic"), 'Z->A'),
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A->Z Flat'),
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("reverse flat alphabetic"), 'Z->A Flat'),
+	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
+	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"),  'Z1 A2 A1'),
 	(str(MovieList.SHUFFLE), _("shuffle"), 'Shuffle'),
 ]
 
@@ -240,6 +243,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			"save": self.save,
 			"cancel": self.cancel,
 			"ok": self.save,
+			"menu": self.cancel,
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -284,9 +288,16 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		self.close(True)
 
 	def cancel(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.cancelCallback(True)
+
+	def cancelCallback(self, answer):
+		if answer:
+			for x in self["config"].list:
+				x[1].cancel()
+			self.close(False)
 
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
@@ -1317,11 +1328,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			index += 1
 		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu, selection=used)
 
+	def getPixmapSortIndex(self, which):
+		index = int(which)
+		if index == MovieList.SORT_ALPHA_DATE_OLDEST_FIRST:
+			index = MovieList.SORT_ALPHANUMERIC
+		elif index == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
+			index = MovieList.SORT_ALPHANUMERIC_REVERSE
+		return index - 1
+
 	def sortbyMenuCallback(self, choice):
 		if choice is None:
 			return
 		self.sortBy(int(choice[1]))
-		self["movie_sort"].setPixmapNum(int(choice[1]) - 1)
+		self["movie_sort"].setPixmapNum(self.getPixmapSortIndex(choice[1]))
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
@@ -1472,7 +1491,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def showTagsMenu(self, tagele):
 		self.selected_tags_ele = tagele
-		lst = [(_("show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in self.tags]
+		lst = [(_("show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in sorted(self.tags)]
 		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list=lst, skin_name="MovieListTags")
 
 	def showTagWarning(self):
@@ -1542,6 +1561,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def can_addbookmark(self, item):
 		return True
+
+	def exist_bookmark(self):
+		path = config.movielist.last_videodir.value
+		if path in config.movielist.videodirs.value:
+			return True
+		return False
 
 	def do_addbookmark(self):
 		path = config.movielist.last_videodir.value
@@ -1865,8 +1890,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					are_you_sure = _("Do you really want to delete ?")
 				if args:
-					# already confirmed...
-					# but not implemented yet...
 					self.deleteDirConfirmed(True)
 					return
 				for fn in os.listdir(cur_path):
@@ -1910,8 +1933,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						mbox.setTitle(self.getTitle())
 						return
 			if '.Trash' not in cur_path and config.usage.movielist_trashcan.value:
-				try:
-					trash = Tools.Trashcan.createTrashFolder(cur_path)
+				trash = Tools.Trashcan.createTrashFolder(cur_path)
+				if trash:
 					moveServiceFiles(current, trash, name, allowCopy=True)
 					self["list"].removeService(current)
 					# Files were moved to .Trash, ok.
@@ -1919,15 +1942,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					delResumePoint(current)
 					self.showActionFeedback(_("Deleted") + " " + name)
 					return
-				except Exception, e:
-					print "[MovieSelection] Weird error moving to trash", e
-					# Failed to create trash or move files.
+				else:
 					msg = _("Cannot move to trash can") + "\n"
-					if trash is None:
-						msg += _("Trash can missing")
-					else:
-						msg += str(e)
-					msg += "\n"
 					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if '.Trash' in cur_path:
@@ -2060,13 +2076,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(3000, True)  # time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
-		self["movie_sort"].setPixmapNum(int(l_moviesort[index][0]) - 1)
+		self["movie_sort"].setPixmapNum(self.getPixmapSortIndex(l_moviesort[index][0]))
 
 	def do_preview(self):
 		self.preview()
 
 	def displaySortStatus(self):
-		self["movie_sort"].setPixmapNum(int(config.movielist.moviesort.value) - 1)
+		self["movie_sort"].setPixmapNum(self.getPixmapSortIndex(config.movielist.moviesort.value))
 		self["movie_sort"].show()
 
 	def can_movieoff(self, item):
@@ -2083,8 +2099,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def setNextMovieOffStatus(self):
 		config.usage.on_movie_eof.selectNext()
 		self.settings["movieoff"] = config.usage.on_movie_eof.value
-		if config.movielist.settings_per_directory.value:
-			self.saveLocalSettings()
+		self.saveLocalSettings()
 
 	def can_movieoff_menu(self, item):
 		return True

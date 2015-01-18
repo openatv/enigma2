@@ -22,8 +22,8 @@ class lamedb(datasource):
 		versionstring = lines[0].split('/')
 		version = int(versionstring[1])
 		if 3 > version or 4 < version:
-				print "unsupported lamedb version"
-				return
+			print "unsupported lamedb version"
+			return
 
 		transpondersreading = False
 		sats = {}

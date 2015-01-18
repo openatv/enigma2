@@ -1,6 +1,6 @@
 from GUIComponent import GUIComponent
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont
+from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop
 from Components.MultiContent import MultiContentEntryText
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
 from Components.config import config
@@ -27,6 +27,7 @@ from collections import defaultdict
 
 class HelpMenuList(GUIComponent):
 	def __init__(self, helplist, callback, rcPos=None):
+		screenwidth = getDesktop(0).size().width()
 		GUIComponent.__init__(self)
 		self.onSelChanged = []
 		self.l = eListboxPythonMultiContent()
@@ -152,9 +153,12 @@ class HelpMenuList(GUIComponent):
 		if self.extendedHelp:
 			self.l.setFont(0, gFont("Regular", 24))
 			self.l.setFont(1, gFont("Regular", 18))
+			self.l.setFont(2, gFont("Regular", 30))
+			self.l.setFont(3, gFont("Regular", 26))
 			self.l.setItemHeight(50)
 		else:
 			self.l.setFont(0, gFont("Regular", 24))
+			self.l.setFont(1, gFont("Regular", 30))
 			self.l.setItemHeight(38)
 
 	def _mergeButLists(self, bl1, bl2):
@@ -249,6 +253,7 @@ class HelpMenuList(GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
+		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)

@@ -19,10 +19,11 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarEPG, InfoBarSeek, InfoBarInstantRecord, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey, InfoBarLongKeyDetection, \
 	InfoBarSubserviceSelection, InfoBarShowMovies,  \
-	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
+	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarBuffer, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi, \
 	setResumePoint, delResumePoint
+from Screens.ButtonSetup import InfoBarButtonSetup
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
@@ -38,10 +39,10 @@ class InfoBar(
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
 	InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey, InfoBarLongKeyDetection,
-	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport,
+	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarBuffer,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi,
-	Screen
+	InfoBarButtonSetup, Screen,
 ):
 
 	ALLOW_SUSPEND = True
@@ -73,10 +74,10 @@ class InfoBar(
 			InfoBarBase, InfoBarShowHide,
 			InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
 			InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarUnhandledKey, InfoBarLongKeyDetection, InfoBarVmodeButton,
-			InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection,
+			InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, InfoBarBuffer,
 			InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarSummarySupport, InfoBarTimeshiftState,
 			InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi,
-			InfoBarPlugins, InfoBarServiceErrorPopupSupport
+			InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarButtonSetup
 		):
 			x.__init__(self)
 
@@ -205,6 +206,7 @@ class InfoBar(
 
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder
+		self.servicelist.correctChannelNumber()
 
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -275,7 +277,7 @@ class MoviePlayer(
 	InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 	InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom
+	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarButtonSetup
 ):
 
 	ENABLE_RESUME_SUPPORT = True
@@ -309,7 +311,7 @@ class MoviePlayer(
 			InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 			InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport,
 			InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions,
-			InfoBarPlugins, InfoBarPiP, InfoBarZoom
+			InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarButtonSetup
 		):
 			x.__init__(self)
 
@@ -335,7 +337,11 @@ class MoviePlayer(
 		MoviePlayer.instance = None
 		from Screens.MovieSelection import playlist
 		del playlist[:]
+		if not config.movielist.stop_service.value:
+			Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.session.nav.playService(self.lastservice)
+		config.usage.last_movie_played.value = self.cur_service.toString()
+		config.usage.last_movie_played.save()
 
 	def handleLeave(self, how):
 		self.is_closing = True

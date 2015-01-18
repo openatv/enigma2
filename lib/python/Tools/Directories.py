@@ -106,8 +106,6 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		tmp = defaultPaths[SCOPE_CONFIG][0]
 		if base and pathExists(tmp + base):
 			path = tmp
-		elif base and pathExists(defaultPaths[SCOPE_SKIN][0] + base):
-			path = defaultPaths[SCOPE_SKIN][0]
 		else:
 			tmp = defaultPaths[SCOPE_SKIN][0]
 			pos = config.skin.primary_skin.value.rfind('/')
@@ -284,6 +282,9 @@ def fileExists(f, mode='r'):
 	else:
 		acc_mode = os.F_OK
 	return os.access(f, acc_mode)
+
+def fileCheck(f, mode='r'):
+	return fileExists(f, mode) and f
 
 def fileCheck(f, mode='r'):
 	return fileExists(f, mode) and f
