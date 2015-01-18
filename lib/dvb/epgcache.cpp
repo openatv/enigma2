@@ -2309,26 +2309,6 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 	return -1;
 }
 
-RESULT eEPGCache::getNextTimeEntry(const eventData *& result)
-{
-	if ( m_timemap_cursor != m_timemap_end )
-	{
-		result = m_timemap_cursor++->second;
-		return 0;
-	}
-	return -1;
-}
-
-RESULT eEPGCache::getNextTimeEntry(const eit_event_struct *&result)
-{
-	if ( m_timemap_cursor != m_timemap_end )
-	{
-		result = m_timemap_cursor++->second->get();
-		return 0;
-	}
-	return -1;
-}
-
 RESULT eEPGCache::getNextTimeEntry(Event *&result)
 {
 	if ( m_timemap_cursor != m_timemap_end )
