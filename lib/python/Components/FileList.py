@@ -51,7 +51,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 			png = None
 	if png is not None:
 		x, y, w, h = skin.parameters.get("FileListIcon",(10, 2, 20, 20))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 
 	return res
 
