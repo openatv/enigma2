@@ -16,7 +16,10 @@ def SelectionEntryComponent(description, value, index, selected):
 	]
 	if selected:
 		ix, iy, iw, ih = skin.parameters.get("SelectionListLock",(0, 2, 25, 24))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectionpng))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectiononpng))
+	else:
+		ix, iy, iw, ih = skin.parameters.get("SelectionListLockOff",(0, 2, 25, 24))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectionoffpng))
 	return res
 
 class SelectionList(MenuList):
