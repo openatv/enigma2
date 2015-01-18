@@ -1,47 +1,77 @@
+from boxbranding import *
+
+hw_info = None
+
 class HardwareInfo:
-	device_name = None
-	device_version = None
+	device_name = _("unavailable")
+	device_model = None
+	device_version = ""
+	device_revision = ""
+	device_hdmi = False
 
 	def __init__(self):
-		if HardwareInfo.device_name is not None:
-#			print "using cached result"
+		global hw_info
+		if hw_info is not None:
 			return
+		hw_info = self
 
-		HardwareInfo.device_name = "unknown"
+		print "[HardwareInfo] Scanning hardware info"
+
+		# Version
 		try:
-			file = open("/proc/stb/info/model", "r")
-			HardwareInfo.device_name = file.readline().strip()
-			file.close()
-			try:
-				file = open("/proc/stb/info/version", "r")
-				HardwareInfo.device_version = file.readline().strip()
-				file.close()
-			except:
-				pass
+			self.device_version = open("/proc/stb/info/version").read().strip()
 		except:
-			print "----------------"
-			print "you should upgrade to new drivers for the hardware detection to work properly"
-			print "----------------"
-			print "fallback to detect hardware via /proc/cpuinfo!!"
-			try:
-				rd = open("/proc/cpuinfo", "r").read()
-				if "Brcm4380 V4.2" in rd:
-					HardwareInfo.device_name = "dm8000"
-					print "dm8000 detected!"
-				elif "Brcm7401 V0.0" in rd:
-					HardwareInfo.device_name = "dm800"
-					print "dm800 detected!"
-				elif "MIPS 4KEc V4.8" in rd:
-					HardwareInfo.device_name = "dm7025"
-					print "dm7025 detected!"
-			except:
-				pass
+			pass
+
+		# Revision
+		try:
+			self.device_revision = open("/proc/stb/info/board_revision").read().strip()
+		except:
+			pass
+
+		# Name
+		try:
+			self.device_name = open("/proc/stb/info/model").read().strip()
+		except:
+			pass
+
+		# Model
+		try:
+			self.device_model = open("/proc/stb/info/gbmodel").read().strip()
+		except:
+			pass
+
+		if self.device_model is None:
+			self.device_model = self.device_name
+
+		# HDMI capbility
+		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase', 'gbquad', 'gbquadplus'):
+			self.device_hdmi = True
+		else:
+			self.device_hdmi = False
+
+		print "Detected: " + self.get_device_string()
+
 
 	def get_device_name(self):
-		return HardwareInfo.device_name
+		return hw_info.device_name
+
+	def get_device_model(self):
+		return hw_info.device_model
 
 	def get_device_version(self):
-		return HardwareInfo.device_version
+		return hw_info.device_version
+
+	def get_device_revision(self):
+		return hw_info.device_revision
+
+	def get_device_string(self):
+		s = hw_info.device_model
+		if hw_info.device_revision != "":
+			s += " (" + hw_info.device_revision + "-" + hw_info.device_version + ")"
+		elif hw_info.device_version != "":
+			s += " (" + hw_info.device_version + ")"
+		return s
 
 	def has_hdmi(self):
-		return True
+		return hw_info.device_hdmi

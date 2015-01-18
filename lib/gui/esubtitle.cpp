@@ -2,6 +2,7 @@
 #include <lib/gdi/grc.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
+#include <lib/gui/ewidgetdesktop.h>
 
 std::map<eSubtitleWidget::subfont_t, eSubtitleWidget::eSubtitleStyle> eSubtitleWidget::subtitleStyles;
 
@@ -283,8 +284,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else
 			rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
 
-		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2);
-		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34);
+		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
+		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
 
 		if (m_pixmap)
 		{
@@ -323,34 +324,47 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				face = Subtitle_Regular;
 				ePangoSubtitlePageElement &element = m_pango_page.m_elements[i];
 				std::string text = element.m_pango_line;
+
+				if (eConfigManager::getConfigBoolValue("config.subtitles.pango_subtitle_removehi", false))
+					removeHearingImpaired(text);
+
 				text = replace_all(text, "&apos;", "'");
 				text = replace_all(text, "&quot;", "\"");
 				text = replace_all(text, "&amp;", "&");
 				text = replace_all(text, "&lt", "<");
 				text = replace_all(text, "&gt", ">");
 
-				if (eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1) == 2)
+				if (eConfigManager::getConfigBoolValue("config.subtitles.pango_subtitle_fontswitch"))
 				{
-					text = (std::string) gRGB(255, 255, 0) + text;
-					text = replace_all(text, "</u>", (std::string) gRGB(255,255,0));
+					if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
+						if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
+							face = Subtitle_MAX;
+						else
+							face = Subtitle_Italic;
+					else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
+						face = Subtitle_Bold;
 				}
+				int subtitleColors = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1);
+				if (!subtitleColors)
+					{
+						text = replace_all(text, "<i>", gRGB(255,255,0));
+						text = replace_all(text, "<b>", gRGB(0,255,255));
+						text = replace_all(text, "<u>", (std::string) gRGB(0,255,0));
+						text = replace_all(text, "</i>", (std::string) gRGB(255,255,255));
+						text = replace_all(text, "</b>", (std::string) gRGB(255,255,255));
+						text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
+					}
 				else
-					text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
-
-				if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
-					if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
-						face = Subtitle_MAX;
-					else
-						face = Subtitle_Italic;
-				else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
-					face = Subtitle_Bold;
-
-				text = replace_all(text, "<u>", (std::string) gRGB(255,255,0));
-				text = replace_all(text, "<i>", "");
-				text = replace_all(text, "<b>", "");
-				text = replace_all(text, "</i>", "");
-				text = replace_all(text, "</b>", "");
-
+				{
+					if (subtitleColors == 2)
+						text = (std::string) gRGB(255, 255, 0) + text;
+					text = replace_all(text, "</u>", "");
+					text = replace_all(text, "</i>", "");
+					text = replace_all(text, "</b>", "");
+					text = replace_all(text, "<u>", "");
+					text = replace_all(text, "<i>", "");
+					text = replace_all(text, "<b>", "");
+				}
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
 
@@ -385,4 +399,58 @@ void eSubtitleWidget::setFontStyle(subfont_t face, gFont *font, int haveColor, c
 	subtitleStyles[face].foreground_color = col;
 	subtitleStyles[face].border_color = borderCol;
 	subtitleStyles[face].border_width = borderWidth;
+}
+
+void eSubtitleWidget::removeHearingImpaired(std::string& str)
+{
+	// remove texts in round brackets
+	while (true)
+	{
+		std::string::size_type loc = str.find('(');
+		if (loc == std::string::npos)
+			break;
+		std::string::size_type enp = str.find(')');
+		if (enp == std::string::npos)
+			break;
+		str.erase(loc, enp - loc + 1);
+	}
+
+	// remove texts in square brackets
+	while (true)
+	{
+		std::string::size_type loc = str.find('[');
+		if (loc == std::string::npos)
+			break;
+		std::string::size_type enp = str.find(']');
+		if (enp == std::string::npos)
+			break;
+		str.erase(loc, enp - loc + 1);
+	}
+
+	// cleanup: remove empty lines (consisting of spaces and hyphens only)
+	std::string::size_type line_start = 0;
+	bool empty_line = true;
+	for (std::string::size_type p = 0; p < str.length(); p++)
+	{
+		unsigned char ch = str[p];
+
+		if (ch != ' ' && ch != '-' && ch != '\n')
+			empty_line = false;
+
+		if (ch == '\n' || p == str.length() - 1)
+		{
+			if (empty_line)
+			{
+				// remove line
+				str.erase(line_start, p - line_start + 1);
+				p = line_start - 1;
+			}
+			line_start = p + 1;
+			empty_line = true;
+		}
+	}
+
+	// cleanup: remove trailing line breaks
+	while (str[str.length() - 1] == '\n')
+		str.erase(str.length() - 1, 1);
 }

@@ -3,10 +3,10 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,36" font="FdLcD;16" halign="left" valign="top" >
+		<widget source="session.CurrentService" render="Label" position="top" size="*,200" font="FdLcD;40" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
+		<widget source="session.CurrentService" render="Progress" position="bottom" size="*,40" borderWidth="2">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 	</screen>
@@ -22,13 +22,13 @@
 	</screen>
 
 	<screen name="MovieSelectionSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="name" render="Label" position="top" size="*,32" font="FdLcD;16" halign="left" valign="top" />
-		<panel position="bottom" size="*,18">
-			<widget source="parent.Service" render="Label" position="right" size="46,*" font="FdLcD;14" halign="left" noWrap="1">
+		<widget source="parent.Title" render="Label" position="top" size="*,54" font="FdLcD;24" halign="left" valign="top" />
+		<widget source="name" render="Label" position="top" size="*,150" font="FdLcD;40" halign="center" valign="center" />
+		<panel position="bottom" size="*,36">
+			<widget source="parent.Service" render="Label" position="right" size="120,*" font="FdLcD;28" halign="left" noWrap="1">
 				<convert type="MovieInfo">FileSize</convert>
 			</widget>
-			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;14" halign="left" noWrap="1">
+			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;24" halign="left" noWrap="1">
 				<convert type="MovieInfo">RecordServiceName</convert>
 			</widget>
 		</panel>
@@ -52,8 +52,8 @@
 
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" position="top" size="*,61" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,53" font="FdLcD;26" halign="left" valign="center">
+		<widget source="parent.title" render="Label" position="top" size="*,35" font="FdLcD;30" halign="left" valign="center" />
+		<widget source="parent.menu" render="Label" position="top" size="*,205" font="FdLcD;40" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -70,25 +70,11 @@
 		<widget source="parent.Title" render="Label" position="center,center" size="400,240" font="FdLcD;50" halign="center" valign="center" />
 	</screen>
 
-	<screen name="WizardSummary" position="fill">
-		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-
-	<screen name="VideoWizardSummary" position="fill">
-		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
-
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,26" font="FdLcD;25" noWrap="1" />
-		<widget source="entry" render="Label" position="top" size="*,61" font="FdLcD;30" halign="left" />
-		<widget source="desc" render="Label" position="fill" font="FdLcD;22" valign="top" />
+		<widget source="parent.Title" render="Label" position="top" size="*,36" font="FdLcD;30" noWrap="1" />
+		<widget source="entry" render="Label" position="top" size="*,150" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="desc" render="Label" position="fill" font="FdLcD;22" halign="center" valign="center" />
 	</screen>
 
 <!-- JobView Summary -->
@@ -112,17 +98,17 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="400,240">
-		<widget source="parent.summary_list" render="Label" position="0,0" size="400,240" font="FdLcD;16" noWrap="1" />
+		<widget source="parent.summary_list" render="Label" position="0,0" size="400,240" font="FdLcD;30" halign="center" valign="center" noWrap="1" />
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="400,240">
-		<widget source="parent.Text" render="Label" position="0,0" size="400,240" font="FdLcD;17" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,135" size="400,28" font="FdLcD;26" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="0,0" size="400,200" font="FdLcD;20" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,200" size="400,40" font="FdLcD;30" halign="center" valign="center" noWrap="1" />
 	</screen>
 
 	<screen name="MessageBoxSimple_summary" position="0,0" size="400,240">
-		<widget source="parent.Text" render="Label" position="0,0" size="400,240" font="FdLcD;17" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,135" size="400,28" font="FdLcD;26" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="0,0" size="400,200" font="FdLcD;20" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,200" size="400,40" font="FdLcD;30" halign="center" valign="center" noWrap="1" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="400,240">
@@ -137,9 +123,16 @@
 		<widget source="state" render="Label" position="0,110" size="400,20" font="FdLcD;19" halign="right" transparent="1" />
 	</screen>
 
-	<screen name="WizardSummary" position="0,0" size="400,240">
-		<widget source="text" render="Label" position="0,0" size="400,55" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,85" size="400,124" font="FdLcD;24" halign="center" >
+	<screen name="WizardSummary" position="fill">
+		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
+		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
+	<screen name="VideoWizardSummary" position="fill">
+		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -148,13 +141,6 @@
 		<widget source="parent.summarytext" render="Label" position="0,0" size="400,55" font="FdLcD;24" halign="center" />
 		<widget source="parent.summarylangname" render="Label" position="0,85" size="400,124" font="FdLcD;24" halign="center" />
 		<!-- <widget source="parent.flag" render="Pixmap" position="0,0" size="110,40" backgroundColor="#ff000000" /> -->
-	</screen>
-
-	<screen name="VideoWizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="400,50" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,85" size="400,124" font="FdLcD;24" halign="center" >
-			<convert type="StringListSelection" />
-		</widget>
 	</screen>
 
 <!-- DVD -->
