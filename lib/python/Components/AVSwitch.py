@@ -86,12 +86,12 @@ class AVSwitch:
 		config.av.edid_override = True
 
 	if (about.getChipSetString() in ('7241', '7358', '7356', '7424', '7425', 'pnx8493')) or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
-		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = {"720p", "1080p", "1080i"}
 		supports1080p = True
+		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
+		widescreen_modes = {"1080p", "1080i", "720p"}
 	else:
 		modes["HDMI"] = ["1080i", "720p", "576p", "576i", "480p", "480i"]
-		widescreen_modes = {"720p", "1080i"}
+		widescreen_modes = {"1080i", "720p"}
 
 	modes["YPbPr"] = modes["HDMI"]
 	if getBoxType().startswith('vu') or (getBoxType() in ('dm500hd', 'dm800')):
