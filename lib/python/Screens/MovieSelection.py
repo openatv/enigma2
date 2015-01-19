@@ -43,6 +43,8 @@ config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
 config.movielist.useslim = ConfigYesNo(default=False)
+config.movielist.useextlist = ConfigSelection(default='0', choices={'0': _('No'), '1': _('ServiceName'), '2': _('ServicePicon')})
+config.movielist.eventinfo_delay = ConfigSelectionNumber(50, 1000, 50, default= 100)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
@@ -210,6 +212,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 					  getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.")),
 					  getConfigListEntry(_("Fontsize"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")),
 					  getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows to display")), getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")),
+					  getConfigListEntry(_("Use extended List"), config.movielist.useextlist, _("Use the extended List")), getConfigListEntry(_("Update delay for Events in List"), config.movielist.eventinfo_delay, _("Update delay for Events in List. Scrolling in List is faster with higher delay, specialy on big Lists !")),
 					  getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")), getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
 					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")),
 					  getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behavior.")),
@@ -378,7 +381,7 @@ class SelectionEventInfo:
 
 	def __selectionChanged(self):
 		if self.execing and self.settings["description"] == MovieList.SHOW_DESCRIPTION:
-			self.timer.start(100, True)
+			self.timer.start(int(config.movielist.eventinfo_delay.value), True)
 
 	def updateEventInfo(self):
 		serviceref = self.getCurrent()
