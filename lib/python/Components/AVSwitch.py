@@ -13,6 +13,7 @@ class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
 	rates = {}  # high-level, use selectable modes.
 	modes = {}  # a list of (high-level) modes for a certain port.
+	supports1080p = False
 
 	rates["PAL"] = {
 					"50Hz": {50: "pal"},
@@ -87,6 +88,7 @@ class AVSwitch:
 	if (about.getChipSetString() in ('7241', '7358', '7356', '7424', '7425', 'pnx8493')) or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
+		supports1080p = True
 	else:
 		modes["HDMI"] = ["1080i", "720p", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080i"}
@@ -412,8 +414,12 @@ def InitAVSwitch():
 	# *p30 -> 1080p30
 	# *p24 -> 1080p24
 
-	conv_60 = ["1080i", "720p", "480p", "480i"]
-	conv_50 = ["1080i50", "720p50", "576p", "576i"] + conv_60
+	if iAVSwitch.supports1080p:
+		conv_60 = ["1080p", "1080i", "720p", "480p", "480i"]
+		conv_50 = ["1080p50", "1080i50", "720p50", "576p", "576i"] + conv_60
+	else:
+		conv_60 = ["1080i", "720p", "480p", "480i"]
+		conv_50 = ["1080i50", "720p50", "576p", "576i"] + conv_60
 	conv_30 = ["1080p30"] + conv_60
 	conv_24 = ["1080p24"] + conv_60
 
