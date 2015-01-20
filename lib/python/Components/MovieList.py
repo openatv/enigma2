@@ -7,7 +7,7 @@ import os
 import struct
 import random
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
+from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 import skin
@@ -187,13 +187,13 @@ class MovieList(GUIComponent):
 		self.onSelectionChanged = [ ]
 		self.iconPart = []
 		for part in range(5):
-			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
-		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
-		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/movie_play.png"))
-		self.iconMoviePlayRec = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/movie_play_rec.png"))
-		self.iconUnwatched = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unwatched.png"))
-		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
-		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
+			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/part_%d_4.png" % part)))
+		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/part_new.png"))
+		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/movie_play.png"))
+		self.iconMoviePlayRec = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/movie_play_rec.png"))
+		self.iconUnwatched = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/part_unwatched.png"))
+		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/folder.png"))
+		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/trashcan.png"))
 		self.runningTimers = {}
 		self.updateRecordings()
 
