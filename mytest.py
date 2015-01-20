@@ -639,6 +639,12 @@ Screens.Ci.InitCiConfig()
 profile("RcModel")
 import Components.RcModel
 
+profile("IPv6")
+if os.path.exists('/etc/enigma2/ipv6'):
+	fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'w')
+	fp.write("1")
+	fp.close()
+
 #from enigma import dump_malloc_stats
 #t = eTimer()
 #t.callback.append(dump_malloc_stats)
