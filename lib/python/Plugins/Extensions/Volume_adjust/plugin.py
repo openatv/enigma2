@@ -564,8 +564,8 @@ def main(session, **kwargs):
 	session.open(Volume_adjust)
 
 def menu(menuid, **kwargs):
-	if menuid == "setup":
-		return [(_("Volume Adjust"), main, "Volume_Adjust", 11)]
+	if menuid == "audio_menu":
+		return [(_("Volume Adjust"), main, "Volume_Adjust", 5)]
 	return [ ]
 
 def Plugins(**kwargs):
