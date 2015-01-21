@@ -83,8 +83,9 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		const char* c_filename = msg.filename.c_str();
 		bool unlinked = false;
 		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
-		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
-		    ((erase_flags & ERASE_FLAG_OTHER) != 0))
+		if ((erase_speed > 0) &&
+		    ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
+		    ((erase_flags & ERASE_FLAG_OTHER) != 0)))
 		{
 			struct stat st;
 			int i = ::stat(c_filename, &st);
