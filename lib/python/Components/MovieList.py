@@ -171,7 +171,8 @@ class MovieList(GUIComponent):
 		self.dirShift = 1
 		self.columnsOriginal = (180,200)
 		self.columnsCompactDescription = (120,140,154)
-		self.compactColumn = (200)
+		self.compactColumn = 200
+		self.treeDescription = 165
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -308,6 +309,8 @@ class MovieList(GUIComponent):
 				warningWrongSkinParameter(attrib)
 		def compactColumn(value):
 			self.compactColumn = int(value)
+		def treeDescription(value):
+			self.treeDescription = int(value)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -353,6 +356,8 @@ class MovieList(GUIComponent):
 			valign_center = 0
 			if self.list_type == MovieList.LISTTYPE_MINIMAL:
 				valign_center = RT_VALIGN_CENTER
+			x = iconSize + space
+			tn = self.treeDescription
 			if info is None:
 				# Special case: "parent"
 				txt = ".."
@@ -364,12 +369,12 @@ class MovieList(GUIComponent):
 				txt = p[1]
 				if txt == ".Trash":
 					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,self.trashShift), size=(iconSize,self.iconTrash.size().height()), png=self.iconTrash))
-					res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT|valign_center, text = _("Deleted items")))
-					res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|valign_center, text=_("Trash can")))
+					res.append(MultiContentEntryText(pos=(x, 0), size=(width-x-tn-r, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT|valign_center, text = _("Deleted items")))
+					res.append(MultiContentEntryText(pos=(width-tn-r, 0), size=(tn, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|valign_center, text=_("Trash can")))
 					return res
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,self.dirShift), size=(iconSize,iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT|valign_center, text = txt))
-			res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|valign_center, text=_("Directory")))
+			res.append(MultiContentEntryText(pos=(x, 0), size=(width-x-tn-r, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT|valign_center, text = txt))
+			res.append(MultiContentEntryText(pos=(width-tn-r, 0), size=(tn, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|valign_center, text=_("Directory")))
 			return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
