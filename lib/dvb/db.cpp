@@ -35,13 +35,13 @@ RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference befo
 	return 0;
 }
 
-RESULT eBouquet::removeService(const eServiceReference &ref)
+RESULT eBouquet::removeService(const eServiceReference &ref, bool renameBouquet)
 {
 	list::iterator it =
 		std::find(m_services.begin(), m_services.end(), ref);
 	if ( it == m_services.end() )
 		return -1;
-	if (ref.flags & eServiceReference::canDescent)
+	if (renameBouquet && (ref.flags & eServiceReference::canDescent))
 	{
 		std::string filename = ref.toString();
 		size_t pos = filename.find("FROM BOUQUET ");
