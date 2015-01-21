@@ -391,6 +391,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		print time() - t
 
 	def applySkin(self, desktop, parent):
+		def warningWrongSkinParameter(string):
+			print "[EPGList] wrong '%s' skin parameters" % string
 		def setEventItemFont(value):
 			self.eventItemFont = parseFont(value, ((1,1),(1,1)))
 		def setEventTimeFont(value):
@@ -405,6 +407,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.col = map(int, value.split(','))
 			if len(self.col) == 2:
 				self.skinColumns = True
+			else:
+				warningWrongSkinParameter(attrib)
 		def setColGap(value):
 			self.colGap = int(value)
 		for (attrib, value) in self.skinAttributes[:]:
