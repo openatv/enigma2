@@ -476,6 +476,7 @@ lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini5/Makefile
 lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini6/Makefile
 lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini7/Makefile
 lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini8/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini10/Makefile
 lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile

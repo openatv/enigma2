@@ -19,7 +19,9 @@ modelist = {
 		"5": _("XPEED LX"),
 		"6": _("DUIA5200I"),
 		"7": _("DUIA5200I_1"),
-		"8": _("DUIA5200I_2")
+		"8": _("DUIA5200I_2"),
+		"9": _("YHGD2580"),
+		"10": _("XPEED LX_2"),
 }
 
 config.plugins.RCSetup = ConfigSubsection()
@@ -28,7 +30,11 @@ text = f.read()
 f.close()
 temp = int(text)
 
-if temp == 8:
+if temp == 10:
+	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="10")
+elif temp == 9:
+	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="9")
+elif temp == 8:
 	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="8")
 elif temp == 7:
 	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="7")
@@ -136,6 +142,10 @@ class RCSetupScreen(Screen, ConfigListScreen):
 		elif tmp == 7:
 			self.createFile()
 		elif tmp == 8:
+			self.createFile()
+		elif tmp == 9:
+			self.createFile()
+		elif tmp == 10:
 			self.createFile()
 
 	def createFile(self):
