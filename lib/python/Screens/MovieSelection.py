@@ -190,7 +190,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skinName = "Setup"
-		self.setup_title = _("Movie List Setup")
+		self.setup_title = "Movie List Actions"
 		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -315,7 +315,7 @@ class MovieContextMenuSummary(Screen):
 
 	def selectionChanged(self):
 		item = self.parent["config"].getCurrent()
-		self["selected"].text = item[0]
+		self["selected"].text = item[1][7]
 
 class MovieMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
@@ -335,7 +335,7 @@ class MovieContextMenu(Screen):
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
-		self.setup_title = _("Movie List Setup")
+		self.setup_title = "Movie List Setup"
 		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
