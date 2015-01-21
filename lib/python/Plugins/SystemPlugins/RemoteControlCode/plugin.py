@@ -90,7 +90,7 @@ class RCSetupScreen(Screen, ConfigListScreen):
 			self["Preview"].show()
 
 	def layoutFinished(self):
-		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 0, 0, 1, 1, "#00000000"))
+		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 1.0, 1, 1, 1, "#FF000000"))
 		self.loadPreview()
 
 	def grabLastGoodMode(self):
