@@ -256,54 +256,64 @@ class MovieList(GUIComponent):
 		self.sort_type = type
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
-		if self.skinAttributes is not None:
-			attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				try:
-					if attrib == "fontName":
-						self.fontName = value
-					elif attrib == "fontSizesOriginal":
-						self.fontSizesOriginal = map(int, value.split(","))
-					elif attrib == "fontSizesCompact":
-						self.fontSizesCompact = map(int, value.split(","))
-					elif attrib == "fontSizesMinimal":
-						self.fontSizesMinimal = map(int, value.split(","))
-					elif attrib == "itemHeights":
-						self.itemHeights = map(int, value.split(","))
-					elif attrib == "pbarShift":
-						self.pbarShift = int(value)
-					elif attrib == "pbarHeight":
-						self.pbarHeight = int(value)
-					elif attrib == "pbarLargeWidth":
-						self.pbarLargeWidth = int(value)
-					elif attrib == "partIconeShiftMinimal":
-						self.partIconeShiftMinimal = int(value)
-					elif attrib == "partIconeShiftCompact":
-						self.partIconeShiftCompact = int(value)
-					elif attrib == "partIconeShiftOriginal":
-						self.partIconeShiftOriginal = int(value)
-					elif attrib == "spaceIconeText":
-						self.spaceIconeText = int(value)
-					elif attrib == "iconsWidth":
-						self.iconsWidth = int(value)
-					elif attrib == "trashShift":
-						self.trashShift = int(value)
-					elif attrib == "dirShift":
-						self.dirShift = int(value)
-					elif attrib == "spaceRight":
-						self.spaceRight = int(value)
-					elif attrib == "columnsOriginal":
-						self.columnsOriginal = map(int, value.split(","))
-					elif attrib == "columnsCompactDescription":
-						self.columnsCompactDescription = map(int, value.split(","))
-					elif attrib == "compactColumn":
-						self.compactColumn = int(value)
-					else:
-						attribs.append((attrib, value))
-				except Exception, e:
-					print '[MovieList] Error "%s" parsing attribute: %s="%s"' % (str(e), attrib,value)
-		self.skinAttributes = attribs
+		def warningWrongSkinParameter(string):
+			print "[MovieList] wrong '%s' skin parameters" % string
+		def fontName(value):
+			self.fontName = value
+		def fontSizesOriginal(value):
+			self.fontSizesOriginal = map(int, value.split(","))
+			if len(self.fontSizesOriginal) != 3:
+				warningWrongSkinParameter(attrib)
+		def fontSizesCompact(value):
+			self.fontSizesCompact = map(int, value.split(","))
+			if len(self.fontSizesCompact) != 2:
+				warningWrongSkinParameter(attrib)
+		def fontSizesMinimal(value):
+			self.fontSizesMinimal = map(int, value.split(","))
+			if len(self.fontSizesMinimal) != 2:
+				warningWrongSkinParameter(attrib)
+		def itemHeights(value):
+			self.itemHeights = map(int, value.split(","))
+			if len(self.itemHeights) != 3:
+				warningWrongSkinParameter(attrib)
+		def pbarShift(value):
+			self.pbarShift = int(value)
+		def pbarHeight(value):
+			self.pbarHeight = int(value)
+		def pbarLargeWidth(value):
+			self.pbarLargeWidth = int(value)
+		def partIconeShiftMinimal(value):
+			self.partIconeShiftMinimal = int(value)
+		def partIconeShiftCompact(value):
+			self.partIconeShiftCompact = int(value)
+		def partIconeShiftOriginal(value):
+			self.partIconeShiftOriginal = int(value)
+		def spaceIconeText(value):
+			self.spaceIconeText = int(value)
+		def iconsWidth(value):
+			self.iconsWidth = int(value)
+		def trashShift(value):
+			self.trashShift = int(value)
+		def dirShift(value):
+			self.dirShift = int(value)
+		def spaceRight(value):
+			self.spaceRight = int(value)
+		def columnsOriginal(value):
+			self.columnsOriginal = map(int, value.split(","))
+			if len(self.columnsOriginal) != 2:
+				warningWrongSkinParameter(attrib)
+		def columnsCompactDescription(value):
+			self.columnsCompactDescription = map(int, value.split(","))
+			if len(self.columnsCompactDescription) != 3:
+				warningWrongSkinParameter(attrib)
+		def compactColumn(value):
+			self.compactColumn = int(value)
+		for (attrib, value) in self.skinAttributes[:]:
+			try:
+				locals().get(attrib)(value)
+				self.skinAttributes.remove((attrib, value))
+			except:
+				pass
 		self.redrawList()
 		return GUIComponent.applySkin(self, desktop, parent)
 
