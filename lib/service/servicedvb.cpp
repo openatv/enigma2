@@ -880,11 +880,11 @@ RESULT eDVBServiceList::addService(eServiceReference &ref, eServiceReference bef
 	return m_bouquet->addService(ref, before);
 }
 
-RESULT eDVBServiceList::removeService(eServiceReference &ref)
+RESULT eDVBServiceList::removeService(eServiceReference &ref, bool renameBouquet)
 {
 	if (!m_bouquet)
 		return -1;
-	return m_bouquet->removeService(ref);
+	return m_bouquet->removeService(ref, renameBouquet);
 }
 
 RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)

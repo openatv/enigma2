@@ -756,7 +756,7 @@ class ChannelSelectionEdit:
 				current = self.servicelist.getCurrent()
 				current.setName(name)
 				index = self.servicelist.getCurrentIndex()
-				mutableList.removeService(current)
+				mutableList.removeService(current, False)
 				mutableList.addService(current)
 				mutableList.moveService(current, index)
 				mutableList.flushChanges()
