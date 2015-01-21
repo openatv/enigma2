@@ -216,7 +216,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 	</menu>
 
 	<!-- Menu / Standby Restart -->
-	<menu weight="25" level="0" text="Standby / Restart" entryID="standby_restart_list">
+	<menu weight="99" level="0" text="Standby / Restart" entryID="standby_restart_list">
 		<id val="shutdown" />
 		<item weight="0" level="0" text="Deep Standby" requires="DeepstandbySupport" entryID="deep_standby">
 			<code>
