@@ -49,7 +49,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.eventItemFont = gFont("Regular", 22)
 		self.eventTimeFont = gFont("Regular", 16)
+		self.iconSize = 21
+		self.iconDistance = 2
+		self.colGap = 10
+		self.skinColumns = False
+		self.tw = 90
 		self.dy = 0
+
 		if type == EPG_TYPE_SINGLE:
 			self.l.setBuildFunc(self.buildSingleEntry)
 		elif type == EPG_TYPE_MULTI:
@@ -150,27 +156,60 @@ class EPGList(HTMLComponent, GUIComponent):
 		esize = self.l.getItemSize()
 		width = esize.width()
 		height = esize.height()
-		self.dy = (height - 21)/2
+		try:
+			self.iconSize = self.clocks[0].size().height()
+		except:
+			pass
+		self.space = self.iconSize + self.iconDistance
+		self.dy = int((height - self.iconSize)/2.)
 
 		if self.type == EPG_TYPE_SINGLE:
-			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
-			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
-			self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
+			if self.skinColumns:
+				x = 0
+				self.weekday_rect = Rect(0, 0, self.gap(self.col[0]), height)
+				x += self.col[0]
+				self.datetime_rect = Rect(x, 0, self.gap(self.col[1]), height)
+				x += self.col[1]
+				self.descr_rect = Rect(x, 0, width-x, height)
+			else:
+				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+				self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
 		elif self.type == EPG_TYPE_MULTI:
-			xpos = 0;
-			w = width/10*3;
-			self.service_rect = Rect(xpos, 0, w-10, height)
-			xpos += w;
-			w = width/10*2;
-			self.start_end_rect = Rect(xpos, 0, w-10, height)
-			self.progress_rect = Rect(xpos, 4, w-10, height-8)
-			xpos += w
-			w = width/10*5;
-			self.descr_rect = Rect(xpos, 0, width, height)
+			if self.skinColumns:
+				x = 0
+				self.service_rect = Rect(x, 0, self.gap(self.col[0]), height)
+				x += self.col[0]
+				self.progress_rect = Rect(x, 8, self.gap(self.col[1]), height-16)
+				self.start_end_rect = Rect(x, 0, self.gap(self.col[1]), height)
+				x += self.col[1]
+				self.descr_rect = Rect(x, 0, width-x, height)
+			else:
+				xpos = 0;
+				w = width/10*3;
+				self.service_rect = Rect(xpos, 0, w-10, height)
+				xpos += w;
+				w = width/10*2;
+				self.start_end_rect = Rect(xpos, 0, w-10, height)
+				self.progress_rect = Rect(xpos, 4, w-10, height-8)
+				xpos += w
+				w = width/10*5;
+				self.descr_rect = Rect(xpos, 0, width, height)
 		else: # EPG_TYPE_SIMILAR
-			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
-			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
-			self.service_rect = Rect(width/20*7, 0, width/20*13, height)
+			if self.skinColumns:
+				x = 0
+				self.weekday_rect = Rect(0, 0, self.gap(self.col[0]), height)
+				x += self.col[0]
+				self.datetime_rect = Rect(x, 0, self.gap(self.col[1]), height)
+				x += self.col[1]
+				self.descr_rect = Rect(x, 0, width-x, height)
+			else:
+				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+				self.service_rect = Rect(width/20*7, 0, width/20*13, height)
+
+	def gap(self, width):
+		return width - self.colGap
 
 	def getClockTypesForEntry(self, service, eventId, beginTime, duration):
 		if not beginTime:
@@ -194,8 +233,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_types:
 			for i in range(len(clock_types)):
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x + i * 23, r3.y + self.dy, 21, 21, self.clocks[clock_types[i]]))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * 23, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x + i * self.space, r3.y + self.dy, self.iconSize, self.iconSize, self.clocks[clock_types[i]]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * self.space, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		return res
@@ -213,8 +252,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_types:
 			for i in range(len(clock_types)):
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x + i * 23, r3.y + self.dy, 21, 21, self.clocks[clock_types[i]]))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * 23, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.x + i * self.space, r3.y + self.dy, self.iconSize, self.iconSize, self.clocks[clock_types[i]]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * self.space, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		return res
@@ -227,9 +266,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		r4=self.start_end_rect
 		res = [ None ] # no private data needed
 		if clock_types:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w - 23 * len(clock_types), r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w - self.space * len(clock_types), r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 			for i in range(len(clock_types)):
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x + r1.w - 23 * (i + 1), r1.y + self.dy, 21, 21, self.clocks[clock_types[len(clock_types) - 1 - i]]))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.x + r1.w - self.space * (i + 1), r1.y + self.dy, self.iconSize, self.iconSize, self.clocks[clock_types[len(clock_types) - 1 - i]]))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		if beginTime is not None:
@@ -238,8 +277,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				end = localtime(beginTime+duration)
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60)),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, self.gap(self.tw), r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60)),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + self.tw, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
 				))
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
@@ -249,8 +288,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					prefix = ""
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining)),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, self.gap(self.tw), r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining)),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x + self.tw, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, EventName)
 				))
 		return res
 
@@ -356,9 +395,24 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.eventItemFont = parseFont(value, ((1,1),(1,1)))
 		def setEventTimeFont(value):
 			self.eventTimeFont = parseFont(value, ((1,1),(1,1)))
-		for (attrib, value) in [x for x in self.skinAttributes if x[0] in dir() and callable(locals().get(x[0]))]:
-			locals().get(attrib)(value)
-			self.skinAttributes.remove((attrib, value))
+		def setIconDistance(value):
+			self.iconDistance = int(value)
+		def setIconShift(value):
+			self.dy = int(value)
+		def setTimeWidth(value):
+			self.tw = int(value)
+		def setColWidths(value):
+			self.col = map(int, value.split(','))
+			if len(self.col) == 2:
+				self.skinColumns = True
+		def setColGap(value):
+			self.colGap = int(value)
+		for (attrib, value) in self.skinAttributes[:]:
+			try:
+				locals().get(attrib)(value)
+				self.skinAttributes.remove((attrib, value))
+			except:
+				pass
 		self.l.setFont(0, self.eventItemFont)
 		self.l.setFont(1, self.eventTimeFont)
 		return GUIComponent.applySkin(self, desktop, parent)
