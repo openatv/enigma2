@@ -146,6 +146,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
+		self.setFontsize()
 		return rc
 
 	def connectSelChanged(self, fnc):
@@ -252,7 +253,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if self.listHeight:
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
-	def setServiceFontsize(self):
+	def setFontsize(self):
 		self.ServiceNumberFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicenum_fontsize.value)
 		self.ServiceNameFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicename_fontsize.value)
 		self.ServiceInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.value)
@@ -264,7 +265,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		instance.setWrapAround(True)
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
-		self.setServiceFontsize()
+		self.setFontsize()
 		self.setMode(self.mode)
 
 	def preWidgetRemove(self, instance):

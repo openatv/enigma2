@@ -1246,7 +1246,7 @@ class ChannelSelectionEdit:
 
 	def exitContext(self, close = False):
 		l = self["list"]
-		l.setServiceFontsize()
+		l.setFontsize()
 		l.setItemsPerPage()
 		l.setMode('MODE_TV')
 		if close:
