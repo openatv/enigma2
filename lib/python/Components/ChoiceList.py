@@ -34,7 +34,7 @@ def ChoiceEntryComponent(key="", text=None):
 				if screenwidth and screenwidth == 1920:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 63, 48, png))
 				else:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 0, 30, 30, png))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 9, 0, 30, 30, png))
 	return res
 
 class ChoiceList(MenuList):
