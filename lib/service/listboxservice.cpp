@@ -324,8 +324,17 @@ void eListboxServiceContent::cursorHome()
 	}
 	else
 	{
-		m_cursor = m_list.begin();
-		m_cursor_number = 0;
+		list::iterator i(m_list.begin());
+		int counter = 0;
+		while (i != m_list.end())
+		{
+			if (!((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible)))
+				break;
+			i++;
+			counter++;
+		}
+		m_cursor = i;
+		m_cursor_number = counter;
 	}
 }
 
