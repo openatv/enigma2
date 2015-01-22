@@ -548,13 +548,13 @@ def InitUsageConfig():
 	def updateEraseFlags(el):
 		eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
 
-	config.misc.erase_speed = ConfigSelection(default="20", choices=[
+	config.misc.erase_speed = ConfigSelection(default="100", choices=[
 		("10", "10 MB/s"),
 		("20", "20 MB/s"),
 		("50", "50 MB/s"),
 		("100", "100 MB/s")])
 	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback=False)
-	config.misc.erase_flags = ConfigSelection(default="1", choices=[
+	config.misc.erase_flags = ConfigSelection(default="0", choices=[
 		("0", _("Disable")),
 		("1", _("Internal hdd only")),
 		("3", _("Everywhere"))])
