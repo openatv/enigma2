@@ -93,14 +93,12 @@ class SkinSelector(Screen):
 
 	def ok(self):
 		if self["SkinList"].getCurrent() == DEFAULTSKIN:
-			skinfile = "."
+			self.skinfile = "."
 		else:
-			skinfile = self["SkinList"].getCurrent()
-		skinfile = os.path.join(skinfile, SKINXML)
+			self.skinfile = self["SkinList"].getCurrent()
+		self.skinfile = os.path.join(self.skinfile, SKINXML)
 
-		print "Skinselector: Selected Skin: "+self.root+skinfile
-		config.skin.primary_skin.value = skinfile
-		config.skin.primary_skin.save()
+		print "Skinselector: Selected Skin: "+self.root+self.skinfile
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
@@ -121,6 +119,8 @@ class SkinSelector(Screen):
 
 	def restartGUI(self, answer):
 		if answer is True:
+			config.skin.primary_skin.value = self.skinfile
+			config.skin.primary_skin.save()
 			self.session.open(TryQuitMainloop, 3)
 
 def SkinSelMain(session, **kwargs):
