@@ -264,7 +264,7 @@ class AVSwitch:
 
 			modes = self.getModeList(port)
 			if len(modes):
-				config.av.videomode[port] = ConfigSelection(choices=[mode for (mode, rates) in modes])
+				config.av.videomode[port] = ConfigSelection(choices=[mode for (mode, rates) in modes], default="1080i")
 			for (mode, rates) in modes:
 				config.av.videorate[mode] = ConfigSelection(choices=rates)
 		config.av.videoport = ConfigSelection(choices=lst)
