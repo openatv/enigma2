@@ -574,7 +574,7 @@ def SupperChannelMain(session, close=None, **kwargs):
 	
 def SupportChannelStart(menuid, **kwargs):
 	if menuid == "information":
-		return [(_("Video Tutorials"), SupperChannelMain, "supportchannel_YTChannel", 35, True)]
+		return [(_("Video Tutorials"), SupperChannelMain, "supportchannel_YTChannel", 3, True)]
 	else:
 		return []	
 		
