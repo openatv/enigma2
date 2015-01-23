@@ -74,10 +74,10 @@ class SkinSelectorBase:
 	def ok(self):
 		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
 			self.skinfile = ""
-			skinfile = os.path.join(skinfile, self.SKINXML)
+			self.skinfile = os.path.join(self.skinfile, SKINXML)
 		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
 			self.skinfile = ""
-			self.skinfile = os.path.join(skinfile, self.PICONSKINXML)
+			self.skinfile = os.path.join(self.skinfile, PICONSKINXML)
 		else:
 			self.skinfile = self["SkinList"].getCurrent()
 			self.skinfile = os.path.join(self.skinfile, SKINXML)
