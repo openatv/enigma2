@@ -21,8 +21,8 @@
 	<!-- Menu / Information -->
 	<menu weight="5" level="0" text="Information" entryID="info_screen">
 		<id val="information" />
-		<item weight="0" level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
-		<item weight="5" level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
+		<item weight="5" level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
+		<item weight="7" level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
 		<item weight="10" level="0" text="Memory" entryID="device_screen"><screen module="About" screen="SystemMemoryInfo"/></item>
 		<item weight="15" level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
 		<item weight="20" level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
