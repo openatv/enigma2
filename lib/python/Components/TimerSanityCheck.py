@@ -34,7 +34,7 @@ class TimerSanityCheck:
 				if timer == self.newtimer:
 					return True
 				else:
-					if timer.begin == self.newtimer.begin:
+					if self.newtimer.begin >= timer.begin and self.newtimer.end <= timer.end:
 						fl1 = timer.service_ref.ref.flags & eServiceReference.isGroup
 						fl2 = self.newtimer.service_ref.ref.flags & eServiceReference.isGroup
 						if fl1 != fl2:
