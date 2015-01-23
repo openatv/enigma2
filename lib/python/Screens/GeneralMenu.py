@@ -972,6 +972,7 @@ class GeneralMenu(Screen):
 					_("Software management"),
 					_("MediaPortal"),
 					_("AutoTimer"),
+					_("Picture player"),
 					_("YouTube TV Settings")]:
 					print "Skip =>", l.name
 				else:
@@ -988,6 +989,7 @@ class GeneralMenu(Screen):
 					_("OpenWebif"),
 					_("Software management"),
 					_("MediaPortal"),
+					_("Picture player"),
 					_("YouTube TV Settings")]:
 					print "Skip =>", l.name
 				else:
