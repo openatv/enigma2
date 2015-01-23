@@ -19,7 +19,7 @@
 	<id val="mainmenu" />
 
 	<!-- Menu / Information -->
-	<menu weight="0" level="0" text="Information" entryID="info_screen">
+	<menu weight="5" level="0" text="Information" entryID="info_screen">
 		<id val="information" />
 		<item weight="0" level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
 		<item weight="5" level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
@@ -29,7 +29,7 @@
 	</menu>
 
 	<!-- Menu / Timer -->
-	<menu weight="5" level="0" text="Timers" entryID="timer_menu">
+	<menu weight="7" level="0" text="Timers" entryID="timer_menu">
 		<id val="timermenu" />
 		<item weight="0" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
 		<item weight="5" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
