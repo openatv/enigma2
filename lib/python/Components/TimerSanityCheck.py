@@ -31,7 +31,7 @@ class TimerSanityCheck:
 		if self.newtimer is not None and self.newtimer.service_ref.ref.valid():
 			self.simultimer = [ self.newtimer ]
 			for timer in self.timerlist:
-				if (timer == self.newtimer):
+				if timer == self.newtimer:
 					return True
 				else:
 					if timer.begin == self.newtimer.begin:
