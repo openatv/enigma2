@@ -237,7 +237,7 @@ class InfoBarTimeshift:
 		if not config.timeshift.isRecording.value:
 			self.__seekableStatusChanged()
 
-		if self.pts_cleanEvent_timer.isActive:
+		if self.pts_cleanEvent_timer.isActive():
 			self.pts_cleanEvent_timer.stop()
 
 	def __evSOF(self):
@@ -583,6 +583,8 @@ class InfoBarTimeshift:
 			self.ptsGetEventInfo()
 			self.ptsCreateHardlink()
 			self.__seekableStatusChanged()
+			if not self.pts_cleanEvent_timer.isActive():
+				self.pts_cleanEvent_timer.start((6000+(3600*1000*config.timeshift.timeshiftMaxHours.value))/2, True)
 		else:
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			self.pts_eventcount = 0
@@ -866,6 +868,7 @@ class InfoBarTimeshift:
 				lockedFiles = []
 		# print lockedFiles
 
+		filecounter = 0
 		for filename in os.listdir(config.usage.timeshift_path.value):
 			if (os.path.exists("%s%s" % (config.usage.timeshift_path.value,filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
 				# print 'filename:',filename
@@ -879,6 +882,7 @@ class InfoBarTimeshift:
 					# and not while saveTimeshiftEventPopup is active (avoid deleting files about to be saved)
 					# and don't delete files from currently playing up to the last event
 					#if (statinfo.st_mtime < (time()-3600*config.timeshift.timeshiftMaxHours.value)) and (self.saveTimeshiftEventPopupActive is False) and not(filename == ("pts_livebuffer_%s" % self.pts_currplaying)):
+					filecounter += 1
 					if (statinfo.st_mtime < (time()-3600*config.timeshift.timeshiftMaxHours.value)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in s for s in lockedFiles):
 						# print "[TimeShift] Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
@@ -888,7 +892,8 @@ class InfoBarTimeshift:
 							self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.value,filename))
 						if os.path.exists("%s%s.sc" % (config.usage.timeshift_path.value,filename)):
 							self.BgFileEraser.erase("%s%s.sc" % (config.usage.timeshift_path.value,filename))
- 				else:
+						filecounter -= 1
+				else:
 					# remove anything still left over another 24h later
 					if statinfo.st_mtime < (time()-3600*(24+config.timeshift.timeshiftMaxHours.value)):
 						# print "[TimeShift] Erasing very old timeshift file %s" % filename
@@ -897,6 +902,9 @@ class InfoBarTimeshift:
 							self.BgFileEraser.erase("%s%s.del_again" % (config.usage.timeshift_path.value,filename))
 						else:
 							self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
+
+		if filecounter == 0 and self.pts_cleanEvent_timer.isActive(): 
+			self.pts_cleanEvent_timer.stop()
 
 	def ptsGetEventInfo(self):
 		event = None
