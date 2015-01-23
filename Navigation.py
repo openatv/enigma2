@@ -78,9 +78,16 @@ class Navigation:
 				if playref and oldref and playref == oldref and not forceRestart:
 					print "ignore request to play already running service(2)"
 					return 1
-				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False))):
+				if not playref:
+					alternativeref = getBestPlayableServiceReference(ref, eServiceReference(), True)
 					self.stopService()
+					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
+						print "Failed to start", alternativeref
 					return 0
+				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False)):
+					if self.currentlyPlayingServiceOrGroup and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(self.currentlyPlayingServiceOrGroup, adjust):
+						self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
+					return 1
 			else:
 				playref = ref
 			if self.pnav:
