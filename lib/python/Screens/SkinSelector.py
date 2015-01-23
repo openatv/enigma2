@@ -74,13 +74,13 @@ class SkinSelectorBase:
 	def ok(self):
 		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
 			self.skinfile = ""
-			self.skinfile = os.path.join(self.skinfile, SKINXML)
+			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
 		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
 			self.skinfile = ""
-			self.skinfile = os.path.join(self.skinfile, PICONSKINXML)
+			self.skinfile = os.path.join(self.skinfile, self.PICONSKINXML)
 		else:
 			self.skinfile = self["SkinList"].getCurrent()
-			self.skinfile = os.path.join(self.skinfile, SKINXML)
+			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
 
 		print "Skinselector: Selected Skin: "+self.root+self.skinfile
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
