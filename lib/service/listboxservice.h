@@ -82,6 +82,7 @@ public:
 
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
+	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
 	void setServiceTypeIconMode(int mode) { m_servicetype_icon_mode = mode; }
 	void setCryptoIconMode(int mode) { m_crypto_icon_mode = mode; }
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
@@ -168,6 +169,7 @@ private:
 	eServiceReference m_is_playable_ignore;
 
 	int m_itemheight;
+	bool m_hide_number_marker;
 	int m_servicetype_icon_mode;
 	int m_crypto_icon_mode;
 	int m_record_indicator_mode;
