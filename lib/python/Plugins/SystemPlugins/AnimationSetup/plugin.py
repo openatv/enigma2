@@ -214,7 +214,7 @@ def animationSetupMain(session, **kwargs):
 	session.open(AnimationSetupScreen)
 
 def startAnimationSetup(menuid):
-	if menuid != "system":
+	if menuid != "osd_menu":
 		return []
 
 	return [( _("Animations"), animationSetupMain, "animation_setup", None)]
