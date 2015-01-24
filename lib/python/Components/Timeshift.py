@@ -237,9 +237,6 @@ class InfoBarTimeshift:
 		if not config.timeshift.isRecording.value:
 			self.__seekableStatusChanged()
 
-		if self.pts_cleanEvent_timer.isActive():
-			self.pts_cleanEvent_timer.stop()
-
 	def __evSOF(self):
 		# print '!!!!! jumpToPrevTimeshiftedEvent'
 		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive():
@@ -316,7 +313,7 @@ class InfoBarTimeshift:
 
 			# Delete Timeshift Records on zap
 			if config.timeshift.deleteAfterZap.value:
-				self.pts_eventcount = 0
+				self.ptsEventCleanTimerSTOP()
 			self.pts_firstplayable = self.pts_eventcount + 1
 			if self.pts_eventcount == 0 and not int(config.timeshift.startdelay.value):
 				self.pts_cleanUp_timer.start(1000, True)
@@ -583,11 +580,10 @@ class InfoBarTimeshift:
 			self.ptsGetEventInfo()
 			self.ptsCreateHardlink()
 			self.__seekableStatusChanged()
-			if not self.pts_cleanEvent_timer.isActive():
-				self.pts_cleanEvent_timer.start((6000+(3600*1000*config.timeshift.timeshiftMaxHours.value))/2, True)
+			self.ptsEventCleanTimerSTART()
 		else:
+			self.ptsEventCleanTimerSTOP()
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
-			self.pts_eventcount = 0
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 
 	def createTimeshiftFolder(self):
@@ -847,26 +843,37 @@ class InfoBarTimeshift:
 				Notifications.AddNotification(MessageBox, _("Timeshift save failed!")+"\n\n%s" % errormessage, MessageBox.TYPE_ERROR, timeout=30)
 		# print 'SAVE COMPLETED'
 
-	def ptsEventCleanTimeshiftFolder(self):
-		if self.pts_cleanEvent_timer.isActive():
+	def ptsEventCleanTimerSTOP(self):
+		self.pts_eventcount = 0
+		if self.pts_cleanEvent_timer.isActive(): 
 			self.pts_cleanEvent_timer.stop()
+			print "[TIMESHIFT] - 'cleanEvent_timer' is stopped"
+
+	def ptsEventCleanTimerSTART(self):
+		if not self.pts_cleanEvent_timer.isActive():
+			try:
+				self.pts_cleanEvent_timer.start((3600*1000*config.timeshift.timeshiftMaxHours.value+60000)/2, False)
+			except:
+				print "[TIMESHIFT] - 'cleanEvent_timer' time value is too large - set timer value to 61 minutes"
+				self.pts_cleanEvent_timer.start(660000, False)
+			print "[TIMESHIFT] - 'cleanEvent_timer' is starting"
+
+	def ptsEventCleanTimeshiftFolder(self):
+		print "[TIMESHIFT] - 'cleanEvent_timer' is running"
 		self.ptsCleanTimeshiftFolder(justZapped = False)
 
 	def ptsCleanTimeshiftFolder(self, justZapped = True):
 		# print '!!!!!!!!!!!!!!!!!!!!! ptsCleanTimeshiftFolder'
-		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
+		if self.ptsCheckTimeshiftPath() is False:	# or self.session.screen["Standby"].boolean is True:
+			self.ptsEventCleanTimerSTOP()
 			return
 
 		lockedFiles = []
 		for i in range(self.pts_currplaying,self.pts_eventcount + 1):
 			lockedFiles.append(("pts_livebuffer_%s") % i) 
 
-		if not self.pts_cleanEvent_timer.isActive():
-			self.pts_cleanEvent_timer.start((6000+(3600*1000*config.timeshift.timeshiftMaxHours.value))/2, True)
-			ts = self.getTimeshift()
-			if not (ts and ts.isTimeshiftEnabled()):
-				lockedFiles = []
-		# print lockedFiles
+		if not self.timeshiftEnabled():
+			lockedFiles = []
 
 		filecounter = 0
 		for filename in os.listdir(config.usage.timeshift_path.value):
@@ -903,8 +910,8 @@ class InfoBarTimeshift:
 						else:
 							self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 
-		if filecounter == 0 and self.pts_cleanEvent_timer.isActive(): 
-			self.pts_cleanEvent_timer.stop()
+		if filecounter == 0: 
+			self.ptsEventCleanTimerSTOP()
 
 	def ptsGetEventInfo(self):
 		event = None
@@ -1358,8 +1365,6 @@ class InfoBarTimeshift:
 				self.pts_delay_timer.stop()
 			if self.pts_cleanUp_timer.isActive():
 				self.pts_cleanUp_timer.stop()
-			if self.pts_cleanEvent_timer.isActive():
-				self.pts_cleanEvent_timer.stop()
 			return False
 
 	def ptsTimerEntryStateChange(self, timer):
