@@ -1,5 +1,6 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/dvb.h>
+#include <lib/dvb/lowlevel/eit.h>
 
 #undef EPG_DEBUG
 
@@ -58,10 +59,6 @@ struct eventData
 	static void save(FILE *);
 	static void cacheCorrupt(const char* context);
 	const eit_event_struct* get() const;
-	operator const eit_event_struct*() const
-	{
-		return get();
-	}
 	int getEventID() const
 	{
 		return (rawEITdata[0] << 8) | rawEITdata[1];
@@ -2179,16 +2176,6 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	return -1;
 }
 
-RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eit_event_struct *&result, int direction)
-{
-	singleLock s(cache_lock);
-	const eventData *data=0;
-	RESULT ret = lookupEventTime(service, t, data, direction);
-	if ( !ret && data )
-		result = data->get();
-	return ret;
-}
-
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, Event *& result, int direction)
 {
 	singleLock s(cache_lock);
@@ -2237,15 +2224,45 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 	return -1;
 }
 
-RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&result)
+RESULT eEPGCache::saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime)
 {
+	RESULT ret = -1;
 	singleLock s(cache_lock);
-	const eventData *data=0;
-	RESULT ret = lookupEventId(service, event_id, data);
-	if ( !ret && data )
-		result = data->get();
+	const eventData *data = NULL;
+	if ( eit_event_id != -1 )
+	{
+		eDebug("[EPGC] %s epg event id %x", __func__, eit_event_id);
+		ret = lookupEventId(service, eit_event_id, data);
+	}
+	if ( (ret != 0) && (begTime != -1) )
+	{
+		time_t queryTime = begTime;
+		if (endTime != -1)
+			queryTime += (endTime - begTime) / 2;
+		ret = lookupEventTime(service, queryTime, data);
+	}
+	if (ret == 0)
+	{
+		int fd = open(filename, O_CREAT|O_WRONLY, 0666);
+		if (fd < 0)
+		{
+			eDebug("[EPGC] Failed to create file: %s", filename);
+			return fd;
+		}
+		const eit_event_struct *event = data->get();
+		int evLen = HILO(event->descriptors_loop_length) + 12/*EIT_LOOP_SIZE*/;
+		int wr = ::write( fd, event, evLen );
+		::close(fd);
+		if ( wr != evLen )
+		{
+			::unlink(filename); /* Remove faulty file */
+			eDebug("[EPGC] eit write error (%m) writing %s", filename);
+			ret = (wr < 0) ? wr : -1;
+		}
+	}
 	return ret;
 }
+
 
 RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, Event *& result)
 {
