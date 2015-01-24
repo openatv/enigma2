@@ -367,7 +367,7 @@ void eventData::cacheCorrupt(const char* context)
 
 
 eEPGCache* eEPGCache::instance;
-pthread_mutex_t eEPGCache::cache_lock=
+static pthread_mutex_t cache_lock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 static pthread_mutex_t channel_map_lock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
@@ -710,10 +710,10 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 
 void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *channel)
 {
-	eit_t *eit = (eit_t*) data;
+	const eit_t *eit = (const eit_t*) data;
 
-	int len=HILO(eit->section_length)-1;//+3-4;
-	int ptr=EIT_SIZE;
+	int len = HILO(eit->section_length) - 1;
+	int ptr = EIT_SIZE;
 	if ( ptr >= len )
 		return;
 
@@ -1499,7 +1499,7 @@ bool eEPGCache::channel_data::finishEPG()
 #ifdef ENABLE_FREESAT
 		cleanupFreeSat();
 #endif
-		singleLock l(cache->cache_lock);
+		singleLock l(cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = ::time(0);
 		return true;
 	}
