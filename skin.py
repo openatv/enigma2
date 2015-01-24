@@ -208,9 +208,12 @@ def parseSize(s, scale, object = None, desktop = None):
 
 def parseFont(s, scale):
 	try:
-		f = fonts[s]
+		font_name = s.split(';')[0]
+		f = fonts[font_name]
 		name = f[0]
 		size = f[1]
+		if ";" in s:
+			size = s.split(';')[1]
 	except:
 		name, size = s.split(';')
 	return gFont(name, int(size) * scale[0][0] / scale[0][1])
