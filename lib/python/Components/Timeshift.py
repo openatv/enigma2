@@ -586,7 +586,7 @@ class InfoBarTimeshift:
 			if not self.pts_cleanEvent_timer.isActive():
 				self.pts_cleanEvent_timer.start((6000+(3600*1000*config.timeshift.timeshiftMaxHours.value))/2, True)
 		else:
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=2)
 			self.pts_eventcount = 0
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 
