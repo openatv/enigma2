@@ -192,6 +192,7 @@
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="display" title="Front Panel Settings" requires="FrontpanelDisplay">
+		<item level="0" requires="FBLCDDisplay" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD.">config.lcd.fblcddisplay</item>
 		<item level="0" text="Show MiniTV in the front display" description="Enable to display MiniTV with or without OSD menu." requires="LCDMiniTV">config.lcd.minitvmode</item>
 		<item level="0" text="Show PiP in the front display" description="Enable to display PiP with or without OSD menu." requires="LCDMiniTVPiP">config.lcd.minitvpipmode</item>
 		<item level="0" text="Set frame rate for MiniTV" description="A lower frame rate reduces CPU load." requires="LCDMiniTV">config.lcd.minitvfps</item>

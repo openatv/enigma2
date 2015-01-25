@@ -62,11 +62,6 @@ class IconCheckPoller:
 					devices = bus.devices
 					for dev in devices:
 						if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-							# print ' '
-							# print "Device:", dev.filename
-							# print "  Number:", dev.deviceClass
-							# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-							# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 							USBState = 1
 							break
 			open(usbSymbol, "w").write(str(USBState))
@@ -112,6 +107,12 @@ class LCD:
 	def setMode(self, value):
 		print '[LCD] setMode', value
 		f = open("/proc/stb/lcd/show_symbols", "w")
+		f.write(value)
+		f.close()
+
+	def setfblcddisplay(self, value):
+		print 'setfblcddisplay',value
+		f = open("/proc/stb/fb/sd_detach", "w")
 		f.write(value)
 		f.close()
 
@@ -239,6 +240,10 @@ def InitLcd():
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value)
 
+
+		def setfblcddisplay(configElement):
+			ilcd.setfblcddisplay(configElement.value);
+
 		def setLCDrepeat(configElement):
 			ilcd.setRepeat(configElement.value)
 
@@ -318,11 +323,19 @@ def InitLcd():
 			config.lcd.repeat.addNotifier(setLCDrepeat)
 		else:
 			config.lcd.repeat = ConfigNothing()
+
 		if fileExists("/proc/stb/lcd/show_symbols"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode)
 		else:
 			config.lcd.mode = ConfigNothing()
+
+		if fileExists("/proc/stb/fb/sd_detach"):
+			config.lcd.fblcddisplay = ConfigSelection([("1", _("No")), ("0", _("Yes"))], "1")
+			config.lcd.fblcddisplay.addNotifier(setfblcddisplay);
+		else:
+			config.lcd.fblcddisplay = ConfigNothing()
+
 
 	else:
 		def doNothing():
@@ -332,6 +345,7 @@ def InitLcd():
 		config.lcd.standby = ConfigNothing()
 		config.lcd.bright.apply = lambda: doNothing()
 		config.lcd.standby.apply = lambda: doNothing()
+		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
