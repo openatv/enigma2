@@ -52,7 +52,7 @@
 		        <convert type="ClockToText">Default</convert>
 		</widget>
                 <widget source="session.CurrentService" render="ChannelNumber" position="14,481" size="169,61" zPosition="8" font="FdLcD;60" halign="center" valign="top" transparent="1" />
-		<widget source="session.CurrentService" render="Picon" zPosition="13" position="224,394" size="242,142" transparent="1" alphatest="blend">	
+		<widget source="session.CurrentService" render="LcdPicon" zPosition="13" position="224,394" size="242,142" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>	
         </screen>
@@ -62,7 +62,7 @@
                 <widget source="parent.RdsDecoder" render="Label" position="15,20" foregroundColor="#e5b243" size="670,220" font="FdLcD;60" halign="center" valign="top">
                         <convert type="RdsInfo">RtpText</convert>
                 </widget>
-                <widget source="parent.Service" render="Picon" zPosition="13" position="200,300" size="400,240" transparent="1" alphatest="blend">	
+                <widget source="parent.Service" render="LcdPicon" zPosition="13" position="200,300" size="400,240" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
         </screen>
@@ -97,7 +97,7 @@
 		        <convert type="ClockToText">Default</convert>
 		</widget>
                 <widget source="parent.Service" render="ChannelNumber" position="14,481" size="169,61" zPosition="8" font="FdLcD;60" halign="center" valign="top" transparent="1" />
-		<widget source="parent.Service" render="Picon" zPosition="13" position="224,394" size="242,142" transparent="1" alphatest="blend">	
+		<widget source="parent.Service" render="LcdPicon" zPosition="13" position="224,394" size="242,142" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>	
         </screen>
