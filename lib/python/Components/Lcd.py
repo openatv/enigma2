@@ -59,11 +59,6 @@ class IconCheckPoller:
 			devices = bus.devices
 			for dev in devices:
 				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-					# print ' '
-					# print "Device:", dev.filename
-					# print "  Number:", dev.deviceClass
-					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
 		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
 			f = open("/proc/stb/lcd/symbol_usb", "w")
@@ -160,6 +155,12 @@ class LCD:
 			f.write(value)
 			f.close()
 
+	def setfblcddisplay(self, value):
+		print 'setfblcddisplay',value
+		f = open("/proc/stb/fb/sd_detach", "w")
+		f.write(value)
+		f.close()
+
 	def setRepeat(self, value):
 		if fileExists("/proc/stb/lcd/scroll_repeats"):
 			print 'setLCDRepeat',value
@@ -210,7 +211,7 @@ def InitLcd():
 	else:
 		can_lcdmodechecking = False
 	SystemInfo["LCDMiniTV"] = can_lcdmodechecking
-	
+
 	if detected:
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
@@ -279,10 +280,13 @@ def InitLcd():
 
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value);
-			
+
 		def setLCDpower(configElement):
 			ilcd.setPower(configElement.value);
-			
+
+		def setfblcddisplay(configElement):
+			ilcd.setfblcddisplay(configElement.value);
+
 		def setLCDshowoutputresolution(configElement):
 			ilcd.setShowoutputresolution(configElement.value);
 
@@ -347,7 +351,7 @@ def InitLcd():
 
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped);
-		
+
 		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite'):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
@@ -368,12 +372,18 @@ def InitLcd():
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
 			config.lcd.hdd = ConfigNothing()
-			
+
 		if fileExists("/proc/stb/power/vfd") or fileExists("/proc/stb/lcd/vfd"):
 			config.lcd.power = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.power.addNotifier(setLCDpower);
 		else:
 			config.lcd.power = ConfigNothing()
+
+		if fileExists("/proc/stb/fb/sd_detach"):
+			config.lcd.fblcddisplay = ConfigSelection([("1", _("No")), ("0", _("Yes"))], "1")
+			config.lcd.fblcddisplay.addNotifier(setfblcddisplay);
+		else:
+			config.lcd.fblcddisplay = ConfigNothing()
 
 		if fileExists("/proc/stb/lcd/show_outputresolution"):
 			config.lcd.showoutputresolution = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
@@ -414,6 +424,7 @@ def InitLcd():
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
 		config.lcd.power = ConfigNothing()
+		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
