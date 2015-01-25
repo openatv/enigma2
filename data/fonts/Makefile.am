@@ -32,3 +32,7 @@ endif
 if INIHDP
 dist_install_DATA += analog.ttf MyriadPro-Regular.otf MyriadPro-Semibold.otf MyriadPro-SemiboldIt.otf
 endif
+
+if ET8500
+dist_install_DATA += verdana.ttf
+endif
