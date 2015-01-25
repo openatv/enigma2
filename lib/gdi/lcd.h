@@ -48,6 +48,7 @@ public:
 	virtual bool isOled() const=0;
 	int getLcdType() { return lcd_type; };
 	virtual void setPalette(gUnmanagedSurface)=0;
+	virtual int setLED(int value, int option)=0;
 #ifndef SWIG
 	eLCD();
 	virtual ~eLCD();
