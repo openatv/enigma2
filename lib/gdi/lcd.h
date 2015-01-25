@@ -78,6 +78,7 @@ public:
 	int setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
 	void setFlipped(bool);
+	int setLED(int value, int option);
 	bool isOled() const { return !!lcd_type; };
 	void setPalette(gUnmanagedSurface) {};
 	void update();
