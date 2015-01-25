@@ -885,7 +885,7 @@ class NimManager:
 		slots = []
 		for type in self.nim_slots[slotid].connectableTo():
 			for slot in self.getNimListOfType(type, exception = slotid):
-				if self.hasOutputs(slot) and self.nimInternallyConnectableTo(slot) is None:
+				if self.hasOutputs(slot) and not "(internal)" in self.nim_slots[slot].description:
 					slots.append(slot)
 		slots = self.cleanUpAlreadyConnectedNims(slots, slotid)
 		slots.sort()
