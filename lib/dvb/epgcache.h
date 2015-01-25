@@ -16,7 +16,6 @@
 #include <errno.h>
 
 #include <lib/dvb/eit.h>
-#include <lib/dvb/lowlevel/eit.h>
 #ifdef ENABLE_MHW_EPG
 #include <lib/dvb/lowlevel/mhw.h>
 #endif
@@ -318,14 +317,10 @@ private:
 
 public:
 	/* Only used by servicedvbrecord.cpp to write the EIT file */
-	// eit_event_struct's are plain dvb eit_events .. it's not safe to use them after cache unlock
-	// its not allowed to delete this pointers via delete or free..
-	RESULT lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&);
-	RESULT lookupEventTime(const eServiceReference &service, time_t , const eit_event_struct *&, int direction=0);
+	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 
-public:
-	// Event's are parsed epg events.. it's safe to use them after cache unlock
-	// after use this Events must be deleted (memleaks)
+	// Events are parsed epg events.. it's safe to use them after cache unlock
+	// after use the Event pointer must be released using "delete".
 	RESULT lookupEventId(const eServiceReference &service, int event_id, Event* &);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, Event* &, int direction=0);
 	RESULT getNextTimeEntry(Event *&);
