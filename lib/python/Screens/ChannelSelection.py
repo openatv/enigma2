@@ -43,7 +43,6 @@ from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EventView import EventViewEPGSelect
-from os import remove
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64 #define in lib/dvb/idvb.h as dxNewFound = 64
@@ -896,17 +895,7 @@ class ChannelSelectionEdit:
 		print "removeBouquet", refstr
 		pos = refstr.find('FROM BOUQUET "')
 		filename = None
-		if pos != -1:
-			refstr = refstr[pos+14:]
-			pos = refstr.find('"')
-			if pos != -1:
-				filename = eEnv.resolve('${sysconfdir}/enigma2/') + refstr[:pos]
 		self.removeCurrentService(bouquet=True)
-		try:
-			if filename is not None:
-				remove(filename)
-		except OSError:
-			print "error during remove of", filename
 
 	def removeSatelliteService(self):
 		current = self.getCurrentSelection()
