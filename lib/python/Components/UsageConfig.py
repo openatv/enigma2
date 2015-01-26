@@ -496,6 +496,9 @@ def InitUsageConfig():
 	config.timeshift.autorecord = ConfigYesNo(default = False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min = 1, max = 999, stepwidth = 1, default = 12, wraparound = True)
+	config.timeshift.timeshiftMaxEvents = ConfigSelectionNumber(min = 1, max = 999, stepwidth = 1, default = 12, wraparound = True)
+	config.timeshift.timeshiftCheckEvents = ConfigSelection(default = "0", choices = [("0", _("Disabled")), "15", "30", "60", "120", "240", "480"])
+	config.timeshift.timeshiftCheckFreeSpace = ConfigYesNo(default = False)
 	config.timeshift.deleteAfterZap = ConfigYesNo(default = True)
 
 	config.seek = ConfigSubsection()
