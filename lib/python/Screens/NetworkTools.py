@@ -362,8 +362,8 @@ class InetdRecovery(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Inetd recovery"))
 		
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_blue"] = StaticText(_("Recover"))
+		self["key_red"] = Label(_("Cancel"))
+		self["key_blue"] = Label(_("Recover"))
 
 		self.list = []
 		
@@ -395,21 +395,21 @@ class InetdRecovery(Screen, ConfigListScreen):
 		inetdData += "# <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>\n"
 		inetdData += "#\n"
 		inetdData += "#:INTERNAL: Internal services\n"
-		inetdData += "#echo           stream  tcp     nowait  root    internal\n"
-		inetdData += "#echo           dgram   udp     wait    root    internal\n"
-		inetdData += "#chargen        stream  tcp     nowait  root    internal\n"
-		inetdData += "#chargen        dgram   udp     wait    root    internal\n"
-		inetdData += "#discard                stream  tcp     nowait  root    internal\n"
-		inetdData += "#discard                dgram   udp     wait    root    internal\n"
-		inetdData += "#daytime                stream  tcp     nowait  root    internal\n"
-		inetdData += "#daytime        dgram   udp     wait    root    internal\n"
-		inetdData += "#time           stream  tcp     nowait  root    internal\n"
-		inetdData += "#time           dgram   udp     wait    root    internal\n"
-		inetdData += "ftp     stream  " + sockType + "    nowait  root    /usr/sbin/vsftpd        vsftpd\n"
-		inetdData += "# ftp           stream  tcp     nowait  root    ftpd    ftpd -w /\n"
-		inetdData += "telnet  stream  " + sockType + "    nowait  root    /usr/sbin/telnetd       telnetd\n"
+		inetdData += "#echo	stream	tcp	nowait	root	internal\n"
+		inetdData += "#echo	dgram	udp	wait	root	internal\n"
+		inetdData += "#chargen	stream	tcp	nowait	root	internal\n"
+		inetdData += "#chargen	dgram	udp	wait	root	internal\n"
+		inetdData += "#discard	stream	tcp	nowait	root	internal\n"
+		inetdData += "#discard	dgram	udp	wait	root	internal\n"
+		inetdData += "#daytime	stream	tcp	nowait	root	internal\n"
+		inetdData += "#daytime	dgram	udp	wait	root	internal\n"
+		inetdData += "#time	stream	tcp	nowait	root	internal\n"
+		inetdData += "#time	dgram	udp	wait	root	internal\n"
+		inetdData += "ftp	stream	" + sockType + "	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
+		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
+		inetdData += "telnet	stream	" + sockType + "	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		if getBoxType() in ('gbquad', 'gbquadplus'):
-			inetdData += "8002    stream  " + sockType + "    nowait  root    /usr/bin/transtreamproxy        transtreamproxy\n"
+			inetdData += "8002	stream	" + sockType + "	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 			
 		fd = file("/etc/inetd.conf", 'w')
 		fd.write(inetdData)
