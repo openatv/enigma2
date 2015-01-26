@@ -866,7 +866,6 @@ class InfoBarTimeshift:
 			return
 
 		freespace = 1024
-		offsetFiles = 0
 		lockedFiles = []
 		removeFiles = []
 
@@ -882,14 +881,13 @@ class InfoBarTimeshift:
 
 		if not self.timeshiftEnabled():
 			lockedFiles = []
-			offsetFiles = 1
 
 		if self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value > 0:
-			for i in range(1,self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + offsetFiles):
+			for i in range(1,self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 1):
 				removeFiles.append(("pts_livebuffer_%s") % i)
 
 		if freespace < 1024:	#1024 MByte
-			for i in range(1,self.pts_eventcount + offsetFiles):
+			for i in range(1,self.pts_eventcount + 1):
 				removeFiles.append(("pts_livebuffer_%s") % i)
 			print "[TIMESHIFT] - not enough diskspace available - try to the deleting of the old timeshift files"
 
