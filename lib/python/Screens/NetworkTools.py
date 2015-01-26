@@ -8,11 +8,12 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
-from Components.ActionMap import ActionMap
+from Components.ConfigList import ConfigListScreen
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import fileExists
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 import commands
-
+import os
 
 basegroup = "packagegroup-base"
 
@@ -355,3 +356,71 @@ class NetworkServicesSummary(Screen):
 		self["title"].text = title
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
+
+class InetdRecovery(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Inetd recovery"))
+		
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_blue"] = StaticText(_("Recover"))
+
+		self.list = []
+		
+		self.ipv6 = NoSave(ConfigYesNo(default=False))
+		self.list.append(getConfigListEntry(_("IPv6"), self.ipv6))
+		
+		ConfigListScreen.__init__(self, self.list)
+
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
+			"cancel": (self.close, _("exit inetd recovery"))
+		})
+		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
+			"red": (self.close, _("exit inetd recovery")),
+			"blue": (self.keyBlue, _("recover inetd")),
+		})
+		
+	def keyBlue(self):
+		sockType = "tcp"
+		if self.ipv6.value:
+			sockType = "tcp6"
+			
+		inetdData  = "# /etc/inetd.conf:  see inetd(8) for further informations.\n"
+		inetdData += "#\n"
+		inetdData += "# Internet server configuration database\n"
+		inetdData += "#\n"
+		inetdData += "# If you want to disable an entry so it isn't touched during\n"
+		inetdData += "# package updates just comment it out with a single '#' character.\n"
+		inetdData += "#\n"
+		inetdData += "# <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>\n"
+		inetdData += "#\n"
+		inetdData += "#:INTERNAL: Internal services\n"
+		inetdData += "#echo           stream  tcp     nowait  root    internal\n"
+		inetdData += "#echo           dgram   udp     wait    root    internal\n"
+		inetdData += "#chargen        stream  tcp     nowait  root    internal\n"
+		inetdData += "#chargen        dgram   udp     wait    root    internal\n"
+		inetdData += "#discard                stream  tcp     nowait  root    internal\n"
+		inetdData += "#discard                dgram   udp     wait    root    internal\n"
+		inetdData += "#daytime                stream  tcp     nowait  root    internal\n"
+		inetdData += "#daytime        dgram   udp     wait    root    internal\n"
+		inetdData += "#time           stream  tcp     nowait  root    internal\n"
+		inetdData += "#time           dgram   udp     wait    root    internal\n"
+		inetdData += "ftp     stream  " + sockType + "    nowait  root    /usr/sbin/vsftpd        vsftpd\n"
+		inetdData += "# ftp           stream  tcp     nowait  root    ftpd    ftpd -w /\n"
+		inetdData += "telnet  stream  " + sockType + "    nowait  root    /usr/sbin/telnetd       telnetd\n"
+		if getBoxType() in ('gbquad', 'gbquadplus'):
+			inetdData += "8002    stream  " + sockType + "    nowait  root    /usr/bin/transtreamproxy        transtreamproxy\n"
+			
+		fd = file("/etc/inetd.conf", 'w')
+		fd.write(inetdData)
+		fd.close()
+		self.inetdRestart()
+		
+		self.session.open(MessageBox, _("Successfully restored /etc/inetd.conf!"), type = MessageBox.TYPE_INFO,timeout = 10)
+		self.close()
+		
+	def inetdRestart(self):
+		if fileExists("/etc/init.d/inetd"):
+			os.system("/etc/init.d/inetd restart")
+		elif fileExists("/etc/init.d/inetd.busybox"):
+			os.system("/etc/init.d/inetd.busybox restart")
