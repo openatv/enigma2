@@ -314,7 +314,10 @@ class ChannelContextMenu(Screen):
 				file = "/etc/enigma2/" + file
 				print "restore file ", file[:-4]
 				os.rename(file, file[:-4])
-		eDVBDB.getInstance().reloadBouquets()
+		eDVBDBInstance = eDVBDB.getInstance()
+		eDVBDBInstance.setLoadUnlinkedUserbouquets(True)
+		eDVBDBInstance.reloadBouquets()
+		eDVBDBInstance.setLoadUnlinkedUserbouquets(config.misc.load_unlinked_userbouquets.value)
 		refreshServiceList()
 		self.csel.showFavourites()
 		self.close()
