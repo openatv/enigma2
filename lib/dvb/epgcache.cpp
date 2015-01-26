@@ -367,7 +367,7 @@ void eventData::cacheCorrupt(const char* context)
 
 
 eEPGCache* eEPGCache::instance;
-pthread_mutex_t eEPGCache::cache_lock=
+static pthread_mutex_t cache_lock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 static pthread_mutex_t channel_map_lock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
@@ -710,10 +710,10 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 
 void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *channel)
 {
-	eit_t *eit = (eit_t*) data;
+	const eit_t *eit = (const eit_t*) data;
 
-	int len=HILO(eit->section_length)-1;//+3-4;
-	int ptr=EIT_SIZE;
+	int len = HILO(eit->section_length) - 1;
+	int ptr = EIT_SIZE;
 	if ( ptr >= len )
 		return;
 
@@ -1012,10 +1012,9 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 
 void eEPGCache::cleanLoop()
 {
-	singleLock s(cache_lock);
-	if (!eventDB.empty())
-	{
+	{ /* scope for cache lock */
 		time_t now = ::time(0) - historySeconds;
+		singleLock s(cache_lock);
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
@@ -1070,7 +1069,7 @@ void eEPGCache::cleanLoop()
 			}
 #endif
 		}
-	}
+	} /* release lock */
 	cleanTimer->start(CLEAN_INTERVAL,true);
 }
 
@@ -1482,7 +1481,7 @@ eEPGCache::channel_data::channel_data(eEPGCache *ml)
 	pthread_mutex_init(&channel_active, 0);
 }
 
-bool eEPGCache::channel_data::finishEPG()
+void eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
@@ -1500,11 +1499,9 @@ bool eEPGCache::channel_data::finishEPG()
 #ifdef ENABLE_FREESAT
 		cleanupFreeSat();
 #endif
-		singleLock l(cache->cache_lock);
+		singleLock l(cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = ::time(0);
-		return true;
 	}
-	return false;
 }
 
 void eEPGCache::channel_data::startEPG()
@@ -3546,9 +3543,10 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const ui
 	contentMap &content_time_table = content_time_tables[current_service];
 	singleLock s(cache_lock);
 	std::map< date_time, std::list<uniqueEPGKey>, less_datetime > start_times;
-	eventMap &evMap = eventDB[current_service].first;
-	timeMap &tmMap = eventDB[current_service].second;
-	int ptr=8;
+	std::pair<eventMap,timeMap> &eventDBitem = eventDB[current_service];
+	eventMap &evMap = eventDBitem.first;
+	timeMap &tmMap = eventDBitem.second;
+	int ptr = 8;
 	int content_id = data[ptr++] << 24;
 	content_id |= data[ptr++] << 16;
 	content_id |= data[ptr++] << 8;
