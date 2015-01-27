@@ -30,7 +30,7 @@ class eDVBDB: public iDVBChannelList
 
 	std::map<std::string, eBouquet> m_bouquets;
 
-	bool m_numbering_mode;
+	bool m_numbering_mode, m_load_unlinked_userbouquets;
 #ifdef SWIG
 	eDVBDB();
 	~eDVBDB();
@@ -71,6 +71,7 @@ public:
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
 #endif
 	void setNumberingMode(bool numberingMode);
+	void setLoadUnlinkedUserbouquets(bool value) { m_load_unlinked_userbouquets=value; }
 	void renumberBouquet();
 	void loadServicelist(const char *filename);
 	static eDVBDB *getInstance() { return instance; }
