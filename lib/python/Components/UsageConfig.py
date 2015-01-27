@@ -15,7 +15,7 @@ from Tools.HardwareInfo import HardwareInfo
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
-	if getBrandOEM() in ('vuplus', 'ini'):
+	if getBrandOEM() in ('vuplus'):
 		config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 	else:
 		config.misc.remotecontrol_text_support = ConfigYesNo(default=False)
