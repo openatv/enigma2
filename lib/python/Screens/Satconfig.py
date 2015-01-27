@@ -86,9 +86,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
 				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canInternalConnectTo(self.slotid)) > 0:
-				choices["loopthrough_internal"] = _("Internal loop through to")
+				choices["loopthrough_internal"] = _("Internal loopthrough to")
 			if len(nimmanager.canExternalConnectTo(self.slotid)) > 0:
-				choices["loopthrough_external"] = _("External loop through to")
+				choices["loopthrough_external"] = _("External loopthrough to")
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
@@ -641,8 +641,8 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough_internal", "loopthrough_external", "equal", "satposdepends"):
-						text = { "loopthrough_internal": _("Internal loop through to"),
-								 "loopthrough_external": _("External loop through to"),
+						text = { "loopthrough_internal": _("Internal loopthrough to"),
+								 "loopthrough_external": _("External loopthrough to"),
 								 "equal": _("Equal to"),
 								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
 						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
