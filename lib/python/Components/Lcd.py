@@ -75,11 +75,18 @@ class IconCheckPoller:
 
 class LCD:
 	def __init__(self):
-		pass
+		self.oled_type = eDBoxLCD.getInstance().isOled()
+		if self.oled_type == 3:
+			# Bitmapped OLED has 16 level of brightness
+			self.oled_brightness_scale = 15
+		else:
+			# LCD display has 10 levels of brightness
+			self.oled_brightness_scale = 10
+		print "[LCD] oled_type=%d, oled_brightness_scale=%d" % (self.oled_type, self.oled_brightness_scale)
 
 	def setBright(self, value):
 		value *= 255
-		value /= 15
+		value /= self.oled_brightness_scale
 		if value > 255:
 			value = 255
 		eDBoxLCD.getInstance().setLCDBrightness(value)
@@ -100,22 +107,22 @@ class LCD:
 		eDBoxLCD.getInstance().setFlipped(value)
 
 	def isOled(self):
-		return eDBoxLCD.getInstance().isOled()
+		return self.oled_type
 
 	def setMode(self, value):
-		print 'setLCDMode', value
+		print '[LCD] setMode', value
 		f = open("/proc/stb/lcd/show_symbols", "w")
 		f.write(value)
 		f.close()
 
 	def setRepeat(self, value):
-		print 'setLCDRepeat', value
+		print '[LCD] setRepeat', value
 		f = open("/proc/stb/lcd/scroll_repeats", "w")
 		f.write(value)
 		f.close()
 
 	def setScrollspeed(self, value):
-		print 'setLCDScrollspeed', value
+		print '[LCD] setScrollspeed', value
 		f = open("/proc/stb/lcd/scroll_delay", "w")
 		f.write(str(value))
 		f.close()
@@ -135,16 +142,16 @@ class LCD:
 		file.close()
 
 	def setLCDMiniTVMode(self, value):
-		print 'setLCDMiniTVMode',value
+		print '[LCD] setLCDMiniTVMode', value
 		f = open('/proc/stb/lcd/mode', "w")
 		f.write(value)
 		f.close()
 
 	def setLCDMiniTVPIPMode(self, value):
-		print 'setLCDMiniTVPIPMode',value
+		print '[LCD] setLCDMiniTVPIPMode', value
 
 	def setLCDMiniTVFPS(self, value):
-		print 'setLCDMiniTVFPS',value
+		print '[LCD] setLCDMiniTVFPS',value
 		f = open('/proc/stb/lcd/fps', "w")
 		f.write("%d \n" % value)
 		f.close()
@@ -247,20 +254,42 @@ def InitLcd():
 		def setLCDminitvfps(configElement):
 			ilcd.setLCDMiniTVFPS(configElement.value)
 
-		standby_default = 10
+		standby_default = ilcd.oled_brightness_scale * 2 / 3
 
 		if not ilcd.isOled():
 			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
 			config.lcd.contrast.addNotifier(setLCDcontrast)
 		else:
 			config.lcd.contrast = ConfigNothing()
-			standby_default = 1
 
-		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 15))
+		class BrightnessSlider(ConfigSlider):
+			def __init__(self, **kwargs):
+				self._value = None
+				ConfigSlider.__init__(self, **kwargs)
+
+			def setValue(self, value):
+				if self._value != value:
+					self._value = value
+					self.changed()
+
+			value = property(ConfigSlider.getValue, setValue)
+
+			def onSelect(self, session):
+				self.changed()
+
+			def onDeselect(self, session):
+				ConfigSlider.onDeselect(self, session)
+				b = config.lcd.bright.saved_value
+				if not b:
+					b = config.lcd.bright.default
+				ilcd.setBright(int(b))
+
+		config.lcd.standby = BrightnessSlider(default=standby_default, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.standby.addNotifier(setLCDbright)
 		config.lcd.standby.apply = lambda: setLCDbright(config.lcd.standby)
+		config.lcd.standby.callNotifiersOnSaveAndCancel = True
 
-		config.lcd.bright = ConfigSlider(default=12, limits=(0, 15))
+		config.lcd.bright = BrightnessSlider(default=ilcd.oled_brightness_scale, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.bright.addNotifier(setLCDbright)
 		config.lcd.bright.apply = lambda: setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
@@ -285,7 +314,7 @@ def InitLcd():
 		else:
 			config.lcd.scrollspeed = ConfigNothing()
 		if fileExists("/proc/stb/lcd/scroll_repeats"):
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("5", _("5x")), ("10", _("10x")), ("500", _("Continuous"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat)
 		else:
 			config.lcd.repeat = ConfigNothing()
