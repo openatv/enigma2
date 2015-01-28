@@ -62,7 +62,7 @@ preferredTagEditor = None
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
-	(str(MovieList.SORT_GROUPWISE), _("default") , 'New->Old & A->Z'),
+	(str(MovieList.SORT_GROUPWISE), _("default"), 'New->Old & A->Z'),
 	(str(MovieList.SORT_RECORDED), _("by date"), 'New->Old'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), 'Old->New'),
 	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A->Z'),
@@ -70,7 +70,7 @@ l_moviesort = [
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A->Z Flat'),
 	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("reverse flat alphabetic"), 'Z->A Flat'),
 	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
-	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"),  'Z1 A2 A1'),
+	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"), 'Z1 A2 A1'),
 	(str(MovieList.SHUFFLE), _("shuffle"), 'Shuffle'),
 ]
 
@@ -658,6 +658,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedActions)
 			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
 			config.movielist.btn_text = ConfigSelection(default='movieoff', choices=userDefinedActions)
+
+			# Fill in descriptions for plugin actions
+			for act, val in userDefinedActions.items():
+				userDefinedDescriptions[act] = val
+
 			userDefinedButtons = {
 				'red': config.movielist.btn_red,
 				'green': config.movielist.btn_green,
