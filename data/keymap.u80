@@ -75,7 +75,7 @@
 	</map>
 
 	<map context="InfobarEPGActions">
-		<key id="KEY_INFO" mapto="InfoPressed" flags="m" />
+		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
@@ -221,7 +221,7 @@
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
-		<key id="KEY_AUDIO" mapto="audio_key" flags="m" />
+		<key id="KEY_AUDIO" mapto="audio_key" flags="b" />
 		<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
 		<key id="KEY_YELLOW" mapto="audioSelection" flags="l" />
 	</map>
