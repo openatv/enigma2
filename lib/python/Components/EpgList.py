@@ -928,14 +928,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 				if self.eventNameAlign.lower() == 'left':
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP | RT_WRAP
+						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_TOP
+						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 				else:
 					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_TOP | RT_WRAP
+						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
 					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_TOP
+						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				if stime <= now < (stime + duration):
 					if clock_types is not None and clock_types == 2:
