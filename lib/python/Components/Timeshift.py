@@ -861,37 +861,42 @@ class InfoBarTimeshift:
 
 	def ptsCleanTimeshiftFolder(self, justZapped = True):
 		# print '!!!!!!!!!!!!!!!!!!!!! ptsCleanTimeshiftFolder'
-		if self.ptsCheckTimeshiftPath() is False:	# or self.session.screen["Standby"].boolean is True:
+		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
 			self.ptsEventCleanTimerSTOP()
 			return
 
 		freespace = 1024
+		filecounter = 0
 		lockedFiles = []
 		removeFiles = []
+
+		if self.timeshiftEnabled():
+			if self.isSeekable():
+				for i in range(self.pts_currplaying,self.pts_eventcount + 1):
+					lockedFiles.append(("pts_livebuffer_%s") % i)
+			else:
+				if not self.event_changed:
+					lockedFiles.append(("pts_livebuffer_%s") % self.pts_currplaying)
 
 		if config.timeshift.timeshiftCheckFreeSpace.value:
 			try:
 				stat = os.statvfs(config.usage.timeshift_path.value)
 				freespace = stat.f_bavail * stat.f_bsize / 1024 / 1024
 			except:
-				print "[TIMESHIFT] - error from reading of disk space - this function can not used"
+				print "[TIMESHIFT] - error reading disk space - function 'checking for free space' can't used"
 
-		for i in range(self.pts_currplaying,self.pts_eventcount + 1):
-			lockedFiles.append(("pts_livebuffer_%s") % i)
-
-		if not self.timeshiftEnabled():
-			lockedFiles = []
-
-		if self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value > 0:
-			for i in range(1,self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 1):
-				removeFiles.append(("pts_livebuffer_%s") % i)
-
-		if freespace < 1024:	#1024 MByte
+		if freespace < 1024:
 			for i in range(1,self.pts_eventcount + 1):
 				removeFiles.append(("pts_livebuffer_%s") % i)
-			print "[TIMESHIFT] - not enough diskspace available - try to the deleting of the old timeshift files"
+			print "[TIMESHIFT] - less than 1024 MByte disk space available - try to the deleting all unused timeshift files"
+		elif self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value >= 0:
+			if self.event_changed or len(lockedFiles) == 0:
+				for i in range(1,self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 2):
+					removeFiles.append(("pts_livebuffer_%s") % i)
+			else:
+				for i in range(1,self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 1):
+					removeFiles.append(("pts_livebuffer_%s") % i)
 
-		filecounter = 0
 		for filename in os.listdir(config.usage.timeshift_path.value):
 			if (os.path.exists("%s%s" % (config.usage.timeshift_path.value,filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
 				# print 'filename:',filename
@@ -904,7 +909,8 @@ class InfoBarTimeshift:
 					# remove old files, but only complete sets of files (base file, .eit, .meta, .sc),
 					# and not while saveTimeshiftEventPopup is active (avoid deleting files about to be saved)
 					# and don't delete files from currently playing up to the last event
-					filecounter += 1
+					if not filename.startswith("timeshift."):
+						filecounter += 1
 					if ((statinfo.st_mtime < (time()-3600*config.timeshift.timeshiftMaxHours.value)) or any(filename in s for s in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in s for s in lockedFiles):
 						# print "[TimeShift] Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
@@ -914,7 +920,8 @@ class InfoBarTimeshift:
 							self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.value,filename))
 						if os.path.exists("%s%s.sc" % (config.usage.timeshift_path.value,filename)):
 							self.BgFileEraser.erase("%s%s.sc" % (config.usage.timeshift_path.value,filename))
-						filecounter -= 1
+						if not filename.startswith("timeshift."):
+							filecounter -= 1
 				else:
 					# remove anything still left over another 24h later
 					if statinfo.st_mtime < (time()-3600*(24+config.timeshift.timeshiftMaxHours.value)):
