@@ -137,13 +137,13 @@ def resetMoviePlayState(cutsFileName, ref=None):
 		#print "[MovieList] Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
 
 class MovieList(GUIComponent):
-	SORT_ALPHANUMERIC = 1
-	SORT_RECORDED = 2
+	SORT_ALPHANUMERIC = SORT_ALPHA_DATE_NEWEST_FIRST = 1
+	SORT_RECORDED = SORT_DATE_NEWEST_FIRST_ALPHA = 2
 	SHUFFLE = 3
-	SORT_ALPHANUMERIC_REVERSE = 4
-	SORT_RECORDED_REVERSE = 5
-	SORT_ALPHANUMERIC_FLAT = 6
-	SORT_ALPHANUMERIC_FLAT_REVERSE = 7
+	SORT_ALPHANUMERIC_REVERSE = SORT_ALPHAREV_DATE_OLDEST_FIRST = 4
+	SORT_RECORDED_REVERSE = SORT_DATE_OLDEST_FIRST_ALPHAREV = 5
+	SORT_ALPHANUMERIC_FLAT = SORT_ALPHA_DATE_NEWEST_FIRST_FLAT = 6
+	SORT_ALPHANUMERIC_FLAT_REVERSE = SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT = 7
 	SORT_GROUPWISE = 8
 	SORT_ALPHA_DATE_OLDEST_FIRST = 9
 	SORT_ALPHAREV_DATE_NEWEST_FIRST = 10
@@ -174,7 +174,6 @@ class MovieList(GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
 		self.root = None
-		self.list = None
 		self._playInBackground = None
 		self._playInForeground = None
 		self._char = ''
@@ -534,7 +533,7 @@ class MovieList(GUIComponent):
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a
 		# nice list
-		self.list = [ ]
+		self.list = []
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 
@@ -569,7 +568,7 @@ class MovieList(GUIComponent):
 				normdirname = os.path.normpath(dirname)
 				normname = os.path.basename(normdirname)
 				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
-					self.list.append((serviceref, info, begin, -1))
+					self.list.insert(0, (serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
 			# convert space-seperated list of tags into a set
@@ -607,27 +606,30 @@ class MovieList(GUIComponent):
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
 
-		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
+		if self.sort_type == MovieList.SORT_ALPHA_DATE_NEWEST_FIRST:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
-		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
-			self.list.sort(key=self.buildAlphaNumericSortKey, reverse=True)
-		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT:
+		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey, reverse=True) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse=True)
+		elif self.sort_type == MovieList.SORT_ALPHA_DATE_NEWEST_FIRST_FLAT:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
-		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
+		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse=True)
-		elif self.sort_type == MovieList.SORT_RECORDED:
+		elif self.sort_type == MovieList.SORT_DATE_NEWEST_FIRST_ALPHA:
 			self.list.sort(key=self.buildBeginTimeSortKey)
-		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
-			self.list.sort(key=self.buildBeginTimeSortKey, reverse=True)
+		elif self.sort_type == MovieList.SORT_DATE_OLDEST_FIRST_ALPHAREV:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey, reverse=True) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse=True)
 		elif self.sort_type == MovieList.SHUFFLE:
-			dirlist = self.list[:numberOfDirs]
 			shufflelist = self.list[numberOfDirs:]
 			random.shuffle(shufflelist)
-			self.list = dirlist + shufflelist
+			self.list = self.list[:numberOfDirs] + shufflelist
 		elif self.sort_type == MovieList.SORT_ALPHA_DATE_OLDEST_FIRST:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse = True)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse=True) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse=True)
 		else:
 			self.list.sort(key=self.buildGroupwiseSortkey)
 
@@ -732,13 +734,14 @@ class MovieList(GUIComponent):
 
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
+		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
 			try:
 				mtime = -os.stat(ref.getPath()).st_mtime
 			except:
 				mtime = 0
-			return 0, x[1] and mtime
-		return 1, -x[2]
+			return 0, x[1] and mtime, name and name.lower() or ""
+		return 1, -x[2], name and name.lower() or ""
 
 	def buildGroupwiseSortkey(self, x):
 		# Sort recordings by date, sort MP3 and stuff by name
