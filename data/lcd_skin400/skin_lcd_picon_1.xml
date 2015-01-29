@@ -17,11 +17,13 @@
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100"/>
+		<font filename="/usr/share/enigma2/GigabluePax/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="RegularLCD;40" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
@@ -31,7 +33,7 @@
 		<widget source="session.CurrentService" render="PiconLCD" position="center,center" zPosition="1" halign="center" valign="center" size="400,240" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,205" foregroundColor="#ff0000" size="100,25" font="FdLcD;25" zPosition="0" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,205" foregroundColor="#ff0000" size="100,25" font="RegularLCD;25" zPosition="0" noWrap="1">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>

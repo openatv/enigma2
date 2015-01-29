@@ -17,11 +17,13 @@
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100"/>
+		<font filename="/usr/share/enigma2/GigabluePax/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="RegularLCD;40" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
@@ -33,17 +35,17 @@
 				<convert type="ServiceName">Reference</convert>
 		</widget>
 
-		<widget source="session.Event_Now" render="Label" position="0,121" size="200,98" font="RegularLight;25" valign="center" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="0,121" size="200,98" font="RegularLCD;25" valign="center" halign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,219" size="200,20" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 
-		<widget source="global.CurrentTime" render="Label" position="200,0" size="100,74" font="RegularLight;20" halign="center" valign="center" zPosition="1" foregroundColor="#007FFF" transparent="0">
+		<widget source="global.CurrentTime" render="Label" position="200,0" size="100,74" font="RegularLCD;20" halign="center" valign="center" zPosition="1" foregroundColor="#007FFF" transparent="0">
 			<convert type="ClockToText">ShortDate</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="200,74" size="100,73" font="RegularLight;40" halign="center" valign="center" noWrap="1" zPosition="1" transparent="0" foregroundColor="#007FFF">
+		<widget source="global.CurrentTime" render="Label" position="200,74" size="100,73" font="RegularLCD;40" halign="center" valign="center" noWrap="1" zPosition="1" transparent="0" foregroundColor="#007FFF">
 			<convert type="ClockToText"></convert>
 		</widget>
 
@@ -53,7 +55,7 @@
 		<widget source="global.CurrentTime" render="Label" font="Meteo; 70" foregroundColor="#007FFF" position="300,0" size="100,73" halign="center" valign="center" noWrap="1" transparent="0" zPosition="0">
 			<convert type="OMMetrixWeather">currentWeatherCode</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" font="RegularLight; 40" foregroundColor="#007FFF" position="300,74" size="70,73" halign="right" valign="center" noWrap="1" transparent="0" zPosition="0">
+		<widget source="global.CurrentTime" render="Label" font="RegularLCD; 40" foregroundColor="#007FFF" position="300,74" size="70,73" halign="right" valign="center" noWrap="1" transparent="0" zPosition="0">
 			<convert type="OMMetrixWeather">currentWeatherTemp</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" font="Regular; 20" foregroundColor="#007FFF" position="370,74" size="30,73" halign="left" valign="center" noWrap="1" transparent="0" zPosition="0">
