@@ -2,7 +2,7 @@
 <!--/* COMMON -->
 	<!-- A -->
 	<screen name="AboutSummary" position="fill">
-		<widget source="AboutText" render="Label" position="fill" font="FdLcD;11" />
+		<widget source="AboutText" render="Label" position="fill" font="RegularLCD;11" />
 	</screen>
 	<!-- B -->
 	<!-- C -->
@@ -10,10 +10,10 @@
 		<widget source="parent.ServiceEvent" render="PiconLCD" zPosition="1" position="0,8" size="90,54" alphatest="on" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="90,0" size="130,70" font="FdLcD;23" halign="center" valign="center" >
+		<widget source="parent.ServiceEvent" render="Label" position="90,0" size="130,70" font="RegularLCD;23" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,80" size="220,66" font="FdLcD;20" halign="center" valign="center" >
+		<widget source="parent.ServiceEvent" render="Label" position="0,80" size="220,66" font="RegularLCD;20" halign="center" valign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="0,155" size="220,20" borderWidth="2">
@@ -21,38 +21,38 @@
 		</widget>
 	</screen>
 	<screen name="ChoiceBox_summary" position="fill">
-		<widget source="parent.summary_list" render="Label" position="fill" font="FdLcD;16" noWrap="1" />
+		<widget source="parent.summary_list" render="Label" position="fill" font="RegularLCD;16" noWrap="1" />
 	</screen>
 	<!-- D -->
 	<screen name="DVDSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="220,28" font="FdLcD;12"  >
+		<widget source="session.CurrentService" render="Label" position="top" size="220,28" font="RegularLCD;12"  >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="top" size="220,4" borderWidth="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<panel position="fill">
-			<widget source="session.CurrentService" render="Label" position="left" size="220,*" font="FdLcD;12" halign="left" >
+			<widget source="session.CurrentService" render="Label" position="left" size="220,*" font="RegularLCD;12" halign="left" >
 				<convert type="ServicePosition">Position</convert>
 			</widget>
-			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
+			<widget name="Chapter" position="fill" font="RegularLCD;12" halign="left" />
 		</panel>
 	</screen>
 	<!-- E -->
 	<screen name="EventView_summary" position="fill">
-		<widget source="parent.Title" render="Label" position="0,0" size="220,22" font="FdLcD;20" halign="left" noWrap="1" />
-		<widget source="parent.summary_description" render="Label" position="0,22" size="220,140" font="FdLcD;17" />
+		<widget source="parent.Title" render="Label" position="0,0" size="220,22" font="RegularLCD;20" halign="left" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,22" size="220,140" font="RegularLCD;17" />
 	</screen>
 	<screen name="EventViewSimple_summary" position="fill">
-		<widget source="parent.Title" render="Label" position="0,0" size="220,22" font="FdLcD;20" halign="left" noWrap="1" />
-		<widget source="parent.summary_description" render="Label" position="0,22" size="220,140" font="FdLcD;17" />
+		<widget source="parent.Title" render="Label" position="0,0" size="220,22" font="RegularLCD;20" halign="left" noWrap="1" />
+		<widget source="parent.summary_description" render="Label" position="0,22" size="220,140" font="RegularLCD;17" />
 	</screen>
 	<!-- F -->
 	<!-- G -->
 	<!-- H -->
 	<!-- I -->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="220,36" font="FdLcD;16" halign="left" valign="top" >
+		<widget source="session.CurrentService" render="Label" position="top" size="220,36" font="RegularLCD;16" halign="left" valign="top" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="top" size="220,4" borderWidth="1">
@@ -61,51 +61,51 @@
 	</screen>
 	<!-- J -->
 	<screen name="JobView_summary" position="fill">
-		<widget source="parent.summary_job_name" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="parent.summary_job_task" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
+		<widget source="parent.summary_job_name" render="Label" position="0,38" size="220,26" font="RegularLCD;24" halign="left" noWrap="1" />
+		<widget source="parent.summary_job_task" render="Label" position="0,66" size="220,20" font="RegularLCD;19" halign="left" noWrap="1" />
 		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="220,12" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="220,12" font="FdLcD;12" zposition="0" halign="center" transparent="1" >
+		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="220,12" font="RegularLCD;12" zposition="0" halign="center" transparent="1" >
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
 	<!-- K -->
 	<!-- L -->
 	<screen name="LanguageWizardSummary" position="fill">
-		<widget source="parent.summarytext" render="Label" position="0,0" size="220,55" font="FdLcD;24" halign="center" />
-		<widget source="parent.summarylangname" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" />
+		<widget source="parent.summarytext" render="Label" position="0,0" size="220,55" font="RegularLCD;24" halign="center" />
+		<widget source="parent.summarylangname" render="Label" position="0,85" size="220,124" font="RegularLCD;24" halign="center" />
 	</screen>
 	<!-- M -->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" position="top" size="220,61" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="220,53" font="FdLcD;26" halign="left" valign="center">
+		<widget source="parent.title" render="Label" position="top" size="220,45" font="RegularLCD;20" halign="left" valign="top" />
+		<widget source="parent.menu" render="Label" position="top" size="220,90" font="RegularLCD;25" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
 	<screen name="MessageBox_summary" position="fill">
-		<widget source="parent.Text" render="Label" position="fill" font="FdLcD;17" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="FdLcD;26" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="fill" font="RegularLCD;17" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="RegularLCD;26" halign="center" noWrap="1" />
 	</screen>
 	<screen name="MessageBoxSimple_summary" position="fill">
-		<widget source="parent.Text" render="Label" position="fill" font="FdLcD;17" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="FdLcD;26" halign="center" noWrap="1" />
+		<widget source="parent.Text" render="Label" position="fill" font="RegularLCD;17" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="RegularLCD;26" halign="center" noWrap="1" />
 	</screen>
 	<screen name="MovieContextMenuSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="220,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="selected" render="Label" position="top" size="220,32" font="FdLcD;16" />
+		<widget source="parent.Title" render="Label" position="top" size="220,14" font="RegularLCD;12" halign="left" valign="top" noWrap="1" />
+		<widget source="selected" render="Label" position="top" size="220,32" font="RegularLCD;16" />
 		<panel position="bottom" size="220,18">
-			<widget source="global.CurrentTime" render="Label" position="right" size="220,*" halign="right" font="FdLcD;16" >
+			<widget source="global.CurrentTime" render="Label" position="right" size="220,*" halign="right" font="RegularLCD;16" >
 				<convert type="ClockToText"></convert>
 			</widget>
 		</panel>
 	</screen>
 	<screen name="MovieSelectionSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="220,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="name" render="Label" position="top" size="220,32" font="FdLcD;16" halign="left" valign="top" />
+		<widget source="parent.Title" render="Label" position="top" size="220,14" font="RegularLCD;12" halign="left" valign="top" noWrap="1" />
+		<widget source="name" render="Label" position="top" size="220,32" font="RegularLCD;16" halign="left" valign="top" />
 		<panel position="bottom" size="220,18">
-			<widget source="parent.Service" render="Label" position="right" size="220,*" font="FdLcD;14" halign="left" noWrap="1">
+			<widget source="parent.Service" render="Label" position="right" size="220,*" font="RegularLCD;14" halign="left" noWrap="1">
 				<convert type="MovieInfo">FileSize</convert>
 			</widget>
-			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;14" halign="left" noWrap="1">
+			<widget source="parent.Service" render="Label" position="fill" font="RegularLCD;14" halign="left" noWrap="1">
 				<convert type="MovieInfo">RecordServiceName</convert>
 			</widget>
 		</panel>
@@ -114,50 +114,50 @@
 	<!-- O -->
 	<!-- P -->
 	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="220,26" font="FdLcD;25" noWrap="1" />
-		<widget source="entry" render="Label" position="top" size="220,61" font="FdLcD;30" halign="left" />
-		<widget source="desc" render="Label" position="fill" font="FdLcD;22" valign="top" />
+		<widget source="parent.Title" render="Label" position="top" size="220,20" font="RegularLCD;25" noWrap="1" />
+		<widget source="entry" render="Label" position="top" size="220,120" font="RegularLCD;35" halign="center" valign="center" />
+		<widget source="desc" render="Label" position="fill" font="RegularLCD;15" halign="center" valign="center" />
 	</screen>
 	<!-- Q -->
 	<!-- R -->
 	<!-- S -->
 	<screen name="SetupSummary" position="fill">
-		<widget source="SetupTitle" render="Label" position="top" size="220,61" font="FdLcD;30" halign="left" />
-		<widget source="SetupEntry" render="Label" position="top" size="220,51" font="FdLcD;25" halign="left" />
-		<widget source="SetupValue" render="Label" position="top" size="220,51" font="FdLcD;25" halign="left" />
+		<widget source="SetupTitle" render="Label" position="top" size="220,61" font="RegularLCD;30" halign="left" />
+		<widget source="SetupEntry" render="Label" position="top" size="220,51" font="RegularLCD;25" halign="left" />
+		<widget source="SetupValue" render="Label" position="top" size="220,51" font="RegularLCD;25" halign="left" />
 	</screen>
 	<screen name="SimpleSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="center,center" size="220,176" font="FdLcD;30" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="center,center" size="220,176" font="RegularLCD;30" halign="center" valign="center" />
 	</screen>
 	<screen name="SoftwareUpdateChanges_summary" position="fill">
-		<widget source="parent.title_summary" render="Label" position="0,0" size="220,15" font="FdLcD;15" halign="left" noWrap="1" />
-		<widget source="parent.text_summary" render="Label" position="0,16" size="220,54" font="FdLcD;12" halign="left" transparent="1" />
+		<widget source="parent.title_summary" render="Label" position="0,0" size="220,15" font="RegularLCD;15" halign="left" noWrap="1" />
+		<widget source="parent.text_summary" render="Label" position="0,16" size="220,54" font="RegularLCD;12" halign="left" transparent="1" />
 	</screen>
 	<!-- T -->
 	<screen name="TimerEditListSummary" position="fill">
-		<widget source="service" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="name" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="time" render="Label" position="0,86" size="220,20" font="FdLcD;19" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="0,110" size="220,20" font="FdLcD;19" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="0,110" size="220,20" font="FdLcD;19" halign="right" transparent="1" />
+		<widget source="service" render="Label" position="0,38" size="220,26" font="RegularLCD;24" halign="left" noWrap="1" />
+		<widget source="name" render="Label" position="0,66" size="220,20" font="RegularLCD;19" halign="left" noWrap="1" />
+		<widget source="time" render="Label" position="0,86" size="220,20" font="RegularLCD;19" halign="left" transparent="1" />
+		<widget source="duration" render="Label" position="0,110" size="220,20" font="RegularLCD;19" halign="left" transparent="1" />
+		<widget source="state" render="Label" position="0,110" size="220,20" font="RegularLCD;19" halign="right" transparent="1" />
 	</screen>
 	<!-- U -->
 	<screen name="UpdatePlugin_summary" position="fill">
-		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="parent.package" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="parent.status" render="Label" position="0,93" size="220,16" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="RegularLCD;24" halign="left" noWrap="1" />
+		<widget source="parent.package" render="Label" position="0,66" size="220,20" font="RegularLCD;19" halign="left" noWrap="1" />
+		<widget source="parent.status" render="Label" position="0,93" size="220,16" font="RegularLCD;14" halign="left" transparent="1" />
 	</screen>
 	<!-- V -->
 	<screen name="VideoWizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="220,50" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" >
+		<widget source="text" render="Label" position="0,0" size="220,50" font="RegularLCD;24" halign="center" />
+		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="RegularLCD;24" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
 	<!-- W -->
 	<screen name="WizardSummary" position="fill">
-		<widget source="text" render="Label" position="0,0" size="220,55" font="FdLcD;24" halign="center" />
-		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="FdLcD;24" halign="center" >
+		<widget source="text" render="Label" position="0,0" size="220,55" font="RegularLCD;24" halign="center" />
+		<widget source="parent.list" render="Label" position="0,85" size="220,124" font="RegularLCD;24" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>

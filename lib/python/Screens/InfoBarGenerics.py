@@ -560,6 +560,8 @@ class InfoBarNumberZap:
 
 	def recallPrevService(self, reply):
 		if reply:
+			self.servicelist.history_tv = []
+			self.servicelist.history_radio = []
 			self.servicelist.recallPrevService()
 
 	def numberEntered(self, service = None, bouquet = None):

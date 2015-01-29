@@ -16,15 +16,17 @@
 	</windowstyle>
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
-		<font filename="nmsbd.ttf" name="FdLcD" scale="90"/>
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100"/>
+		<font filename="/usr/share/enigma2/GigabluePax/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="right" size="160,55" font="FdLcD;50" halign="right" valign="top" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="right" size="160,55" font="RegularLCD;50" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="105,50" size="129,25" foregroundColor="#ff0000" font="FdLcD;25" zPosition="1" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="105,50" size="129,25" foregroundColor="#ff0000" font="RegularLCD;25" zPosition="1" noWrap="1">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
@@ -34,10 +36,10 @@
 		<widget source="session.CurrentService" render="PiconLCD" position="0,110" zPosition="1" size="100,60" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
 			</widget>
-		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;36" halign="center" foregroundColor="#00ffff" >
+		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="RegularLCD;36" halign="center" foregroundColor="#00ffff" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="top" size="*,41" font="FdLcD;20" halign="center"  foregroundColor="#ffffff">
+		<widget source="session.Event_Now" render="Label" position="top" size="*,41" font="RegularLCD;20" halign="center"  foregroundColor="#ffffff">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="top" size="*,14" borderWidth="3" >

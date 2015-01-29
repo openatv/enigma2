@@ -17,52 +17,54 @@
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100"/>
+		<font filename="/usr/share/enigma2/GigabluePax/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="120,142" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="120,142" size="100,45" font="RegularLCD;40" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<widget source="session.CurrentService" render="Label" position="0,5" size="220,65" font="FdLcD;30" halign="center" foregroundColor="#FFFF00" >
+		<widget source="session.CurrentService" render="Label" position="0,5" size="220,65" font="RegularLCD;30" halign="center" foregroundColor="#FFFF00" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,80" size="220,40" font="FdLcD;17" halign="center" >
+		<widget source="session.Event_Now" render="Label" position="0,80" size="220,40" font="RegularLCD;17" halign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,125" size="150,10" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="160,120" size="70,20" font="Regular; 15" foregroundColor="#F78181" >
+		<widget source="session.Event_Now" render="Label" position="160,120" size="70,20" font="RegularLCD; 15" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
 		</widget>
-		<eLabel text="TUNER:" position="0,150" size="80,25" halign="Left" font="FdLcD;20" />
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="A" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<eLabel text="TUNER:" position="0,150" size="80,25" halign="Left" font="RegularLCD;20" />
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="A" foregroundColor="#04B404" font="RegularLCD;20" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="B" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="B" foregroundColor="#04B404" font="RegularLCD;20" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="C" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="C" foregroundColor="#04B404" font="RegularLCD;20" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="D" foregroundColor="#04B404" font="FdLcD;20" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,150" size="20,20" text="D" foregroundColor="#04B404" font="RegularLCD;20" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;20" zPosition="1" noWrap="1" >
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,150" size="110,25" halign="Left" foregroundColor="#ff0000" font="RegularLCD;20" zPosition="1" noWrap="1" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />

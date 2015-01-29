@@ -8,10 +8,11 @@ from Tools import Notifications
 from GlobalActions import globalActionMap
 import RecordTimer
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler
-from os import path
+from os import path, system
 import Screens.InfoBar
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 from time import time, localtime
+import os
 
 inStandby = None
 
@@ -30,6 +31,8 @@ def setLCDModeMinitTV(value):
 class Standby2(Screen):
 	def Power(self):
 		print "leave standby"
+		if os.path.exists("/usr/script/Standby.sh"):
+			os.system("/usr/script/Standby.sh on")
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
 		#restart last played service
@@ -59,6 +62,8 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print "enter standby"
+		if os.path.exists("/usr/script/Standby.sh"):
+			os.system("/usr/script/Standby.sh off")
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{

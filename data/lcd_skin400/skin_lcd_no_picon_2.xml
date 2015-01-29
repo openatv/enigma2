@@ -17,22 +17,27 @@
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100"/>
+		<font filename="/usr/share/enigma2/GigabluePax/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 
 <!-- main-->
-	<screen name="InfoBarSummary" position="fill" >
-		<widget source="session.CurrentService" render="PiconLCD" zPosition="1" position="center,0" size="150,90" alphatest="on" >
-			<convert type="ServiceName">Reference</convert>
+	<screen name="InfoBarSummary" position="fill">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="400,35" font="RegularLCD;35" halign="center"  noWrap="1">
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,100" size="400,90" font="FdLcD;40" halign="center" valign="center" >
-			<convert type="EventName">Name</convert>
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="400,110" font="RegularLCD;90" halign="center" valign="center" noWrap="1">
+			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,200" size="200,40" font="FdLcD;40" foregroundColor="#F78181" >
+		<widget source="session.Event_Now" render="Label" position="200,180" size="200,35" font="Regular; 30" halign="right" valign="center" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
-		</widget>		
-		<widget source="session.Event_Now" render="Progress" position="200,200" size="200,40" borderWidth="4" >
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="bottom" size="*,25" borderWidth="3" >
 			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,180" size="200,35" halign="Left" valign="center" foregroundColor="#ff0000" font="RegularLCD;30" zPosition="1" noWrap="1" >
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
 	<include filename="/usr/share/enigma2/lcd_skin/common.xml" />
