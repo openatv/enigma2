@@ -31,6 +31,50 @@
 		</widget>
 	</screen>
 
+<!-- Tunerstatuspanel -->
+	<screen name="SummaryTunerStatusPanel">
+		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">3,3</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>	
+	
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="720,576"> 
 		<widget source="session.CurrentService" render="Label" position="15,21" size="675,100" foregroundColor="#e5b243" font="FdLcD;95" halign="center" zPosition="14">
@@ -50,7 +94,7 @@
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,500" foregroundColor="#ff0000" size="70,60" font="FdLcD;65" halign="left" valign="center" zPosition="22">
+		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,420" foregroundColor="#ff0000" size="140,70" font="FdLcD;65" halign="center" valign="center" zPosition="22">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="421,145" size="266,46" font="FdLcD;50" halign="right" foregroundColor="#02c6ff" >
@@ -60,7 +104,14 @@
 		<widget source="session.CurrentService" render="LcdPicon" zPosition="13" position="160,355" size="320,210" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
+		<widget noWrap="1" font="FdLcD;55" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="left" >
+			<convert type="MSNWeather">temperature_current</convert>
+		</widget>
+		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
+			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Icons/,png</convert>
+		</widget>
 		<panel name="SummaryClockPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 	</screen>
         
 <!-- normal radiomodus-->
@@ -93,7 +144,7 @@
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,500" foregroundColor="#ff0000" size="70,60" font="FdLcD;65" halign="left" valign="center" zPosition="22">
+		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,420" foregroundColor="#ff0000" size="140,70" font="FdLcD;65" halign="left" valign="center" zPosition="22">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="421,145" size="266,46" font="FdLcD;50" halign="right" foregroundColor="#02c6ff" >
@@ -103,7 +154,14 @@
 		<widget source="parent.Service" render="Picon" zPosition="13" position="160,355" size="320,210" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,420" foregroundColor="#ff0000" size="140,70" font="FdLcD;65" halign="center" valign="center" zPosition="22">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget render="MSNWeatherPixmap" position="500,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
+			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Icons/,png</convert>
+		</widget>
 		<panel name="SummaryClockPanel" />
+		<panel name="SummaryTunerStatusPanel" />
         </screen>
 		
 <!-- numberzap -->    
@@ -276,7 +334,7 @@
 <!--"Analog Clock" -->
 	<screen name="StandbySummary" position="0,0" size="720,576">
 		<eLabel position="0,0" size="700,576" zPosition="-1" backgroundColor="#000000" />
-		<ePixmap pixmap="~/analog_lcd.png" position="center,center" size="700,540" transparent="1" alphatest="blend" />
+		<ePixmap pixmap="~/Icons/analog_lcd.png" position="center,center" size="700,540" transparent="1" alphatest="blend" />
 		<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="700,540" hColor="#e5b243" positionwidth="682" positionheight="550" linewidth="7" linesize="120" zPosition="3" alphatest="on">
 			<convert type="EtAnalogClock">Hours</convert>
 		</widget>
