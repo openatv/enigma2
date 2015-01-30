@@ -7,7 +7,7 @@ PERCENTAGE_START = 50
 PERCENTAGE_END = 100
 
 profile_start = time.time()
- 
+
 profile_data = {}
 total_time = 1
 profile_file = None
@@ -52,9 +52,9 @@ def profile(id):
 				elif getBoxType() in ("mixosf5", "gi9196m"):
 					f = open("/proc/progress", "w")
 					f.write("%d" % perc)
-				elif getMachineBuild() in ("inihdp"):
+				elif getMachineBuild() in ("inihdp", "inihdx"):
 					f = open("/proc/vfd", "w")
-					f.write("Loading %d %%" % perc)
+					f.write("Loading %d%%" % perc)
 				else:
 					f = open("/proc/progress", "w")
 					f.write("%d \n" % perc)
