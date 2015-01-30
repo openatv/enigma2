@@ -502,6 +502,7 @@ def InitUsageConfig():
 	config.seek.selfdefined_down = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_right = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
+	config.seek.number_skips = ConfigYesNo(default=True)
 	config.seek.selfdefined_13 = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_46 = ConfigSelectionNumber(default=180, min=5, max=1800, stepwidth=5, wraparound=True)
 	config.seek.selfdefined_79 = ConfigSelectionNumber(default=300, min=10, max=3600, stepwidth=10, wraparound=True)
