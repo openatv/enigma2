@@ -81,6 +81,12 @@ def InitLcd():
 
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped);
+
+		if SystemInfo["LcdLiveTV"]:
+			def lcdLiveTvChanged(configElement):
+				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
+			config.lcd.showTv = ConfigYesNo(default = True)
+			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 	else:
 		def doNothing():
 			pass
