@@ -1741,12 +1741,12 @@ class InfoBarSeek:
 			"unPauseService": (self.unPauseService, _("Continue playback")),
 			"okButton": (self.okButton, _("Continue playback")),
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
-			"seekFwdManual": (self.seekFwdManual, _("Skip forward (enter time)")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
-			"seekBackManual": (self.seekBackManual, _("Skip back (enter time)")),
+			"seekFwdManual": (self.seekFwdManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", True)),
+			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 
-			"SeekbarFwd": self.seekFwdSeekbar,
-			"SeekbarBack": self.seekBackSeekbar
+			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
+			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
 		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
 		skipHelp = (
@@ -1771,9 +1771,11 @@ class InfoBarSeek:
 			"unPauseService": (self.unPauseService, _("Continue playback")),
 
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
-			"seekFwdManual": (self.seekFwdManual, _("Skip forward (enter time)")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
-			"seekBackManual": (self.seekBackManual, _("Skip back (enter time)")),
+			"seekFwdManual": (self.seekFwdManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", True)),
+			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
+			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
+			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
 		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
 		# Actions determined in self.action()
@@ -2074,6 +2076,15 @@ class InfoBarSeek:
 			else:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.pts_lastseekspeed = self.seekstate[1]
+
+	def _helpSeekManualSeekbar(self, manual=True, fwd=True):
+		if manual:
+			if fwd:
+				return _("Skip forward (enter time in minutes)")
+			else:
+				return _("Skip back (enter time in minutes)")
+		else:
+			return _("Open seekbar")
 
 	def seekFwdManual(self, fwd=True):
 		if config.seek.baractivation.value == "leftright":
