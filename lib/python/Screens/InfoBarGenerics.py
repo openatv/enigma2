@@ -642,14 +642,8 @@ class InfoBarNumberZap:
 		}, description=_("Recall channel, panic button & number zap"))
 
 	def keyNumberGlobal(self, number):
-		if number != 0 and "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
-			# noinspection PyProtectedMember
-			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width() - 4) / 2, self.pvrStateDialog["PTSSeekPointer"].position[1])
-			if self.seekstate != self.SEEK_STATE_PLAY:
-				self.setSeekState(self.SEEK_STATE_PLAY)
-			self.ptsSeekPointerOK()
-			return
+		if number != 0 and config.seek.number_skips.value:
+			return 0
 
 		if self.pts_blockZap_timer.isActive():
 			return 0
@@ -666,17 +660,10 @@ class InfoBarNumberZap:
 			else:
 				self.reCallService()
 		else:
-			if "TimeshiftActions" in self and self.timeshiftEnabled():
-				ts = self.getTimeshift()
-				if ts and ts.isTimeshiftActive():
-					return 0
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def helpKeyNumberGlobal(self, number):
-		if number != 0 and "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
-			return _("Seek to middle of seek bar")
-
-		if self.pts_blockZap_timer.isActive():
+		if number != 0 and config.seek.number_skips.value:
 			return None
 
 		if number == 0:
@@ -692,10 +679,6 @@ class InfoBarNumberZap:
 			else:
 				return _("Switch between last two channels watched")
 		else:
-			if "TimeshiftActions" in self and self.timeshiftEnabled():
-				ts = self.getTimeshift()
-				if ts and ts.isTimeshiftActive():
-					return None
 			return _("Zap to channel number")
 
 	def doReCallService(self, reply):
@@ -1727,51 +1710,63 @@ class InfoBarSeek:
 				# print "action:", action
 				time = self.seekTime(action)
 				if time is not None:
-					if(callable(time)):
-						time = time()
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
 			@staticmethod
-			def seekTime(action):
+			def seekTime(action, genHelp=False):
 				if action[:5] == "seek:":
 					return int(action[5:])
 				elif action[:8] == "seekdef:":
 					if not config.seek.updown_skips.value and action[8:] in ("up", "down"):
 						return None
+					if not config.seek.number_skips.value and action[8:] in ("1", "3", "4", "6", "7", "9"):
+
+						return None
 					if action[8:] == "up":
-						return lambda: config.seek.selfdefined_up.value
+						return config.seek.selfdefined_up.value
 					elif action[8:] == "down":
-						return lambda: -config.seek.selfdefined_down.value
+						return -config.seek.selfdefined_down.value
 					elif action[8:] == "left":
-						return lambda: -config.seek.selfdefined_left.value
+						return -config.seek.selfdefined_left.value
 					elif action[8:] == "right":
-						return lambda: config.seek.selfdefined_right.value
+						return config.seek.selfdefined_right.value
 					else:
 						key = int(action[8:])
 						return (
-							lambda: -config.seek.selfdefined_13.value, None, lambda: config.seek.selfdefined_13.value,
-							lambda: -config.seek.selfdefined_46.value, None, lambda: config.seek.selfdefined_46.value,
-							lambda: -config.seek.selfdefined_79.value, None, lambda: config.seek.selfdefined_79.value
+							-config.seek.selfdefined_13.value, None, config.seek.selfdefined_13.value,
+							-config.seek.selfdefined_46.value, None, config.seek.selfdefined_46.value,
+							-config.seek.selfdefined_79.value, None, config.seek.selfdefined_79.value
 						)[key - 1]
 				return None
 
 			@staticmethod
+			def skipStringFn(skipFn):
+				skip = skipFn()
+				if skip is None:
+					return None
+				else:
+					return "%s %3d %s" % (_("Skip forward ") if skip >= 0 else _("Skip back "), abs(skip), _("sec"))
+
+			@staticmethod
 			def skipString(skip):
 				if callable(skip):
-					return lambda: "%s %d %s" % (_("Skip forward ") if skip() >= 0 else _("Skip back "), skip(), _("sec"))
+					return boundFunction(InfoBarSeekActionMap.skipStringFn, skip)
 				else:
-					return "%s %d %s" % (_("Skip forward ") if skip >=0  else _("Skip back "), skip, _("sec"))
+					return "%s %3d %s" % (_("Skip forward ") if skip >=0  else _("Skip back "), abs(skip), _("sec"))
 
 			@staticmethod
 			def generateSkipHelp(context):
 				skipHelp = []
-				for action in [act for ctx, act in getKeyBindingKeys(filterfn=lambda(key): key[0] == context and key[1].startswith("seek"))]:
-					time = InfoBarSeekActionMap.seekTime(action)
-					if time is not None:
-						skipHelp.append((action, InfoBarSeekActionMap.skipString(time)))
+				for action in [act for ctx, act in getKeyBindingKeys(filterfn=lambda(key): key[0] == context and (key[1].startswith("seek:") or key[1].startswith("seekdef:")))]:
+					if action.startswith("seekdef:"):
+						skipTime = boundFunction(InfoBarSeekActionMap.seekTime, action)
+					else:
+						skipTime = InfoBarSeekActionMap.seekTime(action)
+					if skipTime is not None:
+						skipHelp.append((action, InfoBarSeekActionMap.skipString(skipTime)))
 				return tuple(skipHelp)
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, {
@@ -2302,7 +2297,6 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			# noinspection PyCallByClass
-			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
 			self.pvrStateDialog.show()
 			self.startHideTimer()
 
