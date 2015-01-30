@@ -7,7 +7,7 @@ from ServiceReference import ServiceReference
 from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
-from enigma import eTimer
+from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference
 import time
 
 TYPE_SERVICE = "SERVICE"
@@ -90,7 +90,11 @@ class ParentalControl:
 		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
-		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
+		if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
+			info = eServiceCenter.getInstance().info(ref)
+			refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
+			service = refstr and eServiceReference(refstr).toCompareString()
+		if service and ((config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service))):
 			#Check if the session pin is cached
 			if self.sessionPinCached == True:
 				return True
