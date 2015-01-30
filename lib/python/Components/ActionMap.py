@@ -89,7 +89,7 @@ class HelpableActionMap(ActionMap):
 		self.description = description
 		if not actions:
 			actions = {}
-		if not  hasattr(contexts, '__iter__'):
+		if not hasattr(contexts, '__iter__'):
 			contexts = [contexts]
 		adict = {}
 		for context in contexts:
@@ -101,6 +101,8 @@ class HelpableActionMap(ActionMap):
 						alist.append((action, funchelp[1]))
 					adict[action] = funchelp[0]
 				else:
+					if queryKeyBinding(context, action):
+						alist.append((action, None))
 					adict[action] = funchelp
 			parent.helpList.append((self, context, alist))
 
