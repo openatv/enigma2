@@ -83,7 +83,14 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/RemoteIPTVClient"):
 	REMOTEBOX = True
 else:
 	REMOTEBOX = False
-	
+
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/IniLCNScanner"):
+	from Plugins.SystemPlugins.IniLCNScanner.plugin import LCNScannerPlugin
+	HAVE_LCN_SCANNER = True
+	HAVE_LCN_SCANNER = False  # Disable for now...
+else:
+	HAVE_LCN_SCANNER = False
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -343,12 +350,14 @@ class GeneralSetup(Screen):
 			if len(dvbt_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
 			self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
-			if BLINDSCAN == True and len(nimList) != 0:
+			if BLINDSCAN and len(nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
 			if HAVE_SATFINDER and len(nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
-		if REMOTEBOX == True:
-			self.sublist.append(QuickSubMenuEntryComponent("Remote IP Channels",_("Setup Channels Server IP"),_("Setup server IP for your IP channels")))
+			if HAVE_LCN_SCANNER:
+				self.sublist.append(QuickSubMenuEntryComponent("LCN Renumber",_("Automatic LCN assignment"),_("Automatic LCN assignment")))
+		if REMOTEBOX:
+			self.sublist.append(QuickSubMenuEntryComponent("Remote IP Channels",_("Setup Channel Server IP"),_("Setup server IP for your IP channels")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
@@ -600,6 +609,8 @@ class GeneralSetup(Screen):
 			self.session.open(Blindscan)
 		elif HAVE_SATFINDER and selected == _("Sat Finder"):
 			self.SatfinderMain()
+		elif HAVE_LCN_SCANNER and selected == _("LCN Renumber"):
+			self.session.open(LCNScannerPlugin)
 ######## Select Software Manager Menu ##############################
 		elif selected == _("Software Update"):
 			self.session.open(UpdatePlugin)

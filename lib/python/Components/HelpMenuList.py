@@ -69,13 +69,20 @@ class HelpMenuList(GUIComponent):
 			if not actionmap.enabled:
 				continue
 
+			from Screens.ButtonSetup import helpableButtonSetupActionMap
+			isHelpableButtonSetupActionMap = isinstance(actionmap, helpableButtonSetupActionMap)
+
 			for (action, help) in actions:
 				helpTags = []
 				if hasattr(help, '__call__'):
 					help = help()
-					helpTags.append('C')
+					# ButtonSetupButtonActions help looks as though
+					# the button is configurable, but it isn't really
+					if not isHelpableButtonSetupActionMap:
+						helpTags.append('C')
 
-				if help is None:
+				# Ignore inactive ButtonSetupButtonActions
+				if isHelpableButtonSetupActionMap and not help:
 					continue
 
 				buttons = queryKeyBinding(context, action)
@@ -99,8 +106,8 @@ class HelpMenuList(GUIComponent):
 							buttonNames.append(name)
 							buttonsProcessed.add(nlong)
 
-				# only show entries with keys that are available on the used rc
-				if not buttonNames:
+				# only show non-empty entries with keys that are available on the used rc
+				if not (buttonNames and help):
 					continue
 
 				if helpTags:

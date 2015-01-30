@@ -62,15 +62,15 @@ preferredTagEditor = None
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
-	(str(MovieList.SORT_GROUPWISE), _("default") , 'New->Old & A->Z'),
-	(str(MovieList.SORT_RECORDED), _("by date"), 'New->Old'),
-	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), 'Old->New'),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A->Z'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("reverse alphabetic"), 'Z->A'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A->Z Flat'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("reverse flat alphabetic"), 'Z->A Flat'),
-	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
-	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"),  'Z1 A2 A1'),
+	(str(MovieList.SORT_GROUPWISE), _("Recordings by date, other media by name"), 'New->Old & A->Z'),
+	(str(MovieList.SORT_DATE_NEWEST_FIRST_ALPHA), _("By date, then by name"), 'New->Old, A->Z'),
+	(str(MovieList.SORT_DATE_OLDEST_FIRST_ALPHAREV), _("By reverse date, then by reverse name"), 'Old->New, Z->A'),
+	(str(MovieList.SORT_ALPHA_DATE_NEWEST_FIRST), _("By name, then by date"), 'A->Z, New->Old'),
+	(str(MovieList.SORT_ALPHA_DATE_NEWEST_FIRST_FLAT), _("Flat by name, then by date"), 'A->Z, New->Old Flat'),
+	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("By name, then by reverse date"), 'A->Z, Old->New'),
+	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("By reverse name, then by date"), 'Z->A, New->Old'),
+	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST), _("By reverse name, then by reverse date"), 'Z->A, Old->New'),
+	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT), _("Flat by reverse name, then by reverse date"), 'Z->A, Old->New Flat'),
 	(str(MovieList.SHUFFLE), _("shuffle"), 'Shuffle'),
 ]
 
@@ -216,7 +216,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
 			getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
 			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")),
-			getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("What to do at the end of file playback.")),
+			getConfigListEntry(_("When a movie reaches the end"), config.usage.on_movie_eof, _("What to do at the end of file playback.")),
 			getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service, _("Stop previous broadcasted service on return to movielist.")),
 			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))
 		]
@@ -657,7 +657,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedActions)
 			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedActions)
 			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
-			config.movielist.btn_text = ConfigSelection(default='movieoff', choices=userDefinedActions)
+			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedActions)
+
+			# Fill in descriptions for plugin actions
+			for act, val in userDefinedActions.items():
+				userDefinedDescriptions[act] = val
+
 			userDefinedButtons = {
 				'red': config.movielist.btn_red,
 				'green': config.movielist.btn_green,
@@ -1111,7 +1116,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.startPreview()
 
 	def seekRelative(self, direction, amount):
-		if self.list.playInBackground or self.list.playInBackground:
+		if self.list.playInBackground:
 			seekable = self.getSeek()
 			if seekable is None:
 				return

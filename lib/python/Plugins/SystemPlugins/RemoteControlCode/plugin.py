@@ -4,55 +4,33 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
+from Components.config import config, configfile, ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.Pixmap import Pixmap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
-from os import path as os_path, chmod as os_chmod, unlink as os_unlink, system as os_system
+from os import path as os_path
 
 modelist = {
-		"0": _("All"),
-		"1": _("INI3000"),
-		"2": _("INI7000"),
+		"0": _("All supported"),
+		# "1": _("INI3000"),
+		# "2": _("INI7000"),
 		"3": _("HDx"),
-		"4": _("MIRACLEBOX"),
-		"5": _("XPEED LX"),
-		"6": _("DUIA5200I"),
-		"7": _("DUIA5200I_1"),
-		"8": _("DUIA5200I_2"),
-		"9": _("YHGD2580"),
-		"10": _("XPEED LX_2"),
+		# "4": _("MIRACLEBOX"),
+		"5": _("Beyonwiz"),
+		# "6": _("DUIA5200I"),
+		# "7": _("DUIA5200I_1"),
+		# "8": _("DUIA5200I_2"),
+		# "9": _("YHGD2580"),
+		"10": _("Beyonwiz 2"),
 }
 
 config.plugins.RCSetup = ConfigSubsection()
-f = open("/proc/stb/ir/rc/type", "r")
-text = f.read()
-f.close()
-temp = int(text)
+config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="0")
 
-if temp == 10:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="10")
-elif temp == 9:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="9")
-elif temp == 8:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="8")
-elif temp == 7:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="7")
-elif temp == 6:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="6")
-elif temp == 5:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="5")
-elif temp == 4:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="4")
-elif temp == 3:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="3")
-elif temp == 2:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="2")
-elif temp == 1:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="1")
-elif temp == 0:
-	config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="0")
-
+def applySettings():
+	f = open("/proc/stb/ir/rc/type", "w")
+	f.write("%d" % int(config.plugins.RCSetup.mode.value))
+	f.close()
 
 class RCSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -104,7 +82,7 @@ class RCSetupScreen(Screen, ConfigListScreen):
 
 	def keyGo(self):
 		config.plugins.RCSetup.mode.value = self.mode.value
-		self.applySettings()
+		applySettings()
 
 		RC = config.plugins.RCSetup.mode.value
 		if (RC) != self.last_good:
@@ -117,47 +95,12 @@ class RCSetupScreen(Screen, ConfigListScreen):
 	def confirm(self, confirmed):
 		if not confirmed:
 			config.plugins.RCSetup.mode.value = self.last_good[0]
-			self.applySettings()
+			applySettings()
 		else:
-			self.installHelper()
-			self.applySettings()
+			applySettings()
+			config.plugins.RCSetup.mode.save()
+			configfile.save()
 			self.keySave()
-
-	def installHelper(self):
-		tmp = int(config.plugins.RCSetup.mode.value)
-		if tmp == 0:
-			self.createFile()
-		elif tmp == 1:
-			self.createFile()
-		elif tmp == 2:
-			self.createFile()
-		elif tmp == 3:
-			self.createFile()
-		elif tmp == 4:
-			self.createFile()
-		elif tmp == 5:
-			self.createFile()
-		elif tmp == 6:
-			self.createFile()
-		elif tmp == 7:
-			self.createFile()
-		elif tmp == 8:
-			self.createFile()
-		elif tmp == 9:
-			self.createFile()
-		elif tmp == 10:
-			self.createFile()
-
-	def createFile(self):
-		f = open("/etc/rc3.d/S30rcsetup", "w")
-		m = 'echo ' + config.plugins.RCSetup.mode.value + ' > /proc/stb/ir/rc/type'
-		f.write(m)
-		f.close()
-		os_chmod("/etc/rc3.d/S30rcsetup", 0755)
-
-	def removeFile(self):
-		if os_path.exists("/etc/rc3.d/S30rcsetup"):
-			os_unlink("/etc/rc3.d/S30rcsetup")
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -170,7 +113,7 @@ class RCSetupScreen(Screen, ConfigListScreen):
 		self.loadPreview()
 
 	def keyCancel(self):
-		self.applySettings()
+		applySettings()
 		self.close()
 
 	def loadPreview(self):
@@ -185,17 +128,6 @@ class RCSetupScreen(Screen, ConfigListScreen):
 
 		self.picload.startDecode(self.previewPath)
 
-	def applySettings(self):
-		f = open("/proc/stb/ir/rc/type", "r")
-		lines = f.readlines()
-		f.close()
-		if int(lines[0]) != int(config.plugins.RCSetup.mode.value):
-			try:
-				cmd = 'echo ' + config.plugins.RCSetup.mode.value + ' > /proc/stb/ir/rc/type'
-				os_system(cmd)
-			except:
-				return
-
 def main(session, **kwargs):
 	session.open(RCSetupScreen)
 
@@ -207,6 +139,7 @@ def RemoteControlSetup(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	if os_path.exists("/proc/stb/ir/rc/type"):
+		applySettings()
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(name=_("Remote Control Code"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=RemoteControlSetup)]
 	return []
