@@ -90,6 +90,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
+#if KEY_LAST_TO_KEY_PVR
+	if (ev->code == KEY_LAST)
+	{
+		/* xwidowx Remote rc has a Funktion key, which sends KEY_LAST events but we need a KEY_PVR. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PVR;
+	}
+#endif
+
 #if KEY_MEDIA_TO_KEY_LIST
 	if (ev->code == KEY_MEDIA)
 	{
