@@ -490,6 +490,9 @@ def InitUsageConfig():
 		("1", _("0.1%")), ("2", _("0.2%")), ("5", _("0.5%")),
 		("10", _("1%")), ("20", _("2%")), ("50", _("5%")),
 		("100", _("10%"))])
+	config.seek.updown_skips = ConfigYesNo(default=False)
+	config.seek.selfdefined_up = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
+	config.seek.selfdefined_down = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_right = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_13 = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
