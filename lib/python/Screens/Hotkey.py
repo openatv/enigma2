@@ -80,7 +80,9 @@ def getHotkeys():
 		("Video Mode" + " " + _("long"), "vmode_long", ""),
 		("Home", "home", ""),
 		("Power", "power", ""),
-		("Power" + " " + _("long"), "power_long", "")]
+		("Power" + " " + _("long"), "power_long", ""),
+		("HDMIin", "HDMIin", "Infobar/HDMIIn"),
+		("HDMIin" + " " + _("long"), "HDMIin_long", SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
@@ -152,6 +154,8 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
 	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
 	hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
+	if SystemInfo["LcdLiveTV"]:
+		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	hotkeyFunctions.append((_("Latest Commits"), "Module/Screens.About/CommitInfo", "Setup"))
@@ -453,6 +457,12 @@ class helpableHotkeyActionMap(HelpableActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+class dummyScreen(Screen):
+	skin = """<screen position="0,0" size="0,0" transparent="1"/>"""
+	def __init__(self, session, args=None):
+		Screen.__init__(self, session)
+		self.close()
+
 class InfoBarHotkey():
 	def __init__(self):
 		self.hotkeys = getHotkeys()
@@ -578,3 +588,7 @@ class InfoBarHotkey():
 			self.openServiceList()
 		elif hasattr(self, "showMovies"):
 			self.showMovies()
+
+	def ToggleLCDLiveTV(self):
+		config.lcd.showTv.value = not config.lcd.showTv.value
+		self.session.open(dummyScreen)
