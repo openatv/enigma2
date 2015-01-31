@@ -2295,13 +2295,10 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			# noinspection PyCallByClass
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
-			if config.timeshift.showinfobar.value:
-				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 			self.startHideTimer()
 
 	def __hideTimeshiftState(self):
-		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
