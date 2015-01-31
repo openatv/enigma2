@@ -5,7 +5,9 @@ from Screens.InfoBar import InfoBar
 from Screens.Screen import Screen
 
 class dummyScreen(Screen):
-	skin = """<screen position="0,0" size="0,0" transparent="1"/>"""
+	skin = """<screen position="0,0" size="0,0" transparent="1">
+	<widget source="session.VideoPicture" render="Pig" position="0,0" size="0,0" backgroundColor="transparent" zPosition="1"/>
+	</screen>"""
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.close()
