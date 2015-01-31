@@ -3308,12 +3308,6 @@ class InfoBarPowersaver:
 			self.session.open(Screens.Standby.Standby)
 
 class InfoBarHDMI:
-	def __init__(self):
-		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
-			{
-				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
-			}, prio=2)
-
 	def HDMIIn(self):
 		slist = self.servicelist
 		if slist.dopipzap:
