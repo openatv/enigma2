@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from Tools.Profile import profile
 
 from Screen import Screen
@@ -48,7 +49,6 @@ from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
 from time import localtime, time
-from os import remove
 try:
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
