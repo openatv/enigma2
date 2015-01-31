@@ -80,15 +80,8 @@ class InfoBarTimeshift:
 
 		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", timeshiftActions, prio=-1, description=_("Activate timeshift"))  # priority over record
 
-		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, "InfobarTimeshiftSeekPointerActions", {
-			"SeekPointerPlay": (self.ptsSeekPointerOK, _("Skip to skip pointer")),
-			"SeekPointerLeft": (self.ptsSeekPointerLeft, _("Move skip pointer back")),
-			"SeekPointerRight": (self.ptsSeekPointerRight, _("Move skip pointer forward")),
-		}, prio=1, description=_("Skip"))
-
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
-		self["TimeshiftSeekPointerActions"].setEnabled(False)
 
 		self.switchToLive = True
 		self.ptsStop = False
@@ -170,7 +163,6 @@ class InfoBarTimeshift:
 		dprint("isSeekable=%s, timeshiftEnabled=%s, config.timeshift.startdelay=%s, activate=%s, state=%s" % (self.isSeekable(), self.timeshiftEnabled(), config.timeshift.startdelay.value, activate, state))
 		self["TimeshiftActions"].setEnabled(state)
 		self["TimeshiftActivateActions"].setEnabled(activate)
-		self["TimeshiftSeekPointerActions"].setEnabled(state)
 		self["SeekActionsPTS"].setEnabled(state)
 
 		if not state:
