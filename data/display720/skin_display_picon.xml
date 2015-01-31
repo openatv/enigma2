@@ -157,7 +157,10 @@
 		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,420" foregroundColor="#ff0000" size="140,70" font="FdLcD;65" halign="center" valign="center" zPosition="22">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget render="MSNWeatherPixmap" position="500,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
+		<widget noWrap="1" font="FdLcD;55" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="left" >
+			<convert type="MSNWeather">temperature_current</convert>
+		</widget>
+		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
 			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Icons/,png</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
@@ -344,7 +347,7 @@
 		<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="700,540" sColor="#ff0000" positionwidth="682" positionheight="550" linewidth="3" linesize="170" zPosition="5" alphatest="on">
 			<convert type="EtAnalogClock">Seconds</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" zPosition="1" position="400,260" size="70,60" font="FdLcD;60" halign="center" transparent="1" foregroundColor="#0101DF" >
+		<widget source="global.CurrentTime" render="Label" zPosition="1" position="400,260" size="70,60" font="FdLcD;60" halign="center" transparent="1" foregroundColor="#e5b243" >
 			<convert type="ClockToText">Format:%d</convert>
 		</widget>
 	</screen>
@@ -448,5 +451,11 @@
 		<widget source="parent.Title" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
 		<panel name="SummaryClockPanel" />
 	</screen> 
+	
+<!-- Enigmalight -->
+	<screen name="EL_Screen_MainMenu_summary" position="0,0" size="720,576">
+		<eLabel text="Enigmalight" position="15,20" foregroundColor="#e5b243" size="670,400" font="FdLcD;70" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
+	</screen>
 
 </skin>
