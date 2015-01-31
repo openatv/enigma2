@@ -813,6 +813,7 @@ class InfoBarChannelSelection:
 		self.tscallback = None
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection", {
+			"openChannelList": (self.switchChannelUpDown, self._helpSwitchChannelUpDown),
 			"switchChannelUp": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True)),
 			"switchChannelDown": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False)),
 			"switchChannelUpLong": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True, long=True)),
@@ -823,7 +824,6 @@ class InfoBarChannelSelection:
 			"historyNext": (self.historyNext, _("Switch to next channel in history")),
 			"openServiceList": (self.openServiceList, _("Open service list")),
 			"openSatellites": (self.openSatellites, _("Open satellites list")),
-			"openBouquets": (self.openBouquets, _("Open favourites list")),
 			"LeftPressed": self.LeftPressed,
 			"RightPressed": self.RightPressed,
 			"reCallService": (self.reCallService, _("Switch between last two channels watched")),
@@ -905,58 +905,60 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.historyZap(+1)
 
-	def _helpSwitchChannelUpDown(self, up=True, long=False):
-		pipText = _(" PiP") if long else ""
-		if config.usage.show_bouquetalways.value:
-			helpText = _("Open") + pipText + _(" bouquet list")
+	def _helpSwitchChannelUpDown(self, up=None, long=False):
+		doMove = up is not None and "keep" not in config.usage.servicelist_cursor_behavior.value and not config.usage.show_bouquetalways.value
+
+		if (
+			up is not None and
+			"keep" not in config.usage.servicelist_cursor_behavior.value and
+			not config.usage.show_bouquetalways.value
+		):
+			return (
+				_("Open channel list and move down"),
+				_("Open channel list and move up"),
+				_("Open PiP channel list and move down"),
+				_("Open PiP channel list and move up"),
+			)[int(bool(long))*2 + int(bool(up))]
 		else:
-			helpText = _("Open") + pipText + _(" channel list")
-			if "keep" not in config.usage.servicelist_cursor_behavior.value:
-				# "up" is "to a higher channel number"
-				# but that's down the list
-				helpText += " and move "
-				helpText += "down" if up else "up"
-		return helpText
+			return (
+				_("Open channel list"),
+				_("Open bouquet list"),
+				_("Open PiP channel list"),
+				_("Open PiP bouquet list"),
+			)[int(bool(long))*2 + int(bool(config.usage.show_bouquetalways.value))]
+
+	def switchChannelUpDown(self, up=None):
+		if not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			doMove = up is not None and "keep" not in config.usage.servicelist_cursor_behavior.value
+			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+				if not config.usage.show_bouquetalways.value:
+					if doMove:
+						if up:
+							self.servicelist.moveUp()
+						else:
+							self.servicelist.moveDown()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.value:
+					if doMove:
+						if up:
+							self.servicelist2.moveUp()
+						else:
+							self.servicelist2.moveDown()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def switchChannelUp(self):
-		if not self.secondInfoBarScreen.shown:
-			self.keyHide()
-			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
-				if not config.usage.show_bouquetalways.value:
-					if "keep" not in config.usage.servicelist_cursor_behavior.value:
-						self.servicelist.moveUp()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
-			elif self.LongButtonPressed:
-				if not config.usage.show_bouquetalways.value:
-					if "keep" not in config.usage.servicelist_cursor_behavior.value:
-						self.servicelist2.moveUp()
-					self.session.execDialog(self.servicelist2)
-				else:
-					self.servicelist2.showFavourites()
-					self.session.execDialog(self.servicelist2)
+		self.switchChannelUpDown("up")
 
 	def switchChannelDown(self):
-		if not self.secondInfoBarScreen.shown:
-			self.keyHide()
-			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
-				if not config.usage.show_bouquetalways.value:
-					if "keep" not in config.usage.servicelist_cursor_behavior.value:
-						self.servicelist.moveDown()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
-			elif self.LongButtonPressed:
-				if not config.usage.show_bouquetalways.value:
-					if "keep" not in config.usage.servicelist_cursor_behavior.value:
-						self.servicelist2.moveDown()
-					self.session.execDialog(self.servicelist2)
-				else:
-					self.servicelist2.showFavourites()
-					self.session.execDialog(self.servicelist2)
+		self.switchChannelUpDown("down")
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
@@ -1719,7 +1721,13 @@ class InfoBarSeek:
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				elif action[:8] == "seekdef:":
-					if action[8:] == "left":
+					if not config.seek.updown_skips.value and action[8:] in ("up", "down"):
+						return HelpableActionMap.action(self, contexts, action)
+					if action[8:] == "up":
+						time = config.seek.selfdefined_up.value
+					elif action[8:] == "down":
+						time = -config.seek.selfdefined_down.value
+					elif action[8:] == "left":
 						time = -config.seek.selfdefined_left.value
 					elif action[8:] == "right":
 						time = config.seek.selfdefined_right.value
@@ -1749,7 +1757,14 @@ class InfoBarSeek:
 			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
 		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
-		skipHelp = (
+		if config.seek.updown_skips.value:
+			skipHelp = [
+				("seekdef:down", lambda: _("Skip back ") + str(config.seek.selfdefined_down.value) + _(" sec")),
+				("seekdef:up", lambda: _("Skip forward ") + str(config.seek.selfdefined_up.value) + _(" sec")),
+			]
+		else:
+			skipHelp = []
+		skipHelp += (
 			("seekdef:left", lambda: _("Skip back ") + str(config.seek.selfdefined_left.value) + _(" sec")),
 			("seekdef:right", lambda: _("Skip forward ") + str(config.seek.selfdefined_right.value) + _(" sec")),
 			("seekdef:1", lambda: _("Skip back ") + str(config.seek.selfdefined_13.value) + _(" sec")),
@@ -1776,7 +1791,7 @@ class InfoBarSeek:
 			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
 			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
-		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
+		}, prio=-1, description=_("Pause, rewind and fast forward timeshift"))  # give them a little more priority to win over color buttons
 
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS", skipHelp))

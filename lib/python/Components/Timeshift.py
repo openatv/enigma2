@@ -68,10 +68,17 @@ class InfoBarTimeshift:
 			"jumpNextFile": (self.__evEOF, _("Skip to next event in timeshift")),
 		}, prio=-1, description=_("Timeshift"))
 
-		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
+		timeshiftActions = {
 			"timeshiftActivateEnd": (self.activateTimeshiftEnd, _("Start timeshift")),
 			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and start timeshift")),
-		}, prio=-1, description=_("Activate timeshift"))  # priority over record
+		}
+		if config.seek.updown_skips.value:
+			timeshiftActions.update({
+				"timeshiftActivateEndExtra": (lambda: self.activateTimeshiftEnd(shiftTime=config.seek.selfdefined_down.value), _("Start timeshift")),
+				"ignore": (lambda: 1, None),
+			})
+
+		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", timeshiftActions, prio=-1, description=_("Activate timeshift"))  # priority over record
 
 		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, "InfobarTimeshiftSeekPointerActions", {
 			"SeekPointerPlay": (self.ptsSeekPointerOK, _("Skip to skip pointer")),
@@ -372,7 +379,7 @@ class InfoBarTimeshift:
 			self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
-	def activateTimeshiftEnd(self, pause=False):
+	def activateTimeshiftEnd(self, pause=False, shiftTime=None):
 		dprint("activateTimeshiftEnd")
 		ts = self.getTimeshift()
 		if ts is None:
@@ -388,7 +395,8 @@ class InfoBarTimeshift:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				seekable = self.getSeek()
 				if seekable is not None:
-					seekable.seekTo(-90000 * config.seek.selfdefined_left.value)
+					shiftTimeVal = shiftTime if shiftTime is not None else config.seek.selfdefined_left.value
+					seekable.seekTo(-90000 * shiftTimeVal)
 
 	def rewindService(self):
 		dprint("rewindService")
