@@ -100,6 +100,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				#New option to reload service lists (for example if bouquets have changed)
 				self.reloadLists = getConfigListEntry(_("Reload black-/white lists"), NoSave(ConfigNothing()))
 				self.list.append(self.reloadLists)
+			self.list.append(getConfigListEntry(_("Protect on epg age"), config.ParentalControl.age))	
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
