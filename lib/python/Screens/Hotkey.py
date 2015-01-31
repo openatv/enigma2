@@ -457,12 +457,6 @@ class helpableHotkeyActionMap(HelpableActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-class dummyScreen(Screen):
-	skin = """<screen position="0,0" size="0,0" transparent="1"/>"""
-	def __init__(self, session, args=None):
-		Screen.__init__(self, session)
-		self.close()
-
 class InfoBarHotkey():
 	def __init__(self):
 		self.hotkeys = getHotkeys()
@@ -592,4 +586,3 @@ class InfoBarHotkey():
 	def ToggleLCDLiveTV(self):
 		config.lcd.showTv.value = not config.lcd.showTv.value
 		config.lcd.showTv.save()
-		self.session.open(dummyScreen)
