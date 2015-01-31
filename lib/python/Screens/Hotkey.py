@@ -85,10 +85,9 @@ def getHotkeys():
 		("Video Mode" + " " + _("long"), "vmode_long", ""),
 		("Home", "home", ""),
 		("Power", "power", ""),
-		("Power" + " " + _("long"), "power_long", ""),
-		("HDMIin", "HDMIin", "Infobar/HDMIIn"),
-		("HDMIin" + " " + _("long"), "HDMIin_long", SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""]
-
+		("Power" + " " + _("long"), "power_long", "")]
+		#("HDMIin", "HDMIin", "Infobar/HDMIIn"),
+		#("HDMIin" + " " + _("long"), "HDMIin_long", SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""]
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
 for x in getHotkeys():
