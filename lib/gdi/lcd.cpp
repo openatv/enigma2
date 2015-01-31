@@ -125,7 +125,7 @@ eDBoxLCD::eDBoxLCD()
 			lcd_type = 3;
 		}
 	}
-/*#endif*/
+#endif
 	instance=this;
 
 	setSize(xres, yres, bpp);
