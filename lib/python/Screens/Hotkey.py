@@ -591,4 +591,5 @@ class InfoBarHotkey():
 
 	def ToggleLCDLiveTV(self):
 		config.lcd.showTv.value = not config.lcd.showTv.value
+		config.lcd.showTv.save()
 		self.session.open(dummyScreen)
