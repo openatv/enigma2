@@ -51,10 +51,9 @@ class InfoBar(
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["actions"] = HelpableActionMap(self, "InfobarActions", {
-			"showMovies": (self.showMovies, _("Watch recordings and media")),
+			"showMovies": (self.showMovies, _("Watch recordings and media...")),
 			"showRadio": (self.showRadio, _("Listen to the radio...")),
-			"showTv": (self.TvRadioToggle, _("Switch between TV and radio")),
-			"openBouquetList": (self.openBouquetList, self._helpOpenBouquetList),
+			"showTv": (self.TvRadioToggle, self._helpTvRadioToggle()),
 			"openTimerList": (self.openTimerList, _("Open timer list...")),
 			"openSleepTimer": (self.openSleepTimer, _("Show/add sleep timers...")),
 			"showMediaPlayer": (self.showMediaPlayer, _("Open the media player...")),
@@ -149,22 +148,17 @@ class InfoBar(
 		self.serviceStarted()
 		self.onShown.remove(self.__checkServiceStarted)
 
-	def _helpOpenBouquetList(self):
-		return {
-			"MovieList": _("Watch recordings and media"),
-			"ChannelList": _("Open channel list"),
-			"BouquetList": _("Open bouquet list")
-		}.get(config.usage.tvradiobutton_mode.value, _("No current function"))
+	def openChannelList(self):
+		self.showTvChannelList(True)
 
 	def openBouquetList(self):
-		if config.usage.tvradiobutton_mode.value == "MovieList":
-			self.showTvChannelList(True)
-			self.showMovies()
-		elif config.usage.tvradiobutton_mode.value == "ChannelList":
-			self.showTvChannelList(True)
-		elif config.usage.tvradiobutton_mode.value == "BouquetList":
-			self.showTvChannelList(True)
-			self.servicelist.showFavourites()
+		showTv(self)
+
+	def _helpTvRadioToggle(self):
+		if getBrandOEM() == 'gigablue':
+			return _("Switch between TV and radio...")
+		else:
+			return _("Watch TV...")
 
 	def TvRadioToggle(self):
 		if getBrandOEM() == 'gigablue':
@@ -181,24 +175,15 @@ class InfoBar(
 			self.showRadio()
 
 	def showTv(self):
-		if config.usage.tvradiobutton_mode.value == "MovieList":
-			self.showTvChannelList(True)
-			self.showMovies()
-		elif config.usage.tvradiobutton_mode.value == "BouquetList":
-			self.showTvChannelList(True)
-			if config.usage.show_servicelist.value:
-				self.servicelist.showFavourites()
-		else:
-			self.showTvChannelList(True)
+		self.showTvChannelList(True)
+		if config.usage.show_servicelist.value:
+			self.servicelist.showFavourites()
 
 	def showRadio(self):
 		if config.usage.e1like_radio_mode.value:
-			if config.usage.tvradiobutton_mode.value == "BouquetList":
-				self.showRadioChannelList(True)
-				if config.usage.show_servicelist.value:
-					self.servicelist.showFavourites()
-			else:
-				self.showRadioChannelList(True)
+			self.showRadioChannelList(True)
+			if config.usage.show_servicelist.value:
+				self.servicelist.showFavourites()
 		else:
 			self.rds_display.hide()  # in InfoBarRdsDecoder
 			from Screens.ChannelSelection import ChannelSelectionRadio
