@@ -200,11 +200,11 @@ void *gRC::thread()
 #endif
 		}
 	}
-#ifndef SYNC_PAINT
 #ifdef USE_LIBVUGLES2
 	gles_state_close();
 	gles_close();
 #endif
+#ifndef SYNC_PAINT
 	pthread_exit(0);
 #endif
 	return 0;

@@ -365,7 +365,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux0", nr);
-	demuxFd = open(filename, O_RDONLY | O_NONBLOCK);
+	demuxFd = open(filename, O_RDONLY | O_NONBLOCK | O_CLOEXEC);
 	if (demuxFd < 0)
 	{
 		goto error;
@@ -375,7 +375,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	{
 		snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", vtunerid);
 		if (::access(filename, F_OK) < 0) break;
-		vtunerFd = open(filename, O_RDWR);
+		vtunerFd = open(filename, O_RDWR | O_CLOEXEC);
 		if (vtunerFd < 0)
 		{
 			vtunerid++;
@@ -499,32 +499,6 @@ void *eDVBUsbAdapter::vtunerPump()
 
 #define DEMUX_BUFFER_SIZE (8 * ((188 / 4) * 4096)) /* 1.5MB */
 	ioctl(demuxFd, DMX_SET_BUFFER_SIZE, DEMUX_BUFFER_SIZE);
-
-#if DVB_API_VERSION < 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR < 5
-	/*
-	 * HACK: several stb's with older DVB API versions do not handle the
-	 * constant starting / stopping of PES filters on their vtuner interface
-	 * very well, eventually they will stop feeding any data.
-	 * In order to work around this problem, we always start a filter, making sure
-	 * 'pidcount' never drops to zero, so the filter is never stopped.
-	 *
-	 * Note that this isn't allowed for recent DVB API versions, because they
-	 * refuse to start filters while the frontend is sleeping (e.g. not tuned).
-	 */
-	{
-		struct dmx_pes_filter_params filter;
-		filter.input = DMX_IN_FRONTEND;
-		filter.flags = 0;
-		filter.pid = 0;
-		filter.output = DMX_OUT_TSDEMUX_TAP;
-		filter.pes_type = DMX_PES_OTHER;
-		if (ioctl(demuxFd, DMX_SET_PES_FILTER, &filter) >= 0
-				&& ioctl(demuxFd, DMX_START) >= 0)
-		{
-			pidcount = 1;
-		}
-	}
-#endif
 
 	while (running)
 	{
@@ -772,7 +746,7 @@ bool eDVBResourceManager::frontendIsCompatible(int index, const char *type)
 			}
 			else if (!strcmp(type, "DVB-C"))
 			{
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
+#if defined SYS_DVBC_ANNEX_A
 				return i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_A, false) || i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_C, false);
 #else
 				return i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_AC, false);
@@ -807,7 +781,7 @@ void eDVBResourceManager::setFrontendType(int index, const char *type)
 			}
 			else if (!strcmp(type, "DVB-C"))
 			{
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
+#if defined SYS_DVBC_ANNEX_A
 				whitelist.push_back(SYS_DVBC_ANNEX_A);
 				whitelist.push_back(SYS_DVBC_ANNEX_C);
 #else

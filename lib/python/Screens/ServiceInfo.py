@@ -39,20 +39,15 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		else:
 			b = str(b)
 
-	if screenwidth and screenwidth == 1920:
-		return [
-			#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 330, 60, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ""),
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 330, 60, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, a),
-			(eListboxPythonMultiContent.TYPE_TEXT, 350, 0, 650, 60, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, b)
-		]
-	else:
-		return [
-			#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 320, 30, 0, RT_HALIGN_LEFT, ""),
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 320, 25, 0, RT_HALIGN_LEFT, a),
-			(eListboxPythonMultiContent.TYPE_TEXT, 330, 0, 570, 25, 0, RT_HALIGN_LEFT, b)
-		]
+	x, y, w, h = skin.parameters.get("ServiceInfo",(0, 0, 300, 30))
+	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft",(0, 0, 300, 25))
+	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight",(300, 0, 600, 25))
+	return [
+		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
+		(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, ""),
+		(eListboxPythonMultiContent.TYPE_TEXT, xa, ya, wa, ha, 0, RT_HALIGN_LEFT, a),
+		(eListboxPythonMultiContent.TYPE_TEXT, xb, yb, wb, hb, 0, RT_HALIGN_LEFT, b)
+	]
 
 class ServiceInfoList(HTMLComponent, GUIComponent):
 	def __init__(self, source):
@@ -62,7 +57,6 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 		self.fontName = "Regular"
 		self.fontSize = 23
-		self.fontSize1080 = 31
 		self.ItemHeight = 25
 
 	def applySkin(self, desktop, screen):
@@ -73,7 +67,6 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 					font = skin.parseFont(value, ((1,1),(1,1)))
 					self.fontName = font.family
 					self.fontSize = font.pointSize
-					self.fontSize1080 = font.pointSize
 				elif attrib == "itemHeight":
 					self.ItemHeight = int(value)
 				else:
@@ -87,13 +80,8 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setFontsize(self):
-		screenwidth = getDesktop(0).size().width()
-		if screenwidth and screenwidth == 1920:
-			self.l.setFont(0, gFont(self.fontName, self.fontSize1080))
-			self.l.setFont(1, gFont(self.fontName, self.fontSize1080 + 7))
-		else:
-			self.l.setFont(0, gFont(self.fontName, self.fontSize))
-			self.l.setFont(1, gFont(self.fontName, self.fontSize + 5))
+		self.l.setFont(0, gFont(self.fontName, self.fontSize))
+		self.l.setFont(1, gFont(self.fontName, self.fontSize + 5))
 
 	def postWidgetCreate(self, instance):
 		self.instance.setContent(self.l)

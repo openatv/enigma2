@@ -165,7 +165,7 @@ DEFINE_REF(eM2TSFile);
 eM2TSFile::eM2TSFile(const char *filename):
 	m_lock(),
 	m_sync_offset(0),
-	m_fd(::open(filename, O_RDONLY | O_LARGEFILE)),
+	m_fd(::open(filename, O_RDONLY | O_LARGEFILE | O_CLOEXEC)),
 	m_current_offset(0),
 	m_length(0)
 {
