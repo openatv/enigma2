@@ -80,7 +80,7 @@ class InfoBarTimeshift:
 
 		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
 			"timeshiftActivateEndExtra": (lambda: self.activateTimeshiftEnd(shiftTime=config.seek.selfdefined_down.value), _("Start timeshift")),
-			"ignore": (lambda: 1, None),
+			"ignore": (lambda: 1, ""),
 		}, prio=-2, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
 		config.seek.updown_skips.addNotifier(notifyActivateActionsUpDown, initial_call=False, immediate_feedback=False)
