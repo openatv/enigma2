@@ -72,6 +72,16 @@ def isStandardInfoBar(self):
 def isMoviePlayerInfoBar(self):
 	return self.__class__.__name__ == "MoviePlayer"
 
+def notifySeekActionsUpDown(setting):
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance is not None:
+		InfoBar.instance.setEnableSeekActions()
+
+def notifySeekActionsPTSUpDown(setting):
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance is not None:
+		InfoBar.instance.setEnableSeekActionsPTS()
+
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
@@ -1743,6 +1753,9 @@ class InfoBarSeek:
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
+		def skipString(fwd, skip):
+			return "%s %3d sec" % (_("Skip forward ") if fwd else _("Skip back "), skip)
+
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, {
 			"playpauseService": (self.playpauseService, _("Play/pause playback")),
 			"pauseService": (self.pauseService, _("Pause playback")),
@@ -1755,30 +1768,33 @@ class InfoBarSeek:
 
 			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
 			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
-		}, prio=-1, description=_("Pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
+		}, prio=-1, description=_("Skip, pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
+		self["SeekActionsUpDown"] = InfoBarSeekActionMap(self, actionmap, {
+			# Just a placeholdef for the help
+		}, prio=-1, description=_("Skip, pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
-		if config.seek.updown_skips.value:
-			skipHelp = [
-				("seekdef:down", lambda: _("Skip back ") + str(config.seek.selfdefined_down.value) + _(" sec")),
-				("seekdef:up", lambda: _("Skip forward ") + str(config.seek.selfdefined_up.value) + _(" sec")),
-			]
-		else:
-			skipHelp = []
-		skipHelp += (
-			("seekdef:left", lambda: _("Skip back ") + str(config.seek.selfdefined_left.value) + _(" sec")),
-			("seekdef:right", lambda: _("Skip forward ") + str(config.seek.selfdefined_right.value) + _(" sec")),
-			("seekdef:1", lambda: _("Skip back ") + str(config.seek.selfdefined_13.value) + _(" sec")),
-			("seekdef:3", lambda: _("Skip forward " + str(config.seek.selfdefined_13.value) + _(" sec"))),
-			("seekdef:4", lambda: _("Skip back " + str(config.seek.selfdefined_46.value) + _(" sec"))),
-			("seekdef:6", lambda: _("Skip forward " + str(config.seek.selfdefined_46.value) + _(" sec"))),
-			("seekdef:7", lambda: _("Skip back " + str(config.seek.selfdefined_79.value) + _(" sec"))),
-			("seekdef:9", lambda: _("Skip forward " + str(config.seek.selfdefined_79.value) + _(" sec")))
+		skipHelp = (
+			("seekdef:left", lambda: skipString(False, config.seek.selfdefined_left.value)),
+			("seekdef:right", lambda: skipString(True, config.seek.selfdefined_right.value)),
+			("seekdef:1", lambda: skipString(False, config.seek.selfdefined_13.value)),
+			("seekdef:3", lambda: skipString(True, config.seek.selfdefined_13.value)),
+			("seekdef:4", lambda: skipString(False, config.seek.selfdefined_46.value)),
+			("seekdef:6", lambda: skipString(True, config.seek.selfdefined_46.value)),
+			("seekdef:7", lambda: skipString(False, config.seek.selfdefined_79.value)),
+			("seekdef:9", lambda: skipString(True, config.seek.selfdefined_79.value))
+		)
+
+		skipHelpUpDown = (
+			("seekdef:down", lambda: skipString(False, config.seek.selfdefined_down.value)),
+			("seekdef:up", lambda: skipString(True, config.seek.selfdefined_up.value)),
 		)
 
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActions"], actionmap, skipHelp))
+		self.helpList.append((self["SeekActionsUpDown"], actionmap, skipHelpUpDown))
 
-		self["SeekActions"].setEnabled(False)
+		self.setEnableSeekActions(False)
+		config.seek.updown_skips.addNotifier(notifySeekActionsUpDown, initial_call=False, immediate_feedback=False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS", {
 			"playpauseService": (self.playpauseService, _("Play/pause playback")),
@@ -1791,12 +1807,17 @@ class InfoBarSeek:
 			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
 			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
-		}, prio=-1, description=_("Pause, rewind and fast forward timeshift"))  # give them a little more priority to win over color buttons
+		}, prio=-1, description=_("Skip, pause, rewind and fast forward timeshift"))  # give them a little more priority to win over color buttons
+		self["SeekActionsUpDownPTS"] = InfoBarSeekActionMap(self, actionmap, {
+			# Just a placeholdef for the help
+		}, prio=-1, description=_("Skip, pause, rewind and fast forward timeshift"))  # give them a little more priority to win over color buttons
 
 		# Actions determined in self.action()
 		self.helpList.append((self["SeekActionsPTS"], "InfobarSeekActionsPTS", skipHelp))
+		self.helpList.append((self["SeekActionsUpDownPTS"], "InfobarSeekActionsPTS", skipHelpUpDown))
 
-		self["SeekActionsPTS"].setEnabled(False)
+		self.setEnableSeekActionsPTS(False)
+		config.seek.updown_skips.addNotifier(notifySeekActionsPTSUpDown, initial_call=False, immediate_feedback=False)
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1809,6 +1830,18 @@ class InfoBarSeek:
 		self.lockedBecauseOfSkipping = False
 
 		self.__seekableStatusChanged()
+
+	def setEnableSeekActions(self, activate=None):
+		if activate is not None:
+			activate = bool(activate)
+			self["SeekActions"].setEnabled(activate)
+		self["SeekActionsUpDown"].setEnabled(self["SeekActions"].enabled and config.seek.updown_skips.value)
+
+	def setEnableSeekActionsPTS(self, activate=None):
+		if activate is not None:
+			activate = bool(activate)
+			self["SeekActionsPTS"].setEnabled(activate)
+		self["SeekActionsUpDownPTS"].setEnabled(self["SeekActionsPTS"].enabled and config.seek.updown_skips.value)
 
 	def makeStateForward(self, n):
 		return 0, n, 0, ">> %dx" % n
@@ -1874,11 +1907,12 @@ class InfoBarSeek:
 			pass
 		elif not self.isSeekable():
 			# print "not seekable, return to play"
-			self["SeekActions"].setEnabled(False)
+			self.setEnableSeekActions(False)
+
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
 			# print "seekable"
-			self["SeekActions"].setEnabled(True)
+			self.setEnableSeekActions(True)
 			self.activityTimer.start(200, False)
 			for c in self.onPlayStateChanged:
 				c(self.seekstate)
