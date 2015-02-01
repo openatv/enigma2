@@ -73,7 +73,7 @@ class InfoBarTimeshift:
 			"jumpNextFile": (self.__evEOF, _("Skip to next event in timeshift")),
 		}, prio=-1, description=_("Timeshift"))
 
-		timeshiftActions = {
+		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
 			"timeshiftActivateEnd": (self.activateTimeshiftEnd, _("Start timeshift")),
 			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and start timeshift")),
 		}, prio=-2, description=_("Activate timeshift"))  # priority over SeekActionsPTS
