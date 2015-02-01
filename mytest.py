@@ -596,7 +596,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3') or getBrandOEM() in ('fulan'):
+	if boxtype in ('et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3') or getBrandOEM() in ('fulan'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
