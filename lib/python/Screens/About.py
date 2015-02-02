@@ -56,6 +56,7 @@ class About(Screen):
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
 		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
+		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
 
 		string = getDriverDate()
 		year = string[0:4]
@@ -85,8 +86,6 @@ class About(Screen):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System temperature: %s%sC\n\n") % (tempinfo.replace('\n', ''), mark)
-
-		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
