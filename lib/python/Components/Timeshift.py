@@ -168,7 +168,7 @@ class InfoBarTimeshift:
 		dprint("isSeekable=%s, timeshiftEnabled=%s, config.timeshift.startdelay=%s, activate=%s, state=%s" % (self.isSeekable(), self.timeshiftEnabled(), config.timeshift.startdelay.value, activate, state))
 		self["TimeshiftActions"].setEnabled(state)
 		self.setEnableTimeshiftActivateActions(activate)
-		self.setEnableSeekActionsPTS(state)
+		self["SeekActionsPTS"].setEnabled(state)
 
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
