@@ -25,7 +25,7 @@ class About(Screen):
 		Screen.setTitle(self, _("Image Information"))
 		self.skinName = "AboutOE"
 		self.populate()
-
+		
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 									{
@@ -64,7 +64,8 @@ class About(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s\n") % driversdate
-
+		
+		AboutText += _("Installed: ") + about.getFlashDateString()
 		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
 		fp_version = getFPVersion()
