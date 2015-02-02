@@ -1716,7 +1716,7 @@ class InfoBarSeek:
 					return HelpableActionMap.action(self, contexts, action)
 
 			@staticmethod
-			def seekTime(action, genHelp=False):
+			def seekTime(action):
 				if action[:5] == "seek:":
 					return int(action[5:])
 				elif action[:8] == "seekdef:":
