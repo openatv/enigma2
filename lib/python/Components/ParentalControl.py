@@ -41,7 +41,7 @@ def InitParentalControl():
 	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 	config.ParentalControl.servicepin = ConfigSubList()
-	config.ParentalControl.age = ConfigSelection(default = "18", choices = [(0, _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
 
 	for i in (0, 1, 2):
 		config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
