@@ -60,19 +60,22 @@ class About(Screen):
 
 		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
+		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
 		KernelVersion = _("Kernel version: ") + about.getKernelVersionString() + "\n"
 		self["KernelVersion"] = StaticText(KernelVersion)
 		AboutText += KernelVersion + "\n"
 
-		EnigmaVersion = "GUI Build: " + about.getEnigmaVersionString()
+		EnigmaVersion = _("GUI Build: ") + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
-		GStreamerVersion = "GStreamer: " + about.getGStreamerVersionString()
+		GStreamerVersion = _("GStreamer: ") + about.getGStreamerVersionString()
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
 		AboutText += GStreamerVersion + "\n"
+
+		AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		self["ImageVersion"] = StaticText(ImageVersion)
