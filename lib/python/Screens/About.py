@@ -15,11 +15,12 @@ from enigma import eTimer, eLabel
 
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
+import skin
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
+		hddsplit = skin.parameters.get("AboutHddSplit",(0))[0]
 
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
@@ -69,14 +70,15 @@ class About(Screen):
 		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
+			formatstring = hddsplit and "%s:%s, %.1f %sB %s" or "%s\n(%s, %.1f %sB %s)"
 			for count in range(len(hddlist)):
 				if hddinfo:
 					hddinfo += "\n"
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
-					hddinfo += "%s\n(%s, %.1f GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024., _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free()/1024, "G", _("free"))
 				else:
-					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free()/1024, "M", _("free"))
 		else:
 			hddinfo = _("none")
 		self["hddA"] = StaticText(hddinfo)
