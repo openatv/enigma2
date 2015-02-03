@@ -128,6 +128,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
 	ButtonSetupFunctions.append((_("Volume down"), "Infobar/volumeDown", "InfoBar"))
 	ButtonSetupFunctions.append((_("Volume up"), "Infobar/volumeUp", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show Infobar"), "Infobar/toggleShow", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show favourites list"), "Infobar/openBouquets", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show satellites list"), "Infobar/openSatellites", "InfoBar"))
