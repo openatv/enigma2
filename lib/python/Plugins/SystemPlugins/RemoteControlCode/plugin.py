@@ -10,19 +10,19 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 from os import path as os_path
 
-modelist = {
-		"0": _("All supported"),
-		# "1": _("INI3000"),
-		# "2": _("INI7000"),
-		"3": _("HDx"),
-		# "4": _("MIRACLEBOX"),
-		"5": _("Beyonwiz"),
-		# "6": _("DUIA5200I"),
-		# "7": _("DUIA5200I_1"),
-		# "8": _("DUIA5200I_2"),
-		# "9": _("YHGD2580"),
-		"10": _("Beyonwiz 2"),
-}
+modelist = [
+	("0", _("All supported")),
+	("5", _("Beyonwiz T3 (0xABCD)")),
+	("10", _("Beyonwiz T3 alternate (0xAE97)")),
+	("6", _("Beyonwiz (0x02F2)")),
+	("7", _("Beyonwiz (0x02F3)")),
+	("8", _("Beyonwiz (0x02F4)")),
+	# ("1", _("INI3000 (0x0932)")),
+	# ("2", _("INI7000 (0x0831")),
+	("3", _("HDx (0x0933)")),
+	# ("4", _("MIRACLEBOX (0x02F9)")),
+	# ("9", _("YHGD2580 (0x08F7)")),
+]
 
 config.plugins.RCSetup = ConfigSubsection()
 config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="0")
