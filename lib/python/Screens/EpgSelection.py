@@ -436,6 +436,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
+			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			if self.type == EPG_TYPE_SINGLE:
 				service = self.currentService
@@ -452,8 +453,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 		else:
 			self['list'].fillSimilarList(self.currentService, self.eventid)
-		if self.type == EPG_TYPE_MULTI:
-			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def refreshlist(self):
 		self.refreshTimer.stop()
