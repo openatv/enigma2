@@ -1784,7 +1784,7 @@ class InfoBarSeek:
 				for action in [act for ctx, act in getKeyBindingKeys(filterfn=lambda(key): key[0] == context and key[1].startswith("seek"))]:
 					time = InfoBarSeekActionMap.seekTime(action)
 					if time is not None:
-						skipHelp.append((action, InfoBarSeekActionMap.skipString(time >= 0, abs(time))))
+						skipHelp.append((action, InfoBarSeekActionMap.skipString(time)))
 				return tuple(skipHelp)
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, {
