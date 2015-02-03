@@ -1648,11 +1648,22 @@ class Seekbar(Screen, HelpableScreen):
 		self["cursor"] = MovingPixmap()
 		self["time"] = Label()
 
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "DirectionActions"], {
+		self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "DirectionActions", "NumberActions"], {
 			"back": (self.exit, _("Exit seekbar without jumping to seek position")),
 			"ok": (self.keyOK, _("Jump to seek position")),
 			"left": (self.keyLeft, lambda: _("Move seek position left by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%"),
-			"right": (self.keyRight, lambda: _("Move seek position right by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%")
+			"right": (self.keyRight, lambda: _("Move seek position right by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%"),
+
+			"1": (self.keyNumberGlobal, _("Skip to 10% position")),
+			"2": (self.keyNumberGlobal, _("Skip to 20% position")),
+			"3": (self.keyNumberGlobal, _("Skip to 30% position")),
+			"4": (self.keyNumberGlobal, _("Skip to 40% position")),
+			"5": (self.keyNumberGlobal, _("Skip to 50% position")),
+			"6": (self.keyNumberGlobal, _("Skip to 60% position")),
+			"7": (self.keyNumberGlobal, _("Skip to 70% position")),
+			"8": (self.keyNumberGlobal, _("Skip to 80% position")),
+			"9": (self.keyNumberGlobal, _("Skip to 90% position")),
+			"0": (self.keyNumberGlobal, _("Skip to 0% position (start)")),
 		}, prio=-1)
 
 		self.cursorTimer = eTimer()
@@ -1687,11 +1698,7 @@ class Seekbar(Screen, HelpableScreen):
 			self.percent = 100.0
 
 	def keyNumberGlobal(self, number):
-		sel = self["config"].getCurrent()[1]
-		if sel == self.positionEntry:
-			self.percent = float(number) * 10.0
-		else:
-			ConfigListScreen.keyNumberGlobal(self, number)
+		self.percent = min(max(float(number) * 10.0, 0), 90)
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
@@ -1720,6 +1727,8 @@ class InfoBarSeek:
 				# print "action:", action
 				time = self.seekTime(action)
 				if time is not None:
+					if(callable(time)):
+						time = time()
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
@@ -1733,25 +1742,28 @@ class InfoBarSeek:
 					if not config.seek.updown_skips.value and action[8:] in ("up", "down"):
 						return None
 					if action[8:] == "up":
-						return config.seek.selfdefined_up.value
+						return lambda: config.seek.selfdefined_up.value
 					elif action[8:] == "down":
-						return -config.seek.selfdefined_down.value
+						return lambda: -config.seek.selfdefined_down.value
 					elif action[8:] == "left":
-						return -config.seek.selfdefined_left.value
+						return lambda: -config.seek.selfdefined_left.value
 					elif action[8:] == "right":
-						return config.seek.selfdefined_right.value
+						return lambda: config.seek.selfdefined_right.value
 					else:
 						key = int(action[8:])
 						return (
-							-config.seek.selfdefined_13.value, None, config.seek.selfdefined_13.value,
-							-config.seek.selfdefined_46.value, None, config.seek.selfdefined_46.value,
-							-config.seek.selfdefined_79.value, None, config.seek.selfdefined_79.value
+							lambda: -config.seek.selfdefined_13.value, None, lambda: config.seek.selfdefined_13.value,
+							lambda: -config.seek.selfdefined_46.value, None, lambda: config.seek.selfdefined_46.value,
+							lambda: -config.seek.selfdefined_79.value, None, lambda: config.seek.selfdefined_79.value
 						)[key - 1]
 				return None
 
 			@staticmethod
-			def skipString(fwd, skip):
-				return "%s %3d sec" % (_("Skip forward ") if fwd else _("Skip back "), skip)
+			def skipString(skip):
+				if callable(skip):
+					return lambda: "%s %d %s" % (_("Skip forward ") if skip() >= 0 else _("Skip back "), skip(), _("sec"))
+				else:
+					return "%s %d %s" % (_("Skip forward ") if skip >=0  else _("Skip back "), skip, _("sec"))
 
 			@staticmethod
 			def generateSkipHelp(context):
@@ -1759,7 +1771,7 @@ class InfoBarSeek:
 				for action in [act for ctx, act in getKeyBindingKeys(filterfn=lambda(key): key[0] == context and key[1].startswith("seek"))]:
 					time = InfoBarSeekActionMap.seekTime(action)
 					if time is not None:
-						skipHelp.append((action, InfoBarSeekActionMap.skipString(time >= 0, abs(time))))
+						skipHelp.append((action, InfoBarSeekActionMap.skipString(time)))
 				return tuple(skipHelp)
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, {
