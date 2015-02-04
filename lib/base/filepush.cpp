@@ -183,7 +183,9 @@ void eFilePushThread::thread()
 					}
 					if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
 					{
+#if HAVE_CPULOADFIX
 						sleep(2);
+#endif
 						continue;
 					}
 					eDebug("eFilePushThread WRITE ERROR");
