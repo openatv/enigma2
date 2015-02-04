@@ -33,42 +33,42 @@
 
 <!-- Tunerstatuspanel -->
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;55" halign="center" valign="bottom" foregroundColor="#e5b243" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="##00FF00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -107,8 +107,8 @@
 		<widget noWrap="1" font="FdLcD;55" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="left" >
 			<convert type="MSNWeather">temperature_current</convert>
 		</widget>
-		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
-			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Icons/,png</convert>
+		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" halign="right" valign="center" >
+			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
 		<panel name="SummaryTunerStatusPanel" />
@@ -161,7 +161,7 @@
 			<convert type="MSNWeather">temperature_current</convert>
 		</widget>
 		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
-			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Icons/,png</convert>
+			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
 		<panel name="SummaryTunerStatusPanel" />
@@ -337,7 +337,7 @@
 <!--"Analog Clock" -->
 	<screen name="StandbySummary" position="0,0" size="720,576">
 		<eLabel position="0,0" size="700,576" zPosition="-1" backgroundColor="#000000" />
-		<ePixmap pixmap="~/Icons/analog_lcd.png" position="center,center" size="700,540" transparent="1" alphatest="blend" />
+		<ePixmap pixmap="~/skin_default/analog_lcd.png" position="center,center" size="700,540" transparent="1" alphatest="blend" />
 		<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="700,540" hColor="#e5b243" positionwidth="682" positionheight="550" linewidth="7" linesize="120" zPosition="3" alphatest="on">
 			<convert type="EtAnalogClock">Hours</convert>
 		</widget>
