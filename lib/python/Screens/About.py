@@ -55,10 +55,7 @@ class About(Screen):
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
-		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
-		AboutText += _("Python:\t%s\n ") + about.getPythonVersionString()
-
+		
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -66,7 +63,11 @@ class About(Screen):
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s\n") % driversdate
 		
-		AboutText += _("Installed:\t%s\n ") + about.getFlashDateString()
+		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
+		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
+		AboutText += _("Python:\t ") + about.getPythonVersionString() + "\n"
+
+		AboutText += _("Installed:\t ") + about.getFlashDateString() + "\n"
 		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
 		fp_version = getFPVersion()
