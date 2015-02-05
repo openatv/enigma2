@@ -16,6 +16,7 @@ from Components.config import config
 from Components.Console import Console
 from Components.Ipkg import IpkgComponent
 from Components.Pixmap import Pixmap
+from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
@@ -143,11 +144,13 @@ class UpdatePlugin(Screen):
 
 		self.setTitle(_("Software update"))
 		
+		status_msgs = {'stable': _('Stable'), 'unstable': _('Unstable'), 'updating': _('Updating'), 'unknown': _('No connection')}
 		self['tl_off'] = Pixmap()
 		self['tl_red'] = Pixmap()
 		self['tl_yellow'] = Pixmap()
 		self['tl_green'] = Pixmap()
 		self.feedsStatus()
+		self['feedStatusMSG'] = Label(status_msgs[self.trafficLight])
 		
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
