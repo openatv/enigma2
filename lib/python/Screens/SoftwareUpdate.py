@@ -144,14 +144,6 @@ class UpdatePlugin(Screen):
 
 		self.setTitle(_("Software update"))
 		
-		status_msgs = {'stable': _('Stable'), 'unstable': _('Unstable'), 'updating': _('Updating'), 'unknown': _('No connection')}
-		self['tl_off'] = Pixmap()
-		self['tl_red'] = Pixmap()
-		self['tl_yellow'] = Pixmap()
-		self['tl_green'] = Pixmap()
-		self.feedsStatus()
-		self['feedStatusMSG'] = Label(status_msgs[self.trafficLight])
-		
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -162,6 +154,14 @@ class UpdatePlugin(Screen):
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
+		status_msgs = {'stable': _('Stable'), 'unstable': _('Unstable'), 'updating': _('Updating'), 'unknown': _('No connection')}
+		self['tl_off'] = Pixmap()
+		self['tl_red'] = Pixmap()
+		self['tl_yellow'] = Pixmap()
+		self['tl_green'] = Pixmap()
+		self.feedsStatus()
+		self['feedStatusMSG'] = Label(status_msgs[self.trafficLight])
+		
 		self.channellist_only = 0
 		self.channellist_name = ''
 		self.SettingsBackupDone = False
@@ -175,6 +175,7 @@ class UpdatePlugin(Screen):
 		self.checkNetworkState()
 
 	def feedsStatus(self):
+		from urllib import urlopen
 		import socket
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
