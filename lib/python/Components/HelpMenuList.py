@@ -80,12 +80,15 @@ class HelpMenuList(GUIComponent):
 
 			for (action, help) in actions:
 				helpTags = []
-				if hasattr(help, '__call__'):
+				if callable(help):
 					help = help()
 					# ButtonSetupButtonActions help looks as though
 					# the button is configurable, but it isn't really
 					if not isHelpableButtonSetupActionMap:
 						helpTags.append('C')
+
+				if help is None:
+					continue
 
 				# Ignore inactive ButtonSetupButtonActions
 				if isHelpableButtonSetupActionMap and not help:
