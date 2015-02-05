@@ -460,11 +460,18 @@ def InitUsageConfig():
 	config.network.uShare_autostart = ConfigYesNo(default=True)
 
 	config.softwareupdate = ConfigSubsection()
-	config.softwareupdate.autosettingsbackup = ConfigYesNo(default=True)
-	config.softwareupdate.autoimagebackup = ConfigYesNo(default=False)
 	config.softwareupdate.check = ConfigYesNo(default=True)
-	config.softwareupdate.checktimer = ConfigSelectionNumber(default=1, min=1, max=48, stepwidth=1, wraparound=True)
-	config.softwareupdate.updatelastcheck = ConfigInteger(default=0)
+	config.softwareupdate.checktimer = ConfigSelection(choices=[
+		("1", "hour"),
+		("2", "2 hours"),
+		("3", "3 hours"),
+		("4", "4 hours"),
+		("6", "6 hours"),
+		("8", "8 hours"),
+		("12", "12 hours"),
+		("24", "24 hours"),
+		("48", "2 days"),
+	], default="1")
 	config.softwareupdate.updatefound = NoSave(ConfigBoolean(default=False))
 	config.softwareupdate.updatebeta = ConfigYesNo(default=True)
 	config.softwareupdate.updateisunstable = ConfigInteger(default=0)

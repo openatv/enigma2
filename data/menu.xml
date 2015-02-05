@@ -235,11 +235,9 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 					</code>
 				</item>
-				<!--
 				<item weight="8" level="1" entryID="onlineupdate_setup" endtext="&gt;&lt;">
 					<setup id="softwareupdate"/>
 				</item>
-				--> 
 				<!--
 				<item weight="6" level="0" text="VCR scart" entryID="scart_switch" requires="ScartSwitch">
 					<code>

@@ -117,9 +117,9 @@ class GeneralSetup(Screen):
 			<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
 			<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
 		</screen> """
-	
+
 	ALLOW_SUSPEND = True
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Setup"))
@@ -140,8 +140,7 @@ class GeneralSetup(Screen):
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
 
-		self["actions"] = ActionMap(["SetupActions","WizardActions","MenuActions","MoviePlayerActions"],
-		{
+		self["actions"] = ActionMap(["SetupActions", "WizardActions", "MenuActions", "MoviePlayerActions"], {
 			"ok": self.ok,
 			"back": self.keyred,
 			"cancel": self.keyred,
@@ -151,14 +150,12 @@ class GeneralSetup(Screen):
 			"down": self.goDown,
 		}, -1)
 
-
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
-			{
+		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
 			"red": self.keyred,
 			#"green": self.keygreen,
 			#"yellow": self.keyyellow,
 			#"blue": self.keyblue,
-			})
+		})
 
 		self.MainQmenu()
 		self.selectedList = self["list"]
@@ -182,7 +179,7 @@ class GeneralSetup(Screen):
 				self["description"].setText(_(item[0][1]))
 
 	def goLeft(self):
-		if self.menu <> 0:
+		if self.menu != 0:
 			self.menu = 0
 			self.selectedList = self["list"]
 			self["list"].selectionEnabled(1)
@@ -200,12 +197,12 @@ class GeneralSetup(Screen):
 
 	def goUp(self):
 		self.selectedList.up()
-		
+
 	def goDown(self):
 		self.selectedList.down()
-		
+
 	def keyred(self):
-		if self.menu <> 0:
+		if self.menu != 0:
 			self.goLeft()
 		else:
 			self.close()
@@ -220,121 +217,121 @@ class GeneralSetup(Screen):
 	def keyblue(self):
 		from Screens.About import Devices
 		self.session.open(Devices)
-		
+
 ######## Main Menu ##############################
 	def MainQmenu(self):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(GeneralSetupEntryComponent("System",_("System setup"),_("Set up your system"), ">"))
+		self.list.append(GeneralSetupEntryComponent("System", _("System setup"), _("Set up your system"), ">"))
 		if not SystemInfo["IPTVSTB"]:
-			self.list.append(GeneralSetupEntryComponent("Antenna",_("Set up tuner"),_("Set up your tuner and search for channels"), ">"))
+			self.list.append(GeneralSetupEntryComponent("Antenna", _("Set up tuner"), _("Set up your tuner and search for channels"), ">"))
 		else:
-			self.list.append(GeneralSetupEntryComponent("IPTV Configuration",_("Set up tuner"),_("Set up your tuner and search for channels"), ">"))
-		self.list.append(GeneralSetupEntryComponent("TV",_("Set up basic TV options"),_("Set up your TV options"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Media",_("Set up pictures, music and movies"),_("Set up picture, music and movie player"), ">"))
-		#self.list.append(GeneralSetupEntryComponent("Mounts",_("Mount Setup"),_("Set up your mounts for network")))
-		self.list.append(GeneralSetupEntryComponent("Network",_("Set up your local network"),_("Set up your local network. For WLAN you need to boot with a USB-WLAN stick"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Storage",_("Hard disk setup"),_("Set up your hard disk"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Plugins",_("Download plugins"),_("Show download and install available plugins"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Software Manager",_("Update/Backup/Restore"),_("Update firmware. Backup / restore settings"), ">"))
+			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuner"), _("Set up your tuner and search for channels"), ">"))
+		self.list.append(GeneralSetupEntryComponent("TV", _("Set up basic TV options"), _("Set up your TV options"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Media", _("Set up pictures, music and movies"), _("Set up picture, music and movie player"), ">"))
+		#self.list.append(GeneralSetupEntryComponent("Mounts", _("Mount setup"), _("Set up your mounts for network")))
+		self.list.append(GeneralSetupEntryComponent("Network", _("Set up your local network"), _("Set up your local network. For WLAN you need to boot with a USB-WLAN stick"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Storage", _("Hard disk setup"), _("Set up your hard disk"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Plugins", _("Download plugins"), _("Show download and install available plugins"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Software manager", _("Update/backup/restore"), _("Update firmware. Backup / restore settings"), ">"))
 		self["list"].l.setList(self.list)
 
 ######## TV Setup Menu ##############################
 	def Qtv(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Set up your channel selection configuration")))
-		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Set up your recording configuration")))
-		self.sublist.append(QuickSubMenuEntryComponent("Timeshift settings",_("Timeshift Setup"),_("Set up your timeshift configuration")))
-		self.sublist.append(QuickSubMenuEntryComponent("Subtitle settings",_("Subtitle Setup"),_("Set up subtitle behaviour")))
-		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Set up your EPG configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Set up your channel selection configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Recording settings", _("Recording setup"), _("Set up your recording configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Timeshift settings", _("Timeshift setup"), _("Set up your timeshift configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Subtitle settings", _("Subtitle setup"), _("Set up subtitle behaviour")))
+		self.sublist.append(QuickSubMenuEntryComponent("EPG settings", _("EPG setup"), _("Set up your EPG configuration")))
 		if not getMachineBrand() == "Beyonwiz":
-			self.sublist.append(QuickSubMenuEntryComponent("Common Interface",_("Common Interface configuration"),_("Active/reset and manage your CI")))
-		self.sublist.append(QuickSubMenuEntryComponent("Parental control",_("Lock/unlock channels"),_("Set up parental controls")))
+			self.sublist.append(QuickSubMenuEntryComponent("Common Interface", _("Common Interface configuration"), _("Active/reset and manage your CI")))
+		self.sublist.append(QuickSubMenuEntryComponent("Parental control", _("Lock/unlock channels"), _("Set up parental controls")))
 		self["sublist"].l.setList(self.sublist)
-		
+
 ######## System Setup Menu ##############################
 	def Qsystem(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("AV setup",_("Set up video mode"),_("Set up your video mode, video output and other video settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("GUI setup",_("Set up GUI"),_("Customize UI personal settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("On screen display"),_("Configure your OSD (on screen display) settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("Button settings",_("Button assignment"),_("Set up your buttons")))
+		self.sublist.append(QuickSubMenuEntryComponent("AV setup", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("GUI setup", _("Set up GUI"), _("Customize UI personal settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD settings", _("On screen display"), _("Configure your OSD (on screen display) settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("Button settings", _("Button assignment"), _("Set up your buttons")))
 		if not getMachineBrand() == "Beyonwiz":
-			self.sublist.append(QuickSubMenuEntryComponent("Language settings",_("Setup your language"),_("Set up menu language")))
-		self.sublist.append(QuickSubMenuEntryComponent("Time settings",_("Time settings"),_("Set up date and time")))
+			self.sublist.append(QuickSubMenuEntryComponent("Language settings", _("Setup your language"), _("Set up menu language")))
+		self.sublist.append(QuickSubMenuEntryComponent("Time settings", _("Time settings"), _("Set up date and time")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-			self.sublist.append(QuickSubMenuEntryComponent("Front panel settings",_("Front panel setup"),_("Set up your front panel")))
-		if SystemInfo["GraphicLCD"]: 
-			self.sublist.append(QuickSubMenuEntryComponent("Display skin",_("Skin setup"),_("Set up your display skin")))
-		if SystemInfo["Fan"]: 
-			self.sublist.append(QuickSubMenuEntryComponent("Fan settings",_("Fan setup"),_("Set up your fan")))
-		self.sublist.append(QuickSubMenuEntryComponent("Remote control code settings",_("Remote control code setup"),_("Set up your remote control")))
-		self.sublist.append(QuickSubMenuEntryComponent("Factory reset",_("Load default"),_("Reset all settings to defaults")))
+			self.sublist.append(QuickSubMenuEntryComponent("Front panel settings", _("Front panel setup"), _("Set up your front panel")))
+		if SystemInfo["GraphicLCD"]:
+			self.sublist.append(QuickSubMenuEntryComponent("Display skin", _("Skin setup"), _("Set up your display skin")))
+		if SystemInfo["Fan"]:
+			self.sublist.append(QuickSubMenuEntryComponent("Fan settings", _("Fan setup"), _("Set up your fan")))
+		self.sublist.append(QuickSubMenuEntryComponent("Remote control code settings", _("Remote control code setup"), _("Set up your remote control")))
+		self.sublist.append(QuickSubMenuEntryComponent("Factory reset", _("Load default"), _("Reset all settings to defaults")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
-		#self.sublist.append(QuickSubMenuEntryComponent("Network Wizard",_("Configure your Network"),_("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
+		#self.sublist.append(QuickSubMenuEntryComponent("Network wizard", _("Configure your network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		#if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed, no need as eth0 is always present
-		self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection",_("Select LAN/WLAN"),_("Set up your network interface. If no USB WLAN stick is present, you can only select LAN")))
-		if not self.activeInterface == None: # show only if there is already an adapter up
-			self.sublist.append(QuickSubMenuEntryComponent("Network Interface",_("Setup interface"),_("Setup network. Here you can setup DHCP, IP, DNS")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Restart",_("Restart network with current setup"),_("Restart network and remount connections")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Services",_("Setup Network Services"),_("Set up network services (Samba, FTP, NFS, ...)")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network adapter selection", _("Select LAN/WLAN"), _("Set up your network interface. If no USB WLAN stick is present, you can only select LAN")))
+		if self.activeInterface is not None:  # show only if there is already an adapter up
+			self.sublist.append(QuickSubMenuEntryComponent("Network interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network restart", _("Restart network with current setup"), _("Restart network and remount connections")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network services", _("Setup network services"), _("Set up network services (Samba, FTP, NFS, ...)")))
 		# test
-		self.sublist.append(QuickSubMenuEntryComponent("Mount Manager",_("Manage network mounts"),_("Set up your network mounts")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Browser",_("Search for network shares"),_("Search for network shares")))
+		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
 		self["sublist"].l.setList(self.sublist)
 
 #### Network Services Menu ##############################
 	def Qnetworkservices(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Samba",_("Set up Samba"),_("Set up Samba")))
-		self.sublist.append(QuickSubMenuEntryComponent("NFS",_("Set up NFS"),_("Set up NFS")))
-		self.sublist.append(QuickSubMenuEntryComponent("FTP",_("Set up FTP"),_("Set up FTP")))
-		#self.sublist.append(QuickSubMenuEntryComponent("AFP",_("Set up AFP"),_("Set up AFP")))
-		#self.sublist.append(QuickSubMenuEntryComponent("OpenVPN",_("Set up OpenVPN"),_("Set up OpenVPN")))
-		self.sublist.append(QuickSubMenuEntryComponent("DLNA Server",_("Set up MiniDLNA"),_("Set up MiniDLNA")))
-		self.sublist.append(QuickSubMenuEntryComponent("DYN-DNS",_("Set up Inadyn"),_("Set up Inadyn")))
-		#self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Set up SABnzbd"),_("Set up SABnzbd")))
-		#self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Set up uShare"),_("Set up uShare")))
-		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Set up Telnet"),_("Set up Telnet")))
+		self.sublist.append(QuickSubMenuEntryComponent("Samba", _("Set up Samba"), _("Set up Samba")))
+		self.sublist.append(QuickSubMenuEntryComponent("NFS", _("Set up NFS"), _("Set up NFS")))
+		self.sublist.append(QuickSubMenuEntryComponent("FTP", _("Set up FTP"), _("Set up FTP")))
+		#self.sublist.append(QuickSubMenuEntryComponent("AFP", _("Set up AFP"), _("Set up AFP")))
+		#self.sublist.append(QuickSubMenuEntryComponent("OpenVPN", _("Set up OpenVPN"), _("Set up OpenVPN")))
+		self.sublist.append(QuickSubMenuEntryComponent("DLNA server", _("Set up MiniDLNA"), _("Set up MiniDLNA")))
+		self.sublist.append(QuickSubMenuEntryComponent("DYN-DNS", _("Set up Inadyn"), _("Set up Inadyn")))
+		#self.sublist.append(QuickSubMenuEntryComponent("SABnzbd", _("Set up SABnzbd"), _("Set up SABnzbd")))
+		#self.sublist.append(QuickSubMenuEntryComponent("uShare", _("Set up uShare"), _("Set up uShare")))
+		self.sublist.append(QuickSubMenuEntryComponent("Telnet", _("Set up Telnet"), _("Set up Telnet")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Mount Manager",_("Manage network mounts"),_("Set up your network mounts")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Browser",_("Search for network shares"),_("Search for network shares")))
-		#self.sublist.append(QuickSubMenuEntryComponent("Device Manager",_("Mounts devices"),_("Set up your device mounts (USB, HDD, others...)")))
+		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
+		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
+		#self.sublist.append(QuickSubMenuEntryComponent("Device manager", _("Mounts devices"), _("Set up your device mounts (USB, HDD, others...)")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Media Menu ##############################
 	def Qmedia(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Picture Player",_("Set up picture player"),_("Configure timeout, thumbnails, etc. for picture slide show")))
-		self.sublist.append(QuickSubMenuEntryComponent("Media Player",_("Set up media player"),_("Manage play lists, sorting, repeat")))
+		self.sublist.append(QuickSubMenuEntryComponent("Picture player", _("Set up picture player"), _("Configure timeout, thumbnails, etc. for picture slide show")))
+		self.sublist.append(QuickSubMenuEntryComponent("Media player", _("Set up media player"), _("Manage play lists, sorting, repeat")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## A/V Settings Menu ##############################
 	def Qavsetup(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("AV Settings",_("Set up video mode"),_("Set up your video mode, video output and other video settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("AV settings", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
 		if AUDIOSYNC == True:
-			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync",_("Set up Audio Sync"),_("Set up audio sync settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("Auto Language",_("Auto Language Selection"),_("Select your Language for audio/subtitles")))
+			self.sublist.append(QuickSubMenuEntryComponent("Audio sync", _("Set up audio sync"), _("Set up audio sync settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("Auto language", _("Auto language selection"), _("Select your Language for audio/subtitles")))
 		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
-			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement",_("Video enhancement setup"),_("Video enhancement setup")))
+			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement", _("Video enhancement setup"), _("Video enhancement setup")))
 		if AUTORES == True:
-			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution",_("Auto resolution setup"),_("Automatically change resolution")))
+			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution", _("Auto resolution setup"), _("Automatically change resolution")))
 		if config.usage.setup_level.getValue() == "expert":
-			self.sublist.append(QuickSubMenuEntryComponent("OSD Position",_("Adjust OSD Size"),_("Adjust OSD (on screen display) size")))
+			self.sublist.append(QuickSubMenuEntryComponent("OSD Position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
 		if SystemInfo["CanChange3DOsd"]:
-			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D Setup",_("OSD 3D mode and depth"),_("Adjust 3D OSD (on screen display) mode and depth")))
-		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Choose menu skin"),_("Choose user interface skin")))
-		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC",_("Consumer Electronics Control"),_("Control up to ten CEC-enabled devices connected through HDMI")))
+			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D setup", _("OSD 3D mode and depth"), _("Adjust 3D OSD (on screen display) mode and depth")))
+		self.sublist.append(QuickSubMenuEntryComponent("Skin setup", _("Choose menu skin"), _("Choose user interface skin")))
+		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC", _("Consumer Electronics Control"), _("Control up to ten CEC-enabled devices connected through HDMI")))
 
 		self["sublist"].l.setList(self.sublist)
 
@@ -345,48 +342,49 @@ class GeneralSetup(Screen):
 			dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
 			dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 			if len(dvbs_nimList) != 0:
-				self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
-				self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
+				self.sublist.append(QuickSubMenuEntryComponent("Tuner configuration", _("Setup tuner(s)"), _("Setup each tuner for your satellite system")))
+				self.sublist.append(QuickSubMenuEntryComponent("Automatic scan", _("Service search"), _("Automatic scan for services")))
 			if len(dvbt_nimList) != 0:
-				self.sublist.append(QuickSubMenuEntryComponent("Location Scan",_("Automatic Location Scan"),_("Automatic scan for services based on your location")))
-			self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+				self.sublist.append(QuickSubMenuEntryComponent("Location scan", _("Automatic location scan"), _("Automatic scan for services based on your location")))
+			self.sublist.append(QuickSubMenuEntryComponent("Manual scan", _("Service search"), _("Manual scan for services")))
 			if BLINDSCAN and len(nimList) != 0:
-				self.sublist.append(QuickSubMenuEntryComponent("Blind Scan",_("Blind Searching"),_("Blind scan for services")))
+				self.sublist.append(QuickSubMenuEntryComponent("Blind scan", _("Blind search"), _("Blind scan for services")))
 			if HAVE_SATFINDER and len(nimList) != 0:
-				self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
+				self.sublist.append(QuickSubMenuEntryComponent("Sat finder", _("Search sats"), _("Search sats, check signal and lock")))
 			if HAVE_LCN_SCANNER:
-				self.sublist.append(QuickSubMenuEntryComponent("LCN Renumber",_("Automatic LCN assignment"),_("Automatic LCN assignment")))
+				self.sublist.append(QuickSubMenuEntryComponent("LCN renumber", _("Automatic LCN assignment"), _("Automatic LCN assignment")))
 		if REMOTEBOX:
-			self.sublist.append(QuickSubMenuEntryComponent("Remote IP Channels",_("Setup Channel Server IP"),_("Setup server IP for your IP channels")))
+			self.sublist.append(QuickSubMenuEntryComponent("Remote IP channels", _("Setup channel server IP"), _("Setup server IP for your IP channels")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Software Update",_("Online software update"),_("Check/install online updates (you must have a working Internet connection)")))
-		#self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
-		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
-		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to the backup option above. (default: setup, channels, network")))
-		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings from a backup. After restore the box will reboot in order to activate the new settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("Online update check", _("Online check for software updates"), _("Periodically check for online updates (you must have a working Internet connection)")))
+		self.sublist.append(QuickSubMenuEntryComponent("Software update", _("Online software update"), _("Check/install online updates (you must have a working Internet connection)")))
+		#self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		self.sublist.append(QuickSubMenuEntryComponent("Backup settings", _("Backup your current settings"), _("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
+		self.sublist.append(QuickSubMenuEntryComponent("Select backup files", _("Choose the files to backup"), _("Here you can select which files should be added to the backup option above. (default: setup, channels, network")))
+		self.sublist.append(QuickSubMenuEntryComponent("Restore settings", _("Restore settings from a backup"), _("Restore your settings from a backup. After restore the box will reboot in order to activate the new settings")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
 	def Qplugin(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Plugin Browser",_("Open the plugin browser"),_("Shows plugins browser, where you can configure installed plugins")))
-		self.sublist.append(QuickSubMenuEntryComponent("Download Plugins",_("Download and install plugins"),_("Shows available plugins or download and install new ones")))
-		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins",_("Delete plugins"),_("Delete and uninstall plugins.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Package Installer",_("Install local extension"),_("Scan HDD and USB media for local extensions and install them")))
+		self.sublist.append(QuickSubMenuEntryComponent("Plugin browser", _("Open the plugin browser"), _("Shows plugins browser, where you can configure installed plugins")))
+		self.sublist.append(QuickSubMenuEntryComponent("Download plugins", _("Download and install plugins"), _("Shows available plugins or download and install new ones")))
+		self.sublist.append(QuickSubMenuEntryComponent("Remove plugins", _("Delete plugins"), _("Delete and uninstall plugins.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Package installer", _("Install local extension"), _("Scan HDD and USB media for local extensions and install them")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Harddisk Menu ##############################
 	def Qharddisk(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Hard disk setup",_("Hard disk setup"),_("Configure hard disk options, such as standby timeout")))
-		self.sublist.append(QuickSubMenuEntryComponent("Format hard disk",_("Format HDD"),_("Format your hard disk")))
-		self.sublist.append(QuickSubMenuEntryComponent("File system check",_("Check HDD"),_("Check the integrity of the file system on your hard disk")))
+		self.sublist.append(QuickSubMenuEntryComponent("Hard disk setup", _("Hard disk setup"), _("Configure hard disk options, such as standby timeout")))
+		self.sublist.append(QuickSubMenuEntryComponent("Format hard disk", _("Format HDD"), _("Format your hard disk")))
+		self.sublist.append(QuickSubMenuEntryComponent("File system check", _("Check HDD"), _("Check the integrity of the file system on your hard disk")))
 # 		if isFileSystemSupported("ext4"):
-# 			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4",_("Convert file system from ext3 to ext4"),_("Convert file system from ext3 to ext4")))
+# 			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system from ext3 to ext4"), _("Convert file system from ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):
@@ -399,7 +397,7 @@ class GeneralSetup(Screen):
 #####################################################################
 ######## Make Selection MAIN MENU LIST ##############################
 #####################################################################
-			
+
 	def okList(self):
 		item = self["list"].getCurrent()
 		selected = item[0][0]
@@ -424,10 +422,10 @@ class GeneralSetup(Screen):
 		elif selected == _("AV setup"):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
-		elif selected == _("Antenna" ) or selected == _("IPTV Configuration"):
+		elif selected == _("Antenna") or selected == _("IPTV configuration"):
 			self.Qtuner()
 ######## Select Software Manager Menu ##############################
-		elif selected == _("Software Manager"):
+		elif selected == _("Software manager"):
 			self.Qsoftware()
 ######## Select PluginDownloadBrowser Menu ##############################
 		elif selected == _("Plugins"):
@@ -440,21 +438,21 @@ class GeneralSetup(Screen):
 #####################################################################
 ######## Make Selection SUB MENU LIST ##############################
 #####################################################################
-			
+
 	def okSubList(self):
 		item = self["sublist"].getCurrent()
 		selected = item[0][0]
 
 ######## Select Network Menu ##############################
-		if selected == _("Network Wizard"):
+		if selected == _("Network wizard"):
 			self.session.open(NetworkWizard)
-		elif selected == _("Network Adapter Selection"):
+		elif selected == _("Network adapter selection"):
 			self.session.open(NetworkAdapterSelection)
-		elif selected == _("Network Interface"):
+		elif selected == _("Network interface"):
 			self.session.open(AdapterSetup,self.activeInterface)
-		elif selected == _("Network Restart"):
+		elif selected == _("Network restart"):
 			self.session.open(RestartNetwork)
-		elif selected == _("Network Services"):
+		elif selected == _("Network services"):
 			self.Qnetworkservices()
 			self["sublist"].moveToIndex(0)
 		elif selected == _("Samba"):
@@ -467,7 +465,7 @@ class GeneralSetup(Screen):
 			self.session.open(NetworkAfp)
 		elif selected == _("OpenVPN"):
 			self.session.open(NetworkOpenvpn)
-		elif selected == _("DLNA Server"):
+		elif selected == _("DLNA server"):
 			self.session.open(NetworkMiniDLNA)
 		elif selected == _("DYN-DNS"):
 			self.session.open(NetworkInadyn)
@@ -489,7 +487,7 @@ class GeneralSetup(Screen):
 			self.session.open(LanguageSelection)
 		elif selected == _("Front panel settings"):
 			self.openSetup("display")
-		elif selected == _("Skin Setup"):
+		elif selected == _("Skin setup"):
 			self.session.open(SkinSelector)
 		elif selected == _("Display skin"):
 			self.session.open(LcdSkinSelector)
@@ -524,7 +522,7 @@ class GeneralSetup(Screen):
 			def getInterfacesDataAvail(data):
 				if data is True:
 					pass
-		
+
 			def msgClosed(ret):
 				if ret:
 					from os import system, _exit
@@ -539,8 +537,8 @@ class GeneralSetup(Screen):
 					iNetwork.setAdapterAttribute("eth0", "dhcp", True)
 					iNetwork.activateInterface("eth0", deactivateInterfaceCB)
 					iNetwork.writeNetworkConfig()
-					_exit(2)	# We want a full reboot to ensure new hostname is picked up 
-			self.session.openWithCallback(msgClosed, FactoryReset)  
+					_exit(2)  # We want a full reboot to ensure new hostname is picked up
+			self.session.openWithCallback(msgClosed, FactoryReset)
 ######## Select TV Setup Menu ##############################
 		elif selected == _("Channel selection"):
 			self.openSetup("channelselection")
@@ -561,89 +559,92 @@ class GeneralSetup(Screen):
 			from Screens.ParentalControlSetup import ParentalControlSetup
 			self.session.open(ParentalControlSetup)
 ######## Select Mounts Menu ##############################
-		elif selected == _("Mount Manager"):
+		elif selected == _("Mount manager"):
 			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)
-		elif selected == _("Network Browser"):
+		elif selected == _("Network browser"):
 			self.session.open(NetworkBrowser, None, plugin_path_networkbrowser)
-		#elif selected == _("Device Manager"):
+		#elif selected == _("Device manager"):
 		#	self.session.open(HddMount)
 ######## Select Media Menu ##############################
-		elif selected == _("Picture Player"):
+		elif selected == _("Picture player"):
 			from Plugins.Extensions.PicturePlayer.ui import Pic_Setup
 			self.session.open(Pic_Setup)
-		elif selected == _("Media Player"):
+		elif selected == _("Media player"):
 			from Plugins.Extensions.MediaPlayer.settings import MediaPlayerSettings
 			self.session.open(MediaPlayerSettings, self)
 ######## Select AV Setup Menu ##############################
-		elif selected == _("AV Settings"):
+		elif selected == _("AV settings"):
 			self.session.open(VideoSetup)
-		elif selected == _("Auto Language"):
+		elif selected == _("Auto language"):
 			self.openSetup("autolanguagesetup")
-		elif selected == _("Audio Sync"):
+		elif selected == _("Audio sync"):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif selected == _("VideoEnhancement"):
 			self.session.open(VideoEnhancementSetup)
 		elif selected == _("AutoResolution"):
 			self.session.open(AutoResSetupMenu)
-		elif selected == _("OSD Position"):
+		elif selected == _("OSD position"):
 			from Screens.UserInterfacePositioner import UserInterfacePositioner
 			self.session.open(UserInterfacePositioner)
-		elif selected == _("OSD 3D Setup"):
+		elif selected == _("OSD 3D setup"):
 			from Screens.UserInterfacePositioner import OSD3DSetupScreen
 			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
-		elif selected == _("Location Scan"):
+		elif selected == _("Location scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
-		elif selected == _("Remote IP Channels"):
+		elif selected == _("Remote IP channels"):
 			self.session.open(RemoteTunerScanner)
-		elif selected == _("Tuner Configuration"):
+		elif selected == _("Tuner configuration"):
 			self.session.open(NimSelection)
-		elif HAVE_POSITIONERSETUP and selected == _("Positioner Setup"):
+		elif HAVE_POSITIONERSETUP and selected == _("Positioner setup"):
 			self.PositionerMain()
-		elif selected == _("Automatic Scan"):
+		elif selected == _("Automatic scan"):
 			self.session.open(ScanSimple)
-		elif selected == _("Manual Scan"):
+		elif selected == _("Manual scan"):
 			self.session.open(ScanSetup)
-		elif selected == _("Blind Scan"):
+		elif selected == _("Blind scan"):
 			self.session.open(Blindscan)
-		elif HAVE_SATFINDER and selected == _("Sat Finder"):
+		elif HAVE_SATFINDER and selected == _("Sat finder"):
 			self.SatfinderMain()
-		elif HAVE_LCN_SCANNER and selected == _("LCN Renumber"):
+		elif HAVE_LCN_SCANNER and selected == _("LCN renumber"):
 			self.session.open(LCNScannerPlugin)
 ######## Select Software Manager Menu ##############################
-		elif selected == _("Software Update"):
+		elif selected == _("Online update check"):
+			self.openSetup("softwareupdate")
+		elif selected == _("Software update"):
 			self.session.open(UpdatePlugin)
-		elif selected == _("Backup Settings"):
-			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
-		elif selected == _("Restore Settings"):
+		elif selected == _("Backup settings"):
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
+		elif selected == _("Restore settings"):
 			self.backuppath = getBackupPath()
 			if not path.isdir(self.backuppath):
 				self.backuppath = getBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\n"
+				self.session.openWithCallback(self.startRestore, MessageBox,
+					_("Are you sure you want to restore your %s %s backup?\n"
 					"Your %s %s will reboot after the restore") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 			else:
-				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
-		elif selected == _("Select Backup files"):
-			self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
+		elif selected == _("Select backup files"):
+			self.session.openWithCallback(self.backupfiles_choosen, BackupSelection)
 		#elif selected == _("Software Manager Setup"):
 		#	self.session.open(SoftwareManagerSetup)
 ######## Select PluginDownloadBrowser Menu ##############################
-		elif selected == _("Plugin Browser"):
+		elif selected == _("Plugin browser"):
 			self.session.open(PluginBrowser)
-		elif selected == _("Download Plugins"):
+		elif selected == _("Download plugins"):
 			self.session.open(PluginDownloadBrowser, 0)
-		elif selected == _("Remove Plugins"):
+		elif selected == _("Remove plugins"):
 			self.session.open(PluginDownloadBrowser, 1)
-		elif selected == _("Package Installer"):
+		elif selected == _("Package installer"):
 			try:
 				from Plugins.Extensions.MediaScanner.plugin import main
 				main(self.session)
 			except:
-				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout=10)
 ######## Select Harddisk Menu ############################################
 		elif selected == _("Hard disk setup"):
 			self.openSetup("harddisk")
@@ -663,16 +664,16 @@ class GeneralSetup(Screen):
 
 ######## NETWORK TOOLS #######################
 	def GetNetworkInterfaces(self):
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 
 		if not self.adapters:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getConfiguredAdapters()]
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
 
 		if len(self.adapters) == 0:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
 
 		self.activeInterface = None
-	
+
 		for x in self.adapters:
 			if iNetwork.getAdapterAttribute(x[1], 'up') is True:
 				self.activeInterface = x[1]
@@ -704,7 +705,7 @@ class GeneralSetup(Screen):
 	if HAVE_SATFINDER:
 		def SatfinderMain(self):
 			nims = nimmanager.getNimListOfType("DVB-S")
-	
+
 			nimList = []
 			for x in nims:
 				if nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
@@ -712,7 +713,7 @@ class GeneralSetup(Screen):
 				if nimmanager.getNimConfig(x).configMode.value == "advanced" and len(nimmanager.getSatListForNim(x)) < 1:
 					continue
 				nimList.append(x)
-	
+
 			if len(nimList) == 0:
 				self.session.open(MessageBox, _("No satellites configured. Plese check your tuner setup."), MessageBox.TYPE_ERROR)
 			else:
@@ -728,22 +729,22 @@ class GeneralSetup(Screen):
 		config.plugins.configurationbackup.save()
 		config.save()
 
-	def backupDone(self,retval = None):
+	def backupDone(self, retval=None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
 
-	def startRestore(self, ret = False):
-		if (ret == True):
+	def startRestore(self, ret=False):
+		if ret:
 			self.exe = True
-			self.session.open(RestoreScreen, runRestore = True)
+			self.session.open(RestoreScreen, runRestore=True)
 
 class RestartNetwork(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		skin = """
-			<screen name="RestartNetwork" position="center,center" size="600,100" title="Restart Network Adapter">
+			<screen name="RestartNetwork" position="center,center" size="600,100" title="Restart network adapter">
 			<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
 			</screen> """
 		self.skin = skin
@@ -752,7 +753,7 @@ class RestartNetwork(Screen):
 		self.onLayoutFinish.append(self.restartLan)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Restart Network Adapter"))
+		self.setTitle(_("Restart network adapter"))
 
 	def restartLan(self):
 		iNetwork.restartNetwork(self.restartLanDataAvail)
@@ -763,24 +764,24 @@ class RestartNetwork(Screen):
 
 	def getInterfacesDataAvail(self, data):
 		self.close()
-		
+
 ######## Create MENULIST format #######################
-def GeneralSetupEntryComponent(name, description, long_description = None, endtext=">", width=540):
+def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=540):
 	return [
 		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(20, 10), size=(width-120, 35), font=0, text = _(name)),
-		#MultiContentEntryText(pos=(20, 26), size=(width-120, 17), font=1, text = _(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0,0), font=1, text = _(description)),
+		MultiContentEntryText(pos=(20, 10), size=(width - 120, 35), font=0, text=_(name)),
+		#MultiContentEntryText(pos=(20, 26), size=(width - 120, 17), font=1, text=_(description)),
+		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text=_(description)),
 		MultiContentEntryText(pos=(350, 10), size=(35, 35), text = ">")
 	]
 
-def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
+def QuickSubMenuEntryComponent(name, description, long_description=None, width=540):
 	return [
 		(_(name), _(long_description)),
-		#MultiContentEntryText(pos=(20, 5), size=(width-10, 25), font=0, text = _(name)),
-		MultiContentEntryText(pos=(20, 15), size=(width-10, 25), font=0, text = _(name)),		
-		#MultiContentEntryText(pos=(20, 26), size=(width-10, 17), font=1, text = _(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text = _(description))
+		#MultiContentEntryText(pos=(20, 5), size=(width - 10, 25), font=0, text=_(name)),
+		MultiContentEntryText(pos=(20, 15), size=(width - 10, 25), font=0, text=_(name)),
+		#MultiContentEntryText(pos=(20, 26), size=(width - 10, 17), font=1, text=_(description)),
+		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text=_(description))
 	]
 
 class GeneralSetupList(MenuList):
