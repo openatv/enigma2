@@ -15,9 +15,11 @@ from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
 from Components.Ipkg import IpkgComponent
+from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
+
 
 
 ocram = ''
@@ -140,6 +142,13 @@ class UpdatePlugin(Screen):
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
 		self.setTitle(_("Software update"))
+		
+		self['tl_off'] = Pixmap()
+		self['tl_red'] = Pixmap()
+		self['tl_yellow'] = Pixmap()
+		self['tl_green'] = Pixmap()
+		self.feedsStatus()
+		
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -162,6 +171,33 @@ class UpdatePlugin(Screen):
 		self.total_packages = None
 		self.checkNetworkState()
 
+	def feedsStatus(self):
+		import socket
+		self['tl_red'].hide()
+		self['tl_yellow'].hide()
+		self['tl_green'].hide()
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		try:
+			d = urlopen("http://openvix.co.uk/TrafficLightState.php")
+			self.trafficLight = d.read()
+			if self.trafficLight == 'unstable':
+				self['tl_off'].hide()
+				self['tl_red'].show()
+			elif self.trafficLight == 'updating':
+				self['tl_off'].hide()
+				self['tl_yellow'].show()
+			elif self.trafficLight == 'stable':
+				self['tl_off'].hide()
+				self['tl_green'].show()
+			else:
+				self.trafficLight = 'unknown'
+				self['tl_off'].show()
+		except:
+			self.trafficLight = 'unknown'
+			self['tl_off'].show()
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		
 	def checkNetworkState(self):
 		cmd1 = "opkg update"
 		self.CheckConsole = Console()
