@@ -27,7 +27,11 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		hddsplit = skin.parameters.get("AboutHddSplit",(0))[0]
+		AboutHddSplit = 0
+		try:
+			hddsplit = skin.parameters.get("AboutHddSplit",(0))[0]
+		except:
+			hddsplit = AboutHddSplit
 
 		if boxtype == 'gb800solo':
 			BoxName = "GigaBlue HD 800SOLO"
