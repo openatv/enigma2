@@ -3,21 +3,14 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
 from boxbranding import getBoxType
 
-modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by Side"), "topandbottom": _("Top and Bottom")}
-if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase'):
-	setmodelist = {"mode1": _("Mode 1"), "mode2": _("Mode 2")}
+modelist = {"off": _("Off"), "sidebyside": _("Side by Side"), "topandbottom": _("Top and Bottom")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
-config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
+config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "off")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
-if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase'):
-	config.plugins.OSD3DSetup.setmode = ConfigSelection(choices = setmodelist, default = "mode1")
 
-PROC_ET_3DMODE = "/proc/stb/fb/3dmode"
-PROC_ET_ZNORM = "/proc/stb/fb/znorm"
-
-PROC_DM_3DMODE = "/proc/stb/fb/primary/3d"
-PROC_DM_ZNORM = "/proc/stb/fb/primary/zoffset"
+PROC_GB_3DMODE = "/proc/stb/fb/primary/3d"
+PROC_GB_ZNORM = "/proc/stb/fb/primary/zoffset"
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -54,17 +47,12 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 		mode = config.plugins.OSD3DSetup.mode.value
 		znorm = config.plugins.OSD3DSetup.znorm.value
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase'):
-			setmode = config.plugins.OSD3DSetup.setmode.value
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase'):
-			self.setmode = ConfigSelection(choices = setmodelist, default = setmode)
-			self.list.append(getConfigListEntry(_("Setup mode"), self.setmode))
 		self.list.append(getConfigListEntry(_("3d mode"), self.mode))
 		self.list.append(getConfigListEntry(_("Depth"), self.znorm))
-		
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -82,8 +70,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keyGo(self):
 		config.plugins.OSD3DSetup.mode.value = self.mode.value
 		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.value) - 50
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase'):
-			config.plugins.OSD3DSetup.setmode.value = self.setmode.value
 		config.plugins.OSD3DSetup.save()
 		self.close()
 
@@ -95,20 +81,14 @@ def applySettings(mode, znorm):
 	path_mode = ""
 	path_znorm = ""
 	from os import path
-	if path.exists(PROC_ET_3DMODE):
-		path_mode = PROC_ET_3DMODE
-		path_znorm = PROC_ET_ZNORM
-	elif path.exists(PROC_DM_3DMODE):
-		path_mode = PROC_DM_3DMODE
-		path_znorm = PROC_DM_ZNORM
-		if mode == 'sidebyside':
-			mode = 'sbs'
-		elif mode == 'topandbottom':
-			mode = 'tab'
-		else:
-			mode = 'off'
+	path_mode = PROC_GB_3DMODE
+	path_znorm = PROC_GB_ZNORM
+	if mode == 'sidebyside':
+		mode = 'sbs'
+	elif mode == 'topandbottom':
+		mode = 'tab'
 	else:
-		return
+		mode = 'off'
 	try:
 		file = open(path_mode, "w")
 		file.write(mode)
@@ -118,35 +98,9 @@ def applySettings(mode, znorm):
 		file.close()
 	except:
 		return
-		
-def applySettings2(mode, znorm, setmode):
-	try:
-		if setmode == "mode1":
-			file = open("/proc/stb/fb/3dmode", "w")
-			file.write(mode)
-			file.close()
-			file = open("/proc/stb/fb/znorm", "w")
-			file.write('%d' % znorm)
-			file.close()
-		elif setmode == "mode2":
-			file = open("/proc/stb/fb/primary/3d","w")
-			if mode == "sidebyside" :
-				mode = "sbs"
-			elif mode == "topandbottom":
-				mode = "tab"
-			file.write(mode)
-			file.close()
-			file = open("/proc/stb/fb/primary/zoffset","w")
-			file.write('%d' % znorm)
-			file.close()
-	except:
-		return		
 
 def setConfiguredSettings():
-	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase'):
-		applySettings2(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value), config.plugins.OSD3DSetup.setmode.value)
-	else:	
-		applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
+	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
 
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
@@ -162,14 +116,14 @@ def OSD3DSetup(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if path.exists(PROC_ET_3DMODE) or path.exists(PROC_DM_3DMODE):
+	if path.exists(PROC_GB_3DMODE):
 		from Plugins.Plugin import PluginDescriptor
 		return PluginDescriptor(name = "OSD 3D setup", description = "Adjust 3D settings", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=OSD3DSetup)
 	return []
 
 #def Plugins(**kwargs):
 #	from os import path
-#	if path.exists(PROC_ET_3DMODE) or path.exists(PROC_DM_3DMODE):
+#	if path.exists(PROC_GB_3DMODE):
 #		from Plugins.Plugin import PluginDescriptor
 #		return [PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
 #					PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]

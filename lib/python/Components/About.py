@@ -18,6 +18,12 @@ def getImageVersionString():
 		pass
 	return _("unavailable")
 
+def getFlashDateString():
+	try:
+		return time.strftime(_("%Y-%m-%d %H:%M"), time.localtime(os.stat("/boot").st_ctime))
+	except:
+		return _("unknown")
+
 def getEnigmaVersionString():
 	from boxbranding import getImageVersion
 	enigma_version = getImageVersion()
@@ -66,6 +72,14 @@ def getDriverInstalledDate():
 		from glob import glob
 		driver = [x.split("-")[-2:-1][0][-8:] for x in open(glob("/var/lib/opkg/info/*-dvb-modules-*.control")[0], "r") if x.startswith("Version:")][0]
 		return  "%s-%s-%s" % (driver[:4], driver[4:6], driver[6:])
+	except:
+		return _("unknown")
+
+def getPythonVersionString():
+	try:
+		import commands
+		status, output = commands.getstatusoutput("python -V")
+		return output.split(' ')[1]
 	except:
 		return _("unknown")
 

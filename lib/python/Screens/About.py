@@ -20,11 +20,21 @@ from enigma import eTimer, eLabel
 
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
+import skin
 
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
+		hddsplit, = skin.parameters.get("AboutHddSplit", (0,))
+
+		#AboutHddSplit = 0
+		#try:
+		#	hddsplit = skin.parameters.get("AboutHddSplit",(0))[0]
+		#except:
+		#	hddsplit = AboutHddSplit
+
 		if boxtype == 'gb800solo':
 			BoxName = "GigaBlue HD 800SOLO"
 		elif boxtype == 'gb800se':
@@ -60,25 +70,30 @@ class About(Screen):
 
 		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
+		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
 		KernelVersion = _("Kernel version: ") + about.getKernelVersionString() + "\n"
 		self["KernelVersion"] = StaticText(KernelVersion)
 		AboutText += KernelVersion + "\n"
 
-		EnigmaVersion = "GUI Build: " + about.getEnigmaVersionString()
+		EnigmaVersion = _("GUI Build: ") + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
-		GStreamerVersion = "GStreamer: " + about.getGStreamerVersionString()
+		GStreamerVersion = _("GStreamer: ") + about.getGStreamerVersionString()
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
 		AboutText += GStreamerVersion + "\n"
+
+		AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
 
 		AboutText += _("DVB drivers: ") + about.getDriverInstalledDate() + "\n"
+
+		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -106,14 +121,15 @@ class About(Screen):
 		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
+			formatstring = hddsplit and "%s:%s, %.1f %sB %s" or "%s\n(%s, %.1f %sB %s)"
 			for count in range(len(hddlist)):
 				if hddinfo:
 					hddinfo += "\n"
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
-					hddinfo += "%s\n(%s, %.1f GB %s)" % (hdd.model(), hdd.capacity(), hdd.free()/1024., _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free()/1024, "G", _("free"))
 				else:
-					hddinfo += "%s\n(%s, %d MB %s)" % (hdd.model(), hdd.capacity(), hdd.free(), _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free()/1024, "M", _("free"))
 		else:
 			hddinfo = _("none")
 		self["hddA"] = StaticText(hddinfo)

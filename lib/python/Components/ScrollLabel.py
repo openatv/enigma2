@@ -9,14 +9,17 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.message = text
 		self.instance = None
 		self.long_text = None
+		self.right_text = None
 		self.scrollbar = None
 		self.pages = None
 		self.total = None
+		self.split = False
+		self.splitchar = "|"
+		self.column = 0
 
 	def applySkin(self, desktop, parent):
 		ret = False
 		if self.skinAttributes is not None:
-			skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
 			widget_attribs = [ ]
 			scrollbar_attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
@@ -24,6 +27,19 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 					scrollbar_attribs.append((attrib,value))
 				if "transparent" in attrib or "backgroundColor" in attrib:
 					widget_attribs.append((attrib,value))
+				if "split" in attrib:
+					self.split = int(value)
+					if self.split:
+						self.right_text = eLabel(self.instance)
+				if "colposition" in attrib:
+					self.column = int(value)
+				if "dividechar" in attrib:
+					self.splitchar = value
+			if self.split:
+				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes + [("halign", "left")], parent.scale)
+				skin.applyAllAttributes(self.right_text, desktop, self.skinAttributes + [("transparent", "1"), ("halign", "left" and self.column or "right")], parent.scale)
+			else:
+				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
 			skin.applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
 			skin.applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs+widget_attribs, parent.scale)
 			ret = True
@@ -42,6 +58,9 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.scrollbar.setBorderWidth(1)
 		self.long_text.move(ePoint(0,0))
 		self.long_text.resize(eSize(s.width()-30, self.pageHeight*16))
+		if self.split:
+			self.right_text.move(ePoint(self.column,0))
+			self.right_text.resize(eSize(s.width()-self.column-30, self.pageHeight*16))
 		self.setText(self.message)
 		return ret
 
@@ -49,7 +68,19 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.message = text
 		if self.long_text is not None and self.pageHeight:
 			self.long_text.move(ePoint(0,0))
-			self.long_text.setText(self.message)
+			if self.split:
+				left = []
+				right = []
+				for line in self.message.split("\n"):
+					line = line.split(self.splitchar,1)
+					if len(line) == 1:
+						line.append("")
+					left.append(line[0])
+					right.append(line[1].lstrip(' '))
+				self.long_text.setText("\n".join(left))
+				self.right_text.setText("\n".join(right))
+			else:
+				self.long_text.setText(self.message)
 			text_height=self.long_text.calculateSize().height()
 			total=self.pageHeight
 			pages=1
@@ -107,12 +138,14 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.long_text = None
 		self.scrollbar = None
 		self.instance = None
+		self.right_text = None
 
 	def pageUp(self):
 		if self.total is not None:
 			curPos = self.long_text.position()
 			if curPos.y() < 0:
 				self.long_text.move( ePoint( curPos.x(), curPos.y() + self.pageHeight ) )
+				self.split and self.right_text.move( ePoint( curPos.x(), curPos.y() + self.pageHeight ) )
 				self.updateScrollbar()
 
 	def pageDown(self):
@@ -120,6 +153,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			curPos = self.long_text.position()
 			if self.total-self.pageHeight >= abs( curPos.y() - self.pageHeight ):
 				self.long_text.move( ePoint( curPos.x(), curPos.y() - self.pageHeight ) )
+				self.split and self.right_text.move( ePoint( curPos.x(), curPos.y() - self.pageHeight ) )
 				self.updateScrollbar()
 
 	def lastPage(self):

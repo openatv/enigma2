@@ -81,6 +81,8 @@ class ClockToText(Converter, object):
 			return _("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
 			# TRANSLATORS: short time representation hour:minute
+			if t.tm_hour < 10:
+				return " " + _("%2d:%02d") % (t.tm_hour, t.tm_min)
 			return _("%2d:%02d") % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
 			# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
