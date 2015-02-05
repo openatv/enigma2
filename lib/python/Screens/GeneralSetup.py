@@ -360,6 +360,7 @@ class GeneralSetup(Screen):
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
 		self.sublist = []
+		self.sublist.append(QuickSubMenuEntryComponent("Online update check", _("Online check for software updates"), _("Periodically check for online updates (you must have a working Internet connection)")))
 		self.sublist.append(QuickSubMenuEntryComponent("Software update", _("Online software update"), _("Check/install online updates (you must have a working Internet connection)")))
 		#self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup settings", _("Backup your current settings"), _("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
@@ -609,6 +610,8 @@ class GeneralSetup(Screen):
 		elif HAVE_LCN_SCANNER and selected == _("LCN renumber"):
 			self.session.open(LCNScannerPlugin)
 ######## Select Software Manager Menu ##############################
+		elif selected == _("Online update check"):
+			self.openSetup("softwareupdate")
 		elif selected == _("Software update"):
 			self.session.open(UpdatePlugin)
 		elif selected == _("Backup settings"):

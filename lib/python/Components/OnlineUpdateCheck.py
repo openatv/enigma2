@@ -24,7 +24,7 @@ class OnlineUpdateCheckPoller:
 		if self.onlineupdate_check not in self.timer.callback:
 			self.timer.callback.append(self.onlineupdate_check)
 
-		if time() > 1262304000:
+		if time() > 1262304000:  # Fri, 01 Jan 2010 00:00:00 GMT
 			self.timer.startLongTimer(0)
 		else:
 			self.timer.startLongTimer(120)
@@ -37,7 +37,7 @@ class OnlineUpdateCheckPoller:
 	def onlineupdate_check(self):
 		if config.softwareupdate.check.value:
 			Components.Task.job_manager.AddJob(self.createCheckJob())
-		self.timer.startLongTimer(config.softwareupdate.checktimer.value * 3600)
+		self.timer.startLongTimer(int(config.softwareupdate.checktimer.value) * 3600)
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
@@ -59,22 +59,11 @@ class OnlineUpdateCheckPoller:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
-					from urllib import urlopen
-					import socket
-					currentTimeoutDefault = socket.getdefaulttimeout()
-					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)
-					try:
-						#config.softwareupdate.updateisunstable.value = int(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersion() + "/status").read())
-						config.softwareupdate.updateisunstable.value = int(urlopen("http://enigma2.world-of-satellite.com/feeds/3.0/status").read())
-					except:
-						config.softwareupdate.updateisunstable.value = 1
-					socket.setdefaulttimeout(currentTimeoutDefault)
 				else:
 					config.softwareupdate.updatefound.setValue(False)
 			else:
 				config.softwareupdate.updatefound.setValue(False)
-		pass
 
 class VersionCheck:
 	def __init__(self):
@@ -83,10 +72,10 @@ class VersionCheck:
 	def getStableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
 			if config.softwareupdate.updateisunstable.value == 0:
-# 				print '[OnlineVersionCheck] New Release updates found'
+				# print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
-# 				print '[OnlineVersionCheck] skipping as beta is not wanted'
+				# print '[OnlineVersionCheck] skipping as beta is not wanted'
 				return False
 		else:
 			return False
@@ -94,10 +83,10 @@ class VersionCheck:
 	def getUnstableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
 			if config.softwareupdate.updateisunstable.value == 1 and config.softwareupdate.updatebeta.value:
-# 				print '[OnlineVersionCheck] New Experimental updates found'
+				# print '[OnlineVersionCheck] New Experimental updates found'
 				return True
 			else:
-# 				print '[OnlineVersionCheck] skipping as beta is not wanted'
+				# print '[OnlineVersionCheck] skipping as beta is not wanted'
 				return False
 		else:
 			return False
