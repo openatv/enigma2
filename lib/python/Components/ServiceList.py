@@ -118,6 +118,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.progressBarWidth = int(value)
 		def fieldMargins(value):
 			self.fieldMargins = int(value)
+		def nonplayableMargins(value):
+			self.l.setNonplayableMargins(int(value))
+		def itemsDistances(value):
+			self.l.setItemsDistances(int(value))
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
