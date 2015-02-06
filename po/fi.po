@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-11 21:08+0000\n"
-"PO-Revision-Date: 2015-01-12 12:56+0200\n"
+"POT-Creation-Date: 2015-02-01 20:33+0000\n"
+"PO-Revision-Date: 2015-02-04 12:08+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com/>\n"
 "Language-Team: AndyBlac/Timo/Samzan\n"
 "Language: fi\n"
@@ -1002,10 +1002,10 @@ msgstr "Määrittää kuinka kauan resoluutiotietoa näytetään kuvaruudussa."
 
 msgid ""
 "Allows you to enable the debug logs. They contain very detailed information "
-"about everything the system does."
+"about everything the system does. Reboot required to enable this!"
 msgstr ""
 "Määrittää tallennetaanko debug-lokeja. Lokit sisältävät tarkkaa tietoa "
-"kaikesta mitä järjestelmä tekee."
+"kaikesta mitä järjestelmä tekee. Uudelleenkäynnistys tarvitaan!"
 
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Määrittää näytetäänkö etupaneelissa kuvakkeita."
@@ -1094,6 +1094,9 @@ msgstr "Mikä tahansa toiminta"
 #
 msgid "Arabic"
 msgstr "Arabia"
+
+msgid "Are you sure to purge all deleted userbouquets?"
+msgstr "Haluatko tyhjentää poistetut suosikkilistat?"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
@@ -1731,9 +1734,6 @@ msgstr "Muuta kanavan PIN:it"
 msgid "Change setup PIN"
 msgstr "Muuta asetuksien PIN"
 
-msgid "Change sort by..."
-msgstr "Muuta järjestystä..."
-
 #
 msgid "Change step size"
 msgstr "Muuta askelkokoa"
@@ -2131,6 +2131,13 @@ msgstr "Määrittää kuinka leveänä kanavanimet näytetään kanavalistassa."
 msgid "Configure if picons will be shown in the service list."
 msgstr "Määrittää näytetäänkö kanavalogot kanavalistassa."
 
+msgid ""
+"Configure if the subtitle should switch between normal, italic, bold and "
+"bolditalic"
+msgstr ""
+"Muokkaa ulkoisen tekstityksen fonttia, vaihtoehtoina: normal, italic, bold "
+"ja bolditalic"
+
 #
 msgid "Configure interface"
 msgstr "Määritä verkkosovitin"
@@ -2476,7 +2483,7 @@ msgid "Connected clients"
 msgstr "Kytkeytyneet asiakkaat"
 
 msgid "Connected satellites"
-msgstr "Kytkeytyt satelliitit"
+msgstr "valitut satelliitit"
 
 #
 msgid "Connected to"
@@ -2540,9 +2547,6 @@ msgstr "Cool TV Guide"
 
 msgid "Copy"
 msgstr "Kopioi"
-
-msgid "Copy to other directory"
-msgstr "Kopioi toiseen hakemistoon"
 
 msgid "Copying files"
 msgstr "Kopioidaan tiedostoja"
@@ -2900,13 +2904,6 @@ msgstr "Poista tallennettu soittolista"
 #
 msgid "Delete timer"
 msgstr "Poista ajastus"
-
-#
-#  Teksti esiintyy vain tallenteiden käsittelyvalikossa
-#  Kolme pistettä ovat turhia, tästä aukeaa vain
-#  varmistusikkuna, ei alivalikkoa tai asetusruutua.
-msgid "Delete..."
-msgstr "Poista tallenne"
 
 msgid "Deleted"
 msgstr "Poistettu"
@@ -3476,7 +3473,7 @@ msgstr "Ota käyttöön autom. pikahaku"
 msgid "Enable auto fast scan"
 msgstr "Ota käyttöön autom. pikahaku"
 
-msgid "Enable debug logs"
+msgid "Enable debug logs *"
 msgstr "Ota käyttöön debug-loki"
 
 msgid "Enable fallback remote receiver"
@@ -3509,6 +3506,10 @@ msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Ota käyttöön teksti-tv:n välimuisti"
+
+#
+msgid "Enable unlinked bouquets"
+msgstr "Salli linkittämättömät suosikkilistat"
 
 #
 msgid "Enabled"
@@ -3757,8 +3758,17 @@ msgstr "Ulkoine tallenusväline %s"
 msgid "External subtitle color"
 msgstr "Ulkoisen tekstityksen väri"
 
+msgid "External subtitle dialog colorisation"
+msgstr "Ulkoisen tekstityksen väri"
+
+msgid "External subtitle switch fonts"
+msgstr "Ulkoisen tekstityksen fonttivalinta"
+
 msgid "Extra motor options"
 msgstr "Mootorin lisäasetukset"
+
+msgid "F1"
+msgstr "Punainen"
 
 msgid "F1/F3"
 msgstr "Punainen/Keltainen"
@@ -4145,6 +4155,12 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD lista"
+
+msgid "HD1100/et7x00"
+msgstr "HD1100/et7x00"
+
+msgid "HD2400"
+msgstr "HD2400"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -5301,9 +5317,6 @@ msgstr "Liikuta itään"
 msgid "Move to home of list"
 msgstr "Siirry luettelon alkuun"
 
-msgid "Move to other directory"
-msgstr "Siirry toiseen hakemistoon"
-
 #
 msgid "Move to position X"
 msgstr "Mene sijaintiin X"
@@ -5641,6 +5654,10 @@ msgstr ""
 "%s %sissasi ei ole satelliittiviritintä,\n"
 "joka hallitsisi kääntömoottorin ohjauksen."
 
+#
+msgid "No priority"
+msgstr "Ei prioriteettia"
+
 msgid ""
 "No satellite, terrestrial or cable tuner is configured. Please check your "
 "tuner setup."
@@ -5782,6 +5799,10 @@ msgstr "Pohjoista leveyttä"
 #
 msgid "Norwegian"
 msgstr "Norja"
+
+#
+msgid "Not Defined"
+msgstr "Ei määritetty"
 
 msgid "Not Flashing"
 msgstr "Kiinteä"
@@ -6074,6 +6095,9 @@ msgstr "Sivu ylös"
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&scan"
 msgstr "Pan&Scan"
+
+msgid "Panic to"
+msgstr "Paniikkinäppäimestä"
 
 #
 msgid "Parent directory"
@@ -7125,10 +7149,6 @@ msgstr "Muokkaa nimi ja kuvaus uusille tapahtumille"
 msgid "Rename to:"
 msgstr "Muuta nimeksi:"
 
-#
-msgid "Rename..."
-msgstr "Uudelleennimeä..."
-
 #, python-format
 msgid "Renamed %s!"
 msgstr "Uudelleennimettiin %s!"
@@ -7151,6 +7171,13 @@ msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
 #
 msgid "Repeats"
 msgstr "Toistokerrat"
+
+msgid ""
+"Replace `- ` in dialogs with colored text per speaker (like teletext "
+"subtitles for the hearing impaired)"
+msgstr ""
+"Korvaa `- ` tekstityksissä väreillä samaan tapaan kuin kuulovammaisten "
+"tekstityksissä."
 
 msgid "Require authentication for http streams"
 msgstr "Vaadi hyväksyntä http-palveluille"
@@ -7225,7 +7252,7 @@ msgstr "Palauta"
 
 #
 msgid "Restore backups"
-msgstr "Palauta varmistus"
+msgstr "Palauta varmuuskopiot"
 
 #
 msgid "Restore is running..."
@@ -7262,7 +7289,7 @@ msgid "Reverse bouquet buttons"
 msgstr "Käänteiset suosikkilistanäppäimet"
 
 msgid "Reverse list"
-msgstr "Peruuta lista"
+msgstr "käänteinen lista"
 
 #
 msgid "Rewind"
@@ -7272,8 +7299,8 @@ msgstr "Kelaus taaksepäin"
 msgid "Rewind speeds"
 msgstr "Kelausnopeudet taaksepäin"
 
-msgid "Rewrap teletext subtitles"
-msgstr "Uudelleenrivitä teksti-TV tekstitys"
+msgid "Rewrap subtitles"
+msgstr "Uudelleenrivitä tekstitys"
 
 #
 msgid "Right"
@@ -8291,6 +8318,10 @@ msgid "Show picon background color"
 msgstr "Näytä kanavalogon taustaväri"
 
 #
+msgid "Show picons in service list"
+msgstr "Näytä kanavalogot kanavalistassa"
+
+#
 msgid "Show positioner movement"
 msgstr "Näytä kuvake kääntömoottorin liikkuessa"
 
@@ -8311,6 +8342,9 @@ msgstr "Avaa kanavalista"
 #
 msgid "Show service type icons"
 msgstr "Näytä kanavatyypin kuvakkeet"
+
+msgid "Show servicelist or movies"
+msgstr "Avaa kanavalista tai tallennukset"
 
 #
 msgid "Show services beginning with"
@@ -8715,7 +8749,7 @@ msgid "Standard"
 msgstr "Vakio"
 
 msgid "Standart list"
-msgstr "Peruslista"
+msgstr "normaali lista"
 
 #
 msgid "Standby"
@@ -10886,6 +10920,17 @@ msgstr ""
 "näkymisen asiakasvastaanottimessa."
 
 msgid ""
+"When enabled, Enigma2 will load unlinked bouquets. This means that bouquets "
+"that are available, but not included in the bouquets.tv or bouquets.radio "
+"files, will still be loaded. This allows you for example to keep your own "
+"user bouquet while installed settings are upgraded"
+msgstr ""
+"Kun päällä, Enigma2 lataa linkittämättömät suosikkilistat. Suosikkilistat "
+"jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio "
+"tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi "
+"samalla kun asennettuja päivitetään."
+
+msgid ""
 "When enabled, a popup message will be shown when a movie has finished and "
 "the next one will start."
 msgstr ""
@@ -10981,6 +11026,9 @@ msgstr ""
 "Kun päällä, '0'-näppäin vaihtaa ensimmäisen suosikkilistan ensimmäiselle "
 "kanavalle ja poistaa katseluhistorian."
 
+msgid "When enabled, reformat subtitles to match the width of the screen."
+msgstr "Kun päällä, tekstityksen leveys sovitetaan ruudun leveyteen."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kun päällä, näytä kanavanvalinnassa kanavanumerot"
 
@@ -11018,13 +11066,6 @@ msgid ""
 msgstr ""
 "Kun päällä, tallenteiden pituus näytetään tallenneluettelossa (tämä voi "
 "aiheuttaa tallenneluettelon latausajan pitenemisen)."
-
-msgid ""
-"When enabled, the original line breaks will be removed from the teletext "
-"subtitles."
-msgstr ""
-"Kun päällä, alkuperäisessä teksti-tv pohjaisessa tekstityksessä olevat "
-"rivinvaihdot poistetaan."
 
 msgid ""
 "When enabled, the receiver will automatically use the audio track which you "
@@ -11756,6 +11797,10 @@ msgid "alpharev then newest"
 msgstr "Käänteinen aakkosjärjestys, uusin ensin"
 
 #
+msgid "alternative"
+msgstr "vaihtoehtoinen"
+
+#
 msgid "am"
 msgstr "aamu"
 
@@ -12047,6 +12092,9 @@ msgstr "viihde (10-16 vuotiaat)"
 msgid "entertainment (6-14 year old)"
 msgstr "viihde (6-14 vuotiaat)"
 
+msgid "epg cache backup"
+msgstr "epg välimuistin varmuuskopio"
+
 #
 msgid "equal to"
 msgstr "Sama kuin"
@@ -12060,14 +12108,14 @@ msgstr "et4000"
 msgid "et5000/6000"
 msgstr "et5000/6000"
 
-msgid "et7x00"
-msgstr "et7x00"
-
 msgid "et8000/et10000"
 msgstr "et8000/et10000"
 
-msgid "et9x00/6500"
-msgstr "et9x00/6500"
+msgid "et9000/et9100"
+msgstr "et9000/et9100"
+
+msgid "et9200/9500/6500"
+msgstr "et9200/9500/6500"
 
 #
 msgid "exit DVD player or return to file browser"
@@ -12520,6 +12568,9 @@ msgstr "p.tarj:"
 msgid "provider:"
 msgstr "palveluntarjoaja:"
 
+msgid "purge deleted userbouquets"
+msgstr "tyhjennä poistetut suosikkilistat"
+
 msgid "reboot system"
 msgstr "käynnistä uudelleen"
 
@@ -12615,6 +12666,9 @@ msgstr "useita kertoja"
 #
 msgid "restart GUI"
 msgstr "Käynnistä Enigma2 uudelleen"
+
+msgid "restore deleted userbouquets"
+msgstr "palauta poistetut suosikkilistat"
 
 msgid "reverse by date"
 msgstr "Käänteinen aikajärjestys"
@@ -12743,10 +12797,6 @@ msgstr "näytä ohjelman tarkemmat tiedot"
 
 msgid "show mediaplayer on mainmenu"
 msgstr "näytä mediatoistin päävalikossa"
-
-#
-msgid "show picons in service list"
-msgstr "Näytä kanavalogot kanavalistassa"
 
 msgid "show program information..."
 msgstr "näytä ohjelman tietoja..."
@@ -13070,12 +13120,8 @@ msgstr "vaihdettu"
 #~ msgid "3d mode"
 #~ msgstr "3D-tila"
 
-#~ msgid ""
-#~ "ECM data will be included in the stream. This enables a client receiver "
-#~ "to decode it."
-#~ msgstr ""
-#~ "ECM-data lisätään streamiin. Tämän ansiosta asiakasvastaanotin voi purkaa "
-#~ "signaalin."
+#~ msgid "Change sort by..."
+#~ msgstr "Muuta järjestystä..."
 
-#~ msgid "Include ECM in http streams"
-#~ msgstr "Sisällytä ECM http-streameihin"
+#~ msgid "Copy to other directory"
+#~ msgstr "Kopioi toiseen hakemistoon"
