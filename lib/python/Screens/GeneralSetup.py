@@ -327,7 +327,7 @@ class GeneralSetup(Screen):
 		if AUTORES == True:
 			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution", _("Auto resolution setup"), _("Automatically change resolution")))
 		if config.usage.setup_level.getValue() == "expert":
-			self.sublist.append(QuickSubMenuEntryComponent("OSD Position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
+			self.sublist.append(QuickSubMenuEntryComponent("OSD position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
 		if SystemInfo["CanChange3DOsd"]:
 			self.sublist.append(QuickSubMenuEntryComponent("OSD 3D setup", _("OSD 3D mode and depth"), _("Adjust 3D OSD (on screen display) mode and depth")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin setup", _("Choose menu skin"), _("Choose user interface skin")))
