@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-29 17:35+0100\n"
-"PO-Revision-Date: 2015-02-04 12:24+0100\n"
+"PO-Revision-Date: 2015-02-06 10:07+0100\n"
 "Last-Translator: jrodzar <jrodzar@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -266,6 +266,7 @@ msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
+#
 #, python-format
 msgid "%d jobs are running in the background!"
 msgstr "¡%d trabajos está ejecutándose en segundo plano!"
@@ -573,6 +574,7 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Una comprobación de actualización fondo está en curso, por favor espere unos minutos y vuelva a intentarlo."
 
+#
 #, python-format
 msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
@@ -792,6 +794,7 @@ msgstr "añadir el directorio a la lista"
 msgid "Add file to playlist"
 msgstr "añadir fichero a la lista"
 
+#
 msgid "Add files to playlist"
 msgstr "añadir ficheros a la lista de reproducción"
 
@@ -1022,6 +1025,7 @@ msgstr ""
 "Quiere reiniciar sus adaptadores de red?\n"
 "\n"
 
+#
 #, python-format
 msgid ""
 "Are you sure you want to restore\n"
@@ -2164,10 +2168,12 @@ msgstr "No puedo cargar el Medio! Hay disco insertado?"
 msgid "Could not open Picture in Picture"
 msgstr "No puedo abrir el PiP"
 
+#
 #, python-format
 msgid "Could not record due to conflicting timer %s"
 msgstr "No puedo grabar debido a un conflicto de programaciones %s"
 
+#
 #, python-format
 msgid "Could not record due to invalid service %s"
 msgstr "No puedo grabar debido a un conflicto de programaciones %s"
@@ -2580,6 +2586,7 @@ msgstr "Reproduce los títulos enlazados sin menú"
 msgid "Directory"
 msgstr "Directorio"
 
+#
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "No existe el directorio %s."
@@ -2675,6 +2682,7 @@ msgstr ""
 "¿Quieres convertir el sistema de ficheros? \n"
 "Ya no puedes volver atrás."
 
+#
 #, python-format
 msgid ""
 "Do you really want to delete\n"
@@ -2686,6 +2694,7 @@ msgstr "¿Seguro que quiere borrar %s?"
 msgid "Do you really want to delete %s?"
 msgstr "¿Seguro que quiere borrar %s?"
 
+#
 #, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
 msgstr ""
@@ -2696,6 +2705,7 @@ msgstr ""
 msgid "Do you really want to exit?"
 msgstr "¿Realmente quiere salir?"
 
+#
 #, python-format
 msgid "Do you really want to hold the plugin \"%s\"?"
 msgstr ""
@@ -2714,6 +2724,7 @@ msgstr ""
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "¿Quiere borrar el directorio %s del disco?"
 
+#
 #, python-format
 msgid "Do you really want to remove the plugin \"%s\"?"
 msgstr ""
@@ -2725,6 +2736,7 @@ msgstr ""
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "¿Quiere borrar su marcador %s?"
 
+#
 #, python-format
 msgid "Do you really want to unhold the plugin \"%s\"?"
 msgstr ""
@@ -2761,7 +2773,6 @@ msgstr "¿Quiere hacer una búsqueda de canales?"
 msgid "Do you want to do another manual service scan?"
 msgstr "¿Quiere hacer otra búsqueda manual?"
 
-#, fuzzy
 msgid "Do you want to enable the parental control feature on your %s %s?"
 msgstr "¿Quiere descargar la imagen a %s?"
 
@@ -2817,15 +2828,17 @@ msgstr "No añadir esta grabación"
 msgid "Don't stop current event but disable coming events"
 msgstr "No pare el evento actual, pero desactive los siguientes"
 
+#
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr "Hecho - Instalado, actualizado o eliminados %d paquetes con %d errores"
+msgstr "Hecho - Instalado, actualizado %d paquetes"
 
+#
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Hecho - Instalado, actualizado o eliminados %d paquetes con %d errores"
-msgstr[1] "Hecho - Instalado, actualizado o eliminados %d paquetes con %d errores"
+msgstr[0] "Hecho - Instalado, actualizado o eliminados %d paquete (%s)"
+msgstr[1] "Hecho - Instalado, actualizado o eliminados %d paquetes (%s)"
 
 #
 msgid "Download Failed !!"
@@ -2979,7 +2992,6 @@ msgstr "Habilitar MHW EPG"
 msgid "Enable Netmed EPG"
 msgstr "Habilitar Netmed EPG"
 
-#, fuzzy
 msgid "Enable OK as preview in channel selection"
 msgstr "Muestra el progreso del evento en la selección del canal"
 
@@ -3377,7 +3389,6 @@ msgstr "Favoritos"
 msgid "File appears to be busy.\n"
 msgstr "Archivo parece estar ocupado. \n"
 
-#, fuzzy
 msgid "Filesystem check"
 msgstr "Chequear sistema de ficheros"
 
@@ -4149,7 +4160,6 @@ msgstr ""
 msgid "Ipkg"
 msgstr "Ipkg"
 
-#, fuzzy
 msgid "Is this setting ok?"
 msgstr "¿Usar esta configuración?"
 
@@ -4194,7 +4204,6 @@ msgstr "Saltar a la posición marcada anterior"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-#, fuzzy
 msgid "Just scale"
 msgstr "Sólo escala"
 
@@ -5167,6 +5176,7 @@ msgstr "No está asociado"
 msgid "Not configured"
 msgstr "no configurado"
 
+#
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "No hay suficiente espacio libre. Por famove libere espacio y reinténtelo. (%d MB requeridos, %d MB disponibles)"
@@ -5324,18 +5334,15 @@ msgstr "¿Sobrescribir los archivos bootlogo durante la actualización de softwa
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "¿Sobreescribir los ficheros de configuración durante la actualización del software?"
 
-#, fuzzy
 msgid "Overwrite configuration files?"
 msgstr "¿Sobreescribir los ficheros de configuración?"
 
-#, fuzzy
 msgid "Overwrite driver files during software upgrade?"
 msgstr "¿Sobreescribir los ficheros de configuración durante la actualización del software?"
 
 msgid "Overwrite picon files during software upgrade?"
 msgstr "¿Sobrescribir los archivos picon durante la actualización de software?"
 
-#, fuzzy
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "¿Sobreescribir los ficheros de configuración durante la actualización del software?"
 
@@ -5404,7 +5411,6 @@ msgstr "Manejador de paquetes"
 
 #
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#, fuzzy
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
@@ -6260,7 +6266,6 @@ msgstr "Recargar"
 msgid "Reload Services"
 msgstr "Recargar servicios"
 
-#, fuzzy
 msgid "Reload black-/white lists"
 msgstr "Recargar listas blancas/negras"
 
@@ -7080,7 +7085,6 @@ msgstr "Establecer límites"
 msgid "Set the MAC-adress of your receiver.\n"
 msgstr "Establecer la dirección MAC del receptor.\n"
 
-#, fuzzy
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Muestra el progreso del evento en la selección del canal"
 
@@ -7614,7 +7618,6 @@ msgstr "Ordenar lista"
 
 #
 #. TRANSLATORS: This must fit into the header button in the EPG-List
-#, fuzzy
 msgid "Sort time"
 msgstr "Ordenar por hora"
 
@@ -8166,7 +8169,6 @@ msgstr "La imagen está descargada. ¿Quieres flashear ahora?"
 msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
 msgstr "La imagen o el núcleo estará flasheando y auto arrancado en pocos minutos.\n"
 
-#, fuzzy
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -8199,7 +8201,6 @@ msgstr "El apagado automático ha sido activado."
 msgid "The sleep timer has been disabled."
 msgstr "El apagado automático ha sido desactivado."
 
-#, fuzzy
 msgid ""
 "The software management extension is not installed!\n"
 "Please install it."
@@ -8712,7 +8713,6 @@ msgstr "Configuración sintonizador"
 msgid "Tuner is not supported"
 msgstr "No se admite el sintonizador"
 
-#, fuzzy
 msgid "Tuner not available."
 msgstr "Updatefeed no disponible."
 
@@ -8983,7 +8983,6 @@ msgstr "Utilice la posición original de teletexto"
 msgid "Use power measurement"
 msgstr "Usar medida de potencia"
 
-#, fuzzy
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Use el Asistente de Red para configurar el adaptador de red seleccionado"
 
@@ -8999,11 +8998,9 @@ msgstr "Use las teclas arriba/abajo de su mando para seleccionar una opción. De
 msgid "Use the wizard to set up basic features"
 msgstr "Use el asistente para configuración básica"
 
-#, fuzzy
 msgid "Use these input device settings?"
 msgstr "¿Usar esta configuración de dispositivo de entrada?"
 
-#, fuzzy
 msgid "Use these settings?"
 msgstr "¿Usar esta configuración?"
 
@@ -9069,7 +9066,6 @@ msgstr "Vertical"
 msgid "Vertical turning speed"
 msgstr "Velocidad de torneado vertical"
 
-#, fuzzy
 msgid "Very short filenames"
 msgstr "Nombres de ficheros cortos"
 
@@ -10179,6 +10175,7 @@ msgstr "atletismo"
 msgid "audio track (%s) format"
 msgstr "formato de pista de audio (%s)"
 
+#
 #, python-format
 msgid "audio track (%s) language"
 msgstr "idioma de pista de audio (%s)"
@@ -10232,6 +10229,7 @@ msgstr "azul"
 msgid "broadcasting/press"
 msgstr "radiodifusión / press"
 
+#
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "grabar pista de audio (%s)"
@@ -11397,10 +11395,12 @@ msgstr "zapeado"
 #~ msgstr "Añadir Marcador"
 
 #
+#, fuzzy
 #~ msgid "Add/remove timer for current event"
 #~ msgstr "añadir grabación (sólo evento actual)"
 
 #
+#, fuzzy
 #~ msgid "All satellites"
 #~ msgstr "Todos satélites"
 
@@ -11428,6 +11428,7 @@ msgstr "zapeado"
 #~ msgstr "Comando DISEqC enviado"
 
 #
+#, fuzzy
 #~ msgid "Common Interface assignment"
 #~ msgstr "Asignación de Interface Común"
 
@@ -11439,6 +11440,7 @@ msgstr "zapeado"
 #~ msgstr "Imagen actualmente instalada"
 
 #
+#, fuzzy
 #~ msgid "Delete..."
 #~ msgstr "borrar..."
 
@@ -11451,6 +11453,7 @@ msgstr "zapeado"
 #~ msgstr "Desconectar"
 
 #
+#, fuzzy
 #~ msgid "Do you want to install a channel list?"
 #~ msgstr "Quiere instalar el paquete:\n"
 
@@ -11474,6 +11477,7 @@ msgstr "zapeado"
 #~ msgstr "Ventilador %d PWM"
 
 #
+#, fuzzy
 #~ msgid "Fan %d voltage"
 #~ msgstr "Ventilador %d Voltaje"
 
@@ -11492,6 +11496,7 @@ msgstr "zapeado"
 #~ msgstr "lista de vistas EPG..."
 
 #
+#, fuzzy
 #~ msgid "NFI image flashing"
 #~ msgstr "Flashear Imagen NFI"
 
@@ -11523,6 +11528,7 @@ msgstr "zapeado"
 #~ msgstr "Por favor, ¡seleccione un fichero NFI y pulse la tecla verde para flashear!"
 
 #
+#, fuzzy
 #~ msgid "Please wait (downloading softcam)"
 #~ msgstr "Espere... Cargando lista..."
 
@@ -11549,6 +11555,7 @@ msgstr "zapeado"
 #~ msgstr "Seleccione la imagen deseada de su lista de fuentes"
 
 #
+#, fuzzy
 #~ msgid "Service searching"
 #~ msgstr "Buscando Canales"
 
@@ -11556,6 +11563,7 @@ msgstr "zapeado"
 #~ msgstr "¿El asistente de USB programará el fichero de imagen %s en la memoria flash?"
 
 #
+#, fuzzy
 #~ msgid "Show tag menu"
 #~ msgstr "mostrar el menú de etiquetas"
 
@@ -11568,6 +11576,7 @@ msgstr "zapeado"
 #~ msgstr "Transponder único"
 
 #
+#, fuzzy
 #~ msgid "Softcam type"
 #~ msgstr "Software"
 
@@ -11580,6 +11589,7 @@ msgstr "zapeado"
 #~ msgstr "Ventilador en reposo %d Voltaje"
 
 #
+#, fuzzy
 #~ msgid "Temperature and fan control"
 #~ msgstr "Control de temperatura y ventilador"
 
@@ -11627,6 +11637,7 @@ msgstr "zapeado"
 #~ msgstr "Configuración de mejora de vídeo"
 
 #
+#, fuzzy
 #~ msgid "Video fine tuning"
 #~ msgstr "Ajuste de video fino"
 
