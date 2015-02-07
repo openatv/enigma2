@@ -64,7 +64,7 @@ class About(Screen):
 		AboutText += _("Drivers:\t%s\n") % driversdate
 		
 		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
+		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer","")
 		AboutText += _("Python:\t ") + about.getPythonVersionString() + "\n"
 
 		AboutText += _("Installed:\t ") + about.getFlashDateString() + "\n"
