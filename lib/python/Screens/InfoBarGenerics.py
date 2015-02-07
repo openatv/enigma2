@@ -642,7 +642,7 @@ class InfoBarNumberZap:
 		}, description=_("Recall channel, panic button & number zap"))
 
 	def keyNumberGlobal(self, number):
-		if number != 0 and config.seek.number_skips.value:
+		if number != 0 and self.isSeekable() and config.seek.number_skips.value:
 			return 0
 
 		if self.pts_blockZap_timer.isActive():
@@ -663,7 +663,7 @@ class InfoBarNumberZap:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def helpKeyNumberGlobal(self, number):
-		if number != 0 and config.seek.number_skips.value:
+		if number != 0 and self.isSeekable() and config.seek.number_skips.value:
 			return None
 
 		if number == 0:
