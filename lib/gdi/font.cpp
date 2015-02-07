@@ -477,10 +477,6 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		FT_Vector delta;
 		FT_Get_Kerning(current_face, previous, glyphIndex, ft_kerning_default, &delta);
 		kern=delta.x>>6;
-		/* for two digits "1" is returned kerning < 0. For aligning digits in rows must be kerning 0, same as is returned for others digits */
-		/* for this case is here kerning set to zero. */
-		if ( glyphIndex == 20 && previous == glyphIndex)
-			kern = 0;
 	}
 
 	ng.bbox.setLeft(((flags&GS_ISFIRST)|cursor.x()) + left + xborder);
