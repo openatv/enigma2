@@ -7,7 +7,7 @@ from Components.SystemInfo import SystemInfo
 from Tools import Notifications
 from GlobalActions import globalActionMap
 import RecordTimer
-from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 from time import time, localtime
 
 inStandby = None
@@ -102,6 +102,8 @@ class Standby(Screen):
 		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
+			from Screens.InfoBar import InfoBar
+			InfoBar.instance and InfoBar.instance.servicelist.correctChannelNumber()
 		elif self.paused_service:
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
@@ -118,6 +120,10 @@ class Standby(Screen):
 
 	def stopService(self):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.servicelist.startupservice_onstandby.value:
+			service = self.prev_running_service.toString()
+			if not(service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/")):
+				self.prev_running_service = eServiceReference(config.servicelist.startupservice.value)
 		self.session.nav.stopService()
 
 	def createSummary(self):
