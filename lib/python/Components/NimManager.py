@@ -583,14 +583,21 @@ class NIM(object):
 			}
 		return connectable[self.getType()]
 
+	def getSlotInputName(self):
+		name = self.input_name
+		if name is None:
+			name = chr(ord('A') + self.slot)
+		return name
+	
+	slot_input_name = property(getSlotInputName)
+
 	def getSlotName(self):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
 		# for DM7080HD "Tuner A1/A2/B/C/..."
-
 		descr = _("Tuner ")
-		return descr + self.input_name
+		return descr + self.getSlotInputName()
 
 	slot_name = property(getSlotName)
 
@@ -1622,20 +1629,6 @@ def InitNimManager(nimmgr):
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
-	def SetTuner():
-		for x in range(0,4):
-			tunername = chr(ord('A') + x)
-			print "[NimManager] Set Tuner to %s" % tunername
-			if path.exists("/proc/stb/tsmux/input%d" % x):
-				f = open("/proc/stb/tsmux/input%d" % x, "w")
-				f.write(tunername)
-				f.close()
-
-			if path.exists("/proc/stb/tsmux/ci%d_input" % x):
-				f = open("/proc/stb/tsmux/ci%d_input" % x, "w")
-				f.write(tunername)
-				f.close()
-
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
@@ -1691,8 +1684,6 @@ def InitNimManager(nimmgr):
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
 
-		if x == 0 and slot.description == 'BCM4505': # workaround when using a single tuner instead of multi tuner on DM7080 or DM820
-			SetTuner()
 		print"[NimManager] slotname = %s, slotdescription = %s, multitype = %s" % (slot.input_name, slot.description,(slot.isMultiType() and addMultiType))
 
 	empty_slots = 0
