@@ -18,7 +18,7 @@ from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
-from Components.config import config, configfile, ConfigSubsection, ConfigText
+from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
@@ -370,16 +370,22 @@ class ChannelContextMenu(Screen):
 		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
 
 	def setStartupService(self):
-		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
-		path = ';'.join([i.toString() for i in self.csel.servicePath])
-		config.servicelist.startuproot.value = path
-		config.servicelist.startupmode.value = config.servicelist.lastmode.value
-		config.servicelist.save()
-		configfile.save()
-		self.close()
+		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list = [(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
+
+	def setStartupServiceCallback(self, answer):
+		if answer:
+			config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
+			path = ';'.join([i.toString() for i in self.csel.servicePath])
+			config.servicelist.startuproot.value = path
+			config.servicelist.startupmode.value = config.servicelist.lastmode.value
+			config.servicelist.startupservice_onstandby.value = answer == "standby"
+			config.servicelist.save()
+			configfile.save()
+			self.close()
 
 	def unsetStartupService(self):
 		config.servicelist.startupservice.value = ''
+		config.servicelist.startupservice_onstandby.value = False
 		config.servicelist.save()
 		configfile.save()
 		self.close()
@@ -1865,6 +1871,7 @@ config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
 config.servicelist.lastmode = ConfigText(default='tv')
 config.servicelist.startupservice = ConfigText()
+config.servicelist.startupservice_onstandby = ConfigYesNo(default = False)
 config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default='tv')
 
