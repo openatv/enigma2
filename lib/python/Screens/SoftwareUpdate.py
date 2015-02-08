@@ -154,7 +154,7 @@ class UpdatePlugin(Screen):
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
-		status_msgs = {'stable': _('Stable'), 'unstable': _('Unstable'), 'updating': _('Updating'), 'unknown': _('No connection')}
+		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), 'unknown': _('No connection')}
 		self['tl_off'] = Pixmap()
 		self['tl_red'] = Pixmap()
 		self['tl_yellow'] = Pixmap()
