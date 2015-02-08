@@ -76,12 +76,12 @@ class InfoBarTimeshift:
 		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
 			"timeshiftActivateEnd": (self.activateTimeshiftEnd, lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_left.value, _("sec"))),
 			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and enter timeshift")),
-		}, prio=-2, description=_("Activate timeshift"))  # priority over SeekActionsPTS
+		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
 		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
 			"timeshiftActivateEndExtra": (lambda: self.activateTimeshiftEnd(shiftTime=config.seek.selfdefined_down.value), lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_down.value, _("sec"))),
 			"ignore": (lambda: 1, ""),
-		}, prio=-2, description=_("Activate timeshift"))  # priority over SeekActionsPTS
+		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
 		config.seek.updown_skips.addNotifier(notifyActivateActionsUpDown, initial_call=False, immediate_feedback=False)
 
@@ -163,7 +163,7 @@ class InfoBarTimeshift:
 	# Called when switching between timeshift and live
 	def __seekableStatusChanged(self):
 		dprint("__seekableStatusChanged")
-		activate = not self.isSeekable() and self.timeshiftEnabled() and int(config.timeshift.startdelay.value)
+		activate = not self.isSeekable() and int(config.timeshift.startdelay.value)
 		state = self.getSeek() and self.timeshiftEnabled()
 		dprint("isSeekable=%s, timeshiftEnabled=%s, config.timeshift.startdelay=%s, activate=%s, state=%s" % (self.isSeekable(), self.timeshiftEnabled(), config.timeshift.startdelay.value, activate, state))
 		self["TimeshiftActions"].setEnabled(state)
@@ -390,8 +390,9 @@ class InfoBarTimeshift:
 
 		if ts.isTimeshiftActive() and pause:
 			self.pauseService()
-		else:
+		elif self.timeshiftEnabled():
 			ts.activateTimeshift()  # activate timeshift will automatically pause
+
 			if pause:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			else:
