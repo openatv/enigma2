@@ -360,12 +360,12 @@ class GeneralSetup(Screen):
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Online update check", _("Online check for software updates"), _("Periodically check for online updates (you must have a working Internet connection)")))
-		self.sublist.append(QuickSubMenuEntryComponent("Software update", _("Online software update"), _("Check/install online updates (you must have a working Internet connection)")))
-		#self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
-		self.sublist.append(QuickSubMenuEntryComponent("Backup settings", _("Backup your current settings"), _("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
-		self.sublist.append(QuickSubMenuEntryComponent("Select backup files", _("Choose the files to backup"), _("Here you can select which files should be added to the backup option above. (default: setup, channels, network")))
-		self.sublist.append(QuickSubMenuEntryComponent("Restore settings", _("Restore settings from a backup"), _("Restore your settings from a backup. After restore the box will reboot in order to activate the new settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("Update now", _("Online software update"), _("Check for and install online updates. You must have a working Internet connection.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Update settings", _("Configure online checks for software updates"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Create backup", _("Backup your current settings"), _("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
+		self.sublist.append(QuickSubMenuEntryComponent("Restore backup", _("Restore settings from a backup"), _("Restore your settings from a backup. After restore your %s %s will reboot in order to activate the new settings") % (getMachineBrand(), getMachineName())))
+		self.sublist.append(QuickSubMenuEntryComponent("Backup settings", _("Choose the files to backup"), _("Select which files should be added to the backup option above.")))
+		# self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
@@ -610,13 +610,13 @@ class GeneralSetup(Screen):
 		elif HAVE_LCN_SCANNER and selected == _("LCN renumber"):
 			self.session.open(LCNScannerPlugin)
 ######## Select Software Manager Menu ##############################
-		elif selected == _("Online update check"):
-			self.openSetup("softwareupdate")
-		elif selected == _("Software update"):
+		elif selected == _("Update now"):
 			self.session.open(UpdatePlugin)
-		elif selected == _("Backup settings"):
+		elif selected == _("Update settings"):
+			self.openSetup("softwareupdate")
+		elif selected == _("Create backup"):
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-		elif selected == _("Restore settings"):
+		elif selected == _("Restore backup"):
 			self.backuppath = getBackupPath()
 			if not path.isdir(self.backuppath):
 				self.backuppath = getBackupPath()
@@ -628,7 +628,7 @@ class GeneralSetup(Screen):
 					"Your %s %s will reboot after the restore") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-		elif selected == _("Select backup files"):
+		elif selected == _("Backup settings"):
 			self.session.openWithCallback(self.backupfiles_choosen, BackupSelection)
 		#elif selected == _("Software Manager Setup"):
 		#	self.session.open(SoftwareManagerSetup)
