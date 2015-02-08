@@ -2135,19 +2135,19 @@ class InfoBarSeek:
 		if config.seek.baractivation.value == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
-			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
+			self.session.openWithCallback(self.fwdSeekTo, MinuteInput, title=_("Skip forward (min)"))
 
 	def seekBackManual(self, fwd=False):
 		if config.seek.baractivation.value == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
-			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+			self.session.openWithCallback(self.rwdSeekTo, MinuteInput, title=_("Skip back (min)"))
 
 	def seekFwdSeekbar(self, fwd=True):
 		if not config.seek.baractivation.value == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
-			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
+			self.session.openWithCallback(self.fwdSeekTo, MinuteInput, title=_("Skip forward (min)"))
 
 	def fwdSeekTo(self, minutes):
 		self.doSeekRelative(minutes * 60 * 90000)
@@ -2156,7 +2156,7 @@ class InfoBarSeek:
 		if not config.seek.baractivation.value == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
-			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+			self.session.openWithCallback(self.rwdSeekTo, MinuteInput, title=_("Skip back (min)"))
 
 	def rwdSeekTo(self, minutes):
 		# print "rwdSeekTo"
