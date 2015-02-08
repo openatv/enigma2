@@ -81,11 +81,13 @@ class About(Screen):
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 
-		GStreamerVersion = _("GStreamer: ") + about.getGStreamerVersionString()
+		GStreamerVersion = _("GStreamer: ") + about.getGStreamerVersionString().replace("GStreamer","")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
 		AboutText += GStreamerVersion + "\n"
 
-		AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
+		FlashDate = _("Flashed: ") + about.getFlashDateString()
+		self["FlashDate"] = StaticText(FlashDate)
+		AboutText += FlashDate + "\n"
 
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		self["ImageVersion"] = StaticText(ImageVersion)

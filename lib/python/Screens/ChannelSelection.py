@@ -280,11 +280,19 @@ class ChannelContextMenu(Screen):
 		else:
 			return 0
 
+	def getCurrentSelectionName(self):
+		cur = self.csel.getCurrentSelection()
+		if cur and cur.valid():
+			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			return name
+		return ""
+
 	def removeEntry(self):
 		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
 			if self.csel.confirmRemove:
 				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
-				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?"), list=list)
+				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
 			else:
 				self.removeFunction(True)
 		else:
@@ -803,7 +811,7 @@ class ChannelSelectionEdit:
 		cur = self.getCurrentSelection()
 		if cur and cur.valid():
 			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
-			name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			if name:
 				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
 		else:
@@ -1690,7 +1698,7 @@ class ChannelSelectionBase(Screen):
 					s = list.getNext()
 					if not s.valid():
 						break
-					if s.flags & eServiceReference.isDirectory:
+					if s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:
 						info = serviceHandler.info(s)
 						if info:
 							bouquets.append((info.getName(s), s))
