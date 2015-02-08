@@ -119,7 +119,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateRunning:
 			self.wasPowerTimerWakeup = False
-			if os.path.exists("/tmp/was_timer_wakeup"):
+			if os.path.exists("/tmp/was_powertimer_wakeup"):
 				self.wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
 				os.remove("/tmp/was_powertimer_wakeup")
 			# If this timer has been cancelled or has failed,
