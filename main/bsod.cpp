@@ -270,11 +270,12 @@ void bsodFatal(const char *component)
 	p.setBackgroundColor(gRGB(0x008000));
 	p.setForegroundColor(gRGB(0xFFFFFF));
 
-	ePtr<gFont> font = new gFont("Regular", 20);
+	int hd =  my_dc->size().width() == 1920;
+	ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 	p.setFont(font);
 	p.clear();
 
-	eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
+	eRect usable_area = eRect(hd ? 30 : 100, hd ? 30 : 70, my_dc->size().width() - (hd ? 60 : 150), hd ? 150 : 100);
 
 	os.str("");
 	os.clear();
@@ -286,7 +287,7 @@ void bsodFatal(const char *component)
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
-	usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
+	usable_area = eRect(hd ? 30 : 100, hd ? 180 : 170, my_dc->size().width() - (hd ? 60 : 180), my_dc->size().height() - (hd ? 30 : 20));
 
 	int i;
 
@@ -301,7 +302,7 @@ void bsodFatal(const char *component)
 		}
 	}
 
-	font = new gFont("Regular", 14);
+	font = new gFont("Regular", hd ? 21 : 14);
 	p.setFont(font);
 
 	p.renderText(usable_area,
