@@ -164,7 +164,7 @@
 		<item level="2" text="Skip time for '4'/'6' buttons" description="Number of seconds to skip backward or forward when the 4 or 6 buttons are pressed." requires="config.seek.number_skips">config.seek.selfdefined_46</item>
 		<item level="2" text="Skip time for '7'/'9' buttons" description="Number of seconds to skip backward or forward when the 7 or 9 buttons are pressed." requires="config.seek.number_skips">config.seek.selfdefined_79</item>
 		<item level="1" text="Enable auto-skip" description="If enabled, playback will automatically skip over sections marked with edit points.">config.seek.autoskip</item>
-		<item level="2" text="Seekbar activation" description="Select seekbar to be activated by arrow L/R (long) or &lt;&lt; &gt;&gt; (long).">config.seek.baractivation</item>
+		<item level="2" text="Seekbar/time entry skip activation" description="Select whether the seekbar is activated by Long arrow Left/Right or Long &lt;&lt; / &gt;&gt;. Time entry skip will be set to the controls not used for seekbar activation.">config.seek.baractivation</item>
 		<item level="2" text="Seekbar skip" description="Set the skip size for the seekbar (as a percentage of the recording length).">config.seek.sensibility</item>
 		<item level="2" text="Fast forward speeds" description="Configure the possible fast forward speeds.">config.seek.speeds_forward</item>
 		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds.">config.seek.speeds_backward</item>
