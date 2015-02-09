@@ -71,7 +71,7 @@ l_moviesort = [
 	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("By reverse name, then by date"), 'Z->A, New->Old'),
 	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST), _("By reverse name, then by reverse date"), 'Z->A, Old->New'),
 	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT), _("Flat by reverse name, then by reverse date"), 'Z->A, Old->New Flat'),
-	(str(MovieList.SHUFFLE), _("shuffle"), 'Shuffle'),
+	(str(MovieList.SHUFFLE), _("Shuffle"), 'Shuffle'),
 ]
 
 def defaultMoviePath():
