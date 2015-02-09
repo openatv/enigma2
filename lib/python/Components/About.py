@@ -1,13 +1,13 @@
 from boxbranding import getImageVersion
 from sys import modules
-import socket, fcntl, struct
+import socket, fcntl, struct, time, os
 
 def getVersionString():
 	return getImageVersion()
 
 def getFlashDateString():
 	try:
-		return time.strftime(_("%Y-%m-%d %H:%M"), time.localtime(os.stat("/boot").st_ctime))
+		return time.strftime(_("%Y-%m-%d"), time.localtime(os.stat("/boot").st_ctime))
 	except:
 		return _("unknown")
 
