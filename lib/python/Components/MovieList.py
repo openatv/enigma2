@@ -603,7 +603,6 @@ class MovieList(GUIComponent):
 
 			self.list.append((serviceref, info, begin, -1))
 
-		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
 
 		if self.sort_type == MovieList.SORT_ALPHA_DATE_NEWEST_FIRST:
@@ -640,6 +639,13 @@ class MovieList(GUIComponent):
 					self.list.append(self.list.pop(self.list.index(x)))
 			else:
 					self.list.insert(0, self.list.pop(self.list.index(x)))
+
+		# Find first recording/file. Must be done after self.list has stopped changing
+		self.firstFileEntry = 0
+		for index, item in enumerate(self.list):
+			if not item[0].flags & eServiceReference.mustDescent:
+				self.firstFileEntry = index
+				break
 
 		if self.root and numberOfDirs > 0:
 			rootPath = os.path.normpath(self.root.getPath())
