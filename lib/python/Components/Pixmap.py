@@ -3,7 +3,7 @@ from GUIComponent import GUIComponent
 
 from enigma import ePixmap, eTimer
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from os import path
 from skin import loadPixmap
 
@@ -99,11 +99,11 @@ class MultiPixmap(Pixmap):
 				if attrib == "pixmaps":
 					pixmaps = value.split(',')
 					for p in pixmaps:
-						self.pixmaps.append(loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix), desktop) )
+						self.pixmaps.append(loadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, p, path_prefix=skin_path_prefix), desktop) )
 					if not pixmap:
-						pixmap = resolveFilename(SCOPE_SKIN_IMAGE, pixmaps[0], path_prefix=skin_path_prefix)
+						pixmap = resolveFilename(SCOPE_CURRENT_SKIN, pixmaps[0], path_prefix=skin_path_prefix)
 				elif attrib == "pixmap":
-					pixmap = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+					pixmap = resolveFilename(SCOPE_CURRENT_SKIN, value, path_prefix=skin_path_prefix)
 				else:
 					attribs.append((attrib,value))
 			if pixmap:
