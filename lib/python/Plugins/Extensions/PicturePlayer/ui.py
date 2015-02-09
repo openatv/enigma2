@@ -1,7 +1,7 @@
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_CURRENT_SKIN
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -12,6 +12,7 @@ from Components.Sources.List import List
 from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
+import skin
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -257,11 +258,9 @@ class Pic_Thumb(Screen):
 
 		self.textcolor = config.pic.textcolor.value
 		self.color = config.pic.bgcolor.value
-		textsize = 20
-		self.spaceX = 35
-		self.picX = 190
-		self.spaceY = 30
-		self.picY = 200
+		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt  = skin.parameters.get("PicturePlayerThumb",(35, 190, 30, 200, 20, 14))
+
+		pic_frame = resolveFilename(SCOPE_CURRENT_SKIN, "pic_frame.png")
 
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
@@ -282,12 +281,15 @@ class Pic_Thumb(Screen):
 			absX = self.spaceX + (posX*(self.spaceX + self.picX))
 			absY = self.spaceY + (posY*(self.spaceY + self.picY))
 			self.positionlist.append((absX, absY))
-			skincontent += "<widget source=\"label" + str(x) + "\" render=\"Label\" position=\"" + str(absX+5) + "," + str(absY+self.picY-textsize) + "\" size=\"" + str(self.picX - 10) + ","  + str(textsize) + "\" font=\"Regular;14\" zPosition=\"2\" transparent=\"1\" noWrap=\"1\" foregroundColor=\"" + self.textcolor + "\" />"
+			skincontent += "<widget source=\"label" + str(x) + "\" render=\"Label\" position=\"" + str(absX+5) + "," + str(absY+self.picY-textsize) + "\" size=\"" + str(self.picX - 10) + ","  + str(textsize) \
+					+ "\" font=\"Regular;" + str(thumtxt) + "\" zPosition=\"2\" transparent=\"1\" noWrap=\"1\" foregroundColor=\"" + self.textcolor + "\" />"
 			skincontent += "<widget name=\"thumb" + str(x) + "\" position=\"" + str(absX+5)+ "," + str(absY+5) + "\" size=\"" + str(self.picX -10) + "," + str(self.picY - (textsize*2)) + "\" zPosition=\"2\" transparent=\"1\" alphatest=\"on\" />"
 
 		# Screen, backgroundlabel and MovingPixmap
 		self.skin = "<screen position=\"0,0\" size=\"" + str(size_w) + "," + str(size_h) + "\" flags=\"wfNoBorder\" > \
-			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(size_w) + "," + str(size_h) + "\" backgroundColor=\"" + self.color + "\" /><widget name=\"frame\" position=\"35,30\" size=\"190,200\" pixmap=\"pic_frame.png\" zPosition=\"1\" alphatest=\"on\" />"  + skincontent + "</screen>"
+			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(size_w) + "," + str(size_h) + "\" backgroundColor=\"" + self.color + "\" />" \
+			+ "<widget name=\"frame\" position=\"" + str(self.spaceX)+ "," + str(self.spaceY)+ "\" size=\"" + str(self.picX) + "," + str(self.picY) + "\" pixmap=\"" + pic_frame + "\" zPosition=\"1\" alphatest=\"on\" />" \
+			+ skincontent + "</screen>"
 
 		Screen.__init__(self, session)
 
