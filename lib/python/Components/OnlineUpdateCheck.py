@@ -6,7 +6,9 @@ from enigma import eTimer
 import Components.Task
 from Components.Ipkg import IpkgComponent
 from Components.config import config
-
+from Tools import Notifications
+from Screens.MessageBox import MessageBox
+from Screens.SoftwareUpdate import UpdatePlugin
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
@@ -60,14 +62,21 @@ class OnlineUpdateCheckPoller:
 				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
 					config.softwareupdate.updatefound.setValue(True)
+					if not versioncheck.user_notified:
+						versioncheck.user_notified = True
+						Notifications.AddNotificationWithCallback(self.updateNotificationAnswer, MessageBox, _("Online update available.\nInstall now?"))
 				else:
 					config.softwareupdate.updatefound.setValue(False)
 			else:
 				config.softwareupdate.updatefound.setValue(False)
 
+	def updateNotificationAnswer(self, answer):
+		if answer:
+			Notifications.AddNotification(UpdatePlugin)
+
 class VersionCheck:
 	def __init__(self):
-		pass
+		self.user_notified = False
 
 	def getStableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
