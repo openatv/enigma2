@@ -831,8 +831,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
 				"blue":        (self.enterDateTime,  _("Goto specific date/time")),
 				"menu":	       (self.furtherOptions, _("Further Options")),
-				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
-				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
+				"nextBouquet": (self.nextBouquet, self.getKeyNextBouquetHelptext),
+				"prevBouquet": (self.prevBouquet, self.getKeyPrevBouquetHelptext),
 				"nextService": (self.nextPressed,    _("Goto next page of events")),
 				"prevService": (self.prevPressed,    _("Goto previous page of events")),
 				"preview":     (self.preview,        _("Preview selected channel")),
@@ -921,6 +921,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def key6(self):
 		self.updEpoch(360)
+
+	def getKeyNextBouquetHelptext(self):
+		return config.misc.graph_mepg.silent_bouquet_change.value and _("Switch to next bouquet") or _("Show bouquet selection menu")
+
+	def getKeyPrevBouquetHelptext(self):
+		return config.misc.graph_mepg.silent_bouquet_change.value and _("Switch to previous bouquet") or _("Show bouquet selection menu")
 
 	def nextBouquet(self):
 		if self.bouquetChangeCB:
@@ -1014,6 +1020,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def setServices(self, services):
 		self.services = services
+		self["list"].resetOffset()
 		self.onCreate()
 
 	def doRefresh(self, answer):

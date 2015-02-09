@@ -161,7 +161,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		elif config.ParentalControl.configured.value and config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 'aaaa':
 			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
 		else:
-			if config.ParentalControl.configured.value and not config.ParentalControl.setuppinactive.value and not config.ParentalControl.servicepinactive.value:
+			if config.ParentalControl.configured.value and not config.ParentalControl.setuppinactive.value and not config.ParentalControl.servicepinactive.value and config.ParentalControl.age.value == "0":
 				config.ParentalControl.configured.value = False
 			for x in self["config"].list:
 				x[1].save()
