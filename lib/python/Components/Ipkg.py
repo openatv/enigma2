@@ -144,10 +144,10 @@ class IpkgComponent:
 
 	def parseLine(self, data):
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
-			item = data.split(' - ', 2)
-
-			self.fetchedList.append(item)
-			self.callCallbacks(self.EVENT_LISTITEM, item)
+			if data.count(' - ') > 1:
+				item = data.split(' - ', 2)
+				self.fetchedList.append(item)
+				self.callCallbacks(self.EVENT_LISTITEM, item)
 			return
 
 		try:

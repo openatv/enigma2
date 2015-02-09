@@ -95,7 +95,7 @@ class UpdatePlugin(Screen):
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
-			self.package.setText(param)
+			self.package.setText(param.rpartition("/")[2].rstrip("."))
 		elif event == IpkgComponent.EVENT_UPGRADE:
 			self.slider.setValue(100 * self.packages / self.total_packages)
 			self.package.setText(param)
