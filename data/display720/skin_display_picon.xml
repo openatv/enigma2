@@ -109,10 +109,10 @@
 		<widget source="session.CurrentService" render="LcdPicon" zPosition="13" position="160,355" size="320,210" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget noWrap="1" font="FdLcD;55" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="left" >
+		<widget source="session.MSNWeather" noWrap="1" font="FdLcD;45" render="Label" position="480,355" size="100,120" transparent="1" zPosition="8" valign="center" halign="left" >
 			<convert type="MSNWeather">temperature_current</convert>
 		</widget>
-		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" halign="right" valign="center" >
+		<widget source="session.MSNWeather" render="MSNWeatherPixmap" position="570,355" size="140,120" transparent="1" zPosition="8" alphatest="blend" halign="right" valign="center" >
 			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
