@@ -22,7 +22,7 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;20" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="203,48" size="53,22" font="FdLcD;20" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"/>
 		</widget>
 	</screen>
@@ -46,42 +46,42 @@
 		</widget>
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="FixedLabel" position="135,44" size="16,20" text="A" font="FdLcD;19" halign="center" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="143,44" size="15,20" text="A" font="FdLcD;19" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="135,44" size="16,20" text="A" font="FdLcD;19" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="143,44" size="15,20" text="A" font="FdLcD;19" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="152,44" size="16,20" text="B" font="FdLcD;19" halign="center" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="158,44" size="15,20" text="B" font="FdLcD;19" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="152,44" size="16,20" text="B" font="FdLcD;19" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="158,44" size="15,20" text="B" font="FdLcD;19" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="169,44" size="16,20" text="C" font="FdLcD;19" halign="center" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="173,44" size="15,20" text="C" font="FdLcD;19" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="169,44" size="16,20" text="C" font="FdLcD;19" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="173,44" size="15,20" text="C" font="FdLcD;19" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="186,44" size="16,20" text="D" font="FdLcD;19" halign="center" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="188,44" size="15,20" text="D" font="FdLcD;19" halign="center" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="186,44" size="16,20" text="D" font="FdLcD;19" halign="center" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="188,44" size="15,20" text="D" font="FdLcD;19" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
