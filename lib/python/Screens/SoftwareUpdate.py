@@ -23,7 +23,7 @@ class SoftwareUpdateChangeView(TextBox):
 class UpdatePlugin(Screen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Software Update"))
+		Screen.setTitle(self, _("Software update"))
 
 		self.setTitle(_("Software update"))
 		self.slider = Slider(0, 100)
@@ -142,7 +142,7 @@ class UpdatePlugin(Screen):
 					choices = [
 						(_("View the changes"), "showlist"),
 						(_("Update and ask to reboot"), "hot"),
-						(_("Upgrade and reboot system"), "cold")
+						# (_("Upgrade and reboot system"), "cold")
 					]
 					choices.append((_("Cancel"), ""))
 					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices")
@@ -200,7 +200,7 @@ class UpdatePlugin(Screen):
 			choices = [
 				(_("View the changes"), "showlist"),
 				(_("Update and ask to reboot"), "hot"),
-				(_("Upgrade and reboot system"), "cold")
+				# (_("Upgrade and reboot system"), "cold")
 			]
 			choices.append((_("Cancel"), ""))
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices")
