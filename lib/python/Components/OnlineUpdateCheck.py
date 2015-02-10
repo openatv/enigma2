@@ -27,9 +27,9 @@ class OnlineUpdateCheckPoller:
 			self.timer.callback.append(self.onlineupdate_check)
 
 		if time() > 1262304000:  # Fri, 01 Jan 2010 00:00:00 GMT
-			self.timer.startLongTimer(0)
+			self.timer.startLongTimer(30)
 		else:
-			self.timer.startLongTimer(120)
+			self.timer.startLongTimer(10 * 60)
 
 	def stop(self):
 		if self.version_check in self.timer.callback:
@@ -43,7 +43,7 @@ class OnlineUpdateCheckPoller:
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
-		task = Components.Task.PythonTask(job, _("Checking for Updates..."))
+		task = Components.Task.PythonTask(job, _("Checking for updates..."))
 		task.work = self.JobStart
 		task.weighting = 1
 		return job
@@ -59,7 +59,7 @@ class OnlineUpdateCheckPoller:
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
+				print ('[OnlineVersionCheck] %s updates available' % self.total_packages)
 				if self.total_packages:
 					config.softwareupdate.updatefound.setValue(True)
 					if not versioncheck.user_notified:
