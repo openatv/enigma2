@@ -72,7 +72,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			self.list.append(self.changePin)
 			self.list.append(getConfigListEntry(_("Remember service PIN"), config.ParentalControl.storeservicepin))
 			self.list.append(getConfigListEntry(_("Protect on epg age"), config.ParentalControl.age))	
-			self.reloadLists = getConfigListEntry(_("Reload black-/white lists"), NoSave(ConfigNothing()))
+			self.reloadLists = getConfigListEntry(_("Reload protected list"), NoSave(ConfigNothing()))
 			self.list.append(self.reloadLists)
 
 		self["config"].list = self.list
@@ -121,7 +121,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 	def keySave(self):
 		if config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == "aaaa":
-			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nWould you like to change the service PIN now?\nIf you select 'No' the service protection will stay disabled!"), MessageBox.TYPE_YESNO)
 		else:
 			for x in self["config"].list:
 				x[1].save()
@@ -287,7 +287,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.pin1.addEndNotifier(boundFunction(self.valueChanged, 1))
 		self.pin2.addEndNotifier(boundFunction(self.valueChanged, 2))
 		self.list.append(getConfigListEntry(_("New PIN"), NoSave(self.pin1)))
-		self.list.append(getConfigListEntry(_("Reenter new PIN"), NoSave(self.pin2)))
+		self.list.append(getConfigListEntry(_("Re-enter new PIN"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
 		ProtectedScreen.__init__(self)
 
