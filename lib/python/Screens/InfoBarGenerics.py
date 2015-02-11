@@ -1809,7 +1809,7 @@ class InfoBarSeek:
 			"SeekbarBack": (self.seekBackSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", False)),
 		}, prio=-1, description=_("Skip, pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
-		self.setEnableSeekActions(False)
+		self["SeekActions"].setEnabled(False)
 		config.seek.updown_skips.addNotifier(notifySeekActionsUpDown, initial_call=False, immediate_feedback=False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS", {
