@@ -260,7 +260,7 @@ class Pic_Thumb(Screen):
 		self.color = config.pic.bgcolor.value
 		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt  = skin.parameters.get("PicturePlayerThumb",(35, 190, 30, 200, 20, 14))
 
-		pic_frame = resolveFilename(SCOPE_CURRENT_SKIN, "pic_frame.png")
+		pic_frame = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/pic_frame.png")
 
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
