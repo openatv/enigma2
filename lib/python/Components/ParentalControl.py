@@ -27,6 +27,10 @@ def InitParentalControl():
 	parentalControl = ParentalControl()
 	config.ParentalControl = ConfigSubsection()
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
+	
+	#It seems openwebif needs this stuff - when and if openwebif adapted these 5 lines can be removed
+	config.ParentalControl.configured = ConfigYesNo(default = True)
+
 	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
 
 	config.ParentalControl.retries = ConfigSubsection()
