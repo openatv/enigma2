@@ -142,6 +142,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self.currentService = ServiceReference(service)
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
+					'nextService': (self.nextService, _('Goto next channel')),
+					'prevService': (self.prevService, _('Goto previous channel')),
 					'info': (self.Info, _('Show detailed event info')),
 					'epg': (self.Info, _('Show detailed event info')),
 					'menu': (self.createSetup, _('Setup menu'))
