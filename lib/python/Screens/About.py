@@ -25,7 +25,7 @@ class About(Screen):
 		Screen.setTitle(self, _("Image Information"))
 		self.skinName = "AboutOE"
 		self.populate()
-
+		
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 									{
@@ -55,16 +55,19 @@ class About(Screen):
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
-		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString()
-
+		
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s\n") % driversdate
+		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
+		
+		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer","")
+		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
+		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
 		fp_version = getFPVersion()

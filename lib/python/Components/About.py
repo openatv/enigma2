@@ -1,9 +1,15 @@
 from boxbranding import getImageVersion
 from sys import modules
-import socket, fcntl, struct
+import socket, fcntl, struct, time, os
 
 def getVersionString():
 	return getImageVersion()
+
+def getFlashDateString():
+	try:
+		return time.strftime(_("%Y-%m-%d"), time.localtime(os.stat("/boot").st_ctime))
+	except:
+		return _("unknown")
 
 def getEnigmaVersionString():
 	return getImageVersion()
@@ -115,6 +121,14 @@ def getIfTransferredData(ifname):
 			rx_bytes, tx_bytes = (data[0], data[8])
 			f.close()
 			return rx_bytes, tx_bytes
+
+def getPythonVersionString():
+	try:
+		import commands
+		status, output = commands.getstatusoutput("python -V")
+		return output.split(' ')[1]
+	except:
+		return _("unknown")
 
 # For modules that do "from About import about"
 about = modules[__name__]
