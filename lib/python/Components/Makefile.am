@@ -16,7 +16,7 @@ install_PYTHON = \
 	PluginList.py PluginComponent.py RecordingConfig.py About.py UsageConfig.py \
 	FIFOList.py ServiceEventTracker.py Input.py TimerSanityCheck.py FileList.py \
 	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py ChoiceList.py \
-	Element.py Playlist.py ParentalControl.py ParentalControlList.py \
+	Element.py Playlist.py ParentalControl.py \
 	Ipkg.py SelectionList.py Scanner.py SystemInfo.py PackageInfo.py \
 	Task.py Console.py ResourceManager.py TuneTest.py \
 	Keyboard.py Sensors.py FanControl.py HdmiCec.py RcModel.py \

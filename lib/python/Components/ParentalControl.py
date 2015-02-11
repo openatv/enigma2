@@ -14,44 +14,26 @@ TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
 TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
-LIST_WHITELIST = "whitelist"
-
-IMG_WHITESERVICE = LIST_WHITELIST + "-" + TYPE_SERVICE
-IMG_WHITEBOUQUET = LIST_WHITELIST + "-" + TYPE_BOUQUET
-IMG_BLACKSERVICE = LIST_BLACKLIST + "-" + TYPE_SERVICE
-IMG_BLACKBOUQUET = LIST_BLACKLIST + "-" + TYPE_BOUQUET
 
 def InitParentalControl():
 	global parentalControl
 	parentalControl = ParentalControl()
 	config.ParentalControl = ConfigSubsection()
-	config.ParentalControl.configured = ConfigYesNo(default = False)
-	config.ParentalControl.mode = ConfigSelection(default = "simple", choices = [("simple", _("simple")), ("complex", _("complex"))])
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
 	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
-	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
-	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_WHITELIST, _("whitelist")), (LIST_BLACKLIST, _("blacklist"))])
-	config.ParentalControl.setuppin = ConfigPIN(default = -1)
 
 	config.ParentalControl.retries = ConfigSubsection()
-	config.ParentalControl.retries.setuppin = ConfigSubsection()
-	config.ParentalControl.retries.setuppin.tries = ConfigInteger(default = 3)
-	config.ParentalControl.retries.setuppin.time = ConfigInteger(default = 3)
 	config.ParentalControl.retries.servicepin = ConfigSubsection()
 	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 	config.ParentalControl.servicepin = ConfigSubList()
+	config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
 	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
-
-	for i in (0, 1, 2):
-		config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
-		#config.ParentalControl.servicepin.append(configElement("config.ParentalControl.servicepin.level" + str(i), configSequence, "0000", configSequenceArg().get("PINCODE", (4, ""))))
 
 class ParentalControl:
 	def __init__(self):
 		#Do not call open on init, because bouquets are not ready at that moment
 		self.filesOpened = False
-		self.serviceLevel = {}
 		self.PinDlg = None
 		#Instead: Use Flags to see, if we already initialized config and called open
 		self.configInitialized = False
@@ -78,12 +60,9 @@ class ParentalControl:
 			sRef = str(ref)
 			method( sRef , TYPE_SERVICE , *args )
 
-	def setServiceLevel(self, service, type, level):
-		self.serviceLevel[service] = level
-
 	def isServicePlayable(self, ref, callback, session=None):
 		self.session = session
-		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
+		if not config.ParentalControl.servicepinactive.value:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
@@ -100,82 +79,33 @@ class ParentalControl:
 			rating = event and event.getParentalData()
 			age = rating and rating.getRating()
 			age = age and age <= 15 and age + 3 or 0
-		if (age and age >= int(config.ParentalControl.age.value)) or service and ((config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service))):
+		if (age and age >= int(config.ParentalControl.age.value)) or service and self.blacklist.has_key(service):
 			#Check if the session pin is cached
 			if self.sessionPinCached == True:
 				return True
 			self.callback = callback
-			#Someone started to implement different levels of protection. Seems they were never completed
-			#I did not throw out this code, although it is of no use at the moment
-			levelNeeded = 0
-			if self.serviceLevel.has_key(service):
-				levelNeeded = self.serviceLevel[service]
-			pinList = self.getPinList()[:levelNeeded + 1]
 			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
 			if session:
 				Notifications.RemovePopup("Parental control")
 				if self.PinDlg:
 					self.PinDlg.close()
-				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=pinList, service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"), simple=False)
+				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=self.getPinList(), service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"), simple=False)
 			else:
-				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=pinList, service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"))
+				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=self.getPinList(), service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"))
 			return False
 		else:
 			return True
 
 	def protectService(self, service):
-		if config.ParentalControl.type.value == LIST_WHITELIST:
-			if self.whitelist.has_key(service):
-				self.serviceMethodWrapper(service, self.removeServiceFromList, self.whitelist)
-				#self.deleteWhitelistService(service)
-		else: # blacklist
-			if not self.blacklist.has_key(service):
-				self.serviceMethodWrapper(service, self.addServiceToList, self.blacklist)
-				#self.addBlacklistService(service)
-		#print "whitelist:", self.whitelist
-		#print "blacklist:", self.blacklist
+		if not self.blacklist.has_key(service):
+			self.serviceMethodWrapper(service, self.addServiceToList, self.blacklist)
 
 	def unProtectService(self, service):
-		#print "unprotect"
-		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
-		if config.ParentalControl.type.value == LIST_WHITELIST:
-			if not self.whitelist.has_key(service):
-				self.serviceMethodWrapper(service, self.addServiceToList, self.whitelist)
-				#self.addWhitelistService(service)
-		else: # blacklist
-			if self.blacklist.has_key(service):
-				self.serviceMethodWrapper(service, self.removeServiceFromList, self.blacklist)
-				#self.deleteBlacklistService(service)
-		#print "whitelist:", self.whitelist
-		#print "blacklist:", self.blacklist
+		if self.blacklist.has_key(service):
+			self.serviceMethodWrapper(service, self.removeServiceFromList, self.blacklist)
 
 	def getProtectionLevel(self, service):
-		if (config.ParentalControl.type.value == LIST_WHITELIST and not self.whitelist.has_key(service)) or (config.ParentalControl.type.value == LIST_BLACKLIST and self.blacklist.has_key(service)):
-			if self.serviceLevel.has_key(service):
-				return self.serviceLevel[service]
-			else:
-				return 0
-		else:
-			return -1
-
-	def getProtectionType(self, service):
-		#New method used in ParentalControlList: This method does not only return
-		#if a service is protected or not, it also returns, why (whitelist or blacklist, service or bouquet)
-		sImage = ""
-		if (config.ParentalControl.type.value == LIST_WHITELIST):
-			if self.whitelist.has_key(service):
-				if TYPE_SERVICE in self.whitelist[service]:
-					sImage = IMG_WHITESERVICE
-				else:
-					sImage = IMG_WHITEBOUQUET
-		elif (config.ParentalControl.type.value == LIST_BLACKLIST):
-			if self.blacklist.has_key(service):
-				if TYPE_SERVICE in self.blacklist[service]:
-					sImage = IMG_BLACKSERVICE
-				else:
-					sImage = IMG_BLACKBOUQUET
-		bLocked = self.getProtectionLevel(service) != -1
-		return (bLocked,sImage)
+		return not self.blacklist.has_key(service) and -1 or 0
 
 	def getConfigValues(self):
 		#Read all values from configuration
@@ -278,8 +208,6 @@ class ParentalControl:
 				vList[service].remove(type)
 			if not vList[service]:
 				del vList[service]
-		if self.serviceLevel.has_key(service):
-			self.serviceLevel.remove(service)
 
 	def readServicesFromBouquet(self,sBouquetSelection,formatstring):
 		#This method gives back a list of services for a given bouquet
@@ -295,11 +223,9 @@ class ParentalControl:
 
 	def save(self):
 		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
-		self.saveListToFile(LIST_WHITELIST, self.whitelist)
 
 	def open(self):
 		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
-		self.whitelist = self.openListFromFile(LIST_WHITELIST)
 		self.filesOpened = True
 
 	def __getattr__(self, name):
