@@ -1769,32 +1769,6 @@ class InfoBarSeek:
 						skipHelp.append((action, InfoBarSeekActionMap.skipString(skipTime)))
 				return tuple(skipHelp)
 
-			@staticmethod
-			def skipString(fwd, skip):
-				return "%s %3d sec" % (_("Skip forward ") if fwd else _("Skip back "), skip)
-
-			@staticmethod
-			def generateSkipHelp(context):
-				skipHelp = []
-				for action in [act for ctx, act in getKeyBindingKeys(filterfn=lambda(key): key[0] == context and key[1].startswith("seek"))]:
-					time = InfoBarSeekActionMap.seekTime(action)
-					if time is not None:
-						skipHelp.append((action, InfoBarSeekActionMap.skipString(time)))
-				return tuple(skipHelp)
-
-			@staticmethod
-			def skipString(fwd, skip):
-				return "%s %3d sec" % (_("Skip forward ") if fwd else _("Skip back "), skip)
-
-			@staticmethod
-			def generateSkipHelp(context):
-				skipHelp = []
-				for action in [act for ctx, act in getKeyBindingKeys(filterfn=lambda(key): key[0] == context and key[1].startswith("seek"))]:
-					time = InfoBarSeekActionMap.seekTime(action)
-					if time is not None:
-						skipHelp.append((action, InfoBarSeekActionMap.skipString(time)))
-				return tuple(skipHelp)
-
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, {
 			"playpauseService": (self.playpauseService, _("Play/pause playback")),
 			"pauseService": (self.pauseService, _("Pause playback")),
@@ -1810,7 +1784,6 @@ class InfoBarSeek:
 		}, prio=-1, description=_("Skip, pause, rewind and fast forward"))  # give them a little more priority to win over color buttons
 
 		self["SeekActions"].setEnabled(False)
-		config.seek.updown_skips.addNotifier(notifySeekActionsUpDown, initial_call=False, immediate_feedback=False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS", {
 			"playpauseService": (self.playpauseService, _("Play/pause playback")),
