@@ -15,6 +15,13 @@ TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
 TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
+#It seems openwebif needs this stuff - when and if openwebif adapted these 5 lines can be removed
+LIST_WHITELIST = "whitelist"
+IMG_WHITESERVICE = LIST_WHITELIST + "-" + TYPE_SERVICE
+IMG_WHITEBOUQUET = LIST_WHITELIST + "-" + TYPE_BOUQUET
+IMG_BLACKSERVICE = LIST_BLACKLIST + "-" + TYPE_SERVICE
+IMG_BLACKBOUQUET = LIST_BLACKLIST + "-" + TYPE_BOUQUET
+
 def InitParentalControl():
 	global parentalControl
 	parentalControl = ParentalControl()
