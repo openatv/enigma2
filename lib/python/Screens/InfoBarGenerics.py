@@ -322,10 +322,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		for x in self.onShowHideNotifiers:
 			x(True)
 		self.startHideTimer()
-		
+
 	def doDimming(self):
 		if config.usage.show_infobar_do_dimming.value:
-			self.dimmed = self.dimmed-1
+			self.dimmed = self.dimmed - 1
 		else:
 			self.dimmed = 0
 		self.DimmingTimer.stop()
@@ -337,7 +337,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doWriteAlpha(self, value):
 		if fileExists("/proc/stb/video/alpha"):
-			f=open("/proc/stb/video/alpha","w")
+			f = open("/proc/stb/video/alpha", "w")
 			f.write("%i" % (value))
 			f.close()
 
@@ -346,7 +346,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
-			
+
 	def resetAlpha(self):
 		if config.usage.show_infobar_do_dimming.value:
 			self.unDimmingTimer = eTimer()
@@ -423,14 +423,14 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value * self.dimmed / config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value * self.dimmed / config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
@@ -444,16 +444,16 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 
 			self.EventViewIsShown = False
-#		elif hasattr(self, "pvrStateDialog"):
-#			if self.dimmed > 0:
-#				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-#				self.DimmingTimer.start(5, True)
-#			else:
-#				self.DimmingTimer.stop()
-#				try:
-#					self.pvrStateDialog.hide()
-#				except:
-#					pass
+		# elif hasattr(self, "pvrStateDialog"):
+		# 	if self.dimmed > 0:
+		# 		self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+		# 		self.DimmingTimer.start(5, True)
+		# 	else:
+		# 		self.DimmingTimer.stop()
+		# 		try:
+		# 			self.pvrStateDialog.hide()
+		# 		except:
+		# 			pass
 
 	def toggleShow(self):
 		if not hasattr(self, "LongButtonPressed"):
@@ -522,12 +522,11 @@ class BufferIndicator(Screen):
 		Screen.__init__(self, session)
 		self["status"] = Label()
 		self.mayShow = False
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evBuffering: self.bufferChanged,
-				iPlayableService.evStart: self.__evStart,
-				iPlayableService.evVideoSizeChanged: self.__evVideoStarted,
-			})
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evBuffering: self.bufferChanged,
+			iPlayableService.evStart: self.__evStart,
+			iPlayableService.evVideoSizeChanged: self.__evVideoStarted,
+		})
 
 	def bufferChanged(self):
 		if self.mayShow:
@@ -901,14 +900,14 @@ class InfoBarChannelSelection:
 				_("Open channel list and move up"),
 				_("Open PiP channel list and move down"),
 				_("Open PiP channel list and move up"),
-			)[int(bool(long))*2 + int(bool(up))]
+			)[int(bool(long)) * 2 + int(bool(up))]
 		else:
 			return (
 				_("Open channel list"),
 				_("Open bouquet list"),
 				_("Open PiP channel list"),
 				_("Open PiP bouquet list"),
-			)[int(bool(long))*2 + int(bool(config.usage.show_bouquetalways.value))]
+			)[int(bool(long)) * 2 + int(bool(config.usage.show_bouquetalways.value))]
 
 	def switchChannelUpDown(self, up=None):
 		if not self.secondInfoBarScreen.shown:
@@ -1755,7 +1754,7 @@ class InfoBarSeek:
 				if callable(skip):
 					return boundFunction(InfoBarSeekActionMap.skipStringFn, skip)
 				else:
-					return "%s %3d %s" % (_("Skip forward ") if skip >=0  else _("Skip back "), abs(skip), _("sec"))
+					return "%s %3d %s" % (_("Skip forward ") if skip >= 0 else _("Skip back "), abs(skip), _("sec"))
 
 			@staticmethod
 			def generateSkipHelp(context):
@@ -2794,7 +2793,7 @@ class InfoBarPiP:
 
 	def movePiP(self):
 		if self.pipShown():
-			self.session.open(PiPSetup, pip = self.session.pip)
+			self.session.open(PiPSetup, pip=self.session.pip)
 
 	def pipDoHandle0Action(self):
 		use = config.usage.pip_zero_button.value
@@ -3433,7 +3432,7 @@ class InfoBarCueSheetSupport:
 				self.resume_point = last
 				l = last / 90000
 				if "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
