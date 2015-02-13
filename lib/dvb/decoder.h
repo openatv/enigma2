@@ -101,8 +101,8 @@ private:
 	int m_vpid, m_vtype, m_apid, m_atype, m_pcrpid, m_textpid;
 	enum
 	{
-		changeVideo = 1, 
-		changeAudio = 2, 
+		changeVideo = 1,
+		changeAudio = 2,
 		changePCR   = 4,
 		changeText  = 8,
 		changeState = 16,
@@ -114,7 +114,7 @@ private:
 	int setState();
 	ePtr<eConnection> m_demux_event_conn;
 	ePtr<eConnection> m_video_event_conn;
-	
+
 	void demux_event(int event);
 	void video_event(struct videoEvent);
 	Signal1<void, struct videoEvent> m_video_event;
@@ -136,10 +136,10 @@ public:
 	RESULT setSyncPCR(int pcrpid);
 	RESULT setTextPID(int textpid);
 	RESULT setSyncMaster(int who);
-	
+
 		/*
 		The following states exist:
-		
+
 		 - stop: data source closed, no playback
 		 - pause: data source active, decoder paused
 		 - play: data source active, decoder consuming

@@ -107,10 +107,10 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="255,64">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="255,28" font="FdLcD;28" halign="center" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center" noWrap="1">
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="session.Event_Now" render="RollerCharLCD" position="0,30" size="255,22" font="FdLcD;22" halign="center" noWrap="1">
+		<widget source="session.Event_Now" render="RollerCharLCD" position="0,33" size="255,24" font="FdLcD;22" halign="center" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,59" size="255,5" borderWidth="1">
@@ -122,7 +122,7 @@
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="255,64">
 		<widget name="statusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" />
 		<widget source="speed_summary" render="Label" position="30,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="session.CurrentService" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="0,23" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,58" size="255,6" borderWidth="1">
@@ -130,48 +130,48 @@
 		</widget>
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="255,64">
-		<widget source="parent.Title" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
-		<widget source="selected" render="RollerCharLCD" position="0,41" size="255,50" font="FdLcD;24" halign="center" />
+		<widget source="parent.Title" render="RollerCharLCD" position="0,0" size="255,35" font="FdLcD;32" halign="center"/>
+		<widget source="selected" render="Label" position="0,35" size="255,29" font="FdLcD;26" halign="center" />
 	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="255,64">
 		<widget source="parent.Service" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="MovieInfo">RecordServiceName</convert>
 		</widget>
 		<widget source="name" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1" />
-		<widget source="parent.Service" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		<widget source="parent.Service" render="Label" position="0,46" size="140,18" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="ServiceTime">Duration</convert>
 			<convert type="ClockToText">AsLength</convert>
 		</widget>
-		<widget source="parent.Service" render="Label" position="65,51" size="80,18" font="FdLcD;17" halign="right" valign="bottom" noWrap="1">
+		<widget source="parent.Service" render="Label" position="65,46" size="80,18" font="FdLcD;17" halign="right" noWrap="1">
 		  <convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="255,64">
-		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="255,25" font="FdLcD;25" halign="center" noWrap="1">
-			<convert type="ServiceName">Name</convert>
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center" noWrap="1">
+			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="RollerCharLCD" position="0,26" size="255,22" font="FdLcD;21" halign="center" noWrap="1">
+		<widget source="parent.ServiceEvent" render="RollerCharLCD" position="0,33" size="255,24" font="FdLcD;22" halign="center" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="0,58" size="255,6" borderWidth="1">
+		<widget source="parent.ServiceEvent" render="Progress" position="0,59" size="255,5" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
 
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="255,64">
-		<widget source="parent.title" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
-		<widget source="parent.menu" render="RollerCharLCD" position="0,41" size="255,50" font="FdLcD;24" halign="center">
+		<widget source="parent.title" render="RollerCharLCD" position="0,0" size="255,35" font="FdLcD;32" halign="center"/>
+		<widget source="parent.menu" render="RollerCharLCD" position="0,35" size="255,29" font="FdLcD;26" halign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="255,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
-		<widget source="SetupEntry" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="SetupTitle" render="RollerCharLCD" position="0,0" size="255,35" font="FdLcD;32" halign="center"/>
+		<widget source="SetupEntry" render="Label" position="0,35" size="255,29" font="FdLcD;26" halign="center"/>
 	</screen>
 	
 <!-- misc-->
@@ -180,8 +180,8 @@
 	</screen>
 	
 	<screen name="GeneralMenuSummary" position="0,0" size="255,64" >
-		<widget name="mTitle" position="0,0" size="255,64" font="FdLcD;32" halign="center"/>
-		<widget name="mMenu" position="0,34" size="255,64" font="FdLcD;28" halign="center"/>
+		<widget name="mTitle" position="0,0" size="255,35" font="FdLcD;32" halign="center"/>
+		<widget name="mMenu" position="0,35" size="255,29" font="FdLcD;26" halign="center"/>
 	</screen>
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="255,64">
@@ -222,7 +222,7 @@
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="entry" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="entry" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 
 <!-- JobView Summary -->
@@ -239,12 +239,12 @@
 
 	<screen name="EventView_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_description" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_description" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 
 	<screen name="EventViewSimple_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_description" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_description" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 
 <!-- EPG Screens -->
@@ -279,11 +279,11 @@
 
 	<screen name="MessageBox_summary" position="0,0" size="255,64">
 		<widget source="parent.Text" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center" />
 	</screen>
 	<screen name="MessageBoxSimple_summary" position="0,0" size="255,64">
 		<widget source="parent.Text" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="255,64">
@@ -302,17 +302,17 @@
 
 	<screen name="WizardSummary" position="0,0" size="255,64">
 		<widget source="text" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center" />
-		<widget source="parent.list" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"  >
+		<widget source="parent.list" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"  >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
 	<screen name="LanguageWizardSummary" position="0,0" size="255,64">
 		<widget source="parent.summarytext" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center" />
-		<widget source="parent.summarylangname" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"  />
+		<widget source="parent.summarylangname" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"  />
 	</screen>
 	<screen name="VideoWizardSummary" position="0,0" size="255,64">
 		<widget source="text" render="RollerCharLCD" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.list" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"  >
+		<widget source="parent.list" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"  >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -325,8 +325,8 @@
 	</screen>
 
 	<screen name="NumberZap_summary" position="0,0" size="255,64">
-		<widget source="parent.channel_summary" render="Label" position="0,0" size="255,32" font="FdLcD;32" halign="center"/>
-		<widget source="parent.number_summary" render="Label" position="0,33" size="255,28" font="FdLcD;28" halign="center"/>
+		<widget source="parent.channel_summary" render="Label" position="0,0" size="255,35" font="FdLcD;32" halign="center"/>
+		<widget source="parent.number_summary" render="Label" position="0,35" size="255,29" font="FdLcD;26" halign="center"/>
 	</screen>
 
 	<screen name="UpdatePlugin_summary" position="0,0" size="255,64">
@@ -344,12 +344,12 @@
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="entry" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="entry" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 	<screen name="NetworkServicesSummary" position="0,0" size="255,64">
 		<widget source="title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
-		<widget source="status_summary" render="Label" position="0,30" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
-		<widget source="autostartstatus_summary" render="Label" position="0,49" size="190,15" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="status_summary" render="Label" position="0,30" size="190,16" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="autostartstatus_summary" render="Label" position="0,49" size="190,16" font="FdLcD;14" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
@@ -363,23 +363,23 @@
 	</screen>
 	<screen name="CrossEPG_Rytec_Update_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_action" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_action" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 	<screen name="CrossEPG_Xepgdb_Update_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_action" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_action" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 	<screen name="CrossEPG_Converter_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_action" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_action" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 	<screen name="CrossEPG_Importer_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_action" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_action" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 	<screen name="CrossEPG_Loader_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
-		<widget source="parent.summary_action" render="Label" position="0,41" size="255,50" font="FdLcD;24" halign="center"/>
+		<widget source="parent.summary_action" render="Label" position="0,37" size="255,27" font="FdLcD;24" halign="center"/>
 	</screen>
 	<screen name="CrossEPG_Downloader_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />

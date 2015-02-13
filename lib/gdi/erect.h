@@ -52,11 +52,11 @@ public:
 	ePoint bottomLeft()	 const;
 
 		/* the sole intention of these functions
-		   is to allow painting frames without 
+		   is to allow painting frames without
 		   messing around with the coordinates.
 		   they point to the last pixel included
 		   in the rectangle (which means that 1 is
-		   subtracted from the right and bottom 
+		   subtracted from the right and bottom
 		   coordinates  */
 	ePoint topLeft1()	 const;
 	ePoint bottomRight1() const;
@@ -114,12 +114,12 @@ public:
 
 	friend bool operator==( const eRect &, const eRect & );
 	friend bool operator!=( const eRect &, const eRect & );
-	
+
 	static eRect emptyRect() { return eRect(0, 0, 0, 0); }
 	static eRect invalidRect() { return eRect(); }
-	
+
 	void scale(int x_n, int x_d, int y_n, int y_d);
-	
+
 private:
 	int x1;
 	int y1;

@@ -582,23 +582,11 @@ class IceTVLogView(TextBox):
 
 class IceTVSelectProviderScreen(Screen):
     skin = """
-<screen name="IceTVSelectProviderScreen" position="280,140" size="720,410" title="Select TV guide provider" >
- <widget position="20,10" size="680,330" name="instructions" font="Regular;20" />
- <widget position="20,350" size="680,60" name="menu" />
+<screen name="IceTVSelectProviderScreen" flags="wfNoBorder" position="240,100" size="800,520" title="Select TV guide provider" >
+ <widget position="0,0" size="800,450" name="instructions" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/wizard_screen.png" zPosition="1" />
+ <widget position="10,460" size="780,60" name="menu" />
 </screen>
 """
-    _instructions = _("IceTV  (Requires permanent Internet connection)\n\n"
-                      "IceTV is a third party TV guide provider that gives your %(brand)s %(box)s "
-                      "a total smart recording solution for a small monthly fee. Build your own "
-                      "play lists of your favourite shows and series via your computer, smart "
-                      "phone or tablet and IceTV will automatically set your %(brand)s %(box)s "
-                      "to record them every time they air. Your %(brand)s %(box)s includes a free 3 month "
-                      "IceTV subscription. See www.icetv.com.au to find out more.\n"
-                      "___________________________________________________________\n\n"
-                      "Free to air TV Guide  (No Internet connection required)\n\n"
-                      "This is the Free To Air TV guide, broadcast by the TV stations and "
-                      "received by your %(brand)s %(box)s via your TV antenna."
-                      ) % {"brand": getMachineBrand(), "box": getMachineName()}
 
     def __init__(self, session):
         self.session = session
@@ -609,7 +597,7 @@ class IceTVSelectProviderScreen(Screen):
             self.close()
             return
         sleep(2)    # Prevent display corruption if the screen is displayed too soon after enigma2 start up
-        self["instructions"] = Label(self._instructions)
+        self["instructions"] = Pixmap()
         options = []
         options.append((_("IceTV (with free trial)\t- Requires Internet connection"), "iceEpg"))
         options.append((_("Free To Air            \t- No Internet connection required"), "eitEpg"))

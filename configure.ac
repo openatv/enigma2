@@ -16,10 +16,10 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_OPENMP
 
 AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
-# AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
-# AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
-# AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
-# AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
+AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
+AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
+AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
+AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -70,6 +70,7 @@ AM_CONDITIONAL(INI, test `echo "$BOXTYPE" | cut -b 1-3` == "ini")
 AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
 AM_CONDITIONAL(EBOX, test `echo "$BOXTYPE" | cut -b 1-4` == "ebox")
+AM_CONDITIONAL(IXUSS, test `echo "$BOXTYPE" | cut -b 1-4` == "ixus")
 AM_CONDITIONAL(AZBOXHD, test "$BOXTYPE" == "azboxhd")
 AM_CONDITIONAL(AZBOXME, test "$BOXTYPE" == "azboxme")
 AM_CONDITIONAL(AZBOXMINIME, test "$BOXTYPE" == "azboxminime")
@@ -116,12 +117,22 @@ AM_CONDITIONAL(ODINM9, test "$BOXTYPE" == odinm9)
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
+AM_CONDITIONAL(VUSOLOSE, test "$BOXTYPE" == vusolose)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(VUSOLO2, test "$BOXTYPE" == vusolo2)
 AM_CONDITIONAL(VUDUO2, test "$BOXTYPE" == vuduo2)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm800sev2)
 AM_CONDITIONAL(HAVE_COLORLCD1, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm7020hd -o "$BOXTYPE" == dm7020hdv2)
+
+AC_ARG_WITH(libvugles2,
+	AS_HELP_STRING([--with-libvugles2],[use libvugles2, yes or no]),
+	[with_libvugles2=$withval],[with_libvugles2=no])
+if test "$with_libvugles2" = "yes"; then
+	PKG_CHECK_MODULES(LIBVUGLES2, [libvugles2])
+	GLES_CFLAGS="-DUSE_LIBVUGLES2"
+fi
+AM_CONDITIONAL(HAVE_LIBVUGLES2, test "$with_libvugles2" = "yes")
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
@@ -301,6 +312,15 @@ if test "$BOXTYPE" == "sogno8800hd"; then
 fi
 
 
+if test `echo "$BOXTYPE" | cut -b 1-4` == "ixus"; then
+	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+fi
+
+if test "$BOXTYPE" == "blackbox7405"; then
+	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+	AC_DEFINE(KEY_PLAY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
 AC_ARG_WITH(libsdl,
 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
 	[with_libsdl=$withval],[with_libsdl=no])
@@ -345,21 +365,20 @@ if test "$with_po" = "yes"; then
 		AC_MSG_ERROR([Could not find required gettext tools])
 	fi
 fi
-AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "no")
+AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
 AC_SUBST(ENIGMA2_CFLAGS)
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS $DEBUG_CFLAGS -Wall -Wno-deprecated"
-CXXFLAGS="$CXXFLAGS $DEBUG_CFLAGS -Wall -Wno-deprecated $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS"
+CXXFLAGS="$CXXFLAGS $DEBUG_CFLAGS -Wall -Wno-deprecated $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS"
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 
 AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
-data/extensions/Makefile
 data/keymaps/Makefile
 data/defaults/Makefile
 data/displaytext/Makefile
@@ -392,7 +411,6 @@ lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/MediaScanner/meta/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
-lib/python/Plugins/Extensions/Modem/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/meta/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/data/Makefile
@@ -429,8 +447,11 @@ lib/python/Plugins/Extensions/FileCommander/Makefile
 lib/python/Plugins/Extensions/FileCommander/addons/Makefile
 lib/python/Plugins/Extensions/FileCommander/pic/Makefile
 lib/python/Plugins/Extensions/FileCommander/images/Makefile
+lib/python/Plugins/Extensions/RemoteIPTVClient/Makefile
+lib/python/Plugins/Extensions/RemoteIPTVClient/icons/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/IceTV/Makefile
+lib/python/Plugins/SystemPlugins/AnimationSetup/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
@@ -445,6 +466,17 @@ lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini1/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini2/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini3/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini4/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini5/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini6/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini7/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini8/Makefile
+lib/python/Plugins/SystemPlugins/RemoteControlCode/img/ini10/Makefile
 lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile

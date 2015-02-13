@@ -2,6 +2,7 @@
 #define __lib_base_cfile_h
 
 #include <stdio.h>
+#include <string>
 
 /* Wrapper around FILE to prevent leaks and to make your code a bit more OO */
 struct CFile
@@ -9,6 +10,9 @@ struct CFile
 	FILE *handle;
 	CFile(const char *filename, const char *mode)
 		: handle(fopen(filename, mode))
+	{}
+	CFile(const std::string &filename, const char *mode)
+		: handle(fopen(filename.c_str(), mode))
 	{}
 	~CFile()
 	{

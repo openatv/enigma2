@@ -90,7 +90,7 @@ public:
 		listeners.remove(dev);
 	}
 	~eRCDriver();
-	
+
 	void enable(int en) { enabled=en; }
 	virtual void setExclusive(bool) { }
 	virtual bool isKeyboard() { return false; }
@@ -132,7 +132,7 @@ public:
 	eRCDevice *producer;
 	int code, flags;
 
-	eRCKey(eRCDevice *producer, int code, int flags): 
+	eRCKey(eRCDevice *producer, int code, int flags):
 		producer(producer), code(code), flags(flags)
 	{
 	}
@@ -184,7 +184,7 @@ public:
 
 class eRCInput: public Object
 {
-	int locked;	
+	int locked;
 	static eRCInput *instance;
 	int keyboardMode;
 #ifdef SWIG
@@ -214,16 +214,16 @@ public:
 	   i.e. not plain remote controls. It's up to the input device
 	   driver to decide wheter an input device is a keyboard or
 	   not.
-	   
-	   kmNone will ignore all Ascii Characters sent from the 
+
+	   kmNone will ignore all Ascii Characters sent from the
 	   keyboard/console driver, only give normal keycodes to the
 	   application.
-	   
+
 	   kmAscii will filter out all keys which produce ascii characters,
 	   and send them instead. Note that Modifiers like shift will still
 	   be send. Control keys which produce escape codes are send using
-	   normal keycodes. 
-	   
+	   normal keycodes.
+
 	   kmAll will ignore all keycodes, and send everything as ascii,
 	   including escape codes. Pretty much useless, since you should
 	   lock the console and pass this as the console fd for making the
@@ -234,7 +234,7 @@ public:
 	{
 		/*emit*/ keyEvent(key);
 	}
-	
+
 	void addDevice(const std::string &id, eRCDevice *dev);
 	void removeDevice(const std::string &id);
 	eRCDevice *getDevice(const std::string &id);

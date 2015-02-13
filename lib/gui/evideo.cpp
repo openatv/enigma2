@@ -1,3 +1,4 @@
+#include <lib/base/cfile.h>
 #include <lib/gui/evideo.h>
 #include <lib/gui/ewidgetdesktop.h>
 
@@ -60,12 +61,9 @@ void eVideoWidget::setFullScreenPosition(eRect pos)
 
 void eVideoWidget::writeProc(const std::string &filename, int value)
 {
-	FILE *f = fopen(filename.c_str(), "w");
+	CFile f(filename.c_str(), "w");
 	if (f)
-	{
 		fprintf(f, "%08x\n", value);
-		fclose(f);
-	}
 }
 
 void eVideoWidget::setPosition(int index, int left, int top, int width, int height)

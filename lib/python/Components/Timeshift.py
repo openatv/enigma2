@@ -396,6 +396,9 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
+	def callServiceStarted(self):
+		self.__serviceStarted()
+
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
 		dprint("activateTimeshiftEndAndPause")
@@ -517,7 +520,10 @@ class InfoBarTimeshift:
 			self.ptsCreateHardlink()
 			self.__seekableStatusChanged()
 		else:
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+			# This can cause "RuntimeError: modal open are allowed only from a screen which is modal!"
+			# when coming out of standby and the HDD takes too long to spin up.
+			# TODO: Perhaps retry a few times, before giving up.
+			# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			self.pts_eventcount = 0
 
 	def createTimeshiftFolder(self):

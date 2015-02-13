@@ -42,7 +42,7 @@ void eRCConsoleDriver::keyPressed(int)
 	unsigned char *d = data;
 	int num = read(handle, data, 16);
 	unsigned char code;
-	
+
 	int km = input->getKeyboardMode();
 
 	if (km == eRCInput::kmNone)

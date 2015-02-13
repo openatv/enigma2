@@ -1,4 +1,4 @@
-SUBDIRS = spinner fonts extensions keymaps defaults
+SUBDIRS = spinner fonts keymaps defaults
 
 dist_pkgdata_DATA = \
 	encoding.conf \

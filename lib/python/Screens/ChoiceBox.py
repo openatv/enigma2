@@ -91,12 +91,13 @@ class ChoiceBox(Screen):
 		desktop_w = enigma.getDesktop(0).size().width()
 		desktop_h = enigma.getDesktop(0).size().height()
 		count = len(self.list)
+		itemheight = self["list"].getItemHeight()
 		if count > 15:
 			count = 15
 		if not self["text"].text:
 			# move list
 			textsize = (520, 0)
-			listsize = (520, 25*count)
+			listsize = (520, itemheight*count)
 			self["list"].instance.move(enigma.ePoint(0, 0))
 			self["list"].instance.resize(enigma.eSize(*listsize))
 		else:
@@ -104,10 +105,10 @@ class ChoiceBox(Screen):
 			if textsize[0] < textsize[1]:
 				textsize = (textsize[1],textsize[0]+10)
 			if textsize[0] > 520:
-				textsize = (textsize[0], textsize[1]+25)
+				textsize = (textsize[0], textsize[1]+itemheight)
 			else:
-				textsize = (520, textsize[1]+25)
-			listsize = (textsize[0], 25*count)
+				textsize = (520, textsize[1]+itemheight)
+			listsize = (textsize[0], itemheight*count)
 			# resize label
 			self["text"].instance.resize(enigma.eSize(*textsize))
 			self["text"].instance.move(enigma.ePoint(10, 10))

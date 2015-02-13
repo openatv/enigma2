@@ -171,7 +171,7 @@ RESULT eDVBDemux::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &
 
 void eDVBSectionReader::data(int)
 {
-	__u8 data[4096]; // max. section size
+	uint8_t data[4096]; // max. section size
 	int r;
 	r = ::read(fd, data, 4096);
 	if(r < 0)
@@ -272,7 +272,7 @@ RESULT eDVBSectionReader::stop()
 	return 0;
 }
 
-RESULT eDVBSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eConnection> &conn)
+RESULT eDVBSectionReader::connectRead(const Slot1<void,const uint8_t*> &r, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, read.connect(r));
 	return 0;
@@ -282,7 +282,7 @@ void eDVBPESReader::data(int)
 {
 	while (1)
 	{
-		__u8 buffer[16384];
+		uint8_t buffer[16384];
 		int r;
 		r = ::read(m_fd, buffer, 16384);
 		if (!r)
@@ -374,7 +374,7 @@ RESULT eDVBPESReader::stop()
 	return 0;
 }
 
-RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eConnection> &conn)
+RESULT eDVBPESReader::connectRead(const Slot2<void,const uint8_t*,int> &r, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, m_read.connect(r));
 	return 0;
@@ -864,7 +864,7 @@ RESULT eDVBTSRecorder::connectEvent(const Slot1<void,int> &event, ePtr<eConnecti
 RESULT eDVBTSRecorder::startPID(int pid)
 {
 	while(true) {
-		__u16 p = pid;
+		uint16_t p = pid;
 		if (::ioctl(m_source_fd, DMX_ADD_PID, &p) < 0) {
 			perror("DMX_ADD_PID");
 			if (errno == EAGAIN || errno == EINTR) {
@@ -883,7 +883,7 @@ void eDVBTSRecorder::stopPID(int pid)
 	if (m_pids[pid] != -1)
 	{
 		while(true) {
-			__u16 p = pid;
+			uint16_t p = pid;
 			if (::ioctl(m_source_fd, DMX_REMOVE_PID, &p) < 0) {
 				perror("DMX_REMOVE_PID");
 				if (errno == EAGAIN || errno == EINTR) {

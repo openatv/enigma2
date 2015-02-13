@@ -6,9 +6,13 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard \
 	SABnzbdSetup FastScan SatelliteEquipmentControl DiseqcTester \
-	IniLCNScanner IceTV
+	IniLCNScanner IceTV RemoteControlCode
 
 if VUSOLO2
+SUBDIRS += CableScan
+endif
+
+if VUSOLOSE
 SUBDIRS += CableScan
 endif
 
@@ -22,6 +26,10 @@ endif
 
 if VUULTIMO
 SUBDIRS += CableScan
+endif
+
+if HAVE_LIBVUGLES2
+SUBDIRS += AnimationSetup
 endif
 
 install_PYTHON = __init__.py

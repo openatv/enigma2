@@ -35,10 +35,14 @@ public:
 
 	enum cert_type {
 		TPMD_DT_LEVEL2_CERT = 0x04,
-		TPMD_DT_LEVEL3_CERT = 0x05
+		TPMD_DT_LEVEL3_CERT = 0x05,
+		DT_LEVEL2_CERT = 0x04,
+		DT_LEVEL3_CERT = 0x05
 	};
 	std::string getCert(cert_type type);
 	std::string challenge(std::string rnd);
+	std::string getData(cert_type type) { return getCert(type); };
+	std::string computeSignature(const std::string &data) { return challenge(data); };
 };
 
 #endif // __lib_base_etpm_h

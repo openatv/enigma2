@@ -91,7 +91,7 @@ int eSocket::setSocket(int s, int iss, eMainloop *ml)
 	last_break = -1;
 
 	rsn = 0;
-	rsn=eSocketNotifier::create(ml, getDescriptor(), 
+	rsn=eSocketNotifier::create(ml, getDescriptor(),
 		eSocketNotifier::Read|eSocketNotifier::Hungup);
 	CONNECT(rsn->activated, eSocket::notifier);
 	return 0;
@@ -115,7 +115,7 @@ void eSocket::notifier(int what)
 					close();
 					return;
 				}
-			} 
+			}
 			else		// when operating on terminals, check for break
 			{
 				serial_icounter_struct icount;
@@ -169,7 +169,7 @@ void eSocket::notifier(int what)
 		{
 			mystate=Connection;
 			rsn->setRequested(rsn->getRequested()&~eSocketNotifier::Write);
-			
+
 			int res;
 			socklen_t size=sizeof(res);
 			::getsockopt(getDescriptor(), SOL_SOCKET, SO_ERROR, &res, &size);
@@ -240,7 +240,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 		mystate=Idle;
 		setSocket(s, 1, mainloop);
 	}
-	
+
 	if(socketdesc < 0){
 		error_(errno);
 		return(-1);
@@ -324,7 +324,7 @@ int eUnixDomainSocket::connectToPath(std::string path)
 		mystate=Idle;
 		setSocket(s, 1, mainloop);
 	}
-	
+
 	if(socketdesc < 0){
 		error_(errno);
 		return(-1);

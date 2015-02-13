@@ -11,18 +11,18 @@ class iListboxContent: public iObject
 {
 public:
 	virtual ~iListboxContent()=0;
-	
+
 		/* indices go from 0 to size().
-		   the end is reached when the cursor is on size(), 
-		   i.e. one after the last entry (this mimics 
+		   the end is reached when the cursor is on size(),
+		   i.e. one after the last entry (this mimics
 		   stl behavior)
-		   
+
 		   cursors never invalidate - they can become invalid
 		   when stuff is removed. Cursors will always try
 		   to stay on the same data, however when the current
 		   item is removed, this won't work. you'll be notified
 		   anyway. */
-#ifndef SWIG	
+#ifndef SWIG
 protected:
 	iListboxContent();
 	friend class eListbox;
@@ -33,24 +33,24 @@ protected:
 	virtual int cursorValid()=0;
 	virtual int cursorSet(int n)=0;
 	virtual int cursorGet()=0;
-	
+
 	virtual void cursorSave()=0;
 	virtual void cursorRestore()=0;
-	
+
 	virtual int size()=0;
-	
+
 	virtual int currentCursorSelectable();
-	
+
 	void setListbox(eListbox *lb);
-	
+
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	virtual void setSize(const eSize &size)=0;
-	
+
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)=0;
-	
+
 	virtual int getItemHeight()=0;
-	
+
 	eListbox *m_listbox;
 #endif
 };

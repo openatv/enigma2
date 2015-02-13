@@ -6,4 +6,5 @@ install_PYTHON =	\
 	__init__.py \
 	plugin.py \
 	ui.py \
-	pictureplayer.png
+	pictureplayer.png \
+	pictureplayerhd.png

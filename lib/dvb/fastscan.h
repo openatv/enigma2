@@ -190,7 +190,7 @@ class eFastScanTable : public eTable<Section>
 {
 	std::set<int> seen;
 public:
-	int createTable(unsigned int nr, const __u8 *data, unsigned int max)
+	int createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 	{
 		seen.insert(nr);
 		tableProgress(seen.size(), max);

@@ -104,19 +104,19 @@ class PiPSetup(Screen):
 
 	def up(self):
 		if self.mode == "standard":
-			self.moveRelative(y=-32)
+			self.moveRelative(y=-8)
 
 	def down(self):
 		if self.mode == "standard":
-			self.moveRelative(y=+32)
+			self.moveRelative(y=+8)
 
 	def left(self):
 		if self.mode == "standard":
-			self.moveRelative(x=-24)
+			self.moveRelative(x=-6)
 
 	def right(self):
 		if self.mode == "standard":
-			self.moveRelative(x=+24)
+			self.moveRelative(x=+6)
 
 	def bigger(self):
 		if self.mode in "cascade standard":

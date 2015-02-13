@@ -18,23 +18,23 @@ public:
 	~eMPEGStreamInformation();
 
 	int load(const char *filename);
-	
+
 		/* fixup timestamp near offset, i.e. convert to zero-based */
 	int fixupPTS(const off_t &offset, pts_t &ts);
 
-		/* get PTS before offset */	
+		/* get PTS before offset */
 	int getPTS(off_t &offset, pts_t &pts);
-	
-	
+
+
 	off_t getAccessPoint(pts_t ts, int marg=0);
-	
+
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
-	
+
 	bool hasAccessPoints() { return !m_access_points.empty(); }
 	bool hasStructure() { return m_structure_read_fd >= 0; }
-	
+
 		/* get a structure entry at given offset (or previous one, if no exact match was found).
-		   optionally, return next element. Offset will be returned. this allows you to easily 
+		   optionally, return next element. Offset will be returned. this allows you to easily
 		   get previous and next structure elements. */
 	int getStructureEntryFirst(off_t &offset, unsigned long long &data);
 	int getStructureEntryNext(off_t &offset, unsigned long long &data, int delta);
@@ -42,7 +42,7 @@ public:
 	// Get first or last PTS value and offset.
 	int getFirstFrame(off_t &offset, pts_t& pts);
 	int getLastFrame(off_t &offset, pts_t& pts);
-	
+
 private:
 	void close();
 	int loadCache(int index);

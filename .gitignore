@@ -10,8 +10,6 @@
 .settings/
 build/
 doxy/
-.dirstamp
-aclocal-copy/
 aclocal.m4
 autom4te.cache/
 config.guess
@@ -41,8 +39,10 @@ py-compile
 stamp-h1
 *.tar.bz2
 *.tar.gz
-/compile
-/mipsel-oe-linux-libtool
+aclocal-copy
+compile
+.dirstamp
+mipsel-oe-linux-libtool
 /.idea
 /.kdev*
 /*.kdev4

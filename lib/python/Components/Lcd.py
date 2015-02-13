@@ -75,11 +75,18 @@ class IconCheckPoller:
 
 class LCD:
 	def __init__(self):
-		pass
+		self.oled_type = eDBoxLCD.getInstance().isOled()
+		if self.oled_type == 3:
+			# Bitmapped OLED has 16 level of brightness
+			self.oled_brightness_scale = 15
+		else:
+			# LCD display has 10 levels of brightness
+			self.oled_brightness_scale = 10
+		print "[LCD] oled_type=%d, oled_brightness_scale=%d" % (self.oled_type, self.oled_brightness_scale)
 
 	def setBright(self, value):
 		value *= 255
-		value /= 10
+		value /= self.oled_brightness_scale
 		if value > 255:
 			value = 255
 		eDBoxLCD.getInstance().setLCDBrightness(value)
@@ -100,22 +107,22 @@ class LCD:
 		eDBoxLCD.getInstance().setFlipped(value)
 
 	def isOled(self):
-		return eDBoxLCD.getInstance().isOled()
+		return self.oled_type
 
 	def setMode(self, value):
-		print 'setLCDMode', value
+		print '[LCD] setMode', value
 		f = open("/proc/stb/lcd/show_symbols", "w")
 		f.write(value)
 		f.close()
 
 	def setRepeat(self, value):
-		print 'setLCDRepeat', value
+		print '[LCD] setRepeat', value
 		f = open("/proc/stb/lcd/scroll_repeats", "w")
 		f.write(value)
 		f.close()
 
 	def setScrollspeed(self, value):
-		print 'setLCDScrollspeed', value
+		print '[LCD] setScrollspeed', value
 		f = open("/proc/stb/lcd/scroll_delay", "w")
 		f.write(str(value))
 		f.close()
@@ -129,33 +136,80 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
+	def setLEDStandby(self, value):
+		file = open("/proc/stb/power/standbyled", "w")
+		file.write(value and "on" or "off")
+		file.close()
+
+	def setLCDMiniTVMode(self, value):
+		print '[LCD] setLCDMiniTVMode', value
+		f = open('/proc/stb/lcd/mode', "w")
+		f.write(value)
+		f.close()
+
+	def setLCDMiniTVPIPMode(self, value):
+		print '[LCD] setLCDMiniTVPIPMode', value
+
+	def setLCDMiniTVFPS(self, value):
+		print '[LCD] setLCDMiniTVFPS',value
+		f = open('/proc/stb/lcd/fps', "w")
+		f.write("%d \n" % value)
+		f.close()
+
 def leaveStandby():
 	config.lcd.bright.apply()
-	config.lcd.ledbrightness.apply()
-	config.lcd.ledbrightnessdeepstandby.apply()
+	if SystemInfo["LEDButtons"]:
+		config.lcd.ledbrightness.apply()
+		config.lcd.ledbrightnessdeepstandby.apply()
 
 def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
-	config.lcd.ledbrightnessstandby.apply()
-	config.lcd.ledbrightnessdeepstandby.apply()
+	if SystemInfo["LEDButtons"]:
+		config.lcd.ledbrightnessstandby.apply()
+		config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() in ('gb800se', 'gb800solo', 'tmsingle', 'vusolo', 'et4x00', 'et5x00', 'et6x00'):
+	if getBoxType() in ('gb800se', 'gb800solo', 'iqonios300hd', 'tmsingle', 'tmnano2super', 'vusolo', 'et4x00', 'et5x00', 'et6x00'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
+
+	ilcd = LCD()
+
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection()
 
 	if SystemInfo["StandbyLED"]:
-		def standbyLEDChanged(configElement):
-			file = open("/proc/stb/power/standbyled", "w")
-			file.write(configElement.value and "on" or "off")
-			file.close()
+		def setLEDstandby(configElement):
+			ilcd.setLEDStandby(configElement.value)
 		config.usage.standbyLED = ConfigYesNo(default=True)
-		config.usage.standbyLED.addNotifier(standbyLEDChanged)
+		config.usage.standbyLED.addNotifier(setLEDstandby)
+
+	if SystemInfo["LEDButtons"]:
+		def setLEDnormalstate(configElement):
+			ilcd.setLEDNormalState(configElement.value)
+
+		def setLEDdeepstandby(configElement):
+			ilcd.setLEDDeepStandbyState(configElement.value)
+
+		def setLEDblinkingtime(configElement):
+			ilcd.setLEDBlinkingTime(configElement.value)
+
+		config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+		config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime)
+		config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+		config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate)
+		config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby)
+		config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
+		config.lcd.ledbrightnessstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+		config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate)
+		config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
+		config.lcd.ledbrightness = ConfigSlider(default = 3, increment = 1, limits = (0,15))
+		config.lcd.ledbrightness.addNotifier(setLEDnormalstate)
+		config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
+		config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
 
 	if detected:
 		config.lcd.scroll_speed = ConfigSelection(default="300", choices=[
@@ -191,31 +245,51 @@ def InitLcd():
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value)
 
-		def setLEDnormalstate(configElement):
-			ilcd.setLEDNormalState(configElement.value)
+		def setLCDminitvmode(configElement):
+			ilcd.setLCDMiniTVMode(configElement.value)
 
-		def setLEDdeepstandby(configElement):
-			ilcd.setLEDDeepStandbyState(configElement.value)
+		def setLCDminitvpipmode(configElement):
+			ilcd.setLCDMiniTVPIPMode(configElement.value)
 
-		def setLEDblinkingtime(configElement):
-			ilcd.setLEDBlinkingTime(configElement.value)
+		def setLCDminitvfps(configElement):
+			ilcd.setLCDMiniTVFPS(configElement.value)
 
-		standby_default = 0
-
-		ilcd = LCD()
+		standby_default = ilcd.oled_brightness_scale * 2 / 3
 
 		if not ilcd.isOled():
 			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
 			config.lcd.contrast.addNotifier(setLCDcontrast)
 		else:
 			config.lcd.contrast = ConfigNothing()
-			standby_default = 1
 
-		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+		class BrightnessSlider(ConfigSlider):
+			def __init__(self, **kwargs):
+				self._value = None
+				ConfigSlider.__init__(self, **kwargs)
+
+			def setValue(self, value):
+				if self._value != value:
+					self._value = value
+					self.changed()
+
+			value = property(ConfigSlider.getValue, setValue)
+
+			def onSelect(self, session):
+				self.changed()
+
+			def onDeselect(self, session):
+				ConfigSlider.onDeselect(self, session)
+				b = config.lcd.bright.saved_value
+				if not b:
+					b = config.lcd.bright.default
+				ilcd.setBright(int(b))
+
+		config.lcd.standby = BrightnessSlider(default=standby_default, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.standby.addNotifier(setLCDbright)
 		config.lcd.standby.apply = lambda: setLCDbright(config.lcd.standby)
+		config.lcd.standby.callNotifiersOnSaveAndCancel = True
 
-		config.lcd.bright = ConfigSlider(default=7, limits=(0, 10))
+		config.lcd.bright = BrightnessSlider(default=ilcd.oled_brightness_scale, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.bright.addNotifier(setLCDbright)
 		config.lcd.bright.apply = lambda: setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
@@ -226,42 +300,30 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
 
+		if SystemInfo["LCDMiniTV"]:
+			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
+			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
+			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PIP")), ("7", _("PIP with OSD"))], "0")
+			config.lcd.minitvpipmode.addNotifier(setLCDminitvpipmode)
+			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
+			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
+
 		if fileExists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.scrollspeed = ConfigSlider(default=150, increment=10, limits=(0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed)
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
+		else:
+			config.lcd.scrollspeed = ConfigNothing()
+		if fileExists("/proc/stb/lcd/scroll_repeats"):
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("5", _("5x")), ("10", _("10x")), ("500", _("Continuous"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat)
+		else:
+			config.lcd.repeat = ConfigNothing()
+		if fileExists("/proc/stb/lcd/show_symbols"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode)
 		else:
 			config.lcd.mode = ConfigNothing()
-			config.lcd.repeat = ConfigNothing()
-			config.lcd.scrollspeed = ConfigNothing()
 
-		if getBoxType() == 'vuultimo':
-			config.lcd.ledblinkingtime = ConfigSlider(default=5, increment=1, limits=(0, 15))
-			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime)
-			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
-			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby)
-			config.lcd.ledbrightnessdeepstandby.apply = lambda: setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
-			config.lcd.ledbrightnessstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
-			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightnessstandby.apply = lambda: setLEDnormalstate(config.lcd.ledbrightnessstandby)
-			config.lcd.ledbrightness = ConfigSlider(default=3, increment=1, limits=(0, 15))
-			config.lcd.ledbrightness.addNotifier(setLEDnormalstate)
-			config.lcd.ledbrightness.apply = lambda: setLEDnormalstate(config.lcd.ledbrightness)
-			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
-		else:
-			def doNothing():
-				pass
-			config.lcd.ledbrightness = ConfigNothing()
-			config.lcd.ledbrightness.apply = lambda: doNothing()
-			config.lcd.ledbrightnessstandby = ConfigNothing()
-			config.lcd.ledbrightnessstandby.apply = lambda: doNothing()
-			config.lcd.ledbrightnessdeepstandby = ConfigNothing()
-			config.lcd.ledbrightnessdeepstandby.apply = lambda: doNothing()
-			config.lcd.ledblinkingtime = ConfigNothing()
 	else:
 		def doNothing():
 			pass

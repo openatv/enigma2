@@ -20,6 +20,7 @@ public:
 
 	int allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio);
 	void freeEncoder(int encoderfd);
+	int getUsedEncoderCount();
 
 	static eEncoder *getInstance();
 };

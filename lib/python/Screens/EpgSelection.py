@@ -92,7 +92,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self.CurrService = None
 		self['Service'] = ServiceEvent()
 		self['Event'] = Event()
-		self['lab1'] = Label(_('Please wait while gathering data...'))
 		self.key_green_choice = self.EMPTY
 		self['key_red'] = Button(_('IMDb Search'))
 		self['key_green'] = Button()
@@ -131,6 +130,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
 				'info': (self.Info, self._helpInfo),
 				'infolong': (self.InfoLong, self._helpInfoLong),
+				'timer': (self.showTimerList, _('Show timer list')),
+				'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Detailed event information and setup'))
 			self['epgactions'].csel = self
@@ -139,6 +140,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
 				'info': (self.Info, self._helpInfo),
 				'epg': (self.Info, self._helpInfo),
+				'timer': (self.showTimerList, _('Show timer list')),
+				'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Detailed event information and setup'))
 			self['epgactions'].csel = self
@@ -161,6 +164,8 @@ class EPGSelection(Screen, HelpableScreen):
 					'epg': (self.epgButtonPressed, _('Open single channel EPG')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
+					'timer': (self.showTimerList, _('Show timer list')),
+					'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 				self['epgactions'].csel = self
@@ -180,6 +185,8 @@ class EPGSelection(Screen, HelpableScreen):
 					'input_date_time': (self.enterDateTime, _('Go to specific date/time')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
+					'timer': (self.showTimerList, _('Show timer list')),
+					'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 				self['epgactions'].csel = self
@@ -271,6 +278,8 @@ class EPGSelection(Screen, HelpableScreen):
 				'infolong': (self.InfoLong, self._helpInfoLong),
 				'tv': (self.Bouquetlist, _('Toggle between bouquet/EPG lists')),
 				'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
+				'timer': (self.showTimerList, _('Show timer list')),
+				'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Bouquets and services, information and setup'))
 			self['epgactions'].csel = self
@@ -349,8 +358,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.value, graphic=graphic)
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
-		self.listTimer = eTimer()
-		self.listTimer.callback.append(self.hidewaitingtext)
 		self.onLayoutFinish.append(self.onCreate)
 
 	def createSetup(self):
@@ -389,12 +396,6 @@ class EPGSelection(Screen, HelpableScreen):
 		config.epgselection.graph_pig.save()
 		configfile.save()
 		self.close('reopengraph')
-
-	def hidewaitingtext(self):
-		self.listTimer.stop()
-		if self.type == EPG_TYPE_MULTI:
-			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		self['lab1'].hide()
 
 	def getBouquetServices(self, bouquet):
 		services = []
@@ -445,6 +446,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
+			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			if self.type == EPG_TYPE_SINGLE:
 				service = self.currentService
@@ -461,7 +463,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 		else:
 			self['list'].fillSimilarList(self.currentService, self.eventid)
-		self.listTimer.start(10)
 
 	def refreshlist(self):
 		self.refreshTimer.stop()

@@ -4,6 +4,7 @@ from skin import parseColor, parseFont
 
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
 from Tools.LoadPixmap import LoadPixmap
+from Tools.TextBoundary import getTextBoundarySize
 
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
@@ -59,6 +60,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picCrypto, pic)
 
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/record.png"))
+		if pic:
+			self.l.setPixmap(self.l.picRecord, pic)
+
 		self.root = None
 		self.mode = self.MODE_NORMAL
 		self.listHeight = None
@@ -69,6 +74,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.ServiceNameFontSize = 22
 		self.ServiceInfoFontName = "Regular"
 		self.ServiceInfoFontSize = 18
+		self.progressBarWidth = 52
+		self.fieldMargins = 10
 		self.onSelectionChanged = [ ]
 
 	def applySkin(self, desktop, parent):
@@ -102,6 +109,16 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+				elif attrib == "colorServiceRecorded":
+					self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+				elif attrib == "colorFallbackItem":
+					self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
+				elif attrib == "colorServiceSelectedFallback":
+					self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
+				elif attrib == "colorServiceDescriptionFallback":
+					self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
+				elif attrib == "colorServiceDescriptionSelectedFallback":
+					self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
 					pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
 					if pic:
@@ -120,6 +137,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.ServiceNumberFontName = font.family
 					self.ServiceNumberFontSize = font.pointSize
+				elif attrib == "progressbarHeight":
+					self.l.setProgressbarHeight(int(value))
+				elif attrib == "progressbarBorderWidth":
+					self.l.setProgressbarBorderWidth(int(value))
+				elif attrib == "progressBarWidth":
+					self.progressBarWidth = int(value)
+				elif attrib == "fieldMargins":
+					self.fieldMargins = int(value)
 				else:
 					attribs.append((attrib, value))
 			self.skinAttributes = attribs
@@ -151,7 +176,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				self.serviceList.setTvMode()
+				self.serviceList.setModeTv()
+				revert_tv_root = self.getRoot()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
 					self.serviceList.enterUserbouquet(bouquet[1])
@@ -159,7 +185,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
-				self.serviceList.setRadioMode()
+				self.serviceList.enterUserbouquet(revert_tv_root)
+				self.serviceList.setModeRadio()
+				revert_radio_root = self.getRoot()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
 					self.serviceList.enterUserbouquet(bouquet[1])
@@ -167,6 +195,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
+				self.serviceList.enterUserbouquet(revert_radio_root)
 				print "[servicelist] service not found in any userbouquets"
 				if revert_mode == "tv":
 					self.serviceList.setModeTv()
@@ -329,24 +358,23 @@ class ServiceList(HTMLComponent, GUIComponent):
 		else:
 			self.l.setGetPiconNameFunc(None)
 
-		progressBarWidth = 52
 		rowWidth = self.instance.size().width() - 30 #scrollbar is fixed 20 + 10 Extra marge
 
 		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
 			channelNumberWidth = 0
 			channelNumberSpace = 0
 		else:
-			channelNumberWidth = config.usage.alternative_number_mode.value and 55 or 63
-			channelNumberSpace = 10
+			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0000").width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
+			channelNumberSpace = self.fieldMargins
 
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
 
 		if "left" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressBarWidth , self.ItemHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace+progressBarWidth+10, 0, rowWidth - (channelNumberWidth+channelNumberSpace+progressBarWidth+10), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, self.progressBarWidth , self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace + self.progressBarWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth+channelNumberSpace + self.progressBarWidth + self.fieldMargins), self.ItemHeight))
 		elif "right" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth-progressBarWidth, 0, progressBarWidth, self.ItemHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace+progressBarWidth+10), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth - self.progressBarWidth, 0, self.progressBarWidth, self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace + self.progressBarWidth + self.fieldMargins), self.ItemHeight))
 		else:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
 			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
@@ -357,4 +385,5 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
+		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
 		self.l.setColumnWidth(int(config.usage.servicelist_column.value))

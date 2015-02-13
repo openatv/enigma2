@@ -1,7 +1,7 @@
 #include <lib/dvb/esection.h>
 #include <lib/base/eerror.h>
 
-void eGTable::sectionRead(const __u8 *d)
+void eGTable::sectionRead(const uint8_t *d)
 {
 	unsigned int last_section_number = d[7];
 	m_table.flags &= ~eDVBTableSpec::tfAnyVersion;

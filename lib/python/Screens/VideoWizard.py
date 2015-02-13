@@ -11,6 +11,8 @@ from Components.config import config, ConfigBoolean, configfile
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 
+from os import system
+
 config.misc.showtestcard = ConfigBoolean(default = False)
 
 boxtype = getBoxType()
@@ -122,6 +124,8 @@ class VideoWizard(WizardLanguage, Rc):
 		self.inputSelect(index)
 
 	def inputSelectionMoved(self):
+		print "[VideoWizard] Syncing..."
+		system("sync;sync")  
 		hw_type = HardwareInfo().get_device_name()
 		has_hdmi = HardwareInfo().has_hdmi()
 		print "input selection moved:", self.selection

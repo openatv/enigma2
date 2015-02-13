@@ -102,4 +102,18 @@ void eEncoder::freeEncoder(int encoderfd)
 	if (encoderfd >= 0) ::close(encoderfd);
 }
 
+int eEncoder::getUsedEncoderCount()
+{
+	int count = 0;
+	unsigned int i;
+	for (i = 0; i < encoderUser.size(); i++)
+	{
+		if (encoderUser[i] >= 0)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
 eAutoInitPtr<eEncoder> init_eEncoder(eAutoInitNumbers::service + 1, "Encoders");

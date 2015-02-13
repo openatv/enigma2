@@ -63,6 +63,7 @@ The order and grouping of the help information list can be controlled using MENU
 
 	def doOnClose(self):
 		eActionMap.getInstance().unbindAction('', self["list"].handleButton)
+		self["list"].onSelChanged.remove(self.SelectionChanged)
 
 	def SelectionChanged(self):
 		self.clearSelectedKeys()

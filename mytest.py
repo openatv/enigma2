@@ -93,7 +93,7 @@ def NTPserverChanged(configelement):
 	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
-	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.value)
+	Console.ePopen('/usr/bin/ntpdate-sync')
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
 
 profile("Twisted")
@@ -667,9 +667,9 @@ Components.UsageConfig.InitUsageConfig()
 # import Screens.LogManager
 # Screens.LogManager.AutoLogManager()
 
-# profile("Init:OnlineCheckState")
-# import Components.OnlineUpdateCheck
-# Components.OnlineUpdateCheck.OnlineUpdateCheck()
+profile("Init:OnlineCheckState")
+import Components.OnlineUpdateCheck
+Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 import Components.NetworkTime

@@ -2,7 +2,8 @@ from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client
 from twisted.internet import reactor, defer
-
+from twisted.python import failure
+from urlparse import urlparse
 
 class HTTPProgressDownloader(client.HTTPDownloader):
 	def __init__(self, url, outfile, headers=None):
@@ -39,16 +40,10 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 
 class downloadWithProgress:
 	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
-		if hasattr(client, '_parse'):
-			scheme, host, port, path = client._parse(url)
-		else:
-			from twisted.web.client import _URI
-			uri = _URI.fromBytes(url)
-			scheme = uri.scheme
-			host = uri.host
-			port = uri.port
-			path = uri.path
-
+		parsed = urlparse(url)
+		scheme = parsed.scheme
+		host = parsed.hostname
+		port = parsed.port or (443 if scheme == 'https' else 80)
 		self.factory = HTTPProgressDownloader(url, outputfile, *args, **kwargs)
 		self.connection = reactor.connectTCP(host, port, self.factory)
 
