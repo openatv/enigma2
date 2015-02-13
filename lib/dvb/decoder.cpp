@@ -396,7 +396,7 @@ void eDVBVideo::stop()
 	if (m_fd >= 0)
 	{
 		eDebugNoNewLine("[eDVBVideo] VIDEO_STOP - ");
-		if (::ioctl(m_fd, VIDEO_STOP, 1) < 0)
+		if (::ioctl(m_fd, VIDEO_STOP, 0) < 0)
 			eDebug("failed (%m)");
 		else
 			eDebug("ok");
