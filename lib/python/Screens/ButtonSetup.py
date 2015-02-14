@@ -75,6 +75,8 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("Playlist"), "playlist", ""),
 	(_("Playlist long"), "playlist_long", ""),
 	(_("Timeshift"), "timeshift", ""),
+	(_("Homepage"), "homep", ""),
+	(_("Homepage long"), "homep_long", "")
 	(_("Search/WEB"), "search", ""),
 	(_("Search/WEB long"), "search_long", ""),
 	(_("Slow"), "slow", ""),
