@@ -600,12 +600,16 @@ class NimSelection(Screen):
 
 		self.setResultClass()
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"],
 		{
-			"ok": self.okbuttonClick ,
-			"cancel": self.close
+			"ok": self.okbuttonClick,
+			"cancel": self.close,
+			"menu": self.exit,
 		}, -2)
 		self.setTitle(_("Choose Tuner"))
+
+	def exit(self):
+		self.close(True)
 
 	def setResultClass(self):
 		self.resultclass = NimSetup
