@@ -566,6 +566,10 @@ class InfoBarHotkey():
 					self.close()
 				else:
 					self.show()
+				from Screens.MovieSelection import defaultMoviePath
+				moviepath = defaultMoviePath()
+				if moviepath:
+					config.movielist.last_videodir.value = moviepath
 			elif selected[0] == "PPanel":
 				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
 				if os.path.isfile(ppanelFileName) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
