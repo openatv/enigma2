@@ -57,10 +57,11 @@ class PluginBrowser(Screen):
 		self.list = []
 		self["list"] = PluginList(self.list)
 
-		self["actions"] = ActionMap(["WizardActions"],
+		self["actions"] = ActionMap(["WizardActions","MenuActions"],
 		{
 			"ok": self.save,
 			"back": self.close,
+			"menu": self.exit,
 		})
 		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
 		{
@@ -78,6 +79,9 @@ class PluginBrowser(Screen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
+
+	def exit(self):
+		self.close(True)
 
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
