@@ -464,7 +464,18 @@
 		<eLabel text="Enigmalight" position="15,20" foregroundColor="#e5b243" size="670,400" font="FdLcD;70" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
+<!-- Weatherplugin -->
+	<screen name="MSNWeatherPlugin_summary" position="0,0" size="720,576">
+		<widget source="parent.Title" render="Label" position="10,20" foregroundColor="#e5b243" size="670,80" font="FdLcD;70" halign="center" valign="center" />
+		<widget source="session.MSNWeather" noWrap="1" font="FdLcD;95" render="Label" position="420,320" size="300,100" transparent="1" zPosition="8" halign="center" foregroundColor="#e5b243" >
+			<convert type="MSNWeather">temperature_current</convert>
+		</widget>
+		<widget render="MSNWeatherPixmap" position="20,260" size="360,200" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
+			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
+		</widget>
+	</screen>
+		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="720,576">
 		<widget source="parent.Title" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
