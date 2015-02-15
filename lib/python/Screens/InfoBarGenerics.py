@@ -45,7 +45,7 @@ from Screens.TimerEntry import TimerEntry as TimerEntry
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop
 from boxbranding import getBoxType, getMachineProcModel, getMachineBuild, getMachineBrand, getMachineName
 
 from time import time, localtime, strftime
@@ -2105,8 +2105,13 @@ class Seekbar(Screen):
 
 	def updateCursor(self):
 		if self.length:
-			x = 145 + int(2.7 * self.percent)
-			self["cursor"].moveTo(x, 15, 1)
+			screenwidth = getDesktop(0).size().width()
+			if screenwidth and screenwidth == 1920:
+				x = 218 + int(4.05 * self.percent)
+				self["cursor"].moveTo(x, 23, 1)
+			else:
+				x = 145 + int(2.7 * self.percent)
+				self["cursor"].moveTo(x, 15, 1)
 			self["cursor"].startMoving()
 			pts = int(float(self.length[1]) / 100.0 * self.percent)
 			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))

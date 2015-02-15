@@ -4,6 +4,7 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, getDesktop
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists
 import skin
+from os import path
 
 def ChoiceEntryComponent(key="", text=None):
 	screenwidth = getDesktop(0).size().width()
@@ -11,12 +12,12 @@ def ChoiceEntryComponent(key="", text=None):
 	res = [ text ]
 	if text[0] == "--":
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 900, 50, 0, RT_HALIGN_LEFT, "-"*200))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 1200, 38, 0, RT_HALIGN_LEFT, "-"*300))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 100, 5, 900, 50, 0, RT_HALIGN_LEFT, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 68, 5, 1200, 38, 0, RT_HALIGN_LEFT, text[0]))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
 		
@@ -28,11 +29,16 @@ def ChoiceEntryComponent(key="", text=None):
 			elif key == "verticalline":
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/verticalline.png")
 			else:
-				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
+				if screenwidth and screenwidth == 1920:
+					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "FHD/buttons/key_%s.png" % key)
+					if not path.exists(pngfile):
+						pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
+				else:
+					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
 				if screenwidth and screenwidth == 1920:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 5, 63, 48, png))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 14, 4, 45, 45, png))
 				else:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 9, 0, 30, 30, png))
 	return res

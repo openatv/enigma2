@@ -1,5 +1,5 @@
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv
+from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -631,35 +631,66 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 	if png is None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 
-	return [
-		_(name),
-		MultiContentEntryText(pos=(60, 5), size=(width-60, 25), font=0, text = _(name)),
-		MultiContentEntryText(pos=(60, 26), size=(width-60, 17), font=1, text = _(description)),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png = png),
-		_(long_description),
-	]
+	screenwidth = getDesktop(0).size().width()
+	if screenwidth and screenwidth == 1920:
+		return [
+			_(name),
+			MultiContentEntryText(pos=(90, 10), size=(width-90, 38), font=0, text = _(name)),
+			MultiContentEntryText(pos=(90, 39), size=(width-90, 26), font=1, text = _(description)),
+			MultiContentEntryPixmapAlphaBlend(pos=(15, 10), size=(60, 60), png = png),
+			_(long_description),
+		]
+	else:
+		return [
+			_(name),
+			MultiContentEntryText(pos=(60, 5), size=(width-60, 25), font=0, text = _(name)),
+			MultiContentEntryText(pos=(60, 26), size=(width-60, 17), font=1, text = _(description)),
+			MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png = png),
+			_(long_description),
+		]
 
 def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
-	return [
-		_(name),
-		MultiContentEntryText(pos=(10, 5), size=(width-10, 25), font=0, text = _(name)),
-		MultiContentEntryText(pos=(10, 26), size=(width-10, 17), font=1, text = _(description)),
-		_(long_description),
-	]
+	screenwidth = getDesktop(0).size().width()
+	if screenwidth and screenwidth == 1920:
+		return [
+			_(name),
+			MultiContentEntryText(pos=(15, 8), size=(width-15, 38), font=0, text = _(name)),
+			MultiContentEntryText(pos=(15, 39), size=(width-15, 26), font=1, text = _(description)),
+			_(long_description),
+		]
+	else:
+		return [
+			_(name),
+			MultiContentEntryText(pos=(10, 5), size=(width-10, 25), font=0, text = _(name)),
+			MultiContentEntryText(pos=(10, 26), size=(width-10, 17), font=1, text = _(description)),
+			_(long_description),
+		]
 
 class QuickMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		screenwidth = getDesktop(0).size().width()
+		if screenwidth and screenwidth == 1920:
+			self.l.setFont(0, gFont("Regular", 30))
+			self.l.setFont(1, gFont("Regular", 21))
+			self.l.setItemHeight(75)
+		else:
+			self.l.setFont(0, gFont("Regular", 20))
+			self.l.setFont(1, gFont("Regular", 14))
+			self.l.setItemHeight(50)
 
 class QuickMenuSubList(MenuList):
 	def __init__(self, sublist, enableWrapAround=True):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		screenwidth = getDesktop(0).size().width()
+		if screenwidth and screenwidth == 1920:
+			self.l.setFont(0, gFont("Regular", 30))
+			self.l.setFont(1, gFont("Regular", 21))
+			self.l.setItemHeight(75)
+		else:
+			self.l.setFont(0, gFont("Regular", 20))
+			self.l.setFont(1, gFont("Regular", 14))
+			self.l.setItemHeight(50)
 
 class QuickMenuDevices(Screen):
 	skin = """
