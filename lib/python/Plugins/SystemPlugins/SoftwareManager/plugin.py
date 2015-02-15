@@ -67,6 +67,8 @@ if boxtype == "maram9" and not os.path.exists("/media/hdd/backup_%s" %boxtype):
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/usr/keys/CCcam.cfg',
+																		 '/etc/init.d/softcam*', '/etc/tuxbox/config/', '/usr/bin/oscam',
+																		 '/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/',
 																		 '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
 																		 '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname',
 																		 eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr")])
