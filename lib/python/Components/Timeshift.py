@@ -935,7 +935,7 @@ class InfoBarTimeshift:
 		if filecounter == 0: 
 			self.ptsEventCleanTimerSTOP()
 		else:
-			if self.checkEvents_value <> int(config.timeshift.timeshiftCheckEvents.value):
+			if self.checkEvents_value != int(config.timeshift.timeshiftCheckEvents.value):
 				if self.pts_cleanEvent_timer.isActive():
 					print "[TIMESHIFT] - 'cleanEvent_timer' was changed"
 					self.pts_cleanEvent_timer.stop()
