@@ -196,7 +196,7 @@ void bsodFatal(const char *component)
 		xml.string("crashdate", tm_str);
 		xml.string("compiledate", __DATE__);
 		xml.string("contactemail", crash_emailaddr);
-		xml.comment("Please email this crashlog to above address. Check settings section to remove any private data!");
+		xml.comment("Please email this crashlog to above address. Check all sections to remove any sensitive private data!");
 		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
 		xml.string("sourcedate", enigma2_date);
 		xml.string("branch", enigma2_branch);
@@ -211,18 +211,20 @@ void bsodFatal(const char *component)
 		else if (access("/proc/stb/info/model", F_OK) != -1) {
 			xml.stringFromFile("stbmodel", "/proc/stb/info/model");
 		}
+		xml.cDataFromFile("imageversion", "/etc/image-version");
 		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
-		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		xml.cDataFromFile("imageversion", "/etc/image-version");
-		xml.cDataFromFile("imageissue", "/etc/issue.net");
+		xml.cDataFromCmd("memory", "free -l");
+		xml.cDataFromCmd("filesystems", "df -h");
+		xml.cDataFromCmd("nimsockets", "cat /proc/bus/nim_sockets");
 		xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
+		xml.cDataFromCmd("networkifconfig", "ifconfig");
 		xml.cDataFromFile("dns", "/etc/resolv.conf");
 		xml.cDataFromFile("defaultgateway", "/etc/default_gw");
 		xml.close();
 
 		xml.open("settings");
-		xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
+		xml.cDataFromCmd("enigma2settings", "cat /etc/enigma2/settings");
 		xml.close();
 
 		xml.open("software");
