@@ -1,19 +1,23 @@
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Components.config import ConfigSelection, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import NumberActionMap, HelpableNumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
+from Components.Sources.Boolean import Boolean
 from PowerTimer import AFTEREVENT, TIMERTYPE
+from boxbranding import getMachineBrand, getMachineName
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 
-class TimerEntry(Screen, ConfigListScreen):
+class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self.timer = timer
 
 		self.entryDate = None
@@ -21,29 +25,39 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
-		self["oktext"] = Label(_("OK"))
-		self["canceltext"] = Label(_("Cancel"))
-		self["ok"] = Pixmap()
-		self["cancel"] = Pixmap()
+		self["description"] = Label("")
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("OK"))
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions"],
+		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "GlobalActions", "PiPSetupActions"],
 		{
-			"ok": self.keySelect,
-			"save": self.keyGo,
-			"cancel": self.keyCancel,
-			"volumeUp": self.incrementStart,
-			"volumeDown": self.decrementStart,
-			"size+": self.incrementEnd,
-			"size-": self.decrementEnd
+			"ok": (self.keySelect, _("Save the timer and exit")),
+			"save": (self.keyGo, "Save the timer and exit"),
+			"cancel": (self.keyCancel, "Cancel creation of the timer and exit"),
+			"volumeUp": (self.incrementStart, _("Increment start time")),
+			"volumeDown": (self.decrementStart, _("Decrement start time")),
+			"size+": (self.incrementEnd, _("Increment end time")),
+			"size-": (self.decrementEnd, _("Decrement end time"))
 		}, -2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
 		self.setTitle(_("PowerManager entry"))
 		self.createSetup("config")
+		if self.selectionChanged not in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		if self["config"].getCurrent():
+			if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
+				self["description"].setText(self["config"].getCurrent()[2])
 
 	def createConfig(self):
 		afterevent = {
@@ -131,59 +145,59 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
-		self.timerType = getConfigListEntry(_("Timer type"), self.timerentry_timertype)
+		self.timerType = getConfigListEntry(_("Timer type"), self.timerentry_timertype, _("Select the action that the timer will perform. \"Auto\" actions will be done when your %s %s is idle.") % (getMachineBrand(), getMachineName()))
 		self.list.append(self.timerType)
 
 
 		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
 			if self.timerentry_timertype.value == "autodeepstandby":
-				self.list.append(getConfigListEntry(_("Only active when in standby"), self.timerrntry_autosleepinstandbyonly))
-			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
-			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
-			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
-			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime)
-			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
+				self.list.append(getConfigListEntry(_("Auto deep standby timers only active when in standby."), self.timerrntry_autosleepinstandbyonly, _("If enabled, the timer will only be active when your %s %s is in standby mode.") % (getMachineBrand(), getMachineName())))
+			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay, _("\"Auto\" timers will try to shut down your %s %s when the remote control hasn't been used for longer than this time. In minutes.") % (getMachineBrand(), getMachineName())))
+			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat, _("A repeating timer or just once?")))
+			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
+			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Allow the timer to perform a later completion action. Otherwise the \"After event\" action is performed immediately after the \"Timer type\" action."))
+			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("The type of repetition required: daily, weekly on a specified day, on weekdays (Mon-Fri), or regularly on specified days."))
 		else:
-			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type)
+			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
 			self.list.append(self.timerTypeEntry)
 
 			if self.timerentry_type.value == "once":
 				self.frequencyEntry = None
 			else: # repeated
-				self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
+				self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("The type of repetition required: daily, weekly on a specified day, on weekdays (Mon-Fri), or regularly on specified days"))
 				self.list.append(self.frequencyEntry)
-				self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate)
+				self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate, _("The timer becomes active (but doesn't necessarily run) on this date."))
 				self.list.append(self.repeatedbegindateEntry)
 				if self.timerentry_repeated.value == "daily":
 					pass
 				if self.timerentry_repeated.value == "weekdays":
 					pass
 				if self.timerentry_repeated.value == "weekly":
-					self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
+					self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday, _("The day of the week the timer runs.")))
 
 				if self.timerentry_repeated.value == "user":
-					self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
-					self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
-					self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
-					self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3]))
-					self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4]))
-					self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
-					self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
+					self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0], _("Enable/disable the timer on Mondays.")))
+					self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1], _("Enable/disable the timer on Tuesdays.")))
+					self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2], _("Enable/disable the timer on Wednesdays.")))
+					self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3], _("Enable/disable the timer on Thursdays.")))
+					self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4], _("Enable/disable the timer on Fridays.")))
+					self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5], _("Enable/disable the timer on Saturdays.")))
+					self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6], _("Enable/disable the timer on Sundays.")))
 
-			self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
+			self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date, _("The date the timer performs the action in \"Timer type\"."))
 			if self.timerentry_type.value == "once":
 				self.list.append(self.entryDate)
 
-			self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime)
+			self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime, _("The time the timer performs the action in \"Timer type\"."))
 			self.list.append(self.entryStartTime)
 
-			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime)
+			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Allow the timer to perform a later completion action. Otherwise the \"After event\" action is performed immediately after the \"Timer type\" action."))
 			self.list.append(self.entryShowEndTime)
-			self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime)
+			self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime, _("Time when the timer completes and the \"After event\" action is taken. If the end time is earlier than the start time of the timer, the completion action takes place at that time on the following day."))
 			if self.timerentry_showendtime.value:
 				self.list.append(self.entryEndTime)
 
-			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
+			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("Action taken on the completion of the timer.")))
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
