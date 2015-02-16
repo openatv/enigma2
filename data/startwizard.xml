@@ -170,10 +170,10 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			</list>
 			<code pos="after">
 if self["list"].index == 0:
-	config.ParentalControl.configured.value = True
+	config.ParentalControl.servicepinactive.value = True
 else:
-	config.ParentalControl.configured.value = False
-config.ParentalControl.configured.save()
+	config.ParentalControl.servicepinactive.value = False
+config.ParentalControl.servicepinactive.save()
 			</code>
 		</step>
 		<step id="parentalsetup">
@@ -193,15 +193,8 @@ if self["list"].index == 0:
 		</step>
 		<step id="finishparentalsetup">
 			<code>
-if config.ParentalControl.setuppin.value == "aaaa":
-	config.ParentalControl.setuppinactive.value = False
-else:
-	config.ParentalControl.setuppinactive.value = True
-config.ParentalControl.setuppinactive.save()
 config.ParentalControl.servicepinactive.value = True
 config.ParentalControl.servicepinactive.save()
-config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
-config.ParentalControl.setuppin.save()
 			</code>
 			<text value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
 		</step>
