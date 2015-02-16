@@ -61,8 +61,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			"size-": (self.decrementEnd, _("Decrement end time"))
 		}, -2)
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
-		{
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"], {
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
@@ -178,7 +177,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			("weekdays", _("Mon-Fri")),
 			("user", _("user defined"))
 		], default=repeated)
-		self.timerentry_renamerepeat = ConfigYesNo(default = rename_repeat)
+		self.timerentry_renamerepeat = ConfigYesNo(default=rename_repeat)
 
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%d %B %Y"), increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
@@ -326,7 +325,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.hideTextHelp()
 		currConfig = self["config"].getCurrent()
 		if currConfig[0] in (_('Name'), _("Description")):
-			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=currConfig[2], text = currConfig[1].value)
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=currConfig[2], text=currConfig[1].value)
 
 	def keyLeft(self):
 		cur = self["config"].getCurrent()

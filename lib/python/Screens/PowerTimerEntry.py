@@ -35,8 +35,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		self.createConfig()
 
-		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "GlobalActions", "PiPSetupActions"],
-		{
+		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "GlobalActions", "PiPSetupActions"], {
 			"ok": (self.keySelect, _("Save the timer and exit")),
 			"save": (self.keyGo, "Save the timer and exit"),
 			"cancel": (self.keyCancel, "Cancel creation of the timer and exit"),
@@ -47,7 +46,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 		self.setTitle(_("PowerManager entry"))
 		self.createSetup("config")
 		if self.selectionChanged not in self["config"].onSelectionChanged:
@@ -65,7 +64,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			AFTEREVENT.WAKEUPTOSTANDBY: "wakeuptostandby",
 			AFTEREVENT.STANDBY: "standby",
 			AFTEREVENT.DEEPSTANDBY: "deepstandby"
-			}[self.timer.afterEvent]
+		}[self.timer.afterEvent]
 
 		timertype = {
 			TIMERTYPE.WAKEUP: "wakeup",
@@ -76,7 +75,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			TIMERTYPE.DEEPSTANDBY: "deepstandby",
 			TIMERTYPE.REBOOT: "reboot",
 			TIMERTYPE.RESTART: "restart"
-			}[self.timer.timerType]
+		}[self.timer.timerType]
 
 		weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
@@ -85,21 +84,21 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		weekday = 0
 		for x in (0, 1, 2, 3, 4, 5, 6):
 			day.append(0)
-		if self.timer.repeated: # repeated
+		if self.timer.repeated:  # repeated
 			type = "repeated"
-			if self.timer.repeated == 31: # Mon-Fri
+			if self.timer.repeated == 31:  # Mon-Fri
 				repeated = "weekdays"
-			elif self.timer.repeated == 127: # daily
+			elif self.timer.repeated == 127:  # daily
 				repeated = "daily"
 			else:
 				flags = self.timer.repeated
 				repeated = "user"
 				count = 0
 				for x in (0, 1, 2, 3, 4, 5, 6):
-					if flags == 1: # weekly
+					if flags == 1:  # weekly
 						print "Set to weekday " + str(x)
 						weekday = x
-					if flags & 1 == 1: # set user defined flags
+					if flags & 1 == 1:  # set user defined flags
 						day[x] = 1
 						count += 1
 					else:
@@ -107,7 +106,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 					flags >>= 1
 				if count == 1:
 					repeated = "weekly"
-		else: # once
+		else:  # once
 			type = "once"
 			repeated = None
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
@@ -121,33 +120,32 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")
-		self.timerentry_timertype = ConfigSelection(choices = [("wakeup", _("wakeup")),("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("restart GUI"))], default = timertype)
-		self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("wakeuptostandby", _("wakeup to standby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("nothing", _("do nothing"))], default = afterevent)
-		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
+		self.timerentry_timertype = ConfigSelection(choices=[("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("restart GUI"))], default=timertype)
+		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("do nothing")), ("wakeuptostandby", _("wakeup to standby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("nothing", _("do nothing"))], default=afterevent)
+		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
 
-		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-		self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits = (10, 300))
-		self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = autosleeprepeat)
-		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("Yes")), ("no", _("No"))],default=autosleepinstandbyonly)
+		self.timerentry_repeated = ConfigSelection(default=repeated, choices=[("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
+		self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits=(10, 300))
+		self.timerentry_autosleeprepeat = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=autosleeprepeat)
+		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=autosleepinstandbyonly)
 
-		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
-		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
-		self.timerentry_endtime = ConfigClock(default = self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) /60 ) > 1), choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%d.%B %Y"), increment=86400)
+		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
+		self.timerentry_endtime = ConfigClock(default=self.timer.end)
+		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) / 60) > 1), choices=[(True, _("yes")), (False, _("no"))])
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=_("%d.%B %Y"), increment=86400)
 
-		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
+		self.timerentry_weekday = ConfigSelection(default=weekday_table[weekday], choices=[("mon", _("Monday")), ("tue", _("Tuesday")), ("wed", _("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
 		self.timerentry_day = ConfigSubList()
 		for x in (0, 1, 2, 3, 4, 5, 6):
-			self.timerentry_day.append(ConfigYesNo(default = day[x]))
+			self.timerentry_day.append(ConfigYesNo(default=day[x]))
 
 	def createSetup(self, widget):
 		self.list = []
 		self.timerType = getConfigListEntry(_("Timer type"), self.timerentry_timertype, _("Select the action that the timer will perform. \"Auto\" actions will be done when your %s %s is idle.") % (getMachineBrand(), getMachineName()))
 		self.list.append(self.timerType)
-
 
 		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
 			if self.timerentry_timertype.value == "autodeepstandby":
@@ -163,7 +161,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 			if self.timerentry_type.value == "once":
 				self.frequencyEntry = None
-			else: # repeated
+			else:  # repeated
 				self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("The type of repetition required: daily, weekly on a specified day, on weekdays (Mon-Fri), or regularly on specified days"))
 				self.list.append(self.frequencyEntry)
 				self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate, _("The timer becomes active (but doesn't necessarily run) on this date."))
@@ -237,7 +235,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		return begin, end
 
-	def keyGo(self, result = None):
+	def keyGo(self, result=None):
 		if not self.timerentry_showendtime.value:
 			self.timerentry_endtime.value = self.timerentry_starttime.value
 
@@ -251,13 +249,13 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			"deepstandby": TIMERTYPE.DEEPSTANDBY,
 			"reboot": TIMERTYPE.REBOOT,
 			"restart": TIMERTYPE.RESTART
-			}[self.timerentry_timertype.value]
+		}[self.timerentry_timertype.value]
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
 			"wakeuptostandby": AFTEREVENT.WAKEUPTOSTANDBY,
 			"standby": AFTEREVENT.STANDBY,
 			"deepstandby": AFTEREVENT.DEEPSTANDBY
-			}[self.timerentry_afterevent.value]
+		}[self.timerentry_afterevent.value]
 
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
@@ -349,8 +347,7 @@ class TimerLog(Screen):
 
 		self.onShown.append(self.updateText)
 
-		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
-		{
+		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "ColorActions"], {
 			"ok": self.keyClose,
 			"cancel": self.keyClose,
 			"up": self.up,
