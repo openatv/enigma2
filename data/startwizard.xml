@@ -21,7 +21,8 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 			</code>
 		</step>
-		<step id="network" >
+<!--
+		<step id="network" > 
 			<text value="Please connect your %s %s to the internet" />
 			<displaytext value="Please connect your %s %s to the internet" />
 			<list>
@@ -59,6 +60,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 			</code>
 		</step>
+-->
 		<step id="nima">
 			<condition>
 from Components.NimManager import nimmanager
@@ -115,11 +117,51 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
-<!--
-		<step id="channels">
+<!-- NETWORK -->
+		<step id="network" > 
+			<text value="Please connect your %s %s to the internet" />
+			<displaytext value="Please connect your %s %s to the internet" />
+			<list>
+				<listentry caption="Check the internet connection" step="update" />
+				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
+			</list>
+			<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+			</code>
+		</step>
+		<step id="update">
+			<text value="Checking the internet connection" />
+			<displaytext value="Checking the internet connection" />
+			<config screen="InstallWizard" module="InstallWizard" args="0" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+			</code>
+		</step>
+		<step id="networkfailed" >
+			<condition>
+self.condition = not config.misc.installwizard.ipkgloaded.value
+			</condition>
+			<text value="Your %s %s does not have an internet connection" />
+			<displaytext value="Your %s %s is not connected to the internet" />
+			<list>
+				<listentry caption="Check the internet connection again" step="update" />
+				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
+			</list>
+			<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+			</code>
+		</step>
+
+		<step id="channels" >
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
+##self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value
 			</condition>
 			<text value="Do you want to install a channel list?" />
 			<displaytext value="Do you want to install a channel list?" />
@@ -130,7 +172,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
- -->
+<!-- No Scan Option
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<displaytext value="Do you want to do a service scan?" />
@@ -139,7 +181,7 @@ from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="softcam" />
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 			</list>
@@ -170,10 +212,26 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<text value="Do you want to do another manual service scan?" />
 			<displaytext value="Do you want to do another manual service scan?" />
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="softcam" />
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
 			</list>
 		</step>
+-->
+		<step id="softcam">
+			<condition>
+self.condition = config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value and config.misc.installwizard.softcamdownloaded.value
+##self.condition = nimmanager.somethingConnected() and config.misc.installwizard.hasnetwork.value
+			</condition>
+			<text value="Would you like to install a softcam?" />
+			<config screen="InstallWizard" module="InstallWizard" args="2" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+			</code>
+		</step> 
+
+
 <!--
 		<step id="finisheddefaultsatlists">
 			<text value="Do you want to enable the parental control feature on your %s %s?" />
