@@ -5,7 +5,7 @@ from Components.config import config, ConfigSubsection, ConfigBoolean, getConfig
 from Components.Network import iNetwork
 from Components.Ipkg import IpkgComponent
 from enigma import eDVBDB
-
+import os
 config.misc.installwizard = ConfigSubsection()
 config.misc.installwizard.hasnetwork = ConfigBoolean(default = False)
 config.misc.installwizard.ipkgloaded = ConfigBoolean(default = False)
@@ -103,6 +103,12 @@ class InstallWizard(Screen, ConfigListScreen):
 	def run(self):
 		if self.index == self.STATE_UPDATE:
 			if config.misc.installwizard.hasnetwork.value:
+			        # Check if feed is active                                                                                                                  
+			        if not os.path.isfile("/etc/opkg/lbappstore.conf"):                                                                                        
+			                with open ('/etc/opkg/lbappstore.conf', 'a') as f: 
+			                        f.write ("src/gz lbutils http://appstore.linux-box.es/files" + '\n')
+			                        f.close()
+			                	                      
 				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), IpkgComponent.CMD_UPDATE)
 		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value:
 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-settings-sorys-' + self.channellist_type.value})
