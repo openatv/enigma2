@@ -1377,7 +1377,7 @@ RESULT eDVBServicePlay::start()
 			}
 
 			std::ostringstream remote_service_ref;
-			remote_service_ref << std::hex << service.type << ":" << service.flags << ":" << 
+			remote_service_ref << std::hex << service.type << ":" << service.flags << ":" <<
 					service.getData(0) << ":" << service.getData(1) << ":" << service.getData(2) << ":0:0:0:0:0:" <<
 					remote_fallback_url << "/" <<
 					service.type << "%3a" << service.flags;
@@ -2761,12 +2761,10 @@ void eDVBServicePlay::switchToTimeshift()
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 
-	m_cue->seekTo(0, -1000);
+	m_cue->seekTo(0, -2);
 
 	ePtr<iTsSource> source = createTsSource(r);
 	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
-
-	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
 	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
 }

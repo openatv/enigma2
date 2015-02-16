@@ -4,7 +4,7 @@
   * modify it under the terms of the GNU General Public License as
   * published by the Free Software Foundation; either version 2, or
   * (at your option) any later version.
-  * 
+  *
   * This program is distributed in the hope that it will be useful,
   * but WITHOUT ANY WARRANTY; without even the implied warranty of
   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -87,7 +87,7 @@ off64_t framepts(unsigned char* buf, int pos)
   return pts;
 }
 
-int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& retpos2, off64_t& retdat, int filesize)
+int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& retpos2, off64_t& retdat, off_t filesize)
 {
   static unsigned char buf[LEN];
   static int ind;
@@ -95,8 +95,8 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
   static off64_t num;
   static int pid = -1;
   static int st = 0;
-  static double bytecount = 0;
-  static double progress = 0.00;
+  static off_t bytecount = 0;
+  static int progress = -1;
   static int sdflag = 0;
   unsigned char* p;
   if (pos == -1 || first) {
@@ -112,7 +112,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
     ind = -1;
     for (; p < buf+num-6; p++) {
 
-      bytecount = bytecount + 1;
+      bytecount++;
 
       if (p[0]==0 && p[1]==0 && p[2]==1) {
         ind = ((p - buf)/188)*188;
@@ -136,7 +136,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
           retpos2 = pos + (p - buf);
           st = (p - buf) - ind + 1;
           sdflag = 1;
-          return 1; 
+          return 1;
         } else if (!sdflag && p[3]==0x09 && (buf[ind+1] & 0x40)) { // H264
           if ((p[4] >> 5)==0) {
             retpts = framepts(buf, ind);
@@ -148,7 +148,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
           retdat = p[3] | (p[4]<<8);
           retpos2 = pos + (p - buf);
           st = (p - buf) - ind + 1;
-          return 1; 
+          return 1;
         } else {
           ind = -1;
           continue;
@@ -156,10 +156,12 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
       }
     }
 
-    progress = bytecount/filesize*100;
-    cout << "\rcreating ap&sc files: ";
-    cout.width(2);
-    cout << (int)progress << "%";
+    int p = (100ULL * bytecount) / filesize;
+    if (p != progress) {
+      progress = p;
+      printf("\rcreating ap&sc files: %2d%%", p);
+      fflush(stdout);
+    }
 
     st = 0;
     sdflag = 0; // reset to get some fault tolerance
@@ -183,7 +185,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
   }
 }
 
-int do_one(int fts, int fap, int fsc, int filesize)
+int do_one(int fts, int fap, int fsc, off_t filesize)
 {
   off64_t pos;
   off64_t pos2;
@@ -203,10 +205,14 @@ int do_one(int fts, int fap, int fsc, int filesize)
 
 int do_movie(char* inname)
 {
+  struct stat sb;
+  if (stat(inname, &sb)) {
+    perror("Can not stat file");
+    return 0;
+  }
+
   int f_ts=-1, f_sc=-1, f_ap=-1, f_tmp=-1;
   char* tmpname;
-  long filesize;
-  FILE *fp;
   tmpname = makefilename(0, inname, ".ts", 0);
   f_ts = open(tmpname, O_RDONLY | O_LARGEFILE);
 
@@ -236,13 +242,8 @@ int do_movie(char* inname)
 
   //printf("  Processing .ap and .sc of \"%s\" ... ", inname);
 
-  fp=fopen(inname,"rb");
-  fseek(fp,0L,SEEK_END);
-  filesize=ftell(fp);
-  fclose(fp);
-
   fflush(stdout);
-  if (do_one(f_ts, f_ap, f_sc, filesize)) {
+  if (do_one(f_ts, f_ap, f_sc, sb.st_size)) {
     printf("\nFailed to reconstruct files for \"%s\"\n", inname);
     goto failure;
   }

@@ -130,6 +130,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
 				'info': (self.Info, self._helpInfo),
 				'infolong': (self.InfoLong, self._helpInfoLong),
+				'timer': (self.showTimerList, _('Show timer list')),
+				'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Detailed event information and setup'))
 			self['epgactions'].csel = self
@@ -138,6 +140,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
 				'info': (self.Info, self._helpInfo),
 				'epg': (self.Info, self._helpInfo),
+				'timer': (self.showTimerList, _('Show timer list')),
+				'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Detailed event information and setup'))
 			self['epgactions'].csel = self
@@ -160,6 +164,8 @@ class EPGSelection(Screen, HelpableScreen):
 					'epg': (self.epgButtonPressed, _('Open single channel EPG')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
+					'timer': (self.showTimerList, _('Show timer list')),
+					'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 				self['epgactions'].csel = self
@@ -179,6 +185,8 @@ class EPGSelection(Screen, HelpableScreen):
 					'input_date_time': (self.enterDateTime, _('Go to specific date/time')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
+					'timer': (self.showTimerList, _('Show timer list')),
+					'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 				self['epgactions'].csel = self
@@ -270,6 +278,8 @@ class EPGSelection(Screen, HelpableScreen):
 				'infolong': (self.InfoLong, self._helpInfoLong),
 				'tv': (self.Bouquetlist, _('Toggle between bouquet/EPG lists')),
 				'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
+				'timer': (self.showTimerList, _('Show timer list')),
+				'timerlong': (self.showAutoTimerList, _('Show AutoTimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Bouquets and services, information and setup'))
 			self['epgactions'].csel = self
