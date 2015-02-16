@@ -216,9 +216,10 @@ void bsodFatal(const char *component)
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.cDataFromCmd("memory", "free -l");
 		xml.cDataFromCmd("filesystems", "df -h");
+		xml.cDataFromCmd("mounts", "mount");
 		xml.cDataFromCmd("nimsockets", "cat /proc/bus/nim_sockets");
-		xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
 		xml.cDataFromCmd("networkifconfig", "ifconfig");
+		xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
 		xml.cDataFromFile("dns", "/etc/resolv.conf");
 		xml.cDataFromFile("defaultgateway", "/etc/default_gw");
 		xml.close();
