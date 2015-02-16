@@ -3801,6 +3801,48 @@ void eEPGCache::channel_data::readPrivateData( const uint8_t *data)
 
 #endif // ENABLE_PRIVATE_EPG
 
+// Load Equiv File
+
+void eEPGCache::channel_data::GetEquiv(void)
+{
+	nb_equiv=0;
+	m_equiv.resize(100);
+
+	FILE *eq=fopen("/etc/mhw2equiv.conf","r");
+	if (eq)
+	{
+		char linea[256];
+		while ((fgets(linea,256,eq)!=NULL) && (nb_equiv<100))
+		{
+		    if (linea[0]!='#')
+		    {
+			int r1,r2,r3,osid,otid,onid,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,esid,etid,enid;
+			char name[20];
+			if (sscanf(linea,"%x:%x:%x:%x:%x:%x:%x:%x:%x:%x: %x:%x:%x:%x:%x:%x:%x:%x:%x:%x: %s",&r1,&r2,&r3,&osid,&otid,&onid,&r4,&r5,&r6,&r7,&r8,&r9,&r10,&esid,&etid,&enid,&r11,&r12,&r13,&r14,name)==21)
+			{
+				mhw_channel_equiv_t channel;
+				channel.original_nid_hi = (onid >> 8) &0xFF;
+				channel.original_nid_lo = onid & 0xFF;
+				channel.original_tid_hi = (otid >> 8) &0xFF;
+				channel.original_tid_lo = otid & 0xFF;
+				channel.original_sid_hi = (osid >> 8) &0xFF;
+				channel.original_sid_lo = osid & 0xFF;
+				channel.equiv_nid_hi = (enid >> 8) &0xFF;
+				channel.equiv_nid_lo = enid & 0xFF;
+				channel.equiv_tid_hi = (etid >> 8) &0xFF;
+				channel.equiv_tid_lo = etid & 0xFF;
+				channel.equiv_sid_hi = (esid >> 8) &0xFF;
+				channel.equiv_sid_lo = esid & 0xFF;
+				m_equiv[nb_equiv++] = channel;
+			}
+		    }
+		}
+		fclose(eq);
+	}
+	m_equiv.resize(nb_equiv);
+}
+
+
 #ifdef ENABLE_MHW_EPG
 void eEPGCache::channel_data::cleanupMHW()
 {
@@ -4041,6 +4083,26 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 
 	// Feed the data to eEPGCache::sectionRead()
 	cache->sectionRead( data, MHW, this );
+	// Equiv
+	int i;
+	for (i=0;i<nb_equiv;i++)
+	{
+		if (( m_channels[ itTitle->second.channel_id - 1 ].channel_id_hi == m_equiv[i].original_sid_hi ) 
+		    && ( m_channels[ itTitle->second.channel_id - 1 ].transport_stream_id_hi == m_equiv[i].original_tid_hi ) 
+		    && ( m_channels[ itTitle->second.channel_id - 1 ].network_id_hi == m_equiv[i].original_nid_hi )
+		    && ( m_channels[ itTitle->second.channel_id - 1 ].channel_id_lo == m_equiv[i].original_sid_lo ) 
+		    && ( m_channels[ itTitle->second.channel_id - 1 ].transport_stream_id_lo == m_equiv[i].original_tid_lo ) 
+		    && ( m_channels[ itTitle->second.channel_id - 1 ].network_id_lo == m_equiv[i].original_nid_lo ))
+		{
+			packet->service_id_hi = m_equiv[i].equiv_sid_hi;
+			packet->transport_stream_id_hi = m_equiv[i].equiv_tid_hi;
+			packet->original_network_id_hi = m_equiv[i].equiv_nid_hi;
+			packet->service_id_lo = m_equiv[i].equiv_sid_lo;
+			packet->transport_stream_id_lo = m_equiv[i].equiv_tid_lo;
+			packet->original_network_id_lo = m_equiv[i].equiv_nid_lo;
+			cache->sectionRead( data, MHW, this );
+		}
+	}
 }
 
 void eEPGCache::channel_data::startMHWTimeout(int msec)
@@ -4075,7 +4137,7 @@ void eEPGCache::channel_data::startMHWReader2(uint16_t pid, uint8_t tid, int ext
 	}
 	m_MHWReader2->start(m_MHWFilterMask2);
 }
-
+//Read mhw2data
 void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 {
 	if ( m_MHWReader2 )
@@ -4093,17 +4155,24 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		int len = ((data[1]&0xf)<<8) + data[2] - 1;
 		int record_size = sizeof( mhw_channel_name_t );
 		int nbr_records = int (len/record_size);
-
+		
+		GetEquiv(); 
+		
+		// Create a file with table data
+		FILE *f=fopen("/etc/mhw2tablechannel.conf","w");
+		
 		m_channels.resize(nbr_records);
 		for ( int i = 0; i < nbr_records; i++ )
 		{
 			mhw_channel_name_t *channel = (mhw_channel_name_t*) &data[4 + i*record_size];
 			m_channels[i]=*channel;
+			// Save channel in file
+			if (f) fprintf(f,"(%s) %x:%x:%x\n",m_channels[i].name,HILO(m_channels[i].channel_id),HILO(m_channels[i].transport_stream_id),HILO(m_channels[i].network_id));    
 		}
 		haveData |= MHW;
 
 		eDebug("[EPGC] mhw %d channels found", m_channels.size());
-
+		fclose(f);
 		// Channels table has been read, start reading the themes table.
 		startMHWReader(0xD3, 0x92);
 		return;
@@ -4279,6 +4348,9 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 			goto abort;
 		// data seems consistent...
 		const uint8_t *tmp = data+121;
+		GetEquiv();
+		// File equiv channels
+		FILE *f=fopen("/etc/mhw2tablechannel.conf","w");
 		for (int i=0; i < num_channels; ++i)
 		{
 			mhw_channel_name_t channel;
@@ -4301,8 +4373,10 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 				channel.name[x]=*(tmp++);
 			channel.name[x+1]=0;
 //			eDebug("%d(%02x) %s", i, i, channel.name);
+			if (f) fprintf(f,"(%s) %x:%x:%x\n",channel.name,HILO(channel.channel_id),HILO(channel.transport_stream_id),HILO(channel.network_id));
 		}
 		haveData |= MHW;
+		fclose(f);
 		eDebug("[EPGC] mhw2 %d channels found", m_channels.size());
 	}
 	else if (m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 1)
