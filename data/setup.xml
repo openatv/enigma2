@@ -16,7 +16,6 @@
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner for recordings will be preferred, when more than one tuner is available.">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Disable background scanning" description="When enabled, the receiver will no longer monitor the tuned transponder for possible changes. Do not use this option unless you know what you are doing.">config.misc.disable_background_scan</item>
-		<item level="2" text="Create more detailed crash log" description="Add more details to the crash log">config.crash.details</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 		<item level="2" text="Include ECM in http streams" description="When enabled, ECM data will be included in http streams. This allows a client receiver to do the descrambling.">config.streaming.stream_ecm</item>

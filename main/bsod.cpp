@@ -185,8 +185,6 @@ void bsodFatal(const char *component)
 		struct tm tm;
 		char tm_str[32];
 
-		bool detailedCrash = getConfigBool("config.crash.details", true);
-
 		localtime_r(&t, &tm);
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
@@ -220,37 +218,9 @@ void bsodFatal(const char *component)
 		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
 		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
-			xml.cDataFromFile("stbca", "/proc/stb/info/ca");
-			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
-			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
-			xml.cDataFromFile("dns", "/etc/resolv.conf");
-			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
-			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
 		xml.cDataFromFile("imageversion", "/etc/image-version");
 		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();
-
-		if (detailedCrash)
-		{
-			xml.open("software");
-			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et-*'");
-			}
-			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
-				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
-			}
-			else if (access("/proc/stb/info/model", F_OK) != -1) {
-				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
-			}
-			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
-			xml.close();
-		}
 
 		xml.open("crashlogs");
 		xml.cDataFromString("enigma2crashlog", getLogBuffer());
