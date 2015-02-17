@@ -32,6 +32,8 @@ def InitParentalControl():
 	#Added for backwards compatibility with some 3rd party plugins that depend on this config
 	config.ParentalControl.configured = config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive
 	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
+	config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
+	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_BLACKLIST, _("blacklist"))])
 
 class ParentalControl:
 	def __init__(self):
