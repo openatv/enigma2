@@ -1,0 +1,14 @@
+Available templates:
+
+errorcam.msg
+
+Template send to user when a softcam crash 
+  1st line is a subject
+  .cam. is replaced by the name of softcam
+
+  Example:
+  The softcam .cam. is crash     <---------- Subject
+  The cam .cam. appears to malfunction. <---
+  Service has been restarted.        <--- Body
+  LBpanel                            <---
+

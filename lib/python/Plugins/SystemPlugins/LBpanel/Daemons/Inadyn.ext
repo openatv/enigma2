@@ -1,0 +1,162 @@
+from enigma import *
+from Components.ConfigList import *
+from Screens.Screen import Screen
+
+class InadynConfig(ConfigListScreen, Screen):
+	skin = """
+<screen name="InadynConfig" position="360,160" size="560,400" title="Inadyn">
+		<widget name="config" position="0,10" scrollbarMode="showOnDemand" size="560,340"/>
+		
+		<ePixmap position="0,360"   zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<ePixmap position="140,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<ePixmap position="280,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap position="420,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+		
+		<widget name="key_red"    position="0,360"   zPosition="2" size="140,40" halign="center" valign="center" shadowColor="black" font="Regular;22" transparent="1" foregroundColor="red"    backgroundColor="red"    />
+		<widget name="key_green"  position="140,360" zPosition="2" size="140,40" halign="center" valign="center" shadowColor="black" font="Regular;22" transparent="1" foregroundColor="green"  backgroundColor="green"  />
+		<widget name="key_yellow" position="280,360" zPosition="2" size="140,40" halign="center" valign="center" shadowColor="black" font="Regular;22" transparent="1" foregroundColor="yellow" backgroundColor="yellow" />
+		<widget name="key_blue"   position="420,360" zPosition="2" size="140,40" halign="center" valign="center" shadowColor="black" font="Regular;22" transparent="1" foregroundColor="blue"   backgroundColor="blue"   />
+ </screen>"""
+ 
+	def __init__(self, session, args = 0):
+		
+		from Components.config import ConfigText, ConfigInteger, getConfigListEntry
+		from Components.ConfigList import ConfigListScreen
+		from Components.Label import Label
+		from Components.ActionMap import ActionMap, NumberActionMap
+		
+		self.alias = "test.homeip.net"
+		self.username = "test"
+		self.password = "test"
+		self.update_period_sec = 54000
+		self.load()
+		
+		Screen.__init__(self, session)
+		self.list = []
+		self.list.append(getConfigListEntry(_("Host:"), ConfigText(default=self.alias, fixed_size=False)))
+		self.list.append(getConfigListEntry(_("Username:"), ConfigText(default=self.username, fixed_size=False)))
+		self.list.append(getConfigListEntry(_("Password:"), ConfigText(default=self.password, fixed_size=False)))
+		self.list.append(getConfigListEntry(_("Update period (seconds):"), ConfigInteger(default=self.update_period_sec, limits=(60, 540000))))
+
+		ConfigListScreen.__init__(self, self.list)
+		self["key_red"] = Label(_("Ok"))
+		self["key_green"] = Label("")
+		self["key_yellow"] = Label("")
+		self["key_blue"] = Label(_("Exit"))
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions"],
+		{
+			"red": self.ok,
+			"blue": self.cancel,
+			"cancel": self.cancel
+		}, -2)
+		
+	def ok(self):
+		self.alias = self.list[0][1].getValue()
+		self.username = self.list[1][1].getValue()
+		self.password = self.list[2][1].getValue()
+		self.update_period_sec = self.list[3][1].getValue()
+	
+		self.save()
+		self.close()
+		
+	def cancel(self):
+		self.close()
+		
+	def load(self):
+		try:
+			f = open("/etc/inadyn.conf", "r")
+		except Exception, e:
+			return
+			
+		import re
+		commentRe = re.compile(r"#(.*)")
+		entryRe = re.compile(r"(.*)=(.*)")
+		
+		for line in f.readlines(): 
+			comment = re.findall(commentRe, line)
+			if not comment:
+				entry = re.findall(entryRe, line)
+				if entry:
+					key = entry[0][0].strip()
+					value = entry[0][1].strip()
+					if key == "alias":
+						self.alias = value;
+					elif key == "username":
+						self.username = value;
+					elif key == "password":
+						self.password = value;
+					elif key == "update_period_sec":
+						self.update_period_sec = int(value);
+
+		f.close()
+		
+	def save(self):
+		try:
+			f = open("/etc/inadyn.conf", "w")
+		except Exception, e:
+			return
+			
+		f.write("alias %s\n" % (self.alias))
+		f.write("username %s\n" % (self.username))
+		f.write("password %s\n" % (self.password))
+		f.write("update_period_sec %d\n" % (self.update_period_sec))
+
+		f.close()
+		
+
+def InadynStatus():
+	import os
+	ret = False
+	pids = os.popen("ps | grep inadyn | grep -v grep | wc -l")
+	try:
+		count = int(pids.read())
+		if count > 0:
+			ret = True
+	except Exception, e:
+		pass
+	
+	pids.close()
+	return ret
+		
+def InadynStop():
+	import os
+	os.system("/etc/init.d/inadyn stop")
+	
+def InadynStart():
+	import os
+	os.system("/etc/init.d/inadyn start")
+	
+def InadynInstalled():
+	from Tools.Directories import fileExists
+	return fileExists("/usr/bin/inadyn")
+	
+def InadynBoot(enabled):
+	import os
+	if enabled:
+		os.system("ln -s /etc/init.d/inadyn /etc/rc0.d/K10inadyn")
+		os.system("ln -s /etc/init.d/inadyn /etc/rc1.d/K10inadyn")
+		os.system("ln -s /etc/init.d/inadyn /etc/rc2.d/S10inadyn")
+		os.system("ln -s /etc/init.d/inadyn /etc/rc3.d/S10inadyn")
+		os.system("ln -s /etc/init.d/inadyn /etc/rc4.d/S10inadyn")
+		os.system("ln -s /etc/init.d/inadyn /etc/rc5.d/S10inadyn")
+		os.system("ln -s /etc/init.d/inadyn /etc/rc6.d/K10inadyn")
+	else:
+		os.system("rm -f /etc/rc0.d/K10inadyn")
+		os.system("rm -f /etc/rc1.d/K10inadyn")
+		os.system("rm -f /etc/rc2.d/S10inadyn")
+		os.system("rm -f /etc/rc3.d/S10inadyn")
+		os.system("rm -f /etc/rc4.d/S10inadyn")
+		os.system("rm -f /etc/rc5.d/S10inadyn")
+		os.system("rm -f /etc/rc6.d/K10inadyn")
+		
+daemon_name = "Inadyn"
+daemon_description = "Dynamic DNS update utility"
+daemon_icon = "inadyn.png"
+daemon_package = "inadyn"
+daemon_fnc_status = InadynStatus
+daemon_fnc_installed = InadynInstalled
+daemon_fnc_stop = InadynStop
+daemon_fnc_start = InadynStart
+daemon_fnc_boot = InadynBoot
+daemon_class_config = InadynConfig
+

@@ -1,0 +1,51 @@
+def OpenVPNStatus():
+	import os
+	ret = False
+	pids = os.popen("ps w | grep openvpn | grep -v grep | wc -l")
+	try:
+		count = int(pids.read())
+		if count > 0:
+			ret = True
+	except Exception, e:
+		pass
+	
+	pids.close()
+	return ret
+	
+def OpenVPNStop():
+	import os
+	os.system("/etc/init.d/openvpn stop")
+	
+def OpenVPNStart():
+	from enigma import eConsoleAppContainer
+	import os
+	#os.system("/etc/init.d/openvpn start")
+	# hack for problems with os.system
+	cmd = eConsoleAppContainer()
+	cmd.execute("/etc/init.d/openvpn start")
+	import time
+	time.sleep(2)
+	
+def OpenVPNInstalled():
+	from Tools.Directories import fileExists
+	return fileExists("/usr/sbin/openvpn")
+	
+def OpenVPNBoot(enabled):
+	import os
+	if enabled:
+		os.system("ln -s /etc/init.d/openvpn /etc/rc3.d/S50openvpn")
+		os.system("ln -s /etc/init.d/openvpn /etc/rc3.d/K50openvpn")
+	else:
+		os.system("rm -f /etc/rc3.d/S50openvpn")
+		os.system("rm -f /etc/rc3.d/K50openvpn")
+	
+daemon_name = "OpenVPN"
+daemon_description = "A secure VPN server"
+daemon_icon = "openvpn.png"
+daemon_package = "openvpn"
+daemon_fnc_status = OpenVPNStatus
+daemon_fnc_installed = OpenVPNInstalled
+daemon_fnc_stop = OpenVPNStop
+daemon_fnc_start = OpenVPNStart
+daemon_fnc_boot = OpenVPNBoot
+daemon_class_config = None

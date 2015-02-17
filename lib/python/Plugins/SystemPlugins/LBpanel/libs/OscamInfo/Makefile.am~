@@ -1,0 +1,13 @@
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo
+
+SUBDIRS = locale
+
+install_PYTHON =	\
+	__init__.py \
+	oscaminfo.py 	
+
+dist_install_DATA = \
+	CCcamInfo.png \
+	keymap.xml \
+	maintainer.info
+	

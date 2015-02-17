@@ -1,0 +1,45 @@
+def NFSDStatus():
+	import os
+	ret = False
+	pids = os.popen("ps w | grep nfsd | grep -v grep | wc -l")
+	try:
+		count = int(pids.read())
+		if count > 0:
+			ret = True
+	except Exception, e:
+		pass
+		
+	pids.close()
+	return ret
+	
+def NFSDStop():
+	import os
+	os.system("/etc/init.d/nfsserver stop")
+	
+def NFSDStart():
+	import os
+	os.system("/etc/init.d/nfsserver start")
+	
+def NFSDBoot(enabled):
+	import os
+	if enabled:
+		os.system("ln -s /etc/init.d/nfsserver /etc/rc3.d/S20nfsserver")
+		os.system("ln -s /etc/init.d/nfsserver /etc/rc3.d/K20nfsserver")
+	else:
+		os.system("rm -f /etc/rc3.d/S20nfsserver")
+		os.system("rm -f /etc/rc3.d/K20nfsserver")
+	
+def NFSDInstalled():
+	from Tools.Directories import fileExists
+	return fileExists("/usr/sbin/rpc.nfsd")
+	
+daemon_name = "NFSd"
+daemon_description = "Network file system daemon"
+daemon_icon = "nfsd.png"
+daemon_package = "nfs-utils"
+daemon_fnc_status = NFSDStatus
+daemon_fnc_installed = NFSDInstalled
+daemon_fnc_stop = NFSDStop
+daemon_fnc_start = NFSDStart
+daemon_fnc_boot = NFSDBoot
+daemon_class_config = None

@@ -1,0 +1,55 @@
+def DropbearStatus():
+	import os
+	ret = False
+	pids = os.popen("ps w | grep dropbear | grep -v grep | wc -l")
+	try:
+		count = int(pids.read())
+		if count > 0:
+			ret = True
+	except Exception, e:
+		pass
+	
+	pids.close()
+	return ret
+	
+def DropbearStop():
+	import os
+	os.system("/etc/init.d/dropbear stop")
+	
+def DropbearStart():
+	import os
+	os.system("/etc/init.d/dropbear start")
+	
+def DropBearInstalled():
+	from Tools.Directories import fileExists
+	return fileExists("/usr/sbin/dropbear")
+
+def DropBearBoot(enabled):
+	import os
+	if enabled:
+		os.system("ln -s /etc/init.d/dropbear /etc/rc0.d/K10dropbear")
+		os.system("ln -s /etc/init.d/dropbear /etc/rc1.d/K10dropbear")
+		os.system("ln -s /etc/init.d/dropbear /etc/rc2.d/S10dropbear")
+		os.system("ln -s /etc/init.d/dropbear /etc/rc3.d/S10dropbear")
+		os.system("ln -s /etc/init.d/dropbear /etc/rc4.d/S10dropbear")
+		os.system("ln -s /etc/init.d/dropbear /etc/rc5.d/S10dropbear")
+		os.system("ln -s /etc/init.d/dropbear /etc/rc6.d/K10dropbear")
+	else:
+		os.system("rm -f /etc/rc0.d/K10dropbear")
+		os.system("rm -f /etc/rc1.d/K10dropbear")
+		os.system("rm -f /etc/rc2.d/S10dropbear")
+		os.system("rm -f /etc/rc3.d/S10dropbear")
+		os.system("rm -f /etc/rc4.d/S10dropbear")
+		os.system("rm -f /etc/rc5.d/S10dropbear")
+		os.system("rm -f /etc/rc6.d/K10dropbear")
+		
+daemon_name = "DropBear"
+daemon_description = "SSH server"
+daemon_icon = "dropbear.png"
+daemon_package = "dropbear"
+daemon_fnc_status = DropbearStatus
+daemon_fnc_installed = DropBearInstalled
+daemon_fnc_stop = DropbearStop
+daemon_fnc_start = DropbearStart
+daemon_fnc_boot = DropBearBoot
+daemon_class_config = None

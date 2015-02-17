@@ -1,0 +1,9 @@
+#!/bin/sh
+grados=`cat /proc/stb/fp/temp_sensor`
+sed "s/, /\n/g;s/ = / -> /;s/=//g;s/^ /Used: /;s/ on /\n/;s/ECM//;s/ID /ID: /;\
+  s/pid/Pid: /;s/cw\(*.\):/cw\1\:  /g" /tmp/ecm.info
+echo""
+cat /proc/meminfo | grep MemTotal 
+cat /proc/meminfo | grep MemFree
+echo "temperatura: $gradosº" 
+
