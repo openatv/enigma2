@@ -29,7 +29,7 @@ def InitParentalControl():
 	config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
 	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
 
-	#Added for backwards compatibility with some 3rd party plygins that depend on this config
+	#Added for backwards compatibility with some 3rd party plugins that depend on this config
 	config.ParentalControl.configured = config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive
 	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
 
