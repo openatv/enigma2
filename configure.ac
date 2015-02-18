@@ -604,6 +604,7 @@ lib/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo/locale/de/LC_MESSAGES/Ma
 lib/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo/locale/es/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo/locale/es/LC_MESSAGES/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/script/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/script/libmem/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/templates/Makefile
 lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
