@@ -589,7 +589,7 @@ lib/python/Plugins/SystemPlugins/LBpanel/libs/CCcamInfo/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/libs/GboxSuite/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/script/Makefile
-lib/python/Plugins/SystemPlugins/LBpanel/template/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/templates/Makefile
 lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
