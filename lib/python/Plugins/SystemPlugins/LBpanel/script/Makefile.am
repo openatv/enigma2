@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/LBpanel/script
 
-SUBDIRS = libmen
+SUBDIRS = libmem
 
 dist_install_DATA = \
 	extrainfo \
