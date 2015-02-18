@@ -581,6 +581,15 @@ lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/Daemons/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/images/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/libs/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/libs/CCcamInfo/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/libs/GboxSuite/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/script/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/template/Makefile
 lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
