@@ -21,7 +21,6 @@ def InitParentalControl():
 	config.ParentalControl = ConfigSubsection()
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
 	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
-
 	config.ParentalControl.retries = ConfigSubsection()
 	config.ParentalControl.retries.servicepin = ConfigSubsection()
 	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
@@ -29,6 +28,12 @@ def InitParentalControl():
 	config.ParentalControl.servicepin = ConfigSubList()
 	config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
 	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+
+	#Added for backwards compatibility with some 3rd party plugins that depend on this config
+	config.ParentalControl.configured = config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive
+	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
+	config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
+	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_BLACKLIST, _("blacklist"))])
 
 class ParentalControl:
 	def __init__(self):
