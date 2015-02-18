@@ -128,6 +128,9 @@ class PluginBrowser(Screen):
 	def menu(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
 
+	def exit(self):
+		self.close(True)
+
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
 		self.listWidth = listsize.width()

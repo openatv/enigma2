@@ -185,8 +185,6 @@ void bsodFatal(const char *component)
 		struct tm tm;
 		char tm_str[32];
 
-		bool detailedCrash = getConfigBool("config.crash.details", true);
-
 		localtime_r(&t, &tm);
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
@@ -198,8 +196,7 @@ void bsodFatal(const char *component)
 		xml.string("crashdate", tm_str);
 		xml.string("compiledate", __DATE__);
 		xml.string("contactemail", crash_emailaddr);
-		xml.comment("Please email this crashlog to above address");
-
+		xml.comment("Please email this crashlog to above address. Check all sections to remove any sensitive private data!");
 		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
 		xml.string("sourcedate", enigma2_date);
 		xml.string("branch", enigma2_branch);
@@ -214,38 +211,33 @@ void bsodFatal(const char *component)
 		else if (access("/proc/stb/info/model", F_OK) != -1) {
 			xml.stringFromFile("stbmodel", "/proc/stb/info/model");
 		}
+		xml.cDataFromFile("imageversion", "/etc/image-version");
 		xml.cDataFromCmd("kernelversion", "uname -a");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
-		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
-			xml.cDataFromFile("stbca", "/proc/stb/info/ca");
-			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addNetwork", false)) {
-			xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
-			xml.cDataFromFile("dns", "/etc/resolv.conf");
-			xml.cDataFromFile("defaultgateway", "/etc/default_gw");
-		}
-		if (getConfigBool("config.plugins.crashlogautosubmit.addWlan", false))
-			xml.cDataFromFile("wpasupplicant", "/etc/wpa_supplicant.conf");
-		xml.cDataFromFile("imageversion", "/etc/image-version");
-		xml.cDataFromFile("imageissue", "/etc/issue.net");
+		xml.cDataFromCmd("memory", "free -l");
+		xml.cDataFromCmd("filesystems", "df -h");
+		xml.cDataFromCmd("mounts", "mount");
+		xml.cDataFromCmd("nimsockets", "cat /proc/bus/nim_sockets");
+		xml.cDataFromCmd("networkifconfig", "ifconfig");
+		xml.cDataFromFile("networkinterfaces", "/etc/network/interfaces");
+		xml.cDataFromFile("dns", "/etc/resolv.conf");
+		xml.cDataFromFile("defaultgateway", "/etc/default_gw");
 		xml.close();
 
-		if (detailedCrash)
-		{
-			xml.open("software");
-			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
-			xml.close();
-		}
+		xml.open("settings");
+		xml.cDataFromCmd("enigma2settings", "cat /etc/enigma2/settings");
+		xml.close();
+
+		xml.open("software");
+		xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
+		xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
+		xml.close();
 
 		xml.open("crashlogs");
 		xml.cDataFromString("enigma2crashlog", getLogBuffer());
 		xml.close();
 
 		xml.close();
-
 		fclose(f);
 	}
 
