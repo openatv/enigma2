@@ -936,16 +936,17 @@ class RecordTimer(timer.Timer):
 		kind = 0
 		time_match = 0
 
-		isAutoTimer = False
+		isAutoTimer = 0
 		bt = None
 		check_offset_time = not config.recording.margin_before.value and not config.recording.margin_after.value
 		end = begin + duration
 		refstr = ':'.join(service.split(':')[:11])
 		for x in self.timer_list:
+			isAutoTimer = 0
 			if x.isAutoTimer == 1:
-				isAutoTimer = True
-			else:
-				isAutoTimer = False
+				isAutoTimer |= 1
+			if x.ice_timer_id is not None:
+				isAutoTimer |= 2
 			check = ':'.join(x.service_ref.ref.toString().split(':')[:11]) == refstr
 			if not check:
 				sref = x.service_ref.ref

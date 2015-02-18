@@ -245,6 +245,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			))
 
 		self.autotimericon = _loadPixmap('icons/epgclock_autotimer.png')
+		self.icetvicon = _loadPixmap('icons/epgclock_icetv.png')
 
 		self.othEvPix = None
 		self.selEvPix = None
@@ -649,10 +650,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			return None
 		rec = self.timer.isInTimer(eventId, beginTime, duration, service)
 		if rec is not None:
-			self.wasEntryAutoTimer = rec[2]
+			self.wasEntryAutoTimer = bool(rec[2] & 1)
+			self.wasEntryIceTV = bool(rec[2] & 2)
 			return rec[1]
 		else:
 			self.wasEntryAutoTimer = False
+			self.wasEntryIceTV = False
 			return None
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
@@ -668,19 +671,27 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%s ~ %s" % (strftime("%H:%M", t), strftime("%H:%M", et)))
 		]
 		if clock_types:
-			if self.wasEntryAutoTimer and clock_types in (2,7,12):
+			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
 				if self.screenwidth and self.screenwidth == 1920:
-					res.extend((
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-52, (r3.h/2-13), 25, 25, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-52, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
-						))
+					iconOffset = 25
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-13), 25, 25, self.clocks[clock_types]))
+					if self.wasEntryAutoTimer:
+						iconOffset += 27
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-13), 25, 25, self.autotimericon))
+					if self.wasEntryIceTV:
+						iconOffset += 27
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-13), 25, 25, self.icetvicon))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-52, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 				else:
-					res.extend((
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
-						))
+					iconOffset = 21
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]))
+					if self.wasEntryAutoTimer:
+						iconOffset += 21
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon))
+					if self.wasEntryIceTV:
+						iconOffset += 21
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.icetvicon))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
 					res.extend((
@@ -708,19 +719,27 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
 		]
 		if clock_types:
-			if self.wasEntryAutoTimer and clock_types in (2,7,12):
+			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
 				if self.screenwidth and self.screenwidth == 1920:
-					res.extend((
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-52, (r3.h/2-13), 25, 25, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-52, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
-					))
+					iconOffset = 25
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-13), 25, 25, self.clocks[clock_types]))
+					if self.wasEntryAutoTimer:
+						iconOffset += 27
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-13), 25, 25, self.autotimericon))
+					if self.wasEntryIceTV:
+						iconOffset += 27
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-13), 25, 25, self.icetvicon))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-iconOffset, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 				else:
-					res.extend((
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
-					))
+					iconOffset = 21
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.clocks[clock_types]))
+					if self.wasEntryAutoTimer:
+						iconOffset += 21
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset (r3.h/2-11), 21, 21, self.autotimericon))
+					if self.wasEntryIceTV:
+						iconOffset += 21
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.icetvicon))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-iconOffset, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
 					res.extend((
@@ -766,19 +785,31 @@ class EPGList(HTMLComponent, GUIComponent):
 					pos = r3.x+r3.w
 				else:
 					pos = r3.x+r3.w-10
-				if self.wasEntryAutoTimer and clock_types in (2,7,12):
+				if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
 					if self.screenwidth and self.screenwidth == 1920:
 						res.extend((
 							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-26, (r3.h/2-13), 25, 25, self.autotimericon)
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-13), 25, 25, self.clocks[clock_types])
 						))
+						iconOffset = 0
+						if self.wasEntryAutoTimer:
+							iconOffset += 26
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-iconOffset, (r3.h/2-13), 25, 25, self.autotimericon))
+						if self.wasEntryIceTV:
+							iconOffset += 26
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-iconOffset, (r3.h/2-13), 25, 25, self.icetvicon))
 					else:
 						res.extend((
 							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.autotimericon)
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[clock_types])
 						))
+						iconOffset = 0
+						if self.wasEntryAutoTimer:
+							iconOffset += 22
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-iconOffset, (r3.h/2-11), 21, 21, self.autotimericon))
+						if self.wasEntryIceTV:
+							iconOffset += 22
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-iconOffset, (r3.h/2-11), 21, 21, self.icetvicon))
 				else:
 					if self.screenwidth and self.screenwidth == 1920:
 						res.extend((
@@ -1017,15 +1048,31 @@ class EPGList(HTMLComponent, GUIComponent):
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = pos, size = (21, 21),
 							png = clocks))
-					if self.wasEntryAutoTimer and clock_types in (2,7,12):
+					if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
 						if self.screenwidth and self.screenwidth == 1920:
-							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-29,pos[1]), size = (25, 25),
-								png = self.autotimericon))
+							iconOffset = 0
+							if self.wasEntryAutoTimer:
+								iconOffset += 29
+								res.append(MultiContentEntryPixmapAlphaBlend(
+									pos = (pos[0]-iconOffset,pos[1]), size = (25, 25),
+									png = self.autotimericon))
+							if self.wasEntryIceTV:
+								iconOffset += 29
+								res.append(MultiContentEntryPixmapAlphaBlend(
+									pos = (pos[0]-iconOffset,pos[1]), size = (25, 25),
+									png = self.icetvicon))
 						else:
-							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-22,pos[1]), size = (21, 21),
-								png = self.autotimericon))
+							iconOffset = 0
+							if self.wasEntryAutoTimer:
+								iconOffset += 22
+								res.append(MultiContentEntryPixmapAlphaBlend(
+									pos = (pos[0]-iconOffset,pos[1]), size = (21, 21),
+									png = self.autotimericon))
+							if self.wasEntryIceTV:
+								iconOffset += 22
+								res.append(MultiContentEntryPixmapAlphaBlend(
+									pos = (pos[0]-iconOffset,pos[1]), size = (21, 21),
+									png = self.icetvicon))
 		return res
 
 	def getSelectionPosition(self,serviceref):
