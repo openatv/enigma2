@@ -684,14 +684,14 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-52, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 				else:
 					iconOffset = 21
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.clocks[clock_types]))
 					if self.wasEntryAutoTimer:
 						iconOffset += 21
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.autotimericon))
 					if self.wasEntryIceTV:
 						iconOffset += 21
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.icetvicon))
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.icetvicon))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-iconOffset, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
 					res.extend((
@@ -735,7 +735,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.clocks[clock_types]))
 					if self.wasEntryAutoTimer:
 						iconOffset += 21
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset (r3.h/2-11), 21, 21, self.autotimericon))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.autotimericon))
 					if self.wasEntryIceTV:
 						iconOffset += 21
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-iconOffset, (r3.h/2-11), 21, 21, self.icetvicon))
