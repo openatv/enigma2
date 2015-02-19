@@ -1573,7 +1573,10 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 	m_skipmode = skipmode;
 
 	if (final_seek)
-		eDebug("[eDVBServicePlay] trickplay stopped .. ret %d, pos %lld", getPlayPosition(pos), pos);
+	{
+		RESULT rc = getPlayPosition(pos);
+		eDebug("[eDVBServicePlay] trickplay stopped .. ret %d, pos %lld", rc, pos);
+	}
 
 	m_fastforward = ffratio;
 
@@ -1588,7 +1591,10 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		ret = m_decoder->setTrickmode();
 
 	if (pos)
-		eDebug("[eDVBServicePlay] final seek after trickplay ret %d", seekTo(pos));
+	{
+		RESULT rc = seekTo(pos);
+		eDebug("[eDVBServicePlay] final seek after trickplay ret %d", rc);
+	}
 
 	return ret;
 }
@@ -2168,7 +2174,10 @@ int eDVBServicePlay::selectAudioStream(int i)
 	}
 
 	if (i != -1 && apid != m_current_audio_pid && (m_is_pvr || m_timeshift_active))
-		eDebug("[eDVBServicePlay] getPlayPosition ret %d, pos %lld in selectAudioStream", getPlayPosition(position), position);
+	{
+		RESULT rc = getPlayPosition(position);
+		eDebug("[eDVBServicePlay] getPlayPosition ret %d, pos %lld in selectAudioStream", rc, position);
+	}
 
 	m_current_audio_pid = apid;
 
@@ -2179,7 +2188,10 @@ int eDVBServicePlay::selectAudioStream(int i)
 	}
 
 	if (position != -1)
-		eDebug("[eDVBServicePlay] seekTo ret %d", seekTo(position));
+	{
+		RESULT rc = seekTo(position);
+		eDebug("[eDVBServicePlay] seekTo ret %d", rc);
+	}
 
 	int rdsPid = apid;
 
