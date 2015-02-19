@@ -25,7 +25,7 @@
 DEFINE_REF(eDVBAudio);
 
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
-	:m_demux(demux), m_dev(dev)
+	:m_demux(demux), m_dev(dev), m_is_freezed(false)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux ? demux->adapter : 0, dev);
@@ -140,14 +140,6 @@ int eDVBAudio::startPid(int pid, int type)
 
 void eDVBAudio::stop()
 {
-	if (m_fd >= 0)
-	{
-		eDebugNoNewLine("[eDVBAudio] AUDIO_STOP - ");
-		if (::ioctl(m_fd, AUDIO_STOP) < 0)
-			eDebug("failed (%m)");
-		else
-			eDebug("ok");
-	}
 	if (m_fd_demux >= 0)
 	{
 		eDebugNoNewLine("[eDVBAudio] DEMUX_STOP - audio - ");
@@ -156,6 +148,17 @@ void eDVBAudio::stop()
 		else
 			eDebug("ok");
 	}
+
+	if (m_fd >= 0)
+	{
+		eDebugNoNewLine("[eDVBAudio] AUDIO_STOP - ");
+		if (::ioctl(m_fd, AUDIO_STOP) < 0)
+			eDebug("failed (%m)");
+		else
+			eDebug("ok");
+	}
+
+	flush();
 }
 
 void eDVBAudio::flush()
@@ -401,6 +404,8 @@ void eDVBVideo::stop()
 		else
 			eDebug("ok");
 	}
+
+	flush();
 }
 
 void eDVBVideo::flush()
@@ -1124,10 +1129,10 @@ RESULT eTSMPEGDecoder::setTrickmode()
 
 RESULT eTSMPEGDecoder::flush()
 {
-	if (m_audio)
-		m_audio->flush();
 	if (m_video)
 		m_video->flush();
+	if (m_audio)
+		m_audio->flush();
 	return 0;
 }
 
