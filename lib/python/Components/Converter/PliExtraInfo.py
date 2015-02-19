@@ -145,8 +145,8 @@ class PliExtraInfo(Poll, Converter, object):
 	def createTransponderInfo(self, fedata, feraw):
 		if "DVB-T" in feraw.get("tuner_type"):
 			tmp = addspace(self.createChannelNumber(fedata, feraw)) + self.createFrequency(feraw) + "/" + self.createPolarization(fedata)
-		else:
-			tmp = addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata))
+		elif "DVB-C" in feraw.get("tuner_type"):
+			tmp = addspace(self.createFrequency(feraw)) + "MHz "
 		return addspace(self.createTunerSystem(fedata)) + tmp + addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) \
 			+ addspace(self.createModulation(fedata)) + self.createOrbPos(feraw)
 
