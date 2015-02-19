@@ -4,7 +4,7 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer
+from enigma import eDVBVolumecontrol, eTimer, eServiceReference
 from boxbranding import getMachineBrand, getMachineName
 from Tools import Notifications
 from time import localtime, time
@@ -88,6 +88,8 @@ class Standby2(Screen):
 		self.standbyTimeUnknownTimer.stop()
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
+			from Screens.InfoBar import InfoBar
+			InfoBar.instance and InfoBar.instance.servicelist.correctChannelNumber()
 		elif self.paused_service:
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
@@ -104,6 +106,10 @@ class Standby2(Screen):
 
 	def stopService(self):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.servicelist.startupservice_onstandby.value:
+			service = self.prev_running_service.toString()
+			if not(service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/")):
+				self.prev_running_service = eServiceReference(config.servicelist.startupservice.value)
 		self.session.nav.stopService()
 
 class Standby(Standby2):

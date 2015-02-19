@@ -18,7 +18,7 @@ from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
-from Components.config import config, configfile, ConfigSubsection, ConfigText
+from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
@@ -291,11 +291,19 @@ class ChannelContextMenu(Screen):
 		else:
 			return 0
 
+	def getCurrentSelectionName(self):
+		cur = self.csel.getCurrentSelection()
+		if cur and cur.valid():
+			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			return name
+		return ""
+
 	def removeEntry(self):
 		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
 			if self.csel.confirmRemove:
 				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
-				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?"), list=list)
+				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
 			else:
 				self.removeFunction(True)
 		else:
@@ -370,16 +378,22 @@ class ChannelContextMenu(Screen):
 		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
 
 	def setStartupService(self):
-		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
-		path = ';'.join([i.toString() for i in self.csel.servicePath])
-		config.servicelist.startuproot.value = path
-		config.servicelist.startupmode.value = config.servicelist.lastmode.value
-		config.servicelist.save()
-		configfile.save()
-		self.close()
+		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list = [(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
+
+	def setStartupServiceCallback(self, answer):
+		if answer:
+			config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
+			path = ';'.join([i.toString() for i in self.csel.servicePath])
+			config.servicelist.startuproot.value = path
+			config.servicelist.startupmode.value = config.servicelist.lastmode.value
+			config.servicelist.startupservice_onstandby.value = answer == "standby"
+			config.servicelist.save()
+			configfile.save()
+			self.close()
 
 	def unsetStartupService(self):
 		config.servicelist.startupservice.value = ''
+		config.servicelist.startupservice_onstandby.value = False
 		config.servicelist.save()
 		configfile.save()
 		self.close()
@@ -914,7 +928,7 @@ class ChannelSelectionEdit:
 		cur = self.getCurrentSelection()
 		if cur and cur.valid():
 			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
-			name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			if name:
 				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
 		else:
@@ -1865,6 +1879,7 @@ config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
 config.servicelist.lastmode = ConfigText(default='tv')
 config.servicelist.startupservice = ConfigText()
+config.servicelist.startupservice_onstandby = ConfigYesNo(default = False)
 config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default='tv')
 

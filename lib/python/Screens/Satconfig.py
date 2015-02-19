@@ -643,14 +643,18 @@ class NimSelection(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
 			"ok": self.okbuttonClick,
 			"cancel": self.close,
 			"red": self.close,
 			"green": self.okbuttonClick,
+			"menu": self.exit,
 		}, -2)
 		self.setTitle(_("Choose Tuner"))
+
+	def exit(self):
+		self.close(True)
 
 	def setResultClass(self):
 		self.resultclass = NimSetup
