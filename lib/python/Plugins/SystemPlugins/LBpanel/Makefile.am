@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/LBpanel
 
-SUBDIRS = Daemons images libs locale script templates
+SUBDIRS = Daemons images libs locale script templates meta
 
 install_PYTHON =	\
 	__init__.py \

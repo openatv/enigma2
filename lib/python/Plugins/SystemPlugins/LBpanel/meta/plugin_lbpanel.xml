@@ -1,0 +1,22 @@
+<!--suppress XmlUnboundNsPrefix -->
+<default>
+	  <prerequisites>
+                    <tag type="Software" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>Linux-Box</author>
+                    <name>LBpanel</name>
+                    <packagename>enigma2-plugin-systemplugins-lbpanel</packagename>
+                    <shortdescription>Software manager manages your receiver software</shortdescription>
+                    <description>The software manager manages your receiver's software.\n
+		    It's easy to update your receiver's software, install or remove plugins, control yours cams or your system settings.
+                    </description>
+                    <screenshot src="https://dl.dropboxusercontent.com/u/277395196/wiki/emu1.jpg" />
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-lbpanel" />
+	  </files>
+
+</default>

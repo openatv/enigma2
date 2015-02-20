@@ -582,6 +582,7 @@ lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/Makefile
+lib/python/Plugins/SystemPlugins/LBpanel/meta/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/Daemons/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/images/Makefile
 lib/python/Plugins/SystemPlugins/LBpanel/libs/Makefile
