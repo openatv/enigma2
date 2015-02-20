@@ -4407,6 +4407,8 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 		{
 			if (dataLen > 18)
 				eDebug("mhw2 title table invalid!!");
+				// Testing for corrupt table
+				goto abort;
 			if (checkMHWTimeout())
 				goto abort;
 			if (!m_MHWTimeoutTimer->isActive())

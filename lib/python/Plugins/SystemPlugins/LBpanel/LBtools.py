@@ -2096,7 +2096,7 @@ class epgscript(ConfigListScreen, Screen):
 
 	def downepg(self):
                 self.oldService = self.session.nav.getCurrentlyPlayingServiceReference().toString()
-                channel = "1:0:1:759C:422:1:C00000:0:0:0:"
+                channel = "1:0:1:75A9:422:1:C00000:0:0:0:"
                 self.zapTo(channel)
                 fo = open("/tmp/.lbepg","a+")
                 fo.close()
