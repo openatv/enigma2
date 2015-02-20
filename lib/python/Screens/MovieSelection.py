@@ -46,6 +46,7 @@ config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
+config.movielist.last_videodirpos = ConfigText(default="")
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
@@ -53,6 +54,7 @@ config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
+config.movielist.use_last_videodirpos = ConfigYesNo(default=False)
 config.movielist.stop_service = ConfigYesNo(default=True)
 
 userDefinedButtons = None
@@ -225,6 +227,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from being shown in that folder.")))
 		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
+		configList.append(getConfigListEntry(_("Return to last selected entry"), config.movielist.use_last_videodirpos, _("Return to the last selection in the movie list on re-entering Movie Player. Otherwise return to the first movie entry in the movie list.")))
 		configList.append(getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in (
 			('red', _('Red')), ('green', _('Green')), ('yellow', _('Yellow')), ('blue', _('Blue')),
@@ -598,7 +601,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		}, prio=5, description=_("Pause, rewind and fast forward"))
 		self.onShown.append(self.onFirstTimeShown)
 		self.onLayoutFinish.append(self.saveListsize)
-		self.list.connectSelChanged(self.updateButtons)
+		if not config.movielist.use_last_videodirpos.value:
+			config.movielist.last_videodirpos.value = ""
+			config.movielist.last_videodirpos.save()
+		self.savePos = False
+		self.list.connectSelChanged(self.selectionChanged)
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
@@ -868,6 +875,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			print "[ML] failed to unsubscribe:", e
 			pass
+		if not config.movielist.use_last_videodirpos.value:
+			config.movielist.last_videodirpos.value = ""
+		config.movielist.last_videodirpos.save()
+		self.savePos = False
 
 	def createSummary(self):
 		return MovieSelectionSummary
@@ -910,6 +921,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def can_preview(self, item):
 		return isSimpleFile(item)
+
+	def selectionChanged(self):
+		self.updateButtons()
+		if self.savePos and config.movielist.use_last_videodirpos.value:
+			config.movielist.last_videodirpos.value = self["list"].getCurrent().toString() + ',' + str(self["list"].getCurrentIndex())
+		self.savePos = True
 
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
@@ -1398,9 +1415,23 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.setTitle(title)
 		self.displayMovieOffStatus()
 		self.displaySortStatus()
+		if self.reload_sel:
+			config.movielist.last_videodirpos.value = self.reload_sel.toString() + ',' + str(self["list"].getCurrentIndex())
+
 		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
 			if self.reload_home:
-				self["list"].moveToFirstMovie()
+				if config.movielist.use_last_videodirpos.value and config.movielist.last_videodirpos.value:
+					try:
+						refStr, index = config.movielist.last_videodirpos.value.rsplit(',', 1)
+						if not self["list"].moveTo(eServiceReference(refStr)):
+							self["list"].moveToIndex(int(index))
+					except Exception, e:
+						print "[Movielist] failed to return to previous entry:", e
+						config.movielist.last_videodirpos.value = ""
+						config.movielist.last_videodirpos.save()
+						self["list"].moveToFirstMovie()
+				else:
+					self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
 		self["waitingtext"].visible = False
 		self.createPlaylist()
