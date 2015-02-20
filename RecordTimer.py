@@ -164,7 +164,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
-		print "[TIMER]", msg
+		# print "[TIMER]", msg
 
 	def freespace(self):
 		self.MountPath = None
@@ -920,7 +920,7 @@ class RecordTimer(timer.Timer):
 			print "ignore double timer"
 			return None
 		entry.timeChanged()
-		print "[Timer] Record " + str(entry)
+		# print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
 		if dosave:
@@ -1096,7 +1096,7 @@ class RecordTimer(timer.Timer):
 		return returnValue
 
 	def removeEntry(self, entry):
-		print "[Timer] Remove " + str(entry)
+		# print "[Timer] Remove " + str(entry)
 
 		# Avoid re-enqueuing
 		entry.repeated = False
