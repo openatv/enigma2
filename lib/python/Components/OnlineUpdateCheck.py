@@ -15,6 +15,9 @@ def OnlineUpdateCheck(session=None, **kwargs):
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
 
+class SuspendableMessageBox(MessageBox):
+		ALLOW_SUSPEND = True
+
 class OnlineUpdateCheckPoller:
 	def __init__(self):
 		# Init Timer
@@ -64,7 +67,7 @@ class OnlineUpdateCheckPoller:
 					config.softwareupdate.updatefound.setValue(True)
 					if not versioncheck.user_notified:
 						versioncheck.user_notified = True
-						Notifications.AddNotificationWithCallback(self.updateNotificationAnswer, MessageBox, _("Online update available.\nInstall now?"))
+						Notifications.AddNotificationWithCallback(self.updateNotificationAnswer, SuspendableMessageBox, _("Online update available.\nInstall now?"))
 				else:
 					config.softwareupdate.updatefound.setValue(False)
 			else:
