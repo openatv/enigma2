@@ -145,7 +145,7 @@ class EPGFetcher(object):
             self.addLog("End update")
             return res
         except (IOError, RuntimeError) as ex:
-            if hasattr(ex, "response") and ex.response.status_code == 404:
+            if hasattr(ex, "response") and hasattr(ex.response, "status_code") and ex.response.status_code == 404:
                 # Ignore 404s when there are no EPG updates - buggy server
                 self.addLog("No EPG updates")
             else:
