@@ -648,7 +648,8 @@ class SystemNetworkInfo(AboutBase):
 
 	def checkNetworkCB(self, data):
 		self.iNetState = data <= 2
-		self["inetstatus"].setPixmapNum(self.iNetState)
+		if "inetstatus" in self:
+			self["inetstatus"].setPixmapNum(self.iNetState)
 
 	def createSummary(self):
 		return AboutSummary
