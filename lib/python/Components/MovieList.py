@@ -328,12 +328,12 @@ class MovieList(GUIComponent):
 				if txt == ".Trash":
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, 37), png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(40 + 20, 5), size=(width - 166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+						res.append(MultiContentEntryText(pos=(40 + 20, 5), size=(width - 166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT, text = _("Trashcan")))
 						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 					else:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 24) / 2), size=(iconSize, 24), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))
+						res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Trashcan")))
 						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 			if self.screenwidth and self.screenwidth == 1920:
@@ -741,7 +741,7 @@ class MovieList(GUIComponent):
 			except:
 				pass
 		if name.endswith(".Trash"):
-			name = "Deleted Items"
+			name = "Trashcan"
 		# print "[MovieList] Sorting for -%s-" % name
 
 		return 1, name and name.lower() or "", -x[2]
@@ -827,5 +827,5 @@ def getShortName(name, serviceref):
 		pathName = serviceref.getPath()
 		name = os.path.basename(os.path.normpath(pathName))
 		if name == '.Trash':
-			name = _("Deleted items")
+			name = _("Trashcan")
 	return name.upper()
