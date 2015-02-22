@@ -60,7 +60,7 @@ class OMMetrixWeatherSetup(Screen,ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Show Weather Widget"), config.plugins.MetrixWeather.enabled)) 
 		self.list.append(getConfigListEntry(_(" ")))
 		self.list.append(getConfigListEntry(_("Weather ID"), config.plugins.MetrixWeather.woeid))
-		self.list.append(getConfigListEntry(_("Get your Weather ID on weather.open-store.net/gigablue")))
+		self.list.append(getConfigListEntry(_("Get your Weather ID on weather.open-store.net")))
 		self.list.append(getConfigListEntry(_(" ")))
 		self.list.append(getConfigListEntry(_("Unit"), config.plugins.MetrixWeather.tempUnit))
 		self["config"].setList(self.list)
