@@ -166,6 +166,7 @@ class ParentalControl:
 	def servicePinEntered(self, service, result):
 		if result is not None and result:
 			self.setSessionPinCached()
+			self.hideBlacklist(config.ParentalControl.hideBlacklist)
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
