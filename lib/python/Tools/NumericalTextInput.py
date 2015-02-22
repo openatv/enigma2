@@ -78,6 +78,18 @@ MAP_SE = (
 MAP_CZ = (
 	u"0,?'+\"()@$!=&*%",
 	u" 1.:;/-_",
+	u"abc2áčABCÁČ",
+	u"def3ďéěDEFĎÉĚ",
+	u"ghi4íGHIÍ",
+	u"jkl5JKL",
+	u"mno6ňóMNOŇÓ",
+	u"pqrs7řšPQRSŘŠ",
+	u"tuv8ťúůTUVŤÚŮ",
+	u"wxyz9ýžWXYZÝŽ",
+	)
+MAP_SK = (
+	u"0,?'+\"()@$!=&*%",
+	u" 1.:;/-_",
 	u"abc2áäčABCÁÄČ",
 	u"def3ďéěDEFĎÉĚ",
 	u"ghi4íGHIÍ",
@@ -117,7 +129,7 @@ MAPPINGS = {
 	'sv_SE': MAP_SE,
 	'fi_FI': MAP_SE,
 	'cs_CZ': MAP_CZ,
-	'sk_SK': MAP_CZ,
+	'sk_SK': MAP_SK,
 	'pl_PL': MAP_PL,
 	'ru_RU': MAP_RU,
 	}
