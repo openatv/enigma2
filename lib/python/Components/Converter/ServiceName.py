@@ -146,14 +146,11 @@ class ServiceName(Converter, object):
 		return po[0]
 	def orb_pos(self):
 		op = self.t_info["orbital_position"]
-		dot = op.find('.')
-		if -1 < dot <= 3:
-			op = self.t_info["orbital_position"].split(' ')[0]
-			return "%s°%s" % (op[:-1],op[-1:])
 		if '(' in op:
 			op = op.split('(')[1]
 			return "%s°%s" % (op[:-2],op[-2:-1])
-		return ""
+		op = op.split(' ')[0]
+		return "%s°%s" % (op[:-1],op[-1:])
 	def fec(self):
 		return self.t_info["fec_inner"]
 	def ch_number(self):
