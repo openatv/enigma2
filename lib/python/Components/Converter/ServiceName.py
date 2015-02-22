@@ -69,6 +69,8 @@ class ServiceName(Converter, object):
 				transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
 			if "InRootOnly" in self.mode and not self.rootBouquet():
 				return ""
+			if "NoRoot" in self.mode and self.rootBouquet():
+				return ""
 			if transponder_info:
 				self.t_info = ConvertToHumanReadable(transponder_info)
 				if "DVB-T" in self.system():
