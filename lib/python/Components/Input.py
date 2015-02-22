@@ -62,7 +62,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.currPos = 0
 			self.Text = u""
 		else:
-			self.Text = text.decode("utf-8", "ignore").encode("utf-8")
+			self.Text = text.decode("utf-8", "ignore").decode("utf-8")
 		self.update()
 
 	def getText(self):
