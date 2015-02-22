@@ -1610,7 +1610,7 @@ RESULT eDVBDB::addFlag(const eServiceReference &ref, unsigned int flagmask)
 		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
 		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
 		if (it != m_services.end())
-			it->second->m_flags |= ~flagmask;
+			it->second->m_flags |= flagmask;
 		return 0;
 	}
 	return -1;
