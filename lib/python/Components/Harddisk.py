@@ -673,10 +673,11 @@ class VolumeLabels:
 				l = l.strip()
 				l = l.replace('"', "")
 				l = l.replace("LABEL=", "").replace("/dev/", "")
-				d = l.split()
-				if len(d) == 2 and d[0][-1] == ':':
-					d[0] = d[0][:-1]
-				self.volume_labels[d[0]] = d[1]
+				d = l.split(None, 1)
+				if len(d) == 2:
+					if d[0][-1] == ':':
+						d[0] = d[0][:-1]
+					self.volume_labels[d[0]] = d[1]
 		print "[Harddisk] volume labels:", self.volume_labels
 		self.stale = False
 
