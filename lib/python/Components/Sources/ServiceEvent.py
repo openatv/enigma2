@@ -23,9 +23,8 @@ class ServiceEvent(Source, object):
 	info = property(getInfo)
 
 	def newService(self, ref):
-		if not self.service or not ref or self.service != ref:
-			self.service = ref
-			if not ref:
-				self.changed((self.CHANGED_CLEAR,))
-			else:
-				self.changed((self.CHANGED_ALL,))
+		self.service = ref
+		if not ref:
+			self.changed((self.CHANGED_CLEAR,))
+		else:
+			self.changed((self.CHANGED_ALL,))
