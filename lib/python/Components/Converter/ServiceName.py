@@ -134,7 +134,10 @@ class ServiceName(Converter, object):
 	def s_rate(self):
 		return self.t_info["symbol_rate"]
 	def polar(self):
-		return self.t_info["polarization"][0]
+		po = self.t_info["polarization"]
+		if ' ' in po:
+			return po.split(' ')[1][0].upper()
+		return po[0]
 	def orb_pos(self):
 		op = self.t_info["orbital_position"].split(' ')[0]
 		return "%s°%s" % (op[:-1],op[-1:])
