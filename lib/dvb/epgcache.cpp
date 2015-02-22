@@ -1211,11 +1211,13 @@ void eEPGCache::gotMessage( const Message &msg )
 void eEPGCache::thread()
 {
 	hasStarted();
+	m_running = true;
 	nice(4);
 	load();
 	cleanLoop();
 	runLoop();
 	save();
+	m_running = true;
 }
 
 static const char* EPGDAT_IN_FLASH = "/epg.dat";
@@ -4309,6 +4311,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		m_MHWReader->stop();
 	if (haveData)
 		finishEPG();
+		cache->save();
 }
 
 void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
@@ -4412,7 +4415,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 			if (checkMHWTimeout())
 				goto abort;
 			if (!m_MHWTimeoutTimer->isActive())
-				startMHWTimeout(5000);
+				startMHWTimeout(20000);
 			return; // continue reading
 		}
 
