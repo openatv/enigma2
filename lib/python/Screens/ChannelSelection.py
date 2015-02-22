@@ -405,11 +405,11 @@ class ChannelContextMenu(Screen):
 
 	def unhideParentalServicesCallback(self, answer):
 		if answer:
-			for ref in self.parentalControl.blacklist:
-					if "BOUQUET" not in ref:
-						eDVBDB.getInstance().removeFlag(eServiceReference(ref), 2)
+			service = self.csel.servicelist.getCurrent()
 			self.parentalControl.setSessionPinCached()
+			self.parentalControl.hideBlacklist(config.ParentalControl.hideBlacklist)
 			self.csel.servicelist.resetRoot()
+			self.csel.servicelist.setCurrent(service)
 			self.close()
 		elif answer is not None:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)	
