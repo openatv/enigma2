@@ -1,4 +1,5 @@
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.ServiceList import refreshServiceList
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -7,7 +8,7 @@ from ServiceReference import ServiceReference
 from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
-from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference
+from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
 
 TYPE_SERVICE = "SERVICE"
@@ -28,6 +29,7 @@ def InitParentalControl():
 	config.ParentalControl.servicepin = ConfigSubList()
 	config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
 	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
 
 	#Added for backwards compatibility with some 3rd party plugins that depend on this config
 	config.ParentalControl.configured = config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive
@@ -144,7 +146,7 @@ class ParentalControl:
 	def resetSessionPin(self):
 		#Reset the session pin, stop the timer
 		self.sessionPinCached = False
-		self.sessionPinTimer.stop()
+		self.hideBlacklist(config.ParentalControl.hideBlacklist)
 
 	def getCurrentTimeStamp(self):
 		return time.time()
@@ -152,16 +154,16 @@ class ParentalControl:
 	def getPinList(self):
 		return [ x.value for x in config.ParentalControl.servicepin ]
 
-	def servicePinEntered(self, service, result):
+	def setSessionPinCached(self):
+		if self.checkSessionPin == True:
+			self.sessionPinCached = True
+		if self.checkPinInterval == True:
+			self.sessionPinCached = True
+			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
+	def servicePinEntered(self, service, result):
 		if result is not None and result:
-			#This is the new function of caching the service pin
-			#save last session and time of last entered pin...
-			if self.checkSessionPin == True:
-				self.sessionPinCached = True
-			if self.checkPinInterval == True:
-				self.sessionPinCached = True
-				self.sessionPinTimer.start(self.pinIntervalSeconds*1000,1)
+			self.setSessionPinCached()
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
@@ -231,6 +233,10 @@ class ParentalControl:
 
 	def open(self):
 		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
+		if self.filesOpened:
+			self.hideBlacklist(config.ParentalControl.hideBlacklist)
+		else:
+			config.ParentalControl.hideBlacklist.addNotifier(self.hideBlacklist)
 		self.filesOpened = True
 
 	def __getattr__(self, name):
@@ -242,4 +248,14 @@ class ParentalControl:
 				return getattr(self, name)
 		raise AttributeError, name
 
-
+	def hideBlacklist(self, configEntry):
+		if self.blacklist:
+			if configEntry.value and not self.sessionPinCached:
+				for ref in self.blacklist:
+					if TYPE_BOUQUET not in ref:
+						eDVBDB.getInstance().addFlag(eServiceReference(ref), 2)
+			else:
+				for ref in self.blacklist:
+					if TYPE_BOUQUET not in ref:
+						eDVBDB.getInstance().removeFlag(eServiceReference(ref), 2)
+			refreshServiceList()
