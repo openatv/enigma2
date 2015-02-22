@@ -139,7 +139,10 @@ class ServiceName(Converter, object):
 			return po.split(' ')[1][0].upper()
 		return po[0]
 	def orb_pos(self):
-		op = self.t_info["orbital_position"].split(' ')[0]
+		op = self.t_info["orbital_position"]
+		if '(' in op:
+			op = op.split('(')[1]
+			return "%s°%s" % (op[:-2],op[-2:-1])
 		return "%s°%s" % (op[:-1],op[-1:])
 	def fec(self):
 		return self.t_info["fec_inner"]
