@@ -12,6 +12,7 @@ from Components.NimManager import nimmanager
 from Components.SystemInfo import SystemInfo
 
 from Screens.Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.NetworkSetup import *
 from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBrowser
@@ -102,7 +103,7 @@ def Check_Softcam():
 			break;
 	return found
 
-class QuickMenu(Screen):
+class QuickMenu(Screen, ProtectedScreen):
 	skin = """
 		<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
 		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
@@ -122,6 +123,8 @@ class QuickMenu(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		if config.ParentalControl.configured.value:
+			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Quick Launch Menu"))
 
 		self["key_red"] = Label(_("Exit"))
@@ -164,6 +167,9 @@ class QuickMenu(Screen):
 		self.selectedList = self["list"]
 		self.selectionChanged()
 		self.onLayoutFinish.append(self.layoutFinished)
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.quickmenu.value
 
 	def createSummary(self):
 		pass

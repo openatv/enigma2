@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Sources.List import List
 from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
@@ -44,7 +45,7 @@ menuupdater = MenuUpdater()
 class MenuSummary(Screen):
 	pass
 
-class Menu(Screen):
+class Menu(Screen, ProtectedScreen):
 	ALLOW_SUSPEND = True
 
 	def okbuttonClick(self):
@@ -214,6 +215,10 @@ class Menu(Screen):
 							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4]))
 							count += 1
 
+		self.menuID = menuID
+		if config.ParentalControl.configured.value:
+			ProtectedScreen.__init__(self)
+
 		if menuID is not None:
 			# plugins
 			for l in plugins.getPluginsForMenu(menuID):
@@ -265,6 +270,17 @@ class Menu(Screen):
 		self["title"] = StaticText(a)
 		Screen.setTitle(self, a)
 		self.menu_title = a
+
+	def isProtected(self):
+		if config.ParentalControl.setuppinactive.value:
+			if config.ParentalControl.config_sections.main_menu.value and self.menuID == "mainmenu":
+				return True
+			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
+				return True
+			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
+				return True
+			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
+				return True
 
 	def keyNumberGlobal(self, number):
 		# print "menu keyNumber:", number

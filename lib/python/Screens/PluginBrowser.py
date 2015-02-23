@@ -1,4 +1,5 @@
 from Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
 from boxbranding import getImageVersion
@@ -84,9 +85,11 @@ class PluginBrowserSummary(Screen):
 		self["desc"].text = desc
 
 
-class PluginBrowser(Screen):
+class PluginBrowser(Screen, ProtectedScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		if config.ParentalControl.configured.value:
+			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Plugin Browser"))
 
 		self.firsttime = True
@@ -124,6 +127,9 @@ class PluginBrowser(Screen):
 		if config.pluginfilter.userfeed.value != "http://":
 				if not os.path.exists("/etc/opkg/user-feed.conf"):
 					CreateFeedConfig()
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.plugin_browser.value
 
 	def menu(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)

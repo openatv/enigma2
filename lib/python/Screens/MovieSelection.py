@@ -423,8 +423,10 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = name
 		else:
 			self["name"].text = ""
+			
+from Screens.ParentalControlSetup import ProtectedScreen
 
-class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
+class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	# SUSPEND_PAUSES actually means "please call my pauseService()"
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 
@@ -435,6 +437,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			self.skinName = "MovieSelection"
 		HelpableScreen.__init__(self)
+		if config.ParentalControl.configured.value:
+			ProtectedScreen.__init__(self)
 		if not timeshiftEnabled:
 			InfoBarBase.__init__(self) # For ServiceEventTracker
 		self.initUserDefinedActions()
@@ -654,6 +658,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'TV': config.movielist.btn_tv,
 				'Text': config.movielist.btn_text,
 			}
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
+
+	def protectedClose_ParentalControl(self, res = None):
+		self.close(None)
 
 	def _callButton(self, name):
 		if name.startswith('@'):

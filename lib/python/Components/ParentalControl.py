@@ -43,6 +43,16 @@ def InitParentalControl():
 
 	config.ParentalControl.servicepin = ConfigSubList()
 
+	config.ParentalControl.config_sections = ConfigSubsection()
+	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.configuration = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.infopanel = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.quickmenu = ConfigYesNo(default = False)
+
 	for i in (0, 1, 2):
 		config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
 		#config.ParentalControl.servicepin.append(configElement("config.ParentalControl.servicepin.level" + str(i), configSequence, "0000", configSequenceArg().get("PINCODE", (4, ""))))

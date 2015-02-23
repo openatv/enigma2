@@ -8,6 +8,7 @@ from Screens.Standby import *
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap 
 from Screens.Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.LoadPixmap import LoadPixmap
@@ -289,10 +290,12 @@ def InfoEntryComponent(file):
 	res = (png)
 	return res
 
-class Infopanel(Screen, InfoBarPiP):
+class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 	servicelist = None
 	def __init__(self, session, services = None):
 		Screen.__init__(self, session)
+		if config.ParentalControl.configured.value:
+			ProtectedScreen.__init__(self)
 		self.session = session
 		self.skin = MENU_SKIN
 		self.onShown.append(self.setWindowTitle)
@@ -345,6 +348,9 @@ class Infopanel(Screen, InfoBarPiP):
 		self["Mlist"].l.setList(self.Mlist)
 		menu = 0
 		self["Mlist"].onSelectionChanged.append(self.selectionChanged)
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.infopanel.value
 
 	def createSummary(self):
 		pass
