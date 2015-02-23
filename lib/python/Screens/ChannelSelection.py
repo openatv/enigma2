@@ -407,7 +407,7 @@ class ChannelContextMenu(Screen):
 		if answer:
 			service = self.csel.servicelist.getCurrent()
 			self.parentalControl.setSessionPinCached()
-			self.parentalControl.hideBlacklist(config.ParentalControl.hideBlacklist)
+			self.parentalControl.hideBlacklist()
 			self.csel.servicelist.resetRoot()
 			self.csel.servicelist.setCurrent(service)
 			self.close()

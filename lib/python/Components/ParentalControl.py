@@ -17,11 +17,9 @@ TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
 def InitParentalControl():
-	global parentalControl
-	parentalControl = ParentalControl()
 	config.ParentalControl = ConfigSubsection()
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
-	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
+	config.ParentalControl.configured = ConfigYesNo(default = False)
 	config.ParentalControl.retries = ConfigSubsection()
 	config.ParentalControl.retries.servicepin = ConfigSubsection()
 	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
@@ -32,24 +30,26 @@ def InitParentalControl():
 	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
 
 	#Added for backwards compatibility with some 3rd party plugins that depend on this config
-	config.ParentalControl.configured = config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive
+	config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive = config.ParentalControl.configured
 	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
 	config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
 	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_BLACKLIST, _("blacklist"))])
+
+	global parentalControl
+	parentalControl = ParentalControl()
 
 class ParentalControl:
 	def __init__(self):
 		#Do not call open on init, because bouquets are not ready at that moment
 		self.filesOpened = False
 		self.PinDlg = None
-		#Instead: Use Flags to see, if we already initialized config and called open
-		self.configInitialized = False
 		#This is the timer that is used to see, if the time for caching the pin is over
 		#Of course we could also work without a timer and compare the times every
 		#time we call isServicePlayable. But this might probably slow down zapping,
 		#That's why I decided to use a timer
 		self.sessionPinTimer = eTimer()
 		self.sessionPinTimer.callback.append(self.resetSessionPin)
+		self.getConfigValues()
 
 	def serviceMethodWrapper(self, service, method, *args):
 		#This method is used to call all functions that need a service as Parameter:
@@ -73,7 +73,7 @@ class ParentalControl:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
-		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value:
+		if self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
 		info = eServiceCenter.getInstance().info(ref)
@@ -138,17 +138,13 @@ class ParentalControl:
 			iSeconds = int(iMinutes*60)
 			self.pinIntervalSeconds = iSeconds
 
-		self.configInitialized = True
-		# Reset PIN cache on standby: Use StandbyCounter- Config- Callback
-		config.misc.standbyCounter.addNotifier(self.standbyCounterCallback, initial_call = False)
-
 	def standbyCounterCallback(self, configElement):
 		self.resetSessionPin()
 
 	def resetSessionPin(self):
 		#Reset the session pin, stop the timer
 		self.sessionPinCached = False
-		self.hideBlacklist(config.ParentalControl.hideBlacklist)
+		self.hideBlacklist()
 
 	def getCurrentTimeStamp(self):
 		return time.time()
@@ -166,7 +162,7 @@ class ParentalControl:
 	def servicePinEntered(self, service, result):
 		if result is not None and result:
 			self.setSessionPinCached()
-			self.hideBlacklist(config.ParentalControl.hideBlacklist)
+			self.hideBlacklist()
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
@@ -236,13 +232,11 @@ class ParentalControl:
 
 	def open(self):
 		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
-		if self.filesOpened:
-			self.hideBlacklist(config.ParentalControl.hideBlacklist)
-		else:
-			config.ParentalControl.hideBlacklist.addNotifier(self.hideBlacklist)
-			config.ParentalControl.servicepinactive.addNotifier(self.hideBlacklist, initial_call=False)
-			config.ParentalControl.storeservicepin.addNotifier(self.hideBlacklist, initial_call=False)
-		self.filesOpened = True
+		self.hideBlacklist()
+		if not self.filesOpened:
+			# Reset PIN cache on standby: Use StandbyCounter- Config- Callback
+			config.misc.standbyCounter.addNotifier(self.standbyCounterCallback, initial_call = False)
+			self.filesOpened = True
 
 	def __getattr__(self, name):
 		# This method is called if we lack a property. I'm lazy, so
@@ -253,7 +247,7 @@ class ParentalControl:
 				return getattr(self, name)
 		raise AttributeError, name
 
-	def hideBlacklist(self, configEntry):
+	def hideBlacklist(self):
 		if self.blacklist:
 			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
 				for ref in self.blacklist:

@@ -125,9 +125,12 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		if config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == "aaaa":
 			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
 		else:
-			for x in self["config"].list:
-				x[1].save()
+			if self["config"].isChanged():
+				for x in self["config"].list:
+					x[1].save()
 				configfile.save()
+				from Components.ParentalControl import parentalControl
+				parentalControl.hideBlacklist()
 			self.close(self.recursive)
 
 	def closeRecursive(self):
