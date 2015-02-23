@@ -255,7 +255,7 @@ class ParentalControl:
 
 	def hideBlacklist(self, configEntry):
 		if self.blacklist:
-			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and configEntry.value and not self.sessionPinCached:
+			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
 				for ref in self.blacklist:
 					if TYPE_BOUQUET not in ref:
 						eDVBDB.getInstance().addFlag(eServiceReference(ref), 2)
