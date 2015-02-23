@@ -83,7 +83,7 @@ class ServiceName(Converter, object):
 			else:
 				result = info.getInfoString(iServiceInformation.sServiceref)
 			if "%3a//" in result:
-				return result.split("%3a//")[1].split("/")[0]
+				return result.rsplit("%3a//", 1)[1].split("/")[0]
 			return ""
 
 	text = property(getText)
