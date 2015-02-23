@@ -208,6 +208,9 @@ def msgClosed(ret):
 		print"[FACTORY RESET] set network to DHCP"
 		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
 		system("/etc/init.d/networking restart")
+		if path.exists("/etc/defaultsat.tar.gz"):
+			system("mkdir /etc/enigma2")
+			system("tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2")
 		_exit(0)
 self.session.openWithCallback(msgClosed, FactoryReset)
 </code>
