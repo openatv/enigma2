@@ -163,7 +163,7 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level=0)
 						else:
 							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level=0)
-						if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached:
+						if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
 							append_when_current_valid(current, menu, (_("Unhide parental control services"), boundFunction(self.unhideParentalServices)), level=0)
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
