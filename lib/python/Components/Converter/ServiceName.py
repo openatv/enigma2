@@ -97,7 +97,7 @@ class ServiceName(Converter, object):
 	def dvb_t(self):
 		return "%s %s %d/%s" % (self.system(), self.ch_number(), self.freq()/1000000 + 0.5 , self.bandwidth())
 	def dvb_c(self):
-		return "%s %d %s %s" % (self.system(), self.freq()/1000, _("kHz"), self.bandwidth())
+		return "%s %d %s" % (self.system(), self.freq()/1000, _("kHz"))
 	def system(self):
 		return self.t_info["system"]
 	def freq(self):
