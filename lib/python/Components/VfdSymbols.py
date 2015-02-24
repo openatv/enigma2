@@ -77,7 +77,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/powerled", "w").write("1")
 			else:
 				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif getBoxType() in ('p62'):
+		elif getBoxType() in ('p62', 'nano', 'nanoc'):
 			recordings = len(NavigationInstance.instance.getRecordings())
 			self.blink = not self.blink
 			if recordings > 0 and self.blink:
