@@ -195,7 +195,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
 
-	def movieSelected(self, service=None):
+	def movieSelected(self, service):
 		ref = self.lastservice
 		del self.lastservice
 		if service is None:
@@ -514,7 +514,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
-	def movieSelected(self, service=None):
+	def movieSelected(self, service):
 		if service is not None:
 			self.cur_service = service
 			self.is_closing = False
