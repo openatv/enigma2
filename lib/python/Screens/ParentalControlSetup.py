@@ -79,11 +79,10 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.list.append(getConfigListEntry(_("Protect Screens"), config.ParentalControl.setuppinactive))
 		if config.ParentalControl.setuppinactive.value:
 			self.list.append(getConfigListEntry(_("Protect main menu"), config.ParentalControl.config_sections.main_menu))
-			if not config.ParentalControl.config_sections.main_menu.value:
-				self.list.append(getConfigListEntry(_("Protect timer menu"), config.ParentalControl.config_sections.timer_menu))
-				self.list.append(getConfigListEntry(_("Protect plugin browser"), config.ParentalControl.config_sections.plugin_browser))
-				self.list.append(getConfigListEntry(_("Protect configuration"), config.ParentalControl.config_sections.configuration))
-				self.list.append(getConfigListEntry(_("Protect standby menu"), config.ParentalControl.config_sections.standby_menu))
+			self.list.append(getConfigListEntry(_("Protect timer menu"), config.ParentalControl.config_sections.timer_menu))
+			self.list.append(getConfigListEntry(_("Protect plugin browser"), config.ParentalControl.config_sections.plugin_browser))
+			self.list.append(getConfigListEntry(_("Protect configuration"), config.ParentalControl.config_sections.configuration))
+			self.list.append(getConfigListEntry(_("Protect standby menu"), config.ParentalControl.config_sections.standby_menu))
 			self.list.append(getConfigListEntry(_("Protect movie list"), config.ParentalControl.config_sections.movie_list))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
