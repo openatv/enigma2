@@ -92,12 +92,12 @@ class ServiceName(Converter, object):
 				service = nref
 			return service.toString()
 		elif self.type == self.TRANSPONDER:
-			if ref:
-				nref = resolveAlternate(ref)
+			if service:
+				nref = resolveAlternate(service)
 				if nref:
-					ref = nref
-					info = eServiceCenter.getInstance().info(ref)
-				transponder_info = info.getInfoObject(ref, iServiceInformation.sTransponderData)
+					service = nref
+					info = eServiceCenter.getInstance().info(service)
+				transponder_info = info.getInfoObject(service, iServiceInformation.sTransponderData)
 			else:
 				transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
 			if "InRootOnly" in self.mode and not self.rootBouquet():
@@ -111,8 +111,8 @@ class ServiceName(Converter, object):
 				elif "DVB-C" in self.system():
 					return self.dvb_c()
 				return 	self.dvb_s()
-			if ref:
-				result = ref.toString()
+			if service:
+				result = service.toString()
 			else:
 				result = info.getInfoString(iServiceInformation.sServiceref)
 			if "%3a//" in result:
