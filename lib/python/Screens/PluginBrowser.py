@@ -2,6 +2,7 @@ from boxbranding import getImageVersion
 from urllib import urlopen
 import socket
 import os
+from Screens.ParentalControlSetup import ProtectedScreen
 
 from enigma import eConsoleAppContainer, eDVBDB
 
@@ -50,10 +51,11 @@ class PluginBrowserSummary(Screen):
 		self["desc"].text = desc
 
 
-class PluginBrowser(Screen):
+class PluginBrowser(Screen, ProtectedScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin Browser"))
+		ProtectedScreen.__init__(self)
 
 		self.firsttime = True
 
@@ -91,6 +93,9 @@ class PluginBrowser(Screen):
 	def openSetup(self):
 		from Screens.Setup import Setup
 		self.session.open(Setup, "pluginbrowsersetup")
+		
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.plugin_browser.value
 
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
