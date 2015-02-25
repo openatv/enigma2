@@ -126,11 +126,11 @@ class ServiceName(Converter, object):
 			Converter.changed(self, what)
 
 	def dvb_s(self):
-		return "%s %d %s %d %s %s" % (self.system(), self.freq()/1000, self.polar(), self.s_rate()/1000, self.fec(), self.orb_pos())
+		return "%s %s %s %s %s %s" % (self.system(), self.freq(), self.polar(), self.s_rate(), self.fec(), self.orb_pos())
 	def dvb_t(self):
-		return "%s %s %d/%s" % (self.system(), self.ch_number(), self.freq()/1000000 + 0.5 , self.bandwidth())
+		return "%s %s %s/%s" % (self.system(), self.ch_number(), self.freq(), self.bandwidth())
 	def dvb_c(self):
-		return "%s %d %s" % (self.system(), self.freq()/1000, _("kHz"))
+		return "%s %s" % (self.system(), self.freq())
 	def system(self):
 		return self.t_info["system"]
 	def freq(self):
