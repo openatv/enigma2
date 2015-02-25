@@ -245,8 +245,8 @@ class Menu(Screen, ProtectedScreen):
 
 	def isProtected(self):
 		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value and self.menuID == "mainmenu":
-				return True
+			if config.ParentalControl.config_sections.main_menu.value:
+				return self.menuID == "mainmenu"
 			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
 				return True
 			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":

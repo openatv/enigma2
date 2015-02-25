@@ -83,7 +83,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.onLayoutFinish.append(self.saveListsize)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.plugin_browser.value
+		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
 
 	def exit(self):
 		self.close(True)

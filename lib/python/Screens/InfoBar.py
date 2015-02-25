@@ -125,7 +125,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef or eServiceReference(config.usage.last_movie_played.value), timeshiftEnabled = self.timeshiftEnabled())
 
-	def movieSelected(self, service=None):
+	def movieSelected(self, service):
 		ref = self.lastservice
 		del self.lastservice
 		if service is None:
@@ -480,7 +480,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.playingservice = ref # movie list may change the currently playing
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
-	def movieSelected(self, service=None):
+	def movieSelected(self, service):
 		if service is not None:
 			self.cur_service = service
 			self.is_closing = False
