@@ -18,7 +18,7 @@ class ProtectedScreen:
 			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
 
 	def isProtected(self):
-		return (config.ParentalControl.servicepinactive.value or config.ParentalControl.setuppinactive.value) and not(config.ParentalControl.config_sections.main_menu.value or config.ParentalControl.config_sections.configuration.value)
+		return (config.ParentalControl.servicepinactive.value or config.ParentalControl.setuppinactive.value)
 
 	def pinEntered(self, result):
 		if result is None:
