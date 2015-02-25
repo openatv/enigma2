@@ -21,8 +21,9 @@ resolutionlabel = None
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = ["Setup" ]
-		self.setup_title = _("A/V settings")
+		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
+		self.skinName = ["VideoSetup", "Setup" ]
+		self.setup_title = _("Video settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -122,34 +123,6 @@ class VideoSetup(Screen, ConfigListScreen):
 				if SystemInfo["ScartSwitch"]:
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
-		if level >= 1:
-			if SystemInfo["CanPcmMultichannel"]:
-				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi channel sound tracks should be output as PCM.")))
-			if SystemInfo["CanDownmixAC3"]:
-				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAAC"]:
-				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["Canaudiosource"]:
-				self.list.append(getConfigListEntry(_("Audio Source"), config.av.audio_source, _("Choose whether multi channel sound tracks should be convert to PCM or SPDIF.")))				
-			if SystemInfo["CanAACTranscode"]:
-				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
-			self.list.extend((
-				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
-				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
-			))
-
-			if SystemInfo["Can3DSurround"]:
-				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound.")))
-
-			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
-				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtuell loadspeaker position.")))
-
-			if SystemInfo["CanAutoVolume"]:
-				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
-
-			if SystemInfo["Canedidchecking"]:
-				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
-
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
@@ -214,6 +187,121 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
 		else:
 			self.keySave()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+class AudioSetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		# for the skin: first try AudioSetup, then Setup, this allows individual skinning
+		self.skinName = ["AudioSetup", "Setup" ]
+		self.setup_title = _("Audio settings")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label()
+
+		self.hw = iAVSwitch
+		self.onChangedEntry = [ ]
+
+		# handle hotplug by re-creating setup
+		self.onShow.append(self.startHotplug)
+		self.onHide.append(self.stopHotplug)
+
+		self.list = [ ]
+		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+
+		from Components.ActionMap import ActionMap
+		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
+			{
+				"cancel": self.keyCancel,
+				"save": self.apply,
+				"menu": self.closeRecursive,
+			}, -2)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["description"] = Label("")
+
+		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+	def startHotplug(self):
+		self.hw.on_hotplug.append(self.createSetup)
+
+	def stopHotplug(self):
+		self.hw.on_hotplug.remove(self.createSetup)
+
+	def createSetup(self):
+		level = config.usage.setup_level.index
+
+		self.list = [ ]
+		
+		if level >= 1:
+			if SystemInfo["CanPcmMultichannel"]:
+				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi channel sound tracks should be output as PCM.")))
+			if SystemInfo["CanDownmixAC3"]:
+				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixAAC"]:
+				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["Canaudiosource"]:
+				self.list.append(getConfigListEntry(_("Audio Source"), config.av.audio_source, _("Choose whether multi channel sound tracks should be convert to PCM or SPDIF.")))				
+			if SystemInfo["CanAACTranscode"]:
+				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
+			self.list.extend((
+				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
+				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
+			))
+
+			if SystemInfo["Can3DSurround"]:
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound.")))
+
+			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
+				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtuell loadspeaker position.")))
+
+			if SystemInfo["CanAutoVolume"]:
+				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
+
+			if SystemInfo["Canedidchecking"]:
+				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
+
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+		self.createSetup()
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		self.createSetup()
+
+	def confirm(self, confirmed):
+		self.keySave()
+
+	def apply(self):
+		self.keySave()
 
 	# for summary:
 	def changedEntry(self):
@@ -329,9 +417,12 @@ class AutoVideoMode(Screen):
 			except:
 				video_width = 0
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
-			f = open("/proc/stb/vmpeg/0/progressive", "r")
-			video_pol = "p" if int(f.read(),16) else "i"
-			f.close()
+			try:
+				f = open("/proc/stb/vmpeg/0/progressive", "r")
+				video_pol = "p" if int(f.read(),16) else "i"
+				f.close()
+			except:
+				video_pol = "i"
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
 			try:
@@ -441,7 +532,7 @@ class AutoVideoMode(Screen):
 					else:
 						write_mode = config_mode+new_rate
 
-			# workaround for bug, see http://www.linux-box.es/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
+			# workaround for bug, see http://www.opena.tv/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
 			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
 			# always use a fixed resolution and correct rate (e.g. 1080p24/p50/p60 for all other videos
 			if config.av.smart1080p.value != 'false':

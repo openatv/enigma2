@@ -21,7 +21,7 @@ from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
+#from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch

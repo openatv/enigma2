@@ -211,13 +211,14 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Infopanel in Main Menu
-	PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	##PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
+	##PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 	#// SwapAutostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
+	##PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	##PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) 
+	]
 
 
 
