@@ -13,7 +13,7 @@ Lpackagename = "enigma2-locale-"
 class Language:
 	def __init__(self):
 		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
-		self.activeLanguage = 0
+		self.activeLanguage = 8
 		self.catalog = None
 		self.lang = {}
 		self.InitLang()

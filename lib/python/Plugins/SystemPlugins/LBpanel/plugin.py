@@ -1229,9 +1229,9 @@ class lbCron():
 		if (cronvar == 90 ):
 			cronvar = 0
 			if (config.plugins.lbpanel.update.value):
-				os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testupdate &")
+				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testupdate &")
 			if (config.plugins.lbpanel.updatesettings.value):
-				os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
 		if (os.path.isfile("/tmp/.lbpanel.update") and config.plugins.lbpanel.update.value):
 			print "LBpanel updated"
 			self.mbox = self.session.open(MessageBox,(_("LBpanel has been updated, restart Enigma2 to activate your changes.")), MessageBox.TYPE_INFO, timeout = 30 )

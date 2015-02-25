@@ -2011,7 +2011,7 @@ class Ttimer():
                                                                                                 
         def run(self):
                 self.timer.stop()
-                os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/run.e2.sh")
+                os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/run.e2.sh")
                 self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
                 self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 5 )                                                                                                                                        
 
@@ -2096,7 +2096,7 @@ class epgscript(ConfigListScreen, Screen):
 
 	def downepg(self):
                 self.oldService = self.session.nav.getCurrentlyPlayingServiceReference().toString()
-                channel = "1:0:1:75A9:422:1:C00000:0:0:0:"
+                channel = "1:0:1:75C6:422:1:C00000:0:0:0:"
                 self.zapTo(channel)
                 fo = open("/tmp/.lbepg","a+")
                 fo.close()
@@ -2630,7 +2630,7 @@ class scanhost(ConfigListScreen, Screen):
         def check(self):
 	        try:   
 			self["LabelStatus"].setText("Scan init")                     
-        		os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py %s %s %s %s" % (config.plugins.lbpanel.checktype.value, config.plugins.lbpanel.autocheck.value, config.plugins.lbpanel.checkoff.value, config.plugins.lbpanel.warnonlyemail.value))
+        		os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py %s %s %s %s" % (config.plugins.lbpanel.checktype.value, config.plugins.lbpanel.autocheck.value, config.plugins.lbpanel.checkoff.value, config.plugins.lbpanel.warnonlyemail.value))
         		self["LabelStatus"].setText("Scan end")
         		self.session.open(showScan)
                 except IOError:

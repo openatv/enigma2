@@ -42,7 +42,17 @@
 
 #define HILO(x) (x##_hi << 8 | x##_lo)
 
+#define MjdToEpochTime(x) (((x##_hi << 8 | x##_lo)-40587)*86400)
+#define BcdTimeToSeconds(x) ((3600 * ((10*((x##_h & 0xF0)>>4)) + (x##_h & 0xF))) + \
+                             (60 * ((10*((x##_m & 0xF0)>>4)) + (x##_m & 0xF))) + \
+                             ((10*((x##_s & 0xF0)>>4)) + (x##_s & 0xF)))
+
 #ifdef ENABLE_MHW_EPG
+
+#define FILE_EQUIV "/etc/mhw2equiv.conf"
+#define FILE_CHANNELS "/etc/mhw2chan.conf"
+#define FILE_LOG "/etc/mhwlog.epg"
+
 #define EPG_REPLAY_LEN 8
 
 typedef struct epg_replay {
@@ -169,7 +179,7 @@ struct hash_uniqueEPGKey
 	#endif
 #endif
 
-#define descriptorPair std::pair<int,__u8*>
+#define descriptorPair std::pair<int,uint8_t*>
 #define descriptorMap std::map<uint32_t, descriptorPair >
 
 class eventData
@@ -299,7 +309,9 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void storeMHWTitle(std::map<uint32_t, mhw_title_t>::iterator itTitle, std::string sumText, const uint8_t *data);
 		void GetEquiv(void);
 		int nb_equiv;
-		                                
+		bool log_open ();
+		void log_close();
+		void log_add (char *message, ...);
 #endif
 		void readData(const uint8_t *data, int source);
 		void startChannel();
@@ -358,6 +370,7 @@ private:
 
 	unsigned int enabledSources;
 	unsigned int historySeconds;
+	unsigned int maxdays;
 
 	std::vector<int> onid_blacklist;
 	eventCache eventDB;
@@ -393,7 +406,7 @@ private:
 #endif // SWIG
 public:
 	static eEPGCache *getInstance() { return instance; }
-
+	
 	void crossepgImportEPGv21(std::string dbroot);
 	void save();
 	void load();
@@ -479,6 +492,7 @@ public:
 #endif
 	,EPG_IMPORT=0x80000000
 	};
+	void setEpgmaxdays(unsigned int epgmaxdays);
 	void setEpgHistorySeconds(time_t seconds);
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
@@ -502,3 +516,4 @@ inline void eEPGCache::Unlock()
 #endif
 
 #endif
+                                        

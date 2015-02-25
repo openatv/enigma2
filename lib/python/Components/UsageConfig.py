@@ -358,7 +358,7 @@ def InitUsageConfig():
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
-	config.epg.mhw = ConfigYesNo(default = False)
+	config.epg.mhw = ConfigYesNo(default = True)
 	config.epg.freesat = ConfigYesNo(default = True)
 	config.epg.viasat = ConfigYesNo(default = True)
 	config.epg.netmed = ConfigYesNo(default = True)
@@ -420,13 +420,13 @@ def InitUsageConfig():
 	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
 	config.osd.threeDsetmode = ConfigSelection(default = 'mode1' , choices = choiceoptions )
 
-	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
+	hddchoises = [('/etc/enigma2/', 'Internal Flash'), ('/media/hdd/', 'Hard Disk')]
 	for p in harddiskmanager.getMountedPartitions():
 		if os.path.exists(p.mountpoint):
 			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				hddchoises.append((p.mountpoint, d))
-	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
+	config.misc.epgcachepath = ConfigSelection(default = '/media/hdd/', choices = hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
@@ -525,17 +525,17 @@ def InitUsageConfig():
 	config.crash.daysloglimit = ConfigSelectionNumber(min = 1, max = 30, stepwidth = 1, default = 8, wraparound = True)
 	config.crash.sizeloglimit = ConfigSelectionNumber(min = 1, max = 20, stepwidth = 1, default = 10, wraparound = True)
 
-	debugpath = [('/home/root/logs/', '/home/root/')]
+	debugpath = [('/media/hdd/logs/', '/media/hdd/')]
 	for p in harddiskmanager.getMountedPartitions():
 		if os.path.exists(p.mountpoint):
 			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				debugpath.append((p.mountpoint + 'logs/', d))
-	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
-	if not os.path.exists("/home"):
-		os.mkdir("/home",0755)
-	if not os.path.exists("/home/root"):
-		os.mkdir("/home/root",0755)
+	config.crash.debug_path = ConfigSelection(default = "/media/hdd/logs/", choices = debugpath)
+	if not os.path.exists("/media"):
+		os.mkdir("/media",0755)
+	if not os.path.exists("/media/hdd"):
+		os.mkdir("/media/hdd",0755)
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):
@@ -695,7 +695,7 @@ def InitUsageConfig():
 
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
-	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
+	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="spa")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
 	def setEpgLanguageAlternative(configElement):
@@ -703,7 +703,7 @@ def InitUsageConfig():
 	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
-	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
+	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="spa")
 	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="---")

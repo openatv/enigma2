@@ -37,6 +37,7 @@ public:
 		/* run will wait until the thread has either
 		   passed it's initialization, or it has
 		   died again. */
+        int runAsync(int prio=0, int policy=0);
 	int run(int prio=0, int policy=0);
 
 	virtual void thread()=0;
@@ -45,21 +46,21 @@ public:
 
 		/* join the thread, i.e. busywait until thread has finnished. */
 	void kill();
-
+	int sync();
+	
 	/* Call pthread_cancel, please don't do this. */
 	void abort_badly() { pthread_cancel(the_thread); }
+		/* runAsync starts the thread.
+		   it assumes that the thread is not running,
+		   i.e. sync() *must* return 0.
+		   it will not wait for anything. */
+
 private:
 	pthread_t the_thread;
 
 		/* waits until thread is in "run" state */
 		/* result: 0 - thread is not alive
 		           1 - thread state unknown */
-	int sync();
-		/* runAsync starts the thread.
-		   it assumes that the thread is not running,
-		   i.e. sync() *must* return 0.
-		   it will not wait for anything. */
-	int runAsync(int prio=0, int policy=0);
 	static void *wrapper(void *ptr);
 	int m_alive, m_started;
 	static void thread_completed(void *p);
