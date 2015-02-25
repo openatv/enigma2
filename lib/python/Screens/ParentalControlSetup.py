@@ -56,6 +56,11 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
 
+	def isProtected(self):
+		return (not config.ParentalControl.setuppinactive.value and config.ParentalControl.servicepinactive.value) or\
+			(not config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.configuration.value) or\
+			(not config.ParentalControl.config_sections.configuration.value and config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value)
+
 	def createSetup(self):
 		self.changePin = None
 		self.reloadLists = None
