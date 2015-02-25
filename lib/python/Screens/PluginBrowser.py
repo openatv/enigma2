@@ -1,4 +1,5 @@
 from Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Components.ActionMap import ActionMap
@@ -45,9 +46,10 @@ class PluginBrowserSummary(Screen):
 		self["desc"].text = desc
 
 
-class PluginBrowser(Screen):
+class PluginBrowser(Screen, ProtectedScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 
 		self.firsttime = True
 
@@ -79,6 +81,9 @@ class PluginBrowser(Screen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.plugin_browser.value
 
 	def exit(self):
 		self.close(True)
