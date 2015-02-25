@@ -104,13 +104,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		ConfigListScreen.keyRight(self)
 		self.createSetup()
 
-	def ServicePinMessageCallback(self, value):
-		if value:
-			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service PIN"))
-		else:
-			config.ParentalControl.servicepinactive.value = False
-			self.keySave()
-
 	def cancelCB(self, value):
 		self.keySave()
 
@@ -127,16 +120,13 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			self.close()
 
 	def keySave(self):
-		if (config.ParentalControl.servicepinactive.value or config.ParentalControl.setuppinactive.value) and config.ParentalControl.servicepin[0].value == "aaaa":
-			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
-		else:
-			if self["config"].isChanged():
-				for x in self["config"].list:
-					x[1].save()
-				configfile.save()
-				from Components.ParentalControl import parentalControl
-				parentalControl.hideBlacklist()
-			self.close(self.recursive)
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].save()
+			configfile.save()
+			from Components.ParentalControl import parentalControl
+			parentalControl.hideBlacklist()
+		self.close(self.recursive)
 
 	def closeRecursive(self):
 		self.recursive = True
