@@ -5,6 +5,7 @@ from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Sources.Boolean import Boolean
 from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService, eServiceCenter, iServiceInformation
 from Components.NimManager import nimmanager
 from Components.Sources.FrontendStatus import FrontendStatus
