@@ -1,4 +1,5 @@
 from Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Sources.List import List
 from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
@@ -40,7 +41,7 @@ menuupdater = MenuUpdater()
 class MenuSummary(Screen):
 	pass
 
-class Menu(Screen):
+class Menu(Screen, ProtectedScreen):
 	ALLOW_SUSPEND = True
 
 	def okbuttonClick(self):
@@ -151,7 +152,6 @@ class Menu(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-
 		list = []
 
 		menuID = None
@@ -194,6 +194,8 @@ class Menu(Screen):
 		if menuID is not None:
 			self.skinName.append("menu_" + menuID)
 		self.skinName.append("Menu")
+		self.menuID = menuID
+		ProtectedScreen.__init__(self)
 
 		# Sort by Weight
 		list.sort(key=lambda x: int(x[3]))
@@ -241,6 +243,16 @@ class Menu(Screen):
 	def createSummary(self):
 		return MenuSummary
 
+	def isProtected(self):
+		if config.ParentalControl.setuppinactive.value:
+			if config.ParentalControl.config_sections.main_menu.value:
+				return self.menuID == "mainmenu"
+			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
+				return True
+			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
+				return True
+			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
+				return True
 class MainMenu(Menu):
 	#add file load functions for the xml-file
 

@@ -435,6 +435,13 @@ int eListboxServiceContent::cursorMove(int count)
 			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker) && !(m_cursor->flags & eServiceReference::isInvisible))
 				++count;
 		}
+		while (m_cursor != m_list.end())
+		{
+			if (!((m_hide_number_marker && (m_cursor->flags & eServiceReference::isNumberedMarker)) || (m_cursor->flags & eServiceReference::isInvisible)))
+				break;
+			m_cursor++;
+			m_cursor_number++;
+		}
 	}
 	return 0;
 }
