@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-14 14:48+0000\n"
-"PO-Revision-Date: 2015-02-14 19:29+0100\n"
+"POT-Creation-Date: 2015-02-26 17:45+0000\n"
+"PO-Revision-Date: 2015-02-26 19:14+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -952,7 +952,7 @@ msgid "Alphanumeric"
 msgstr "Alphanumerisch"
 
 msgid "Also on standby"
-msgstr "Auch in Bereiztschaft"
+msgstr "auch in Bereitschaft"
 
 msgid "Alternative"
 msgstr "Alternative"
@@ -1560,6 +1560,9 @@ msgstr "Cascade PiP"
 msgid "Center DVB subtitles"
 msgstr "DVB Untertitel zentrieren"
 
+msgid "Change PIN"
+msgstr "PIN ändern"
+
 msgid "Change bouquets in quickzap"
 msgstr "Favoriten wechseln beim Quickzap"
 
@@ -1577,9 +1580,6 @@ msgstr "Aufnahme ändern (Aufnahmeendzeit)"
 
 msgid "Change repeat and delay settings?"
 msgstr "Ändern von Verzögerung- und Wiederholungswerten?"
-
-msgid "Change service PIN"
-msgstr "Service PIN ändern"
 
 msgid "Change step size"
 msgstr "Schrittweite ändern."
@@ -3506,13 +3506,13 @@ msgid "Favourites"
 msgstr "Favoriten"
 
 msgid "Feeds status:   Stable"
-msgstr "Feedstatus: stabil"
+msgstr "Feed Status: stabil"
 
 msgid "Feeds status:   Unstable"
-msgstr "Feedstatus: instabil"
+msgstr "Feed Status: instabil"
 
 msgid "Feeds status:   Updating"
-msgstr "Feedstatus: wird aktualisiert"
+msgstr "Feed Status: aktualisieren"
 
 msgid "File appears to be busy.\n"
 msgstr "Die Datei ist gerade in Verwendung.\n"
@@ -3845,6 +3845,9 @@ msgstr "Unterdrücke Fehlermeldung von einem Common Interface Modul."
 
 msgid "Hide known extensions"
 msgstr "Bekannte Erweiterungen verstecken"
+
+msgid "Hide parentel locked services"
+msgstr "Geschützte Sender unsichtbar machen"
 
 msgid "Hide player"
 msgstr "Player ausblenden"
@@ -5177,15 +5180,6 @@ msgstr ""
 msgid "No updates available. Please try again later."
 msgstr "Keine Updates verfügbar. Später erneut versuchen."
 
-msgid ""
-"No valid service PIN found!\n"
-"Would you like to change the service PIN now?\n"
-"If you select 'No' the service protection will stay disabled!"
-msgstr ""
-"Kein gültiger Sender-PIN gefunden!\n"
-"Den Sender-PIN jetzt ändern?\n"
-"Bei 'NEIN' bleibt der Senderschutz deaktiviert!"
-
 msgid "No wireless networks found! Searching..."
 msgstr "Keine Funk-Netzwerke gefunden! Suche ..."
 
@@ -5534,9 +5528,6 @@ msgstr "übergeordnetes Verzeichnis"
 
 msgid "Parental control"
 msgstr "Jugendschutz"
-
-msgid "Parental control editor"
-msgstr "Jugendschutz Editor"
 
 msgid "Parental control setup"
 msgstr "Jugendschutz Einstellungen"
@@ -6119,11 +6110,35 @@ msgstr "Fortschrittsbalken rechts"
 msgid "Properties of current title"
 msgstr "Details zum ausgewählten Titel"
 
+msgid "Protect Screens"
+msgstr "Schütze Screens"
+
+msgid "Protect configuration"
+msgstr "Schütze Konfiguration"
+
+msgid "Protect main menu"
+msgstr "Schütze Hauptmenü"
+
+msgid "Protect movie list"
+msgstr "Schütze Filmliste"
+
 msgid "Protect on epg age"
-msgstr "Auf EPG schützen"
+msgstr "Schütze nach EPG-Alter"
+
+msgid "Protect plugin browser"
+msgstr "Schütze Plugin-Browser"
 
 msgid "Protect services"
 msgstr "Sender schützen"
+
+msgid "Protect standby menu"
+msgstr "Schütze Ausschaltmenü"
+
+msgid "Protect timer menu"
+msgstr "Schütze Timer Menü"
+
+msgid "Protect vix menu"
+msgstr "Schütze ViX Menü"
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -6344,8 +6359,8 @@ msgstr "relativ"
 msgid "Reload"
 msgstr "aktualisieren"
 
-msgid "Reload protected list"
-msgstr "Schutzliste erneut laden"
+msgid "Reload blacklists"
+msgstr "Black-/Whitelisten neu laden"
 
 msgid "Reloading EPG Cache..."
 msgstr "EPG Cache erneut laden"
@@ -7512,9 +7527,6 @@ msgstr "Zeige Sendertype Icon"
 
 msgid "Show servicelist or movies"
 msgstr "Zeige Sender- oder Filmliste"
-
-msgid "Show services beginning with"
-msgstr "Zeige Sender beginnend mit"
 
 msgid "Show shutdown menu"
 msgstr "Zeige Ausschaltmenü"
@@ -9247,6 +9259,9 @@ msgstr "Deinstallation zurücksetzen."
 msgid "Unencrypted"
 msgstr "Unverschlüsselt"
 
+msgid "Unhide parental control services"
+msgstr "Geschützte Sender sichtbar machen"
+
 msgid "Unicable"
 msgstr "Unicable"
 
@@ -10751,6 +10766,9 @@ msgstr "schwarz"
 msgid "black & white"
 msgstr "Schwarz & Weiß"
 
+msgid "blacklist"
+msgstr "Negativliste"
+
 msgid "blue"
 msgstr "blau"
 
@@ -10937,6 +10955,12 @@ msgstr "Gleich wie"
 
 msgid "equestrian"
 msgstr "Reiter"
+
+msgid "error starting scanning"
+msgstr "Fehler beim Start der Suche"
+
+msgid "error while scanning"
+msgstr "Fehler bei Suche"
 
 msgid "et4000"
 msgstr "et4000"
@@ -11239,11 +11263,17 @@ msgstr "Keine CAID ausgewählt"
 msgid "no CI slots found"
 msgstr "Kein CI Slot gefunden"
 
+msgid "no channel list"
+msgstr "Keine Senderliste"
+
 msgid "no module found"
 msgstr "Kein Modul gefunden"
 
 msgid "no or unknown card inserted"
 msgstr "Keine oder unbekannte Karte"
+
+msgid "no resource manager"
+msgstr "Kein Resourcen-Manager"
 
 msgid "no storage devices found"
 msgstr "Kein Laufwerk gefunden"
@@ -11593,9 +11623,6 @@ msgstr "soziale/spirituelle Wissenschaft"
 msgid "sorting of playlists"
 msgstr "Sortierung der Wiedergabeliste"
 
-msgid "special characters"
-msgstr "Sonderzeichen"
-
 msgid "special events"
 msgstr "Spezialveranstaltung"
 
@@ -11868,11 +11895,11 @@ msgstr "umgeschaltet"
 #~ msgid "BB"
 #~ msgstr "BB"
 
+#~ msgid "Change service PIN"
+#~ msgstr "Service PIN ändern"
+
 #~ msgid "Change service PINs"
 #~ msgstr "Service PINs ändern"
-
-#~ msgid "Change setup PIN"
-#~ msgstr "PIN für Einstellungen ändern"
 
 #~ msgid "Change sort by..."
 #~ msgstr "Sortierung ändern nach..."
@@ -11927,9 +11954,6 @@ msgstr "umgeschaltet"
 #~ msgid "Edit services list"
 #~ msgstr "Senderliste bearbeiten"
 
-#~ msgid "Enable parental control"
-#~ msgstr "Jugendschutz aktivieren"
-
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enigma2 Änderungen"
 
@@ -11952,6 +11976,15 @@ msgstr "umgeschaltet"
 #~ msgstr "In anderes Verzeichnis verschieben"
 
 #~ msgid ""
+#~ "No valid service PIN found!\n"
+#~ "Do you like to change the service PIN now?\n"
+#~ "When you say 'No' here the service protection stay disabled!"
+#~ msgstr ""
+#~ "Kein gültiger Sender-PIN gefunden!\n"
+#~ "Den Sender-PIN jetzt ändern?\n"
+#~ "Bei 'NEIN' bleibt der Senderschutz deaktiviert!"
+
+#~ msgid ""
 #~ "No valid setup PIN found!\n"
 #~ "Do you like to change the setup PIN now?\n"
 #~ "When you say 'No' here the setup protection stay disabled!"
@@ -11965,6 +11998,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Open subtitle selection"
 #~ msgstr "Öffne Untertitelauswahl"
+
+#~ msgid "Parental control editor"
+#~ msgstr "Jugendschutz Editor"
 
 #~ msgid "Parental control type"
 #~ msgstr "Jugendschutz-Typ"
@@ -12000,6 +12036,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Select what you want the TV button to activate."
 #~ msgstr "Wähle was die TV Taste bewirken soll."
+
+#~ msgid "Show services beginning with"
+#~ msgstr "Zeige Sender beginnend mit"
 
 #~ msgid "Show tag menu"
 #~ msgstr "Zeige Tag-Menü"
@@ -12059,9 +12098,6 @@ msgstr "umgeschaltet"
 #~ "Wenn aktiviert werden Zeilenumbrüche aus den Videotext Untertitel "
 #~ "entfernt und es wird neu umgebrochen."
 
-#~ msgid "blacklist"
-#~ msgstr "Negativliste"
-
 #~ msgid "complex"
 #~ msgstr "Komplex"
 
@@ -12070,6 +12106,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "setup PIN"
 #~ msgstr "Einstellungen PIN"
+
+#~ msgid "special characters"
+#~ msgstr "Sonderzeichen"
 
 #~ msgid "whitelist"
 #~ msgstr "Positivliste"
