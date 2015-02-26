@@ -38,6 +38,9 @@ class HelpMenuList(GUIComponent):
 		self.buttonMap = {}
 		self.longSeen = False
 
+		def actMapId():
+			return getattr(actionmap, "description", None) or id(actionmap)
+
 		headings, sortCmp, sortKey = {
 			"headings+alphabetic": (True, None, self._sortKeyAlpha),
 			"flat+alphabetic": (False, None, self._sortKeyAlpha),
@@ -55,10 +58,11 @@ class HelpMenuList(GUIComponent):
 		width = 640
 		indent = 0
 
-		for (actionmap, context, actions) in helplist:
-			if headings and actionmap.enabled and getattr(actionmap, "description", None):
-				indent = 20
-				break
+		if headings:
+			for (actionmap, context, actions) in helplist:
+				if actionmap.enabled and getattr(actionmap, "description", None):
+					indent = 20
+					break
 
 		buttonsProcessed = set()
 		helpSeen = defaultdict(list)
@@ -69,17 +73,22 @@ class HelpMenuList(GUIComponent):
 			if not actionmap.enabled:
 				continue
 
+			amId = actMapId()
+
 			from Screens.ButtonSetup import helpableButtonSetupActionMap
 			isHelpableButtonSetupActionMap = isinstance(actionmap, helpableButtonSetupActionMap)
 
 			for (action, help) in actions:
 				helpTags = []
-				if hasattr(help, '__call__'):
+				if callable(help):
 					help = help()
 					# ButtonSetupButtonActions help looks as though
 					# the button is configurable, but it isn't really
 					if not isHelpableButtonSetupActionMap:
 						helpTags.append('C')
+
+				if help is None:
+					continue
 
 				# Ignore inactive ButtonSetupButtonActions
 				if isHelpableButtonSetupActionMap and not help:
@@ -119,12 +128,12 @@ class HelpMenuList(GUIComponent):
 
 				entry = [(actionmap, context, action, buttonNames), help]
 				if self._filterHelpList(entry, helpSeen):
-					actionMapHelp[id(actionmap)].append(entry)
+					actionMapHelp[amId].append(entry)
 
 		l = []
 
 		for (actionmap, context, actions) in helplist:
-			amId = id(actionmap)
+			amId = actMapId()
 			if headings and amId in actionMapHelp and getattr(actionmap, "description", None):
 				if sortCmp or sortKey:
 					actionMapHelp[amId].sort(cmp=sortCmp, key=sortKey)
@@ -140,7 +149,7 @@ class HelpMenuList(GUIComponent):
 
 			otherHelp = []
 			for (actionmap, context, actions) in helplist:
-				amId = id(actionmap)
+				amId = actMapId()
 				if amId in actionMapHelp:
 					otherHelp.extend(actionMapHelp[amId])
 					del actionMapHelp[amId]
