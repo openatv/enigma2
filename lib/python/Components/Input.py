@@ -62,7 +62,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.currPos = 0
 			self.Text = u""
 		else:
-			self.Text = text.decode("utf-8", "ignore").encode("utf-8")
+			self.Text = text.decode("utf-8", "ignore")
 		self.update()
 
 	def getText(self):
@@ -152,7 +152,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.update()
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
-		self.Text = self.Text.decode("utf-8", "ignore").encode("utf-8")
+		self.Text = self.Text.decode("utf-8", "ignore")
 		n = len(ch)
 		if not pos:
 			pos = self.currPos

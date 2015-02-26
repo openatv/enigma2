@@ -554,9 +554,10 @@ class InfoBarTimeshift:
 				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
 					# print "TRUE"
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
-					if statinfo.st_mtime < (time() - 5.0):
+					metafile = "%s%s.meta" % (config.usage.timeshift_path.value, filename)
+					if os.path.exists(metafile) and statinfo.st_mtime < (time() - 5.0):
 						# Get Event Info from meta file
-						readmetafile = open("%s%s.meta" % (config.usage.timeshift_path.value, filename), "r")
+						readmetafile = open(metafile, "r")
 						servicerefname = readmetafile.readline()[0:-1]
 						eventname = readmetafile.readline()[0:-1]
 						description = readmetafile.readline()[0:-1]
