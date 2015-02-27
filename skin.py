@@ -46,8 +46,13 @@ def addSkin(name, scope = SCOPE_SKIN):
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
-		dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
-		return True
+		try:
+			dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
+		except:
+			print "[SKIN ERROR] error in %s" % filename
+			return False
+		else:
+			return True
 	return False
 
 # get own skin_user_skinname.xml file, if exist
