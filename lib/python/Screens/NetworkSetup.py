@@ -641,7 +641,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 
 			havewol = False
-			if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus'):
+			if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus', 'quadbox2400'):
 				havewol = True
 			if havewol and self.iface == 'eth0':	
 				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
