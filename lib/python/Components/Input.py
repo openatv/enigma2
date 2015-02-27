@@ -69,7 +69,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.update()
 
 	def getText(self):
-		return self.Text
+		return self.Text.encode('utf-8')
 
 	def createWidget(self, parent):
 		if self.allmarked:
