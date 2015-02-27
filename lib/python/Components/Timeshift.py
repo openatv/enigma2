@@ -59,6 +59,11 @@ def dprint(*args):
 	if False:
 		print "[Timeshift]", " ".join([str(x) for x in args])
 
+def notifyActivateActionsUpDown(setting):
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance is not None:
+		InfoBar.instance.setEnableTimeshiftActivateActions()
+
 class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
@@ -69,19 +74,19 @@ class InfoBarTimeshift:
 		}, prio=-1, description=_("Timeshift"))
 
 		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
-			"timeshiftActivateEnd": (self.activateTimeshiftEnd, _("Start timeshift")),
-			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and start timeshift")),
-		}, prio=-1, description=_("Activate timeshift"))  # priority over record
+			"timeshiftActivateEnd": (self.activateTimeshiftEnd, lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_left.value, _("sec"))),
+			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and enter timeshift")),
+		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
-		self["TimeshiftSeekPointerActions"] = HelpableActionMap(self, "InfobarTimeshiftSeekPointerActions", {
-			"SeekPointerPlay": (self.ptsSeekPointerOK, _("Skip to skip pointer")),
-			"SeekPointerLeft": (self.ptsSeekPointerLeft, _("Move skip pointer back")),
-			"SeekPointerRight": (self.ptsSeekPointerRight, _("Move skip pointer forward")),
-		}, prio=1, description=_("Skip"))
+		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
+			"timeshiftActivateEndExtra": (lambda: self.activateTimeshiftEnd(shiftTime=config.seek.selfdefined_down.value), lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_down.value, _("sec"))),
+			"ignore": (lambda: 1, ""),
+		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
+
+		config.seek.updown_skips.addNotifier(notifyActivateActionsUpDown, initial_call=False, immediate_feedback=False)
 
 		self["TimeshiftActions"].setEnabled(False)
-		self["TimeshiftActivateActions"].setEnabled(False)
-		self["TimeshiftSeekPointerActions"].setEnabled(False)
+		self.setEnableTimeshiftActivateActions(False)
 
 		self.switchToLive = True
 		self.ptsStop = False
@@ -158,12 +163,11 @@ class InfoBarTimeshift:
 	# Called when switching between timeshift and live
 	def __seekableStatusChanged(self):
 		dprint("__seekableStatusChanged")
-		activate = not self.isSeekable() and self.timeshiftEnabled() and int(config.timeshift.startdelay.value)
+		activate = not self.isSeekable() and int(config.timeshift.startdelay.value)
 		state = self.getSeek() and self.timeshiftEnabled()
 		dprint("isSeekable=%s, timeshiftEnabled=%s, config.timeshift.startdelay=%s, activate=%s, state=%s" % (self.isSeekable(), self.timeshiftEnabled(), config.timeshift.startdelay.value, activate, state))
 		self["TimeshiftActions"].setEnabled(state)
-		self["TimeshiftActivateActions"].setEnabled(activate)
-		self["TimeshiftSeekPointerActions"].setEnabled(state)
+		self.setEnableTimeshiftActivateActions(activate)
 		self["SeekActionsPTS"].setEnabled(state)
 
 		if not state:
@@ -303,6 +307,12 @@ class InfoBarTimeshift:
 					# print 'TS AUTO START TEST5'
 					self.pts_delay_timer.start(1000, True)
 
+	def setEnableTimeshiftActivateActions(self, activate=None):
+		if activate is not None:
+			activate = bool(activate)
+			self["TimeshiftActivateActions"].setEnabled(activate)
+		self["TimeshiftActivateActionsUpDown"].setEnabled(self["TimeshiftActivateActions"].enabled and config.seek.updown_skips.value)
+
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
@@ -372,7 +382,7 @@ class InfoBarTimeshift:
 			self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
-	def activateTimeshiftEnd(self, pause=False):
+	def activateTimeshiftEnd(self, pause=False, shiftTime=None):
 		dprint("activateTimeshiftEnd")
 		ts = self.getTimeshift()
 		if ts is None:
@@ -380,15 +390,17 @@ class InfoBarTimeshift:
 
 		if ts.isTimeshiftActive() and pause:
 			self.pauseService()
-		else:
+		elif self.timeshiftEnabled():
 			ts.activateTimeshift()  # activate timeshift will automatically pause
+
 			if pause:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				seekable = self.getSeek()
 				if seekable is not None:
-					seekable.seekTo(-90000 * config.seek.selfdefined_left.value)
+					shiftTimeVal = shiftTime if shiftTime is not None else config.seek.selfdefined_left.value
+					seekable.seekTo(-90000 * shiftTimeVal)
 
 	def rewindService(self):
 		dprint("rewindService")

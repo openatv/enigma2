@@ -231,9 +231,9 @@ class Devices(AboutBase):
 # Mapping fuseblk is a hack that only works if NTFS
 # is the only FUSE file system loaded.
 	fsNameMap = {
-				"fuseblk": "NTFS", "hfs": "HFS", "hfsplus": "HFS+",
-				"iso9660": "ISO9660", "msdos": "FAT",
-				"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
+		"fuseblk": "NTFS", "hfs": "HFS", "hfsplus": "HFS+",
+		"iso9660": "ISO9660", "msdos": "FAT",
+		"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
 	}
 
 	def __init__(self, session):
@@ -262,13 +262,13 @@ class Devices(AboutBase):
 			else:
 				mountfree /= 10 ** 6
 			sizeinfo = "%s%s" % (
-					_("Size: "),
-					self.sizeStr(mounttotal, _("unavailable"))
-				)
+				_("Size: "),
+				self.sizeStr(mounttotal, _("unavailable"))
+			)
 			freeinfo = "%s%s" % (
-					_("Free: "),
-					self.sizeStr(mountfree, _("full"))
-				)
+				_("Free: "),
+				self.sizeStr(mountfree, _("full"))
+			)
 			if twoLines:
 				return (
 					self.makeWideNetworkEntry(name),
@@ -648,7 +648,8 @@ class SystemNetworkInfo(AboutBase):
 
 	def checkNetworkCB(self, data):
 		self.iNetState = data <= 2
-		self["inetstatus"].setPixmapNum(self.iNetState)
+		if "inetstatus" in self:
+			self["inetstatus"].setPixmapNum(self.iNetState)
 
 	def createSummary(self):
 		return AboutSummary
