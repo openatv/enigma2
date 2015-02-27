@@ -291,6 +291,7 @@ Makefile
 data/Makefile
 data/fonts/Makefile
 data/countries/Makefile
+data/displaytext/Makefile
 data/extensions/Makefile
 data/gbipbox/Makefile
 data/keymaps/Makefile
@@ -303,6 +304,7 @@ data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
 data/skin_default/buttons/Makefile
 data/skin_default/LCDIcons/Makefile
+data/vfd255/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
