@@ -146,7 +146,7 @@
 		<key id="BTN_0" mapto="zapUp" flags="mr"/>
 		<key id="BTN_1" mapto="zapDown" flags="mr"/>
 		<key id="KEY_SAT" mapto="openSatellites" flags="m"/>
-		<key id="KEY_FAVORITES" mapto="openBouquets" flags="m"/>
+		<key id="KEY_FAVORITES" mapto="openChannelList" flags="m" />
 	</map>
 
 	<map context="InfobarZoomActions">
@@ -225,7 +225,6 @@
 	</map>
 
 	<map context="InfobarActions">
-		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="m" />
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="m" />
 		<key id="KEY_TV" mapto="showTv" flags="m" />
@@ -357,8 +356,10 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l"/>
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l"/>
 
-		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+		<key id="KEY_UP" mapto="seekdef:up" flags="m" />
+		<key id="KEY_DOWN" mapto="seekdef:down" flags="m" />
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="m" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="m" />
 
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l"/>
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l"/>
@@ -383,11 +384,18 @@
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m"/>
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m"/>
 
-		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+		<key id="KEY_UP" mapto="seekdef:up" flags="m" />
+		<key id="KEY_DOWN" mapto="seekdef:down" flags="m" />
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="m" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="m" />
+
+		<key id="KEY_LEFT" mapto="seekBackManual" flags="l"/>
+		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l"/>
 
 		<key id="KEY_REWIND" mapto="seekBack" flags="b"/>
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b"/>
+		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l"/>
+		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l"/>
 
 		<key id="KEY_OK" mapto="unPauseService" flags="m"/>
 
@@ -416,8 +424,10 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l"/>
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l"/>
 
-		<key id="KEY_LEFT" mapto="seekdef:left" flags="b" />
-		<key id="KEY_RIGHT" mapto="seekdef:right" flags="b" />
+		<key id="KEY_UP" mapto="seekdef:up" flags="m" />
+		<key id="KEY_DOWN" mapto="seekdef:down" flags="m" />
+		<key id="KEY_LEFT" mapto="seekdef:left" flags="m" />
+		<key id="KEY_RIGHT" mapto="seekdef:right" flags="m" />
 
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l"/>
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l"/>
@@ -446,6 +456,8 @@
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m"/>
 		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m"/>
 		<key id="KEY_LEFT" mapto="timeshiftActivateEnd" flags="m" />
+		<key id="KEY_DOWN" mapto="timeshiftActivateEndExtra" flags="m" />
+		<key id="KEY_UP" mapto="ignore" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftSeekPointerActions">
@@ -470,6 +482,7 @@
 		<key id="KEY_DOWN" mapto="down" flags="m"/>
 		<key id="KEY_VIDEO" mapto="movieList" flags="m"/>
 		<key id="KEY_FILE" mapto="movieList" flags="m"/>
+		<key id="KEY_MEDIA" mapto="movieList" flags="m" />
 	</map>
 
 	<map context="MoviePlayerActions">

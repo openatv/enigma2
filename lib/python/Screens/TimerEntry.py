@@ -4,13 +4,15 @@ from datetime import datetime
 
 from enigma import eEPGCache
 
-from boxbranding import getMachineBrand
+from boxbranding import getMachineBrand, getMachineName
+
 
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 import ChannelSelection
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
-from Components.ActionMap import NumberActionMap, ActionMap
+from Components.ActionMap import NumberActionMap, ActionMap, HelpableNumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
@@ -18,7 +20,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
-from Components.Sources.Boolean import Boolean
 from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
@@ -28,9 +29,10 @@ from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 
 
-class TimerEntry(Screen, ConfigListScreen):
+class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self.setup_title = _("Timer entry")
 		self.timer = timer
 
@@ -39,28 +41,27 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
+		self["VKeyIcon"] = Pixmap()
 
 		self["description"] = Label("")
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
-		self["ok"] = Pixmap()
-		self["cancel"] = Pixmap()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions", "ColorActions"], {
-			"ok": self.keySelect,
-			"save": self.keyGo,
-			"cancel": self.keyCancel,
-			"volumeUp": self.incrementStart,
-			"volumeDown": self.decrementStart,
-			"size+": self.incrementEnd,
-			"size-": self.decrementEnd,
+		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "GlobalActions", "PiPSetupActions", "ColorActions"], {
+			"ok": (self.keySelect, _("Save the timer and exit")),
+			"save": (self.keyGo, "Save the timer and exit"),
+			"cancel": (self.keyCancel, "Cancel creation of the timer and exit"),
+			"volumeUp": (self.incrementStart, _("Increment start time")),
+			"volumeDown": (self.decrementStart, _("Decrement start time")),
+			"size+": (self.incrementEnd, _("Increment end time")),
+			"size-": (self.decrementEnd, _("Decrement end time"))
 		}, -2)
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
-		{
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"], {
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
@@ -176,7 +177,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			("weekdays", _("Mon-Fri")),
 			("user", _("user defined"))
 		], default=repeated)
-		self.timerentry_renamerepeat = ConfigYesNo(default = rename_repeat)
+		self.timerentry_renamerepeat = ConfigYesNo(default=rename_repeat)
 
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%d %B %Y"), increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
@@ -216,11 +217,11 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
-		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
+		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("The name the recording will get."))
 		self.list.append(self.entryName)
-		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
+		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("The description of the recording."))
 		self.list.append(self.entryDescription)
-		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
+		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Choose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
 		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
 		self.list.append(self.timerTypeEntry)
@@ -228,54 +229,54 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_type.value == "once":
 			self.frequencyEntry = None
 		else:  # repeated
-			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("Choose between Daily, Weekly, Weekdays or user defined."))
+			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated, _("The type of repetition required: daily, weekly on a specified day, on weekdays (Mon-Fri), or regularly on specified days."))
 			self.list.append(self.frequencyEntry)
-			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate, _("Set the date the timer must start."))
+			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate, _("The timer becomes active (but doesn't necessarily run) on this date."))
 			self.list.append(self.repeatedbegindateEntry)
 			if self.timerentry_repeated.value == "daily":
 				pass
 			if self.timerentry_repeated.value == "weekdays":
 				pass
 			if self.timerentry_repeated.value == "weekly":
-				self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
+				self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday, _("The day of the week the timer runs.")))
 
 			if self.timerentry_repeated.value == "user":
-				self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
-				self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
-				self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
-				self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3]))
-				self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4]))
-				self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
-				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
+				self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0], _("Enable/disable the timer on Mondays.")))
+				self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1], _("Enable/disable the timer on Tuesdays.")))
+				self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2], _("Enable/disable the timer on Wednesdays.")))
+				self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3], _("Enable/disable the timer on Thursdays.")))
+				self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4], _("Enable/disable the timer on Fridays.")))
+				self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5], _("Enable/disable the timer on Saturdays.")))
+				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6], _("Enable/disable the timer on Sundays.")))
 			if self.timerentry_justplay.value != "zap":
-				self.list.append(getConfigListEntry(_("Rename name and description for new events"), self.timerentry_renamerepeat))
+				self.list.append(getConfigListEntry(_("Generate name and description for new events"), self.timerentry_renamerepeat, _("Generate a new name and description from the EPG for each run of the timer.")))
 
-		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date, _("Set the date the timer must start."))
+		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date, _("The date the timer starts."))
 		if self.timerentry_type.value == "once":
 			self.list.append(self.entryDate)
 
-		self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime, _("Set the time the timer must start."))
+		self.entryStartTime = getConfigListEntry(_("Start time"), self.timerentry_starttime, _("The time the timer starts."))
 		self.list.append(self.entryStartTime)
 
-		self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Set the time the timer must stop."))
+		self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Set the time the ZAP timer completes and performs any \"After event\" action."))
 		if self.timerentry_justplay.value == "zap":
 			self.list.append(self.entryShowEndTime)
-		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime, _("Set the time the timer must stop."))
+		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime, _("The time the timer completes and the \"After event\" action is taken. If the end time is earlier than the start time of the timer, the completion action takes place at that time on the following day."))
 		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
 			self.list.append(self.entryEndTime)
 
-		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service, _("Set the channel for this timer."))
+		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service, _("The channel for this timer."))
 		self.list.append(self.channelEntry)
 
-		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
-		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag for easy finding a recording."))
+		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where the recording will be saved."))
+		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag to make searching for the recording easier."))
 		if self.timerentry_justplay.value != "zap":
 			if config.usage.setup_level.index >= 2:  # expert+
 				self.list.append(self.dirname)
 			if getPreferredTagEditor():
 				self.list.append(self.tagsSet)
-			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that.")))
-			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype, _("Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.")))
+			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("Action taken on the completion of the timer. \"Auto\" lets your %s %s return to the state it was in when the timer started. \"Do nothing\", \"Go to standby\" and \"Go to deep standby\" do exactly that.") % (getMachineBrand(), getMachineName())))
+			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype, _("\"Descramble & record ECM\" allows the recording to be descrambled later if descrambling while recording failed. \"Don't descramble, record ECM\" saves a scrambled recording that can be descrambled on playback. \"Normal\" means descramble while recording and don't record ECM.")))
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
@@ -284,23 +285,6 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self["config"].getCurrent():
 			if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
 				self["description"].setText(self["config"].getCurrent()[2])
-			if isinstance(self["config"].getCurrent()[1], ConfigText):
-				if self.has_key("VKeyIcon"):
-					self["VirtualKB"].setEnabled(True)
-					self["VKeyIcon"].boolean = True
-				if self.has_key("HelpWindow"):
-					if self["config"].getCurrent()[1].help_window and self["config"].getCurrent()[1].help_window.instance is not None:
-						helpwindowpos = self["HelpWindow"].getPosition()
-						from enigma import ePoint
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
-					else:
-						if self.has_key("VKeyIcon"):
-							self["VirtualKB"].setEnabled(False)
-							self["VKeyIcon"].boolean = False
-		else:
-			if self.has_key("VKeyIcon"):
-				self["VirtualKB"].setEnabled(False)
-				self["VKeyIcon"].boolean = False
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
@@ -323,9 +307,25 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self["config"].getCurrent() in (self.timerTypeEntry, self.timerJustplayEntry, self.frequencyEntry, self.entryShowEndTime):
 			self.createSetup("config")
 
+	def showHelp(self):
+		self.hideTextHelp()
+		HelpableScreen.showHelp(self)
+
+	def hideTextHelp(self):
+		currConfig = self["config"].getCurrent()
+		if isinstance(currConfig[1], ConfigText) and currConfig[1].help_window.instance is not None:
+			currConfig[1].help_window.hide()
+
+	def showTextHelp(self):
+		currConfig = self["config"].getCurrent()
+		if isinstance(currConfig[1], ConfigText) and currConfig[1].help_window.instance is not None:
+			currConfig[1].help_window.show()
+
 	def KeyText(self):
-		if self['config'].getCurrent()[0] in (_('Name'), _("Description")):
-			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text = self["config"].getCurrent()[1].value)
+		self.hideTextHelp()
+		currConfig = self["config"].getCurrent()
+		if currConfig[0] in (_('Name'), _("Description")):
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=currConfig[2], text=currConfig[1].value)
 
 	def keyLeft(self):
 		cur = self["config"].getCurrent()
@@ -355,9 +355,11 @@ class TimerEntry(Screen, ConfigListScreen):
 		else:
 			title_text = _("Please enter new description:")
 			old_text = self.timerentry_description.value
+		self.hideTextHelp()
 		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=title_text, text=old_text)
 
 	def renameEntryCallback(self, answer):
+		self.showTextHelp()
 		if answer:
 			if self["config"].getCurrent() == self.entryName:
 				self.timerentry_name.value = answer
