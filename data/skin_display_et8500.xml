@@ -30,7 +30,7 @@
 		<widget source="session.Event_Now" render="Label" position="48,189" foregroundColor="#dedede" size="675,192" font="FdLcDLight; 45" halign="left" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-                <widget source="session.Event_Now" render="Progress" position="27,98" size="660,12" foregroundColor="#e5b2243" borderWidth="2">
+                <widget source="session.Event_Now" render="Progress" position="27,98" size="660,12" foregroundColor="#e5b243" borderWidth="2">
 			<convert type="EventTime">Progress</convert>
 		</widget>
                 <widget source="session.Event_Now" render="Label" position="14,140" size="139,46" font="FdLcD;40" halign="center" transparent="1">
@@ -79,7 +79,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="18,189" foregroundColor="#dedede" size="675,192" font="FdLcDLight; 45" halign="center" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-                <widget source="parent.ServiceEvent" render="Progress" position="27,98" size="660,25" foregroundColor="#02c6ff" borderWidth="2">
+                <widget source="parent.ServiceEvent" render="Progress" position="27,98" size="660,12" foregroundColor="#e5b243" borderWidth="2">
 			<convert type="EventTime">Progress</convert>
 		</widget>
                 <widget source="parent.ServiceEvent" render="Label" position="18,140" size="139,46" font="FdLcD;40" halign="center" transparent="1">
