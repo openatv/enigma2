@@ -108,7 +108,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 2, 20, 20, self.iconAutoTimer))
 		elif timer.ice_timer_id is not None:
 			if screenwidth and screenwidth == 1920:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 3, 30, 30, self.iconAutoTimer))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 3, 30, 30, self.iconIceTVTimer))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 2, 20, 20, self.iconIceTVTimer))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
