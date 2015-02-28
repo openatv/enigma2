@@ -10,30 +10,30 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from boxbranding import getImageDistro
 
 class TimerList(HTMLComponent, GUIComponent, object):
-#
-#  | <Name of the Timer>     <Service>  <orb.pos>|
-#  | <state>  <start, end>  |
-#
+	#
+	#  | <Name of the Timer>     <Service>  <orb.pos>|
+	#  | <state>  <start, end>  |
+	#
 	def buildTimerEntry(self, timer, processed):
 		screenwidth = getDesktop(0).size().width()
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
-		res = [ None ]
-		x = (2*width) // 3
+		res = [None]
+		x = (2 * width) // 3
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 50, 2, x-24, 35, 3, RT_HALIGN_LEFT|RT_VALIGN_TOP, timer.name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 50, 2, x - 24, 35, 3, RT_HALIGN_LEFT | RT_VALIGN_TOP, timer.name))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 2, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, timer.name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 2, x - 24, 25, 1, RT_HALIGN_LEFT | RT_VALIGN_TOP, timer.name))
 		if getImageDistro() in ("easy-gui-aus", "beyonwiz"):
 			text = ("%s") % timer.service_ref.getServiceName()
 		else:
 			text = ("%s  %s") % (timer.service_ref.getServiceName(), self.getOrbitalPos(timer.service_ref))
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x-2, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width - x - 2, 35, 3, RT_HALIGN_RIGHT | RT_VALIGN_TOP, text))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x-2, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width - x - 2, 25, 0, RT_HALIGN_RIGHT | RT_VALIGN_TOP, text))
 
-		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
+		days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 		begin = FuzzyTime(timer.begin)
 		if timer.repeated:
 			repeatedtext = []
@@ -49,15 +49,15 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				else:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 2, 20, 20, self.iconRepeat))
 		else:
-			repeatedtext = begin[0] # date
+			repeatedtext = begin[0]  # date
 		if timer.justplay:
-			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
+			text = repeatedtext + ((" %s " + _("(ZAP)")) % (begin[1]))
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 37, width-150, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 37, width - 150, 35, 3, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 24, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 24, width - 150, 25, 1, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
@@ -92,9 +92,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			icon = self.iconFailed
 
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 50, 40, 150, 35, 3, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 50, 40, 150, 35, 3, RT_HALIGN_LEFT | RT_VALIGN_TOP, state))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 90, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 24, 90, 20, 1, RT_HALIGN_LEFT | RT_VALIGN_TOP, state))
 		if icon:
 			if screenwidth and screenwidth == 1920:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 40, 30, 30, icon))
@@ -106,8 +106,13 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 3, 30, 30, self.iconAutoTimer))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 2, 20, 20, self.iconAutoTimer))
+		elif timer.ice_timer_id is not None:
+			if screenwidth and screenwidth == 1920:
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 3, 30, 30, self.iconIceTVTimer))
+			else:
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 2, 20, 20, self.iconIceTVTimer))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height - 2, width, 2, line))
 
 		return res
 
@@ -132,6 +137,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_off.png"))
 		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_failed.png"))
 		self.iconAutoTimer = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_autotimer.png"))
+		self.iconIceTVTimer = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_icetv.png"))
 
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()
@@ -169,7 +175,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		refstr = refstr and GetWithAlternative(refstr)
 		if '%3a//' in refstr:
 			return "%s" % _("Stream")
-		op = int(refstr.split(':', 10)[6][:-4] or "0",16)
+		op = int(refstr.split(':', 10)[6][:-4] or "0", 16)
 		if op == 0xeeee:
 			return "%s" % _("DVB-T")
 		if op == 0xffff:
@@ -179,4 +185,3 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			op = 3600 - op
 			direction = 'W'
 		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
-
