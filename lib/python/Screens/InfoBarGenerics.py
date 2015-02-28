@@ -1802,9 +1802,12 @@ class InfoBarTimeshift:
 		self.ts_rewind_timer.callback.append(self.rewindService)
 		self.ts_start_delay_timer = eTimer()
 		self.ts_start_delay_timer.callback.append(self.startTimeshiftWithoutPause)
+		self.ts_current_event_timer = eTimer()
+		self.ts_current_event_timer.callback.append(self.saveTimeshiftFileForEvent)
 		self.save_timeshift_file = False
 		self.timeshift_was_activated = False
 		self.showTimeshiftState = False
+		self.save_timeshift_only_current_event = False
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1858,6 +1861,7 @@ class InfoBarTimeshift:
 				# get current timeshift filename and calculate new
 				self.save_timeshift_file = False
 				self.save_timeshift_in_movie_dir = False
+				self.setCurrentEventTimer()
 				self.current_timeshift_filename = ts.getTimeshiftFilename()
 				self.new_timeshift_filename = self.generateNewTimeshiftFileName()
 			else:
@@ -1881,7 +1885,7 @@ class InfoBarTimeshift:
 		if answer and ts:
 			ts.stopTimeshift()
 			self.pvrStateDialog.hide()
-
+			self.setCurrentEventTimer()
 			# disable actions
 			self.__seekableStatusChanged()
 
@@ -1973,6 +1977,10 @@ class InfoBarTimeshift:
 			else:
 				choice = [(_("yes"), "stop"), (_("no"), "continue")]
 				message += "\n" + _("Reminder, you have chosen to save timeshift file.")
+				if self.save_timeshift_only_current_event:
+					remaining = self.currentEventTime()
+					if remaining > 0:
+						message += "\n" + _("The %d min remaining before the end of the event.") % abs(remaining / 60)
 			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
 		else:
 			returnFunction(True)
@@ -1994,6 +2002,7 @@ class InfoBarTimeshift:
 	# renames/moves timeshift files if requested
 	def __serviceEnd(self):
 		self.saveTimeshiftFiles()
+		self.setCurrentEventTimer()
 		self.timeshift_was_activated = False
 
 	def saveTimeshiftFiles(self):
@@ -2013,6 +2022,49 @@ class InfoBarTimeshift:
 
 			moveFiles(fileList)
 			self.save_timeshift_file = False
+			self.setCurrentEventTimer()
+
+	def currentEventTime(self):
+		remaining = 0
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if ref:
+			epg = eEPGCache.getInstance()
+			event = epg.lookupEventTime(ref, -1, 0)
+			if event:
+				now = int(time())
+				start = event.getBeginTime()
+				duration = event.getDuration()
+				end = start + duration
+				remaining = end - now
+		return remaining
+
+	def saveTimeshiftFileForEvent(self):
+		if self.timeshiftEnabled() and self.save_timeshift_only_current_event and self.timeshift_was_activated and self.save_timeshift_file:
+			message = _("Current event is over.\nSelect an option to save the timeshift file.")
+			choice = [(_("Save and stop timeshift"), "save"), (_("Save and restart timeshift"), "restart"), (_("Don't save and stop timeshift"), "stop"), (_("Do nothing"), "continue")]
+			self.session.openWithCallback(self.saveTimeshiftFileForEventCallback, MessageBox, message, simple = True, list = choice, timeout=15)
+
+	def saveTimeshiftFileForEventCallback(self, answer):
+		self.save_timeshift_only_current_event = False
+		if answer:
+			ts = self.getTimeshift()
+			if ts and answer in ("save", "restart", "stop"):
+				self.stopTimeshiftcheckTimeshiftRunningCallback(True)
+				if answer in ("save", "restart"):
+					ts.saveTimeshiftFile()
+					del ts
+					self.saveTimeshiftFiles()
+				if answer == "restart":
+					self.ts_start_delay_timer.start(1000, True)
+				self.save_timeshift_file = False
+				self.save_timeshift_in_movie_dir = False
+
+	def setCurrentEventTimer(self, duration=0):
+		self.ts_current_event_timer.stop()
+		self.save_timeshift_only_current_event = False
+		if duration > 0:
+			self.save_timeshift_only_current_event = True
+			self.ts_current_event_timer.startLongTimer(duration)
 
 from Screens.PiPSetup import PiPSetup
 
@@ -2443,6 +2495,10 @@ class InfoBarInstantRecord:
 				self.save_timeshift_file = True
 				if "movie" in answer[1]:
 					self.save_timeshift_in_movie_dir = True
+				if "event" in answer[1]:
+					remaining = self.currentEventTime()
+					if remaining > 0:
+						self.setCurrentEventTimer(remaining-15)
 		print "after:\n", self.recording
 
 	def setEndtime(self, entry):
@@ -2521,6 +2577,8 @@ class InfoBarInstantRecord:
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			list = list + ((_("Save timeshift file"), "timeshift"),
 				(_("Save timeshift file in movie directory"), "timeshift_movie"))
+			if self.currentEventTime() > 0:
+				list += ((_("Save timeshift only for current event"), "timeshift_event"),)
 		if list:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list)
 		else:

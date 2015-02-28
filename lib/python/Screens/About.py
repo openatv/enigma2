@@ -57,6 +57,10 @@ class About(Screen):
 			BoxName = "GigaBlue HD Ultra UE"
 		elif boxtype == 'gbultrase':
 			BoxName = "GigaBlue HD Ultra SE"
+		elif boxtype == 'tomcat':
+			BoxName = "XCORE Tomcat"
+		elif boxtype == 'quadbox2400':
+			BoxName = "AX Quadbox HD2400"
 		else:
 			BoxName = about.getHardwareTypeString()
 

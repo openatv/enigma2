@@ -87,7 +87,23 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
-	
+
+#if KEY_FAV_TO_KEY_PVR
+	if (ev->code == KEY_FAVORITES)
+	{
+		/* tomcat remote dont have a PVR Key. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PVR;
+	}
+#endif
+
+#if KEY_F3_TO_KEY_LIST
+	if (ev->code == KEY_F3)
+	{
+		/* Xtrend New Remote rc has a KEY_F3 key, which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_LIST;
+	}
+#endif
+
 #if KEY_F2_TO_KEY_F6
 	if (ev->code == KEY_F2)
 	{

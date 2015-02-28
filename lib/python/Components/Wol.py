@@ -15,7 +15,7 @@ class WOL:
 			f.close()
 
 def Init():
-	if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus'):
+	if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus', 'quadbox2400'):
 		def setWOLmode(value):
 			iwol.setWolState(config.network.wol.value)
 		iwol = WOL()

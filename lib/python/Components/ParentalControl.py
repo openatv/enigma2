@@ -1,4 +1,5 @@
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.ServiceList import refreshServiceList
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -7,7 +8,7 @@ from ServiceReference import ServiceReference
 from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
-from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference
+from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
 
 TYPE_SERVICE = "SERVICE"
@@ -16,38 +17,47 @@ TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
 def InitParentalControl():
-	global parentalControl
-	parentalControl = ParentalControl()
 	config.ParentalControl = ConfigSubsection()
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
-	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
+	config.ParentalControl.configured = ConfigYesNo(default = False)
+	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
 	config.ParentalControl.retries = ConfigSubsection()
 	config.ParentalControl.retries.servicepin = ConfigSubsection()
 	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 	config.ParentalControl.servicepin = ConfigSubList()
-	config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
+	config.ParentalControl.servicepin.append(ConfigPIN(default = 0))
 	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections = ConfigSubsection()
+	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.configuration = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default = False)
 
 	#Added for backwards compatibility with some 3rd party plugins that depend on this config
-	config.ParentalControl.configured = config.ParentalControl.setuppinactive  = config.ParentalControl.servicepinactive
+	config.ParentalControl.servicepinactive = config.ParentalControl.configured
 	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
 	config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
 	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_BLACKLIST, _("blacklist"))])
+
+	global parentalControl
+	parentalControl = ParentalControl()
 
 class ParentalControl:
 	def __init__(self):
 		#Do not call open on init, because bouquets are not ready at that moment
 		self.filesOpened = False
 		self.PinDlg = None
-		#Instead: Use Flags to see, if we already initialized config and called open
-		self.configInitialized = False
 		#This is the timer that is used to see, if the time for caching the pin is over
 		#Of course we could also work without a timer and compare the times every
 		#time we call isServicePlayable. But this might probably slow down zapping,
 		#That's why I decided to use a timer
 		self.sessionPinTimer = eTimer()
 		self.sessionPinTimer.callback.append(self.resetSessionPin)
+		self.getConfigValues()
 
 	def serviceMethodWrapper(self, service, method, *args):
 		#This method is used to call all functions that need a service as Parameter:
@@ -71,7 +81,7 @@ class ParentalControl:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
-		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value:
+		if self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
 		info = eServiceCenter.getInstance().info(ref)
@@ -104,6 +114,8 @@ class ParentalControl:
 	def protectService(self, service):
 		if not self.blacklist.has_key(service):
 			self.serviceMethodWrapper(service, self.addServiceToList, self.blacklist)
+			if config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
+				eDVBDB.getInstance().addFlag(eServiceReference(service), 2)
 
 	def unProtectService(self, service):
 		if self.blacklist.has_key(service):
@@ -134,17 +146,13 @@ class ParentalControl:
 			iSeconds = int(iMinutes*60)
 			self.pinIntervalSeconds = iSeconds
 
-		self.configInitialized = True
-		# Reset PIN cache on standby: Use StandbyCounter- Config- Callback
-		config.misc.standbyCounter.addNotifier(self.standbyCounterCallback, initial_call = False)
-
 	def standbyCounterCallback(self, configElement):
 		self.resetSessionPin()
 
 	def resetSessionPin(self):
 		#Reset the session pin, stop the timer
 		self.sessionPinCached = False
-		self.sessionPinTimer.stop()
+		self.hideBlacklist()
 
 	def getCurrentTimeStamp(self):
 		return time.time()
@@ -152,16 +160,17 @@ class ParentalControl:
 	def getPinList(self):
 		return [ x.value for x in config.ParentalControl.servicepin ]
 
-	def servicePinEntered(self, service, result):
+	def setSessionPinCached(self):
+		if self.checkSessionPin == True:
+			self.sessionPinCached = True
+		if self.checkPinInterval == True:
+			self.sessionPinCached = True
+			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
+	def servicePinEntered(self, service, result):
 		if result is not None and result:
-			#This is the new function of caching the service pin
-			#save last session and time of last entered pin...
-			if self.checkSessionPin == True:
-				self.sessionPinCached = True
-			if self.checkPinInterval == True:
-				self.sessionPinCached = True
-				self.sessionPinTimer.start(int(self.pinIntervalSeconds*1000))
+			self.setSessionPinCached()
+			self.hideBlacklist()
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
@@ -231,7 +240,11 @@ class ParentalControl:
 
 	def open(self):
 		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
-		self.filesOpened = True
+		self.hideBlacklist()
+		if not self.filesOpened:
+			# Reset PIN cache on standby: Use StandbyCounter- Config- Callback
+			config.misc.standbyCounter.addNotifier(self.standbyCounterCallback, initial_call = False)
+			self.filesOpened = True
 
 	def __getattr__(self, name):
 		# This method is called if we lack a property. I'm lazy, so
@@ -242,4 +255,14 @@ class ParentalControl:
 				return getattr(self, name)
 		raise AttributeError, name
 
-
+	def hideBlacklist(self):
+		if self.blacklist:
+			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
+				for ref in self.blacklist:
+					if TYPE_BOUQUET not in ref:
+						eDVBDB.getInstance().addFlag(eServiceReference(ref), 2)
+			else:
+				for ref in self.blacklist:
+					if TYPE_BOUQUET not in ref:
+						eDVBDB.getInstance().removeFlag(eServiceReference(ref), 2)
+			refreshServiceList()
