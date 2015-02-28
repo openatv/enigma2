@@ -336,7 +336,7 @@ class VirtualKeyBoard(Screen):
 			self["text"].char(" ".encode("UTF-8"))
 
 		elif text == "OK":
-			self.close(self["text"].getText().encode("UTF-8"))
+			self.close(self["text"].getText())
 
 		elif text == "LEFT":
 			self["text"].left()
@@ -348,7 +348,7 @@ class VirtualKeyBoard(Screen):
 			self["text"].char(text)
 
 	def ok(self):
-		self.close(self["text"].getText().encode("UTF-8"))
+		self.close(self["text"].getText())
 
 	def exit(self):
 		self.close(None)
