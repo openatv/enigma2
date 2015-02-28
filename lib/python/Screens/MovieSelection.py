@@ -1297,7 +1297,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		title = _("Recorded files...")
 		if config.usage.setup_level.index >= 2: # expert+
 			title += "  " + config.movielist.last_videodir.value
-		if self.selected_tags is not None:
+		if self.selected_tags:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
 		self.displayMovieOffStatus()
