@@ -1856,9 +1856,9 @@ class InfoBarTimeshift:
 		if self.timeshiftEnabled() and config.usage.check_timeshift.value and self.timeshift_was_activated:
 			message = _("Stop timeshift?")
 			if not self.save_timeshift_file:
-				choice = [(_("yes"), "stop"), (_("no"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
+				choice = [(_("Yes"), "stop"), (_("No"), "continue"), (_("Yes and save"), "save"), (_("Yes and save in movie dir"), "save_movie")]
 			else:
-				choice = [(_("yes"), "stop"), (_("no"), "continue")]
+				choice = [(_("Yes"), "stop"), (_("No"), "continue")]
 				message += "\n" + _("Reminder, you have chosen to save timeshift file.")
 				if self.save_timeshift_only_current_event:
 					remaining = self.currentEventTime()
