@@ -12,7 +12,7 @@ POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
 		global symbolspoller, POLLTIME
-		if getBoxType() in ('ixussone', 'ixusszero'):
+		if getBoxType() in ('ixussone', 'ixusszero', 'nano', 'nanoc'):
 			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
@@ -21,6 +21,7 @@ class SymbolsCheckPoller:
 	def __init__(self, session):
 		self.session = session
 		self.blink = False
+		self.led = "0"
 		self.timer = eTimer()
 		self.onClose = []
 		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
@@ -73,16 +74,26 @@ class SymbolsCheckPoller:
 		elif getBoxType() in ('ixussone', 'ixusszero'):
 			recordings = len(NavigationInstance.instance.getRecordings())
 			self.blink = not self.blink
-			if recordings > 0 and self.blink:
-				open("/proc/stb/lcd/powerled", "w").write("1")
-			else:
+			if recordings > 0:
+				if self.blink:
+					open("/proc/stb/lcd/powerled", "w").write("1")
+					self.led = "1"
+				else:
+					open("/proc/stb/lcd/powerled", "w").write("0")
+					self.led = "0"
+			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif getBoxType() in ('p62', 'nano', 'nanoc'):
+		elif getBoxType() in ('nano', 'nanoc'):
 			recordings = len(NavigationInstance.instance.getRecordings())
 			self.blink = not self.blink
-			if recordings > 0 and self.blink:
-				open("/proc/stb/lcd/powerled", "w").write("0")
-			else:
+			if recordings > 0:
+				if self.blink:
+					open("/proc/stb/lcd/powerled", "w").write("0")
+					self.led = "1"
+				else:
+					open("/proc/stb/lcd/powerled", "w").write("1")
+					self.led = "0"
+			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("1")
 
 		else:
