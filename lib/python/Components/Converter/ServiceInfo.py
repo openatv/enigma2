@@ -39,6 +39,8 @@ class ServiceInfo(Converter, object):
 	IS_576 = 29
 	IS_480 = 30
 	FREQ_INFO = 31
+	PROGRESSIVE = 32
+	VIDEO_INFO = 33
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -60,7 +62,9 @@ class ServiceInfo(Converter, object):
 				"TsId": (self.TSID, (iPlayableService.evUpdatedInfo,)),
 				"OnId": (self.ONID, (iPlayableService.evUpdatedInfo,)),
 				"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
-				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evUpdatedInfo,)),
+				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoFramerateChanged, iPlayableService.evUpdatedInfo,)),
+				"Progressive": (self.PROGRESSIVE, (iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
+				"VideoInfo": (self.VIDEO_INFO, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
 				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
 				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo,)),
 				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
@@ -127,6 +131,12 @@ class ServiceInfo(Converter, object):
 
 	def _getFrameRateStr(self, info, convert=lambda x: "%d" % x):
 		return self._getValStr("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate, convert=convert)
+
+	def _getProgressive(self, info):
+		return self._getVal("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive)
+
+	def _getProgressiveStr(self, info, convert=lambda x: "p" if x else 'i'):
+		return self._getValStr("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, convert=convert)
 
 	@cached
 	def getBoolean(self):
@@ -199,6 +209,8 @@ class ServiceInfo(Converter, object):
 			return video_height > 500 and video_height <= 576
 		elif self.type == self.IS_480:
 			return video_height > 0 and video_height <= 480
+		elif self.PROGRESSIVE:
+			return bool(self._getProgressive(info))
 		return False
 
 	boolean = property(getBoolean)
@@ -232,6 +244,8 @@ class ServiceInfo(Converter, object):
 			return self.getServiceInfoString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
 			return self._getFrameRateStr(info, convert=lambda x: "%d fps" % ((x + 500) / 1000))
+		elif self.type == self.PROGRESSIVE:
+			return self._getProgressiveStr(info)
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
 		elif self.type == self.HAS_HBBTV:
@@ -260,6 +274,16 @@ class ServiceInfo(Converter, object):
 				fec = ""
 			out = "Freq: %s %s %s %s %s" % (frequency, polarization, sr_txt, symbolrate, fec)
 			return out
+		elif self.type == self.VIDEO_INFO:
+			progressive = self._getProgressiveStr(info)
+			fieldrate = self._getFrameRate(info)
+			if fieldrate >= 0:
+				if progressive != 'p':
+					fieldrate *= 2
+				fieldrate = "%d" % ((fieldrate + 500) / 1000,)
+			else:
+				fieldrate = "N/A"
+			return "%sx%s%s %sHz" % (self._getVideoWidthStr(info), self._getVideoHeightStr(info), progressive, fieldrate)
 		return ""
 
 	text = property(getText)
