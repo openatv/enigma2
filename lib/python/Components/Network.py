@@ -352,7 +352,7 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
 			if iface != 'eth0' or not self.onRemoteRootFS():
-				self.commands.append("ip addr flush dev " + iface)
+				self.commands.append("ip addr flush dev " + iface + " scope global")
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -433,7 +433,7 @@ class Network:
 		for iface in self.ifaces.keys():
 			if iface != 'eth0' or not self.onRemoteRootFS():
 				self.commands.append("ifdown " + iface)
-				self.commands.append("ip addr flush dev " + iface)
+				self.commands.append("ip addr flush dev " + iface + " scope global")
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -535,7 +535,7 @@ class Network:
 		commands = []
 		def buildCommands(iface):
 			commands.append("ifdown " + iface)
-			commands.append("ip addr flush dev " + iface)
+			commands.append("ip addr flush dev " + iface + " scope global")
 			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
 			if os.path.exists('/var/run/wpa_supplicant/'+ iface):
 				commands.append("wpa_cli -i" + iface + " terminate")
