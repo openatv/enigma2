@@ -584,7 +584,10 @@ class InfoBarTimeshift:
 			self.ptsEventCleanTimerSTART()
 		else:
 			self.ptsEventCleanTimerSTOP()
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=2)
+			try:
+				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=2)
+			except:
+				print '[TIMESHIFT] Failed to open MessageBox, Timeshift not possible, probably another MessageBox was active.'
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 
 	def createTimeshiftFolder(self):
