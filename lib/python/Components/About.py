@@ -296,5 +296,9 @@ def getCpuCoresString():
 	except IOError:
 		return "unavailable"
 
+def getPythonVersionString():
+	v = sys.version_info
+	return "%s.%s.%s" % (v[0], v[1], v[2])
+
 # For modules that do "from About import about"
 about = sys.modules[__name__]

@@ -1,4 +1,4 @@
-from time import localtime, mktime, time, strftime
+from time import localtime, strftime
 
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
 
@@ -7,13 +7,13 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.config import config
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
 from Components.UsageConfig import preferredTimerPath
-from Components.Pixmap import Pixmap
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
@@ -100,7 +100,7 @@ class EventViewBase:
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
-	
+
 	def timerAdd(self):
 		if self.isRecording:
 			return
@@ -224,25 +224,10 @@ class EventViewBase:
 
 		self["summary_description"].setText(extended)
 
-		beginTimeString = event.getBeginTimeString()
-
-		if not beginTimeString:
-			return
-		if beginTimeString.find(', ') > -1:
-			begintime = beginTimeString.split(', ')[1].split(':')
-			begindate = beginTimeString.split(', ')[0].split('.')
-		else:
-			if len(beginTimeString.split(' ')) > 1:
-				begintime = beginTimeString.split(' ')[1].split(':')
-			else:
-				return
-			begindate = beginTimeString.split(' ')[0].split('.')
-		nowt = time()
-		now = localtime(nowt)
-		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
-		endtime = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration()
-		endtime = localtime(endtime)
-		self["datetime"].setText(event.getBeginTimeString() + ' - ' + strftime(_("%-H:%M"), endtime))
+		begint = event.getBeginTime()
+		begintime = localtime(begint)
+		endtime = localtime(begint + event.getDuration())
+		self["datetime"].setText("%s ~ %s" % (strftime(_("%a %e %b %R"), begintime), strftime(_("%R"), endtime)))
 		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
@@ -283,7 +268,7 @@ class EventViewBase:
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
-				text += '\n%d.%d.%d, %2d:%02d  -  %s' % (t[2], t[1], t[0], t[3], t[4], x[0])
+				text += '\n  %s - %s' % (strftime(_("%a %e %b %R"), t), x[0])
 			descr = self["epg_description"]
 			descr.setText(descr.getText() + text)
 			descr = self["FullDescription"]

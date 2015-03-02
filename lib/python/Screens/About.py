@@ -158,7 +158,8 @@ class About(AboutBase):
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
 
-		self.list.append(self.makeInfoEntry(_("GStreamer:"), about.getGStreamerVersionString()))
+		self.list.append(self.makeInfoEntry(_("GStreamer:"), about.getGStreamerVersionString().replace("GStreamer", "").strip()))
+		self.list.append(self.makeInfoEntry(_("Python:"), about.getPythonVersionString()))
 
 		self["list"].updateList(self.list)
 

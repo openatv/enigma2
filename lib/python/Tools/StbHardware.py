@@ -37,7 +37,7 @@ def setRTCoffset():
 
 	t_local = time.localtime(int(time.time()))
 
-	print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
+	# print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
 
 	# Set RTC OFFSET (diff. between UTC and Local Time)
 	try:
