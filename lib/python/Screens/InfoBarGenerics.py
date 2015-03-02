@@ -3423,8 +3423,8 @@ class InfoBarINFOpanel:
 			if config.plugins.infopanel_redpanel.selection.value =='0':
 				self.instantRecord()
 			elif config.plugins.infopanel_redpanel.selection.value =='1':
-				from Plugins.Extensions.Infopanel.plugin import Infopanel
-				self.session.open(Infopanel, services = self.servicelist)
+			        from Plugins.SystemPlugins.LBpanel.plugin import LBPanel2
+				self.session.open(LBPanel2)
 			elif config.plugins.infopanel_redpanel.selection.value == '2':
 				self.session.open(TimerEditList)
 			elif config.plugins.infopanel_redpanel.selection.value == '3':
