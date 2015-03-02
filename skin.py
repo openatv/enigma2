@@ -83,14 +83,12 @@ if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
-try:
-	name = skin_user_skinname()
-	if name is not None:
-		addSkin(name, SCOPE_CONFIG)
-	else:
-		addSkin('skin_user.xml', SCOPE_CONFIG)
-except (SkinError, IOError, AssertionError), err:
-	print "not loading user skin: ", err
+res = None
+name = skin_user_skinname()
+if name:
+	res = addSkin(name, SCOPE_CONFIG)
+if not name or not res:
+	addSkin('skin_user.xml', SCOPE_CONFIG)
 
 # some boxes lie about their dimensions
 addSkin('skin_box.xml')
