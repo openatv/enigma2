@@ -76,6 +76,9 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano','tmnanose', 'tmnano2super','tmnano3t','iqonios300hd', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity', 'uniboxhd1'):
 		del modes["YPbPr"]
+	if modes.has_key("Scart") and getBoxType() in ('tmnano', 'tmnano3t','tmnano2super'):
+		modes["RCA"] = modes["Scart"]
+		del modes["Scart"]		
 	if modes.has_key("Scart") and getBoxType() in ('gbquad', 'et5x00', 'ixussone', 'et6x00', 'tmnano','tmnanose', 'tmnano2t', 'tmnano2super'):
 		del modes["Scart"]
 
@@ -229,6 +232,8 @@ class AVSwitch:
 			self.current_port = config.av.videoport.value
 		if self.current_port in ("YPbPr", "Scart-YPbPr"):
 			eAVSwitch.getInstance().setColorFormat(3)
+		elif self.current_port in ("RCA"):
+			eAVSwitch.getInstance().setColorFormat(0)
 		else:
 			eAVSwitch.getInstance().setColorFormat(value)
 
@@ -410,6 +415,8 @@ def InitAVSwitch():
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
 			iAVSwitch.setColorFormat(3)
+		elif config.av.videoport and config.av.videoport.value in ("RCA"):
+			iAVSwitch.setColorFormat(0)			
 		else:
 			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.value])
