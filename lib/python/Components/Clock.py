@@ -4,7 +4,8 @@ from VariableText import VariableText
 
 from enigma import eTimer, eLabel
 
-import time
+from time import localtime, strftime
+
 # now some "real" components:
 
 class Clock(VariableText, HTMLComponent, GUIComponent):
@@ -24,9 +25,7 @@ class Clock(VariableText, HTMLComponent, GUIComponent):
 		self.clockTimer.stop()
 
 	def doClock(self):
-		t = time.localtime()
-		timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
-		self.setText(timestr)
+		self.setText(strftime("%T", localtime()))
 
 	def createWidget(self, parent):
 		return eLabel(parent)
