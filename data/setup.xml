@@ -304,9 +304,9 @@
 		<item level="2" text="Stop timeshift while recording?" description="Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)">config.timeshift.stopwhilerecording</item>
 		<item level="2" text="Use timeshift seekbar while timeshifting?" description="If set to 'yes', allows you use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>
 		<item level="2" text="Timeshift buffer limit [in hours]" description="Older files in the timeshift directory are removed on every event change.">config.timeshift.timeshiftMaxHours</item>
-		<item level="2" text="Timeshift last events limit [number of events]" description="'Buffer in hours' or 'number of last events'. Priority has the condition for deleting older timeshift files which is first occurred.">config.timeshift.timeshiftMaxEvents</item>
-		<item level="2" text="Timeshift checking for older files [in minutes]" description="In addition the check by an event start can a repetitive check are used. So will the condition 'buffer limit in hours' or 'check free space' earlier detected.">config.timeshift.timeshiftCheckEvents</item>
-		<item level="2" text="Timeshift checking for free space?" description="If the free space is less than 1024 MB, then an attempt is made to delete the old timeshift files">config.timeshift.timeshiftCheckFreeSpace</item>
+		<item level="2" text="Timeshift last events limit [number of events]" description="'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority.">config.timeshift.timeshiftMaxEvents</item>
+		<item level="2" text="Timeshift checking for older files [in minutes]" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.timeshiftCheckEvents</item>
+		<item level="2" text="Timeshift checking for free space?" description="If the free space is less than 1024 MB, then an attempt is made to delete the old timeshift files.">config.timeshift.timeshiftCheckFreeSpace</item>
 		<item level="2" text="Timeshift buffer delete after zap?" description="If set to 'no', can you save older events even after zapping or interruption of the timeshift.">config.timeshift.deleteAfterZap</item>
 	</setup>
 	<setup key="epgsingle" title="ChannelEPG settings">
