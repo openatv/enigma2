@@ -93,11 +93,11 @@ class ServiceName(Converter, object):
 			Converter.changed(self, what)
 
 	def dvb_s(self):
-		return "%s %d %s %d %s %s" % (self.system(), self.freq()/1000, self.polar(), self.s_rate()/1000, self.fec(), self.orb_pos())
+		return "%s %d %s %d %s %s %s" % (self.system(), self.freq()/1000, self.polar(), self.s_rate()/1000, self.fec(), self.mod(), self.orb_pos())
 	def dvb_t(self):
 		return "%s %s %d/%s" % (self.system(), self.ch_number(), self.freq()/1000000 + 0.5 , self.bandwidth())
 	def dvb_c(self):
-		return "%s %d %s" % (self.system(), self.freq()/1000, _("kHz"))
+		return "%s %d %s %s" % (self.system(), self.freq()/1000, _("kHz"), self.mod())
 	def system(self):
 		return self.t_info["system"]
 	def freq(self):
@@ -106,6 +106,8 @@ class ServiceName(Converter, object):
 		return self.t_info["bandwidth"]
 	def s_rate(self):
 		return self.t_info["symbol_rate"]
+	def mod(self):
+		return self.t_info["modulation"]
 	def polar(self):
 		po = self.t_info["polarization"]
 		if ' ' in po:
