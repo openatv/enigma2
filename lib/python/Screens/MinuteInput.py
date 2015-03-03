@@ -3,13 +3,15 @@ from Components.ActionMap import NumberActionMap
 from Components.Input import Input
 
 class MinuteInput(Screen):
-	def __init__(self, session, basemins = 5):
+	def __init__(self, session, title=None, basemins=5):
 		Screen.__init__(self, session)
+
+		if title:
+			Screen.setTitle(self, title)
 
 		self["minutes"] = Input(str(basemins), type=Input.NUMBER)
 
-		self["actions"] = NumberActionMap([ "InputActions" , "MinuteInputActions", "TextEntryActions", "KeyboardInputActions" ],
-		{
+		self["actions"] = NumberActionMap(["InputActions", "MinuteInputActions", "TextEntryActions", "KeyboardInputActions"], {
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
