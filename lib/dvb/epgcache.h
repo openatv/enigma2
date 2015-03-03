@@ -49,9 +49,9 @@
 
 #ifdef ENABLE_MHW_EPG
 
-#define FILE_EQUIV "/tmp/mhw2equiv.conf"
+#define FILE_EQUIV "/etc/mhw2equiv.conf"
 #define FILE_CHANNELS "/etc/mhw2chan.conf"
-#define FILE_LOG "/etc/mhwlog.epg"
+#define FILE_LOG "/tmp/mhwlog.epg"
 
 #define EPG_REPLAY_LEN 8
 
