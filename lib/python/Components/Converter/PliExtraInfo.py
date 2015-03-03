@@ -321,6 +321,8 @@ class PliExtraInfo(Poll, Converter, object):
 		return "%d-%d:%05d:%04d:%04d:%04d" % (onid, tsid, sidpid, vpid, apid, pcrpid)
 
 	def createTransponderInfo(self, fedata, feraw):
+		if not feraw or not fedata:
+			return ""
 		if "DVB-T" in feraw.get("tuner_type"):
 			tmp = addspace(self.createChannelNumber(fedata, feraw)) + self.createFrequency(fedata) + "/" + self.createPolarization(fedata)
 		else:
@@ -736,8 +738,6 @@ class PliExtraInfo(Poll, Converter, object):
 		feraw = self.feraw
 		fedata = self.fedata
 
-		if not feraw or not fedata:
-			return ""
 
 		if self.type == "All":
 			self.getCryptoInfo(info)
@@ -749,6 +749,9 @@ class PliExtraInfo(Poll, Converter, object):
 				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + addspace(self.createTransponderName(feraw)) + "\n" \
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n" \
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
+
+		if not feraw or not fedata:
+			return ""
 
 		if self.type == "ServiceInfo":
 			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
