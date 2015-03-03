@@ -447,7 +447,9 @@ class MovieSelectionSummary(Screen):
 		else:
 			self["name"].text = ""
 
-class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
+from Screens.ParentalControlSetup import ProtectedScreen
+
+class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	# SUSPEND_PAUSES actually means "please call my pauseService()"
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 
@@ -460,6 +462,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		HelpableScreen.__init__(self)
 		if not timeshiftEnabled:
 			InfoBarBase.__init__(self) # For ServiceEventTracker
+		ProtectedScreen.__init__(self)
+
 		self.initUserDefinedActions()
 		self.tags = {}
 		if selectedmovie:
@@ -628,6 +632,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.onExecBegin.append(self.asciiOff)
 		else:
 			self.onExecBegin.append(self.asciiOn)
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()

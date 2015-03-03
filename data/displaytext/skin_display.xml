@@ -138,5 +138,15 @@
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
+	
+	<screen name="CrossEPG_MenuSummary" position="0,0" size="132,64">
+		<widget source="SetupEntry" render="Label" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1"  />
+	</screen>
+	<screen name="CrossEPG_Downloader_summary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1" />
+	</screen>
+	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="132,64">
+		<widget source="SetupEntry" render="Label" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1"  />
+	</screen>
 
 </skin>
