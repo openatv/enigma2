@@ -296,7 +296,7 @@ def InitUsageConfig():
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
-	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = True)
+	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
 	config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default = True)
 
