@@ -49,10 +49,14 @@ def addSkin(name, scope = SCOPE_SKIN):
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
-		file = open(filename, 'r')
-		dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
-		file.close()
-		return True
+		try:
+			file = open(filename, 'r')
+			dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
+		except:
+			print "[SKIN ERROR] error in %s" % filename
+			return False
+		else:
+			return True
 	return False
 
 # get own skin_user_skinname.xml file, if exist
@@ -85,14 +89,12 @@ DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
 
 profile("LoadSkin")
-try:
-	name = skin_user_skinname()
-	if name is not None:
-		addSkin(name, SCOPE_CONFIG)
-	else:
-		addSkin('skin_user.xml', SCOPE_CONFIG)
-except (SkinError, IOError, AssertionError), err:
-	print "not loading user skin: ", err
+res = None
+name = skin_user_skinname()
+if name:
+	res = addSkin(name, SCOPE_CONFIG)
+if not name or not res:
+	addSkin('skin_user.xml', SCOPE_CONFIG)
 
 # some boxes lie about their dimensions
 addSkin('skin_box.xml')

@@ -75,7 +75,7 @@ class PictureInPicture(Screen):
 	def __del__(self):
 		del self.pipservice
 		self.setExternalPiP(False)
-		self.setSizePosMainWindow(0,0,0,0)
+		self.setSizePosMainWindow()
 		if hasattr(self, "dishpipActive") and self.dishpipActive is not None:
 			self.dishpipActive.setHide()
 

@@ -12,12 +12,18 @@
 #endif
 #include <lib/gdi/glcddc.h>
 
-eDBoxLCD *eDBoxLCD::instance;
+eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
 	lcdfd = -1;
 	locked=0;
+	instance = this;
+}
+
+eLCD *eLCD::getInstance()
+{
+	return instance;
 }
 
 void eLCD::setSize(int xres, int yres, int bpp)
@@ -31,7 +37,8 @@ void eLCD::setSize(int xres, int yres, int bpp)
 
 eLCD::~eLCD()
 {
-	delete [] _buffer;
+	if (_buffer)
+		delete [] _buffer;
 }
 
 int eLCD::lock()
@@ -65,18 +72,18 @@ eDBoxLCD::eDBoxLCD()
 	int xres=132, yres=64, bpp=8;
 	flipped = false;
 	inverted = 0;
-	is_oled = 0;
+	lcd_type = 0;
 #ifndef NO_LCD
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
 		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || !access("/proc/stb/fp/oled_brightness", W_OK) )
-			is_oled = 2;
+			lcd_type = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
 		eDebug("found OLED display!");
-		is_oled = 1;
+		lcd_type = 1;
 	}
 
 	if (lcdfd < 0)
@@ -114,7 +121,7 @@ eDBoxLCD::eDBoxLCD()
 					fclose(f);
 				}
 			}
-			is_oled = 3;
+			lcd_type = 3;
 		}
 	}
 #endif
@@ -228,17 +235,12 @@ eDBoxLCD::~eDBoxLCD()
 	}
 }
 
-eDBoxLCD *eDBoxLCD::getInstance()
-{
-	return instance;
-}
-
 void eDBoxLCD::update()
 {
 #ifndef HAVE_TEXTLCD
 	if (lcdfd >= 0)
 	{
-		if (is_oled == 0 || is_oled == 2)
+		if (lcd_type == 0 || lcd_type == 2)
 		{
 			unsigned char raw[132*8];
 			int x, y, yy;
@@ -265,7 +267,7 @@ void eDBoxLCD::update()
 			}
 			write(lcdfd, raw, 132*8);
 		}
-		else if (is_oled == 3)
+		else if (lcd_type == 3)
 		{
 			/* for now, only support flipping / inverting for 8bpp displays */
 			if ((flipped || inverted) && _stride == res.width())
@@ -309,7 +311,7 @@ void eDBoxLCD::update()
 				}
 			}
 		}
-		else /* is_oled == 1 */
+		else /* lcd_type == 1 */
 		{
 			unsigned char raw[64*64];
 			int x, y;
