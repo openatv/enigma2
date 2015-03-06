@@ -79,7 +79,7 @@ def InitUsageConfig():
 	for i in range(1, 11):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.usage.infobar_timeout = ConfigSelection(default="5", choices=[("0", _("No timeout"))] + choicelist)
-	config.usage.show_infobar_do_dimming = ConfigYesNo(default=False)
+	config.usage.show_infobar_do_dimming = ConfigYesNo(default=True)
 	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min=1, max=40, stepwidth=1, default=40, wraparound=True)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default=True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default=True)
@@ -218,7 +218,7 @@ def InitUsageConfig():
 
 	config.usage.check_timeshift = ConfigYesNo(default=True)
 
-	config.usage.alternatives_priority = ConfigSelection(default="0", choices=[
+	config.usage.alternatives_priority = ConfigSelection(default="5", choices=[
 		("0", "DVB-S/-C/-T"),
 		("1", "DVB-S/-T/-C"),
 		("2", "DVB-C/-S/-T"),
@@ -279,7 +279,7 @@ def InitUsageConfig():
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default=False)
 
-	config.usage.show_message_when_recording_starts = ConfigYesNo(default=True)
+	config.usage.show_message_when_recording_starts = ConfigYesNo(default=False)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default=True)
 	config.usage.show_icons_in_movielist = ConfigSelection(default='i', choices=[
@@ -332,9 +332,9 @@ def InitUsageConfig():
 
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 
-	config.usage.hide_zap_errors = ConfigYesNo(default=False)
-	config.usage.hide_ci_messages = ConfigYesNo(default=False)
-	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")), ("1", _("One line")), ("2", _("Two lines"))], "2")
+	config.usage.hide_zap_errors = ConfigYesNo(default=True)
+	config.usage.hide_ci_messages = ConfigYesNo(default=True)
+	config.usage.show_cryptoinfo = ConfigSelection(default="0", choices=[("0", _("Off")), ("1", _("One line")), ("2", _("Two lines"))])
 	config.usage.show_eit_nownext = ConfigYesNo(default=True)
 	config.usage.show_vcr_scart = ConfigYesNo(default=False)
 	config.usage.pic_resolution = ConfigSelection(default=None, choices=[(None, _("Same resolution as skin")), ("(720, 576)", "720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
@@ -342,7 +342,6 @@ def InitUsageConfig():
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default=True)
 	config.epg.mhw = ConfigYesNo(default=False)
-
 	config.epg.freesat = ConfigYesNo(default=False)
 	config.epg.viasat = ConfigYesNo(default=False)
 	config.epg.netmed = ConfigYesNo(default=False)
@@ -485,23 +484,23 @@ def InitUsageConfig():
 	config.timeshift.startdelay = ConfigSelection(default="10", choices=choicelist)
 	config.timeshift.showinfobar = ConfigYesNo(default=True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default=False)
-	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")), ("savetimeshift", _("Save and stop")), ("savetimeshiftandrecord", _("Save and record")), ("noSave", _("Don't save"))], "askuser")
+	config.timeshift.favoriteSaveAction = ConfigSelection(default="askuser", choices=[("askuser", _("Ask user")), ("savetimeshift", _("Save and stop")), ("savetimeshiftandrecord", _("Save and record")), ("noSave", _("Don't save"))])
 	config.timeshift.permanentrecording = ConfigYesNo(default=False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
 
 	config.seek = ConfigSubsection()
 	config.seek.autoskip = ConfigYesNo(default=True)
-	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")), ("ffrw", _("Long << / >>"))], "leftright")
+	config.seek.baractivation = ConfigSelection(default="leftright", choices=[("leftright", _("Long Left/Right")), ("ffrw", _("Long << / >>"))])
 	config.seek.sensibility = ConfigSelection(default="10", choices=[
 		("1", _("0.1%")), ("2", _("0.2%")), ("5", _("0.5%")),
 		("10", _("1%")), ("20", _("2%")), ("50", _("5%")),
 		("100", _("10%"))])
-	config.seek.updown_skips = ConfigYesNo(default=False)
+	config.seek.updown_skips = ConfigYesNo(default=True)
 	config.seek.selfdefined_up = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_down = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_right = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
-	config.seek.number_skips = ConfigYesNo(default=True)
+	config.seek.number_skips = ConfigYesNo(default=False)
 	config.seek.selfdefined_13 = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_46 = ConfigSelectionNumber(default=180, min=5, max=1800, stepwidth=5, wraparound=True)
 	config.seek.selfdefined_79 = ConfigSelectionNumber(default=300, min=10, max=3600, stepwidth=10, wraparound=True)
@@ -512,6 +511,20 @@ def InitUsageConfig():
 
 	config.seek.enter_forward = ConfigSelection(default="2", choices=["2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
 	config.seek.enter_backward = ConfigSelection(default="1", choices=["1", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
+
+	def updateEnterForward(configElement):
+		if not configElement.value:
+			configElement.value = [2]
+		updateChoices(config.seek.enter_forward, configElement.value)
+
+	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback=False)
+
+	def updateEnterBackward(configElement):
+		if not configElement.value:
+			configElement.value = [2]
+		updateChoices(config.seek.enter_backward, configElement.value)
+
+	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback=False)
 
 	config.seek.on_pause = ConfigSelection(default="play", choices=[
 		("play", _("Play")),
@@ -540,20 +553,6 @@ def InitUsageConfig():
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("at beginning")), ("end", _("at end"))])
-
-	def updateEnterForward(configElement):
-		if not configElement.value:
-			configElement.value = [2]
-		updateChoices(config.seek.enter_forward, configElement.value)
-
-	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback=False)
-
-	def updateEnterBackward(configElement):
-		if not configElement.value:
-			configElement.value = [2]
-		updateChoices(config.seek.enter_backward, configElement.value)
-
-	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback=False)
 
 	def updateEraseSpeed(el):
 		eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
@@ -748,12 +747,12 @@ def InitUsageConfig():
 	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[("60", _("%d minutes") % 60), ("90", _("%d minutes") % 90), ("120", _("%d minutes") % 120), ("150", _("%d minutes") % 150), ("180", _("%d minutes") % 180), ("210", _("%d minutes") % 210), ("240", _("%d minutes") % 240), ("270", _("%d minutes") % 270), ("300", _("%d minutes") % 300)])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=00, stepwidth=1, min=00, max=59, wraparound=True)
-	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[("servicename", _("Service Name")), ("picon", _("Picon")), ("picon+servicename", _("Picon and Service Name"))])
+	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=[("servicename", _("Service Name")), ("picon", _("Picon")), ("picon+servicename", _("Picon and Service Name"))])
 	config.epgselection.infobar_servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.infobar_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.infobar_timelinefs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.infobar_timeline24h = ConfigYesNo(default=True)
-	config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default=250, stepwidth=1, min=70, max=500, wraparound=True)
+	config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default=200, stepwidth=1, min=70, max=500, wraparound=True)
 	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=70, max=500, wraparound=True)
 	config.epgselection.infobar_infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.enhanced_preview_mode = ConfigYesNo(default=True)

@@ -54,7 +54,7 @@ config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
-config.movielist.use_last_videodirpos = ConfigYesNo(default=False)
+config.movielist.use_last_videodirpos = ConfigYesNo(default=True)
 config.movielist.stop_service = ConfigYesNo(default=True)
 
 userDefinedButtons = None
