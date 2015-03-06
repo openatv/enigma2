@@ -1,5 +1,7 @@
 from Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
+from Screens.InputBox import PinInput
+from Screens.MessageBox import MessageBox
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -28,7 +30,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
-
+		self.protectContextMenu = True
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
 
@@ -378,7 +380,17 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.keyRight()
 
 	def openAutoLanguageSetup(self):
-		self.session.open(Setup, "autolanguagesetup")
+		if self.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value:
+			self.session.openWithCallback(self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+		else:
+			self.protectResult(True)
+
+	def protectResult(self, answer):
+		if answer:
+			self.session.open(Setup, "autolanguagesetup")
+			self.protectContextMenu = False
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def cancel(self):
 		self.close(0)
