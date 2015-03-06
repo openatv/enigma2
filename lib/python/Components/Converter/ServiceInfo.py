@@ -175,7 +175,10 @@ class ServiceInfo(Converter, object):
 				video_width = int(f.read(),16)
 				f.close()
 			if not video_width:
-				video_width = int(self.getServiceInfoString(info, iServiceInformation.sVideoWidth))
+				try:
+					video_width = int(self.getServiceInfoString(info, iServiceInformation.sVideoWidth))
+				except:
+					return ""
 			return "%d" % video_width
 		elif self.type == self.YRES:
 			video_height = None
@@ -184,7 +187,10 @@ class ServiceInfo(Converter, object):
 				video_height = int(f.read(),16)
 				f.close()
 			if not video_height:
-				video_height = int(self.getServiceInfoString(info, iServiceInformation.sVideoHeight))
+				try:
+					video_height = int(self.getServiceInfoString(info, iServiceInformation.sVideoHeight))
+				except:
+					return ""
 			return "%d" % video_height
 		elif self.type == self.APID:
 			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
