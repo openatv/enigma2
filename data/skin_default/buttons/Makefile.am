@@ -30,6 +30,10 @@ dist_install_DATA = \
 	key_red.png \
 	key_yellow.png \
 	key_text.png \
+	key_left.png \
+	key_right.png \
+	key_next.png \
+	key_prev.png \
 	red-big.png \
 	red.png \
 	yellow.png
