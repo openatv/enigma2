@@ -1952,7 +1952,7 @@ int eDVBServicePlay::getInfo(int w)
 			return aspect;
 		break;
 	}
-	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
+	case sIsCrypted: if (no_program_info) return false; return program.isCrypted();
 	case sVideoPID:
 		if (m_dvb_service)
 		{
