@@ -353,11 +353,15 @@ class MovieContextMenuSummary(Screen):
 		item = self.parent["menu"].getCurrent()
 		self["selected"].text = item[0][0]
 
-class MovieContextMenu(Screen):
+from Screens.ParentalControlSetup import ProtectedScreen
+
+class MovieContextMenu(Screen, ProtectedScreen):
 	# Contract: On OK returns a callable object (e.g. delete)
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
 		self.csel = csel
+		ProtectedScreen.__init__(self)
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
 				"ok": self.okbuttonClick,
@@ -403,6 +407,14 @@ class MovieContextMenu(Screen):
 		append_to_menu(menu, (_("Network") + "...", csel.showNetworkSetup), key="yellow")
 		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="menu")
 		self["menu"] = ChoiceList(menu)
+
+	def isProtected(self):
+		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
+
+	def pinEntered(self, answer):
+		if answer:
+			self.csel.protectContextMenu = False
+		ProtectedScreen.pinEntered(self, answer)
 
 	def createSummary(self):
 		return MovieContextMenuSummary
@@ -481,8 +493,6 @@ class MovieSelectionSummary(Screen):
 		else:
 			self["name"].text = ""
 
-from Screens.ParentalControlSetup import ProtectedScreen
-
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	# SUSPEND_PAUSES actually means "please call my pauseService()"
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
@@ -493,6 +503,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if not timeshiftEnabled:
 			InfoBarBase.__init__(self) # For ServiceEventTracker
 		ProtectedScreen.__init__(self)
+		self.protectContextMenu = True
 
 		self.initUserDefinedActions()
 		self.tags = {}
