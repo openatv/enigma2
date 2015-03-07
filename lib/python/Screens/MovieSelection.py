@@ -1079,7 +1079,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				self.callLater(self.preview)
 		else:
 			self.list.playInBackground = current
-			self.session.nav.playService(current)
+			# check if MerlinMusicPlayer is installed and merlinmp3player.so is running
+			# so we need the right id to play now the mp3-file
+			if current.type == 4116:
+				path = current.getPath()
+				service = eServiceReference(4097, 0, path)
+				self.session.nav.playService(service)
+			else:
+				self.session.nav.playService(current)
 
 	def previewCheckTimeshiftCallback(self, answer):
 		if answer:
