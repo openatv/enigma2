@@ -115,6 +115,14 @@
 		<widget source="session.MSNWeather" render="MSNWeatherPixmap" position="570,355" size="140,120" transparent="1" zPosition="8" alphatest="blend" halign="right" valign="center" >
 			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
 		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/hd.png" position="10,360" size="65,40" halign="center" valign="center" >
+			<convert type="ServiceInfo">IsHD</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/dolby.png" position="80,360" size="65,40" halign="center" valign="center" >
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<panel name="SummaryClockPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 	</screen>
@@ -180,7 +188,7 @@
 <!-- numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="720,576">
 		<widget source="parent.servicename" render="Label" position="15,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;70" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.number" render="Label" position="20,190" size="670,200" font="FdLcD;90" halign="center" valign="center" />
+		<widget source="parent.number" render="Label" position="20,190" size="670,100" font="FdLcD;90" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
