@@ -193,7 +193,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 	def keyNumberGlobal(self, number):
 		if number == 0:
 			if len(self.list) > 0 and config.misc.pluginbrowser.plugin_order.value != "":
-				self.session.openWithCallback(self.setDefaultList, MessageBox, _("Set plugins list to default?"), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.setDefaultList, MessageBox, _("Sort plugins list to default?"), MessageBox.TYPE_YESNO)
 		else:
 			real_number = number - 1
 			if real_number < len(self.list):
