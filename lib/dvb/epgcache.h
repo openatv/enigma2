@@ -93,8 +93,14 @@ struct hash_uniqueEPGKey
 	}
 };
 
-#define tidMap std::set<uint32_t>
-typedef std::tr1::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
+struct EventCacheItem {
+	eventMap byEvent;
+	timeMap byTime;
+};
+
+typedef std::set<uint32_t> tidMap;
+
+typedef std::tr1::unordered_map<uniqueEPGKey, EventCacheItem, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
 #ifdef ENABLE_PRIVATE_EPG
 	typedef std::tr1::unordered_map<time_t, std::pair<time_t, uint16_t> > contentTimeMap;
 	typedef std::tr1::unordered_map<int, contentTimeMap > contentMap;
@@ -198,7 +204,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void abortEPG();
 		void abortNonAvail();
 	};
-	bool FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
+	bool FixOverlapping(EventCacheItem &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
 public:
 	struct Message
 	{

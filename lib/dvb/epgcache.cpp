@@ -634,11 +634,11 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	}
 }
 
-bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
+bool eEPGCache::FixOverlapping(EventCacheItem &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
 {
 	bool ret = false;
 	timeMap::iterator tmp = tm_it;
-	while ((tmp->first+tmp->second->getDuration()-300) > TM)
+	while ((tmp->first + tmp->second->getDuration() - 300) > TM)
 	{
 		if(tmp->first != TM
 #ifdef ENABLE_PRIVATE_EPG
@@ -650,7 +650,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 			)
 		{
 			uint16_t event_id = tmp->second->getEventID();
-			servicemap.first.erase(event_id);
+			servicemap.byEvent.erase(event_id);
 #ifdef EPG_DEBUG
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
@@ -662,18 +662,18 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 				event.getExtendedDescription().c_str());
 #endif
 			delete tmp->second;
-			if (tmp == servicemap.second.begin())
+			if (tmp == servicemap.byTime.begin())
 			{
-				servicemap.second.erase(tmp);
+				servicemap.byTime.erase(tmp);
 				break;
 			}
 			else
-				servicemap.second.erase(tmp--);
+				servicemap.byTime.erase(tmp--);
 			ret = true;
 		}
 		else
 		{
-			if (tmp == servicemap.second.begin())
+			if (tmp == servicemap.byTime.begin())
 				break;
 			--tmp;
 		}
@@ -685,7 +685,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 		if (tmp->first != TM && tmp->second->type != PRIVATE)
 		{
 			uint16_t event_id = tmp->second->getEventID();
-			servicemap.first.erase(event_id);
+			servicemap.byEvent.erase(event_id);
 #ifdef EPG_DEBUG
 			Event evt((uint8_t*)tmp->second->get());
 			eServiceEvent event;
@@ -697,12 +697,12 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 				event.getExtendedDescription().c_str());
 #endif
 			delete tmp->second;
-			servicemap.second.erase(tmp++);
+			servicemap.byTime.erase(tmp++);
 			ret = true;
 		}
 		else
 			++tmp;
-		if (tmp == servicemap.second.end())
+		if (tmp == servicemap.byTime.end())
 			break;
 	}
 	return ret;
@@ -765,9 +765,9 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 	singleLock s(cache_lock);
 	// hier wird immer eine eventMap zurck gegeben.. entweder eine vorhandene..
 	// oder eine durch [] erzeugte
-	std::pair<eventMap,timeMap> &servicemap = eventDB[service];
-	eventMap::iterator prevEventIt = servicemap.first.end();
-	timeMap::iterator prevTimeIt = servicemap.second.end();
+	EventCacheItem &servicemap = eventDB[service];
+	eventMap::iterator prevEventIt = servicemap.byEvent.end();
+	timeMap::iterator prevTimeIt = servicemap.byTime.end();
 
 	while (ptr<len)
 	{
@@ -802,21 +802,21 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 
 			// search in eventmap
 			eventMap::iterator ev_it =
-				servicemap.first.find(event_id);
+				servicemap.byEvent.find(event_id);
 
 //			eDebug("event_id is %d sid is %04x", event_id, service.sid);
 
 			// entry with this event_id is already exist ?
-			if ( ev_it != servicemap.first.end() )
+			if ( ev_it != servicemap.byEvent.end() )
 			{
 				if ( source > ev_it->second->type )  // update needed ?
 					goto next; // when not.. then skip this entry
 
 				// search this event in timemap
 				timeMap::iterator tm_it_tmp =
-					servicemap.second.find(ev_it->second->getStartTime());
+					servicemap.byTime.find(ev_it->second->getStartTime());
 
-				if ( tm_it_tmp != servicemap.second.end() )
+				if ( tm_it_tmp != servicemap.byTime.end() )
 				{
 					if ( tm_it_tmp->first == TM ) // just update eventdata
 					{
@@ -826,8 +826,8 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 							new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
 						if (FixOverlapping(servicemap, TM, duration, tm_it_tmp, service))
 						{
-							prevEventIt = servicemap.first.end();
-							prevTimeIt = servicemap.second.end();
+							prevEventIt = servicemap.byEvent.end();
+							prevTimeIt = servicemap.byTime.end();
 						}
 						delete tmp;
 						goto next;
@@ -836,8 +836,8 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 					{
 						tm_erase_count++;
 						// delete the found record from timemap
-						servicemap.second.erase(tm_it_tmp);
-						prevTimeIt=servicemap.second.end();
+						servicemap.byTime.erase(tm_it_tmp);
+						prevTimeIt = servicemap.byTime.end();
 					}
 				}
 			}
@@ -845,25 +845,25 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 			// search in timemap, for check of a case if new time has coincided with time of other event
 			// or event was is not found in eventmap
 			timeMap::iterator tm_it =
-				servicemap.second.find(TM);
+				servicemap.byTime.find(TM);
 
-			if ( tm_it != servicemap.second.end() )
+			if ( tm_it != servicemap.byTime.end() )
 			{
 				// event with same start time but another event_id...
 				if ( source > tm_it->second->type &&
-					ev_it == servicemap.first.end() )
+					ev_it == servicemap.byEvent.end() )
 					goto next; // when not.. then skip this entry
 
 				// search this time in eventmap
 				eventMap::iterator ev_it_tmp =
-					servicemap.first.find(tm_it->second->getEventID());
+					servicemap.byEvent.find(tm_it->second->getEventID());
 
-				if ( ev_it_tmp != servicemap.first.end() )
+				if ( ev_it_tmp != servicemap.byEvent.end() )
 				{
 					ev_erase_count++;
 					// delete the found record from eventmap
-					servicemap.first.erase(ev_it_tmp);
-					prevEventIt=servicemap.first.end();
+					servicemap.byEvent.erase(ev_it_tmp);
+					prevEventIt = servicemap.byEvent.end();
 				}
 			}
 			evt = new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
@@ -882,23 +882,23 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 			{
 				// exempt memory
 				delete ev_it->second;
-				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
-				ev_it->second=evt;
+				tm_it = prevTimeIt = servicemap.byTime.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
+				ev_it->second = evt;
 			}
 			else if (ev_erase_count > 0 && tm_erase_count == 0)
 			{
 				// exempt memory
 				delete tm_it->second;
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const uint16_t, eventData*>( event_id, evt) );
-				tm_it->second=evt;
+				ev_it = prevEventIt = servicemap.byEvent.insert( prevEventIt, std::pair<const uint16_t, eventData*>( event_id, evt) );
+				tm_it->second = evt;
 			}
 			else // added new eventData
 			{
 #ifdef EPG_DEBUG
 				consistencyCheck=false;
 #endif
-				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const uint16_t, eventData*>( event_id, evt) );
-				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
+				ev_it = prevEventIt = servicemap.byEvent.insert( prevEventIt, std::pair<const uint16_t, eventData*>( event_id, evt) );
+				tm_it = prevTimeIt = servicemap.byTime.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
 			}
 
 #ifdef EPG_DEBUG
@@ -922,13 +922,13 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 #endif
 			if (FixOverlapping(servicemap, TM, duration, tm_it, service))
 			{
-				prevEventIt = servicemap.first.end();
-				prevTimeIt = servicemap.second.end();
+				prevEventIt = servicemap.byEvent.end();
+				prevTimeIt = servicemap.byTime.end();
 			}
 		}
 next:
 #ifdef EPG_DEBUG
-		if ( servicemap.first.size() != servicemap.second.size() )
+		if ( servicemap.byEvent.size() != servicemap.byTime.size() )
 		{
 			{
 				CFile f("/hdd/event_map.txt", "w+");
@@ -954,7 +954,7 @@ next:
 		}
 #endif
 		ptr += eit_event_size;
-		eit_event=(eit_event_struct*)(((uint8_t*)eit_event)+eit_event_size);
+		eit_event = (eit_event_struct*)(((uint8_t*)eit_event) + eit_event_size);
 	}
 }
 
@@ -967,8 +967,8 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 		eventCache::iterator it = eventDB.find(s);
 		if ( it != eventDB.end() )
 		{
-			eventMap &evMap = it->second.first;
-			timeMap &tmMap = it->second.second;
+			eventMap &evMap = it->second.byEvent;
+			timeMap &tmMap = it->second.byTime;
 			tmMap.clear();
 			for (eventMap::iterator i = evMap.begin(); i != evMap.end(); ++i)
 				delete i->second;
@@ -992,8 +992,8 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 		for (eventCache::iterator it(eventDB.begin());
 			it != eventDB.end(); ++it)
 		{
-			eventMap &evMap = it->second.first;
-			timeMap &tmMap = it->second.second;
+			eventMap &evMap = it->second.byEvent;
+			timeMap &tmMap = it->second.byTime;
 			for (eventMap::iterator i = evMap.begin(); i != evMap.end(); ++i)
 				delete i->second;
 			evMap.clear();
@@ -1019,23 +1019,23 @@ void eEPGCache::cleanLoop()
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
 			bool updated = false;
-			for (timeMap::iterator It = DBIt->second.second.begin(); It != DBIt->second.second.end() && It->first < now;)
+			for (timeMap::iterator It = DBIt->second.byTime.begin(); It != DBIt->second.byTime.end() && It->first < now;)
 			{
 				if ( now > (It->first+It->second->getDuration()) )  // outdated normal entry (nvod references to)
 				{
 					// remove entry from eventMap
-					eventMap::iterator b(DBIt->second.first.find(It->second->getEventID()));
-					if ( b != DBIt->second.first.end() )
+					eventMap::iterator b(DBIt->second.byEvent.find(It->second->getEventID()));
+					if ( b != DBIt->second.byEvent.end() )
 					{
 						// release Heap Memory for this entry   (new ....)
 //						eDebug("[EPGC] delete old event (evmap)");
-						DBIt->second.first.erase(b);
+						DBIt->second.byEvent.erase(b);
 					}
 
 					// remove entry from timeMap
 //					eDebug("[EPGC] release heap mem");
 					delete It->second;
-					DBIt->second.second.erase(It++);
+					DBIt->second.byTime.erase(It++);
 //					eDebug("[EPGC] delete old event (timeMap)");
 					updated = true;
 				}
@@ -1049,7 +1049,7 @@ void eEPGCache::cleanLoop()
 					content_time_tables.find( DBIt->first );
 				if ( x != content_time_tables.end() )
 				{
-					timeMap &tmMap = DBIt->second.second;
+					timeMap &tmMap = DBIt->second.byTime;
 					for ( contentMap::iterator i = x->second.begin(); i != x->second.end(); )
 					{
 						for ( contentTimeMap::iterator it(i->second.begin());
@@ -1080,7 +1080,7 @@ eEPGCache::~eEPGCache()
 	kill(); // waiting for thread shutdown
 	singleLock s(cache_lock);
 	for (eventCache::iterator evIt = eventDB.begin(); evIt != eventDB.end(); evIt++)
-		for (eventMap::iterator It = evIt->second.first.begin(); It != evIt->second.first.end(); It++)
+		for (eventMap::iterator It = evIt->second.byEvent.begin(); It != evIt->second.byEvent.end(); It++)
 			delete It->second;
 }
 
@@ -1270,11 +1270,10 @@ void eEPGCache::load()
 			while(size--)
 			{
 				uniqueEPGKey key;
-				eventMap evMap;
-				timeMap tmMap;
 				int size=0;
 				fread( &key, sizeof(uniqueEPGKey), 1, f);
 				fread( &size, sizeof(int), 1, f);
+				EventCacheItem& item = eventDB[key]; /* Constructs new entry */
 				while(size--)
 				{
 					uint8_t len=0;
@@ -1291,11 +1290,10 @@ void eEPGCache::load()
 						fread( event->crc_list, event->n_crc, sizeof(uint32_t), f);
 					}
 					eventData::CacheSize += sizeof(eventData) + event->n_crc * sizeof(uint32_t);
-					evMap[ event->getEventID() ]=event;
-					tmMap[ event->getStartTime() ]=event;
+					item.byEvent[event->getEventID()] = event;
+					item.byTime[event->getStartTime()] = event;
 					++cnt;
 				}
-				eventDB[key]=std::pair<eventMap,timeMap>(evMap,tmMap);
 			}
 			eventData::load(f);
 			eDebug("[EPGC] %d events read from %s", cnt, EPGDAT);
@@ -1311,7 +1309,7 @@ void eEPGCache::load()
 					int size=0;
 					uniqueEPGKey key;
 					fread( &key, sizeof(uniqueEPGKey), 1, f);
-					eventMap &evMap=eventDB[key].first;
+					eventMap &evMap = eventDB[key].byEvent;
 					fread( &size, sizeof(int), 1, f);
 					while(size--)
 					{
@@ -1410,7 +1408,7 @@ void eEPGCache::save()
 	fwrite( &size, sizeof(int), 1, f );
 	for (eventCache::iterator service_it(eventDB.begin()); service_it != eventDB.end(); ++service_it)
 	{
-		timeMap &timemap = service_it->second.second;
+		timeMap &timemap = service_it->second.byTime;
 		fwrite( &service_it->first, sizeof(uniqueEPGKey), 1, f);
 		size = timemap.size();
 		fwrite( &size, sizeof(int), 1, f);
@@ -2140,19 +2138,19 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 
 	// check if EPG for this service is ready...
 	eventCache::iterator It = eventDB.find( key );
-	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached ?
+	if ( It != eventDB.end() && !It->second.byEvent.empty() ) // entrys cached ?
 	{
 		if (t==-1)
 			t = ::time(0);
-		timeMap::iterator i = direction <= 0 ? It->second.second.lower_bound(t) :  // find > or equal
-			It->second.second.upper_bound(t); // just >
-		if ( i != It->second.second.end() )
+		timeMap::iterator i = direction <= 0 ? It->second.byTime.lower_bound(t) :  // find > or equal
+			It->second.byTime.upper_bound(t); // just >
+		if ( i != It->second.byTime.end() )
 		{
 			if ( direction < 0 || (direction == 0 && i->first > t) )
 			{
 				timeMap::iterator x = i;
 				--x;
-				if ( x != It->second.second.end() )
+				if ( x != It->second.byTime.end() )
 				{
 					time_t start_time = x->first;
 					if (direction >= 0)
@@ -2204,11 +2202,11 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 {
 	uniqueEPGKey key(handleGroup(service));
 
-	eventCache::iterator It = eventDB.find( key );
-	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached?
+	eventCache::iterator It = eventDB.find(key);
+	if (It != eventDB.end())
 	{
-		eventMap::iterator i( It->second.first.find( event_id ));
-		if ( i != It->second.first.end() )
+		eventMap::iterator i = It->second.byEvent.find(event_id);
+		if ( i != It->second.byEvent.end() )
 		{
 			result = i->second;
 			return 0;
@@ -2295,16 +2293,16 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 	if (begin == -1)
 		begin = ::time(0);
 	eventCache::iterator It = eventDB.find(ref);
-	if ( It != eventDB.end() && It->second.second.size() )
+	if ( It != eventDB.end() && !It->second.byTime.empty() )
 	{
-		m_timemap_cursor = It->second.second.lower_bound(begin);
-		if ( m_timemap_cursor != It->second.second.end() )
+		m_timemap_cursor = It->second.byTime.lower_bound(begin);
+		if ( m_timemap_cursor != It->second.byTime.end() )
 		{
 			if ( m_timemap_cursor->first != begin )
 			{
 				timeMap::iterator x = m_timemap_cursor;
 				--x;
-				if ( x != It->second.second.end() )
+				if ( x != It->second.byTime.end() )
 				{
 					time_t start_time = x->first;
 					if ( begin > start_time && begin < (start_time+x->second->getDuration()))
@@ -2314,9 +2312,9 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		}
 
 		if (minutes != -1)
-			m_timemap_end = It->second.second.lower_bound(begin+minutes*60);
+			m_timemap_end = It->second.byTime.lower_bound(begin+minutes*60);
 		else
-			m_timemap_end = It->second.second.end();
+			m_timemap_end = It->second.byTime.end();
 
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		return m_timemap_cursor == m_timemap_end ? -1 : 0;
@@ -3267,7 +3265,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 				++cit;
 				continue;
 			}
-			timeMap &evmap = cit->second.second;
+			timeMap &evmap = cit->second.byTime;
 			// check all events
 			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
 			{
@@ -3544,9 +3542,9 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const ui
 	contentMap &content_time_table = content_time_tables[current_service];
 	singleLock s(cache_lock);
 	std::map< date_time, std::list<uniqueEPGKey>, less_datetime > start_times;
-	std::pair<eventMap,timeMap> &eventDBitem = eventDB[current_service];
-	eventMap &evMap = eventDBitem.first;
-	timeMap &tmMap = eventDBitem.second;
+	EventCacheItem &eventDBitem = eventDB[current_service];
+	eventMap &evMap = eventDBitem.byEvent;
+	timeMap &tmMap = eventDBitem.byTime;
 	int ptr = 8;
 	int content_id = data[ptr++] << 24;
 	content_id |= data[ptr++] << 16;
