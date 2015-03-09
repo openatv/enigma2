@@ -130,8 +130,6 @@
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr"/>
 		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
 		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />-->
-		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
-		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
 		<!--<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
 		<key id="KEY_DOWN" mapto="switchChannelDownLong" flags="l" />-->
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr"/>
@@ -147,6 +145,11 @@
 		<key id="BTN_1" mapto="zapDown" flags="mr"/>
 		<key id="KEY_SAT" mapto="openSatellites" flags="m"/>
 		<key id="KEY_FAVORITES" mapto="openChannelList" flags="m" />
+	</map>
+
+	<map context="InfobarChannelSelectionUpDown">
+		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
+		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
 	</map>
 
 	<map context="InfobarZoomActions">
@@ -456,8 +459,11 @@
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m"/>
 		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m"/>
 		<key id="KEY_LEFT" mapto="timeshiftActivateEnd" flags="m" />
+	</map>
+
+	<map context="InfobarTimeshiftActivateUpDownActions">
 		<key id="KEY_DOWN" mapto="timeshiftActivateEndExtra" flags="m" />
-		<key id="KEY_UP" mapto="ignore" flags="m" />
+		<key id="KEY_UP" mapto="ignore" flags="mrlb" />
 	</map>
 
 	<map context="InfobarTimeshiftSeekPointerActions">

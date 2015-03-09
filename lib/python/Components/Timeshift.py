@@ -78,7 +78,7 @@ class InfoBarTimeshift:
 			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and enter timeshift")),
 		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
-		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
+		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateUpDownActions", {
 			"timeshiftActivateEndExtra": (lambda: self.activateTimeshiftEnd(shiftTime=config.seek.selfdefined_down.value), lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_down.value, _("sec"))),
 			"ignore": (lambda: 1, ""),
 		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
