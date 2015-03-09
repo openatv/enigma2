@@ -45,7 +45,7 @@ class FrontendInfo(Converter, object):
 				return "N/A"
 		elif self.type == self.AGC:
 			percent = self.source.agc
-		elif (self.type == self.SNR and not swapsnr) or (self.type == self.SNRdB and swapsnr):
+		elif (self.type == self.SNR and swapsnr) or (self.type == self.SNRdB and not swapsnr):
 			percent = self.source.snr
 		elif self.type  == self.SNR or self.type == self.SNRdB:
 			if self.source.snr_db is not None:

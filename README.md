@@ -19,7 +19,7 @@
 
 1 - Install packages on your buildserver
 
-    sudo apt-get install -y autoconf automake bison bzip2 chrpath cvs diffstat flex g++ gawk gcc gettext git-core gzip help2man htop libc6-dev libglib2.0-dev libproc-processtable-perl libtool libxml2-utils make ncdu ncurses-bin ncurses-dev patch perl pkg-config po4a pseudo python-setuptools quilt sgmltools-lite sshpass subversion swig tar texi2html texinfo wget xsltproc zip zlib1g-dev
+    sudo apt-get install -y autoconf automake bison bzip2 chrpath cvs diffstat flex g++ gawk gcc gettext git-core gzip help2man htop libc6-dev libglib2.0-dev libproc-processtable-perl libtool libxml2-utils make ncdu ncurses-bin ncurses-dev patch perl pkg-config po4a python-setuptools quilt sgmltools-lite sshpass subversion swig tar texi2html texinfo wget xsltproc zip zlib1g-dev
 
 ----------
 2 - Reconfigure dash

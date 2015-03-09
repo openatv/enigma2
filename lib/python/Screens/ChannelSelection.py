@@ -114,9 +114,10 @@ class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 
 		Screen.__init__(self, session)
-		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
+		if self.isProtected():
+			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
@@ -275,6 +276,17 @@ class ChannelContextMenu(Screen):
 		#			append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="1")
 		self["menu"] = ChoiceList(menu)
 
+	def isProtected(self):
+		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
+
+	def protectResult(self, answer):
+		if answer:
+			self.csel.protectContextMenu = False
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+		else:
+			self.close()
+
 	def addServiceToBouquetOrAlternative(self):
 		if self.addFunction:
 			self.addFunction()
@@ -420,7 +432,10 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def unhideParentalServices(self):
-		self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+		if self.csel.protectContextMenu:
+			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+		else:
+			self.unhideParentalServicesCallback(True)
 
 	def unhideParentalServicesCallback(self, answer):
 		if answer:
@@ -1238,6 +1253,7 @@ class ChannelSelectionBase(Screen):
 		self.selectionNumber = ""
 		self.clearNumberSelectionNumberTimer = eTimer()
 		self.clearNumberSelectionNumberTimer.callback.append(self.clearNumberSelectionNumber)
+		self.protectContextMenu = True
 
 		self.mode = MODE_TV
 		self.dopipzap = False
@@ -1941,6 +1957,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.correctChannelNumber()
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
+					self.protectContextMenu = True
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
@@ -2194,6 +2211,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.zapBack()
 		self.correctChannelNumber()
 		self.editMode = False
+		self.protectContextMenu = True
 		self.close(None)
 
 	def zapBack(self):
