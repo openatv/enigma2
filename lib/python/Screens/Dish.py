@@ -241,7 +241,6 @@ class Dish(Screen):
 class Dishpip(Dish, Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN  = 1
-	skin = """
 	def __init__(self, session):
 		self.skin = Dishpip.skin
 		Screen.__init__(self, session)
