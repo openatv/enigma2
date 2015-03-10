@@ -6,6 +6,7 @@ from enigma import eDBoxLCD, eTimer
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
+from Screens.Screen import Screen
 import usb
 
 
@@ -288,7 +289,7 @@ def InitLcd():
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
-			("0", _("no delay"))])
+			("0", _("no delay"))]
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
 
@@ -299,7 +300,7 @@ def InitLcd():
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
-			("0", _("no delay"))])
+			("0", _("no delay"))]
 			config.usage.vfd_final_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
 
@@ -327,4 +328,3 @@ def InitLcd():
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
-
