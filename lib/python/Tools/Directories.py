@@ -308,9 +308,11 @@ def getRecordingFilename(basename, dirname = None):
 
 	if dirname is not None:
 		if not dirname.startswith('/'):
-			dirname = os.path.join(defaultRecordingLocation(), dirname)
+			from Components.config import config
+			dirname = os.path.join(defaultRecordingLocation(config.usage.default_path.value), dirname)
 	else:
-		dirname = defaultRecordingLocation()
+		from Components.config import config
+		dirname = defaultRecordingLocation(config.usage.default_path.value)
 	filename = os.path.join(dirname, filename)
 
 	i = 0

@@ -79,7 +79,7 @@ def defaultMoviePath():
 	result = config.usage.default_path.value
 	if not os.path.isdir(result):
 		from Tools import Directories
-		return Directories.defaultRecordingLocation()
+		return Directories.defaultRecordingLocation(config.usage.default_path.value)
 	return result
 
 def setPreferredTagEditor(te):
