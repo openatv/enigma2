@@ -249,7 +249,7 @@ class HotkeySetup(Screen):
 	def keyOk(self):
 		self.session.openWithCallback(self.HotkeySetupSelectCallback, HotkeySetupSelect, self["list"].l.getCurrentSelection())
 
-	def HotkeySetupSelectCallback(self, answer=False):
+	def HotkeySetupSelectCallback(self, answer):
 		if answer:
 			self.close(True)
 
@@ -447,16 +447,16 @@ class HotkeySetupSelect(Screen):
 			configValue.append(x[0][1])
 		self.config.value = ",".join(configValue)
 		self.config.save()
-		self.close()
+		self.close(False)
 
 	def cancel(self):
 		if self.selected != self.prevselected:
 			self.session.openWithCallback(self.cancelCallback, MessageBox, _("are you sure to cancel all changes"), default=False)
 		else:
-			self.close()
+			self.close(None)
 
 	def cancelCallback(self, answer):
-		answer and self.close()
+		answer and self.close(None)
 
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
