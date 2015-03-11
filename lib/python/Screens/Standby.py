@@ -51,7 +51,8 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
-		self.standbyTimeUnknownTimer = eTimer()
+		self.standbyStopServiceTimer = eTimer()
+		self.standbyStopServiceTimer.callback.append(self.stopService)
 
 		#mute adc
 		self.setMute()
