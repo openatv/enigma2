@@ -230,7 +230,7 @@ class UpdatePluginMenu(Screen):
 			"back": self.close,
 			"red": self.close,
 			"menu": self.handleMenu,
-			"showEventInfo": self.handleInfo,
+			"info": self.handleInfo,
 			"1": self.go,
 			"2": self.go,
 			"3": self.go,
