@@ -439,7 +439,7 @@ class PluginDownloadBrowser(Screen):
 			pluginlist = []
 			self.pluginlist = pluginlist
 			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
-				if not plugin[0].endswith('-meta') and plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
+				if not plugin[0].endswith('-common') and not plugin[0].endswith('-meta') and plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
 					pluginlist.append(plugin + (plugin[0][15:],))
 			if pluginlist:
 				self["text"].hide()
