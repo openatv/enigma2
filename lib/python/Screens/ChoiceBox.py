@@ -41,7 +41,7 @@ class ChoiceBox(Screen):
 		self.list = []
 		self.summarylist = []
 		if keys is None:
-			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
+			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 14) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
 
