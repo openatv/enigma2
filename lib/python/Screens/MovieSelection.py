@@ -145,7 +145,7 @@ def createMoveList(serviceref, dest):
 		raise Exception, "Refusing to move to the same directory"
 	# Make a list of items to move
 	moveList = [(src, os.path.join(dest, srcName))]
-	if serviceref.flags & eServiceReference.mustDescent or isinstance(serviceref, str):
+	if isinstance(serviceref, str) or serviceref.flags & eServiceReference.mustDescent:
 		# Real movie, add extra files...
 		srcBase = os.path.splitext(src)[0]
 		baseName = os.path.split(srcBase)[1]
