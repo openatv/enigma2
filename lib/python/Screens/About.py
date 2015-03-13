@@ -1,4 +1,5 @@
 from Screen import Screen
+from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager
@@ -31,6 +32,7 @@ class About(Screen):
 		EnigmaVersion = "Enigma: " + about.getEnigmaVersionString()
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
+		AboutText += "Enigma (re)starts: %d\n" % config.misc.startCounter.value
 
 		GStreamerVersion = "GStreamer: " + about.getGStreamerVersionString().replace("GStreamer","")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)

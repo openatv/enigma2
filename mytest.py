@@ -413,6 +413,7 @@ from Components.VolumeControl import VolumeControl
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
+	config.misc.startCounter.save()
 
 	profile("readPluginList")
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -472,8 +473,6 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	runReactor()
-
-	config.misc.startCounter.save()
 
 	profile("wakeup")
 	from time import time, strftime, localtime
