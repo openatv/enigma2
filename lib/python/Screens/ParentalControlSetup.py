@@ -14,7 +14,7 @@ from operator import itemgetter
 
 class ProtectedScreen:
 	def __init__(self):
-		if self.isProtected():
+		if self.isProtected() and config.ParentalControl.servicepin[0].value != 0:
 			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
 
 	def isProtected(self):
