@@ -24,22 +24,32 @@ class ChoiceBox(Screen):
 		self.list = []
 		self.summarylist = []
 		if keys is None:
-			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
+			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 14) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
 
 		self.keymap = {}
 		pos = 0
 		if self.reorderConfig:
-			prev_list = list
+			prev_list = zip(list, self.__keys)
 			new_list = []
 			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
 			for x in self.config_type.value.split(","):
 				for entry in prev_list:
-					if entry[0] == x:
+					if entry[0][0] == x:
 						new_list.append(entry)
 						prev_list.remove(entry)
-			list = new_list + prev_list
+			list = zip(*(new_list + prev_list))
+			list, self.__keys = list[0], list[1]
+			number = 1
+			new_keys = []
+			for x in self.__keys:
+				if (not x or x.isdigit()) and number <= 10:
+					new_keys.append(str(number % 10))
+					number+=1
+				else:
+					new_keys.append(not x.isdigit() and x or "")
+			self.__keys = new_keys
 		for x in list:
 			strpos = str(self.__keys[pos])
 			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
