@@ -133,18 +133,23 @@ class PinInput(InputBox):
 		return False
 
 	def go(self):
-		self.triesEntry.time.value = int(time())
-		self.triesEntry.time.save()
-		if self.checkPin(self["input"].getText()):
-			self.setTries(3)
-			self.closePinCorrect()
-		else:
-			self.keyHome()
-			self.decTries()
-			if self.getTries() == 0:
-				self.closePinWrong()
+		if self.pinList:
+			self.triesEntry.time.value = int(time())
+			self.triesEntry.time.save()
+			if self.checkPin(self["input"].getText()):
+				self.setTries(3)
+				self.closePinCorrect()
 			else:
-				pass
+				self.keyHome()
+				self.decTries()
+				if self.getTries() == 0:
+					self.closePinWrong()
+		else:
+			pin = self["input"].getText()
+			if pin and pin.isdigit():
+				self.close(int(pin))
+			else:
+				self.close(None)
 
 	def closePinWrong(self, *args):
 		print "args:", args
@@ -161,7 +166,7 @@ class PinInput(InputBox):
 		self.closePinCancel()
 
 	def getTries(self):
-		return self.triesEntry.tries.value
+		return self.triesEntry and self.triesEntry.tries.value
 
 	def decTries(self):
 		self.setTries(self.triesEntry.tries.value - 1)
@@ -172,4 +177,4 @@ class PinInput(InputBox):
 		self.triesEntry.tries.save()
 
 	def showTries(self):
-		self["tries"].setText(_("Tries left:") + " " + str(self.getTries()))
+		self["tries"].setText(self.triesEntry and _("Tries left:") + " " + str(self.getTries() or ""))
