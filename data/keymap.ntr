@@ -1,3 +1,4 @@
+
 <keymap>
 	<map context="ListboxActions">
 		<device name="keyboard">
@@ -138,6 +139,8 @@
 	<map context="InfobarHDMIActions">
 		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
 		<key id="KEY_AUX" mapto="HDMIinLong" flags="l" />
+		<key id="KEY_CONTEXT_MENU" mapto="HDMIin" flags="b" />
+		<key id="KEY_CONTEXT_MENU" mapto="HDMIinLong" flags="l" />
 	</map>	
 
 	<map context="MinuteInputActions">
@@ -258,6 +261,14 @@
 
 	<map context="InfobarAudioSelectionActions">
 		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="l" />
+		</device>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="l" />
+		</device>
+		<device name="gigablue remote control">
 			<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
 			<key id="KEY_YELLOW" mapto="audioSelection" flags="l" />
 		</device>
@@ -400,7 +411,7 @@
 		<key id="KEY_9" mapto="seekdef:9" flags="m" />
 	</map>
 
-<map context="MovielistSeekActions">
+	<map context="MovielistSeekActions">
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
@@ -493,11 +504,21 @@
 	</map>
 
 	<map context="InfobarTimeshiftActions">
-		<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PLAY" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
+			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
+		</device>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
 
+			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
+		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
+			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
