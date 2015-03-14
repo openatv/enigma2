@@ -1350,7 +1350,7 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
-    bool save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
+	bool save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
 	if (save_epg)
 	{
 		const char* EPGDAT = m_filename.c_str();
