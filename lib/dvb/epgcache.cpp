@@ -1350,7 +1350,6 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
-	m_save_epg = true;
 	m_save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
 	if (m_save_epg)
 	{
@@ -1461,7 +1460,6 @@ void eEPGCache::save()
 		fwrite("ENIGMA_EPG_V7", 13, 1, f);
 		fclose(f);
 	}
-	return;
 }
 
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
