@@ -37,12 +37,12 @@
     cd ~
 
 ----------
-5 - Create folder openmips
+5 - Create folder openatv
 
     mkdir -p ~/openatv
 
 ----------
-6 - Switch to folder openmips
+6 - Switch to folder openatv
 
     cd openatv
 
