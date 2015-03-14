@@ -24,12 +24,12 @@
 ----------
 2 - Add user openatvbuilder
 
-    sudo adduser openmipsbuilder
+    sudo adduser openatvbuilder
 
 ----------
 3 - Switch to user openatvbuilder
 
-    su openmipsbuilder
+    su openatvbuilder
 
 ----------
 4 - Switch to home of openatvbuilder
