@@ -119,7 +119,7 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 	#	try:
 	#		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 	#		# run in parallel to the package update.
-	#		latestImageTimestamp = re.findall('<dd>(.*?)</dd>', urlopen("http://openpli.org/download/"+getBoxType()+"/").read())[0][:16]
+	#		latestImageTimestamp = re.findall('class="dllink">(.*?)</a>', urlopen("http://image.openmips.com/4.2/index.php?open=" + getBoxType() ").read())[0][:16]
 	#		latestImageTimestamp = time.strftime(_("%d-%b-%Y %-H:%M"), time.strptime(latestImageTimestamp, "%Y/%m/%d %H:%M"))
 	#	except:
 	#		pass
@@ -186,7 +186,10 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				if self.total_packages:
-					message = _("Do you want to update your receiver?") + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+					message = _("Do you want to update your receiver?") + "\n"
+					message += "(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+					if self.total_packages > 150:
+						message += " " + _("Reflash recommended!")
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
