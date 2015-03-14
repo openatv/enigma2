@@ -298,6 +298,7 @@ def InitUsageConfig():
 	config.epg.viasat = ConfigYesNo(default = False)
 	config.epg.netmed = ConfigYesNo(default = False)
 	config.epg.virgin = ConfigYesNo(default = False)
+	config.epg.saveepg = ConfigYesNo(default = True)
 	config.misc.showradiopic = ConfigYesNo(default = True)
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
