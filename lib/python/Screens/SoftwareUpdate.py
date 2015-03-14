@@ -191,7 +191,9 @@ class UpdatePlugin(Screen):
 						message = _("Do you want to update your receiver to %s?") % self.getLatestImageTimestamp() + "\n"
 					else:
 						message = _("Do you want to update your receiver?") + "\n"
-					message = message + "(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+					message += "(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+					if self.total_packages > 150:
+						message += " " + _("Reflash recommended!")
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
