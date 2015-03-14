@@ -1350,6 +1350,7 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
+    m_save_epg = true;
 	m_save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
 	if (m_save_epg)
 	{
