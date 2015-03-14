@@ -2228,12 +2228,10 @@ class InfoBarInstantRecord:
 
 	def moveToTrash(self, entry):
 		print "instantRecord stop and delete recording: ", entry.name
-		trash = "/hdd/movie/.Trash"
-		if not os.path.isdir(trash):
-			import Tools.Trashcan
-			trash = Tools.Trashcan.createTrashFolder(entry.Filename)
+		import Tools.Trashcan
+		trash = Tools.Trashcan.createTrashFolder(entry.Filename)
 		from MovieSelection import moveServiceFiles
-		moveServiceFiles(os.path.realpath(entry.Filename), trash, entry.name, allowCopy=False)				
+		moveServiceFiles(entry.Filename, trash, entry.name, allowCopy=False)
 
 	def stopCurrentRecording(self, entry = -1):
 		if entry is not None and entry != -1:
