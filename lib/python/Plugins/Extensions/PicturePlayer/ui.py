@@ -513,8 +513,6 @@ class Pic_Full_View(Screen):
 
 		if self.maxentry >= 0:
 			self.onLayoutFinish.append(self.setPicloadConf)
-			
-			self.PlayPause()
 
 	def setPicloadConf(self):
 		sc = getScale()
@@ -524,6 +522,8 @@ class Pic_Full_View(Screen):
 		if not config.pic.infoline.value:
 			self["file"].setText("")
 		self.start_decode()
+
+		self.PlayPause()
 
 	def ShowPicture(self):
 		if self.shownow and len(self.currPic):
