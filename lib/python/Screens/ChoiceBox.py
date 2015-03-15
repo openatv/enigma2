@@ -1,28 +1,56 @@
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
+from Components.config import config, ConfigSubsection, ConfigText
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 import enigma
 
+config.misc.pluginlist = ConfigSubsection()
+config.misc.pluginlist.eventinfo_order = ConfigText(default="")
+config.misc.pluginlist.extension_order = ConfigText(default="")
+
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", list = [], keys = None, selection = 0, skin_name = []):
+	def __init__(self, session, title="", list=[], keys=None, selection=0, skin_name=[], reorderConfig=""):
 		Screen.__init__(self, session)
 
 		if isinstance(skin_name, str):
 			skin_name = [skin_name]
 		self.skinName = skin_name + ["ChoiceBox"]
 
+		self.reorderConfig = reorderConfig
 		self["text"] = Label(title)
 		self.list = []
 		self.summarylist = []
 		if keys is None:
-			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
+			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 14) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
 
 		self.keymap = {}
 		pos = 0
+		if self.reorderConfig:
+			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
+			if self.config_type.value:
+				prev_list = zip(list, self.__keys)
+				new_list = []
+				for x in self.config_type.value.split(","):
+					for entry in prev_list:
+						if entry[0][0] == x:
+							new_list.append(entry)
+							prev_list.remove(entry)
+				list = zip(*(new_list + prev_list))
+				list, self.__keys = list[0], list[1]
+				number = 1
+				new_keys = []
+				for x in self.__keys:
+					if (not x or x.isdigit()) and number <= 10:
+						new_keys.append(str(number % 10))
+						number+=1
+					else:
+						new_keys.append(not x.isdigit() and x or "")
+				self.__keys = new_keys
 		for x in list:
 			strpos = str(self.__keys[pos])
 			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
@@ -35,7 +63,7 @@ class ChoiceBox(Screen):
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions", "MenuActions"],
 		{
 			"ok": self.go,
 			"back": self.cancel,
@@ -54,7 +82,10 @@ class ChoiceBox(Screen):
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
 			"up": self.up,
-			"down": self.down
+			"down": self.down,
+			"moveUp": self.additionalMoveUp,
+			"moveDown": self.additionalMoveDown,
+			"menu": self.setDefaultChoiceList
 		}, -1)
 
 	def autoResize(self):
@@ -160,3 +191,42 @@ class ChoiceBox(Screen):
 
 	def cancel(self):
 		self.close(None)
+
+	def setDefaultChoiceList(self):
+		if self.reorderConfig:
+			if len(self.list) > 0 and self.config_type.value != "":
+				self.session.openWithCallback(self.setDefaultChoiceListCallback, MessageBox, _("Sort list to default and exit?"), MessageBox.TYPE_YESNO)
+		else:
+			self.cancel()
+
+	def setDefaultChoiceListCallback(self, answer):
+		if answer:
+			self.config_type.value = ""
+			self.config_type.save()
+			self.cancel()
+
+	def additionalMoveUp(self):
+		if self.reorderConfig:
+			self.additionalMove(-1)
+
+	def additionalMoveDown(self):
+		if self.reorderConfig:
+			self.additionalMove(1)
+
+	def additionalMove(self, direction):
+		if len(self.list) > 1:
+			currentIndex = self["list"].getSelectionIndex()
+			swapIndex = (currentIndex + direction) % len(self.list)
+			if currentIndex == 0 and swapIndex != 1:
+				self.list = self.list[1:] + [self.list[0]]
+			elif swapIndex == 0 and currentIndex != 1:
+				self.list = [self.list[-1]] + self.list[:-1]
+			else:
+				self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
+			self["list"].l.setList(self.list)
+			if direction == 1:
+				self["list"].down()
+			else:
+				self["list"].up()
+			self.config_type.value = ",".join(x[0][0] for x in self.list)
+			self.config_type.save()

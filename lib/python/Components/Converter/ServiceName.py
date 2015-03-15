@@ -109,10 +109,7 @@ class ServiceName(Converter, object):
 	def mod(self):
 		return self.t_info["modulation"]
 	def polar(self):
-		po = self.t_info["polarization"]
-		if ' ' in po:
-			return po.split(' ')[1][0].upper()
-		return po[0]
+		return self.t_info["polarization_abbreviation"]
 	def orb_pos(self):
 		op = self.t_info["orbital_position"]
 		if '(' in op:

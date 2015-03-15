@@ -1,4 +1,4 @@
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
@@ -214,7 +214,7 @@ class HotkeySetup(Screen):
 			self.list.append(ChoiceEntryComponent('',(x[0], x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 12], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "MenuActions"],
 		{
 			"ok": self.keyOk,
 			"cancel": self.close,
@@ -224,7 +224,12 @@ class HotkeySetup(Screen):
 			"down": self.keyDown,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"menu": boundFunction(self.close, True),
 		}, -1)
+		self["NumberActions"] = NumberActionMap(["NumberActions"],
+		{
+			"0": self.keyNumberGlobal
+		})
 		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in self.hotkeys))
 		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
@@ -248,7 +253,11 @@ class HotkeySetup(Screen):
 			self.getFunctions()
 
 	def keyOk(self):
-		self.session.open(HotkeySetupSelect, self["list"].l.getCurrentSelection())
+		self.session.openWithCallback(self.HotkeySetupSelectCallback, HotkeySetupSelect, self["list"].l.getCurrentSelection())
+
+	def HotkeySetupSelectCallback(self, answer):
+		if answer:
+			self.close(True)
 
 	def keyLeft(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
@@ -265,6 +274,17 @@ class HotkeySetup(Screen):
 	def keyDown(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.getFunctions()
+
+	def setDefaultHotkey(self, answer):
+		if answer:
+			for x in getHotkeys():
+				current_config = eval("config.misc.hotkey." + x[1])
+				current_config.value = str(x[2])
+				current_config.save()
+			self.getFunctions()
+
+	def keyNumberGlobal(self, number):
+		self.session.openWithCallback(self.setDefaultHotkey, MessageBox, _("Set all hotkey to default?"), MessageBox.TYPE_YESNO)
 
 	def toggleAdditionalKeys(self):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
@@ -313,7 +333,7 @@ class HotkeySetupSelect(Screen):
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"], 
 		{
 			"ok": self.keyOk,
 			"cancel": self.cancel,
@@ -330,7 +350,8 @@ class HotkeySetupSelect(Screen):
 			"pageUp": self.toggleMode,
 			"pageDown": self.toggleMode,
 			"moveUp": self.moveUp,
-			"moveDown": self.moveDown
+			"moveDown": self.moveDown,
+			"menu": boundFunction(self.close, True),
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -433,16 +454,16 @@ class HotkeySetupSelect(Screen):
 			configValue.append(x[0][1])
 		self.config.value = ",".join(configValue)
 		self.config.save()
-		self.close()
+		self.close(False)
 
 	def cancel(self):
 		if self.selected != self.prevselected:
 			self.session.openWithCallback(self.cancelCallback, MessageBox, _("are you sure to cancel all changes"), default=False)
 		else:
-			self.close()
+			self.close(None)
 
 	def cancelCallback(self, answer):
-		answer and self.close()
+		answer and self.close(None)
 
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
