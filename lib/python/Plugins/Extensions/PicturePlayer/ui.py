@@ -14,6 +14,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
+from Screens.LocationBox import defaultInhibitDirs
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -63,11 +64,13 @@ class picshow(Screen):
 		self["label"] = StaticText("")
 		self["thn"] = Pixmap()
 
-		#currDir = config.pic.lastDir.value
-		#if not pathExists(currDir):
-		#	currDir = "/"
+		currDir = config.pic.lastDir.value
+		if not pathExists(currDir):
+			currDir = config.pic.lastDir.default
+			if not pathExists(currDir):
+				currDir = "/"
 
-		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
+		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)", inhibitDirs=defaultInhibitDirs)
 		self["filelist"] = self.filelist
 		self["filelist"].onSelectionChanged.append(self.selectionChanged)
 
