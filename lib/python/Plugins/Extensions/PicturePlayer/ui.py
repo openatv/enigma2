@@ -434,6 +434,9 @@ class Pic_Thumb(Screen):
 		if self.old_index != self.index:
 			self.paintFrame()
 	def Exit(self):
+		if self.ThumbTimer.isActive():
+			self.ThumbTimer.stop()
+
 		del self.picload
 		self.close(self.index + self.dirlistcount)
 
@@ -602,6 +605,9 @@ class Pic_Full_View(Screen):
 		self.session.open(Pic_Exif, self.picload.getInfo(self.filelist[self.lastindex]))
 
 	def Exit(self):
+		if self.slideTimer.isActive():
+			self.slideTimer.stop()
+
 		del self.picload
 
 		if config.usage.pic_resolution.value and (self.size_w, self.size_h) != eval(config.usage.pic_resolution.value):
