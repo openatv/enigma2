@@ -59,7 +59,7 @@ typedef enum
  * As a workaround, we run the subsink in sync=false mode
  */
 #if GST_VERSION_MAJOR >= 1
-#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG 
+#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 #else
 #define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 #endif
@@ -558,8 +558,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			 * (progressive download might not work for all formats)
 			 */
 			flags |= GST_PLAY_FLAG_BUFFERING;
-			/* increase the default 2 second / 2 MB buffer limitations to 5s / 5MB */
-			g_object_set(G_OBJECT(m_gst_playbin), "buffer-duration", 5LL * GST_SECOND, NULL);
+			/* increase the default 2 MB buffer to 5MB and turn off duration buffering */
+			g_object_set(G_OBJECT(m_gst_playbin), "buffer-duration", 0, NULL);
 			g_object_set(G_OBJECT(m_gst_playbin), "buffer-size", m_buffer_size, NULL);
 		}
 		g_object_set (G_OBJECT (m_gst_playbin), "flags", flags, NULL);
@@ -570,7 +570,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		else
 		{
 			m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
+#if GST_VERSION_MAJOR < 1
 			g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
+#else
+			g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; subpicture/x-dvd; subpicture/x-pgs"), NULL);
+#endif
 			g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 			g_object_set (G_OBJECT (m_gst_playbin), "current-text", m_currentSubtitleStream, NULL);
 		}
@@ -1462,7 +1466,7 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 			eDebug("getSubtitleType::subtitle probe caps type=%s", g_type ? g_type : "(null)");
 			if (g_type)
 			{
-				if ( !strcmp(g_type, "video/x-dvd-subpicture") )
+				if ( !strcmp(g_type, "video/x-dvd-subpicture") || !strcmp(g_type, "subpicture/x-dvd") )
 					type = stVOB;
 				else if ( !strcmp(g_type, "text/x-pango-markup") )
 					type = stSRT;
@@ -1700,7 +1704,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			if ( gv_image )
 			{
 				GstBuffer *buf_image;
-				buf_image = gst_value_get_buffer (gv_image);
+#if GST_VERSION_MAJOR < 1
+				buf_image = gst_value_get_buffer(gv_image);
+#else
+				GstSample *sample;
+				sample = (GstSample *)g_value_get_boxed(gv_image);
+				buf_image = gst_sample_get_buffer(sample);
+#endif
 				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
 				if (fd >= 0)
 				{
