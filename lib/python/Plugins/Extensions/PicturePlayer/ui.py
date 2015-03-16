@@ -22,7 +22,7 @@ def getScale():
 	return AVSwitch().getFramebufferScale()
 
 config.pic = ConfigSubsection()
-config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
+config.pic.framesize = ConfigInteger(default=30, limits=(0, 99))
 config.pic.slidetime = ConfigInteger(default=5, limits=(1, 60))
 config.pic.resize = ConfigSelection(default="1", choices=[("0", _("simple")), ("1", _("better"))])
 config.pic.cache = ConfigYesNo(default=True)
