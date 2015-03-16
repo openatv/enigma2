@@ -3,11 +3,13 @@ from boxbranding import getMachineBrand
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Components.About import about
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.ActionMap import ActionMap
+from Components.Label import Label
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Sources.StaticText import StaticText
 from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
@@ -90,7 +92,7 @@ class picshow(Screen):
 
 		text = picInfo.split('\n',1)
 		self["label"].setText(text[1])
-		self["key_yellow"].setText(_("Informations"))
+		self["key_yellow"].setText(_("Information"))
 
 	def showThumb(self):
 		if not self.filelist.canDescent():
@@ -166,28 +168,45 @@ class Pic_Setup(Screen, ConfigListScreen):
 				"ok": self.keySave,
 				"menu": self.closeRecursive,
 			}, -2)
+		self['footnote'] = Label()
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"].hide()
+		self["description"] = Label()
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
+		if self.selectionChanged not in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
 	def layoutFinished(self):
 		self.setTitle(self.setup_title)
 
 	def createSetup(self):
+		size_w = getDesktop(0).size().width()
+		size_h = getDesktop(0).size().height()
 		setup_list = [
-			getConfigListEntry(_("Slide show interval (sec.)"), config.pic.slidetime),
-			getConfigListEntry(_("Scaling mode"), config.pic.resize),
-			getConfigListEntry(_("Cache thumbnails"), config.pic.cache),
-			getConfigListEntry(_("Show info line"), config.pic.infoline),
-			getConfigListEntry(_("Frame size in full view"), config.pic.framesize),
-			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
-			getConfigListEntry(_("Background color"), config.pic.bgcolor),
-			getConfigListEntry(_("Text color"), config.pic.textcolor),
-			getConfigListEntry(_("Full view resolution"), config.usage.pic_resolution),
+			getConfigListEntry(_("Slide show interval (sec.)"), config.pic.slidetime, _("Time between slides whan showing a slideshow.")),
+			getConfigListEntry(_("Scaling mode"), config.pic.resize, _('Scaling mode for 24-bit images. "Simple" is single-pixel sampling. \"Better" is averaged over a small sample. No effect on 8-bit images.')),
+			getConfigListEntry(_("Cache thumbnails"), config.pic.cache, _("Save scaled thumbnail images to disk to avoid recalculating them.")),
+			getConfigListEntry(_("Show info line"), config.pic.infoline, _("Show image information text in top left of the screen when displaying full-screen images.")),
+			getConfigListEntry(_("Frame size in full view"), config.pic.framesize, _("Size in pixels of the narrowest part of a frame around the  full-screen image.")),
+			getConfigListEntry(_("Continuously loop slideshow"), config.pic.loop, _("Show slideshow in a continuous loop. Otherwise stop the slideshow at the last image in the image list.")),
+			getConfigListEntry(_("Background color"), config.pic.bgcolor, _("Colour of the frame surrounding a full-screen image display.")),
+			getConfigListEntry(_("Text color"), config.pic.textcolor, _("Colour of the information text in a full-screen image display.")),
+			getConfigListEntry(_("Full-screen view resolution"), config.usage.pic_resolution, _("Resolution of the full-screen image. The skin resolution is %dx%d." % (size_w, size_h))),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
+
+	def selectionChanged(self):
+		self["description"].setText(self["config"].getCurrent()[2])
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -238,7 +257,7 @@ class Pic_Exif(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 
-		exifdesc = [_("filename")+':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "ApertureFNumber:"]
+		exifdesc = [_("Filename")+':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "Aperture f-Number:"]
 		list = []
 
 		for x in range(len(exiflist)):
@@ -385,7 +404,7 @@ class Pic_Thumb(Screen):
 	def showPic(self, picInfo=""):
 		for x in range(len(self.Thumbnaillist)):
 			if self.Thumbnaillist[x][0] == 0:
-				if self.picload.getThumbnail(self.Thumbnaillist[x][2]) == 1: #zu tun probier noch mal
+				if self.picload.getThumbnail(self.Thumbnaillist[x][2]) == 1:  # to do - allow retries
 					self.ThumbTimer.start(500, True)
 				else:
 					self.Thumbnaillist[x][0] = 1
@@ -445,8 +464,10 @@ class Pic_Thumb(Screen):
 
 #---------------------------------------------------------------------------
 
-class Pic_Full_View(Screen):
+class Pic_Full_View(Screen, HelpableScreen):
 	def __init__(self, session, filelist, index, path):
+
+		HelpableScreen.__init__(self)
 
 		self.textcolor = config.pic.textcolor.value
 		self.bgcolor = config.pic.bgcolor.value
@@ -468,22 +489,22 @@ class Pic_Full_View(Screen):
 
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"],
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"],
 		{
-			"cancel": self.Exit,
-			"green": self.PlayPause,
-			"yellow": self.PlayPause,
-			"blue": self.nextPic,
-			"red": self.prevPic,
-			"left": self.prevPic,
-			"right": self.nextPic,
-			"showEventInfo": self.StartExif,
+			"cancel": (self.Exit, _("Return to picture index (list or thumbnails)")),
+			"green": (self.PlayPause, _("Pause/run slideshow")),
+			"yellow": (self.PlayPause, _("Pause/run slideshow")),
+			"blue": (self.nextPic, _("Move to next picture")),
+			"red": (self.prevPic, _("Move to previous picture")),
+			"left": (self.prevPic, _("Move to previous picture")),
+			"right": (self.nextPic, _("Move to next picture")),
+			"showEventInfo": (self.StartExif, _("Show extended image information")),
 		}, -1)
 
 		self["point"] = Pixmap()
 		self["pic"] = Pixmap()
 		self["play_icon"] = Pixmap()
-		self["file"] = StaticText(_("please wait, loading picture..."))
+		self["file"] = StaticText(_("Please wait, loading picture..."))
 
 		self.old_index = 0
 		self.filelist = []
