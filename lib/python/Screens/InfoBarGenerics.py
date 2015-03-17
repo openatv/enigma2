@@ -275,6 +275,39 @@ class SecondInfoBar(Screen):
 		Screen.__init__(self, session)
 		self.skin = None
 
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evStart: self.__eventServiceStart
+		})
+
+		self["serviceNumber"] = Label()
+		self["serviceNumber1"] = Label()
+		self["serviceName"] = Label()
+		self["serviceName1"] = Label()
+		self.onShow.append(self._onShow)
+
+	def _onShow(self):
+		vis = config.usage.show_channel_numbers_in_servicelist.value
+		for widget in "serviceNumber", "serviceNumber1", "serviceName":
+			if self[widget].visible != vis:
+				self[widget].visible = vis
+		if self["serviceName1"].visible == vis:
+			self["serviceName1"].visible = not vis
+
+	def __eventServiceStart(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		name = info and info.getName()
+		name = name or ""
+		name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+		for widget in "serviceName", "serviceName1":
+			self[widget].setText(name)
+
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		channelNum = serviceref and serviceref.getChannelNum()
+		channelNum = str(channelNum) if channelNum is not None else ""
+		for widget in "serviceNumber", "serviceNumber1":
+			self[widget].setText(channelNum)
+
 class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
