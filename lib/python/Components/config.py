@@ -1346,7 +1346,7 @@ class ConfigSelectionNumber(ConfigSelection):
 
 class ConfigNumber(ConfigText):
 	def __init__(self, default=0):
-		ConfigText.__init__(self, default, fixed_size=False)
+		ConfigText.__init__(self, str(default), fixed_size=False)
 
 	def getValue(self):
 		return int(self.text)
