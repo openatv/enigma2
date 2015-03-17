@@ -53,6 +53,7 @@ class Standby2(Screen):
 
 		self.standbyStopServiceTimer = eTimer()
 		self.standbyStopServiceTimer.callback.append(self.stopService)
+		self.timeHandler = None
 
 		#mute adc
 		self.setMute()
