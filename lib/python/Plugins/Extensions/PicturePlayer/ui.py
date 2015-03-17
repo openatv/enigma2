@@ -191,8 +191,8 @@ class Pic_Setup(Screen, ConfigListScreen):
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
 		setup_list = [
-			getConfigListEntry(_("Slide show interval (sec.)"), config.pic.slidetime, _("Time between slides whan showing a slideshow.")),
-			getConfigListEntry(_("Scaling mode"), config.pic.resize, _('Scaling mode for 24-bit images. "Simple" is single-pixel sampling. \"Better" is averaged over a small sample. No effect on 8-bit images.')),
+			getConfigListEntry(_("Slideshow interval (sec.)"), config.pic.slidetime, _("Time between slides when showing a slideshow.")),
+			getConfigListEntry(_("Scaling mode"), config.pic.resize, _('Scaling mode for 24-bit images. "Simple" is single-pixel sampling. "Better" is averaged over a small sample. No effect on 8-bit images.')),
 			getConfigListEntry(_("Cache thumbnails"), config.pic.cache, _("Save scaled thumbnail images to disk to avoid recalculating them.")),
 			getConfigListEntry(_("Show info line"), config.pic.infoline, _("Show image information text in top left of the screen when displaying full-screen images.")),
 			getConfigListEntry(_("Frame size in full view"), config.pic.framesize, _("Size in pixels of the narrowest part of a frame around the  full-screen image.")),
