@@ -145,6 +145,11 @@ def updateresumePointCache():
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
+def notifyChannelSelectionUpDown(setting):
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance is not None:
+		InfoBar.instance["ChannelSelectActionsUpDown"].setEnabled(not setting.value)
+
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
@@ -796,8 +801,6 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection", {
 			"openChannelList": (self.switchChannelUpDown, self._helpSwitchChannelUpDown),
-			"switchChannelUp": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True)),
-			"switchChannelDown": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False)),
 			"switchChannelUpLong": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True, long=True)),
 			"switchChannelDownLong": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False, long=True)),
 			"zapUp": (self.zapUp, _("Switch to previous channel")),
@@ -814,6 +817,14 @@ class InfoBarChannelSelection:
 			"ChannelPlusPressedLong": (self.ChannelPlusPressed, lambda: self._helpChannelPlusMinusPressed(plus=True, long=True)),
 			"ChannelMinusPressedLong": (self.ChannelMinusPressed, lambda: self._helpChannelPlusMinusPressed(plus=False, long=True))
 		}, description=_("Channel selection"))
+
+		self["ChannelSelectActionsUpDown"] = HelpableActionMap(self, "InfobarChannelSelectionUpDown", {
+			"switchChannelUp": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True)),
+			"switchChannelDown": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False)),
+		}, description=_("Channel selection"))
+
+		self["ChannelSelectActionsUpDown"].setEnabled(not config.seek.updown_skips.value)
+		config.seek.updown_skips.addNotifier(notifyChannelSelectionUpDown, initial_call=False, immediate_feedback=False)
 
 	def reCallService(self):
 		if len(self.servicelist.history) > 1:
