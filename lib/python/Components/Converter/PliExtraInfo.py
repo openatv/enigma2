@@ -4,10 +4,9 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
-from Tools.Transponder import ConvertToHumanReadable
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
-from Components.Converter.ChannelNumbers import channelnumbers
 
 def addspace(text):
 	if text:
@@ -160,7 +159,7 @@ class PliExtraInfo(Poll, Converter, object):
 		return ""
 
 	def createChannelNumber(self, fedata, feraw):
-		channel = channelnumbers.getChannelNumber(feraw.get("frequency"), feraw.get("tuner_number"))
+		channel = getChannelNumber(feraw.get("frequency"), feraw.get("tuner_number"))
 		if channel:
 			return _("CH") + "%s" % channel
 		return ""
