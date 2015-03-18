@@ -79,7 +79,8 @@ def getidlist():
 		nidlist = idlist[::-1]
 
 		return nidlist
-	except:
+	except (Exception) as ex:
+		print "[GMail]getidlist error:", str(ex)
 		return nidlist
 
 def viewgmail(message_id):
@@ -109,7 +110,8 @@ def get_unread_msgs(user, passwd, tlabel):
 		feed = urllib2.urlopen(url)
 
 		return feed.read()
-	except:
+	except (Exception) as ex:
+		print "[GMail]get_unread_msgs error:", str(ex)
 		return "error"
 
 def getgmail():
@@ -148,8 +150,9 @@ def getgmail():
 
 		return list
 
-	except:
 		return list
+	except (Exception) as ex:
+		print "[GMail] getgmail error:", str(ex)
 
 class Gmailfeedsscrn(Screen):
 	skin = """
@@ -437,7 +440,8 @@ def getnewgmailcount():
 
 		gmailcount = int(feedparser.parse(feedtext)["feed"]["fullcount"])
 		return gmailcount
-	except:
+	except (Exception) as ex:
+		print "[GMail] getnewgmailcount error:", str(ex)
 		return 0
 
 def comparecounts():
