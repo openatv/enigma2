@@ -223,13 +223,12 @@ class UpdatePlugin(Screen):
 		self.ipkg.write(res and "N" or "Y")
 
 	def exit(self):
+		if self.updating:
+			return
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0 and self.channellist_only == 0:
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s") % (getMachineBrand(), getMachineName()))
 			else:
-				self.close()
-		else:
-			if not self.updating:
 				self.close()
 
 	def exitAnswer(self, result):

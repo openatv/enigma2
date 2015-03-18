@@ -119,7 +119,10 @@ class FileList(MenuList):
 		if not l or l[0][1] == True:
 			return None
 		else:
-			return self.serviceHandler.info(l[0][0]).getEvent(l[0][0])
+			svc_info = self.serviceHandler.info(l[0][0])
+			if svc_info:
+				return svc_info.getEvent(l[0][0])
+		return None
 
 	def getFileList(self):
 		return self.list

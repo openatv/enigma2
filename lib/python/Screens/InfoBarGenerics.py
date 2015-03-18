@@ -145,6 +145,11 @@ def updateresumePointCache():
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
+def notifyChannelSelectionUpDown(setting):
+	from Screens.InfoBar import InfoBar
+	if InfoBar.instance is not None:
+		InfoBar.instance["ChannelSelectActionsUpDown"].setEnabled(not setting.value)
+
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
@@ -269,6 +274,39 @@ class SecondInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skin = None
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evStart: self.__eventServiceStart
+		})
+
+		self["serviceNumber"] = Label()
+		self["serviceNumber1"] = Label()
+		self["serviceName"] = Label()
+		self["serviceName1"] = Label()
+		self.onShow.append(self._onShow)
+
+	def _onShow(self):
+		vis = config.usage.show_channel_numbers_in_servicelist.value
+		for widget in "serviceNumber", "serviceNumber1", "serviceName":
+			if self[widget].visible != vis:
+				self[widget].visible = vis
+		if self["serviceName1"].visible == vis:
+			self["serviceName1"].visible = not vis
+
+	def __eventServiceStart(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		name = info and info.getName()
+		name = name or ""
+		name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+		for widget in "serviceName", "serviceName1":
+			self[widget].setText(name)
+
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		channelNum = serviceref and serviceref.getChannelNum()
+		channelNum = str(channelNum) if channelNum is not None else ""
+		for widget in "serviceNumber", "serviceNumber1":
+			self[widget].setText(channelNum)
 
 class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -796,8 +834,6 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection", {
 			"openChannelList": (self.switchChannelUpDown, self._helpSwitchChannelUpDown),
-			"switchChannelUp": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True)),
-			"switchChannelDown": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False)),
 			"switchChannelUpLong": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True, long=True)),
 			"switchChannelDownLong": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False, long=True)),
 			"zapUp": (self.zapUp, _("Switch to previous channel")),
@@ -814,6 +850,14 @@ class InfoBarChannelSelection:
 			"ChannelPlusPressedLong": (self.ChannelPlusPressed, lambda: self._helpChannelPlusMinusPressed(plus=True, long=True)),
 			"ChannelMinusPressedLong": (self.ChannelMinusPressed, lambda: self._helpChannelPlusMinusPressed(plus=False, long=True))
 		}, description=_("Channel selection"))
+
+		self["ChannelSelectActionsUpDown"] = HelpableActionMap(self, "InfobarChannelSelectionUpDown", {
+			"switchChannelUp": (self.switchChannelUp, lambda: self._helpSwitchChannelUpDown(up=True)),
+			"switchChannelDown": (self.switchChannelDown, lambda: self._helpSwitchChannelUpDown(up=False)),
+		}, description=_("Channel selection"))
+
+		self["ChannelSelectActionsUpDown"].setEnabled(not config.seek.updown_skips.value)
+		config.seek.updown_skips.addNotifier(notifyChannelSelectionUpDown, initial_call=False, immediate_feedback=False)
 
 	def reCallService(self):
 		if len(self.servicelist.history) > 1:
