@@ -115,18 +115,15 @@ def get_unread_msgs(user, passwd, tlabel):
 		return "error"
 
 def getgmail():
-	list=[]
 	try:
-		user=config.plugins.gmail.username.value
-		password=config.plugins.gmail.password.value
-		tlabel=str(config.plugins.gmail.label.value)
-		feedtext=get_unread_msgs(user,password,tlabel)
-		if feedtext=="error":
+		result = []
+		user = config.plugins.gmail.username.value
+		password = config.plugins.gmail.password.value
+		tlabel = str(config.plugins.gmail.label.value)
+		feedtext = get_unread_msgs(user, password, tlabel)
+		if feedtext == "error":
 			return list
-		fileObj = open("feed.xml","w")
-		fileObj.write(feedtext)
-		fileObj.close()
-		feed = feedparser.parse('feed.xml')
+		feed = feedparser.parse(feedtext)
 
 		for item in feed.entries:
 			try:
@@ -146,13 +143,12 @@ def getgmail():
 			except:
 				summary = ""
 
-			list.append([date,title,author,summary])
+			result.append([date, title, author, summary])
 
-		return list
-
-		return list
+		return result
 	except (Exception) as ex:
 		print "[GMail] getgmail error:", str(ex)
+		return None
 
 class Gmailfeedsscrn(Screen):
 	skin = """
@@ -187,10 +183,9 @@ class Gmailfeedsscrn(Screen):
 		if not tlabel == "inbox":
 			self.session.open(MessageBox, _("You can only view messages from inbox. Use setup to change label to inbox."), MessageBox.TYPE_WARNING, 10)
 			return
-		idlist=[]
-		idlist=getidlist()
-		if len(idlist)==0:
-			self.session.open( MessageBox, _("Sorry! Unable to view email body, try again later."), MessageBox.TYPE_WARNING,10)
+		idlist = getidlist()
+		if not idlist:
+			self.session.open(MessageBox, _("Sorry! Unable to view email body, try again later."), MessageBox.TYPE_WARNING, 10)
 			return
 		currentindex = self["menu"].getSelectedIndex()
 		message_id = idlist[currentindex]
@@ -199,7 +194,7 @@ class Gmailfeedsscrn(Screen):
 		tdate = str(self.gmails[currentindex][0])
 		title = str(self.gmails[currentindex][1])
 		author = str(self.gmails[currentindex][2])
-		summary=str(self.gmails[currentindex][3])
+		# summary = str(self.gmails[currentindex][3])
 		self.session.openWithCallback(self.refresh, Gmailbodyviewer, title, body, tdate, author)
 
 	def UpdateTitle(self):
@@ -230,12 +225,13 @@ class Gmailfeedsscrn(Screen):
 	def ListToMulticontentgmails(self):
 		msglist = getgmail()
 
-		if not list:
-			self["info"].setText("error in gettings gmail,may be label search empty,check internet or check login data and selected label from settings(menu)")
+		if msglist is None:
+			self["info"].setText("Error getting gmail. Check Internet connection and login details and also selected label from settings(menu)")
 			return
-		res = []
-		theevents = []
-		self.gmails=list
+		self.gmails = msglist
+		if not msglist:
+			self["info"].setText("No unseen messages.")
+			return
 
 		#set item height for menulist to 40
 		self["menu"].l.setItemHeight(100)
@@ -243,14 +239,13 @@ class Gmailfeedsscrn(Screen):
 		#we set the font and size for each item in mylist
 		self["menu"].l.setFont(0, gFont("Regular", 20))
 		try:
-			k=0
-			png=sliderfile
+			png = sliderfile
 			for item in self.gmails:
-				date=str(item[0])
-				title= str(item[1])
-				author=str(item[2])
-				summary=str(item[3])
 				res = []
+				date = str(item[0])
+				title = str(item[1])
+				author = str(item[2])
+				summary = str(item[3])
 				res.append(MultiContentEntryText(pos=(0, 0), size=(2, 30), font=0, flags = RT_HALIGN_LEFT, text="", color=c1color, color_sel=c1color))
 				res.append(MultiContentEntryText(pos=(10, 0), size=(230, 35), font=0, flags = RT_HALIGN_LEFT, text=date, color=c1color, color_sel=c1color))
 				res.append(MultiContentEntryText(pos=(240, 0), size=(600, 35), font=0, flags = RT_HALIGN_LEFT, text=title, color=c2color, color_sel=c2color))
@@ -258,10 +253,8 @@ class Gmailfeedsscrn(Screen):
 				res.append(MultiContentEntryText(pos=(10, 65), size=(910, 55), font=0, flags = RT_HALIGN_LEFT, text=summary, color=c4color, color_sel=c4color))
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 95), size=(660, 5), png=loadPNG(png)))
 				thegmails.append(res)
-				res = []
 		except:
-				thegmails.append(res)
-				res = []
+				pass
 
 		self["menu"].l.setList(thegmails)
 		self["info"].setText("")
