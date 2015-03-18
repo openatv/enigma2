@@ -99,7 +99,7 @@ def get_unread_msgs(user, passwd, tlabel):
 	try:
 		auth_handler = urllib2.HTTPBasicAuthHandler()
 		auth_handler.add_password(
-			realm='New mail feed',
+			realm='mail.google.com',
 			uri='https://mail.google.com',
 			user='%s@gmail.com' % user,
 			passwd=passwd
