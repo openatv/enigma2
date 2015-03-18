@@ -81,8 +81,13 @@ class InfoBar(
 			x.__init__(self)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-			enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
+			enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
+			enigma.iPlayableService.evStart: self.__eventServiceStart
 		})
+
+		self["serviceNumber"] = Label()
+		self["serviceName"] = Label()
+		self["serviceName1"] = Label()
 
 		self.current_begin_time = 0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
@@ -90,6 +95,29 @@ class InfoBar(
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.showMenu)
+
+		self.onShown.append(self._onShown)
+
+	def _onShown(self):
+		vis = config.usage.show_channel_numbers_in_servicelist.value
+		for widget in "serviceNumber", "serviceName":
+			if self[widget].visible != vis:
+				self[widget].visible = vis
+		if self["serviceName1"].visible == vis:
+			self["serviceName1"].visible = not vis
+
+	def __eventServiceStart(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		name = info and info.getName()
+		name = name or ""
+		name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+		for widget in "serviceName", "serviceName1":
+			self[widget].setText(name)
+
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+		channelNum = serviceref and serviceref.getChannelNum()
+		self["serviceNumber"].setText(str(channelNum) if channelNum is not None else "")
 
 	def openChannelSelection(self):
 		if InfoBar.instance.servicelist is None:

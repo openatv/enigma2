@@ -72,7 +72,7 @@
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Number press action" description="When 'Alpha search' or 'Number search' is selected, search for the next matching service starting with the letter entered on the number pad, SMS style (ABC2 for 'Alpha' and 2ABC for 'Number'). When 'Quick actions' is selected, perform actions on the channel list (see HELP screen for details).">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen.">config.usage.show_event_progress_in_servicelist</item>
-		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
+		<item level="0" text="Show channel numbers in channel selection and infobar" description="When enabled, show channel numbers in the channel selection screen and in the main infobar.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
 		<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
@@ -157,8 +157,8 @@
 		<item level="1" text="Skip time for '&lt;' button" description="Number of seconds to skip backward when the left arrow button is pressed.">config.seek.selfdefined_left</item>
 		<item level="1" text="Skip time for '&gt;' button" description="Number of seconds to skip forward when the right arrow button is pressed.">config.seek.selfdefined_right</item>
 		<item level="1" text="Enable skip on UP/UDOWN" description="When enabled, enable UP/DOWN navigation buttons for skips. Enabling this disables other UP/DOWN functions in contexts where skipping is possible.">config.seek.updown_skips</item>
-		<item level="1" text="Skip time for 'UP' button" description="Number of seconds to skip backward when the left arrow button is pressed." requires="config.seek.updown_skips">config.seek.selfdefined_up</item>
-		<item level="1" text="Skip time for 'DOWN' button" description="Number of seconds to skip forward when the right arrow button is pressed." requires="config.seek.updown_skips">config.seek.selfdefined_down</item>
+		<item level="1" text="Skip time for 'UP' button" description="Number of seconds to skip forward when the up arrow button is pressed." requires="config.seek.updown_skips">config.seek.selfdefined_up</item>
+		<item level="1" text="Skip time for 'DOWN' button" description="Number of seconds to skip back when the down arrow button is pressed." requires="config.seek.updown_skips">config.seek.selfdefined_down</item>
 		<item level="1" text="Enable skip for number buttons" description="When enabled, enable number buttons for skips. Enabling this disables other number button functions in contexts where skipping is possible.">config.seek.number_skips</item>
 		<item level="2" text="Skip time for '1'/'3' buttons" description="Number of seconds to skip backward or forward when the 1 or 3 buttons are pressed." requires="config.seek.number_skips">config.seek.selfdefined_13</item>
 		<item level="2" text="Skip time for '4'/'6' buttons" description="Number of seconds to skip backward or forward when the 4 or 6 buttons are pressed." requires="config.seek.number_skips">config.seek.selfdefined_46</item>
