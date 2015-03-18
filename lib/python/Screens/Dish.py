@@ -242,7 +242,6 @@ class Dishpip(Dish, Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN  = 1
 	def __init__(self, session):
-		self.skin = Dishpip.skin
 		Screen.__init__(self, session)
 		self["Dishpixmap"] = Boolean(fixed=True, poll=1500)
 		self["turnTime"] = Label("")
