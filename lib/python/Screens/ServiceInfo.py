@@ -5,8 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter
-from Tools.Transponder import ConvertToHumanReadable
-from Components.Converter.ChannelNumbers import channelnumbers
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 import skin
 
 RT_HALIGN_LEFT = 0
@@ -219,7 +218,7 @@ class ServiceInfo(Screen):
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
 						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
-						(_("Channel"), channelnumbers.getChannelNumber(frontendData["frequency"], frontendData["tuner_number"]), TYPE_VALUE_DEC),
+						(_("Channel"), getChannelNumber(frontendData["frequency"], frontendData["tuner_number"]), TYPE_VALUE_DEC),
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
 						(_("Bandwidth"), frontendData["bandwidth"], TYPE_VALUE_DEC),
 						(_("Code rate LP"), frontendData["code_rate_lp"], TYPE_TEXT),
