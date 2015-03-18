@@ -341,9 +341,6 @@ class GmailSetup(Screen, ConfigListScreen):
 
 		self.close(False)
 
-	def keyClose(self):
-		self.close(False)
-
 def main(session, **kwargs):
 	session.open(Gmailfeedsscrn)
 
@@ -378,9 +375,6 @@ class gmailnotifier(Screen):
 
 	def disappear(self):
 		self.close()
-
-def stoploop():
-	StayLoop.stopTimer()
 
 def autostart(reason, **kwargs):
 	try:
