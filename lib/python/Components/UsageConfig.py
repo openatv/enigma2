@@ -176,14 +176,24 @@ def InitUsageConfig():
 		("resume", _("Resume from last position")),
 		("beginning", _("Start from the beginning"))])
 	config.usage.on_movie_stop = ConfigSelection(default="movielist", choices=[
-		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service"))])
+		("ask", _("Ask user")),
+		("movielist", _("Return to movie list")),
+		("quit", _("Return to previous service"))])
 	config.usage.on_movie_eof = ConfigSelection(default="movielist", choices=[
-		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")), ("playlist", _("Play next (return to movie list)")),
-		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)")), ("repeatcurrent", _("Repeat"))])
+		("ask", _("Ask user")),
+		("movielist", _("Return to movie list")),
+		("quit", _("Return to previous service")),
+		("pause", _("Pause movie at end")),
+		("playlist", _("Play next (return to movie list)")),
+		("playlistquit", _("Play next (return to previous service)")),
+		("loop", _("Continues play (loop)")),
+		("repeatcurrent", _("Repeat"))])
+	config.usage.leave_movieplayer_onExit = ConfigSelection(default="no", choices=[
+		("no", _("No")),
+		("popup", _("With popup")),
+		("without popup", _("Without popup"))])
 	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
-	config.usage.leave_movieplayer_onExit = ConfigSelection(default="no", choices=[
-		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup"))])
 
 	config.usage.setup_level = ConfigSelection(default="expert", choices=[
 		("simple", _("Simple")),
