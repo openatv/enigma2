@@ -383,7 +383,7 @@ class MoviePlayer(
 		return {
 			"ask": _("Stop movie and ask user next action"),
 			"movielist": _("Stop movie and return to movie list"),
-			"quit": _("Stop movie and return  to previous service")
+			"quit": _("Stop movie and return to previous service")
 		}.get(config.usage.on_movie_stop.value, _("No current function"))
 
 	def leavePlayer(self):
@@ -395,7 +395,7 @@ class MoviePlayer(
 			"no": _("Close PiP") if self.session.pipshown else _("Stop movie on EXIT disabled"),
 			"popup": _("Ask whether to close PiP") if self.session.pipshown else _("Ask whether to stop movie"),
 			"without popup": _("Close PiP") if self.session.pipshown else _("Stop movie")
-		}.get(config.usage.on_movie_stop.value, _("No current function"))
+		}.get(config.usage.on_movie_exit.value, _("No current function"))
 
 	def leavePlayerOnExit(self):
 		if self.shown:

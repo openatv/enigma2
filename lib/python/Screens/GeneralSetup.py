@@ -1,4 +1,4 @@
-from enigma import eListboxPythonMultiContent, gFont, eEnv, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_WRAP
+from enigma import eListboxPythonMultiContent, gFont, eEnv
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
 
 from Components.ActionMap import ActionMap
@@ -17,11 +17,10 @@ from Screens.PluginBrowser import PluginDownloadBrowser, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Satconfig import NimSelection
-from Screens.Setup import Setup, getSetupTitle
+from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
 
-from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
@@ -30,12 +29,7 @@ from Screens.VideoMode import VideoSetup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
-from Tools.LoadPixmap import LoadPixmap
-
 from os import path
-from time import sleep
-from re import search
 
 import NavigationInstance
 
@@ -65,12 +59,6 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/p
 	VIDEOENH = True
 else:
 	VIDEOENH = False
-
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/AutoResolution/plugin.pyo"):
-	from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
-	AUTORES = True
-else:
-	AUTORES = False
 
 if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo"):
 	from Plugins.SystemPlugins.Blindscan.plugin import Blindscan
@@ -225,9 +213,9 @@ class GeneralSetup(Screen):
 		self.oldlist = []
 		self.list.append(GeneralSetupEntryComponent("System", _("System setup"), _("Set up your system"), ">"))
 		if not SystemInfo["IPTVSTB"]:
-			self.list.append(GeneralSetupEntryComponent("Antenna", _("Set up tuner"), _("Set up your tuner and search for channels"), ">"))
+			self.list.append(GeneralSetupEntryComponent("Tuners", _("Set up tuners"), _("Set up your tuners and search for channels"), ">"))
 		else:
-			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuner"), _("Set up your tuner and search for channels"), ">"))
+			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuners"), _("Set up your tuners and search for channels"), ">"))
 		self.list.append(GeneralSetupEntryComponent("TV", _("Set up basic TV options"), _("Set up your TV options"), ">"))
 		self.list.append(GeneralSetupEntryComponent("Media", _("Set up pictures, music and movies"), _("Set up picture, music and movie player"), ">"))
 		#self.list.append(GeneralSetupEntryComponent("Mounts", _("Mount setup"), _("Set up your mounts for network")))
@@ -243,6 +231,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Set up your channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording settings", _("Recording setup"), _("Set up your recording configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Timeshift settings", _("Timeshift setup"), _("Set up your timeshift configuration")))
+		self.sublist.append(QuickSubMenuEntryComponent("Auto language", _("Auto language selection"), _("Select your Language for audio/subtitles")))
 		self.sublist.append(QuickSubMenuEntryComponent("Subtitle settings", _("Subtitle setup"), _("Set up subtitle behaviour")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings", _("EPG setup"), _("Set up your EPG configuration")))
 		if not getMachineBrand() == "Beyonwiz":
@@ -254,8 +243,7 @@ class GeneralSetup(Screen):
 	def Qsystem(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("AV setup", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("GUI setup", _("Set up GUI"), _("Customize UI personal settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("OSD settings", _("On screen display"), _("Configure your OSD (on screen display) settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("GUI settings", _("GUI and on screen display"), _("Configure your user interface and OSD (on screen display)")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button settings", _("Button assignment"), _("Set up your buttons")))
 		if not getMachineBrand() == "Beyonwiz":
 			self.sublist.append(QuickSubMenuEntryComponent("Language settings", _("Setup your language"), _("Set up menu language")))
@@ -319,13 +307,10 @@ class GeneralSetup(Screen):
 	def Qavsetup(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("AV settings", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
-		if AUDIOSYNC == True:
+		if AUDIOSYNC:
 			self.sublist.append(QuickSubMenuEntryComponent("Audio sync", _("Set up audio sync"), _("Set up audio sync settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("Auto language", _("Auto language selection"), _("Select your Language for audio/subtitles")))
-		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
+		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement", _("Video enhancement setup"), _("Video enhancement setup")))
-		if AUTORES == True:
-			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution", _("Auto resolution setup"), _("Automatically change resolution")))
 		if config.usage.setup_level.getValue() == "expert":
 			self.sublist.append(QuickSubMenuEntryComponent("OSD position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
 		if SystemInfo["CanChange3DOsd"]:
@@ -339,6 +324,7 @@ class GeneralSetup(Screen):
 	def Qtuner(self):
 		self.sublist = []
 		if not SystemInfo["IPTVSTB"]:
+			self.sublist.append(QuickSubMenuEntryComponent("Tuner setup", _("Configure tuners"), _("Customize how tuners are used")))
 			dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
 			dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 			if len(dvbs_nimList) != 0:
@@ -347,9 +333,9 @@ class GeneralSetup(Screen):
 			if len(dvbt_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Location scan", _("Automatic location scan"), _("Automatic scan for services based on your location")))
 			self.sublist.append(QuickSubMenuEntryComponent("Manual scan", _("Service search"), _("Manual scan for services")))
-			if BLINDSCAN and len(nimList) != 0:
+			if BLINDSCAN and len(dvbs_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Blind scan", _("Blind search"), _("Blind scan for services")))
-			if HAVE_SATFINDER and len(nimList) != 0:
+			if HAVE_SATFINDER and len(dvbs_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Sat finder", _("Search sats"), _("Search sats, check signal and lock")))
 			if HAVE_LCN_SCANNER:
 				self.sublist.append(QuickSubMenuEntryComponent("LCN renumber", _("Automatic LCN assignment"), _("Automatic LCN assignment")))
@@ -422,7 +408,7 @@ class GeneralSetup(Screen):
 		elif selected == _("AV setup"):
 			self.Qavsetup()
 ######## Select Tuner Setup Menu ##############################
-		elif selected == _("Antenna") or selected == _("IPTV configuration"):
+		elif selected == _("Tuners") or selected == _("IPTV configuration"):
 			self.Qtuner()
 ######## Select Software Manager Menu ##############################
 		elif selected == _("Software manager"):
@@ -449,7 +435,7 @@ class GeneralSetup(Screen):
 		elif selected == _("Network adapter selection"):
 			self.session.open(NetworkAdapterSelection)
 		elif selected == _("Network interface"):
-			self.session.open(AdapterSetup,self.activeInterface)
+			self.session.open(AdapterSetup, self.activeInterface)
 		elif selected == _("Network restart"):
 			self.session.open(RestartNetwork)
 		elif selected == _("Network services"):
@@ -479,8 +465,6 @@ class GeneralSetup(Screen):
 		elif selected == _("AV setup"):
 			self.Qavsetup()
 ######## Select System Setup Menu ##############################
-		elif selected == _("GUI setup"):
-			self.openSetup("usage")
 		elif selected == _("Time settings"):
 			self.openSetup("time")
 		elif selected == _("Language settings"):
@@ -491,10 +475,10 @@ class GeneralSetup(Screen):
 			self.session.open(SkinSelector)
 		elif selected == _("Display skin"):
 			self.session.open(LcdSkinSelector)
-		elif selected == _("OSD settings"):
+		elif selected == _("GUI settings"):
 			self.openSetup("userinterface")
 		elif selected == _("Button settings"):
-			self.openSetup("remotesetup")
+			self.openSetup("buttonsetup")
 		elif selected == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 			self.session.open(HdmiCECSetupScreen)
@@ -548,6 +532,8 @@ class GeneralSetup(Screen):
 		elif selected == _("Timeshift settings"):
 			from Screens.Timershift import TimeshiftSettings
 			self.session.open(TimeshiftSettings)
+		elif selected == _("Auto language"):
+			self.openSetup("autolanguagesetup")
 		elif selected == _("Subtitle settings"):
 			self.openSetup("subtitlesetup")
 		elif selected == _("EPG settings"):
@@ -575,14 +561,10 @@ class GeneralSetup(Screen):
 ######## Select AV Setup Menu ##############################
 		elif selected == _("AV settings"):
 			self.session.open(VideoSetup)
-		elif selected == _("Auto language"):
-			self.openSetup("autolanguagesetup")
 		elif selected == _("Audio sync"):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif selected == _("VideoEnhancement"):
 			self.session.open(VideoEnhancementSetup)
-		elif selected == _("AutoResolution"):
-			self.session.open(AutoResSetupMenu)
 		elif selected == _("OSD position"):
 			from Screens.UserInterfacePositioner import UserInterfacePositioner
 			self.session.open(UserInterfacePositioner)
@@ -590,6 +572,8 @@ class GeneralSetup(Screen):
 			from Screens.UserInterfacePositioner import OSD3DSetupScreen
 			self.session.open(OSD3DSetupScreen)
 ######## Select TUNER Setup Menu ##############################
+		elif selected == _("Tuner setup"):
+			self.openSetup("tunersetup")
 		elif selected == _("Location scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 			self.session.open(IniTerrestrialLocation)
@@ -623,9 +607,10 @@ class GeneralSetup(Screen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox,
-					_("Are you sure you want to restore your %s %s backup?\n"
-					"Your %s %s will reboot after the restore") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
+				self.session.openWithCallback(
+					self.startRestore, MessageBox,
+					_("Are you sure you want to restore your %s %s backup?\nYour %s %s will reboot after the restore") %
+					(getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif selected == _("Backup settings"):
@@ -785,8 +770,8 @@ def QuickSubMenuEntryComponent(name, description, long_description=None, width=5
 	]
 
 class GeneralSetupList(MenuList):
-	def __init__(self, list, enableWrapAround=True):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+	def __init__(self, lst, enableWrapAround=True):
+		MenuList.__init__(self, lst, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 28))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
