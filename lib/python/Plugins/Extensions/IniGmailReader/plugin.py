@@ -1,26 +1,20 @@
 from TagStrip import strip_readable
-import email, re, os
+import email
+import re
 from email.header import decode_header
 from Screens.Screen import Screen
-from Components.Label import Label
 from Screens.MessageBox import MessageBox
-from Screens.Console import Console
-from Components.ScrollLabel import ScrollLabel
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.ActionMap import ActionMap,NumberActionMap
-from Components.About import about
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ActionMap import ActionMap  # , NumberActionMap
+from Components.ConfigList import ConfigListScreen
 from Components.ScrollLabel import ScrollLabel
-from twisted.web.client import downloadPage,getPage
 from Plugins.Plugin import PluginDescriptor
 from Components.Button import Button
 import urllib2
-from urllib2 import URLError
 from Screens.Standby import TryQuitMainloop
-import urllib2
 import feedparser
-from enigma import eTimer,eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER , getDesktop, loadPNG , loadPic
+from enigma import eTimer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, getDesktop, loadPNG , loadPic
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
 from Components.config import config, ConfigDirectory, ConfigSubsection, ConfigSubList, \
@@ -29,29 +23,29 @@ from Components.config import config, ConfigDirectory, ConfigSubsection, ConfigS
 
 config.plugins.gmail = ConfigSubsection()
 
-config.plugins.gmail.username = ConfigText(default = 'username', visible_width = 50, fixed_size = False)
-config.plugins.gmail.password = ConfigText(default = 'password', visible_width = 50, fixed_size = False)
-labels=(["inbox","unread","all","read","starred","spam","sent","trash","draft"])
-config.plugins.gmail.label = ConfigSelection(default = 'inbox',choices=(labels))
-checkgmailtimes=(["disabled","2","5","10","30","60","120","240","480"])
-config.plugins.gmail.checktimes = ConfigSelection(default = 'disabled',choices=(checkgmailtimes))
-config.plugins.gmail.gmailcount = ConfigNumber(default = 0)
+config.plugins.gmail.username = ConfigText(default='', visible_width=50, fixed_size=False)
+config.plugins.gmail.password = ConfigText(default='', visible_width=50, fixed_size=False)
+labels = (["inbox", "unread", "all", "read", "starred", "spam", "sent", "trash", "draft"])
+config.plugins.gmail.label = ConfigSelection(default='inbox', choices=(labels))
+checkgmailtimes = (["disabled", "2", "5", "10", "30", "60", "120", "240", "480"])
+config.plugins.gmail.checktimes = ConfigSelection(default='disabled', choices=(checkgmailtimes))
+config.plugins.gmail.gmailcount = ConfigNumber(default=0)
 
-sliderfile="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png"
-c7color=0xADFF2F
-c2color=0xFFA500
-c1color=0xFFFF00
-c3color=0xEEE8AA
-c5color=0xFF0000
-c4color=0xFF4500
-c6color=0x00FF7F
-c8color=0xC71585
-c9color=0xD2691E
+c7color = 0xADFF2F
+c2color = 0xFFA500
+c1color = 0xFFFF00
+c3color = 0xEEE8AA
+c5color = 0xFF0000
+c4color = 0xFF4500
+c6color = 0x00FF7F
+c8color = 0xC71585
+c9color = 0xD2691E
 
-pluginfolder="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/"
+pluginfolder = "/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/"
+sliderfile = pluginfolder + "slider.png"
 
 def wfile(st):
-	fp=open("/tmp/lf.txt","w")
+	fp = open("/tmp/lf.txt", "w")
 	fp.write(st)
 	fp.close()
 
@@ -59,115 +53,114 @@ import imaplib
 def gmaillogin():
 	global mail
 	mail = imaplib.IMAP4_SSL('imap.gmail.com')
-	username=str(config.plugins.gmail.username.value)
-	password=str(config.plugins.gmail.password.value)
+	username = str(config.plugins.gmail.username.value)
+	password = str(config.plugins.gmail.password.value)
 	mail = imaplib.IMAP4_SSL('imap.gmail.com')
-	mail.login(username+"@gmail.com", password)
+	mail.login(username + "@gmail.com", password)
 	return mail
 
 def getidlist():
-	nidlist=[]
+	nidlist = []
 	try:
-		mail=gmaillogin()
+		mail = gmaillogin()
 		mail.list()
 		# Out: list of "folders" aka labels in gmail.
-		tlabel=str(config.plugins.gmail.label.value)
-		mail.select(tlabel) # connect to inbo
+		tlabel = str(config.plugins.gmail.label.value)
+		mail.select(tlabel)  # connect to inbox
 		result, data = mail.search(None, "UNSEEN")
 
-		ids = data[0] # data is a list.
-		id_list = ids.split() # ids is a space separated string
+		ids = data[0]  # data is a list.
+		id_list = ids.split()  # ids is a space separated string
 
-		idlist=[]
+		idlist = []
 		for id in id_list[-20:]:
 			idlist.append(id)
 
-		nidlist= idlist[::-1]
+		nidlist = idlist[::-1]
 
 		return nidlist
-	except:
+	except (Exception) as ex:
+		print "[GMail]getidlist error:", str(ex)
 		return nidlist
 
 def viewgmail(message_id):
 	mail.list()
 	# Out: list of "folders" aka labels in gmail.
-	tlabel=str(config.plugins.gmail.label.value)
-	mail.select(tlabel) # connect to inbo
+	tlabel = str(config.plugins.gmail.label.value)
+	mail.select(tlabel)  # connect to inbo
 	result, data = mail.search(None, "UNSEEN")
-	result, data = mail.fetch(message_id, "(RFC822)") # fetch the email body (RFC822) for the given ID
-	raw_email = data[0][1] # here's the body, which is raw text of the whole email
-	wfile(str(message_id)+"\n"+raw_email)
+	result, data = mail.fetch(message_id, "(RFC822)")  # fetch the email body (RFC822) for the given ID
+	raw_email = data[0][1]  # here's the body, which is raw text of the whole email
+	wfile(str(message_id) + "\n" + raw_email)
 
 	return raw_email
 
-def get_unread_msgs(user, passwd,tlabel):
+def get_unread_msgs(user, passwd, tlabel):
 	try:
 		auth_handler = urllib2.HTTPBasicAuthHandler()
 		auth_handler.add_password(
-			realm='New mail feed',
+			realm='mail.google.com',
 			uri='https://mail.google.com',
 			user='%s@gmail.com' % user,
 			passwd=passwd
 		)
 		opener = urllib2.build_opener(auth_handler)
 		urllib2.install_opener(opener)
-		url='https://mail.google.com/mail/feed/atom/'+tlabel
+		url = 'https://mail.google.com/mail/feed/atom/' + tlabel
 		feed = urllib2.urlopen(url)
 
 		return feed.read()
-	except:
+	except (Exception) as ex:
+		print "[GMail]get_unread_msgs error:", str(ex)
 		return "error"
 
 def getgmail():
-	list=[]
 	try:
-		user=config.plugins.gmail.username.value
-		password=config.plugins.gmail.password.value
-		tlabel=str(config.plugins.gmail.label.value)
-		feedtext=get_unread_msgs(user,password,tlabel)
-		if feedtext=="error":
+		result = []
+		user = config.plugins.gmail.username.value
+		password = config.plugins.gmail.password.value
+		tlabel = str(config.plugins.gmail.label.value)
+		feedtext = get_unread_msgs(user, password, tlabel)
+		if feedtext == "error":
 			return list
-		fileObj = open("feed.xml","w")
-		fileObj.write(feedtext)
-		fileObj.close()
-		feed = feedparser.parse('feed.xml')
+		feed = feedparser.parse(feedtext)
 
 		for item in feed.entries:
 			try:
-				date=item.published
+				date = item.published
 			except:
-				date=""
+				date = ""
 			try:
-				title=item.title
+				title = item.title
 			except:
-				title=""
+				title = ""
 			try:
-				author=item.author
+				author = item.author
 			except:
-				author=""
+				author = ""
 			try:
-				summary=item.summary
+				summary = item.summary
 			except:
-				summary=""
+				summary = ""
 
-			list.append([date,title,author,summary])
+			result.append([date, title, author, summary])
 
-		return list
+		return result
+	except (Exception) as ex:
+		print "[GMail] getgmail error:", str(ex)
+		return None
 
-	except:
-		return list
-
-class  Gmailfeedsscrn(Screen):
+class Gmailfeedsscrn(Screen):
 	skin = """
 		<screen position="center,center" size="920,520" title="GMail Reader" >
 		<widget name="menu" position="0,0" size="920,500" scrollbarMode="showOnDemand" transparent="1" zPosition="2" />
 		<widget name="info" position="150,50" zPosition="4" size="620,300" font="Regular;24" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />
 		</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
-		info="Please wait while getting email\nUse Setup to enter username and password"
-
+		info = "Please wait while getting email\nUse Setup to enter username and password"
+		self.gmails = []
 		self["info"] = Label()
 		self["info"].setText(info)
 		self["key_red"] = Button(_("Setup"))
@@ -176,85 +169,83 @@ class  Gmailfeedsscrn(Screen):
 		self["key_blue"] = Label()
 		self["menu"] = MenuList([], True, eListboxPythonMultiContent)
 		Screen.__init__(self, session)
-		self["actions"] = ActionMap(["WizardActions","MenuActions", "DirectionActions", "ColorActions"],
-		{
+		self["actions"] = ActionMap(["WizardActions", "MenuActions", "DirectionActions", "ColorActions"], {
 			"red": self.showsettings,
 			"cancel": self.close,
 			"back": self.close,
-			"ok"    :self.gmailviewer,
+			"ok": self.gmailviewer,
 		}, -1)
 		self.onLayoutFinish.append(self.checkpass)
 		self.onShow.append(self.UpdateTitle)
 
 	def gmailviewer(self):
-		tlabel=str(config.plugins.gmail.label.value)
-		if not tlabel=="inbox" :
-			self.session.open( MessageBox, _("You can only view messages from inbox. Use setup to change label to inbox."), MessageBox.TYPE_WARNING,10)
+		tlabel = str(config.plugins.gmail.label.value)
+		if not tlabel == "inbox":
+			self.session.open(MessageBox, _("You can only view messages from inbox. Use setup to change label to inbox."), MessageBox.TYPE_WARNING, 10)
 			return
-		idlist=[]
-		idlist=getidlist()
-		if len(idlist)==0:
-			self.session.open( MessageBox, _("Sorry! Unable to view email body, try again later."), MessageBox.TYPE_WARNING,10)
+		idlist = getidlist()
+		if not idlist:
+			self.session.open(MessageBox, _("Sorry! Unable to view email body, try again later."), MessageBox.TYPE_WARNING, 10)
 			return
 		currentindex = self["menu"].getSelectedIndex()
-		message_id=idlist[currentindex]
-		body= viewgmail(message_id)
+		message_id = idlist[currentindex]
+		body = viewgmail(message_id)
 
-		tdate=str(self.gmails[currentindex][0])
-		title= str(self.gmails[currentindex][1])
-		author=str(self.gmails[currentindex][2])
-		summary=str(self.gmails[currentindex][3])
+		tdate = str(self.gmails[currentindex][0])
+		title = str(self.gmails[currentindex][1])
+		author = str(self.gmails[currentindex][2])
+		# summary = str(self.gmails[currentindex][3])
 		self.session.openWithCallback(self.refresh, Gmailbodyviewer, title, body, tdate, author)
 
 	def UpdateTitle(self):
 		pass
 
 	def checkpass(self):
-		if config.plugins.gmail.password.value=="" or config.plugins.gmail.username.value=="" :
-			info="Use setup to enter username and password"
+		if config.plugins.gmail.password.value == "" or config.plugins.gmail.username.value == "":
+			info = "Use setup to enter username and password"
 			self["info"].setText(info)
 		else:
 			self.refresh(True)
 
 	def showsettings(self):
-		self.session.openWithCallback(self.refresh,GmailSetup)
+		self.session.openWithCallback(self.refresh, GmailSetup)
 
-	def refresh(self,result):
+	def refresh(self, result):
 		if result:
-			thegmails=[]
+			thegmails = []
 			self["menu"].l.setList(thegmails)
 			self["info"].setText("")
 			self["menu"].show()
-			info="Please wait while getting email\nUse Setup to enter username and password"
+			info = "Please wait while getting email\nUse Setup to enter username and password"
 			self["info"].setText(info)
 			self.timer = eTimer()
 			self.timer.callback.append(self.ListToMulticontentgmails)
 			self.timer.start(50, 1)
 
 	def ListToMulticontentgmails(self):
-		list=getgmail()
+		msglist = getgmail()
 
-		if not list:
-			self["info"].setText("error in gettings gmail,may be label search empty,check internet or check login data and selected label from settings(menu)")
+		if msglist is None:
+			self["info"].setText("Error getting gmail. Check Internet connection and login details and also selected label from settings(menu)")
 			return
-		res = []
-		theevents = []
-		self.gmails=list
+		self.gmails = msglist
+		if not msglist:
+			self["info"].setText("No unseen messages.")
+			return
 
 		#set item height for menulist to 40
 		self["menu"].l.setItemHeight(100)
-		thegmails=[]
+		thegmails = []
 		#we set the font and size for each item in mylist
 		self["menu"].l.setFont(0, gFont("Regular", 20))
 		try:
-			k=0
-			png=sliderfile
+			png = sliderfile
 			for item in self.gmails:
-				date=str(item[0])
-				title= str(item[1])
-				author=str(item[2])
-				summary=str(item[3])
 				res = []
+				date = str(item[0])
+				title = str(item[1])
+				author = str(item[2])
+				summary = str(item[3])
 				res.append(MultiContentEntryText(pos=(0, 0), size=(2, 30), font=0, flags = RT_HALIGN_LEFT, text="", color=c1color, color_sel=c1color))
 				res.append(MultiContentEntryText(pos=(10, 0), size=(230, 35), font=0, flags = RT_HALIGN_LEFT, text=date, color=c1color, color_sel=c1color))
 				res.append(MultiContentEntryText(pos=(240, 0), size=(600, 35), font=0, flags = RT_HALIGN_LEFT, text=title, color=c2color, color_sel=c2color))
@@ -262,10 +253,8 @@ class  Gmailfeedsscrn(Screen):
 				res.append(MultiContentEntryText(pos=(10, 65), size=(910, 55), font=0, flags = RT_HALIGN_LEFT, text=summary, color=c4color, color_sel=c4color))
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 95), size=(660, 5), png=loadPNG(png)))
 				thegmails.append(res)
-				res = []
 		except:
-				thegmails.append(res)
-				res = []
+				pass
 
 		self["menu"].l.setList(thegmails)
 		self["info"].setText("")
@@ -287,9 +276,9 @@ class GmailSetup(Screen, ConfigListScreen):
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Label()
 		self["key_blue"] = Button(_("Keyboard"))
-		self.list = [ ]
+		self.list = []
 
-		self.checktimestart=config.plugins.gmail.checktimes.value
+		self.checktimestart = config.plugins.gmail.checktimes.value
 
 		self.list.append(getConfigListEntry(_("Username:"), config.plugins.gmail.username))
 		self.list.append(getConfigListEntry(_("Password:"), config.plugins.gmail.password))
@@ -301,27 +290,27 @@ class GmailSetup(Screen, ConfigListScreen):
 			"green": self.keySave,
 			"red": self.keyClose,
 			"cancel": self.keyClose,
-			"blue" : self.openKeyboard,
+			"blue": self.openKeyboard,
 			"ok": self.keySave,
 		}, -2)
 
 	def openKeyboard(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if sel[0]== _("Username:") or sel[0] == _("Password:"):
+			if sel[0] == _("Username:") or sel[0] == _("Password:"):
 				if self["config"].getCurrent()[1].help_window.instance is not None:
 					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username:") or self.vkvar == _("Password:"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].getValue())
 
-	def VirtualKeyBoardCallback(self, callback = None):
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
 
-	def restartenigma(self,result):
+	def restartenigma(self, result):
 		if result:
 			self.session.open(TryQuitMainloop, 3)
 		else:
@@ -331,7 +320,7 @@ class GmailSetup(Screen, ConfigListScreen):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
-		if config.plugins.gmail.checktimes.value==self.checktimestart:
+		if config.plugins.gmail.checktimes.value == self.checktimestart:
 			pass
 		else:
 			self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart GUI to load new settings?"), MessageBox.TYPE_YESNO)
@@ -345,48 +334,44 @@ class GmailSetup(Screen, ConfigListScreen):
 
 		self.close(False)
 
-	def keyClose(self):
-		self.close(False)
-
 def main(session, **kwargs):
 	session.open(Gmailfeedsscrn)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-		PluginDescriptor(name="GMail Reader", description="GMail Reader", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main),
-		PluginDescriptor(name="GMail Reader", description="GMail Reader", where = PluginDescriptor.WHERE_PLUGINMENU, icon="gmail.png", fnc=main)]
+	return [
+		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart),
+		PluginDescriptor(where=PluginDescriptor.WHERE_EXTENSIONSMENU, name="GMail Reader", description="GMail Reader", fnc=main),
+		PluginDescriptor(where=PluginDescriptor.WHERE_PLUGINMENU, name="GMail Reader", description="GMail Reader", icon="gmail.png", fnc=main)
+	]
 
 class gmailnotifier(Screen):
 	skin = """<screen name="gmailnotifier" position="40,150" size="200,100" title="New GMail"  flags="wfNoBorder" >
 		<widget name="info" position="0,0" size="200,100" font="Regular;20" zPosition="2" transparent="1" valign="center" halign="center" />
 		</screen>"""
 
-	def __init__(self, session,msg=None):
+	def __init__(self, session, msg=None):
 		Screen.__init__(self, session)
 
-		self.session=session
+		self.session = session
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"ok": self.readgmail,
 			"cancel": self.disappear,
 		}, -1)
-		self["info"]=Label(msg)
+		self["info"] = Label(msg)
 		self.timer = eTimer()
 		self.timer.callback.append(self.disappear)
 		self.timer.start(20000, True)
 
 	def readgmail(self):
-		self.session.openWithCallback(self.disappear,Gmailfeedsscrn)
+		self.session.openWithCallback(self.disappear, Gmailfeedsscrn)
 
 	def disappear(self):
 		self.close()
 
-def stoploop():
-	StayLoop.stopTimer()
-
 def autostart(reason, **kwargs):
 	try:
-		if config.plugins.gmail.checktimes.value=="disabled":
+		if config.plugins.gmail.checktimes.value == "disabled":
 			return
 	except:
 			pass
@@ -400,31 +385,31 @@ class DocompareTimes(Screen):
 	skin = """<screen position="100,150" size="300,100" title="New GMail" >
 		</screen>"""
 
-	def __init__(self,session):
-		Screen.__init__(self,session)
+	def __init__(self, session):
+		Screen.__init__(self, session)
 
 		self.session = session
-		minutecount=str(config.plugins.gmail.checktimes.value)
-		if minutecount=="disabled":
+		minutecount = str(config.plugins.gmail.checktimes.value)
+		if minutecount == "disabled":
 			return
-		minutes=int(minutecount)
-		mseconds=minutes* 60000
-		self.minutecount=mseconds
+		minutes = int(minutecount)
+		mseconds = minutes * 60000
+		self.minutecount = mseconds
 		self.TimerPrayerTimes = eTimer()
 		self.TimerPrayerTimes.stop()
 		self.TimerPrayerTimes.timeout.get().append(self.Checkcounts)
-		self.TimerPrayerTimes.start(self.minutecount,True)
+		self.TimerPrayerTimes.start(self.minutecount, True)
 
-	def repeat(self,result=None):
+	def repeat(self, result=None):
 		self.TimerPrayerTimes = eTimer()
 		self.TimerPrayerTimes.stop()
 		self.TimerPrayerTimes.timeout.get().append(self.Checkcounts)
-		self.TimerPrayerTimes.start(self.minutecount,True)
+		self.TimerPrayerTimes.start(self.minutecount, True)
 
 	def Checkcounts(self):
 		netcount = comparecounts()
 #		print "[GMail] netcount:", netcount
-		if netcount>0:
+		if netcount > 0:
 			msg = "%d new email%s.\nPress OK to view." % (netcount, "s" if netcount > 1 else "")
 #			print "[GMail]", msg
 			self.session.openWithCallback(self.repeat, gmailnotifier, msg)
@@ -433,29 +418,29 @@ class DocompareTimes(Screen):
 
 def getnewgmailcount():
 	try:
-		newEmail=""
-		USERNAME=str(config.plugins.gmail.username.value)
-		PASSWORD=str(config.plugins.gmail.password.value )
-		tlabel=""
-		feedtext=get_unread_msgs(USERNAME,PASSWORD,tlabel)
-		if feedtext=="error":
+		USERNAME = str(config.plugins.gmail.username.value)
+		PASSWORD = str(config.plugins.gmail.password.value)
+		tlabel = ""
+		feedtext = get_unread_msgs(USERNAME, PASSWORD, tlabel)
+		if feedtext == "error":
 			return 0
 
 		gmailcount = int(feedparser.parse(feedtext)["feed"]["fullcount"])
 		return gmailcount
-	except:
+	except (Exception) as ex:
+		print "[GMail] getnewgmailcount error:", str(ex)
 		return 0
 
 def comparecounts():
-	netcount=0
-	oldcount=config.plugins.gmail.gmailcount.value
-#	print "[GMail] oldcount",oldcount
-	newcount=getnewgmailcount()
-#	print "[GMail] newcount",newcount
-	netcount=newcount-oldcount
-#	print "[GMail] netcount",netcount
+	netcount = 0
+	oldcount = config.plugins.gmail.gmailcount.value
+#	print "[GMail] oldcount", oldcount
+	newcount = getnewgmailcount()
+#	print "[GMail] newcount", newcount
+	netcount = newcount - oldcount
+#	print "[GMail] netcount", netcount
 	if newcount and newcount != oldcount:
-		config.plugins.gmail.gmailcount.value=newcount
+		config.plugins.gmail.gmailcount.value = newcount
 		config.plugins.gmail.gmailcount.save()
 		configfile.save()
 	return netcount
@@ -470,11 +455,11 @@ class Gmailbodyviewer(Screen):
 			<ePixmap position="15,510" size="890,5" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/IniGmailReader/slider.png" alphatest="blend" transparent="1" backgroundColor="transparent"/>
 		</screen>"""
 
-	def __init__(self, session, title=None,body=None,tdate=None,author=None):
-		self.gmailmsg= body
+	def __init__(self, session, title=None, body=None, tdate=None, author=None):
+		self.gmailmsg = body
 
-		self.session=session
-		self.itemscount=10
+		self.session = session
+		self.itemscount = 10
 		self["author"] = Label(_("From: ") + author)
 		self["title"] = Label(_("Subject: ") + title)
 		self["tdate"] = Label(_("Date: ") + tdate)
@@ -484,9 +469,9 @@ class Gmailbodyviewer(Screen):
 		self["key_blue"] = Label()
 		self["text"] = ScrollLabel("")
 
-		txt=""
+		txt = ""
 		Screen.__init__(self, session)
-		self["actions"] = ActionMap(["PiPSetupActions","WizardActions","ColorActions"],
+		self["actions"] = ActionMap(["PiPSetupActions", "WizardActions", "ColorActions"],
 		{
 			"cancel": self.exit,
 			"back": self.exit,
@@ -501,21 +486,21 @@ class Gmailbodyviewer(Screen):
 		self.timer.start(100, 1)
 
 	def updatetitle(self):
-		txt="Fetching email body,please wait..."
+		txt = "Fetching email body,please wait..."
 		self["text"].setText(txt)
 		self.setTitle("GMail Reader")
 
-	def getemailinfo(self,msg):
+	def getemailinfo(self, msg):
 		self._email = msg
 		#header=decodeHeader(_("From") +": %s" %self._email.get('from', _('no from')))
 		#msgdate = email.utils.parsedate_tz(self._email.get("date", ""))
 		#self["date"] = Label(_("Date") +": %s" % (time.ctime(email.utils.mktime_tz(msgdate)) if msgdate else _("no date")))
 		#subject = decodeHeader(_("Subject") +": %s" %self._email.get('subject', _('no subject')))
-		body=self._email.messagebodys[0].getData()
-		if not body.strip()=="":
+		body = self._email.messagebodys[0].getData()
+		if not body.strip() == "":
 			self["text"].setText(body)
 		else:
-			self["text"].setText("Sorry,unable to read email" )
+			self["text"].setText("Sorry,unable to read email")
 
 	def getplainmessage(self):
 		msg = email.Parser.Parser().parsestr(self.gmailmsg)
@@ -524,7 +509,7 @@ class Gmailbodyviewer(Screen):
 
 		if msg.is_multipart():
 			for part in msg.walk():
-				if part.get_content_maintype()=="multipart":
+				if part.get_content_maintype() == "multipart":
 					continue
 				if part.get_content_maintype() == 'text' and part.get_filename() is None:
 					if part.get_content_subtype() == "html":
@@ -576,14 +561,13 @@ class EmailBody:
 		except UnicodeDecodeError:
 			return text
 
-
 	def getContenttype(self):
 		return self.data.get_content_type()
 
 def decodeHeader(text, default=''):
 	if text is None:
 		return _(default)
-	text = text.replace('\r',' ').replace('\n',' ').replace('\t',' ')
+	text = text.replace('\r', ' ').replace('\n', ' ').replace('\t', ' ')
 	text = re.sub('\s\s+', ' ', text)
 	textNew = ""
 	for part in decode_header(text):
@@ -595,5 +579,5 @@ def decodeHeader(text, default=''):
 			textNew += content
 	try:
 		return textNew.encode('utf-8')
-	except UnicodeDecodeError: # for faulty mail software systems
+	except UnicodeDecodeError:  # for faulty mail software systems
 		return textNew.decode('iso-8859-1').encode('utf-8')

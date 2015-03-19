@@ -442,8 +442,7 @@ class MovieList(GUIComponent):
 			begin_string = ' '.join(FuzzyTime(begin, inPast=True))
 
 		ih = self.itemHeight
-		lenSize = ih * 3  # 25 -> 75
-		dateSize = ih * 145 / 25   # 25 -> 145
+		dateSize = ((self.fontSize - 3) + config.movielist.fontsize.value) * 10
 		if self.screenwidth and self.screenwidth == 1920:
 			res.append(MultiContentEntryText(pos=(iconSize + 20, 5), size=(width - iconSize - dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
 			res.append(MultiContentEntryText(pos=(width - dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
