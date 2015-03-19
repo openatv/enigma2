@@ -339,9 +339,9 @@ class GeneralSetup(Screen):
 			if len(dvbt_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Location scan", _("Automatic location scan"), _("Automatic scan for services based on your location")))
 			self.sublist.append(QuickSubMenuEntryComponent("Manual scan", _("Service search"), _("Manual scan for services")))
-			if BLINDSCAN and len(nimList) != 0:
+			if BLINDSCAN and len(dvbs_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Blind scan", _("Blind search"), _("Blind scan for services")))
-			if HAVE_SATFINDER and len(nimList) != 0:
+			if HAVE_SATFINDER and len(dvbs_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent("Sat finder", _("Search sats"), _("Search sats, check signal and lock")))
 			if HAVE_LCN_SCANNER:
 				self.sublist.append(QuickSubMenuEntryComponent("LCN renumber", _("Automatic LCN assignment"), _("Automatic LCN assignment")))
