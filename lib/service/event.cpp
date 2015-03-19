@@ -11,6 +11,7 @@
 #include <dvbsi++/content_descriptor.h>
 #include <dvbsi++/parental_rating_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/pdc_descriptor.h>
 
 #include <sys/types.h>
 #include <fcntl.h>
@@ -159,6 +160,12 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 						data.m_rating = (*it)->getRating();
 						m_ratings.push_back(data);
 					}
+					break;
+				}
+				case PDC_DESCRIPTOR:
+				{
+					const PdcDescriptor *pdcd = (PdcDescriptor *)*desc;
+					m_pdc_pil = pdcd->getProgrammeIdentificationLabel();
 					break;
 				}
 			}
