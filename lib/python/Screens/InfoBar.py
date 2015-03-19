@@ -383,7 +383,7 @@ class MoviePlayer(
 		return {
 			"ask": _("Stop movie and ask user next action"),
 			"movielist": _("Stop movie and return to movie list"),
-			"quit": _("Stop movie and return  to previous service")
+			"quit": _("Stop movie and return to previous service")
 		}.get(config.usage.on_movie_stop.value, _("No current function"))
 
 	def leavePlayer(self):
