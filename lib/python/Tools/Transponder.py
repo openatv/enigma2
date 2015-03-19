@@ -1,6 +1,9 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
 from Components.NimManager import nimmanager
 
+def orbpos(pos):
+	return "%d.%d\xc2\xb0%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
+
 def getTunerDescription(nim):
 	try:
 		return nimmanager.getTerrestrialDescription(nim)
@@ -8,10 +11,17 @@ def getTunerDescription(nim):
 		print "[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim
 	return ""
 
+def getMHz(frequency):
+	return (frequency+50000)/100000/10.
+
 def getChannelNumber(frequency, nim):
+	if nim == "DVB-T":
+		for n in nimmanager.nim_slots:
+			if n.isCompatible("DVB-T"):
+				nim = n.slot
+				break
 	f = getMHz(frequency)
 	descr = getTunerDescription(nim)
-
 	if "DVB-T" in descr:
 		if "Europe" in descr:
 			if 174 < f < 230: 	# III
@@ -33,9 +43,6 @@ def getChannelNumber(frequency, nim):
 				d = (f - 1) % 7
 				return str(int(f - 526)/7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
 	return ""
-
-def getMHz(frequency):
-	return (frequency+50000)/100000/10.
 
 def supportedChannels(nim):
 	descr = getTunerDescription(nim)
@@ -79,6 +86,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.Modulation_QAM16 : "QAM16",
 			eDVBFrontendParametersSatellite.Modulation_8PSK : "8PSK"}.get(tp.get("modulation"))
 		ret["orbital_position"] = nimmanager.getSatName(int(tp.get("orbital_position")))
+		ret["orb_pos"] = orbpos(int(tp.get("orbital_position")))
 		ret["polarization"] = {
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal : _("Horizontal"),
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : _("Vertical"),
@@ -195,6 +203,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.System_DVB_T_T2 : "DVB-T/T2",
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
+		ret["channel"] = _("CH%s") % getChannelNumber(tp.get("frequency"), "DVB-T")
 	elif type == "ATSC":
 		ret["tuner_type"] = "ATSC"
 		ret["modulation"] = {
