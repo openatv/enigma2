@@ -1,4 +1,4 @@
-from enigma import eListboxPythonMultiContent, gFont, eEnv, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_WRAP
+from enigma import eListboxPythonMultiContent, gFont, eEnv
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
 
 from Components.ActionMap import ActionMap
@@ -17,11 +17,10 @@ from Screens.PluginBrowser import PluginDownloadBrowser, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Satconfig import NimSelection
-from Screens.Setup import Setup, getSetupTitle
+from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
 
-from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
@@ -30,12 +29,7 @@ from Screens.VideoMode import VideoSetup
 from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN
-from Tools.LoadPixmap import LoadPixmap
-
 from os import path
-from time import sleep
-from re import search
 
 import NavigationInstance
 
@@ -313,10 +307,10 @@ class GeneralSetup(Screen):
 	def Qavsetup(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("AV settings", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
-		if AUDIOSYNC == True:
+		if AUDIOSYNC:
 			self.sublist.append(QuickSubMenuEntryComponent("Audio sync", _("Set up audio sync"), _("Set up audio sync settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Auto language", _("Auto language selection"), _("Select your Language for audio/subtitles")))
-		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
+		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement", _("Video enhancement setup"), _("Video enhancement setup")))
 		if config.usage.setup_level.getValue() == "expert":
 			self.sublist.append(QuickSubMenuEntryComponent("OSD position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
@@ -441,7 +435,7 @@ class GeneralSetup(Screen):
 		elif selected == _("Network adapter selection"):
 			self.session.open(NetworkAdapterSelection)
 		elif selected == _("Network interface"):
-			self.session.open(AdapterSetup,self.activeInterface)
+			self.session.open(AdapterSetup, self.activeInterface)
 		elif selected == _("Network restart"):
 			self.session.open(RestartNetwork)
 		elif selected == _("Network services"):
@@ -613,9 +607,10 @@ class GeneralSetup(Screen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox,
-					_("Are you sure you want to restore your %s %s backup?\n"
-					"Your %s %s will reboot after the restore") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
+				self.session.openWithCallback(
+					self.startRestore, MessageBox,
+					_("Are you sure you want to restore your %s %s backup?\nYour %s %s will reboot after the restore") %
+					(getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif selected == _("Backup settings"):
@@ -775,8 +770,8 @@ def QuickSubMenuEntryComponent(name, description, long_description=None, width=5
 	]
 
 class GeneralSetupList(MenuList):
-	def __init__(self, list, enableWrapAround=True):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+	def __init__(self, lst, enableWrapAround=True):
+		MenuList.__init__(self, lst, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 28))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
