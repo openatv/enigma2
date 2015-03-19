@@ -11,6 +11,12 @@ def getFlashDateString():
 	except:
 		return _("unknown")
 
+def getFlashDateString():
+	try:
+		return time.strftime(_("%Y-%m-%d %H:%M"), time.localtime(os.stat("/boot").st_ctime))
+	except:
+		return _("unknown")
+
 def getEnigmaVersionString():
 	return getImageVersion()
 
@@ -121,6 +127,14 @@ def getIfTransferredData(ifname):
 			rx_bytes, tx_bytes = (data[0], data[8])
 			f.close()
 			return rx_bytes, tx_bytes
+
+def getPythonVersionString():
+	try:
+		import commands
+		status, output = commands.getstatusoutput("python -V")
+		return output.split(' ')[1]
+	except:
+		return _("unknown")
 
 def getPythonVersionString():
 	try:

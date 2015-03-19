@@ -186,8 +186,6 @@ void bsodFatal(const char *component)
 		struct tm tm;
 		char tm_str[32];
 
-		bool detailedCrash = getConfigBool("config.crash.details", true);
-
 		localtime_r(&t, &tm);
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
@@ -222,47 +220,6 @@ void bsodFatal(const char *component)
 		xml.cDataFromFile("imageversion", "/etc/image-version");
 		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();
-
-		if (detailedCrash)
-		{
-			xml.open("software");
-			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
-			}
-			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
-				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
-			}
-			else if (access("/proc/stb/info/model", F_OK) != -1) {
-				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
-			}
-			else if (access("/proc/stb/info/azmodel", F_OK) != -1) {
-				xml.cDataFromCmd("azboxboxsoftware", "opkg list-installed 'az*'");
-			}
-			else if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
-				xml.cDataFromCmd("gigabluesoftware", "opkg list-installed 'gb*'");
-			}
-			else if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
-				xml.cDataFromCmd("technomatesoftware", "opkg list-installed 'tm*'");
-			}
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("ventonsoftware", "opkg list-installed 'ini*'");
-			}
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("maxdigitalsoftware", "opkg list-installed 'xp*'");
-			}			
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("odinsoftware", "opkg list-installed 'odin*'");
-			}		
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("eboxsoftware", "opkg list-installed 'ebox*'");
-			}	
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("medialinksoftware", "opkg list-installed 'ixuss*'");
-			}				
-			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
-			xml.close();
-		}
 
 		xml.open("crashlogs");
 		xml.cDataFromString("enigma2crashlog", getLogBuffer());

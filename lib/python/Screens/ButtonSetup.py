@@ -67,6 +67,8 @@ ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Sleep"), "sleep", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", ""),
+	(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
+	(_("HDMIin") + " " + _("long"), "HDMIin_long", (SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 	(_("F1/LAN"), "f1", "Infobar/showNetworkMounts"),
 	(_("F1/LAN long"), "f1_long", ""),
@@ -141,6 +143,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
 	ButtonSetupFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", "InfoBar"))
 	ButtonSetupFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", "InfoBar"))
+	if SystemInfo["LcdLiveTV"]:
+		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	ButtonSetupFunctions.append((_("ButtonSetup Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
@@ -516,9 +520,16 @@ class InfoBarButtonSetup():
 					self.close()
 				else:
 					self.show()
+				from Screens.MovieSelection import defaultMoviePath
+				moviepath = defaultMoviePath()
+				if moviepath:
+					config.movielist.last_videodir.value = moviepath
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
 			self.openServiceList()
 		elif hasattr(self, "showMovies"):
 			self.showMovies()
+
+	def ToggleLCDLiveTV(self):
+		config.lcd.showTv.value = not config.lcd.showTv.value

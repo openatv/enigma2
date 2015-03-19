@@ -67,7 +67,7 @@ class ServiceName(Converter, object):
 					return "%s - " % name
 				else:
 					return "%s - %s" % (name, act_event.getEventName())
-			elif self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.value and hasattr(self.source, "serviceref") and '0:0:0:0:0:0:0:0:0' not in self.source.serviceref.toString():
+			elif self.type != self.NAME_ONLY and config.usage.show_infobar_channel_number.value and hasattr(self.source, "serviceref") and self.source.serviceref and '0:0:0:0:0:0:0:0:0' not in self.source.serviceref.toString():
 				numservice = self.source.serviceref
 				num = numservice and numservice.getChannelNum() or None
 				if num is not None:
@@ -142,10 +142,7 @@ class ServiceName(Converter, object):
 	def mod(self):
 		return self.t_info["modulation"]
 	def polar(self):
-		po = self.t_info["polarization"]
-		if ' ' in po:
-			return po.split(' ')[1][0].upper()
-		return po[0]
+		return self.t_info["polarization_abbreviation"]
 	def orb_pos(self):
 		op = self.t_info["orbital_position"]
 		if '(' in op:

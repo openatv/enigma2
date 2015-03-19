@@ -6,8 +6,17 @@ from enigma import eDBoxLCD, eTimer
 from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
+from Screens.Screen import Screen
 import usb
 
+
+class dummyScreen(Screen):
+	skin = """<screen position="0,0" size="0,0" transparent="1">
+	<widget source="session.VideoPicture" render="Pig" position="0,0" size="0,0" backgroundColor="transparent" zPosition="1"/>
+	</screen>"""
+	def __init__(self, session, args=None):
+		Screen.__init__(self, session)
+		self.close()
 
 def IconCheck(session=None, **kwargs):
 	if fileExists("/proc/stb/lcd/symbol_network") or fileExists("/proc/stb/lcd/symbol_usb"):
@@ -111,18 +120,6 @@ class LCD:
 		f.write(value)
 		f.close()
 
-	def setRepeat(self, value):
-		print 'setLCDRepeat',value
-		f = open("/proc/stb/lcd/scroll_repeats", "w")
-		f.write(value)
-		f.close()
-
-	def setScrollspeed(self, value):
-		print 'setLCDScrollspeed',value
-		f = open("/proc/stb/lcd/scroll_delay", "w")
-		f.write(str(value))
-		f.close()
-
 	def setLEDNormalState(self, value):
 		eDBoxLCD.getInstance().setLED(value, 0)
 
@@ -219,7 +216,7 @@ def InitLcd():
 			("60000", "1 " + _("minute")),
 			("300000", "5 " + _("minutes")),
 			("noscrolling", _("off"))])
-	
+
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value)
 
@@ -234,12 +231,6 @@ def InitLcd():
 
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value)
-
-		def setLCDrepeat(configElement):
-			ilcd.setRepeat(configElement.value)
-
-		def setLCDscrollspeed(configElement):
-			ilcd.setScrollspeed(configElement.value)
 
 		def setLCDminitvmode(configElement):
 			ilcd.setLCDMiniTVMode(configElement.value)
@@ -274,6 +265,14 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
 
+		if SystemInfo["LcdLiveTV"]:
+			def lcdLiveTvChanged(configElement):
+				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
+				InfoBarInstance = InfoBar.instance
+				InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+			config.lcd.showTv = ConfigYesNo(default = False)
+			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
+
 		if SystemInfo["LCDMiniTV"]:
 			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
 			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
@@ -282,16 +281,41 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if fileExists("/proc/stb/lcd/scroll_delay"):
-			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
-			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed)
-		else:
-			config.lcd.scrollspeed = ConfigNothing()
-		if fileExists("/proc/stb/lcd/scroll_repeats"):
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
-			config.lcd.repeat.addNotifier(setLCDrepeat)
-		else:
-			config.lcd.repeat = ConfigNothing()
+		if SystemInfo["VFD_scroll_repeats"]:
+			def scroll_repeats(el):
+				open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
+			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
+			config.usage.vfd_scroll_repeats = ConfigSelection(default = "3", choices = choicelist)
+			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback = False)
+
+		if SystemInfo["VFD_scroll_delay"]:
+			def scroll_delay(el):
+				open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
+			config.usage.vfd_scroll_delay = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
+			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
+
+		if SystemInfo["VFD_initial_scroll_delay"]:
+			def initial_scroll_delay(el):
+				open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
+			choicelist = [
+			("10000", "10 " + _("seconds")),
+			("20000", "20 " + _("seconds")),
+			("30000", "30 " + _("seconds")),
+			("0", _("no delay"))]
+			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
+			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
+
+		if SystemInfo["VFD_final_scroll_delay"]:
+			def final_scroll_delay(el):
+				open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
+			choicelist = [
+			("10000", "10 " + _("seconds")),
+			("20000", "20 " + _("seconds")),
+			("30000", "30 " + _("seconds")),
+			("0", _("no delay"))]
+			config.usage.vfd_final_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
+			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
+
 		if fileExists("/proc/stb/lcd/show_symbols"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode)
@@ -307,8 +331,6 @@ def InitLcd():
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
 		config.lcd.mode = ConfigNothing()
-		config.lcd.repeat = ConfigNothing()
-		config.lcd.scrollspeed = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda : doNothing()
 		config.lcd.ledbrightnessstandby = ConfigNothing()
@@ -318,4 +340,3 @@ def InitLcd():
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
-
