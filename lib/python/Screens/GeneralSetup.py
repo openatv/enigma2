@@ -66,12 +66,6 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/p
 else:
 	VIDEOENH = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/AutoResolution/plugin.pyo"):
-	from Plugins.SystemPlugins.AutoResolution.plugin import AutoResSetupMenu
-	AUTORES = True
-else:
-	AUTORES = False
-
 if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo"):
 	from Plugins.SystemPlugins.Blindscan.plugin import Blindscan
 	BLINDSCAN = True
@@ -324,8 +318,6 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Auto language", _("Auto language selection"), _("Select your Language for audio/subtitles")))
 		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement", _("Video enhancement setup"), _("Video enhancement setup")))
-		if AUTORES == True:
-			self.sublist.append(QuickSubMenuEntryComponent("AutoResolution", _("Auto resolution setup"), _("Automatically change resolution")))
 		if config.usage.setup_level.getValue() == "expert":
 			self.sublist.append(QuickSubMenuEntryComponent("OSD position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
 		if SystemInfo["CanChange3DOsd"]:
@@ -581,8 +573,6 @@ class GeneralSetup(Screen):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif selected == _("VideoEnhancement"):
 			self.session.open(VideoEnhancementSetup)
-		elif selected == _("AutoResolution"):
-			self.session.open(AutoResSetupMenu)
 		elif selected == _("OSD position"):
 			from Screens.UserInterfacePositioner import UserInterfacePositioner
 			self.session.open(UserInterfacePositioner)
