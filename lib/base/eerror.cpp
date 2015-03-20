@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <unistd.h>
+#include <time.h>
 
 #include <string>
 
@@ -86,14 +87,18 @@ extern void bsodFatal(const char *component);
 void eFatal(const char* fmt, ...)
 {
 	char buf[1024];
+	struct timespec tp;
+	clock_gettime(CLOCK_MONOTONIC, &tp);
+	snprintf(buf, 1024, "<%6lu.%06lu> FATAL: ", tp.tv_sec, tp.tv_nsec/1000);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
 	va_end(ap);
+
 	{
 		singleLock s(DebugLock);
-		logOutput(lvlFatal, "FATAL: " + std::string(buf) + "\n");
-		fprintf(stderr, "FATAL: %s\n",buf );
+		logOutput(lvlFatal, std::string(buf) + "\n");
+		fprintf(stderr, "%s\n", buf);
 	}
 	bsodFatal("enigma2");
 }
@@ -102,9 +107,12 @@ void eFatal(const char* fmt, ...)
 void eDebug(const char* fmt, ...)
 {
 	char buf[1024];
+	struct timespec tp;
+	clock_gettime(CLOCK_MONOTONIC, &tp);
+	snprintf(buf, 1024, "<%6lu.%06lu> ", tp.tv_sec, tp.tv_nsec/1000);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(buf) + "\n");
@@ -115,12 +123,15 @@ void eDebug(const char* fmt, ...)
 void eDebugNoNewLine(const char* fmt, ...)
 {
 	char buf[1024];
+	struct timespec tp;
+	clock_gettime(CLOCK_MONOTONIC, &tp);
+	snprintf(buf, 1024, "<%6lu.%06lu> ", tp.tv_sec, tp.tv_nsec/1000);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, buf);
+	logOutput(lvlDebug, std::string(buf));
 	if (logOutputConsole)
 		fprintf(stderr, "%s", buf);
 }
@@ -128,9 +139,12 @@ void eDebugNoNewLine(const char* fmt, ...)
 void eWarning(const char* fmt, ...)
 {
 	char buf[1024];
+	struct timespec tp;
+	clock_gettime(CLOCK_MONOTONIC, &tp);
+	snprintf(buf, 1024, "<%6lu.%06lu> ", tp.tv_sec, tp.tv_nsec/1000);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, std::string(buf) + "\n");
