@@ -137,6 +137,7 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 				case COMPONENT_DESCRIPTOR:
 				case CONTENT_DESCRIPTOR:
 				case PARENTAL_RATING_DESCRIPTOR:
+				case PDC_DESCRIPTOR:
 				{
 					uint32_t crc = calculate_crc_hash(descr, descr_len);
 					DescriptorMap::iterator it = descriptors.find(crc);

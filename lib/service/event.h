@@ -81,6 +81,7 @@ class eServiceEvent: public iObject
 	time_t m_begin;
 	int m_duration;
 	int m_event_id;
+	int m_pdc_pil;
 	std::string m_event_name, m_short_description, m_extended_description;
 	static std::string m_language, m_language_alternative;
 	// .. additional info
@@ -94,6 +95,7 @@ public:
 	time_t getBeginTime() const { return m_begin; }
 	int getDuration() const { return m_duration; }
 	int getEventId() const { return m_event_id; }
+	int getPdcPil() const { return m_pdc_pil; }
 	std::string getEventName() const { return m_event_name; }
 	std::string getShortDescription() const { return m_short_description; }
 	std::string getExtendedDescription() const { return m_extended_description; }
