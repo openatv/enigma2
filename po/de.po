@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-03-16 17:20+0100\n"
+"PO-Revision-Date: 2015-03-20 20:04+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1029,7 +1029,7 @@ msgid "Are you sure you want to exit this wizard?"
 msgstr "Diesen Assistenten verlassen?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
-msgstr "Die EPG-Daten von hier neu laden:\n"
+msgstr "Die EPG Daten von hier neu laden:\n"
 
 #
 msgid ""
@@ -1062,7 +1062,7 @@ msgstr ""
 "Nach der Wiederherstellung wird Ihr Receiver neu gestartet!"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
-msgstr "Den EPG-Cache hier speichern:\n"
+msgstr "Die EPG Daten hier speichern:\n"
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Dieses Log senden:\n"
@@ -2907,6 +2907,12 @@ msgstr "EPG Speicherort"
 msgid "EPGSearch"
 msgstr "EPG-Suche"
 
+msgid "Save EPG data"
+msgstr "EPG Daten speichern"
+
+msgid "Configure if epg.dat should be saved at all."
+msgstr "Konfigurieren Sie, ob die EPG Daten gespeichert werden sollen."
+
 #
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -3621,19 +3627,31 @@ msgstr "GraphMultiEpg Einstellungen"
 msgid "MultiEPG settings"
 msgstr "MultiEPG Einstellungen"
 
+msgid "Setup MultiEPG"
+msgstr "MultiEPG Einstellungen"
+
 msgid "SingleEPG settings"
+msgstr "SingleEPG Einstellungen"
+
+msgid "Setup SingleEPG"
 msgstr "SingleEPG Einstellungen"
 
 msgid "InfobarEPG settings"
 msgstr "InfobarEPG Einstellungen"
 
+msgid "Setup InfobarEPG"
+msgstr "InfobarEPG Einstellungen"
+
 msgid "Setup GraphicalEPG"
-msgstr "Grafischer-EPG Einstellungen"
+msgstr "Grafischer EPG Einstellungen"
 
 msgid "Graphical EPG"
 msgstr "Grafischer EPG"
 
 msgid "Graphical InfobarEPG settings"
+msgstr "Grafischer InfobarEPG Einstellungen"
+
+msgid "Setup Graphical InfobarEPG"
 msgstr "Grafischer InfobarEPG Einstellungen"
 
 msgid "GraphicalEPG settings"
@@ -13467,7 +13485,7 @@ msgid "Remove items from trash can after (days)"
 msgstr "Gelöschte Aufnahmen nach (Tagen) aus dem Papierkorb entfernen"
 
 #
-msgid "Clean network trash cans"
+msgid "Clean network trash can's"
 msgstr "Lösche Netzwerk-Papierkörbe"
 
 msgid "When enabled, network trash can's are probed for cleaning."
