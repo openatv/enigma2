@@ -594,6 +594,7 @@ def InitAVSwitch():
 		can_downmix_ac3 = "downmix" in file
 	except:
 		can_downmix_ac3 = False
+		SystemInfo["CanPcmMultichannel"] = False
 
 	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
 	if can_downmix_ac3:
