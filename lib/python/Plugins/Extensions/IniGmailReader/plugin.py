@@ -112,7 +112,7 @@ def get_unread_msgs(user, passwd, tlabel):
 		return feed.read()
 	except (Exception) as ex:
 		print "[GMail]get_unread_msgs error:", str(ex)
-		return "error"
+		return None
 
 def getgmail():
 	try:
@@ -121,8 +121,8 @@ def getgmail():
 		password = config.plugins.gmail.password.value
 		tlabel = str(config.plugins.gmail.label.value)
 		feedtext = get_unread_msgs(user, password, tlabel)
-		if feedtext == "error":
-			return list
+		if feedtext is None:
+			return None
 		feed = feedparser.parse(feedtext)
 
 		for item in feed.entries:
@@ -422,7 +422,7 @@ def getnewgmailcount():
 		PASSWORD = str(config.plugins.gmail.password.value)
 		tlabel = ""
 		feedtext = get_unread_msgs(USERNAME, PASSWORD, tlabel)
-		if feedtext == "error":
+		if feedtext is None:
 			return 0
 
 		gmailcount = int(feedparser.parse(feedtext)["feed"]["fullcount"])
