@@ -36,14 +36,14 @@ class TransponderInfo(Converter, object):
 		if "NoRoot" in self.type and self.rootBouquet():
 			return ""
 		if transponderraw:
-			self.transponderdata = ConvertToHumanReadable(transponderraw)
-			if "DVB-T" in self.transponderdata["system"]:
-				return "%s %s %d MHz %s" % ("DVB-T", self.transponderdata["channel"], self.transponderdata["frequency"]/1000000 + 0.5 , self.transponderdata["bandwidth"])
-			elif "DVB-C" in self.transponderdata["system"]:
-				return "%s %d MHz %d %s %s" % ("DVB-C", self.transponderdata["frequency"]/1000 + 0.5, self.transponderdata["symbol_rate"]/1000 + 0.5, self.transponderdata["fec_inner"], \
-					self.transponderdata["modulation"])
-			return "%s %d %s %d %s %s %s" % (self.transponderdata["system"], self.transponderdata["frequency"]/1000 + 0.5, self.transponderdata["polarization_abbreviation"], self.transponderdata["symbol_rate"]/1000 + 0.5, \
-				self.transponderdata["fec_inner"], self.transponderdata["modulation"], self.transponderdata["detailed_satpos" in self.type and "orbital_position" or "orb_pos"])
+			transponderdata = ConvertToHumanReadable(transponderraw)
+			if "DVB-T" in transponderdata["system"]:
+				return "%s %s %d MHz %s" % ("DVB-T", transponderdata["channel"], transponderdata["frequency"]/1000000 + 0.5 , transponderdata["bandwidth"])
+			elif "DVB-C" in transponderdata["system"]:
+				return "%s %d MHz %d %s %s" % ("DVB-C", transponderdata["frequency"]/1000 + 0.5, transponderdata["symbol_rate"]/1000 + 0.5, transponderdata["fec_inner"], \
+					transponderdata["modulation"])
+			return "%s %d %s %d %s %s %s" % (transponderdata["system"], transponderdata["frequency"]/1000 + 0.5, transponderdata["polarization_abbreviation"], transponderdata["symbol_rate"]/1000 + 0.5, \
+				transponderdata["fec_inner"], transponderdata["modulation"], transponderdata["detailed_satpos" in self.type and "orbital_position" or "orb_pos"])
 		if ref:
 			result = ref.toString()
 		else:
