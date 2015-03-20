@@ -15,10 +15,11 @@ from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
 from Components.Ipkg import IpkgComponent
+from Components.Pixmap import Pixmap
+from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-
 
 ocram = ''
 
@@ -140,6 +141,7 @@ class UpdatePlugin(Screen):
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
 		self.setTitle(_("Software update"))
+		
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -150,6 +152,14 @@ class UpdatePlugin(Screen):
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
+		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), 'unknown': _('No connection')}
+		self['tl_off'] = Pixmap()
+		self['tl_red'] = Pixmap()
+		self['tl_yellow'] = Pixmap()
+		self['tl_green'] = Pixmap()
+		self.feedsStatus()
+		self['feedStatusMSG'] = Label(status_msgs[self.trafficLight])
+		
 		self.channellist_only = 0
 		self.channellist_name = ''
 		self.SettingsBackupDone = False
@@ -162,6 +172,34 @@ class UpdatePlugin(Screen):
 		self.total_packages = None
 		self.checkNetworkState()
 
+	def feedsStatus(self):
+		from urllib import urlopen
+		import socket
+		self['tl_red'].hide()
+		self['tl_yellow'].hide()
+		self['tl_green'].hide()
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		try:
+			d = urlopen("http://openvix.co.uk/TrafficLightState.php")
+			self.trafficLight = d.read()
+			if self.trafficLight == 'unstable':
+				self['tl_off'].hide()
+				self['tl_red'].show()
+			elif self.trafficLight == 'updating':
+				self['tl_off'].hide()
+				self['tl_yellow'].show()
+			elif self.trafficLight == 'stable':
+				self['tl_off'].hide()
+				self['tl_green'].show()
+			else:
+				self.trafficLight = 'unknown'
+				self['tl_off'].show()
+		except:
+			self.trafficLight = 'unknown'
+			self['tl_off'].show()
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		
 	def checkNetworkState(self):
 		cmd1 = "opkg update"
 		self.CheckConsole = Console()
@@ -282,7 +320,7 @@ class UpdatePlugin(Screen):
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
-					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
+					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight)
 					upgrademessage.setTitle(_('Software update'))
 				else:
 					upgrademessage = self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -345,7 +383,7 @@ class UpdatePlugin(Screen):
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
-			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices")
+			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight)
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "changes":
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)

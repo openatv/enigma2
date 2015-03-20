@@ -35,13 +35,13 @@ RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference befo
 	return 0;
 }
 
-RESULT eBouquet::removeService(const eServiceReference &ref)
+RESULT eBouquet::removeService(const eServiceReference &ref, bool renameBouquet)
 {
 	list::iterator it =
 		std::find(m_services.begin(), m_services.end(), ref);
 	if ( it == m_services.end() )
 		return -1;
-	if (ref.flags & eServiceReference::canDescent)
+	if (renameBouquet && (ref.flags & eServiceReference::canDescent))
 	{
 		std::string filename = ref.toString();
 		size_t pos = filename.find("FROM BOUQUET ");
@@ -909,19 +909,30 @@ void eDVBDB::loadBouquet(const char *path)
 	{
 		for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
 		{
-			eDebug("Adding additional userbouquet %s", userbouquetsfiles[i].c_str());
-			char buf[256];
-			if (!strcmp(path, "bouquets.tv"))
-				snprintf(buf, sizeof(buf), "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
+			if (m_load_unlinked_userbouquets)
+			{
+				eDebug("Adding additional userbouquet %s", userbouquetsfiles[i].c_str());
+				char buf[256];
+				if (!strcmp(path, "bouquets.tv"))
+					snprintf(buf, sizeof(buf), "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
+				else
+					snprintf(buf, sizeof(buf), "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
+				eServiceReference tmp(buf);
+				loadBouquet(userbouquetsfiles[i].c_str());
+				if (!strcmp(userbouquetsfiles[i].c_str(), "userbouquet.LastScanned.tv"))
+					list.push_back(tmp);
+				else
+					list.push_front(tmp);
+				++entries;
+			}
 			else
-				snprintf(buf, sizeof(buf), "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
-			eServiceReference tmp(buf);
-			loadBouquet(userbouquetsfiles[i].c_str());
-			if (!strcmp(userbouquetsfiles[i].c_str(), "userbouquet.LastScanned.tv"))
-				list.push_back(tmp);
-			else
-				list.push_front(tmp);
-			++entries;
+			{
+				std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + userbouquetsfiles[i]);
+				std::string newfilename(filename);
+				newfilename.append(".del");
+				eDebug("Rename unlinked bouquet file %s to %s", filename.c_str(), newfilename.c_str());
+				rename(filename.c_str(), newfilename.c_str());
+			}
 		}
 		bouquet.flushChanges();
 	}
@@ -1022,7 +1033,7 @@ eDVBDB *eDVBDB::instance;
 using namespace xmlcc;
 
 eDVBDB::eDVBDB()
-	: m_numbering_mode(false)
+	: m_numbering_mode(false), m_load_unlinked_userbouquets(true)
 {
 	instance = this;
 	reloadServicelist();
@@ -1598,7 +1609,7 @@ RESULT eDVBDB::addFlag(const eServiceReference &ref, unsigned int flagmask)
 		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
 		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
 		if (it != m_services.end())
-			it->second->m_flags |= ~flagmask;
+			it->second->m_flags |= flagmask;
 		return 0;
 	}
 	return -1;

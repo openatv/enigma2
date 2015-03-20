@@ -286,7 +286,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		}
 		if (cur)
 		{
-			return cur;
+			return !!cur;
 		}
 		/* fallback to stream (or pvr) service alternative */
 		if (streamable_service)
@@ -884,11 +884,11 @@ RESULT eDVBServiceList::addService(eServiceReference &ref, eServiceReference bef
 	return m_bouquet->addService(ref, before);
 }
 
-RESULT eDVBServiceList::removeService(eServiceReference &ref)
+RESULT eDVBServiceList::removeService(eServiceReference &ref, bool renameBouquet)
 {
 	if (!m_bouquet)
 		return -1;
-	return m_bouquet->removeService(ref);
+	return m_bouquet->removeService(ref, renameBouquet);
 }
 
 RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)
@@ -1956,7 +1956,7 @@ int eDVBServicePlay::getInfo(int w)
 			return aspect;
 		break;
 	}
-	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
+	case sIsCrypted: if (no_program_info) return false; return program.isCrypted();
 	case sVideoPID:
 		if (m_dvb_service)
 		{

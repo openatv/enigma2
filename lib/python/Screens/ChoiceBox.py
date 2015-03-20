@@ -3,10 +3,11 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap
 import enigma
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text=""):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", var=""):
 		if not list: list = []
 		if not skin_name: skin_name = []
 		Screen.__init__(self, session)
@@ -15,6 +16,15 @@ class ChoiceBox(Screen):
 			skin_name = [skin_name]
 		self.skinName = skin_name + ["ChoiceBox"]
 		self["text"] = Label()
+		self.var = ""
+		if skin_name and 'SoftwareUpdateChoices' in skin_name and var and var in ('unstable', 'updating', 'stable', 'unknown'):
+			self.var = var
+			self['feedStatusMSG'] = Label()
+			self['tl_off'] = Pixmap()
+			self['tl_red'] = Pixmap()
+			self['tl_yellow'] = Pixmap()
+			self['tl_green'] = Pixmap()
+
 		if title:
 			title = _(title)
 			if len(title) < 55 and title.find('\n') == -1:
@@ -86,6 +96,24 @@ class ChoiceBox(Screen):
 		{
 			"back": self.cancel,
 		}, -1)
+		self.onShown.append(self.onshow)
+
+	def onshow(self):
+		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var and self.var in ('unstable', 'updating', 'stable', 'unknown'):
+			status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), 'unknown': _('No connection')}
+			self['feedStatusMSG'].setText(status_msgs[self.var])
+			self['tl_off'].hide()
+			self['tl_red'].hide()
+			self['tl_yellow'].hide()
+			self['tl_green'].hide()
+			if self.var == 'unstable':
+				self['tl_red'].show()
+			elif self.var == 'updating':
+				self['tl_yellow'].show()
+			elif self.var == 'stable':
+				self['tl_green'].show()
+			else:
+				self['tl_off'].show()
 
 	def autoResize(self):
 		desktop_w = enigma.getDesktop(0).size().width()

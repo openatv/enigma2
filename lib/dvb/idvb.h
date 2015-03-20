@@ -66,7 +66,7 @@ struct eBouquet
 // the following five methods are implemented in db.cpp
 	RESULT flushChanges();
 	RESULT addService(const eServiceReference &, eServiceReference before=eServiceReference());
-	RESULT removeService(const eServiceReference &);
+	RESULT removeService(const eServiceReference &, bool renameBouquet=true);
 	RESULT moveService(const eServiceReference &, unsigned int);
 	RESULT setListName(const std::string &name);
 };

@@ -148,6 +148,21 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
 </code>
 						</item>
+						<item weight="10" level="0" entryID="deleteepgcache" text="Delete EPG">
+<code>
+from Components.EpgLoadSave import EpgDeleteMsg
+def msgClosed(ret):
+	if ret:
+		import os
+		from Components.config import config
+		if os.path.exists(config.misc.epgcache_filename.value):
+			os.remove(config.misc.epgcache_filename.value)
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.flushEPG()
+self.session.openWithCallback(msgClosed, EpgDeleteMsg)
+</code>
+						</item>
 					</menu>
 
 					<item weight="10" level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>

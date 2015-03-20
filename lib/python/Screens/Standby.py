@@ -4,8 +4,8 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer, eServiceReference
-from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
+from boxbranding import getMachineBrand, getMachineName, getBrandOEM
 from Tools import Notifications
 from time import localtime, time
 import Screens.InfoBar
@@ -69,7 +69,9 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
-		self.standbyTimeUnknownTimer = eTimer()
+		self.standbyStopServiceTimer = eTimer()
+		self.standbyStopServiceTimer.callback.append(self.stopService)
+		self.timeHandler = None
 
 		#mute adc
 		self.setMute()
@@ -81,20 +83,23 @@ class Standby2(Screen):
 		self.paused_service = None
 		self.prev_running_service = None
 
-		if self.session.current_dialog:
-			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					if config.servicelist.startupservice_standby.value:
-						self.prev_running_service = eServiceReference(config.servicelist.startupservice_standby.value)
-					else:
-						self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-					self.session.nav.stopService()
-				else:
-					self.standbyTimeUnknownTimer.callback.append(self.stopService)
-					self.standbyTimeUnknownTimer.startLongTimer(60)
-			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		service = self.prev_running_service and self.prev_running_service.toString()
+		if service:
+			if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
+			else:
+				self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+				if self.timeHandler.ready():
+					if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+						self.stopService()
+					else:
+						self.standbyStopServiceTimer.startLongTimer(5)
+					self.timeHandler = None
+				else:
+					self.timeHandler.m_timeUpdated.get().append(self.stopService)
+
 		if self.session.pipshown:
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
@@ -112,11 +117,18 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
-		self.standbyTimeUnknownTimer.stop()
-		if self.prev_running_service:
-			self.session.nav.playService(self.prev_running_service)
-		elif self.paused_service:
+		self.standbyStopServiceTimer.stop()
+		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
+		if self.paused_service:
 			self.paused_service.unPauseService()
+		elif self.prev_running_service:
+			service = self.prev_running_service.toString()
+			if config.servicelist.startupservice_onstandby.value:
+				self.session.nav.playService(eServiceReference(config.servicelist.startupservice.value))
+				from Screens.InfoBar import InfoBar
+				InfoBar.instance and InfoBar.instance.servicelist.correctChannelNumber()
+			else:
+				self.session.nav.playService(self.prev_running_service)
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
 
@@ -130,10 +142,6 @@ class Standby2(Screen):
 		return StandbySummary
 
 	def stopService(self):
-		if config.servicelist.startupservice_standby.value:
-			self.prev_running_service = eServiceReference(config.servicelist.startupservice_standby.value)
-		else:
-			self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 class Standby(Standby2):

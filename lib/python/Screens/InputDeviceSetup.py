@@ -284,6 +284,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et6500", 11),
 			("et7x00",16),
 			("et8000", 9),
+			("et8500", 16),
 			("et9000", 5),
 			("et9100", 5),
 			("et9200", 11),

@@ -27,6 +27,8 @@ fonts = {
 	"ChoiceList": ("Regular", 20, 24, 18),
 }
 
+parameters = {}
+
 def dump(x, i=0):
 	print " " * i + str(x)
 	try:
@@ -54,10 +56,14 @@ def addSkin(name, scope = SCOPE_SKIN):
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
-		file = open(filename, 'r')
-		dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
-		file.close()
-		return True
+		try:
+			file = open(filename, 'r')
+			dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
+		except:
+			print "[SKIN ERROR] error in %s" % filename
+			return False
+		else:
+			return True
 	return False
 
 # get own skin_user_skinname.xml file, if exist
@@ -92,14 +98,12 @@ DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
 
 profile("LoadSkin")
-try:
-	name = skin_user_skinname()
-	if name is not None:
-		addSkin(name, SCOPE_CONFIG)
-	else:
-		addSkin('skin_user.xml', SCOPE_CONFIG)
-except (SkinError, IOError, AssertionError), err:
-	print "not loading user skin: ", err
+res = None
+name = skin_user_skinname()
+if name:
+	res = addSkin(name, SCOPE_CONFIG)
+if not name or not res:
+	addSkin('skin_user.xml', SCOPE_CONFIG)
 
 # some boxes lie about their dimensions
 addSkin('skin_box.xml')
@@ -292,9 +296,9 @@ class AttributeParser:
 		try:
 			getattr(self, attrib)(value)
 		except AttributeError:
-			print "[Skin] Attribute not implemented:", attrib, "value:", value
+			print "[SKIN] Attribute not implemented:", attrib, "value:", value
 		except SkinError, ex:
-			print "[Skin] Error:", ex
+			print "[SKIN] Error:", ex
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
 			try:
@@ -560,6 +564,15 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			except Exception, ex:
 				print "[SKIN] bad font alias", ex
 
+	for c in skin.findall("parameters"):
+		for parameter in c.findall("parameter"):
+			get = parameter.attrib.get
+			try:
+				name = get("name")
+				value = get("value")
+				parameters[name] = map(int, value.split(","))
+			except Exception, ex:
+				print "[SKIN] bad parameter", ex
 
 	for c in skin.findall("subtitles"):
 		from enigma import eSubtitleWidget
@@ -978,7 +991,7 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				p(w, context)
 			except SkinError, e:
-				print "[Skin] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e
+				print "[SKIN] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e
 
 	def process_panel(widget, context):
 		n = widget.attrib.get('name')
@@ -1010,11 +1023,12 @@ def readSkin(screen, skin, names, desktop):
 	}
 
 	try:
+		print "[SKIN] processing screen %s:" % name
 		context.x = 0 # reset offsets, all components are relative to screen
 		context.y = 0 # coordinates.
 		process_screen(myscreen, context)
 	except Exception, e:
-		print "[Skin] SKIN ERROR in %s:" % name, e
+		print "[SKIN] SKIN ERROR in %s:" % name, e
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]

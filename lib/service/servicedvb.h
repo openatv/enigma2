@@ -49,7 +49,7 @@ public:
 	RESULT startEdit(ePtr<iMutableServiceList> &);
 	RESULT flushChanges();
 	RESULT addService(eServiceReference &ref, eServiceReference before);
-	RESULT removeService(eServiceReference &ref);
+	RESULT removeService(eServiceReference &ref, bool renameBouquet=true);
 	RESULT moveService(eServiceReference &ref, int pos);
 	RESULT setListName(const std::string &name);
 private:
