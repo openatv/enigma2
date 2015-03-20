@@ -13,10 +13,6 @@ class ServiceName(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 
-		self.mode = ""
-		if ';' in type:
-			type, self.mode = type.split(';')
-
 		if type == "Provider":
 			self.type = self.PROVIDER
 		elif type == "Reference":
