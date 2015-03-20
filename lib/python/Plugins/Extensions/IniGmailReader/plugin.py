@@ -91,7 +91,7 @@ def viewgmail(message_id):
 	result, data = mail.search(None, "UNSEEN")
 	result, data = mail.fetch(message_id, "(RFC822)")  # fetch the email body (RFC822) for the given ID
 	raw_email = data[0][1]  # here's the body, which is raw text of the whole email
-	wfile(str(message_id) + "\n" + raw_email)
+	# wfile(str(message_id) + "\n" + raw_email)
 
 	return raw_email
 
