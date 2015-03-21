@@ -2747,7 +2747,7 @@ class InfoBarPiP:
 			info = service and service.info()
 			if info:
 				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-			if info and int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
+			if (info and int(xres) <= 720) or (info and getMachineBuild() != 'blackbox7405'):
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
