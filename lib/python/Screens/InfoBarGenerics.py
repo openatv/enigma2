@@ -2795,7 +2795,7 @@ class InfoBarPiP:
 			elif info:
 				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 			else:
-				self.session.open(MessageBox, _("No active channel found.")), type = MessageBox.TYPE_INFO,timeout = 5 )
+				self.session.open(MessageBox, _("No active channel found."), type = MessageBox.TYPE_INFO,timeout = 5 )
 		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
 			self.screenSaverTimer.stop()
 
