@@ -863,22 +863,22 @@ class InfoBarTimeshift:
 		for filename in [f for f in os.listdir(tsDir) if len(f) == 16 and f.startswith("timeshift.") and f[10:].isalnum()]:
 			# if filename.startswith("timeshift") and not os.path.splitext(filename)[1]:
 			if not os.path.isdir("%s%s" % (tsDir, filename)):
-				if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount))
-				if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount))
-				if os.path.exists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
-				if os.path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount))
+				if os.path.exists("%spts_livebuffer_%s.eit" % (tsDir, self.pts_eventcount)):
+					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (tsDir, self.pts_eventcount))
+				if os.path.exists("%spts_livebuffer_%s.meta" % (tsDir, self.pts_eventcount)):
+					self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (tsDir, self.pts_eventcount))
+				if os.path.exists("%spts_livebuffer_%s" % (tsDir, self.pts_eventcount)):
+					self.BgFileEraser.erase("%spts_livebuffer_%s" % (tsDir, self.pts_eventcount))
+				if os.path.exists("%spts_livebuffer_%s.sc" % (tsDir, self.pts_eventcount)):
+					self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (tsDir, self.pts_eventcount))
 				try:
 					# Create link to pts_livebuffer file
 					dprint("%s -> pts_livebuffer_%s" % (filename, self.pts_eventcount))
-					os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
-					os.link("%s%s.sc" % (config.usage.timeshift_path.value, filename), "%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount))
+					os.link("%s%s" % (tsDir, filename), "%spts_livebuffer_%s" % (tsDir, self.pts_eventcount))
+					os.link("%s%s.sc" % (tsDir, filename), "%spts_livebuffer_%s.sc" % (tsDir, self.pts_eventcount))
 
 					# Create a Meta File
-					metafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount), "w")
+					metafile = open("%spts_livebuffer_%s.meta" % (tsDir, self.pts_eventcount), "w")
 					metafile.write("%s\n%s\n%s\n%i\n" % (
 						self.pts_curevent_servicerefname,
 						self.pts_curevent_name.replace("\n", " "),
@@ -890,10 +890,10 @@ class InfoBarTimeshift:
 					Notifications.AddNotification(
 						MessageBox, _("Creating hard link to timeshift file failed!") + "\n" +
 						_("The file system used for timeshift must support hardlinks.") + "\n\n" +
-						"%s\n%s" % (config.usage.timeshift_path.value, errormsg), MessageBox.TYPE_ERROR)
+						"%s\n%s" % (tsDir, errormsg), MessageBox.TYPE_ERROR)
 
 				# Create EIT File
-				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
+				self.ptsCreateEITFile("%spts_livebuffer_%s" % (tsDir, self.pts_eventcount))
 
 				# Permanent Recording Hack
 				if config.timeshift.permanentrecording.value:
@@ -901,7 +901,7 @@ class InfoBarTimeshift:
 						fullname = getRecordingFilename(
 							"%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name),
 							config.usage.default_path.value)
-						os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%s.ts" % fullname)
+						os.link("%s%s" % (tsDir, filename), "%s.ts" % fullname)
 						# Create a Meta File
 						metafile = open("%s.ts.meta" % fullname, "w")
 						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (
@@ -912,7 +912,7 @@ class InfoBarTimeshift:
 						))
 						metafile.close()
 					except Exception, errormsg:
-						print "[Timeshift] %s%s\n%s" % (config.usage.timeshift_path.value, filename, errormsg)
+						print "[Timeshift] %s%s\n%s" % (tsDir, filename, errormsg)
 
 	def ptsRecordCurrentEvent(self):
 		dprint("ptsRecordCurrentEvent")
