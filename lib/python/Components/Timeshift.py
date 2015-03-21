@@ -477,7 +477,7 @@ class InfoBarTimeshift:
 	def eraseTimeshiftFile(self):
 		dprint("eraseTimeshiftFile")
 		for filename in os.listdir(config.usage.timeshift_path.value):
-			if filename.startswith("timeshift.") and not filename.endswith((".del", ".copy")):
+			if filename.startswith("timeshift.") and filename[10:16].isalnum() and not filename.endswith((".del", ".copy")):
 				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 
 	def autostartPermanentTimeshift(self):
@@ -615,7 +615,7 @@ class InfoBarTimeshift:
 			# print 'TEST1'
 			for filename in os.listdir(config.usage.timeshift_path.value):
 				# print 'filename', filename
-				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
+				if filename.startswith("timeshift.") and filename[10:16].isalnum() and not filename.endswith((".del", ".copy")):
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
@@ -782,7 +782,7 @@ class InfoBarTimeshift:
 			return
 
 		for filename in os.listdir(config.usage.timeshift_path.value):
-			if filename.startswith(("timeshift.", "pts_livebuffer_")):
+			if filename.startswith("timeshift.") and filename[10:16].isalnum() or filename.startswith("pts_livebuffer_"):
 				# print 'filename:', filename
 				try:
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
@@ -853,9 +853,16 @@ class InfoBarTimeshift:
 
 	def ptsCreateHardlink(self):
 		dprint("ptsCreateHardlink")
-		for filename in os.listdir(config.usage.timeshift_path.value):
+
+		# The basename of the current timeshift file in
+		# lib/service/servicedvb.cpp is timeshift.XXXXXX
+		# where the Xs are replaced by alphanumerics.
+
+		tsDir = config.usage.timeshift_path.value
+
+		for filename in [f for f in os.listdir(tsDir) if len(f) == 16 and f.startswith("timeshift.") and f[10:].isalnum()]:
 			# if filename.startswith("timeshift") and not os.path.splitext(filename)[1]:
-			if filename.startswith("timeshift") and not filename.endswith((".sc", ".del", ".copy")):
+			if not os.path.isdir("%s%s" % (tsDir, filename)):
 				if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount))
 				if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount)):
