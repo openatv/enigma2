@@ -866,35 +866,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			}, -1)
 		self["inputactions"].csel = self
 
-		self["CSFDActions"] = HelpableActionMap(self, "CSFDActions", # ims
-			{
-				"csfd": (self.csfd, _("Display CSFD for selected event")),
-			}, -1)
-		self["CSFDActions"].csel = self
-
 		self.protectContextMenu = True
 		self.updateTimelineTimer = eTimer()
 		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60 * 1000)
 		self.onLayoutFinish.append(self.onCreate)
 		self.previousref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-
-	def csfd(self): #ims
-		def isCSFD():
-			try:
-				from Plugins.Extensions.CSFD.plugin import CSFD
-			except ImportError:
-				self.session.open(MessageBox, _("The CSFD plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 5 )
-				return False
-			else:
-				return True
-
-		if isCSFD():
-			event = self["list"].getCurrent()[0]
-			if event:
-				from Plugins.Extensions.CSFD.plugin import CSFD
-				self.session.open(CSFD, event.getEventName())
-
 
 	def prevPage(self):
 		self["list"].moveTo(eListbox.pageUp)
