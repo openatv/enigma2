@@ -58,6 +58,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Function of OK button"), config.misc.graph_mepg.OKButton))
 		self.list.append(getConfigListEntry(_("Alignment of service names"), config.misc.graph_mepg.servicename_alignment))
 		self.list.append(getConfigListEntry(_("Alignment of events"), config.misc.graph_mepg.event_alignment))
+		self.list.append(getConfigListEntry(_("Show vertical timelines"), config.misc.graph_mepg.show_timelines))
 		self.list.append(getConfigListEntry(_("Center time-labels and remove date"), config.misc.graph_mepg.center_timeline))
 		self.list.append(getConfigListEntry(_("Show in extensions menu"), config.misc.graph_mepg.extension_menu))
 		self.list.append(getConfigListEntry(_("Silently zap between bouquets"), config.misc.graph_mepg.silent_bouquet_change))
