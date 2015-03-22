@@ -120,7 +120,7 @@ void eDebug(const char* fmt, ...)
 		fprintf(stderr, "%s\n", buf);
 }
 
-void eDebugNoNewLine(const char* fmt, ...)
+void eDebugNoNewLineStart(const char* fmt, ...)
 {
 	char buf[1024];
 	struct timespec tp;
@@ -129,6 +129,19 @@ void eDebugNoNewLine(const char* fmt, ...)
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
+	va_end(ap);
+	singleLock s(DebugLock);
+	logOutput(lvlDebug, std::string(buf));
+	if (logOutputConsole)
+		fprintf(stderr, "%s", buf);
+}
+
+void eDebugNoNewLine(const char* fmt, ...)
+{
+	char buf[1024];
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(buf));

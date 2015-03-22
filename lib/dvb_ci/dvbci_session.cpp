@@ -31,7 +31,7 @@ int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 		return 3;
 	} else
 	{
-		eDebug("too big length");
+		eDebug("[CI SESS] too big length");
 		exit(0);
 	}
 }
@@ -91,7 +91,7 @@ void eDVBCISession::sendOpenSessionResponse(eDVBCISlot *slot, unsigned char sess
 {
 	char pkt[6];
 	pkt[0]=session_status;
-	eDebug("sendOpenSessionResponse");
+	eDebug("[CI SESS] sendOpenSessionResponse");
 	memcpy(pkt + 1, resource_identifier, 4);
 	sendSPDU(slot, 0x92, pkt, 5, session_nb);
 }
@@ -101,14 +101,14 @@ void eDVBCISession::recvCreateSessionResponse(const unsigned char *data)
 	status = data[0];
 	state = stateStarted;
 	action = 1;
-	eDebug("create Session Response, status %x", status);
+	eDebug("[CI SESS] create Session Response, status %x", status);
 }
 
 void eDVBCISession::recvCloseSessionRequest(const unsigned char *data)
 {
 	state = stateInDeletion;
 	action = 1;
-	eDebug("close Session Request");
+	eDebug("[CI SESS] close Session Request");
 }
 
 void eDVBCISession::deleteSessions(const eDVBCISlot *slot)
@@ -145,42 +145,42 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	{
 	case 0x00010041:
 		session=new eDVBCIResourceManagerSession;
-		eDebug("RESOURCE MANAGER");
+		eDebug("[CI SESS] RESOURCE MANAGER");
 		break;
 	case 0x00020041:
 		session=new eDVBCIApplicationManagerSession(slot);
-		eDebug("APPLICATION MANAGER");
+		eDebug("[CI SESS] APPLICATION MANAGER");
 		break;
 	case 0x00030041:
 		session = new eDVBCICAManagerSession(slot);
-		eDebug("CA MANAGER");
+		eDebug("[CI SESS] CA MANAGER");
 		break;
 	case 0x00240041:
 		session=new eDVBCIDateTimeSession;
-		eDebug("DATE-TIME");
+		eDebug("[CI SESS] DATE-TIME");
 		break;
 	case 0x00400041:
 		session = new eDVBCIMMISession(slot);
-		eDebug("MMI - create session");
+		eDebug("[CI SESS] MMI - create session");
 		break;
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
-		eDebug("AuthSession");
+		eDebug("[CI SESS] AuthSession");
 //		break;
 	case 0x00200041:
 	default:
-		eDebug("unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
+		eDebug("[CI SESS] unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
 		session=0;
 		status=0xF0;
 	}
 
 	if (!session)
 	{
-		eDebug("unknown session.. expect crash");
+		eDebug("[CI SESS] unknown session.. expect crash");
 		return;
 	}
 
-	eDebug("new session nb %d %p", session_nb, &(*session));
+	eDebug("[CI SESS] new session nb %d %p", session_nb, &(*session));
 	session->session_nb = session_nb;
 
 	if (session)
@@ -225,11 +225,12 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	unsigned char tag = *pkt++;
 	int llen, hlen;
 
-	eDebug("slot: %p",slot);
+	eDebug("[CI SESS] slot: %p",slot);
 
+	eDebugNoNewLineStart("[CI SESS]: ");
 	for(unsigned int i=0;i<len;i++)
 		eDebugNoNewLine("%02x ",ptr[i]);
-	eDebug("");
+	eDebugNoNewLine("\n");
 
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;
@@ -256,14 +257,14 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 		if ((!session_nb) || (session_nb >= SLMS))
 		{
-			eDebug("PROTOCOL: illegal session number %x", session_nb);
+			eDebug("[CI SESS] PROTOCOL: illegal session number %x", session_nb);
 			return;
 		}
 
 		session=sessions[session_nb-1];
 		if (!session)
 		{
-			eDebug("PROTOCOL: data on closed session %x", session_nb);
+			eDebug("[CI SESS] PROTOCOL: data on closed session %x", session_nb);
 			return;
 		}
 
@@ -275,11 +276,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			session->recvCreateSessionResponse(pkt);
 			break;
 		case 0x95:
-			eDebug("recvCloseSessionRequest");
+			eDebug("[CI SESS] recvCloseSessionRequest");
 			session->recvCloseSessionRequest(pkt);
 			break;
 		default:
-			eDebug("INTERNAL: nyi, tag %02x.", tag);
+			eDebug("[CI SESS] INTERNAL: nyi, tag %02x.", tag);
 			return;
 		}
 	}
@@ -304,7 +305,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			{
 				if (((len-alen) > 0) && ((len - alen) < 3))
 				{
-					eDebug("WORKAROUND: applying work around MagicAPDULength");
+					eDebug("[CI SESS] WORKAROUND: applying work around MagicAPDULength");
 					alen=len;
 				}
 			}
@@ -315,11 +316,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		}
 
 	if (len)
-		eDebug("PROTOCOL: warning, TL-Data has invalid length");
+		eDebug("[CI SESS] PROTOCOL: warning, TL-Data has invalid length");
 }
 
 eDVBCISession::~eDVBCISession()
 {
-//	eDebug("destroy %p", this);
+//	eDebug("[CI SESS] destroy %p", this);
 }
 
