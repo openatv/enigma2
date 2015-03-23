@@ -83,12 +83,12 @@ eDBoxLCD::eDBoxLCD()
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
-		eDebug("[LCD] found OLED display!");
+		eDebug("[DboxLCD] found OLED display!");
 		lcd_type = 1;
 	}
 
 	if (lcdfd < 0)
-		eDebug("[LCD] couldn't open LCD - load lcd.ko!");
+		eDebug("[DboxLCD] couldn't open LCD - load lcd.ko!");
 	else
 	{
 
@@ -155,13 +155,13 @@ int eDBoxLCD::setLCDContrast(int contrast)
 	int fp;
 	if((fp=open("/dev/dbox/fp0", O_RDWR))<0)
 	{
-		eDebug("[LCD] can't open /dev/dbox/fp0");
+		eDebug("[DboxLCD] can't open /dev/dbox/fp0");
 		return(-1);
 	}
 
 	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast)<0)
 	{
-		eDebug("[LCD] can't set lcd contrast");
+		eDebug("[DboxLCD] can't set lcd contrast");
 	}
 	close(fp);
 #endif
@@ -171,14 +171,14 @@ int eDBoxLCD::setLCDContrast(int contrast)
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 #ifndef NO_LCD
-	eDebug("[LCD] setLCDBrightness %d", brightness);
+	eDebug("[DboxLCD] setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
 		f = fopen("/proc/stb/fp/oled_brightness", "w");
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
-			eDebug("[LCD] write /proc/stb/lcd/oled_brightness failed!! (%m)");
+			eDebug("[DboxLCD] write /proc/stb/lcd/oled_brightness failed!! (%m)");
 		fclose(f);
 	}
 	else
@@ -186,14 +186,14 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		int fp;
 		if((fp=open("/dev/dbox/fp0", O_RDWR)) < 0)
 		{
-			eDebug("[LCD] can't open /dev/dbox/fp0");
+			eDebug("[DboxLCD] can't open /dev/dbox/fp0");
 			return(-1);
 		}
 #ifndef FP_IOCTL_LCD_DIMM
 #define FP_IOCTL_LCD_DIMM       3
 #endif
 		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
-			eDebug("[LCD] can't set lcd brightness (%m)");
+			eDebug("[DboxLCD] can't set lcd brightness (%m)");
 		close(fp);
 	}
 #endif
