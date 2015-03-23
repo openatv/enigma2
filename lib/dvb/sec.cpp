@@ -496,13 +496,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 
 #if 0
-				eDebugNoNewLine("sendmask: ");
+				eDebugNoNewLineStart("sendmask: ");
 				for (int i=3; i >= 0; --i)
 					if ( send_mask & (1<<i) )
 						eDebugNoNewLine("1");
 					else
 						eDebugNoNewLine("0");
-				eDebug("");
+				eDebugNoNewLine("");
 #endif
 				if ( diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
 					&& !sat.no_rotor_command_on_tune )

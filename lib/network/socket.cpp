@@ -2,6 +2,7 @@
 #include <asm/ioctls.h>
 #include <unistd.h>
 #include <errno.h>
+#include <time.h>
 #include <linux/serial.h>
 #include <lib/network/socket.h>
 
@@ -205,10 +206,13 @@ int eSocket::writeBlock(const char *data, unsigned int len)
 	if (issocket && writebuffer.empty())
 	{
 		int tw=::send(getDescriptor(), data, len, MSG_NOSIGNAL);
-		if ((tw < 0) && (errno != EWOULDBLOCK))
+		if ((tw < 0) && (errno != EWOULDBLOCK)) {
 	// don't use eDebug here because of a adaptive mutex in the eDebug call..
 	// and eDebug self can cause a call of writeBlock !!
-			printf("write: %m\n");
+			struct timespec tp;
+			clock_gettime(CLOCK_MONOTONIC, &tp);
+			fprintf(stderr, "<%6lu.%06lu> write: %m\n", tp.tv_sec, tp.tv_nsec/1000);
+		}
 		if (tw < 0)
 			tw = 0;
 		data+=tw;

@@ -23,6 +23,7 @@
 #include <errno.h>
 
 #define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
+#define SCAN_eDebugNoNewLineStart(x...) do { if (m_scan_debug) eDebugNoNewLineStart(x); } while(0)
 #define SCAN_eDebugNoNewLine(x...) do { if (m_scan_debug) eDebugNoNewLine(x); } while(0)
 
 DEFINE_REF(eDVBScan);
@@ -193,10 +194,8 @@ RESULT eDVBScan::nextChannel()
 
 	if (m_ch_toScan.empty())
 	{
-		SCAN_eDebug("no channels left to scan.");
-		SCAN_eDebug("%zd channels scanned, %zd were unavailable.",
-				m_ch_scanned.size(), m_ch_unavailable.size());
-		SCAN_eDebug("%zd channels in database.", m_new_channels.size());
+		SCAN_eDebug("no channels left: %zd scanned, %zd unavailable, %zd database.",
+			m_ch_scanned.size(), m_ch_unavailable.size(), m_new_channels.size());
 		m_event(evtFinish);
 		return -ENOENT;
 	}
@@ -341,7 +340,7 @@ void eDVBScan::NITready(int err)
 
 void eDVBScan::BATready(int err)
 {
-	SCAN_eDebug("got bat");
+	SCAN_eDebug("got bat, err %d", err);
 	m_ready |= readyBAT;
 	if (!err)
 		m_ready |= validBAT;
@@ -350,7 +349,7 @@ void eDVBScan::BATready(int err)
 
 void eDVBScan::PATready(int err)
 {
-	SCAN_eDebug("got pat");
+	SCAN_eDebug("got pat, err %d", err);
 	m_ready |= readyPAT;
 	if (!err)
 		m_ready |= validPAT;
@@ -374,7 +373,7 @@ void eDVBScan::PMTready(int err)
 			if (pcrpid == 0xFFFF)
 				pcrpid = pmt.getPcrPid();
 			else
-				SCAN_eDebug("already have a pcrpid %04x %04x", pcrpid, pmt.getPcrPid());
+				SCAN_eDebug("  already have a pcrpid %04x %04x", pcrpid, pmt.getPcrPid());
 			ElementaryStreamInfoConstIterator es;
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
@@ -515,7 +514,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersSatellite parm;
 		feparm->getDVBS(parm);
-		SCAN_eDebug("try to add %d %d %d %d %d %d",
+		SCAN_eDebug("try to add sat %d %d %d %d %d %d",
 			parm.orbital_position, parm.frequency, parm.symbol_rate, parm.polarisation, parm.fec, parm.modulation);
 		break;
 	}
@@ -523,7 +522,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersCable parm;
 		feparm->getDVBC(parm);
-		SCAN_eDebug("try to add %d %d %d %d",
+		SCAN_eDebug("try to add cable %d %d %d %d",
 			parm.frequency, parm.symbol_rate, parm.modulation, parm.fec_inner);
 		break;
 	}
@@ -531,7 +530,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersTerrestrial parm;
 		feparm->getDVBT(parm);
-		SCAN_eDebug("try to add %d %d %d %d %d %d %d %d",
+		SCAN_eDebug("try to add terres %d %d %d %d %d %d %d %d",
 			parm.frequency, parm.modulation, parm.transmission_mode, parm.hierarchy,
 			parm.guard_interval, parm.code_rate_LP, parm.code_rate_HP, parm.bandwidth);
 		break;
@@ -547,11 +546,11 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 			if (!found_count)
 			{
 				*i = feparm;  // update
-				SCAN_eDebug("update");
+				SCAN_eDebug("  update");
 			}
 			else
 			{
-				SCAN_eDebug("remove dupe");
+				SCAN_eDebug("  remove dupe");
 				m_ch_toScan.erase(i++);
 				continue;
 			}
@@ -562,7 +561,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 
 	if (found_count > 0)
 	{
-		SCAN_eDebug("already in todo list");
+		SCAN_eDebug("  already in todo list");
 		return;
 	}
 
@@ -570,7 +569,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
 		if (sameChannel(*i, feparm))
 		{
-			SCAN_eDebug("successfully scanned");
+			SCAN_eDebug("  successfully scanned");
 			return;
 		}
 
@@ -578,18 +577,18 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_unavailable.begin()); i != m_ch_unavailable.end(); ++i)
 		if (sameChannel(*i, feparm, true))
 		{
-			SCAN_eDebug("scanned but not available");
+			SCAN_eDebug("  scanned but not available");
 			return;
 		}
 
 		/* ... on the current channel */
 	if (sameChannel(m_ch_current, feparm))
 	{
-		SCAN_eDebug("is current");
+		SCAN_eDebug("  is current");
 		return;
 	}
 
-	SCAN_eDebug("really add");
+	SCAN_eDebug("  really add");
 		/* otherwise, add it to the todo list. */
 	m_ch_toScan.push_front(feparm); // better.. then the rotor not turning wild from east to west :)
 }
@@ -1283,7 +1282,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 	for (ServiceDescriptionConstIterator s(services.begin()); s != services.end(); ++s)
 	{
 		unsigned short service_id = (*s)->getServiceId();
-		SCAN_eDebugNoNewLine("SID %04x: ", service_id);
+		SCAN_eDebugNoNewLineStart("SID %04x: ", service_id);
 		bool is_crypted = false;
 
 		std::map<unsigned short, service>::iterator it = m_pmts_to_read.find(service_id);
@@ -1291,12 +1290,13 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		{
 			if (it->second.scrambled)
 			{
-				SCAN_eDebug("is scrambled!");
+				SCAN_eDebugNoNewLine("is scrambled!");
 				is_crypted = true;
 			}
 			else
-				SCAN_eDebug("is free");
+				SCAN_eDebugNoNewLine("is free");
 		}
+		SCAN_eDebugNoNewLine("\n");
 
 		if (!(m_flags & scanOnlyFree) || !is_crypted)
 		{
@@ -1342,24 +1342,24 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 					service->genSortName();
 
 					service->m_provider_name = convertDVBUTF8(d.getServiceProviderName());
-					SCAN_eDebug("name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
+					SCAN_eDebug("  name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 					break;
 				}
 				case CA_IDENTIFIER_DESCRIPTOR:
 				{
 					CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
 					const CaSystemIdList &caids = *d.getCaSystemIds();
-					SCAN_eDebugNoNewLine("CA");
+					SCAN_eDebugNoNewLineStart("  CA");
 					for (CaSystemIdList::const_iterator i(caids.begin()); i != caids.end(); ++i)
 					{
 						SCAN_eDebugNoNewLine(" %04x", *i);
 						service->m_ca.push_front(*i);
 					}
-					SCAN_eDebug(".");
+					SCAN_eDebugNoNewLine("\n");
 					break;
 				}
 				default:
-					SCAN_eDebug("descr<%x>", (*desc)->getTag());
+					SCAN_eDebug("  descr<%x>", (*desc)->getTag());
 					break;
 				}
 			}
