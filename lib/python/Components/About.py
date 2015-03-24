@@ -11,12 +11,6 @@ def getFlashDateString():
 	except:
 		return _("unknown")
 
-def getFlashDateString():
-	try:
-		return time.strftime(_("%Y-%m-%d %H:%M"), time.localtime(os.stat("/boot").st_ctime))
-	except:
-		return _("unknown")
-
 def getEnigmaVersionString():
 	return getImageVersion()
 
