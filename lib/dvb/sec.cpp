@@ -288,6 +288,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 {
 	bool simulate = ((eDVBFrontend*)&frontend)->is_simulate();
 	int lnb_idx = -1;
+	m_target_orbital_position = sat.orbital_position;
 	if (canTune(sat, &frontend, slot_id, &lnb_idx))
 	{
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[lnb_idx];

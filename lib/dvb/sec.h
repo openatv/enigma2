@@ -312,6 +312,7 @@ private:
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends, &m_avail_simulate_frontends;
 	int m_rotorMoving;
 	int m_not_linked_slot_mask;
+	int m_target_orbital_position;
 	bool m_canMeasureInputPower;
 #endif
 #ifdef SWIG
@@ -376,6 +377,7 @@ public:
 	void setRotorMoving(int, bool); // called from the frontend's
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
+	int getTargetOrbitalPosition() { return m_target_orbital_position; }
 };
 
 #endif
