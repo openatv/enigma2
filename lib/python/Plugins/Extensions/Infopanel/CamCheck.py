@@ -1,7 +1,7 @@
 from twisted.internet import threads
 from Components.config import config
 from enigma import eTimer, eConsoleAppContainer
-from os import system, listdir, path
+from os import system, listdir, path, popen
 from datetime import datetime
 
 isBusy = None
