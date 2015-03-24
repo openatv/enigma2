@@ -106,6 +106,8 @@ class ServiceName(Converter, object):
 				return ""
 			if transponder_info:
 				self.t_info = ConvertToHumanReadable(transponder_info)
+				if self.system() == None: # catch driver bug
+					return ""
 				if "DVB-T" in self.system():
 					return	self.dvb_t()
 				elif "DVB-C" in self.system():
