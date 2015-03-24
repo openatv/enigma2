@@ -51,12 +51,6 @@ static void set_tcp_buffer_size(int fd, int optname, int buf_size)
 		eDebug("Failed to set TCP SNDBUF or RCVBUF size: %m");
 }
 
-static void set_tcp_buffer_size(int fd, int optname, int buf_size)
-{
-	if (::setsockopt(fd, SOL_SOCKET, optname, &buf_size, sizeof(buf_size)))
-		eDebug("Failed to set TCP SNDBUF or RCVBUF size: %m");
-}
-
 void eStreamClient::notifier(int what)
 {
 	if (!(what & eSocketNotifier::Read))
