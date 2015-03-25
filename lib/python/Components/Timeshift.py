@@ -554,33 +554,31 @@ class InfoBarTimeshift:
 
 	def saveTimeshiftEventPopup(self):
 		dprint("saveTimeshiftEventPopup")
-		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
-		filelist = os.listdir(config.usage.timeshift_path.value)
+		filelist = [f for f in os.listdir(config.usage.timeshift_path.value) if f.startswith("pts_livebuffer_") and f[15:].isdigit()]
 
-		if filelist is not None:
-			filelist.sort()
+		if filelist:
+			filelist.sort(key=lambda f: int(f[15:]), reverse=True)
 
 			for filename in filelist:
-				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
-					# print "TRUE"
-					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
-					metafile = "%s%s.meta" % (config.usage.timeshift_path.value, filename)
-					if os.path.exists(metafile) and statinfo.st_mtime < (time() - 5.0):
-						# Get Event Info from meta file
-						readmetafile = open(metafile, "r")
-						servicerefname = readmetafile.readline()[0:-1]
-						eventname = readmetafile.readline()[0:-1]
-						description = readmetafile.readline()[0:-1]
-						begintime = readmetafile.readline()[0:-1]
-						readmetafile.close()
+				# print "TRUE"
+				statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
+				metafile = "%s%s.meta" % (config.usage.timeshift_path.value, filename)
 
-						# Add Event to list
-						filecount += 1
-						entrylist.append((_("Record") + " #%s (%s): %s" % (filecount, strftime("%H:%M", localtime(int(begintime))), eventname), "%s" % filename))
+				if os.path.exists(metafile) and statinfo.st_mtime < (time() - 5.0):
+					# Get Event Info from meta file
+					readmetafile = open(metafile, "r")
+					servicerefname = readmetafile.readline().strip()
+					eventname = readmetafile.readline().strip()
+					description = readmetafile.readline().strip()
+					begintime = readmetafile.readline().strip()
+					readmetafile.close()
 
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save permanently?"), list=entrylist)
+					# Add Event to list
+					entrylist.append(("%s - %s" % (strftime("%H:%M", localtime(int(begintime))), eventname), "%s" % filename))
+
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save?"), list=entrylist)
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		dprint("saveTimeshiftActions")

@@ -2112,7 +2112,9 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 		else
 		{
 			result = 0;
+#ifdef EPG_DEBUG
 			eDebug("[EPGC] event %04x not found in epgcache", event_id);
+#endif
 		}
 	}
 	return -1;
