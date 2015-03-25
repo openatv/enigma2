@@ -835,7 +835,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		top = r2.y
 		width = r2.w
 		height = r2.h
-		selected = self.cur_service[0] == service
+		selected = (self.cur_service is not None) and (self.cur_service[0] == service)
 		res = [None]
 
 		borderPixmaps = None
