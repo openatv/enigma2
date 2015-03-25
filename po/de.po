@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-03-16 17:20+0100\n"
+"PO-Revision-Date: 2015-03-24 20:30+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1029,7 +1029,7 @@ msgid "Are you sure you want to exit this wizard?"
 msgstr "Diesen Assistenten verlassen?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
-msgstr "Die EPG-Daten von hier neu laden:\n"
+msgstr "Die EPG Daten von hier neu laden:\n"
 
 #
 msgid ""
@@ -1062,7 +1062,7 @@ msgstr ""
 "Nach der Wiederherstellung wird Ihr Receiver neu gestartet!"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
-msgstr "Den EPG-Cache hier speichern:\n"
+msgstr "Die EPG Daten hier speichern:\n"
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Dieses Log senden:\n"
@@ -2843,6 +2843,9 @@ msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 msgid "Downloading..."
 msgstr "Lade herunter..."
 
+msgid "Downloading %s"
+msgstr "Herunterladen %s"
+
 #
 msgid "%s %s format data DVD (HDTV compatible)"
 msgstr "Daten-DVD im %s-%s-Format (HDTV-kompatibel)"
@@ -2881,10 +2884,10 @@ msgstr "EPG Suche"
 
 #
 msgid "EPG Selection"
-msgstr "EPG-Auswahl"
+msgstr "EPG Auswahl"
 
 msgid "EPG Setup"
-msgstr "EPG-Einstellungen"
+msgstr "EPG Einstellungen"
 
 msgid "EPG button mode"
 msgstr "Funktion der EPG-Taste"
@@ -2906,6 +2909,12 @@ msgstr "EPG Speicherort"
 
 msgid "EPGSearch"
 msgstr "EPG-Suche"
+
+msgid "Save EPG data"
+msgstr "EPG Daten speichern"
+
+msgid "Configure if epg.dat should be saved at all."
+msgstr "Konfigurieren Sie, ob die EPG Daten gespeichert werden sollen."
 
 #
 #, python-format
@@ -3378,6 +3387,9 @@ msgstr "Das Dateisystem enthält nicht behebbare Fehler"
 msgid "Finetune"
 msgstr "Feineinstell."
 
+msgid "In progress"
+msgstr "In Arbeit"
+
 #
 msgid "Finished"
 msgstr "Beendet"
@@ -3621,19 +3633,31 @@ msgstr "GraphMultiEpg Einstellungen"
 msgid "MultiEPG settings"
 msgstr "MultiEPG Einstellungen"
 
+msgid "Setup MultiEPG"
+msgstr "MultiEPG Einstellungen"
+
 msgid "SingleEPG settings"
+msgstr "SingleEPG Einstellungen"
+
+msgid "Setup SingleEPG"
 msgstr "SingleEPG Einstellungen"
 
 msgid "InfobarEPG settings"
 msgstr "InfobarEPG Einstellungen"
 
+msgid "Setup InfobarEPG"
+msgstr "InfobarEPG Einstellungen"
+
 msgid "Setup GraphicalEPG"
-msgstr "Grafischer-EPG Einstellungen"
+msgstr "Grafischer EPG Einstellungen"
 
 msgid "Graphical EPG"
 msgstr "Grafischer EPG"
 
 msgid "Graphical InfobarEPG settings"
+msgstr "Grafischer InfobarEPG Einstellungen"
+
+msgid "Setup Graphical InfobarEPG"
 msgstr "Grafischer InfobarEPG Einstellungen"
 
 msgid "GraphicalEPG settings"
@@ -4080,6 +4104,9 @@ msgstr "Ipkg"
 #
 msgid "Is this video mode ok?"
 msgstr "Diesen Videomodus beibehalten?"
+
+msgid "Is this setting ok?"
+msgstr "Ist diese Einstellung ist in Ordnung?"
 
 msgid "Items per Page"
 msgstr "Einträge pro Seite"
@@ -5047,7 +5074,7 @@ msgid "OSD Settings"
 msgstr "OSD"
 
 msgid "OSD settings"
-msgstr "Menu Anpassungen"
+msgstr "Anpassungen"
 
 msgid "OSD name request"
 msgstr "OSD-Sprache"
@@ -5667,7 +5694,7 @@ msgstr "Rotor"
 
 #
 msgid "Positioner fine movement"
-msgstr "Rotor-Feinabstimmung"
+msgstr "Rotor Feinabstimmung"
 
 #
 msgid "Positioner movement"
@@ -5675,7 +5702,7 @@ msgstr "Rotorbewegung"
 
 #
 msgid "Positioner setup"
-msgstr "Rotor-Einstellungen"
+msgstr "Rotor Einstellungen"
 
 #
 msgid "Positioner storage"
@@ -6293,7 +6320,7 @@ msgstr "Root-Verzeichnis"
 
 #
 msgid "Rotor turning speed"
-msgstr "Rotor-Drehgeschwindigkeit"
+msgstr "Rotor Drehgeschwindigkeit"
 
 #
 msgid "Running"
@@ -7333,7 +7360,7 @@ msgid "Software management"
 msgstr "Softwareverwaltung"
 
 msgid "Software manager setup"
-msgstr "Update-Einstellungen"
+msgstr "Update Einstellungen"
 
 #
 msgid "Software restore"
@@ -8588,7 +8615,7 @@ msgstr "Tuner-Slot"
 
 #
 msgid "Tuner Configuration"
-msgstr "Tuner-Konfiguration"
+msgstr "Tuner Konfiguration"
 
 #
 msgid "Reception settings"
@@ -8837,8 +8864,8 @@ msgstr ""
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Mit den Hoch-/Runter-Tasten können Sie eine Option auswählen. Danach OK drücken."
 
-msgid "Use this input device settings?"
-msgstr "Diese Eingabegeräte-Einstellungen verwenden?"
+msgid "Use these input device settings?"
+msgstr "Diese Eingabegeräte Einstellungen verwenden?"
 
 msgid "Use these settings?"
 msgstr "Diese Einstellungen verwenden?"
@@ -8939,11 +8966,11 @@ msgstr "Video PID"
 
 #
 msgid "Video Settings"
-msgstr "Bild-Einstellungen"
+msgstr "Bild Einstellungen"
 
 #
 msgid "Audio Settings"
-msgstr "Ton-Einstellungen"
+msgstr "Ton Einstellungen"
 
 msgid "Setup Audiomode"
 msgstr "Konfiguration Ton"
@@ -12798,7 +12825,7 @@ msgid "Setup Audio Sync"
 msgstr "Einstellungen Audio Sync"
 
 msgid "Check/Install online updates (you must have a working internet connection)"
-msgstr "Zeige verfügbare updates, die Sie installieren können. Internetverbindung vorrausgesetzt"
+msgstr "Zeige verfügbare Updates, die Sie installieren können. Internetverbindung vorrausgesetzt"
 
 msgid "Backup your current image"
 msgstr "Backup vom ganzen Image"
@@ -13467,7 +13494,7 @@ msgid "Remove items from trash can after (days)"
 msgstr "Gelöschte Aufnahmen nach (Tagen) aus dem Papierkorb entfernen"
 
 #
-msgid "Clean network trash cans"
+msgid "Clean network trash can's"
 msgstr "Lösche Netzwerk-Papierkörbe"
 
 msgid "When enabled, network trash can's are probed for cleaning."

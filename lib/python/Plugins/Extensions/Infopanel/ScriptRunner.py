@@ -49,11 +49,11 @@ class ScriptRunner(Screen):
 		self["key_green"] = Button(_("Run"))
 		
 	def populate_List(self):
-		if not path.exists('/usr/scripts'):
-			mkdir('/usr/scripts', 0755)
+		if not path.exists('/usr/script'):
+			mkdir('/usr/script', 0755)
 		self['lab1'].setText(_("Select a script to run:"))
 		del self.list[:]
-		f = listdir('/usr/scripts')
+		f = listdir('/usr/script')
 		for line in f:
 			parts = line.split()
 			pkg = parts[0]
@@ -72,9 +72,9 @@ class ScriptRunner(Screen):
 
 	def Run(self,answer):
 		if answer is True:
-			if not access("/usr/scripts/" + self.sel, X_OK):
-				chmod("/usr/scripts/" + self.sel, 0755)
-			cmd1 = ". /usr/scripts/" + self.sel
+			if not access("/usr/script/" + self.sel, X_OK):
+				chmod("/usr/script/" + self.sel, 0755)
+			cmd1 = ". /usr/script/" + self.sel
 			self.session.open(Console, title=self.sel, cmdlist = [cmd1], closeOnSuccess = False)	
 					
 	def myclose(self):
