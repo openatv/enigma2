@@ -121,7 +121,7 @@ class auto3D(Screen):
 	def __evStart(self):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		if info and info.getInfo(iServiceInformation.sIsDedicated3D):
+		if info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1:
 			applySettings("sidebyside", int(config.plugins.OSD3DSetup.znorm.value))
 		else:
 			applySettings("off", int(config.plugins.OSD3DSetup.znorm.value))
