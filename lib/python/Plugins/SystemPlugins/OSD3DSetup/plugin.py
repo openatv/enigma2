@@ -104,8 +104,9 @@ def applySettings(mode, znorm):
 	except:
 		return
 
-class auto3D():
+class auto3D(Screen):
 	def __init__(self, session):
+		Screen.__init__(self, session)
 		self.session = session
 		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
 			{
