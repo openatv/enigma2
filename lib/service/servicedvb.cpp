@@ -1957,6 +1957,7 @@ int eDVBServicePlay::getInfo(int w)
 		break;
 	}
 	case sIsCrypted: if (no_program_info) return false; return program.isCrypted();
+	case sIsDedicated3D: if (m_dvb_service) return m_dvb_service->isDedicated3D(); return false;
 	case sVideoPID:
 		if (m_dvb_service)
 		{
