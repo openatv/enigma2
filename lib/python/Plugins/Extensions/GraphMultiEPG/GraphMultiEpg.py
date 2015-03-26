@@ -7,7 +7,7 @@ from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -155,6 +155,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventBorderVerWidth = 1
 		self.eventBorderHorWidth = 1
 		self.eventNamePadding = 0
+		self.recIconSize = 21
+		self.iconXPadding = 1
+		self.iconYPadding = 1
 
 	def applySkin(self, desktop, screen):
 		def EntryForegroundColor(value):
@@ -209,6 +212,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.eventBorderVerWidth = int(value)
 		def EventNamePadding(value):
 			self.eventNamePadding = int(value)
+		def RecIconSize(value):
+			self.recIconSize = int(value)
+		def IconXPadding(value):
+			self.iconXPadding = int(value)
+		def IconYPadding(value):
+			self.iconYPadding = int(value)
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
@@ -547,10 +556,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				# recording icons
 				if rec is not None:
 					for i in range(len(rec[1])):
-						if ewidth < (i + 1) * 22:
+						if ewidth < (i + 1) * (self.recIconSize + self.iconXPadding):
 							break
-						res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos + ewidth - (i + 1) * 22, top + height - 22), size = (21, 21),
+						res.append(MultiContentEntryPixmapAlphaBlend(
+							pos = (left + xpos + ewidth - (i + 1) * (self.recIconSize + self.iconXPadding), top + height - (self.recIconSize + self.iconYPadding)),
+							size = (self.recIconSize, self.recIconSize),
 							png = self.clocks[rec[1][len(rec[1]) - 1 - i]]))
 
 		else:
