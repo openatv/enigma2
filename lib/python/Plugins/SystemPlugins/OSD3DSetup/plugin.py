@@ -80,7 +80,10 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		setConfiguredSettings()
 		self.close()
 
+previous = None
+
 def applySettings(mode, znorm):
+	global previous
 	path_mode = ""
 	path_znorm = ""
 	from os import path
@@ -98,11 +101,13 @@ def applySettings(mode, znorm):
 			mode = 'off'
 	else:
 		return
-	try:
-		open(path_mode, "w").write(mode)
-		open(path_znorm, "w").write('%d' % znorm)
-	except:
-		return
+	if previous != (mode, znorm):
+		try:
+			open(path_mode, "w").write(mode)
+			open(path_znorm, "w").write('%d' % znorm)
+			previous = (mode, znorm)
+		except:
+			return
 
 class auto3D(Screen):
 	def __init__(self, session):
