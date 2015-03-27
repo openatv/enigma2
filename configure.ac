@@ -123,6 +123,7 @@ AM_CONDITIONAL(ET8500, test "$BOXTYPE" == et8500)
 AM_CONDITIONAL(ET10000, test "$BOXTYPE" == et10000)
 AM_CONDITIONAL(FORCE1, test "$BOXTYPE" == force1)
 AM_CONDITIONAL(WORLDVISIONF1, test "$BOXTYPE" == worldvisionf1)
+AM_CONDITIONAL(TRIPLEX, test "$BOXTYPE" == triplex)
 AM_CONDITIONAL(FORMULER1, test "$BOXTYPE" == formuler1)
 AM_CONDITIONAL(FORMULER3, test "$BOXTYPE" == formuler3)
 AM_CONDITIONAL(GBIPBOX, test "$BOXTYPE" == gbipbox)
@@ -388,7 +389,7 @@ if test "$BOXTYPE" == "hd2400" -o "$BOXTYPE" == "hd1100" -o "$BOXTYPE" == "hd120
 	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 fi
 
-if test "$BOXTYPE" == "formuler1" -o "$BOXTYPE" == "formuler3"; then
+if test "$BOXTYPE" == "formuler1" -o "$BOXTYPE" == "formuler3" -o "$BOXTYPE" == "triplex" -o "$BOXTYPE" == "sf108"; then
 	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 fi
 
