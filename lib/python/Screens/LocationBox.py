@@ -30,7 +30,7 @@ from Components.MenuList import MenuList
 from enigma import eTimer
 
 defaultInhibitDirs = [
-	"/.gstreamer-0.10", "/bin", "/boot", "/dev", "/etc", "/home",
+	"/.cache", "/bin", "/boot", "/dev", "/etc", "/home",
 	"/lib", "/picon", "/proc", "/run", "/sbin", "/share", "/sys",
 	"/tmp", "/usr", "/var",
 ]
