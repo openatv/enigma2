@@ -5,10 +5,10 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSel
 from boxbranding import getBoxType
 from enigma import iPlayableService, iServiceInformation
 
-modelist = {"off": _("Off"), "sidebyside": _("Side by Side"), "topandbottom": _("Top and Bottom")}
+modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by side"), "topandbottom": _("Top and bottom")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
-config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "off")
+config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
 
 PROC_GB_3DMODE = "/proc/stb/fb/primary/3d"
@@ -54,7 +54,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
 		self.list.append(getConfigListEntry(_("3d mode"), self.mode))
 		self.list.append(getConfigListEntry(_("Depth"), self.znorm))
-
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -79,7 +78,10 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		setConfiguredSettings()
 		self.close()
 
+previous = None
+
 def applySettings(mode, znorm):
+	global previous
 	path_mode = ""
 	path_znorm = ""
 	from os import path
@@ -91,14 +93,17 @@ def applySettings(mode, znorm):
 		mode = 'tab'
 	else:
 		mode = 'off'
-	try:
-		open(path_mode, "w").write(mode)
-		open(path_znorm, "w").write('%d' % znorm)
-	except:
-		return
+	if previous != (mode, znorm):
+		try:
+			open(path_mode, "w").write(mode)
+			open(path_znorm, "w").write('%d' % znorm)
+			previous = (mode, znorm)
+		except:
+			return
 
-class auto3D():
+class auto3D(Screen):
 	def __init__(self, session):
+		Screen.__init__(self, session)
 		self.session = session
 		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
 			{
@@ -108,7 +113,7 @@ class auto3D():
 	def __evStart(self):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		if info and info.getInfo(iServiceInformation.sIsDedicated3D):
+		if info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1:
 			applySettings("sidebyside", int(config.plugins.OSD3DSetup.znorm.value))
 		else:
 			applySettings("off", int(config.plugins.OSD3DSetup.znorm.value))

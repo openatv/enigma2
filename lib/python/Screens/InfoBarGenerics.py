@@ -2370,11 +2370,19 @@ class InfoBarInstantRecord:
 		moveServiceFiles(entry.Filename, trash, entry.name, allowCopy=False)
 
 	def stopCurrentRecording(self, entry = -1):
+		def confirm(answer=False):
+			if answer:
+				self.session.nav.RecordTimer.removeEntry(self.recording[entry])
+				if self.deleteRecording:
+					self.moveToTrash(self.recording[entry])
+				self.recording.remove(self.recording[entry])
 		if entry is not None and entry != -1:
-			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
+			msg =  _("Stop recording:")
 			if self.deleteRecording:
-				self.moveToTrash(self.recording[entry])
-			self.recording.remove(self.recording[entry])
+				msg = _("Stop and delete recording:")
+			msg += "\n"
+			msg += " - " + self.recording[entry].name + "\n"
+			self.session.openWithCallback(confirm, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 	def stopAllCurrentRecordings(self, list):
 		def confirm(answer=False):
