@@ -15,7 +15,8 @@ class EventName(Converter, object):
 	SRATING = 9
 	PDC = 10
 	PDCTIME = 11
-	ISRUNNINGSTATUS = 12
+	PDCTIMESHORT = 12
+	ISRUNNINGSTATUS = 13
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -41,6 +42,8 @@ class EventName(Converter, object):
 			self.type = self.PDC
 		elif type == "PdcTime":
 			self.type = self.PDCTIME
+		elif type == "PdcTimeShort":
+			self.type = self.PDCTIMESHORT
 		elif type == "IsRunningStatus":
 			self.type = self.ISRUNNINGSTATUS
 		else:
@@ -120,10 +123,12 @@ class EventName(Converter, object):
 			if event.getPdcPil():
 				return _("PDC")
 			return ""
-		elif self.type == self.PDCTIME:
+		elif self.type in (self.PDCTIME, self.PDCTIMESHORT):
 			pil = event.getPdcPil()
 			if pil:
-				return _("%d.%02d. %d:%02d") % ((pil & 0xF8000) >> 15, (pil & 0x7800) >> 11, (pil & 0x7C0) >> 6, (pil & 0x3F))
+				if self.type == self.PDCTIMESHORT:
+					return _("%02d:%02d") % ((pil & 0x7C0) >> 6, (pil & 0x3F))
+				return _("%d.%02d. %02d:%02d") % ((pil & 0xF8000) >> 15, (pil & 0x7800) >> 11, (pil & 0x7C0) >> 6, (pil & 0x3F))
 			return ""
 		elif self.type == self.ISRUNNINGSTATUS:
 			if event.getPdcPil():
