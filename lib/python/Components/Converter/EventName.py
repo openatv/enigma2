@@ -17,6 +17,8 @@ class EventName(Converter, object):
 	GENRE = 8
 	RATING = 9
 	SRATING = 10
+	SRATING = 11
+	PDC = 12
 
 	NEXT_DESCRIPTION = 21
 	THIRD_NAME = 22
@@ -45,6 +47,10 @@ class EventName(Converter, object):
 			self.type = self.RATING
 		elif type == "SmallRating":
 			self.type = self.SRATING
+		elif type == "Pdc":
+			self.type = self.PDC
+		elif type == "PdcTime":
+			self.type = self.PDCTIME
 
 		elif type == "NextDescription":
 			self.type = self.NEXT_DESCRIPTION
@@ -111,6 +117,16 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
+		elif self.type == self.PDC:
+			if event.getPdcPil():
+				return _("PDC")
+			return ""
+		elif self.type == self.PDCTIME:
+			pil = event.getPdcPil()
+			if pil:
+				return _("%d.%02d. %d:%02d") % ((pil & 0xF8000) >> 15, (pil & 0x7800) >> 11, (pil & 0x7C0) >> 6, (pil & 0x3F))
+			return ""
+
 		elif int(self.type) in (6,7) or int(self.type) >= 21:
 			try:
 				reference = self.source.service

@@ -233,8 +233,10 @@ class AutoVideoModeLabel(Screen):
 class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.current3dmode = config.osd.threeDmode.value
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
+				iPlayableService.evStart: self.__evStart
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
 				iPlayableService.evVideoFramerateChanged: self.VideoChanged,
@@ -245,6 +247,14 @@ class AutoVideoMode(Screen):
 		self.bufferfull = True
 		self.detecttimer = eTimer()
 		self.detecttimer.callback.append(self.VideoChangeDetect)
+
+	def __evStart(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		if info and info.getInfo(iServiceInformation.sIsDedicated3D):
+			config.osd.threeDmode.setValue('sidebyside')
+		else:
+			config.osd.threeDmode.setValue('off')
 
 	def BufferInfo(self):
 		bufferInfo = self.session.nav.getCurrentService().streamed().getBufferCharge()

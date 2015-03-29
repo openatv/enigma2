@@ -179,10 +179,14 @@ class GetEcmInfo:
 							hops = ''
 						self.textvalue = reader + hops + " (%ss)" % info.get('ecm time', '?')
 					else:
-						self.textvalue = ""
-		decCI = info.get('caid', '0')
-		provid = info.get('provid', '0')
-		if provid == '0':
-			provid = info.get('prov', '0')
-		ecmpid = info.get('pid', '0')
+						response = info.get('response time', None)
+						if response:
+							# wicardd
+							response = response.split(' ')
+							self.textvalue = "%s (%ss)" % (response[4], float(response[0])/1000)
+						else:
+							self.textvalue = ""
+			decCI = info.get('caid', info.get('CAID', '0'))
+			provid = info.get('provid', info.get('prov', info.get('Provider', '0')))
+			ecmpid = info.get('pid', info.get('ECM PID', '0'))
 		return self.textvalue,decCI,provid,ecmpid

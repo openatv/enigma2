@@ -303,6 +303,8 @@ class UpdatePlugin(Screen):
 				elif config.softwareupdate.updateisunstable.value == '0':
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+				if self.total_packages > 150:
+					message += " " + _("Reflash recommended!")
 				if self.total_packages:
 					global ocram
 					for package_tmp in self.ipkg.getFetchedList():

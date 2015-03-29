@@ -215,7 +215,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 			name = new char[length + 1];
 			memcpy(name, &msgbuffer[4], length);
 			name[length] = '\0';
-			eDebug("MMI NAME %s", name);
+			eDebug("[eSocketMMIHandler] MMI NAME %s", name);
 		} else {
 			int len = length;
 			unsigned char *data = (unsigned char*)msgbuffer;
@@ -232,14 +232,14 @@ void eSocketMMIHandler::connDataAvail(int what)
 			{
 				buffer.clear();
 #ifdef MMIDEBUG
-				eDebug("clear buffer");
+				eDebug("[eSocketMMIHandler] clear buffer");
 #endif
 			}
 #ifdef MMIDEBUG
-			eDebug("Put to buffer:");
+			eDebugNoNewLineStart("[eSocketMMIHandler] Put to buffer:");
 			for (int i=0; i < len; ++i)
 				eDebugNoNewLine("%02x ", data[i]);
-			eDebug("\n--------");
+			eDebugNoNewLine("\n--------\n");
 #endif
 			buffer.write( data, len );
 
@@ -251,7 +251,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 				{
 					buffer.skip(1);
 #ifdef MMIDEBUG
-					eDebug("skip %02x", tmp[0]);
+					eDebug("[eSocketMMIHandler] skip %02x", tmp[0]);
 #endif
 					continue;
 				}
@@ -269,10 +269,10 @@ void eSocketMMIHandler::connDataAvail(int what)
 					unsigned char dest[messageLength];
 					buffer.read(dest, messageLength);
 #ifdef MMIDEBUG
-					eDebug("dump mmi:");
+					eDebugNoNewLineStart("[eSocketMMIHandler] dump mmi:");
 					for (int i=0; i < messageLength; ++i)
 						eDebugNoNewLine("%02x ", dest[i]);
-					eDebug("\n--------");
+					eDebugNoNewLine("\n--------\n");
 #endif
 					/*emit*/ mmi_progress(0, dest, (const void*)(dest+3+LengthBytes), messageLength-3-LengthBytes);
 				}
@@ -281,7 +281,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 	}
 
 	if (what & (POLLERR | POLLHUP)) {
-		eDebug("pollhup/pollerr");
+		eDebug("[eSocketMMIHandler] pollhup/pollerr");
 		closeConn();
 		/*emit*/ mmi_progress(0, (const unsigned char*)"\x9f\x88\x00", "\x00", 1);
 	}

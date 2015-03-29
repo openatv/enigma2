@@ -288,6 +288,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 {
 	bool simulate = ((eDVBFrontend*)&frontend)->is_simulate();
 	int lnb_idx = -1;
+	m_target_orbital_position = sat.orbital_position;
 	if (canTune(sat, &frontend, slot_id, &lnb_idx))
 	{
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[lnb_idx];
@@ -496,13 +497,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 
 #if 0
-				eDebugNoNewLine("sendmask: ");
+				eDebugNoNewLineStart("sendmask: ");
 				for (int i=3; i >= 0; --i)
 					if ( send_mask & (1<<i) )
 						eDebugNoNewLine("1");
 					else
 						eDebugNoNewLine("0");
-				eDebug("");
+				eDebugNoNewLine("");
 #endif
 				if ( diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
 					&& !sat.no_rotor_command_on_tune )

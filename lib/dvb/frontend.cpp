@@ -23,20 +23,21 @@
 #if 0
 		else \
 		{ \
-			eDebugNoNewLine("SIMULATE:"); \
-			eDebug(x); \
+			eDebugNoNewLineStart("SIMULATE:"); \
+			eDebugNoNewline(x); \
+			eDebugNoNewline("\n"); \
 		}
 #endif
 
-#define eDebugNoSimulateNoNewLine(x...) \
+#define eDebugNoSimulateNoNewLineStart(x...) \
 	do { \
 		if (!m_simulate) \
-			eDebugNoNewLine(x); \
+			eDebugNoNewLineStart(x); \
 	} while(0)
 #if 0
 		else \
 		{ \
-			eDebugNoNewLine("SIMULATE:"); \
+			eDebugNoNewLineStart("SIMULATE:"); \
 			eDebugNoNewLine(x); \
 		}
 #endif
@@ -1342,15 +1343,16 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SEND_DISEQC:
 				sec_fe->sendDiseqc(m_sec_sequence.current()->diseqc);
-				eDebugNoSimulateNoNewLine("[SEC] sendDiseqc: ");
+				eDebugNoSimulateNoNewLineStart("[SEC] sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
-				    eDebugNoSimulateNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
+				    eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
+ 
 			 	if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
-					eDebugNoSimulate("(DiSEqC reset)");
+					eDebugNoNewLine("(DiSEqC reset)\n");
 				else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
-					eDebugNoSimulate("(DiSEqC peripherial power on)");
+					eDebugNoNewLine("(DiSEqC peripherial power on)\n");
 				else
-					eDebugNoSimulate("(?)");
+					eDebugNoNewLine("(?)\n");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
@@ -1408,7 +1410,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					int diff = abs(idle-m_idleInputpower[idx]);
 					if ( diff > 0)
 					{
-						eDebugNoSimulate("measure idle(%d) was not okay.. (%d - %d = %d) retry", idx, m_idleInputpower[idx], idle, diff);
+						eDebugNoSimulate("  measure idle(%d) was not okay.. (%d - %d = %d) retry", idx, m_idleInputpower[idx], idle, diff);
 						setSecSequencePos(compare.steps);
 						break;
 					}

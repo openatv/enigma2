@@ -51,6 +51,8 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
+		from Screens.InfoBar import InfoBar
+		self.infoBarInstance = InfoBar.instance
 		self.standbyStopServiceTimer = eTimer()
 		self.standbyStopServiceTimer.callback.append(self.stopService)
 		self.timeHandler = None
@@ -64,9 +66,9 @@ class Standby2(Screen):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
 		if service:
-			if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
-				self.paused_service = self.session.current_dialog
-				self.paused_service.pauseService()
+			if service.rsplit(":", 1)[1].startswith("/"):
+				self.paused_service = True
+				self.infoBarInstance.pauseService()
 			else:
 				self.timeHandler =  eDVBLocalTimeHandler.getInstance()
 				if self.timeHandler.ready():
@@ -79,8 +81,7 @@ class Standby2(Screen):
 					self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
 		if self.session.pipshown:
-			from Screens.InfoBar import InfoBar
-			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+			infoBarInstance and hasattr(infoBarInstance, "showPiP") and infoBarInstance.showPiP()
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
@@ -96,7 +97,7 @@ class Standby2(Screen):
 		self.standbyStopServiceTimer.stop()
 		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.paused_service:
-			self.paused_service.unPauseService()
+			self.infoBarInstance.unPauseService()
 		elif self.prev_running_service:
 			service = self.prev_running_service.toString()
 			if config.servicelist.startupservice_onstandby.value:

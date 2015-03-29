@@ -7,7 +7,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, ConfigSubsection, ConfigText
 from Components.PluginComponent import plugins
 from Components.PluginList import PluginList, PluginEntryComponent, PluginCategoryComponent, PluginDownloadComponent
@@ -83,6 +83,19 @@ class PluginBrowser(Screen, ProtectedScreen):
 			"moveUp": self.moveUp,
 			"moveDown": self.moveDown
 		})
+		self["NumberActions"] = NumberActionMap(["NumberActions"],
+		{
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
+		})
 
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
@@ -131,6 +144,22 @@ class PluginBrowser(Screen, ProtectedScreen):
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
+
+	def setDefaultList(self, answer):
+		if answer:
+			config.misc.pluginbrowser.plugin_order.value = ""
+			config.misc.pluginbrowser.plugin_order.save()
+			self.updateList()
+
+	def keyNumberGlobal(self, number):
+		if number == 0:
+			if len(self.list) > 0 and config.misc.pluginbrowser.plugin_order.value != "":
+				self.session.openWithCallback(self.setDefaultList, MessageBox, _("Sort plugins list to default?"), MessageBox.TYPE_YESNO)
+		else:
+			real_number = number - 1
+			if real_number < len(self.list):
+				self["list"].moveToIndex(real_number)
+				self.run()
 
 	def moveUp(self):
 		self.move(-1)
