@@ -515,6 +515,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.onShowHideNotifiers = []
 
 		self.standardInfoBar = False
+		self.lastResetAlpha = True
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
@@ -544,7 +545,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.doHide()
 
 	def unDimming(self):
-		self.unDimmingTimer.stop()
+		#self.unDimmingTimer.stop()
 		self.doWriteAlpha(config.av.osd_alpha.value)
 
 	def doWriteAlpha(self, value):
@@ -552,6 +553,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			f=open("/proc/stb/video/alpha","w")
 			f.write("%i" % (value))
 			f.close()
+			if value == config.av.osd_alpha.value:
+				self.lastResetAlpha = True
+			else:
+				self.lastResetAlpha = False
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
@@ -560,10 +565,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(False)
 			
 	def resetAlpha(self):
-		if config.usage.show_infobar_do_dimming.value:
-			self.unDimmingTimer = eTimer()
-			self.unDimmingTimer.callback.append(self.unDimming)
-			self.unDimmingTimer.start(300, True)
+		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
+			#self.unDimmingTimer = eTimer()
+			#self.unDimmingTimer.callback.append(self.unDimming)
+			#self.unDimmingTimer.start(300, True)
+			self.unDimming()
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
