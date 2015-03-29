@@ -118,7 +118,7 @@ class ChoiceBox(Screen):
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,
-			"right": self.right
+			"right": self.right,
 			"moveUp": self.additionalMoveUp,
 			"moveDown": self.additionalMoveDown,
 			"menu": self.setDefaultChoiceList
