@@ -137,17 +137,21 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	mixer.volume_left = left;
 	mixer.volume_right = right;
 
-	eDebug("Setvolume: %d %d (raw)", leftVol, rightVol);
-	eDebug("Setvolume: %d %d (-1db)", left, right);
+	eDebug("Setvolume: raw: %d %d, -1db: %d %d", leftVol, rightVol, left, right);
 
 	int fd = openMixer();
 	if (fd >= 0)
 	{
 #ifdef HAVE_DVB_API_VERSION
-		ioctl(fd, AUDIO_SET_MIXER, &mixer);
+		if (ioctl(fd, AUDIO_SET_MIXER, &mixer) < 0) {
+			eDebug("Setvolume: failed %m");
+		}
 #endif
 		closeMixer(fd);
 		return;
+	}
+	else {
+		eDebug("SetVolume: failed to open mixer");
 	}
 
 	//HACK?
