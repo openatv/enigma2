@@ -1611,6 +1611,18 @@ RESULT eDVBDB::removeServices(iDVBFrontendParameters *feparm)
 	return ret;
 }
 
+PyObject *eDVBDB::getFlag(const eServiceReference &ref)
+{
+	if (ref.type == eServiceReference::idDVB)
+	{
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			return PyInt_FromLong(it->second->m_flags);
+	}
+	return PyInt_FromLong(0);
+}
+
 RESULT eDVBDB::addFlag(const eServiceReference &ref, unsigned int flagmask)
 {
 	if (ref.type == eServiceReference::idDVB)
