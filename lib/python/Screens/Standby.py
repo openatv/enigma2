@@ -110,7 +110,7 @@ class Standby2(Screen):
 					self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
 		if self.session.pipshown:
-			infoBarInstance and hasattr(infoBarInstance, "showPiP") and infoBarInstance.showPiP()
+			self.infoBarInstance and hasattr(self.infoBarInstance, "showPiP") and self.infoBarInstance.showPiP()
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
