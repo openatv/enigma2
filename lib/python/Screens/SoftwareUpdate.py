@@ -2,10 +2,12 @@ from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachi
 from os import rename, path, remove
 from gettext import dgettext
 import urllib
+import socket
 
 from enigma import eTimer, eDVBDB
 
 import Components.Task
+from Components.OnlineUpdateCheck import feedsstatuscheck
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -139,9 +141,6 @@ class UpdatePlugin(Screen):
 		Screen.setTitle(self, _("Software Update"))
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
-
-		self.setTitle(_("Software update"))
-		
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -152,7 +151,7 @@ class UpdatePlugin(Screen):
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
-		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), 'unknown': _('No connection')}
+		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '404': _('No connection'), 'unknown': _('No connection')}
 		self['tl_off'] = Pixmap()
 		self['tl_red'] = Pixmap()
 		self['tl_yellow'] = Pixmap()
@@ -170,48 +169,28 @@ class UpdatePlugin(Screen):
 		self.error = 0
 		self.processed_packages = []
 		self.total_packages = None
-		self.checkNetworkState()
+		self.onFirstExecBegin.append(self.checkNetworkState)
 
 	def feedsStatus(self):
-		from urllib import urlopen
-		import socket
+		config.softwareupdate.updateisunstable.setValue(0)
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
 		self['tl_green'].hide()
-		currentTimeoutDefault = socket.getdefaulttimeout()
-		socket.setdefaulttimeout(3)
-		try:
-			d = urlopen("http://openvix.co.uk/TrafficLightState.php")
-			self.trafficLight = d.read()
-			if self.trafficLight == 'unstable':
-				self['tl_off'].hide()
-				self['tl_red'].show()
-			elif self.trafficLight == 'updating':
-				self['tl_off'].hide()
-				self['tl_yellow'].show()
-			elif self.trafficLight == 'stable':
-				self['tl_off'].hide()
-				self['tl_green'].show()
-			else:
-				self.trafficLight = 'unknown'
-				self['tl_off'].show()
-		except:
-			self.trafficLight = 'unknown'
+		self['tl_off'].hide()
+		self.trafficLight = feedsstatuscheck.getFeedSatus()
+		if self.trafficLight == 'unstable':
+			config.softwareupdate.updateisunstable.setValue(1)
+			self['tl_red'].show()
+		elif self.trafficLight == 'updating':
+			self['tl_yellow'].show()
+		elif self.trafficLight == 'stable':
+			self['tl_green'].show()
+		else:
 			self['tl_off'].show()
-		socket.setdefaulttimeout(currentTimeoutDefault)
 		
 	def checkNetworkState(self):
-		cmd1 = "opkg update"
-		self.CheckConsole = Console()
-		self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
-
-	def checkNetworkStateFinished(self, result, retval,extra_args=None):
-		if 'bad address' in result:
-			self.session.openWithCallback(self.close, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
-			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif 'Collected errors' in result:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		if feedsstatuscheck.getFeedsBool() != 'clean':
+			self.session.openWithCallback(self.close, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.startCheck()
 
@@ -282,20 +261,12 @@ class UpdatePlugin(Screen):
 				)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
+			self.updating = False
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				from urllib import urlopen
-				import socket
-				currentTimeoutDefault = socket.getdefaulttimeout()
-				socket.setdefaulttimeout(3)
-				status = urlopen('http://www.openvix.co.uk/feeds/status').read()
-				if '404 Not Found' in status:
-					status = '1'
-				config.softwareupdate.updateisunstable.setValue(status)
-				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 					self.total_packages = len(self.ipkg.getFetchedList())
@@ -349,7 +320,7 @@ class UpdatePlugin(Screen):
 				self.activityslider.setValue(0)
 				error = _("Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName())
 				if self.packages == 0:
-					error = _("No updates available. Please try again later.")
+					error = _("A background update check is in progress,\nplease wait a few minutes and try again.")
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)

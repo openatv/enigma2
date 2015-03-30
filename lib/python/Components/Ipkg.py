@@ -133,7 +133,8 @@ class IpkgComponent:
 	def parseLine(self, data):
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			item = data.split(' - ', 2)
-			self.fetchedList.append(item)
+			if item[0] not in ('Collected errors:', ' * opkg_conf_load: Could not lock /var/lib/opkg/lock: Resource temporarily unavailable.'):
+				self.fetchedList.append(item)
 			self.callCallbacks(self.EVENT_LISTITEM, item)
 			return
 		try:
@@ -148,6 +149,8 @@ class IpkgComponent:
 			elif data.startswith('Configuring'):
 				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 2)[1])
 			elif data.startswith('An error occurred'):
+				self.callCallbacks(self.EVENT_ERROR, None)
+			elif data.startswith('Collected errors'):
 				self.callCallbacks(self.EVENT_ERROR, None)
 			elif data.startswith('Failed to download'):
 				self.callCallbacks(self.EVENT_ERROR, None)

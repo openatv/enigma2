@@ -1,3 +1,5 @@
+from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild
+
 from time import time
 from boxbranding import getImageVersion
 
@@ -7,18 +9,91 @@ import Components.Task
 from Components.Ipkg import IpkgComponent
 from Components.config import config
 
+import urllib2 
+import socket
+
+error = 0
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
 
+class FeedsStatusCheck:
+	def __init__(self):
+		self.ipkg = IpkgComponent()
+		self.ipkg.addCallback(self.ipkgCallback)
+
+	def getFeedSatus(self):
+		trafficLight = 'unknown'
+		currentTimeoutDefault = socket.getdefaulttimeout()
+		socket.setdefaulttimeout(3)
+		try:
+			d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php")
+			trafficLight = d.read()
+		except urllib2.HTTPError, err:
+			trafficLight = err.code
+		socket.setdefaulttimeout(currentTimeoutDefault)
+		status = '1'
+		if trafficLight == 'stable':
+			status = '0'
+		config.softwareupdate.updateisunstable.setValue(status)
+		print '!!!!!!!!!trafficLight:',trafficLight
+		return trafficLight
+
+	def getFeedsBool(self):
+		global error
+		if feedsstatuscheck.getFeedSatus() == 404:
+			print '[OnlineVersionCheck] Error 404'
+			return 404
+		elif feedsstatuscheck.getFeedSatus() == 'updating':
+			print '[OnlineVersionCheck] Feeds Updating'
+			return 'updating'
+		elif error:
+			print '[OnlineVersionCheck] check in progress'
+			return 'inprogress'
+		elif feedsstatuscheck.getFeedSatus() in ('stable', 'unstable'):
+			print '[OnlineVersionCheck] Clean'
+			return 'clean'
+
+	def getFeedsErrorMessage(self):
+		global error
+		if feedsstatuscheck.getFeedSatus() == 404:
+			return _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
+		elif feedsstatuscheck.getFeedSatus() == 'updating':
+			return _("Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com.")
+		elif error:
+			return _("A background update check is in progress, please wait a few minutes and try again.")
+
+	def startCheck(self):
+		global error
+		error = 0
+		self.updating = True
+		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+
+	def ipkgCallback(self, event, param):
+		config.softwareupdate.updatefound.setValue(False)
+		if event == IpkgComponent.EVENT_ERROR:
+			global error
+			error += 1
+		elif event == IpkgComponent.EVENT_DONE:
+			if self.updating:
+				self.updating = False
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
+				self.total_packages = len(self.ipkg.getFetchedList())
+				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
+				if self.total_packages:
+					config.softwareupdate.updatefound.setValue(True)
+		pass
+		
+
+feedsstatuscheck = FeedsStatusCheck()
+
 class OnlineUpdateCheckPoller:
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
 
 	def start(self):
 		if self.onlineupdate_check not in self.timer.callback:
@@ -47,33 +122,14 @@ class OnlineUpdateCheckPoller:
 		return job
 
 	def JobStart(self):
-		self.updating = True
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		if feedsstatuscheck.getFeedSatus() in ('stable', 'unstable'):
+			print '[OnlineVersionCheck] Starting background check.'
+			feedsstatuscheck.startCheck()
+		else:
+			config.softwareupdate.updatefound.setValue(False)
+			print '[OnlineVersionCheck] No feeds found, skipping check.'
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DONE:
-			if self.updating:
-				self.updating = False
-				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
-			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				self.total_packages = len(self.ipkg.getFetchedList())
-				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
-				if self.total_packages:
-					from urllib import urlopen
-					import socket
-					currentTimeoutDefault = socket.getdefaulttimeout()
-					socket.setdefaulttimeout(3)
-					config.softwareupdate.updatefound.setValue(True)
-					status = urlopen('http://www.openvix.co.uk/feeds/status').read()
-					if '404 Not Found' in status:
-						status = '1'
-					config.softwareupdate.updateisunstable.setValue(status)
-					socket.setdefaulttimeout(currentTimeoutDefault)
-				else:
-					config.softwareupdate.updatefound.setValue(False)
-			else:
-				config.softwareupdate.updatefound.setValue(False)
-		pass
+
 
 class VersionCheck:
 	def __init__(self):
@@ -82,10 +138,10 @@ class VersionCheck:
 	def getStableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
 			if config.softwareupdate.updateisunstable.value == '0':
-# 				print '[OnlineVersionCheck] New Release updates found'
+				print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
-# 				print '[OnlineVersionCheck] skipping as beta is not wanted'
+				print '[OnlineVersionCheck] skipping as beta is not wanted'
 				return False
 		else:
 			return False
@@ -93,10 +149,10 @@ class VersionCheck:
 	def getUnstableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
 			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
-# 				print '[OnlineVersionCheck] New Experimental updates found'
+				print '[OnlineVersionCheck] New Experimental updates found'
 				return True
 			else:
-# 				print '[OnlineVersionCheck] skipping as beta is not wanted'
+				print '[OnlineVersionCheck] skipping as beta is not wanted'
 				return False
 		else:
 			return False
