@@ -16,13 +16,20 @@ class ServiceName(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
-
+		self.epgQuery = eEPGCache.getInstance().lookupEventTime
+		self.mode = ""
+		if ';' in type:
+			type, self.mode = type.split(';')
 		if type == "Provider":
 			self.type = self.PROVIDER
 		elif type == "Reference":
 			self.type = self.REFERENCE
 		elif type == "EditReference":
 			self.type = self.EDITREFERENCE
+		elif type == "NameOnly":
+			self.type = self.NAME_ONLY
+		elif type == "NameAndEvent":
+			self.type = self.NAME_EVENT
 		else:
 			self.type = self.NAME
 
@@ -75,8 +82,8 @@ class ServiceName(Converter, object):
 				return refstr
 			nref = resolveAlternate(service)
 			if nref:
-				ref = nref
-			return ref.toString()
+				service = nref
+			return service.toString()
 
 	text = property(getText)
 

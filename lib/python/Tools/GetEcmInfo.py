@@ -186,7 +186,7 @@ class GetEcmInfo:
 							self.textvalue = "%s (%ss)" % (response[4], float(response[0])/1000)
 						else:
 							self.textvalue = ""
-			decCI = info.get('caid', info.get('CAID', '0'))
-			provid = info.get('provid', info.get('prov', info.get('Provider', '0')))
-			ecmpid = info.get('pid', info.get('ECM PID', '0'))
+		decCI = info.get('caid', info.get('CAID', '0'))
+		provid = info.get('provid', info.get('prov', info.get('Provider', '0')))
+		ecmpid = info.get('pid', info.get('ECM PID', '0'))
 		return self.textvalue,decCI,provid,ecmpid
