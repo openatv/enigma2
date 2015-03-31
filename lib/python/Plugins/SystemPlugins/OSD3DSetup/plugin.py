@@ -1,8 +1,8 @@
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
-from boxbranding import getBoxType
 from enigma import iPlayableService, iServiceInformation
 
 modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by side"), "topandbottom": _("Top and bottom")}
@@ -80,23 +80,13 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 previous = None
 
-def applySettings(mode, znorm):
+def applySettings(mode, znorm=int(config.plugins.OSD3DSetup.znorm.value)):
 	global previous
-	path_mode = ""
-	path_znorm = ""
-	from os import path
-	path_mode = PROC_GB_3DMODE
-	path_znorm = PROC_GB_ZNORM
-	if mode == 'sidebyside':
-		mode = 'sbs'
-	elif mode == 'topandbottom':
-		mode = 'tab'
-	else:
-		mode = 'off'
+	mode == "3dmode" in SystemInfo["3DMode"] and mode or 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
 	if previous != (mode, znorm):
 		try:
-			open(path_mode, "w").write(mode)
-			open(path_znorm, "w").write('%d' % znorm)
+			open(SystemInfo["3DMode"], "w").write(mode)
+			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
 			previous = (mode, znorm)
 		except:
 			return
@@ -114,9 +104,9 @@ class auto3D(Screen):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		if info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1:
-			applySettings("sidebyside", int(config.plugins.OSD3DSetup.znorm.value))
+			applySettings("sidebyside")
 		else:
-			applySettings("off", int(config.plugins.OSD3DSetup.znorm.value))
+			applySettings("off")
 
 def setConfiguredSettings():
 	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
@@ -141,7 +131,7 @@ def autostart(reason, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if path.exists(PROC_GB_3DMODE):
+	if SystemInfo["3DMode"]:
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART], fnc = autostart),
 			PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),

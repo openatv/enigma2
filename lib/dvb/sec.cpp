@@ -288,7 +288,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 {
 	bool simulate = ((eDVBFrontend*)&frontend)->is_simulate();
 	int lnb_idx = -1;
-	m_target_orbital_position = sat.orbital_position;
 	if (canTune(sat, &frontend, slot_id, &lnb_idx))
 	{
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[lnb_idx];
@@ -337,6 +336,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 
 			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
 
+			if (diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2)
+				m_target_orbital_position = sat.orbital_position;
 			if (!(m_not_linked_slot_mask & slot_id))  // frontend with direct connection?
 			{
 				long linked_prev_ptr;
