@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
 from enigma import iPlayableService, iServiceInformation
 
@@ -84,27 +85,11 @@ previous = None
 
 def applySettings(mode, znorm=int(config.plugins.OSD3DSetup.znorm.value)):
 	global previous
-	path_mode = ""
-	path_znorm = ""
-	from os import path
-	if path.exists(PROC_ET_3DMODE):
-		path_mode = PROC_ET_3DMODE
-		path_znorm = PROC_ET_ZNORM
-	elif path.exists(PROC_DM_3DMODE):
-		path_mode = PROC_DM_3DMODE
-		path_znorm = PROC_DM_ZNORM
-		if mode == 'sidebyside':
-			mode = 'sbs'
-		elif mode == 'topandbottom':
-			mode = 'tab'
-		else:
-			mode = 'off'
-	else:
-		return
+	mode == "3dmode" in SystemInfo["3DMode"] and mode or 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
 	if previous != (mode, znorm):
 		try:
-			open(path_mode, "w").write(mode)
-			open(path_znorm, "w").write('%d' % znorm)
+			open(SystemInfo["3DMode"], "w").write(mode)
+			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
 			previous = (mode, znorm)
 		except:
 			return
@@ -148,7 +133,7 @@ def autostart(reason, **kwargs):
 
 def Plugins(**kwargs):
 	from os import path
-	if path.exists(PROC_ET_3DMODE) or path.exists(PROC_DM_3DMODE):
+	if SystemInfo["3DMode"]:
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART], fnc = autostart),
 			PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
