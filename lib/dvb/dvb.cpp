@@ -97,26 +97,35 @@ eDVBResourceManager::eDVBResourceManager()
 		addAdapter(adapter, true);
 	}
 
+	m_boxtype = -1;
 	int fd = open("/proc/stb/info/model", O_RDONLY);
-	char tmp[16];
-	int rd = fd >= 0 ? read(fd, tmp, sizeof(tmp)) : 0;
-	if (fd >= 0)
+	if (fd >= 0) {
+		char tmp[16];
+		int rd = read(fd, tmp, sizeof(tmp));
 		close(fd);
 
-	if (!strncmp(tmp, "dm7025\n", rd))
-		m_boxtype = DM7025;
-	else if (!strncmp(tmp, "dm8000\n", rd))
-		m_boxtype = DM8000;
-	else if (!strncmp(tmp, "dm800\n", rd))
-		m_boxtype = DM800;
-	else if (!strncmp(tmp, "dm500hd\n", rd))
-		m_boxtype = DM500HD;
-	else if (!strncmp(tmp, "dm800se\n", rd))
-		m_boxtype = DM800SE;
-	else if (!strncmp(tmp, "dm7020hd\n", rd))
-		m_boxtype = DM7020HD;
+		if (rd == 0)
+			eDebug("[eDVBResourceManager] /proc/stb/info empty. Use fallback via demux count!");
+		else if (!strncmp(tmp, "dm7025\n", rd))
+			m_boxtype = DM7025;
+		else if (!strncmp(tmp, "dm8000\n", rd))
+			m_boxtype = DM8000;
+		else if (!strncmp(tmp, "dm800\n", rd))
+			m_boxtype = DM800;
+		else if (!strncmp(tmp, "dm500hd\n", rd))
+			m_boxtype = DM500HD;
+		else if (!strncmp(tmp, "dm800se\n", rd))
+			m_boxtype = DM800SE;
+		else if (!strncmp(tmp, "dm7020hd\n", rd))
+			m_boxtype = DM7020HD;
+		else
+			eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info not possible. Use fallback via demux count!");
+	}
 	else {
-		eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
+		eDebug("[eDVBResourceManager] cannot open /proc/stb/info. Use fallback via demux count!");
+	}
+
+	if (m_boxtype == -1) {
 		if (m_demux.size() == 3)
 			m_boxtype = DM800;
 		else if (m_demux.size() < 5)
@@ -2017,7 +2026,7 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 
 		   this poses a big problem for PiP. */
 
-		if (cap & capHoldDecodeReference) // this is set in eDVBResourceManager::allocateDemux for Dm500HD/DM800 and DM8000
+		if (cap & capHoldDecodeReference) // this is set in eDVBResourceManager::allocateDemux for non DM7025 boxes
 			;
 		else if (cap & capDecode)
 			our_demux = 0;
