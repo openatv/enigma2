@@ -112,8 +112,10 @@ class auto3D(Screen):
 					info = eServiceCenter.getInstance().info(service)
 					service = info and info.getInfoString(service, iServiceInformation.sServiceref)
 					return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_IS_DEDICATED_3D
-				else:
+				elif "://" not in servicepath:
 					return ".3d." in servicepath
+				else:
+					return False
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1
