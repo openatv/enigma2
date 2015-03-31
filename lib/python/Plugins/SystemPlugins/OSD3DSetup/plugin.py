@@ -82,7 +82,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 previous = None
 
-def applySettings(mode, znorm):
+def applySettings(mode, znorm=int(config.plugins.OSD3DSetup.znorm.value)):
 	global previous
 	path_mode = ""
 	path_znorm = ""
@@ -122,9 +122,9 @@ class auto3D(Screen):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		if info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1:
-			applySettings("sidebyside", int(config.plugins.OSD3DSetup.znorm.value))
+			applySettings("sidebyside")
 		else:
-			applySettings("off", int(config.plugins.OSD3DSetup.znorm.value))
+			applySettings("off")
 
 def setConfiguredSettings():
 	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))

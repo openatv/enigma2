@@ -271,7 +271,7 @@ class ChannelContextMenu(Screen):
 		if self.session.nav.currentlyPlayingServiceReference == self.csel.getCurrentSelection():
 			try:
 				from Plugins.SystemPlugins.OSD3DSetup.plugin import applySettings
-				applySettings(value and "sidebyside" or "off", int(config.plugins.OSD3DSetup.znorm.value))
+				applySettings(value and "sidebyside" or "off")
 			except:
 				pass
 
