@@ -19,9 +19,12 @@ class RotorPosition(Converter, object):
 			self.type = self.TUNER_NAME
 		else:
 			self.type = self.DEFAULT
+		self.LastRotorPos = config.misc.lastrotorposition.value
+		config.misc.lastrotorposition.addNotifier(self.forceChanged, initial_call=False)
 
 	@cached
 	def getText(self):
+		self.LastRotorPos = config.misc.lastrotorposition.value
 		(rotor, tuner) = self.isMotorizedTuner()
 		if rotor:
 			self.actualizeCfgLastRotorPosition()
@@ -30,7 +33,7 @@ class RotorPosition(Converter, object):
 			if self.type == self.TUNER_NAME:
 				active_tuner = self.getActiveTuner()
 				if tuner != active_tuner:
-					return _("%s:%s") % (chr(ord("A")+tuner), orbpos(config.misc.lastrotorposition.value))
+					return _("%s:%s") % ("\c0000?0?0" + chr(ord("A")+ tuner), "\c00?0?0?0" + orbpos(config.misc.lastrotorposition.value))
 				return ""
 			return orbpos(config.misc.lastrotorposition.value)
 		return ""
@@ -46,8 +49,10 @@ class RotorPosition(Converter, object):
 
 	def actualizeCfgLastRotorPosition(self):
 		if eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
-			config.misc.lastrotorposition.value = eDVBSatelliteEquipmentControl.getInstance().getTargetOrbitalPosition()
-			config.misc.lastrotorposition.save()
+			current_pos = eDVBSatelliteEquipmentControl.getInstance().getTargetOrbitalPosition()
+			if current_pos != config.misc.lastrotorposition.value:
+				self.LastRotorPos = config.misc.lastrotorposition.value = current_pos
+				config.misc.lastrotorposition.save()
 
 	def getActiveTuner(self):
 		if not eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
@@ -57,3 +62,7 @@ class RotorPosition(Converter, object):
 			if tuner:
 				return tuner.get("tuner_number")
 		return ""
+
+	def forceChanged(self, configElement=None):
+		if self.LastRotorPos != config.misc.lastrotorposition.value:
+			Converter.changed(self, (self.CHANGED_ALL,))

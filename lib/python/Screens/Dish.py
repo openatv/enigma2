@@ -303,7 +303,8 @@ class Dishpip(Dish, Screen):
 			if self.__state == self.STATE_HIDDEN:
 				self.rotorTimer.stop()
 				self.moving_timeout = 0
-				self.show()
+				if config.usage.showdish.value:
+					self.show()
 				if self.cur_orbpos != INVALID_POSITION and self.cur_orbpos != config.misc.lastrotorposition.value:
 					config.misc.lastrotorposition.value = self.cur_orbpos
 					config.misc.lastrotorposition.save()
@@ -329,7 +330,7 @@ class Dishpip(Dish, Screen):
 	def startPiPService(self, ref=None):
 		if self.__state == self.STATE_SHOWN:
 			self.__toHide()
-		if not config.usage.showdish.value or ref is None:
+		if ref is None:
 			return
 		info = eServiceCenter.getInstance().info(ref)
 		data = info and info.getInfoObject(ref, iServiceInformation.sTransponderData)
