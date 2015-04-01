@@ -21,21 +21,23 @@ class RotorPosition(Converter, object):
 			self.type = self.DEFAULT
 		self.LastRotorPos = config.misc.lastrotorposition.value
 		config.misc.lastrotorposition.addNotifier(self.forceChanged, initial_call=False)
+		config.misc.showrotorposition.addNotifier(self.show_hide, initial_call=False)
 
 	@cached
 	def getText(self):
-		self.LastRotorPos = config.misc.lastrotorposition.value
-		(rotor, tuner) = self.isMotorizedTuner()
-		if rotor:
-			self.actualizeCfgLastRotorPosition()
-			if self.type == self.WITH_TEXT:
-				return _("Rotor: ") + orbpos(config.misc.lastrotorposition.value)
-			if self.type == self.TUNER_NAME:
-				active_tuner = self.getActiveTuner()
-				if tuner != active_tuner:
-					return _("%s:%s") % ("\c0000?0?0" + chr(ord("A")+ tuner), "\c00?0?0?0" + orbpos(config.misc.lastrotorposition.value))
-				return ""
-			return orbpos(config.misc.lastrotorposition.value)
+		if config.misc.showrotorposition.value:
+			self.LastRotorPos = config.misc.lastrotorposition.value
+			(rotor, tuner) = self.isMotorizedTuner()
+			if rotor:
+				self.actualizeCfgLastRotorPosition()
+				if self.type == self.WITH_TEXT:
+					return _("Rotor: ") + orbpos(config.misc.lastrotorposition.value)
+				if self.type == self.TUNER_NAME:
+					active_tuner = self.getActiveTuner()
+					if tuner != active_tuner:
+						return _("%s:%s") % ("\c0000?0?0" + chr(ord("A")+ tuner), "\c00?0?0?0" + orbpos(config.misc.lastrotorposition.value))
+					return ""
+				return orbpos(config.misc.lastrotorposition.value)
 		return ""
 
 	text = property(getText)
@@ -66,3 +68,6 @@ class RotorPosition(Converter, object):
 	def forceChanged(self, configElement=None):
 		if self.LastRotorPos != config.misc.lastrotorposition.value:
 			Converter.changed(self, (self.CHANGED_ALL,))
+
+	def show_hide(self, configElement=None):
+		Converter.changed(self, (self.CHANGED_ALL,))

@@ -12,6 +12,7 @@ import time
 def InitUsageConfig():
 	config.usage = ConfigSubsection()
 	config.usage.showdish = ConfigYesNo(default = True)
+	config.misc.showrotorposition = ConfigYesNo(default = False)
 	config.usage.multibouquet = ConfigYesNo(default = True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
