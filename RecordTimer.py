@@ -34,7 +34,7 @@ def resetTimerWakeup():
 		os.remove("/tmp/was_rectimer_wakeup")
 	wasRecTimerWakeup = False
 
-# parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
+# parses an event and returns a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
 def parseEvent(ev, description = True):
 	if description:
@@ -276,7 +276,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					self.log(2, "'prepare' failed: error %d" % prep_res)
 
-				# we must calc nur start time before stopRecordService call because in Screens/Standby.py TryQuitMainloop tries to get
+				# we must calc new start time before stopRecordService call because in Screens/Standby.py TryQuitMainloop tries to get
 				# the next start time in evEnd event handler...
 				self.do_backoff()
 				self.start_prepare = time() + self.backoff
@@ -334,10 +334,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# create file to "reserve" the filename
 				# because another recording at the same time on another service can try to record the same event
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
-				# here than calculateFilename is happy
+				# here then calculateFilename is happy
 				if not self.justplay:
 					open(self.Filename + ".ts", "w").close()
-					# Give the Trashcan a chance to clean up
+					# give the Trashcan a chance to clean up
 					try:
 						Trashcan.instance.cleanIfIdle()
 					except Exception, e:
@@ -467,7 +467,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900):
 					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
 					return True
-				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						print "[RecordTimer] quitMainloop #1"
 						quitMainloop(1)
@@ -480,7 +480,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900):
 					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
 					return True
-				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						print "[RecordTimer] quitMainloop #2"
 						quitMainloop(1)
@@ -507,7 +507,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			simulTimerList = timersanitycheck.getSimulTimerList()
 			if simulTimerList is not None and len(simulTimerList) > 1:
 				new_end = simulTimerList[1].begin
-				new_end -= 30				# 30 Sekunden Prepare-Zeit lassen
+				new_end -= 30				# allow 30 seconds for prepare
 		if new_end <= time():
 			return False
 		self.end = new_end
@@ -695,7 +695,7 @@ class RecordTimer(timer.Timer):
 
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
-		# simply abort the timer. don't run trough all the stages.
+		# simply abort the timer. don't run through all the stages.
 		if w.shouldSkip():
 			w.state = RecordTimerEntry.StateEnded
 		else:
@@ -710,7 +710,7 @@ class RecordTimer(timer.Timer):
 		except:
 			print '[RecordTimer]: Remove list failed'
 
-		# did this timer reached the last state?
+		# did this timer reach the last state?
 		if w.state < RecordTimerEntry.StateEnded:
 			# no, sort it into active list
 			insort(self.timer_list, w)
@@ -722,9 +722,9 @@ class RecordTimer(timer.Timer):
 				w.first_try_prepare = True
 				self.addTimerEntry(w)
 			else:
-				# check for disabled timers, if time as passed set to completed.
+				# check for disabled timers, if time has passed set to completed.
 				self.cleanupDisabled()
-				# Remove old timers as set in config
+				# remove old timers as set in config
 				self.cleanupDaily(config.recording.keep_timers.value)
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
@@ -765,7 +765,7 @@ class RecordTimer(timer.Timer):
 
 		root = doc.getroot()
 
-		# put out a message when at least one timer overlaps
+		# display a message when at least one timer overlaps another one
 		checkit = True
 		for timer in root.findall("timer"):
 			newTimer = createTimer(timer)
@@ -773,7 +773,7 @@ class RecordTimer(timer.Timer):
 				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
 				AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
-				checkit = False # at moment it is enough when the message is displayed one time
+				checkit = False # at the moment it is enough when the message is displayed once
 
 	def saveTimer(self):
 		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
@@ -878,7 +878,7 @@ class RecordTimer(timer.Timer):
 				return True
 		return False
 
-	def record(self, entry, ignoreTSC=False, dosave=True): # wird von loadTimer mit dosave=False aufgerufen
+	def record(self, entry, ignoreTSC=False, dosave=True): # is called by loadTimer with argument dosave=False
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
 			if not ignoreTSC:
@@ -1058,7 +1058,7 @@ class RecordTimer(timer.Timer):
 
 				if time_match:
 					returnValue = (time_match, type, isAutoTimer)
-					if type in (2,7,12): # When full recording do not look further
+					if type in (2,7,12): # when full recording do not look further
 						break
 		return returnValue
 
