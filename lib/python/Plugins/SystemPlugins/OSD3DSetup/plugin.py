@@ -142,7 +142,6 @@ def autostart(reason, **kwargs):
 		session.open(auto3D)
 
 def Plugins(**kwargs):
-	from os import path
 	if SystemInfo["3DMode"]:
 		from Plugins.Plugin import PluginDescriptor
 		return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART], fnc = autostart),
