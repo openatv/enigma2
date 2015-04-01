@@ -10,6 +10,7 @@ from Components.Ipkg import IpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileExists
 from enigma import eTimer, getBoxType, eDVBDB
 from urllib import urlopen
 import socket
@@ -200,7 +201,9 @@ class UpdatePlugin(Screen):
 					(_("Update and ask to reboot"), "hot"),
 					(_("Update channel list only"), "channels"),
 					(_("Show latest commits on sourceforge"), "commits"),
-					(_("Show updated packages"), "showlist")]
+					(_("Show packages to be upgraded"), "showlist")]
+				if fileExists("/home/root/ipkgupgrade.log"):
+					choices.append((_("Show latest upgrade log"), "log"))
 				if not config.usage.show_update_disclaimer.value:
 					choices.append((_("Show disclaimer"), "disclaimer"))
 				choices.append((_("Cancel"), ""))
@@ -264,6 +267,11 @@ class UpdatePlugin(Screen):
 			text = ""
 			for i in [x[0] for x in sorted(self.ipkg.getFetchedList(), key=lambda d: d[0])]:
 				text = text and text + "\n" + i or i
+			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text, _("Packages to update"))
+		elif answer[1] == "log":
+			text = ""
+			for i in open("/home/root/ipkgupgrade.log", "r").readlines():
+				text += i
 			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text, _("Packages to update"))
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
