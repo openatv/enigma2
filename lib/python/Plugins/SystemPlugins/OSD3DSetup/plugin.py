@@ -12,12 +12,6 @@ config.plugins.OSD3DSetup = ConfigSubsection()
 config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
 
-PROC_ET_3DMODE = "/proc/stb/fb/3dmode"
-PROC_ET_ZNORM = "/proc/stb/fb/znorm"
-
-PROC_DM_3DMODE = "/proc/stb/fb/primary/3d"
-PROC_DM_ZNORM = "/proc/stb/fb/primary/zoffset"
-
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
