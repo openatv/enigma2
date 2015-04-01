@@ -194,17 +194,17 @@ class UpdatePlugin(Screen):
 					message += "(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 					if self.total_packages > 150:
 						message += " " + _("Reflash recommended!")
-					choices = [(_("Update and reboot (recommended)"), "cold"),
-						(_("Update and ask to reboot"), "hot"),
-						(_("Update channel list only"), "channels"),
-						(_("Show latest commits on sourceforge"), "commits"),
-						(_("Show updated packages"), "showlist")]
-					if not config.usage.show_update_disclaimer.value:
-						choices.append((_("Show disclaimer"), "disclaimer"))
-					choices.append((_("Cancel"), ""))
-					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
-					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=3, close_on_any_key=True)
+					message = _("No updates available")
+				choices = [(_("Update and reboot (recommended)"), "cold"),
+					(_("Update and ask to reboot"), "hot"),
+					(_("Update channel list only"), "channels"),
+					(_("Show latest commits on sourceforge"), "commits"),
+					(_("Show updated packages"), "showlist")]
+				if not config.usage.show_update_disclaimer.value:
+					choices.append((_("Show disclaimer"), "disclaimer"))
+				choices.append((_("Cancel"), ""))
+				self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 			elif self.channellist_only > 0:
 				if self.channellist_only == 1:
 					self.setEndMessage(_("Could not find installed channel list."))
