@@ -168,6 +168,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Usage setup"), "Setup/usage", "Setup"))
 	ButtonSetupFunctions.append((_("User interface Settings"), "Setup/userinterface", "Setup"))
 	ButtonSetupFunctions.append((_("Recording and playback settings"), "Setup/recording", "Setup"))
+	ButtonSetupFunctions.append((_("Skin setup"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
 	ButtonSetupFunctions.append((_("Harddisk setup"), "Setup/harddisk", "Setup"))
 	ButtonSetupFunctions.append((_("Subtitles settings"), "Setup/subtitlesetup", "Setup"))
 	return ButtonSetupFunctions
