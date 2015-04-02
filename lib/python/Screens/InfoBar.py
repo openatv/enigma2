@@ -132,7 +132,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 		else:
-			self.session.open(MoviePlayer, service, slist=self.servicelist, lastservice=ref, infobar=self)
+			from Components.ParentalControl import parentalControl
+			if parentalControl.isServicePlayable(service, self.openMoviePlayer):
+				self.openMoviePlayer(service)
+
+	def openMoviePlayer(self, ref):
+		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=self.session.nav.getCurrentlyPlayingServiceOrGroup(), infobar=self)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,
 		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState,
