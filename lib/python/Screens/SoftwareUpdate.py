@@ -197,14 +197,14 @@ class UpdatePlugin(Screen):
 						message += " " + _("Reflash recommended!")
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
-						(_("Update channel list only"), "channels")]
+						(_("Update channel list only"), "channels"),
+						(_("Show packages to be upgraded"), "showlist")]
 				else:
 					message = _("No updates available")
 					choices = []
 				if fileExists("/home/root/ipkgupgrade.log"):
 					choices.append((_("Show latest upgrade log"), "log"))
-				choices += [(_("Show latest commits on sourceforge"), "commits"),
-					(_("Show packages to be upgraded"), "showlist")]
+				choices.append((_("Show latest commits on sourceforge"), "commits"))
 				if not config.usage.show_update_disclaimer.value:
 					choices.append((_("Show disclaimer"), "disclaimer"))
 				choices.append((_("Cancel"), ""))
