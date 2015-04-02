@@ -199,7 +199,7 @@ ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
 sync:
 	if ((offset+m_sync_offset) != m_current_offset)
 	{
-//		eDebug("eM2TSFile: seekTo %lld", offset+m_sync_offset);
+//		eDebug("[eM2TSFile] seekTo %lld", offset+m_sync_offset);
 		m_current_offset = lseek_internal(offset+m_sync_offset, SEEK_SET);
 		if (m_current_offset < 0)
 			return m_current_offset;
@@ -214,7 +214,7 @@ sync:
 		if (tmp[4] != 0x47)
 		{
 			if (rd > 0) {
-				eDebug("eM2TSFile: short read at pos %lld async!!", m_current_offset);
+				eDebug("[eM2TSFile] short read at pos %lld async!!", m_current_offset);
 				return rd;
 			}
 			else {
@@ -222,20 +222,20 @@ sync:
 				ret = ::read(m_fd, tmp+192, 384);
 
 #if 0
-				eDebugNoNewLineStart("eM2TSFile: m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
+				eDebugNoNewLineStart("[eM2TSFile] m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
 				for (; x < 192; ++x)
 					eDebugNoNewLine(" %02x", tmp[x]);
 				eDebugNoNewLine("\n");
 				x=0;
 #else
-				eDebug("eM2TSFile: m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
+				eDebug("[eM2TSFile] m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
 #endif
 				for (; x < 192; ++x)
 				{
 					if (tmp[x] == 0x47 && tmp[x+192] == 0x47)
 					{
 						int add_offs = (x - 4);
-						eDebug("eM2TSFile: sync found at pos %d, sync_offset is now %d, old was %d", x, add_offs + m_sync_offset, m_sync_offset);
+						eDebug("[eM2TSFile] sync found at pos %d, sync_offset is now %d, old was %d", x, add_offs + m_sync_offset, m_sync_offset);
 						m_sync_offset += add_offs;
 						goto sync;
 					}

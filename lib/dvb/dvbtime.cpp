@@ -23,7 +23,7 @@ void setRTC(time_t time)
 		if (fprintf(f, "%u", (unsigned int)time))
 			prev_time = time;
 		else
-			eDebug("write /proc/stb/fp/rtc failed (%m)");
+			eDebug("[eDVBLocalTimeHandler] write /proc/stb/fp/rtc failed: %m");
 		fclose(f);
 	}
 	else
@@ -32,7 +32,7 @@ void setRTC(time_t time)
 		if ( fd >= 0 )
 		{
 			if ( ::ioctl(fd, FP_IOCTL_SET_RTC, (void*)&time ) < 0 )
-				eDebug("FP_IOCTL_SET_RTC failed(%m)");
+				eDebug("[eDVBLocalTimeHandler] FP_IOCTL_SET_RTC failed: %m");
 			else
 				prev_time = time;
 			close(fd);
@@ -49,7 +49,7 @@ time_t getRTC()
 		// sanity check to detect corrupt atmel firmware
 		unsigned int tmp;
 		if (fscanf(f, "%u", &tmp) != 1)
-			eDebug("read /proc/stb/fp/rtc failed (%m)");
+			eDebug("[eDVBLocalTimeHandler] read /proc/stb/fp/rtc failed: %m");
 		else
 			rtc_time=tmp;
 		fclose(f);
@@ -60,7 +60,7 @@ time_t getRTC()
 		if ( fd >= 0 )
 		{
 			if ( ::ioctl(fd, FP_IOCTL_GET_RTC, (void*)&rtc_time ) < 0 )
-				eDebug("FP_IOCTL_GET_RTC failed(%m)");
+				eDebug("[eDVBLocalTimeHandler] FP_IOCTL_GET_RTC failed: %m");
 			close(fd);
 		}
 	}
@@ -188,10 +188,10 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 		res_mgr->connectChannelAdded(slot(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
 		time_t now = time(0);
 		if ( now < 1072224000 ) // 01.01.2004
-			eDebug("RTC not ready... wait for transponder time");
+			eDebug("[eDVBLocalTimeHandler] RTC not ready... wait for transponder time");
 		else // inform all who's waiting for valid system time..
 		{
-			eDebug("Use valid Linux Time :) (RTC?)");
+			eDebug("[eDVBLocalTimeHandler] Use valid Linux Time :) (RTC?)");
 			m_time_ready = true;
 			/*emit*/ m_timeUpdated();
 		}
@@ -204,7 +204,7 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	instance=0;
 	if (ready())
 	{
-		eDebug("set RTC to previous valid time");
+		eDebug("[eDVBLocalTimeHandler] set RTC to previous valid time");
 		setRTC(::time(0));
 	}
 }

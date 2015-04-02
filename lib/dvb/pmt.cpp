@@ -59,12 +59,12 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 				m_pvr_demux_tmp = NULL;
 			}
 			else if (m_channel->getDemux(m_demux, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
-				eDebug("Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
+				eDebug("[eDVBServicePMTHandler] Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
 		}
 
 		if (m_demux)
 		{
-			eDebug("ok ... now we start!!");
+			eDebug("[eDVBServicePMTHandler] ok ... now we start!!");
 			m_have_cached_program = false;
 
 			if (m_service && !m_service->cacheEmpty())
@@ -92,7 +92,7 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
-		eDebug("tune failed.");
+		eDebug("[eDVBServicePMTHandler] tune failed.");
 		serviceEvent(eventTuneFailed);
 	}
 }
@@ -172,7 +172,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 			if (!m_PMT.getCurrent(ptr))
 				eDVBCAHandler::getInstance()->handlePMT(m_reference, ptr);
 			else
-				eDebug("eDVBServicePMTHandler cannot call buildCAPMT");
+				eDebug("[eDVBServicePMTHandler] cannot call buildCAPMT");
 		}
 	}
 }
@@ -184,7 +184,7 @@ void eDVBServicePMTHandler::sendEventNoPatEntry()
 
 void eDVBServicePMTHandler::PATready(int)
 {
-	eDebug("PATready");
+	eDebug("[eDVBServicePMTHandler] PATready");
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
@@ -212,16 +212,16 @@ void eDVBServicePMTHandler::PATready(int)
 		}
 		if (pmtpid_single != -1) // only one PAT entry .. and not valid pmtpid found
 		{
-			eDebug("use single pat entry!");
+			eDebug("[eDVBServicePMTHandler] use single pat entry!");
 			m_reference.setServiceID(eServiceID(service_id_single));
 			pmtpid = pmtpid_single;
 		}
 		if (pmtpid == -1) {
-			eDebug("no PAT entry found.. start delay");
+			eDebug("[eDVBServicePMTHandler] no PAT entry found.. start delay");
 			m_no_pat_entry_delay->start(1000, true);
 		}
 		else {
-			eDebug("use pmtpid %04x for service_id %04x", pmtpid, m_reference.getServiceID().get());
+			eDebug("[eDVBServicePMTHandler] use pmtpid %04x for service_id %04x", pmtpid, m_reference.getServiceID().get());
 			m_no_pat_entry_delay->stop();
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
 		}
@@ -231,7 +231,7 @@ void eDVBServicePMTHandler::PATready(int)
 
 void eDVBServicePMTHandler::AITready(int error)
 {
-	eDebug("AITready");
+	eDebug("[eDVBServicePMTHandler] AITready");
 	ePtr<eTable<ApplicationInformationSection> > ptr;
 	m_aitInfoList.clear();
 	if (!m_AIT.getCurrent(ptr))
@@ -255,6 +255,7 @@ void eDVBServicePMTHandler::AITready(int error)
 						for (ApplicationNameConstIterator appnamesit = appname->getApplicationNames()->begin(); appnamesit != appname->getApplicationNames()->end(); ++appnamesit)
 						{
 							aitinfo.name = (*appnamesit)->getApplicationName();
+							eDebug("[eDVBServicePMTHandler] AIT: %s", aitinfo.name.c_str());
 						}
 						break;
 					}
@@ -317,7 +318,7 @@ void eDVBServicePMTHandler::AITready(int error)
 
 void eDVBServicePMTHandler::OCready(int error)
 {
-	eDebug("OCready");
+	eDebug("[eDVBServicePMTHandler] OCready");
 	ePtr<eTable<OCSection> > ptr;
 	if (!m_OC.getCurrent(ptr))
 	{
@@ -723,7 +724,7 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 		{
 			ePtr<iDVBChannelList> db;
 			if (m_resourceManager->getChannelList(db) != 0)
-				eDebug("no channel list");
+				eDebug("[eDVBServicePMTHandler] no channel list");
 			else
 			{
 				eDVBChannelID chid;
@@ -731,10 +732,10 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 				if (chid == m_dvb_scan->getCurrentChannelID())
 				{
 					m_dvb_scan->insertInto(db, true);
-					eDebug("sdt update done!");
+					eDebug("[eDVBServicePMTHandler] sdt update done!");
 				}
 				else
-					eDebug("ignore sdt update data.... incorrect transponder tuned!!!");
+					eDebug("[eDVBServicePMTHandler] ignore sdt update data.... incorrect transponder tuned!!!");
 			}
 			break;
 		}
@@ -770,7 +771,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		ref.getChannelID(chid);
 		res = m_resourceManager->allocateChannel(chid, m_channel, simulate);
 		if (!simulate)
-			eDebug("allocate Channel: res %d", res);
+			eDebug("[eDVBServicePMTHandler] allocate Channel: res %d", res);
 
 		ePtr<iDVBChannelList> db;
 		if (!m_resourceManager->getChannelList(db))
@@ -784,7 +785,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		{
 			eDVBTSTools tstools;
 			bool b = source || !tstools.openFile(ref.path.c_str(), 1);
-			eWarning("no .meta file found, trying to find PMT pid");
+			eWarning("[eDVBServicePMTHandler] no .meta file found, trying to find PMT pid");
 			if (source)
 				tstools.setSource(source, NULL);
 			if (b)
@@ -793,20 +794,20 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 				if (!tstools.findPMT(program))
 				{
 					m_pmt_pid = program.pmtPid;
-					eDebug("PMT pid found on pid %04x, service id %d", m_pmt_pid, program.serviceId);
+					eDebug("[eDVBServicePMTHandler] PMT pid %04x, service id %d", m_pmt_pid, program.serviceId);
 					m_reference.setServiceID(program.serviceId);
 				}
 			}
 			else
-				eWarning("no valid source to find PMT pid!");
+				eWarning("[eDVBServicePMTHandler] no valid source to find PMT pid!");
 		}
-		eDebug("alloc PVR");
+		eDebug("[eDVBServicePMTHandler] alloc PVR");
 			/* allocate PVR */
 		eDVBChannelID chid;
 		if (m_service_type == streamclient) ref.getChannelID(chid);
 		res = m_resourceManager->allocatePVRChannel(chid, m_pvr_channel);
 		if (res)
-			eDebug("allocatePVRChannel failed!\n");
+			eDebug("[eDVBServicePMTHandler] allocatePVRChannel failed!\n");
 		m_channel = m_pvr_channel;
 	}
 
@@ -851,7 +852,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 			m_pvr_channel->setCueSheet(cue);
 
 			if (m_pvr_channel->getDemux(m_pvr_demux_tmp, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
-				eDebug("Allocating %s-decoding a demux for PVR channel failed.", m_use_decode_demux ? "" : "non-");
+				eDebug("[eDVBServicePMTHandler] Allocating %s-decoding a demux for PVR channel failed.", m_use_decode_demux ? "" : "non-");
 			else if (source)
 				m_pvr_channel->playSource(source, streaminfo_file);
 			else

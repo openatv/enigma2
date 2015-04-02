@@ -13,7 +13,7 @@ void eServerSocket::notifier(int)
 	struct sockaddr_in client_addr;
 
 #ifdef DEBUG_SERVERSOCKET
-	eDebug("[SERVERSOCKET] incoming connection!");
+	eDebug("[eServerSocket] incoming connection!");
 #endif
 
 	clientlen=sizeof(client_addr);
@@ -21,7 +21,7 @@ void eServerSocket::notifier(int)
 			(struct sockaddr *) &client_addr,
 			(socklen_t*)&clientlen);
 	if(clientfd<0)
-		eDebug("[SERVERSOCKET] error on accept()");
+		eDebug("[eServerSocket] error on accept: %m");
 
 	strRemoteHost = inet_ntoa(client_addr.sin_addr);
 	newConnection(clientfd);
@@ -46,7 +46,7 @@ eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml)
 		(struct sockaddr *) &serv_addr,
 		sizeof(serv_addr))<0)
 	{
-		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
+		eDebug("[eServerSocket] ERROR on bind: %m");
 		okflag=0;
 	}
 	listen(getDescriptor(), 0);
@@ -70,7 +70,7 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 		(struct sockaddr *) &serv_addr,
 		sizeof(serv_addr))<0)
 	{
-		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
+		eDebug("[eServerSocket] ERROR on bind: %m");
 		okflag=0;
 	}
 	listen(getDescriptor(), 0);
@@ -81,7 +81,7 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 eServerSocket::~eServerSocket()
 {
 #if 0
-	eDebug("[SERVERSOCKET] destructed");
+	eDebug("[eServerSocket] destructed");
 #endif
 }
 

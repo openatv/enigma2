@@ -1,4 +1,5 @@
 #include "picexif.h"
+#include <lib/base/eerror.h>
 #include <lib/base/cfile.h>
 
 #define M_SOF0  0xC0
@@ -173,7 +174,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		case M_SOS:
 			return true;
 		case M_EOI:
-			printf("No image in jpeg!\n");
+			eDebug("[Cexif] No image in jpeg!\n");
 			return false;
 		case M_COM:
 			if (HaveCom)

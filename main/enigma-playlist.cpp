@@ -47,16 +47,16 @@ public:
 			eServiceReference ref("2:0:1:0:0:0:0:0:0:0:/");
 			ePtr<iListableService> lst;
 			if (service_center->list(ref, lst))
-				eDebug("no list available!");
+				eDebug("[eMain playlist] no list available!");
 			else
 			{
 				std::list<eServiceReference> list;
 				if (lst->getContent(list))
-					eDebug("list itself SUCKED AROUND!!!");
+					eDebug("[eMain playlist] list itself SUCKED AROUND!!!");
 				else
 					for (std::list<eServiceReference>::const_iterator i(list.begin());
 						i != list.end(); ++i)
-						eDebug("%s", i->toString().c_str());
+						eDebug("[eMain playlist] %s", i->toString().c_str());
 			}
 		}
 #endif
@@ -68,9 +68,9 @@ public:
 		eServiceReference ref2("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp32");
 
 		if (m_nav->enqueueService(ref))
-			eDebug("play sucked around!");
+			eDebug("[eMain playlist] play sucked around!");
 		else
-			eDebug("play r00lz!");
+			eDebug("[eMain playlist] play r00lz!");
 
 		m_nav->enqueueService(ref1);
 		m_nav->enqueueService(ref2);
@@ -85,10 +85,10 @@ public:
 		nav->getPlaylist(playlist);
 		if (playlist)
 		{
-			eDebug("PLAYLIST:");
+			eDebug("[eMain playlist] PLAYLIST:");
 			ePlaylist::iterator i;
 			for (i=playlist->begin(); i != playlist->end(); ++i)
-				eDebug("%s %s", i == playlist->m_current ? "-->" : "   ", i->toString().c_str());
+				eDebug("[eMain playlist] %s %s", i == playlist->m_current ? "-->" : "   ", i->toString().c_str());
 		}
 
 		switch (ev)
@@ -96,7 +96,7 @@ public:
 		case eNavigation::evStopService:
 				/* very important: the old service should be deallocated, so clear *all* references to it */
 			m_serviceInformation = 0;
-			eDebug("STOP service!");
+			eDebug("[eMain playlist] STOP service!");
 			break;
 		case eNavigation::evNewService:
 		{
@@ -104,28 +104,28 @@ public:
 			nav->getCurrentService(service);
 			if (!service)
 			{
-				eDebug("no running service!");
+				eDebug("[eMain playlist] no running service!");
 				break;
 			}
 			if (service->getIServiceInformation(m_serviceInformation))
 			{
-				eDebug("failed to get iserviceinformation");
+				eDebug("[eMain playlist] failed to get iserviceinformation");
 				break;
 			}
 			std::string name;
 			m_serviceInformation->getName(name);
-			eDebug("NEW running service: %s", name.c_str());
+			eDebug("[eMain playlist] NEW running service: %s", name.c_str());
 			break;
 		}
 		case eNavigation::evPlayFailed:
-			eDebug("play failed!");
+			eDebug("[eMain playlist] play failed!");
 			break;
 		case eNavigation::evPlaylistDone:
-			eDebug("playlist done");
+			eDebug("[eMain playlist] playlist done");
 			quit();
 			break;
 		default:
-			eDebug("Navigation event %d", ev);
+			eDebug("[eMain playlist] Navigation event %d", ev);
 			break;
 		}
 	}
@@ -152,7 +152,7 @@ int main()
 
 	eMain app;
 	int res = app.exec();
-	eDebug("after exec");
+	eDebug("[MAIN playlist] after exec");
 	return res;
 }
 

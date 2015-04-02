@@ -36,7 +36,7 @@ gLCDDC::gLCDDC()
 		surface.clut.colors = 0;
 		surface.clut.data = 0;
 	}
-	eDebug("[gLCD] resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, surface.stride);
+	eDebug("[gLCDDC] resolution: %dx%dx%d stride=%d", surface.x, surface.y, surface.bpp, surface.stride);
 
 	m_pixmap = new gPixmap(&surface);
 }

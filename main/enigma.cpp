@@ -140,11 +140,11 @@ void quitMainloop(int exitCode)
 		if (fd >= 0)
 		{
 			if (ioctl(fd, 10 /*FP_CLEAR_WAKEUP_TIMER*/) < 0)
-				eDebug("FP_CLEAR_WAKEUP_TIMER failed (%m)");
+				eDebug("[quitMainloop] FP_CLEAR_WAKEUP_TIMER failed: %m");
 			close(fd);
 		}
 		else
-			eDebug("open /dev/dbox/fp0 for wakeup timer clear failed!(%m)");
+			eDebug("[quitMainloop] open /dev/dbox/fp0 for wakeup timer clear failed: %m");
 	}
 	exit_code = exitCode;
 	eApp->quit(0);
@@ -216,7 +216,7 @@ int main(int argc, char **argv)
 
 /*	if (double_buffer)
 	{
-		eDebug(" - double buffering found, enable buffered graphics mode.");
+		eDebug("[MAIN] - double buffering found, enable buffered graphics mode.");
 		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
 	} */
 
@@ -234,7 +234,7 @@ int main(int argc, char **argv)
 	dsk_lcd.setRedrawTask(main);
 
 
-	eDebug("Loading spinners...");
+	eDebug("[MAIN] Loading spinners...");
 
 	{
 		int i;
@@ -251,9 +251,9 @@ int main(int argc, char **argv)
 			if (!wait[i])
 			{
 				if (!i)
-					eDebug("failed to load %s! (%m)", rfilename.c_str());
+					eDebug("[MAIN] failed to load %s: %m", rfilename.c_str());
 				else
-					eDebug("found %d spinner!\n", i);
+					eDebug("[MAIN] found %d spinner!\n", i);
 				break;
 			}
 		}
@@ -267,7 +267,7 @@ int main(int argc, char **argv)
 
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 
-	printf("executing main\n");
+	printf("[MAIN] executing main\n");
 
 	bsodCatchSignals();
 	catchTermSignal();
@@ -285,7 +285,7 @@ int main(int argc, char **argv)
 
 	if (exit_code == 5) /* python crash */
 	{
-		eDebug("(exit code 5)");
+		eDebug("[MAIN] (exit code 5)");
 		bsodFatal(0);
 	}
 
