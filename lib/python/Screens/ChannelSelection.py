@@ -2112,7 +2112,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if cur_root and cur_root != root:
 			self.setRoot(root)
 		if doZap:
-			self.session.nav.playService(ref)
+			self.session.nav.playService(ref, adjust=False)
 		if self.dopipzap:
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 		else:
