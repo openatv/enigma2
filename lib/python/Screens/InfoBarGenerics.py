@@ -545,7 +545,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.doHide()
 
 	def unDimming(self):
-		#self.unDimmingTimer.stop()
+		self.unDimmingTimer.stop()
 		self.doWriteAlpha(config.av.osd_alpha.value)
 
 	def doWriteAlpha(self, value):
@@ -566,10 +566,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			
 	def resetAlpha(self):
 		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
-			#self.unDimmingTimer = eTimer()
-			#self.unDimmingTimer.callback.append(self.unDimming)
-			#self.unDimmingTimer.start(300, True)
-			self.unDimming()
+			self.unDimmingTimer = eTimer()
+			self.unDimmingTimer.callback.append(self.unDimming)
+			self.unDimmingTimer.start(300, True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -721,7 +720,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.hideTimer.stop()
 
 	def unlockShow(self):
-		self.__locked -= 1
+		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
+			self.doWriteAlpha(config.av.osd_alpha.value)
+		try:
+			self.__locked -= 1
+		except:
+			self.__locked = 0
+		
 		if self.__locked  <0:
 			self.__locked = 0
 		if self.execing:
