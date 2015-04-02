@@ -12,7 +12,7 @@ import time
 def InitUsageConfig():
 	config.usage = ConfigSubsection()
 	config.usage.showdish = ConfigYesNo(default = True)
-	config.misc.showrotorposition = ConfigYesNo(default = False)
+	config.misc.showrotorposition = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("withtext", _("with text")), ("tunername", _("with tuner name"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)

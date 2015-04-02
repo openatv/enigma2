@@ -13,26 +13,20 @@ class RotorPosition(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		if type == "WithText":
-			self.type = self.WITH_TEXT
-		if type == "TunerName":
-			self.type = self.TUNER_NAME
-		else:
-			self.type = self.DEFAULT
 		self.LastRotorPos = config.misc.lastrotorposition.value
 		config.misc.lastrotorposition.addNotifier(self.forceChanged, initial_call=False)
 		config.misc.showrotorposition.addNotifier(self.show_hide, initial_call=False)
 
 	@cached
 	def getText(self):
-		if config.misc.showrotorposition.value:
+		if config.misc.showrotorposition.value != "no":
 			self.LastRotorPos = config.misc.lastrotorposition.value
 			(rotor, tuner) = self.isMotorizedTuner()
 			if rotor:
 				self.actualizeCfgLastRotorPosition()
-				if self.type == self.WITH_TEXT:
+				if config.misc.showrotorposition.value == "withtext":
 					return _("Rotor: ") + orbpos(config.misc.lastrotorposition.value)
-				if self.type == self.TUNER_NAME:
+				if config.misc.showrotorposition.value == "tunername":
 					active_tuner = self.getActiveTuner()
 					if tuner != active_tuner:
 						return _("%s:%s") % ("\c0000?0?0" + chr(ord("A")+ tuner), "\c00?0?0?0" + orbpos(config.misc.lastrotorposition.value))
