@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-01 16:20+0000\n"
-"PO-Revision-Date: 2015-03-03 08:18+0100\n"
+"POT-Creation-Date: 2015-04-01 21:30+0100\n"
+"PO-Revision-Date: 2015-04-02 10:46+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -161,6 +161,10 @@ msgstr "%-H:%M"
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 
+#, python-format
+msgid "%02d:%02d"
+msgstr "%02d:%02d"
+
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
@@ -284,6 +288,10 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d draadloos netwerk gevonden!"
 msgstr[1] "%d draadloze netwerken gevonden!"
 
+#, python-format
+msgid "%d.%02d. %02d:%02d"
+msgstr "%d.%02d. %02d:%02d"
+
 msgid "%d.%B %Y"
 msgstr "%d-%m-%Y"
 
@@ -341,6 +349,10 @@ msgstr "%s%d min"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s:%s"
+msgstr "%s:%s"
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
@@ -507,6 +519,13 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
+
+msgid ""
+"A background update check is in progress,\n"
+"please wait a few minutes and try again."
+msgstr ""
+"Op de achtergrond wordt een controle op updates uitgevoerd. \n"
+"Wacht een paar minuten en probeer het opnieuw."
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
@@ -688,7 +707,7 @@ msgstr "Toegangspunt:"
 msgid "Activate"
 msgstr "Activeer"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RedButton)"
 msgstr "Activeer HbbTV (Rode Knop)"
 
 msgid "Activate MAC-address configuration"
@@ -706,8 +725,8 @@ msgstr "Activeer netwerkinstellingen"
 msgid "Activate the configured network settings."
 msgstr "Aktiveer de gekozen netwerk instellingen."
 
-msgid "Activate timeshift End"
-msgstr "Activeer timeshift Einde"
+msgid "Activate timeshift end"
+msgstr "Activeer timeshift einde"
 
 msgid "Activate timeshift end and pause"
 msgstr "Acitveer timeshift einde en pauze"
@@ -873,9 +892,6 @@ msgstr "Accepteer ondertitels voor slechthorenden."
 
 msgid "Allow unstable (experimental) updates"
 msgstr "Accepteer niet geteste (experimentele) updates"
-
-msgid "Allows more detailed information to be in the crash log"
-msgstr "Geeft de mogelijkheid meer details in een crashlog op te nemen."
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Laat de %s %s regelmatig de opgeslagen EPG-data lezen."
@@ -1151,6 +1167,9 @@ msgstr "Automatische taalinstellingen"
 msgid "Auto scart switching"
 msgstr "Automatisch scart schakelen"
 
+msgid "AutoTimer Overview"
+msgstr "AutoTimer overzicht"
+
 msgid "Automatic"
 msgstr "Automatisch"
 
@@ -1359,9 +1378,6 @@ msgstr "Toetsinstellingen voor"
 msgid "ButtonSetup"
 msgstr "Toetsinstellingen"
 
-msgid "ButtonSetup Setup"
-msgstr "Toetsinstellingen"
-
 msgid "By Team ViX"
 msgstr "Door het VIX team"
 
@@ -1430,6 +1446,10 @@ msgstr "CCcam info"
 
 msgid "CH"
 msgstr "CH"
+
+#, python-format
+msgid "CH%s"
+msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "VERANDER BOUQUET"
@@ -1523,14 +1543,14 @@ msgstr "Waterval PiP"
 msgid "Center DVB subtitles"
 msgstr "Centreer DVB-ondertitels"
 
+msgid "Change PIN"
+msgstr "Wijzig pincode"
+
 msgid "Change bouquets in quickzap"
 msgstr "Verander van favorietenlijst tijdens zappen"
 
 msgid "Change next timer"
 msgstr "Verander de volgende timer"
-
-msgid "Change pin code"
-msgstr "Verander pincode"
 
 msgid "Change recording (duration)"
 msgstr "wijzig opname (duur)"
@@ -1540,9 +1560,6 @@ msgstr "wijzig opname (eindtijd)"
 
 msgid "Change repeat and delay settings?"
 msgstr "Pas de herhalings- en vertragingsinstellingen aan?"
-
-msgid "Change service PIN"
-msgstr "Wijzig zender pincode"
 
 msgid "Change step size"
 msgstr "Wijzig stapgrootte"
@@ -1570,6 +1587,9 @@ msgstr "Kanaallijst"
 
 msgid "Channel down"
 msgstr "Kanaal omlaag"
+
+msgid "Channel info"
+msgstr "Kanaalinfo"
 
 msgid "Channel list context menu"
 msgstr "Kanaallijst contextmenu"
@@ -1630,9 +1650,6 @@ msgstr "Controleer de internetverbinding"
 
 msgid "Check the internet connection again"
 msgstr "Controleer uw internetverbinding"
-
-msgid "Checking Feeds"
-msgstr "Controleert feeds"
 
 msgid "Checking Logs..."
 msgstr "Controleert logs..."
@@ -1751,6 +1768,9 @@ msgstr "Druk op uw AB op de toets die u wilt veranderen."
 
 msgid "Clients"
 msgstr "Klanten"
+
+msgid "Clone TV screen to LCD"
+msgstr "Kloon TV scherm naar LCD"
 
 msgid "Close"
 msgstr "Sluiten"
@@ -2213,9 +2233,6 @@ msgstr "DVD-ISO maken"
 msgid "Create directory"
 msgstr "Map aanmaken"
 
-msgid "Create more detailed crash log"
-msgstr "Crash logs met extra informatie"
-
 msgid "Creating AP and SC Files"
 msgstr "Creëer AP en SC bestanden"
 
@@ -2446,6 +2463,12 @@ msgstr "Vertraging tussen schakelaar en motor-opdracht"
 
 msgid "Delay for external subtitles"
 msgstr "Vertraging voor externe ondertitels"
+
+msgid "Delay in miliseconds after finish scrolling text on display."
+msgstr "Vertraging in miliseconde nadat het scrollen van tekst op het display beeindigd is."
+
+msgid "Delay in miliseconds before start of scrolling text on display."
+msgstr "Vertraging in miliseconde voor het scrollen van tekst op het display begint."
 
 msgid "Delay time"
 msgstr "Vertragingstijd"
@@ -3317,6 +3340,9 @@ msgstr "Eindpositie op"
 msgid "Final position at index"
 msgstr "Eindpositie op index"
 
+msgid "Final scroll delay"
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Fijn bewegen"
 
@@ -3581,6 +3607,9 @@ msgstr "HDMI CEC"
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC instellingen"
 
+msgid "HDMIin"
+msgstr "HDMI-in"
+
 msgid "Handle standby from TV"
 msgstr "Verwerk standby van TV"
 
@@ -3593,7 +3622,7 @@ msgstr "Harde schijf instellingen"
 msgid "Hard disk standby after"
 msgstr "Harde schijf standby na"
 
-msgid "Harddisk Setup"
+msgid "Harddisk setup"
 msgstr "Harde schijf instellingen"
 
 msgid "Hebrew"
@@ -3625,6 +3654,9 @@ msgstr "Verberg foutmeldingen van de CAM."
 
 msgid "Hide known extensions"
 msgstr "Verberg bekende extensies"
+
+msgid "Hide parentel locked services"
+msgstr "Verberg kanalen die achter kinderslot zitten"
 
 msgid "Hide player"
 msgstr "Verberg speler"
@@ -3888,6 +3920,9 @@ msgstr "Initiële lock ratio"
 
 msgid "Initial rewind speed"
 msgstr "Initiële snelheid snel achteruit spoelen"
+
+msgid "Initial scroll delay"
+msgstr "Initiële scrollvertraging"
 
 msgid "Initial signal quality"
 msgstr "Initiële signaalkwaliteit"
@@ -4266,6 +4301,9 @@ msgstr "Laad EPG"
 msgid "Load playlist"
 msgstr "Afspeellijst laden"
 
+msgid "Load unlinked userbouquets"
+msgstr "Laad niet-verbonden favorietenlijsten"
+
 msgid "Load/Save/Delete"
 msgstr "Laad/Sla op/Verwijder"
 
@@ -4389,6 +4427,9 @@ msgstr "Marge na opname (minuten)"
 
 msgid "Margin before recording (minutes)"
 msgstr "Marge voor opname (minuten)"
+
+msgid "Mark service as dedicated 3D service"
+msgstr "Markeer kanaal als 3D"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Mark/Portal/Playlist"
@@ -4735,9 +4776,6 @@ msgstr "Netwerk:"
 msgid "New"
 msgstr "Nieuw"
 
-msgid "New PIN"
-msgstr "Nieuwe pincode"
-
 msgid "New profile: "
 msgstr "Niew profiel: "
 
@@ -4771,6 +4809,9 @@ msgstr "Geen harde schijf gevonden of de harde schijf is niet geformatteerd!"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Geen timeshift gevonden om als opname op te slaan!"
+
+msgid "No active channel found."
+msgstr "Geen aktief kanaal gevonden."
 
 msgid "No age block"
 msgstr "Geen leeftijdsblokkering"
@@ -4881,18 +4922,6 @@ msgid ""
 msgstr ""
 "Geen tuner geactiveerd!\n"
 "Controleer uw tunerinstellingen alvorens zenders te zoeken."
-
-msgid "No updates available. Please try again later."
-msgstr "Geen updates beschikbaar. Probeer het later nog eens."
-
-msgid ""
-"No valid service PIN found!\n"
-"Would you like to change the service PIN now?\n"
-"If you select 'No' the service protection will stay disabled!"
-msgstr ""
-"Ongeldige pincode!\n"
-"Wilt u de pincode nu wijzigen?\n"
-"Indien u 'nee' kiest, blijft de zender onbeveiligd!"
 
 msgid "No wireless networks found! Searching..."
 msgstr "Geen draadloze netwerken gevonden! Bezig met zoeken...."
@@ -5104,9 +5133,6 @@ msgstr "Alleen ongecodeerde zenders scannen"
 msgid "Only on startup"
 msgstr "alleen na opstarten"
 
-msgid "Open AutoTimer"
-msgstr "Open AutoTimer"
-
 msgid "Open favourites list"
 msgstr "Open favorietenlijst"
 
@@ -5175,6 +5201,9 @@ msgstr "PCM multikanaal"
 
 msgid "PCR PID"
 msgstr "PCR PID"
+
+msgid "PDC"
+msgstr "PDC"
 
 msgid "PIDs"
 msgstr "PIDs"
@@ -5434,6 +5463,9 @@ msgstr "Voer een nieuwe naam in "
 msgid "Please enter the correct pin code"
 msgstr "Gelieve de juiste pincode in te voeren"
 
+msgid "Please enter the new PIN code"
+msgstr "Nieuwe pincode invoeren a.u.b."
+
 msgid "Please enter the old PIN code"
 msgstr "Oude pincode invoeren a.u.b."
 
@@ -5448,6 +5480,9 @@ msgstr "Open eerst picture-in-picture"
 
 msgid "Please press OK to continue."
 msgstr "Druk op OK om door te gaan."
+
+msgid "Please re-enter the new PIN code"
+msgstr "Nieuwe pincode opnieuw invoeren a.u.b."
 
 msgid "Please select a default EPG type..."
 msgstr "Kies het standaard EPG-type..."
@@ -5560,9 +5595,6 @@ msgstr "Een ogenblikje geduld; uw netwerk wordt getest..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Een ogenblikje geduld; uw netwerk wordt opnieuw gestart..."
-
-msgid "Please wait whilst feeds state is checked."
-msgstr "Even wachten: de feeds worden gecontroleerd."
 
 msgid "Please wait..."
 msgstr "Even geduld..."
@@ -5793,11 +5825,38 @@ msgstr "Voortgangsbalk rechts"
 msgid "Properties of current title"
 msgstr "Instellingen van huidige titel"
 
+msgid "Protect Screens"
+msgstr "Beveilig schermen"
+
+msgid "Protect configuration"
+msgstr "Beveiligings instellingen"
+
+msgid "Protect context menus"
+msgstr "Beveilig contekst menu's"
+
+msgid "Protect main menu"
+msgstr "Beveilig hoofdmenu"
+
+msgid "Protect movie list"
+msgstr "Beveilig opnamelijst"
+
 msgid "Protect on epg age"
 msgstr "Beveilig op EPG-leeftijd"
 
+msgid "Protect plugin browser"
+msgstr "Beveilig de pluginbrowser."
+
 msgid "Protect services"
 msgstr "Beveilig zenders"
+
+msgid "Protect standby menu"
+msgstr "beveilig stand-by menu"
+
+msgid "Protect timer menu"
+msgstr "Beveilig timers"
+
+msgid "Protect vix menu"
+msgstr "Beveilig ViX-menu"
 
 msgid "Protocol"
 msgstr "Protocol"
@@ -5874,9 +5933,6 @@ msgstr "Waardering bepaald door omroep - %d"
 msgid "Rating undefined"
 msgstr "Waardering niet bepaald"
 
-msgid "Re-enter new PIN"
-msgstr "Voer nieuwe pincode nogmaals in."
-
 msgid "Read Userdata from oscam.conf"
 msgstr "Lees gebruikersgegevens van oscam.conf"
 
@@ -5951,9 +6007,6 @@ msgstr "Opnametijd beperkt vanwege conflicterende timer %s"
 msgid "Recording"
 msgstr "Opname"
 
-msgid "Recording Setup"
-msgstr "Opname Instellingen"
-
 msgid "Recording and playback settings"
 msgstr "Opname-en afspeelinstellingen"
 
@@ -5997,6 +6050,9 @@ msgstr ""
 "Wacht tot uw %s %s weer is opgestart.\n"
 "Dit kan een paar minuten duren."
 
+msgid "Reflash recommended!"
+msgstr "Opnieuw flashen wordt aanbevolen!"
+
 msgid "Refresh every (in hours)"
 msgstr "Ververs elke X uur"
 
@@ -6018,8 +6074,8 @@ msgstr "Relatief"
 msgid "Reload"
 msgstr "Herlaad"
 
-msgid "Reload protected list"
-msgstr "Beschermde lijsten opnieuw inladen"
+msgid "Reload blacklists"
+msgstr "Herlaad zwarte lijst"
 
 msgid "Reloading EPG Cache..."
 msgstr "Bezig de EPG-cache te herladen..."
@@ -6171,9 +6227,6 @@ msgstr "Gebruikersinterface herstarten"
 msgid "Restart GUI now?"
 msgstr "De gebruikersinterface nu opnieuw starten?"
 
-msgid "Restart enigma"
-msgstr "De gebruikersinterface opnieuw starten"
-
 msgid "Restart network"
 msgstr "Netwerk herstarten"
 
@@ -6250,6 +6303,9 @@ msgstr "Rotor stap positie:"
 
 msgid "Rotor turning speed"
 msgstr "Rotor draaisnelheid"
+
+msgid "Rotor: "
+msgstr "Rotor: "
 
 msgid "Run how often ?"
 msgstr "Hoe vaak uitvoeren?"
@@ -6906,9 +6962,6 @@ msgstr "Toon480/576p 24fps als"
 msgid "Show 720p 24fps as"
 msgstr "Toon 720p 24fps als"
 
-msgid "Show Audioselection"
-msgstr "Toon audioselectie"
-
 msgid "Show AutoTimer List"
 msgstr "Toon Autotimers"
 
@@ -6930,8 +6983,17 @@ msgstr "Toon EIT nu/straks in informatiebalk "
 msgid "Show EPG for current channel..."
 msgstr "Toon EPG voor huidige kanaal"
 
+msgid "Show EPG for current service"
+msgstr "Toon EPG voor huidige kanaal"
+
+msgid "Show Event Info plugins"
+msgstr "Toon eventinfo plugins"
+
 msgid "Show Games show"
 msgstr "Toon spelmodus"
+
+msgid "Show Graphical multi EPG"
+msgstr "Toon \"graphische multi EPG\""
 
 msgid "Show Log"
 msgstr "Toon log"
@@ -6944,6 +7006,9 @@ msgstr "Toon resterende/verstreken media afspeeltijd als"
 
 msgid "Show MiniTV in the Front Display"
 msgstr "Toon MiniTV op LCD"
+
+msgid "Show Multi EPG"
+msgstr "Toon Multi-EPG"
 
 msgid "Show OE Log"
 msgstr "Toon OE-Log"
@@ -7030,9 +7095,6 @@ msgstr "EPG-details weergeven"
 msgid "Show event-progress in channel selection"
 msgstr "Toon event-vooruitgang in zender keuze"
 
-msgid "Show eventinfo plugins"
-msgstr "Toon eventinfo plugins"
-
 msgid "Show extended description"
 msgstr "Toon uitgebreide informatie"
 
@@ -7044,9 +7106,6 @@ msgstr "Toon extensies..."
 
 msgid "Show favourites list"
 msgstr "Toon favorietenlijst"
-
-msgid "Show graphical multi EPG"
-msgstr "Toon graphische multi EPG"
 
 msgid "Show help"
 msgstr "Toon help"
@@ -7090,9 +7149,6 @@ msgstr "Toon opnamelengte in opnamelijst"
 msgid "Show movies"
 msgstr "Toon movies"
 
-msgid "Show multi channel EPG"
-msgstr "Toon multi-service EPG"
-
 msgid "Show network mounts ..."
 msgstr "Toon netwerkmounts ..."
 
@@ -7117,6 +7173,9 @@ msgstr "Toon screensaver"
 msgid "Show second infobar"
 msgstr "Toon tweede informatiebalk"
 
+msgid "Show select audio track"
+msgstr "Toon \"Kies audiospoor\""
+
 msgid "Show service list"
 msgstr "Toon kanaallist"
 
@@ -7131,9 +7190,6 @@ msgstr "Afsluitmenu weergeven"
 
 msgid "Show single epg for current channel"
 msgstr "Toon EPG voor huidige kanaal"
-
-msgid "Show single service EPG"
-msgstr "Toon kanaallijst EPG"
 
 msgid "Show source packages"
 msgstr "Toon source-packages"
@@ -7185,6 +7241,9 @@ msgstr "Toon de resterende/verstreken programmatijd als"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Toon waarschuwing als timeshift gestopt wordt"
+
+msgid "Shows live tv or informations on LCD."
+msgstr "Toon live TV of informatie op LCD"
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Toon iconen voor onbekeken opnames."
@@ -7377,9 +7436,6 @@ msgstr "MiniDLNA Configuratie ontbreekt"
 msgid "Sorry feeds are down for maintenance"
 msgstr "Excuses: vanwege onderhoud zijn de feeds niet actief."
 
-msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
-
 msgid "Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com."
 msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw. Als het probleem aanhoudt, controleer dan op openvix.co.uk of world-of-satellite.com wat er aan de hand is."
 
@@ -7421,6 +7477,9 @@ msgstr "Standaard sortering"
 msgid "Sort list by"
 msgstr "Sorteer lijst op"
 
+msgid "Sort list to default and exit?"
+msgstr "Sorteer lijst volgens standaard en afsluiten?"
+
 msgid "Sort list:"
 msgstr "Sorteer lijst op:"
 
@@ -7429,6 +7488,9 @@ msgstr "Sorteer de menu's alfabetisch"
 
 msgid "Sort plug-in browser alphabetically"
 msgstr "Sorteer de plugin browser alfabetisch"
+
+msgid "Sort plugins list to default?"
+msgstr "Sorteer lijst volgens standaard?"
 
 msgid "Sort setting screens alphabetically"
 msgstr "Sorteer de instellingenschermen alfabetisch"
@@ -7529,6 +7591,21 @@ msgstr "Stop"
 msgid "Stop PiP"
 msgstr "Beeindig PiP"
 
+msgid "Stop all current recordings"
+msgstr "Stop alle huidige opnames"
+
+msgid "Stop and delete all current recordings"
+msgstr "Stop en verwijder alle huidige opnames"
+
+msgid "Stop and delete recording"
+msgstr "Stop en verwijder opname"
+
+msgid "Stop and delete recording:"
+msgstr "Stop en verwijder opnames:"
+
+msgid "Stop and delete recordings:"
+msgstr "Stop en verwijder opnames:"
+
 msgid "Stop current event and disable coming events"
 msgstr "Stop huidige timer en volgende timers annuleren"
 
@@ -7552,6 +7629,12 @@ msgstr "Stop opname en verwijder"
 
 msgid "Stop recording now"
 msgstr "Stop de opname nu"
+
+msgid "Stop recording:"
+msgstr "Stop opname:"
+
+msgid "Stop recordings:"
+msgstr "Stop opnames:"
 
 msgid "Stop service on return to movie list"
 msgstr "Stop afspelen en keer terug naar de opnamelijst"
@@ -7664,7 +7747,7 @@ msgstr "Ondertitel instellingen"
 msgid "Subtitles"
 msgstr "Ondertitels"
 
-msgid "Subtitles Settings"
+msgid "Subtitles settings"
 msgstr "Ondertitel instellingen"
 
 msgid "Sun"
@@ -8481,8 +8564,11 @@ msgstr "Wissel HDMI In PiP"
 msgid "Toggle HDMI-In full screen"
 msgstr "Schakel HDMI-in vol-sherm modus in/uit"
 
-msgid "Toggle PIPzap"
-msgstr "Wissel PIPzap"
+msgid "Toggle LCD LiveTV"
+msgstr "Wissel LCD - live TV"
+
+msgid "Toggle PIP-ZAP"
+msgstr "Wissel PIP-zap"
 
 msgid "Toggle Picture In Graphics"
 msgstr "Wissel Picture In Graphics"
@@ -8590,9 +8676,6 @@ msgstr "Tuner"
 msgid "Tuner :"
 msgstr "Tuner:"
 
-msgid "Tuner Configuration"
-msgstr "Tunerconfiguratie"
-
 msgid "Tuner configuration"
 msgstr "Tunerconfiguratie"
 
@@ -8687,6 +8770,9 @@ msgstr "Ongedaan"
 msgid "Unencrypted"
 msgstr "Niet-encrypted"
 
+msgid "Unhide parental control services"
+msgstr "Kinderslot uitschakelen"
+
 msgid "Unicable"
 msgstr "Unicable"
 
@@ -8705,6 +8791,9 @@ msgstr "Universele LNB"
 
 msgid "Unknown"
 msgstr "Onbekend"
+
+msgid "Unmark service as dedicated 3D service"
+msgstr "verwijder markering van kanaal als 3D"
 
 msgid "Unmount"
 msgstr "Unmount"
@@ -8772,7 +8861,7 @@ msgstr "Uphops: "
 msgid "Uptime"
 msgstr "Uptime"
 
-msgid "Usage Setup"
+msgid "Usage setup"
 msgstr "Gebruikers Instellingen"
 
 msgid "Use"
@@ -8901,7 +8990,7 @@ msgstr "Door gebruiker bepaalde transponder"
 msgid "User interface"
 msgstr "Gebruikers interface"
 
-msgid "User interface settings"
+msgid "User interface Settings"
 msgstr "Gebruikersinterface-instellingen"
 
 msgid "User interface visibility"
@@ -9231,6 +9320,9 @@ msgstr "Welke dag of maand?"
 
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
+
+msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr "Indien ingeschakeld zal enigma2 niet geregistreerde favorietenlijsten laden. Dat betekent dat de lijsten die beschikbaar zijn maar niet zijn opgenomen in de radio- en TV-lijsten, toch geladen zullen worden. Dit stelt u b.v. in staat om eigen lijsten te bewaren, terwijl settings worden geupgrade."
 
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Indien geactiveerd zal ook worden gecontroleerd op experimentele versies."
@@ -10476,6 +10568,9 @@ msgstr "geen CI-slots gevonden"
 msgid "no channel list"
 msgstr "geen kanaallijst"
 
+msgid "no delay"
+msgstr "Geen vertraging"
+
 msgid "no module found"
 msgstr "geen module gevonden"
 
@@ -10722,9 +10817,6 @@ msgstr "serieuze/klassieke muziek"
 
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "serieuze/klassieke/religieuze/Historische film/drama "
-
-msgid "service PIN"
-msgstr "zender pincode"
 
 msgid "set as startup service"
 msgstr "kanaal kiezen bij opstarten"
@@ -11096,23 +11188,35 @@ msgstr "zapte"
 #~ msgid "All satellites 4 (DiSEqC mode 1.2)"
 #~ msgstr "Alle satellieten 4 (DiSEqC mode 1.2)"
 
+#~ msgid "Allows more detailed information to be in the crash log"
+#~ msgstr "Geeft de mogelijkheid meer details in een crashlog op te nemen."
+
 #~ msgid "BA"
 #~ msgstr "BA"
 
 #~ msgid "BB"
 #~ msgstr "BB"
 
-#~ msgid "Change service PINs"
+#~ msgid "ButtonSetup Setup"
+#~ msgstr "Toetsinstellingen"
+
+#~ msgid "Change pin code"
+#~ msgstr "Verander pincode"
+
+#~ msgid "Change service PIN"
 #~ msgstr "Wijzig zender pincode"
 
-#~ msgid "Change setup PIN"
-#~ msgstr "Wijzig menu pincode"
+#~ msgid "Change service PINs"
+#~ msgstr "Wijzig zender pincode"
 
 #~ msgid "Change sort by..."
 #~ msgstr "Sorteer volgens..."
 
 #~ msgid "Channel +/- button mode"
 #~ msgstr "Kanaal +/- mode"
+
+#~ msgid "Checking Feeds"
+#~ msgstr "Controleert feeds"
 
 #~ msgid "Configure the function of a long press of the power button."
 #~ msgstr "Stel in wat een lange druk op de aan/uit toets moet doen."
@@ -11128,6 +11232,9 @@ msgstr "zapte"
 
 #~ msgid "Copy to other directory"
 #~ msgstr "Kopieer naar andere map"
+
+#~ msgid "Create more detailed crash log"
+#~ msgstr "Crash logs met extra informatie"
 
 #~ msgid "DVB_C"
 #~ msgstr "DVB_C"
@@ -11156,14 +11263,14 @@ msgstr "zapte"
 #~ msgid "Edit services list"
 #~ msgstr "Wijzig zenderlijst"
 
-#~ msgid "Enable parental control"
-#~ msgstr "Kinderslot inschakelen"
-
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
 
 #~ msgid "External (CF)"
 #~ msgstr "Extern (CF)"
+
+#~ msgid "Harddisk Setup"
+#~ msgstr "Harde schijf instellingen"
 
 #~ msgid "HotKey Setup"
 #~ msgstr "HotKey Intellingen"
@@ -11180,6 +11287,21 @@ msgstr "zapte"
 #~ msgid "Move to other directory"
 #~ msgstr "Verplaats naar andere map"
 
+#~ msgid "New PIN"
+#~ msgstr "Nieuwe pincode"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Geen updates beschikbaar. Probeer het later nog eens."
+
+#~ msgid ""
+#~ "No valid service PIN found!\n"
+#~ "Would you like to change the service PIN now?\n"
+#~ "If you select 'No' the service protection will stay disabled!"
+#~ msgstr ""
+#~ "Ongeldige pincode!\n"
+#~ "Wilt u de pincode nu wijzigen?\n"
+#~ "Indien u 'nee' kiest, blijft de zender onbeveiligd!"
+
 #~ msgid ""
 #~ "No valid setup PIN found!\n"
 #~ "Do you like to change the setup PIN now?\n"
@@ -11188,6 +11310,9 @@ msgstr "zapte"
 #~ "Ongeldige menu-pincode!\n"
 #~ "Wilt u de menu-pinNcode nu wijzigen?\n"
 #~ "Indien u 'nee' kiest, blijft het menu onbeveiligd!"
+
+#~ msgid "Open AutoTimer"
+#~ msgstr "Open AutoTimer"
 
 #~ msgid "Open event view"
 #~ msgstr "Open event view"
@@ -11204,6 +11329,9 @@ msgstr "zapte"
 #~ msgid "Phone number"
 #~ msgstr "Telefoonnummer"
 
+#~ msgid "Please wait whilst feeds state is checked."
+#~ msgstr "Even wachten: de feeds worden gecontroleerd."
+
 #~ msgid ""
 #~ "Predefined transponder scans are only possible when \n"
 #~ "\"Service scan type\" is set to \"Provider\" in \"Tuner settings\"."
@@ -11211,8 +11339,20 @@ msgstr "zapte"
 #~ "Vooringestelde transponderscans zijn alleen mogelijk als in \n"
 #~ "\"Service scan type\"  \"Provider\" in \"Tuner configuratie\" is ingesteld."
 
+#~ msgid "Re-enter new PIN"
+#~ msgstr "Voer nieuwe pincode nogmaals in."
+
+#~ msgid "Recording Setup"
+#~ msgstr "Opname Instellingen"
+
+#~ msgid "Reload protected list"
+#~ msgstr "Beschermde lijsten opnieuw inladen"
+
 #~ msgid "Rename..."
 #~ msgstr "Hernoem..."
+
+#~ msgid "Restart enigma"
+#~ msgstr "De gebruikersinterface opnieuw starten"
 
 #~ msgid "Select default EPG type..."
 #~ msgstr "Kies het standaard EPG-type..."
@@ -11229,8 +11369,17 @@ msgstr "zapte"
 #~ msgid "Select what you want the TV button to activate."
 #~ msgstr "Stel in wat de TV-toets moet doen."
 
+#~ msgid "Show Audioselection"
+#~ msgstr "Toon audioselectie"
+
+#~ msgid "Show multi channel EPG"
+#~ msgstr "Toon multi-service EPG"
+
 #~ msgid "Show services beginning with"
 #~ msgstr "Laat zenders zien die beginnen met"
+
+#~ msgid "Show single service EPG"
+#~ msgstr "Toon kanaallijst EPG"
 
 #~ msgid "Show tag menu"
 #~ msgstr "Markeringsmenu weergeven"
@@ -11241,11 +11390,17 @@ msgstr "zapte"
 #~ msgid "Single transponder"
 #~ msgstr "Één transponder"
 
+#~ msgid "Sorry feeds are down for maintenance, please try again later."
+#~ msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
+
 #~ msgid "Sorry that tuner is not available."
 #~ msgstr "Die tuner is niet beschikbaar"
 
 #~ msgid "Subservice mode"
 #~ msgstr "Subservice-mode"
+
+#~ msgid "Subtitles Settings"
+#~ msgstr "Ondertitel instellingen"
 
 #~ msgid "Switch channel down"
 #~ msgstr "Ga naar vorige kanaal"
@@ -11258,6 +11413,9 @@ msgstr "zapte"
 
 #~ msgid "Toggle Extra Keys"
 #~ msgstr "Wissel Extra Keys"
+
+#~ msgid "Tuner Configuration"
+#~ msgstr "Tunerconfiguratie"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
@@ -11288,6 +11446,9 @@ msgstr "zapte"
 
 #~ msgid "fine-tune your display"
 #~ msgstr "uw scherm fijn-afstellen"
+
+#~ msgid "service PIN"
+#~ msgstr "zender pincode"
 
 #~ msgid "setup PIN"
 #~ msgstr "menu pincode"
