@@ -9,7 +9,7 @@ from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
-import time
+import time, os
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -85,11 +85,15 @@ class ParentalControl:
 		if self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
+		path = ref.getPath()
 		info = eServiceCenter.getInstance().info(ref)
 		age = 0
-		if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
-			refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
-			service = refstr and eServiceReference(refstr).toCompareString()
+		if path.startswith("/"):
+			if service.startswith("1:"):
+				refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
+				service = refstr and eServiceReference(refstr).toCompareString()
+			if os.path.basename(path).startswith("."):
+				age = 18
 		elif int(config.ParentalControl.age.value):
 			event = info and info.getEvent(ref)
 			rating = event and event.getParentalData()

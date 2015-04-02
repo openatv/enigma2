@@ -11,6 +11,12 @@ from Components.Slider import Slider
 from Tools.BoundFunction import boundFunction
 from enigma import eTimer, eDVBDB
 from boxbranding import getBoxType
+from Tools.Directories import fileExists
+from urllib import urlopen
+import socket
+import os
+import re
+import time
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -193,13 +199,16 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
 						(_("Update channel list only"), "channels"),
-						(_("Show packages to be updated"), "showlist")]
-					if not config.usage.show_update_disclaimer.value:
-						choices.append((_("Show disclaimer"), "disclaimer"))
-					choices.append((_("Cancel"), ""))
-					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
+						(_("Show packages to be upgraded"), "showlist")]
 				else:
-					self.session.openWithCallback(self.close, MessageBox, _("No updates available"), type=MessageBox.TYPE_INFO, timeout=3, close_on_any_key=True)
+					message = _("No updates available")
+					choices = []
+				if fileExists("/home/root/ipkgupgrade.log"):
+					choices.append((_("Show latest upgrade log"), "log"))
+				if not config.usage.show_update_disclaimer.value:
+					choices.append((_("Show disclaimer"), "disclaimer"))
+				choices.append((_("Cancel"), ""))
+				self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 			elif self.channellist_only > 0:
 				if self.channellist_only == 1:
 					self.setEndMessage(_("Could not find installed channel list."))
@@ -260,6 +269,11 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 			for i in [x[0] for x in sorted(self.ipkg.getFetchedList(), key=lambda d: d[0])]:
 				text = text and text + "\n" + i or i
 			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text, _("Packages to update"))
+		elif answer[1] == "log":
+			text = ""
+			for i in open("/home/root/ipkgupgrade.log", "r").readlines():
+				text += i
+			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text, _("Packages upgraded"))
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 

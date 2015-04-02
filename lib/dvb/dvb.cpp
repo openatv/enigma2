@@ -98,50 +98,60 @@ eDVBResourceManager::eDVBResourceManager()
 		addAdapter(adapter, true);
 	}
 
+	m_boxtype = -1;
 	int fd = open("/proc/stb/info/model", O_RDONLY);
-	char tmp[16];
-	int rd = fd >= 0 ? read(fd, tmp, sizeof(tmp)) : 0;
-	if (fd >= 0)
+	if (fd >= 0) {
+		char tmp[16];
+		int rd = read(fd, tmp, sizeof(tmp));
 		close(fd);
-
-	if (!strncmp(tmp, "dm7025\n", rd))
-		m_boxtype = DM7025;
-	else if (!strncmp(tmp, "dm8000\n", rd))
-		m_boxtype = DM8000;
-	else if (!strncmp(tmp, "dm800\n", rd))
-		m_boxtype = DM800;
-	else if (!strncmp(tmp, "dm500hd\n", rd))
-		m_boxtype = DM500HD;
-	else if (!strncmp(tmp, "dm800se\n", rd))
-		m_boxtype = DM800SE;
-	else if (!strncmp(tmp, "dm7020hd\n", rd))
-		m_boxtype = DM7020HD;
-	else if (!strncmp(tmp, "Gigablue\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gb800solo\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gb800se\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gb800ue\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gb800seplus\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gb800ueplus\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbipbox\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbquad\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbquadplus\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbultra\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbultrase\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbultraue\n", rd))
-		m_boxtype = GIGABLUE;
+		if (rd == 0)
+			eDebug("[eDVBResourceManager] /proc/stb/info empty. Use fallback via demux count!");
+		else if  (!strncmp(tmp, "dm7025\n", rd))
+			m_boxtype = DM7025;
+		else if (!strncmp(tmp, "dm8000\n", rd))
+			m_boxtype = DM8000;
+		else if (!strncmp(tmp, "dm800\n", rd))
+			m_boxtype = DM800;
+		else if (!strncmp(tmp, "dm500hd\n", rd))
+			m_boxtype = DM500HD;
+		else if (!strncmp(tmp, "dm800se\n", rd))
+			m_boxtype = DM800SE;
+		else if (!strncmp(tmp, "dm7020hd\n", rd))
+			m_boxtype = DM7020HD;
+		else if (!strncmp(tmp, "Gigablue\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gb800solo\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gb800se\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gb800ue\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gb800seplus\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gb800ueplus\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbipbox\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbquad\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbquadplus\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbultra\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbultrase\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbultraue\n", rd))
+			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbx1\n", rd))
+			m_boxtype = GIGABLUE;
+		else {
+			eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info/model not possible... use fallback via demux count!\n");
+		}
 	else {
-		eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info/model not possible... use fallback via demux count!\n");
+		eDebug("[eDVBResourceManager] cannot open /proc/stb/info. Use fallback via demux count!");
+	}
+
+	if (m_boxtype == -1) {
 		if (m_demux.size() == 3)
 			m_boxtype = DM800;
 		else if (m_demux.size() < 5)
@@ -234,6 +244,8 @@ int eDVBAdapterLinux::getNumDemux()
 
 RESULT eDVBAdapterLinux::getDemux(ePtr<eDVBDemux> &demux, int nr)
 {
+	eDebug("[eDVBAdapterLinux] get demux %d", nr);
+
 	eSmartPtrList<eDVBDemux>::iterator i(m_demux.begin());
 	while (nr && (i != m_demux.end()))
 	{
@@ -915,7 +927,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		   never use the first one unless we need a decoding demux. */
 	uint8_t d, a;
 
-	eDebug("[eDVBResourceManager] allocate demux");
+	eDebug("[eDVBResourceManager] allocate demux cap=%02X", cap);
 	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
 
 	if (i == m_demux.end())
@@ -942,6 +954,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 			int in_use = is_decode ? (i->m_demux->getRefCount() != 2) : i->m_inuse;
 
+			//eDebug("[eDVBResourceManager] for DM7025 n=%d, is_decode=%d, in_use=%d refcnt=%d, m_inuse=%d", n, is_decode, in_use, i->m_demux->getRefCount(), i->m_inuse);
 			if ((!in_use) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 			{
 				if ((cap & iDVBChannel::capDecode) && !is_decode)
@@ -995,6 +1008,8 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 			else
 			{
+				if (i == m_demux.begin())
+					break;
 				--i;
 			}
 		}
@@ -2033,6 +2048,8 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 {
 	ePtr<eDVBAllocatedDemux> &our_demux = (cap & capDecode) ? m_decoder_demux : m_demux;
 
+	eDebug("[eDVBChannel] getDemux cap=%02X", cap);
+
 	if (!m_frontend)
 	{
 		/* in dvr mode, we have to stick to a single demux (the one connected to our dvr device) */
@@ -2055,7 +2072,7 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 
 		   this poses a big problem for PiP. */
 
-		if (cap & capHoldDecodeReference) // this is set in eDVBResourceManager::allocateDemux for Dm500HD/DM800 and DM8000
+		if (cap & capHoldDecodeReference) // this is set in eDVBResourceManager::allocateDemux for non DM7025 boxes
 			;
 		else if (cap & capDecode)
 			our_demux = 0;

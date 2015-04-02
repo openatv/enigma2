@@ -95,7 +95,7 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 			tdiff *= first->first;
 			tdiff /= diff;
 			m_timestamp_deltas[0] = first->second - tdiff;
-//			eDebug("first delta is %08llx", first->second - tdiff);
+//			eDebug("[eMPEGStreamInformation] first delta is %08llx", first->second - tdiff);
 		}
 	}
 
@@ -110,9 +110,9 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 
 		if (llabs(diff) > (90000*10)) // 10sec diff
 		{
-//			eDebug("%llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
+//			eDebug("[eMPEGStreamInformation] %llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
 			currentDelta = i->second - lastpts_t; /* FIXME: should be the extrapolated new timestamp, based on the current rate */
-//			eDebug("current delta now %llx, making current to %llx", currentDelta, i->second - currentDelta);
+//			eDebug("[eMPEGStreamInformation] current delta now %llx, making current to %llx", currentDelta, i->second - currentDelta);
 			m_timestamp_deltas[i->first] = currentDelta;
 		}
 		lastpts_t = i->second - currentDelta;
@@ -133,7 +133,7 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 // fixupPTS is apparently called to get UI time information and such
 int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
-	//eDebug("eMPEGStreamInformation::fixupPTS(offset=%llu pts=%llu)", offset, ts);
+	//eDebug("[eMPEGStreamInformation::fixupPTS] offset=%llu pts=%llu", offset, ts);
 	if (m_streamtime_accesspoints)
 	{
 		/*
@@ -211,8 +211,8 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 	pts_t before_ts = before->second - getDelta(before->first);
 	pts_t after_ts = after->second - getDelta(after->first);
 
-//	eDebug("%08llx .. ? .. %08llx", before_ts, after_ts);
-//	eDebug("%08llx .. %08llx .. %08llx", before->first, offset, after->first);
+//	eDebug("[eMPEGStreamInformation] %08llx .. ? .. %08llx", before_ts, after_ts);
+//	eDebug("[eMPEGStreamInformation] %08llx .. %08llx .. %08llx", before->first, offset, after->first);
 
 	pts_t diff = after_ts - before_ts;
 	off_t diff_off = after->first - before->first;
@@ -224,7 +224,7 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 
 off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 {
-	//eDebug("eMPEGStreamInformation::getAccessPoint(ts=%llu, marg=%d)", ts, marg);
+	//eDebug("[eMPEGStreamInformation::getAccessPoint] ts=%llu, marg=%d", ts, marg);
 		/* FIXME: more efficient implementation */
 	off_t last = 0;
 	off_t last2 = 0;
@@ -254,14 +254,14 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 {
 	if (m_access_points.empty())
 	{
-		eDebug("can't get next access point without streaminfo (yet)");
+		eDebug("[eMPEGStreamInformation] can't get next access point without streaminfo (yet)");
 		return -1;
 	}
 	off_t offset = getAccessPoint(start);
 	std::map<off_t, pts_t>::const_iterator i = m_access_points.find(offset);
 	if (i == m_access_points.end())
 	{
-		eDebug("getNextAccessPoint: initial AP not found");
+		eDebug("[eMPEGStreamInformation] getNextAccessPoint: initial AP not found");
 		return -1;
 	}
 	pts_t c1 = i->second - getDelta(i->first);
@@ -284,7 +284,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 		{
 			if (i == m_access_points.begin())
 			{
-				eDebug("getNextAccessPoint at start");
+				eDebug("[eMPEGStreamInformation] getNextAccessPoint at start");
 				return -1;
 			}
 			--i;
@@ -298,7 +298,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 		}
 	}
 	ts = i->second - getDelta(i->first);
-	eDebug("getNextAccessPoint fine, at %lld - %lld = %lld", ts, i->second, getDelta(i->first));
+	eDebug("[eMPEGStreamInformation] getNextAccessPoint fine, at %lld - %lld = %lld", ts, i->second, getDelta(i->first));
 	return 0;
 }
 
@@ -390,7 +390,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 	//eDebug("[eMPEGStreamInformation] {%d} getStructureEntryFirst(offset=%llu)", gettid(), offset);
 	if (m_structure_read_fd < 0)
 	{
-		eDebug("getStructureEntryFirst failed because of no m_structure_read_fd");
+		eDebug("[eMPEGStreamInformation] getStructureEntryFirst failed because of no m_structure_read_fd");
 		return -1;
 	}
 
@@ -401,7 +401,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
 		if (l == 0)
 		{
-			eDebug("getStructureEntryFirst failed because file size is zero");
+			eDebug("[eMPEGStreamInformation] getStructureEntryFirst failed because file size is zero");
 			return -1;
 		}
 		m_structure_file_entries = l;
@@ -417,7 +417,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 			unsigned long long d;
 			if (::read(m_structure_read_fd, &d, sizeof(d)) < (ssize_t)sizeof(d))
 			{
-				eDebug("getStructureEntryFirst read error at entry %d", i+step);
+				eDebug("[eMPEGStreamInformation] getStructureEntryFirst read error at entry %d", i+step);
 				return -1;
 			}
 			d = be64toh(d);
@@ -476,7 +476,7 @@ int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long l
 	int next = m_current_entry + delta;
 	if (next < 0)
 	{
-		eDebug("getStructureEntryNext before start-of-file");
+		eDebug("[eMPEGStreamInformation] getStructureEntryNext before start-of-file");
 		return -1;
 	}
 	int index = next - m_cache_index;
@@ -499,11 +499,11 @@ int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long l
 		int num = moveCache(where);
 		if (num <= 0)
 		{
-			eDebug("getStructureEntryNext failed, no data");
+			eDebug("[eMPEGStreamInformation] getStructureEntryNext failed, no data");
 			return -1;
 		}
 		index = next - m_cache_index;
-		//eDebug("[getStructureEntryNext] Moved outside cache, next=%d delta=%d cache=%d index=+%d", next, delta, m_cache_index, index);
+		//eDebug("[eMPEGStreamInformation] getStructureEntryNext Moved outside cache, next=%d delta=%d cache=%d index=+%d", next, delta, m_cache_index, index);
 	}
 	offset = structureCacheOffset(index);
 	data = structureCacheData(index);
@@ -515,7 +515,7 @@ int eMPEGStreamInformation::getStructureEntryNext(off_t &offset, unsigned long l
 // Get first or last PTS value and offset.
 int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 {
-	//eDebug("{%d} eMPEGStreamInformation::getFirstFrame", gettid());
+	//eDebug("[eMPEGStreamInformation] {processid %d} getFirstFrame", gettid());
 	std::map<off_t,pts_t>::const_iterator entry = m_access_points.begin();
 	if (entry != m_access_points.end())
 	{
@@ -529,7 +529,7 @@ int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 		int num = moveCache(0);
 		if (num <= 0)
 		{
-			eDebug("eMPEGStreamInformation::getFirstFrame - no data (yet?)");
+			eDebug("[eMPEGStreamInformation::getFirstFrame] - no data (yet?)");
 			offset = 0;
 			pts = 0;
 			return 1;
@@ -550,7 +550,7 @@ int eMPEGStreamInformation::getFirstFrame(off_t &offset, pts_t& pts)
 }
 int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 {
-	//eDebug("{%d} eMPEGStreamInformation::getLastFrame", gettid());
+	//eDebug("[eMPEGStreamInformation::getLastFrame]", gettid());
 	std::map<off_t,pts_t>::const_reverse_iterator entry = m_access_points.rbegin();
 	if (entry != m_access_points.rend())
 	{
@@ -564,7 +564,7 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 		int l = ::lseek(m_structure_read_fd, 0, SEEK_END) / entry_size;
 		if (l <= 0)
 		{
-			eDebug("eMPEGStreamInformation::getLastFrame - no data (yet?)");
+			eDebug("[eMPEGStreamInformation::getLastFrame] - no data (yet?)");
 			offset = 0;
 			pts = 0;
 			return 1;
@@ -577,7 +577,7 @@ int eMPEGStreamInformation::getLastFrame(off_t &offset, pts_t& pts)
 		int num = moveCache(index);
 		if (num <= 0)
 		{
-			eDebug("eMPEGStreamInformation::getLastFrame - no data in sc file");
+			eDebug("[eMPEGStreamInformation::getLastFrame] - no data in sc file");
 			return -1;
 		}
 		// binary search for "real" end
@@ -672,7 +672,7 @@ int eMPEGStreamInformationWriter::stopSave(void)
 write_ap_error:
 	/* Writing half an AP file is worse than no file at all, so unlink
 	 * it if writing it fails */
-	eDebug("Failed to write %s, removing it", ap_filename.c_str());
+	eDebug("[eMPEGStreamInformationWriter] Failed to write %s, removing it", ap_filename.c_str());
 	::unlink(ap_filename.c_str());
 	return -1;
 }
@@ -704,7 +704,7 @@ void eMPEGStreamInformationWriter::writeStructureEntry(off_t offset, unsigned lo
 			m_buffer_filled = 0;
 			if (m_write_buffer == NULL)
 			{
-				eWarning("malloc fail");
+				eWarning("[eMPEGStreamInformationWriter] malloc fail");
 				return;
 			}
 		}
@@ -856,7 +856,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		addAccessPoint(offset, m_last_pts, !m_pts_found);
 	}
 	if (!wantPacket(pkt))
-		eWarning("something's wrong.");
+		eWarning("[eMPEGStreamParserTS] something's wrong.");
 
 	pkt += m_header_offset;
 
@@ -894,7 +894,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 
 	if (pkt > end)
 	{
-		eWarning("[TSPARSE] dropping huge adaption field");
+		eWarning("[eMPEGStreamParserTS] dropping huge adaption field");
 		return 0;
 	}
 
@@ -906,7 +906,13 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			// ok, we now have the start of the payload, aligned with the PES packet start.
 		if (pkt[0] || pkt[1] || (pkt[2] != 1))
 		{
-			eWarning("broken startcode");
+			eWarning("[eMPEGStreamParserTS] broken startcode");
+			//eDebugNoNewLineStart("[eMPEGStreamParserTS] ");
+			//for (int i = 0; i < 16; i++) {
+			//	eDebugNoNewLine(" %02X", pkt[i]);
+			//}
+			//eDebugNoNewLine("\n");
+
 			return 0;
 		}
 
@@ -934,19 +940,19 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		int pkt_offset = pkt - begin;
 		if (!(pkt[0] || pkt[1] || (pkt[2] != 1)))
 		{
-//			 ("SC %02x %02x %02x %02x, %02x", pkt[0], pkt[1], pkt[2], pkt[3], pkt[4]);
+//			eDebug("[eMPEGStreamParserTS] SC %02x %02x %02x %02x, %02x", pkt[0], pkt[1], pkt[2], pkt[3], pkt[4]);
 			unsigned int sc = pkt[3];
 
 			if (m_streamtype < 0) /* unknown */
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8))
 				{
-					eDebug("eMPEGStreamParserTS - detected MPEG2 stream");
+					eDebug("[eMPEGStreamParserTS] - detected MPEG2 stream");
 					m_streamtype = 0;
 				}
 				else if (sc == 0x09)
 				{
-					eDebug("eMPEGStreamParserTS - detected H264 stream");
+					eDebug("[eMPEGStreamParserTS] - detected H264 stream");
 					m_streamtype =  1;
 				}
 				else
@@ -962,7 +968,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 						if (ptsvalid)
 						{
 							addAccessPoint(offset, pts);
-							//eDebug("Sequence header at %llx, pts %llx", offset, pts);
+							//eDebug("[eMPEGStreamParserTS] Sequence header at %llx, pts %llx", offset, pts);
 						}
 					}
 					if (pkt <= (end - 6))
@@ -996,7 +1002,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 						if (ptsvalid && m_enable_accesspoints)
 						{
 							addAccessPoint(offset, pts);
-							// eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+							// eDebug("[eMPEGStreamParserTS] MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
 						}
 					}
 				}
@@ -1011,7 +1017,7 @@ inline int eMPEGStreamParserTS::wantPacket(const unsigned char *pkt) const
 	const unsigned char *hdr = pkt + m_header_offset;
 	if (hdr[0] != 0x47)
 	{
-		eDebug("missing sync!");
+		eDebug("[eMPEGStreamParserTS] missing sync!");
 		return 0;
 	}
 	int ppid = ((hdr[1]&0x1F) << 8) | hdr[2];
@@ -1055,7 +1061,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 		}
 
 		if (skipped)
-			eDebug("SYNC LOST: skipped %d bytes.", skipped);
+			eDebug("[eMPEGStreamParserTS] SYNC LOST: skipped %d bytes.", skipped);
 
 		if (!len)
 			break;

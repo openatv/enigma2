@@ -170,7 +170,7 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
 						if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
 							append_when_current_valid(current, menu, (_("Unhide parental control services"), self.unhideParentalServices), level=0)
-					if SystemInfo["3DMode"]:
+					if SystemInfo["3DMode"] and  fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/OSD3DSetup/plugin.py"):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_IS_DEDICATED_3D:
 							append_when_current_valid(current, menu, (_("Unmark service as dedicated 3D service"), self.removeDedicated3DFlag), level=0)
 						else:
@@ -283,12 +283,9 @@ class ChannelContextMenu(Screen):
 		self["menu"] = ChoiceList(menu)
 
 	def set3DMode(self, value):
-		if self.session.nav.currentlyPlayingServiceReference == self.csel.getCurrentSelection():
-			try:
-				from Plugins.SystemPlugins.OSD3DSetup.plugin import applySettings
-				applySettings(value and "sidebyside" or "off")
-			except:
-				pass
+		if config.plugins.OSD3DSetup.mode.value == "auto" and self.session.nav.currentlyPlayingServiceReference == self.csel.getCurrentSelection():
+			from Plugins.SystemPlugins.OSD3DSetup.plugin import applySettings
+			applySettings(value and "sidebyside" or config.plugins.OSD3DSetup.mode.value)
 
 	def addDedicated3DFlag(self):
 		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_IS_DEDICATED_3D)

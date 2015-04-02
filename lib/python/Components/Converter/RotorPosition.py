@@ -13,26 +13,25 @@ class RotorPosition(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		if type == "WithText":
-			self.type = self.WITH_TEXT
-		if type == "TunerName":
-			self.type = self.TUNER_NAME
-		else:
-			self.type = self.DEFAULT
+		self.LastRotorPos = config.misc.lastrotorposition.value
+		config.misc.lastrotorposition.addNotifier(self.forceChanged, initial_call=False)
+		config.misc.showrotorposition.addNotifier(self.show_hide, initial_call=False)
 
 	@cached
 	def getText(self):
-		(rotor, tuner) = self.isMotorizedTuner()
-		if rotor:
-			self.actualizeCfgLastRotorPosition()
-			if self.type == self.WITH_TEXT:
-				return _("Rotor: ") + orbpos(config.misc.lastrotorposition.value)
-			if self.type == self.TUNER_NAME:
-				active_tuner = self.getActiveTuner()
-				if tuner != active_tuner:
-					return _("%s:%s") % (chr(ord("A")+tuner), orbpos(config.misc.lastrotorposition.value))
-				return ""
-			return orbpos(config.misc.lastrotorposition.value)
+		if config.misc.showrotorposition.value != "no":
+			self.LastRotorPos = config.misc.lastrotorposition.value
+			(rotor, tuner) = self.isMotorizedTuner()
+			if rotor:
+				self.actualizeCfgLastRotorPosition()
+				if config.misc.showrotorposition.value == "withtext":
+					return _("Rotor: ") + orbpos(config.misc.lastrotorposition.value)
+				if config.misc.showrotorposition.value == "tunername":
+					active_tuner = self.getActiveTuner()
+					if tuner != active_tuner:
+						return _("%s:%s") % ("\c0000?0?0" + chr(ord("A")+ tuner), "\c00?0?0?0" + orbpos(config.misc.lastrotorposition.value))
+					return ""
+				return orbpos(config.misc.lastrotorposition.value)
 		return ""
 
 	text = property(getText)
@@ -46,14 +45,29 @@ class RotorPosition(Converter, object):
 
 	def actualizeCfgLastRotorPosition(self):
 		if eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
-			config.misc.lastrotorposition.value = eDVBSatelliteEquipmentControl.getInstance().getTargetOrbitalPosition()
-			config.misc.lastrotorposition.save()
+			current_pos = eDVBSatelliteEquipmentControl.getInstance().getTargetOrbitalPosition()
+			if current_pos != config.misc.lastrotorposition.value:
+				self.LastRotorPos = config.misc.lastrotorposition.value = current_pos
+				config.misc.lastrotorposition.save()
 
 	def getActiveTuner(self):
 		if not eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
 			service = self.source.service
 			feinfo = service and service.frontendInfo()
-			tuner = feinfo and feinfo.getFrontendData()
+			tuner = feinfo and feinfo.getAll(True)
 			if tuner:
-				return tuner.get("tuner_number")
+				num = tuner.get("tuner_number")
+				orb_pos = tuner.get("orbital_position")
+				if isinstance(num, int) and orb_pos:
+					satList = nimmanager.getRotorSatListForNim(num)
+					for sat in satList:
+						if sat[0] == orb_pos:
+							return num
 		return ""
+
+	def forceChanged(self, configElement=None):
+		if self.LastRotorPos != config.misc.lastrotorposition.value:
+			Converter.changed(self, (self.CHANGED_ALL,))
+
+	def show_hide(self, configElement=None):
+		Converter.changed(self, (self.CHANGED_ALL,))
