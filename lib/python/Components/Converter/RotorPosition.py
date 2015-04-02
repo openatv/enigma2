@@ -54,9 +54,15 @@ class RotorPosition(Converter, object):
 		if not eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
 			service = self.source.service
 			feinfo = service and service.frontendInfo()
-			tuner = feinfo and feinfo.getFrontendData()
+			tuner = feinfo and feinfo.getAll(True)
 			if tuner:
-				return tuner.get("tuner_number")
+				num = tuner.get("tuner_number")
+				orb_pos = tuner.get("orbital_position")
+				if isinstance(num, int) and orb_pos:
+					satList = nimmanager.getRotorSatListForNim(num)
+					for sat in satList:
+						if sat[0] == orb_pos:
+							return num
 		return ""
 
 	def forceChanged(self, configElement=None):
