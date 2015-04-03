@@ -151,14 +151,12 @@ class UpdatePlugin(Screen):
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
-		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '404': _('No connection'), 'unknown': _('No connection')}
 		self['tl_off'] = Pixmap()
 		self['tl_red'] = Pixmap()
 		self['tl_yellow'] = Pixmap()
 		self['tl_green'] = Pixmap()
-		self.feedsStatus()
-		self['feedStatusMSG'] = Label(status_msgs[self.trafficLight])
-		
+		self['feedStatusMSG'] = Label()
+
 		self.channellist_only = 0
 		self.channellist_name = ''
 		self.SettingsBackupDone = False
@@ -171,25 +169,26 @@ class UpdatePlugin(Screen):
 		self.total_packages = None
 		self.onFirstExecBegin.append(self.checkNetworkState)
 
-	def feedsStatus(self):
+	def checkNetworkState(self):
+		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'unknown': _('No connection')}
 		config.softwareupdate.updateisunstable.setValue(0)
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
 		self['tl_green'].hide()
 		self['tl_off'].hide()
-		self.trafficLight = feedsstatuscheck.getFeedSatus()
-		if self.trafficLight == 'unstable':
+		self.trafficLight = feedsstatuscheck.getFeedsBool()
+		if self.trafficLight:
+			self['feedStatusMSG'].setText(status_msgs[str(self.trafficLight)])
+		if self.trafficLight == 'stable':
+			self['tl_green'].show()
+		elif self.trafficLight == 'unstable':
 			config.softwareupdate.updateisunstable.setValue(1)
 			self['tl_red'].show()
 		elif self.trafficLight == 'updating':
 			self['tl_yellow'].show()
-		elif self.trafficLight == 'stable':
-			self['tl_green'].show()
 		else:
 			self['tl_off'].show()
-		
-	def checkNetworkState(self):
-		if feedsstatuscheck.getFeedsBool() != 'clean':
+		if self.trafficLight not in ('stable', 'unstable'):
 			self.session.openWithCallback(self.close, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.startCheck()
