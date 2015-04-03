@@ -104,9 +104,10 @@ eDVBResourceManager::eDVBResourceManager()
 		char tmp[16];
 		int rd = read(fd, tmp, sizeof(tmp));
 		close(fd);
+
 		if (rd == 0)
 			eDebug("[eDVBResourceManager] /proc/stb/info empty. Use fallback via demux count!");
-		else if  (!strncmp(tmp, "dm7025\n", rd))
+		else if (!strncmp(tmp, "dm7025\n", rd))
 			m_boxtype = DM7025;
 		else if (!strncmp(tmp, "dm8000\n", rd))
 			m_boxtype = DM8000;
@@ -144,7 +145,7 @@ eDVBResourceManager::eDVBResourceManager()
 			m_boxtype = GIGABLUE;
 		else if (!strncmp(tmp, "gbx1\n", rd))
 			m_boxtype = GIGABLUE;
-		else {
+		else
 			eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info/model not possible... use fallback via demux count!\n");
 		}
 	else {
