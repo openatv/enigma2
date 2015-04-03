@@ -8,6 +8,7 @@ from enigma import eTimer
 import Components.Task
 from Components.Ipkg import IpkgComponent
 from Components.config import config
+from Components.About import about
 
 import urllib2 
 import socket
@@ -26,41 +27,54 @@ class FeedsStatusCheck:
 
 	def getFeedSatus(self):
 		trafficLight = 'unknown'
-		currentTimeoutDefault = socket.getdefaulttimeout()
-		socket.setdefaulttimeout(3)
-		try:
-			d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php")
-			trafficLight = d.read()
-		except urllib2.HTTPError, err:
-			trafficLight = err.code
-		socket.setdefaulttimeout(currentTimeoutDefault)
-		status = '1'
-		if trafficLight == 'stable':
-			status = '0'
-		config.softwareupdate.updateisunstable.setValue(status)
-		print '!!!!!!!!!trafficLight:',trafficLight
-		return trafficLight
+		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
+			try:
+				d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php", timeout = 1)
+				trafficLight = d.read()
+			except urllib2.HTTPError, err:
+				print 'ERROR:',err
+				trafficLight = err.code
+			except urllib2.URLError, err:
+				print 'ERROR:',err
+				trafficLight = str(err.reason)
+			except urllib2, err:
+				print 'ERROR:',err
+				trafficLight = err
+			status = '1'
+			if trafficLight == 'stable':
+				status = '0'
+			config.softwareupdate.updateisunstable.setValue(status)
+			return trafficLight
+		else:
+			return -2
 
 	def getFeedsBool(self):
 		global error
-		if feedsstatuscheck.getFeedSatus() == 404:
+		feedstatus = feedsstatuscheck.getFeedSatus()
+		if feedstatus == -2:
+			print '[OnlineVersionCheck] Error -2'
+			return -2
+		elif feedstatus == 404:
 			print '[OnlineVersionCheck] Error 404'
 			return 404
-		elif feedsstatuscheck.getFeedSatus() == 'updating':
+		elif error:
+			print '[OnlineVersionCheck] Check already in progress'
+			return 'inprogress'
+		elif feedstatus == 'updating':
 			print '[OnlineVersionCheck] Feeds Updating'
 			return 'updating'
-		elif error:
-			print '[OnlineVersionCheck] check in progress'
-			return 'inprogress'
-		elif feedsstatuscheck.getFeedSatus() in ('stable', 'unstable'):
-			print '[OnlineVersionCheck] Clean'
-			return 'clean'
+		elif feedstatus in ('stable', 'unstable'):
+			print '[OnlineVersionCheck]',feedstatus.title()
+			return str(feedstatus)
 
 	def getFeedsErrorMessage(self):
 		global error
-		if feedsstatuscheck.getFeedSatus() == 404:
+		feedstatus = feedsstatuscheck.getFeedsBool()
+		if feedstatus == -2:
+			return _("Your %s %s has no network access, please check your network settings and make sure you have network cable connected and try again.") % (getMachineBrand(), getMachineName())
+		elif feedstatus == 404:
 			return _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
-		elif feedsstatuscheck.getFeedSatus() == 'updating':
+		elif feedstatus == 'updating':
 			return _("Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com.")
 		elif error:
 			return _("A background update check is in progress, please wait a few minutes and try again.")
@@ -122,13 +136,12 @@ class OnlineUpdateCheckPoller:
 		return job
 
 	def JobStart(self):
-		if feedsstatuscheck.getFeedSatus() in ('stable', 'unstable'):
+		if feedsstatuscheck.getFeedsBool() in ('stable', 'unstable'):
 			print '[OnlineVersionCheck] Starting background check.'
 			feedsstatuscheck.startCheck()
 		else:
 			config.softwareupdate.updatefound.setValue(False)
 			print '[OnlineVersionCheck] No feeds found, skipping check.'
-
 
 
 class VersionCheck:
