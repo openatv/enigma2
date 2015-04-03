@@ -22,46 +22,53 @@
     sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cvs default-jre default-jre-headless diffstat flex g++ gawk gcc gettext git-core gzip help2man htop info java-common libc6-dev libglib2.0-dev libperl4-corelibs-perl libproc-processtable-perl libtool libxml2-utils make ncdu ncurses-bin ncurses-dev patch perl pkg-config po4a python-setuptools quilt sgmltools-lite sshpass subversion swig tar texi2html texinfo wget xsltproc zip zlib1g-dev
 
 ----------
-2 - Add user openatvbuilder
+2 - Set your shell to /bin/bash.
+
+    sudo dpkg-reconfigure dash
+    When asked: Install dash as /bin/sh?
+    select "NO"
+
+----------
+3 - Add user openatvbuilder
 
     sudo adduser openatvbuilder
 
 ----------
-3 - Switch to user openatvbuilder
+4 - Switch to user openatvbuilder
 
     su openatvbuilder
 
 ----------
-4 - Switch to home of openatvbuilder
+5 - Switch to home of openatvbuilder
 
     cd ~
 
 ----------
-5 - Create folder openatv
+6 - Create folder openatv
 
     mkdir -p ~/openatv
 
 ----------
-6 - Switch to folder openatv
+7 - Switch to folder openatv
 
     cd openatv
 
 ----------
-7 - Clone oe-alliance git
+8 - Clone oe-alliance git
 
     git clone git://github.com/oe-alliance/build-enviroment.git
 
 ----------
-8 - Switch to folder build-enviroment
+9 - Switch to folder build-enviroment
 
     cd build-enviroment
 
 ----------
-9 - Update build-enviroment
+10 - Update build-enviroment
 
     make update
 
 ----------
-10 - Finally you can start building a image
+11 - Finally you can start building a image
 
     make MACHINE=gbquadplus DISTRO=openatv image
