@@ -22,6 +22,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
+from Screens.InputBox import PinInput
 import Screens.InfoBar
 
 from Tools import NumericalTextInput
@@ -1341,7 +1342,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				config.movielist.last_videodir.value
 			)
 
-	def gotFilename(self, res, selItem = None):
+	def gotFilename(self, res, selItem=None, doParentalControl=True):
 		if not res:
 			return
 		# serviceref must end with /
@@ -1350,15 +1351,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		currentDir = config.movielist.last_videodir.value
 		if res != currentDir:
 			if os.path.isdir(res):
-				config.movielist.last_videodir.value = res
-				config.movielist.last_videodir.save()
-				self.loadLocalSettings()
-				self.setCurrentRef(res)
-				self["freeDiskSpace"].path = res
-				if selItem:
-					self.reloadList(home = True, sel = selItem)
+				if doParentalControl and config.ParentalControl.servicepin[0].value and os.path.basename(res[:-1]).startswith("."):
+					self.session.openWithCallback(boundFunction(self.pinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
 				else:
-					self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
+					config.movielist.last_videodir.value = res
+					config.movielist.last_videodir.save()
+					self.loadLocalSettings()
+					self.setCurrentRef(res)
+					self["freeDiskSpace"].path = res
+					if selItem:
+						self.reloadList(home = True, sel = selItem)
+					else:
+						self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				self.session.open(
 					MessageBox,
@@ -1366,6 +1370,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 					)
+
+	def pinEntered(self, res, selItem, result):
+		if result:
+			from Components.ParentalControl import parentalControl
+			parentalControl.setSessionPinCached()
+			self.gotFilename(res, selItem, False)
 
 	def showAll(self):
 		self.selected_tags_ele = None

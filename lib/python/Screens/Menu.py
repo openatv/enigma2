@@ -249,8 +249,6 @@ class Menu(Screen, ProtectedScreen):
 				return self.menuID == "mainmenu"
 			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
 				return True
-			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
-				return True
 			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
 				return True
 class MainMenu(Menu):
