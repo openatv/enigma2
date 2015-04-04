@@ -62,7 +62,6 @@ class Standby(Screen):
 		self.setMute()
 
 		self.paused_service = None
-		self.prev_running_service = None
 
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
