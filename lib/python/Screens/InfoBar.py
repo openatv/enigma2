@@ -182,8 +182,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.cur_service = service
 		self.returning = False
 		self.onClose.append(self.__onClose)
+		config.misc.standbyCounter.addNotifier(self.standbyCountChanged, initial_call=False)
 
 	def __onClose(self):
+		config.misc.standbyCounter.removeNotifier(self.standbyCountChanged)
 		from Screens.MovieSelection import playlist
 		del playlist[:]
 		if not config.movielist.stop_service.value:
@@ -191,6 +193,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.session.nav.playService(self.lastservice)
 		config.usage.last_movie_played.value = self.cur_service.toString()
 		config.usage.last_movie_played.save()
+
+	def standbyCountChanged(self, value):
+		path = self.cur_service.getPath()
+		if path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".")]:
+			self.close()
 
 	def handleLeave(self, how):
 		self.is_closing = True
