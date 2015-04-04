@@ -76,8 +76,7 @@ class ParentalControl:
 			sRef = str(ref)
 			method( sRef , TYPE_SERVICE , *args )
 
-	def isServicePlayable(self, ref, callback, session=None):
-		self.session = session
+	def isProtected(self, ref):
 		if not config.ParentalControl.servicepinactive.value:
 			return True
 		#Check if configuration has already been read or if the significant values have changed.
@@ -99,11 +98,16 @@ class ParentalControl:
 			rating = event and event.getParentalData()
 			age = rating and rating.getRating()
 			age = age and age <= 15 and age + 3 or 0
-		if (age and age >= int(config.ParentalControl.age.value)) or service and self.blacklist.has_key(service):
+		return (age and age >= int(config.ParentalControl.age.value)) or service and self.blacklist.has_key(service)
+
+	def isServicePlayable(self, ref, callback, session=None):
+		self.session = session
+		if self.isProtected(ref):
 			#Check if the session pin is cached
 			if self.sessionPinCached == True:
 				return True
 			self.callback = callback
+			service = ref.toCompareString()
 			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
 			if session:
 				Notifications.RemovePopup("Parental control")
