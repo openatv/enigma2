@@ -198,7 +198,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		service = self.cur_service
 		path = service.getPath()
 		from Components.ParentalControl import parentalControl
-		if parentalControl.isProtected(service) or path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".")]:
+		if parentalControl.isProtected(service) or path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
 			from Screens.MovieSelection import defaultMoviePath
 			moviepath = defaultMoviePath()
 			if moviepath:
