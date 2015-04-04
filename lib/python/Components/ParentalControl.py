@@ -78,7 +78,7 @@ class ParentalControl:
 
 	def isProtected(self, ref):
 		if not config.ParentalControl.servicepinactive.value:
-			return True
+			return False
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
 		if self.storeServicePin != config.ParentalControl.storeservicepin.value:
