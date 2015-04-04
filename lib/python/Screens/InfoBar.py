@@ -195,8 +195,14 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		config.usage.last_movie_played.save()
 
 	def standbyCountChanged(self, value):
-		path = self.cur_service.getPath()
-		if path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".")]:
+		service = self.cur_service
+		path = service.getPath()
+		from Components.ParentalControl import parentalControl
+		if parentalControl.isProtected(service) or path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".")]:
+			from Screens.MovieSelection import defaultMoviePath
+			moviepath = defaultMoviePath()
+			if moviepath:
+				config.movielist.last_videodir.value = moviepath
 			self.close()
 
 	def handleLeave(self, how):
