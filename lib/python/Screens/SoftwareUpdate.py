@@ -170,28 +170,29 @@ class UpdatePlugin(Screen):
 		self.onFirstExecBegin.append(self.checkNetworkState)
 
 	def checkNetworkState(self):
-		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'unknown': _('No connection')}
-		config.softwareupdate.updateisunstable.setValue(0)
-		self['tl_red'].hide()
-		self['tl_yellow'].hide()
-		self['tl_green'].hide()
-		self['tl_off'].hide()
 		self.trafficLight = feedsstatuscheck.getFeedsBool()
-		if self.trafficLight:
-			self['feedStatusMSG'].setText(status_msgs[str(self.trafficLight)])
-		if self.trafficLight == 'stable':
-			self['tl_green'].show()
-		elif self.trafficLight == 'unstable':
-			config.softwareupdate.updateisunstable.setValue(1)
-			self['tl_red'].show()
-		elif self.trafficLight == 'updating':
-			self['tl_yellow'].show()
+		if (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value) or config.softwareupdate.updateisunstable.value == '0':
+			status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'unknown': _('No connection')}
+			self['tl_red'].hide()
+			self['tl_yellow'].hide()
+			self['tl_green'].hide()
+			self['tl_off'].hide()
+			if self.trafficLight:
+				self['feedStatusMSG'].setText(status_msgs[str(self.trafficLight)])
+			if self.trafficLight == 'stable':
+				self['tl_green'].show()
+			elif self.trafficLight == 'unstable':
+				self['tl_red'].show()
+			elif self.trafficLight == 'updating':
+				self['tl_yellow'].show()
+			else:
+				self['tl_off'].show()
+			if self.trafficLight not in ('stable', 'unstable'):
+				self.session.openWithCallback(self.close, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			else:
+				self.startCheck()
 		else:
-			self['tl_off'].show()
-		if self.trafficLight not in ('stable', 'unstable'):
-			self.session.openWithCallback(self.close, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		else:
-			self.startCheck()
+			self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 
 	def startCheck(self):
 		self.activity = 0
@@ -248,7 +249,6 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
-
 		elif event == IpkgComponent.EVENT_MODIFIED:
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
 				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)

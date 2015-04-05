@@ -29,7 +29,7 @@ class FeedsStatusCheck:
 		trafficLight = 'unknown'
 		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
 			try:
-				d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php", timeout = 1)
+				d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php", timeout = 3)
 				trafficLight = d.read()
 			except urllib2.HTTPError, err:
 				print 'ERROR:',err
@@ -96,8 +96,8 @@ class FeedsStatusCheck:
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
-				if self.total_packages:
+				if self.total_packages and ((config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value) or config.softwareupdate.updateisunstable.value == '0'):
+					print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 					config.softwareupdate.updatefound.setValue(True)
 		pass
 		
@@ -136,11 +136,11 @@ class OnlineUpdateCheckPoller:
 		return job
 
 	def JobStart(self):
+		config.softwareupdate.updatefound.setValue(False)
 		if feedsstatuscheck.getFeedsBool() in ('stable', 'unstable'):
 			print '[OnlineVersionCheck] Starting background check.'
 			feedsstatuscheck.startCheck()
 		else:
-			config.softwareupdate.updatefound.setValue(False)
 			print '[OnlineVersionCheck] No feeds found, skipping check.'
 
 

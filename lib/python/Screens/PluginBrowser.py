@@ -7,6 +7,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Screens.Screen import Screen
+from Components.OnlineUpdateCheck import feedsstatuscheck
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, ConfigSubsection, ConfigText
 from Components.PluginComponent import plugins
@@ -395,26 +396,14 @@ class PluginDownloadBrowser(Screen):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list '" + self.PLUGIN_PREFIX + "*'")
 
 	def startRun(self):
-		networkerror = False
 		listsize = self["list"].instance.size()
 		self["list"].instance.hide()
 		self.listWidth = listsize.width()
 		self.listHeight = listsize.height()
 
 		if self.type == self.DOWNLOAD:
-			currentTimeoutDefault = socket.getdefaulttimeout()
-			socket.setdefaulttimeout(3)
-			try:
-				config.softwareupdate.updateisunstable.setValue(urlopen('http://www.openvix.co.uk/feeds/status').read())
-			except:
-				networkerror = True
-
-			if not networkerror and ('404 Not Found') in config.softwareupdate.updateisunstable.value:
-				config.softwareupdate.updateisunstable.setValue('1')
-			socket.setdefaulttimeout(currentTimeoutDefault)
-
-			if networkerror:
-				self["text"].setText(_("Error: No network connection found. Please ensure your receiver is connected to the internet."))
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+				self["text"].setText(feedsstatuscheck.getFeedsErrorMessage())
 			elif config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 				self["text"].setText(_("WARNING: feeds may be unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
 				self.container.execute(self.ipkg + " update")
