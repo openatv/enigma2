@@ -395,6 +395,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 				else:
 					self.log(11, "zapping")
+					found = False
+					notFound = False
 					NavigationInstance.instance.isMovieplayerActive()
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
@@ -405,9 +407,27 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						rootbouquet = eServiceReference(bqrootstr)
 						bouquet = eServiceReference(bqrootstr)
 						bouquetlist = serviceHandler.list(bouquet)
+						# we need a way out of the loop,
+						# if channel is not in bouquets
+						bouquetcount = 0
+						bouquets = []
 						if not bouquetlist is None:
 							while True:
 								bouquet = bouquetlist.getNext()
+								# can we make it easier?
+								# or found a way to make another way for that
+								if bouquets == []:
+									bouquets.append(bouquet)
+								else:
+									for x in bouquets:
+										if x != bouquet:
+											bouquets.append(bouquet)
+										else:
+											bouquetcount += 1
+								if bouquetcount >= 5:
+									notFound = True
+									break
+
 								if bouquet.flags & eServiceReference.isDirectory:
 									ChannelSelectionInstance.clearPath()
 									ChannelSelectionInstance.setRoot(bouquet)
@@ -420,12 +440,19 @@ class RecordTimerEntry(timer.TimerEntry, object):
 											serviceIterator = servicelist.getNext()
 										if self.service_ref.ref == serviceIterator:
 											break
-							ChannelSelectionInstance.enterPath(rootbouquet)
-							ChannelSelectionInstance.enterPath(bouquet)
-							ChannelSelectionInstance.saveRoot()
-							ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-						ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-					NavigationInstance.instance.playService(self.service_ref.ref)
+							if found:
+								ChannelSelectionInstance.enterPath(rootbouquet)
+								ChannelSelectionInstance.enterPath(bouquet)
+								ChannelSelectionInstance.saveRoot()
+								ChannelSelectionInstance.saveChannel(self.service_ref.ref)
+						if found:
+							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+					if notFound:
+						# Can we get a result for that ?
+						# see if you want to delete the running Timer
+						self.switchToAll()
+					else:
+						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "start recording")
@@ -553,6 +580,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def failureCB(self, answer):
 		if answer:
 			self.log(13, "ok, zapped away")
+			found = False
+			notFound = False
 			#NavigationInstance.instance.stopUserServices()
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
@@ -563,9 +592,27 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				rootbouquet = eServiceReference(bqrootstr)
 				bouquet = eServiceReference(bqrootstr)
 				bouquetlist = serviceHandler.list(bouquet)
+				# we need a way out of the loop,
+				# if channel is not in bouquets
+				bouquetcount = 0
+				bouquets = []
 				if not bouquetlist is None:
 					while True:
 						bouquet = bouquetlist.getNext()
+						# can we make it easier?
+						# or found a way to make another way for that
+						if bouquets == []:
+							bouquets.append(bouquet)
+						else:
+							for x in bouquets:
+								if x != bouquet:
+									bouquets.append(bouquet)
+								else:
+									bouquetcount += 1
+						if bouquetcount >= 5:
+							notFound = True
+							break
+
 						if bouquet.flags & eServiceReference.isDirectory:
 							ChannelSelectionInstance.clearPath()
 							ChannelSelectionInstance.setRoot(bouquet)
@@ -574,18 +621,53 @@ class RecordTimerEntry(timer.TimerEntry, object):
 								serviceIterator = servicelist.getNext()
 								while serviceIterator.valid():
 									if self.service_ref.ref == serviceIterator:
+										found = True
 										break
 									serviceIterator = servicelist.getNext()
 								if self.service_ref.ref == serviceIterator:
+									found = True
 									break
-					ChannelSelectionInstance.enterPath(rootbouquet)
-					ChannelSelectionInstance.enterPath(bouquet)
-					ChannelSelectionInstance.saveRoot()
-					ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-				ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-			NavigationInstance.instance.playService(self.service_ref.ref)
+					if found:
+						ChannelSelectionInstance.enterPath(rootbouquet)
+						ChannelSelectionInstance.enterPath(bouquet)
+						ChannelSelectionInstance.saveRoot()
+						ChannelSelectionInstance.saveChannel(self.service_ref.ref)
+				if found:
+					ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+			if notFound:
+				# Can we get a result for that ?
+				# see if you want to delete the running Timer
+				self.switchToAll()
+			else:
+				NavigationInstance.instance.playService(self.service_ref.ref)
 		else:
 			self.log(14, "user didn't want to zap away, record will probably fail")
+
+	def switchToAll(self):
+		refStr = self.service_ref.ref.toString()
+		from Screens.InfoBar import InfoBar
+		if refStr.startswith('1:0:2:'):
+			if InfoBar.instance.servicelist.mode != 1:
+				InfoBar.instance.servicelist.setModeRadio()
+				InfoBar.instance.servicelist.radioTV = 1
+			InfoBar.instance.servicelist.clearPath()
+			rootbouquet = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
+			bouquet = eServiceReference('%s ORDER BY name'% service_types_radio)
+		else:
+			if InfoBar.instance.servicelist.mode != 0:
+				InfoBar.instance.servicelist.setModeTV()
+				InfoBar.instance.servicelist.radioTV = 0
+			InfoBar.instance.servicelist.clearPath()
+			rootbouquet = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+			bouquet = eServiceReference('%s ORDER BY name'% service_types_tv)
+		if InfoBar.instance.servicelist.bouquet_root != rootbouquet:
+			InfoBar.instance.servicelist.bouquet_root = rootbouquet
+		InfoBar.instance.servicelist.enterPath(bouquet)
+		InfoBar.instance.servicelist.setCurrentSelection(self.service_ref.ref)
+		InfoBar.instance.servicelist.zap(enable_pipzap = True)
+		InfoBar.instance.servicelist.correctChannelNumber()
+		InfoBar.instance.servicelist.startRoot = bouquet
+		InfoBar.instance.servicelist.addToHistory(self.service_ref.ref)
 
 	def timeChanged(self):
 		old_prepare = self.start_prepare
