@@ -64,7 +64,7 @@ class OscamInfo:
 					data = res.replace("--config-dir ", "-c ")
 					binary = res.split(" ")[0]
 					try:
-						data = data.split("-d ")[1]
+						data = data.split("-c ")[1]
 						data = data.split("-")[0]
 					except:
 						try:
