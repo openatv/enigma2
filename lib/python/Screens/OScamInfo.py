@@ -61,12 +61,23 @@ class OscamInfo:
 				res = os.popen(cmd).read()
 				if res:
 					data = res.replace("\n", "")
+					data = res.replace("--config-dir ", "-c ")
+					binary = res.split(" ")[0]
 					try:
-						data = '/' + data.split(" /")[1].strip() + '/oscam.conf'
+						data = data.split("-d ")[1]
+						data = data.split("-")[0]
 					except:
-						print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed'
-						return None
+						try:
+							print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed, using hard-coded config dir'
+							cmd = binary + ' -V | grep ConfigDir'
+							res = os.popen(cmd).read()
+							data = res.split(":")[1]
+						except:
+							print 'OScaminfo - oscam binary appears to be broken'
+							return None
+					data = data.strip() + '/oscam.conf'
 					if os.path.exists(data):
+						print 'OScaminfo - config file "%s" ' % data
 						return data
 					print 'OScaminfo - config file "%s" not found' % data
 					return None
@@ -116,6 +127,7 @@ class OscamInfo:
 			return _("file oscam.conf could not be found")
 
 	def openWebIF(self, part = None, reader = None):
+		self.proto = "http"
 		if config.oscaminfo.userdatafromconf.value:
 			self.ip = "127.0.0.1"
 			udata = self.getUserData()
@@ -135,14 +147,18 @@ class OscamInfo:
 			self.port = config.oscaminfo.port.value
 			self.username = config.oscaminfo.username.value
 			self.password = config.oscaminfo.password.value
-		if part is None:
-			self.url = "http://%s:%s/oscamapi.html?part=status" % ( self.ip, self.port )
-		else:
-			self.url = "http://%s:%s/oscamapi.html?part=%s" % (self.ip, self.port, part )
-		if part is not None and reader is not None:
-			self.url = "http://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.ip, self.port, part, reader )
 
-		print "URL=%s" % self.url
+		if self.port.startswith( '+' ):
+			self.proto = "https"
+			self.port.replace("+","")
+
+		if part is None:
+			self.url = "%s://%s:%s/oscamapi.html?part=status" % ( self.proto, self.ip, self.port )
+		else:
+			self.url = "%s://%s:%s/oscamapi.html?part=%s" % ( self.proto, self.ip, self.port, part )
+		if part is not None and reader is not None:
+			self.url = "%s://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
+
 		pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
 		pwman.add_password( None, self.url, self.username, self.password )
 		handlers = urllib2.HTTPDigestAuthHandler( pwman )
