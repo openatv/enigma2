@@ -149,12 +149,9 @@ class ConfigElement(object):
 			else:
 				notifier(self)
 
-	def removeNotifier(self, notifier, initial_call = True, immediate_feedback = True):
-		assert callable(notifier), "notifiers must be callable"
-		if immediate_feedback:
-			self.notifiers.remove(notifier)
-		else:
-			self.notifiers_final.remove(notifier)
+	def removeNotifier(self, notifier):
+		notifier in self.notifiers and self.notifiers.remove(notifier)
+		notifier in self.notifiers_final and self.notifiers_final.remove(notifier)
 
 	def disableSave(self):
 		self.save_disabled = True

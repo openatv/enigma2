@@ -61,7 +61,6 @@ class Standby2(Screen):
 		self.setMute()
 
 		self.paused_service = None
-		self.prev_running_service = None
 
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
@@ -80,8 +79,16 @@ class Standby2(Screen):
 				else:
 					self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
+		movie = config.usage.last_movie_played.value
+		movie = movie and movie.rsplit(":", 1)[1]
+		if movie.startswith("/") and [x for x in movie[1:].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
+			from Screens.MovieSelection import defaultMoviePath
+			moviepath = defaultMoviePath()
+			if moviepath:
+				config.movielist.last_videodir.value = moviepath
+
 		if self.session.pipshown:
-			infoBarInstance and hasattr(infoBarInstance, "showPiP") and infoBarInstance.showPiP()
+			self.infoBarInstance and hasattr(self.infoBarInstance, "showPiP") and self.infoBarInstance.showPiP()
 
 		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:

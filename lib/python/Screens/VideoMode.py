@@ -230,6 +230,21 @@ class AutoVideoModeLabel(Screen):
 			idx += 4
 			self.hideTimer.start(idx*1000, True)
 
+previous = None
+isDedicated3D = False
+
+def applySettings(mode=config.plugins.threeDmode.mode.value, znorm=int(config.plugins.threeDmode.znorm.value)):
+	global previous, isDedicated3D
+	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
+	mode == "3dmode" in SystemInfo["3DMode"] and mode or mode == 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
+	if previous != (mode, znorm):
+		try:
+			open(SystemInfo["3DMode"], "w").write(mode)
+			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
+			previous = (mode, znorm)
+		except:
+			return
+
 class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -248,13 +263,28 @@ class AutoVideoMode(Screen):
 		self.detecttimer = eTimer()
 		self.detecttimer.callback.append(self.VideoChangeDetect)
 
+	def checkIfDedicated3D(self):
+			service = self.session.nav.getCurrentlyPlayingServiceReference()
+			servicepath = service and service.getPath()
+			if servicepath.startswith("/"):
+				if service.toString().startswith("1:"):
+					info = eServiceCenter.getInstance().info(service)
+					service = info and info.getInfoString(service, iServiceInformation.sServiceref)
+					return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_IS_DEDICATED_3D == FLAG_IS_DEDICATED_3D
+				else:
+					return ".3d." in servicepath.lower()
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1
+
 	def __evStart(self):
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		if info and info.getInfo(iServiceInformation.sIsDedicated3D):
-			config.osd.threeDmode.setValue('sidebyside')
-		else:
-			config.osd.threeDmode.setValue('off')
+		if config.plugins.threeDmode.mode.value == "auto":
+			global isDedicated3D
+			isDedicated3D = self.checkIfDedicated3D()
+			if isDedicated3D:
+				applySettings("sidebyside")
+			else:
+				applySettings()
 
 	def BufferInfo(self):
 		bufferInfo = self.session.nav.getCurrentService().streamed().getBufferCharge()
