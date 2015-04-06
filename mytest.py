@@ -592,6 +592,10 @@ profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
+profile("UserInterface")
+import Screens.UserInterfacePositioner
+Screens.UserInterfacePositioner.InitOsd()
+
 profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
@@ -629,10 +633,6 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
-
-profile("UserInterface")
-import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave

@@ -233,7 +233,7 @@ class AutoVideoModeLabel(Screen):
 previous = None
 isDedicated3D = False
 
-def applySettings(mode=config.plugins.threeDmode.mode.value, znorm=int(config.plugins.threeDmode.znorm.value)):
+def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
 	mode == "3dmode" in SystemInfo["3DMode"] and mode or mode == 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
@@ -278,7 +278,7 @@ class AutoVideoMode(Screen):
 			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1
 
 	def __evStart(self):
-		if config.plugins.threeDmode.mode.value == "auto":
+		if config.osd.threeDmode.value == "auto":
 			global isDedicated3D
 			isDedicated3D = self.checkIfDedicated3D()
 			if isDedicated3D:
@@ -338,28 +338,28 @@ class AutoVideoMode(Screen):
 			try:
 				video_height = int(f.read(),16)
 			except:
-    				pass
+				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/xres"):
 			f = open("/proc/stb/vmpeg/0/xres", "r")
 			try:
 				video_width = int(f.read(),16)
 			except:
-    				pass
+				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
 			f = open("/proc/stb/vmpeg/0/progressive", "r")
 			try:
 				video_pol = "p" if int(f.read(),16) else "i"
 			except:
-    				pass
+				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
 			try:
 				video_rate = int(f.read())
 			except:
-    				pass
+				pass
 			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
