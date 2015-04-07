@@ -87,7 +87,7 @@ def InitUsageConfig():
 
 	config.usage.show_infobar_channel_number = ConfigYesNo(default=False)
 	config.usage.show_second_infobar = ConfigYesNo(default=True)
-	config.usage.second_infobar_timeout = ConfigSelection(default="10", choices=[("0", _("no timeout"))] + choicelist)
+	config.usage.second_infobar_timeout = ConfigSelection(default="0", choices=[("0", _("no timeout"))] + choicelist)
 
 	config.usage.infobar_frontend_source = ConfigSelection(default="tuner", choices=[("settings", _("Settings")), ("tuner", _("Tuner"))])
 
