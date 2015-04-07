@@ -41,7 +41,7 @@ def getAboutText():
 			pass
 
 	AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
-	AboutText += _("Cores:\t\t%s") % about.getCpuCoresString() + "\n"
+	AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
 	AboutText += _("Version:\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t%s") % getImageBuild() + "\n"
