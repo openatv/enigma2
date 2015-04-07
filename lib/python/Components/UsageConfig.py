@@ -138,8 +138,11 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, _("Standby in ") + h))
 	config.usage.inactivity_timer = ConfigSelection(default = "0", choices = choicelist)
 	config.usage.inactivity_timer_blocktime = ConfigYesNo(default = True)
-	config.usage.inactivity_timer_blocktime_begin = ConfigClock(default = time.mktime((0, 0, 0, 6, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_begin = ConfigClock(default = time.mktime((0, 0, 0, 18, 0, 0, 0, 0, 0)))
 	config.usage.inactivity_timer_blocktime_end = ConfigClock(default = time.mktime((0, 0, 0, 23, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_extra = ConfigYesNo(default = False)
+	config.usage.inactivity_timer_blocktime_extra_begin = ConfigClock(default = time.mktime((0, 0, 0, 6, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_extra_end = ConfigClock(default = time.mktime((0, 0, 0, 9, 0, 0, 0, 0, 0)))
 
 	choicelist = [("0", _("Disabled")),("event_standby", _("Standby after current event"))]
 	for i in range(900, 7201, 900):
