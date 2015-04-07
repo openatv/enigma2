@@ -1,8 +1,9 @@
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter
+from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
 from Screens.Screen import Screen
+from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
 from Components.About import about
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
