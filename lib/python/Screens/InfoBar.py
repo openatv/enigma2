@@ -208,7 +208,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openMoviePlayer(self, ref, LastService=None):
 		if not LastService:
 			LastService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=LastService, infobar=self)
+		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=LastService)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
 				  InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
