@@ -395,7 +395,7 @@ class MoviePlayer(
 			"no": _("Close PiP") if self.session.pipshown else _("Stop movie on EXIT disabled"),
 			"popup": _("Ask whether to close PiP") if self.session.pipshown else _("Ask whether to stop movie"),
 			"without popup": _("Close PiP") if self.session.pipshown else _("Stop movie")
-		}.get(config.usage.on_movie_exit.value, _("No current function"))
+		}.get(config.usage.pip_hideOnExit.value, _("No current function"))
 
 	def leavePlayerOnExit(self):
 		if self.shown:
