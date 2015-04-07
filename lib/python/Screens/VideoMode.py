@@ -1,6 +1,6 @@
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer
+from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter
 
 from Screens.Screen import Screen
 from Components.About import about
