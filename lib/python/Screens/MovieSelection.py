@@ -1357,7 +1357,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if res != currentDir:
 			if os.path.isdir(res):
 				baseName = os.path.basename(res[:-1])
-				if doParentalControl and config.ParentalControl.servicepin[0].value and baseName.startswith(".") and not baseName.startswith(".Trash"):
+				if config.ParentalControl.servicepinactive.value and doParentalControl and baseName.startswith(".") and not baseName.startswith(".Trash"):
 					self.session.openWithCallback(boundFunction(pinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
 				else:
 					config.movielist.last_videodir.value = res
