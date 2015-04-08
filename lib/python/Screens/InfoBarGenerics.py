@@ -4150,7 +4150,7 @@ class InfoBarResolutionSelection:
 			f = open("/proc/stb/video/videomode_choices")
 			values = f.readline().replace("\n", "").replace("pal ", "").replace("ntsc ", "").split(" ", -1)
 			for x in values:
-				entry = x.replace('i50', 'i@50hz').replace('i60', 'i@60hz').replace('p23', 'p@23.976hz').replace('p24', 'p@24hz').replace('p25', 'p@25hz').replace('p29', 'p@29hz').replace('p30', 'p@30hz').replace('p30', 'p@30hz').replace('p50', 'p@50hz'), x
+				entry = x.replace('i50', 'i@50hz').replace('i60', 'i@60hz').replace('p23', 'p@23.976hz').replace('p24', 'p@24hz').replace('p25', 'p@25hz').replace('p29', 'p@29hz').replace('p30', 'p@30hz').replace('p50', 'p@50hz'), x
 				choices.append(entry)
 			f.close()
 
