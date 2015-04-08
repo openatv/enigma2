@@ -662,9 +662,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				#iPlayableService.evSOF: self.__evSOF,
 			})
 		self.onExecBegin.append(self.asciiOn)
+		config.misc.standbyCounter.addNotifier(self.standbyCountChanged, initial_call=False)
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
+
+	def standbyCountChanged(self, value):
+		from Components.ParentalControl import parentalControl
+		path = config.movielist.last_videodir.value
+		if config.ParentalControl.servicepinactive.value and path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
+			config.movielist.last_videodir.value = ""
+			config.movielist.last_videodir.save()
+			self.reloadList()
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -856,6 +865,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				self.goToPlayingService()
 
 	def __onClose(self):
+		config.misc.standbyCounter.removeNotifier(self.standbyCountChanged)
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
@@ -1342,12 +1352,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				config.movielist.last_videodir.value
 			)
 
-	def gotFilename(self, res, selItem=None, doParentalControl=True):
-		def pinEntered(res, selItem, result):
+	def gotFilename(self, res, selItem=None):
+		def servicePinEntered(res, selItem, result):
 			if result:
 				from Components.ParentalControl import parentalControl
 				parentalControl.setSessionPinCached()
-				self.gotFilename(res, selItem, False)
+				parentalControl.hideBlacklist()
+				self.gotFilename(res, selItem)
+			elif result == False:
+				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
 			return
 		# serviceref must end with /
@@ -1357,25 +1370,22 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if res != currentDir:
 			if os.path.isdir(res):
 				baseName = os.path.basename(res[:-1])
-				if config.ParentalControl.servicepinactive.value and doParentalControl and baseName.startswith(".") and not baseName.startswith(".Trash"):
-					self.session.openWithCallback(boundFunction(pinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+				if config.ParentalControl.servicepinactive.value and baseName.startswith(".") and not baseName.startswith(".Trash"):
+					from Components.ParentalControl import parentalControl
+					if not parentalControl.sessionPinCached:
+						self.session.openWithCallback(boundFunction(servicePinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+						return
+				config.movielist.last_videodir.value = res
+				config.movielist.last_videodir.save()
+				self.loadLocalSettings()
+				self.setCurrentRef(res)
+				self["freeDiskSpace"].path = res
+				if selItem:
+					self.reloadList(home = True, sel = selItem)
 				else:
-					config.movielist.last_videodir.value = res
-					config.movielist.last_videodir.save()
-					self.loadLocalSettings()
-					self.setCurrentRef(res)
-					self["freeDiskSpace"].path = res
-					if selItem:
-						self.reloadList(home = True, sel = selItem)
-					else:
-						self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
+					self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
-				self.session.open(
-					MessageBox,
-					_("Directory %s does not exist.") % (res),
-					type = MessageBox.TYPE_ERROR,
-					timeout = 5
-					)
+				self.session.open(MessageBox, _("Directory %s does not exist.") % (res), type=MessageBox.TYPE_ERROR, timeout=5)
 
 	def showAll(self):
 		self.selected_tags_ele = None
