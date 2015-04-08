@@ -673,8 +673,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if [x for x in path[1].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
 				moviepath = defaultMoviePath()
 				if moviepath:
-					config.movielist.last_videodir.value = ""
-					self.do_gohome()
+					config.movielist.last_videodir.value = defaultMoviePath()
+					self.close(None)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
