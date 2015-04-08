@@ -668,12 +668,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
 
 	def standbyCountChanged(self, value):
-		from Components.ParentalControl import parentalControl
-		path = config.movielist.last_videodir.value
-		if config.ParentalControl.servicepinactive.value and path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
-			config.movielist.last_videodir.value = ""
-			config.movielist.last_videodir.save()
-			self.reloadList()
+		path = self.getTitle().split(" /", 1)
+		if path and len(path) > 1:
+			if [x for x in path[1].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
+				moviepath = defaultMoviePath()
+				if moviepath:
+					config.movielist.last_videodir.value = ""
+					self.do_gohome()
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
