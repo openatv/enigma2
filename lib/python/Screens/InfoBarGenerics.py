@@ -3382,7 +3382,10 @@ class InfoBarPowersaver:
 				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
 				begintime = tuple(config.usage.inactivity_timer_blocktime_begin.value)
 				endtime = tuple(config.usage.inactivity_timer_blocktime_end.value)
-				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
+				begintime_extra = tuple(config.usage.inactivity_timer_blocktime_extra_begin.value)
+				endtime_extra = tuple(config.usage.inactivity_timer_blocktime_extra_end.value)
+				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime) or config.usage.inactivity_timer_blocktime_extra.value and\
+				(begintime_extra <= endtime_extra and (curtime >= begintime_extra and curtime < endtime_extra) or begintime_extra > endtime_extra and (curtime >= begintime_extra or curtime < endtime_extra)):
 					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
 					if duration:
 						if duration < 0:
