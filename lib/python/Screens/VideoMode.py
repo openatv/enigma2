@@ -615,7 +615,7 @@ class AutoVideoMode(Screen):
 									if x == "1080p":
 										try:
 											f = open("/proc/stb/video/videomode", "w")
-											f.write(write_mode)
+											f.write(x)
 											f.close()
 											changeResolution = True
 										except Exception, e:
