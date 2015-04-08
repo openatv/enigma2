@@ -76,7 +76,7 @@ def InitUsageConfig():
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 
 	choicelist = []
-	for i in range(1, 11):
+	for i in range(1, 10) + range(10, 91, 10):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.usage.infobar_timeout = ConfigSelection(default="5", choices=[("0", _("No timeout"))] + choicelist)
 	config.usage.show_infobar_do_dimming = ConfigYesNo(default=True)
@@ -87,7 +87,7 @@ def InitUsageConfig():
 
 	config.usage.show_infobar_channel_number = ConfigYesNo(default=False)
 	config.usage.show_second_infobar = ConfigYesNo(default=True)
-	config.usage.second_infobar_timeout = ConfigSelection(default="10", choices=[("0", _("no timeout"))] + choicelist)
+	config.usage.second_infobar_timeout = ConfigSelection(default="0", choices=[("0", _("no timeout"))] + choicelist)
 
 	config.usage.infobar_frontend_source = ConfigSelection(default="tuner", choices=[("settings", _("Settings")), ("tuner", _("Tuner"))])
 
@@ -506,8 +506,8 @@ def InitUsageConfig():
 		("10", _("1%")), ("20", _("2%")), ("50", _("5%")),
 		("100", _("10%"))])
 	config.seek.updown_skips = ConfigYesNo(default=True)
-	config.seek.selfdefined_up = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
-	config.seek.selfdefined_down = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
+	config.seek.selfdefined_up = ConfigSelectionNumber(default=180, min=1, max=300, stepwidth=1, wraparound=True)
+	config.seek.selfdefined_down = ConfigSelectionNumber(default=60, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_right = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.number_skips = ConfigYesNo(default=False)
