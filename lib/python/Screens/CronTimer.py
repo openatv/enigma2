@@ -53,7 +53,7 @@ class CronTimers(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() != 'clean':
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
@@ -67,7 +67,6 @@ class CronTimers(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-		self.feedscheck.close()
 		self.close()
 
 	def doInstall(self, callback, pkgname):
@@ -77,7 +76,6 @@ class CronTimers(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self.message.close()
-		self.feedscheck.close()
 		self.updateList()
 
 	def UninstallCheck(self):
