@@ -177,18 +177,16 @@ class ParentalControl:
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
 	def servicePinEntered(self, service, result):
-		if result is not None and result:
+		if result:
 			self.setSessionPinCached()
 			self.hideBlacklist()
 			self.callback(ref = service)
-		else:
-			#This is the new function of caching cancelling of service pin
-			if result is not None:
-				messageText = _("The pin code you entered is wrong.")
-				if self.session:
-					self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
-				else:
-					AddPopup(messageText, MessageBox.TYPE_ERROR, timeout = 3)
+		elif result == False:
+			messageText = _("The pin code you entered is wrong.")
+			if self.session:
+				self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
+			else:
+				AddPopup(messageText, MessageBox.TYPE_ERROR, timeout = 3)
 
 	def saveListToFile(self,sWhichList,vList):
 		#Replaces saveWhiteList and saveBlackList:
