@@ -1783,7 +1783,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 			struct statfs fs;
 			if (statfs(tspath.c_str(), &fs) < 0)
 			{
-				eDebug("[eDVBServicePlay] statfs failed!");
+				eDebug("[eDVBServicePlay] statfs %s failed: %m", tspath.c_str());
 				return -2;
 			}
 
