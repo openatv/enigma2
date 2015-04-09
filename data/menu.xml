@@ -60,10 +60,10 @@
 			<item weight="25" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
 			<!-- Menu / Settings / CAM/CI Menu -->
-			<menu weight="30" text="CAM/CI" entryID="cam_setup" requires="CommonInterface">
+			<menu weight="30" text="CAM/CI" entryID="cam_setup">
 				<id val="cam" />
-				<item weight="0" level="1" text="CI" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
-				<item weight="5" level="1" text="CI PIN" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
+				<item weight="0" level="1" text="CI" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+				<item weight="5" level="1" text="CI PIN" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
 			</menu>
 
 			<!-- Menu / Settings / System -->

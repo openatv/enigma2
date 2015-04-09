@@ -9,7 +9,7 @@ from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
-import time
+import time, os
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -76,30 +76,38 @@ class ParentalControl:
 			sRef = str(ref)
 			method( sRef , TYPE_SERVICE , *args )
 
-	def isServicePlayable(self, ref, callback, session=None):
-		self.session = session
+	def isProtected(self, ref):
 		if not config.ParentalControl.servicepinactive.value:
-			return True
+			return False
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
 		if self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
+		path = ref.getPath()
 		info = eServiceCenter.getInstance().info(ref)
 		age = 0
-		if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
-			refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
-			service = refstr and eServiceReference(refstr).toCompareString()
+		if path.startswith("/"):
+			if service.startswith("1:"):
+				refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
+				service = refstr and eServiceReference(refstr).toCompareString()
+			if os.path.basename(path).startswith("."):
+				age = 18
 		elif int(config.ParentalControl.age.value):
 			event = info and info.getEvent(ref)
 			rating = event and event.getParentalData()
 			age = rating and rating.getRating()
 			age = age and age <= 15 and age + 3 or 0
-		if (age and age >= int(config.ParentalControl.age.value)) or service and self.blacklist.has_key(service):
+		return (age and age >= int(config.ParentalControl.age.value)) or service and self.blacklist.has_key(service)
+
+	def isServicePlayable(self, ref, callback, session=None):
+		self.session = session
+		if self.isProtected(ref):
 			#Check if the session pin is cached
 			if self.sessionPinCached == True:
 				return True
 			self.callback = callback
+			service = ref.toCompareString()
 			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
 			if session:
 				Notifications.RemovePopup("Parental control")
@@ -169,18 +177,16 @@ class ParentalControl:
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
 	def servicePinEntered(self, service, result):
-		if result is not None and result:
+		if result:
 			self.setSessionPinCached()
 			self.hideBlacklist()
 			self.callback(ref = service)
-		else:
-			#This is the new function of caching cancelling of service pin
-			if result is not None:
-				messageText = _("The pin code you entered is wrong.")
-				if self.session:
-					self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
-				else:
-					AddPopup(messageText, MessageBox.TYPE_ERROR, timeout = 3)
+		elif result == False:
+			messageText = _("The pin code you entered is wrong.")
+			if self.session:
+				self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
+			else:
+				AddPopup(messageText, MessageBox.TYPE_ERROR, timeout = 3)
 
 	def saveListToFile(self,sWhichList,vList):
 		#Replaces saveWhiteList and saveBlackList:

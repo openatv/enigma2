@@ -1,6 +1,62 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
 from Components.NimManager import nimmanager
 
+def orbpos(pos):
+	return pos > 3600 and "N/A" or "%d.%d\xc2\xb0%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
+
+def getTunerDescription(nim):
+	try:
+		return nimmanager.getTerrestrialDescription(nim)
+	except:
+		print "[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim
+	return ""
+
+def getMHz(frequency):
+	return (frequency+50000)/100000/10.
+
+def getChannelNumber(frequency, nim):
+	if nim == "DVB-T":
+		for n in nimmanager.nim_slots:
+			if n.isCompatible("DVB-T"):
+				nim = n.slot
+				break
+	f = getMHz(frequency)
+	descr = getTunerDescription(nim)
+	if "DVB-T" in descr:
+		if "Europe" in descr:
+			if 174 < f < 230: 	# III
+				d = (f + 1) % 7
+				return str(int(f - 174)/7 + 5) + (d < 3 and "-" or d > 4 and "+" or "")
+			elif 470 <= f < 863: 	# IV,V
+				d = (f + 2) % 8
+				return str(int(f - 470) / 8 + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
+		elif "Australia" in descr:
+			d = (f + 1) % 7
+			ds = (d < 3 and "-" or d > 4 and "+" or "")
+			if 174 < f < 202: 	# CH6-CH9
+				return str(int(f - 174)/7 + 6) + ds
+			elif 202 <= f < 209: 	# CH9A
+				return "9A" + ds
+			elif 209 <= f < 230: 	# CH10-CH12
+				return str(int(f - 209)/7 + 10) + ds
+			elif 526 < f < 820: 	# CH28-CH69
+				d = (f - 1) % 7
+				return str(int(f - 526)/7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
+	return ""
+
+def supportedChannels(nim):
+	descr = getTunerDescription(nim)
+	return "Europe" in descr and "DVB-T" in descr
+
+def channel2frequency(channel, nim):
+	descr = getTunerDescription(nim)
+	if "Europe" in descr and "DVB-T" in descr:
+		if 5 <= channel <= 12:
+			return (177500 + 7000*(channel- 5))*1000
+		elif 21 <= channel <= 69:
+			return (474000 + 8000*(channel-21))*1000
+	return 474000000
+
 def ConvertToHumanReadable(tp, type = None):
 	ret = { }
 	if type is None:
@@ -30,6 +86,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersSatellite.Modulation_QAM16 : "QAM16",
 			eDVBFrontendParametersSatellite.Modulation_8PSK : "8PSK"}.get(tp.get("modulation"))
 		ret["orbital_position"] = nimmanager.getSatName(int(tp.get("orbital_position")))
+		ret["orb_pos"] = orbpos(int(tp.get("orbital_position")))
 		ret["polarization"] = {
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal : _("Horizontal"),
 			eDVBFrontendParametersSatellite.Polarisation_Vertical : _("Vertical"),
@@ -146,6 +203,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersTerrestrial.System_DVB_T_T2 : "DVB-T/T2",
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
+		ret["channel"] = _("CH%s") % getChannelNumber(tp.get("frequency"), "DVB-T")
 	elif type == "ATSC":
 		ret["tuner_type"] = "ATSC"
 		ret["modulation"] = {

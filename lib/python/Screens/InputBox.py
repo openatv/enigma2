@@ -178,3 +178,6 @@ class PinInput(InputBox):
 
 	def showTries(self):
 		self["tries"].setText(self.triesEntry and _("Tries left:") + " " + str(self.getTries() or ""))
+
+	def keyRight(self):
+		pass

@@ -11,7 +11,7 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.config import config, ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
-from Components.Converter.ChannelNumbers import channelnumbers
+from Tools.Transponder import getChannelNumber, channel2frequency
 
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
@@ -162,13 +162,13 @@ class Satfinder(ScanSetup, ServiceScan):
 				else:
 					self.scan_input_as.value = self.scan_input_as.choices[0]
 				if self.ter_channel_input and self.scan_input_as.value == "channel":
-					channel = channelnumbers.getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
+					channel = getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
 					if channel:
 						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
 					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
 				else:
 					prev_val = self.scan_ter.frequency.value
-					self.scan_ter.frequency.value = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
+					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
 					if self.scan_ter.frequency.value == 474000:
 						self.scan_ter.frequency.value = prev_val
 					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
@@ -287,7 +287,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return self.retuneCab(configElement)
 		if self.initcomplete:
 			if self.scan_input_as.value == "channel":
-				frequency = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
+				frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
 			else:
 				frequency = self.scan_ter.frequency.value * 1000
 			if self.tuning_type.value == "single_transponder":

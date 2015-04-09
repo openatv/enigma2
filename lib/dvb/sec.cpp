@@ -336,6 +336,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 
 			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
 
+			if (diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2)
+				m_target_orbital_position = sat.orbital_position;
 			if (!(m_not_linked_slot_mask & slot_id))  // frontend with direct connection?
 			{
 				long linked_prev_ptr;
@@ -496,13 +498,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 
 #if 0
-				eDebugNoNewLine("sendmask: ");
+				eDebugNoNewLineStart("sendmask: ");
 				for (int i=3; i >= 0; --i)
 					if ( send_mask & (1<<i) )
 						eDebugNoNewLine("1");
 					else
 						eDebugNoNewLine("0");
-				eDebug("");
+				eDebugNoNewLine("");
 #endif
 				if ( diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
 					&& !sat.no_rotor_command_on_tune )

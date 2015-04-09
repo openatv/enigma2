@@ -7,7 +7,7 @@ from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -61,6 +61,7 @@ possibleAlignmentChoices = [
 	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP) , _("centered, wrapped")),
 	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP) , _("right, wrapped"))]
 config.misc.graph_mepg.event_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
+config.misc.graph_mepg.show_timelines = ConfigSelection(default = "all", choices = [("nothing", _("no")), ("all", _("all")), ("now", _("actual time only"))])
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
 config.misc.graph_mepg.extension_menu = ConfigYesNo(default = True)
 config.misc.graph_mepg.silent_bouquet_change = ConfigYesNo(default = True)
@@ -148,10 +149,15 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.listHeight = None
 		self.listWidth = None
-		self.serviceBorderWidth = 1
+		self.serviceBorderVerWidth = 1
+		self.serviceBorderHorWidth = 1
 		self.serviceNamePadding = 0
-		self.eventBorderWidth = 1
+		self.eventBorderVerWidth = 1
+		self.eventBorderHorWidth = 1
 		self.eventNamePadding = 0
+		self.recIconSize = 21
+		self.iconXPadding = 1
+		self.iconYPadding = 1
 
 	def applySkin(self, desktop, screen):
 		def EntryForegroundColor(value):
@@ -194,14 +200,24 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.backColorNow = parseColor(value).argb()
 		def EntryForegroundColorNow(value):
 			self.foreColorNow = parseColor(value).argb()
-		def ServiceBorderWidth(value):
-			self.serviceBorderWidth = int(value)
+		def ServiceBorderVerWidth(value):
+			self.serviceBorderVerWidth = int(value)
+		def ServiceBorderHorWidth(value):
+			self.serviceBorderHorWidth = int(value)
 		def ServiceNamePadding(value):
 			self.serviceNamePadding = int(value)
-		def EventBorderWidth(value):
-			self.eventBorderWidth = int(value)
+		def EventBorderHorWidth(value):
+			self.eventBorderHorWidth = int(value)
+		def EventBorderVerWidth(value):
+			self.eventBorderVerWidth = int(value)
 		def EventNamePadding(value):
 			self.eventNamePadding = int(value)
+		def RecIconSize(value):
+			self.recIconSize = int(value)
+		def IconXPadding(value):
+			self.iconXPadding = int(value)
+		def IconYPadding(value):
+			self.iconYPadding = int(value)
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
@@ -370,13 +386,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.showServiceTitle:
 			w = width / 10 * 2;
 		else:     # if self.showPicon:    # this must be set if showServiceTitle is None
-			w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
+			w = 2 * height - 2 * self.serviceBorderVerWidth  # FIXME: could do better...
 		self.service_rect = Rect(0, 0, w, height)
 		self.event_rect = Rect(w, 0, width - w, height)
-		piconHeight = height - 2 * self.serviceBorderWidth
+		piconHeight = height - 2 * self.serviceBorderHorWidth
 		piconWidth = 2 * piconHeight  # FIXME: could do better...
-		if piconWidth > w - 2 * self.serviceBorderWidth:
-			piconWidth = w - 2 * self.serviceBorderWidth
+		if piconWidth > w - 2 * self.serviceBorderVerWidth:
+			piconWidth = w - 2 * self.serviceBorderVerWidth
 		self.picon_size = eSize(piconWidth, piconHeight)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
@@ -414,8 +430,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [ None ]
 		if bgpng is not None:    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
-					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
+					pos = (r1.x + self.serviceBorderVerWidth, r1.y + self.serviceBorderHorWidth),
+					size = (r1.w - 2 * self.serviceBorderVerWidth, r1.h - 2 * self.serviceBorderHorWidth),
 					png = bgpng,
 					flags = BT_SCALE))
 		else:
@@ -439,7 +455,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				displayPicon = loadPNG(picon)
 			if displayPicon is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					pos = (r1.x + self.serviceBorderVerWidth, r1.y + self.serviceBorderHorWidth),
 					size = (piconWidth, piconHeight),
 					png = displayPicon,
 					backcolor = None, backcolor_sel = None, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
@@ -459,10 +475,10 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle or displayPicon is None:
 			res.append(MultiContentEntryText(
-				pos = (r1.x + piconWidth + self.serviceBorderWidth + self.serviceNamePadding,
-					r1.y + self.serviceBorderWidth),
-				size = (namewidth - 2 * (self.serviceBorderWidth + self.serviceNamePadding),
-					r1.h - 2 * self.serviceBorderWidth),
+				pos = (r1.x + piconWidth + self.serviceBorderVerWidth + self.serviceNamePadding,
+					r1.y + self.serviceBorderHorWidth),
+				size = (namewidth - 2 * (self.serviceBorderVerWidth + self.serviceNamePadding),
+					r1.h - 2 * self.serviceBorderHorWidth),
 				font = namefont, flags = namefontflag,
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
@@ -512,8 +528,8 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				if bgpng is not None:
 					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
-						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
+						pos = (left + xpos + self.eventBorderVerWidth, top + self.eventBorderHorWidth),
+						size = (ewidth - 2 * self.eventBorderVerWidth, height - 2 * self.eventBorderHorWidth),
 						png = bgpng,
 						flags = BT_SCALE))
 				else:
@@ -524,10 +540,10 @@ class EPGList(HTMLComponent, GUIComponent):
 						backcolor = backColor, backcolor_sel = backColorSel))
 
 				# event text
-				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
-				evY = top + self.eventBorderWidth
-				evW = ewidth - 2 * (self.eventBorderWidth + self.eventNamePadding)
-				evH = height - 2 * self.eventBorderWidth
+				evX = left + xpos + self.eventBorderVerWidth + self.eventNamePadding
+				evY = top + self.eventBorderHorWidth
+				evW = ewidth - 2 * (self.eventBorderVerWidth + self.eventNamePadding)
+				evH = height - 2 * self.eventBorderHorWidth
 				if evW > 0:
 					res.append(MultiContentEntryText(
 						pos = (evX, evY),
@@ -540,17 +556,18 @@ class EPGList(HTMLComponent, GUIComponent):
 				# recording icons
 				if rec is not None:
 					for i in range(len(rec[1])):
-						if ewidth < (i + 1) * 22:
+						if ewidth < (i + 1) * (self.recIconSize + self.iconXPadding):
 							break
-						res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos + ewidth - (i + 1) * 22, top + height - 22), size = (21, 21),
+						res.append(MultiContentEntryPixmapAlphaBlend(
+							pos = (left + xpos + ewidth - (i + 1) * (self.recIconSize + self.iconXPadding), top + height - (self.recIconSize + self.iconYPadding)),
+							size = (self.recIconSize, self.recIconSize),
 							png = self.clocks[rec[1][len(rec[1]) - 1 - i]]))
 
 		else:
 			if selected and self.selEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					pos = (r2.x + self.eventBorderVerWidth, r2.y + self.eventBorderHorWidth),
+					size = (r2.w - 2 * self.eventBorderVerWidth, r2.h - 2 * self.eventBorderHorWidth),
 					png = self.selEvPix,
 					flags = BT_SCALE))
 		return res
@@ -753,7 +770,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				line = time_lines[x]
 				old_pos = line.position
 				line.setPosition(xpos + eventLeft, old_pos[1])
-				line.visible = True
+				line.visible = config.misc.graph_mepg.show_timelines.value is "all"
 				xpos += incWidth
 			for x in range(num_lines, MAX_TIMELINES):
 				time_lines[x].visible = False
@@ -768,7 +785,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			new_pos = (xpos + eventLeft, old_pos[1])
 			if old_pos != new_pos:
 				timeline_now.setPosition(new_pos[0], new_pos[1])
-			timeline_now.visible = True
+			timeline_now.visible = config.misc.graph_mepg.show_timelines.value in ("all", "now")
 		else:
 			timeline_now.visible = False
 

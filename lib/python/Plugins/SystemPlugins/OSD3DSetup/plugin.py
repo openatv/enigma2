@@ -1,12 +1,15 @@
 from Screens.Screen import Screen
+from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
 from Components.ConfigList import ConfigListScreen
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry
-from boxbranding import getBoxType
+from enigma import iPlayableService, iServiceInformation, eServiceCenter, eServiceReference, eDVBDB
 
-modelist = {"off": _("Off"), "sidebyside": _("Side by Side"), "topandbottom": _("Top and Bottom")}
+modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by side"), "topandbottom": _("Top and bottom")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
-config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "off")
+config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
 
 PROC_GB_3DMODE = "/proc/stb/fb/primary/3d"
@@ -52,7 +55,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
 		self.list.append(getConfigListEntry(_("3d mode"), self.mode))
 		self.list.append(getConfigListEntry(_("Depth"), self.znorm))
-
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -74,57 +76,79 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.close()
 
 	def keyCancel(self):
-		setConfiguredSettings()
+		applySettings()
 		self.close()
 
-def applySettings(mode, znorm):
-	path_mode = ""
-	path_znorm = ""
-	from os import path
-	path_mode = PROC_GB_3DMODE
-	path_znorm = PROC_GB_ZNORM
-	if mode == 'sidebyside':
-		mode = 'sbs'
-	elif mode == 'topandbottom':
-		mode = 'tab'
-	else:
-		mode = 'off'
-	try:
-		file = open(path_mode, "w")
-		file.write(mode)
-		file.close()
-		file = open(path_znorm, "w")
-		file.write('%d' % znorm)
-		file.close()
-	except:
-		return
+previous = None
+isDedicated3D = False
 
-def setConfiguredSettings():
-	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
+def applySettings(mode=config.plugins.OSD3DSetup.mode.value, znorm=int(config.plugins.OSD3DSetup.znorm.value)):
+	global previous, isDedicated3D
+	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
+	mode == "3dmode" in SystemInfo["3DMode"] and mode or mode == 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
+	if previous != (mode, znorm):
+		try:
+			if mode == 'sidebyside':
+				mode = 'sbs'
+			elif mode == 'topandbottom':
+				mode = 'tab'
+			else:
+				mode = 'off'
+			open(PROC_GB_3DMODE, "w").write(mode)
+			open(PROC_GB_ZNORM, "w").write('%d' % znorm)
+			previous = (mode, znorm)
+		except:
+			return
+
+class auto3D(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.session = session
+		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
+			{
+				iPlayableService.evStart: self.__evStart
+			})
+		print "[OSD3D] auto3D started"
+
+	def checkIfDedicated3D(self):
+			service = self.session.nav.getCurrentlyPlayingServiceReference()
+			servicepath = service and service.getPath()
+			if servicepath.startswith("/"):
+				if service.toString().startswith("1:"):
+					info = eServiceCenter.getInstance().info(service)
+					service = info and info.getInfoString(service, iServiceInformation.sServiceref)
+					return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_IS_DEDICATED_3D == FLAG_IS_DEDICATED_3D
+				else:
+					return ".3d." in servicepath.lower()
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1
+
+	def __evStart(self):
+		if config.plugins.OSD3DSetup.mode.value == "auto":
+			global isDedicated3D
+			isDedicated3D = self.checkIfDedicated3D()
+			if isDedicated3D:
+				applySettings("sidebyside")
+			else:
+				applySettings()
 
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
 
-def startup(reason, **kwargs):
-	setConfiguredSettings()
-
-def OSD3DSetup(menuid, **kwargs):
+def startSetup(menuid):
 	if menuid == "ui_menu":
 		return [(_("3D"), main, "osd_3d_setup", 85)]
 	else:
 		return []
 
-def Plugins(**kwargs):
-	from os import path
-	if path.exists(PROC_GB_3DMODE):
-		from Plugins.Plugin import PluginDescriptor
-		return PluginDescriptor(name = "OSD 3D setup", description = "Adjust 3D settings", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=OSD3DSetup)
-	return []
+def autostart(reason, **kwargs):
+	"session" in kwargs and kwargs["session"].open(auto3D)
+	print "[OSD3D] session autostart"
 
-#def Plugins(**kwargs):
-#	from os import path
-#	if path.exists(PROC_GB_3DMODE):
-#		from Plugins.Plugin import PluginDescriptor
-#		return [PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-#					PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
-#	return []
+def Plugins(**kwargs):
+	if SystemInfo["3DMode"]:
+		from Plugins.Plugin import PluginDescriptor
+		return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART], fnc = autostart),
+			PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_MENU, fnc = startSetup)]
+	return []
