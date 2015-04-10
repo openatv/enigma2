@@ -301,7 +301,7 @@ def InitAVSwitch():
 	if SystemInfo["CanChangeOsdAlpha"]:
 		def setAlpha(config):
 			open("/proc/stb/video/alpha", "w").write(str(config.value))
-		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
+		config.av.osd_alpha = ConfigSlider(default=255, increment = 5, limits=(20,255))
 		config.av.osd_alpha.addNotifier(setAlpha)
 
 	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
