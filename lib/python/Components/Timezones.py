@@ -10,7 +10,7 @@ class Timezones:
 
 	def readTimezonesFromFile(self):
 		try:
-			root = xml.etree.cElementTree.parse('/etc/timezone.xml').getroot()
+			root = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'timezone.xml')).getroot()
 			for zone in root.findall("zone"):
 				self.timezones.append((zone.get('name',""), zone.get('zone',"")))
 		except:
