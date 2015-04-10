@@ -157,7 +157,6 @@ def createMoveList(serviceref, dest):
 def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
-	movedList = []
 	try:
 		# print "[MovieSelection] Moving in background..."
 		# start with the smaller files, do the big one later.
@@ -174,7 +173,6 @@ def copyServiceFiles(serviceref, dest, name=None):
 	# current should be 'ref' type, dest a simple path string
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
-	movedList = []
 	try:
 		# print "[MovieSelection] Copying in background..."
 		# start with the smaller files, do the big one later.

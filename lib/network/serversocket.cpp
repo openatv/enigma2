@@ -66,9 +66,11 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 	okflag=1;
 
 	unlink(path.c_str());
-	if(bind(getDescriptor(),
-		(struct sockaddr *) &serv_addr,
-		sizeof(serv_addr))<0)
+#if 1	/* socket AF_LOCAL */
+	if(bind(getDescriptor(),(struct sockaddr *) &serv_addr,strlen(serv_addr.sun_path) + sizeof(serv_addr.sun_family))<0)
+#else
+	if(bind(getDescriptor(),(struct sockaddr *) &serv_addr,sizeof(serv_addr))<0)
+#endif		
 	{
 		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
 		okflag=0;

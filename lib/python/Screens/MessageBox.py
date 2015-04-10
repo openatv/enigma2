@@ -105,10 +105,11 @@ class MessageBox(Screen):
 			listsize = (520, 25*count)
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
 				self["list"].instance.move(enigma.ePoint(65, 0))
+				wsizex = textsize[0]+65
 			else:
 				self["list"].instance.move(enigma.ePoint(0, 0))
+				wsizex = textsize[0]
 			self["list"].instance.resize(enigma.eSize(*listsize))
-
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
