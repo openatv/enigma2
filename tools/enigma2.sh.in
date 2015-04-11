@@ -4,6 +4,11 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+#check for /etc/enigma2 folder
+if [ ! -d /etc/enigma2 ] ; then
+	mkdir -p /etc/enigma2
+fi
+
 # workaround for corrupt ssl files
 if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=false" ]; then
 	rm -rf /etc/enigma2/cert.pem &
