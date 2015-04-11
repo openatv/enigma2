@@ -196,9 +196,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 
 	def standbyCountChanged(self, value):
 		if config.ParentalControl.servicepinactive.value:
-			service = self.cur_service
-			path = service and service.getPath()
-			if path and path.startswith("/") and [x for x in path[1:].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
+			from Components.ParentalControl import parentalControl
+			if parentalControl.isProtected(self.cur_service):
 				self.close()
 
 	def handleLeave(self, how):

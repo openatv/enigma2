@@ -680,7 +680,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.close(None)
 
 	def unhideParentalServices(self):
-		if not self.protectContextMenu:
+		if self.protectContextMenu:
 			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
 		else:
 			self.unhideParentalServicesCallback(True)
