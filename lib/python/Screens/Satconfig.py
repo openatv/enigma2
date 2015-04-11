@@ -560,6 +560,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.nimConfig = self.nim.config
 		self.createConfigMode()
 		self.createSetup()
+		self["header"] = Label(_("Reception Settings"))
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
