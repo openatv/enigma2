@@ -35,6 +35,8 @@ def InitParentalControl():
 	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.software_update = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.manufacturer_reset = ConfigYesNo(default = True)
 	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.context_menus = ConfigYesNo(default = False)
 
