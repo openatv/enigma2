@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <iostream>
+#include <fstream>
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -125,6 +127,49 @@ public:
 	}
 };
 
+static const std::string getConfigCurrentSpinner(const std::string &key)
+{
+	std::string value = "";
+	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
+
+	if (in.good())
+	{
+		do
+		{
+			std::string line;
+			std::getline(in, line);
+			size_t size = key.size();
+			if (line.compare(0, size, key)== 0)
+			{
+				value = line.substr(size + 1);
+				size_t end_pos = value.find("skin.xml");
+				if (end_pos != std::string::npos)
+				{
+					value = value.substr(0, end_pos);
+				}
+				break;
+			}
+		} while (in.good());
+		in.close();
+	}
+	// no config.skin.primary_skin found -> Use default one
+	if (value.empty())
+		value = "GigabluePax/";
+
+	// return SCOPE_CURRENT_SKIN ( /usr/share/enigma2/MYSKIN/skin_default/spinner ) BUT check if /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exist
+	std::string png_location = "/usr/share/enigma2/" + value + "skin_default/spinner/wait1.png";
+	std::ifstream png(png_location.c_str());
+	if (png.good())
+	{
+		png.close();
+		return value; // /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exists )
+	}
+	else
+	{
+		return ""; // No spinner found -> use "" ( /usr/share/enigma2/skin_default/spinner/wait1.png )
+	}
+}
+
 int exit_code;
 
 int main(int argc, char **argv)
@@ -192,7 +237,7 @@ int main(int argc, char **argv)
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
 
-
+	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
 	eDebug("Loading spinners...");
 
 	{
@@ -203,7 +248,7 @@ int main(int argc, char **argv)
 		{
 			char filename[64];
 			std::string rfilename;
-			snprintf(filename, sizeof(filename), "${datadir}/enigma2/skin_default/spinner/wait%d.png", i + 1);
+			snprintf(filename, sizeof(filename), "${datadir}/enigma2/%sskin_default/spinner/wait%d.png", active_skin.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
 			loadPNG(wait[i], rfilename.c_str());
 
