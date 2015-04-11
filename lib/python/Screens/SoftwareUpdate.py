@@ -1,5 +1,6 @@
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.TextBox import TextBox
@@ -18,7 +19,7 @@ import os
 import re
 import time
 
-class UpdatePlugin(Screen):
+class UpdatePlugin(Screen, ProtectedScreen):
 	skin = """
 		<screen name="UpdatePlugin" position="center,center" size="550,300">
 			<widget name="activityslider" position="0,0" size="550,5"  />
@@ -29,6 +30,7 @@ class UpdatePlugin(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
@@ -66,6 +68,11 @@ class UpdatePlugin(Screen):
 		self.activityTimer.callback.append(self.checkTraficLight)
 		self.activityTimer.callback.append(self.doActivityTimer)
 		self.activityTimer.start(100, True)
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and\
+			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value  or hasattr(self.session, 'infobar') and self.session.infobar is None) and\
+			config.ParentalControl.config_sections.software_update.value
 
 	def checkTraficLight(self):
 
