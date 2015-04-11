@@ -144,9 +144,9 @@ class OscamInfo:
 				self.password = udata[1]
 		else:
 			self.ip = ".".join("%d" % d for d in config.oscaminfo.ip.value)
-			self.port = config.oscaminfo.port.value
-			self.username = config.oscaminfo.username.value
-			self.password = config.oscaminfo.password.value
+			self.port = str(config.oscaminfo.port.value)
+			self.username = str(config.oscaminfo.username.value)
+			self.password = str(config.oscaminfo.password.value)
 
 		if self.port.startswith( '+' ):
 			self.proto = "https"
