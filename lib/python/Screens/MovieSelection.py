@@ -1877,10 +1877,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				if args:
 					trash = Tools.Trashcan.createTrashFolder(cur_path)
 					if trash:
-						moveServiceFiles(current, trash, name, allowCopy=True)
-						self["list"].removeService(current)
-						self.showActionFeedback(_("Deleted") + " " + name)
-						return
+						try:
+							moveServiceFiles(current, trash, name, allowCopy=True)
+							self["list"].removeService(current)
+							self.showActionFeedback(_("Deleted") + " " + name)
+							return
+						except:
+							msg = _("Cannot move to trash can") + "\n"
+							are_you_sure = _("Do you really want to delete %s ?") % name
 					else:
 						msg = _("Cannot move to trash can") + "\n"
 						are_you_sure = _("Do you really want to delete %s ?") % name
@@ -1954,13 +1958,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if '.Trash' not in cur_path and config.usage.movielist_trashcan.value:
 				trash = Tools.Trashcan.createTrashFolder(cur_path)
 				if trash:
-					moveServiceFiles(current, trash, name, allowCopy=True)
-					self["list"].removeService(current)
-					# Files were moved to .Trash, ok.
-					from Screens.InfoBarGenerics import delResumePoint
-					delResumePoint(current)
-					self.showActionFeedback(_("Deleted") + " " + name)
-					return
+					try:
+						moveServiceFiles(current, trash, name, allowCopy=True)
+						self["list"].removeService(current)
+						# Files were moved to .Trash, ok.
+						from Screens.InfoBarGenerics import delResumePoint
+						delResumePoint(current)
+						self.showActionFeedback(_("Deleted") + " " + name)
+						return
+					except:
+						msg = _("Cannot move to trash can") + "\n"
+						are_you_sure = _("Do you really want to delete %s ?") % name
 				else:
 					msg = _("Cannot move to trash can") + "\n"
 					are_you_sure = _("Do you really want to delete %s ?") % name
