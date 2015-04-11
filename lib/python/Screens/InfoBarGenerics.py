@@ -1997,7 +1997,6 @@ class InfoBarSeek:
 			elif self.seekstate[0] and self.seekstate[3] == 'END':
 #				print "resolved to STOP"
 				self.activityTimer.stop()
-				service.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
 					pass
