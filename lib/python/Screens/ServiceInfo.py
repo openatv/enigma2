@@ -1,3 +1,4 @@
+from os import path
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
@@ -145,17 +146,47 @@ class ServiceInfo(Screen):
 			resolution = "-"
 			if self.info:
 				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
-				width = self.info.getInfo(iServiceInformation.sVideoWidth)
-				height = self.info.getInfo(iServiceInformation.sVideoHeight)
-				if width > 0 and height > 0:
-					resolution = "%dx%d" % (width,height)
-					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
-					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
-					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-					if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
-						aspect = "4:3"
-					else:
-						aspect = "16:9"
+				video_height = None
+				video_width = None
+				video_pol = None
+				video_rate = None
+				if path.exists("/proc/stb/vmpeg/0/yres"):
+					f = open("/proc/stb/vmpeg/0/yres", "r")
+					try:
+						video_height = int(f.read(),16)
+					except:
+						pass
+					f.close()
+				if path.exists("/proc/stb/vmpeg/0/xres"):
+					f = open("/proc/stb/vmpeg/0/xres", "r")
+					try:
+						video_width = int(f.read(),16)
+					except:
+						pass
+					f.close()
+				if path.exists("/proc/stb/vmpeg/0/progressive"):
+					f = open("/proc/stb/vmpeg/0/progressive", "r")
+					try:
+						video_pol = "p" if int(f.read(),16) else "i"
+					except:
+						pass
+					f.close()
+				if path.exists("/proc/stb/vmpeg/0/framerate"):
+					f = open("/proc/stb/vmpeg/0/framerate", "r")
+					try:
+						video_rate = int(f.read())
+					except:
+						pass
+					f.close()
+
+				fps  = str((video_rate + 500) / 1000)
+				resolution = str(video_width) + "x" + str(video_height) + video_pol + fps
+
+				aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
+				if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
+					aspect = "4:3"
+				else:
+					aspect = "16:9"
 				f = open("/proc/stb/video/videomode")
 				videomode = f.read()[:-1].replace('\n','')
 				f.close()
