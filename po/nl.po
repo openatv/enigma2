@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 21:30+0100\n"
-"PO-Revision-Date: 2015-04-02 10:46+0100\n"
+"POT-Creation-Date: 2015-04-10 00:23+0100\n"
+"PO-Revision-Date: 2015-04-11 17:07+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -1552,6 +1552,9 @@ msgstr "Verander van favorietenlijst tijdens zappen"
 msgid "Change next timer"
 msgstr "Verander de volgende timer"
 
+msgid "Change recording (add time)"
+msgstr "Wijzig opname (voeg tijd toe)"
+
 msgid "Change recording (duration)"
 msgstr "wijzig opname (duur)"
 
@@ -2082,6 +2085,9 @@ msgstr "Kies of de kanaalnamen, de picons of beide vertoond moeten worden in de 
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Stel in of (en hoe lang) de tweede informatiebalk wordt vertoond als 'OK' tweemaal wordt ingedrukt. Die bevat extra informatie over het huidige kanaal."
+
+msgid "Configure whether or not an rotor position will be displayed on infobar"
+msgstr "Stel in of de rotorpositie getoond moet worden in de infobar"
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Bepaal welk kleurformaat voor de scart-aansluiting wordt benut"
@@ -2899,6 +2905,12 @@ msgstr "EPG instellingen"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "Fout - Zoeken mislukt (%s)!"
 
+msgid "ERROR:   No internet found"
+msgstr "FOUT: Geen internet gevonden"
+
+msgid "ERROR:   No network found"
+msgstr "FOUT: Geen netwerk gevonden"
+
 msgid "East"
 msgstr "Oost"
 
@@ -3102,9 +3114,6 @@ msgid ""
 msgstr ""
 "Fout: %s\n"
 "Opnieuw?"
-
-msgid "Error: No network connection found. Please ensure your receiver is connected to the internet."
-msgstr "Fout: Geen netwerkverbinding gevonden. Controleer of uw ontvanger met het internet verbonden is"
 
 msgid "Estonian"
 msgstr "Estisch"
@@ -3720,6 +3729,9 @@ msgstr "Uren minuten"
 
 msgid "Hours Mins Secs"
 msgstr "uren minuten seconden"
+
+msgid "How many minutes do you want add to record?"
+msgstr "Hoeveel minuten wilt u toevoegen aan de opname?"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
@@ -7164,6 +7176,9 @@ msgstr "Toon picons in opnamelijst"
 msgid "Show positioner movement"
 msgstr "Rotorbewegingen zichtbaar"
 
+msgid "Show positioner position"
+msgstr "Toon rotorpositie"
+
 msgid "Show record indicator"
 msgstr "Toon opnameindicatie"
 
@@ -9725,6 +9740,10 @@ msgid "Your %s %s does not support PiP HD"
 msgstr "Uw %s %s ondersteunt geen HD-PiP."
 
 #, python-format
+msgid "Your %s %s has no network access, please check your network settings and make sure you have network cable connected and try again."
+msgstr "Uw %s %s heeft geen netwerkverbinding. Controleer uw netwerkinstellingen en probeer het opnieuw."
+
+#, python-format
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr "Uw %s %s is niet met het internet verbonden. Controleer uw netwerkinstellingen en probeer het opnieuw."
 
@@ -11124,6 +11143,13 @@ msgstr "met links/rechts toets"
 msgid "with long OK press"
 msgstr "met lange OK-druk"
 
+msgid "with text"
+msgstr "met tekst"
+
+#
+msgid "with tuner name"
+msgstr "met tunernaam"
+
 msgid "working"
 msgstr "bezig"
 
@@ -11265,6 +11291,9 @@ msgstr "zapte"
 
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
+
+#~ msgid "Error: No network connection found. Please ensure your receiver is connected to the internet."
+#~ msgstr "Fout: Geen netwerkverbinding gevonden. Controleer of uw ontvanger met het internet verbonden is"
 
 #~ msgid "External (CF)"
 #~ msgstr "Extern (CF)"
