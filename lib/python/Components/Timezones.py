@@ -2,6 +2,7 @@ import xml.etree.cElementTree
 
 from os import environ, unlink, symlink
 import time
+from Tools.Directories import SCOPE_SKIN, resolveFilename
 
 class Timezones:
 	def __init__(self):
@@ -10,7 +11,7 @@ class Timezones:
 
 	def readTimezonesFromFile(self):
 		try:
-			root = xml.etree.cElementTree.parse('/usr/share/enigma2/timezone.xml').getroot()
+			root = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'timezone.xml')).getroot()
 			for zone in root.findall("zone"):
 				self.timezones.append((zone.get('name',""), zone.get('zone',"")))
 		except:
