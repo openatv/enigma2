@@ -205,7 +205,7 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 						message += " " + _("Reflash recommended!")
 					choices = [(_("Update and reboot (recommended)"), "cold"),
 						(_("Update and ask to reboot"), "hot"),
-						(_("Update channel list only"), "channels"),
+						#(_("Update channel list only"), "channels"),
 						(_("Show packages to be upgraded"), "showlist")]
 				else:
 					message = _("No updates available")
