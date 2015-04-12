@@ -38,7 +38,7 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,16" font="Bigger" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" halign="center">
 			<convert type="ServiceName">Name</convert>
 			<convert type="TextCase">ToUpper</convert>
 		</widget>
@@ -55,7 +55,7 @@
 
 <!-- GraphMultiEPG -->
 	<screen name="GraphMultiEPG_summary" position="fill">
-		<widget source="parent.Service" render="Label" position="top" size="*,18" font="Bigger" noWrap="1">
+		<widget source="parent.Service" render="Label" position="top" size="*,18" font="Bigger" noWrap="1" halign="center">
 			<convert type="ServiceName">Name</convert>
 			<convert type="TextCase">ToUpper</convert>
 		</widget>
@@ -67,7 +67,7 @@
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
-		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" >
+		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" halign="center">
 			<convert type="ServiceName">Name</convert>
 			<convert type="TextCase">ToUpper</convert>
 		</widget>
