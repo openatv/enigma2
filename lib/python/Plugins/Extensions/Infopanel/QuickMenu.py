@@ -1,5 +1,5 @@
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop
+from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -584,7 +584,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if len(nimList) == 0:
 			self.session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings()) > 0:
+			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
 			else:
 				usableNims = []
@@ -610,7 +610,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if len(nimList) == 0:
 			self.session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings()) > 0:
+			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(Satfinder)

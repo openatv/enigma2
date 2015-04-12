@@ -44,6 +44,7 @@ from skin import readSkin
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
+import Components.RecordingConfig
 InitFallbackFiles()
 
 profile("config.misc")
@@ -398,7 +399,7 @@ class PowerKey:
 
 	def shutdown(self):
 		wasRecTimerWakeup = False
-		recordings = self.session.nav.getRecordings()
+		recordings = self.session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):

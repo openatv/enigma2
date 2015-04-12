@@ -253,7 +253,7 @@ class Navigation:
 			setResumePoint(MoviePlayer.instance.session)
 			MoviePlayerInstance.close()
 
-	def recordService(self, ref, simulate=False):
+	def recordService(self, ref, simulate=False, type=pNavigation.isUnknownRecording):
 		service = None
 		if not simulate: print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
@@ -261,7 +261,7 @@ class Navigation:
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
-			service = ref and self.pnav and self.pnav.recordService(ref, simulate)
+			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
 			if service is None:
 				print "record returned non-zero"
 		return service
@@ -270,8 +270,20 @@ class Navigation:
 		ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
-	def getRecordings(self, simulate=False):
-		return self.pnav and self.pnav.getRecordings(simulate)
+	def getRecordings(self, simulate=False, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordings(simulate, type)
+
+	def getRecordingsServices(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServices(type)
+
+	def getRecordingsServicesOnly(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServicesOnly(type)
+
+	def getRecordingsTypesOnly(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsTypesOnly(type)
+
+	def getRecordingsServicesAndTypes(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServicesAndTypes(type)
 
 	def getCurrentService(self):
 		if not self.currentlyPlayingService:

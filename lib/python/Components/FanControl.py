@@ -4,7 +4,7 @@ from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSli
 from Tools.BoundFunction import boundFunction
 
 import NavigationInstance
-from enigma import iRecordableService
+from enigma import iRecordableService, pNavigation
 from boxbranding import getBoxType
 
 class FanControl:
@@ -32,7 +32,7 @@ class FanControl:
 			print "[FanControl]: setting fan values (standby mode): fanid = %d, voltage = %d, pwm = %d" % (fanid, cfg.vlt_standby.value, cfg.pwm_standby.value)
 
 	def getRecordEvent(self, recservice, event):
-		recordings = len(NavigationInstance.instance.getRecordings())
+		recordings = len(NavigationInstance.instance.getRecordings(False,pNavigation.isRealRecording))
 		if event == iRecordableService.evEnd:
 			if recordings == 0:
 				self.setVoltage_PWM_Standby()
@@ -42,14 +42,14 @@ class FanControl:
 
 	def leaveStandby(self):
 		NavigationInstance.instance.record_event.remove(self.getRecordEvent)
-		recordings = NavigationInstance.instance.getRecordings()
+		recordings = NavigationInstance.instance.getRecordings(False,pNavigation.isRealRecording)
 		if not recordings:
 			self.setVoltage_PWM()
 
 	def standbyCounterChanged(self, configElement):
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(self.leaveStandby)
-		recordings = NavigationInstance.instance.getRecordings()
+		recordings = NavigationInstance.instance.getRecordings(False,pNavigation.isRealRecording)
 		NavigationInstance.instance.record_event.append(self.getRecordEvent)
 		if not recordings:
 			self.setVoltage_PWM_Standby()
