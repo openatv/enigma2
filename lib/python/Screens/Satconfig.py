@@ -8,7 +8,7 @@ from Components.NimManager import nimmanager
 from Components.Button import Button
 from Components.Label import Label
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement, ConfigSatlist, ConfigYesNo
+from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSelection, updateConfigElement, ConfigSatlist, ConfigYesNo
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -578,6 +578,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.nimConfig.configMode.value = "nothing"
 		for x in self["config"].list:
 			x[1].save()
+		configfile.save()
 
 	def cancelConfirm(self, result):
 		if not result:
