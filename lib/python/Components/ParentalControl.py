@@ -35,6 +35,8 @@ def InitParentalControl():
 	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.software_update = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.manufacturer_reset = ConfigYesNo(default = True)
 	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.context_menus = ConfigYesNo(default = False)
 
@@ -77,7 +79,7 @@ class ParentalControl:
 			method( sRef , TYPE_SERVICE , *args )
 
 	def isProtected(self, ref):
-		if not config.ParentalControl.servicepinactive.value:
+		if not config.ParentalControl.servicepinactive.value or not ref:
 			return False
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
@@ -91,7 +93,7 @@ class ParentalControl:
 			if service.startswith("1:"):
 				refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
 				service = refstr and eServiceReference(refstr).toCompareString()
-			if os.path.basename(path).startswith("."):
+			if [x for x in path[1:].split("/") if x.startswith(".") and not x == ".Trash"]:
 				age = 18
 		elif int(config.ParentalControl.age.value):
 			event = info and info.getEvent(ref)
@@ -176,7 +178,7 @@ class ParentalControl:
 			self.sessionPinCached = True
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
-	def servicePinEntered(self, service, result):
+	def servicePinEntered(self, service, result=None):
 		if result:
 			self.setSessionPinCached()
 			self.hideBlacklist()

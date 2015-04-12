@@ -396,6 +396,10 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
 				append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
 
+			from Components.ParentalControl import parentalControl
+			if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
+				append_to_menu(menu, (_("Unhide parental control services"), csel.unhideParentalServices))
+
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					append_to_menu( menu, (p.description, boundFunction(p, session, service)), key="bullet")
@@ -407,6 +411,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		append_to_menu(menu, (_("Sort by") + "...", csel.selectSortby))
 		append_to_menu(menu, (_("Network") + "...", csel.showNetworkSetup), key="yellow")
 		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="menu")
+
 		self["menu"] = ChoiceList(menu)
 
 	def isProtected(self):
@@ -673,6 +678,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def standbyCountChanged(self, value):
 		self.close(None)
+
+	def unhideParentalServices(self):
+		if self.protectContextMenu:
+			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+		else:
+			self.unhideParentalServicesCallback(True)
+
+	def unhideParentalServicesCallback(self, answer):
+		if answer:
+			from Components.ParentalControl import parentalControl
+			parentalControl.setSessionPinCached()
+			parentalControl.hideBlacklist()
+			self.reloadList()
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)	
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()

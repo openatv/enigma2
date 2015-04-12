@@ -15,10 +15,10 @@ import skin
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer, RT_VALIGN_CENTER
 
-AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma"))
+AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".wma"))
 DVD_EXTENSIONS = ('.iso', '.img')
 IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
-MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts"))
+MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts", ".asf"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
@@ -624,6 +624,10 @@ class MovieList(GUIComponent):
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
+			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never":
+				from Components.ParentalControl import parentalControl
+				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
+					continue
 			info = serviceHandler.info(serviceref)
 			if info is None:
 				info = justStubInfo
