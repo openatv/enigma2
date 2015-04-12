@@ -15,6 +15,17 @@ class MessageBox(Screen):
 	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=None, simple=False, list=[], timeout_default=None):
 		self.type = type
 		Screen.__init__(self, session)
+		self.skinName = ["MessageBox"]
+		if self.type == self.TYPE_YESNO:
+			self.setTitle(_("Question"))
+		elif self.type == self.TYPE_INFO:
+			self.setTitle(_("Information"))
+		elif self.type == self.TYPE_WARNING:
+			self.setTitle(_("Warning"))
+		elif self.type == self.TYPE_ERROR:
+			self.setTitle(_("Error"))
+		else:
+			self.setTitle(_("Message"))
 
 		if simple:
 			self.skinName="MessageBoxSimple"
@@ -32,6 +43,7 @@ class MessageBox(Screen):
 		self["ErrorPixmap"] = Pixmap()
 		self["QuestionPixmap"] = Pixmap()
 		self["InfoPixmap"] = Pixmap()
+		self["WarningPixmap"] = Pixmap()
 		self.timerRunning = False
 		self.initTimeout(timeout)
 
