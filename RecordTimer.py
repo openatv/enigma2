@@ -153,6 +153,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
+		self.InfoBarInstance = Screens.InfoBar.InfoBar.instance
+		self.ts_dialog = None
 		self.log_entries = []
 		self.resetState()
 
@@ -291,10 +293,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
-						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
-						self.setRecordingPreferredTuner()
-						self.failureCB(True)
-						self.log(5, "zap to recording service")
+						if self.checkingTimeshiftRunning():
+							if self.ts_dialog is None:
+								self.openChoiceActionBeforeZap()
+						else:
+							Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+							self.setRecordingPreferredTuner()
+							self.failureCB(True)
+							self.log(5, "zap to recording service")
 
 		if next_state == self.StatePrepared:
 			if self.tryPrepare():
@@ -317,13 +323,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			self.log(7, "prepare failed")
-			if self.first_try_prepare:
+			if self.first_try_prepare or (self.ts_dialog is not None and not self.checkingTimeshiftRunning()):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
+					if self.always_zap:
+						return False
 					if Screens.Standby.inStandby:
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
+					elif self.checkingTimeshiftRunning():
+						if self.ts_dialog is None:
+							self.openChoiceActionBeforeZap()
 					elif not config.recording.asktozap.value:
 						self.log(8, "asking user to zap away")
 						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20, default=True)
@@ -359,8 +370,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
-					self.log(11, "zapping")
-					NavigationInstance.instance.playService(self.service_ref.ref)
+					if self.checkingTimeshiftRunning():
+						if self.ts_dialog is None:
+							self.openChoiceActionBeforeZap()
+					else:
+						self.log(11, "zapping")
+						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "start recording")
@@ -381,6 +396,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateEnded:
 			old_end = self.end
+			self.ts_dialog = None
 			if self.setAutoincreaseEnd():
 				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
@@ -441,6 +457,69 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if elem is not None:
 				setPreferredTuner(int(elem))
 
+	def checkingTimeshiftRunning(self):
+		return config.usage.check_timeshift.value and self.InfoBarInstance and self.InfoBarInstance.timeshiftEnabled() and self.InfoBarInstance.timeshift_was_activated
+
+	def openChoiceActionBeforeZap(self):
+		if self.ts_dialog is None:
+			type = _("record")
+			if self.justplay:
+				type = _("zap")
+			elif self.always_zap:
+				type = _("zap and record")
+			message = _("You must switch to the service %s (%s - '%s')!\n") % (type, self.service_ref.getServiceName(), self.name)
+			if self.repeated:
+				message += _("Attention, this is repeated timer!\n")
+			message += _("Timeshift is running. Select an action.\n")
+			if not self.InfoBarInstance.save_timeshift_file:
+				if self.InfoBarInstance.timeshiftActivated():
+					choice = [(_("Save timeshift and zap"), "save"), (_("Zap"), "zap"), (_("Save timeshift in movie dir and zap"), "save_movie"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap  and remove timer"), "remove")]
+				else:
+					choice = [(_("Zap"), "zap"), (_("Save timeshift and zap"), "save"), (_("Save timeshift in movie dir and zap"), "save_movie"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
+			else:
+				message += _("Reminder, you have chosen to save timeshift file.")
+				choice = [(_("Zap"), "zap"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
+			#if self.justplay or self.always_zap:
+			#	choice.insert(2, (_("Don't zap"), "continue"))
+			choice.insert(2, (_("Don't zap"), "continue"))
+			def zapAction(choice):
+				start_zap = True
+				if choice:
+					if choice in ("zap", "save", "save_movie"):
+						self.log(8, "zap to recording service")
+						if choice in ("save", "save_movie"):
+							ts = self.InfoBarInstance.getTimeshift()
+							if ts and ts.isTimeshiftEnabled():
+								if choice =="save_movie":
+									self.InfoBarInstance.save_timeshift_in_movie_dir = True
+								self.InfoBarInstance.save_timeshift_file = True
+								ts.saveTimeshiftFile()
+								del ts
+								self.InfoBarInstance.saveTimeshiftFiles()
+					elif choice == "disable":
+						self.disable()
+						NavigationInstance.instance.RecordTimer.timeChanged(self)
+						start_zap = False
+						self.log(8, "zap canceled by the user, timer disabled")
+					elif choice == "remove":
+						start_zap = False
+						self.afterEvent = AFTEREVENT.NONE
+						NavigationInstance.instance.RecordTimer.removeEntry(self)
+						self.log(8, "zap canceled by the user, timer removed")
+					elif choice == "continue":
+						if self.justplay:
+							self.end = self.begin
+						start_zap = False
+						self.log(8, "zap canceled by the user")
+				if start_zap:
+					if not self.justplay:
+						self.setRecordingPreferredTuner()
+						self.failureCB(True)
+					else:
+						self.log(8, "zapping")
+						NavigationInstance.instance.playService(self.service_ref.ref)
+			self.ts_dialog = self.InfoBarInstance.session.openWithCallback(zapAction, MessageBox, message, simple=True, list=choice, timeout=20)
+
 	def sendStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.Standby)
@@ -470,6 +549,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.StateEnded: self.end }[next_state]
 
 	def failureCB(self, answer):
+		self.ts_dialog = None
 		if answer == True:
 			self.log(13, "ok, zapped away")
 			#NavigationInstance.instance.stopUserServices()
@@ -501,10 +581,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A record has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and \
-				not Screens.Standby.inStandby and \
-				Screens.InfoBar.InfoBar.instance and \
-				Screens.InfoBar.InfoBar.instance.execing
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby and self.InfoBarInstance and self.InfoBarInstance.execing
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True

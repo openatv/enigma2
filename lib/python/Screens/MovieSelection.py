@@ -381,28 +381,24 @@ class MovieContextMenu(Screen, ProtectedScreen):
 
 		menu = []
 		if service:
-			if (service.flags & eServiceReference.mustDescent):
-				if isTrashFolder(service):
-					append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="8")
-				else:
-					append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
-					append_to_menu(menu, (_("Move"), csel.do_move), key="6")
-					append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
+			if (service.flags & eServiceReference.mustDescent) and isTrashFolder(service):
+				append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="8")
 			else:
 				append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
 				append_to_menu(menu, (_("Move"), csel.do_move), key="6")
-				append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
-				append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
 				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
-				append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
-
-			from Components.ParentalControl import parentalControl
-			if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
-				append_to_menu(menu, (_("Unhide parental control services"), csel.unhideParentalServices))
-
+				if not (service.flags & eServiceReference.mustDescent):
+					append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
+					append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
+					append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
+				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
+					from Components.ParentalControl import parentalControl
+					if not parentalControl.sessionPinCached:
+						append_to_menu(menu, (_("Unhide parental control services"), csel.unhideParentalServices))
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-					append_to_menu( menu, (p.description, boundFunction(p, session, service)), key="bullet")
+				if not(service.flags & eServiceReference.mustDescent):
+					for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+						append_to_menu( menu, (p.description, boundFunction(p, session, service)), key="bullet")
 		if csel.exist_bookmark():
 			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark))
 		else:
