@@ -391,7 +391,8 @@ class MovieContextMenu(Screen, ProtectedScreen):
 					append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
 					if self.isResetable():
 						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
-					append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
+					if service.getPath().endswith('.ts'):
+						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
@@ -1572,7 +1573,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		from ServiceReference import ServiceReference
 		item = self.getCurrentSelection()
 		info = item[1]
-		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = item[0].getPath())
+		filepath = item[0].getPath()
+		if not filepath.endswith('.ts'):
+			return
+		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = filepath)
 		name = info.getName(item[0]) + ' - decoded'
 		description = info.getInfoString(item[0], iServiceInformation.sDescription)
 		recording = RecordTimer.RecordTimerEntry(serviceref, int(time.time()), int(time.time()) + 3600, name, description, 0, dirname = preferredTimerPath())
