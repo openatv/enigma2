@@ -1,5 +1,6 @@
 import xml.etree.cElementTree
 
+from Tools.Directories import SCOPE_SKIN, resolveFilename
 from os import environ, unlink, symlink
 import time
 
@@ -10,7 +11,7 @@ class Timezones:
 
 	def readTimezonesFromFile(self):
 		try:
-			file = open('/etc/timezone.xml')
+			file = open(resolveFilename(SCOPE_SKIN, 'timezone.xml'))
 			root = xml.etree.cElementTree.parse(file).getroot()
 			file.close()
 			for zone in root.findall("zone"):

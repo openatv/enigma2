@@ -501,6 +501,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				if self.scan_ter.system.value == eDVBFrontendParametersTerrestrial.System_DVB_T2:
 					self.list.append(getConfigListEntry(_('PLP ID'), self.scan_ter.plp_id))
 			elif self.scan_typeterrestrial.value == "predefined_transponder":
+				if nim.isCompatible("DVB-T2"):
+					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system)
+					self.list.append(self.systemEntry)
+				else:
+					self.scan_ter.system.value = eDVBFrontendParametersTerrestrial.System_DVB_T
 				self.TerrestrialRegion = self.terrestrial_nims_regions[index_to_scan]
 				self.TerrestrialRegionEntry = getConfigListEntry(_('Region'), self.TerrestrialRegion)
 				self.list.append(self.TerrestrialRegionEntry)
@@ -986,7 +991,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					tps = nimmanager.getTranspondersTerrestrial(region)
 					if len(tps) and len(tps) > self.TerrestrialTransponders.index :
 						tp = tps[self.TerrestrialTransponders.index]
-						tlist.append(buildTerTransponder(tp[1], tp[9], tp[2], tp[4], tp[5], tp[3], tp[7], tp[6], tp[8], tp[10], tp[11]))
+						tlist.append(buildTerTransponder(tp[1], tp[9], tp[2], tp[4], tp[5], tp[3], tp[7], tp[6], tp[8], self.scan_ter.system.value, tp[11]))
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "complete":
 				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.value)

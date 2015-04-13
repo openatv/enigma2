@@ -385,6 +385,10 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				menu.append((_("Reset playback position"), csel.do_reset))
 				menu.append((_("Rename"), csel.do_rename))
 				menu.append((_("Start offline decode"), csel.do_decode))
+
+			from Components.ParentalControl import parentalControl
+			if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
+				menu.append((_("Unhide parental control services"), csel.unhideParentalServices))
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
@@ -516,6 +520,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["DescriptionBorder"] = Pixmap()
 		self["DescriptionBorder"].hide()
 
+		if config.ParentalControl.servicepinactive.value:
+			from Components.ParentalControl import parentalControl
+			if not parentalControl.sessionPinCached and config.movielist.last_videodir.value and [x for x in config.movielist.last_videodir.value[1:].split("/") if x.startswith(".") and not x.startswith(".Trash")]:
+				config.movielist.last_videodir.value = ""
 		if not os.path.isdir(config.movielist.last_videodir.value):
 			config.movielist.last_videodir.value = defaultMoviePath()
 			config.movielist.last_videodir.save()
@@ -652,9 +660,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.onExecBegin.append(self.asciiOff)
 		else:
 			self.onExecBegin.append(self.asciiOn)
+		config.misc.standbyCounter.addNotifier(self.standbyCountChanged, initial_call=False)
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
+
+	def standbyCountChanged(self, value):
+		self.close(None)
+
+	def unhideParentalServices(self):
+		if self.protectContextMenu:
+			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+		else:
+			self.unhideParentalServicesCallback(True)
+
+	def unhideParentalServicesCallback(self, answer):
+		if answer:
+			from Components.ParentalControl import parentalControl
+			parentalControl.setSessionPinCached()
+			parentalControl.hideBlacklist()
+			self.reloadList()
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)	
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -894,6 +921,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					self.gotFilename(path)
 
 	def __onClose(self):
+		config.misc.standbyCounter.removeNotifier(self.standbyCountChanged)
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
@@ -1466,7 +1494,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				config.movielist.last_videodir.value
 			)
 
-	def gotFilename(self, res, selItem=None, doParentalControl=True):
+	def gotFilename(self, res, selItem=None):
+		def servicePinEntered(res, selItem, result):
+			if result:
+				from Components.ParentalControl import parentalControl
+				parentalControl.setSessionPinCached()
+				parentalControl.hideBlacklist()
+				self.gotFilename(res, selItem)
+			elif result == False:
+				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
 			return
 		# serviceref must end with /
@@ -1476,19 +1512,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if res != currentDir:
 			if os.path.isdir(res):
 				baseName = os.path.basename(res[:-1])
-				if doParentalControl and config.ParentalControl.servicepin[0].value and baseName.startswith(".") and not baseName.startswith(".Trash"):
-					self.session.openWithCallback(boundFunction(self.pinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+				if config.ParentalControl.servicepinactive.value and baseName.startswith(".") and not baseName.startswith(".Trash"):
+					from Components.ParentalControl import parentalControl
+					if not parentalControl.sessionPinCached:
+						self.session.openWithCallback(boundFunction(servicePinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+						return
+				config.movielist.last_videodir.value = res
+				config.movielist.last_videodir.save()
+				self.loadLocalSettings()
+				self.setCurrentRef(res)
+				self["freeDiskSpace"].path = res
+				self["TrashcanSize"].update(res)
+				if selItem:
+					self.reloadList(home = True, sel = selItem)
 				else:
-					config.movielist.last_videodir.value = res
-					config.movielist.last_videodir.save()
-					self.loadLocalSettings()
-					self.setCurrentRef(res)
-					self["freeDiskSpace"].path = res
-					self["TrashcanSize"].update(res)
-					if selItem:
-						self.reloadList(home = True, sel = selItem)
-					else:
-						self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
+					self.reloadList(home = True, sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
 			else:
 				mbox=self.session.open(
 					MessageBox,
