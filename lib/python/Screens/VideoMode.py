@@ -330,10 +330,10 @@ class AutoVideoMode(Screen):
 		current_res = current_pol and current_mode.split(current_pol)[0].replace('\n','') or ""
 		current_rate = current_pol and current_mode.split(current_pol)[0].replace('\n','') and current_mode.split(current_pol)[1].replace('\n','') or ""
 
-		video_height = 0
-		video_width = 0
-		video_pol = " "
-		video_rate = 0
+		video_height = None
+		video_width = None
+		video_pol = None
+		video_rate = None
 		if path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
