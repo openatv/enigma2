@@ -292,10 +292,10 @@ class PliExtraInfo(Poll, Converter, object):
 		return ""
 
 	def createResolution(self, info):
-		video_height = None
-		video_width = None
-		video_pol = None
-		video_rate = None
+		video_height = 0
+		video_width = 0
+		video_pol = " "
+		video_rate = 0
 		if path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
