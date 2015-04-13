@@ -389,7 +389,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
 				if not (service.flags & eServiceReference.mustDescent):
 					append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
-					if self.isResetable(service):
+					if self.isResetable():
 						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
 					append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
@@ -414,12 +414,9 @@ class MovieContextMenu(Screen, ProtectedScreen):
 	def isProtected(self):
 		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
 
-	def isResetable(self, service):
-		serviceHandler = eServiceCenter.getInstance()
-		info = serviceHandler.info(service)
-		if info and moviePlayState(service.getPath() + ".cuts", service, info.getLength(service)) is None:
-			return False
-		return True
+	def isResetable(self):
+		item = self.csel.getCurrentSelection()
+		return not(item[1] and moviePlayState(item[0].getPath() + ".cuts", item[0], item[1].getLength(item[0])) is None)
 
 	def pinEntered(self, answer):
 		if answer:
