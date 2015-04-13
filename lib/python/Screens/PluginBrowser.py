@@ -81,8 +81,8 @@ class PluginBrowser(Screen, ProtectedScreen):
 		})
 		self["DirectionActions"] = ActionMap(["DirectionActions"],
 		{
-			"moveUp": self.moveUp,
-			"moveDown": self.moveDown
+			"shiftUp": self.moveUp,
+			"shiftown": self.moveDown
 		})
 		self["NumberActions"] = NumberActionMap(["NumberActions"],
 		{
