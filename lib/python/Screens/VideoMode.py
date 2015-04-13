@@ -271,19 +271,19 @@ class AutoVideoMode(Screen):
 				if service.toString().startswith("1:"):
 					info = eServiceCenter.getInstance().info(service)
 					service = info and info.getInfoString(service, iServiceInformation.sServiceref)
-					return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_IS_DEDICATED_3D == FLAG_IS_DEDICATED_3D
+					return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_IS_DEDICATED_3D == FLAG_IS_DEDICATED_3D and "sidebyside"
 				else:
-					return ".3d." in servicepath.lower()
+					return ".3d." in servicepath.lower() and "sidebyside" or ".tab." in servicepath.lower() and "topandbottom"
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1
+			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1 and "sidebyside"
 
 	def __evStart(self):
 		if config.osd.threeDmode.value == "auto":
 			global isDedicated3D
 			isDedicated3D = self.checkIfDedicated3D()
 			if isDedicated3D:
-				applySettings("sidebyside")
+				applySettings(isDedicated3D)
 			else:
 				applySettings()
 
