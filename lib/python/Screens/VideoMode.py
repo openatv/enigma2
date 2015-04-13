@@ -330,10 +330,10 @@ class AutoVideoMode(Screen):
 		current_res = current_pol and current_mode.split(current_pol)[0].replace('\n','') or ""
 		current_rate = current_pol and current_mode.split(current_pol)[0].replace('\n','') and current_mode.split(current_pol)[1].replace('\n','') or ""
 
-		video_height = None
-		video_width = None
-		video_pol = None
-		video_rate = None
+		video_height = 0
+		video_width = 0
+		video_pol = " "
+		video_rate = 0
 		if path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
@@ -460,6 +460,10 @@ class AutoVideoMode(Screen):
 						write_mode = multi_videomode
 					else:
 						write_mode = config_mode+new_rate
+				else:
+					if new_rate == '24' and config_rate == 'multi': 
+						write_mode = config_res+'p'+new_rate
+						
 			if write_mode and current_mode != write_mode:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':
