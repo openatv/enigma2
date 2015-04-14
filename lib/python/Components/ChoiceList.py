@@ -29,12 +29,7 @@ def ChoiceEntryComponent(key="", text=None):
 			elif key == "verticalline":
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/verticalline.png")
 			else:
-				if screenwidth and screenwidth == 1920:
-					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "FHD/buttons/key_%s.png" % key)
-					if not path.exists(pngfile):
-						pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
-				else:
-					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
+				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
 				if screenwidth and screenwidth == 1920:
