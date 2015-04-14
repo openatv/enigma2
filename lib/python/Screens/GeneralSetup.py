@@ -309,8 +309,8 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("AV settings", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
 		if AUDIOSYNC:
 			self.sublist.append(QuickSubMenuEntryComponent("Audio sync", _("Set up audio sync"), _("Set up audio sync settings")))
-		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH:
-			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement", _("Video enhancement setup"), _("Video enhancement setup")))
+		if VIDEOENH and os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
+			self.sublist.append(QuickSubMenuEntryComponent("Video enhancement", _("Video enhancement setup"), _("Video enhancement setup")))
 		if config.usage.setup_level.getValue() == "expert":
 			self.sublist.append(QuickSubMenuEntryComponent("OSD position", _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
 		if SystemInfo["CanChange3DOsd"]:
@@ -563,7 +563,7 @@ class GeneralSetup(Screen):
 			self.session.open(VideoSetup)
 		elif selected == _("Audio sync"):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
-		elif selected == _("VideoEnhancement"):
+		elif selected == _("Video enhancement"):
 			self.session.open(VideoEnhancementSetup)
 		elif selected == _("OSD position"):
 			from Screens.UserInterfacePositioner import UserInterfacePositioner
