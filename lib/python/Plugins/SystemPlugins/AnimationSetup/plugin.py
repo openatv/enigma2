@@ -9,9 +9,9 @@ from Plugins.Plugin import PluginDescriptor
 
 from enigma import setAnimation_current, setAnimation_speed
 
-# default = slide to left
+# default = simple fade
 g_default = {
-        "current": 6,
+        "current": 1,
         "speed"  : 20,
 }
 g_max_speed = 30
