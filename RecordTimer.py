@@ -471,14 +471,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.repeated:
 				message += _("Attention, this is repeated timer!\n")
 			message += _("Timeshift is running. Select an action.\n")
+			choice = [(_("Zap"), "zap"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
 			if not self.InfoBarInstance.save_timeshift_file:
+				choice.insert(1, (_("Save timeshift in movie dir and zap"), "save_movie"))
 				if self.InfoBarInstance.timeshiftActivated():
-					choice = [(_("Save timeshift and zap"), "save"), (_("Zap"), "zap"), (_("Save timeshift in movie dir and zap"), "save_movie"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap  and remove timer"), "remove")]
+					choice.insert(0, (_("Save timeshift and zap"), "save"))
 				else:
-					choice = [(_("Zap"), "zap"), (_("Save timeshift and zap"), "save"), (_("Save timeshift in movie dir and zap"), "save_movie"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
+					choice.insert(1, (_("Save timeshift and zap"), "save"))
 			else:
 				message += _("Reminder, you have chosen to save timeshift file.")
-				choice = [(_("Zap"), "zap"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
 			#if self.justplay or self.always_zap:
 			#	choice.insert(2, (_("Don't zap"), "continue"))
 			choice.insert(2, (_("Don't zap"), "continue"))
