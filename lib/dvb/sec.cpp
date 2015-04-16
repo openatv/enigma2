@@ -775,18 +775,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 
 				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
-//>>> HACK (adenin20150413)
-	eDVBDiseqcCommand jess;
-	memset(jess.data, 0, MAX_DISEQC_LENGTH);
-	jess.len = 4;
-	jess.data[0] = 0x70;
-	jess.data[1] = satcr << 3;
-	jess.data[2] = 0x00;
-	jess.data[3] = 0x00;
-
-	sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, jess) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
-//<<< End of HACK (adenin20150413)
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
 				if ( RotorCmd != -1 && RotorCmd != lastRotorCmd && !rotor_param.m_inputpower_parameters.m_use)
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
@@ -1046,6 +1034,18 @@ void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend, 
 
 	sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
+//>>> HACK (adenin20150413)
+	eDVBDiseqcCommand jess;
+	memset(jess.data, 0, MAX_DISEQC_LENGTH);
+	jess.len = 4;
+	jess.data[0] = 0x70;
+	jess.data[1] = satcr << 3;
+	jess.data[2] = 0x00;
+	jess.data[3] = 0x00;
+
+	sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, jess) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
+//<<< End of HACK (adenin20150413)
 	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::DELAYED_CLOSE_FRONTEND) );
 
