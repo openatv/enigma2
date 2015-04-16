@@ -1318,7 +1318,7 @@ RESULT eDVBSatelliteEquipmentControl::setInputpowerDelta(int delta)
 }
 
 /* Unicable Specific Parameters */
-+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRformat(int SatCR_format)
+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRformat(int SatCR_format)
 {
 	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSatCRformat(%d)", SatCR_format);
 	if(!((SatCR_format >-1) && (SatCR_format < 2)))
