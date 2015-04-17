@@ -45,9 +45,10 @@ class OscamInfo:
 	version = ""
 
 	def confPath(self):
-		search_dirs = [ "/usr", "/var", "/etc" ]
-		sdirs = " ".join(search_dirs)
-		cmd = 'find %s -name "oscam.conf"' % sdirs
+		#search_dirs = [ "/usr", "/var", "/etc" ]
+		#sdirs = " ".join(search_dirs)
+		#cmd = 'find %s -name "oscam.conf"' % sdirs
+		cmd = 'ps -eo command | sort -u | grep -v "grep" | grep -c "oscam"'
 		res = os.popen(cmd).read()
 		if res:
 			data = res.replace("\n", "")
@@ -77,7 +78,7 @@ class OscamInfo:
 					print 'OScaminfo - config file "%s" not found' % data
 					return None
 			elif int(data) > 1:
-				print 'OScaminfo - more than one(%s) oscam binarys is active'  % data
+				print 'OScaminfo - more than one(%s) oscam binarys are active'  % data
 				return None
 		print 'OScaminfo - no active oscam binarys found'
 		return None
@@ -119,7 +120,7 @@ class OscamInfo:
 			else:
 				return user, pwd, port
 		else:
-			return _("file oscam.conf could not be found")
+			return _("oscam.conf could not be found")
 
 	def openWebIF(self, part = None, reader = None):
 		self.proto = "http"
@@ -446,7 +447,7 @@ class OscamInfoMenu(Screen):
 				if self.osc.confPath() is None:
 					config.oscaminfo.userdatafromconf.value = False
 					config.oscaminfo.userdatafromconf.save()
-					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
+					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
 					self.session.open(oscInfo, "c")
 			else:
@@ -456,7 +457,7 @@ class OscamInfoMenu(Screen):
 				if self.osc.confPath() is None:
 					config.oscaminfo.userdatafromconf.value = False
 					config.oscaminfo.userdatafromconf.save()
-					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
+					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
 					self.session.open(oscInfo, "s")
 			else:
@@ -479,7 +480,7 @@ class OscamInfoMenu(Screen):
 					self.session.open(oscEntitlements, reader[0][1])
 				else:
 					self.callbackmode = "cccam"
-					self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title = _("Please choose CCcam-Reader"), list=reader)
+					self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title = _("Please choose CCcam reader"), list=reader)
 		elif entry == 5:
 			osc = OscamInfo()
 			reader = osc.getReaders()
@@ -520,10 +521,10 @@ class OscamInfoMenu(Screen):
 					png = LoadPixmap(png)
 				if png is not None:
 					if screenwidth and screenwidth == 1920:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 15,2,540, 2, png))
-						res.append((eListboxPythonMultiContent.TYPE_TEXT, 68, 5, 1600, 45, 4, RT_HALIGN_LEFT, x[2:]))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 15, 5, 540, 2, png))
+						res.append((eListboxPythonMultiContent.TYPE_TEXT, 78, 6, 1600, 45, 4, RT_HALIGN_LEFT, x[2:]))
 					else:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10,0,360, 2, png))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10, 0, 360, 2, png))
 						res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 3, 800, 30, 0, RT_HALIGN_LEFT, x[2:]))
 					#png2 = LoadPixmap("/usr/share/enigma2/skin_default/buttons/key_" + keys[y] + ".png")
 					png2 = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_" + keys[y] + ".png")
@@ -531,12 +532,12 @@ class OscamInfoMenu(Screen):
 						png2 = LoadPixmap(png2)
 					if png2 is not None:
 						if screenwidth and screenwidth == 1920:
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 2, 45, 45, png2))
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 5, 53, 45, png2))
 						else:
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 30, 30, png2))
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 0, 35, 30, png2))
 			else:
 				if screenwidth and screenwidth == 1920:
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, 68, 2, 1600, 45, 4, RT_HALIGN_LEFT, x))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 78, 6, 1600, 45, 4, RT_HALIGN_LEFT, x))
 				else:
 					res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 0, 800, 30, 0, RT_HALIGN_LEFT, x))
 				#png2 = LoadPixmap("/usr/share/enigma2/skin_default/buttons/key_" + keys[y] + ".png")
@@ -545,9 +546,9 @@ class OscamInfoMenu(Screen):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
 					if screenwidth and screenwidth == 1920:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 2, 45, 45, png2))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 5, 53, 45, png2))
 					else:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 30, 30, png2))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 5, 0, 35, 30, png2))
 			menuentries.append(res)
 			if y < len(keys) - 1:
 				y += 1
@@ -584,8 +585,8 @@ class oscECMInfo(Screen, OscamInfo):
 		if screenwidth and screenwidth == 1920:
 			return [
 				None,
-				(eListboxPythonMultiContent.TYPE_TEXT, 15, 3, 450, 45, 4, RT_HALIGN_LEFT, listentry[0]),
-				(eListboxPythonMultiContent.TYPE_TEXT, 450, 3, 450, 45, 4, RT_HALIGN_LEFT, listentry[1])
+				(eListboxPythonMultiContent.TYPE_TEXT, 15, 3, 450, 50, 4, RT_HALIGN_LEFT, listentry[0]),
+				(eListboxPythonMultiContent.TYPE_TEXT, 450, 3, 450, 50, 4, RT_HALIGN_LEFT, listentry[1])
 				]
 		else:
 			return [
@@ -603,7 +604,7 @@ class oscECMInfo(Screen, OscamInfo):
 		for i in data:
 			out.append(self.buildListEntry(i))
 		if screenwidth and screenwidth == 1920:
-			self["output"].l.setItemHeight(45)
+			self["output"].l.setItemHeight(50)
 		else:
 			self["output"].l.setItemHeight(30)
 		self["output"].l.setList(out)
@@ -625,7 +626,7 @@ class oscInfo(Screen, OscamInfo):
 		button_width = int(sizeH / 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
 			xpos = k * button_width
-			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
+			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
 			self.skin += """<widget source="key_%s" render="Label" position="%d,%d" size="%d,%d" font="Regular;18" zPosition="1" valign="center" transparent="1" />""" % (v, xpos + 40, ypos, button_width, 22)
 		self.skin +="""<ePixmap name="divh" position="0,37" size="%d,2" pixmap="/usr/share/enigma2/skin_default/div-h.png" transparent="1" alphatest="on" />""" % sizeH
 		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize / 2)
@@ -1206,7 +1207,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.oscamconfig = []
-		self.oscamconfig.append(getConfigListEntry(_("Read Userdata from oscam.conf"), config.oscaminfo.userdatafromconf))
+		self.oscamconfig.append(getConfigListEntry(_("Read user data from oscam.conf"), config.oscaminfo.userdatafromconf))
 		if not config.oscaminfo.userdatafromconf.value:
 			self.oscamconfig.append(getConfigListEntry(_("Username (httpuser)"), config.oscaminfo.username))
 			self.oscamconfig.append(getConfigListEntry(_("Password (httpwd)"), config.oscaminfo.password))
