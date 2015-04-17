@@ -102,7 +102,12 @@ case $ret in
 		;;
 	44)
 		# little hack but it will be fixed soon in drivers
-		${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /proc/vfd && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
+		${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
+		/usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
+		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
+		/usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
+		# Wait forever for the user to power off
+		while(true) ; do sleep 60 ; done
 		;;
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
