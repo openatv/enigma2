@@ -181,10 +181,10 @@ class Disks():
 			if psize > 128000:
 					# Start at sector 8 to better support 4k aligned disks
 					print "[DeviceManager] Detected >128GB disk, using 4k alignment"
-					flow = "8,+,%s\n;0,0\n;0,0\n;0,0\ny\n" % ptype
+					flow = "8,,%s\n;0,0\n;0,0\n;0,0\ny\n" % ptype
 					print "[DeviceManager] one partition flow = ", flow
 			else:
-				flow = "0,+,%s\n;\n;\n;\ny\n" % ptype
+				flow = "0,,%s\n;\n;\n;\ny\n" % ptype
 				print "[DeviceManager] one partition flow = ", flow
 		elif type == 1:
 			psize = (size / (1024*1024)) / 2
