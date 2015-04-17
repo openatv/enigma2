@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<unicable version="20150226">
+<unicable version="20150417">
 <!--
 structur of tree
 unicable (version)
@@ -13,7 +13,7 @@ unicable (version)
   |  | manufacturer (name)
   |  |  |\
   |  |  | \
-  |  |  | product (name, position, sc11-scr8. lofl, lofh, loft)
+  |  |  | product (name, position, format, scr1-scr32, lofl, lofh, loft)
   |  |  |
   |  |  |\
   |  |  | \
@@ -127,7 +127,6 @@ unicable (version)
 			<product name="VDU583NT" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="VDU586NT" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
 			<product name="VDU983NT" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="UCP18" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 		</manufacturer>
 		<manufacturer name="G-STAR">
 			<product name="GS-506-S1" scr1="1280" scr2="1382" scr3="1484"/>
@@ -140,34 +139,33 @@ unicable (version)
 			<product name="IDLP-USS200-CUO10-8PP" positions="2" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
 		</manufacturer>
 		<manufacturer name="JULTEC">
-			<product name="JRS0504-2" scr1="1280" scr2="1382"/>
-			<product name="JRS0502-2+4T" scr1="1280" scr2="1382"/>
-			<product name="JRS0904-2" position="2" scr1="1280" scr2="1382"/>
-			<product name="JRS0902-2+4T" position="2" scr1="1280" scr2="1382"/>
-			<product name="JPS0501-6" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS0501-8" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
-			<product name="JPS0501-12" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
-			<product name="JPS0502-3" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0502-6" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS0504-3" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0504-6" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS0506-3" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0508-3" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0901-6" positions="2" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS0901-12" positions="2" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
-			<product name="JPS0902-12" positions="2" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
-			<product name="JPS0902-3" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0902-6" positions="2" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS0904-3" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0906-3" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS0908-3" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS1701-12" positions="4" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
-			<product name="JPS1702-12" positions="4" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
-			<product name="JPS1702-6" positions="4" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS1704-3" positions="4" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS1704-6" positions="4" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
-			<product name="JPS1706-3" positions="4" scr1="1280" scr2="1382" scr3="1484"/>
-			<product name="JPS1708-3" positions="4" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0501-12" format="JESS" scr1="974"  scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
+			<product name="JPS0501-8" format="JESS" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
+			<product name="JPS0501-6" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0502-3" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0502-6" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0504-3" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0506-3" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0508-3" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JRS0502-2+4" format="JESS" scr1="1280" scr2="1382"/>
+			<product name="JRS0504-2" format="JESS" scr1="1280" scr2="1382"/>
+			<product name="JPS0901-6" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0901-12" positions="2" format="JESS" scr1="974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
+			<product name="JPS0902-3" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0902-6" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0904-3" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0904-6" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS0906-3" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS0908-3" positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JRS0902-2+4" positions="2" format="JESS" scr1="1280" scr2="1382"/>
+			<product name="JRS0904-2" positions="2" format="JESS" scr1="1280" scr2="1382"/>
+			<product name="JPS1701-12" positions="4" format="JESS" scr1="974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
+			<product name="JPS1702-12" positions="4" format="JESS" scr1="974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
+			<product name="JPS1702-6" positions="4" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS1704-3" positions="4" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS1704-6" positions="4" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="JPS1706-3" positions="4" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
+			<product name="JPS1708-3" positions="4" format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
 		</manufacturer>
 		<manufacturer name="Kathrein">
 			<product name="EXR501" scr1="1400" scr2="1516" scr3="1632" scr4="1748"/>
@@ -184,6 +182,8 @@ unicable (version)
 			<product name="EXR2942" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
 			<product name="EXR2981" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="EXU908" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
+			<product name="EXE 159" format="SCD2" scr1="974"  permpin1="151" scr2="1076" permpin2="052" scr3="1178" permpin3="133" scr4="1280" permpin4="124" scr5="1382" permpin5="205" scr6="1484" permpin6="196" scr7="1586" permpin7="187" scr8="1688" permpin8="178" scr9="1790" permpin9="099"/>     
+			<product name="EXE 259" format="SCD2" scr1="974"  permpin1="151" scr2="1076" permpin2="052" scr3="1178" permpin3="133" scr4="1280" permpin4="124" scr5="1382" permpin5="205" scr6="1484" permpin6="196" scr7="1586" permpin7="187" scr8="1688" permpin8="178" scr9="1790" permpin9="099"/>     
 		</manufacturer>
 		<manufacturer name="ROTEK">
 			<product name="EKL2/1" scr1="1400" scr2="1516"/>

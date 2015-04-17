@@ -18,6 +18,7 @@ from Tools.BoundFunction import boundFunction
 
 from time import mktime, localtime
 from datetime import datetime
+from os import path
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -188,7 +189,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							cur_orb_pos = satlist[0]
 						self.fillListWithAdvancedSatEntrys(self.nimConfig.advanced.sat[cur_orb_pos])
 				self.have_advanced = True
-			if self.nim.description == "Alps BSBE2" and config.usage.setup_level.index >= 2: # expert
+			if path.exists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
 				self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
@@ -317,7 +318,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
-			if currLnb.lof.value == "unicable":
+			if currLnb.lof.value == "unicable" or currLnb.lof.value == "jess":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
@@ -369,7 +370,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
 				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
 
-			if lnbnum < 65 and not currLnb.lof.value == "unicable":
+			if lnbnum < 65 and not currLnb.unicable.value == "unicable_matrix" and not currLnb.unicable.value == "unicable_lnb":
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
