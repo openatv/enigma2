@@ -18,6 +18,7 @@ from Disks import Disks
 from ExtraMessageBox import ExtraMessageBox
 from ExtraActionBox import ExtraActionBox
 from MountPoints import MountPoints
+from boxbranding import getMachineBrand, getMachineName
 
 import os
 import sys
@@ -57,10 +58,10 @@ class HddSetup(Screen):
 
 	def __init__(self, session, args = 0):
 		self.session = session
-		
+
 		Screen.__init__(self, session)
 		self.disks = list ()
-		
+
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
 			capacity = "%d MB" % (disk[1] / (1024 * 1024))
@@ -94,7 +95,7 @@ class HddSetup(Screen):
 
 	def refresh(self):
 		self.disks = list ()
-		
+
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
 			capacity = "%d MB" % (disk[1] / (1024 * 1024))
@@ -111,9 +112,9 @@ class HddSetup(Screen):
 			mp.mount(self.mdisks.disks[self.sindex][0], 1, "/media/hdd")
 			os.system("/bin/mkdir -p /media/hdd/movie")
 
-			message = _("Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\nRestart your STB now?")
+			message = _("Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())
 			mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-			mbox.setTitle(_("Restart STB"))
+			mbox.setTitle(_("Restart %s %s") % (getMachineBrand(), getMachineName()))
 
 	def restartBox(self, answer):
 		if answer is True:
