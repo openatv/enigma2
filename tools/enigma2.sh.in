@@ -83,7 +83,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	3)
-		rm -fR /home/root/.gstreamer-0.10
+		rm -fR /.gstreamer-0.10 /.cache
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
