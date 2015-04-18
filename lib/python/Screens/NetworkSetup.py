@@ -2546,11 +2546,6 @@ class NetworkSamba(Screen):
 		self.updateService()
 
 	def activateSamba(self):
-		if access('/etc/network/if-up.d/01samba-start', X_OK):
-			chmod('/etc/network/if-up.d/01samba-start', 0644)
-		elif not access('/etc/network/if-up.d/01samba-start', X_OK):
-			chmod('/etc/network/if-up.d/01samba-start', 0755)
-
 		if fileExists('/etc/rc2.d/S20samba'):
 			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
 		else:
