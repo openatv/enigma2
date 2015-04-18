@@ -298,6 +298,7 @@ class Disks():
 			print "[DeviceManager] EXT3 command to format ", cmd
 		elif fstype == 2:
 			cmd = "/sbin/mkfs.ntfs -f /dev/" + dev
+			cmd += " -L Redmond"
 			print "[DeviceManager] NTFS command to format ", cmd
 		elif fstype == 3:
 			cmd = "/usr/sbin/mkfs.vfat -F32 /dev/" + dev
