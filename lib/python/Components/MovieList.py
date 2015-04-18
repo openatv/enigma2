@@ -258,47 +258,45 @@ class MovieList(GUIComponent):
 		self.sort_type = type
 
 	def applySkin(self, desktop, parent):
-		if self.skinAttributes is not None:
-			attribs = [ ]
-
-			for (attrib, value) in self.skinAttributes:
-				try:
-					if attrib == "font":
-						font = skin.parseFont(value, ((1,1),(1,1)))
-						self.fontName = font.family
-						self.fontSize = font.pointSize
-					elif attrib == "pbarShift":
-						self.pbarShift = int(value)
-					elif attrib == "pbarHeight":
-						self.pbarHeight = int(value)
-					elif attrib == "pbarLargeWidth":
-						self.pbarLargeWidth = int(value)
-					elif attrib == "partIconeShift":
-						self.partIconeShift = int(value)
-					elif attrib == "spaceIconeText":
-						self.spaceIconeText = int(value)
-					elif attrib == "iconsWidth":
-						self.iconsWidth = int(value)
-					elif attrib == "trashShift":
-						self.trashShift = int(value)
-					elif attrib == "dirShift":
-						self.dirShift = int(value)
-					elif attrib == "spaceRight":
-						self.spaceRight = int(value)
-					elif attrib == "columns":
-						self.columns = map(int, value.split(","))
-					else:
-						attribs.append((attrib, value))
-				except Exception, e:
-					print '[MovieList] Error "%s" parsing attribute: %s="%s"' % (str(e), attrib,value)
-		self.skinAttributes = attribs
-		self.setFontsize()
+		def warningWrongSkinParameter(string):
+			print "[MovieList] wrong '%s' skin parameters" % string
+		def font(value):
+			font = skin.parseFont(value, ((1,1),(1,1)))
+			self.fontName = font.family
+			self.fontSize = font.pointSize
+		def pbarShift(value):
+			self.pbarShift = int(value)
+		def pbarHeight(value):
+			self.pbarHeight = int(value)
+		def pbarLargeWidth(value):
+			self.pbarLargeWidth = int(value)
+		def partIconeShift(value):
+			self.partIconeShift = int(value)
+		def spaceIconeText(value):
+			self.spaceIconeText = int(value)
+		def iconsWidth(value):
+			self.iconsWidth = int(value)
+		def trashShift(value):
+			self.trashShift = int(value)
+		def dirShift(value):
+			self.dirShift = int(value)
+		def spaceRight(value):
+			self.spaceRight = int(value)
+		def columns(value):
+			self.columns = map(int, value.split(","))
+			if len(self.columns) != 2:
+				warningWrongSkinParameter(attrib)
+		for (attrib, value) in self.skinAttributes[:]:
+			try:
+				locals().get(attrib)(value)
+				self.skinAttributes.remove((attrib, value))
+			except:
+				pass
+		rc = GUIComponent.applySkin(self, desktop, parent)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
+		self.setFontsize()
 		self.setItemsPerPage()
-		return GUIComponent.applySkin(self, desktop, parent)
-
-		rc = GUIComponent.applySkin(self, desktop, parent)
 		return rc
 
 	def setItemsPerPage(self):
@@ -311,6 +309,8 @@ class MovieList(GUIComponent):
 		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def setFontsize(self):
+		print 'self.fontName:',self.fontName
+		print 'self.fontSize:',self.fontSize + config.movielist.fontsize.value
 		self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
 		self.l.setFont(1, gFont(self.fontName, (self.fontSize - 3) + config.movielist.fontsize.value))
 
@@ -333,9 +333,6 @@ class MovieList(GUIComponent):
 		if serviceref.flags & eServiceReference.mustDescent:
 			# Directory
 			# Name is full path name
-			valign_center = 0
-			if self.list_type == MovieList.LISTTYPE_MINIMAL:
-				valign_center = RT_VALIGN_CENTER
 			if info is None:
 				# Special case: "parent"
 				txt = ".."
@@ -347,12 +344,12 @@ class MovieList(GUIComponent):
 				txt = p[1]
 				if txt == ".Trash":
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.trashShift), size=(iconSize,self.iconTrash.size().height()), png=self.iconTrash))
-					res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT|valign_center, text = _("Deleted items")))
-					res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|valign_center, text=_("Trash can")))
+					res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = _("Deleted items")))
+					res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trash can")))
 					return res
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.dirShift), size=(iconSize,iconSize), png=self.iconFolder))
-				res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT|valign_center, text = txt))
-				res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|valign_center, text=_("Directory")))
+				res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = txt))
+				res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
