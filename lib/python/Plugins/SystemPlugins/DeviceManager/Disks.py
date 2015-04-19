@@ -173,30 +173,40 @@ class Disks():
 			ptype = "7"
 		elif fstype == 3:
 			ptype = "b"
-
+		print "[DeviceManager] size = ", size
+		psize = (size / (1024*1024))
+		print "[DeviceManager] (size / (1024*1024)) = ", psize
 		if type == 0:
 			psize = (size / (1024*1024))
 			if psize > 128000:
 					# Start at sector 8 to better support 4k aligned disks
 					print "[DeviceManager] Detected >128GB disk, using 4k alignment"
-					flow = "8,+,%s\n;0,0\n;0,0\n;0,0\ny\n" % ptype
+					flow = "8,,%s\n;0,0\n;0,0\n;0,0\ny\n" % ptype
+					print "[DeviceManager] one partition flow = ", flow
 			else:
-				flow = "0,+,%s\n;\n;\n;\ny\n" % ptype
+				flow = "0,,%s\n;\n;\n;\ny\n" % ptype
+				print "[DeviceManager] one partition flow = ", flow
 		elif type == 1:
 			psize = (size / (1024*1024)) / 2
-			flow = "0,%d,%s\n+,+,%s\n;\n;\ny\n" % (psize, ptype, ptype)
+			flow = "0,%d,%s\n,,%s\n;\n;\ny\n" % (psize, ptype, ptype)
+			print "[DeviceManager] two partition (2 x 50%) flow = ", flow
 		elif type == 2:
 			psize = ((size / (1024*1024)) / 4) * 3
-			flow = "0,%d,%s\n+,+,%s\n;\n;\ny\n" % (psize, ptype, ptype)
+			flow = "0,%d,%s\n,,%s\n;\n;\ny\n" % (psize, ptype, ptype)
+			print "[DeviceManager] two partition (75% 25%) flow = ", flow
 		elif type == 3:
 			psize = (size / (1024*1024)) / 3
-			flow = "0,%d,%s\n+,%d,%s\n+,+,%s\n;\ny\n" % (psize, ptype, psize, ptype, ptype)
+			flow = "0,%d,%s\n,%d,%s\n,,%s\n;\ny\n" % (psize, ptype, psize, ptype, ptype)
+			print "[DeviceManager] three partition (3 x 33%) flow = ", flow
 		elif type == 4:
 			psize = (size / (1024*1024)) / 4
-			flow = "0,%d,%s\n+,%d,%s\n+,%d,%s\n+,+,%s\ny\n" % (psize, ptype, psize, ptype, psize, ptype, ptype)
+			flow = "0,%d,%s\n,%d,%s\n,%d,%s\n,,%s\ny\n" % (psize, ptype, psize, ptype, psize, ptype, ptype)
+			print "[DeviceManager] four partition (4 x 25%) flow = ", flow
 
 		cmd = "%s -f -uM /dev/%s" % ("/usr/sbin/sfdisk", device)
+		print "[DeviceManager] used cmd = ", cmd
 		sfdisk = os.popen(cmd, "w")
+		print "[DeviceManager] used flow = ", flow
 		sfdisk.write(flow)
 		if sfdisk.close():
 			return -2
@@ -264,13 +274,14 @@ class Disks():
 
 		if fstype == 0:
 			cmd = "/sbin/mkfs.ext4 "
-			psize = (size / (1024))
-			if psize > 20000:
-				version = open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2]
-				if (version[0] > 3) and (version[1] >= 2):
-					# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
-					cmd += "-O bigalloc -C 262144 "
+			#psize = (size / (1024))
+			#if psize > 20000:
+			#	version = open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2]
+			#	if (version[0] > 3) and (version[1] >= 2):
+			#		# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
+			#		cmd += "-O bigalloc -C 262144 "
 			cmd += "-m0 -O dir_index /dev/" + dev
+			print "[DeviceManager] EXT4 command to format ", cmd
 		elif fstype == 1:
 			cmd = "/sbin/mkfs.ext3 "
 			psize = (size / (1024))
@@ -284,15 +295,19 @@ class Disks():
 				# Over 2GB: 32 i-nodes per megabyte
 				cmd += "-T largefile -N %s " % str(psize * 32)
 			cmd += "-m0 -O dir_index /dev/" + dev
+			print "[DeviceManager] EXT3 command to format ", cmd
 		elif fstype == 2:
 			cmd = "/sbin/mkfs.ntfs -f /dev/" + dev
+			cmd += " -L Redmond"
+			print "[DeviceManager] NTFS command to format ", cmd
 		elif fstype == 3:
 			cmd = "/usr/sbin/mkfs.vfat -F32 /dev/" + dev
+			print "[DeviceManager] VFAT command to format ", cmd
 		else:
 			if len(oldmp) > 0:
 				self.mount(dev, oldmp)
 			return -3
-
+		print "[DeviceManager] executing command to format ", cmd
 		ret = os.system(cmd)
 
 		if len(oldmp) > 0:

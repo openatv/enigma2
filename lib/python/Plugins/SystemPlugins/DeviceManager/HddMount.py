@@ -21,6 +21,7 @@ from Screens.Standby import TryQuitMainloop
 from MountPoints import MountPoints
 from Disks import Disks
 from ExtraMessageBox import ExtraMessageBox
+from boxbranding import getMachineBrand, getMachineName
 
 import os
 import sys
@@ -176,9 +177,9 @@ class HddMount(Screen):
 				os.system("/bin/mkdir -p /media/hdd/movie")
 
 			if not self.fast:
-				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your STB now?")
+				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())
 				mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-				mbox.setTitle(_("Restart STB"))
+				mbox.setTitle(_("Restart %s %s") % (getMachineBrand(), getMachineName()))
 			else:
 				self.close()
 

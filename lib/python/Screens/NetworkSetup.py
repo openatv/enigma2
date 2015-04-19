@@ -17,7 +17,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, fileExists, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
@@ -443,9 +443,17 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			inetdData += "telnet	stream	tcp6	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		else:
 			inetdData += "telnet	stream	tcp	nowait	root	/usr/sbin/telnetd	telnetd\n"
-		if getBoxType() in ('gbquad', 'gbquadplus') and 	self.IPv6ConfigEntry.value == True:
+		if fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == True:
+			inetdData += "microsoft-ds	stream	tcp6	nowait	root	/usr/sbin/smbd	smbd\n"
+		elif fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == False:
+			inetdData += "microsoft-ds	stream	tcp	nowait	root	/usr/sbin/smbd	smbd\n"
+		else:
+			pass
+		if fileExists('/usr/sbin/nmbd'):
+			inetdData += "netbios-ns	dgram	udp	wait	root	/usr/sbin/nmbd	nmbd\n"
+		if getBoxType() in ('gbquad', 'gbquadplus') and self.IPv6ConfigEntry.value == True:
 			inetdData += "8002	stream	tcp6	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
-		elif getBoxType() in ('gbquad', 'gbquadplus') and  self.IPv6ConfigEntry.value == False:
+		elif getBoxType() in ('gbquad', 'gbquadplus') and self.IPv6ConfigEntry.value == False:
 			inetdData += "8002	stream	tcp	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 		else:
 			pass
