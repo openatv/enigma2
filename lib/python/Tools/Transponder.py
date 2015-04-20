@@ -12,6 +12,8 @@ def getTunerDescription(nim):
 	return ""
 
 def getMHz(frequency):
+	if str(frequency).endswith('MHz'):
+		return frequency.split()[0]
 	return (frequency+50000)/100000/10.
 
 def getChannelNumber(frequency, nim):
@@ -20,7 +22,7 @@ def getChannelNumber(frequency, nim):
 			if n.isCompatible("DVB-T"):
 				nim = n.slot
 				break
-	f = getMHz(frequency)
+	f = int(getMHz(frequency))
 	descr = getTunerDescription(nim)
 	if "DVB-T" in descr:
 		if "Europe" in descr:
