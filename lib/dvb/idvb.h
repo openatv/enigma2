@@ -415,6 +415,7 @@ public:
 	virtual SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
 	virtual SWIG_VOID(RESULT) getATSC(eDVBFrontendParametersATSC &SWIG_OUTPUT) const = 0;
 	virtual SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_OUTPUT) const = 0;
+	virtual RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p) = 0;
 #ifndef SWIG
 	virtual SWIG_VOID(RESULT) calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const = 0;
 	virtual SWIG_VOID(RESULT) getHash(unsigned long &) const = 0;
