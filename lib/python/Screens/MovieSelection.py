@@ -457,7 +457,7 @@ class MovieSelectionSummary(Screen):
 		item = self.parent.getCurrentSelection()
 		if item and item[0]:
 			data = item[3]
-			if (data is not None) and (data != -1):
+			if data and hasattr(data, 'txt'):
 				name = data.txt
 			elif not item[1]:
 				# special case, one up

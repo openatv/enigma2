@@ -37,6 +37,8 @@ class TransponderInfo(Converter, object):
 			return ""
 		if transponderraw:
 			transponderdata = ConvertToHumanReadable(transponderraw)
+			if not transponderdata:
+				return ""
 			if "DVB-T" in transponderdata["system"]:
 				return "%s %s %s %s" % ("DVB-T", transponderdata["channel"], transponderdata["frequency"], transponderdata["bandwidth"])
 			elif "DVB-C" in transponderdata["system"]:
