@@ -138,6 +138,22 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 
 	if (state == iDVBChannel::state_ok)
 	{
+		if (m_ch_current && m_channel)
+		{
+			int type;
+			m_ch_current->getSystem(type);
+			if (type == iDVBFrontend::feTerrestrial)
+			{
+				eDVBFrontendParametersTerrestrial parm;
+				m_ch_current->getDVBT(parm);
+				if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2)
+				{
+					/* we have a lock, this is a valid DVB-T transponder, set our system parameter */
+					parm.system = eDVBFrontendParametersTerrestrial::System_DVB_T;
+					m_ch_current->setDVBT(parm);
+				}
+			}
+		}
 		startFilter();
 		m_channel_state = state;
 	} else if (state == iDVBChannel::state_failed)
