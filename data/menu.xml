@@ -102,6 +102,9 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item level="0" entryID="display_setup"><setup id="display"/></item>
 					<item level="0" text="Skin setup" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 				</menu>
+				<menu level="0" text="LED Display Panel" entryID="leddisplay_selection" requires="DisplayLED">
+					<id val="leddisplay"/>
+				</menu>
 				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 <code>
 from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
