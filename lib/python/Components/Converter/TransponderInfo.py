@@ -37,12 +37,14 @@ class TransponderInfo(Converter, object):
 			return ""
 		if transponderraw:
 			transponderdata = ConvertToHumanReadable(transponderraw)
-			if not transponderdata:
+			if not transponderdata["system"]:
+				transponderdata["system"] = transponderraw.get("tuner_type", "None")
+			if not transponderdata["system"]:
 				return ""
 			if "DVB-T" in transponderdata["system"]:
-				return "%s %s %s %s" % ("DVB-T", transponderdata["channel"], transponderdata["frequency"], transponderdata["bandwidth"])
+				return "%s %s %s %s" % (transponderdata["system"], transponderdata["channel"], transponderdata["frequency"], transponderdata["bandwidth"])
 			elif "DVB-C" in transponderdata["system"]:
-				return "%s %s %s %s %s" % ("DVB-C", transponderdata["frequency"], transponderdata["symbol_rate"], transponderdata["fec_inner"], \
+				return "%s %s %s %s %s" % (transponderdata["system"], transponderdata["frequency"], transponderdata["symbol_rate"], transponderdata["fec_inner"], \
 					transponderdata["modulation"])
 			return "%s %s %s %s %s %s %s" % (transponderdata["system"], transponderdata["frequency"], transponderdata["polarization_abbreviation"], transponderdata["symbol_rate"], \
 				transponderdata["fec_inner"], transponderdata["modulation"], transponderdata["detailed_satpos" in self.type and "orbital_position" or "orb_pos"])

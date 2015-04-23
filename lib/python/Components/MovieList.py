@@ -158,6 +158,9 @@ class MovieList(GUIComponent):
 		self.pbarShift = 5
 		self.pbarHeight = 16
 		self.pbarLargeWidth = 48
+		self.pbarColour = 0x206333
+		self.pbarColourSeen = 0xffc71d
+		self.pbarColourRec = 0xff001d
 		self.partIconeShift = 5
 		self.spaceRight = 2
 		self.spaceIconeText = 2
@@ -270,6 +273,12 @@ class MovieList(GUIComponent):
 			self.pbarHeight = int(value)
 		def pbarLargeWidth(value):
 			self.pbarLargeWidth = int(value)
+		def pbarColour(value):
+			self.pbarColour = skin.parseColor(value).argb()
+		def pbarColourSeen(value):
+			self.pbarColourSeen = skin.parseColor(value).argb()
+		def pbarColourRec(value):
+			self.pbarColourRec = skin.parseColor(value).argb()
 		def partIconeShift(value):
 			self.partIconeShift = int(value)
 		def spaceIconeText(value):
@@ -371,9 +380,9 @@ class MovieList(GUIComponent):
 				elif switch in ('p', 's'):
 					data.part = 100
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
-						data.partcol = 0xffc71d
+						data.partcol = self.pbarColourSeen
 					else:
-						data.partcol = 0xff001d
+						data.partcol = self.pbarColourRec
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
@@ -386,11 +395,11 @@ class MovieList(GUIComponent):
 							data.icon = self.iconUnwatched
 				elif switch in ('p', 's'):
 					if data.part is not None and data.part > 0:
-						data.partcol = 0xffc71d
+						data.partcol = self.pbarColourSeen
 					else:
 						if config.usage.movielist_unseen.value:
 							data.part = 100
-							data.partcol = 0x206333
+							data.partcol = self.pbarColour
 		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
