@@ -18,7 +18,8 @@
 		<menu weight="0" level="0" text="Information" entryID="info_screen">
 			<id val="information" />
 			<item weight="0" level="0" text="About" entryID="about_screen"><screen module="About" /></item>
-			<item weight="5" level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
+			<item weight="5" level="0" text="Network" entryID="network_info_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
+			<item weight="10" level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
 
 		<menu weight="5" level="0" text="Timer" entryID="timer_menu">
