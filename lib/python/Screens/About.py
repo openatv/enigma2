@@ -9,6 +9,9 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Button import Button
 from Components.config import config
 
+from Components.Pixmap import MultiPixmap
+from Components.Network import iNetwork
+
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 
@@ -365,3 +368,180 @@ class MemoryInfoSkinParams(HTMLComponent, GUIComponent):
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	GUI_WIDGET = eLabel
+
+
+class SystemNetworkInfo(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Network Information"))
+		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
+		self["LabelBSSID"] = StaticText()
+		self["LabelESSID"] = StaticText()
+		self["LabelQuality"] = StaticText()
+		self["LabelSignal"] = StaticText()
+		self["LabelBitrate"] = StaticText()
+		self["LabelEnc"] = StaticText()
+		self["BSSID"] = StaticText()
+		self["ESSID"] = StaticText()
+		self["quality"] = StaticText()
+		self["signal"] = StaticText()
+		self["bitrate"] = StaticText()
+		self["enc"] = StaticText()
+
+		self["IFtext"] = StaticText()
+		self["IF"] = StaticText()
+
+		self.iface = None
+		self.createscreen()
+		self.iStatus = None
+
+		if iNetwork.isWirelessInterface(self.iface):
+			try:
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+				self.iStatus = iStatus
+			except:
+				pass
+			self.resetList()
+			self.onClose.append(self.cleanup)
+		self.updateStatusbar()
+
+		self["key_red"] = StaticText(_("Close"))
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
+			})
+
+	def createscreen(self):
+		self.AboutText = ""
+		self.iface = "eth0"
+		eth0 = about.getIfConfig('eth0')
+		if eth0.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+			if eth0.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+			if eth0.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
+			self.iface = 'eth0'
+
+		eth1 = about.getIfConfig('eth1')
+		if eth1.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
+			if eth1.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
+			if eth1.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
+			self.iface = 'eth1'
+
+		ra0 = about.getIfConfig('ra0')
+		if ra0.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
+			if ra0.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + ra0['netmask'] + "\n"
+			if ra0.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + ra0['hwaddr'] + "\n"
+			self.iface = 'ra0'
+
+		wlan0 = about.getIfConfig('wlan0')
+		if wlan0.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+			if wlan0.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+			if wlan0.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
+			self.iface = 'wlan0'
+
+		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
+		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
+		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
+
+		hostname = file('/proc/sys/kernel/hostname').read()
+		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
+		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
+
+	def cleanup(self):
+		if self.iStatus:
+			self.iStatus.stopWlanConsole()
+
+	def resetList(self):
+		if self.iStatus:
+			self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
+
+	def getInfoCB(self, data, status):
+		self.LinkState = None
+		if data is not None:
+			if data is True:
+				if status is not None:
+					if self.iface == 'wlan0' or self.iface == 'ra0':
+						if status[self.iface]["essid"] == "off":
+							essid = _("No Connection")
+						else:
+							essid = status[self.iface]["essid"]
+						if status[self.iface]["accesspoint"] == "Not-Associated":
+							accesspoint = _("Not-Associated")
+							essid = _("No Connection")
+						else:
+							accesspoint = status[self.iface]["accesspoint"]
+						if self.has_key("BSSID"):
+							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
+						if self.has_key("ESSID"):
+							self.AboutText += _('SSID:') + '\t' + essid + '\n'
+
+						quality = status[self.iface]["quality"]
+						if self.has_key("quality"):
+							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
+
+						if status[self.iface]["bitrate"] == '0':
+							bitrate = _("Unsupported")
+						else:
+							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
+						if self.has_key("bitrate"):
+							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
+
+						signal = status[self.iface]["signal"]
+						if self.has_key("signal"):
+							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
+
+						if status[self.iface]["encryption"] == "off":
+							if accesspoint == "Not-Associated":
+								encryption = _("Disabled")
+							else:
+								encryption = _("Unsupported")
+						else:
+							encryption = _("Enabled")
+						if self.has_key("enc"):
+							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
+
+						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
+							self.LinkState = False
+						else:
+							self.LinkState = True
+						self["AboutScrollLabel"].setText(self.AboutText)
+
+	def exit(self):
+		self.close(True)
+
+	def updateStatusbar(self):
+		self["IFtext"].setText(_("Network:"))
+		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
+		if iNetwork.isWirelessInterface(self.iface):
+			try:
+				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
+			except:
+				pass
+		else:
+			iNetwork.getLinkState(self.iface, self.dataAvail)
+
+	def dataAvail(self, data):
+		self.LinkState = None
+		for line in data.splitlines():
+			line = line.strip()
+			if 'Link detected:' in line:
+				if "yes" in line:
+					self.LinkState = True
+				else:
+					self.LinkState = False
+

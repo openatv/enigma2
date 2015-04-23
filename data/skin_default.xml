@@ -87,6 +87,17 @@
 		<widget name="info" position="330,370" size="200,100" font="Regular;14" zPosition="1" halign="center" foregroundColor="#909090" transparent="1" />
 		<widget name="params" rowsincolumn="23"/>
 	</screen>
+	<!-- NetworkInfo screen -->
+	<screen name="SystemNetworkInfo" position="center,center" size="560,500">
+		<widget name="AboutScrollLabel" position="30,0" size="458,375" valign="left" font="Regular;20" transparent="1" />
+		<ePixmap pixmap="div-h.png" position="0,400" zPosition="1" size="560,2" />
+		<widget source="IFtext" render="Label" position="30,405" size="120,25" zPosition="10" font="Regular;20" halign="left" valign="center" transparent="1" backgroundColor="window-bg" />
+		<widget source="IF" render="Label" position="130,405" size="600,25" zPosition="10" font="Regular;20" halign="left" valign="center" transparent="1" backgroundColor="window-bg" />
+		<widget source="Statustext" render="Label" position="30,425" size="115,25" zPosition="10" font="Regular;20" halign="left" valign="center" transparent="1" backgroundColor="window-bg" />
+		<widget name="statuspic" pixmaps="buttons/button_green.png,buttons/button_green_off.png" position="130,430" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+		<panel name="MenuRed2Panel" />
+	</screen>
+
 	<!-- Adapter setup -->
 	<screen name="AdapterSetup" position="center,center" size="560,400" title="Network setup" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
