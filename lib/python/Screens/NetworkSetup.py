@@ -1780,7 +1780,6 @@ class NetworkFtp(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-				self.updateService()
 		elif self.my_ftp_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
@@ -1794,7 +1793,7 @@ class NetworkFtp(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-				self.updateService()
+		self.updateService()
 
 	def updateService(self):
 		self['labrun'].hide()
@@ -2101,168 +2100,86 @@ class NetworkVpnLog(Screen):
 class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "NetworkFtp"
 		Screen.setTitle(self, _("Samba Setup"))
-		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
-		self['lab1'] = Label(_("Autostart:"))
-		self['labactive'] = Label(_(_("Disabled")))
+		self['lab1'] = Label(_("Samba Network File System"))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Start"))
-		self['key_red'] = Label(_("Remove Service"))
-		self['key_yellow'] = Label(_("Autostart"))
-		self['key_blue'] = Label(_("Show Log"))
+		self['key_green'] = Label(_("Enable"))
+		self['key_red'] = Label()
+		self.my_samba_active = False
 		self.Console = Console()
-		self.my_Samba_active = False
-		self.my_Samba_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.service_name = 'packagegroup-base-smbfs'
-		self.onLayoutFinish.append(self.InstallCheck)
-
-	def InstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
-
-	def checkNetworkState(self, str, retval, extra_args):
-		if 'Collected errors' in str:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
-				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-			else:
-				self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
-		else:
-			self.updateService()
-
-	def QuestionCallback(self, val):
-		if val:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to also install samba client ?\nThis allows you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
-		else:
-			self.close()
-
-	def InstallPackage(self, val):
-		if val:
-			self.service_name += ' packagegroup-base-smbfs-client'
-		self.doInstall(self.installComplete, self.service_name)
-
-	def InstallPackageFailed(self, val):
-		self.close()
-
-	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
-		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
-
-	def installComplete(self,result = None, retval = None, extra_args = None):
-		self.session.open(TryQuitMainloop, 2)
-
-	def UninstallCheck(self):
-		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
-
-	def RemovedataAvail(self, str, retval, extra_args):
-		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
-		else:
-			self.updateService()
-
-	def RemovePackage(self, val):
-		if val:
-			self.doRemove(self.removeComplete, self.service_name)
-
-	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
-		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
-
-	def removeComplete(self,result = None, retval = None, extra_args = None):
-		self.session.open(TryQuitMainloop, 2)
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.SambaStartStop})
+		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
-	def Sambashowlog(self):
-		self.session.open(NetworkSambaLog)
-
 	def SambaStartStop(self):
 		commands = []
-		if not self.my_Samba_run:
-			commands.append('/etc/init.d/samba start')
-			commands.append('nmbd -D')
-			commands.append('smbd -D')
-		elif self.my_Samba_run:
-			commands.append('/etc/init.d/samba stop')
-			commands.append('killall nmbd')
-			commands.append('killall smbd')
+		commands.append('/etc/init.d/inetd.busybox restart')
+		if not self.my_samba_active:
+			if fileExists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if 'microsoft-ds' in line:
+						line = line.replace('#', '')
+					if 'netbios-ns' in line:
+						line = line.replace('#', '')
+					out.write(line)
+				out.close()
+				inme.close()
+		elif self.my_samba_active:
+			if fileExists('/etc/inetd.conf'):
+				inme = open('/etc/inetd.conf', 'r')
+				out = open('/etc/inetd.tmp', 'w')
+				for line in inme.readlines():
+					if 'microsoft-ds' in line:
+						line = '#' + line
+					if 'netbios-ns' in line:
+						line = '#' + line
+					out.write(line)
+				out.close()
+				inme.close()
+			commands.append('killall -15 nmbd smbd')
+		if fileExists('/etc/inetd.tmp'):
+			move('/etc/inetd.tmp', '/etc/inetd.conf')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
 		time.sleep(3)
 		self.updateService()
 
-	def activateSamba(self):
-		if fileExists('/etc/rc2.d/S20samba'):
-			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
-		else:
-			self.Console.ePopen('update-rc.d -f samba defaults', self.StartStopCallback)
-
 	def updateService(self):
-		import process
-		p = process.ProcessList()
-		samba_process = str(p.named('smbd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
-		self['labactive'].setText(_("Disabled"))
-		self.my_Samba_active = False
-		self.my_Samba_run = False
-		if fileExists('/etc/rc2.d/S20samba'):
-			self['labactive'].setText(_("Enabled"))
-			self['labactive'].show()
-			self.my_Samba_active = True
-
-		if access('/etc/network/if-up.d/01samba-start', X_OK):
-			self['labactive'].setText(_("Enabled"))
-			self['labactive'].show()
-			self.my_Samba_active = True
-
-		if samba_process:
-			self.my_Samba_run = True
-		if self.my_Samba_run:
+		self.my_samba_active = False
+		if fileExists('/etc/inetd.conf'):
+			f = open('/etc/inetd.conf', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if parts[0] == 'microsoft-ds':
+					self.my_samba_active = True
+					continue
+			f.close()
+		if self.my_samba_active:
 			self['labstop'].hide()
-			self['labactive'].show()
 			self['labrun'].show()
-			self['key_green'].setText(_("Stop"))
-			status_summary = self['lab2'].text + ' ' + self['labrun'].text
+			self['key_green'].setText(_("Disable"))
+			status_summary= self['lab2'].text + ' ' + self['labrun'].text
 		else:
-			self['labrun'].hide()
 			self['labstop'].show()
-			self['labactive'].show()
-			self['key_green'].setText(_("Start"))
-			status_summary = self['lab2'].text + ' ' + self['labstop'].text
+			self['labrun'].hide()
+			self['key_green'].setText(_("Enable"))
+			status_summary= self['lab2'].text + ' ' + self['labstop'].text
 		title = _("Samba Setup")
-		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
+		autostartstatus_summary = ""
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
-class NetworkSambaLog(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Samba Log"))
-		self.skinName = "NetworkInadynLog"
-		self['infotext'] = ScrollLabel('')
-		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
-		strview = ''
-		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
-		time.sleep(1)
-		if fileExists('/tmp/tmp.log'):
-			f = open('/tmp/tmp.log', 'r')
-			for line in f.readlines():
-				strview += line
-			f.close()
-			remove('/tmp/tmp.log')
-		self['infotext'].setText(strview)
 
 class NetworkTelnet(Screen):
 	def __init__(self, session):
