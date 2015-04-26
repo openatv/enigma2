@@ -259,7 +259,7 @@ def CCcamListEntry(name, idx):
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if screenwidth and screenwidth == 1920:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(67, 48), png=loadPNG(png)))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 3), size=(67, 48), png=loadPNG(png)))
 		res.append(MultiContentEntryText(pos=(90, 7), size=(900, 50), font=1, text=name))
 	else:
 		if fileExists(png):
@@ -276,7 +276,7 @@ def CCcamServerListEntry(name, color):
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if screenwidth and screenwidth == 1920:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(67, 48), png=loadPNG(png)))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 3), size=(67, 48), png=loadPNG(png)))
 		res.append(MultiContentEntryText(pos=(90, 7), size=(900, 50), font=1, text=name))
 	else:
 		if fileExists(png):
