@@ -629,6 +629,7 @@ class ChannelSelectionEPG:
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
+		test = [ 'ITBDSECX', (refstr, 1, -1, 12*60) ] # search next 12 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if len(self.list) < 2:
 			return
