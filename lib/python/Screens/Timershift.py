@@ -253,7 +253,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 						type = MessageBox.TYPE_ERROR
 						)
 				else:
-					config.timeshift.startdelay.setValue(0)
+					config.timeshift.startdelay.value = "0"
 					self.saveAll()
 					self.close()
 		else:
@@ -264,7 +264,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					type = MessageBox.TYPE_ERROR
 					)
 			else:
-				config.timeshift.startdelay.setValue(0)
+				config.timeshift.startdelay.value = "0"
 				self.saveAll()
 				self.close()
 
