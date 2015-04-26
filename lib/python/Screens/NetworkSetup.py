@@ -2449,7 +2449,7 @@ class NetworkSamba(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.service_name = basegroup + '-smbfs'
+		self.service_name = 'sambaserver'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
@@ -2484,7 +2484,7 @@ class NetworkSamba(Screen):
 
 	def InstallPackage(self, val):
 		if val:
-			self.service_name = self.service_name + ' ' + basegroup + '-smbfs-client'
+			self.service_name = self.service_name + ' samba'
 		self.doInstall(self.installComplete, self.service_name)
 
 	def InstallPackageFailed(self, val):
@@ -2554,9 +2554,6 @@ class NetworkSamba(Screen):
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
-		import process		
-		p = process.ProcessList()		
-		samba_process = str(p.named('smbd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
@@ -2567,8 +2564,6 @@ class NetworkSamba(Screen):
 			self.my_Samba_active = True
 
 		self.my_Samba_run = False
-		if samba_process:
-			self.my_Samba_run = True
 		if fileExists('/etc/inetd.conf'):
 			f = open('/etc/inetd.conf', 'r')
 			for line in f.readlines():
