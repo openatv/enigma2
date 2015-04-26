@@ -8,7 +8,7 @@ from Components.NimManager import nimmanager
 from Components.Button import Button
 from Components.Label import Label
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement, ConfigSatlist, ConfigYesNo
+from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement, ConfigSatlist, ConfigYesNo, configfile
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -563,13 +563,14 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			# sanity check for empty sat list
 			if self.nimConfig.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.configMode.value = "nothing"
-		for x in self["config"].list:
-			x[1].save()
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].save()
+			configfile.save()
 
 	def cancelConfirm(self, result):
 		if not result:
 			return
-
 		for x in self["config"].list:
 			x[1].cancel()
 		# we need to call saveAll to reset the connectedTo choices
