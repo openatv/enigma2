@@ -54,7 +54,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.ServiceInfoFont = parseFont("Regular;18", ((1,1),(1,1)))
 		self.ServiceNumberFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.progressBarWidth = 52
-		self.progressPercentWidth = 52
+		self.progressPercentWidth = 0
 		self.fieldMargins = 10
 
 		self.onSelectionChanged = [ ]
@@ -329,7 +329,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		progressWidth = self.progressBarWidth
 		if "perc" in config.usage.show_event_progress_in_servicelist.value:
-			progressWidth = self.progressPercentWidth
+			progressWidth = self.progressPercentWidth or self.progressBarWidth
 
 		if "left" in config.usage.show_event_progress_in_servicelist.value:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressWidth , self.ItemHeight))
