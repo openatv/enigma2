@@ -33,42 +33,42 @@
 
 <!-- Tunerstatuspanel -->
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcD;50" halign="center" valign="bottom" foregroundColor="##00FF00" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="##00FF00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -352,7 +352,7 @@
 <!--"Analog Clock" -->
 	<screen name="StandbySummary" position="0,0" size="720,576">
 		<eLabel position="0,0" size="720,576" zPosition="-1" backgroundColor="#000000" />
-		<ePixmap pixmap="~/skin_default/analog_lcd.png" position="center,center" size="700,540" transparent="1" alphatest="blend" />
+		<ePixmap pixmap="~/skin_default/analog_lcd.png" position="center,center" size="700,550" transparent="1" alphatest="on" />
 		<ePixmap pixmap="~/skin_default/ClockPoint.png" position="10,280" size="720,30" alphatest="on" transparent="1" zPosition="6" />
 		<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="700,540" hColor="#e5b243" positionwidth="682" positionheight="550" linewidth="7" linesize="120" zPosition="3" alphatest="on">
 			<convert type="EtAnalogClock">Hours</convert>
@@ -370,9 +370,9 @@
 	
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="720,576"> 
-		<widget source="parent.Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;90" halign="center" valign="top" />
-		<widget source="entry" render="Label" position="22,150" size="670,200" font="FdLcD;70" halign="center" valign="center" foregroundColor="#02c6ff" />
-		<widget source="desc" render="Label" position="22,370" size="670,118" font="FdLcDLight;50" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,150" font="FdLcD;70" halign="center" valign="top" />
+		<widget source="entry" render="Label" position="22,170" size="670,200" font="FdLcD;70" halign="center" valign="center" foregroundColor="#02c6ff" />
+		<widget source="desc" render="Label" position="22,400" size="670,120" font="FdLcDLight;50" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	

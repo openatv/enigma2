@@ -551,6 +551,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 		self.standardInfoBar = False
 		self.lastSecondInfoBar = 0
+		self.lastResetAlpha = True
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
 			self.SwitchSecondInfoBarScreen()
@@ -622,6 +623,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			f=open("/proc/stb/video/alpha","w")
 			f.write("%i" % (value))
 			f.close()
+			if value == config.av.osd_alpha.value:
+				self.lastResetAlpha = True
+			else:
+				self.lastResetAlpha = False
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
@@ -630,7 +635,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(False)
 
 	def resetAlpha(self):
-		if config.usage.show_infobar_do_dimming.value:
+		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
 			self.unDimmingTimer = eTimer()
 			self.unDimmingTimer.callback.append(self.unDimming)
 			self.unDimmingTimer.start(300, True)
@@ -795,6 +800,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.hideTimer.stop()
 
 	def unlockShow(self):
+		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
+			self.doWriteAlpha(config.av.osd_alpha.value)
 		try:
 			self.__locked -= 1
 		except:
@@ -2377,7 +2384,6 @@ class InfoBarSeek:
 			elif self.seekstate[0] and self.seekstate[3] == 'END':
 #				print "resolved to STOP"
 				self.activityTimer.stop()
-				service.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
 					pass
@@ -4157,23 +4163,26 @@ class InfoBarResolutionSelection:
 		fpsFloat = float(fps)
 		fpsFloat = fpsFloat/1000
 
+		# do we need a new sorting with this way here?
+		# or should we disable some choices?
+		choices = []
+		if os.path.exists("/proc/stb/video/videomode_choices"):
+			f = open("/proc/stb/video/videomode_choices")
+			values = f.readline().replace("\n", "").replace("pal ", "").replace("ntsc ", "").split(" ", -1)
+			for x in values:
+				entry = x.replace('i50', 'i@50hz').replace('i60', 'i@60hz').replace('p23', 'p@23.976hz').replace('p24', 'p@24hz').replace('p25', 'p@25hz').replace('p29', 'p@29hz').replace('p30', 'p@30hz').replace('p50', 'p@50hz'), x
+				choices.append(entry)
+			f.close()
+
 		selection = 0
 		tlist = []
 		tlist.append((_("Exit"), "exit")) 
 		tlist.append((_("Auto(not available)"), "auto"))
 		tlist.append(("Video: " + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
 		tlist.append(("--", ""))
-		tlist.append(("576i", "576i50"))
-		tlist.append(("576p", "576p50"))
-		tlist.append(("720p@50hz", "720p50"))
-		tlist.append(("720p@60hz", "720p60"))
-		tlist.append(("1080i@50hz", "1080i50"))
-		tlist.append(("1080i@60hz", "1080i60"))
-		tlist.append(("1080p@23.976hz", "1080p23"))
-		tlist.append(("1080p@24hz", "1080p24"))
-		tlist.append(("1080p@25hz", "1080p25"))
-		tlist.append(("1080p@29hz", "1080p29"))
-		tlist.append(("1080p@30hz", "1080p30"))
+		if choices != []:
+			for x in choices:
+				tlist.append(x)
 
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
 

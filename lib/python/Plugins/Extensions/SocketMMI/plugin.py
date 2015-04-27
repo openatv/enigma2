@@ -7,7 +7,7 @@ def main(session, **kwargs):
 	socketHandler.startMMI()
 
 def menu(menuid, **kwargs):
-	if menuid == "setup" and socketHandler and socketHandler.connected():
+	if menuid == "cam" and socketHandler and socketHandler.connected():
 		return [(socketHandler.getName(), main, "socket_mmi", 0)]
 	return [ ]
 

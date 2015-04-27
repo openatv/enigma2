@@ -1,6 +1,6 @@
 from Source import Source
 from Components.Element import cached
-from enigma import eServiceReference
+from enigma import eServiceReference, pNavigation
 
 class StreamService(Source):
 	def __init__(self, navcore):
@@ -33,7 +33,11 @@ class StreamService(Source):
 			print "StreamService has no service ref set."
 			return
 		print "StreamService execBegin", self.ref.toString()
-		self.__service = self.navcore.recordService(self.ref)
+		try:
+			#not all images support recording type indicators
+			self.__service = self.navcore.recordService(self.ref,False,pNavigation.isStreaming)
+		except:
+			self.__service = self.navcore.recordService(self.ref)
 		self.navcore.record_event.append(self.recordEvent)
 		if self.__service is not None:
 			self.__service.prepareStreaming()

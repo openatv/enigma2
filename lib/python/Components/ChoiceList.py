@@ -28,12 +28,7 @@ def ChoiceEntryComponent(key = None, text = ["--"]):
 			elif key == "bullet":
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/bullet.png")
 			else:
-				if screenwidth and screenwidth == 1920:
-					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "FHD/buttons/key_%s.png" % key)
-					if not path.exists(pngfile):
-						pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
-				else:
-					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
+				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
 				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 0, 35, 25))

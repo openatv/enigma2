@@ -103,6 +103,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
 		def colorServiceRecorded(value):
 			self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+		def colorServicePseudoRecorded(value):
+			self.l.setColor(eListboxServiceContent.servicePseudoRecorded, parseColor(value))
+		def colorServiceStreamed(value):
+			self.l.setColor(eListboxServiceContent.serviceStreamed, parseColor(value))
 		def colorFallbackItem(value):
 			self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
 		def colorServiceSelectedFallback(value):

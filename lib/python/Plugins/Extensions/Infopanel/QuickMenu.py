@@ -1,5 +1,5 @@
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop
+from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -21,7 +21,7 @@ from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup, getSetupTitle
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
-from Screens.SkinSelector import LcdSkinSelector
+from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup, AudioSetup
 
 from Plugins.Plugin import PluginDescriptor
@@ -251,6 +251,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
 		if SystemInfo["LCDSKINSetup"]:
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
+		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Skin Setup"),_("Setup your Skin")))	
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
@@ -454,6 +455,8 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.openSetup("display")
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
+		elif item[0] == _("Skin Setup"):
+			self.session.open(SkinSelector)	
 		elif item[0] == _("OSD settings"):
 			self.openSetup("userinterface")
 		elif item[0] == _("Channel selection"):
@@ -519,7 +522,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()))
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default = False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 		elif item[0] == _("Select Backup files"):
@@ -581,7 +584,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if len(nimList) == 0:
 			self.session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings()) > 0:
+			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
 			else:
 				usableNims = []
@@ -607,7 +610,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if len(nimList) == 0:
 			self.session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings()) > 0:
+			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(Satfinder)

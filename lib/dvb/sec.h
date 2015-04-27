@@ -260,11 +260,12 @@ public:
 #define guard_offset_min -8000
 #define guard_offset_max 8000
 #define guard_offset_step 8000
-#define MAX_SATCR 8
-#define MAX_LNBNUM 32
+#define MAX_SATCR 32
+#define MAX_LNBNUM 64
 
 	int SatCR_positions;
 	int SatCR_idx;
+	int SatCR_format;
 	unsigned int SatCRvco;
 	unsigned int UnicableTuningWord;
 	unsigned int UnicableConfigWord;
@@ -357,9 +358,11 @@ public:
 	RESULT setInputpowerDelta(int delta);  // delta between running and stopped rotor
 	RESULT setRotorTurningSpeed(int speed);  // set turning speed..
 /* Unicable Specific Parameters */
+	RESULT setLNBSatCRformat(int SatCR_format);	//DiSEqc or JESS (or ...)
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);
 	RESULT setLNBSatCRpositions(int SatCR_positions);
+	RESULT getLNBSatCRformat();	//DiSEqc or JESS (or ...)
 	RESULT getLNBSatCR();
 	RESULT getLNBSatCRvco();
 	RESULT getLNBSatCRpositions();

@@ -86,13 +86,48 @@ def InitOsd():
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 	
 class UserInterfacePositioner2(Screen, ConfigListScreen):
-	if (getDesktop(0).size().width() == 1280):
+	if (getDesktop(0).size().width() == 1920):
+		skin = """
+			<screen position="center,center" size="1920,1080" backgroundColor="#000000" title="OSD Adjustment" >
+
+				<widget source="text" render="Label" position="300,165" zPosition="1" size="1320,180" font="Regular;32" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
+				<widget name="config" position="225,375" zPosition="1" size="1470,315" itemHeight="45" font="Regular;30" transparent="1" />
+				<widget source="status" render="Label" position="300,713" zPosition="1" size="1320,120" font="Regular;32" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
+				
+				<eLabel backgroundColor="red" position="0,0" size="1920,1" zPosition="0" />
+				<eLabel backgroundColor="red" position="0,1079" size="1920,1" zPosition="0" />
+				<eLabel backgroundColor="red" position="0,0" size="1,1080" zPosition="0" />
+				<eLabel backgroundColor="red" position="1919,0" size="1,1080" zPosition="0" />
+				<eLabel backgroundColor="green" position="38,38" size="1845,1" zPosition="0" />
+				<eLabel backgroundColor="green" position="38,1041" size="1845,1" zPosition="0" />
+				<eLabel backgroundColor="green" position="38,38" size="1,1005" zPosition="0" />
+				<eLabel backgroundColor="green" position="1881,38" size="1,1005" zPosition="0" />
+				<eLabel backgroundColor="yellow" position="75,75" size="1770,1" zPosition="0" />
+				<eLabel backgroundColor="yellow" position="75,1004" size="1770,1" zPosition="0" />
+				<eLabel backgroundColor="yellow" position="75,75" size="1,930" zPosition="0" />
+				<eLabel backgroundColor="yellow" position="1844,75" size="1,930" zPosition="0" />
+				<eLabel backgroundColor="blue" position="113,113" size="1695,1" zPosition="0" />
+				<eLabel backgroundColor="blue" position="113,966" size="1695,1" zPosition="0" />
+				<eLabel backgroundColor="blue" position="113,113" size="1,855" zPosition="0" />
+				<eLabel backgroundColor="blue" position="1806,113" size="1,855" zPosition="0" />
+
+				<eLabel backgroundColor="red" position="284,941" size="210,5" zPosition="0" />
+				<eLabel backgroundColor="green" position="665,941" size="210,5" zPosition="0" />
+				<eLabel backgroundColor="yellow" position="1046,941" size="210,5" zPosition="0" />
+				<eLabel backgroundColor="blue" position="1427,941" size="210,5" zPosition="0" />
+				<widget source="key_red" render="Label" position="284,908" zPosition="1" size="210,33" font="Regular;27" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+				<widget source="key_green" render="Label" position="665,908" zPosition="1" size="210,33" font="Regular;27" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+				<widget source="key_yellow" render="Label" position="1046,908" zPosition="1" size="210,33" font="Regular;27" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+				<widget source="key_blue" render="Label" position="1427,908" zPosition="1" size="210,33" font="Regular;27" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+
+			</screen>"""
+	elif (getDesktop(0).size().width() == 1280):
 		skin = """
 			<screen position="center,center" size="1280,720" backgroundColor="#000000" title="OSD Adjustment" >
 
-				<widget source="text" render="Label" position="200,110" zPosition="1" size="880,100" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				<widget name="config" position="150,250" zPosition="1" size="980,150" font="Regular;20" halign="center" valign="center" transparent="1" />
-				<widget source="status" render="Label" position="200,450" zPosition="1" size="880,80" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
+				<widget source="text" render="Label" position="200,110" zPosition="1" size="880,120" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
+				<widget name="config" position="150,250" zPosition="1" size="980,210" itemHeight="30" font="Regular;20" transparent="1" />
+				<widget source="status" render="Label" position="200,475" zPosition="1" size="880,80" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				
 				<eLabel backgroundColor="red" position="0,0" size="1280,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,719" size="1280,1" zPosition="0" />

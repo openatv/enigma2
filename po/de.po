@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-03-24 20:30+0100\n"
+"PO-Revision-Date: 2015-04-15 00:04+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -15,6 +15,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Stop recording now"
+msgstr "Aufnahme stoppen"
+
+msgid "Change next timer"
+msgstr "Nächsten Timer ändern"
+
+msgid "Question"
+msgstr "Frage"
+
+msgid "Warning"
+msgstr "Warnung"
+
+msgid "Video content: %ix%i%s %iHz"
+msgstr "Videoinhalt:  %ix%i%s %iHz"
+
+msgid "Video mode: %s not available"
+msgstr "Videomodus: %s nicht verfügbar"
+
+msgid "Video mode: 1080p also not available"
+msgstr "Videomodus: 1080p nicht verfügbar"
+
+msgid "Video mode: %s"
+msgstr "Videomodus: %s"
 
 msgid "Eventname only"
 msgstr "nur Sendungsname"
@@ -1583,6 +1607,9 @@ msgstr "Kanalliste"
 msgid "Channel selection"
 msgstr "Kanalliste"
 
+msgid "Channel selection configuration"
+msgstr "Kanalliste Konfiguration"
+
 #
 msgid "Channel selection settings"
 msgstr "Kanalliste"
@@ -2165,11 +2192,11 @@ msgstr "Log Einstellungen"
 
 #
 msgid "Recording Setup"
-msgstr "Aufnahme-Einstellungen"
+msgstr "Aufnahme Einstellungen"
 
 #
 msgid "Timeshift Setup"
-msgstr "Timeshift-Einstellungen"
+msgstr "Timeshift Einstellungen"
 
 #
 msgid "CrashlogAutoSubmit"
@@ -3719,7 +3746,7 @@ msgstr "Festplatte "
 
 #
 msgid "Harddisk Setup"
-msgstr "Festplatten-Einstellungen"
+msgstr "Festplatten Einstellungen"
 
 #
 msgid "Hard disk standby after"
@@ -6633,7 +6660,7 @@ msgstr "Filmauswahl"
 
 #
 msgid "Select audio track"
-msgstr "Audiospur auswählen"
+msgstr "Tonspur auswählen"
 
 #
 msgid "Select channel to record from"
@@ -7144,6 +7171,9 @@ msgstr "Hintergrund im Radio-Modus anzeigen"
 msgid "Show blinking Clock on Display during recording"
 msgstr "Blinkende Uhr im Display während Aufnahmen"
 
+msgid "Enable blinking Clock on the LCD Display"
+msgstr "Hier können Sie die blinkende Uhr in dem Display aktivieren."
+
 msgid "Show bouquet on launch"
 msgstr "Zeige Bouquet beim Start"
 
@@ -7311,7 +7341,7 @@ msgid "Skin Setting"
 msgstr "Skin-Einstellungen"
 
 msgid "Skin Setup"
-msgstr "Skin-Auswahl"
+msgstr "Skinauswahl"
 
 #
 msgid "Skins"
@@ -7629,7 +7659,7 @@ msgstr "Untertitel-Sprachauswahl 4"
 
 #
 msgid "Subtitle selection"
-msgstr "Untertitel-Auswahl"
+msgstr "Untertitel Auswahl"
 
 msgid "Subtitle selection..."
 msgstr "Auswahl Untertitel..."
@@ -11732,31 +11762,31 @@ msgstr "Laufwerksverwaltung"
 
 #
 msgid "CronManager"
-msgstr "Cron Verwaltung"
+msgstr "Cron-Verwaltung"
 
 #
 msgid "Cron Manager"
-msgstr "Cron Verwaltung"
+msgstr "Cron-Verwaltung"
 
 #
 msgid "JobManager"
-msgstr "Script Verwaltung"
+msgstr "Script-Verwaltung"
 
 #
 msgid "Script Runner"
-msgstr "Script Verwaltung"
+msgstr "Script-Verwaltung"
 
 #
 msgid "SwapManager"
-msgstr "Swap Verwaltung"
+msgstr "Swap-Verwaltung"
 
 #
 msgid "Swap Manager"
-msgstr "Swap Verwaltung"
+msgstr "Swap-Verwaltung"
 
 #
 msgid "HDD Partitioner"
-msgstr "Festplatten Aufteilung"
+msgstr "Festplattenaufteilung"
 
 #
 msgid "One partiition"
@@ -11784,7 +11814,7 @@ msgstr "Partitioniere..."
 
 #
 msgid "Please select your preferred configuration."
-msgstr "Bitte wähle deine Konfiguration."
+msgstr "Bitte wählen Sie Ihre Konfiguration."
 
 #
 msgid "Partitioning failed!"
@@ -11796,7 +11826,7 @@ msgstr "Formatieren Partition %d"
 
 #
 msgid "Initialize disk"
-msgstr "Formatieren Festplatte"
+msgstr "Festplatte formatieren"
 
 #
 msgid "Cannot format partition %d"
@@ -11804,7 +11834,7 @@ msgstr "Format der Partition %d nicht möglich"
 
 #
 msgid "Check disk terminated with success"
-msgstr "Überprüfung Erfolgreich"
+msgstr "Überprüfung erfolgreich"
 
 #
 msgid ""
@@ -11813,8 +11843,8 @@ msgid ""
 "Please stop this actions/applications and try again"
 msgstr ""
 "Unmount nicht möglich.\n"
-"Eine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\n"
-"Bitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
+"Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv.\n"
+"Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
 
 #
 msgid "Error checking disk. The disk may be damaged"
@@ -11822,7 +11852,7 @@ msgstr "Fehler beim Überprüfen der Festplatte"
 
 #
 msgid "Format terminated with success"
-msgstr "Formatierung Erfolgreich"
+msgstr "Formatierung erfolgreich"
 
 #
 msgid ""
@@ -11840,19 +11870,19 @@ msgstr "Fehler beim Formatieren der Festplatte"
 
 #
 msgid "Checking disk %s"
-msgstr "Überprüfe Disk %s"
+msgstr "Überprüfe Laufwerk %s"
 
 #
 msgid "Checking disk"
-msgstr "Überprüfe Disk"
+msgstr "Überprüfe Laufwerk"
 
 #
 msgid "Formatting disk %s"
-msgstr "Formatiere Disk %s"
+msgstr "Formatiere Laufwerk %s"
 
 #
 msgid "Formatting disk"
-msgstr "Formatiere Disk"
+msgstr "Formatiere Laufwerk"
 
 #
 msgid ""
@@ -11861,8 +11891,8 @@ msgid ""
 "Please stop this actions/applications and try again"
 msgstr ""
 "Unmount nicht möglich.\n"
-"Eine Aufnahme ist Aktive, Timeshift oder ein Server Dienst wie SAMBA oder NFS,\n"
-"Bitte zu erst den Festplatten zugriff stoppen und noch mal Probieren"
+"Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv,\n"
+"Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
 
 #
 msgid "Show history"
@@ -11870,7 +11900,7 @@ msgstr "Zeige Historie"
 
 #
 msgid "Select a script to run:"
-msgstr "Script wählen zum starten:"
+msgstr "Zu startendes Script wählen:"
 
 msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
@@ -12115,6 +12145,9 @@ msgstr "Maximale Anzahl von Tagen:"
 
 msgid "Maximum space used (MB):"
 msgstr "Maximale Speicherplatznutznug (MB):"
+
+msgid "Space used:"
+msgstr "Speicherplatznutznug:"
 
 msgid "Logs location"
 msgstr "Logs Speicherort"
@@ -12698,8 +12731,11 @@ msgstr "Konfiguration Video"
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Einstellungen Video Mode, Video Ausgang und andere Video-Einstellungen."
 
+msgid "Setup your Audio Mode"
+msgstr "Ton Einstellungen"
+
 msgid "Setup Tuner"
-msgstr "Tuner-Konfiguration"
+msgstr "Konfiguration Tuner"
 
 msgid "Setup your Tuner and search for channels"
 msgstr "Einstellungen Tuner und Kanalsuche."
@@ -12711,7 +12747,7 @@ msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Starten/Stopen/Auswahl der cams, Installation eines cams ist erforderlich."
 
 msgid "Update/Backup/Restore your box"
-msgstr "Update/Backup/Restore der Box."
+msgstr "Update/Backup/Restore der Box"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen."
@@ -12720,7 +12756,7 @@ msgid "Download plugins"
 msgstr "Download Erweiterungen"
 
 msgid "Shows available pluigns. Here you can download and install them"
-msgstr "Zeige verfügbare Erweiterungen, Zum downloaden und Installieren."
+msgstr "Zeige verfügbare Erweiterungen, zum downloaden und installieren."
 
 msgid "Hard disk setup"
 msgstr "Konfiguration der HDD"
@@ -12915,7 +12951,10 @@ msgid "Manual scan for services"
 msgstr "Manueller Scan der Dienste"
 
 msgid "Search Sats"
-msgstr "Suche Sateliten, Pegelanzeige"
+msgstr "Suche Satelliten und Pegelanzeige"
+
+msgid "Search Sats, check signal and lock"
+msgstr "Suche Satelliten und Pegelanzeige"
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Einstellungen für jeden Tuner"
@@ -13771,7 +13810,7 @@ msgid "Do you really want to delete this timer ?"
 msgstr "Timer wirklich löschen?"
 
 msgid "Software Manager Setup"
-msgstr "Update-Einstellungen"
+msgstr "Update Einstellungen"
 
 msgid "Manage your online update files"
 msgstr "Verwaltung Ihrer Online-Update Dateien"
@@ -14059,13 +14098,16 @@ msgid "Setup your LCD"
 msgstr "Einstellen des LCDs."
 
 msgid "LCD Skin Setup"
-msgstr "LCD Skin Auswahl"
+msgstr "Display Skinauswahl"
 
 msgid "Skin setup"
 msgstr "LCD Skin Auswahl"
 
 msgid "LCD scroll speed"
 msgstr "LCD Scollgeschwindigkeit"
+
+msgid "Setup your Skin"
+msgstr "Einstellen des Skin`s"
 
 msgid "Time for next LCD scrolling"
 msgstr "Zeit bis zum nächsten Scrollen des LCDs"
@@ -15161,7 +15203,7 @@ msgid "CPU:\t%s"
 msgstr "Prozessor:\t\t%s"
 
 msgid "Cores:\t%s"
-msgstr "Prozessor-Kerne:\t%s"
+msgstr "Prozessor-Kerne:     \t%s"
 
 msgid "Version:\t%s"
 msgstr "Version:\t\t%s"
@@ -15179,7 +15221,7 @@ msgid "Drivers:\t%s"
 msgstr "Treiber:\t\t%s"
 
 msgid "Frontprocessor version: %s"
-msgstr "Frontprozessor-Version: %s"
+msgstr "Frontprozessor-Version:\t%s"
 
 msgid "GStreamer:\t%s"
 msgstr "GStreamer:\t\t%s"
@@ -15235,3 +15277,31 @@ msgstr "Flashen: "
 
 msgid "Setup EPG"
 msgstr "EPG Einstellungen"
+
+# MetrixHDSTBInfo.py
+msgid "Flash Memory free: %s MByte"
+msgstr "Freier Flash Speicher: %s MByte"
+
+# MetrixHDSTBInfo.py
+msgid "CPU-Load: %s"
+msgstr "CPU-Last: %s"
+
+# MetrixHDSTBInfo.py
+msgid "CPU-Temp: %s"
+msgstr "CPU-Temp: %s"
+
+# MetrixHDSTBInfo.py
+msgid "CPU-Speed: %s MHz"
+msgstr "CPU-Speed: %s MHz"
+
+# MetrixHDSTBInfo.py
+msgid "SYS-Temp: %s"
+msgstr "SYS-Temp: %s"
+
+# MetrixHDSTBInfo.py
+msgid "RAM-Free: %s MB"
+msgstr "RAM-Frei: %s MB"
+
+# AudioSelection.py
+msgid "Switch between Audio-, Subtitlepage"
+msgstr "Umschalten zwischen Audio-, Untertitelauswahl"

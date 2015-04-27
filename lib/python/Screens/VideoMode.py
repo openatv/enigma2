@@ -582,13 +582,54 @@ class AutoVideoMode(Screen):
 					write_mode = '720p' + new_rate
 
 			if write_mode and current_mode != write_mode and self.bufferfull:
-				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
-				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':
-					resolutionlabel.show()
-				print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
-				f = open("/proc/stb/video/videomode", "w")
-				f.write(write_mode)
-				f.close()
+				# first we read now the real available values for every stb,
+				# before we try to write the new mode
+				changeResolution = False
+				try:
+					if path.exists("/proc/stb/video/videomode_choices"):
+						vf = open("/proc/stb/video/videomode_choices")
+						values = vf.readline().replace("\n", "").split(" ", -1)
+						for x in values:
+							if x == write_mode:
+								try:
+									f = open("/proc/stb/video/videomode", "w")
+									f.write(write_mode)
+									f.close()
+									changeResolution = True
+								except Exception, e:
+									print("[VideoMode] write_mode exception:" + str(e))
+
+						if not changeResolution:
+							print "[VideoMode] setMode - port: %s, mode: %s is not available" % (config_port, write_mode)
+							resolutionlabel["restxt"].setText(_("Video mode: %s not available") % write_mode)
+							# we try to go for not available 1080p24 to change to 1080p from 60hz_choices if available
+							# TODO: can we make it easier, or more important --> smaller ?
+							# should we outsourced that way, like two new "def ..."
+							# or some other stuff, not like this?
+							if write_mode == "1080p24":
+								for x in values:
+									if x == "1080p":
+										try:
+											f = open("/proc/stb/video/videomode", "w")
+											f.write(x)
+											f.close()
+											changeResolution = True
+										except Exception, e:
+											print("[VideoMode] write_mode exception:" + str(e))
+								if not changeResolution:
+									print "[VideoMode] setMode - port: %s, mode: 1080p is also not available" % config_port
+									resolutionlabel["restxt"].setText(_("Video mode: 1080p also not available"))
+								else:
+									print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, x)
+									resolutionlabel["restxt"].setText(_("Video mode: %s") % x)
+						else:
+							resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
+							print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
+						if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':
+							resolutionlabel.show()
+						vf.close()
+				except Exception, e:
+					print("[VideoMode] read videomode_choices exception:" + str(e))
 
 		iAVSwitch.setAspect(config.av.aspect)
 		iAVSwitch.setWss(config.av.wss)

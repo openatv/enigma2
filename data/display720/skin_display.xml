@@ -301,9 +301,9 @@
 	
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="720,576"> 
-		<widget source="parent.Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;70" halign="center" valign="top" />
-		<widget source="entry" render="Label" position="22,154" size="670,200" font="FdLcD;60" halign="center" valign="center" />
-		<widget source="desc" render="Label" position="22,360" size="670,128" font="FdLcDLight;50" halign="center" valign="top" />
+		<widget source="parent.Title" render="Label" position="15,20" foregroundColor="#e5b243" size="670,150" font="FdLcD;70" halign="center" valign="top" />
+		<widget source="entry" render="Label" position="22,160" size="670,200" font="FdLcD;60" halign="center" valign="center" />
+		<widget source="desc" render="Label" position="22,365" size="670,128" font="FdLcDLight;50" halign="center" valign="top" />
 		<widget source="global.CurrentTime" render="Label" position="500,490" size="182,52" halign="right" font="FdLcD;50">
 			<convert type="ClockToText">Default</convert>
 		</widget>
