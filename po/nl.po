@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-10 00:23+0100\n"
-"PO-Revision-Date: 2015-04-11 17:07+0100\n"
+"POT-Creation-Date: 2015-04-27 08:35+0100\n"
+"PO-Revision-Date: 2015-04-28 15:22+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -2730,13 +2730,6 @@ msgid "Do you want to add any additional information ?"
 msgstr "Wilt u informatie toevoegen?"
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Wilt u ook de Samba-client installeren?\n"
-"Deze maakt het mogelijk Windows-shares aan te maken op dit apparaat."
-
-msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
@@ -3011,6 +3004,9 @@ msgstr "Meerdere favorietenlijsten toestaan"
 
 msgid "Enable panic button"
 msgstr "Paniektoets gebruiken"
+
+msgid "Enable parental protection"
+msgstr "Kinderslot inschakelen"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
@@ -4155,6 +4151,9 @@ msgstr "LAN-verbinding"
 msgid "LED Deep Standby"
 msgstr "LED deep sleep"
 
+msgid "LED Display Panel"
+msgstr "LED Paneeldisplay"
+
 msgid "LED Normal"
 msgstr "LED normaal"
 
@@ -4499,6 +4498,9 @@ msgstr "Menu configuratie"
 
 msgid "Merging Timeshift files"
 msgstr "Samenvoegen timeshiftbestanden"
+
+msgid "Message"
+msgstr "Bericht"
 
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
@@ -5422,8 +5424,8 @@ msgstr "Wijzig de eindtijd van de opname"
 msgid "Please check your network settings!"
 msgstr "Controleer uw netwerkinstellingen!"
 
-msgid "Please choose CCcam-Reader"
-msgstr "Kies aub de CCcam-Lezer"
+msgid "Please choose CCcam reader"
+msgstr "Kies de CCcam-lezer"
 
 msgid "Please choose an extension..."
 msgstr "Kies een applicatie a.u.b..."
@@ -5849,6 +5851,9 @@ msgstr "Beveilig contekst menu's"
 msgid "Protect main menu"
 msgstr "Beveilig hoofdmenu"
 
+msgid "Protect manufacturer reset screen"
+msgstr "Bescherm herstelscherm van fabrikant"
+
 msgid "Protect movie list"
 msgstr "Beveilig opnamelijst"
 
@@ -5860,6 +5865,9 @@ msgstr "Beveilig de pluginbrowser."
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
+
+msgid "Protect software update screen"
+msgstr "Bescherm software-update scherm"
 
 msgid "Protect standby menu"
 msgstr "beveilig stand-by menu"
@@ -5911,6 +5919,9 @@ msgstr "Python frontend voor /tmp/mmi.socket"
 msgid "Python:\t%s\n"
 msgstr "Python:\t%s\n"
 
+msgid "Question"
+msgstr "Vraag"
+
 msgid "Quick"
 msgstr "Snel"
 
@@ -5945,7 +5956,7 @@ msgstr "Waardering bepaald door omroep - %d"
 msgid "Rating undefined"
 msgstr "Waardering niet bepaald"
 
-msgid "Read Userdata from oscam.conf"
+msgid "Read user data from oscam.conf"
 msgstr "Lees gebruikersgegevens van oscam.conf"
 
 msgid "Reader"
@@ -6350,8 +6361,8 @@ msgstr "SPDIF"
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "Samba Log"
-msgstr "Sambalog"
+msgid "Samba Network File System"
+msgstr "Samba netwerk file systeem"
 
 msgid "Samba Setup"
 msgstr "Samba-instellingen"
@@ -8654,7 +8665,7 @@ msgstr "Transponder"
 msgid "Transponder type"
 msgstr "Transpondertype"
 
-msgid "Trashcan"
+msgid "Trash can"
 msgstr "Prullenbak"
 
 msgid "Trashcan:"
@@ -9250,6 +9261,9 @@ msgstr "Wakeup signaal van TV"
 #, python-format
 msgid "Wakeup your %s %s from standby"
 msgstr "Uw %s %s vanuit standby wakker maken."
+
+msgid "Warning"
+msgstr "Waarschuwing"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Waarschuwing: geen LNB; gebruikt fabrieksinstellingen."
@@ -10331,9 +10345,6 @@ msgstr "mode"
 msgid "fast"
 msgstr "snel"
 
-msgid "file oscam.conf could not be found"
-msgstr "bestand oscam.conf niet gevonden"
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "bestandsformaat (BMP, PNG, JPG, GIF)"
 
@@ -10659,6 +10670,16 @@ msgstr "origineel"
 
 msgid "original language"
 msgstr "originele taal"
+
+msgid "oscam.conf could not be found"
+msgstr "bestand oscam.conf niet gevonden"
+
+msgid ""
+"oscam.conf not found.\n"
+"Please enter username/password manually."
+msgstr ""
+"Bestand oscam.conf niet gevonden.\n"
+"Geef gebruikersnaam/wachtwoord handmatig in."
 
 msgid "packages selected."
 msgstr "pakketten geselecteerd."
@@ -11280,6 +11301,13 @@ msgstr "zapte"
 #~ msgid "Display"
 #~ msgstr "Display"
 
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Wilt u ook de Samba-client installeren?\n"
+#~ "Deze maakt het mogelijk Windows-shares aan te maken op dit apparaat."
+
 #~ msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 #~ msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
 
@@ -11382,6 +11410,9 @@ msgstr "zapte"
 
 #~ msgid "Restart enigma"
 #~ msgstr "De gebruikersinterface opnieuw starten"
+
+#~ msgid "Samba Log"
+#~ msgstr "Sambalog"
 
 #~ msgid "Select default EPG type..."
 #~ msgstr "Kies het standaard EPG-type..."
