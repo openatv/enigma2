@@ -21,19 +21,26 @@ class DeleteFolderTask(PythonTask):
 class CopyFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Copying files"))
-		cmdline = 'cp -Rf "%s" "%s"' % (srcfile,destfile)
+		cmdline = ('cp', '-Rf', srcfile, destfile)
 		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
 
 class MoveFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Moving files"))
-		cmdline = 'mv -f "%s" "%s"' % (srcfile,destfile)
+		cmdline = ('mv', '-f', srcfile, destfile)
 		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
 
 class AddFileProcessTask(Task):
+
+	# cmdline may be either a string (executed using sh -c <str>) or
+	# a list/tuple of strings (executed without the shell using execvp())
+
 	def __init__(self, job, cmdline, srcfile, destfile, name):
 		Task.__init__(self, job, name)
-		self.setCmdline(cmdline)
+		if isinstance(cmdline, (list, tuple)):
+			self.setCommandline(cmdline[0], cmdline)
+		else:
+			self.setCmdline(cmdline)
 		self.srcfile = srcfile
 		self.destfile = destfile
 
