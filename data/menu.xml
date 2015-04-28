@@ -150,7 +150,7 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 				</menu>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup"/></item>
-				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings"/></item>
+				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timeshift" screen="TimeshiftSettings"/></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
 				<menu level="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu"/>

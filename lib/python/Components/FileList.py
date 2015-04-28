@@ -272,8 +272,14 @@ class FileList(MenuList):
 
 def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected = False):
 	res = [ (absolute, isDir, selected, name) ]
-	x, y, w, h = skin.parameters.get("FileListMultiName",(55, 0, 470, 25))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
+	if not name.startswith('<'):
+		if selected:
+			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
+		else:
+			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
+		x, y, w, h = skin.parameters.get("FileListMultiLock",(2, 0, 25, 25))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon))
+
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
@@ -283,16 +289,16 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected
 			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
+
 	if png is not None:
 		x, y, w, h = skin.parameters.get("FileListMultiIcon",(30, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
-	if not name.startswith('<'):
-		if selected:
-			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
-		else:
-			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
-		x, y, w, h = skin.parameters.get("FileListMultiLock",(2, 0, 25, 25))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon))
+		x, y, w, h = skin.parameters.get("FileListMultiName",(55, 0, 470, 25))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
+	else:
+		x1, y1, w1, h1 = skin.parameters.get("FileListMultiIcon",(30, 2, 20, 20))
+		x, y, w, h = skin.parameters.get("FileListMultiName",(55, 0, 470, 25))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x1, y, w, h, 0, RT_HALIGN_LEFT, name))
 	return res
 
 
