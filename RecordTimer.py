@@ -184,7 +184,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		name = name or self.name
 		filename = begin_date + " - " + service_name
 		if name:
-			if config.recording.filename_composition.value == "short":
+			if config.recording.filename_composition.value == "event":
+				filename = name + ' - ' + begin_date + "_" + service_name
+			elif config.recording.filename_composition.value == "short":
 				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + name
 			elif config.recording.filename_composition.value == "long":
 				filename += " - " + name + " - " + self.description
