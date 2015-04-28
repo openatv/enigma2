@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-12 04:07+0100\n"
-"PO-Revision-Date: 2015-04-12 13:49+0100\n"
+"POT-Creation-Date: 2015-04-28 16:49+0100\n"
+"PO-Revision-Date: 2015-04-28 23:08+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2935,13 +2935,6 @@ msgid "Do you want to add any additional information ?"
 msgstr "Willst Du weitere Informationen hinzufügen?"
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Soll der Samba-Klient ebenfalls installiert werden? Der Klient erlaubt es "
-"sich mit Windows-Freigaben zu verbinden."
-
-msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
@@ -3217,6 +3210,9 @@ msgstr "Mehrere Favoritenlisten erlauben"
 msgid "Enable panic button"
 msgstr "Paniktaste aktivieren"
 
+msgid "Enable parental protection"
+msgstr "Jugendschutz aktivieren"
+
 msgid ""
 "Enable remote enigma2 receiver to be tried to tune into services that cannot "
 "be tuned into locally (e.g. tuner is occupied or service type is unavailable "
@@ -3347,6 +3343,9 @@ msgstr "Programminformation..."
 
 msgid "Event font size"
 msgstr "Programm Schriftgröße"
+
+msgid "Event name first"
+msgstr "Programmname zuerst"
 
 msgid "Event view"
 msgstr "Sendungsdetails"
@@ -4426,6 +4425,9 @@ msgstr "LAN Verbindung"
 msgid "LED Deep Standby"
 msgstr "LED wenn Aus"
 
+msgid "LED Display Panel"
+msgstr "LED Display"
+
 msgid "LED Normal"
 msgstr "LED normal"
 
@@ -4776,6 +4778,9 @@ msgstr "Menükonfiguration"
 
 msgid "Merging Timeshift files"
 msgstr "TimeShift-Dateien werden zusammengefügt"
+
+msgid "Message"
+msgstr ""
 
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
@@ -5730,7 +5735,7 @@ msgstr "Bitte Aufnahmeendzeit ändern"
 msgid "Please check your network settings!"
 msgstr "Bitte überprüfe die Netzwerkeinstellungen"
 
-msgid "Please choose CCcam-Reader"
+msgid "Please choose CCcam reader"
 msgstr "Bitte wähle CCcam-Kartenleser"
 
 msgid "Please choose an extension..."
@@ -6171,6 +6176,9 @@ msgstr "Schütze Kontextmenüs"
 msgid "Protect main menu"
 msgstr "Schütze Hauptmenü"
 
+msgid "Protect manufacturer reset screen"
+msgstr "Schütze Werkseinstellungen Screen"
+
 msgid "Protect movie list"
 msgstr "Schütze Filmliste"
 
@@ -6182,6 +6190,9 @@ msgstr "Schütze Plugin-Browser"
 
 msgid "Protect services"
 msgstr "Schütze Sender"
+
+msgid "Protect software update screen"
+msgstr "Schütze Update Screen"
 
 msgid "Protect standby menu"
 msgstr "Schütze Ausschaltmenü"
@@ -6233,6 +6244,9 @@ msgstr "Python Frontend für /tmp/mmi.socket"
 msgid "Python:\t%s\n"
 msgstr "Python:\t%s\n"
 
+msgid "Question"
+msgstr "Frage"
+
 msgid "Quick"
 msgstr "Schnell"
 
@@ -6267,7 +6281,7 @@ msgstr "Einstufung vom Sender - %d"
 msgid "Rating undefined"
 msgstr "Einstufung unbekannt"
 
-msgid "Read Userdata from oscam.conf"
+msgid "Read user data from oscam.conf"
 msgstr "Lese Benutzerdaten aus oscam.comf"
 
 msgid "Reader"
@@ -6676,8 +6690,8 @@ msgstr ""
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "Samba Log"
-msgstr "Samba/CIFS Log"
+msgid "Samba Network File System"
+msgstr "Samba Dateisystem"
 
 msgid "Samba Setup"
 msgstr "Samba Einstellungen"
@@ -9209,7 +9223,7 @@ msgstr "Transponder"
 msgid "Transponder type"
 msgstr "Transponder Typ"
 
-msgid "Trashcan"
+msgid "Trash can"
 msgstr "Mülleimer"
 
 msgid "Trashcan:"
@@ -9823,6 +9837,9 @@ msgstr "Einschaltsignal vom Fernseher"
 msgid "Wakeup your %s %s from standby"
 msgstr "%s %s aus Bereitschaft einschalten"
 
+msgid "Warning"
+msgstr "Warnung"
+
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Warnung: Kein LNB benutze Werkseinstellungen."
 
@@ -10387,9 +10404,6 @@ msgid "You can continue watching TV etc. while this is running."
 msgstr ""
 "Der Vorgang findet im Hintergrund statt, die Box kann  ganz normal weiter "
 "genutzt werden."
-
-msgid "You can disable Telnet Server and use ssh to login."
-msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Du kannst die Liste zeitlich oder alphanumerisch sortiert haben."
@@ -11110,9 +11124,6 @@ msgstr "Mode"
 msgid "fast"
 msgstr "schnell"
 
-msgid "file oscam.conf could not be found"
-msgstr "Datei oscam.conf nicht gefunden"
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "Dateiformate (BMP, PNG, JPG, GIF)"
 
@@ -11437,6 +11448,16 @@ msgstr "Original"
 
 msgid "original language"
 msgstr "Landessprache"
+
+msgid "oscam.conf could not be found"
+msgstr "Datei oscam.conf nicht gefunden"
+
+msgid ""
+"oscam.conf not found.\n"
+"Please enter username/password manually."
+msgstr ""
+"Datei oscam.conf nicht gefunden.\n"
+"Bitte Benutzername/Passwort eingeben."
 
 msgid "packages selected."
 msgstr "Pakete ausgewählt."
@@ -11947,3 +11968,16 @@ msgstr "umschalten und aufnehmen"
 
 msgid "zapped"
 msgstr "umgeschaltet"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Soll der Samba-Klient ebenfalls installiert werden? Der Klient erlaubt es "
+#~ "sich mit Windows-Freigaben zu verbinden."
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba/CIFS Log"
+
+#~ msgid "You can disable Telnet Server and use ssh to login."
+#~ msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
