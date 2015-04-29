@@ -461,7 +461,6 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 		fd.write(inetdData)
 		fd.close()
 		self.session.open(MessageBox, _("Successfully restored /etc/inetd.conf!"), type = MessageBox.TYPE_INFO,timeout = 10 )
-		self.ok()
 
 	def ok(self):
 		ipv6 = '/etc/enigma2/ipv6'
@@ -475,6 +474,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			fp.write("0")
 			os_system("rm -R "+ipv6)
 		fp.close()
+		self.restoreinetdData()
 		self.close()
 
 	def run(self):
