@@ -4,7 +4,6 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
 from Components.ConfigList import ConfigListScreen
-from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -18,7 +17,6 @@ from Components.Scanner import openFile
 from Components.MenuList import MenuList
 from os.path import isdir as os_path_isdir
 from mimetypes import guess_type
-from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import *

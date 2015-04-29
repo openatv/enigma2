@@ -6,7 +6,6 @@ from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap
 from Components.Scanner import openFile
@@ -17,10 +16,8 @@ from Components.Sources.StaticText import StaticText
 
 # Screens
 from Screens.Screen import Screen
-from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
@@ -155,7 +152,7 @@ class vEditor(Screen):
 			warningtext = "\n" + (_("has been CHANGED! Do you want to save it?"))
 			warningtext = warningtext + "\n\n" + (_("WARNING!"))
 			warningtext = warningtext + "\n" + (_("The authors are NOT RESPONSIBLE"))
-			warningtext = warningtext + "\n" + (_("for DATA LOST OR DISORDERS !!!"))
+			warningtext = warningtext + "\n" + (_("for DATA LOSS OR DAMAGE !!!"))
 			msg = self.session.openWithCallback(self.SaveFile, MessageBox,_(self.file_name+self.file_name+warningtext), MessageBox.TYPE_YESNO)
 			msg.setTitle(_("File Commander"))
 		else:
@@ -164,10 +161,10 @@ class vEditor(Screen):
 	def GetFileData(self, fx):
 		try:
 			flines = open(fx, "r")
-			zeile = 1
+			lineNo = 1
 			for line in flines:
-				self.list.append(str(zeile).zfill(4) + ": " + line)
-				zeile += 1
+				self.list.append(str(lineNo).zfill(4) + ": " + line)
+				lineNo += 1
 			flines.close()
 			self["list_head"] = Label(fx)
 		except:
