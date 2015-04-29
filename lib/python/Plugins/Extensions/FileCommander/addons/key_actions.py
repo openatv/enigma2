@@ -6,7 +6,6 @@ from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap
 from Components.Scanner import openFile
@@ -137,14 +136,14 @@ class key_actions():
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()
 		longname = sourceDir + filename
-		self.commando = [ longname ]
-		askList = [(_("Cancel"), "NO"),(_("View this shell-script"), "VIEW"),(_("Start execution"), "YES")]
-		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to execute?\\n"+filename), list=askList)
+		self.commando = (longname,)
+		askList = [(_("Cancel"), "NO"), (_("View or edit this shell script"), "VIEW"), (_("Run script"), "YES")]
+		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n" + filename), list=askList)
 
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
 		if answer == "YES":
-			self.session.open(Console, cmdlist = [ self.commando[0] ])
+			self.session.open(Console, cmdlist=((self.commando[0],),))
 		elif answer == "VIEW":
 			yfile=os_stat(self.commando[0])
 			if (yfile.st_size < 61440):

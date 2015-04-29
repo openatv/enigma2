@@ -18,7 +18,6 @@ from Components.Scanner import openFile
 from Components.MenuList import MenuList
 from os.path import isdir as os_path_isdir
 from mimetypes import guess_type
-from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import *
@@ -57,7 +56,7 @@ class ipkMenuScreen(Screen):
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
 		self.targetDir = self.TARGETLIST.getCurrentDirectory()
 		self.list = []
-		self.list.append((_("Show content of ipk File"), 1))
+		self.list.append((_("Show contents of ipk File"), 1))
 		self.list.append((_("Unpack to current folder"), 2))
 		self.list.append((_("Unpack to %s") % (self.targetDir), 3))
 		self.list.append((_("Install"), 4))
@@ -153,12 +152,12 @@ class ipkMenuScreen(Screen):
 			self.container.execute(cmd)
 
 		elif id == 4:
-			self.container = eConsoleAppContainer()
-			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
-			#self.container.dataAvail.append(self.log)
+			# self.container = eConsoleAppContainer()
+			# self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
+			# self.container.dataAvail.append(self.log)
 			self.ulist = []
 			if fileExists("/usr/bin/opkg"):
-				self.session.openWithCallback(self.doCallBack,Console, title = _("Installing Plugin ..."), cmdlist = ["opkg install "+self.sourceDir+self.filename])
+				self.session.openWithCallback(self.doCallBack, Console, title=_("Installing Plugin ..."), cmdlist=(("opkg", "install", self.sourceDir + self.filename),))
 
 	def doCallBack(self):
 		return
