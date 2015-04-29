@@ -769,7 +769,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			if extension in MOVIEEXTENSIONS:
 				print "[FileCommander] skip " + extension
 			else:
-				print "[FileCommander] copy " + extension
+				print "[FileCommander] move " + extension
 				dst_file = targetDir
 				if dst_file.endswith("/"):
 					targetDir = dst_file[:-1]

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
-from Tools.Directories import *
+from Tools.Directories import fileExists, shellquote
 from enigma import eTimer
 import os
 
@@ -26,7 +26,7 @@ class FileTransferTask(Task):
 		cmd = "mv"
 		if do_copy:
 			cmd = "cp -pr"
-		cmdline = '%s %s "%s"%s "%s"' % (nice, cmd, src_file, src_file_append, dst_file)
+		cmdline = '%s %s %s%s %s' % (nice, cmd, shellquote(src_file), src_file_append, shellquote(dst_file))
 		if self.dst_file.endswith("/"):
 			self.dst_isDir = True
 		self.setCmdline(cmdline)
