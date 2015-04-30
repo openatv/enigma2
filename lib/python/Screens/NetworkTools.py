@@ -407,11 +407,13 @@ class InetdRecovery(Screen, ConfigListScreen):
 		inetdData += "#time	dgram	udp	wait	root	internal\n"
 		inetdData += "ftp	stream	" + sockType + "	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
 		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
-		inetdData += "telnet	stream	" + sockType + "	nowait	root	/usr/sbin/telnetd	telnetd\n"
+		inetdData += "#telnet	stream	" + sockType + "	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		if fileExists('/usr/sbin/smbd'):
 			inetdData += "microsoft-ds	stream	" + sockType + "	nowait	root	/usr/sbin/smbd	smbd\n"
 		if fileExists('/usr/sbin/nmbd'):
 			inetdData += "netbios-ns	dgram	udp	wait	root	/usr/sbin/nmbd	nmbd\n"
+		if fileExists('/usr/bin/streamproxy'):
+			inetdData += "8001	stream	" + sockType + "	nowait	root	/usr/bin/streamproxy	streamproxy\n"
 		if getBoxType() in ('gbquad', 'gbquadplus'):
 			inetdData += "8002	stream	" + sockType + "	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 			
