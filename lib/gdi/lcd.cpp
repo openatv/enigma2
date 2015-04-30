@@ -237,21 +237,6 @@ void eDBoxLCD::update()
 				{
 					raw[y * 132 + x] = pix ^ inverted;
 				}
-				write(lcdfd, raw, _stride * height);
-			}
-			else
-			{
-#ifdef HAVE_GIGABLUELCD
-				unsigned char gb_buffer[_stride * res.height()];
-				for (int offset = 0; offset < _stride * res.height(); offset += 2)
-				{
-					gb_buffer[offset] = (_buffer[offset] & 0x1F) | ((_buffer[offset + 1] << 3) & 0xE0);
-					gb_buffer[offset + 1] = ((_buffer[offset + 1] >> 5) & 0x03) | ((_buffer[offset] >> 3) & 0x1C) | ((_buffer[offset + 1] << 5) & 0x60);
-				}
-				write(lcdfd, gb_buffer, _stride * res.height());
-#else
-				write(lcdfd, _buffer, _stride * res.height());
-#endif
 			}
 		}
 		write(lcdfd, raw, 132*8);
@@ -283,7 +268,17 @@ void eDBoxLCD::update()
 		}
 		else
 		{
-			write(lcdfd, _buffer, _stride * res.height());
+#ifdef HAVE_GIGABLUELCD
+				unsigned char gb_buffer[_stride * res.height()];
+				for (int offset = 0; offset < _stride * res.height(); offset += 2)
+				{
+					gb_buffer[offset] = (_buffer[offset] & 0x1F) | ((_buffer[offset + 1] << 3) & 0xE0);
+					gb_buffer[offset + 1] = ((_buffer[offset + 1] >> 5) & 0x03) | ((_buffer[offset] >> 3) & 0x1C) | ((_buffer[offset + 1] << 5) & 0x60);
+				}
+				write(lcdfd, gb_buffer, _stride * res.height());
+#else
+				write(lcdfd, _buffer, _stride * res.height());
+#endif
 		}
 	}
 	else /* lcd_type == 1 */
