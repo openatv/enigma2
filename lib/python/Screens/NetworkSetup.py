@@ -440,9 +440,9 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			inetdData += "ftp	stream	tcp	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
 		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
 		if self.IPv6ConfigEntry.value == True:
-			inetdData += "telnet	stream	tcp6	nowait	root	/usr/sbin/telnetd	telnetd\n"
+			inetdData += "#telnet	stream	tcp6	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		else:
-			inetdData += "telnet	stream	tcp	nowait	root	/usr/sbin/telnetd	telnetd\n"
+			inetdData += "#telnet	stream	tcp	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		if fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == True:
 			inetdData += "microsoft-ds	stream	tcp6	nowait	root	/usr/sbin/smbd	smbd\n"
 		elif fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == False:
@@ -451,6 +451,12 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			pass
 		if fileExists('/usr/sbin/nmbd'):
 			inetdData += "netbios-ns	dgram	udp	wait	root	/usr/sbin/nmbd	nmbd\n"
+		if fileExists('/usr/bin/streamproxy') and self.IPv6ConfigEntry.value == True:
+			inetdData += "8001	stream	tcp6	nowait	root	/usr/bin/streamproxy	streamproxy\n"
+		elif fileExists('/usr/bin/streamproxy') and self.IPv6ConfigEntry.value == False:
+			inetdData += "8001	stream	tcp	nowait	root	/usr/bin/streamproxy	streamproxy\n"
+		else:
+			pass
 		if getBoxType() in ('gbquad', 'gbquadplus') and self.IPv6ConfigEntry.value == True:
 			inetdData += "8002	stream	tcp6	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 		elif getBoxType() in ('gbquad', 'gbquadplus') and self.IPv6ConfigEntry.value == False:
