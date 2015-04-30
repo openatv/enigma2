@@ -272,7 +272,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 	int segment_type, page_id, segment_length, processed_length;
 	if (*segment++ !=  0x0F)
 	{
-		eDebug("out of sync.");
+		eDebug("[eDVBSubtitleParser] out of sync.");
 		return -1;
 	}
 	segment_type = *segment++;
@@ -391,7 +391,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 		}
 
 		if (processed_length != segment_length)
-			eDebug("%d != %d", processed_length, segment_length);
+			eDebug("[eDVBSubtitleParser] %d != %d", processed_length, segment_length);
 		break;
 	}
 	case 0x11: // region composition segment
@@ -404,7 +404,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 		// if we didn't yet received the pcs for this page, drop the region
 		if (!page)
 		{
-			eDebug("ignoring region %x, since page %02x doesn't yet exist.", region_id, page_id);
+			eDebug("[eDVBSubtitleParser] ignoring region %x, since page %02x doesn't yet exist.", region_id, page_id);
 			break;
 		}
 
@@ -490,7 +490,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 			else if (depth == 3)
 				memset(region->buffer->surface->data, region_8bit_pixel_code, region->height * region->width);
 			else
-				eDebug("!!!! invalid depth");
+				eDebug("[eDVBSubtitleParser] !!!! invalid depth");
 		}
 
 		region->objects = 0;
@@ -528,7 +528,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 		}
 
 		if (processed_length != segment_length)
-			eDebug("too less data! (%d < %d)", segment_length, processed_length);
+			eDebug("[eDVBSubtitleParser] too less data! (%d < %d)", segment_length, processed_length);
 
 		break;
 	}
@@ -616,7 +616,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 					clut->entries_4bit[CLUT_entry_id].valid = 1;
 				}
 				else
-					eDebug("CLUT entry marked as 4 bit with id %d (>15)", CLUT_entry_id);
+					eDebug("[eDVBSubtitleParser] CLUT entry marked as 4 bit with id %d (>15)", CLUT_entry_id);
 			}
 			if (entry_CLUT_flag & 4) // 2bit
 			{
@@ -629,7 +629,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 					clut->entries_2bit[CLUT_entry_id].valid = 1;
 				}
 				else
-					eDebug("CLUT entry marked as 2 bit with id %d (>3)", CLUT_entry_id);
+					eDebug("[eDVBSubtitleParser] CLUT entry marked as 2 bit with id %d (>3)", CLUT_entry_id);
 			}
 		}
 		break;
@@ -715,7 +715,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 							}
 						}
 						else if (top_field_data_blocklength)
-							eDebug("!!!! unimplemented: no bottom field! (%d : %d)", top_field_data_blocklength, bottom_field_data_blocklength);
+							eDebug("[eDVBSubtitleParser] !!!! unimplemented: no bottom field! (%d : %d)", top_field_data_blocklength, bottom_field_data_blocklength);
 
 						if ((top_field_data_blocklength + bottom_field_data_blocklength) & 1)
 						{
@@ -723,7 +723,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 						}
 					}
 					else if (object_coding_method == 1)
-						eDebug("---- object_coding_method 1 unsupported!");
+						eDebug("[eDVBSubtitleParser] ---- object_coding_method 1 unsupported!");
 				}
 				object = object->next;
 			}
@@ -748,7 +748,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 					int display_window_horizontal_position_max = (segment[6] << 8) | segment[7];
 					int display_window_vertical_position_min = (segment[8] << 8) | segment[9];
 					int display_window_vertical_position_max = (segment[10] << 8) | segment[11];
-					eDebug("NYI hpos min %d, hpos max %d, vpos min %d, vpos max %d",
+					eDebug("[eDVBSubtitleParser] NYI hpos min %d, hpos max %d, vpos min %d, vpos max %d",
 						display_window_horizontal_position_min,
 						display_window_horizontal_position_max,
 						display_window_vertical_position_min,
@@ -756,11 +756,11 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 					processed_length += 8;
 				}
 				else
-					eDebug("display window flag set but display definition segment to short %d!", segment_length);
+					eDebug("[eDVBSubtitleParser] display window flag set but display definition segment to short %d!", segment_length);
 			}
 		}
 		else
-			eDebug("display definition segment to short %d!", segment_length);
+			eDebug("[eDVBSubtitleParser] display definition segment to short %d!", segment_length);
 		break;
 	}
 	case 0x80: // end of display set segment
@@ -771,7 +771,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 	case 0xFF: // stuffing
 		break;
 	default:
-		eDebug("unhandled segment type %02x", segment_type);
+		eDebug("[eDVBSubtitleParser] unhandled segment type %02x", segment_type);
 	}
 
 	return segment_length + 6;
@@ -811,7 +811,7 @@ void eDVBSubtitleParser::subtitle_process_pes(uint8_t *pkt, int len)
 		}
 
 		if (len && *pkt != 0xFF)
-			eDebug("strange data at the end");
+			eDebug("[eDVBSubtitleParser] strange data at the end");
 
 		if (!m_seen_eod)
 			subtitle_redraw_all();
@@ -1092,7 +1092,7 @@ eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
 	setStreamID(0xBD);
 
 	if (demux->createPESReader(eApp, m_pes_reader))
-		eDebug("failed to create dvb subtitle PES reader!");
+		eDebug("[eDVBSubtitleParser] failed to create PES reader!");
 	else
 		m_pes_reader->connectRead(slot(*this, &eDVBSubtitleParser::processData), m_read_connection);
 }
@@ -1106,7 +1106,7 @@ int eDVBSubtitleParser::stop()
 {
 	if (m_pes_reader)
 	{
-		eDebug("disable dvb subtitles");
+		eDebug("[eDVBSubtitleParser] disable dvb subtitles");
 		return m_pes_reader->stop();
 	}
 	return -1;
@@ -1116,7 +1116,7 @@ int eDVBSubtitleParser::start(int pid, int composition_page_id, int ancillary_pa
 {
 	if (m_pes_reader && pid >= 0 && pid < 0x1fff)
 	{
-		eDebug("start dvb subtitles on pid 0x%04x with composition_page_id %d and ancillary_page_id %d",
+		eDebug("[eDVBSubtitleParser] start on pid 0x%04x with composition_page_id %d and ancillary_page_id %d",
 			pid, composition_page_id, ancillary_page_id);
 		m_composition_page_id = composition_page_id;
 		m_ancillary_page_id = ancillary_page_id;

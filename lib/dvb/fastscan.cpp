@@ -356,7 +356,7 @@ void eFastScan::start(int frontendid)
 
 	if (res->allocateRawChannel(m_channel, frontendid))
 	{
-		eDebug("failed to allocate fastscan channel!");
+		eDebug("[eFastScan] failed to allocate fastscan channel!");
 		scanCompleted(-1);
 		return;
 	}
@@ -396,7 +396,7 @@ void eFastScan::networkTableProgress(int size, int max)
 
 void eFastScan::servicesTableReady(int error)
 {
-	eDebug("eFastScan::servicesTableReady %d", error);
+	eDebug("[eFastScan] servicesTableReady %d", error);
 	if (error)
 	{
 		m_channel = NULL;
@@ -413,7 +413,7 @@ void eFastScan::servicesTableReady(int error)
 
 void eFastScan::networkTableReady(int error)
 {
-	eDebug("eFastScan::networkTableReady %d", error);
+	eDebug("[eFastScan] networkTableReady %d", error);
 
 	if (!error)
 	{
@@ -656,7 +656,7 @@ void eFastScan::parseResult()
 		}
 		else
 		{
-			eDebug("failed to create bouquet!");
+			eDebug("[eFastScan] failed to create bouquet!");
 		}
 	}
 	else
@@ -707,7 +707,7 @@ void eFastScan::parseResult()
 			}
 			else
 			{
-				eDebug("failed to create bouquet!");
+				eDebug("[eFastScan] failed to create bouquet!");
 			}
 		}
 		else

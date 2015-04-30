@@ -15,7 +15,7 @@ eWindowStyleSkinned::eWindowStyleSkinned()
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
 {
-//	eDebug("handle new size: %d x %d", size.width(), size.height());
+//	eDebug("[eWindowStyleSkinned] handle new size: %d x %d", size.width(), size.height());
 
 	size = eSize(
 			size.width() + m_border[bsWindow].m_border_left + m_border[bsWindow].m_border_right,
@@ -89,7 +89,7 @@ void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int w
 		bs = bsListboxEntry;
 		break;
 	default:
-		eWarning("invalid frame style %d", what);
+		eWarning("[eWindowStyleSkinned] invalid frame style %d", what);
 		return;
 	}
 	drawBorder(painter, frame, m_border[bs], bpAll);
@@ -256,7 +256,7 @@ void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 	else
 		m_border[bs].m_border_right = 0;
 
-/*	eDebug("recalced border size for %d: %d:%d %d:%d",
+/*	eDebug("[eWindowStyleSkinned] recalced border size for %d: %d:%d %d:%d",
 		bs,
 		m_border[bs].m_border_left, m_border[bs].m_border_top,
 		m_border[bs].m_border_right, m_border[bs].m_border_bottom);  */

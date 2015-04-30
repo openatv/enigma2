@@ -167,7 +167,7 @@ int eDVBServiceStream::doRecord()
 		int timing_pid = -1, timing_stream_type = -1;
 		iDVBTSRecorder::timing_pid_type timing_pid_type = iDVBTSRecorder::none;
 
-		eDebugNoNewLineStart("[eDVBServiceStream]: have %zd video stream(s)", program.videoStreams.size());
+		eDebugNoNewLineStart("[eDVBServiceStream] have %zd video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
 			eDebugNoNewLine(" (");

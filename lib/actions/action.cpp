@@ -84,7 +84,7 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 			return;
 		}
 	}
-	eFatal("unbindAction with illegal python reference");
+	eFatal("[eActionMap] unbindAction with illegal python reference");
 }
 
 
@@ -208,7 +208,7 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 				}
 			} else
 			{
-//				eDebug("wildcard.");
+//				eDebug("[eActionMap] wildcard.");
 				ePyObject pArgs = PyTuple_New(2);
 				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));
