@@ -2312,7 +2312,7 @@ class InfoBarSeek:
 		else:
 #			print "seekable"
 			self["SeekActions"].setEnabled(True)
-			self.activityTimer.start(500, False)
+			self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 			for c in self.onPlayStateChanged:
 				c(self.seekstate)
 
@@ -2403,7 +2403,7 @@ class InfoBarSeek:
 					# print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
 #				print "resolved to PLAY"
-				self.activityTimer.start(500, False)
+				self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 				pauseable.unpause()
 
 		for c in self.onPlayStateChanged:
@@ -2496,9 +2496,9 @@ class InfoBarSeek:
 
 	def DoSeekAction(self):
 		if self.seekAction > 2:
-			self.doSeekRelative(self.seekAction * 4 * 90000 )
+			self.doSeekRelative(self.seekAction * int(config.seek.withjumps_forwards_ms.getValue()) * 90)
 		elif self.seekAction < 0:
-			self.doSeekRelative(self.seekAction * 2 * 90000 )
+			self.doSeekRelative(self.seekAction * int(config.seek.withjumps_backwards_ms.getValue()) * 90)
 
 		for c in self.onPlayStateChanged:
 			if self.seekAction > 2: # Forward
