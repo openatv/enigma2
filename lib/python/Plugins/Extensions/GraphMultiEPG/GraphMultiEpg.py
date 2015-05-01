@@ -968,7 +968,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self.bouquetChangeCB(-1, self)
 
 	def togglePrimeNow(self):
-		if self.time_mode == self.TIME_NOW:
+		if self.time_mode == self.TIME_NOW or self.time_mode == self.TIME_CHANGE:
 			self.setNewTime("prime_time")
 		elif self.time_mode == self.TIME_PRIME:
 			self.setNewTime("now_time")
