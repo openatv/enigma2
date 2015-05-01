@@ -96,7 +96,7 @@ int main()
 //	dumpRegion(bla2->m_visible_region);
 //	dumpRegion(blablub->m_visible_region);
 
-	eDebug("painting!");
+	eDebug([pMAIN gui] painting!");
 
 	dsk.invalidate(gRegion(eRect(0, 0, 720, 576)));
 	dsk.paint();

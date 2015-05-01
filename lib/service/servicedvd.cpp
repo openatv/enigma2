@@ -123,7 +123,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 	ssize_t rd;
 
 	m_sn = eSocketNotifier::create(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
-	eDebug("SERVICEDVD construct!");
+	eDebug("[eServiceDVD] construct!");
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, ref.path.c_str());
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
@@ -213,11 +213,11 @@ void eServiceDVD::gotMessage(int /*what*/)
 				return 1;
 			}
 */
-			eDebug("no support for 8bpp framebuffer in dvdplayer yet!");
+			eDebug("[eServiceDVD] no support for 8bpp framebuffer in dvdplayer yet!");
 			break;
 		}
 		case DDVD_SCREEN_UPDATE:
-			eDebug("DVD_SCREEN_UPDATE!");
+			eDebug("[eServiceDVD] DVD_SCREEN_UPDATE!");
 			if (m_subtitle_widget) {
 				int x1,x2,y1,y2;
 				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
@@ -226,7 +226,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 
 #ifdef DDVD_SUPPORTS_GET_BLIT_DESTINATION
 				ddvd_get_blit_destination(m_ddvdconfig, &x_offset, &y_offset, &width, &height);
-				eDebug("values got from ddvd: %d %d %d %d", x_offset, y_offset, width, height);
+				eDebug("[eServiceDVD] values got from ddvd: %d %d %d %d", x_offset, y_offset, width, height);
 				y_offset = -y_offset;
 				width -= x_offset * 2;
 				height -= y_offset * 2;
@@ -239,61 +239,61 @@ void eServiceDVD::gotMessage(int /*what*/)
 			break;
 		case DDVD_SHOWOSD_STATE_PLAY:
 		{
-			eDebug("DVD_SHOWOSD_STATE_PLAY!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_PLAY!");
 			m_current_trick = 0;
 			m_event(this, evUser+1);
 			break;
 		}
 		case DDVD_SHOWOSD_STATE_PAUSE:
 		{
-			eDebug("DVD_SHOWOSD_STATE_PAUSE!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_PAUSE!");
 			m_event(this, evUser+2);
 			break;
 		}
 		case DDVD_SHOWOSD_STATE_FFWD:
 		{
-			eDebug("DVD_SHOWOSD_STATE_FFWD!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_FFWD!");
 			m_event(this, evUser+3);
 			break;
 		}
 		case DDVD_SHOWOSD_STATE_FBWD:
 		{
-			eDebug("DVD_SHOWOSD_STATE_FBWD!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_FBWD!");
 			m_event(this, evUser+4);
 			break;
 		}
 		case DDVD_SHOWOSD_STRING:
 		{
-			eDebug("DVD_SHOWOSD_STRING!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STRING!");
 			m_event(this, evUser+5);
 			break;
 		}
 		case DDVD_SHOWOSD_AUDIO:
 		{
-			eDebug("DVD_SHOWOSD_AUDIO!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_AUDIO!");
 			m_event(this, evUser+6);
 			break;
 		}
 		case DDVD_SHOWOSD_SUBTITLE:
 		{
-			eDebug("DVD_SHOWOSD_SUBTITLE!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_SUBTITLE!");
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			m_event(this, evUser+7);
 			break;
 		}
 		case DDVD_EOF_REACHED:
-			eDebug("DVD_EOF_REACHED!");
+			eDebug("[eServiceDVD] DVD_EOF_REACHED!");
 			m_event(this, evEOF);
 			break;
 		case DDVD_SOF_REACHED:
-			eDebug("DVD_SOF_REACHED!");
+			eDebug("[eServiceDVD] DVD_SOF_REACHED!");
 			m_event(this, evSOF);
 			break;
 		case DDVD_SHOWOSD_ANGLE:
 		{
 			int current, num;
 			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
-			eDebug("DVD_ANGLE_INFO: %d / %d", current, num);
+			eDebug("[eServiceDVD] DVD_ANGLE_INFO: %d / %d", current, num);
 			m_event(this, evUser+13);
 			break;
 		}
@@ -313,7 +313,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		case DDVD_SHOWOSD_TITLESTRING:
 		{
 			ddvd_get_title_string(m_ddvdconfig, m_ddvd_titlestring);
-			eDebug("DDVD_SHOWOSD_TITLESTRING: %s",m_ddvd_titlestring);
+			eDebug("[eServiceDVD] DDVD_SHOWOSD_TITLESTRING: %s",m_ddvd_titlestring);
 			loadCuesheet();
 			if (!m_cue_pts)
 				unpause();
@@ -321,13 +321,13 @@ void eServiceDVD::gotMessage(int /*what*/)
 			break;
 		}
 		case DDVD_MENU_OPENED:
-			eDebug("DVD_MENU_OPENED!");
+			eDebug("[eServiceDVD] DVD_MENU_OPENED!");
 			m_state = stMenu;
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+11);
 			break;
 		case DDVD_MENU_CLOSED:
-			eDebug("DVD_MENU_CLOSED!");
+			eDebug("[eServiceDVD] DVD_MENU_CLOSED!");
 			m_state = stRunning;
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
@@ -365,7 +365,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 
 eServiceDVD::~eServiceDVD()
 {
-	eDebug("SERVICEDVD destruct!");
+	eDebug("[eServiceDVD] destruct!");
 	kill();
 	saveCuesheet();
 	ddvd_close(m_ddvdconfig);
@@ -382,7 +382,7 @@ RESULT eServiceDVD::start()
 {
 	ASSERT(m_state == stIdle);
 	m_state = stRunning;
-	eDebug("eServiceDVD starting");
+	eDebug("[eServiceDVD] starting");
 // 	m_event(this, evStart);
 	return 0;
 }
@@ -392,7 +392,7 @@ RESULT eServiceDVD::stop()
 	ASSERT(m_state != stIdle);
 	if (m_state == stStopped)
 		return -1;
-	eDebug("DVD: stop %s", m_ref.path.c_str());
+	eDebug("[eServiceDVD] stop %s", m_ref.path.c_str());
 	m_state = stStopped;
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_EXIT);
 
@@ -486,7 +486,7 @@ RESULT eServiceDVD::keys(ePtr<iServiceKeys> &ptr)
 	// iPausableService
 RESULT eServiceDVD::setSlowMotion(int ratio)
 {
-	eDebug("setSlowmode(%d)", ratio);
+	eDebug("[eServiceDVD] setSlowmode(%d)", ratio);
 	// pass ratio as repeat factor.
 	// ratio=2 means 1/2 speed
 	// ratio=3 means 1/3 speed
@@ -497,7 +497,7 @@ RESULT eServiceDVD::setSlowMotion(int ratio)
 
 RESULT eServiceDVD::setFastForward(int trick)
 {
-	eDebug("setTrickmode(%d)", trick);
+	eDebug("[eServiceDVD] setTrickmode(%d)", trick);
 	ddvd_send_key(m_ddvdconfig, trick < 0 ? DDVD_KEY_FASTBWD : DDVD_KEY_FASTFWD);
 	ddvd_send_key(m_ddvdconfig, trick);
 	return 0;
@@ -505,28 +505,28 @@ RESULT eServiceDVD::setFastForward(int trick)
 
 RESULT eServiceDVD::pause()
 {
-	eDebug("set pause!\n");
+	eDebug("[eServiceDVD] set pause!\n");
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_PAUSE);
 	return 0;
 }
 
 RESULT eServiceDVD::unpause()
 {
-	eDebug("set unpause!\n");
+	eDebug("[eServiceDVD] set unpause!\n");
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_PLAY);
 	return 0;
 }
 
 void eServiceDVD::thread()
 {
-	eDebug("eServiceDVD dvd thread started");
+	eDebug("[eServiceDVD] dvd thread started");
 	hasStarted();
 	ddvd_run(m_ddvdconfig);
 }
 
 void eServiceDVD::thread_finished()
 {
-	eDebug("eServiceDVD dvd thread finished");
+	eDebug("[eServiceDVD] dvd thread finished");
 	m_pump.send(1); // inform main thread
 }
 
@@ -611,7 +611,7 @@ std::string eServiceDVD::getInfoString(int w)
 		case sServiceref:
 			return m_ref.toString();
 		default:
-			eDebug("unhandled getInfoString(%d)", w);
+			eDebug("[eServiceDVD] unhandled getInfoString(%d)", w);
 	}
 	return "";
 }
@@ -620,7 +620,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 {
 	eServiceDVDInfoContainer *container = new eServiceDVDInfoContainer;
 	ePtr<iServiceInfoContainer> retval = container;
-	eDebug("eServiceDVD::getInfoObject %d", w);
+	eDebug("[eServiceDVD] getInfoObject %d", w);
 	switch (w)
 	{
 		case sUser + 6:
@@ -675,7 +675,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			break;
 		}
 		default:
-			eDebug("unhandled getInfoObject(%d)", w);
+			eDebug("[eServiceDVD] unhandled getInfoObject(%d)", w);
 	}
 	return retval;
 }
@@ -697,7 +697,7 @@ RESULT eServiceDVD::enableSubtitles(iSubtitleUser *user, SubtitleTrack &track)
 		m_event(this, evUser+7);
 	}
 
-	eDebug("eServiceDVD::enableSubtitles %i", pid);
+	eDebug("[eServiceDVD] enableSubtitles %i", pid);
 
 	if (!m_pixmap)
 	{
@@ -745,7 +745,7 @@ RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 
 RESULT eServiceDVD::getCachedSubtitle(struct SubtitleTrack &track)
 {
-	eDebug("eServiceDVD::getCachedSubtitle nyi");
+	eDebug("[eServiceDVD] getCachedSubtitle nyi");
 	return -1;
 }
 
@@ -763,10 +763,10 @@ RESULT eServiceDVD::getLength(pts_t &len)
 
 RESULT eServiceDVD::seekTo(pts_t to)
 {
-	eDebug("eServiceDVD::seekTo(%lld)",to);
+	eDebug("[eServiceDVD] seekTo(%lld)",to);
 	if ( to > 0 )
 	{
-		eDebug("set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
+		eDebug("[eServiceDVD] set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
 	}
 	return 0;
@@ -776,7 +776,7 @@ RESULT eServiceDVD::seekRelative(int direction, pts_t to)
 {
 	int seconds = to / 90000;
 	seconds *= direction;
-	eDebug("seekRelative %d %d", direction, seconds);
+	eDebug("[eServiceDVD] seekRelative %d %d", direction, seconds);
 	ddvd_skip_seconds(m_ddvdconfig, seconds);
 	return 0;
 }
@@ -788,21 +788,21 @@ RESULT eServiceDVD::getPlayPosition(pts_t &pos)
 	pos = info.pos_hours * 3600;
 	pos += info.pos_minutes * 60;
 	pos += info.pos_seconds;
-// 	eDebug("getPlayPosition %lld", pos);
+// 	eDebug("[eServiceDVD] getPlayPosition %lld", pos);
 	pos *= 90000;
 	return 0;
 }
 
 RESULT eServiceDVD::seekTitle(int title)
 {
-	eDebug("setTitle %d", title);
+	eDebug("[eServiceDVD] setTitle %d", title);
 	ddvd_set_title(m_ddvdconfig, title);
 	return 0;
 }
 
 RESULT eServiceDVD::seekChapter(int chapter)
 {
-	eDebug("setChapter %d", chapter);
+	eDebug("[eServiceDVD] setChapter %d", chapter);
 	if ( chapter > 0 )
 		ddvd_set_chapter(m_ddvdconfig, chapter);
 	return 0;
@@ -925,7 +925,7 @@ void eServiceDVD::loadCuesheet()
 				strcpy(filename, "/home/root/dvd-untitled.cuts");
 			}
 		}
-		eDebug("eServiceDVD::loadCuesheet() filename=%s",filename);
+		eDebug("[eServiceDVD] loadCuesheet filename=%s",filename);
 		f = fopen(filename, "rb");
 	}
 
@@ -956,18 +956,18 @@ void eServiceDVD::loadCuesheet()
 
 		fclose(f);
 	} else
-		eDebug("cutfile not found!");
+		eDebug("[eServiceDVD] cutfile not found!");
 
 	if (m_cue_pts)
 	{
 		m_event((iPlayableService*)this, evCuesheetChanged);
-		eDebug("eServiceDVD::loadCuesheet() pts=%lld",m_cue_pts);
+		eDebug("[eServiceDVD] loadCuesheet pts=%lld",m_cue_pts);
 	}
 }
 
 void eServiceDVD::saveCuesheet()
 {
-	eDebug("eServiceDVD::saveCuesheet()");
+	eDebug("[eServiceDVD] saveCuesheet");
 
 	struct ddvd_resume resume_info;
 	ddvd_get_resume_pos(m_ddvdconfig, &resume_info);
@@ -982,11 +982,11 @@ void eServiceDVD::saveCuesheet()
 		pos += info.pos_seconds;
 		pos *= 90000;
 		m_cue_pts = pos;
-	 	eDebug("ddvd_get_resume_pos resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d  (pts=%llu)",resume_info.title,resume_info.chapter,resume_info.block,resume_info.audio_id, resume_info.audio_lock, resume_info.spu_id, resume_info.spu_lock,m_cue_pts);
+		eDebug("[eServiceDVD] ddvd_get_resume_pos resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d  (pts=%llu)",resume_info.title,resume_info.chapter,resume_info.block,resume_info.audio_id, resume_info.audio_lock, resume_info.spu_id, resume_info.spu_lock,m_cue_pts);
 	}
 	else
 	{
-		eDebug("we're in a menu or somewhere else funny. so save cuesheet with pts=0");
+		eDebug("[eServiceDVD] we're in a menu or somewhere else funny. so save cuesheet with pts=0");
 		m_cue_pts = 0;
 	}
 
@@ -1014,7 +1014,7 @@ void eServiceDVD::saveCuesheet()
 				strcpy(filename, "/home/root/dvd-untitled.cuts");
 			}
 		}
-		eDebug("eServiceDVD::saveCuesheet() filename=%s",filename);
+		eDebug("[eServiceDVD] saveCuesheet filename=%s",filename);
 		f = fopen(filename, "wb");
 	}
 

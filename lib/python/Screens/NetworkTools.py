@@ -12,6 +12,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import fileExists
 from boxbranding import getMachineBrand, getMachineName, getBoxType
+from subprocess import call
 import commands
 import os
 
@@ -255,8 +256,6 @@ class NetworkSamba(Screen):
 		commands = []
 		if not self.my_Samba_run:
 			commands.append('/etc/init.d/samba start')
-			commands.append('nmbd -D')
-			commands.append('smbd -D')
 		elif self.my_Samba_run:
 			commands.append('/etc/init.d/samba stop')
 			commands.append('killall nmbd')
@@ -268,15 +267,14 @@ class NetworkSamba(Screen):
 		self.updateService()
 
 	def activateSamba(self):
-		if access('/etc/network/if-up.d/01samba-start', X_OK):
-			chmod('/etc/network/if-up.d/01samba-start', 0644)
-		elif not access('/etc/network/if-up.d/01samba-start', X_OK):
-			chmod('/etc/network/if-up.d/01samba-start', 0755)
-
+		commands = []
 		if fileExists('/etc/rc2.d/S20samba'):
-			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
+			commands.append('/etc/init.d/samba stop')
+			commands.append('update-rc.d -f samba remove')
 		else:
-			self.Console.ePopen('update-rc.d -f samba defaults', self.StartStopCallback)
+			commands.append('/etc/init.d/samba start')
+			commands.append('update-rc.d -f samba defaults')
+		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
 		import process
@@ -286,19 +284,23 @@ class NetworkSamba(Screen):
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
 		self.my_Samba_active = False
-		self.my_Samba_run = False
 		if fileExists('/etc/rc2.d/S20samba'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_Samba_active = True
 
-		if access('/etc/network/if-up.d/01samba-start', X_OK):
-			self['labactive'].setText(_("Enabled"))
-			self['labactive'].show()
-			self.my_Samba_active = True
+		self.my_Samba_run = False
 
 		if samba_process:
 			self.my_Samba_run = True
+		if fileExists('/etc/inetd.conf'):
+			f = open('/etc/inetd.conf', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if parts[0] == 'microsoft-ds':
+					self.my_Samba_run = True
+					continue
+
 		if self.my_Samba_run:
 			self['labstop'].hide()
 			self['labactive'].show()
@@ -407,11 +409,13 @@ class InetdRecovery(Screen, ConfigListScreen):
 		inetdData += "#time	dgram	udp	wait	root	internal\n"
 		inetdData += "ftp	stream	" + sockType + "	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
 		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
-		inetdData += "telnet	stream	" + sockType + "	nowait	root	/usr/sbin/telnetd	telnetd\n"
+		inetdData += "#telnet	stream	" + sockType + "	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		if fileExists('/usr/sbin/smbd'):
 			inetdData += "microsoft-ds	stream	" + sockType + "	nowait	root	/usr/sbin/smbd	smbd\n"
 		if fileExists('/usr/sbin/nmbd'):
 			inetdData += "netbios-ns	dgram	udp	wait	root	/usr/sbin/nmbd	nmbd\n"
+		if fileExists('/usr/bin/streamproxy'):
+			inetdData += "8001	stream	" + sockType + "	nowait	root	/usr/bin/streamproxy	streamproxy\n"
 		if getBoxType() in ('gbquad', 'gbquadplus'):
 			inetdData += "8002	stream	" + sockType + "	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 			

@@ -49,13 +49,13 @@ int eDVBVolumecontrol::openMixer()
 		err = snd_mixer_open(&alsaMixerHandle, 0);
 		if (err < 0)
 		{
-			eDebug("Mixer %s open error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer %s open error: %s", card, snd_strerror(err));
 			return err;
 		}
 		err = snd_mixer_attach(alsaMixerHandle, card);
 		if (err < 0)
 		{
-			eDebug("Mixer attach %s error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer attach %s error: %s", card, snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;
@@ -63,7 +63,7 @@ int eDVBVolumecontrol::openMixer()
 		err = snd_mixer_selem_register(alsaMixerHandle, NULL, NULL);
 		if (err < 0)
 		{
-			eDebug("Mixer register error: %s", snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer register error: %s", snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;
@@ -71,7 +71,7 @@ int eDVBVolumecontrol::openMixer()
 		err = snd_mixer_load(alsaMixerHandle);
 		if (err < 0)
 		{
-			eDebug("Mixer %s load error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer %s load error: %s", card, snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;
@@ -137,21 +137,21 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	mixer.volume_left = left;
 	mixer.volume_right = right;
 
-	eDebug("Setvolume: raw: %d %d, -1db: %d %d", leftVol, rightVol, left, right);
+	eDebug("[eDVBVolumecontrol] Setvolume: raw: %d %d, -1db: %d %d", leftVol, rightVol, left, right);
 
 	int fd = openMixer();
 	if (fd >= 0)
 	{
 #ifdef HAVE_DVB_API_VERSION
 		if (ioctl(fd, AUDIO_SET_MIXER, &mixer) < 0) {
-			eDebug("Setvolume: failed %m");
+			eDebug("[eDVBVolumecontrol] Setvolume failed: %m");
 		}
 #endif
 		closeMixer(fd);
 		return;
 	}
 	else {
-		eDebug("SetVolume: failed to open mixer");
+		eDebug("[eDVBVolumecontrol] SetVolume failed to open mixer: %m");
 	}
 
 	//HACK?
@@ -194,7 +194,8 @@ void eDVBVolumecontrol::volumeMute()
 void eDVBVolumecontrol::volumeUnMute()
 {
 #ifdef HAVE_ALSA
-	if (mainVolume) snd_mixer_selem_set_playback_volume_all(mainVolume, leftVol);
+	if (mainVolume)
+		snd_mixer_selem_set_playback_volume_all(mainVolume, leftVol);
 	muted = false;
 #else
 	int fd = openMixer();

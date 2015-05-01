@@ -10,6 +10,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSel
 from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Tools.Directories import *
+addnotifier = None
 
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	skin = """
@@ -45,10 +46,11 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.createSetup()
 
 	def createSetup(self):
-		print "Creating Graph Epg Setup"
+		global addnotifier
 		self.list = [ ]
 		self.list.append(getConfigListEntry(_("Event font size (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time scale"), config.misc.graph_mepg.prev_time_period))
+		self.list.append(getConfigListEntry(_("Prime time"), config.misc.graph_mepg.prime_time))
 		self.list.append(getConfigListEntry(_("Items per page "), config.misc.graph_mepg.items_per_page))
 		self.list.append(getConfigListEntry(_("Items per page for list screen"), config.misc.graph_mepg.items_per_page_listscreen))
 		self.list.append(getConfigListEntry(_("Start with list screen"), config.misc.graph_mepg.default_mode))
@@ -62,8 +64,8 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Center time-labels and remove date"), config.misc.graph_mepg.center_timeline))
 		self.list.append(getConfigListEntry(_("Show in extensions menu"), config.misc.graph_mepg.extension_menu))
 		self.list.append(getConfigListEntry(_("Silently zap between bouquets"), config.misc.graph_mepg.silent_bouquet_change))
-
-		config.misc.graph_mepg.extension_menu.addNotifier(plugins.reloadPlugins)
+		if addnotifier is None:
+			addnotifier = config.misc.graph_mepg.extension_menu.addNotifier(plugins.reloadPlugins, initial_call=False)
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

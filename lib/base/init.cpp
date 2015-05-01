@@ -44,7 +44,7 @@ void eInit::setRunlevel(int nrl)
 		{
 			if ((*i).first == rl)
 			{
-				eDebug("+ (%d) %s", rl, (*i).second->getDescription());
+				eDebug("[eInit] + (%d) %s", rl, (*i).second->getDescription());
 				(*i).second->initNow();
 			}
 		}
@@ -55,12 +55,12 @@ void eInit::setRunlevel(int nrl)
 		for (std::list<std::pair<int,eAutoInit*> >::iterator i(cl->begin()); i!=cl->end(); ++i)
 			if ((*i).first == rl)
 			{
-				eDebug("- (%d) %s", rl, (*i).second->getDescription());
+				eDebug("[eInit] - (%d) %s", rl, (*i).second->getDescription());
 				(*i).second->closeNow();
 			}
 		rl--;
 	}
-	eDebug("reached rl %d", rl);
+	eDebug("[eInit] reached rl %d", rl);
 }
 
 eAutoInit::~eAutoInit()

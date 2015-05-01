@@ -31,7 +31,7 @@ from Tools import Notifications
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER,\
 	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from GraphMultiEpgSetup import GraphMultiEpgSetup
-from time import localtime, time, strftime
+from time import localtime, time, strftime, mktime
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
@@ -41,6 +41,10 @@ MAX_TIMELINES = 6
 config.misc.graph_mepg = ConfigSubsection()
 config.misc.graph_mepg.prev_time = ConfigClock(default = time())
 config.misc.graph_mepg.prev_time_period = ConfigInteger(default = 120, limits = (60, 300))
+now_time = [x for x in localtime()]
+now_time[3] = 20
+now_time[4] = 30
+config.misc.graph_mepg.prime_time = ConfigClock(default =  mktime(now_time))
 config.misc.graph_mepg.ev_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -12, max = 12, wraparound = True)
 config.misc.graph_mepg.items_per_page = ConfigSelectionNumber(min = 3, max = 40, stepwidth = 1, default = 6, wraparound = True)
 config.misc.graph_mepg.items_per_page_listscreen = ConfigSelectionNumber(min = 3, max = 60, stepwidth = 1, default = 12, wraparound = True)
@@ -793,7 +797,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
-
+	TIME_NOW = 0
+	TIME_PRIME = 1
+	TIME_CHANGE = 2
 	ZAP = 1
 
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
@@ -815,6 +821,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
+		self.time_mode = self.TIME_NOW
 		self["timeline_text"] = TimelineText()
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
@@ -916,6 +923,10 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def updEvent(self, dir, visible = True):
 		ret = self["list"].selEntry(dir, visible)
 		if ret:
+			if self["list"].offs > 0:
+				self.time_mode = self.TIME_CHANGE
+			else:
+				self.time_mode = self.TIME_NOW
 			self.moveTimeLines(True)
 
 	def updEpoch(self, mins):
@@ -956,9 +967,26 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self.bouquetChangeCB(-1, self)
 
 	def enterDateTime(self):
-		t = localtime(time())
-		config.misc.graph_mepg.prev_time.value = [t.tm_hour, t.tm_min]
-		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time)
+		text = _("Select action")
+		menu = []
+		prime = [(_("Prime time"), "prime_time")]
+		now = [(_("Now"), "now_time")]
+		if self.time_mode == self.TIME_NOW:
+			menu = prime
+		elif self.time_mode == self.TIME_PRIME:
+			menu = now
+		elif self.time_mode == self.TIME_CHANGE:
+			menu = now + prime
+		menu.append((_("Input date/time"), "input_time"))
+		def timeAction(choice):
+			if choice:
+				if choice[1] in ("now_time", "prime_time"):
+					self.setNewTime(choice[1])
+				elif choice[1] == "input_time":
+					t = localtime(time())
+					config.misc.graph_mepg.prev_time.value = [t.tm_hour, t.tm_min]
+					self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time)
+		self.session.openWithCallback(timeAction, ChoiceBox, title=text, list=menu)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
@@ -970,6 +998,25 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				l.resetOffset()
 				l.fillMultiEPG(None, self.ask_time)
 				self.moveTimeLines(True)
+				self.time_mode = self.TIME_CHANGE
+
+	def setNewTime(self, type=''):
+		if type:
+			date = time() - config.epg.histminutes.getValue() * 60
+			if type == "now_time":
+				self.time_mode = self.TIME_NOW
+			elif type == "prime_time":
+				now = [x for x in localtime(date)]
+				prime = config.misc.graph_mepg.prime_time.value
+				date = mktime([now[0], now[1], now[2], prime[0], prime[1], 0, 0, 0, now[8]])
+				if now[3] > prime[0] or (now[3] == prime[0] and now[4] > prime[1]):
+					date = date + 60*60*24
+				self.time_mode = self.TIME_PRIME
+			l = self["list"]
+			self.ask_time = date - date % int(config.misc.graph_mepg.roundTo.getValue())
+			l.resetOffset()
+			l.fillMultiEPG(None, self.ask_time)
+			self.moveTimeLines(True)
 
 	def showSetup(self):
 		if self.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value:
@@ -996,6 +1043,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines(True)
+		self.time_mode = self.TIME_NOW
 
 	def closeScreen(self):
 		self.zapFunc(None, zapback = True)

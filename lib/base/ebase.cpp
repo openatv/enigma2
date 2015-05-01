@@ -56,9 +56,9 @@ void eTimer::start(long msek, bool singleShot)
 		bSingleShot = singleShot;
 		interval = msek;
 		clock_gettime(CLOCK_MONOTONIC, &nextActivation);
-//		eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_nsec, msek);
+//		eDebug("[eTimer] this = %p\nnow sec = %d, nsec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_nsec, msek);
 		nextActivation += (msek<0 ? 0 : msek);
-//		eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
+//		eDebug("[eTimer] next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
 		context.addTimer(this);
 	}
 }
@@ -73,10 +73,10 @@ void eTimer::startLongTimer(int seconds)
 		bActive = bSingleShot = true;
 		interval = 0;
 		clock_gettime(CLOCK_MONOTONIC, &nextActivation);
-//		eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_nsec, seconds);
+//		eDebug("[eTimer] this = %p\nnow sec = %d, nsec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_nsec, seconds);
 		if ( seconds > 0 )
 			nextActivation.tv_sec += seconds;
-//		eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
+//		eDebug("[eTimer] next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
 		context.addTimer(this);
 	}
 }
@@ -166,8 +166,8 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 		return;
 	}
 	for (i = notifiers.begin(); i != notifiers.end(); ++i)
-		eDebug("fd=%d, sn=%p", i->second->getFD(), (void*)i->second);
-	eFatal("removed socket notifier which is not present, fd=%d", fd);
+		eDebug("[eMainloop::removeSocketNotifier] fd=%d, sn=%p", i->second->getFD(), (void*)i->second);
+	eFatal("[eMainloop::removeSocketNotifier] removed socket notifier which is not present, fd=%d", fd);
 }
 
 int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePyObject additional)
@@ -176,10 +176,10 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		/* get current time */
 
 	if (additional && !PyDict_Check(additional))
-		eFatal("additional, but it's not dict");
+		eFatal("[eMainloop::processOneEvent] additional, but it's not dict");
 
 	if (additional && !res)
-		eFatal("additional, but no res");
+		eFatal("[eMainloop::processOneEvent] additional, but no res");
 
 	long poll_timeout = -1; /* infinite in case of empty timer list */
 
@@ -287,7 +287,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 					m_inActivate = 0;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+					eDebug("[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 		}
 		for (; i < fdcount; ++i)
@@ -308,7 +308,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 	{
 			/* when we got a signal, we get EINTR. */
 		if (errno != EINTR)
-			eDebug("poll made error (%m)");
+			eDebug("[eMainloop::processOneEvent] poll made error: %m");
 		else
 			return_reason = 2; /* don't assume the timeout has passed when we got a signal */
 	}
