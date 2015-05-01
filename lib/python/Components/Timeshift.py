@@ -623,8 +623,8 @@ class InfoBarTimeshift:
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station,self.pts_curevent_name.replace("\n", ""))
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "event" and self.pts_curevent_name.replace("\n", "") != pts_curevent_description.replace("\n", ""):
-								ptsfilename = "%s - %s_%s" % (self.pts_curevent_name.replace("\n", ""),self.pts_curevent_station,strftime("%Y%m%d %H%M",localtime(self.pts_starttime)))
+							if config.recording.filename_composition.value == "event":
+								ptsfilename = "%s - %s_%s" % (self.pts_curevent_name.replace("\n", ""),strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station)
 							elif config.recording.filename_composition.value == "long" and self.pts_curevent_name.replace("\n", "") != pts_curevent_description.replace("\n", ""):
 								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station,self.pts_curevent_name.replace("\n", ""),self.pts_curevent_description.replace("\n", ""))
 							elif config.recording.filename_composition.value == "short":
@@ -655,8 +655,8 @@ class InfoBarTimeshift:
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname)
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "event" and eventname != description:
-								ptsfilename = "%s - %s_%s" % (eventname,self.pts_curevent_station,strftime("%Y%m%d %H%M",localtime(int(begintime))))
+							if config.recording.filename_composition.value == "event":
+								ptsfilename = "%s - %s_%s" % (eventname,strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station)
 							elif config.recording.filename_composition.value == "long" and eventname != description:
 								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station,eventname,description)
 							elif config.recording.filename_composition.value == "short":

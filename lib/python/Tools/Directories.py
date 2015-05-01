@@ -135,7 +135,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		if base and pathExists(tmp + base):
 			path = tmp
 		elif base and pathExists(defaultPaths[SCOPE_LCDSKIN][0] + base):
-			path = defaultPaths[SCOPE_SKIN][0]
+			path = defaultPaths[SCOPE_LCDSKIN][0]
 		else:
 			tmp = defaultPaths[SCOPE_LCDSKIN][0]
 			pos = config.skin.display_skin.value.rfind('/')
