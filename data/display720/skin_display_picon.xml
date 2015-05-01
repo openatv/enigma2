@@ -33,42 +33,42 @@
 
 <!-- Tunerstatuspanel -->
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="20,500" size="25,70" text="A" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="50,500" size="25,70" text="B" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="80,500" size="25,70" text="C" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00FF00" >
+		<widget source="session.TunerInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="##00FF00" >
+		<widget source="session.FrontendInfo" render="FixedLabel" position="110,500" size="25,70" text="D" font="FdLcDLight;55" halign="center" valign="bottom" foregroundColor="#00ff00" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
