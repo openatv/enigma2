@@ -862,7 +862,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"prevService": (self.prevPressed,    _("Goto previous page of events")),
 				"preview":     (self.preview,        _("Preview selected channel")),
 				"nextDay":     (self.nextDay,        _("Goto next day of events")),
-				"prevDay":     (self.prevDay,        _("Goto previous day of events"))
+				"prevDay":     (self.prevDay,        _("Goto previous day of events")),
+				"primeTime":   (self.togglePrimeNow, _("Goto primetime / now"))
 			}, -1)
 		self["epgactions"].csel = self
 
@@ -965,6 +966,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def prevBouquet(self):
 		if self.bouquetChangeCB:
 			self.bouquetChangeCB(-1, self)
+
+	def togglePrimeNow(self):
+		if self.time_mode == self.TIME_NOW:
+			self.setNewTime("prime_time")
+		elif self.time_mode == self.TIME_PRIME:
+			self.setNewTime("now_time")
 
 	def enterDateTime(self):
 		text = _("Select action")
