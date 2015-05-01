@@ -2554,7 +2554,7 @@ class InfoBarSeek:
 		global seek_withjumps_muted
 		seek_withjumps_muted = True
 		if self.seekAction <= 0:
-			self.seekAction = -self.getHigher(abs(self.seekAction), config.seek.speeds_backward.value) or config.seek.speeds_backward.value[-1]
+			self.seekAction = -self.getHigher(abs(self.seekAction), config.seek.speeds_backward.value) or -config.seek.speeds_backward.value[-1]
 		else:
 			self.seekAction = self.getLower(abs(self.seekAction), config.seek.speeds_forward.value)
 		if self.seekAction == 2: # use fastforward for x2
