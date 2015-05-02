@@ -170,6 +170,48 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 
 int exit_code;
 
+void quitMainloop(int exitCode)
+{
+	FILE *f = fopen("/proc/stb/fp/was_timer_wakeup", "w");
+	if (f)
+	{
+		fprintf(f, "%d", 0);
+		fclose(f);
+	}
+	else
+	{
+		int fd = open("/dev/dbox/fp0", O_WRONLY);
+		if (fd >= 0)
+		{
+			if (ioctl(fd, 10 /*FP_CLEAR_WAKEUP_TIMER*/) < 0)
+				eDebug("[quitMainloop] FP_CLEAR_WAKEUP_TIMER failed: %m");
+			close(fd);
+		}
+		else
+			eDebug("[quitMainloop] open /dev/dbox/fp0 for wakeup timer clear failed: %m");
+	}
+	exit_code = exitCode;
+	eApp->quit(0);
+}
+
+static void sigterm_handler(int num)
+{
+	quitMainloop(128 + num);
+}
+
+void catchTermSignal()
+{
+	struct sigaction act;
+
+	act.sa_handler = sigterm_handler;
+	act.sa_flags = SA_RESTART;
+
+	if (sigemptyset(&act.sa_mask) == -1)
+		perror("sigemptyset");
+	if (sigaction(SIGTERM, &act, 0) == -1)
+		perror("SIGTERM");
+}
+
 int main(int argc, char **argv)
 {
 
