@@ -817,7 +817,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		else:
 			self["key_yellow"] = Button(_("List mode"))
 
-		self["key_blue"] = Button(_("Goto"))
+		self["key_blue"] = Button(_("PrimeTime"))
 
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
@@ -854,7 +854,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
 				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
-				"blue":        (self.enterDateTime,  _("Goto specific date/time")),
 				"menu":	       (self.furtherOptions, _("Further Options")),
 				"nextBouquet": (self.nextBouquet, self.getKeyNextBouquetHelptext),
 				"prevBouquet": (self.prevBouquet, self.getKeyPrevBouquetHelptext),
@@ -865,6 +864,12 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"prevDay":     (self.prevDay,        _("Goto previous day of events"))
 			}, -1)
 		self["epgactions"].csel = self
+		self["gmepgactions"] = HelpableActionMap(self, "GMEPGSelectActions",
+			{
+				"blue":        (self.togglePrimeNow, _("Goto primetime / now")),
+				"blue_long":   (self.enterDateTime,  _("Goto specific date/time"))
+			}, -1)
+		self["gmepgactions"].csel = self
 
 		self["inputactions"] = HelpableActionMap(self, "InputActions",
 			{
@@ -966,27 +971,16 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.bouquetChangeCB:
 			self.bouquetChangeCB(-1, self)
 
-	def enterDateTime(self):
-		text = _("Select action")
-		menu = []
-		prime = [(_("Prime time"), "prime_time")]
-		now = [(_("Now"), "now_time")]
+	def togglePrimeNow(self):
 		if self.time_mode == self.TIME_NOW:
-			menu = prime
-		elif self.time_mode == self.TIME_PRIME:
-			menu = now
-		elif self.time_mode == self.TIME_CHANGE:
-			menu = now + prime
-		menu.append((_("Input date/time"), "input_time"))
-		def timeAction(choice):
-			if choice:
-				if choice[1] in ("now_time", "prime_time"):
-					self.setNewTime(choice[1])
-				elif choice[1] == "input_time":
-					t = localtime(time())
-					config.misc.graph_mepg.prev_time.value = [t.tm_hour, t.tm_min]
-					self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time)
-		self.session.openWithCallback(timeAction, ChoiceBox, title=text, list=menu)
+			self.setNewTime("prime_time")
+		elif self.time_mode == self.TIME_PRIME or self.time_mode == self.TIME_CHANGE:
+			self.setNewTime("now_time")
+
+	def enterDateTime(self):
+		t = localtime(time())
+		config.misc.graph_mepg.prev_time.value = [t.tm_hour, t.tm_min]
+		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
@@ -999,12 +993,14 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				l.fillMultiEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 				self.time_mode = self.TIME_CHANGE
+				self["key_blue"].setText(_("Now"))
 
 	def setNewTime(self, type=''):
 		if type:
 			date = time() - config.epg.histminutes.getValue() * 60
 			if type == "now_time":
 				self.time_mode = self.TIME_NOW
+				self["key_blue"].setText(_("PrimeTime"))
 			elif type == "prime_time":
 				now = [x for x in localtime(date)]
 				prime = config.misc.graph_mepg.prime_time.value
@@ -1012,6 +1008,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				if now[3] > prime[0] or (now[3] == prime[0] and now[4] > prime[1]):
 					date = date + 60*60*24
 				self.time_mode = self.TIME_PRIME
+				self["key_blue"].setText(_("Now"))
 			l = self["list"]
 			self.ask_time = date - date % int(config.misc.graph_mepg.roundTo.getValue())
 			l.resetOffset()
@@ -1044,6 +1041,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines(True)
 		self.time_mode = self.TIME_NOW
+		self["key_blue"].setText(_("PrimeTime"))
 
 	def closeScreen(self):
 		self.zapFunc(None, zapback = True)
