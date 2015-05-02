@@ -27,7 +27,7 @@ class FeedsStatusCheck:
 
 	def getFeedSatus(self):
 		trafficLight = 'unknown'
-		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
+		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wlan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
 			try:
 				d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php", timeout = 3)
 				trafficLight = d.read()
