@@ -27,7 +27,7 @@ class About(Screen):
 		self.populate()
 		
 		self["key_green"] = Button(_("Translations"))
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions", "DirectionActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
