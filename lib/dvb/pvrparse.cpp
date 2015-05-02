@@ -218,7 +218,7 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 	off_t diff_off = after->first - before->first;
 
 	diff = (offset - before->first) * diff / diff_off;
-//	eDebug("%08llx .. %08llx .. %08llx", before_ts, before_ts + diff, after_ts);
+//	eDebug("[eMPEGStreamInformation] %08llx .. %08llx .. %08llx", before_ts, before_ts + diff, after_ts);
 	return before_ts + diff;
 }
 

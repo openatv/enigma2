@@ -495,7 +495,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
 
 							if ((num < 0) || (num >= glyphs))
-								eWarning("glyph index %d in PythonConfigList out of bounds!", num);
+								eWarning("[eListboxPythonMultiContent] glyph index %d in PythonConfigList out of bounds!", num);
 							else
 							{
 								if (last+1 != num && last != -1) {
@@ -523,7 +523,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				}
 				/* type is borrowed */
 			} else if (value)
-				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
+				eWarning("[eListboxPythonConfigContent] second value of tuple is not a tuple.");
 			if (value)
 				Py_DECREF(value);
 
@@ -752,15 +752,15 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (PyTuple_Check(items))
 					buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
 				else
-					eDebug("items is no tuple");
+					eDebug("[eListboxPythonMultiContent] items is no tuple");
 			}
 			else
-				eDebug("buildfunc is not callable");
+				eDebug("[eListboxPythonMultiContent] buildfunc is not callable");
 		}
 
 		if (!items)
 		{
-			eDebug("eListboxPythonMultiContent: error getting item %d", m_cursor);
+			eDebug("[eListboxPythonMultiContent] error getting item %d", m_cursor);
 			goto error_out;
 		}
 
@@ -768,14 +768,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		{
 			if (!PyList_Check(items))
 			{
-				eDebug("eListboxPythonMultiContent: list entry %d is not a list (non-templated)", m_cursor);
+				eDebug("[eListboxPythonMultiContent] list entry %d is not a list (non-templated)", m_cursor);
 				goto error_out;
 			}
 		} else
 		{
 			if (!PyTuple_Check(items))
 			{
-				eDebug("eListboxPythonMultiContent: list entry %d is not a tuple (templated)", m_cursor);
+				eDebug("[eListboxPythonMultiContent] list entry %d is not a tuple (templated)", m_cursor);
 				goto error_out;
 			}
 		}
@@ -800,13 +800,13 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 			if (!item)
 			{
-				eDebug("eListboxPythonMultiContent: ?");
+				eDebug("[eListboxPythonMultiContent] ?");
 				goto error_out;
 			}
 
 			if (!PyTuple_Check(item))
 			{
-				eDebug("eListboxPythonMultiContent did not receive a tuple.");
+				eDebug("[eListboxPythonMultiContent] did not receive a tuple.");
 				goto error_out;
 			}
 
@@ -814,7 +814,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 			if (!size)
 			{
-				eDebug("eListboxPythonMultiContent receive empty tuple.");
+				eDebug("[eListboxPythonMultiContent] receive empty tuple.");
 				goto error_out;
 			}
 
@@ -838,7 +838,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (!(px && py && pwidth && pheight && pfnt && pflags && pstring))
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string [, color, backColor, backColorSelected, borderWidth, borderColor])");
+					eDebug("[eListboxPythonMultiContent] received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string [, color, backColor, backColorSelected, borderWidth, borderColor])");
 					goto error_out;
 				}
 
@@ -881,7 +881,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (m_font.find(fnt) == m_font.end())
 				{
-					eDebug("eListboxPythonMultiContent: specified font %d was not found!", fnt);
+					eDebug("[eListboxPythonMultiContent] specified font %d was not found!", fnt);
 					goto error_out;
 				}
 
@@ -946,7 +946,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				{
 					if (!(px && py && pwidth && pheight && pfilled_perc))
 					{
-						eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS, x, y, width, height, filled percent [,border width, foreColor, backColor, backColorSelected]))");
+						eDebug("[eListboxPythonMultiContent] received too small tuple (must be (TYPE_PROGRESS, x, y, width, height, filled percent [,border width, foreColor, backColor, backColorSelected]))");
 						goto error_out;
 					}
 				}
@@ -957,7 +957,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						continue;
 					if (!(px && py && pwidth && pheight && pfilled_perc, ppixmap))
 					{
-						eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,border width, foreColor, backColor, backColorSelected]))");
+						eDebug("[eListboxPythonMultiContent] received too small tuple (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,border width, foreColor, backColor, backColorSelected]))");
 						goto error_out;
 					}
 				}
@@ -1043,7 +1043,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 					if (SwigFromPython(pixmap, ppixmap))
 					{
-						eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
+						eDebug("[eListboxPythonMultiContent] (Pixmap) get pixmap failed");
 						painter.clippop();
 						continue;
 					}
@@ -1072,7 +1072,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (!(px && py && pwidth && pheight && ppixmap))
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, backColor, backColorSelected] ))");
+					eDebug("[eListboxPythonMultiContent] received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, backColor, backColorSelected] ))");
 					goto error_out;
 				}
 
@@ -1091,7 +1091,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				ePtr<gPixmap> pixmap;
 				if (SwigFromPython(pixmap, ppixmap))
 				{
-					eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
+					eDebug("[eListboxPythonMultiContent] (Pixmap) get pixmap failed");
 					goto error_out;
 				}
 
@@ -1121,7 +1121,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				break;
 			}
 			default:
-				eWarning("eListboxPythonMultiContent received unknown type (%d)", type);
+				eWarning("[eListboxPythonMultiContent] received unknown type (%d)", type);
 				goto error_out;
 			}
 		}
@@ -1168,10 +1168,10 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 					Py_DECREF(ret);
 					return retval;
 				}
-				eDebug("call m_selectableFunc failed!!! assume not callable");
+				eDebug("[eListboxPythonMultiContent] call m_selectableFunc failed!!! assume not callable");
 			}
 			else
-				eDebug("m_list[m_cursor] is not a tuple!!! assume not callable");
+				eDebug("[eListboxPythonMultiContent] m_list[m_cursor] is not a tuple!!! assume not callable");
 		}
 		else
 		{

@@ -25,7 +25,7 @@ class eMain: public eApplication, public Object
 public:
 	eMain()
 	{
-		eDebug("mich gibts nu!");
+		eDebug("[eMain dvbtest] eMain");
 
 			/* Resourcemanager erstellen */
 		m_mgr = new eDVBResourceManager();
@@ -58,7 +58,7 @@ public:
 
 			/* Channel allokieren... tunen startet hier, sofern noetig */
 		if (m_mgr->allocateChannel(chid, m_channel))
-			eDebug("shit it failed!");
+			eDebug("[eMain dvbtest] shit it failed!");
 
 		if (m_channel)
 		{
@@ -74,17 +74,17 @@ public:
 		int state;
 			/* Channelstate holen */
 		channel->getState(state);
-		eDebug("channel state is now %d", state);
+		eDebug("[eMain dvbtest] channel state is now %d", state);
 
 			/* Wenn Wechsel von nicht-ok auf ok (das erste mal) */
 		if ((m_last_channel_state != iDVBChannel::state_ok)
 			 && (state == iDVBChannel::state_ok) && (!m_demux))
 		{
-			eDebug("we'll start tuning!");
+			eDebug("[eMain dvbtest] we'll start tuning!");
 				/* Demux holen */
 			if (m_channel)
 				if (m_channel->getDemux(m_demux))
-					eDebug("shit it failed.. again.");
+					eDebug("[eMain dvbtest] shit it failed.. again.");
 
 			if (m_demux)
 			{
@@ -110,18 +110,18 @@ public:
 			for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 			{
 				const ProgramMapSection &pmt = **i;
-				eDebug("pcr pid: %x", pmt.getPcrPid());
+				eDebug("[eMain dvbtest] pcr pid: %x", pmt.getPcrPid());
 			}
-			eDebug("program map ...");
+			eDebug("[eMain dvbtest] program map ...");
 				/* und raus */
 			quit(0);
 		}
-		eDebug("table ready.");
+		eDebug("[eMain dvbtest] table ready.");
 	}
 
 	~eMain()
 	{
-		eDebug("... nicht mehr.");
+		eDebug("[eMain dvbtest] ... done.");
 	}
 };
 

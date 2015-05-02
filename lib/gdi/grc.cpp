@@ -121,7 +121,7 @@ void *gRC::thread()
 #endif
 		if ( rp != wp )
 		{
-				/* make sure the spinner is not displayed when we something is painted */
+				/* make sure the spinner is not displayed when something is painted */
 			disableSpinner();
 
 			gOpcode o(queue[rp++]);
@@ -224,7 +224,7 @@ void gRC::enableSpinner()
 {
 	if (!m_spinner_dc)
 	{
-		eDebug("[gRC] no spinner DC!");
+		eDebug("[gRC] enabelSpinner: no spinner DC!");
 		return;
 	}
 
@@ -246,7 +246,7 @@ void gRC::disableSpinner()
 
 	if (!m_spinner_dc)
 	{
-		eDebug("[gRC] no spinner DC!");
+		eDebug("[gRC] disableSpinner: no spinner DC!");
 		return;
 	}
 
@@ -888,7 +888,7 @@ void gDC::exec(const gOpcode *o)
 		incrementSpinner();
 		break;
 	default:
-		eFatal("illegal opcode %d. expect memory leak!", o->opcode);
+		eFatal("[gDC] illegal opcode %d. expect memory leak!", o->opcode);
 	}
 }
 
@@ -898,7 +898,7 @@ gRGB gDC::getRGB(gColor col)
 		return gRGB(col, col, col);
 	if (col<0)
 	{
-		eFatal("bla transp");
+		eFatal("[gDC] getRGB transp");
 		return gRGB(0, 0, 0, 0xFF);
 	}
 	return m_pixmap->surface->clut.data[col];

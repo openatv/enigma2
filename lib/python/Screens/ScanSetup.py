@@ -61,7 +61,7 @@ def getInitialCableTransponderList(tlist, nim):
 			parm.system = x[6]
 			tlist.append(parm)
 
-def getInitialTerrestrialTransponderList(tlist, region):
+def getInitialTerrestrialTransponderList(tlist, region, tsystem = eDVBFrontendParametersTerrestrial.System_DVB_T_T2):
 	list = nimmanager.getTranspondersTerrestrial(region)
 
 	#self.transponders[self.parsedTer].append((2,freq,bw,const,crh,crl,guard,transm,hierarchy,inv))
@@ -71,7 +71,9 @@ def getInitialTerrestrialTransponderList(tlist, region):
 
 	for x in list:
 		if x[0] == 2: #TERRESTRIAL
-			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], x[10], x[11])
+			if tsystem == eDVBFrontendParametersTerrestrial.System_DVB_T_T2:
+				tsystem = x[10]
+			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], tsystem, x[11])
 			tlist.append(parm)
 
 cable_bands = {
@@ -512,6 +514,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.predefinedTerrTranspondersList()
 				self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders))
 			elif self.scan_typeterrestrial.value == "complete":
+				if nim.isCompatible("DVB-T2"):
+					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system)
+					self.list.append(self.systemEntry)
+				else:
+					self.scan_ter.system.value = eDVBFrontendParametersTerrestrial.System_DVB_T
 				self.TerrestrialRegion = self.terrestrial_nims_regions[index_to_scan]
 				self.TerrestrialRegionEntry = getConfigListEntry(_('Region'), self.TerrestrialRegion)
 				self.list.append(self.TerrestrialRegionEntry)
@@ -781,6 +788,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(eDVBFrontendParametersTerrestrial.Hierarchy_4, "4"),
 			(eDVBFrontendParametersTerrestrial.Hierarchy_Auto, _("Auto"))])
 		self.scan_ter.system = ConfigSelection(default = defaultTer["system"], choices = [
+			(eDVBFrontendParametersTerrestrial.System_DVB_T_T2, _("Auto")),
 			(eDVBFrontendParametersTerrestrial.System_DVB_T, _("DVB-T")),
 			(eDVBFrontendParametersTerrestrial.System_DVB_T2, _("DVB-T2"))])
 		self.scan_ter.plp_id = ConfigInteger(default = defaultTer["plp_id"], limits = (0, 255))
@@ -994,7 +1002,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						tlist.append(buildTerTransponder(tp[1], tp[9], tp[2], tp[4], tp[5], tp[3], tp[7], tp[6], tp[8], self.scan_ter.system.value, tp[11]))
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "complete":
-				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.value)
+				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.value, int(self.scan_ter.system.value))
 
 		flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
 

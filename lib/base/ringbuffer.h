@@ -92,7 +92,7 @@ void queueRingBuffer<T>::enqueue( const T &val )
 	// first check for potential overflow
 	if( lastFilled->nextLink == lastFree )
 	{
-//		eDebug("increase size %d", count);
+//		eDebug("[queueRingBuffer] increase size %d", count);
 		link<T> * newLink = new link<T>( val );
 		newLink->prevLink = lastFilled;
 		newLink->nextLink = lastFilled->nextLink;
