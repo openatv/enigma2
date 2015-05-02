@@ -182,7 +182,6 @@ void eFilePushThread::thread()
 						break;
 					}
 					if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
-					{
 						continue;
 					eDebug("[eFilePushThread] write: %m");
 					sendEvent(evtWriteError);
