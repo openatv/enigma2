@@ -29,14 +29,15 @@ class FeedsStatusCheck:
 		trafficLight = 'unknown'
 		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wlan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
 			try:
-				d = urllib2.urlopen("http://openvix.co.uk/TrafficLightState.php", timeout = 3)
+				req = urllib2.Request('http://openvix.co.uk/TrafficLightState.php')
+				d = urllib2.urlopen(req)
 				trafficLight = d.read()
 			except urllib2.HTTPError, err:
 				print 'ERROR:',err
 				trafficLight = err.code
 			except urllib2.URLError, err:
-				print 'ERROR:',err
-				trafficLight = str(err.reason)
+				print 'ERROR:',err.reason[0]
+				trafficLight = err.reason[0]
 			except urllib2, err:
 				print 'ERROR:',err
 				trafficLight = err
