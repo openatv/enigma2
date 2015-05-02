@@ -1371,8 +1371,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 					self.borderColor = parseColor(value).argb()
 				elif attrib == "backgroundColor":
 					self.backColor = parseColor(value).argb()
-				elif attrib == "font":
-					self.l.setFont(0, parseFont(value,  ((1,1),(1,1)) ))
 				elif attrib == "borderWidth":
 					self.borderWidth = int(value)
 				elif attrib == "TimelineFont":
@@ -1389,6 +1387,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
+		self.setTimeLineFontsize()
 		self.l.setItemHeight(self.itemHeight)
 		if self.graphic:
 			self.TlDate = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/TimeLineDate.png'))
@@ -1591,6 +1590,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
+		self.setBouquetFontsize()
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.l.setItemHeight(self.itemHeight)
