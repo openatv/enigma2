@@ -486,7 +486,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				switch(lnb_param.SatCR_format)
 				{
 					case 1:
-						{
 						eDebug("[prepare] JESS");
 						frontend.setData(eDVBFrontend::FREQ_OFFSET, lof + prepareRFmagicCSS(frontend, lnb_param, band, ifreq, frequency, lnb_param.TuningWord));
 						break;
