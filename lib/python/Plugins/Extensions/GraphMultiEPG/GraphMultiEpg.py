@@ -848,11 +848,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"ok":	  (self.eventSelected, _("Zap to selected channel, or show detailed event info (depends on configuration)"))
 			}, -1)
 		self["okactions"].csel = self
-		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
+		self["gmepgactions"] = HelpableActionMap(self, "GMEPGSelectActions",
 			{
 				"timerAdd":    (self.timerAdd,       _("Add/remove change timer for current event")),
 				"info":        (self.infoKeyPressed, _("Show detailed event info")),
 				"red":         (self.zapTo,          _("Zap to selected channel")),
+				"blue":        (self.togglePrimeNow, _("Goto primetime / now")),
+				"blue_long":   (self.enterDateTime,  _("Goto specific date/time")),
 				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
 				"menu":	       (self.furtherOptions, _("Further Options")),
 				"nextBouquet": (self.nextBouquet, self.getKeyNextBouquetHelptext),
@@ -862,12 +864,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"preview":     (self.preview,        _("Preview selected channel")),
 				"nextDay":     (self.nextDay,        _("Goto next day of events")),
 				"prevDay":     (self.prevDay,        _("Goto previous day of events"))
-			}, -1)
-		self["epgactions"].csel = self
-		self["gmepgactions"] = HelpableActionMap(self, "GMEPGSelectActions",
-			{
-				"blue":        (self.togglePrimeNow, _("Goto primetime / now")),
-				"blue_long":   (self.enterDateTime,  _("Goto specific date/time"))
 			}, -1)
 		self["gmepgactions"].csel = self
 

@@ -540,8 +540,22 @@
 	</map>
 
 	<map context="GMEPGSelectActions">
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="mr"/>
 		<key id="KEY_BLUE" mapto="blue" flags="b"/>
 		<key id="KEY_BLUE" mapto="blue_long" flags="l"/>
+		<key id="KEY_RED" mapto="red" flags="m"/>
+		<key id="KEY_INFO" mapto="info" flags="m"/>
+		<key id="KEY_EPG" mapto="info" flags="m"/>
+		<key id="KEY_MENU" mapto="menu" flags="m"/>
+		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m"/>
+		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m"/>
+		<key id="KEY_NEXT" mapto="nextService" flags="m"/>
+		<key id="KEY_PREVIOUS" mapto="prevService" flags="m"/>
+		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m"/>
+		<key id="KEY_TV" mapto="preview" flags="m"/>
+		<key id="KEY_REWIND" mapto="prevDay" flags="m"/>
+		<key id="KEY_FASTFORWARD" mapto="nextDay" flags="m"/>
 	</map>
 
 	<map context="EventViewActions">
