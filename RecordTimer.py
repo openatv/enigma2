@@ -395,7 +395,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						NavigationInstance.instance.isMovieplayerActive()
 						from Screens.ChannelSelection import ChannelSelection
 						ChannelSelectionInstance = ChannelSelection.instance
-							self.service_types = service_types_tv
+						self.service_types = service_types_tv
 						if ChannelSelectionInstance:
 							if config.usage.multibouquet.value:
 								bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
