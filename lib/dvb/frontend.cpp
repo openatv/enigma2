@@ -652,7 +652,7 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 		{
 			if (!no_delayed)
 			{
-				m_sec->prepareTurnOffSatCR(*this, m_data[SATCR]);
+				m_sec->prepareTurnOffSatCR(*this);
 				m_tuneTimer->start(0, true);
 				if(!m_tuneTimer->isActive())
 				{
@@ -1173,7 +1173,7 @@ void eDVBFrontend::getTransponderData(ePtr<iDVBTransponderData> &dest, bool orig
 		{
 			eDVBFrontendParametersSatellite s;
 			oparm.getDVBS(s);
-			dest = new eDVBSatelliteTransponderData(cmdseq.props, cmdseq.num, s, m_data[FREQ_OFFSET], original);
+			dest = new eDVBSatelliteTransponderData(cmdseq.props, cmdseq.num, s, m_data[FREQ_OFFSET], m_data[SPECTINV_CNT], original);
 			break;
 		}
 	case feCable:

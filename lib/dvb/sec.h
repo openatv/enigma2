@@ -267,7 +267,7 @@ public:
 	int SatCR_idx;
 	int SatCR_format;
 	unsigned int SatCRvco;
-	unsigned int UnicableTuningWord;
+	unsigned int TuningWord;
 	unsigned int UnicableConfigWord;
 	int old_frequency;
 	int old_polarisation;
@@ -324,7 +324,9 @@ public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends);
 	RESULT prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int frontend_id, unsigned int tunetimeout);
-	void prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr); // used for unicable
+	RESULT prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword);
+	RESULT prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword);
+	void prepareTurnOffSatCR(iDVBFrontend &frontend); // used for unicable
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id, int *highest_score_lnb=0);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
 #endif

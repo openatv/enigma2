@@ -15,6 +15,11 @@ from Tools.BoundFunction import boundFunction
 from Components.About import about
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 
+MAX_LNB = 62
+MAX_LNB_WILDCARDS = 6
+MAX_ORBITPOSITION_WILDCARDS = 7
+MAX_SCR = 32
+
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
 	for x in satlist:

@@ -69,6 +69,11 @@ public:
 		CUR_VOLTAGE,          // current voltage
 		CUR_TONE,             // current continuous tone
 		SATCR,                // current SatCR
+		DICTION,              // current diction
+		PIN,                  // pin
+		DISEQC_WDG,           // Watchdog for buggy DiSEqC-implementation (VuZero)
+		SPECTINV_CNT,         // spectral inversation counter (need for offset calculation)
+		LFSR,                 // PRNG collision handling
 		NUM_DATA_ENTRIES
 	};
 	Signal1<void,iDVBFrontend*> m_stateChanged;
