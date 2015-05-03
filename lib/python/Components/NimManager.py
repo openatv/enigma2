@@ -20,6 +20,11 @@ from Tools import Directories
 import xml.etree.cElementTree
 from os import path
 
+MAX_LNB = 62
+MAX_LNB_WILDCARDS = 6
+MAX_ORBITPOSITION_WILDCARDS = 7
+MAX_SCR = 32
+
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
 	for x in satlist:
