@@ -1360,10 +1360,11 @@ class InfoBarChannelSelection:
 				if prev:
 					prev = prev.toString()
 					while True:
-						if config.usage.quickzap_bouquet_change.value:
-							if self.servicelist.atBegin():
-								self.servicelist.prevBouquet()
-						self.servicelist.moveUp()
+						if config.usage.quickzap_bouquet_change.value and self.servicelist.atBegin():
+							self.servicelist.prevBouquet()
+							self.servicelist.moveEnd()
+						else:
+							self.servicelist.moveUp()
 						cur = self.servicelist.getCurrentSelection()
 						if cur:
 							if self.servicelist.dopipzap:
@@ -1389,10 +1390,11 @@ class InfoBarChannelSelection:
 				if prev:
 					prev = prev.toString()
 					while True:
-						if config.usage.quickzap_bouquet_change.value:
-							if self.servicelist2.atBegin():
-								self.servicelist2.prevBouquet()
-						self.servicelist2.moveUp()
+						if config.usage.quickzap_bouquet_change.value and self.servicelist2.atBegin():
+							self.servicelist2.prevBouquet()
+							self.servicelist.moveEnd()
+						else:
+							self.servicelist2.moveUp()
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
 							if ChannelSelectionInstance.dopipzap:
@@ -1418,6 +1420,7 @@ class InfoBarChannelSelection:
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
 							self.servicelist.nextBouquet()
+							self.servicelist.moveTop()
 						else:
 							self.servicelist.moveDown()
 						cur = self.servicelist.getCurrentSelection()
@@ -1446,6 +1449,7 @@ class InfoBarChannelSelection:
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist2.atEnd():
 							self.servicelist2.nextBouquet()
+							self.servicelist.moveTop()
 						else:
 							self.servicelist2.moveDown()
 						cur = self.servicelist2.getCurrentSelection()

@@ -218,6 +218,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
 
+	def moveTop(self):
+		self.instance.moveSelection(self.instance.moveTop)
+
+	def moveEnd(self):
+		self.instance.moveSelection(self.instance.moveEnd)
+
 	def moveToChar(self, char):
 		# TODO fill with life
 		print "Next char: "
