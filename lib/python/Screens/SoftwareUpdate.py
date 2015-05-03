@@ -194,7 +194,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			if (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value) or config.softwareupdate.updateisunstable.value == '0':
 					self.startCheck()
 			else:
-				self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds seem be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+				self.session.openWithCallback(self.close, MessageBox, _("Sorry feeds seem to be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 
 	def startCheck(self):
 		self.activity = 0
