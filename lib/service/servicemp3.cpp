@@ -536,12 +536,13 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 #endif
 	if ( m_gst_playbin )
 	{
-		guint flags;
-		g_object_get(G_OBJECT (m_gst_playbin), "flags", &flags, NULL);
-		/* avoid video conversion, let the (hardware) sinks handle that */
-		flags |= GST_PLAY_FLAG_NATIVE_VIDEO;
-		/* volume control is done by hardware */
-		flags &= ~GST_PLAY_FLAG_SOFT_VOLUME;
+		/*
+		 * avoid video conversion, let the dvbmediasink handle that using native video flag
+		 * volume control is done by hardware, do not use soft volume flag
+		 */
+		guint flags = GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_VIDEO | \
+				GST_PLAY_FLAG_TEXT | GST_PLAY_FLAG_NATIVE_VIDEO;
+
 		if ( m_sourceinfo.is_streaming )
 		{
 			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (playbinNotifySource), this);
