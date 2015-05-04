@@ -6426,11 +6426,38 @@ msgstr "EPG speichern"
 msgid "Save Playlist"
 msgstr "Wiedergabeliste speichern"
 
-msgid "Save Timeshift as Movie and continue recording"
-msgstr "Timeshift als Film speichrrn und Aufnahme fortsetzen"
+msgid "The buffer time for timeshift exceeds the specified limit in the settings.\nWhat do you want to do ?"
+msgstr "Der Zeit-Puffer für Timeshift übersteigt die in den Einstellungen festgelegte Grenze.\nWas wollen Sie tun ?"
 
-msgid "Save Timeshift as Movie and stop recording"
+msgid "The available disk space for timeshift is less than specified in the settings.\nWhat do you want to do ?"
+msgstr "Der verfügbare Speicherplatz für Timeshift ist geringer als wie in den Einstellungen festgelegt ist.\nWas wollen Sie tun ?"
+
+msgid "Delete the current timeshift buffer and restart timeshift"
+msgstr "Löschen des aktuellen Timeshift-Puffers und Timeshift neu starten"
+
+msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern und die aktuelle Sendung weiter aufnehmen"
+
+msgid "Stop timeshift and save timeshift buffer as movie"
+msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern"
+
+msgid "Stop timeshift"
+msgstr "Timeshift stoppen"
+
+msgid "You have chosen to save the current timeshift event, but the event has not yet finished\nWhat do you want to do ?"
+msgstr "Sie haben die aktuelle Sendung zum speichern ausgewählt.\nDie Sendung ist aber nocht nicht beendet.\nWas wollen Sie tun ?"
+
+msgid "Save timeshift as movie and continue recording"
+msgstr "Timeshift als Film speichern und Aufnahme fortsetzen"
+
+msgid "Save timeshift as movie and stop recording"
 msgstr "Timeshift als Film speichern und Aufnahme beenden"
+
+msgid "Cancel save timeshift as movie"
+msgstr "Timeshift nicht als Film speichern"
+
+msgid "Nothing, just leave this menu"
+msgstr "Nichts tun, nur das Menü verlassen"
 
 msgid "Save and record"
 msgstr "Speichern und aufnehmen"
@@ -13203,11 +13230,17 @@ msgstr "Zusätzlich zu der Überprüfung bei einem Event-Start kann diese Einste
 msgid "Timeshift checking for free space?"
 msgstr "Timeshift-Überprüfung auf freien Speicherplatz?"
 
-msgid "If the free space is less than 1024 MB, then an attempt is made to delete the old timeshift files."
-msgstr "Wenn der freie Speicherplatz kleiner 1024 MB ist, wird versucht, die alten Timeshift-Dateien löschen."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgstr "Wenn der freie Speicherplatz kleiner als der eingestellt Wert ist, wird versucht, die alten Timeshift-Dateien löschen."
+
+msgid "If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust."
+msgstr "Wenn 'Nein' eingestellt ist, wird nur eine Datei als Puffer verwendet. Es wird empfohlen 'Timeshift-Überprüfung auf ältere Dateien [in Minuten]' und 'Timeshift-Überprüfung auf freien Speicherplatz?' anzupassen."
 
 msgid "Timeshift buffer delete after zap?"
 msgstr "Timeshift-Puffer beim Umschalten löschen?"
+
+msgid "Timeshift event based file splitting"
+msgstr "Timeshift-Sendungsbasierende Dateitrennung"
 
 msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
 msgstr "Wenn 'Nein' eingestellt ist, bleiben Timeshift-Aufnahmen nach Umschalten oder Beenden im Timeshift-Verzeichnis erhalten."
