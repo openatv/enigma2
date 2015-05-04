@@ -55,7 +55,7 @@ class About(Screen):
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
-		AboutText += _("Image Type:\t%s\n") % getImageType()
+		AboutText += _("Image Type:\t%s\n") % getImageType().title()
 		
 		string = getDriverDate()
 		year = string[0:4]
