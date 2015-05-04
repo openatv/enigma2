@@ -891,6 +891,7 @@ class InfoBarTimeshift:
 		if answer:
 			if answer == "restarttimeshift":
 				self.ptsEventCleanTimerSTOP()
+				self.save_current_timeshift = False
 				self.stopTimeshiftAskUserCallback(True)
 				self.restartTimeshift()
 			elif answer == "noSave":
@@ -985,13 +986,13 @@ class InfoBarTimeshift:
 						filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value,filename))
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 						if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value,filename)):
-							filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value,filename))
+							filesize += os.path.getsize("%s%s.eit"  % (config.usage.timeshift_path.value,filename))
 							self.BgFileEraser.erase("%s%s.eit" % (config.usage.timeshift_path.value,filename))
 						if os.path.exists("%s%s.meta" % (config.usage.timeshift_path.value,filename)):
-							filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value,filename))
+							filesize += os.path.getsize("%s%s.meta"  % (config.usage.timeshift_path.value,filename))
 							self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.value,filename))
 						if os.path.exists("%s%s.sc" % (config.usage.timeshift_path.value,filename)):
-							filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value,filename))
+							filesize += os.path.getsize("%s%s.sc"  % (config.usage.timeshift_path.value,filename))
 							self.BgFileEraser.erase("%s%s.sc" % (config.usage.timeshift_path.value,filename))
 						if not filename.startswith("timeshift."):
 							filecounter -= 1
@@ -1000,9 +1001,13 @@ class InfoBarTimeshift:
 					if statinfo.st_mtime < (time()-3600*(24+config.timeshift.timeshiftMaxHours.value)):
 						# print "[TimeShift] Erasing very old timeshift file %s" % filename
 						if filename.endswith(".del") is True:
-							os.rename("%s%s" % (config.usage.timeshift_path.value,filename), "%s%s.del_again" % (config.usage.timeshift_path.value,filename))
 							filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value,filename))
-							self.BgFileEraser.erase("%s%s.del_again" % (config.usage.timeshift_path.value,filename))
+							try:
+								os.rename("%s%s" % (config.usage.timeshift_path.value,filename), "%s%s.del_again" % (config.usage.timeshift_path.value,filename))
+								self.BgFileEraser.erase("%s%s.del_again" % (config.usage.timeshift_path.value,filename))
+							except:
+								print "[TimeShift] - can't rename %s%s." % (config.usage.timeshift_path.value,filename)
+								self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 						else:
 							filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value,filename))
 							self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
