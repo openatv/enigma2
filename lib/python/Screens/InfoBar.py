@@ -218,11 +218,13 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		config.usage.last_movie_played.save()
 
 	def standbyCountChanged(self, value):
-		if config.ParentalControl.servicepinactive.value:
-			from Components.ParentalControl import parentalControl
-			self.cur_service = service
-			if parentalControl.isProtected(self.cur_service):
-				self.close()
+		#if config.ParentalControl.servicepinactive.value:
+		#	from Components.ParentalControl import parentalControl
+		#	self.cur_service = service
+		#	if parentalControl.isProtected(self.cur_service):
+		#		self.close()
+		self.execing = False
+		self.close()
 
 	def handleLeave(self, how):
 		self.is_closing = True
