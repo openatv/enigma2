@@ -65,7 +65,7 @@
 		<item level="1" text="Channel list preview" description="If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.">config.usage.servicelistpreview_mode</item>
 		<item level="1" text="Channel list service mode*" description="This option allows you to choose from the two channel lists that are available.">config.usage.servicelist_mode</item>
 		<item level="1" text="Channel list on mode change" description="If set to 'yes' the channel list will be shown after switching between radio and TV modes.">config.usage.show_servicelist</item>
-		<item level="1" text="Channel list cursor behavior" description="Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
+		<item level="1" text="Channel list cursor behaviour" description="Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behaviour</item>
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet.">config.usage.multibouquet</item>
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Number press action" description="When 'Alpha search' or 'Number search' is selected, search for the next matching service starting with the letter entered on the number pad, SMS style (ABC2 for 'Alpha' and 2ABC for 'Number'). When 'Quick actions' is selected, perform actions on the channel list (see HELP screen for details).">config.usage.show_channel_jump_in_servicelist</item>
@@ -147,9 +147,9 @@
 		<item level="2" text="Show movie lengths in movielist" description="When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show status icons in movie list" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
 		<item level="2" text="Quit Movie Player with EXIT button" description="When enabled, it is possible to leave the Movie Player with exit.">config.usage.leave_movieplayer_onExit</item>
-		<item level="2" text="Behavior when a movie is started" description="Configure the behavior when movie playback is started.">config.usage.on_movie_start</item>
-		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
-		<item level="2" text="Behavior when a movie reaches the end" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
+		<item level="2" text="Behaviour when a movie is started" description="Configure the behaviour when movie playback is started.">config.usage.on_movie_start</item>
+		<item level="2" text="Behaviour when a movie is stopped" description="Configure the behaviour when movie playback is manually stopped.">config.usage.on_movie_stop</item>
+		<item level="2" text="Behaviour when a movie reaches the end" description="Configure the behaviour when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
 		<item level="2" text="Display message before playing next movie" description="When enabled, a popup message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
 		<item level="1" text="Enable auto-skip" description="If enabled, playback will automatically skip over sections marked with edit points.">config.seek.autoskip</item>
 		<item level="2" text="Seekbar/time entry skip activation" description="Select whether the seekbar is activated by Long arrow Left/Right or Long &lt;&lt; / &gt;&gt;. Time entry skip will be set to the controls not used for seekbar activation.">config.seek.baractivation</item>
@@ -225,7 +225,7 @@
 	<setup key="buttonsetup" title="Button setup">
 		<item level="1" text="Action on long POWER" description="Configure the function of a long press of the power button.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short POWER" description="Configure the function of a short press of the power button.">config.usage.on_short_powerpress</item>
-		<item level="2" text="Behavior of PLAY/PAUSE when paused" description="Configure the behavior of the 'PLAY/PAUSE' key when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' resumes in the play mode you were in when you paused\nOK resumes normal play from paused.">config.seek.on_pause</item>
+		<item level="2" text="Behaviour of PLAY/PAUSE when paused" description="Configure the behaviour of the 'PLAY/PAUSE' key when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' resumes in the play mode you were in when you paused.\nOK resumes normal play from paused.">config.seek.on_pause</item>
 		<item level="1" text="Skip time for LEFT" description="Number of seconds to skip backward when the left arrow button is pressed.">config.seek.selfdefined_left</item>
 		<item level="1" text="Skip time for RIGHT" description="Number of seconds to skip forward when the right arrow button is pressed.">config.seek.selfdefined_right</item>
 		<item level="1" text="Enable skip on UP/DOWN" description="When enabled, enable UP/DOWN navigation buttons for skips. Enabling this disables other UP/DOWN functions in contexts where skipping is possible.">config.seek.updown_skips</item>
@@ -239,7 +239,7 @@
 <!-- 		<item level="0" text="TV button mode" description="Select what you want the TV button to activate.">config.usage.tvradiobutton_mode</item> -->
 <!-- 		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- buttons to activate.">config.usage.channelbutton_mode</item> -->
 <!-- 		<item level="0" text="Use UI colored Buttons*" description="Select if you want to use the ViX colored buttons (set to 'no' if you want to use (Multi Quick Button).">config.vixsettings.ColouredButtons</item> -->
-		<item level="1" text="Behavior of 0 in PiP-mode" description="Choose what you want the '0' button to do when PIP is active.">config.usage.pip_zero_button</item>
+		<item level="1" text="Behaviour of 0 in PiP-mode" description="Choose what you want the '0' button to do when PIP is active.">config.usage.pip_zero_button</item>
 		<item level="1" text="PREV/NEXT history mode" description="Configure the method of navigating history when using PREV/NEXT buttons.">config.usage.historymode</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">
