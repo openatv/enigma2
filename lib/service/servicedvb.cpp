@@ -1979,6 +1979,9 @@ int eDVBServicePlay::getInfo(int w)
 			apid = m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID);
 			if (apid != -1)
 				return apid;
+			apid = m_dvb_service->getCacheEntry(eDVBService::cAACAPID);
+			if (apid != -1)
+				return apid;
 		}
 		if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
 	case sPCRPID:
@@ -2206,12 +2209,14 @@ int eDVBServicePlay::selectAudioStream(int i)
 		|| ((m_dvb_service->getCacheEntry(eDVBService::cMPEGAPID) == -1)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)== -1)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cDDPPID)== -1)
-		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
+		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1)
+		&& (m_dvb_service->getCacheEntry(eDVBService::cAACAPID) == -1))))
 	{
 		m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apidtype == eDVBAudio::aMPEG ? apid : -1);
 		m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apidtype == eDVBAudio::aAC3 ? apid : -1);
 		m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apidtype == eDVBAudio::aDDP ? apid : -1);
 		m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apidtype == eDVBAudio::aAACHE ? apid : -1);
+		m_dvb_service->setCacheEntry(eDVBService::cAACAPID, apidtype == eDVBAudio::aAAC ? apid : -1);
 	}
 
 	h.resetCachedProgram();
