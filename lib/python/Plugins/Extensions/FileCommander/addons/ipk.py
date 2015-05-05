@@ -56,9 +56,7 @@ class ipkMenuScreen(Screen):
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
 		self.targetDir = self.TARGETLIST.getCurrentDirectory()
 		self.list = []
-		self.list.append((_("Show contents of ipk File"), 1))
-		self.list.append((_("Unpack to current folder"), 2))
-		self.list.append((_("Unpack to %s") % (self.targetDir), 3))
+		self.list.append((_("Show contents of ipk file"), 1))
 		self.list.append((_("Install"), 4))
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
@@ -116,40 +114,18 @@ class ipkMenuScreen(Screen):
 
 	def unpackModus(self, id):
 		if id == 1:
-			cmd = "ar -t %s%s" % (self.sourceDir, self.filename)
-			print cmd
-			p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-			output = p.stdout.readlines()
-			if output:
-				self.extractlist = []
-				#self.extractlist.append(("<" +_("List of Storage Devices") + ">"))
-				for line in output:
-					#print line.split('\n')
-					self.extractlist.append((line.split('\n')))
-				
-				if len(self.extractlist) != 0:
-					self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
-				else:
-					self.extractlist.append((_("no files found.")))
-					self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
-
-		elif id == 2:
-			self.container = eConsoleAppContainer()
-			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
-			#self.container.dataAvail.append(self.log)
-			self.ulist = []
-			chdir(self.sourceDir)
-			cmd = "ar -x -o %s%s" % (self.sourceDir, self.filename)
-			self.container.execute(cmd)
-
-		elif id == 3:
-			self.container = eConsoleAppContainer()
-			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
-			#self.container.dataAvail.append(self.log)
-			self.ulist = []
-			chdir(self.targetDir)
-			cmd = "ar -x -o %s%s" % (self.sourceDir, self.filename)
-			self.container.execute(cmd)
+			# This is done in a subshell because using two
+			# communicating Popen commands can deadlock on the
+			# pipe output. Using communicate() avoids deadlock
+			# on reading stdout and stderr from the pipe.
+			pkgList ="tar -xOf %s ./data.tar.gz | tar -tzf -" % shellquote(self.sourceDir + self.filename)
+			p = subprocess.Popen(pkgList, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			output = p.communicate()
+			output = (output[0] + output[1]).splitlines()
+			self.extractlist = [(l,) for l in output]
+			if not self.extractlist:
+				self.extractlist = [(_("No files found."),)]
+			self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
 
 		elif id == 4:
 			# self.container = eConsoleAppContainer()

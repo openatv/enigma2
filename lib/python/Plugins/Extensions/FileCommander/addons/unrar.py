@@ -23,6 +23,7 @@ from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 from os import listdir, remove, rename, system, path, symlink, chdir
+from os.path import basename
 import os, re, subprocess
 from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
 
@@ -52,15 +53,16 @@ class RarMenuScreen(Screen):
 		self.TARGETLIST = targetlist
 		Screen.__init__(self, session)
 		self.unrar = "/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/addons/unrar"
+		self.unrarName = basename(self.unrar)
 		self.defaultPW = "2D1U3MP!"
 		self.filename = self.SOURCELIST.getFilename()
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
 		self.targetDir = self.TARGETLIST.getCurrentDirectory()
 		self.list = []
-		self.list.append((_("Show content of Rar File"), 1))
+		self.list.append((_("Show contents of rar file"), 1))
 		self.list.append((_("Unpack to current folder"), 2))
-		self.list.append((_("Unpack to %s") % (self.targetDir), 3))
-		self.list.append((_("Unpack to /media/hdd/movie/"), 4))
+		self.list.append((_("Unpack to %s") % self.targetDir, 3))
+		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
 		#self.list.append((_("Unpack with Password"), 5))
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
@@ -103,11 +105,11 @@ class RarMenuScreen(Screen):
 	def UnpackListEntry(self, entry):
 		print entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
-		proanzeige = str(currentProgress)+"%"
-#		color2 = 0x00ffffff #Weiss
+		progpercent = str(currentProgress)+"%"
+#		color2 = 0x00ffffff  # White
 		return [entry,
 			(eListboxPythonMultiContent.TYPE_PROGRESS, 10, 0, 560, 30, int(currentProgress), None, None, None, None),
-			(eListboxPythonMultiContent.TYPE_TEXT, 10, 3, 560, 30, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, str(proanzeige))
+			(eListboxPythonMultiContent.TYPE_TEXT, 10, 3, 560, 30, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, str(progpercent))
 			]
 
 	def ok(self):
@@ -119,18 +121,17 @@ class RarMenuScreen(Screen):
 	def checkPW(self, pwd):
 		self.defaultPW = pwd
 		print "Current pw:", self.defaultPW
-		self.container = eConsoleAppContainer()
-		cmd = "%s p -p%s %s%s -o+ %s" % (self.unrar, self.defaultPW, self.sourceDir, self.filename, self.sourceDir)
-		p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		cmd = (self.unrar,  "p", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.sourceDir)
+		p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 		stdlog = p.stdout.read()
 		if stdlog:
 			print stdlog
 			if re.search('Corrupt file or wrong password.', stdlog, re.S):
-				print "pw falsch..!"
+				print "pw incorrect!"
 				length = config.plugins.filecommander.input_length.value
 				self.session.openWithCallback(self.setPW,InputBox,text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title = _("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
 			else:
-				print "pw richtig !"
+				print "pw correct!"
 				self.unpackModus(self.selectId)
 
 	def setPW(self, pwd):
@@ -149,46 +150,37 @@ class RarMenuScreen(Screen):
 
 	def unpackModus(self, id):
 		if id == 1:
-			cmd = "%s lb -p%s %s%s" % (self.unrar, self.defaultPW, self.sourceDir, self.filename)
+			cmd = (self.unrar, "lb", "-p" + self.defaultPW, self.sourceDir + self.filename)
 			print cmd
-			p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-			output = p.stdout.readlines()
-			if output:
-				self.extractlist = []
-				#self.extractlist.append(("<" +_("List of Storage Devices") + ">"))
-				for line in output:
-					#print line.split('\n')
-					self.extractlist.append((line.split('\n')))
-				
-				if len(self.extractlist) != 0:
-					self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
-				else:
-					self.extractlist.append((_("no files found.")))
-					self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
+			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+			self.extractlist = [(l.rstrip(),) for l in p.stdout]
+			if not self.extractlist:
+				self.extractlist = [(_("No files found."),)]
+			self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
 
 		elif id == 2:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 			self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = "%s x -p%s %s%s -o+ %s" % (self.unrar, self.defaultPW, self.sourceDir, self.filename, self.sourceDir)
-			self.container.execute(cmd)
+			cmd = (self.unrarName, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.sourceDir)
+			self.container.execute(self.unrar, *cmd)
 
 		elif id == 3:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 			self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = "%s x -p%s %s%s -o+ %s" % (self.unrar, self.defaultPW, self.sourceDir, self.filename, self.targetDir)
-			self.container.execute(cmd)
+			cmd = (self.unrarName, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.targetDir)
+			self.container.execute(self.unrar, *cmd)
 
 		elif id == 4:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 			self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = "%s x -p%s %s%s -o+ /media/hdd/movie/" % (self.unrar, self.defaultPW, self.sourceDir, self.filename)
-			self.container.execute(cmd)
+			cmd = (self.unrarName, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", config.usage.default_path.value)
+			self.container.execute(self.unrar, *cmd)
 			
 	def log(self, data):
 		print data			

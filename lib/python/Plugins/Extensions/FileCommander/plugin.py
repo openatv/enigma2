@@ -754,7 +754,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		for file in self.selectedFiles:
 			if os_path_isdir(file):
 				container = eConsoleAppContainer()
-				container.execute("rm -rf '%s'" % file)
+				container.execute("rm", "rm", "-rf", file)
 			else:
 				remove(file)
 		self.exit()

@@ -55,10 +55,10 @@ class TarMenuScreen(Screen):
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
 		self.targetDir = self.TARGETLIST.getCurrentDirectory()
 		self.list = []
-		self.list.append((_("Show content of tar/gzip File"), 1))
+		self.list.append((_("Show contents of tar or compressed tar file"), 1))
 		self.list.append((_("Unpack to current folder"), 2))
-		self.list.append((_("Unpack to %s") % (self.targetDir), 3))
-		self.list.append((_("Unpack to /media/hdd/movie/"), 4))
+		self.list.append((_("Unpack to %s") % self.targetDir, 3))
+		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
 		#self.list.append((_("Unpack with Password"), 5))
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
@@ -116,46 +116,37 @@ class TarMenuScreen(Screen):
 
 	def unpackModus(self, id):
 		if id == 1:
-			cmd = "tar -tf %s%s" % (self.sourceDir, self.filename)
+			cmd = ("tar", "-tf", self.sourceDir + self.filename)
 			print cmd
-			p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-			output = p.stdout.readlines()
-			if output:
-				self.extractlist = []
-				#self.extractlist.append(("<" +_("List of Storage Devices") + ">"))
-				for line in output:
-					#print line.split('\n')
-					self.extractlist.append((line.split('\n')))
-				
-				if len(self.extractlist) != 0:
-					self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
-				else:
-					self.extractlist.append((_("no files found.")))
-					self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
+			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+			self.extractlist = [(l.rstrip(),) for l in p.stdout]
+			if not self.extractlist:
+				self.extractlist = [(_("No files found."),)]
+			self.session.open(UnpackInfoScreen, self.extractlist, self.sourceDir, self.filename)
 
 		elif id == 2:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 			#self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = "tar -xvf %s%s -C %s" % (self.sourceDir, self.filename, self.sourceDir)
-			self.container.execute(cmd)
+			cmd = ("tar", "-xvf", self.sourceDir + self.filename, "-C", self.sourceDir)
+			self.container.execute(cmd[0], *cmd)
 
 		elif id == 3:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 			#self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = "tar -xvf %s%s -C %s" % (self.sourceDir, self.filename, self.targetDir)
-			self.container.execute(cmd)
+			cmd = ("tar", "-xvf", self.sourceDir + self.filename, "-C", self.targetDir)
+			self.container.execute(cmd[0], *cmd)
 
 		elif id == 4:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 			#self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = "tar -xvf %s%s -C /media/hdd/movie/" % (self.sourceDir, self.filename)
-			self.container.execute(cmd)
+			cmd = ("tar", "-xvf", self.sourceDir + self.filename, "-C", config.usage.default_path.value)
+			self.container.execute(cmd[0], *cmd)
 
 	def extractDone(self, filename, data):
 		message = self.session.open(MessageBox, (_("%s successful extracted.") % filename), MessageBox.TYPE_INFO, timeout=8)
