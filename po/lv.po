@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-30 18:39+0300\n"
+"POT-Creation-Date: 2015-05-05 00:20+0300\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -630,7 +630,7 @@ msgid "Add files to playlist"
 msgstr "Pievienot failus repertuāram"
 
 msgid "Add provider"
-msgstr "Pievinot operatoru"
+msgstr "Pievienot operatoru"
 
 msgid "Add recording (enter recording duration)"
 msgstr "Sākt ierakstu (ievadīt ieraksta ilgumu)"
@@ -663,7 +663,7 @@ msgid "Add/remove change timer for current event"
 msgstr "Pievienot/noņemt mainīt taimeri tekošajai pārraidei"
 
 msgid "Adjust 3D settings"
-msgstr "Pielāgot 3D iestatījumus"
+msgstr "Pielāgo 3D iestatījumus"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Regulēt krāsu iestatījumus tā, lai visi krāsu toņi ir izšķirami bet, cik iespējams, piesātināti. Ja esat apmierināti ar rezultātu tad spiediet OK, lai aizvērtu video precizēšanu vai izmantojiet ciparu taustiņus, lai izvēlētos citus testēšanas attēlus."
@@ -938,9 +938,6 @@ msgstr "Automātiski sākt laika aizturi pēc"
 msgid "Automatically turn on external subtitles"
 msgstr "Automātiski ieslēgt ārējos subtitrus"
 
-msgid "Autoresolution"
-msgstr "Autoizšķirtspēja"
-
 msgid "Available format variables"
 msgstr "Pieejamie mainīgo formāti"
 
@@ -1074,7 +1071,7 @@ msgid "CH%s"
 msgstr "Kan%s"
 
 msgid "CI (Common Interface) Setup"
-msgstr "CI (moduļu interfeisa) iestatījumi"
+msgstr "Common interfeiss"
 
 msgid "CI assignment"
 msgstr "CI piešķiršana"
@@ -1144,6 +1141,9 @@ msgstr "Mainīt PIN"
 
 msgid "Change bouquets in quickzap"
 msgstr "Mainīt buķetes ātrās slēgšanas režīmā"
+
+msgid "Change recording (add time)"
+msgstr "Mainīt ierakstu (pievienot laiku)"
 
 msgid "Change recording (duration)"
 msgstr "Mainīt ierakstu (ilgumu)"
@@ -1292,10 +1292,10 @@ msgid "Command order"
 msgstr "Komandu secība"
 
 msgid "Common Interface"
-msgstr "Moduļu interfeiss"
+msgstr "Common interfeiss"
 
 msgid "Common Interface assignment"
-msgstr "Moduļu iestatījumu interfeiss"
+msgstr "Common interfeiss"
 
 msgid "Communication"
 msgstr "Komunikācija"
@@ -1587,7 +1587,10 @@ msgid "Configure whether multi channel sound tracks should be downmixed to stere
 msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
 
 msgid "Configure whether or not an icon should be shown when your motorized dish is moving."
-msgstr "Uzstāda vai tiks parādīta ikona kad antena ar motoru pārvietosies."
+msgstr "Uzstāda vai tiks attēlota ikona kad antena ar motoru pārvietosies."
+
+msgid "Configure whether or not an rotor position will be displayed on infobar"
+msgstr "Uzstāda vai infojoslā tiks attēlota pozicioniera pozīcija"
 
 msgid "Configure which access level to use for the configuration menu. Expert level gives access to all items."
 msgstr "Uzstāda kādu iestatījumu līmeni lietot iestatījumu izvēlnē. Eksperta līmenis atļauj piekļuvi visiem iestatījumiem."
@@ -1745,7 +1748,7 @@ msgid "Currently installed image"
 msgstr "Pašreiz instalētais imidžs"
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
-msgstr "Pašreiz kommitu logs nav pieejams - lūdzu mēginiet vēlāk"
+msgstr "Pašreiz izmaiņu žurnāls nav pieejams- lūdzu mēginiet vēlāk"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Pārlēciena laiks '1'/'3' taustiņiem"
@@ -2167,6 +2170,15 @@ msgstr "Nesaglabāt un apturēt laika aizturi"
 msgid "Don't stop current event but disable coming events"
 msgstr "Neapturēt pašreizējo notikumu bet izslēgt nākamos"
 
+msgid "Don't zap"
+msgstr "Nepārslēgt"
+
+msgid "Don't zap and disable timer"
+msgstr "Nepārslēgt izslēgt taimeri"
+
+msgid "Don't zap and remove timer"
+msgstr "Nepārslēgt un dzēst taimeri"
+
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
@@ -2317,6 +2329,9 @@ msgstr "Aktivizēt freesat EPG"
 msgid "Enable multiple bouquets"
 msgstr "Aktivizēt vairāk-buķešu režīmu"
 
+msgid "Enable parental protection"
+msgstr "Aktivizēt vecāku kontroli"
+
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Aktivizēt Enigma2 uztvērēju, kuru izmatot lai mēģinātu uztvert kanālu kurš nav uztverams lokāli (piem. uztvērējs ir aizņemts vai kanāla tips nav pieejams lokālajā uztvērējā). Norādiet pilnu adresi ieskaitot http:// un porta numuru (pēc nolkusējuma ...:8001), piem. http://second_box:8001."
 
@@ -2351,7 +2366,7 @@ msgid "End time"
 msgstr "Beigu laiks"
 
 msgid "End time to ignore inactivity sleeptimer"
-msgstr "Beigu laiks kad ignorēt neaktivitātes miega taimeri"
+msgstr "Beigu laiks neaktivitātes miega taimera ignorēšanai"
 
 msgid "End time to ignore shutdown in standby"
 msgstr "Beigu laiks kad ignorēt izslēgšanu gaidstāvē"
@@ -2504,8 +2519,14 @@ msgstr "Krāsaini dialogi ārējos subtitros"
 msgid "External subtitle switch fonts"
 msgstr "Mainīt arējo subtitru fontus"
 
+msgid "Extra end time to ignore inactivity sleeptimer"
+msgstr "Papildus beigu laiks neaktivitātes miega taimera ignorēšanai"
+
 msgid "Extra motor options"
 msgstr "Papildus motora iestatījumi"
+
+msgid "Extra start time to ignore inactivity sleeptimer"
+msgstr "Papildus sākuma laiks neaktivitātes miega taimera ignorēšanai"
 
 msgid "F1/F3"
 msgstr "F1/F3"
@@ -2752,6 +2773,9 @@ msgstr "Iet uz iepriekšējo dienu notikumiem"
 msgid "Goto previous page of events"
 msgstr "Iet uz iepriekšējo notikumu lapu"
 
+msgid "Goto primetime / now"
+msgstr "Iet uz brīvo laiku / pašreiz"
+
 msgid "Goto specific date/time"
 msgstr "Iet uz noteiktu datumu/laiku"
 
@@ -2886,6 +2910,9 @@ msgstr "Ātro taustiņu iestatījumi"
 
 msgid "Hotkey zap"
 msgstr "Pārslēgšana uz"
+
+msgid "How many minutes do you want add to record?"
+msgstr "Cik minūšu vēlaties pievienot ierakstam?"
 
 msgid "How many minutes do you want to record?"
 msgstr "Cik minūšu vēlaties ierakstīt?"
@@ -3181,7 +3208,7 @@ msgid "Last upgrade: "
 msgstr "Pēdējā atjaunošana: "
 
 msgid "Latest Commits"
-msgstr "Jaunākie kommiti"
+msgstr "Izmaiņas"
 
 msgid "Latitude"
 msgstr "Platums"
@@ -3366,7 +3393,7 @@ msgid "Margin before recording (minutes)"
 msgstr "Atstarpe pirms ieraksta (minūtēs)"
 
 msgid "Mark service as dedicated 3D service"
-msgstr "Atzīmēt kā 3D kanālu"
+msgstr "atzīmēt kā 3D kanālu"
 
 msgid "Max memory positions"
 msgstr "Maksimālā pozīcija atmiņā"
@@ -3824,6 +3851,9 @@ msgstr ""
 "Nav ko meklēt!\n"
 "Lūdzu iestatiet uztvērēju pirms sākat meklēt kanālus."
 
+msgid "Now"
+msgstr "Pašreiz"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Pašreiz"
@@ -3845,6 +3875,9 @@ msgstr "Labi, pavadi mani atjaunināšanas procesā"
 
 msgid "ONID"
 msgstr "ONID"
+
+msgid "OSD 3D setup"
+msgstr "3D iestatījumi"
 
 msgid "OSD name request"
 msgstr "OSD nosaukuma pieprasījums"
@@ -4398,6 +4431,12 @@ msgstr "Izvēlētā kanāla priekšskatījums"
 msgid "Primary DNS"
 msgstr "Primārais DNS"
 
+msgid "Prime time"
+msgstr "Brīvais laiks lai skatītos pārraides"
+
+msgid "PrimeTime"
+msgstr "Brīvais laiks"
+
 msgid "Priority"
 msgstr "Prioritāte"
 
@@ -4428,6 +4467,9 @@ msgstr "Aizsargāt papildus izvēlnes"
 msgid "Protect main menu"
 msgstr "Aizsargāt galveno izvēlni"
 
+msgid "Protect manufacturer reset screen"
+msgstr "Aizsargāt iestatījumu atiestatīšanu"
+
 msgid "Protect movie list"
 msgstr "Aizsargāt filmu sarakstu"
 
@@ -4439,6 +4481,9 @@ msgstr "Aizsargāt ppraudņu pārlūku"
 
 msgid "Protect services"
 msgstr "Aizsargāt kanālus"
+
+msgid "Protect software update screen"
+msgstr "Aizsargāt programmatūras atjaunināšanu"
 
 msgid "Protect standby menu"
 msgstr "Aizsargāt gaidstāves izvēlni"
@@ -4466,6 +4511,9 @@ msgstr "Python frontend /tmp/mmi.socket"
 
 msgid "Python version: "
 msgstr "Python versija: "
+
+msgid "Question"
+msgstr "Jautājums"
 
 msgid "Quick"
 msgstr "Ātrais"
@@ -4881,11 +4929,17 @@ msgstr "Saglabāt un apturēt laika aizturi"
 msgid "Save playlist"
 msgstr "Saglabāt repertuāru"
 
+msgid "Save timeshift and zap"
+msgstr "Saglabāt laika aiztures failu un pārslēgt"
+
 msgid "Save timeshift file"
 msgstr "Saglabāt laika aiztures failu"
 
 msgid "Save timeshift file in movie directory"
-msgstr "Saglabāt laika aiztures failu filmu mapē"
+msgstr "Saglabāt laika aiztures failu ierakstu mapē"
+
+msgid "Save timeshift in movie dir and zap"
+msgstr "Saglabāt laika aiztures failu ierakstu mapē un pārslēgt"
 
 msgid "Save timeshift only for current event"
 msgstr "Saglabāt laika aizturi tikai pašreizējai pārraidei"
@@ -5384,7 +5438,10 @@ msgid "Show infobar on skip forward/backward"
 msgstr "Rādīt infojoslu pārlēciena turp/atpakaļ laikā"
 
 msgid "Show latest commits on sourceforge"
-msgstr "Parādīt jaunākos kommitus"
+msgstr "Parādīt jaunākās izmaiņas"
+
+msgid "Show latest upgrade log"
+msgstr "Rādīt pēdējās atjaunošanas žurnālu"
 
 msgid "Show message when recording starts"
 msgstr "Rādīt paziņojumu kad ieraksts sākas"
@@ -5398,11 +5455,17 @@ msgstr "Rādīt ierakstus"
 msgid "Show multi channel EPG"
 msgstr "Rādīt daudzkanālu EPG"
 
+msgid "Show packages to be upgraded"
+msgstr "Parādīt paketes kuras tiks atjaunotas"
+
 msgid "Show picons in channel list"
-msgstr "Rādīr pikonas kanālu srakstā"
+msgstr "Rādīt pikonas kanālu srakstā"
 
 msgid "Show positioner movement"
 msgstr "Rādīt pozicioniera kustību"
+
+msgid "Show positioner position"
+msgstr "Rādīt pozicioniera pozīciju"
 
 msgid "Show record indicator"
 msgstr "Rādīt ieraksta indikatoru"
@@ -5448,9 +5511,6 @@ msgstr "Klausīties radio..."
 
 msgid "Show the tv player..."
 msgstr "Skatīties TV..."
-
-msgid "Show updated packages"
-msgstr "Parādīt pakates kuras atjaunos"
 
 msgid "Show vertical timelines"
 msgstr "Rādīt vertikālās līnijas laikam"
@@ -5523,6 +5583,9 @@ msgstr "Vietas garums"
 
 msgid "Skin"
 msgstr "Noformējums"
+
+msgid "Skin setup"
+msgstr "Noformējuma iestatījumi"
 
 msgid "Skins"
 msgstr "Noformējumi"
@@ -5658,20 +5721,29 @@ msgstr "Dienvidi"
 msgid "Spanish"
 msgstr "Spāņu"
 
+msgid "Specify extra timeframe to ignore inactivity sleeptimer"
+msgstr "Iestatīt papildus laiku neaktivitātes miega taimeria ignorēšanai"
+
 msgid "Specify the end time to ignore the shutdown timer when the receiver is in standby mode"
 msgstr "Iestatīt beigu laiku līdz kuram izslēgšanas taimeris tiks ignorēts, kamēr uztvērējs ir gaidstāvē"
 
 msgid "Specify the end time until the inactivity sleeptimer should be ignored"
 msgstr "Iestatīt beigu laiku līdz kuram neaktivitātes miega taimeris tiks ignorēts"
 
+msgid "Specify the extra end time until the inactivity sleeptimer should be ignored"
+msgstr "Iestatīt papildus beigu laiku līdz kuram neaktivitātes miega taimeris tiks ignorēts"
+
+msgid "Specify the extra start time when the inactivity sleeptimer should be ignored"
+msgstr "Iestatīt papildus sākuma laiku pēc kura neaktivitātes miega taimeris tiks ignorēts"
+
 msgid "Specify the start time to ignore the shutdown timer when the receiver is in standby mode"
-msgstr "Iestatīt sākuma laiku līdz kuram izslēgšanas taimeris tiks ignorēts, kamēr uztvērējs ir gaidstāvē"
+msgstr "Iestatīt sākuma laiku pēc kura izslēgšanas taimeris tiks ignorēts, kamēr uztvērējs ir gaidstāvē"
 
 msgid "Specify the start time when the inactivity sleeptimer should be ignored"
-msgstr "Iestatīt sākuma laiku līdz kuram neaktivitātes miega taimeris tiks ignorēts"
+msgstr "Iestatīt sākuma laiku pēc kura neaktivitātes miega taimeris tiks ignorēts"
 
 msgid "Specify timeframe to ignore inactivity sleeptimer"
-msgstr "Iestatīt laiku neaktivitātes miega taimeria ignorēšanai"
+msgstr "Iestatīt laiku neaktivitātes miega taimera ignorēšanai"
 
 msgid "Specify timeframe to ignore the shutdown in standby"
 msgstr "Iestatīt laiku izslēgšanas ignorēšanai gaidstāvē"
@@ -5736,7 +5808,7 @@ msgid "Start time"
 msgstr "Sākuma laiks"
 
 msgid "Start time to ignore inactivity sleeptimer"
-msgstr "Sākuma laiks pēc kura ignorēt neaktivitātes miega taimeri"
+msgstr "Sākuma laiks neaktivitātes miega taimera ignorēšanai"
 
 msgid "Start time to ignore shutdown in standby"
 msgstr "Sākuma laiks pēc kura ignorēt izslēgšanu gaidstāvē"
@@ -6395,6 +6467,9 @@ msgstr "Laika aizture"
 msgid "Timeshift Live"
 msgstr "Laika aizture dzīvajā"
 
+msgid "Timeshift is running. Select an action.\n"
+msgstr "Darbojas laika aizture. Izvēlieties darbību.\n"
+
 msgid "Timeshift location"
 msgstr "Laika aiztures vieta"
 
@@ -6621,7 +6696,7 @@ msgid "Unknown"
 msgstr "Nezināms"
 
 msgid "Unmark service as dedicated 3D service"
-msgstr "Neatzīmēt kā 3D kanālu"
+msgstr "neatzīmēt kā 3D kanālu"
 
 msgid "Unmount"
 msgstr "Atmontēt"
@@ -6973,6 +7048,9 @@ msgstr "Pamodināšanas signāls no TV"
 msgid "Wakeup type"
 msgstr "Pamodināšanas tips"
 
+msgid "Warning"
+msgstr "Brīdinājums"
+
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Uzmanību: nav LNB; lieto noklusētos iestatījumus"
 
@@ -7071,7 +7149,10 @@ msgid "When enabled you can specify a timeframe to ignore the shutdown timer whe
 msgstr "Ja ieslēgts jūs varat iestatīt laiku kādā ignorēt izslēgšanu, kamēr uztvērējs ir gaidstāves režīmā"
 
 msgid "When enabled you can specify a timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
-msgstr "Ja ieslēgts jūs varat iestatīt laiku kad neaktivitātes miega taimeris tiks ignorēts. Šinī laikā neaktivitātes noteikšna ir izslēgta bet arī neaktivitātes aizture ir izslēgta"
+msgstr "Ja ieslēgts jūs varat iestatīt laiku kad neaktivitātes miega taimeris tiks ignorēts. Šinī laikā nav izslēgta neaktivitātes noteikšna, bet nestrādās izslēgšana ja nav aktivitātes"
+
+msgid "When enabled you can specify an extra timeframe were the inactivity sleeptimer is ignored. Not the detection is disabled during this timeframe but the inactivity timeout is disabled"
+msgstr "Ja ieslēgts jūs varat iestatīt papildus laiku kad neaktivitātes miega taimeris tiks ignorēts. Šinī laikā nav izslēgta neaktivitātes noteikšna, bet nestrādās izslēgšana ja nav aktivitātes"
 
 msgid "When enabled you can zap channels with the  CH+/-, B+/-, P+/- buttons instead of opening the channel selection list."
 msgstr "Ja ieslēgts, jūs pa tiešo varat pārslēgt kanālus ar CH+/-, B+/-, P+/- pogām, nevis tikai atverot kanālu sarakstu."
@@ -7125,7 +7206,7 @@ msgid "When enabled, encryption info will be shown in the infobar (when supporte
 msgstr "Ja ieslēgts, infojoslā tiks attēlota kodēšanas informācija (ja to uztur noformējums)."
 
 msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Ja ieslēgts, netiks parādītas kļūdas no moduļu interfeisa moduļa."
+msgstr "Ja ieslēgts, netiks parādītas kļūdas no common interfeisa moduļa."
 
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Ja ieslēgts, netiks parādītas kļūdas pārslēdzoties kanāliem."
@@ -7303,7 +7384,7 @@ msgid "Yes and save"
 msgstr "Jā un saglabāt"
 
 msgid "Yes and save in movie dir"
-msgstr "Jā un saglabāt filmu mapē"
+msgstr "Jā un saglabāt ierakstu mapē"
 
 msgid "Yes to all"
 msgstr "Jā visiem"
@@ -7387,6 +7468,10 @@ msgstr "Jūs izvēlējāties atjaunot jūsu iestatījumus. Enigma2 pēc atjauno�
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Jums jāuzgaida %s!"
+
+#, python-format
+msgid "You must switch to the service %s (%s - '%s')!\n"
+msgstr "Pārslēgsies uz kanālu %s (%s - '%s')!\n"
 
 msgid ""
 "You need a PC connected to your receiver. If you need further instructions, please visit the website http://www.dm7025.de.\n"
@@ -8545,6 +8630,12 @@ msgid_plural "with %d errors"
 msgstr[0] "ar %d kļūdu"
 msgstr[1] "ar %d kļūdām"
 msgstr[2] "ar %d kļūdām"
+
+msgid "with text"
+msgstr "ar tekstu"
+
+msgid "with tuner name"
+msgstr "ar uztvērēja nosaukumu"
 
 msgid "working"
 msgstr "darbojas"
