@@ -9,6 +9,10 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
 from Tools.LoadPixmap import LoadPixmap
 from os import listdir, remove, rename, system, path, symlink, chdir
+from os.path import splitext
+
+import re
+
 import os
 
 EXTENSIONS = {
@@ -52,10 +56,26 @@ EXTENSIONS = {
 		"ipk": "ipk",
 		"zip": "zip",
 		"tar": "tar",
+		"tgz": "tar",
 		"gz": "gz",
 		"rar": "rar",
-		"r\d+$": "rar",
 	}
+
+def getPNGByExt(name):
+	basename, ext = splitext(name)
+	if ext.startswith('.'):
+		ext = ext[1:]
+	if ext == "gz":
+		_, ex = splitext(basename)
+		if ex == "tar":
+			ext = "tgz"
+	elif re.match("^r\d+$", ext):
+		ext = "rar"
+
+	if ext in EXTENSIONS:
+		return LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/" + EXTENSIONS[ext] + ".png")
+	else:
+		return LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/file.png")
 
 def FileEntryComponent(name, absolute = None, isDir = False, isLink = False):
 	res = [ (absolute, isDir, isLink) ]
@@ -65,12 +85,7 @@ def FileEntryComponent(name, absolute = None, isDir = False, isLink = False):
 	elif isLink:
 		png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/link.png")
 	else:
-		extension = name.split('.')
-		extension = extension[-1].lower()
-		if EXTENSIONS.has_key(extension):
-			png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/" + EXTENSIONS[extension] + ".png")
-		else:
-			png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/file.png")
+		png = getPNGByExt(name)
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 4, 20, 20, png))
 	
@@ -302,14 +317,7 @@ def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, isLink =
 	elif isLink:
 		png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/link.png")
 	else:
-		extension = name.split('.')
-		extension = extension[-1].lower()
-		if EXTENSIONS.has_key(extension):
-			png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/" + EXTENSIONS[extension] + ".png")
-#			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
-		else:
-			png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/file.png")
-#			png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/file.png")
+		png = getPNGByExt(name)
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 30, 4, 20, 20, png))
 

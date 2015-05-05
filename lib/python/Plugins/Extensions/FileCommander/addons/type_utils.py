@@ -30,7 +30,7 @@ from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
 from Plugins.Extensions.FileCommander.InputBoxmod import InputBoxmod
 from os.path import isdir as os_path_isdir
 from mimetypes import guess_type
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, ePicLoad, getDesktop, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, ePicLoad, getDesktop, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 from os import listdir, remove, rename, system, path, symlink, chdir
 from os import system as os_system
 from os import walk as os_walk
