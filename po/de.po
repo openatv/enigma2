@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-28 16:49+0100\n"
-"PO-Revision-Date: 2015-04-28 23:08+0100\n"
+"POT-Creation-Date: 2015-05-05 22:13+0100\n"
+"PO-Revision-Date: 2015-05-06 19:24+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1137,6 +1137,9 @@ msgstr "Am Ende:"
 msgid "Attach a file"
 msgstr "Eine Datei anhängen"
 
+msgid "Attention, this is repeated timer!\n"
+msgstr "Achtung! Dies ist ein Wiederholungstimer\n"
+
 msgid "Audio"
 msgstr "Audio"
 
@@ -2166,8 +2169,12 @@ msgstr ""
 msgid "Configure the primary EPG language."
 msgstr "Konfiguriere die erste Sprache für den EPG."
 
-msgid "Configure the refresh rate of the screen."
-msgstr "Konfiguriere die Wiederholrate für den Bildschirm."
+msgid ""
+"Configure the refresh rate of the screen. Multi means refresh rate depends "
+"on the source 24/50/60Hz"
+msgstr ""
+"Konfiguriere Wiederholrate des Bildschirms. 'Mult' bedeutet das abhängig von "
+"der Quelle 24, 50 oder 60Hz eingestellt wird"
 
 msgid "Configure the second audio language."
 msgstr "Konfiguriere die zweite Sprache für den Ton."
@@ -3015,6 +3022,15 @@ msgstr "Nicht speichern"
 msgid "Don't stop current event but disable coming events"
 msgstr "Aktuelle Aufnahme nicht beenden aber zukünftige deaktivieren"
 
+msgid "Don't zap"
+msgstr "Nicht umschalten"
+
+msgid "Don't zap and disable timer"
+msgstr "Nicht umschalten und Timer deaktivieren"
+
+msgid "Don't zap and remove timer"
+msgstr "Nicht umschalten und Timer löschen"
+
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
@@ -3103,11 +3119,21 @@ msgstr "EPG Einstellungen"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 
+msgid ""
+"ERROR:   Check is already running in background, please wait a few minutes "
+"and try again"
+msgstr ""
+"Fehler: Prüfung läuft schon im Hintergrund. Bitte ein paar Minuten warten "
+"und erneut versuchen."
+
 msgid "ERROR:   No internet found"
 msgstr "Fehler: Kein Netzwerk gefunden"
 
 msgid "ERROR:   No network found"
 msgstr "Fehler: Keine Netzwerke gefunden"
+
+msgid "ERROR: Check is already running in background"
+msgstr "Fehler: Prüfung läuft schon im Hintergrund"
 
 msgid "East"
 msgstr "Ost"
@@ -4114,6 +4140,10 @@ msgstr "Image Informationen"
 msgid "Image Manager"
 msgstr "Image Verwaltung"
 
+#, python-format
+msgid "Image Type:\t%s\n"
+msgstr ""
+
 msgid "Immediate shutdown"
 msgstr "Direkt ausschalten"
 
@@ -4181,7 +4211,7 @@ msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "Infobar fade-out speed"
-msgstr "Geschwindigkeit vom Ausblenden"
+msgstr "Gescwindigkeit vom Ausblenden"
 
 msgid "Infobar frontend data source"
 msgstr "Datenquelle der Informationen in Infobar"
@@ -4779,9 +4809,6 @@ msgstr "Menükonfiguration"
 msgid "Merging Timeshift files"
 msgstr "TimeShift-Dateien werden zusammengefügt"
 
-msgid "Message"
-msgstr ""
-
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
 
@@ -5107,7 +5134,7 @@ msgstr ""
 
 msgid "No Timeshift found to save as recording!"
 msgstr ""
-"Keine Timeshiftdatei gefunden die als Aufnahme gespeichert werden kann."
+"Keine TimeShiftdatei gefunden die als Aufnahme gespeichert werden kann."
 
 msgid "No active channel found."
 msgstr "Kein aktiver Sender gefunden."
@@ -6440,6 +6467,9 @@ msgstr "verbleibend und verstrichen"
 msgid "Remember service PIN"
 msgstr "Sender PIN merken"
 
+msgid "Reminder, you have chosen to save timeshift file."
+msgstr "Erinnerung! Du hast gewählt das TimeShift in Datei gespeichert wird."
+
 msgid "Remote box"
 msgstr "Entfernte Box"
 
@@ -6753,11 +6783,17 @@ msgstr "Automatisch speichern alle x Stunden"
 msgid "Save playlist"
 msgstr "Wiedergabeliste speichern"
 
+msgid "Save timeshift and zap"
+msgstr "Sichere TimeShift und schalte um"
+
 msgid "Save timeshift as movie and continue recording"
 msgstr "TimeShift als Film speichern und Aufnahme fortsetzen"
 
 msgid "Save timeshift as movie and stop recording"
 msgstr "TimeShift als Film speichern und Aufnahme beenden"
+
+msgid "Save timeshift in movie dir and zap"
+msgstr "TimeShift als Film im Filmverzeichnis speichern und Aufnahme beenden"
 
 msgid "Saving EPG Cache..."
 msgstr "EPG Cache wird gespeichert ..."
@@ -7258,8 +7294,12 @@ msgstr ""
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
 
-msgid "Set the time before checking video source for resolution infomation."
-msgstr "Systemzeit setzen vor Prüfung der Videoauflösung."
+msgid ""
+"Set the time before checking video source for resolution/refresh rate "
+"infomation."
+msgstr ""
+"Verzögerung einstellen nach der Auflösung/Wiederholrate des Videos geprüft "
+"wird"
 
 msgid "Set the time delay before hiding the infobar."
 msgstr "Wähle die Anzeigedauer von Infobar."
@@ -7858,6 +7898,15 @@ msgstr ""
 
 msgid ""
 "Sorry feeds seem be in an unstable state, if you wish to use them please "
+"enable 'Allow unstable (experimental) updates' in \"Software update settings"
+"\"."
+msgstr ""
+"Entschuldigung Feeds sind auf instabil eingestellt. Wenn instabile Updates "
+"erlaubt werden sollen muss das in den Einstellungen für Online-Update "
+"aktiviert werden."
+
+msgid ""
+"Sorry feeds seem to be in an unstable state, if you wish to use them please "
 "enable 'Allow unstable (experimental) updates' in \"Software update settings"
 "\"."
 msgstr ""
@@ -9080,6 +9129,9 @@ msgstr "Timer"
 
 msgid "Timeshift"
 msgstr "TimeShift"
+
+msgid "Timeshift is running. Select an action.\n"
+msgstr "TimeShift läuft. Wähle eine Aktion.\n"
 
 msgid "Timeshift location"
 msgstr "TimeShift Verzeichnis"
@@ -10479,6 +10531,10 @@ msgstr "Du hast keine Logs zum Verschicken gewählt."
 msgid "You have to wait %s!"
 msgstr "Du musst %s warten!"
 
+#, python-format
+msgid "You must switch to the service %s (%s - '%s')!\n"
+msgstr "Du must auf Sender %s (%s - '%s') umschalten!\n"
+
 msgid ""
 "You need a PC connected to your %s %s. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
@@ -10496,7 +10552,7 @@ msgid ""
 "You seem to be in timeshft, the service wil breifly stop as timeshfit stops."
 msgstr ""
 "TimeShift scheint aktiv zu sein. Dsie Sendung wird kurz anhalten wenn "
-"Timeshift stoppt."
+"TimeShift stoppt."
 
 msgid "You seem to be in timeshift!"
 msgstr "TimeShift scheint aktiv zu sein. "
@@ -11968,6 +12024,9 @@ msgstr "umschalten und aufnehmen"
 
 msgid "zapped"
 msgstr "umgeschaltet"
+
+#~ msgid "Configure the refresh rate of the screen."
+#~ msgstr "Konfiguriere die Wiederholrate für den Bildschirm."
 
 #~ msgid ""
 #~ "Do you want to also install samba client ?\n"
