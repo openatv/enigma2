@@ -63,6 +63,9 @@ import Screens.Standby
 
 AUDIO = False
 seek_withjumps_muted = False
+jump_pts_adder = 0
+jump_last_pts = None
+jump_last_pos = None
 
 if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
 	COOLTVGUIDE = True
@@ -2483,6 +2486,27 @@ class InfoBarSeek:
 			return
 		seekable.seekTo(pts)
 
+	def doSeekRelativeAvoidStall(self, pts):
+		global jump_pts_adder
+		global jump_last_pts
+		global jump_last_pos
+		seekable = self.getSeek()
+		#when config.seek.withjumps, avoid that jumps smaller than the time between I-frames result in hanging, by increasing pts when stalled
+		if seekable and config.seek.withjumps_avoid_zero.getValue():
+			position = seekable.getPlayPosition()
+			if jump_last_pos and jump_last_pts:
+				if (abs(position[1] - jump_last_pos[1]) < 100*90) and (pts == jump_last_pts): # stalled?
+					jump_pts_adder += pts
+					jump_last_pts = pts
+					pts += jump_pts_adder
+				else:
+					jump_pts_adder = 0
+					jump_last_pts = pts
+			else:
+				jump_last_pts = pts
+			jump_last_pos = position
+		self.doSeekRelative(pts)
+
 	def doSeekRelative(self, pts):
 		seekable = self.getSeek()
 		if seekable is None and int(self.seek.getLength()[1]) < 1:
@@ -2500,9 +2524,9 @@ class InfoBarSeek:
 
 	def DoSeekAction(self):
 		if self.seekAction > 2:
-			self.doSeekRelative(self.seekAction * int(config.seek.withjumps_forwards_ms.getValue()) * 90)
+			self.doSeekRelativeAvoidStall(self.seekAction * long(config.seek.withjumps_forwards_ms.getValue()) * 90)
 		elif self.seekAction < 0:
-			self.doSeekRelative(self.seekAction * int(config.seek.withjumps_backwards_ms.getValue()) * 90)
+			self.doSeekRelativeAvoidStall(self.seekAction * long(config.seek.withjumps_backwards_ms.getValue()) * 90)
 
 		for c in self.onPlayStateChanged:
 			if self.seekAction > 2: # Forward
