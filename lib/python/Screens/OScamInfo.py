@@ -48,12 +48,12 @@ class OscamInfo:
 		#search_dirs = [ "/usr", "/var", "/etc" ]
 		#sdirs = " ".join(search_dirs)
 		#cmd = 'find %s -name "oscam.conf"' % sdirs
-		cmd = 'ps -eo command | sort -u | grep -v "grep" | grep -c "OScam"'
+		cmd = 'ps -eo command | sort -u | grep -v "grep" | grep -c "oscam"'
 		res = os.popen(cmd).read()
 		if res:
 			data = res.replace("\n", "")
 			if int(data) == 1:
-				cmd = 'ps -eo command | sort -u | grep -v "grep" | grep "OScam"'
+				cmd = 'ps -eo command | sort -u | grep -v "grep" | grep "oscam"'
 				res = os.popen(cmd).read()
 				if res:
 					data = res.replace("\n", "")
