@@ -167,7 +167,7 @@ class MovieList(GUIComponent):
 		self.iconsWidth = 22
 		self.trashShift = 1
 		self.dirShift = 1
-		self.columns = (180,200)
+		self.dateWidth = 150
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -291,10 +291,8 @@ class MovieList(GUIComponent):
 			self.dirShift = int(value)
 		def spaceRight(value):
 			self.spaceRight = int(value)
-		def columns(value):
-			self.columns = map(int, value.split(","))
-			if len(self.columns) != 2:
-				warningWrongSkinParameter(attrib)
+		def dateWidth(value):
+			self.dateWidth = int(value)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -331,6 +329,7 @@ class MovieList(GUIComponent):
 	def buildMovieListEntry(self, serviceref, info, begin, data):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
+		dateWidth = self.dateWidth
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
@@ -423,10 +422,8 @@ class MovieList(GUIComponent):
 			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 
 		ih = self.itemHeight
-		lenSize = ih * 3 # 25 -> 75
-		dateSize = ih * 145 / 25   # 25 -> 145
-		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateSize-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
-		res.append(MultiContentEntryText(pos=(width-dateSize-r, 4), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
+		res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 		return res
 
 	def moveToFirstMovie(self):
