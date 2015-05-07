@@ -252,7 +252,7 @@ void fbClass::unlock()
 void fbClass::enableManualBlit()
 {
 	unsigned char tmp = 1;
-	if (fbFd < 0) return -1;
+	if (fbFd < 0) return;
 	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		eDebug("[fb] enable FBIO_SET_MANUAL_BLIT: %m");
 	else
@@ -262,7 +262,7 @@ void fbClass::enableManualBlit()
 void fbClass::disableManualBlit()
 {
 	unsigned char tmp = 0;
-	if (fbFd < 0) return -1;
+	if (fbFd < 0) return;
 	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		eDebug("[fb] disable FBIO_SET_MANUAL_BLIT: %m");
 	else
