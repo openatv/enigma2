@@ -69,6 +69,8 @@ static int exec_list(void)
 		int len;
 	} l;
 
+	if (fb_fd < 0) return -1;
+
 	l.ptr = displaylist;
 	l.len = ptr;
 	ret = ioctl(fb_fd, FBIO_ACCEL, &l);
