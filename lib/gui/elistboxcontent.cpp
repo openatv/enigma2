@@ -317,7 +317,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	bool cursorValid = this->cursorValid();
 	gRGB border_color;
 	int border_size = 0;
-	
+
 	painter.clip(itemrect);
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 
@@ -454,14 +454,22 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation) * value / size;
+						int width = (m_itemsize.width() - m_seperation - 7) * value / size;
 						int height = m_itemsize.height();
 
 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
-						painter.fill(eRect(offset.x() + m_seperation, offset.y() + 5, width, height-10));
+						ePoint tl(offset.x() + m_seperation, offset.y() + 1);
+						ePoint tr(offset.x() + m_itemsize.width() - 1, tl.y());
+						ePoint bl(tl.x(), offset.y() + m_itemsize.height() - 2);
+						ePoint br(tr.x(), bl.y());
+						painter.line(tl, tr);
+						painter.line(tr, br);
+						painter.line(br, bl);
+						painter.line(bl, tl);
+						painter.fill(eRect(offset.x() + m_seperation + 3, offset.y() + 5, width, height - 10));
 
 					/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
@@ -471,12 +479,12 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePtr<eTextPara> para = new eTextPara(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize));
 						para->setFont(fnt2);
 						para->renderString(text, 0);
-						
+
 						if (value_alignment_left)
 							para->realign(eTextPara::dirLeft);
 						else
-							para->realign(eTextPara::dirRight); 
-						
+							para->realign(eTextPara::dirRight);
+
 						int glyphs = para->size();
 
 						ePyObject plist;
@@ -526,10 +534,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					{
 						ePyObject data;
 						ePyObject ppixmap = PyTuple_GET_ITEM(value, 1);
-						
+
 						if (PyInt_Check(ppixmap) && data) /* if the pixemap is in fact a number, it refers to the 'data' list. */
 							ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
-						
+
 						ePtr<gPixmap> pixmap;
 						if (SwigFromPython(pixmap, ppixmap))
 						{
@@ -934,7 +942,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					}
 
 					rect.setRect(x, y, width, bwidth);
-					painter.fill(rect); 
+					painter.fill(rect);
 
 					rect.setRect(x, y+bwidth, bwidth, height-bwidth);
 					painter.fill(rect);

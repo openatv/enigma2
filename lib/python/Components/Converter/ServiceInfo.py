@@ -94,6 +94,8 @@ class ServiceInfo(Converter, object):
 			f = open(pathname, "r")
 			val = int(f.read(), base)
 			f.close()
+			if val >= 2 ** 31:
+				val -= 2 ** 32
 		except Exception, e:
 			pass
 		return val
@@ -117,25 +119,25 @@ class ServiceInfo(Converter, object):
 	def _getVideoHeight(self, info):
 		return self._getVal("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16)
 
-	def _getVideoHeightStr(self, info, convert=lambda x: "%d" % x):
+	def _getVideoHeightStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
 		return self._getValStr("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16, convert=convert)
 
 	def _getVideoWidth(self, info):
 		return self._getVal("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16)
 
-	def _getVideoWidthStr(self, info, convert=lambda x: "%d" % x):
+	def _getVideoWidthStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
 		return self._getValStr("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16, convert=convert)
 
 	def _getFrameRate(self, info):
 		return self._getVal("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate)
 
-	def _getFrameRateStr(self, info, convert=lambda x: "%d" % x):
+	def _getFrameRateStr(self, info, convert=lambda x: "%d" % x if x > 0 else ""):
 		return self._getValStr("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate, convert=convert)
 
 	def _getProgressive(self, info):
 		return self._getVal("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive)
 
-	def _getProgressiveStr(self, info, convert=lambda x: "p" if x else 'i'):
+	def _getProgressiveStr(self, info, convert=lambda x: "" if x else "i"):
 		return self._getValStr("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, convert=convert)
 
 	@cached
@@ -277,13 +279,13 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.VIDEO_INFO:
 			progressive = self._getProgressiveStr(info)
 			fieldrate = self._getFrameRate(info)
-			if fieldrate >= 0:
-				if progressive != 'p':
+			if fieldrate > 0:
+				if progressive == 'i':
 					fieldrate *= 2
-				fieldrate = "%d" % ((fieldrate + 500) / 1000,)
+				fieldrate = "%dHz" % ((fieldrate + 500) / 1000,)
 			else:
-				fieldrate = "N/A"
-			return "%sx%s%s %sHz" % (self._getVideoWidthStr(info), self._getVideoHeightStr(info), progressive, fieldrate)
+				fieldrate = ""
+			return "%sx%s%s %s" % (self._getVideoWidthStr(info), self._getVideoHeightStr(info), progressive, fieldrate)
 		return ""
 
 	text = property(getText)
