@@ -11,6 +11,7 @@ void eServerSocket::notifier(int)
 {
 	int clientfd, clientlen;
 	struct sockaddr_in6 client_addr;
+	char straddr[INET6_ADDRSTRLEN];
 
 #ifdef DEBUG_SERVERSOCKET
 	eDebug("[eServerSocket] incoming connection!");
@@ -30,7 +31,7 @@ void eServerSocket::notifier(int)
 
 eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
 {
-	struct sockaddr_in6_in serv_addr;
+	struct sockaddr_in6 serv_addr;
 	strRemoteHost = "";
 
 	bzero(&serv_addr, sizeof(serv_addr));
@@ -42,6 +43,7 @@ eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
 	int val=1;
 	int v6only=0;
 
+	setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
 	setsockopt(getDescriptor(), IPPROTO_IPV6, IPV6_V6ONLY, &v6only, sizeof(v6only));
 
 	if(bind(getDescriptor(),
