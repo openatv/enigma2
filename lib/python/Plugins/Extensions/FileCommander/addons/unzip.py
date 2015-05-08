@@ -23,7 +23,9 @@ from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 from os import listdir, remove, rename, system, path, symlink, chdir
-import os, re, subprocess
+import os
+import re
+import subprocess
 from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
 
 pname = _("File Commander - unzip Addon")
@@ -59,13 +61,13 @@ class UnzipMenuScreen(Screen):
 		self.list.append((_("Unpack to current folder"), 2))
 		self.list.append((_("Unpack to %s") % self.targetDir, 3))
 		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
-		#self.list.append((_("Unpack with Password"), 5))
+		# self.list.append((_("Unpack with Password"), 5))
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
 		self.chooseMenuList.l.setItemHeight(25)
 		self['list_left'] = self.chooseMenuList
-		
+
 		self.chooseMenuList2 = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self.chooseMenuList2.l.setFont(0, gFont('Regular', 25))
 		self.chooseMenuList2.l.setItemHeight(30)
@@ -79,8 +81,7 @@ class UnzipMenuScreen(Screen):
 		self["key_yellow"] = Label("")
 		self["key_blue"] = Label("")
 
-		self["setupActions"] = ActionMap(["SetupActions"],
-		{
+		self["setupActions"] = ActionMap(["SetupActions"], {
 			"red": self.cancel,
 			"green": self.ok,
 			"cancel": self.cancel,
@@ -94,19 +95,21 @@ class UnzipMenuScreen(Screen):
 		self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		return [entry,
+		return [
+			entry,
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 0, 1180, 25, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, entry[0])
-			]
-			
+		]
+
 	def UnpackListEntry(self, entry):
 		print entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
-		proanzeige = str(currentProgress)+"%"
-#		color2 = 0x00ffffff #Weiss
-		return [entry,
+		proanzeige = str(currentProgress) + "%"
+		# color2 = 0x00ffffff # White
+		return [
+			entry,
 			(eListboxPythonMultiContent.TYPE_PROGRESS, 10, 0, 560, 30, int(currentProgress), None, None, None, None),
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 3, 560, 30, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, str(proanzeige))
-			]
+		]
 
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
@@ -128,7 +131,7 @@ class UnzipMenuScreen(Screen):
 		elif id == 2:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
-			#self.container.dataAvail.append(self.log)
+			# self.container.dataAvail.append(self.log)
 			self.ulist = []
 			cmd = (cmdname, self.sourceDir + self.filename, "-d", self.sourceDir)
 			self.container.execute(cmd[0], *cmd)
@@ -136,7 +139,7 @@ class UnzipMenuScreen(Screen):
 		elif id == 3:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
-			#self.container.dataAvail.append(self.log)
+			# self.container.dataAvail.append(self.log)
 			self.ulist = []
 			cmd = (cmdname, self.sourceDir + self.filename, "-d", self.targetDir)
 			self.container.execute(cmd[0], *cmd)
@@ -144,9 +147,9 @@ class UnzipMenuScreen(Screen):
 		elif id == 4:
 			self.container = eConsoleAppContainer()
 			self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
-			#self.container.dataAvail.append(self.log)
+			# self.container.dataAvail.append(self.log)
 			self.ulist = []
-			cmd = (cmdname,  self.sourceDir + self.filename, "-d", config.usage.default_path.value)
+			cmd = (cmdname, self.sourceDir + self.filename, "-d", config.usage.default_path.value)
 			self.container.execute(cmd[0], *cmd)
 
 	def extractDone(self, filename, data):
@@ -181,16 +184,15 @@ class UnpackInfoScreen(Screen):
 		self.chooseMenuList.l.setFont(0, gFont('Console', 20))
 		self.chooseMenuList.l.setItemHeight(25)
 		self['list_left'] = self.chooseMenuList
-		
+
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
-		
+
 		self["key_red"] = Label(_("cancel"))
 		self["key_green"] = Label(_("ok"))
 		self["key_yellow"] = Label("")
 		self["key_blue"] = Label("")
 
-		self["setupActions"] = ActionMap(["SetupActions"],
-		{
+		self["setupActions"] = ActionMap(["SetupActions"], {
 			"red": self.cancel,
 			"green": self.cancel,
 			"cancel": self.cancel,
@@ -205,9 +207,10 @@ class UnpackInfoScreen(Screen):
 			self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		return [entry,
+		return [
+			entry,
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 0, 1180, 25, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, entry[0])
-			]
+		]
 
 	def cancel(self):
 		self.close()

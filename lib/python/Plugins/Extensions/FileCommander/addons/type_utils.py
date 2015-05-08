@@ -37,28 +37,28 @@ from os import walk as os_walk
 import os
 
 EXTENSIONS = {
-	".m4a" : "music",
-	".mp2" : "music",
-	".mp3" : "music",
-	".wav" : "music",
-	".ogg" : "music",
+	".m4a": "music",
+	".mp2": "music",
+	".mp3": "music",
+	".wav": "music",
+	".ogg": "music",
 	".flac": "music",
-	".ts"  : "movie",
-	".avi" : "movie",
+	".ts": "movie",
+	".avi": "movie",
 	".divx": "movie",
-	".m4v" : "movie",
-	".mpg" : "movie",
+	".m4v": "movie",
+	".mpg": "movie",
 	".mpeg": "movie",
-	".mkv" : "movie",
-	".mp4" : "movie",
-	".mov" : "movie",
+	".mkv": "movie",
+	".mp4": "movie",
+	".mov": "movie",
 	".m2ts": "movie",
-	".wmv" : "movie",
-	".jpg" : "picture",
+	".wmv": "movie",
+	".jpg": "picture",
 	".jpeg": "picture",
-	".png" : "picture",
-	".bmp" : "picture",
-	".m3u" : "stream",
+	".png": "picture",
+	".bmp": "picture",
+	".m3u": "stream",
 	".m3u8": "stream",
 }
 
@@ -68,7 +68,8 @@ pname = _("File Commander - Addon Mediaplayer")
 pdesc = _("play/show Files")
 pversion = "1.0-r0"
 
-### play with movieplayer ###
+# ### play with movieplayer ###
+
 class MoviePlayer(Movie_Audio_Player):
 	def __init__(self, session, service):
 		self.session = session
@@ -85,7 +86,7 @@ class MoviePlayer(Movie_Audio_Player):
 	def doEofInternal(self, playing):
 		if not self.execing:
 			return
-		if not playing :
+		if not playing:
 			return
 		self.leavePlayer()
 
@@ -100,7 +101,8 @@ class MoviePlayer(Movie_Audio_Player):
 		if not(self.WithoutStopClose):
 			self.session.nav.playService(self.lastservice)
 
-### File viewer/line editor ###
+# ### File viewer/line editor ###
+
 class vEditor(Screen):
 
 	skin = """
@@ -125,8 +127,7 @@ class vEditor(Screen):
 		self.file_name = file
 		self.list = []
 		self["filedata"] = MenuList(self.list)
-		self["actions"] = ActionMap(["WizardActions", "ColorActions", "InfobarChannelSelection"],
-		{
+		self["actions"] = ActionMap(["WizardActions", "ColorActions", "InfobarChannelSelection"], {
 			"ok": self.editLine,
 			"green": self.editLine,
 			"back": self.exitEditor,
@@ -153,7 +154,7 @@ class vEditor(Screen):
 			warningtext = warningtext + "\n\n" + (_("WARNING!"))
 			warningtext = warningtext + "\n" + (_("The authors are NOT RESPONSIBLE"))
 			warningtext = warningtext + "\n" + (_("for DATA LOSS OR DAMAGE !!!"))
-			msg = self.session.openWithCallback(self.SaveFile, MessageBox,_(self.file_name+self.file_name+warningtext), MessageBox.TYPE_YESNO)
+			msg = self.session.openWithCallback(self.SaveFile, MessageBox, _(self.file_name + self.file_name + warningtext), MessageBox.TYPE_YESNO)
 			msg.setTitle(_("File Commander"))
 		else:
 			self.close()
@@ -178,13 +179,13 @@ class vEditor(Screen):
 			self.oldLine = self.list[self.selLine]
 			my_editableText = self.list[self.selLine][:-1]
 			editableText = my_editableText.partition(": ")[2]
-#			os.system('echo %s %s >> /tmp/test.log' % ("oldline_a :", str(len(editableText))))
+			# os.system('echo %s %s >> /tmp/test.log' % ("oldline_a :", str(len(editableText))))
 			if len(editableText) == 0:
-				editableText = "" #self.list[self.selLine][:-1]
+				editableText = ""  # self.list[self.selLine][:-1]
 			self.findtab = editableText.find("\t", 0, len(editableText))
 			if self.findtab != -1:
-				editableText = editableText.replace("\t","        ")
-			self.session.openWithCallback(self.callbackEditLine, InputBoxmod, title=_(_("original")+": "+editableText), visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ")+str(self.selLine+1), text=editableText)
+				editableText = editableText.replace("\t", "        ")
+			self.session.openWithCallback(self.callbackEditLine, InputBoxmod, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
 			msg.setTitle(_("Error..."))
@@ -205,7 +206,7 @@ class vEditor(Screen):
 						else:
 							newline = "0000" + ": " + newline
 						self.list.remove(x)
-						self.list.insert(self.selLine, newline+'\n')
+						self.list.insert(self.selLine, newline + '\n')
 				k += 1
 		self.findtab = -1
 		self.selLine = None
@@ -217,18 +218,18 @@ class vEditor(Screen):
 
 	def posEnd(self):
 		self.selLine = len(self.list)
-		self["filedata"].moveToIndex(len(self.list)-1)
+		self["filedata"].moveToIndex(len(self.list) - 1)
 
 	def del_Line(self):
 		self.selLine = self["filedata"].getSelectionIndex()
 		if len(self.list) > 1:
 			self.isChanged = True
 			del self.list[self.selLine]
-			self.refreshList() 
+			self.refreshList()
 
 	def ins_Line(self):
 		self.selLine = self["filedata"].getSelectionIndex()
-		self.list.insert(self.selLine, "0000: "+""+'\n')
+		self.list.insert(self.selLine, "0000: " + "" + '\n')
 		self.isChanged = True
 		self.refreshList()
 
@@ -237,7 +238,7 @@ class vEditor(Screen):
 		for x in self.list:
 			my_x = x.partition(": ")[2]
 			self.list.remove(x)
-			self.list.insert(zeile-1, str(zeile).zfill(4) + ": " + my_x) #'\n')
+			self.list.insert(zeile - 1, str(zeile).zfill(4) + ": " + my_x)  # '\n')
 			zeile += 1
 		self["filedata"].setList(self.list)
 
@@ -267,31 +268,31 @@ class ImageViewer(Screen):
 			<widget name="icon" position="%d,%d" size="20,20" zPosition="2" pixmap="skin_default/icons/ico_mp_play.png"  alphatest="on" />
 			<widget source="message" render="Label" position="%d,%d" size="%d,25" font="Regular;20" halign="left" foregroundColor="#0038FF48" zPosition="2" noWrap="1" transparent="1" />
 		</screen>
-		""" % (w, h, w, h, s, s, w-(s*2), h-(s*2), s+5, s+2, s+25, s+2, s+45, s, w-(s*2)-50)
+		""" % (w, h, w, h, s, s, w - (s * 2), h - (s * 2), s + 5, s + 2, s + 25, s + 2, s + 45, s, w - (s * 2) - 50)
 
 	def __init__(self, session, fileList, index, path, filename):
 		Screen.__init__(self, session)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"], {
 			"cancel": self.keyCancel,
-			"left"  : self.keyLeft,
-			"right" : self.keyRight,
-			"blue"  : self.keyBlue,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+			"blue": self.keyBlue,
 			"yellow": self.keyYellow,
 		}, -1)
 
-		self["icon"]    = Pixmap()
-		self["image"]   = Pixmap()
-		self["status"]  = Pixmap()
+		self["icon"] = Pixmap()
+		self["image"] = Pixmap()
+		self["status"] = Pixmap()
 		self["message"] = StaticText(_("Please wait, Loading image."))
 
-		self.fileList     = []
+		self.fileList = []
 		self.currentImage = []
 
-		self.lsatIndex      = index
-		self.startIndex     = index
-		self.filename				= filename
-		self.fileListLen    = 0
-		self.currentIndex   = 0
+		self.lsatIndex = index
+		self.startIndex = index
+		self.filename = filename
+		self.fileListLen = 0
+		self.currentIndex = 0
 		self.directoryCount = 0
 
 		self.displayNow = True
@@ -345,15 +346,17 @@ class ImageViewer(Screen):
 
 	def setPictureLoadPara(self):
 		sc = AVSwitch().getFramebufferScale()
-		self.pictureLoad.setPara([self["image"].instance.size().width(), 
-					  self["image"].instance.size().height(), 
-					  sc[0],
-					  sc[1],
-					  0,
-					  int(config.pic.resize.value),
-					  '#00000000'])
+		self.pictureLoad.setPara([
+			self["image"].instance.size().width(),
+			self["image"].instance.size().height(),
+			sc[0],
+			sc[1],
+			0,
+			int(config.pic.resize.value),
+			'#00000000'
+		])
 		self["icon"].hide()
-		if config.pic.infoline.value == False:
+		if not config.pic.infoline.value:
 			self["message"].setText("")
 		self.startDecode()
 
@@ -365,14 +368,15 @@ class ImageViewer(Screen):
 			if x[0][0] is not None:
 				testfilename = x[0][0].lower()
 			else:
-				testfilename = x[0][0] #"empty"
+				testfilename = x[0][0]  # "empty"
 			if l == 3 or l == 2:
-				if (x[0][1] == False) and ((testfilename.endswith(".jpg")) or (testfilename.endswith(".jpeg")) or (testfilename.endswith(".jpe")) or (testfilename.endswith(".png")) or (testfilename.endswith(".bmp"))):
+				if not x[0][1] and ((testfilename.endswith(".jpg")) or (testfilename.endswith(".jpeg")) or (testfilename.endswith(".jpe")) or (testfilename.endswith(".png")) or (testfilename.endswith(".bmp"))):
 					if self.filename == x[0][0]:
 						start_pic = i
 					i += 1
 					self.fileList.append(path + x[0][0])
-				else:	self.directoryCount += 1
+				else:
+					self.directoryCount += 1
 			else:
 				testfilename = x[4].lower()
 				if (testfilename.endswith(".jpg")) or (testfilename.endswith(".jpeg")) or (testfilename.endswith(".jpe")) or (testfilename.endswith(".png")) or (testfilename.endswith(".bmp")):
@@ -384,7 +388,6 @@ class ImageViewer(Screen):
 		if self.currentIndex < 0 or start_pic < 0:
 			self.currentIndex = 0
 		self.fileListLen = len(self.fileList) - 1
-
 
 	def showPicture(self):
 		if self.displayNow and len(self.currentImage):
@@ -403,11 +406,11 @@ class ImageViewer(Screen):
 	def finishDecode(self, picInfo=""):
 		self["status"].hide()
 		ptr = self.pictureLoad.getData()
-		if ptr != None:
+		if ptr is not None:
 			text = ""
 			try:
-				text = picInfo.split('\n',1)
-				text = "(" + str(self.currentIndex+1) + "/" + str(self.fileListLen+1) + ") " + text[0].split('/')[-1]
+				text = picInfo.split('\n', 1)
+				text = "(" + str(self.currentIndex + 1) + "/" + str(self.fileListLen + 1) + ") " + text[0].split('/')[-1]
 			except:
 				pass
 			self.currentImage = []
@@ -424,7 +427,7 @@ class ImageViewer(Screen):
 
 	def cbSlideShow(self):
 		print "slide to next Picture index=" + str(self.lsatIndex)
-		if config.pic.loop.value==False and self.lsatIndex == self.fileListLen:
+		if not config.pic.loop.value and self.lsatIndex == self.fileListLen:
 			self.PlayPause()
 		self.displayNow = True
 		self.showPicture()

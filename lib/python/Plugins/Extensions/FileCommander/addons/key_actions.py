@@ -24,7 +24,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 # Tools
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
-#from Tools.HardwareInfo import HardwareInfo
+# from Tools.HardwareInfo import HardwareInfo
 # Various
 from os.path import isdir as os_path_isdir
 from os.path import splitext as os_path_splitext
@@ -42,10 +42,10 @@ from time import localtime as time_localtime
 
 import os
 # System mods
-#from InputBoxmod import InputBox
-#from FileListmod import FileList, MultiFileSelectList
+# from InputBoxmod import InputBox
+# from FileListmod import FileList, MultiFileSelectList
 # Addons
-#from unrar import *
+# from unrar import *
 from Plugins.Extensions.FileCommander.addons.unrar import *
 from Plugins.Extensions.FileCommander.addons.tar import *
 from Plugins.Extensions.FileCommander.addons.unzip import *
@@ -69,42 +69,40 @@ class key_actions():
 	def __init__(self):
 		pass
 
-
 	def change_mod(self, dirsource):
 		filename = dirsource.getFilename()
-		sourceDir = dirsource.getCurrentDirectory() #self.SOURCELIST.getCurrentDirectory()
+		sourceDir = dirsource.getCurrentDirectory()  # self.SOURCELIST.getCurrentDirectory()
 		self.longname = sourceDir + filename
 		if not dirsource.canDescent():
-			askList = [(_("Set archive mode (644)"), "CHMOD644"),(_("Set executable mode (755)"), "CHMOD755"),(_("Cancel"), "NO")]	
+			askList = [(_("Set archive mode (644)"), "CHMOD644"), (_("Set executable mode (755)"), "CHMOD755"), (_("Cancel"), "NO")]
 			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=_("Do you want change rights?\\n" + filename), list=askList)
 		else:
-			self.session.open(MessageBox,_("Not allowed with folders"), type = MessageBox.TYPE_INFO, close_on_any_key = True)
+			self.session.open(MessageBox, _("Not allowed with folders"), type=MessageBox.TYPE_INFO, close_on_any_key=True)
 
-		
 	def do_change_mod(self, answer):
 		answer = answer and answer[1]
-	#	sourceDir = dirsource.getCurrentDirectory() #self.SOURCELIST.getCurrentDirectory()
+		# sourceDir = dirsource.getCurrentDirectory() #self.SOURCELIST.getCurrentDirectory()
 		if answer == "CHMOD644":
 			os_system("chmod 644 " + self.longname)
 		elif answer == "CHMOD755":
 			os_system("chmod 755 " + self.longname)
 		self.doRefresh()
-	
+
 	def Humanizer(self, size):
 		if (size < 1024):
-			humansize = str(size)+" B"
+			humansize = str(size) + " B"
 		elif (size < 1048576):
-			humansize = str(size/1024)+" KB"
+			humansize = str(size / 1024) + " KB"
 		else:
-			humansize = str(round(float(size)/1048576,2))+" MB"
+			humansize = str(round(float(size) / 1048576, 2)) + " MB"
 		return humansize
-	
+
 	def Info(self, dirsource):
 		filename = dirsource.getFilename()
-		sourceDir = dirsource.getCurrentDirectory() #self.SOURCELIST.getCurrentDirectory()
+		sourceDir = dirsource.getCurrentDirectory()  # self.SOURCELIST.getCurrentDirectory()
 		mytest = dirsource.canDescent()
 		if dirsource.canDescent():
-			if dirsource.getSelectionIndex()!=0:
+			if dirsource.getSelectionIndex() != 0:
 				if (not sourceDir) and (not filename):
 					return pname
 				else:
@@ -116,8 +114,8 @@ class key_actions():
 				mode = oct(mode)
 				curSelDir = sourceDir
 				dir_stats = os_stat(curSelDir)
-				dir_infos = "   " + _("Size") + str(self.Humanizer(dir_stats.st_size))+"    "
-				dir_infos = dir_infos + _("Date") + " " + time_strftime("%d.%m.%Y - %H:%M:%S",time_localtime(dir_stats.st_mtime))+"    "
+				dir_infos = "   " + _("Size") + str(self.Humanizer(dir_stats.st_size)) + "    "
+				dir_infos = dir_infos + _("Date") + " " + time_strftime("%d.%m.%Y - %H:%M:%S", time_localtime(dir_stats.st_mtime)) + "    "
 				dir_infos = dir_infos + _("Mode") + " " + str(mode[-3:])
 				return (dir_infos)
 			else:
@@ -130,8 +128,8 @@ class key_actions():
 				return ("")
 			mode = oct(mode)
 			file_stats = os_stat(longname)
-			file_infos = filename + "   " + _("Size") + " " + str(self.Humanizer(file_stats.st_size))+"    "
-			file_infos = file_infos + _("Date") + " " + time_strftime("%d.%m.%Y - %H:%M:%S",time_localtime(file_stats.st_mtime))+"    "
+			file_infos = filename + "   " + _("Size") + " " + str(self.Humanizer(file_stats.st_size)) + "    "
+			file_infos = file_infos + _("Date") + " " + time_strftime("%d.%m.%Y - %H:%M:%S", time_localtime(file_stats.st_mtime)) + "    "
 			file_infos = file_infos + _("Mode") + " " + str(mode[-3:])
 			return (file_infos)
 
@@ -148,14 +146,14 @@ class key_actions():
 		if answer == "YES":
 			self.session.open(Console, cmdlist=((self.commando[0],),))
 		elif answer == "VIEW":
-			yfile=os_stat(self.commando[0])
+			yfile = os_stat(self.commando[0])
 			if (yfile.st_size < 61440):
 				self.session.open(vEditor, self.commando[0])
 
 	def play_music(self, dirsource):
 		self.sourceDir = dirsource
-		askList = [(_("Play title"), "SINGLE"),(_("Play folder"), "LIST"),(_("Cancel"), "NO")]
-		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n"+self.sourceDir.getFilename()), list=askList)
+		askList = [(_("Play title"), "SINGLE"), (_("Play folder"), "LIST"), (_("Cancel"), "NO")]
+		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n" + self.sourceDir.getFilename()), list=askList)
 
 	def do_play_music(self, answer):
 		longname = self.sourceDir.getCurrentDirectory() + self.sourceDir.getFilename()
@@ -167,7 +165,7 @@ class key_actions():
 			self.music_playlist()
 
 	def music_playlist(self):
-		fileList     = []
+		fileList = []
 		from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 		self.beforeService = self.session.nav.getCurrentlyPlayingServiceReference()
 		path = self.sourceDir.getCurrentDirectory()
@@ -185,10 +183,10 @@ class key_actions():
 				testFileName = x[0][0].lower()
 				_, filetype = os_path_splitext(testFileName)
 			else:
-				testFileName = x[0][0] #"empty"
+				testFileName = x[0][0]  # "empty"
 				filetype = None
 			if l == 3 or l == 2:
-				if x[0][1] == False:
+				if not x[0][1]:
 					if filetype in AUDIO_EXTENSIONS:
 						if filename == x[0][0]:
 							start_song = i
@@ -213,7 +211,8 @@ class key_actions():
 			self.beforeService = None
 
 	def cbShowPicture(self, idx=0):
-		if idx > 0: self.SOURCELIST.moveToIndex(idx)
+		if idx > 0:
+			self.SOURCELIST.moveToIndex(idx)
 
 	def onFileAction(self, dirsource, dirtarget):
 		self.SOURCELIST = dirsource
@@ -248,33 +247,35 @@ class key_actions():
 		elif filetype == ".zip":
 			self.session.openWithCallback(self.onFileActionCB, UnzipMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif filetype in IMAGE_EXTENSIONS:
-			if self.SOURCELIST.getSelectionIndex()!=0:
-				self.session.openWithCallback(self.cbShowPicture, 
-							      ImageViewer, 
-							      self.SOURCELIST.getFileList(), 
-					  		    self.SOURCELIST.getSelectionIndex(), 
-					      		self.SOURCELIST.getCurrentDirectory(),
-					      		filename)
+			if self.SOURCELIST.getSelectionIndex() != 0:
+				self.session.openWithCallback(
+					self.cbShowPicture,
+					ImageViewer,
+					self.SOURCELIST.getFileList(),
+					self.SOURCELIST.getSelectionIndex(),
+					self.SOURCELIST.getCurrentDirectory(),
+					filename
+				)
 		elif filetype == ".sh":
 			self.run_script(self.SOURCELIST)
 		elif filetype in TEXT_EXTENSIONS:
-			xfile=os_stat(longname)
-#			if (xfile.st_size < 61440):
+			xfile = os_stat(longname)
+			# if (xfile.st_size < 61440):
 			if (xfile.st_size < 1000000):
 				self.session.open(vEditor, longname)
 				self.onFileActionCB(True)
 		else:
 			try:
-				x = openFile(self.session,guess_type(self.SOURCELIST.getFilename())[0],self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename())
-			except TypeError,e:
-				self.session.open(MessageBox,_("no Viewer installed for this mimetype!"), type = MessageBox.TYPE_ERROR, timeout = 5, close_on_any_key = True)
-#			try:
-#				xfile=os_stat(longname)
-##				if (xfile.st_size < 61440):
-#				self.session.open(vEditor, longname)
+				x = openFile(self.session, guess_type(self.SOURCELIST.getFilename())[0], self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename())
+			except TypeError, e:
+				self.session.open(MessageBox, _("no Viewer installed for this mimetype!"), type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
+			# try:
+			# 	xfile=os_stat(longname)
+			# 	if (xfile.st_size < 61440):
+			# 		self.session.open(vEditor, longname)
 
-	def onFileActionCB(self,result):
-#		os.system('echo %s > /tmp/test.log' % (result))
-		#print result
+	def onFileActionCB(self, result):
+		# os.system('echo %s > /tmp/test.log' % (result))
+		# print result
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()

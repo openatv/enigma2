@@ -24,7 +24,9 @@ from Tools.BoundFunction import boundFunction
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 from os import listdir, remove, rename, system, path, symlink, chdir
 from os.path import basename
-import os, re, subprocess
+import os
+import re
+import subprocess
 from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
 
 pname = _("File Commander - Unrar Addon")
@@ -63,13 +65,13 @@ class RarMenuScreen(Screen):
 		self.list.append((_("Unpack to current folder"), 2))
 		self.list.append((_("Unpack to %s") % self.targetDir, 3))
 		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
-		#self.list.append((_("Unpack with Password"), 5))
+		# self.list.append((_("Unpack with Password"), 5))
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
 		self.chooseMenuList.l.setItemHeight(25)
 		self['list_left'] = self.chooseMenuList
-		
+
 		self.chooseMenuList2 = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self.chooseMenuList2.l.setFont(0, gFont('Regular', 25))
 		self.chooseMenuList2.l.setItemHeight(30)
@@ -83,8 +85,7 @@ class RarMenuScreen(Screen):
 		self["key_yellow"] = Label("")
 		self["key_blue"] = Label("")
 
-		self["setupActions"] = ActionMap(["SetupActions"],
-		{
+		self["setupActions"] = ActionMap(["SetupActions"], {
 			"red": self.cancel,
 			"green": self.ok,
 			"cancel": self.cancel,
@@ -98,19 +99,21 @@ class RarMenuScreen(Screen):
 		self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		return [entry,
+		return [
+			entry,
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 0, 1180, 25, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, entry[0])
-			]
-			
+		]
+
 	def UnpackListEntry(self, entry):
 		print entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
-		progpercent = str(currentProgress)+"%"
-#		color2 = 0x00ffffff  # White
-		return [entry,
+		progpercent = str(currentProgress) + "%"
+		# color2 = 0x00ffffff  # White
+		return [
+			entry,
 			(eListboxPythonMultiContent.TYPE_PROGRESS, 10, 0, 560, 30, int(currentProgress), None, None, None, None),
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 3, 560, 30, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, str(progpercent))
-			]
+		]
 
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
@@ -121,7 +124,7 @@ class RarMenuScreen(Screen):
 	def checkPW(self, pwd):
 		self.defaultPW = pwd
 		print "Current pw:", self.defaultPW
-		cmd = (self.unrar,  "p", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.sourceDir)
+		cmd = (self.unrar, "p", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.sourceDir)
 		p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 		stdlog = p.stdout.read()
 		if stdlog:
@@ -129,13 +132,13 @@ class RarMenuScreen(Screen):
 			if re.search('Corrupt file or wrong password.', stdlog, re.S):
 				print "pw incorrect!"
 				length = config.plugins.filecommander.input_length.value
-				self.session.openWithCallback(self.setPW,InputBox,text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title = _("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
+				self.session.openWithCallback(self.setPW, InputBox, text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
 			else:
 				print "pw correct!"
 				self.unpackModus(self.selectId)
 
 	def setPW(self, pwd):
-		if pwd == None:
+		if pwd is None:
 			self.defaultPW = "2D1U3MP!"
 		elif pwd == "":
 			self.defaultPW = "2D1U3MP!"
@@ -181,9 +184,9 @@ class RarMenuScreen(Screen):
 			self.ulist = []
 			cmd = (self.unrarName, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", config.usage.default_path.value)
 			self.container.execute(self.unrar, *cmd)
-			
+
 	def log(self, data):
-		print data			
+		print data
 		status = re.findall('(\d+)%', data, re.S)
 		if status:
 			if not status[0] in self.ulist:
@@ -227,16 +230,15 @@ class UnpackInfoScreen(Screen):
 		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
 		self.chooseMenuList.l.setItemHeight(25)
 		self['list_left'] = self.chooseMenuList
-		
+
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
-		
+
 		self["key_red"] = Label(_("cancel"))
 		self["key_green"] = Label(_("ok"))
 		self["key_yellow"] = Label("")
 		self["key_blue"] = Label("")
 
-		self["setupActions"] = ActionMap(["SetupActions"],
-		{
+		self["setupActions"] = ActionMap(["SetupActions"], {
 			"red": self.cancel,
 			"green": self.cancel,
 			"cancel": self.cancel,
@@ -251,9 +253,10 @@ class UnpackInfoScreen(Screen):
 			self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		return [entry,
+		return [
+			entry,
 			(eListboxPythonMultiContent.TYPE_TEXT, 10, 0, 1180, 25, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, entry[0])
-			]
+		]
 
 	def cancel(self):
 		self.close()
