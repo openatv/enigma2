@@ -572,7 +572,7 @@ class InfoBarTimeshift:
 		self.event_changed = False
 
 		ts = self.getTimeshift()
-		if ts and not ts.startTimeshift() or self.pts_eventcount == 0:
+		if ts and (not ts.startTimeshift() or self.pts_eventcount == 0):
 			# Update internal Event Counter
 			self.pts_eventcount += 1
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
