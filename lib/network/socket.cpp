@@ -2,6 +2,8 @@
 #include <asm/ioctls.h>
 #include <unistd.h>
 #include <errno.h>
+#include <time.h>
+#include <string.h>
 #include <linux/serial.h>
 #include <lib/network/socket.h>
 
@@ -9,19 +11,19 @@ void eSocket::close()
 {
 	if (writebuffer.empty())
 	{
-		int wasconnected=(mystate==Connection) || (mystate==Closing);
-		rsn=0;
+		int wasconnected = (mystate == Connection) || (mystate == Closing);
+		rsn = 0;
 		if (socketdesc >= 0)
 		{
 			::close(socketdesc);
-			socketdesc=-1;
+			socketdesc = -1;
 		}
-		mystate=Invalid;
+		mystate = Invalid;
 		if (wasconnected)
 			connectionClosed_();
 	} else
 	{
-		mystate=Closing;
+		mystate = Closing;
 		rsn->setRequested(rsn->getRequested()|eSocketNotifier::Write);
 	}
 }
@@ -82,16 +84,16 @@ int eSocket::state()
 	return mystate;
 }
 
-int eSocket::setSocket(int s, int iss, eMainloop *ml)
+int eSocket::setSocket(int s, int iss)
 {
-	socketdesc=s;
+	socketdesc = s;
 	if (socketdesc < 0) return -1;
-	issocket=iss;
+	issocket = iss;
 	fcntl(socketdesc, F_SETFL, O_NONBLOCK);
 	last_break = -1;
 
 	rsn = 0;
-	rsn=eSocketNotifier::create(ml, getDescriptor(),
+	rsn = eSocketNotifier::create(mainloop, getDescriptor(),
 		eSocketNotifier::Read|eSocketNotifier::Hungup);
 	CONNECT(rsn->activated, eSocket::notifier);
 	return 0;
@@ -104,7 +106,7 @@ void eSocket::notifier(int what)
 		int bytesavail=256;
 		if (issocket)
 			if (ioctl(getDescriptor(), FIONREAD, &bytesavail)<0)
-				eDebug("FIONREAD failed.\n");
+				eDebug("[eSocket] FIONREAD failed.\n");
 
 		{
 			if (issocket)
@@ -137,12 +139,12 @@ void eSocket::notifier(int what)
 					}
 				}
 				else
-					eDebug("TIOCGICOUNT failed(%m)");
+					eDebug("[eSocket] TIOCGICOUNT failed: %m");
 			}
 			int r;
 			if ((r=readbuffer.fromfile(getDescriptor(), bytesavail)) != bytesavail)
 				if (issocket)
-					eDebug("fromfile failed!");
+					eDebug("[eSocket] fromfile failed!");
 			readyRead_();
 		}
 	} else if (what & eSocketNotifier::Write)
@@ -162,7 +164,7 @@ void eSocket::notifier(int what)
 					}
 				}
 			} else
-				eDebug("got ready to write, but nothin in buffer. strange.");
+				eDebug("[eSocket] got ready to write, but nothin in buffer. strange.");
 			if (mystate == Closing)
 				close();
 		} else if (mystate == Connecting)
@@ -205,10 +207,13 @@ int eSocket::writeBlock(const char *data, unsigned int len)
 	if (issocket && writebuffer.empty())
 	{
 		int tw=::send(getDescriptor(), data, len, MSG_NOSIGNAL);
-		if ((tw < 0) && (errno != EWOULDBLOCK))
+		if ((tw < 0) && (errno != EWOULDBLOCK)) {
 	// don't use eDebug here because of a adaptive mutex in the eDebug call..
 	// and eDebug self can cause a call of writeBlock !!
-			printf("write: %m\n");
+			struct timespec tp;
+			clock_gettime(CLOCK_MONOTONIC, &tp);
+			fprintf(stderr, "<%6lu.%06lu> [eSocket] write: %m\n", tp.tv_sec, tp.tv_nsec/1000);
+		}
 		if (tw < 0)
 			tw = 0;
 		data+=tw;
@@ -227,80 +232,95 @@ int eSocket::getDescriptor()
 	return socketdesc;
 }
 
-int eSocket::connectToHost(std::string hostname, int port)
+int eSocket::connect(struct addrinfo *addr)
 {
-	sockaddr_in6  serv_addr;
-	struct hostent *server;
 	int res;
-
-	if (mystate == Invalid)
+	struct addrinfo *ptr = addr;
+	for (ptr = addr; ptr != NULL; ptr = ptr->ai_next)
 	{
-		/* the socket has been closed, create a new socket descriptor */
-		int s=socket(AF_INET6, SOCK_STREAM, 0);
-		mystate=Idle;
-		setSocket(s, 1, mainloop);
-	}
-
-	if(socketdesc < 0){
-		error_(errno);
-		return(-1);
-	}
-	server=gethostbyname2(hostname.c_str(), AF_INET6);
-	if(server==NULL)
-	{
-		eDebug("can't resolve %s", hostname.c_str());
-		error_(errno);
-		return(-2);
-	}
-	bzero(&serv_addr, sizeof(serv_addr));
-	serv_addr.sin6_family=AF_INET6;
-	bcopy(server->h_addr, &serv_addr.sin6_addr, server->h_length);
-	serv_addr.sin6_port=htons(port);
-	res=::connect(socketdesc, (const sockaddr*)&serv_addr, sizeof(serv_addr));
-	if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
-	{
-		eDebug("can't connect to host: %s", hostname.c_str());
 		close();
-		error_(errno);
-		return(-3);
+		if (setSocket(socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol), 1) < 0)
+		{
+			continue;
+		}
+		mystate = Idle;
+
+		res = ::connect(socketdesc, ptr->ai_addr, ptr->ai_addrlen);
+		if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
+		{
+			error_(errno);
+			continue;
+		}
+		if (res < 0)	// EINPROGRESS or EINTR
+		{
+			rsn->setRequested(rsn->getRequested() | eSocketNotifier::Write);
+			mystate = Connecting;
+			return 0;
+		}
+		else
+		{
+			mystate = Connection;
+			connected_();
+			return 1;
+		}
 	}
-	if (res < 0)	// EINPROGRESS or EINTR
-	{
-		rsn->setRequested(rsn->getRequested()|eSocketNotifier::Write);
-		mystate=Connecting;
-	} else
-	{
-		mystate=Connection;
-		connected_();
-	}
-	return(0);
+	return -1;
 }
 
-eSocket::eSocket(eMainloop *ml, int domain): readbuffer(32768), writebuffer(32768), mainloop(ml)
+int eSocket::connectToHost(std::string hostname, int port)
 {
-	int s=socket(domain, SOCK_STREAM, 0);
-#if 0
-	eDebug("[SOCKET]: initalized socket %d", socketdesc);
+	int res;
+	struct addrinfo *addr = NULL;
+	struct addrinfo hints;
+	char portnumber[16];
+
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_UNSPEC; /* both ipv4 and ipv6 */
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_protocol = 0; /* any */
+#ifdef AI_ADDRCONFIG
+	hints.ai_flags = AI_NUMERICSERV | AI_ADDRCONFIG; /* only return ipv6 if we have an ipv6 address ourselves, and ipv4 if we have an ipv4 address ourselves */
+#else
+	hints.ai_flags = AI_NUMERICSERV; /* we have only IPV4 support, if AI_ADDRCONFIG is not available */
 #endif
-	mystate=Idle;
-	setSocket(s, 1, ml);
+	snprintf(portnumber, sizeof(portnumber), "%d", port);
+
+	if ((res = getaddrinfo(hostname.c_str(), portnumber, &hints, &addr)) || !addr)
+	{
+		eDebug("[eSocket] can't resolve %s (getaddrinfo: %s)", hostname.c_str(), gai_strerror(res));
+		return -2;
+	}
+
+	res = connect(addr);
+	if (res < 0)
+	{
+		eDebug("[eSocket] can't connect to host: %s", hostname.c_str());
+	}
+	freeaddrinfo(addr);
+	return res;
+}
+
+eSocket::eSocket(eMainloop *ml): readbuffer(32768), writebuffer(32768), mainloop(ml)
+{
+	mystate = Invalid;
 }
 
 eSocket::eSocket(int socket, int issocket, eMainloop *ml): readbuffer(32768), writebuffer(32768), mainloop(ml)
 {
-	setSocket(socket, issocket, ml);
-	mystate=Connection;
+	setSocket(socket, issocket);
+	mystate = Connection;
 }
 
 eSocket::~eSocket()
 {
-	if(socketdesc>=0)
+	if (socketdesc >= 0)
 	{
 		::close(socketdesc);
+		socketdesc = -1;
 	}
 }
 
-eUnixDomainSocket::eUnixDomainSocket(eMainloop *ml) : eSocket(ml, AF_LOCAL)
+eUnixDomainSocket::eUnixDomainSocket(eMainloop *ml) : eSocket(ml)
 {
 }
 
@@ -314,39 +334,27 @@ eUnixDomainSocket::~eUnixDomainSocket()
 
 int eUnixDomainSocket::connectToPath(std::string path)
 {
-	sockaddr_un serv_addr_un;
 	int res;
+	struct addrinfo *addr = NULL;
+	struct addrinfo hints;
 
-	if (mystate == Invalid)
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_LOCAL;
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_protocol = 0; /* any */
+	hints.ai_flags = 0;
+
+	if ((res = getaddrinfo(path.c_str(), NULL, &hints, &addr)) || !addr)
 	{
-		/* the socket has been closed, create a new socket descriptor */
-		int s=socket(AF_LOCAL, SOCK_STREAM, 0);
-		mystate=Idle;
-		setSocket(s, 1, mainloop);
+		eDebug("[eUnixDomainSocket] can't resolve %s (getaddrinfo: %s)", path.c_str(), gai_strerror(res));
+		return -2;
 	}
 
-	if(socketdesc < 0){
-		error_(errno);
-		return(-1);
-	}
-	bzero(&serv_addr_un, sizeof(serv_addr_un));
-	serv_addr_un.sun_family = AF_LOCAL;
-	strcpy(serv_addr_un.sun_path, path.c_str());
-	res=::connect(socketdesc, (const sockaddr*)&serv_addr_un, sizeof(serv_addr_un));
-	if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
+	res = connect(addr);
+	if (res < 0)
 	{
-		close();
-		error_(errno);
-		return(-3);
+		eDebug("[eUnixDomainSocket] can't connect to path: %s", path.c_str());
 	}
-	if (res < 0)	// EINPROGRESS or EINTR
-	{
-		rsn->setRequested(rsn->getRequested()|eSocketNotifier::Write);
-		mystate=Connecting;
-	} else
-	{
-		mystate=Connection;
-		connected_();
-	}
-	return(0);
+	freeaddrinfo(addr);
+	return res;
 }
