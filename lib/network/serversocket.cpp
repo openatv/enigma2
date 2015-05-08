@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <string.h>
 #include <lib/network/serversocket.h>
 #include <arpa/inet.h>
 
@@ -9,90 +10,131 @@ bool eServerSocket::ok()
 
 void eServerSocket::notifier(int)
 {
-	int clientfd, clientlen;
-	struct sockaddr_in6 client_addr;
+	int clientfd;
+	socklen_t clientlen;
+	struct sockaddr client_addr;
 	char straddr[INET6_ADDRSTRLEN];
 
 #ifdef DEBUG_SERVERSOCKET
-	eDebug("[SERVERSOCKET] incoming connection!");
+	eDebug("[eServerSocket] incoming connection!");
 #endif
 
-	clientlen=sizeof(client_addr);
-	clientfd=accept(getDescriptor(),
-			(struct sockaddr *) &client_addr,
-			(socklen_t*)&clientlen);
-	if(clientfd<0)
-		eDebug("[SERVERSOCKET] error on accept()");
+	clientlen = sizeof(client_addr);
+	clientfd = accept(getDescriptor(), &client_addr, &clientlen);
+	if (clientfd < 0)
+	{
+		eDebug("[eServerSocket] error on accept: %m");
+		return;
+	}
 
-	inet_ntop(AF_INET6, &client_addr.sin6_addr, straddr, sizeof(straddr));
-	strRemoteHost=straddr;
+	strRemoteHost = inet_ntop(client_addr.sa_family, client_addr.sa_data, straddr, sizeof(straddr));
 	newConnection(clientfd);
 }
 
-eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
+eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml)
 {
-	struct sockaddr_in6 serv_addr;
+	int res;
+	struct addrinfo *addr = NULL;
+	struct addrinfo hints;
+	char portnumber[16];
+
+	okflag = 0;
 	strRemoteHost = "";
 
-	bzero(&serv_addr, sizeof(serv_addr));
-	serv_addr.sin6_family=AF_INET6;
-	serv_addr.sin6_addr=in6addr_any;
-	serv_addr.sin6_port=htons(port);
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_UNSPEC; /* both ipv4 and ipv6 */
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_protocol = 0; /* any */
+#ifdef AI_ADDRCONFIG
+	hints.ai_flags = AI_PASSIVE | AI_NUMERICSERV | AI_ADDRCONFIG; /* only return ipv6 if we have an ipv6 address ourselves, and ipv4 if we have an ipv4 address ourselves */
+#else
+	hints.ai_flags = AI_PASSIVE | AI_NUMERICSERV; /* we have only IPV4 support, if AI_ADDRCONFIG is not available */
+#endif
+	snprintf(portnumber, sizeof(portnumber), "%d", port);
 
-	okflag=1;
-	int val=1;
-	int v6only=0;
-
-	setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
-	setsockopt(getDescriptor(), IPPROTO_IPV6, IPV6_V6ONLY, &v6only, sizeof(v6only));
-
-	if(bind(getDescriptor(),
-		(struct sockaddr *) &serv_addr,
-		sizeof(serv_addr))<0)
+	if ((res = getaddrinfo(NULL, portnumber, &hints, &addr)) || !addr)
 	{
-		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
-		okflag=0;
+		eDebug("[eServerSocket] getaddrinfo: %s", gai_strerror(res));
+		return;
 	}
-	listen(getDescriptor(), 0);
 
-	rsn->setRequested(eSocketNotifier::Read);
+	if (startListening(addr) >= 0)
+	{
+		okflag = 1;
+		rsn->setRequested(eSocketNotifier::Read);
+	}
+	freeaddrinfo(addr);
 }
 
-eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_LOCAL)
+eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml)
 {
-	struct sockaddr_un serv_addr;
+	int res;
+	struct addrinfo *addr = NULL;
+	struct addrinfo hints;
+
+	okflag = 0;
 	strRemoteHost = "";
 
-	memset(&serv_addr, 0, sizeof(serv_addr));
-	serv_addr.sun_family = AF_LOCAL;
-	strcpy(serv_addr.sun_path, path.c_str());
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_LOCAL;
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_protocol = 0; /* any */
+	hints.ai_flags = AI_PASSIVE;
 
-	okflag=1;
-
-	unlink(path.c_str());
-#if HAVE_LINUXSOCKADDR
-	if(bind(getDescriptor(),
-	(struct sockaddr *) &serv_addr,
-	strlen(serv_addr.sun_path) + sizeof(serv_addr.sun_family))<0)
-#else
-	if(bind(getDescriptor(),
-		(struct sockaddr *) &serv_addr,
-		sizeof(serv_addr))<0)
-#endif
+	if ((res = getaddrinfo(path.c_str(), NULL, &hints, &addr)) || !addr)
 	{
-		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
-		okflag=0;
+		eDebug("[eServerSocket] getaddrinfo: %s", gai_strerror(res));
+		return;
 	}
-	listen(getDescriptor(), 0);
+	unlink(path.c_str());
 
-	rsn->setRequested(eSocketNotifier::Read);
+	if (startListening(addr) >= 0)
+	{
+		okflag = 1;
+		rsn->setRequested(eSocketNotifier::Read);
+	}
+	freeaddrinfo(addr);
 }
 
 eServerSocket::~eServerSocket()
 {
-#if 0
-	eDebug("[SERVERSOCKET] destructed");
+#ifdef DEBUG_SERVERSOCKET
+	eDebug("[eServerSocket] destructed");
 #endif
+}
+
+int eServerSocket::startListening(struct addrinfo *addr)
+{
+	struct addrinfo *ptr = addr;
+	for (ptr = addr; ptr != NULL; ptr = ptr->ai_next)
+	{
+		if (setSocket(socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol), 1) < 0)
+		{
+			continue;
+		}
+
+		int val = 1;
+		setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
+
+		if (bind(getDescriptor(), ptr->ai_addr, ptr->ai_addrlen) < 0)
+		{
+			eDebug("[eServerSocket] ERROR on bind: %m");
+			close();
+			continue;
+		}
+	}
+
+	if (getDescriptor() < 0)
+	{
+		return -1;
+	}
+
+	if (listen(getDescriptor(), 0) < 0)
+	{
+		close();
+		return -1;
+	}
+	return 0;
 }
 
 int eServerSocket::bind(int sockfd, struct sockaddr *addr, socklen_t addrlen)
