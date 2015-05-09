@@ -3517,10 +3517,12 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const ui
 		eventMap::iterator evIt(evMap.find(it->second.second));
 		if (evIt != evMap.end())
 		{
+			// time_event_map can have other timestamp -> get timestamp from eventData
+			time_t ev_time = getEventData(evIt)->getStartTime();
 			delete getEventData(evIt);
 			evMap.erase(evIt);
+			tmMap.erase(ev_time);
 		}
-		tmMap.erase(it->second.first);
 	}
 	time_event_map.clear();
 
