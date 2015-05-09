@@ -327,7 +327,7 @@ RESULT eDVBSatelliteEquipmentControl::prepareSTelectronicSatCR(iDVBFrontend &fro
 	int vco = roundMulti(lnb_param.SatCRvco + ifreq, 4000);
 	tunerfreq = heterodyne(frontend, ifreq, vco);
 	tuningword = ((vco - 1400000)/4000)
-			|(((lnb_param.LNBNum+1) & 1) << 9)
+			|(((lnb_param.LNBNum+1) & 1) << 12)
 			|((band & 3) <<10)
 			|((lnb_param.SatCR_idx & 7) << 13);
 	eDebug(ANSI_BLUE ANSI_BOLD"vco %d"ANSI_RESET,vco);
