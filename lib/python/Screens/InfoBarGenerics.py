@@ -999,6 +999,7 @@ class NumberZap(Screen):
 		self.field = self.numberString
 
 		self.handleServiceName()
+		self["service_summary"].setText(self["servicename"].getText())
 
 		if len(self.numberString) >= 4:
 			self.keyOK()
@@ -1017,8 +1018,10 @@ class NumberZap(Screen):
 		self["number"] = Label(self.numberString)
 		self["number_summary"] = StaticText(self.numberString)
 		self["servicename"] = Label()
+		self["service_summary"] = StaticText("")
 
 		self.handleServiceName()
+		self["service_summary"].setText(self["servicename"].getText())
 
 		self["actions"] = NumberActionMap( [ "SetupActions", "ShortcutActions" ],
 			{
