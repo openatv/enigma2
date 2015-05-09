@@ -333,7 +333,7 @@ def InitLcd():
 			config.lcd.mode = ConfigNothing()
 			
 		if fileExists("/proc/stb/power/vfd"):
-			config.lcd.power = ConfigSelection([("0", _("no")), ("1", _("yes"))], "1")
+			config.lcd.power = ConfigSelection([("0", _("off")), ("1", _("on"))], "1")
 			config.lcd.power.addNotifier(setLCDpower);
 		else:
 			config.lcd.power = ConfigNothing()
