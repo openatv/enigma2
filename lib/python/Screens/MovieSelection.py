@@ -1944,6 +1944,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if '.Trash' not in cur_path and config.usage.movielist_trashcan.value:
 				if isFolder(item):
 					are_you_sure = _("Do you really want to move to trashcan ?")
+					subdirs += 1
 				else:
 					args = True
 				if args:
