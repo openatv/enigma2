@@ -166,6 +166,13 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
+	
+<!-- Numberzap -->    
+ 	<screen name="NumberZap_summary" position="0,0" size="220,176">
+		<widget source="parent.service_summary" render="Label" position="0,0" size="220,65" foregroundColor="#FFFF00" font="FdLcD;30" halign="center" valign="top" />
+		<widget source="parent.number_summary" render="Label" position="0,75" size="220,45" font="FdLcD;40" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
+	</screen>
 
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
