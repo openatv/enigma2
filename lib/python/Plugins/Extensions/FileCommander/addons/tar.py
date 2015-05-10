@@ -103,12 +103,12 @@ class TarMenuScreen(Screen):
 	def UnpackListEntry(self, entry):
 		print entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
-		proanzeige = str(currentProgress) + "%"
+		progpercent = str(currentProgress) + "%"
 		# color2 = 0x00ffffff # White
 		return [
 			entry,
 			(eListboxPythonMultiContent.TYPE_PROGRESS, 10, 0, 560, 30, int(currentProgress), None, None, None, None),
-			(eListboxPythonMultiContent.TYPE_TEXT, 10, 3, 560, 30, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, str(proanzeige))
+			(eListboxPythonMultiContent.TYPE_TEXT, 10, 3, 560, 30, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, str(progpercent))
 		]
 
 	def ok(self):

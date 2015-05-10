@@ -200,9 +200,9 @@ class vEditor(Screen):
 						if self.findtab != -1:
 							newline = newline.replace("        ", "\t")
 							self.findtab = -1
-						my_zeile = self.oldLine.partition(": ")[0]
+						my_line = self.oldLine.partition(": ")[0]
 						if self.oldLine.find(": ") != -1:
-							newline = my_zeile + ": " + newline
+							newline = my_line + ": " + newline
 						else:
 							newline = "0000" + ": " + newline
 						self.list.remove(x)
@@ -234,12 +234,12 @@ class vEditor(Screen):
 		self.refreshList()
 
 	def refreshList(self):
-		zeile = 1
+		lineno = 1
 		for x in self.list:
 			my_x = x.partition(": ")[2]
 			self.list.remove(x)
-			self.list.insert(zeile - 1, str(zeile).zfill(4) + ": " + my_x)  # '\n')
-			zeile += 1
+			self.list.insert(lineno - 1, str(lineno).zfill(4) + ": " + my_x)  # '\n')
+			lineno += 1
 		self["filedata"].setList(self.list)
 
 	def SaveFile(self, answer):
