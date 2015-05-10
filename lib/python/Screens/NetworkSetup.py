@@ -2549,10 +2549,8 @@ class NetworkSamba(Screen):
 	def activateSamba(self):
 		commands = []
 		if fileExists('/etc/rc2.d/S20samba'):
-			commands.append('/etc/init.d/samba stop')
 			commands.append('update-rc.d -f samba remove')
 		else:
-			commands.append('/etc/init.d/samba start')
 			commands.append('update-rc.d -f samba defaults')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
@@ -2572,13 +2570,6 @@ class NetworkSamba(Screen):
 		self.my_Samba_run = False
 		if samba_process:
 			self.my_Samba_run = True
-		if fileExists('/etc/inetd.conf'):
-			f = open('/etc/inetd.conf', 'r')
-			for line in f.readlines():
-				parts = line.strip().split()
-				if parts[0] == 'microsoft-ds':
-					self.my_Samba_run = True
-					continue
 		if self.my_Samba_run:
 			self['labstop'].hide()
 			self['labactive'].show()
