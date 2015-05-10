@@ -1752,75 +1752,77 @@ class NetworkFtp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("FTP Setup"))
+		self.skinName = "NetworkSamba"
 		self.onChangedEntry = [ ]
-		self['lab1'] = Label(_("Ftpd service type: Vsftpd server"))
+		self['lab1'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['key_green'] = Label(_("Enable"))
-		self['key_red'] = Label()
-		self.my_ftp_active = False
+		self['key_green'] = Label(_("Start"))
+		self["key_red"] = Label()
+		self['key_yellow'] = Label(_("Autostart"))
+		self["key_blue"] =  Label()
 		self.Console = Console()
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.FtpStartStop})
+		self.my_ftp_active = False
+		self.my_ftp_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'green': self.FtpStartStop, 'yellow': self.activateFtp})
+		self.Console = Console()
 		self.onLayoutFinish.append(self.updateService)
 
 	def createSummary(self):
 		return NetworkServicesSummary
 
 	def FtpStartStop(self):
-		if not self.my_ftp_active:
-			if fileExists('/etc/inetd.conf'):
-				inme = open('/etc/inetd.conf', 'r')
-				out = open('/etc/inetd.tmp', 'w')
-				for line in inme.readlines():
-					if 'vsftpd' in line:
-						line = line.replace('#', '')
-					out.write(line)
-				out.close()
-				inme.close()
-			if fileExists('/etc/inetd.tmp'):
-				move('/etc/inetd.tmp', '/etc/inetd.conf')
-				self.Console.ePopen('killall -HUP inetd')
-				self.updateService()
-		elif self.my_ftp_active:
-			if fileExists('/etc/inetd.conf'):
-				inme = open('/etc/inetd.conf', 'r')
-				out = open('/etc/inetd.tmp', 'w')
-				for line in inme.readlines():
-					if 'vsftpd' in line:
-						line = '#' + line
-					out.write(line)
-				out.close()
-				inme.close()
-			if fileExists('/etc/inetd.tmp'):
-				move('/etc/inetd.tmp', '/etc/inetd.conf')
-				self.Console.ePopen('killall -HUP inetd')
-				self.updateService()
+		commands = []
+		if not self.my_ftp_run:
+			commands.append('/etc/init.d/vsftpd start')
+		elif self.my_ftp_run:
+			commands.append('/etc/init.d/vsftpd stop')
+		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(3)
+		self.updateService()
+
+	def activateFtp(self):
+		commands = []
+		if fileExists('/etc/rc2.d/S20vsftpd'):
+			commands.append('update-rc.d -f vsftpd remove')
+		else:
+			commands.append('update-rc.d -f vsftpd defaults')
+		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
+		import process		
+		p = process.ProcessList()		
+		ftp_process = str(p.named('vsftpd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
+		self['labactive'].setText(_("Disabled"))
 		self.my_ftp_active = False
-		if fileExists('/etc/inetd.conf'):
-			f = open('/etc/inetd.conf', 'r')
-			for line in f.readlines():
-				parts = line.strip().split()
-				if parts[0] == 'ftp':
-					self.my_ftp_active = True
-					continue
-			f.close()
-		if self.my_ftp_active:
+		if fileExists('/etc/rc2.d/S20vsftpd'):
+			self['labactive'].setText(_("Enabled"))
+			self['labactive'].show()
+			self.my_ftp_active = True
+
+		self.my_ftp_run = False
+		if ftp_process:
+			self.my_ftp_run = True
+		if self.my_ftp_run:
 			self['labstop'].hide()
+			self['labactive'].show()
 			self['labrun'].show()
-			self['key_green'].setText(_("Disable"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			self['key_green'].setText(_("Stop"))
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
-			self['labstop'].show()
 			self['labrun'].hide()
-			self['key_green'].setText(_("Enable"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			self['labstop'].show()
+			self['labactive'].show()
+			self['key_green'].setText(_("Start"))
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("FTP Setup")
-		autostartstatus_summary = ""
+		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
