@@ -1287,7 +1287,7 @@ void eEPGCache::load()
 					if (event->n_crc)
 					{
 						event->crc_list = new uint32_t[event->n_crc];
-						fread( event->crc_list, event->n_crc, sizeof(uint32_t), f);
+						fread( event->crc_list, sizeof(uint32_t), event->n_crc, f);
 					}
 					eventData::CacheSize += sizeof(eventData) + event->n_crc * sizeof(uint32_t);
 					item.byEvent[event->getEventID()] = event;
@@ -1421,7 +1421,7 @@ void eEPGCache::save()
 				fwrite( &time_it->second->type, sizeof(uint8_t), 1, f );
 				fwrite( &len, sizeof(uint8_t), 1, f);
 				fwrite( time_it->second->rawEITdata, 10, 1, f);
-				fwrite( time_it->second->crc_list, time_it->second->n_crc, sizeof(uint32_t), f);
+				fwrite( time_it->second->crc_list, sizeof(uint32_t), time_it->second->n_crc, f);
 				++cnt;
 			}
 		}
@@ -3563,10 +3563,12 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const ui
 		eventMap::iterator evIt( evMap.find(it->second.second) );
 		if ( evIt != evMap.end() )
 		{
+			// time_event_map can have other timestamp -> get timestamp from eventData
+			time_t ev_time = evIt->second->getStartTime();
 			delete evIt->second;
 			evMap.erase(evIt);
+			tmMap.erase(ev_time);
 		}
-		tmMap.erase(it->second.first);
 	}
 	time_event_map.clear();
 
