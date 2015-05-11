@@ -435,9 +435,9 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 		inetdData += "#time	stream	tcp	nowait	root	internal\n"
 		inetdData += "#time	dgram	udp	wait	root	internal\n"
 		if self.IPv6ConfigEntry.value == True:
-			inetdData += "ftp	stream	tcp6	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
+			inetdData += "#ftp	stream	tcp6	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
 		else:
-			inetdData += "ftp	stream	tcp	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
+			inetdData += "#ftp	stream	tcp	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
 		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
 		if self.IPv6ConfigEntry.value == True:
 			inetdData += "#telnet	stream	tcp6	nowait	root	/usr/sbin/telnetd	telnetd\n"

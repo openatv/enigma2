@@ -269,10 +269,8 @@ class NetworkSamba(Screen):
 	def activateSamba(self):
 		commands = []
 		if fileExists('/etc/rc2.d/S20samba'):
-			commands.append('/etc/init.d/samba stop')
 			commands.append('update-rc.d -f samba remove')
 		else:
-			commands.append('/etc/init.d/samba start')
 			commands.append('update-rc.d -f samba defaults')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
@@ -293,13 +291,6 @@ class NetworkSamba(Screen):
 
 		if samba_process:
 			self.my_Samba_run = True
-		if fileExists('/etc/inetd.conf'):
-			f = open('/etc/inetd.conf', 'r')
-			for line in f.readlines():
-				parts = line.strip().split()
-				if parts[0] == 'microsoft-ds':
-					self.my_Samba_run = True
-					continue
 
 		if self.my_Samba_run:
 			self['labstop'].hide()
@@ -409,7 +400,7 @@ class InetdRecovery(Screen, ConfigListScreen):
 		inetdData += "#daytime	dgram	" + sockTypeudp + "	wait	root	internal\n"
 		inetdData += "#time	stream	tcp	nowait	root	internal\n"
 		inetdData += "#time	dgram	" + sockTypeudp + "	wait	root	internal\n"
-		inetdData += "ftp	stream	" + sockTypetcp + "	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
+		inetdData += "#ftp	stream	" + sockTypetcp + "	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
 		inetdData += "#ftp	stream	" + sockTypetcp + "	nowait	root	ftpd	ftpd -w /\n"
 		inetdData += "#telnet	stream	" + sockTypetcp + "	nowait	root	/usr/sbin/telnetd	telnetd\n"
 		if fileExists('/usr/sbin/smbd'):
