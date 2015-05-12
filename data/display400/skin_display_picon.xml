@@ -22,16 +22,16 @@
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="110,173" size="180,70" font="FdLcD;70" halign="center" noWrap="1" transparent="1">
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText" />
 		</widget>
 	</screen>
 <!-- Rec Panel -->	
 	<screen name="MeinRecordingPanel">
-		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/record.png" alphatest="on" size="400,25" zPosition="2">
+		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="400,25" zPosition="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,1000</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/record.png" alphatest="on" size="400,25" zPosition="2">
+		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="400,25" zPosition="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -101,7 +101,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="LcdPicon" position="100,0" zPosition="0" size="200,120" halign="center" alphatest="on">
+		<widget source="session.CurrentService" render="LcdPicon" position="100,0" zPosition="2" size="200,120" halign="center" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,83" size="98,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
@@ -121,7 +121,7 @@
 	</screen>
 <!-- Movieplayer auch MediaPortal-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="400,78" font="FdLcD;28" halign="center" valign="center" >
+		<widget source="session.CurrentService" render="Label" position="0,0" size="400,78" font="FdLcD;28" halign="center" valign="center" zPosition="2">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,80" size="400,25" borderWidth="1">
@@ -157,7 +157,7 @@
 	</screen>
 <!-- Mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="400,240">
-		<widget source="text1" render="Label" position="0,0" size="400,36" font="FdLcD;34" halign="center" valign="center" />
+		<widget source="text1" render="Label" position="0,0" size="400,36" font="FdLcD;34" halign="center" valign="center" zPosition="2"/>
 		<widget source="session.CurrentService" render="Progress" position="0,90" size="400,30" borderWidth="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
@@ -168,9 +168,9 @@
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>		
-<!-- channelselection-->
+<!-- channelselection V1.4 -->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
-        <widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="1" alphatest="on">
+        <widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="2" alphatest="on">
             <convert type="ServiceName">Reference</convert>
         </widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="0,92" size="400,20" borderWidth="1">
@@ -187,8 +187,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,115" size="400,125" font="FdLcD;34" halign="center" valign="center" >
 			<convert type="EventName">Name</convert>
 		</widget>
-<!-- 	Muss raus, weil es sonst zu einem Lila Streifen beim Navigieren zu einem anderen Sender bei dem Picon kommt  -->
-		<!-- <panel name="MeinRecordingPanel" /> -->
+		<panel name="MeinRecordingPanel" /> 
 	</screen>
 <!-- Numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="400,240">
@@ -262,9 +261,17 @@
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
+<!-- DevicesPanelSummary -->	
+	<screen name="DevicesPanelSummary" position="0,0" size="400,240">
+		<widget source="parent.Title" render="Label" position="0,0" size="400,37" font="FdLcD;34" foregroundColor="#87CEFA" noWrap="1" halign="center" valign="top" />
+		<eLabel position="0,38" size="400,1" backgroundColor="white" />
+		<widget source="entry" render="Label" position="0,39" size="400,34" font="FdLcD;30" noWrap="1" halign="center" valign="center" transparent="1" />
+		<eLabel position="0,73" size="400,1" backgroundColor="white" />
+		<widget source="desc" render="Label" position="0,75" size="400,165" font="FdLcD;30" halign="center" valign="center" transparent="1" />
+	</screen>	
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="400,240">
-		<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1" zPosition="2">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
@@ -297,6 +304,22 @@
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>
 
+<!-- EPG Screens -->
+<!-- 	<screen name="EPGSelection_summary" position="0,0" size="400,240">
+		<panel name="SummaryEpgPanel" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+	</screen>
+	<screen name="QuickEPG_summary" position="0,0" size="400,240">
+		<panel name="SummaryEpgPanel" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+	</screen>
+	<screen name="GraphicalEPGPIG_summary" position="0,0" size="400,240">
+		<panel name="SummaryEpgPanel" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+	</screen> -->
 	<screen name="GraphicalEPG_summary" position="0,0" size="400,240">
 		<panel name="MyEPGPanel" />
 	</screen>
@@ -308,17 +331,22 @@
 	</screen>
 	
 	<screen name="EPGSelection_summary" position="0,0" size="400,240">
+		<widget source="parent.Service" render="Label" position="0,0" size="400,38" foregroundColor="#87CEFA" font="FdLcD;34" transparent="1" halign="center" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<eLabel position="0,38" size="400,1" backgroundColor="white" />
+		<widget source="parent.Event" render="Label" position="0,40" size="400,160" font="FdLcD;36" halign="center" valign="center" >
+			<convert type="EventName">Name</convert>
+		</widget>
 		<widget source="parent.Event" render="Label" position="0,202" size="400,38" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText"></convert>
 		</widget>
+		<eLabel position="0,201" size="400,1" backgroundColor="white" />
 		<widget source="parent.Event" render="Label" position="0,202" size="400,38" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="right">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText"></convert>
 		</widget>		
-		<widget source="parent.Event" render="Label" position="0,0" size="400,200" font="FdLcD;38" halign="center" valign="center" >
-			<convert type="EventName">Name</convert>
-		</widget>
 	</screen>
 <!-- System -->
 	<screen name="ChoiceBox_summary" position="fill" >
@@ -353,10 +381,17 @@
 		<widget source="duration" render="Label" position="0,214" size="400,28" font="FdLcD;24" halign="left" transparent="1" />
 		<widget source="state" render="Label" position="0,214" size="400,28" font="FdLcD;24" halign="right" transparent="1" />
     </screen>
+<!-- TimerLog_summary -->
+	<screen name="TimerLog_summary" position="0,0" size="400,240">
+        <widget source="parent.Title" render="Label" position="0,0" size="400,30" font="FdLcD;28" foregroundColor="#87CEFA" halign="center" noWrap="1" />
+		<eLabel position="0,31" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,32" size="400,208" font="FdLcD;26" transparent="1" halign="center" valign="center" />
+       <!--  <panel name="SummaryClockPanel" /> -->
+    </screen>
 <!-- AutoTimer -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="400,240">
-        <widget source="parent.Title" render="Label" position="0,0" size="400,26" font="FdLcD;24" halign="center" noWrap="1" />
-		<widget source="entry" render="Label" position="0,30" size="400,145" font="FdLcD;34" halign="center" valign="center" />
+        <widget source="parent.Title" render="Label" position="0,0" size="400,26" font="FdLcD;24" foregroundColor="#87CEFA" halign="center" noWrap="1" />
+		<widget source="entry" render="Label" position="0,27" size="400,148" font="FdLcD;34" transparent="1" halign="center" valign="center" />
         <panel name="SummaryClockPanel" />
     </screen>
 <!-- SoftwareUpdate -->	
@@ -454,14 +489,14 @@
 	</screen>
 
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,240" >
-		<widget source="session.CurrentService" render="Label" position="0,0" size="400,133" font="FdLcD;38" halign="center" valign="center" transparent="1" >
+		<widget source="session.CurrentService" render="Label" position="0,0" size="400,133" font="FdLcD;38" halign="center" valign="center" transparent="1" zPosition="2" >
 			  <convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="Service" render="Progress" position="0,135" size="400,30" zPosition="2" borderWidth="1"  transparent="1" >
+		<widget source="Service" render="Progress" position="0,135" size="400,30" borderWidth="1" transparent="1" >
 			  <convert type="EMCServicePosition">Position</convert>
 		</widget>		
-<!-- 		<widget source="session.CurrentService" render="Label" position="200,86" size="200,34" font="FdLcD;34" halign="right" transparent="1">
-			<convert type="ServicePosition">Remaining,ShowNoSeconds</convert>
+<!-- 		<widget source="session.CurrentService" render="Label" position="50,132" size="200,34" font="Regular;34" zPosition="1" foregroundColor="#000000" halign="center" transparent="1">
+			<convert type="ServicePosition">Remaining</convert>
 		</widget> -->
 		<panel name="MeinRecordingPanel" />
 		<panel name="SummaryClockPanel" />
