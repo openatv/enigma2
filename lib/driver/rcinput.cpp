@@ -163,17 +163,7 @@ class eInputDeviceInit
 public:
 	eInputDeviceInit()
 	{
-		int i = 0;
-		consoleFd = ::open("/dev/tty0", O_RDWR);
-		while (1)
-		{
-			char filename[32];
-			sprintf(filename, "/dev/input/event%d", i);
-			if (::access(filename, R_OK) < 0) break;
-			add(filename);
-			++i;
-		}
-		eDebug("[eInputDeviceInit] Found %d input devices.", i);
+		addAll();
 	}
 
 	~eInputDeviceInit()
@@ -202,7 +192,36 @@ public:
 				return;
 			}
 		}
-		eDebug("[eInputDeviceInit] Remove '%s', not found", filename);
+		eDebug("Remove '%s', not found", filename);
+	}
+
+	void addAll(void)
+	{
+		int i = 0;
+		if (consoleFd < 0)
+		{
+			consoleFd = ::open("/dev/tty0", O_RDWR);
+			printf("consoleFd %d\n", consoleFd);
+		}
+		while (1)
+		{
+			char filename[32];
+			sprintf(filename, "/dev/input/event%d", i);
+			if (::access(filename, R_OK) < 0) break;
+			add(filename);
+			++i;
+		}
+		eDebug("Found %d input devices.", i);
+	}
+
+	void removeAll(void)
+	{
+		int size = items.size();
+		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
+		{
+			delete *it;
+		}
+		items.clear();
 	}
 };
 
@@ -216,4 +235,14 @@ void addInputDevice(const char* filename)
 void removeInputDevice(const char* filename)
 {
 	init_rcinputdev->remove(filename);
+}
+
+void addAllInputDevices(void)
+{
+	init_rcinputdev->addAll();
+}
+
+void removeAllInputDevices(void)
+{
+	init_rcinputdev->removeAll();
 }
