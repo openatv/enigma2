@@ -67,7 +67,7 @@ def getPNGByExt(name):
 		ext = ext[1:]
 	if ext == "gz":
 		_, ex = splitext(basename)
-		if ex == "tar":
+		if ex == ".tar":
 			ext = "tgz"
 	elif re.match("^r\d+$", ext):
 		ext = "rar"

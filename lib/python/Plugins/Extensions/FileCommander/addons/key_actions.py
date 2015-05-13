@@ -49,6 +49,7 @@ import os
 from Plugins.Extensions.FileCommander.addons.unrar import *
 from Plugins.Extensions.FileCommander.addons.tar import *
 from Plugins.Extensions.FileCommander.addons.unzip import *
+from Plugins.Extensions.FileCommander.addons.gz import *
 from Plugins.Extensions.FileCommander.addons.ipk import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
 
@@ -244,6 +245,8 @@ class key_actions():
 			self.session.openWithCallback(self.onFileActionCB, RarMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif testFileName.endswith(".tar.gz") or filetype in (".tgz", ".tar"):
 			self.session.openWithCallback(self.onFileActionCB, TarMenuScreen, self.SOURCELIST, self.TARGETLIST)
+		elif filetype == ".gz":  # Must follow test for .tar.gz
+			self.session.openWithCallback(self.onFileActionCB, GunzipMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".zip":
 			self.session.openWithCallback(self.onFileActionCB, UnzipMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif filetype in IMAGE_EXTENSIONS:
