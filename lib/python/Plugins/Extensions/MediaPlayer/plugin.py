@@ -385,6 +385,16 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if info != "" or clear:
 			if self[name].getText() != info:
 				self[name].setText(info)
+				if info != "":
+					if name == "artist":
+						self.summaries.setText(info,1)
+					elif name == "title":
+						idx = self.playlist.getCurrentIndex()
+						currref = self.playlist.getServiceRefList()[idx]
+						if info != self.getIdentifier(currref):
+							self.summaries.setText(info,3)
+					elif name == "album":
+						self.summaries.setText(info,4)
 
 	def leftDown(self):
 		self.lefttimer = True
