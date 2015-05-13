@@ -349,10 +349,11 @@ class SecConfigure:
 						manufacturer = ProductDict[manufacturer_name]
 						product_name = manufacturer.product.value
 						manufacturer_scr = manufacturer.scr
-						manufacturer_positions = manufacturer.positions
+						manufacturer_positions_value = manufacturer.positions[product_name][0].value
+						position_idx = (x - 1) % manufacturer_positions_value
 						if product_name in manufacturer_scr:
 							diction = manufacturer.diction[product_name].value
-							if x <= manufacturer_positions[product_name][0].value or diction !="EN50607": #for every allowed position
+							if x <= manufacturer_positions_value or diction !="EN50607": #for every allowed position
 								sec.setLNBSatCR(manufacturer_scr[product_name].index)
 
 								if diction =="EN50607":
@@ -360,10 +361,10 @@ class SecConfigure:
 								else:
 									sec.setLNBSatCRformat(0)	#DiSEqC
 								sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer_scr[product_name].index].value*1000)
-								sec.setLNBSatCRpositions(manufacturer_positions[product_name][0].value)
-								sec.setLNBLOFL(manufacturer.lofl[product_name][x-1].value * 1000)
-								sec.setLNBLOFH(manufacturer.lofh[product_name][x-1].value * 1000)
-								sec.setLNBThreshold(manufacturer.loft[product_name][x-1].value * 1000)
+								sec.setLNBSatCRpositions(manufacturer_positions_value)
+								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
+								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
+								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
 								configManufacturer.save_forced = True
 								manufacturer.product.save_forced = True
 								manufacturer.vco[product_name][manufacturer_scr[product_name].index].save_forced = True
