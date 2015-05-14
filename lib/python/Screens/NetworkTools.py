@@ -118,10 +118,10 @@ class NetworkNfs(Screen):
 		self.updateService()
 
 	def Nfsset(self):
-		if fileExists('/etc/rc2.d/S11nfsserver'):
+		if fileExists('/etc/rc2.d/S13nfsserver'):
 			self.Console.ePopen('update-rc.d -f nfsserver remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f nfsserver defaults 11', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f nfsserver defaults 13', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -132,7 +132,7 @@ class NetworkNfs(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		if fileExists('/etc/rc2.d/S11nfsserver'):
+		if fileExists('/etc/rc2.d/S13nfsserver'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_nfs_active = True
