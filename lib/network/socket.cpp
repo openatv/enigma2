@@ -233,7 +233,7 @@ int eSocket::getDescriptor()
 
 int eSocket::connectToHost(std::string hostname, int port)
 {
-	sockaddr_in6  serv_addr;
+	sockaddr_in6_in  serv_addr;
 	struct hostent *server;
 	int res;
 
