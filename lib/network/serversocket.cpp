@@ -10,7 +10,7 @@ bool eServerSocket::ok()
 void eServerSocket::notifier(int)
 {
 	int clientfd, clientlen;
-	struct sockaddr_in6 client_addr;
+	struct sockaddr_in client_addr;
 
 #ifdef DEBUG_SERVERSOCKET
 	eDebug("[eServerSocket] incoming connection!");
@@ -23,26 +23,24 @@ void eServerSocket::notifier(int)
 	if(clientfd<0)
 		eDebug("[eServerSocket] error on accept: %m");
 
-	inet_ntop(AF_INET6, &client_addr.sin6_addr, straddr, sizeof(straddr));
-	strRemoteHost=straddr;
+	strRemoteHost = inet_ntoa(client_addr.sin_addr);
 	newConnection(clientfd);
 }
 
-eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
+eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml)
 {
-	struct sockaddr_in6_in serv_addr;
+	struct sockaddr_in serv_addr;
 	strRemoteHost = "";
 
 	bzero(&serv_addr, sizeof(serv_addr));
-	serv_addr.sin6_family=AF_INET6;
-	serv_addr.sin6_addr=in6addr_any;
-	serv_addr.sin6_port=htons(port);
+	serv_addr.sin_family=AF_INET;
+	serv_addr.sin_addr.s_addr=INADDR_ANY;
+	serv_addr.sin_port=htons(port);
 
 	okflag=1;
 	int val=1;
-	int v6only=0;
 
-	setsockopt(getDescriptor(), IPPROTO_IPV6, IPV6_V6ONLY, &v6only, sizeof(v6only));
+	setsockopt(getDescriptor(), SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
 
 	if(bind(getDescriptor(),
 		(struct sockaddr *) &serv_addr,
