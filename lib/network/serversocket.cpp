@@ -75,6 +75,7 @@ eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml)
 
 eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml)
 {
+	int res;
 	struct sockaddr_un serv_addr_un;
 	struct addrinfo addr;
 
