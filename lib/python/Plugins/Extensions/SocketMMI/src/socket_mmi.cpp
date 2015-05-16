@@ -45,7 +45,7 @@ int eSocket_UI::startMMI(int)
 	unsigned char buf[]={0x9F,0x80,0x22,0x00};  // ENTER MMI
 	if (handler.send_to_mmisock( buf, 4 ))
 	{
-		eDebug("eSocket_UI::startMMI failed");
+		eDebug("[eSocket_UI] startMMI failed");
 		return -1;
 	}
 	return 0;
@@ -56,7 +56,7 @@ int eSocket_UI::stopMMI(int)
 	unsigned char buf[]={0x9F,0x88,0x00,0x00};  // CLOSE MMI
 	if (handler.send_to_mmisock( buf, 4 ))
 	{
-		eDebug("eSocket_UI::stopMMI failed");
+		eDebug("[eSocket_UI] stopMMI failed");
 		return -1;
 	}
 	return 0;
@@ -68,7 +68,7 @@ int eSocket_UI::answerMenu(int, int answer)
 	data[4] = answer & 0xff;
 	if (handler.send_to_mmisock( data, 5 ))
 	{
-		eDebug("eSocket_UI::answerMenu failed");
+		eDebug("[eSocket_UI] answerMenu failed");
 		return -1;
 	}
 	return 0;
@@ -86,7 +86,7 @@ int eSocket_UI::answerEnq(int, char *answer)
 	memcpy(data+4+LengthBytes, answer, len);
 	if (handler.send_to_mmisock( data, len+4+LengthBytes ))
 	{
-		eDebug("eSocket_UI::answerEnq failed");
+		eDebug("[eSocket_UI] answerEnq failed");
 		return -1;
 	}
 	return 0;
@@ -97,7 +97,7 @@ int eSocket_UI::cancelEnq(int)
 	unsigned char data[]={0x9f,0x88,0x08,0x01,0x00};
 	if (handler.send_to_mmisock( data, 5 ))
 	{
-		eDebug("eSocket_UI::cancelEnq failed");
+		eDebug("[eSocket_UI] cancelEnq failed");
 		return -1;
 	}
 	return 0;
@@ -120,7 +120,7 @@ int eSocketMMIHandler::send_to_mmisock( void* buf, size_t len)
 {
 	ssize_t ret = write(connfd, buf, len);
 	if ( ret < 0 )
-		eDebug("[eSocketMMIHandler] write (%m)");
+		eDebug("[eSocketMMIHandler] write: %m");
 	else if ( (size_t)ret != len )
 		eDebug("[eSocketMMIHandler] only %zd bytes sent.. %zu bytes should be sent", ret, len );
 	else
@@ -138,21 +138,21 @@ eSocketMMIHandler::eSocketMMIHandler()
 	clilen = sizeof(servaddr.sun_family) + strlen(servaddr.sun_path);
 	if ((listenfd = socket(AF_UNIX, SOCK_STREAM, 0)) < 0)
 	{
-		eDebug("[eSocketMMIHandler] socket (%m)");
+		eDebug("[eSocketMMIHandler] socket: %m");
 		return;
 	}
 
 	int val = 1;
 	if (setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val)) == -1)
-		eDebug("[eSocketMMIHandler] SO_REUSEADDR (%m)");
+		eDebug("[eSocketMMIHandler] SO_REUSEADDR: %m");
 	else if ((val = fcntl(listenfd, F_GETFL)) == -1)
-		eDebug("[eSocketMMIHandler] F_GETFL (%m)");
+		eDebug("[eSocketMMIHandler] F_GETFL: %m");
 	else if (fcntl(listenfd, F_SETFL, val | O_NONBLOCK) == -1)
-		eDebug("[eSocketMMIHandler] F_SETFL (%m)");
+		eDebug("[eSocketMMIHandler] F_SETFL: %m");
 	else if (bind(listenfd, (struct sockaddr *) &servaddr, clilen) == -1)
-		eDebug("[eSocketMMIHandler] bind (%m)");
+		eDebug("[eSocketMMIHandler] bind: %m");
 	else if (listen(listenfd, 0) == -1)
-		eDebug("[eSocketMMIHandler] listen (%m)");
+		eDebug("[eSocketMMIHandler] listen: %m");
 	else {
 		listensn = eSocketNotifier::create( eApp, listenfd, POLLIN );
 		listensn->start();
@@ -176,15 +176,15 @@ void eSocketMMIHandler::listenDataAvail(int what)
 		}
 		connfd = accept(listenfd, (struct sockaddr *) &servaddr, (socklen_t *) &clilen);
 		if (connfd == -1) {
-			eDebug("[eSocketMMIHandler] accept (%m)");
+			eDebug("[eSocketMMIHandler] accept: %m");
 			return;
 		}
 
 		int val;
 		if ((val = fcntl(connfd, F_GETFL)) == -1)
-			eDebug("[eSocketMMIHandler] F_GETFL (%m)");
+			eDebug("[eSocketMMIHandler] F_GETFL: %m");
 		else if (fcntl(connfd, F_SETFL, val | O_NONBLOCK) == -1)
-			eDebug("[eSocketMMIHandler] F_SETFL (%m)");
+			eDebug("[eSocketMMIHandler] F_SETFL: %m");
 		else {
 			connsn = eSocketNotifier::create( eApp, connfd, POLLIN|POLLHUP|POLLERR );
 			CONNECT( connsn->activated, eSocketMMIHandler::connDataAvail );
@@ -204,7 +204,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 
 		if (length == -1) {
 			if (errno != EAGAIN && errno != EINTR && errno != EBUSY) {
-				eDebug("[eSocketMMIHandler] read (%m)");
+				eDebug("[eSocketMMIHandler] read: %m");
 				what |= POLLERR;
 			}
 		} else if (length == 0){

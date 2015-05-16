@@ -252,7 +252,7 @@ eConsolePy_dumpToFile(eConsolePy* self, PyObject *args)
 	{
 		int fd = open(filename, O_WRONLY|O_CREAT|O_TRUNC, 0644);
 		self->cont->setFileFD(1, fd);
-		eDebug("eConsoleAppContainer::dumpToFile open(%s, O_WRONLY|O_CREAT|O_TRUNC, 0644)=%d", filename, fd);
+		eDebug("[eConsoleAppContainer] dumpToFile open(%s, O_WRONLY|O_CREAT|O_TRUNC, 0644)=%d", filename, fd);
 	}
 	Py_RETURN_NONE;
 }
@@ -275,12 +275,12 @@ eConsolePy_readFromFile(eConsolePy* self, PyObject *args)
 			char readbuf[32*1024];
 			int rsize = read(fd, readbuf, 32*1024);
 			self->cont->setFileFD(0, fd);
-			eDebug("eConsoleAppContainer::readFromFile open(%s, O_RDONLY)=%d, read: %d", filename, fd, rsize);
+			eDebug("[eConsoleAppContainer] readFromFile open(%s, O_RDONLY)=%d, read: %d", filename, fd, rsize);
 			self->cont->write(readbuf, rsize);
 		}
 		else
 		{
-			eDebug("eConsoleAppContainer::readFromFile %s not exist!", filename);
+			eDebug("[eConsoleAppContainer] readFromFile %s not exist!", filename);
 			self->cont->setFileFD(0, -1);
 		}
 	}

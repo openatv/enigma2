@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-06 09:45+0100\n"
-"PO-Revision-Date: 2015-04-16 23:54+0200\n"
+"POT-Creation-Date: 2015-05-03 22:30+0100\n"
+"PO-Revision-Date: 2015-05-05 16:47+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com/>\n"
 "Language-Team: AndyBlac/Timo/Samzan\n"
 "Language: fi\n"
@@ -1744,6 +1744,9 @@ msgstr "Suosikkilistan vaihto listan lopussa"
 msgid "Change next timer"
 msgstr "Muuta seuraavaa ajastusta"
 
+msgid "Change recording (add time)"
+msgstr "Muuta tallennusta (lisää aikaa)"
+
 msgid "Change recording (duration)"
 msgstr "Muuta tallennusta (kesto)"
 
@@ -2433,6 +2436,9 @@ msgstr ""
 "Määrittää näytetäänkö (ja kuinka kauan) toinen tietopalkki, kun OK-näppäintä "
 "painetaan kahdesti. Toinen tietopalkki sisältää lisätietoja valitusta "
 "kanavasta."
+
+msgid "Configure whether or not an rotor position will be displayed on infobar"
+msgstr "Valitse näytetäänkö moottorin asentotieto tietopalkissa"
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Määritä mitä värijärjestelmää käytetään SCART-ulostulossa."
@@ -3189,13 +3195,6 @@ msgid "Do you want to add any additional information ?"
 msgstr "Haluatko lisätä lisätietoja?"
 
 msgid ""
-"Do you want to also install samba client ?\n"
-"This allows you to mount your windows shares on this device."
-msgstr ""
-"Haluatko asentaa myös Samba-asiakkaan?\n"
-"Se mahdollistaa Windows-jakojen liittämisen tälle laitteelle."
-
-msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
@@ -3514,6 +3513,10 @@ msgstr "Salli useiden suosikkilistojen luonti ja käyttö"
 msgid "Enable panic button"
 msgstr "Ota käyttöön paniikkinäppäin"
 
+#
+msgid "Enable parental protection"
+msgstr "Lisää lapsilukko"
+
 msgid ""
 "Enable remote enigma2 receiver to be tried to tune into services that cannot "
 "be tuned into locally (e.g. tuner is occupied or service type is unavailable "
@@ -3655,6 +3658,9 @@ msgstr "Ohjelmatiedot"
 
 msgid "Event font size"
 msgstr "Ohjelmatiedon tekstikoko"
+
+msgid "Event name first"
+msgstr "Ohjelmatieto ensin"
 
 msgid "Event view"
 msgstr "Ohjelmanäkymä"
@@ -4321,6 +4327,10 @@ msgid "Hours Mins Secs"
 msgstr "Tunnit Minuutit Sekunnit"
 
 #
+msgid "How many minutes do you want add to record?"
+msgstr "Kuinka monta minuuttia haluat lisätä tallennukseen?"
+
+#
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
@@ -4833,6 +4843,9 @@ msgstr "LAN-yhteys"
 msgid "LED Deep Standby"
 msgstr "Led virransäästötila"
 
+msgid "LED Display Panel"
+msgstr "Näyttöpaneeli"
+
 msgid "LED Normal"
 msgstr "LED normaali"
 
@@ -5237,6 +5250,9 @@ msgstr "Valikon määritys"
 
 msgid "Merging Timeshift files"
 msgstr "Yhdistetään ajansiirron tiedostot"
+
+msgid "Message"
+msgstr "Viesti"
 
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA-loki"
@@ -6318,7 +6334,7 @@ msgstr "Aseta tallennuksen päättymisaika"
 msgid "Please check your network settings!"
 msgstr "Tarkista verkkoasetukset!"
 
-msgid "Please choose CCcam-Reader"
+msgid "Please choose CCcam reader"
 msgstr "Valitse CCcam-lukija"
 
 #
@@ -6841,6 +6857,9 @@ msgstr "Suojaa valikot"
 msgid "Protect main menu"
 msgstr "Suojaa päävalikko"
 
+msgid "Protect manufacturer reset screen"
+msgstr "Suojaa tehdasasetusvalikko"
+
 #
 msgid "Protect movie list"
 msgstr "Suojaa tallennusvalikko"
@@ -6855,6 +6874,10 @@ msgstr "Suojaa lisäosavalikko"
 #
 msgid "Protect services"
 msgstr "Suojaa kanavat"
+
+#
+msgid "Protect software update screen"
+msgstr "Suojaa päivitysvalikko"
 
 #
 msgid "Protect standby menu"
@@ -6913,6 +6936,10 @@ msgid "Python:\t%s\n"
 msgstr "Python:\t%s\n"
 
 #
+msgid "Question"
+msgstr "Kysymys"
+
+#
 msgid "Quick"
 msgstr "Nopea"
 
@@ -6951,8 +6978,8 @@ msgstr "Kanavan määrittelemä ikäraja - %d"
 msgid "Rating undefined"
 msgstr "Ikärajaa ei määritelty"
 
-msgid "Read Userdata from oscam.conf"
-msgstr "Lue Userdata oscam.conf:ista"
+msgid "Read user data from oscam.conf"
+msgstr "Lue käyttäjätiedot oscam.conf:sta"
 
 msgid "Reader"
 msgstr "Lukija"
@@ -7425,8 +7452,8 @@ msgstr "SPDIF"
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "Samba Log"
-msgstr "Samban loki"
+msgid "Samba Network File System"
+msgstr "Samba verkkojako"
 
 msgid "Samba Setup"
 msgstr "Samba-asetukset"
@@ -8393,6 +8420,10 @@ msgstr "Näytä kanavalogot kanavalistassa"
 #
 msgid "Show positioner movement"
 msgstr "Näytä kuvake kääntömoottorin liikkuessa"
+
+#
+msgid "Show positioner position"
+msgstr "Näytä kääntömoottorin asentotieto"
 
 #
 msgid "Show record indicator"
@@ -10195,7 +10226,7 @@ msgstr "Lähetin"
 msgid "Transponder type"
 msgstr "Lähettimen tyyppi"
 
-msgid "Trashcan"
+msgid "Trash can"
 msgstr "Roskakori"
 
 msgid "Trashcan:"
@@ -10888,6 +10919,9 @@ msgstr "Käynnistyssignaali TV:ltä"
 msgid "Wakeup your %s %s from standby"
 msgstr "Käynnistä %s %s valmiustilasta"
 
+msgid "Warning"
+msgstr "Varoitus"
+
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Varoitus: ei LNB:tä, käytetään tehdasasetuksia."
 
@@ -11477,10 +11511,6 @@ msgstr "Voit keskeyttää poiston."
 
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Voit jatkaa TV:n katselua yms. kun tehtävää suoritetaan."
-
-msgid "You can disable Telnet Server and use ssh to login."
-msgstr ""
-"Voit poistaa Telnet-palvelimen käytöstä ja käyttää SSH:ta kirjautumiseen."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Voit valita listaan aika- tai aakkosjärjestyksen."
@@ -12277,9 +12307,6 @@ msgstr "muoti"
 msgid "fast"
 msgstr "nopea"
 
-msgid "file oscam.conf could not be found"
-msgstr "tiedostoa oscam.conf ei löytynyt"
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "Tiedostomuodot (BMP, PNG, JPG, GIF)"
@@ -12652,6 +12679,16 @@ msgstr "alkuperäinen"
 
 msgid "original language"
 msgstr "alkuperäinen kieli"
+
+msgid "oscam.conf could not be found"
+msgstr "oscam.conf tiedostoa ei löytynyt"
+
+msgid ""
+"oscam.conf not found.\n"
+"Please enter username/password manually."
+msgstr ""
+"oscam.conf tiedostoa ei löydy.\n"
+"Syötä käyttäjänimi/salasana."
 
 msgid "packages selected."
 msgstr "pakettia valittu."
@@ -13208,6 +13245,12 @@ msgstr "vasen/oikea näppäimillä"
 msgid "with long OK press"
 msgstr "pitkä OK painallus"
 
+msgid "with text"
+msgstr "tekstillä"
+
+msgid "with tuner name"
+msgstr "virittimen nimellä"
+
 #
 msgid "working"
 msgstr "työskentelee"
@@ -13244,3 +13287,17 @@ msgstr "vaihdettu"
 
 #~ msgid "ButtonSetup Setup"
 #~ msgstr "Näppäinmääritykset"
+
+#~ msgid ""
+#~ "Do you want to also install samba client ?\n"
+#~ "This allows you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Haluatko asentaa myös Samba-asiakkaan?\n"
+#~ "Se mahdollistaa Windows-jakojen liittämisen tälle laitteelle."
+
+#~ msgid "Samba Log"
+#~ msgstr "Samban loki"
+
+#~ msgid "You can disable Telnet Server and use ssh to login."
+#~ msgstr ""
+#~ "Voit poistaa Telnet-palvelimen käytöstä ja käyttää SSH:ta kirjautumiseen."

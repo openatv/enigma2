@@ -8,7 +8,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -27,7 +27,7 @@ class About(Screen):
 		self.populate()
 		
 		self["key_green"] = Button(_("Translations"))
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions", "DirectionActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
@@ -55,6 +55,7 @@ class About(Screen):
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
+		AboutText += _("Image Type:\t%s\n") % getImageType().title()
 		
 		string = getDriverDate()
 		year = string[0:4]

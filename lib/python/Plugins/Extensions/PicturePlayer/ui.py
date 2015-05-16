@@ -13,6 +13,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
+import skin
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -286,8 +287,8 @@ class Pic_Thumb(Screen):
 			skincontent += "<widget name=\"thumb" + str(x) + "\" position=\"" + str(absX+5)+ "," + str(absY+5) + "\" size=\"" + str(self.picX -10) + "," + str(self.picY - (textsize*2)) + "\" zPosition=\"2\" transparent=\"1\" alphatest=\"on\" />"
 
 		# Screen, backgroundlabel and MovingPixmap
-		self.skin = "<screen position=\"0,0\" size=\"" + str(size_w) + "," + str(size_h) + "\" flags=\"wfNoBorder\" > \
-			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(size_w) + "," + str(size_h) + "\" backgroundColor=\"" + self.color + "\" />" \
+		self.skin = "<screen position=\"0,0\" size=\"" + str(self.size_w) + "," + str(self.size_h) + "\" flags=\"wfNoBorder\" > \
+			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(self.size_w) + "," + str(self.size_h) + "\" backgroundColor=\"" + self.color + "\" />" \
 			+ "<widget name=\"frame\" position=\"" + str(self.spaceX)+ "," + str(self.spaceY)+ "\" size=\"" + str(self.picX) + "," + str(self.picY) + "\" pixmap=\"" + pic_frame + "\" zPosition=\"1\" alphatest=\"on\" />" \
 			+ skincontent + "</screen>"
 

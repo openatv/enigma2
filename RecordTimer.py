@@ -135,6 +135,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.rename_repeat = rename_repeat
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
+		self.InfoBarInstance = Screens.InfoBar.InfoBar.instance
+		self.ts_dialog = None
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
 
@@ -304,10 +306,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
-						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
-						self.setRecordingPreferredTuner()
-						self.failureCB(True)
-						self.log(5, "zap to recording service")
+						if self.checkingTimeshiftRunning():
+							if self.ts_dialog is None:
+								self.openChoiceActionBeforeZap()
+						else:
+							Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+							self.setRecordingPreferredTuner()
+							self.failureCB(True)
+							self.log(5, "zap to recording service")
 
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
@@ -329,13 +335,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			self.log(7, "prepare failed")
-			if self.first_try_prepare:
+			if self.first_try_prepare or (self.ts_dialog is not None and not self.checkingTimeshiftRunning()):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
+					if self.always_zap:
+						return False
 					if Screens.Standby.inStandby:
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
+					elif self.checkingTimeshiftRunning():
+						if self.ts_dialog is None:
+							self.openChoiceActionBeforeZap()
 					elif not config.recording.asktozap.value:
 						self.log(8, "asking user to zap away")
 						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
@@ -376,42 +387,46 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
-					self.log(11, "zapping")
-					NavigationInstance.instance.isMovieplayerActive()
-					from Screens.ChannelSelection import ChannelSelection
-					ChannelSelectionInstance = ChannelSelection.instance
-					self.service_types = service_types_tv
-					if ChannelSelectionInstance:
-						if config.usage.multibouquet.value:
-							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-						else:
-							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
-						rootstr = ''
-						serviceHandler = eServiceCenter.getInstance()
-						rootbouquet = eServiceReference(bqrootstr)
-						bouquet = eServiceReference(bqrootstr)
-						bouquetlist = serviceHandler.list(bouquet)
-						if not bouquetlist is None:
-							while True:
-								bouquet = bouquetlist.getNext()
-								if bouquet.flags & eServiceReference.isDirectory:
-									ChannelSelectionInstance.clearPath()
-									ChannelSelectionInstance.setRoot(bouquet)
-									servicelist = serviceHandler.list(bouquet)
-									if not servicelist is None:
-										serviceIterator = servicelist.getNext()
-										while serviceIterator.valid():
+					if self.checkingTimeshiftRunning():
+						if self.ts_dialog is None:
+							self.openChoiceActionBeforeZap()
+					else:
+						self.log(11, "zapping")
+						NavigationInstance.instance.isMovieplayerActive()
+						from Screens.ChannelSelection import ChannelSelection
+						ChannelSelectionInstance = ChannelSelection.instance
+						self.service_types = service_types_tv
+						if ChannelSelectionInstance:
+							if config.usage.multibouquet.value:
+								bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+							else:
+								bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
+							rootstr = ''
+							serviceHandler = eServiceCenter.getInstance()
+							rootbouquet = eServiceReference(bqrootstr)
+							bouquet = eServiceReference(bqrootstr)
+							bouquetlist = serviceHandler.list(bouquet)
+							if not bouquetlist is None:
+								while True:
+									bouquet = bouquetlist.getNext()
+									if bouquet.flags & eServiceReference.isDirectory:
+										ChannelSelectionInstance.clearPath()
+										ChannelSelectionInstance.setRoot(bouquet)
+										servicelist = serviceHandler.list(bouquet)
+										if not servicelist is None:
+											serviceIterator = servicelist.getNext()
+											while serviceIterator.valid():
+												if self.service_ref.ref == serviceIterator:
+													break
+												serviceIterator = servicelist.getNext()
 											if self.service_ref.ref == serviceIterator:
 												break
-											serviceIterator = servicelist.getNext()
-										if self.service_ref.ref == serviceIterator:
-											break
-							ChannelSelectionInstance.enterPath(rootbouquet)
-							ChannelSelectionInstance.enterPath(bouquet)
-							ChannelSelectionInstance.saveRoot()
-							ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-						ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-					NavigationInstance.instance.playService(self.service_ref.ref)
+								ChannelSelectionInstance.enterPath(rootbouquet)
+								ChannelSelectionInstance.enterPath(bouquet)
+								ChannelSelectionInstance.saveRoot()
+								ChannelSelectionInstance.saveChannel(self.service_ref.ref)
+							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "start recording")
@@ -427,6 +442,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
+			self.ts_dialog = None
 			if self.setAutoincreaseEnd():
 				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
@@ -490,6 +506,70 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.change_frontend = False
 			if elem is not None:
 				setPreferredTuner(int(elem))
+
+	def checkingTimeshiftRunning(self):
+		return config.usage.check_timeshift.value and self.InfoBarInstance and self.InfoBarInstance.timeshiftEnabled() and self.InfoBarInstance.timeshift_was_activated
+
+	def openChoiceActionBeforeZap(self):
+		if self.ts_dialog is None:
+			type = _("record")
+			if self.justplay:
+				type = _("zap")
+			elif self.always_zap:
+				type = _("zap and record")
+			message = _("You must switch to the service %s (%s - '%s')!\n") % (type, self.service_ref.getServiceName(), self.name)
+			if self.repeated:
+				message += _("Attention, this is repeated timer!\n")
+			message += _("Timeshift is running. Select an action.\n")
+			choice = [(_("Zap"), "zap"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
+			if not self.InfoBarInstance.save_timeshift_file:
+				choice.insert(1, (_("Save timeshift in movie dir and zap"), "save_movie"))
+				if self.InfoBarInstance.timeshiftActivated():
+					choice.insert(0, (_("Save timeshift and zap"), "save"))
+				else:
+					choice.insert(1, (_("Save timeshift and zap"), "save"))
+			else:
+				message += _("Reminder, you have chosen to save timeshift file.")
+			#if self.justplay or self.always_zap:
+			#	choice.insert(2, (_("Don't zap"), "continue"))
+			choice.insert(2, (_("Don't zap"), "continue"))
+			def zapAction(choice):
+				start_zap = True
+				if choice:
+					if choice in ("zap", "save", "save_movie"):
+						self.log(8, "zap to recording service")
+						if choice in ("save", "save_movie"):
+							ts = self.InfoBarInstance.getTimeshift()
+							if ts and ts.isTimeshiftEnabled():
+								if choice =="save_movie":
+									self.InfoBarInstance.save_timeshift_in_movie_dir = True
+								self.InfoBarInstance.save_timeshift_file = True
+								ts.saveTimeshiftFile()
+								del ts
+								self.InfoBarInstance.saveTimeshiftFiles()
+					elif choice == "disable":
+						self.disable()
+						NavigationInstance.instance.RecordTimer.timeChanged(self)
+						start_zap = False
+						self.log(8, "zap canceled by the user, timer disabled")
+					elif choice == "remove":
+						start_zap = False
+						self.afterEvent = AFTEREVENT.NONE
+						NavigationInstance.instance.RecordTimer.removeEntry(self)
+						self.log(8, "zap canceled by the user, timer removed")
+					elif choice == "continue":
+						if self.justplay:
+							self.end = self.begin
+						start_zap = False
+						self.log(8, "zap canceled by the user")
+				if start_zap:
+					if not self.justplay:
+						self.setRecordingPreferredTuner()
+						self.failureCB(True)
+					else:
+						self.log(8, "zapping")
+						NavigationInstance.instance.playService(self.service_ref.ref)
+			self.ts_dialog = self.InfoBarInstance.session.openWithCallback(zapAction, MessageBox, message, simple=True, list=choice, timeout=20)
 
 	def sendStandbyNotification(self, answer):
 		if answer:
@@ -581,9 +661,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby and \
-				Screens.InfoBar.InfoBar.instance and \
-				Screens.InfoBar.InfoBar.instance.execing
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby and self.InfoBarInstance and self.InfoBarInstance.execing
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True

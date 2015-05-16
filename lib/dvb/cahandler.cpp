@@ -582,7 +582,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 		while( i != ptr->getSections().end() )
 		{
-//			eDebug("append");
+//			eDebug("[eDVBCAService] append");
 			capmt.append(*i++);
 		}
 

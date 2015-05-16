@@ -74,7 +74,7 @@ int main()
 
 
 	gRegion c;
-	eDebug("0");
+	eDebug("[MAIN gdi] 0");
 	int i;
 
 	c |= eRect(0, 20, 100, 10);
@@ -88,8 +88,8 @@ int main()
 	p.fill(eRect(200, 0, 100, 100));
 
 	for (int a=0; a<c.rects.size(); ++a)
-		eDebug("%d %d -> %d %d", c.rects[a].left(), c.rects[a].top(), c.rects[a].right(), c.rects[a].bottom());
-	eDebug("extends: %d %d %d %d", c.extends.left(), c.extends.top(), c.extends.right(), c.extends.bottom());
+		eDebug("[MAIN gdi] %d %d -> %d %d", c.rects[a].left(), c.rects[a].top(), c.rects[a].right(), c.rects[a].bottom());
+	eDebug("[MAIN gdi] extends: %d %d %d %d", c.extends.left(), c.extends.top(), c.extends.right(), c.extends.bottom());
 	p.setOffset(ePoint(100, 100));
 	p.clip(c);
 

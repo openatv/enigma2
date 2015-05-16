@@ -371,10 +371,10 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 	if (m_comp_mode != cmImmediate)
 		return;
 
-//	eDebug("widgetDesktop: make compatible pixmap of %p", &pm);
+//	eDebug("[widgetDesktop] make compatible pixmap of %p", &pm);
 	if (!m_screen.m_dc)
 	{
-		eWarning("eWidgetDesktop: no DC to make pixmap compatible with!");
+		eWarning("[eWidgetDesktop] no DC to make pixmap compatible with!");
 		return;
 	}
 
@@ -382,7 +382,7 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 	m_screen.m_dc->getPixmap(target_pixmap);
 
 	if (!target_pixmap) {
-		eDebug("no target pixmap! assuming bpp > 8 for accelerated graphics.");
+		eDebug("[eWidgetDesktop] no target pixmap! assuming bpp > 8 for accelerated graphics.");
 		return;
 	}
 
@@ -439,7 +439,7 @@ void eWidgetDesktop::createBufferForWidget(eWidget *widget, int layer)
 
 	eWidgetDesktopCompBuffer *comp = widget->m_comp_buffer[layer] = new eWidgetDesktopCompBuffer;
 
-	eDebug("create buffer for widget layer %d, %d x %d\n", layer, widget->size().width(), widget->size().height());
+	eDebug("[eWidgetDesktop] create buffer for widget layer %d, %d x %d\n", layer, widget->size().width(), widget->size().height());
 
 	eRect bbox = eRect(widget->position(), widget->size());
 	comp->m_position = bbox.topLeft();

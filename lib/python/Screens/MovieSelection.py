@@ -1,14 +1,9 @@
-import os
-import time
-import cPickle as pickle
-
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
-
 from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.MenuList import MenuList
-from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
+from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, moviePlayState
 from Components.DiskInfo import DiskInfo
 from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap, MultiPixmap
@@ -37,6 +32,10 @@ import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
+import os
+import time
+import cPickle as pickle
 
 config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
@@ -332,8 +331,7 @@ class MovieContextMenuSummary(Screen):
 		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		item = self.parent["config"].getCurrent()
-		self["selected"].text = item[0]
+		self["selected"].text = self.parent["config"].getCurrent()[0][0]
 
 from Screens.ParentalControlSetup import ProtectedScreen
 
@@ -358,52 +356,67 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				"red": self.cancelClick,
 				"green": self.okbuttonClick,
 				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
+				"cancel": self.cancelClick,
+				"green": self.do_showDeviceMounts,
+				"yellow": self.do_showNetworkMounts,
+				"menu": self.do_configure,
+				"2": self.do_rename,
+				"5": self.do_copy,
+				"6": self.do_move,
+				"7": self.do_createdir,
+				"8": self.do_delete
+
 			})
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		menu = [(_("Settings") + "...", csel.configure),
-				(_("Device mounts") + "...", csel.showDeviceMounts),
-				(_("Network mounts") + "...", csel.showNetworkMounts),
-				(_("Add bookmark"), csel.do_addbookmark),
-				(_("Create directory"), csel.do_createdir),
-				(_("Sort by") + "...", csel.selectSortby)]
+
+		def append_to_menu(menu, args, key=""):
+			menu.append(ChoiceEntryComponent(key, args))
+
+		menu = []
+		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="menu")
+		append_to_menu(menu, (_("Device mounts") + "...", csel.showDeviceMounts), key="green")
+		append_to_menu(menu, (_("Network mounts") + "...", csel.showNetworkMounts), key="yellow")
+		append_to_menu(menu, (_("Sort by") + "...", csel.selectSortby))
+		if csel.exist_bookmark():
+			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark))
+		else:
+			append_to_menu(menu, (_("Add bookmark"), csel.do_addbookmark))
+		append_to_menu(menu, (_("Create directory"), csel.do_createdir), key="7")
+
 		if service:
-			if service.flags & eServiceReference.mustDescent:
-				if isTrashFolder(service):
-					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
-				else:
-					menu.append((_("Delete"), csel.do_delete))
-					menu.append((_("Move"), csel.do_move))
-					menu.append((_("Copy"), csel.do_copy))
-					menu.append((_("Rename"), csel.do_rename))
+			if (service.flags & eServiceReference.mustDescent) and isTrashFolder(service):
+				append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="8")
 			else:
-				menu.append((_("Delete"), csel.do_delete))
-				menu.append((_("Move"), csel.do_move))
-				menu.append((_("Copy"), csel.do_copy))
-				menu.append((_("Reset playback position"), csel.do_reset))
-				menu.append((_("Rename"), csel.do_rename))
-				menu.append((_("Start offline decode"), csel.do_decode))
+				append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
+				append_to_menu(menu, (_("Move"), csel.do_move), key="6")
+				append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
+				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
+				if not (service.flags & eServiceReference.mustDescent):
+					if self.isResetable():
+						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
+					if service.getPath().endswith('.ts'):
+						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
 
-			from Components.ParentalControl import parentalControl
-			if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
-				menu.append((_("Unhide parental control services"), csel.unhideParentalServices))
+				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
+					from Components.ParentalControl import parentalControl
+					if not parentalControl.sessionPinCached:
+						append_to_menu(menu, (_("Unhide parental control services"), csel.unhideParentalServices))
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+				if not(service.flags & eServiceReference.mustDescent):
+					for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+						append_to_menu( menu, (p.description, boundFunction(p, session, service)), key="bullet")
 
-		self["config"] = MenuList(menu)
+		self["config"] = ChoiceList(menu)
 
-	def isProtected(self):
-		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
-
-	def pinEntered(self, answer):
-		if answer:
-			self.csel.protectContextMenu = False
-		ProtectedScreen.pinEntered(self, answer)
 
 	def isProtected(self):
 		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
+
+	def isResetable(self):
+		item = self.csel.getCurrentSelection()
+		return not(item[1] and moviePlayState(item[0].getPath() + ".cuts", item[0], item[1].getLength(item[0])) is None)
 
 	def pinEntered(self, answer):
 		if answer:
@@ -414,7 +427,24 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		return MovieContextMenuSummary
 
 	def okbuttonClick(self):
-		self.close(self["config"].getCurrent()[1])
+		self.close(self["config"].getCurrent()[0][1])
+
+	def do_rename(self):
+		self.close(self.csel.do_rename())
+	def do_copy(self):
+		self.close(self.csel.do_copy())
+	def do_move(self):
+		self.close(self.csel.do_move())
+	def do_createdir(self):
+		self.close(self.csel.do_createdir())
+	def do_delete(self):
+		self.close(self.csel.do_delete())
+	def do_configure(self):
+		self.close(self.csel.configure())
+	def do_showDeviceMounts(self):
+		self.close(self.csel.showDeviceMounts())
+	def do_showNetworkMounts(self):
+		self.close(self.csel.showNetworkMounts())
 
 	def cancelClick(self):
 		self.close(None)
@@ -1262,8 +1292,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.close(current)
 
 	def doContext(self):
-		current = self.getCurrent() or None
-		self.session.openWithCallback(self.doneContext, MovieContextMenu, self, current)
+		current = self.getCurrent()
+		if current is not None:
+			self.session.openWithCallback(self.doneContext, MovieContextMenu, self, current)
 
 	def doneContext(self, action):
 		if action is not None:
@@ -1286,7 +1317,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		config.usage.on_movie_eof.save()
 
 	def loadLocalSettings(self):
-		"""Load settings, called when entering a directory"""
+		'Load settings, called when entering a directory'
 		if config.movielist.settings_per_directory.value:
 			try:
 				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
@@ -1710,7 +1741,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		from ServiceReference import ServiceReference
 		item = self.getCurrentSelection()
 		info = item[1]
-		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = item[0].getPath())
+		filepath = item[0].getPath()
+		if not filepath.endswith('.ts'):
+			return
+		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = filepath)
 		name = info.getName(item[0]) + ' - decoded'
 		description = info.getInfoString(item[0], iServiceInformation.sDescription)
 		recording = RecordTimer.RecordTimerEntry(serviceref, int(time.time()), int(time.time()) + 3600, name, description, 0, dirname = preferredTimerPath())
@@ -1910,6 +1944,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if '.Trash' not in cur_path and config.usage.movielist_trashcan.value:
 				if isFolder(item):
 					are_you_sure = _("Do you really want to move to trashcan ?")
+					subdirs += 1
 				else:
 					args = True
 				if args:

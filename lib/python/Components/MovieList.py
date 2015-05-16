@@ -167,7 +167,7 @@ class MovieList(GUIComponent):
 		self.iconsWidth = 22
 		self.trashShift = 1
 		self.dirShift = 1
-		self.columns = (180,200)
+		self.dateWidth = 150
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -291,10 +291,8 @@ class MovieList(GUIComponent):
 			self.dirShift = int(value)
 		def spaceRight(value):
 			self.spaceRight = int(value)
-		def columns(value):
-			self.columns = map(int, value.split(","))
-			if len(self.columns) != 2:
-				warningWrongSkinParameter(attrib)
+		def dateWidth(value):
+			self.dateWidth = int(value)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -331,6 +329,7 @@ class MovieList(GUIComponent):
 	def buildMovieListEntry(self, serviceref, info, begin, data):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
+		dateWidth = self.dateWidth
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
@@ -423,10 +422,8 @@ class MovieList(GUIComponent):
 			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 
 		ih = self.itemHeight
-		lenSize = ih * 3 # 25 -> 75
-		dateSize = ih * 145 / 25   # 25 -> 145
-		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateSize-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
-		res.append(MultiContentEntryText(pos=(width-dateSize-r, 4), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
+		res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 		return res
 
 	def moveToFirstMovie(self):
@@ -525,7 +522,7 @@ class MovieList(GUIComponent):
 			print "listing of movies failed"
 			return
 		realtags = set()
-		tags = {}
+		autotags = {}
 		rootPath = os.path.normpath(root.getPath())
 		parent = None
 		# Don't navigate above the "root"
@@ -558,7 +555,7 @@ class MovieList(GUIComponent):
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
-			# convert separe-seperated list of tags into a set
+			# convert separe-separated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			name = info.getName(serviceref)
 
@@ -569,14 +566,15 @@ class MovieList(GUIComponent):
 			if this_tags == ['']:
 				# No tags? Auto tag!
 				this_tags = name.replace(',',' ').replace('.',' ').replace('_',' ').replace(':',' ').split()
+				# For auto tags, we are keeping a (tag, movies) dictionary.
+				#It will be used later to check if movies have a complete sentence in common.
+				for tag in this_tags:
+					if autotags.has_key(tag):
+						autotags[tag].append(name)
+					else:
+						autotags[tag] = [name]
 			else:
 				realtags.update(this_tags)
-			for tag in this_tags:
-				if len(tag) >= 4:
-					if tags.has_key(tag):
-						tags[tag].append(name)
-					else:
-						tags[tag] = [name]
 			# filter_tags is either None (which means no filter at all), or
 			# a set. In this case, all elements of filter_tags must be present,
 			# otherwise the entry will be dropped.
@@ -645,15 +643,15 @@ class MovieList(GUIComponent):
 		# really in the tag set of some file.
 
 		# reverse the dictionary to see which unique movie each tag now references
-		rtags = {}
-		for tag, movies in tags.items():
-			if (len(movies) > 1) or (tag in realtags):
+		rautotags = {}
+		for tag, movies in autotags.items():
+			if (len(movies) > 1):
 				movies = tuple(movies) # a tuple can be hashed, but a list not
-				item = rtags.get(movies, [])
-				if not item: rtags[movies] = item
+				item = rautotags.get(movies, [])
+				if not item: rautotags[movies] = item
 				item.append(tag)
 		self.tags = {}
-		for movies, tags in rtags.items():
+		for movies, tags in rautotags.items():
 			movie = movies[0]
 			# format the tag lists so that they are in 'original' order
 			tags.sort(key = movie.find)
@@ -673,13 +671,16 @@ class MovieList(GUIComponent):
 					if m[start:end] != match:
 						match = ''
 						break
+			# Adding the longest common sentence to the tag list
 			if match:
 				self.tags[match] = set(tags)
-				continue
 			else:
 				match = ' '.join(tags)
 				if len(match) > 2: #Omit small words
 					self.tags[match] = set(tags)
+		# Adding the realtags to the tag list
+		for tag in realtags:
+			self.tags[tag] = set([tag])
 
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...

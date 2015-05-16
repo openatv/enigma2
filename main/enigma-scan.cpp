@@ -25,7 +25,7 @@ class eMain: public eApplication, public Object
 
 	void scanEvent(int evt)
 	{
-		eDebug("scan event %d!", evt);
+		eDebug("[eMain scan] scan event %d!", evt);
 		if (evt == eDVBScan::evtFinish)
 		{
 			m_scan->insertInto(m_dvbdb);
@@ -53,10 +53,10 @@ public:
 		fe->setDVBS(fesat);
 
 		if (m_mgr->allocateRawChannel(m_channel))
-			eDebug("shit it failed!");
+			eDebug("[eMain scan] shit it failed!");
 
 //		init.setRunlevel(eAutoInitNumbers::main);
-		eDebug("starting scan...");
+		eDebug("[eMain scan] starting scan...");
 
 		std::list<ePtr<iDVBFrontendParameters> > list;
 
@@ -71,7 +71,7 @@ public:
 	~eMain()
 	{
 		delete m_scan;
-		eDebug("... nicht mehr.");
+		eDebug("[eMain scan] done.");
 	}
 };
 

@@ -119,6 +119,12 @@ class LCD:
 		f = open("/proc/stb/lcd/show_symbols", "w")
 		f.write(value)
 		f.close()
+		
+	def setPower(self, value):
+		print 'setLCDPower',value
+		f = open("/proc/stb/power/vfd", "w")
+		f.write(value)
+		f.close()
 
 	def setLEDNormalState(self, value):
 		eDBoxLCD.getInstance().setLED(value, 0)
@@ -231,6 +237,9 @@ def InitLcd():
 
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value)
+		
+		def setLCDpower(configElement):
+			ilcd.setPower(configElement.value);
 
 		def setLCDminitvmode(configElement):
 			ilcd.setLCDMiniTVMode(configElement.value)
@@ -318,10 +327,16 @@ def InitLcd():
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
 
 		if fileExists("/proc/stb/lcd/show_symbols"):
-			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+			config.lcd.mode = ConfigSelection([("0", _("no")), ("1", _("yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode)
 		else:
 			config.lcd.mode = ConfigNothing()
+			
+		if fileExists("/proc/stb/power/vfd"):
+			config.lcd.power = ConfigSelection([("0", _("off")), ("1", _("on"))], "1")
+			config.lcd.power.addNotifier(setLCDpower);
+		else:
+			config.lcd.power = ConfigNothing()
 
 	else:
 		def doNothing():
@@ -332,6 +347,7 @@ def InitLcd():
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
 		config.lcd.mode = ConfigNothing()
+		config.lcd.power = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda : doNothing()
 		config.lcd.ledbrightnessstandby = ConfigNothing()

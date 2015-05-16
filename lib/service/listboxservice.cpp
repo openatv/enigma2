@@ -78,9 +78,9 @@ void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet
 	ASSERT(m_service_center);
 
 	if (m_service_center->list(m_root, m_lst))
-		eDebug("eListboxServiceContent: no list available!");
+		eDebug("[eListboxServiceContent] no list available!");
 	else if (m_lst->getContent(m_list))
-		eDebug("eListboxServiceContent: getContent failed");
+		eDebug("[eListboxServiceContent] getContent failed");
 
 	FillFinished();
 }
@@ -375,17 +375,17 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 			{
 				ePtr<iMutableServiceList> list;
 				if (m_lst->startEdit(list))
-					eDebug("eListboxServiceContent: no editable list");
+					eDebug("[eListboxServiceContent] no editable list");
 				else
 				{
 					eServiceReference ref;
 					getCurrent(ref);
 					if(!ref)
-						eDebug("eListboxServiceContent: no valid service selected");
+						eDebug("[eListboxServiceContent] no valid service selected");
 					else
 					{
 						int pos = cursorGet();
-						eDebugNoNewLineStart("eListboxServiceContent: move %s to %d ", ref.toString().c_str(), pos);
+						eDebugNoNewLineStart("[eListboxServiceContent] move %s to %d ", ref.toString().c_str(), pos);
 						if (list->moveService(ref, cursorGet()))
 							eDebugNoNewLine("failed\n");
 						else
@@ -394,7 +394,7 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 				}
 			}
 			else
-				eDebug("eListboxServiceContent: no list available!");
+				eDebug("[eListboxServiceContent] no list available!");
 		}
 	}
 

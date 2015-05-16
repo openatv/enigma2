@@ -108,6 +108,7 @@ void eTuxtxtApp::setEnableTtCachingOnOff( int onoff )
 {
 	if (onoff && !enableTtCaching)		// Switch caching on
 	{
+		eDebug("[eTuxttxtApp] enable caching");
 		enableTtCaching = true;
 		if (pid)
 		{
@@ -117,6 +118,7 @@ void eTuxtxtApp::setEnableTtCachingOnOff( int onoff )
 	}
 	else if (!onoff && enableTtCaching)	// Switch caching off
 	{
+		eDebug("[eTuxttxtApp] disable caching");
 		enableTtCaching = false;
 		int savePid = pid;
 		freeCache();

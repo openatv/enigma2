@@ -68,7 +68,7 @@ int eLabel::event(int event, void *data, void *data2)
 				bbox = eRect(left, 0, right-left, size().height());
 				painter.fill(bbox);
 			} else if ((m_pos < 0) || (m_pos >= glyphs))
-				eWarning("glyph index %d in eLabel out of bounds!", m_pos);
+				eWarning("[eLabel] glyph index %d in eLabel out of bounds!", m_pos);
 			else
 			{
 				para->setGlyphFlag(m_pos, GS_INVERT);
