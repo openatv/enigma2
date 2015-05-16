@@ -620,8 +620,10 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 						m_knownChannels.erase(it);
 					}
 					pthread_mutex_unlock(&it->second->channel_active);
+					delete it->second;
+					it->second = 0;
 					// -> gotMessage -> abortEPG
-					return;
+					break;
 				}
 				default: // ignore all other events
 					return;
