@@ -25,6 +25,9 @@ gRC::gRC(): rp(0), wp(0)
 {
 	ASSERT(!instance);
 	instance=this;
+	m_prev_idle_count = -1;
+	m_spinner_enabled = 0;
+	m_spinneronoff = 1;
 	CONNECT(m_notify_pump.recv_msg, gRC::recv_notify);
 #ifndef SYNC_PAINT
 	pthread_mutex_init(&mutex, 0);
