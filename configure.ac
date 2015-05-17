@@ -356,6 +356,7 @@ data/display128/Makefile
 data/display220/Makefile
 data/display400/Makefile
 data/display720/Makefile
+data/display720/Default_with_Picon_Fullscreen/Makefile
 data/vfd128/Makefile
 data/vfd140/Makefile
 data/vfd255/Makefile
