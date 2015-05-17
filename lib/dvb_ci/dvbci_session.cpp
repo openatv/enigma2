@@ -7,6 +7,33 @@
 #include <lib/dvb_ci/dvbci_camgr.h>
 #include <lib/dvb_ci/dvbci_datetimemgr.h>
 #include <lib/dvb_ci/dvbci_mmi.h>
+#include <lib/dvb_ci/dvbci.h>
+#include <lib/dvb_ci/dvbci_ui.h>
+
+eDVBCIPlusHelper::eDVBCIPlusHelper(eDVBCISlot *tslot, unsigned long tag, int session)
+{
+	m_tslot = tslot;
+	m_tag = tag;
+	m_session = session;
+	eDVBCIInterfaces::getInstance()->sendDataToHelper(eCIClient::CIPLUSHELPER_SESSION_CREATE, m_tslot->getSlotID(), m_session, m_tag, (unsigned char *)"\x00\x00\x00\x00", NULL, 0);
+}
+
+eDVBCIPlusHelper::~eDVBCIPlusHelper()
+{
+	eDVBCIInterfaces::getInstance()->sendDataToHelper(eCIClient::CIPLUSHELPER_SESSION_CLOSE, m_tslot->getSlotID(), m_session, m_tag, (unsigned char *)"\x00\x00\x00\x00", NULL, 0);
+}
+
+int eDVBCIPlusHelper::receivedAPDU(const unsigned char *tag, const void *data, int len)
+{
+	eDVBCIInterfaces::getInstance()->sendDataToHelper(eCIClient::CIPLUSHELPER_RECV_APDU, m_tslot->getSlotID(), m_session, m_tag, (unsigned char *)tag, (unsigned char *)data, len);
+	return 0;
+}
+
+int eDVBCIPlusHelper::doAction()
+{
+	eDVBCIInterfaces::getInstance()->sendDataToHelper(eCIClient::CIPLUSHELPER_DOACTION, m_tslot->getSlotID(), m_session, m_tag, (unsigned char *)"\x00\x00\x00\x00", NULL, 0);
+	return 0;
+}
 
 DEFINE_REF(eDVBCISession);
 
@@ -148,16 +175,13 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 		eDebug("[CI SESS] RESOURCE MANAGER");
 		break;
 	case 0x00020041:
+	case 0x00020043:
 		session=new eDVBCIApplicationManagerSession(slot);
 		eDebug("[CI SESS] APPLICATION MANAGER");
 		break;
 	case 0x00030041:
 		session = new eDVBCICAManagerSession(slot);
 		eDebug("[CI SESS] CA MANAGER");
-		break;
-	case 0x00240041:
-		session=new eDVBCIDateTimeSession;
-		eDebug("[CI SESS] DATE-TIME");
 		break;
 	case 0x00400041:
 		session = new eDVBCIMMISession(slot);
@@ -167,7 +191,22 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 //		session=new eDVBCIAuthSession;
 		eDebug("[CI SESS] AuthSession");
 //		break;
+	case 0x00240041:
+		if (!eDVBCIInterfaces::getInstance()->isClientConnected())
+		{
+			session=new eDVBCIDateTimeSession;
+			eDebug("[CI SESS] DATE-TIME");
+			break;
+		}
+	case 0x008C1001:
+	case 0x008D1001:
+	case 0x008E1001:
 	case 0x00200041:
+		if (eDVBCIInterfaces::getInstance()->isClientConnected())
+		{
+			session = new eDVBCIPlusHelper(slot, tag, session_nb);
+		}
+		break;
 	default:
 		eDebug("[CI SESS] unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
 		session=0;
@@ -324,3 +363,14 @@ eDVBCISession::~eDVBCISession()
 //	eDebug("[CI SESS] destroy %p", this);
 }
 
+void eDVBCISession::setAction(unsigned int session, int val)
+{
+	if (val)
+	{
+		if (sessions[session - 1])
+		{
+			sessions[session - 1]->action = val;
+			sessions[session - 1]->poll();
+		}
+	}
+}

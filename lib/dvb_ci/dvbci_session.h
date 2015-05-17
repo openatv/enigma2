@@ -45,6 +45,20 @@ public:
 
 	static int pollAll();
 
+	static void setAction(unsigned int session, int val);
+};
+
+class eDVBCIPlusHelper: public eDVBCISession
+{
+	eDVBCISlot *m_tslot;
+	unsigned long m_tag;
+	int m_session;
+
+	int receivedAPDU(const unsigned char *tag, const void *data, int len);
+	int doAction();
+public:
+	eDVBCIPlusHelper(eDVBCISlot *tslot, unsigned long tag, int session);
+	~eDVBCIPlusHelper();
 };
 
 #endif
