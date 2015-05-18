@@ -2018,7 +2018,7 @@ class InfoBarSeek:
 			self.unPauseService()
 
 	def playpauseService(self):
-		if self.seekstate == self.SEEK_STATE_PLAY:
+		if self.seekstate == self.SEEK_STATE_PLAY or config.seek.on_pause.value == "last" and self.seekstate[3].startswith(("<<", ">>", "/")):
 			self.pauseService()
 		else:
 			if self.seekstate == self.SEEK_STATE_PAUSE:
@@ -2179,19 +2179,17 @@ class InfoBarSeek:
 		self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
-		if self.seekstate == self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_EOF:
+		if self.seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_EOF):
 			self.lockedBecauseOfSkipping = False
 			self.unlockShow()
-		else:
-			wantlock = self.seekstate != self.SEEK_STATE_PLAY
-			if config.usage.show_infobar_on_skip.value:
-				if self.lockedBecauseOfSkipping and not wantlock:
-					self.unlockShow()
-					self.lockedBecauseOfSkipping = False
-
-				if wantlock and not self.lockedBecauseOfSkipping:
-					self.lockShow()
-					self.lockedBecauseOfSkipping = True
+		elif config.usage.show_infobar_on_skip.value:
+			if self.seekstate[3].startswith(("<<", ">>", "/")):
+				self.show()
+				self.lockedBecauseOfSkipping = False
+				self.unlockShow()
+			elif not self.lockedBecauseOfSkipping:
+				self.lockShow()
+				self.lockedBecauseOfSkipping = True
 
 	def calcRemainingTime(self):
 		seekable = self.getSeek()
