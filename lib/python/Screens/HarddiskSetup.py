@@ -12,6 +12,7 @@ import Screens.InfoBar
 
 class HarddiskSetup(Screen):
 	def __init__(self, session, hdd, action, text, question):
+		self.setTitle(_("Setup Harddisk"))
 		Screen.__init__(self, session)
 		self.action = action
 		self.question = question
