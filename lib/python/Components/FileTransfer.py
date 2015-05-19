@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
-from Tools.Directories import *
+from Tools.Directories import fileExists, shellquote
 from enigma import eTimer
 import os
 
@@ -19,14 +19,14 @@ class FileTransferTask(Task):
 		self.dst_file = dst_file + "/" + os.path.basename(src_file)
 		src_file_append = ""
 		if not src_isDir:
-			src_file_fields = src_file.rsplit(".",1)
+			src_file_fields = src_file.rsplit(".", 1)
 			if len(src_file_fields):
 				src_file = src_file_fields[0] + "."
 			src_file_append = "*"
 		cmd = "mv"
 		if do_copy:
 			cmd = "cp -pr"
-		cmdline = '%s %s "%s"%s "%s"' % (nice, cmd, src_file, src_file_append, dst_file)
+		cmdline = '%s %s %s%s %s' % (nice, cmd, shellquote(src_file), src_file_append, shellquote(dst_file))
 		if self.dst_file.endswith("/"):
 			self.dst_isDir = True
 		self.setCmdline(cmdline)
@@ -40,13 +40,13 @@ class FileTransferTask(Task):
 		if self.dst_isDir:
 			dst_dir_size = self.dst_file
 			if self.src_isDir and self.src_file.endswith("/"):
-				mv_dir = self.src_file[:-1].rsplit("/",1)
+				mv_dir = self.src_file[:-1].rsplit("/", 1)
 				if len(mv_dir) == 2:
 					dst_dir_size = self.dst_file + mv_dir[1]
 			dst_size = float(self.dirSize(dst_dir_size))
 		else:
 			dst_size = float(os.path.getsize(self.dst_file))
-		progress = dst_size/self.src_size*100.0
+		progress = dst_size / self.src_size * 100.0
 		self.setProgress(progress)
 		self.progressTimer.start(15000, True)
 
@@ -62,7 +62,7 @@ class FileTransferTask(Task):
 		self.progressTimer.stop()
 		self.setProgress(100)
 
-	def dirSize(self,folder):
+	def dirSize(self, folder):
 		total_size = os.path.getsize(folder)
 		for item in os.listdir(folder):
 			itempath = os.path.join(folder, item)
@@ -71,14 +71,14 @@ class FileTransferTask(Task):
 			elif os.path.isdir(itempath):
 				total_size += self.dirSize(itempath)
 		return total_size
- 
-	def finish(self, aborted = False):
+
+	def finish(self, aborted=False):
 		self.afterRun()
-		not_met = [ ]
+		not_met = []
 		if aborted:
 			from Tools import Notifications
 			from Screens.MessageBox import MessageBox
-			Notifications.AddNotification(MessageBox, _("File transfer was cancelled by user"), type = MessageBox.TYPE_INFO )
+			Notifications.AddNotification(MessageBox, _("File transfer was cancelled by user"), type=MessageBox.TYPE_INFO)
 		else:
 			for postcondition in self.postconditions:
 				if not postcondition.check(self):

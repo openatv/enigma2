@@ -403,9 +403,9 @@ class FileCommanderScreen(Screen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				if sourceDir not in filename:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=["rm \"" + sourceDir + filename + "\""])
+					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=(("rm", sourceDir + filename),))
 				else:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting folder ..."), cmdlist=["rm -rf \"" + filename + "\""])
+					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting folder ..."), cmdlist=(("rm", "-rf", filename),))
 
 	def doDeleteCB(self):
 		self.doRefresh()
@@ -461,9 +461,9 @@ class FileCommanderScreen(Screen, key_actions):
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			if sourceDir not in filename:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=["mv \"" + sourceDir + filename + "\" \"" + sourceDir + newname + "\""])
+				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=(("mv", sourceDir + filename, sourceDir + newname),))
 			else:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=["mv \"" + filename + "\" \"" + newname + "\""])
+				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=(("mv", filename, newname),))
 
 	def doRenameCB(self):
 		self.doRefresh()
@@ -481,8 +481,10 @@ class FileCommanderScreen(Screen, key_actions):
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
-			# self.session.openWithCallback(self.doMakesymCB, Console, title=_("create symlink"), cmdlist=["ln -s \"" + sourceDir + "\" \"" + targetDir + newname + "\""])
-			symlink(sourceDir, targetDir + newname)
+			try:
+				symlink(sourceDir, targetDir + newname)
+			except OSError as oe:
+				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (sourceDir, targetDir + newname, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
 
 	def doMakesymCB(self):
@@ -513,12 +515,11 @@ class FileCommanderScreen(Screen, key_actions):
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				if sourceDir not in filename:
 					return
-					self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=["mv \"" + sourceDir + filename + "\" \"" + sourceDir + newname + "\""])
-					symlink(sourceDir, targetDir + newname)
+					# self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=["mv \"" + sourceDir + filename + "\" \"" + sourceDir + newname + "\""])
+					# symlink(sourceDir, targetDir + newname)
 				else:
-					self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=["ln -s \"" + filename + "\" \"" + targetDir + "\""])
-
-		self.doRefresh()
+					self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=(("ln", "-s", filename, targetDir),))
+				self.doRefresh()
 
 # ## new folder ###
 	def gomakeDir(self):
@@ -533,7 +534,10 @@ class FileCommanderScreen(Screen, key_actions):
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			# self.session.openWithCallback(self.doMakedirCB, Console, title = _("create folder"), cmdlist=["mkdir \"" + sourceDir + newname + "\""])
-			os.mkdir(sourceDir + newname)
+			try:
+				os.mkdir(sourceDir + newname)
+			except OSError as oe:
+				self.session.open(MessageBox, _("Error creating directory %s:\n%s") % (sourceDir + newname, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
 
 	def doMakedirCB(self):
@@ -750,7 +754,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		for file in self.selectedFiles:
 			if os_path_isdir(file):
 				container = eConsoleAppContainer()
-				container.execute("rm -rf '%s'" % file)
+				container.execute("rm", "rm", "-rf", file)
 			else:
 				remove(file)
 		self.exit()
@@ -765,7 +769,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			if extension in MOVIEEXTENSIONS:
 				print "[FileCommander] skip " + extension
 			else:
-				print "[FileCommander] copy " + extension
+				print "[FileCommander] move " + extension
 				dst_file = targetDir
 				if dst_file.endswith("/"):
 					targetDir = dst_file[:-1]
