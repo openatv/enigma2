@@ -4,6 +4,7 @@ from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
 import Task
+from About import getModelString
 from boxbranding import getMachineName
 
 def readFile(filename):
@@ -614,6 +615,44 @@ class Partition:
 		return ''
 
 DEVICEDB = {
+	# Indexed on About.getModelString()
+	"ini-t2":
+	{
+		# USB-1
+		"/devices/platform/ohci-brcm.0/usb2/2-2/": "Front USB Slot",
+		"/devices/platform/ohci-brcm.0/usb2/2-1/": "Back USB Slot",
+		# USB-2
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Front USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-1/": "Back USB Slot",
+		"/devices/platform/strict-ahci.0/ata1/": "Internal HDD",
+	},
+	"ini-7012au":
+	{
+		# USB-1
+		"/devices/platform/ohci-brcm.1/usb4/4-1/": "Front USB Slot",
+		"/devices/platform/ohci-brcm.0/usb3/3-2/": "Back, upper USB Slot",
+		"/devices/platform/ohci-brcm.0/usb3/3-1/": "Back, lower USB Slot",
+		# USB-2
+		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Front USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": "Back, upper USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-1/": "Back, lower USB Slot",
+		"/devices/pci0000:01/0000:01:00.0/ata1/": "Internal HDD",
+		"/devices/pci0000:01/0000:01:00.0/ata2/": "eSATA HDD",
+	},
+	"ini-8000au":
+	{
+		# USB-1
+		"/devices/platform/ohci-brcm.2/usb7/7-1/": "Front USB Slot",
+		"/devices/platform/ohci-brcm.1/usb6/6-1/": "Back, upper USB Slot",
+		"/devices/platform/ohci-brcm.0/usb5/5-1/": "Back, lower USB Slot",
+		# USB-2
+		"/devices/platform/ehci-brcm.2/usb3/3-1/": "Front USB Slot",
+		"/devices/platform/ehci-brcm.1/usb2/2-1/": "Back, upper USB Slot",
+		"/devices/platform/ehci-brcm.0/usb1/1-1/": "Back, lower USB Slot",
+		"/devices/platform/strict-ahci.0/ata1/": "Internal HDD",
+		"/devices/platform/strict-ahci.0/ata2/": "eSATA HDD",
+	},
+	# Indexed on HardwareInfo().device_name
 	"dm8000":
 	{
 		# dm8000:
@@ -890,7 +929,7 @@ class HarddiskManager:
 		from Tools.HardwareInfo import HardwareInfo
 		if phys.startswith("/sys"):
 			phys = phys[4:]
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name, {}).items():
+		for physdevprefix, pdescription in (DEVICEDB.get(getModelString(), {}) or DEVICEDB.get(HardwareInfo().device_name, {})).items():
 			if phys.startswith(physdevprefix):
 				return pdescription
 		return None
