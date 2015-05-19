@@ -369,8 +369,10 @@ class MovieList(GUIComponent):
 					data.part = 100
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.partcol = 0xffc71d
+						data.partcolsel = 0xffc71d
 					else:
 						data.partcol = 0xff001d
+						data.partcolsel = 0xff001d
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
@@ -388,10 +390,12 @@ class MovieList(GUIComponent):
 				elif switch == 'p' or switch == 's':
 					if data.part is not None and data.part > 0:
 						data.partcol = 0xffc71d
+						data.partcolsel = 0xffc71d
 					else:
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = 0x206333
+							data.partcolsel = 0x20A333
 		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
@@ -413,9 +417,9 @@ class MovieList(GUIComponent):
 				iconSize = 48
 			if data.part is not None and data.part > 0:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize + 5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize + 5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				else:
-					res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, iconSize), png=data.icon))
@@ -428,9 +432,9 @@ class MovieList(GUIComponent):
 				iconSize = 22
 			if data.part is not None and data.part > 0:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize + 5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize + 5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				else:
-					res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, iconSize), png=data.icon))
