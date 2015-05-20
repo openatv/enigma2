@@ -39,39 +39,41 @@ PATH_CREATE = 0
 PATH_DONTCREATE = 1
 PATH_FALLBACK = 2
 defaultPaths = {
-		SCOPE_TRANSPONDERDATA: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
-		SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
-		SCOPE_FONTS: (eEnv.resolve("${datadir}/fonts/"), PATH_DONTCREATE),
-		SCOPE_CONFIG: (eEnv.resolve("${sysconfdir}/enigma2/"), PATH_CREATE),
-		SCOPE_PLUGINS: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
+	SCOPE_TRANSPONDERDATA: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
+	SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
+	SCOPE_FONTS: (eEnv.resolve("${datadir}/fonts/"), PATH_DONTCREATE),
+	SCOPE_CONFIG: (eEnv.resolve("${sysconfdir}/enigma2/"), PATH_CREATE),
+	SCOPE_PLUGINS: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
 
-		SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
+	SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
 
-		SCOPE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-		SCOPE_LCDSKIN: (eEnv.resolve("${datadir}/enigma2/display/"), PATH_DONTCREATE),
-		SCOPE_SKIN_IMAGE: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-		SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
-		SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
-		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
-		SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
+	SCOPE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+	SCOPE_LCDSKIN: (eEnv.resolve("${datadir}/enigma2/display/"), PATH_DONTCREATE),
+	SCOPE_SKIN_IMAGE: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+	SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
+	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
+	SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
+	SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 
-		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
+	SCOPE_USERETC: ("", PATH_DONTCREATE),  # user home directory
 
-		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
-	}
+	SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
+}
 
-FILE_COPY = 0 # copy files from fallback dir to the basedir
-FILE_MOVE = 1 # move files
-PATH_COPY = 2 # copy the complete fallback dir to the basedir
-PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in paths)
+FILE_COPY = 0  # copy files from fallback dir to the basedir
+FILE_MOVE = 1  # move files
+PATH_COPY = 2  # copy the complete fallback dir to the basedir
+PATH_MOVE = 3  # move the fallback dir to the basedir (can be used for changes in paths)
 fallbackPaths = {
-		SCOPE_CONFIG: [("/home/root/", FILE_MOVE),
-					   (eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
-		SCOPE_HDD: [("/media/hdd/movies", PATH_MOVE)],
-		SCOPE_TIMESHIFT: [("/media/hdd/timeshift", PATH_MOVE)]
-	}
+	SCOPE_CONFIG: [
+		("/home/root/", FILE_MOVE),
+		(eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)
+	],
+	SCOPE_HDD: [("/media/hdd/movies", PATH_MOVE)],
+	SCOPE_TIMESHIFT: [("/media/hdd/timeshift", PATH_MOVE)]
+}
 
-def resolveFilename(scope, base = "", path_prefix = None):
+def resolveFilename(scope, base="", path_prefix=None):
 	if base.startswith("~/"):
 		# you can only use the ~/ if we have a prefix directory
 		assert path_prefix is not None
@@ -91,10 +93,10 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			tmp = defaultPaths[SCOPE_SKIN][0]
 			pos = config.skin.primary_skin.value.rfind('/')
 			if pos != -1:
-				#if basefile is not available use default skin path as fallback
-				tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
+				# if basefile is not available use default skin path as fallback
+				tmpfile = tmp + config.skin.primary_skin.value[:pos + 1] + base
 				if pathExists(tmpfile):
-					path = tmp+config.skin.primary_skin.value[:pos+1]
+					path = tmp + config.skin.primary_skin.value[:pos + 1]
 				else:
 					path = tmp
 			else:
@@ -110,9 +112,9 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			tmp = defaultPaths[SCOPE_SKIN][0]
 			pos = config.skin.primary_skin.value.rfind('/')
 			if pos != -1:
-				tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
+				tmpfile = tmp + config.skin.primary_skin.value[:pos + 1] + base
 				if pathExists(tmpfile) or (':' in tmpfile and pathExists(tmpfile.split(':')[0])):
-					path = tmp+config.skin.primary_skin.value[:pos+1]
+					path = tmp + config.skin.primary_skin.value[:pos + 1]
 				elif pathExists(tmp + base) or (':' in base and pathExists(tmp + base.split(':')[0])):
 					path = tmp
 				else:
@@ -140,9 +142,9 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			tmp = defaultPaths[SCOPE_LCDSKIN][0]
 			pos = config.skin.display_skin.value.rfind('/')
 			if pos != -1:
-				tmpfile = tmp+config.skin.display_skin.value[:pos+1] + base
+				tmpfile = tmp + config.skin.display_skin.value[:pos + 1] + base
 				if pathExists(tmpfile):
-					path = tmp+config.skin.display_skin.value[:pos+1]
+					path = tmp + config.skin.display_skin.value[:pos + 1]
 				else:
 					if 'skin_default' not in tmp:
 						path = tmp + 'skin_default/'
@@ -160,10 +162,10 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		skintmp = defaultPaths[SCOPE_SKIN]
 		pos = config.skin.primary_skin.value.rfind('/')
 		if pos != -1:
-			#if basefile is not available inside current skin path, use the original provided file as fallback
-			skintmpfile = skintmp[0]+config.skin.primary_skin.value[:pos+1] + base
+			# if basefile is not available inside current skin path, use the original provided file as fallback
+			skintmpfile = skintmp[0] + config.skin.primary_skin.value[:pos + 1] + base
 			if fileExists(skintmpfile):
-				path = skintmp[0]+config.skin.primary_skin.value[:pos+1]
+				path = skintmp[0] + config.skin.primary_skin.value[:pos + 1]
 			else:
 				path = tmp[0]
 		else:
@@ -209,7 +211,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 						os.rename(x[0], path + base)
 						break
 			except Exception, e:
-				print "[D] Failed to recover %s:" % (path+base), e
+				print "[D] Failed to recover %s:" % (path + base), e
 
 	# FIXME: we also have to handle DATADIR etc. here.
 	return path + base
@@ -235,7 +237,7 @@ def defaultRecordingLocation(candidate=None):
 		havelocal = False
 		for candidate in mounts:
 			try:
-				islocal = candidate[1].startswith('/dev/') # Good enough
+				islocal = candidate[1].startswith('/dev/')  # Good enough
 				stat = os.statvfs(candidate[1])
 				# Free space counts double
 				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
@@ -251,11 +253,11 @@ def defaultRecordingLocation(candidate=None):
 		if os.path.isdir(movie):
 			path = movie
 		if not path.endswith('/'):
-			path += '/' # Bad habits die hard, old code relies on this
+			path += '/'  # Bad habits die hard, old code relies on this
 	return path
 
 
-def createDir(path, makeParents = False):
+def createDir(path, makeParents=False):
 	try:
 		if makeParents:
 			os.makedirs(path)
@@ -348,7 +350,7 @@ def copyfile(src, dst):
 			dst = os.path.join(dst, os.path.basename(src))
 		f2 = open(dst, "w+b")
 		while True:
-			buf = f1.read(16*1024)
+			buf = f1.read(16 * 1024)
 			if not buf:
 				break
 			f2.write(buf)
@@ -430,3 +432,6 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
+
+def shellquote(s):
+	return "'" + s.replace("'", "'\\''") + "'"
