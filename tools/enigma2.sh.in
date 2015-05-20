@@ -20,7 +20,8 @@ if [ -x @bindir@/enigma2_pre_start.sh ]; then
 fi
 
 if [ -d /home/root ]; then
-	cd /home/root
+	export HOME=/home/root
+	cd
 fi
 
 LIBS=@libdir@/libopen.so.0.0.0
