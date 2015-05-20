@@ -42,6 +42,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def __init__(self, session, service = None, zapFunc = None, eventid = None, bouquetChangeCB=None, serviceChangeCB = None, EPGtype = None, StartBouquet = None, StartRef = None, bouquets = None):
 		Screen.__init__(self, session)
+		self.setTitle(_('EPG Selection'))
 		HelpableScreen.__init__(self)
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
