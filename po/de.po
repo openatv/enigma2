@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-05-19 18:28+0100\n"
+"PO-Revision-Date: 2015-05-20 16:07+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -5681,9 +5681,9 @@ msgstr "Bitte warten..."
 msgid "Please wait... Loading list..."
 msgstr "Bitte warten... Liste wird geladen..."
 
-msgid "Plugin Browser"
-msgstr "Plugin Manager"
-
+# löschen?
+# msgid "Plugin Browser"
+# msgstr "Plugin Manager"
 #
 msgid "Plugin browser"
 msgstr "Plugin Manager"
@@ -11814,9 +11814,13 @@ msgstr "Laufwerksverwaltung"
 msgid "Device Manager"
 msgstr "Laufwerksverwaltung"
 
-#
+#: CronManager.py:49 CronManager.py:278 CronTimer.py:20 CronTimer.py:274
 msgid "Cron Manager"
-msgstr "Cron Verwaltung"
+msgstr "Cron-Verwaltung"
+
+#: CronManager.py:56 CronTimer.py:31
+msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
+msgstr "H: = Stündlich / D: = Täglich / W: = Wöchentlich / M: = Monatlich"
 
 #
 msgid "JobManager"
