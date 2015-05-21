@@ -9,7 +9,7 @@ from time import time
 import os
 
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
+	def __init__(self, session, title="", windowTitle=_("Input"), useableChars=None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
@@ -18,8 +18,7 @@ class InputBox(Screen):
 		if useableChars is not None:
 			self["input"].setUseableChars(useableChars)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions", "KeyboardInputActions", "InfobarSeekActions"], 
-		{
+		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions", "KeyboardInputActions", "InfobarSeekActions"], {
 			"gotAsciiCode": self.gotAsciiCode,
 			"ok": self.go,
 			"back": self.cancel,
@@ -95,7 +94,7 @@ class InputBoxmod(Screen):
 			<widget name="input" position="10,50" size="1080,24" font="Regular;22" />
 		</screen>"""
 
-	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
+	def __init__(self, session, title="", windowTitle=_("Input"), useableChars=None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
@@ -104,8 +103,7 @@ class InputBoxmod(Screen):
 		if useableChars is not None:
 			self["input"].setUseableChars(useableChars)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions", "KeyboardInputActions", "InfobarSeekActions"], 
-		{
+		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions", "KeyboardInputActions", "InfobarSeekActions"], {
 			"gotAsciiCode": self.gotAsciiCode,
 			"ok": self.go,
 			"back": self.cancel,
@@ -133,7 +131,7 @@ class InputBoxmod(Screen):
 			"0": self.keyNumberGlobal
 		}, -1)
 
-#		self.onLayoutFinish.append(self.onLayout)
+		# self.onLayoutFinish.append(self.onLayout)
 		if self["input"].type == Input.TEXT:
 			self.onExecBegin.append(self.setKeyboardModeAscii)
 		else:
@@ -176,16 +174,16 @@ class InputBoxmod(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service = "", triesEntry = None, pinList = [], *args, **kwargs):
-		InputBox.__init__(self, session = session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
-		
+	def __init__(self, session, service="", triesEntry=None, pinList=[], *args, **kwargs):
+		InputBox.__init__(self, session=session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
+
 		self.waitTime = 15
-		
+
 		self.triesEntry = triesEntry
-		
+
 		self.pinList = pinList
 		self["service"] = Label(service)
-		
+
 		if self.getTries() == 0:
 			if (self.triesEntry.time.value + (self.waitTime * 60)) > time():
 				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
@@ -211,12 +209,12 @@ class PinInput(InputBox):
 			self.go()
 		else:
 			InputBox.keyNumberGlobal(self, number)
-		
+
 	def checkPin(self, pin):
 		if pin is not None and pin.find(" ") == -1 and int(pin) in self.pinList:
 			return True
 		return False
-		
+
 	def go(self):
 		self.triesEntry.time.value = int(time())
 		self.triesEntry.time.save()
@@ -230,30 +228,30 @@ class PinInput(InputBox):
 				self.closePinWrong()
 			else:
 				pass
-	
+
 	def closePinWrong(self, *args):
 		print "[FileCommander] PinInput closePinWrong args:", args
 		self.close(False)
-		
+
 	def closePinCorrect(self, *args):
 		self.close(True)
-		
+
 	def closePinCancel(self, *args):
 		self.close(None)
-			
+
 	def cancel(self):
 		self.closePinCancel()
-		
+
 	def getTries(self):
 		return self.triesEntry.tries.value
 
 	def decTries(self):
 		self.setTries(self.triesEntry.tries.value - 1)
 		self.showTries()
-		
+
 	def setTries(self, tries):
 		self.triesEntry.tries.value = tries
 		self.triesEntry.tries.save()
-				
+
 	def showTries(self):
 		self["tries"].setText(_("Tries left:") + " " + str(self.getTries()))

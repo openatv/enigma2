@@ -4,6 +4,12 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 
 class Console(Screen):
+
+	# cmdlist mat be a mixed list or tuple of strings
+	# or lists/tuples.
+	# Strings are executed by sh -c strng
+	# lists/tuples are executed by execvp(lst[0], lst)
+
 	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
 		Screen.__init__(self, session)
 
@@ -34,10 +40,16 @@ class Console(Screen):
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
 
+	def doExec(self, cmd):
+		if isinstance(cmd, (list, tuple)):
+			return self.container.execute(cmd[0], *cmd)
+		else:
+			return self.container.execute(cmd)
+
 	def startRun(self):
 		self["text"].setText(_("Execution progress:") + "\n\n")
 		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
-		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+		if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
 
 	def runFinished(self, retval):
@@ -45,7 +57,7 @@ class Console(Screen):
 			self.errorOcurred = True
 		self.run += 1
 		if self.run != len(self.cmdlist):
-			if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+			if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
 			lastpage = self["text"].isAtLastPage()

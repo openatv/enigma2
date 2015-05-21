@@ -21,19 +21,26 @@ class DeleteFolderTask(PythonTask):
 class CopyFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Copying files"))
-		cmdline = 'cp -Rf "%s" "%s"' % (srcfile,destfile)
+		cmdline = ('cp', '-Rf', srcfile, destfile)
 		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
 
 class MoveFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Moving files"))
-		cmdline = 'mv -f "%s" "%s"' % (srcfile,destfile)
+		cmdline = ('mv', '-f', srcfile, destfile)
 		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
 
 class AddFileProcessTask(Task):
+
+	# cmdline may be either a string (executed using sh -c <str>) or
+	# a list/tuple of strings (executed without the shell using execvp())
+
 	def __init__(self, job, cmdline, srcfile, destfile, name):
 		Task.__init__(self, job, name)
-		self.setCmdline(cmdline)
+		if isinstance(cmdline, (list, tuple)):
+			self.setCommandline(cmdline[0], cmdline)
+		else:
+			self.setCmdline(cmdline)
 		self.srcfile = srcfile
 		self.destfile = destfile
 
@@ -44,7 +51,7 @@ class AddFileProcessTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile)/float(self.srcsize))*100))
+		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(5000, True)
 
 	def prepare(self):
@@ -59,14 +66,14 @@ class AddFileProcessTask(Task):
 
 def copyFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src))/1000/1000 > 100:
+		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
 			JobManager.AddJob(CopyFileJob(src, dst, name))
 		else:
 			copy2(src, dst)
 
 def moveFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src))/1000/1000 > 100:
+		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
 			JobManager.AddJob(MoveFileJob(src, dst, name))
 		else:
 			move(src, dst)
