@@ -1813,12 +1813,12 @@ class InfoBarSeek:
 				return tuple(skipHelp)
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, {
-			"playpauseService": (self.playpauseService, _("Play/pause playback")),
+			"playpauseService": (self.playpauseService, self._helpPlaypauseService),
 			"pauseService": (self.pauseService, _("Pause playback")),
-			"unPauseService": (self.unPauseService, _("Continue playback")),
-			"okButton": (self.okButton, _("Continue playback")),
+			"unPauseService": (self.unPauseServiceOK, self._helpUnPauseServiceOK),
+			# "okButton": (self.okButton, _("Continue playback")),
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
-			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
+			"seekBack": (self.seekBack, _("Rewind/step back from pause")),
 			"seekFwdManual": (self.seekFwdManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", True)),
 			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 
@@ -1829,9 +1829,9 @@ class InfoBarSeek:
 		self["SeekActions"].setEnabled(False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS", {
-			"playpauseService": (self.playpauseService, _("Play/pause playback")),
+			"playpauseService": (self.playpauseService, self._helpPlaypauseService),
 			"pauseService": (self.pauseService, _("Pause playback")),
-			"unPauseService": (self.unPauseService, _("Continue playback")),
+			"unPauseService": (self.unPauseServiceOK, self._helpUnPauseServiceOK),
 
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
@@ -2017,11 +2017,20 @@ class InfoBarSeek:
 		else:
 			self.unPauseService()
 
+	def _helpPlaypauseService(self):
+		return _(
+			{
+				"play": "Pause/resume normal play",
+				"step": "Pause/step playback",
+				"last": "Pause/resume last play mode",
+			}.get(config.seek.on_pause.value, "Unknown function")
+		)
+
 	def playpauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY or config.seek.on_pause.value == "last" and self.seekstate[3].startswith(("<<", ">>", "/")):
 			self.pauseService()
 		else:
-			if self.seekstate == self.SEEK_STATE_PAUSE:
+			if self.seekstate == self.SEEK_STATE_PAUSE or config.seek.on_pause.value == "play" and self.seekstate[3].startswith(("<<", ">>", "/")):
 				if config.seek.on_pause.value == "play":
 					self.unPauseService()
 				elif config.seek.on_pause.value == "step":
@@ -2036,6 +2045,17 @@ class InfoBarSeek:
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
+
+	def _helpUnPauseServiceOK(self):
+		if config.seek.on_pause.value != "play" and self.seekstate != self.SEEK_STATE_PLAY:
+			return _("Resume normal playback")
+		return None
+
+	def unPauseServiceOK(self):
+		if config.seek.on_pause.value != "play" and self.seekstate != self.SEEK_STATE_PLAY:
+			self.unPauseService()
+		else:
+			return 0
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
@@ -2183,13 +2203,16 @@ class InfoBarSeek:
 			self.lockedBecauseOfSkipping = False
 			self.unlockShow()
 		elif config.usage.show_infobar_on_skip.value:
-			if self.seekstate[3].startswith(("<<", ">>", "/")):
+			if config.seek.on_pause.value == "play" and self.seekstate == self.SEEK_STATE_PAUSE or self.seekstate[3].startswith(("<<", ">>", "/")):
 				self.show()
 				self.lockedBecauseOfSkipping = False
 				self.unlockShow()
 			elif not self.lockedBecauseOfSkipping:
 				self.lockShow()
 				self.lockedBecauseOfSkipping = True
+			else:
+				self.lockedBecauseOfSkipping = False
+				self.unlockShow()
 
 	def calcRemainingTime(self):
 		seekable = self.getSeek()

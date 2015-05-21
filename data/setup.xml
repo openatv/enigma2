@@ -225,7 +225,7 @@
 	<setup key="buttonsetup" title="Button setup">
 		<item level="1" text="Action on long POWER" description="Configure the function of a long press of the power button.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short POWER" description="Configure the function of a short press of the power button.">config.usage.on_short_powerpress</item>
-		<item level="2" text="Behaviour of PLAY/PAUSE when paused" description="Configure the behaviour of the 'PLAY/PAUSE' key when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' resumes in the play mode you were in when you paused.\nOK resumes normal play from paused.">config.seek.on_pause</item>
+		<item level="2" text="Behaviour of PLAY/PAUSE when paused" description="Configure the behaviour of the 'PLAY/PAUSE' key when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' resumes in the play mode you were in when you paused.\nOK resumes normal play except in 'Play', when it shows the infobars.">config.seek.on_pause</item>
 		<item level="1" text="Skip time for LEFT" description="Number of seconds to skip backward when the left arrow button is pressed.">config.seek.selfdefined_left</item>
 		<item level="1" text="Skip time for RIGHT" description="Number of seconds to skip forward when the right arrow button is pressed.">config.seek.selfdefined_right</item>
 		<item level="1" text="Enable skip on UP/DOWN" description="When enabled, enable UP/DOWN navigation buttons for skips. Enabling this disables other UP/DOWN functions in contexts where skipping is possible.">config.seek.updown_skips</item>
