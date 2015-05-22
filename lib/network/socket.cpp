@@ -227,11 +227,6 @@ int eSocket::writeBlock(const char *data, unsigned int len)
 	return w;
 }
 
-int eSocket::getDescriptor()
-{
-	return socketdesc;
-}
-
 int eSocket::connect(struct addrinfo *addr)
 {
 	int res;

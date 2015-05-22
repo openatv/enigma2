@@ -35,7 +35,7 @@ public:
 	eSocket(int socket, int issocket, eMainloop *ml);
 	virtual ~eSocket();
 	int connectToHost(std::string hostname, int port);
-	int getDescriptor();
+	int getDescriptor() const { return socketdesc; }
 	int writeBlock(const char *data, unsigned int len);
 	int setSocket(int socketfd, int issocket);
 	int bytesToWrite();
