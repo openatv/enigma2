@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-05-21 22:58+0100\n"
+"PO-Revision-Date: 2015-05-22 17:13+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -15366,5 +15366,37 @@ msgstr "Umschalten zwischen Audio-, Untertitelauswahl"
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Ja, diesen Film löschen und zurück zur Filmauswahl"
 
-msgid "FrontpanelDisplay"
-msgstr "Frontpanel Display"
+#
+msgid "Time jump: Use normal fast forward for speeds"
+msgstr "Zeitsprünge für normalen Vorlauf"
+
+msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
+msgstr ""
+
+#
+msgid "Time jump multiplier for fast forward"
+msgstr "Zeitsprüng Multiplikator für schnellen Vorlauf"
+
+msgid "Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files."
+msgstr ""
+
+#
+msgid "Time jump multiplier for fast backward"
+msgstr "Zeitsprüng Multiplikator für schnellen Rücklauf"
+
+msgid "Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files."
+msgstr ""
+
+#
+msgid "Time jump repeat interval for fast forward/backward"
+msgstr "Zeitsprung Wiederholungsintervall für schnellen Vor- / Rücklauf"
+
+msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
+msgstr ""
+
+#
+msgid "Time jump avoid zero step size"
+msgstr "Beim Springen Bildstörungen vermeiden"
+
+msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
+msgstr ""
