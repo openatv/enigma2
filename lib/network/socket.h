@@ -29,14 +29,15 @@ protected:
 	ePtr<eSocketNotifier> rsn;
 	eMainloop *mainloop;
 	virtual void notifier(int);
+	int connect(struct addrinfo *addr);
 public:
-	eSocket(eMainloop *ml, int domain = AF_INET);
+	eSocket(eMainloop *ml);
 	eSocket(int socket, int issocket, eMainloop *ml);
 	virtual ~eSocket();
 	int connectToHost(std::string hostname, int port);
-	int getDescriptor();
+	int getDescriptor() const { return socketdesc; }
 	int writeBlock(const char *data, unsigned int len);
-	int setSocket(int socketfd, int issocket, eMainloop *ml);
+	int setSocket(int socketfd, int issocket);
 	int bytesToWrite();
 	int readBlock(char *data, unsigned int maxlen);
 	int bytesAvailable();
