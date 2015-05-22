@@ -30,7 +30,7 @@
 			<widget source="global.CurrentTime" render="Label" position="right" size="36,*" font="Medium" halign="right" valign="top" noWrap="1">
 				<convert type="ClockToText"/>
 			</widget>
-			<widget source="session.RecordState" render="FixedLabel" text="[REC]" position="right" size="36,*" font="Medium" halign="right" valign="top">
+			<widget source="session.RecordState" render="FixedLabel" text="REC" position="right" size="36,*" font="Medium" halign="right" valign="top">
 				<convert type="ConditionalShowHide">Blink,2000</convert>
 			</widget>
 		</panel>
