@@ -391,11 +391,20 @@ class MoviePlayer(
 		self.handleLeave(config.usage.on_movie_stop.value)
 
 	def _helpLeavePlayerOnExit(self):
-		return {
-			"no": _("Close PiP") if self.session.pipshown else _("Stop movie on EXIT disabled"),
-			"popup": _("Ask whether to close PiP") if self.session.pipshown else _("Ask whether to stop movie"),
-			"without popup": _("Close PiP") if self.session.pipshown else _("Stop movie")
-		}.get(config.usage.pip_hideOnExit.value, _("No current function"))
+		if self.shown:
+			return _("Hide infobar display")
+		if self.session.pipshown:
+			return {
+				"no": _("Hide infobar display"),
+				"popup": _("Hide infobar display/Ask whether to close PiP"),
+				"without popup": _("Hide infobar display/Close PiP")
+			}.get(config.usage.pip_hideOnExit.value, _("No current function"))
+		else:
+			return {
+				"no": _("Hide infobar display"),
+				"popup": _("Hide infobar display/Ask whether to exit movie player"),
+				"without popup": _("Hide infobar display/Exit movie player")
+			}.get(config.usage.leave_movieplayer_onExit.value, _("No current function"))
 
 	def leavePlayerOnExit(self):
 		if self.shown:
