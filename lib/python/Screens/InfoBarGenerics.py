@@ -320,7 +320,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self["ShowHideActions"] = HelpableActionMap(self, "InfobarShowHideActions", {
 			"LongOKPressed": (self.toggleShowLong, _("Open infobar EPG...")),
 			"toggleShow": (self.toggleShow, _("Cycle through infobar displays")),
-			"hide": (self.keyHide, _("Hide infobar display")),
+			"hide": (self.keyHide, self._helpKeyHide),
 		}, prio=1, description=_("Infobar displays"))  # lower prio to make it possible to override ok and cancel..
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
@@ -390,6 +390,19 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.unDimmingTimer = eTimer()
 			self.unDimmingTimer.callback.append(self.unDimming)
 			self.unDimmingTimer.start(300, True)
+
+	def _helpKeyHide(self):
+		if self.__state == self.STATE_HIDDEN:
+			if config.vixsettings.InfoBarEpg_mode.value == "2":
+				return _("Show infobar EPG")
+			else:
+				return {
+					"no": _("Hide infobar display"),
+					"popup": _("Hide infobar display and ask whether to close PiP") if self.session.pipshown else _("Ask whether to stop movie"),
+					"without popup": _("Hide infobar display and close PiP") if self.session.pipshown else _("Stop movie")
+				}.get(config.usage.pip_hideOnExit.value, _("No current function"))
+		else:
+			return _("Hide infobar display")
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
