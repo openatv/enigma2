@@ -314,7 +314,7 @@ def InitLcd():
 		else:
 			config.lcd.scrollspeed = ConfigNothing()
 		if fileExists("/proc/stb/lcd/scroll_repeats"):
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("5", _("5x")), ("10", _("10x")), ("500", _("Continuous"))], "3")
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("5", _("5x")), ("10", _("10x")), ("255", _("Continuous"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat)
 		else:
 			config.lcd.repeat = ConfigNothing()
