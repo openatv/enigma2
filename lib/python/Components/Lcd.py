@@ -309,7 +309,7 @@ def InitLcd():
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
 		if fileExists("/proc/stb/lcd/scroll_delay"):
-			config.lcd.scrollspeed = ConfigSlider(default=150, increment=10, limits=(0, 500))
+			config.lcd.scrollspeed = ConfigSlider(default=150, increment=1, limits=(0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed)
 		else:
 			config.lcd.scrollspeed = ConfigNothing()
