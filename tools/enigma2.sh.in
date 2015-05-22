@@ -21,9 +21,9 @@ if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.S
 fi
 
 # remove annoying WebInterface relicts
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
-	rm -rf /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/
-fi
+#if [ -d /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
+#	rm -rf /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/
+#fi
 
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
@@ -41,8 +41,8 @@ if [ -x @bindir@/enigma2_pre_start.sh ]; then
 fi
 
 if [ -d /home/root ]; then
-	cd /home/root
 	export HOME=/home/root
+	cd
 fi
 
 #check for sundtek tuner helper lib
