@@ -55,7 +55,7 @@
 <!-- 		<item level="1" text="Sort menu screens alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item> -->
 <!-- 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item> -->
 		<item level="1" text="Show PVR status in Movie Player infobar" description="This option moves the PVR status from the separate window into the Movie Player infobar.">config.usage.movieplayer_pvrstate</item>
-		<item level="2" text="Close PiP on exit" description="When enabled, the PiP can be closed by the EXIT button.">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Close PiP on EXIT" description="In live TV, if not set to 'No', EXIT closes the PiP on EXIT as well as closing the infobar display. When playing in the Movie Player, EXIT closes the infobar if shown, otherwise closes PiP if not set to 'No' and PiP is shown. If neither PiP nor infobar are shown, EXIT follows setting of 'Quit Movie Player with EXIT button'.">config.usage.pip_hideOnExit</item>
 <!-- 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item> -->
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
@@ -146,7 +146,7 @@
 		<item level="2" text="Show message when recording starts" description="When enabled, a popup message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Show movie lengths in movielist" description="When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show status icons in movie list" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
-		<item level="2" text="Quit Movie Player with EXIT button" description="When enabled, it is possible to leave the Movie Player with exit.">config.usage.leave_movieplayer_onExit</item>
+		<item level="2" text="Quit Movie Player with EXIT button" description="When enabled, it is possible to leave the Movie Player with exit. If PiP is shown, the EXIT action is controlled by 'Close PiP on EXIT'. When the infobar is shown, EXIT closes the infobar.">config.usage.leave_movieplayer_onExit</item>
 		<item level="2" text="Behaviour when a movie is started" description="Configure the behaviour when movie playback is started.">config.usage.on_movie_start</item>
 		<item level="2" text="Behaviour when a movie is stopped" description="Configure the behaviour when movie playback is manually stopped.">config.usage.on_movie_stop</item>
 		<item level="2" text="Behaviour when a movie reaches the end" description="Configure the behaviour when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
@@ -225,7 +225,7 @@
 	<setup key="buttonsetup" title="Button setup">
 		<item level="1" text="Action on long POWER" description="Configure the function of a long press of the power button.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short POWER" description="Configure the function of a short press of the power button.">config.usage.on_short_powerpress</item>
-		<item level="2" text="Behaviour of PLAY/PAUSE when paused" description="Configure the behaviour of the 'PLAY/PAUSE' key when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' resumes in the play mode you were in when you paused.\nOK resumes normal play from paused.">config.seek.on_pause</item>
+		<item level="2" text="Behaviour of PLAY/PAUSE when paused" description="Configure the behaviour of the 'PLAY/PAUSE' key when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' resumes in the play mode you were in when you paused.\nOK resumes normal play except in 'Play', when it shows the infobars.">config.seek.on_pause</item>
 		<item level="1" text="Skip time for LEFT" description="Number of seconds to skip backward when the left arrow button is pressed.">config.seek.selfdefined_left</item>
 		<item level="1" text="Skip time for RIGHT" description="Number of seconds to skip forward when the right arrow button is pressed.">config.seek.selfdefined_right</item>
 		<item level="1" text="Enable skip on UP/DOWN" description="When enabled, enable UP/DOWN navigation buttons for skips. Enabling this disables other UP/DOWN functions in contexts where skipping is possible.">config.seek.updown_skips</item>

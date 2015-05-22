@@ -383,7 +383,7 @@ int eDVBServiceRecord::doRecord()
 				}
 				eDebugNoNewLine(")");
 			}
-			eDebugNoNewLine(", and %zd audio stream(s)", program.audioStreams.size());
+			eDebugNoNewLine(", %zd audio stream(s)", program.audioStreams.size());
 			if (!program.audioStreams.empty())
 			{
 				eDebugNoNewLine(" (");
@@ -406,6 +406,7 @@ int eDVBServiceRecord::doRecord()
 				}
 				eDebugNoNewLine(")");
 			}
+			eDebugNoNewLine(", %zd subtitle stream(s)", program.subtitleStreams.size());
 			if (!program.subtitleStreams.empty())
 			{
 				eDebugNoNewLine(" (");
@@ -458,7 +459,7 @@ int eDVBServiceRecord::doRecord()
 
 			for (std::set<int>::iterator i(obsolete_pids.begin()); i != obsolete_pids.end(); ++i)
 			{
-				eDebug("REMOVED PID: %04x", *i);
+				eDebug("REMOVE PID: %04x", *i);
 				m_record->removePID(*i);
 			}
 
