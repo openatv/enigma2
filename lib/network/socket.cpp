@@ -236,11 +236,12 @@ int eSocket::connect(struct addrinfo *addr)
 {
 	int res;
 	struct addrinfo *ptr = addr;
+	close();
 	for (ptr = addr; ptr != NULL; ptr = ptr->ai_next)
 	{
-		close();
 		if (setSocket(socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol), 1) < 0)
 		{
+			/* No need to close, setSocket only fails when socket() already failed */
 			continue;
 		}
 		mystate = Idle;
@@ -249,6 +250,7 @@ int eSocket::connect(struct addrinfo *addr)
 		if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
 		{
 			error_(errno);
+			close(); /* Release and disconnect the notifier */
 			continue;
 		}
 		if (res < 0)	// EINPROGRESS or EINTR
