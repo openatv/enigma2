@@ -1062,8 +1062,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				audiolang = syslang
 				caudiolang = False
 			# we can also switch correctly to ac3 track here, when audiotrack contains same language-track as stereo
-                        # if stereo is first and ac3 is preferred
-                        # config.autolanguage.audio_defaultac3
+			# if stereo is first and ac3 is preferred
+			# config.autolanguage.audio_defaultac3
 			for entry in audiolang:
 				if caudiolang:
 					# we need here more replacing for other language, or new configs with another list !!!
