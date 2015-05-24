@@ -13,7 +13,6 @@ import os
 
 class SkinSelectorBase:
 	def __init__(self, session, args = None):
-		self.setTitle(_("Skin Selector"))
 		self.skinlist = []
 		self.previewPath = ""
 		if self.SKINXML and os.path.exists(os.path.join(self.root, self.SKINXML)):
