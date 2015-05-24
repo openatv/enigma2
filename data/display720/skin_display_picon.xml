@@ -115,11 +115,11 @@
 		<widget source="session.MSNWeather" render="MSNWeatherPixmap" position="570,355" size="140,120" transparent="1" zPosition="8" alphatest="blend" halign="right" valign="center" >
 			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/hd.png" position="10,360" size="65,40" halign="center" valign="center" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/hd.png" position="10,360" size="65,50" halign="center" valign="center" >
 			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/dolby.png" position="80,360" size="65,40" halign="center" valign="center" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/dolby.png" position="80,360" size="65,50" halign="center" valign="center" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
