@@ -100,7 +100,7 @@
 				<item weight="35" level="0" entryID="logs_setup"><setup id="logs" /></item>
 
 				<!-- Menu / Settings / System / Extended System / OSD settings -->
-				<menu weight="40" level="2" text="OSD settings" entryID="osd_setup" requires="OsdMenu">
+				<menu weight="40" level="2" text="OSD settings" entryID="osd_setup">
 					<id val="osd_menu" />
 					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
 					<item weight="5" level="2" text="Button setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
