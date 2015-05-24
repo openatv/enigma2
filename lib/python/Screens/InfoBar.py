@@ -381,6 +381,57 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.showMovies()
 
+def setAudioTrack(service):
+	try:
+		from Tools.ISO639 import LanguageCodes as langC
+		tracks = service and service.audioTracks()
+		nTracks = tracks and tracks.getNumberOfTracks() or 0
+		if not nTracks: return
+		idx = 0
+		trackList = []
+		for i in xrange(nTracks):
+		        audioInfo = tracks.getTrackInfo(i)
+			if langC.has_key(lang):
+				lang = langC[lang][0]
+			desc = audioInfo.getDescription()
+			track = idx, lang,  desc
+			idx += 1
+			trackList += [track]
+		seltrack = tracks.getCurrentTrack()
+		# we need default selected language from image
+		# to set the audiotrack if "config.autolanguage.audio_autoselect...values" are not set
+		from Components.Language import language
+		syslang = language.getLanguage()[:2]
+		syslang = langC[syslang][0]
+		if (config.autolanguage.audio_autoselect1.value or config.autolanguage.audio_autoselect2.value or config.autolanguage.audio_autoselect3.value or config.autolanguage.audio_autoselect4.value) != "---":
+			audiolang = [config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value]
+			caudiolang = True
+		else:
+			audiolang = syslang
+			caudiolang = False
+		# we can also switch correctly to ac3 track here, when audiotrack contains same language-track as stereo
+		# if stereo is first and ac3 is preferred
+		# config.autolanguage.audio_defaultac3
+		for entry in audiolang:
+			if caudiolang:
+				# we need here more replacing for other language, or new configs with another list !!!
+				# choice gives only the value, never the description
+				# but we can also make some changes in "config.py" to get the description too, then we dont need replacing here !
+				entry = entry.replace('eng qaa Englisch', 'English').replace('deu ger', 'German')
+			for x in trackList:
+				if entry == x[1] and seltrack == x[0]:
+					print("[MoviePlayer] audio track is current selected track: " + str(x))
+					return
+				elif entry == x[1] and seltrack != x[0]:
+					print("[MoviePlayer] audio track match: " + str(x))
+					tracks.selectTrack(x[0])
+					return
+		# we can make a fallback to audiotrack 0 for every file
+		# some files are "und" and they switch the tracks like he want, but not right, also if flags are set in there
+		#tracks.selectTrack(0)
+	except Exception, e:
+		print("[MoviePlayer] audioTrack exception:\n" + str(e))
+
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG, \
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
@@ -450,59 +501,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			ext = os.path.splitext(path)[1].lower()
 			exts = [".mkv", ".avi", ".divx", ".mp4"]      # we need more extensions here ?
 			if ext.lower() in exts:
-				self.setAudioTrack()
-
-	def setAudioTrack(self):
-		try:
-			service = self.session.nav.getCurrentService()
-			from Tools.ISO639 import LanguageCodes as langC
-			tracks = service and service.audioTracks()
-			nTracks = tracks and tracks.getNumberOfTracks() or 0
-			if not nTracks: return
-			idx = 0
-			trackList = []
-			for i in xrange(nTracks):
-			        audioInfo = tracks.getTrackInfo(i)
-				if langC.has_key(lang):
-					lang = langC[lang][0]
-				desc = audioInfo.getDescription()
-				track = idx, lang,  desc
-				idx += 1
-				trackList += [track]
-			seltrack = tracks.getCurrentTrack()
-			# we need default selected language from image
-			# to set the audiotrack if "config.autolanguage.audio_autoselect...values" are not set
-			from Components.Language import language
-			syslang = language.getLanguage()[:2]
-			syslang = langC[syslang][0]
-			if (config.autolanguage.audio_autoselect1.value or config.autolanguage.audio_autoselect2.value or config.autolanguage.audio_autoselect3.value or config.autolanguage.audio_autoselect4.value) != "---":
-				audiolang = [config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value]
-				caudiolang = True
-			else:
-				audiolang = syslang
-				caudiolang = False
-			# we can also switch correctly to ac3 track here, when audiotrack contains same language-track as stereo
-			# if stereo is first and ac3 is preferred
-			# config.autolanguage.audio_defaultac3
-			for entry in audiolang:
-				if caudiolang:
-					# we need here more replacing for other language, or new configs with another list !!!
-					# choice gives only the value, never the description
-					# but we can also make some changes in "config.py" to get the description too, then we dont need replacing here !
-					entry = entry.replace('eng qaa Englisch', 'English').replace('deu ger', 'German')
-				for x in trackList:
-					if entry == x[1] and seltrack == x[0]:
-						print("[MoviePlayer] audio track is current selected track: " + str(x))
-						return
-					elif entry == x[1] and seltrack != x[0]:
-						print("[MoviePlayer] audio track match: " + str(x))
-						tracks.selectTrack(x[0])
-						return
-			# we can make a fallback to audiotrack 0 for every file
-			# some files are "und" and they switch the tracks like he want, but not right, also if flags are set in there
-			#tracks.selectTrack(0)
-		except Exception, e:
-			print("[MoviePlayer] audioTrack exception:\n" + str(e))
+				service = self.session.nav.getCurrentService()
+				if service:
+					setAudioTrack(service)
 
 	def doButtonsCheck(self):
 		if config.plisettings.ColouredButtons.value:
