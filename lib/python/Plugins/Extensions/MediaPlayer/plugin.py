@@ -559,7 +559,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if self.currList == "playlist":
 			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex() and not self.playlist.isStopped():
 				if self.shown:
-					self.hideAndInfoBar()
+					if self.seekstate == self.SEEK_STATE_PAUSE or self.isStateForward(self.seekstate) or self.isStateBackward(self.seekstate):
+						self.pauseEntry()
+					else:
+						self.hideAndInfoBar()
 				elif self.mediaPlayerInfoBar.shown:
 					self.mediaPlayerInfoBar.hide()
 					self.hideMediaPlayerInfoBar.stop()
@@ -991,16 +994,35 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			self.playlist.rewindFile()
 
 	def pauseEntry(self):
-		if self.currList == "playlist" and self.seekstate == self.SEEK_STATE_PAUSE:
-			self.playEntry()
-		elif self.isStateForward(self.seekstate) or self.isStateBackward(self.seekstate):
-			self.playEntry()
+		if self.shown:
+			if self.currList == "playlist":
+				if self.seekstate == self.SEEK_STATE_PAUSE:
+					if self.playlist.getCurrentIndex() != self.playlist.getSelectionIndex():
+						self.changeEntry(self.playlist.getSelectionIndex())
+					else:
+						self.playEntry()
+				elif self.seekstate == self.SEEK_STATE_PLAY:
+					if self.playlist.getCurrentIndex() != self.playlist.getSelectionIndex():
+						self.changeEntry(self.playlist.getSelectionIndex())
+					else:
+						if not self.playlist.isStopped():
+							if self.ext in AUDIO_EXTENSIONS or self.isAudioCD:
+								self.pauseService()
+							else:
+								self.hideAndInfoBar()
+						else:
+							self.changeEntry(self.playlist.getSelectionIndex())
+				elif self.isStateForward(self.seekstate) or self.isStateBackward(self.seekstate):
+					self.playEntry()
 		else:
-			self.pauseService()
-			if self.seekstate == self.SEEK_STATE_PAUSE:
-				self.show()
+			if self.currList == "playlist" and self.seekstate == self.SEEK_STATE_PAUSE:
+				self.playEntry()
+			elif self.isStateForward(self.seekstate) or self.isStateBackward(self.seekstate):
+				self.playEntry()
 			else:
-				self.hideAndInfoBar()
+				self.pauseService()
+				if self.seekstate == self.SEEK_STATE_PAUSE:
+					self.show()
 
 	def stopEntry(self):
 		self.playlist.stopFile()
