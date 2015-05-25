@@ -30,23 +30,23 @@ def createTrashFolder(path=None):
 	print '[TRASHCAN DeBug]', trash
 	if trash:
 		try:
-			if os.path.isdir(trash) and os.access(trash, os.R_OK|os.W_OK|os.X_OK):
+			if os.path.isdir(trash) and os.access(trash, os.R_OK | os.W_OK | os.X_OK):
 				return trash
 			if not os.path.isdir(trash):
 				if os.path.lexists(trash):
 					os.remove(trash)
 				os.mkdir(trash)
-			if not os.access(trash, os.R_OK|os.W_OK|os.X_OK):
+			if not os.access(trash, os.R_OK | os.W_OK | os.X_OK):
 				perms = stat.S_IMODE(os.stat(trash).st_mode)
 				perms |= stat.S_IRWXU
 				os.chmod(trash, perms)
-			if os.path.isdir(trash) and os.access(trash, os.R_OK|os.W_OK|os.X_OK):
+			if os.path.isdir(trash) and os.access(trash, os.R_OK | os.W_OK | os.X_OK):
 				return trash
 		except:
 			pass
 	return None
 
-def get_size(start_path = '.'):
+def get_size(start_path='.'):
 	total_size = 0
 	if start_path:
 		for dirpath, dirnames, filenames in os.walk(start_path):
@@ -84,7 +84,7 @@ class Trashcan:
 			print "[Trashcan] Recording in progress", self.recordings
 			return
 		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
-		reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value)
+		reserveBytes = 1024 * 1024 * 1024 * int(config.usage.movielist_trashcan_reserve.value)
 		clean(ctimeLimit, reserveBytes)
 
 def clean(ctimeLimit, reserveBytes):
@@ -117,7 +117,7 @@ def cleanAll(path=None):
 			try:
 				enigma.eBackgroundFileEraser.getInstance().erase(fn)
 			except Exception, e:
-				print "[Trashcan] Failed to erase %s:"% name, e
+				print "[Trashcan] Failed to erase %s:" % name, e
 		# Remove empty directories if possible
 		for name in dirs:
 			try:
@@ -135,7 +135,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 		self.reserveBytes = reserveBytes
 
 	def work(self):
-		mounts=[]
+		mounts = []
 		matches = []
 		print "[Trashcan] probing folders"
 		f = open('/proc/mounts', 'r')
@@ -152,20 +152,20 @@ class CleanTrashTask(Components.Task.PythonTask):
 		f.close()
 
 		for mount in mounts:
-			if os.path.isdir(os.path.join(mount,'.Trash')):
-				matches.append(os.path.join(mount,'.Trash'))
-			if os.path.isdir(os.path.join(mount,'movie/.Trash')):
-				matches.append(os.path.join(mount,'movie/.Trash'))
+			if os.path.isdir(os.path.join(mount, '.Trash')):
+				matches.append(os.path.join(mount, '.Trash'))
+			if os.path.isdir(os.path.join(mount, 'movie/.Trash')):
+				matches.append(os.path.join(mount, 'movie/.Trash'))
 
-		print "[Trashcan] found following trashcan's:",matches
+		print "[Trashcan] found following trashcan's:", matches
 		if len(matches):
 			for trashfolder in matches:
-				print "[Trashcan] looking in trashcan",trashfolder
+				print "[Trashcan] looking in trashcan", trashfolder
 				trashsize = get_size(trashfolder)
 				diskstat = os.statvfs(trashfolder)
 				free = diskstat.f_bfree * diskstat.f_bsize
 				bytesToRemove = self.reserveBytes - free
-				print "[Trashcan] " + str(trashfolder) + ": Size:",trashsize
+				print "[Trashcan] " + str(trashfolder) + ": Size:", trashsize
 				candidates = []
 				size = 0
 				for root, dirs, files in os.walk(trashfolder, topdown=False):
@@ -180,7 +180,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 								candidates.append((st.st_ctime, fn, st.st_size))
 								size += st.st_size
 						except Exception, e:
-							print "[Trashcan] Failed to stat %s:"% name, e
+							print "[Trashcan] Failed to stat %s:" % name, e
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -199,14 +199,14 @@ class CleanTrashTask(Components.Task.PythonTask):
 							pass
 						bytesToRemove -= st_size
 						size -= st_size
-					print "[Trashcan] " + str(trashfolder) + ": Size now:",size
+					print "[Trashcan] " + str(trashfolder) + ": Size now:", size
 
 class TrashInfo(VariableText, GUIComponent):
 	FREE = 0
 	USED = 1
 	SIZE = 2
 
-	def __init__(self, path, type, update = True):
+	def __init__(self, path, type, update=True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
@@ -221,15 +221,17 @@ class TrashInfo(VariableText, GUIComponent):
 
 		if self.type == self.USED:
 			try:
-				if total_size < 10000000:
-					total_size = _("%d KB") % (total_size >> 10)
-				elif total_size < 10000000000:
+				if total_size < 10 * 10 ** 6:
+					total_size = _("%d kB") % (total_size >> 10)
+				elif total_size < 10 * 10 ** 9:
 					total_size = _("%d MB") % (total_size >> 20)
-				else:
+				elif total_size < 10 * 10 ** 12:
 					total_size = _("%d GB") % (total_size >> 30)
-				self.setText(_("Trashcan:") + " " + total_size)
+				else:
+					total_size = _("%d TB") % (size >> 40)
 			except:
 				# occurs when f_blocks is 0 or a similar error
-				self.setText("-?-")
+				total_size = " -?-"
+			self.setText(_("Trash:") + " " + total_size)
 
 	GUI_WIDGET = enigma.eLabel
