@@ -141,7 +141,7 @@ class ImageBackup(Screen):
 		self.START = time()
 		self.DATE = strftime("%Y%m%d_%H%M", localtime(self.START))
 		self.IMAGEVERSION = self.imageInfo() #strftime("%Y%m%d", localtime(self.START))
-		if self.ROOTFSTYPE == "ubi":
+		if "ubi" in self.ROOTFSTYPE.split():
 			self.MKFS = "/usr/sbin/mkfs.ubifs"
 		else:
 			self.MKFS = "/usr/sbin/mkfs.jffs2"
@@ -189,7 +189,7 @@ class ImageBackup(Screen):
 		system("sync")
 		system("mount --bind / /tmp/bi/root")
 
-		if self.ROOTFSTYPE == "jffs2":
+		if "jffs2" in self.ROOTFSTYPE.split():
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 		else:
