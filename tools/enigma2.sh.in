@@ -20,6 +20,14 @@ if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.S
 	/usr/sbin/ntpdate -s -u pool.ntp.org &
 fi
 
+# update permissions of autofs config files
+#if [ ! -f /etc/auto.network ] ; then
+# chmod 640 /etc/auto.network
+# chmod 644 /etc/auto.master
+# chmod 755 /etc/auto.net
+# /etc/init.d/autofs restart
+#fi
+
 # remove annoying WebInterface relicts
 #if [ -d /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
 #	rm -rf /usr/lib/enigma2/python/Plugins/Extensions/WebInterface/
