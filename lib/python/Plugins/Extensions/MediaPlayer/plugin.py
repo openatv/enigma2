@@ -933,7 +933,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def xplayEntry(self):
 		if self.currList == "playlist":
-			self.playEntry()
+			self.pauseEntry()
 		else:
 			self.stopEntry()
 			self.playlist.clear()
