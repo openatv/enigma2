@@ -567,7 +567,7 @@ class IceTVMain(ChoiceBox):
                 _session.open(MessageBox, _("IceTV update completed OK"), type=MessageBox.TYPE_INFO, timeout=5)
                 return
         except (Exception) as ex:
-            self.addLog("Error trying to fetch: %s" % str(ex))
+            fetcher.addLog("Error trying to fetch: %s" % str(ex))
         _session.open(MessageBox, _("IceTV update completed with errors.\n\nPlease check the log for details."), type=MessageBox.TYPE_ERROR, timeout=15)
 
     def login(self, res=None):
