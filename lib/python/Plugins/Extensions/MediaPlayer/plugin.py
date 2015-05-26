@@ -797,6 +797,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				if recursive:
 					if x[0][0] != directory:
 						self.copyDirectory(x[0][0])
+			# check if MerlinMusicPlayer is installed and merlinmp3player.so is running
+			# so we need the right id to play now the mp3-file
+			elif filelist.getServiceRef() and filelist.getServiceRef().type == 4116:
+				inst = x[0][0]
+				if isinstance(inst, eServiceReference):
+					path = inst.getPath()
+					service = eServiceReference(4097, 0, path)
+					self.playlist.addFile(service)
 			elif filelist.getServiceRef() and filelist.getServiceRef().type == 4097:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
@@ -933,7 +941,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def xplayEntry(self):
 		if self.currList == "playlist":
-			self.playEntry()
+			self.pauseEntry()
 		else:
 			self.stopEntry()
 			self.playlist.clear()
