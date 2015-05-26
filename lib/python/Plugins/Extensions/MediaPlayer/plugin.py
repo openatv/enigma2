@@ -130,6 +130,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self.playlist = MyPlayList()
 		self.is_closing = False
+		self.hiding = False
 		self.delname = ""
 		self.playlistname = ""
 		self["playlist"] = self.playlist
@@ -260,6 +261,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def hideAndInfoBar(self):
 		self.hide()
+		self.hiding = True
 		self.mediaPlayerInfoBar.show()
 		if config.mediaplayer.alwaysHideInfoBar.value or self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 			self.hideMediaPlayerInfoBar.start(5000, True)
@@ -406,12 +408,32 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 						self.summaries.setText(info,4)
 
 	def leftDown(self):
-		self.lefttimer = True
-		self.leftKeyTimer.start(1000)
+		if self.hiding:
+			self.show()
+			self.hiding = False
+		else:
+			if self.currList == "playlist":
+				if self.playlist.getSelectionIndex() > 0:
+					self.playlist.pageUp()
+				else:
+					self.lefttimer = True
+					self.leftKeyTimer.start(1000)
+			else:
+				self.filelist.pageUp()
 
 	def rightDown(self):
-		self.righttimer = True
-		self.rightKeyTimer.start(1000)
+		if self.hiding:
+			self.show()
+			self.hiding = False
+		else:
+			if self.currList == "filelist":
+				if (self.filelist.getSelectionIndex() + 1) < len(self.filelist.list):
+					self.filelist.pageDown()
+				else:
+					self.righttimer = True
+					self.rightKeyTimer.start(1000)
+			else:
+				self.playlist.pageDown()
 
 	def leftUp(self):
 		if self.lefttimer:
