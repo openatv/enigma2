@@ -508,7 +508,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				setPreferredTuner(int(elem))
 
 	def checkingTimeshiftRunning(self):
-		return config.usage.check_timeshift.value and self.InfoBarInstance and self.InfoBarInstance.timeshiftEnabled() and self.InfoBarInstance.timeshift_was_activated
+		return config.usage.check_timeshift.value and self.InfoBarInstance and self.InfoBarInstance.timeshiftEnabled() and self.InfoBarInstance.isSeekable()
 
 	def openChoiceActionBeforeZap(self):
 		if self.ts_dialog is None:
