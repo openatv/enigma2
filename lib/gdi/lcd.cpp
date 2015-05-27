@@ -356,7 +356,7 @@ void eDBoxLCD::update()
 					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 					fclose(boxtype_file);
 				}
-				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100\n") == 0) || (strcmp(boxtype_name, "Ceryon\n") == 0))
+				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0))
 				{
 					unsigned char gb_buffer[_stride * res.height()];
 					for (int offset = 0; offset < _stride * res.height(); offset += 2)
