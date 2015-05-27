@@ -124,16 +124,6 @@ if test "$BOXTYPE" == "vusolo2" -o "$BOXTYPE" == "vuduo2" -o "$BOXTYPE" == "vuso
 	AC_DEFINE(VUPLUS_RC_WORKAROUND, 1, [workaround for problem with vusolo2/vuduo2/vusolose event/rc driver])
 fi
 
-AC_ARG_WITH(oldrewindseek,
-	AC_HELP_STRING([--with-oldrewindseek], [use patch for rewind, no or yes]),
-	[[witholdrewindseek=$withval]],
-	[[witholdrewindseek=yes]]
-)
-if test x"$witholdrewindseek" != xno ; then
-	AC_DEFINE(HAVE_NOOLDREWSEEK, 1,[Define when using patch])
-fi
-AM_CONDITIONAL(HAVE_NOOLDREWSEEK, test x"$witholdrewindseek" != xno)
-
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],

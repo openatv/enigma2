@@ -250,7 +250,7 @@ class Harddisk:
 		res = -1
 		if self.type == DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
-			res = os.system('sfdisk -R ' + self.disk_path)
+			res = os.system('hdparm -z ' + self.disk_path)
 			# give udev some time to make the mount, which it will do asynchronously
 			from time import sleep
 			sleep(3)
@@ -289,8 +289,8 @@ class Harddisk:
 
 		task = Task.LoggingTask(job, _("Rereading partition table"))
 		task.weighting = 1
-		task.setTool('sfdisk')
-		task.args.append('-R')
+		task.setTool('hdparm')
+		task.args.append('-z')
 		task.args.append(self.disk_path)
 
 		task = Task.ConditionTask(job, _("Waiting for partition"), timeoutCount=20)
@@ -867,7 +867,7 @@ class MountTask(Task.LoggingTask):
 		if self.hdd.type == DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
 			# Sorry for the sleep 2 hack...
-			self.setCmdline('sleep 2; sfdisk -R ' + self.hdd.disk_path)
+			self.setCmdline('sleep 2; hdparm -z ' + self.hdd.disk_path)
 			self.postconditions.append(Task.ReturncodePostcondition())
 
 
