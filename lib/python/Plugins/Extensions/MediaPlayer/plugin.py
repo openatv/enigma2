@@ -256,7 +256,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				iPlayableService.evUser+10: self.__evAudioDecodeError,
 				iPlayableService.evUser+11: self.__evVideoDecodeError,
 				iPlayableService.evUser+12: self.__evPluginError,
-				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
+				# we dont need that anymore, but keep it for the next two weeks
+				# let us see, if user reports any problems
+				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt,
+				iPlayableService.evUser+13: self.__embeddedCoverArt
 			})
 
 	def hideAndInfoBar(self):
@@ -351,6 +354,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		message = currPlay.info().getInfoString(iServiceInformation.sUser+12)
 		print "[__evPluginError]" , message
 		self.session.open(MessageBox, message, type = MessageBox.TYPE_INFO,timeout = 20 )
+
+	def __embeddedCoverArt(self):
+		self.embeddedCoverArtTimer = eTimer()
+		self.embeddedCoverArtTimer.callback.append(self.showEmbeddedCoverArt)
+		self.embeddedCoverArtTimer.start(500, True)
+
+	def showEmbeddedCoverArt(self):
+		self["coverArt"].embeddedCoverArt()
 
 	def delMPTimer(self):
 		del self.rightKeyTimer
@@ -957,7 +968,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
 
-	def playEntry(self):
+	def playEntry(self, coverreload=True):
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
@@ -1006,11 +1017,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 					needsInfoUpdate = True
 
 			self.unPauseService()
-			if needsInfoUpdate:
+			if needsInfoUpdate and coverreload:
 				path = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()].getPath()
 				self["coverArt"].updateCoverArt(path)
 			else:
-				self["coverArt"].showDefaultCover()
+				if coverreload:
+					self["coverArt"].showDefaultCover()
 			self.readTitleInformation()
 
 	def updatedSeekState(self):
@@ -1030,7 +1042,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 					if self.playlist.getCurrentIndex() != self.playlist.getSelectionIndex():
 						self.changeEntry(self.playlist.getSelectionIndex())
 					else:
-						self.playEntry()
+						if self.ext in AUDIO_EXTENSIONS or self.isAudioCD:
+							# do not try to reload cover ! Cover is showing if exists.
+							# we dont need that, if the same file will continue to play
+							# otherwise showing embedded covers are gone !!!
+							self.playEntry(False)
+						else:
+							self.playEntry()
 				elif self.seekstate == self.SEEK_STATE_PLAY:
 					if self.playlist.getCurrentIndex() != self.playlist.getSelectionIndex():
 						self.changeEntry(self.playlist.getSelectionIndex())
