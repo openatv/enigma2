@@ -1648,9 +1648,6 @@ void eDVBChannel::cueSheetEvent(int event)
 				m_tstools_lock.unlock();
 				eDebug("skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
 						/* i agree that this might look a bit like black magic. */
-#ifdef HAVE_NOOLDREWSEEK
-				m_cue->m_skipmode_ratio = m_cue->m_skipmode_ratio / 3;
-#endif
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
 				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
 				m_skipmode_frames = m_cue->m_skipmode_ratio / 90000;

@@ -205,16 +205,6 @@ AC_ARG_ENABLE([sh],
 	esac])
 AM_CONDITIONAL([ENABLE_SH], [test x$enable_sh = xtrue])
 
-AC_ARG_WITH(oldrewindseek,
-	AC_HELP_STRING([--with-oldrewindseek], [use patch for rewind, no or yes]),
-	[[witholdrewindseek=$withval]],
-	[[witholdrewindseek=yes]]
-)
-if test x"$witholdrewindseek" != xno ; then
-	AC_DEFINE(HAVE_NOOLDREWSEEK, 1,[Define when using patch])
-fi
-AM_CONDITIONAL(HAVE_NOOLDREWSEEK, test x"$witholdrewindseek" != xno)
-
 AC_ARG_WITH(nolcd,
 	AC_HELP_STRING([--with-nolcd], [disable ascii based lcd, yes or no]),
 	[[withnolcd=$withval]],
