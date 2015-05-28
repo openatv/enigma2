@@ -95,19 +95,6 @@ static const std::string getConfigString(const std::string &key, const std::stri
 	return value;
 }
 
-static bool getConfigBool(const std::string &key, bool defaultValue)
-{
-	std::string value = getConfigString(key, defaultValue ? "true" : "false");
-	const char *cvalue = value.c_str();
-
-	if (!strcasecmp(cvalue, "true"))
-		return true;
-	if (!strcasecmp(cvalue, "false"))
-		return false;
-
-	return defaultValue;
-}
-
 static bool bsodhandled = false;
 
 void bsodFatal(const char *component)
