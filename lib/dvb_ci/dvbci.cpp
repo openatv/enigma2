@@ -925,12 +925,21 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 
 		switch(source)
 		{
+#if TUNER_DM7080
+			case CI_A:
+				fprintf(input, "B1");
+				break;
+			case CI_B:
+				fprintf(input, "B2");
+				break;
+#else
 			case CI_A:
 				fprintf(input, "CI0");
 				break;
 			case CI_B:
 				fprintf(input, "CI1");
 				break;
+#endif
 			case CI_C:
 				fprintf(input, "CI2");
 			break;
