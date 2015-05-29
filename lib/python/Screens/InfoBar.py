@@ -435,24 +435,24 @@ def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
 			# so we can also make some changes in "config.py" to get the description too, then we dont need replacing here !
 			entry = entry.replace('eng qaa Englisch', 'English').replace('deu ger', 'German')
 		for x in trackList:
-				if entry == x[1] and seltrack == x[0]:
-					if useAc3:
-						if x[2].startswith('AC'):
-							print("[MoviePlayer] audio track is current selected track: " + str(x))
-							return True
-					else:
+			if entry == x[1] and seltrack == x[0]:
+				if useAc3:
+					if x[2].startswith('AC'):
 						print("[MoviePlayer] audio track is current selected track: " + str(x))
 						return True
-				elif entry == x[1] and seltrack != x[0]:
-					if useAc3:
-					        if x[2].startswith('AC'):
-							print("[MoviePlayer] audio track match: " + str(x))
-							tracks.selectTrack(x[0])
-							return True
-					else:
+				else:
+					print("[MoviePlayer] audio track is current selected track: " + str(x))
+					return True
+			elif entry == x[1] and seltrack != x[0]:
+				if useAc3:
+				        if x[2].startswith('AC'):
 						print("[MoviePlayer] audio track match: " + str(x))
 						tracks.selectTrack(x[0])
 						return True
+				else:
+					print("[MoviePlayer] audio track match: " + str(x))
+					tracks.selectTrack(x[0])
+					return True
 	return False
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG, \
