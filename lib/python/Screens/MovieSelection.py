@@ -505,8 +505,8 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = ""
 
 from Screens.InfoBarGenerics import InfoBarScreenSaver
-class MovieSelectionScreenSaver(InfoBarScreenSaver):
 
+class MovieSelectionScreenSaver(InfoBarScreenSaver):
 	def ScreenSaverTimerStart(self):
 		time = int(config.usage.screen_saver.value)
 		if time:
@@ -517,13 +517,6 @@ class MovieSelectionScreenSaver(InfoBarScreenSaver):
 					self.screenSaverTimer.startLongTimer(time)
 					return
 		self.screenSaverTimer.stop()
-
-	def keypressScreenSaver(self, key, flag):
-		if flag:
-			self.screensaver.hide()
-			self.show()
-			self.ScreenSaverTimerStart()
-			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen, MovieSelectionScreenSaver):
 	# SUSPEND_PAUSES actually means "please call my pauseService()"
