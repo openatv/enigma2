@@ -18,7 +18,8 @@ if [ -x @bindir@/enigma2_pre_start.sh ]; then
 fi
 
 if [ -d /home/root ]; then
-	cd /home/root
+	export HOME=/home/root
+	cd
 fi
 
 #check for sundtek tuner helper lib
@@ -76,6 +77,15 @@ case $ret in
 		;;
 	43)
 		init 1
+		;;
+	44)
+		# little hack but it will be fixed soon in drivers
+		${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
+		/usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
+		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bi of=/dev/mcu
+		/usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MIOMUpgrade/reboot.mvi
+		# Wait forever for the user to power off
+		while(true) ; do sleep 60 ; done
 		;;
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
