@@ -932,6 +932,8 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		snr = 0xFF - (snr & 0xFF);
 		if (snr != 0)
 			ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
+		else
+			ret = 2700;
 	}
 	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
 	{
@@ -979,17 +981,29 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (!strcmp(m_description, "CXD1981"))
 	{
-		eDVBFrontendParametersCable parm;
 		int mse = (~snr) & 0xFF;
-		oparm.getDVBC(parm);
-		switch (parm.modulation)
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
 		{
-		case eDVBFrontendParametersCable::Modulation_QAM16:
-		case eDVBFrontendParametersCable::Modulation_QAM64:
-		case eDVBFrontendParametersCable::Modulation_QAM256: ret = (int)(-950 * log(((double)mse) / 760)); break;
-		case eDVBFrontendParametersCable::Modulation_QAM32:
-		case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
-		default: break;
+		case feCable: 
+			eDVBFrontendParametersCable parm;
+			oparm.getDVBC(parm);
+			switch (parm.modulation)
+			{
+			case eDVBFrontendParametersCable::Modulation_Auto:
+			case eDVBFrontendParametersCable::Modulation_QAM16:
+			case eDVBFrontendParametersCable::Modulation_QAM64:
+			case eDVBFrontendParametersCable::Modulation_QAM256: ret = (int)(-950 * log(((double)mse) / 760)); break;
+			case eDVBFrontendParametersCable::Modulation_QAM32:
+			case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
+			}
+			break;
+		case feTerrestrial: 
+			ret = (mse * 25) / 2;
+			break;
+		default:
+			break;
 		}
 	}
 
