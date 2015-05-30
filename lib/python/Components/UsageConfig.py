@@ -162,14 +162,9 @@ def InitUsageConfig():
 	config.usage.standby_to_shutdown_timer_blocktime_end = ConfigClock(default = time.mktime((0, 0, 0, 23, 0, 0, 0, 0, 0)))
 
 	choicelist = [("0", _("Disabled"))]
-	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
-		if i < 60:
-			m = ngettext("%d second", "%d seconds", i) % i
-		else:
-			m = abs(i / 60)
-			m = ngettext("%d minute", "%d minutes", m) % m
-		choicelist.append(("%d" % i, m))
-	config.usage.screen_saver = ConfigSelection(default = "60", choices = choicelist)
+	for m in (1, 5, 10, 15, 30, 60):
+		choicelist.append((str(m * 60), ngettext("%d minute", "%d minutes", m) % m))
+	config.usage.screen_saver = ConfigSelection(default = "300", choices = choicelist)
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
