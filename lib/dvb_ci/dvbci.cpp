@@ -1785,7 +1785,7 @@ int eDVBCISlot::setSource(data_source source)
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/ci%d_input", slotid);
 		FILE *ci = fopen(buf, "wb");
-		const char *srcCI = NULL;
+		char *srcCI = NULL;
 		switch(source)
 		{
 			case CI_A:
