@@ -100,10 +100,10 @@
 				<item weight="35" level="0" entryID="logs_setup"><setup id="logs" /></item>
 
 				<!-- Menu / Settings / System / Extended System / OSD settings -->
-				<menu weight="40" level="2" text="OSD settings" entryID="osd_setup">
+				<menu weight="40" level="2" text="Extended Settings" entryID="osd_setup">
 					<id val="osd_menu" />
 					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
-					<item weight="5" level="2" text="Button setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
+					<item weight="5" level="2" text="Hotkey Setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
 					<item weight="10" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 					<item weight="15" level="2" text="OSD Position" entryID="osdsetup" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
 					<item weight="20" level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
