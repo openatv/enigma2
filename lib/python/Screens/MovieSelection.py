@@ -515,8 +515,8 @@ class MovieSelectionScreenSaver(InfoBarScreenSaver):
 				ref = ref.toString().split(":")
 				if os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS:
 					self.screenSaverTimer.startLongTimer(time)
-					return
-		self.screenSaverTimer.stop()
+		else:
+			self.screenSaverTimer.stop()
 
 	def keypressScreenSaver(self, key, flag):
 		if flag:
