@@ -36,3 +36,7 @@ endif
 if ET8500
 dist_install_DATA += verdana.ttf
 endif
+
+if ET8500S
+dist_install_DATA += verdana.ttf
+endif
