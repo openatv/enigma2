@@ -52,7 +52,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
-				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"openBouquetList": (self.openBouquetList, _("Open bouquet list")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -235,8 +235,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
-				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
+				"leavePlayer": (self.leavePlayer, _("Exit movie player...")),
+				"leavePlayerOnExit": (self.leavePlayerOnExit, _("Exit movie player..."))
 			})
 
 		self.allowPiP = True
@@ -297,11 +297,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			else:
 				list = (
 					(_("Yes"), "quit"),
-					(_("Yes, returning to movie list"), "movielist"),
+					(_("Yes, and return to the movie list"), "movielist"),
 					(_("Yes, and delete this movie"), "quitanddelete"),
-					(_("Yes, delete this movie and return to movie list"), "deleteandmovielist"),
+					(_("Yes, delete this movie and return to the movie list"), "deleteandmovielist"),
 					(_("No"), "continue"),
-					(_("No, but restart from begin"), "restart")
+					(_("No, but restart from the beginning"), "restart")
 				)
 
 			from Screens.ChoiceBox import ChoiceBox
@@ -370,7 +370,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 						return
 					except Exception, e:
 						print "[InfoBar] Failed to move to .Trash folder:", e
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+						msg = _("Cannot move to the trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
 				msg += _("Do you really want to delete %s?") % name

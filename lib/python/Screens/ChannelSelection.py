@@ -176,7 +176,7 @@ class ChannelContextMenu(Screen):
 
 		menu.append(ChoiceEntryComponent(text = (_("Settings"), boundFunction(self.openSetup))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
-			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level=2)
+			append_when_current_valid(current, menu, (_("Show transponder info"), self.showServiceInformations), level=2)
 		if csel.bouquet_mark_edit == OFF and not csel.entry_marked:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
@@ -184,21 +184,21 @@ class ChannelContextMenu(Screen):
 					for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
 						append_when_current_valid(current, menu, (p.name, boundFunction(self.runPlugin, p)), key="bullet")
 					if config.servicelist.startupservice.value == current.toString():
-						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level=0)
+						append_when_current_valid(current, menu, (_("Stop using as startup service"), self.unsetStartupService), level=0)
 					else:
-						append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level=0)
+						append_when_current_valid(current, menu, (_("Set as startup service"), self.setStartupService), level=0)
 					if self.parentalControlEnabled:
 						if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, current)), level=0)
+							append_when_current_valid(current, menu, (_("Add to parental protection"), boundFunction(self.addParentalProtection, current)), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
+							append_when_current_valid(current, menu, (_("Remove from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
 						if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
 							append_when_current_valid(current, menu, (_("Unhide parental control services"), self.unhideParentalServices), level=0)
 					if SystemInfo["3DMode"]:
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_IS_DEDICATED_3D:
-							append_when_current_valid(current, menu, (_("Unmark service as dedicated 3D service"), self.removeDedicated3DFlag), level=0)
+							append_when_current_valid(current, menu, (_("Unmark service as a dedicated 3D service"), self.removeDedicated3DFlag), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("Mark service as dedicated 3D service"), self.addDedicated3DFlag), level=0)
+							append_when_current_valid(current, menu, (_("Mark service as a dedicated 3D service"), self.addDedicated3DFlag), level=0)
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
 						if bouquets is None:
@@ -206,91 +206,91 @@ class ChannelContextMenu(Screen):
 						else:
 							bouquetCnt = len(bouquets)
 						if not self.inBouquet or bouquetCnt > 1:
-							append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level=0, key="5")
+							append_when_current_valid(current, menu, (_("Add service to bouquet"), self.addServiceToBouquetSelected), level=0, key="5")
 							self.addFunction = self.addServiceToBouquetSelected
 						if not self.inBouquet:
-							append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level = 0, key="8")
+							append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level = 0, key="8")
 							self.removeFunction = self.removeSatelliteService
 					else:
 						if not self.inBouquet:
-							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level=0, key="5")
+							append_when_current_valid(current, menu, (_("Add service to favourites"), self.addServiceToBouquetSelected), level=0, key="5")
 							self.addFunction = self.addServiceToBouquetSelected
 					if SystemInfo["PIPAvailable"]:
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(current.toCompareString()) == -1:
 							if self.csel.dopipzap:
-								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
+								append_when_current_valid(current, menu, (_("Play in main window"), self.playMain), level=0, key="red")
 							else:	
-								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
-					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
+								append_when_current_valid(current, menu, (_("Play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
+					append_when_current_valid(current, menu, (_("Find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
 				else:
 					if 'FROM SATELLITES' in current_root.getPath() and current and _("Services") in eServiceCenter.getInstance().info(current).getName(current):
 						unsigned_orbpos = current.getUnsignedData(4) >> 16
 						if unsigned_orbpos == 0xFFFF:
-							append_when_current_valid(current, menu, (_("remove cable services"), self.removeSatelliteServices), level = 0)
+							append_when_current_valid(current, menu, (_("Remove cable services"), self.removeSatelliteServices), level = 0)
 						elif unsigned_orbpos == 0xEEEE:
-							append_when_current_valid(current, menu, (_("remove terrestrial services"), self.removeSatelliteServices), level = 0)
+							append_when_current_valid(current, menu, (_("Remove terrestrial services"), self.removeSatelliteServices), level = 0)
 						else:
-							append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
+							append_when_current_valid(current, menu, (_("Remove selected satellite"), self.removeSatelliteServices), level = 0)
 					if haveBouquets:
 						if not self.inBouquet and not "PROVIDERS" in current_sel_path:
-							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level=0)
+							append_when_current_valid(current, menu, (_("Copy to bouquets"), self.copyCurrentToBouquetList), level=0)
 					if ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_sel_path:
-						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level=0)
+						append_when_current_valid(current, menu, (_("Remove all new found flags"), self.removeAllNewFoundFlags), level=0)
 				if self.inBouquet:
-					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
+					append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="2")
 					if not inAlternativeList:
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
+						append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="8")
 						self.removeFunction = self.removeCurrentService
 				if current_root and ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in current_root.getPath():
-					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level=0)
+					append_when_current_valid(current, menu, (_("Remove new found flag"), self.removeNewFoundFlag), level=0)
 			else:
 					if self.parentalControlEnabled:
 						if self.parentalControl.getProtectionLevel(current.toCompareString()) == -1:
-							append_when_current_valid(current, menu, (_("add bouquet to parental protection"), boundFunction(self.addParentalProtection, current)), level=0)
+							append_when_current_valid(current, menu, (_("Add bouquet to parental protection"), boundFunction(self.addParentalProtection, current)), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("remove bouquet from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
-					menu.append(ChoiceEntryComponent(text=(_("add bouquet"), self.showBouquetInputBox)))
-					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
-					append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
+							append_when_current_valid(current, menu, (_("Remove bouquet from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
+					menu.append(ChoiceEntryComponent(text=(_("Add bouquet"), self.showBouquetInputBox)))
+					append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="2")
+					append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="8")
 					self.removeFunction = self.removeBouquet
 					if removed_userbouquets_available():
-						append_when_current_valid(current, menu, (_("purge deleted userbouquets"), self.purgeDeletedBouquets), level=0)
-						append_when_current_valid(current, menu, (_("restore deleted userbouquets"), self.restoreDeletedBouquets), level=0)
+						append_when_current_valid(current, menu, (_("Purge deleted user bouquets"), self.purgeDeletedBouquets), level=0)
+						append_when_current_valid(current, menu, (_("Restore deleted user bouquets"), self.restoreDeletedBouquets), level=0)
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if csel.movemode:
-					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level=0, key="6")
+					append_when_current_valid(current, menu, (_("Disable move mode"), self.toggleMoveMode), level=0, key="6")
 				else:
-					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
+					append_when_current_valid(current, menu, (_("Enable move mode"), self.toggleMoveMode), level=1, key="6")
 				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
-						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
+						menu.append(ChoiceEntryComponent(text=(_("Add marker"), self.showMarkerInputBox)))
 					if not csel.movemode:
 						if haveBouquets:
-							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
+							append_when_current_valid(current, menu, (_("Enable bouquet edit"), self.bouquetMarkStart), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
+							append_when_current_valid(current, menu, (_("Enable favourite edit"), self.bouquetMarkStart), level=0)
 					if current_sel_flags & eServiceReference.isGroup:
-						append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
-						append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
-						append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("Edit alternatives"), self.editAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("Show alternatives"), self.showAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("Remove all alternatives"), self.removeAlternativeServices), level=2)
 					elif not current_sel_flags & eServiceReference.isMarker:
-						append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level=2)
+						append_when_current_valid(current, menu, (_("Add alternatives"), self.addAlternativeServices), level=2)
 			else:
 				if csel.bouquet_mark_edit == EDIT_BOUQUET:
 					if haveBouquets:
-						append_when_current_valid(current, menu, (_("end bouquet edit"), self.bouquetMarkEnd), level=0)
-						append_when_current_valid(current, menu, (_("abort bouquet edit"), self.bouquetMarkAbort), level=0)
+						append_when_current_valid(current, menu, (_("End bouquet edit"), self.bouquetMarkEnd), level=0)
+						append_when_current_valid(current, menu, (_("Abort bouquet edit"), self.bouquetMarkAbort), level=0)
 					else:
-						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level=0)
-						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level=0)
+						append_when_current_valid(current, menu, (_("End favourites edit"), self.bouquetMarkEnd), level=0)
+						append_when_current_valid(current, menu, (_("Abort favourites edit"), self.bouquetMarkAbort), level=0)
 					if current_sel_flags & eServiceReference.isMarker:
-						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
+						append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="2")
+						append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="8")
 						self.removeFunction = self.removeCurrentService
 				else:
-					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level=0)
-					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level=0)
+					append_when_current_valid(current, menu, (_("End alternatives edit"), self.bouquetMarkEnd), level=0)
+					append_when_current_valid(current, menu, (_("Abort alternatives edit"), self.bouquetMarkAbort), level=0)
 
 		self["menu"] = ChoiceList(menu)
 
@@ -339,8 +339,8 @@ class ChannelContextMenu(Screen):
 	def removeEntry(self):
 		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
 			if self.csel.confirmRemove:
-				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
-				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
+				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session"), "never")]
+				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure you want to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
 			else:
 				self.removeFunction(True)
 		else:
@@ -367,7 +367,7 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def purgeDeletedBouquets(self):
-		self.session.openWithCallback(self.purgeDeletedBouquetsCallback, MessageBox, _("Are you sure to purge all deleted userbouquets?"))
+		self.session.openWithCallback(self.purgeDeletedBouquetsCallback, MessageBox, _("Are you sure you want to purge all deleted user bouquets?"))
 
 	def purgeDeletedBouquetsCallback(self, answer):
 		if answer:
@@ -988,7 +988,7 @@ class ChannelSelectionEdit:
 			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
 			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			if name:
-				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter a new name:"), text=name)
 		else:
 			return 0
 
@@ -1150,16 +1150,16 @@ class ChannelSelectionEdit:
 		current = self.getCurrentSelection()
 		unsigned_orbpos = current.getUnsignedData(4) >> 16
 		if unsigned_orbpos == 0xFFFF:
-			messageText = _("Are you sure to remove all cable services?")
+			messageText = _("Are you sure you want to remove all cable services?")
 		elif unsigned_orbpos == 0xEEEE:
-			messageText = _("Are you sure to remove all terrestrial services?")
+			messageText = _("Are you sure you want to remove all terrestrial services?")
 		else:
 			if unsigned_orbpos > 1800:
 				unsigned_orbpos = 3600 - unsigned_orbpos
 				direction = _("W")
 			else:
 				direction = _("E")
-			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, "\xc2\xb0", direction)
+			messageText = _("Are you sure you want to remove all %d.%d%s%s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, "\xc2\xb0", direction)
 		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
 
 	def removeSatelliteServicesCallback(self, answer):
@@ -1259,7 +1259,7 @@ class ChannelSelectionEdit:
 
 	def removeCurrentEntry(self, bouquet=False):
 		if self.confirmRemove:
-			list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
+			list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session"), "never")]
 			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"), list=list)
 		else:
 			self.removeCurrentEntryCallback(bouquet, True)

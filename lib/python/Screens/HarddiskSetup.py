@@ -34,11 +34,11 @@ class HarddiskSetup(Screen):
 	def hddQuestion(self, answer=False):
 		print 'answer:',answer
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-			message = self.question + "\n\n" + _("You seem to be in timeshft, the service wil breifly stop as timeshfit stops.")
+			message = self.question + "\n\n" + _("You seem to be in timeshft, the service will briefly stop as timeshift stops.")
 			message += '\n' + _("Do you want to continue?")
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:
-			message = self.question + "\n" + _("You can continue watching TV etc. while this is running.")
+			message = self.question + "\n" + _("You can continue watching TV while this is running.")
 			self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def stopTimeshift(self, confirmed):
@@ -94,7 +94,7 @@ class HarddiskSelection(Screen):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createInitializeJob,
 			 text=_("Initialize"),
-			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
+			 question=_("Do you really want to initialize this device?\nAll the data on the device will be lost!"))
 
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
