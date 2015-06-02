@@ -176,7 +176,7 @@ def getButtonSetupFunctions():
 class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self['description'] = Label(_('Click on your remote, the button you want to change'))
+		self['description'] = Label(_('On your remote, click on the button you want to change'))
 		self.session = session
 		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
