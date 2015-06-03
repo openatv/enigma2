@@ -1,5 +1,6 @@
 from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
+from datetime import datetime
 from time import localtime, strftime, ctime, time
 from bisect import insort
 from sys import maxint
@@ -29,6 +30,9 @@ from enigma import pNavigation
 # event data		 (ONLY for time adjustments etc.)
 
 wasRecTimerWakeup = False
+#+++
+debug = False
+#+++
 
 def resetTimerWakeup():
 	global wasRecTimerWakeup
@@ -465,7 +469,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
 				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
-				#os.remove("/tmp/was_rectimer_wakeup")
 
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -582,7 +585,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
-				if (abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900):
+				if abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = 0):
 					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
@@ -595,7 +598,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
-				if (abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900):
+				if abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = 0):
 					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
@@ -654,13 +657,38 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			global wasRecTimerWakeup
 			wasRecTimerWakeup = False
 
-	def getNextActivation(self):
+	def getNextActivation(self, getNextStbPowerOn = False):
 		self.isStillRecording = False
+		next_state = self.state + 1
+		if getNextStbPowerOn:
+			if next_state == 3:
+				self.isStillRecording = True
+				next_day = 0
+				count_day = 0
+				wd_timer = datetime.fromtimestamp(self.begin).isoweekday()*-1
+				wd_repeated = bin(128+int(self.repeated))
+
+				for s in range(wd_timer-1,-8,-1):
+					count_day +=1
+					if int(wd_repeated[s]):
+						next_day = s
+						break
+				if next_day == 0:
+					for s in range(-1,wd_timer-1,-1):
+						count_day +=1
+						if int(wd_repeated[s]):
+							next_day = s
+							break
+				return self.begin + 86400 * count_day
+			elif next_state < 3:
+				return self.begin
+			else:
+				return -1
+
 		if self.state == self.StateEnded or self.state == self.StateFailed:
 			if self.end > time():
 				self.isStillRecording = True
 			return self.end
-		next_state = self.state + 1
 		if next_state == self.StateEnded or next_state == self.StateFailed:
 			if self.end > time():
 				self.isStillRecording = True
@@ -964,6 +992,7 @@ class RecordTimer(timer.Timer):
 		for timer in self.timer_list:
 			if timer.isRunning() and not timer.justplay:
 				isRunning = True
+				break
 		return isRunning
 
 	def loadTimer(self):
@@ -1076,17 +1105,31 @@ class RecordTimer(timer.Timer):
 				break
 		return isStillRecording
 
-	def getNextRecordingTimeOld(self):
+	def getNextRecordingTimeOld(self, getNextStbPowerOn = False):
 		now = time()
-		for timer in self.timer_list:
-			next_act = timer.getNextActivation()
-			if timer.justplay or next_act < now:
-				continue
-			return next_act
+		if getNextStbPowerOn:
+			save_act = -1
+			for timer in self.timer_list:
+				next_act = timer.getNextActivation(getNextStbPowerOn)
+				if timer.justplay or next_act < now:
+					continue
+				if debug: print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
+				if save_act == -1:
+					save_act = next_act
+				else:
+					if next_act < save_act:
+						save_act = next_act
+			return save_act
+		else:
+			for timer in self.timer_list:
+				next_act = timer.getNextActivation()
+				if timer.justplay or next_act < now:
+					continue
+				return next_act
 		return -1
 
-	def getNextRecordingTime(self):
-		nextrectime = self.getNextRecordingTimeOld()
+	def getNextRecordingTime(self, getNextStbPowerOn = False):
+		nextrectime = self.getNextRecordingTimeOld(getNextStbPowerOn)
 		faketime = time()+300
 
 		if config.timeshift.isRecording.value:

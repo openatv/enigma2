@@ -8464,8 +8464,8 @@ msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Ein Powertimer will Ihren Receiver ausschalten.\n"
-"Ihre %s %s jetzt ausschalten?"
+"Ein Powertimer will Ihren Receiver in den Standby schalten.\n"
+"Ihre %s %s jetzt in den Standby schalten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 msgid ""
@@ -15421,3 +15421,23 @@ msgstr "Zeitsprünge: Hängenbleiben vermeiden"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Verhindert ein Hängenbleiben beim Spulen, wenn die Sprungdistanz kleiner ist als der Abstand zwischen I-Frames (ein gewisses Ruckeln ist dabei unvermeidbar)."
+
+# PowerTimerEntry.py
+msgid "Difference between timer begin and end must be equal or greater than 5 minutes.\nEnd Action was disabled !"
+msgstr "Die Differenz zwischen Timer Startzeit und Endzeit muss größer oder gleich 5 Minuten sein.\nDie Endaktion wurde deaktiviert !"
+
+# PowerTimerEntry.py
+msgid "Yes, additional condition: No network data traffic"
+msgstr "Ja, außerdem: keine Netzwerkdatenübertragung"
+
+# PowerTimerEntry.py
+msgid "Restrict the active time range?"
+msgstr "Den aktiven Zeitbereich einschränken?"
+
+# PowerTimerList.py
+msgid "Delay:"
+msgstr "Verzögerung:"
+
+# PowerTimerList.py
+msgid "Time range:"
+msgstr "Zeitbereich:"

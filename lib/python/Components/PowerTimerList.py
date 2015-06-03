@@ -11,6 +11,7 @@ from PowerTimer import AFTEREVENT, TIMERTYPE
 
 def gettimerType(timer):
 	timertype = {
+		TIMERTYPE.NONE: _("Nothing"),
 		TIMERTYPE.WAKEUP: _("Wake Up"),
 		TIMERTYPE.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
 		TIMERTYPE.STANDBY: _("Standby"),
@@ -25,6 +26,7 @@ def gettimerType(timer):
 def getafterEvent(timer):
 	afterevent = {
 		AFTEREVENT.NONE: _("Nothing"),
+		AFTEREVENT.WAKEUP: _("Wake Up"),
 		AFTEREVENT.WAKEUPTOSTANDBY: _("Wake Up To Standby"),
 		AFTEREVENT.STANDBY: _("Standby"),
 		AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
@@ -69,10 +71,13 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			else:
 				state = _("done!")
 				icon = self.iconDone
+			autosleepwindow = ""
+			if timer.autosleepwindow == 'yes':
+				autosleepwindow = _("Time range:") + " " + FuzzyTime(timer.autosleepbegin)[1] + " ... " + FuzzyTime(timer.autosleepend)[1] + ", "
 			if screenwidth and screenwidth == 1920:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
 		else:
 			if screenwidth and screenwidth == 1920:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, x+36, 3, x-3-36, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
