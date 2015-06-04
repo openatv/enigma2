@@ -460,7 +460,7 @@ class AutoVideoMode(Screen):
 					if multi_videomode and (current_mode != multi_videomode):
 						write_mode = multi_videomode
 					else:
-						write_mode = config_mode+new_rate
+						write_mode = current_mode
 				else:
 					if new_rate == '24' and config_rate == 'multi': 
 						write_mode = config_res+'p'+new_rate
