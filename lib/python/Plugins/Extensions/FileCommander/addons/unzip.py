@@ -29,7 +29,7 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 			cmd = ("unzip", "-l", self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen)
 		elif 2 <= id <= 4:
-			cmd = ["unzip", self.sourceDir + self.filename, "-d"]
+			cmd = ["unzip", "-o", self.sourceDir + self.filename, "-d"]
 			if id == 2:
 				cmd.append(self.sourceDir)
 			elif id == 3:
