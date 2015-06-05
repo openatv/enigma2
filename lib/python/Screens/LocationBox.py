@@ -228,7 +228,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.session.openWithCallback(
 				self.createDirCallback,
 				InputBox,
-				title = _("Please enter name of the new directory"),
+				title = _("Please enter the name of the new directory"),
 				text = ""
 			)
 

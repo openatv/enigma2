@@ -281,7 +281,7 @@ class LogManager(Screen):
 			self.sel = None
 		self.selectedFiles = self["list"].getSelectedList()
 		if self.selectedFiles:
-			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
+			message = _("Do you want to delete all the selected files:\n(choose 'No' to only delete the currently selected file.)")
 			ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		elif self.sel:
@@ -444,11 +444,11 @@ class LogManager(Screen):
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX beta team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
 				else:
 					s.sendmail(fromlogman, tovixlogs, msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX beta team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
 			except Exception, e:
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:

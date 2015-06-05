@@ -61,7 +61,7 @@ class SoftwareUpdateChanges(Screen):
 			self.logtype = 'e2'
 		else:
 			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE Changes"))
+			self.setTitle(_("OE-A Changes"))
 			self.logtype = 'oe'
 		self.getlog()
 
@@ -127,8 +127,8 @@ class SoftwareUpdateChanges(Screen):
 				self['text_summary'].setText(viewrelease)
 		else:
 			self['title_summary'].setText("")
-			self['text_summary'].setText(_("Error downloading change log."))
-			self['text'].setText(_("Error downloading change log."))
+			self['text_summary'].setText(_("Error downloading the change log."))
+			self['text'].setText(_("Error downloading the change log."))
 
 	def unattendedupdate(self):
 		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))

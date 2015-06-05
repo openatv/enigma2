@@ -103,8 +103,8 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.selectKey("DOWN")
 
 	def setText(self):
-		self["text"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
-		self["summarytext"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+		self["text"].setText(_("Please use the UP/DOWN keys to select your language. Then press the OK button to select it."))
+		self["summarytext"].setText(_("Please use the UP/DOWN keys to select your language. Then press the OK button to select it."))
 
 	def createSummary(self):
 		return LanguageWizardSummary
