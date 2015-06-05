@@ -548,10 +548,10 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				self.end = self.autosleepend
 				return False
 			elif now > self.autosleepbegin and now > self.autosleepend:
-				while self.autosleepbegin < now:
-					self.autosleepbegin += 86400
-				while self.autosleepend <= self.autosleepbegin:
+				while self.autosleepend < now:
 					self.autosleepend += 86400
+				while self.autosleepbegin + 86400 < self.autosleepend:
+					self.autosleepbegin += 86400
 				self.begin = self.autosleepbegin + int(self.autosleepdelay)*60
 				self.end = self.autosleepend
 				return False
