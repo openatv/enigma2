@@ -10,6 +10,8 @@ from Components.SystemInfo import SystemInfo
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
+from boxbranding import getBrandOEM
+
 MAX_NUM_CI = 4
 
 def setCIBitrate(configElement):
@@ -24,7 +26,10 @@ def InitCiConfig():
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "no")
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
-			config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
+			if getBrandOEM() == "dags":
+				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
+			else: 
+				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
 			config.ci[slot].canHandleHighBitrates.slotid = slot
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
 
