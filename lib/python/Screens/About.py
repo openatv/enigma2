@@ -63,6 +63,8 @@ class About(Screen):
 			BoxName = "GigaBlue HD Ultra SE"
 		elif boxtype == 'gbx1':
 			BoxName = "GigaBlue X1"
+		elif boxtype == 'gbx3':
+			BoxName = "GigaBlue X3"
 		elif boxtype == 'tomcat':
 			BoxName = "XCORE Tomcat"
 		elif boxtype == 'quadbox2400':
