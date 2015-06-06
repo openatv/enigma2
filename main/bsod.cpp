@@ -1,6 +1,8 @@
 #include <csignal>
 #include <fstream>
 #include <sstream>
+#include <execinfo.h>
+#include <dlfcn.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h>
@@ -352,13 +354,39 @@ void oops(const mcontext_t &context)
 }
 #endif
 
+/* Use own backtrace print procedure because backtrace_symbols_fd
+ * only writes to files. backtrace_symbols cannot be used because
+ * it's not async-signal-safe and so must not be used in signal
+ * handlers.
+ */
+void print_backtrace()
+{
+	void *array[15];
+	size_t size;
+	int cnt;
+
+	size = backtrace(array, 15);
+	eDebug("Backtrace:");
+	for (cnt = 1; cnt < size; ++cnt)
+	{
+		Dl_info info;
+
+		if (dladdr(array[cnt], &info)
+			&& info.dli_fname != NULL && info.dli_fname[0] != '\0')
+		{
+			eDebug("%s(%s) [0x%X]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", (unsigned long int) array[cnt]);
+		}
+	}
+}
+
 void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 {
 #ifndef NO_OOPS_SUPPORT
 	ucontext_t *uc = (ucontext_t*)ctx;
 	oops(uc->uc_mcontext);
 #endif
-	eDebug("-------");
+	print_backtrace();
+	eDebug("-------FATAL SIGNAL");
 	bsodFatal("enigma2, signal");
 }
 
