@@ -427,9 +427,8 @@ class InfoBarTimeshift:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			elif action == "skipBack":
 				self.setSeekState(self.SEEK_STATE_PLAY)
-				seekable = self.getSeek()
-				if seekable and shiftTime is not None:
-					seekable.seekTo(-90000 * shiftTime)
+				if shiftTime is not None:
+					self.doSeekRelative(-90000 * shiftTime)
 
 	def activateTimeshiftPause(self):
 		self.activateTimeshift(action="pause")
