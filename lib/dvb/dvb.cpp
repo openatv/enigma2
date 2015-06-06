@@ -145,6 +145,8 @@ eDVBResourceManager::eDVBResourceManager()
 			m_boxtype = GIGABLUE;
 		else if (!strncmp(tmp, "gbx1\n", rd))
 			m_boxtype = GIGABLUE;
+		else if (!strncmp(tmp, "gbx3\n", rd))
+			m_boxtype = GIGABLUE;
 		else
 			eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info/model not possible... use fallback via demux count!\n");
 		}
