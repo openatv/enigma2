@@ -103,6 +103,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
 			"timeshiftActivateEnd": (self.activateTimeshiftSkipBackLeft, lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_left.value, _("sec"))),
 			"timeshiftActivateEndAndPause": (self.activateTimeshiftPause, _("Pause and enter timeshift")),
+			"timeshiftActivateEndSeekBack": (self.activateTimeshiftRew, _("Enter timeshift and rewind")),
 		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
 		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateUpDownActions", {
@@ -408,8 +409,9 @@ class InfoBarTimeshift:
 				self.service_changed = True
 			self.__seekableStatusChanged()
 
-	# action must be in ("pause", "skipBack")
-	# if action == "skipBack" no skip will be made if shiftTime is None.
+	# action must be in ("pause", "skipBack", "rewind")
+	# if action == "skipBack" shiftTime is the skip time in seconds
+	# no skip will be made if shiftTime is None.
 	# shiftTime is otherwise ignored
 
 	def activateTimeshift(self, action="skipBack", shiftTime=None):
@@ -429,6 +431,9 @@ class InfoBarTimeshift:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				if shiftTime is not None:
 					self.doSeekRelative(-90000 * shiftTime)
+			elif action == "rewind":
+				self.setSeekState(self.SEEK_STATE_PLAY)
+				self.seekBack()
 
 	def activateTimeshiftPause(self):
 		self.activateTimeshift(action="pause")
@@ -438,6 +443,9 @@ class InfoBarTimeshift:
 
 	def activateTimeshiftSkipBackDown(self):
 		self.activateTimeshift(action="skipBack", shiftTime=config.seek.selfdefined_down.value)
+
+	def activateTimeshiftRew(self):
+		self.activateTimeshift(action="rewind")
 
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, pause=False, shiftTime=None):
