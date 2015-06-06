@@ -65,7 +65,7 @@ def getInitialCableTransponderList(tlist, nim):
 			parm.system = x[6]
 			tlist.append(parm)
 
-def getInitialTerrestrialTransponderList(tlist, region, skip_t2 = False, tsystem = eDVBFrontendParametersTerrestrial.System_DVB_T_T2):
+def getInitialTerrestrialTransponderList(tlist, region, tsystem = eDVBFrontendParametersTerrestrial.System_DVB_T_T2, skip_t2 = False):
 	list = nimmanager.getTranspondersTerrestrial(region)
 
 	#self.transponders[self.parsedTer].append((2,freq,bw,const,crh,crl,guard,transm,hierarchy,inv))
@@ -1262,7 +1262,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 							action = SEARCH_TERRESTRIAL2_TRANSPONDERS
 						else:
 							skip_t2 = False
-				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.value, skip_t2, int(self.scan_ter.system.value))
+				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.value, int(self.scan_ter.system.value), skip_t2)
 
 		flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
 
@@ -1582,7 +1582,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								action = SEARCH_TERRESTRIAL2_TRANSPONDERS
 							else:
 								skip_t2 = False
-					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot), skip_t2)
+					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot), skip_t2=skip_t2)
 				else:
 					assert False
 
