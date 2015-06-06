@@ -96,8 +96,8 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
 			"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),
 			"instantRecord": (self.instantRecord, _("Instant record...")),
-			"jumpPreviousFile": (self.__evSOF, _("Skip to previous event in timeshift")),
-			"jumpNextFile": (self.__evEOF, _("Skip to next event in timeshift")),
+			"jumpPreviousFile": (self.__jumpPreviousFile, _("Skip to previous event in timeshift")),
+			"jumpNextFile": (self.__jumpNextFile, _("Skip to next event in timeshift")),
 		}, prio=-1, description=_("Timeshift"))
 
 		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
@@ -233,6 +233,14 @@ class InfoBarTimeshift:
 
 	def __evSOF(self):
 		dprint("__evSOF")
+		self.__doEvSOF(showProgressBar=config.usage.show_infobar_on_event_change.value)
+
+	def __jumpPreviousFile(self):
+		dprint("__jumpPreviousFile")
+		self.__doEvSOF(showProgressBar=config.usage.show_infobar_on_skip.value)
+
+	def __doEvSOF(self, showProgressBar=False):
+		dprint("__doEvSOF")
 		if not self.timeshiftEnabled():
 			return
 
@@ -241,7 +249,7 @@ class InfoBarTimeshift:
 			self.pts_currplaying = 0  # This will increment to one as soon as playback switches
 			self.pts_switchtolive = False
 			self.pts_skipBack = False
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (1), True)
+			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (1), goThere=True, showProgressBar=showProgressBar)
 			return
 
 		dprint("will try to step back to buffer", self.pts_currplaying - 1)
@@ -249,11 +257,19 @@ class InfoBarTimeshift:
 		if fileExists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_currplaying - 1), 'r'):
 			self.pts_switchtolive = False
 			self.pts_skipBack = True
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_currplaying - 1), True)
+			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_currplaying - 1), goThere=True, showProgressBar=showProgressBar)
 		return
 
 	def __evEOF(self):
 		dprint("__evEOF")
+		self.__doEvEOF(showProgressBar=config.usage.show_infobar_on_event_change.value)
+
+	def __jumpNextFile(self):
+		dprint("__doEvEOF")
+		self.__doEvEOF(showProgressBar=config.usage.show_infobar_on_skip.value)
+
+	def __doEvEOF(self, showProgressBar=False):
+		dprint("__doEvEOF")
 		if not self.timeshiftEnabled():
 			return
 
@@ -264,13 +280,13 @@ class InfoBarTimeshift:
 		if self.pts_currplaying < self.pts_eventcount and fileExists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_currplaying + 1), 'r'):
 			self.pts_switchtolive = False
 			self.pts_skipBack = False
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_currplaying + 1), True)
+			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_currplaying + 1), goThere=True, showProgressBar=showProgressBar)
 			return
 
 		dprint("no more timeshift buffers - go to live")
 		self.pts_switchtolive = True
 		self.pts_skipBack = False
-		self.ptsSetNextPlaybackFile("", True)
+		self.ptsSetNextPlaybackFile("", goThere=True, showProgressBar=showProgressBar)
 		return
 
 	def __evInfoChanged(self):
@@ -393,7 +409,7 @@ class InfoBarTimeshift:
 			self.pts_skipBack = False
 			self.pts_switchtolive = True
 			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.ptsSetNextPlaybackFile("", True)
+			self.ptsSetNextPlaybackFile("", goThere=True)
 			self.__seekableStatusChanged()
 			return 0
 
@@ -561,7 +577,7 @@ class InfoBarTimeshift:
 		# setNextPlaybackFile() on event change while timeshifting
 		if self.pts_eventcount > 1 and self.isSeekable() and pts_setnextfile:
 			self.pts_skipBack = False
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_eventcount)
+			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_eventcount, showProgressBar=config.usage.show_infobar_on_event_change.value)
 
 		# Do not switch back to LiveTV while timeshifting
 		if self.isSeekable():
@@ -1286,12 +1302,12 @@ class InfoBarTimeshift:
 		# Get next pts file ...
 		if fileExists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_currplaying + 1), 'r'):
 			self.pts_switchtolive = False
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_currplaying + 1))
+			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_currplaying + 1), showProgressBar=config.usage.show_infobar_on_event_change.value)
 		else:
 			self.pts_switchtolive = True
-			self.ptsSetNextPlaybackFile("")
+			self.ptsSetNextPlaybackFile("", showProgressBar=config.usage.show_infobar_on_event_change.value)
 
-	def ptsSetNextPlaybackFile(self, nexttsfile, goThere=False):
+	def ptsSetNextPlaybackFile(self, nexttsfile, goThere=False, showProgressBar=False):
 		dprint("ptsSetNextPlaybackFile")
 		ts = self.getTimeshift()
 		if ts is None:
@@ -1306,6 +1322,8 @@ class InfoBarTimeshift:
 		if goThere:
 			dprint("goToNextPlaybackFile")
 			ts.goToNextPlaybackFile()
+		if showProgressBar:
+			self.showAfterSeek()
 		return True
 
 	def ptsCheckTimeshiftPath(self):
