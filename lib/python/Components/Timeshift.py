@@ -101,12 +101,12 @@ class InfoBarTimeshift:
 		}, prio=-1, description=_("Timeshift"))
 
 		self["TimeshiftActivateActions"] = HelpableActionMap(self, "InfobarTimeshiftActivateActions", {
-			"timeshiftActivateEnd": (self.activateTimeshiftEnd, lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_left.value, _("sec"))),
-			"timeshiftActivateEndAndPause": (self.activateTimeshiftEndAndPause, _("Pause and enter timeshift")),
+			"timeshiftActivateEnd": (self.activateTimeshiftSkipBackLeft, lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_left.value, _("sec"))),
+			"timeshiftActivateEndAndPause": (self.activateTimeshiftPause, _("Pause and enter timeshift")),
 		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
 		self["TimeshiftActivateActionsUpDown"] = HelpableActionMap(self, "InfobarTimeshiftActivateUpDownActions", {
-			"timeshiftActivateEndExtra": (lambda: self.activateTimeshiftEnd(shiftTime=config.seek.selfdefined_down.value), lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_down.value, _("sec"))),
+			"timeshiftActivateEndExtra": (self.activateTimeshiftSkipBackDown, lambda: "%s %3d %s" % (_("Enter timeshift and skip back"), config.seek.selfdefined_down.value, _("sec"))),
 			"ignore": (lambda: 1, ""),
 		}, prio=-1, description=_("Activate timeshift"))  # priority over SeekActionsPTS
 
@@ -360,7 +360,7 @@ class InfoBarTimeshift:
 		else:
 			self.pts_eventcount = 0
 			self.activatePermanentTimeshift()
-			self.activateTimeshiftEnd()
+			self.activateTimeshift()
 
 	def stopTimeshift(self):
 		dprint("stopTimeshift")
@@ -408,26 +408,43 @@ class InfoBarTimeshift:
 				self.service_changed = True
 			self.__seekableStatusChanged()
 
-	# activates timeshift, and seeks to (almost) the end
-	def activateTimeshiftEnd(self, pause=False, shiftTime=None):
-		dprint("activateTimeshiftEnd")
+	# action must be in ("pause", "skipBack")
+	# if action == "skipBack" no skip will be made if shiftTime is None.
+	# shiftTime is otherwise ignored
+
+	def activateTimeshift(self, action="skipBack", shiftTime=None):
+		dprint("activateTimeshift")
 		ts = self.getTimeshift()
 		if ts is None:
 			return
 
-		if ts.isTimeshiftActive() and pause:
+		if ts.isTimeshiftActive() and action == "pause":
 			self.pauseService()
 		elif self.timeshiftEnabled():
 			ts.activateTimeshift()  # activate timeshift will automatically pause
 
-			if pause:
+			if action == "pause":
 				self.setSeekState(self.SEEK_STATE_PAUSE)
-			else:
+			elif action == "skipBack":
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				seekable = self.getSeek()
-				if seekable is not None:
-					shiftTimeVal = shiftTime if shiftTime is not None else config.seek.selfdefined_left.value
-					seekable.seekTo(-90000 * shiftTimeVal)
+				if seekable and shiftTime is not None:
+					seekable.seekTo(-90000 * shiftTime)
+
+	def activateTimeshiftPause(self):
+		self.activateTimeshift(action="pause")
+
+	def activateTimeshiftSkipBackLeft(self):
+		self.activateTimeshift(action="skipBack", shiftTime=config.seek.selfdefined_left.value)
+
+	def activateTimeshiftSkipBackDown(self):
+		self.activateTimeshift(action="skipBack", shiftTime=config.seek.selfdefined_down.value)
+
+	# activates timeshift, and seeks to (almost) the end
+	def activateTimeshiftEnd(self, pause=False, shiftTime=None):
+		dprint("activateTimeshiftEnd -- deprecated")
+		shiftTimeVal = shiftTime if shiftTime is not None else config.seek.selfdefined_left.value
+		self.activateTimeshift(action="pause" if pause else "skipBack", shiftTime=shiftTimeVal)
 
 	def rewindService(self):
 		dprint("rewindService")
@@ -440,8 +457,8 @@ class InfoBarTimeshift:
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
-		dprint("activateTimeshiftEndAndPause")
-		self.activateTimeshiftEnd(True)
+		dprint("activateTimeshiftEndAndPause -- deprecated")
+		self.activateTimeshiftPause()
 
 	def checkTimeshiftRunning(self, returnFunction):
 		dprint("checkTimeshiftRunning")
