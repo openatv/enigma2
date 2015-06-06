@@ -23,8 +23,6 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import PinInput
-from Screens import ScreenSaver
-from Screens import Standby
 import Screens.InfoBar
 
 from Tools import NumericalTextInput
@@ -34,11 +32,10 @@ import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, eActionMap
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
 import os
 import time
 import cPickle as pickle
-from sys import maxint
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
@@ -504,28 +501,7 @@ class MovieSelectionSummary(Screen):
 		else:
 			self["name"].text = ""
 
-from Screens.InfoBarGenerics import InfoBarScreenSaver
-class MovieSelectionScreenSaver(InfoBarScreenSaver):
-
-	def ScreenSaverTimerStart(self):
-		time = int(config.usage.screen_saver.value)
-		if time:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref and not (hasattr(self.session, "pipshown") and self.session.pipshown):
-				ref = ref.toString().split(":")
-				if os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS:
-					self.screenSaverTimer.startLongTimer(time)
-					return
-		self.screenSaverTimer.stop()
-
-	def keypressScreenSaver(self, key, flag):
-		if flag:
-			self.screensaver.hide()
-			self.show()
-			self.ScreenSaverTimerStart()
-			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
-
-class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen, MovieSelectionScreenSaver):
+class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	# SUSPEND_PAUSES actually means "please call my pauseService()"
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 
@@ -535,7 +511,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if not timeshiftEnabled:
 			InfoBarBase.__init__(self) # For ServiceEventTracker
 		ProtectedScreen.__init__(self)
-		MovieSelectionScreenSaver.__init__(self)
 		self.protectContextMenu = True
 
 		self.initUserDefinedActions()
@@ -1111,7 +1086,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		else:
 			self.list.playInBackground = current
 			self.session.nav.playService(current)
-			self.ScreenSaverTimerStart()
 
 	def previewCheckTimeshiftCallback(self, answer):
 		if answer:
