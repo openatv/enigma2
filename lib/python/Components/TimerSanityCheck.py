@@ -173,7 +173,7 @@ class TimerSanityCheck:
 			if event[1] == self.bflag:
 				tunerType = [ ]
 				if timer.service_ref.ref and timer.service_ref.ref.flags & eServiceReference.isGroup:
-					fakeRecService = NavigationInstance.instance.recordService(getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference()), True)
+					fakeRecService = NavigationInstance.instance.recordService(getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference(), True), True)
 				else:
 					fakeRecService = NavigationInstance.instance.recordService(timer.service_ref, True)
 				if fakeRecService:
