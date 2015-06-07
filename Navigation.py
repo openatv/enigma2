@@ -108,7 +108,7 @@ class Navigation:
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] wait for time sync"
 
-			elif nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 360:
+			elif self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 360:
 				self.__wasRecTimerWakeup = True
 				print 'RECTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_rectimer_wakeup", "w")
@@ -119,7 +119,7 @@ class Navigation:
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
 
-			elif nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
+			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
 				self.__wasPowerTimerWakeup = True
 				print 'POWERTIMER: wakeup detected.'
 				if abs(timediffPT) > 75: #more than 1 minutes to wake up from powertimer - go in standby
@@ -127,7 +127,7 @@ class Navigation:
 					self.standbytimer.callback.append(self.gotostandby)
 					self.standbytimer.start(15000, True)
 
-			elif nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
+			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
 				self.__wasPowerTimerWakeup = True
 				print 'POWERTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_powertimer_wakeup", "w")
@@ -164,7 +164,7 @@ class Navigation:
 			f.write('1')
 			f.close()
 			self.gotostandby()
-		elif nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
+		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
 			self.__wasPowerTimerWakeup = True
 			print 'POWERTIMER: wakeup detected.'
 			if abs(timediffPT) > 75: #more than 1 minutes to wake up from powertimer - go in standby
