@@ -165,7 +165,7 @@ class Dish(Screen):
 				self.pmt_timeout -= 0.5
 		else:
 			self.__toHide()
-			print "[Dish] tuning failed"
+			# print "[Dish] tuning failed"
 
 	def dishState(self):
 		return self.__state
