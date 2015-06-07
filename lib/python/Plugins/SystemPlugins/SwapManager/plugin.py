@@ -23,9 +23,9 @@ config.plugins.swapmanager.swapautostart = ConfigYesNo(default = False)
 startswap = None
 
 try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
-	file.close()
+	readchipset = open("/proc/stb/info/chipset", "r")
+	chipset = readchipset.readline().strip()
+	readchipset.close()
 except:
 	chipset = "unknown"
 
