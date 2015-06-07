@@ -312,7 +312,7 @@ class RestoreMenu(Screen):
 	def startRestore(self, ret = False):
 		if ret == True:
 			self.exe = True
-			self.session.open(Console, title = _("Restoring..."), cmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
+			self.session.open(Console, title = _("Restoring..."), cmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2", "/etc/init.d/autofs restart"])
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -369,9 +369,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def doRestore(self):
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
+			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "/etc/init.d/autofs restart"]
 		else:
-			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /"]
+			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "/etc/init.d/autofs restart"]
 		print"[SOFTWARE MANAGER] Restore Settings !!!!"
 
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
