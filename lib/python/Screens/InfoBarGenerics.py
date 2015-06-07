@@ -2368,6 +2368,9 @@ class InfoBarPVRState:
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show=True)
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evUser + 1: lambda: self.__timeshiftEventName(self.seekstate)  # TIMESHIFT_FILE_CHANGED
+		})
 		self.onPlayStateChanged.append(self.__timeshiftEventName)
 		self.onHide.append(self.__hideTimeshiftState)
 
