@@ -3564,6 +3564,8 @@ class InfoBarCueSheetSupport:
 			return False
 
 		self.doSeek(pts)
+		if abs(current_pos - pts) > 100 and config.usage.show_infobar_on_skip.value:
+			self.showAfterSeek()
 		return True
 
 	def jumpPreviousMark(self):
