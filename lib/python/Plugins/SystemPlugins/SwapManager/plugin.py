@@ -25,7 +25,7 @@ startswap = None
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
- 		if config.plugins.swapmanager.swapautostart.value:
+		if config.plugins.swapmanager.swapautostart.value:
 			print "[SwapManager] autostart"
 			startswap = StartSwap()
 			startswap.start()
@@ -61,7 +61,7 @@ class StartSwap:
 							print "[SwapManager] Found a swapfile on ", swap_place
 
 		f = file('/proc/swaps').read()
-		if f.find(swap_place) == -1:
+		if '-1' in f: 		#if f.find(swap_place) == -1:
 			print "[SwapManager] Starting swapfile on ", swap_place
 			system('swapon ' + swap_place)
 		else:
@@ -70,13 +70,15 @@ class StartSwap:
 #######################################################################
 class SwapManager(Screen):
 	skin = """
-	<screen name="SwapManager" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+	<screen name="SwapManager" position="center,center" size="500,300" title="Swap File Manager" flags="wfBorder" >
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="180,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="180,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="180,40" alphatest="on" />
+		
+		<widget name="key_red" position="0,0" zPosition="1" size="180,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="140,0" zPosition="1" size="180,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_yellow" position="280,0" zPosition="1" size="180,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		
 		<widget name="autostart_off" position="10,50" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32" alphatest="on" />
 		<widget name="autostart_on" position="10,50" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32" alphatest="on" />
 		<widget name="lab1" position="50,50" size="360,30" font="Regular;20" valign="center" transparent="1"/>
@@ -174,7 +176,7 @@ class SwapManager(Screen):
 						self.swap_place = filename
 						self['key_green'].setText(_("Delete"))
 						info = mystat(self.swap_place)
-						self.swapsize = info[stat.ST_SIZE]
+						self.swapsize = info[stat.ST_SIZE]/1024
 						continue
 
 		if config.plugins.swapmanager.swapautostart.value and self.swap_place:
@@ -199,17 +201,14 @@ class SwapManager(Screen):
 				self.swap_active = True
 				continue
 		f.close()
-
+		
 		if self.swapsize > 0:
-			if self.swapsize >= 1024:
-				self.swapsize = int(self.swapsize) / 1024
-				if self.swapsize >= 1024:
-					self.swapsize = int(self.swapsize) / 1024
-				self.swapsize = str(self.swapsize) + ' ' + 'MB'
-			else:
-				self.swapsize = str(self.swapsize) + ' ' + 'KB'
+			unit = ' MB'
+			self.swapsize = float(self.swapsize)/1024
+			self.swapsize = "{:4.0f}".format(self.swapsize)
+			self.swapsize = str(self.swapsize) + unit
 		else:
-			self.swapsize = ''
+			self.swapsize =''
 
 		self['labsize'].setText(self.swapsize)
 		self['labsize'].show()
@@ -281,7 +280,7 @@ class SwapManager(Screen):
 	def doCSplace(self, name):
 		if name:
 			self.new_place = name[1]
-			myoptions = [[_("8 MB"), '8192'], [_("16 MB"), '16384'], [_("32 MB"), '32768'], [_("64 MB"), '65536'], [_("96 MB"), '98304'], [_("128 MB"), '131072'], [_("256 MB"), '262144'], [_("512 MB"), '524288'], [_("1024 MB"), '1048576']]
+			myoptions = [[_("16 MB"), '16384'],[_("32 MB"), '32768'],[_("64 MB"), '65536'],[_("128 MB (recommended for BCM7325)"), '131072'],[_("256 MB (recommended for BCM7358)"), '262144'],[_("512 MB (recommended for BCM7356 BCM7362)"), '524288'],[_("1024 MB"), '1048576'],[_("2048 MB (maximum)"), '2097152']]
 			self.session.openWithCallback(self.doCSsize, ChoiceBox, title=_("Select the Swap File Size:"), list=myoptions)
 
 	def doCSsize(self, swapsize):
@@ -307,7 +306,7 @@ class SwapManager(Screen):
 				config.plugins.swapmanager.swapautostart.save()
 			configfile.save()
 		else:
-			mybox = self.session.open(MessageBox, _("You have to create a Swap File before to activate the autostart."), MessageBox.TYPE_INFO)
+			mybox = self.session.open(MessageBox, _("You have to create a Swap File before activating autostart."), MessageBox.TYPE_INFO)
 			mybox.setTitle(_("Info"))
 		self.updateSwap()
 
