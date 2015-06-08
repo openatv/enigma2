@@ -27,9 +27,9 @@ class Scart(Screen):
 			self.avswitch.setInput("SCART")
 			if not self.session.in_exec:
 				self.notificationVisible = True
-				Notifications.AddNotificationWithCallback(self.MsgBoxClosed, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR, msgBoxID = "scart_msgbox")
+				Notifications.AddNotificationWithCallback(self.MsgBoxClosed, MessageBox, _("If you can see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR, msgBoxID = "scart_msgbox")
 			else:
-				self.msgBox = self.session.openWithCallback(self.MsgBoxClosed, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
+				self.msgBox = self.session.openWithCallback(self.MsgBoxClosed, MessageBox, _("If you can see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
 
 	def MsgBoxClosed(self, *val):
 		self.msgBox = None

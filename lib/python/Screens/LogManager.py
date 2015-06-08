@@ -281,7 +281,7 @@ class LogManager(Screen):
 			self.sel = None
 		self.selectedFiles = self["list"].getSelectedList()
 		if self.selectedFiles:
-			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
+			message = _("Do you want to delete all the selected files:\n(choose 'No' to only delete the currently selected file.)")
 			ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		elif self.sel:
@@ -296,7 +296,7 @@ class LogManager(Screen):
 		self.selectedFiles = ",".join(self.selectedFiles).replace(",", " ")
 		self.sel = self["list"].getCurrent()[0]
 		if answer is True:
-			message = _("Are you sure you want to delete all selected logs:\n") + self.selectedFiles
+			message = _("Are you sure you want to delete all the selected logs:\n") + self.selectedFiles
 			ybox = self.session.openWithCallback(self.doDelete2, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
@@ -339,7 +339,7 @@ class LogManager(Screen):
 				if send == (self.defaultDir + self.sel):
 					self.resend = True
 			if self.selectedFiles:
-				message = _("Do you want to send all selected files:\n(choose 'No' to only send the currently selected file.)")
+				message = _("Do you want to send all the selected files:\n(choose 'No' to only send the currently selected file.)")
 				ybox = self.session.openWithCallback(self.sendlog1, MessageBox, message, MessageBox.TYPE_YESNO)
 				ybox.setTitle(_("Send Confirmation"))
 			elif self.sel and not self.resend:
@@ -349,7 +349,7 @@ class LogManager(Screen):
 				ybox.setTitle(_("Send Confirmation"))
 			elif self.sel and self.resend:
 				self.sendallfiles = False
-				message = _("You have already sent this log, are you sure you want to resend this log:\n") + self.sel
+				message = _("You have already sent this log, are you sure you want to resend it?\n") + self.sel
 				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
 				ybox.setTitle(_("Send Confirmation"))
 		else:
@@ -444,15 +444,15 @@ class LogManager(Screen):
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tovixlogs, fromlogman], msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX beta team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking questions about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
 				else:
 					s.sendmail(fromlogman, tovixlogs, msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX beta team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the ViX team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking questions about this log'), MessageBox.TYPE_INFO)
 			except Exception, e:
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
 		else:
-			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, enter your info, and then try again'), MessageBox.TYPE_INFO, timeout = 10)
 
 	def myclose(self):
 		self.close()

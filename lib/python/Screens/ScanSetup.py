@@ -361,7 +361,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.createSetup()
 			self["introduction"] = Label(_("Press OK to start the scan"))
 		else:
-			self["introduction"] = Label(_("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."))
+			self["introduction"] = Label(_("Nothing to scan!\nPlease setup your tuner settings before starting a service scan."))
 
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
