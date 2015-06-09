@@ -50,7 +50,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			<widget name="key_blue" position="405,415" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
-	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = _("Select location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
+	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = "Select location", minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
 		# Init parents
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self, handleTimeout = False)
@@ -166,7 +166,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Run some functions when shown
 		self.onShown.extend((
-			boundFunction(self.setTitle, windowTitle),
+			boundFunction(self.setTitle, _(windowTitle)),
 			self.updateTarget,
 			self.showHideRename,
 		))
