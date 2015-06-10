@@ -57,8 +57,45 @@
 			<item weight="15" level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 		</menu>
 
+		<!-- Menu / Settings / EPG -->
+		<menu weight="10" level="2" text="EPG" entryID="epg_menu">
+			<id val="epg" />
+			<!-- Menu / Settings / System / Extended System / EPG / Load Save-->
+			<item weight="110" level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
+			<item weight="115" level="2" entryID="setup_epgenhanced"><setup id="epgenhanced" /></item>
+			<item weight="120" level="2" entryID="setup_epginfobar"><setup id="epginfobar" /></item>
+			<item weight="125" level="2" entryID="setup_epginfobargraphical"><setup id="epginfobargraphical" /></item>
+			<item weight="130" level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
+			<menu weight="200" level="2" text="Load/Save" entryID="epgloadsave_menu">
+				<id val="epgloadsave_menu" />
+				<item weight="0" level="0" entryID="loadepgcache" text="Load EPG">
+					<code>
+from Components.EpgLoadSave import EpgLoadMsg
+def msgClosed(ret):
+	if ret:
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.load()
+self.session.openWithCallback(msgClosed, EpgLoadMsg)
+</code>
+				</item>
+				<item weight="50" level="0" entryID="saveepgcache" text="Save EPG">
+					<code>
+from Components.EpgLoadSave import EpgSaveMsg
+def msgClosed(ret):
+	if ret:
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.save()
+self.session.openWithCallback(msgClosed, EpgSaveMsg)
+</code>
+				</item>
+			</menu>
+			<item weight="300" level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
+		</menu>
+
 		<!-- Menu / Settings / Service Searching -->
-		<menu weight="10" level="0" text="Service searching" entryID="service_searching_selection">
+		<menu weight="15" level="0" text="Service searching" entryID="service_searching_selection">
 			<id val="scan" />
 			<item weight="0" level="0" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 			<item weight="5" level="0" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
@@ -116,45 +153,6 @@
 					<item weight="5" level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 					<item weight="10" level="0" text="Filesystem Check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 					<item weight="15" level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
-				</menu>
-
-				<!-- Menu / Settings / System / Extended System / EPG -->
-				<menu weight="50" level="2" text="EPG" entryID="epg_menu">
-					<id val="epg" />
-					<item weight="0" level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
-
-					<!-- Menu / Settings / System / Extended System / EPG / Load Save-->
-					<menu weight="5" level="2" text="Load/Save" entryID="epgloadsave_menu">
-						<id val="epgloadsave_menu" />
-						<item weight="0" level="0" entryID="saveepgcache" text="Save EPG">
-							<code>
-from Components.EpgLoadSave import EpgSaveMsg
-def msgClosed(ret):
-	if ret:
-		from enigma import eEPGCache
-		epgcache = eEPGCache.getInstance()
-		epgcache.save()
-self.session.openWithCallback(msgClosed, EpgSaveMsg)
-</code>
-						</item>
-						<item weight="5" level="0" entryID="loadepgcache" text="Load EPG">
-							<code>
-from Components.EpgLoadSave import EpgLoadMsg
-def msgClosed(ret):
-	if ret:
-		from enigma import eEPGCache
-		epgcache = eEPGCache.getInstance()
-		epgcache.load()
-self.session.openWithCallback(msgClosed, EpgLoadMsg)
-</code>
-						</item>
-					</menu>
-
-					<item weight="10" level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
-					<item weight="15" level="2" entryID="setup_epgenhanced"><setup id="epgenhanced" /></item>
-					<item weight="20" level="2" entryID="setup_epginfobar"><setup id="epginfobar" /></item>
-					<item weight="25" level="2" entryID="setup_epginfobargraphical"><setup id="epginfobargraphical" /></item>
-					<item weight="30" level="2" entryID="setup_epggraphical"><setup id="epggraphical" /></item>
 				</menu>
 
 				<item weight="55" level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
