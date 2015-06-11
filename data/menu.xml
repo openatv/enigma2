@@ -112,7 +112,7 @@ self.session.open(HdmiCECSetupScreen)
 </code>
 				</item>
 				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
-				<item text="Keyboard"><setup id="keyboard"/></item>
+				<item entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection"/></item>
 				<menu level="2" text="Logs" entryID="logs_setup">
 					<id val="logs_menu"/>

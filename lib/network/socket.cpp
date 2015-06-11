@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <time.h>
+#include <string.h>
 #include <linux/serial.h>
 #include <lib/network/socket.h>
 
@@ -10,19 +11,19 @@ void eSocket::close()
 {
 	if (writebuffer.empty())
 	{
-		int wasconnected=(mystate==Connection) || (mystate==Closing);
-		rsn=0;
+		int wasconnected = (mystate == Connection) || (mystate == Closing);
+		rsn = 0;
 		if (socketdesc >= 0)
 		{
 			::close(socketdesc);
-			socketdesc=-1;
+			socketdesc = -1;
 		}
-		mystate=Invalid;
+		mystate = Invalid;
 		if (wasconnected)
 			connectionClosed_();
 	} else
 	{
-		mystate=Closing;
+		mystate = Closing;
 		rsn->setRequested(rsn->getRequested()|eSocketNotifier::Write);
 	}
 }
@@ -83,16 +84,16 @@ int eSocket::state()
 	return mystate;
 }
 
-int eSocket::setSocket(int s, int iss, eMainloop *ml)
+int eSocket::setSocket(int s, int iss)
 {
-	socketdesc=s;
+	socketdesc = s;
 	if (socketdesc < 0) return -1;
-	issocket=iss;
+	issocket = iss;
 	fcntl(socketdesc, F_SETFL, O_NONBLOCK);
 	last_break = -1;
 
 	rsn = 0;
-	rsn=eSocketNotifier::create(ml, getDescriptor(),
+	rsn = eSocketNotifier::create(mainloop, getDescriptor(),
 		eSocketNotifier::Read|eSocketNotifier::Hungup);
 	CONNECT(rsn->activated, eSocket::notifier);
 	return 0;
@@ -226,85 +227,98 @@ int eSocket::writeBlock(const char *data, unsigned int len)
 	return w;
 }
 
-int eSocket::getDescriptor()
+int eSocket::connect(struct addrinfo *addr)
 {
-	return socketdesc;
+	int res;
+	struct addrinfo *ptr = addr;
+	close();
+	for (ptr = addr; ptr != NULL; ptr = ptr->ai_next)
+	{
+		if (setSocket(socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol), 1) < 0)
+		{
+			/* No need to close, setSocket only fails when socket() already failed */
+			continue;
+		}
+		mystate = Idle;
+
+		res = ::connect(socketdesc, ptr->ai_addr, ptr->ai_addrlen);
+		if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
+		{
+			error_(errno);
+			close(); /* Release and disconnect the notifier */
+			continue;
+		}
+		if (res < 0)	// EINPROGRESS or EINTR
+		{
+			rsn->setRequested(rsn->getRequested() | eSocketNotifier::Write);
+			mystate = Connecting;
+			return 0;
+		}
+		else
+		{
+			mystate = Connection;
+			connected_();
+			return 1;
+		}
+	}
+	return -1;
 }
 
 int eSocket::connectToHost(std::string hostname, int port)
 {
-	sockaddr_in  serv_addr;
-	struct hostent *server;
 	int res;
+	struct addrinfo *addr = NULL;
+	struct addrinfo hints;
+	char portnumber[16];
 
-	if (mystate == Invalid)
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_UNSPEC; /* both ipv4 and ipv6 */
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_protocol = 0; /* any */
+#ifdef AI_ADDRCONFIG
+	hints.ai_flags = AI_NUMERICSERV | AI_ADDRCONFIG; /* only return ipv6 if we have an ipv6 address ourselves, and ipv4 if we have an ipv4 address ourselves */
+#else
+	hints.ai_flags = AI_NUMERICSERV; /* AI_ADDRCONFIG is not available */
+#endif
+	snprintf(portnumber, sizeof(portnumber), "%d", port);
+
+	if ((res = getaddrinfo(hostname.c_str(), portnumber, &hints, &addr)) || !addr)
 	{
-		/* the socket has been closed, create a new socket descriptor */
-		int s=socket(AF_INET, SOCK_STREAM, 0);
-		mystate=Idle;
-		setSocket(s, 1, mainloop);
+		eDebug("[eSocket] can't resolve %s (getaddrinfo: %s)", hostname.c_str(), gai_strerror(res));
+		return -2;
 	}
 
-	if(socketdesc < 0){
-		error_(errno);
-		return(-1);
-	}
-	server=gethostbyname(hostname.c_str());
-	if(server==NULL)
-	{
-		eDebug("[eSocket] can't resolve %s", hostname.c_str());
-		error_(errno);
-		return(-2);
-	}
-	bzero(&serv_addr, sizeof(serv_addr));
-	serv_addr.sin_family=AF_INET;
-	bcopy(server->h_addr, &serv_addr.sin_addr.s_addr, server->h_length);
-	serv_addr.sin_port=htons(port);
-	res=::connect(socketdesc, (const sockaddr*)&serv_addr, sizeof(serv_addr));
-	if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
+	res = connect(addr);
+	if (res < 0)
 	{
 		eDebug("[eSocket] can't connect to host: %s", hostname.c_str());
-		close();
-		error_(errno);
-		return(-3);
 	}
-	if (res < 0)	// EINPROGRESS or EINTR
-	{
-		rsn->setRequested(rsn->getRequested()|eSocketNotifier::Write);
-		mystate=Connecting;
-	} else
-	{
-		mystate=Connection;
-		connected_();
-	}
-	return(0);
+	freeaddrinfo(addr);
+	return res;
 }
 
-eSocket::eSocket(eMainloop *ml, int domain): readbuffer(32768), writebuffer(32768), mainloop(ml)
+eSocket::eSocket(eMainloop *ml): readbuffer(32768), writebuffer(32768), mainloop(ml)
 {
-	int s=socket(domain, SOCK_STREAM, 0);
-#if 0
-	eDebug("[eSocket] initalized socket %d", socketdesc);
-#endif
-	mystate=Idle;
-	setSocket(s, 1, ml);
+	socketdesc = -1;
+	mystate = Invalid;
 }
 
 eSocket::eSocket(int socket, int issocket, eMainloop *ml): readbuffer(32768), writebuffer(32768), mainloop(ml)
 {
-	setSocket(socket, issocket, ml);
-	mystate=Connection;
+	setSocket(socket, issocket);
+	mystate = Connection;
 }
 
 eSocket::~eSocket()
 {
-	if(socketdesc>=0)
+	if (socketdesc >= 0)
 	{
 		::close(socketdesc);
+		socketdesc = -1;
 	}
 }
 
-eUnixDomainSocket::eUnixDomainSocket(eMainloop *ml) : eSocket(ml, AF_LOCAL)
+eUnixDomainSocket::eUnixDomainSocket(eMainloop *ml) : eSocket(ml)
 {
 }
 
@@ -318,39 +332,21 @@ eUnixDomainSocket::~eUnixDomainSocket()
 
 int eUnixDomainSocket::connectToPath(std::string path)
 {
-	sockaddr_un serv_addr_un;
 	int res;
+	struct sockaddr_un serv_addr_un;
+	struct addrinfo addr;
 
-	if (mystate == Invalid)
-	{
-		/* the socket has been closed, create a new socket descriptor */
-		int s=socket(AF_LOCAL, SOCK_STREAM, 0);
-		mystate=Idle;
-		setSocket(s, 1, mainloop);
-	}
-
-	if(socketdesc < 0){
-		error_(errno);
-		return(-1);
-	}
-	bzero(&serv_addr_un, sizeof(serv_addr_un));
+	memset(&serv_addr_un, 0, sizeof(serv_addr_un));
 	serv_addr_un.sun_family = AF_LOCAL;
 	strcpy(serv_addr_un.sun_path, path.c_str());
-	res=::connect(socketdesc, (const sockaddr*)&serv_addr_un, sizeof(serv_addr_un));
-	if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
-	{
-		close();
-		error_(errno);
-		return(-3);
-	}
-	if (res < 0)	// EINPROGRESS or EINTR
-	{
-		rsn->setRequested(rsn->getRequested()|eSocketNotifier::Write);
-		mystate=Connecting;
-	} else
-	{
-		mystate=Connection;
-		connected_();
-	}
-	return(0);
+
+	memset(&addr, 0, sizeof(addr));
+	addr.ai_family = AF_LOCAL;
+	addr.ai_socktype = SOCK_STREAM;
+	addr.ai_protocol = 0; /* any */
+	addr.ai_addr = (struct sockaddr *)&serv_addr_un;
+	addr.ai_addrlen = sizeof(serv_addr_un);
+
+	res = connect(&addr);
+	return res;
 }
