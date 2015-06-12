@@ -176,7 +176,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded and abs(self.end - now) >= 60: return True 
 
 		if next_state == self.StatePrepared:
-			self.log(6, "prepare ok, waiting for begin")
+			self.log(6, "prepare ok, waiting for begin: %s" % ctime(self.begin))
 			if self.begin <= now:
 				self.next_activation = int(now) + 20
 			else:
@@ -546,7 +546,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if now < self.autosleepbegin and now < self.autosleepend:
 				self.begin = self.autosleepbegin + int(self.autosleepdelay)*60
 				self.end = self.autosleepend
-				return False
 			elif now > self.autosleepbegin and now > self.autosleepend:
 				while self.autosleepend < now:
 					self.autosleepend += 86400
@@ -554,6 +553,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					self.autosleepbegin += 86400
 				self.begin = self.autosleepbegin + int(self.autosleepdelay)*60
 				self.end = self.autosleepend
+			if not (now > self.autosleepbegin and now < self.autosleepend):
 				return False
 		return True
 
