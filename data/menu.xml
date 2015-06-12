@@ -57,8 +57,15 @@
 			<item weight="15" level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 		</menu>
 
+		<!-- Menu / Settings / Recordings -->
+		<menu weight="10" level="1" text="Recordings &amp; Timeshift" entryID="rec_setup">
+			<id val="rec" />
+			<item weight="10" level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
+			<item weight="15" level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
+		</menu>
+
 		<!-- Menu / Settings / EPG -->
-		<menu weight="10" level="2" text="EPG" entryID="epg_menu">
+		<menu weight="20" level="2" text="EPG" entryID="epg_menu">
 			<id val="epg" />
 			<!-- Menu / Settings / System / Extended System / EPG / Load Save-->
 			<item weight="110" level="2" entryID="setup_epgmulti"><setup id="epgmulti" /></item>
@@ -95,24 +102,25 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 		</menu>
 
 		<!-- Menu / Settings / Service Searching -->
-		<menu weight="15" level="0" text="Service searching" entryID="service_searching_selection">
+		<menu weight="25" level="0" text="Service searching" entryID="service_searching_selection">
 			<id val="scan" />
 			<item weight="0" level="0" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 			<item weight="5" level="0" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 			<item weight="10" level="0" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 		</menu>
-		<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
 		<!-- Menu / Settings / Common interface -->
-		<menu weight="20" level="1" text="Common interface" entryID="cam_setup" requires="CommonInterface">
+		<menu weight="30" level="1" text="Common interface" entryID="cam_setup" requires="CommonInterface">
 			<id val="cam" />
 			<item weight="0" level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
 			<item weight="5" level="1" text="Common interface PIN Setup" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
 			<item weight="5" level="1" text="CIHelper Setup" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 		</menu>
 
+		<item weight="35" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
+
 		<!-- Menu / Settings / System -->
-		<menu weight="25" level="0" text="System" entryID="system_selection">
+		<menu weight="40" level="0" text="System" entryID="system_selection">
 			<id val="system" />
 			<item weight="10" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 			<item weight="15" level="0" entryID="usage_setup"><setup id="usage" /></item>
@@ -130,8 +138,6 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 				</menu>
 
 				<item weight="5" level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item>
-				<item weight="10" level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
-				<item weight="15" level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 				<item weight="20" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item weight="25" level="1" text="Keyboard" entryID="keyboard"><setup id="keyboard" /></item>
 				<item weight="30" level="0" entryID="time_setup"><setup id="time"/></item>
