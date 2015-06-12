@@ -69,11 +69,10 @@ class EGCCcamEditAddLine(ConfigListScreen, Screen):
 
 		self.protocol.addNotifier(self.typeChange)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions", "VirtualKeyboardActions"], {
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CiSelectionActions"], {
 			"cancel": self.cancel,
 			"red": self.save,
 			"green": self.cancel,
-			"showVirtualKeyboard": self.KeyText,
 		}, prio=-2)
 
 		self["key_red"] = Label(_("Save"))

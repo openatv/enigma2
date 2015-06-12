@@ -121,11 +121,6 @@ class Setup(ConfigListScreen, Screen):
 			"menu": self.closeRecursive,
 		}, -2)
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"], {
-			"showVirtualKeyboard": self.KeyText,
-		}, -2)
-		self["VirtualKB"].setEnabled(False)
-
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.HideHelp)
