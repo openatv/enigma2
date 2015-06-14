@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
+from Components.Harddisk import harddiskmanager
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eServiceReference, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
@@ -107,6 +108,11 @@ class Standby2(Screen):
 			self.avswitch.setInput("AUX")
 		if (getBrandOEM() in ('fulan')):
 			open("/proc/stb/hdmi/output", "w").write("off")
+
+		if config.usage.hdd_standby_in_standby.value != -1: # HDD standby timer value (box in standby) / -1 = same as when box is active
+			for hdd in harddiskmanager.HDDList():
+				hdd[1].setIdleTime(int(config.usage.hdd_standby_in_standby.value))
+
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 
@@ -120,6 +126,8 @@ class Standby2(Screen):
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
+		for hdd in harddiskmanager.HDDList():
+			hdd[1].setIdleTime(int(config.usage.hdd_standby.value)) # HDD standby timer value (box active)
 
 	def __onFirstExecBegin(self):
 		global inStandby
