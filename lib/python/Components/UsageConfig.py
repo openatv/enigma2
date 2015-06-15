@@ -59,6 +59,7 @@ def InitUsageConfig():
 	config.usage.show_dvdplayer = ConfigYesNo(default = False)
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
+	config.usage.panicchannel = ConfigInteger(default = 1, limits=(1,5000) )
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 

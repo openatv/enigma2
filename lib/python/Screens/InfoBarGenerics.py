@@ -1080,7 +1080,7 @@ class InfoBarNumberZap:
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			elif len(self.servicelist.history) > 1:
+			elif len(self.servicelist.history) > 1 or config.usage.panicbutton.value:
 				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
 			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
@@ -1111,6 +1111,7 @@ class InfoBarNumberZap:
 				rootbouquet = eServiceReference(bqrootstr)
 				bouquet = eServiceReference(bqrootstr)
 				bouquetlist = serviceHandler.list(bouquet)
+					
 				if not bouquetlist is None:
 					while True:
 						bouquet = bouquetlist.getNext()
@@ -1121,7 +1122,7 @@ class InfoBarNumberZap:
 							if not servicelist is None:
 								serviceIterator = servicelist.getNext()
 								while serviceIterator.valid():
-									service, bouquet2 = self.searchNumber(1)
+									service, bouquet2 = self.searchNumber(config.usage.panicchannel.value)
 									if service == serviceIterator: break
 									serviceIterator = servicelist.getNext()
 								if serviceIterator.valid() and service == serviceIterator: break
