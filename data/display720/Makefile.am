@@ -1,4 +1,4 @@
-SUBDIRS = Default_with_Picon_Fullscreen
+SUBDIRS = Default_with_Analogue_Clock_Standby Default_with_Picon_Fullscreen
 
 installdir = $(pkgdatadir)/display/skin_default
 dist_install_DATA = *.png *.ttf
