@@ -57,7 +57,7 @@ def findPicon(serviceName):
 		global searchPaths
 		pngname = ""
 		for path in searchPaths:
-			if pathExists(path) and not path.startswith('/media/net'):
+			if pathExists(path) and not path.startswith('/media/net') and not path.startswith('/media/autofs'):
 				pngname = path + serviceName + ".png"
 				if pathExists(pngname):
 					lastPiconPath = path
