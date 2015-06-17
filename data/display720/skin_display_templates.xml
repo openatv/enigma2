@@ -40,7 +40,7 @@
 		</widget>
 	</screen>
 	<screen name="LCDInfoBarRemainingTime">
-		<widget source="session.Event_Now" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="green" halign="left" valign="center">
+		<widget source="session.Event_Now" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="blue" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
@@ -173,7 +173,7 @@
 		</widget>
 	</screen>
 	<screen name="LCDChannelSelectionRemainingTime">
-		<widget source="parent.ServiceEvent" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="green" halign="left" valign="center">
+		<widget source="parent.ServiceEvent" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="blue" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
@@ -205,7 +205,7 @@
 		</widget>
 	</screen>
 	<screen name="LCDEPGRemainingTime">
-		<widget source="parent.Event" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="green" halign="left" valign="center">
+		<widget source="parent.Event" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="blue" halign="left" valign="center">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
@@ -369,13 +369,13 @@
 		<panel name="LCDTime" />
 	</screen>
 	
-	<!-- MOVIE SCREEN-->
+	<!-- MOVIE PLAYER-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="720,576"> 
 		<widget source="session.CurrentService" render="Label" position="10,10" size="700,340" font="FdLcD;75" foregroundColor="yellow" halign="center" valign="center" zPosition="2">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel name="LCDInfoBarProgress" />
-		<widget source="session.CurrentService" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="green" halign="left" valign="center">
+		<widget source="session.CurrentService" render="Label" position="20,400" size="300,70" font="FdLcD;60" foregroundColor="blue" halign="left" valign="center">
 			<convert type="ServicePosition">Position,ShowHours</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="400,400" size="300,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
@@ -412,8 +412,8 @@
 	
 	<!-- ET PORTAL -->       
 	<screen name="EtPortalScreen_summary" position="0,0" size="720,576">
-		<eLabel text="EtPortal" position="15,20" foregroundColor="#e5b243" size="670,120" font="FdLcD;70" halign="center" valign="top" noWrap="1" />
-		<widget source="parent.label" render="Label" position="20,190" size="670,200" font="FdLcD;60" halign="center" valign="top" />
+		<eLabel text="EtPortal" position="15,20" foregroundColor="yellow" size="670,120" font="FdLcD;70" halign="center" valign="top" noWrap="1" />
+		<widget source="parent.label" render="Label" position="white" size="670,200" font="FdLcD;60" halign="center" valign="top" />
 		<panel name="LCDTime" />
 	</screen>
 
