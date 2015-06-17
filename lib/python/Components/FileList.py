@@ -80,8 +80,8 @@ class FileList(MenuList):
 		self.refreshMountpoints()
 		self.changeDir(directory)
 		self.l.setFont(0, gFont("Regular", 18))
-		self.l.setFont(1, gFont("Regular", 32))
-		self.l.setItemHeight(23)
+		self.l.setFont(1, gFont("Regular", 20))
+		self.l.setItemHeight(25)
 		self.serviceHandler = eServiceCenter.getInstance()
 
 	def refreshMountpoints(self):
@@ -316,9 +316,8 @@ class MultiFileSelectList(FileList):
 		FileList.__init__(self, directory, showMountpoints = showMountpoints, matchingPattern = matchingPattern, showDirectories = showDirectories, showFiles = showFiles,  useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
 		self.changeDir(directory)
 		self.l.setItemHeight(25)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 32))
-		self.onSelectionChanged = [ ]
+		self.l.setFont(0, gFont("Regular", 18))
+		self.l.setFont(1, gFont("Regular", 20))
 
 	def selectionChanged(self):
 		for f in self.onSelectionChanged:
