@@ -357,6 +357,7 @@ data/display220/Makefile
 data/display400/Makefile
 data/display720/Makefile
 data/display720/Default_with_Analogue_Clock_Standby/Makefile
+data/display720/Default_with_Picon_and_Analogue_Clock_Standby/Makefile
 data/display720/Default_with_Picon_Fullscreen/Makefile
 data/display720/Default_with_Picon_Fullscreen_and_Analogue_Clock_Standby/Makefile
 data/vfd128/Makefile
