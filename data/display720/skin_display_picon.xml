@@ -36,8 +36,15 @@
 	<!-- CHANNEL SELECTION-->
 	<screen name="ChannelSelection_summary" position="0,0" size="720,576"> 
 		<panel name="LCDPiconChannelSelectionProgramName" />
+		<panel name="LCDPiconChannelSelectionProgress" />
+		<panel name="LCDPiconChannelSelectionRemainingTime" />
+		<panel name="LCDPiconChannelSelectionStartEndTime" />
+		<panel name="LCDPiconWeather" />
 		<panel name="LCDChannelSelectionPicon" />
 		<panel name="LCDPiconStatusIcons" />
+		<panel name="LCDRecordIcon" />
+		<panel name="LCDTunerInfo" />
+		<panel name="LCDTime" />
 	</screen>
 	<screen name="ChannelSelectionRadio_summary" position="0,0" size="720,576">
 		<widget source="parent.RdsDecoder" render="Label" position="10,200" size="700,150" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="center" zPosition="2">
@@ -48,8 +55,15 @@
 	<!-- EPG -->
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="720,576">
 		<panel name="LCDPiconEPGProgramName" />
+		<panel name="LCDPiconEPGProgress" />
+		<panel name="LCDPiconEPGRemainingTime" />
+		<panel name="LCDPiconEPGStartEndTime" />
+		<panel name="LCDPiconWeather" />
 		<panel name="LCDEPGPicon" />
 		<panel name="LCDPiconStatusIcons" />
+		<panel name="LCDRecordIcon" />
+		<panel name="LCDTunerInfo" />
+		<panel name="LCDTime" />
 	</screen>
 	<screen name="GraphicalEPG_summary" position="0,0" size="720,576">
 		<panel name="GraphicalEPGPIG_summary" />
@@ -64,8 +78,15 @@
 	<!-- INFOBAR -->
 	<screen name="InfoBarSummary" position="0,0" size="720,576"> 
 		<panel name="LCDPiconInfoBarProgramName" />
+		<panel name="LCDPiconInfoBarProgress" />
+		<panel name="LCDPiconInfoBarRemainingTime" />
+		<panel name="LCDPiconInfoBarStartEndTime" />
+		<panel name="LCDPiconWeather" />
 		<panel name="LCDPicon" />
 		<panel name="LCDPiconStatusIcons" />
+		<panel name="LCDRecordIcon" />
+		<panel name="LCDTunerInfo" />
+		<panel name="LCDTime" />
 	</screen>
 	
 	<!-- STANDBY -->
