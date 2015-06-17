@@ -204,10 +204,10 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices=l_moviesort)
 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
 		configList = [
-			getConfigListEntry(_("Use trash can in movie list"), config.usage.movielist_trashcan, _("When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.")),
-			getConfigListEntry(_("Remove items from trash can after (days)"), config.usage.movielist_trashcan_days, _("Configure the number of days after which items are automatically removed from the trash can.")),
+			getConfigListEntry(_("Use trash in movie list"), config.usage.movielist_trashcan, _("When enabled, deleted recordings are moved to trash, instead of being deleted immediately.")),
+			getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Configure the number of days after which items are automatically removed from trash.")),
 			getConfigListEntry(_("Clean network trash cans"), config.usage.movielist_trashcan_network_clean, _("When enabled, network trash cans are probed for cleaning.")),
-			getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Minimum amount of disk space to be available for recordings. When the amount of space drops below this value, items will be deleted from the trash can.")),
+			getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Minimum amount of disk space to be available for recordings. When the amount of space drops below this value, items will be deleted from trash.")),
 			getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Configure on which devices the background delete option should be used.")),
 			getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.")),
 			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
@@ -1869,7 +1869,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not pathtest:
 			return
 		if item and isTrashFolder(item[0]):
-			# Red button to empty trashcan...
+			# Red button to empty trash...
 			self.purgeAll()
 			return
 		if current.flags & eServiceReference.mustDescent:
@@ -1877,13 +1877,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			subdirs = 0
 			if '.Trash' not in cur_path and config.usage.movielist_trashcan.value:
 				if isFolder(item):
-					are_you_sure = _("Do you really want to move to trashcan ?")
+					are_you_sure = _("Do you really want to move this to trash?")
 				else:
 					args = True
 				folder_filename = os.path.split(os.path.split(name)[0])[1]
 				if args:
 					try:
-						# Move the files to the trash can in a way that their CTIME is
+						# Move the files to trash in a way that their CTIME is
 						# set to "now". A simple move would not correctly update the
 						# ctime, and hence trigger a very early purge.
 						trash = Tools.Trashcan.createTrashFolder(cur_path)
@@ -1895,13 +1895,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					except Exception, e:
 						print "[MovieSelection] Weird error moving to trash", e
 						# Failed to create trash or move files.
-						msg = _("Cannot move to trash can") + "\n"
+						msg = _("Can not move to trash") + "\n"
 						if trash is None:
-							msg += _("Trash can missing")
+							msg += _("Trash is missing")
 						else:
 							msg += str(e)
 						msg += "\n"
-						are_you_sure = _("Do you really want to delete %s ?") % folder_filename
+						are_you_sure = _("Do you really want to delete %s?") % folder_filename
 						mbox = self.session.openWithCallback(self.deleteDirConfirmed, MessageBox, msg + are_you_sure)
 						mbox.setTitle(self.getTitle())
 						return
@@ -1920,9 +1920,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.delete(True)
 			else:
 				if '.Trash' in cur_path:
-					are_you_sure = _("Do you really want to permanently remove from trash can ?")
+					are_you_sure = _("Do you really want to permanently remove everything from trash?")
 				else:
-					are_you_sure = _("Do you really want to delete ?")
+					are_you_sure = _("Do you really want to delete?")
 				if args:
 					self.deleteDirConfirmed(True)
 					return
@@ -1977,13 +1977,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.showActionFeedback(_("Deleted") + " " + name)
 					return
 				else:
-					msg = _("Cannot move to trash can") + "\n"
-					are_you_sure = _("Do you really want to delete %s ?") % name
+					msg = _("Can not move to trash") + "\n"
+					are_you_sure = _("Do you really want to delete %s?") % name
 			else:
 				if '.Trash' in cur_path:
-					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
+					are_you_sure = _("Do you really want to permamently remove '%s' from trash?") % name
 				else:
-					are_you_sure = _("Do you really want to delete %s ?") % name
+					are_you_sure = _("Do you really want to delete %s?") % name
 				msg = ''
 			mbox = self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 			mbox.setTitle(self.getTitle())
@@ -2037,7 +2037,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			print "[MovieSelection] Weird error moving to trash", e
 			# Failed to create trash or move files.
-			msg = _("Cannot delete file") + "\n" + str(e) + "\n"
+			msg = _("Can not delete file") + "\n" + str(e) + "\n"
 			mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
@@ -2050,7 +2050,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			msg = "\n" + _("Recording(s) are in progress or coming up soon!")
 		else:
 			msg = ""
-		mbox = self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
+		mbox = self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash?") + msg)
 		mbox.setTitle(self.getTitle())
 
 	def purgeConfirmed(self, confirmed):
