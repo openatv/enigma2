@@ -325,7 +325,7 @@ void bsodFatal(const char *component)
 
 	/*
 	 * When 'component' is NULL, we are called because of a python exception.
-	 * In that case, we'd prefer to to a clean shutdown of the C++ objects,
+	 * In that case, we'd prefer to do a clean shutdown of the C++ objects,
 	 * and this should be safe, because the crash did not occur in the
 	 * C++ part.
 	 * However, when we got here for some other reason, a segfault probably,
@@ -357,11 +357,12 @@ void oops(const mcontext_t &context)
  */
 void print_backtrace()
 {
-	void *array[15];
+	const int BACKTRACE_MAX_SIZE = 32;
+	void *array[BACKTRACE_MAX_SIZE];
 	size_t size;
-	int cnt;
+	size_t cnt;
 
-	size = backtrace(array, 15);
+	size = backtrace(array, BACKTRACE_MAX_SIZE);
 	eDebug("Backtrace:");
 	for (cnt = 1; cnt < size; ++cnt)
 	{
@@ -370,7 +371,7 @@ void print_backtrace()
 		if (dladdr(array[cnt], &info)
 			&& info.dli_fname != NULL && info.dli_fname[0] != '\0')
 		{
-			eDebug("%s(%s) [0x%X]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", (unsigned long int) array[cnt]);
+			eDebug("%s(%s) [%p]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", array[cnt]);
 		}
 	}
 }
