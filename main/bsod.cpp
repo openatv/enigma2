@@ -125,6 +125,17 @@ void bsodFatal(const char *component)
 
 	std::string crash_emailaddr = CRASH_EMAILADDR;
 	std::string crash_component = "enigma2";
+	std::string boxtype = "";
+
+	if(access("/proc/stb/info/boxtype", F_OK) != -1)
+	{
+		std::ifstream in("/proc/stb/info/boxtype");
+		if (in.good())
+		{
+			std::getline(in, boxtype);
+			in.close();
+		}
+	}
 
 	if (component)
 		crash_component = component;
@@ -200,6 +211,7 @@ void bsodFatal(const char *component)
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
 		xml.string("compiledate", __DATE__);
+		xml.string("component", crash_component);
 		xml.string("contactemail", crash_emailaddr);
 		xml.comment("Please email this crashlog to above address");
 
@@ -229,39 +241,39 @@ void bsodFatal(const char *component)
 		{
 			xml.open("software");
 			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
-			}
-			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
+			if (access("/proc/stb/info/vumodel", F_OK) != -1) {
 				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
 			}
-			else if (access("/proc/stb/info/model", F_OK) != -1) {
+			if (access("/proc/stb/info/model", F_OK) != -1) {
 				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
 			}
-			else if (access("/proc/stb/info/azmodel", F_OK) != -1) {
+			if (access("/proc/stb/info/azmodel", F_OK) != -1) {
 				xml.cDataFromCmd("azboxboxsoftware", "opkg list-installed 'az*'");
 			}
-			else if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
+			if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
 				xml.cDataFromCmd("gigabluesoftware", "opkg list-installed 'gb*'");
 			}
-			else if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
+			if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
 				xml.cDataFromCmd("technomatesoftware", "opkg list-installed 'tm*'");
 			}
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			if (boxtype.substr(0,2) == "et") {
+				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
+			}
+			if (boxtype.substr(0,3) == "ini") {
 				xml.cDataFromCmd("inisoftware", "opkg list-installed 'ini*'");
 			}
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			if (boxtype.substr(0,2) == "xp") {
 				xml.cDataFromCmd("maxdigitalsoftware", "opkg list-installed 'xp*'");
-			}			
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			}
+			if (boxtype.substr(0,4) == "odin") {
 				xml.cDataFromCmd("odinsoftware", "opkg list-installed 'odin*'");
-			}		
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			}
+			if (boxtype.substr(0,4) == "ebox") {
 				xml.cDataFromCmd("eboxsoftware", "opkg list-installed 'ebox*'");
-			}	
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			}
+			if (boxtype.substr(0,4) == "ixus") {
 				xml.cDataFromCmd("medialinksoftware", "opkg list-installed 'ixuss*'");
-			}				
+			}
 			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
 			xml.close();
 		}
