@@ -667,7 +667,7 @@ def runScreenTest():
 			wptime = nowTime + 60  # so switch back on in 60 seconds
 		else:
 			if config.workaround.deeprecord.value:
-				wptime = startTime[0] - 240
+				wptime = startTime[0] - 300 # workaround is 5 min (config help text)
 			elif boxtype.startswith("gb"):
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
@@ -690,7 +690,7 @@ def runScreenTest():
 			wptime = nowTime + 60  # so switch back on in 60 seconds
 		else:
 			if config.workaround.deeprecord.value:
-				wptime = startTime[0] - 240
+				wptime = startTime[0] - 300 # workaround is 5 min (config help text)
 			elif boxtype.startswith("gb"):
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
