@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-06-17 20:51+0100\n"
+"PO-Revision-Date: 2015-06-19 17:51+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -2269,8 +2269,8 @@ msgid "Current Status:"
 msgstr "Status:"
 
 #
-msgid "Current Transponder"
-msgstr "Transponder"
+msgid "Current transponder"
+msgstr "Aktueller Transponder"
 
 msgid "Current device: "
 msgstr "Aktuelles Gerät: "
@@ -7896,6 +7896,18 @@ msgstr "Terrestrisch"
 #
 msgid "Terrestrial provider"
 msgstr "Region"
+
+msgid "remove terrestrial services"
+msgstr "Terrestrische Dienste entfernen"
+
+msgid "Are you sure to remove all terrestrial services?"
+msgstr "Sind Sie sicher, dass alle Terrestrischen Dienste entfernt werden sollen?"
+
+msgid "remove cable services"
+msgstr "Kabel-Dienste entfernen"
+
+msgid "Are you sure to remove all cable services?"
+msgstr "Sind Sie sicher, dass alle Kabel-Dienste entfernt werden sollen?"
 
 #
 msgid "Test DiSEqC settings"
@@ -13650,11 +13662,17 @@ msgid "Remove items from trash can after (days)"
 msgstr "Gelöschte Aufnahmen nach (Tagen) aus dem Papierkorb entfernen"
 
 #
-msgid "Clean network trash cans"
+msgid "Clean network trash can's"
 msgstr "Lösche Netzwerk-Papierkörbe"
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trash can's are probed for cleaning."
 msgstr "Wenn Aktiviert, wird der  Netzwerk-Papierkorb gelöscht."
+
+msgid "Recordings abort PIP"
+msgstr "Bild-in-Bild bei Aufnahmen beenden"
+
+msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
+msgstr "Wenn aktiviert, wird Bild-in-Bild bei Aufnahmen beendet, wenn keine freien Tuner vorhanden sind."
 
 msgid "Use extended List"
 msgstr "Erweiterte Liste nutzen"
