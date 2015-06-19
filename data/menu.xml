@@ -175,16 +175,16 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 				<item weight="0" level="0" text="Device Setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 				<item weight="5" level="1" text="Mounts Setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
 				<item weight="10" level="2" text="AFP Setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
-				<item weight="15" level="2" text="FTP Setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
-				<item weight="20" level="2" text="Inadyn Setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
-				<item weight="25" level="2" text="MiniDLNA Setup" entryID="minidlna_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
-				<item weight="30" level="2" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
-				<item weight="35" level="2" text="OpenVPN Setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-				<item weight="40" level="2" text="SABnzbd Setup" entryID="netsabnzbd_setup"><screen module="NetworkSetup" screen="NetworkSABnzbd"/></item>
-				<item weight="45" level="2" text="Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
-				<item weight="50" level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
-				<item weight="55" level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-				<item weight="60" level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
+				<item weight="15" level="2" text="CIFS/Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
+				<item weight="20" level="2" text="FTP Setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
+				<item weight="25" level="2" text="Inadyn Setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
+				<item weight="30" level="2" text="MiniDLNA Setup" entryID="minidlna_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
+				<item weight="35" level="2" text="NFS Setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
+				<item weight="40" level="2" text="OpenVPN Setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
+				<item weight="50" level="2" text="SABnzbd Setup" entryID="netsabnzbd_setup"><screen module="NetworkSetup" screen="NetworkSABnzbd"/></item>
+				<item weight="55" level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
+				<item weight="60" level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
+				<item weight="99" level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
 			</menu>
 			<item weight="55" level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 				<code>
