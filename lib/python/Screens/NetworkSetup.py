@@ -2342,10 +2342,9 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Samba Setup"))
 		self['key_red'] = Label(_("Exit"))
 		self['key_green'] = Label(_("Save"))
-		self['actions'] = ActionMap(['SetupActions', 'VirtualKeyboardActions'], {
+		self['actions'] = ActionMap(['SetupActions'], {
 			'save': self.saveSmb,
 			'cancel': self.close,
-			'showVirtualKeyboard': self.KeyText
 		})
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
@@ -2700,10 +2699,9 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Inadyn Setup"))
 		self['key_red'] = Label(_("Exit"))
 		self['key_green'] = Label(_("Save"))
-		self['actions'] = ActionMap(['SetupActions', 'VirtualKeyboardActions'], {
+		self['actions'] = ActionMap(['SetupActions'], {
 			'cancel': self.close,
 			'save': self.saveIna,
-			'showVirtualKeyboard': self.KeyText
 		})
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
@@ -3075,11 +3073,10 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("uShare Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {
 			'red': self.saveuShare,
 			'green': self.selectfolders,
 			'back': self.close,
-			'showVirtualKeyboard': self.KeyText
 		})
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
@@ -3555,11 +3552,10 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.skinName = "NetworkuShareSetup"
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {
 			'red': self.saveMinidlna,
 			'green': self.selectfolders,
 			'back': self.close,
-			'showVirtualKeyboard': self.KeyText
 		})
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()

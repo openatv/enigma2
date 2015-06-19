@@ -576,14 +576,16 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 					eDebug("[EPGC] remove channel %p", chan);
 					if (it->second->state >= 0)
 						messages.send(Message(Message::leaveChannel, chan));
-					pthread_mutex_lock(&it->second->channel_active);
-					singleLock s(channel_map_lock);
-					m_knownChannels.erase(it);
-					pthread_mutex_unlock(&it->second->channel_active);
-					delete it->second;
-					it->second=0;
+					channel_data* cd = it->second;
+					pthread_mutex_lock(&cd->channel_active);
+					{
+						singleLock s(channel_map_lock);
+						m_knownChannels.erase(it);
+					}
+					pthread_mutex_unlock(&cd->channel_active);
+					delete cd;
 					// -> gotMessage -> abortEPG
-					break;
+					return;
 				}
 				default: // ignore all other events
 					return;
@@ -3515,10 +3517,12 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const ui
 		eventMap::iterator evIt(evMap.find(it->second.second));
 		if (evIt != evMap.end())
 		{
+			// time_event_map can have other timestamp -> get timestamp from eventData
+			time_t ev_time = getEventData(evIt)->getStartTime();
 			delete getEventData(evIt);
 			evMap.erase(evIt);
+			tmMap.erase(ev_time);
 		}
-		tmMap.erase(it->second.first);
 	}
 	time_event_map.clear();
 

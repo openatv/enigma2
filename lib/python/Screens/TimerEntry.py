@@ -61,11 +61,6 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			"size-": (self.decrementEnd, _("Decrement end time"))
 		}, -2)
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"], {
-			"showVirtualKeyboard": self.KeyText,
-		}, -2)
-		self["VirtualKB"].setEnabled(False)
-
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session)
