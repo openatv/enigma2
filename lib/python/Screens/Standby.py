@@ -15,7 +15,7 @@ inStandby = None
 
 class Standby2(Screen):
 	def Power(self):
-		print "leave standby"
+		print "[Standby] leave standby"
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
 		#restart last played service
@@ -27,7 +27,7 @@ class Standby2(Screen):
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
 			self.wasMuted = 1
-			print "mute already active"
+			print "[Standby] mute already active"
 		else:
 			self.wasMuted = 0
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
@@ -41,7 +41,7 @@ class Standby2(Screen):
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
 
-		print "enter standby"
+		print "[Standby] enter standby"
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{

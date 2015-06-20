@@ -35,11 +35,13 @@
 	
 	<!-- CHANNEL SELECTION-->
 	<screen name="ChannelSelection_summary" position="0,0" size="720,576"> 
-		<panel name="LCDChannelSelectionChannelName" />
-		<panel name="LCDChannelSelectionProgramName" />
-		<panel name="LCDChannelSelectionProgress" />
-		<panel name="LCDChannelSelectionRemainingTime" />
-		<panel name="LCDChannelSelectionStartEndTime" />
+		<panel name="LCDPiconChannelSelectionProgramName" />
+		<panel name="LCDPiconChannelSelectionProgress" />
+		<panel name="LCDPiconChannelSelectionRemainingTime" />
+		<panel name="LCDPiconChannelSelectionStartEndTime" />
+		<panel name="LCDPiconWeather" />
+		<panel name="LCDChannelSelectionPicon" />
+		<panel name="LCDPiconStatusIcons" />
 		<panel name="LCDRecordIcon" />
 		<panel name="LCDTunerInfo" />
 		<panel name="LCDTime" />
@@ -52,11 +54,13 @@
 	
 	<!-- EPG -->
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="720,576">
-		<panel name="LCDEPGChannelName" />
-		<panel name="LCDEPGProgramName" />
-		<panel name="LCDEPGProgress" />
-		<panel name="LCDEPGRemainingTime" />
-		<panel name="LCDEPGStartEndTime" />
+		<panel name="LCDPiconEPGProgramName" />
+		<panel name="LCDPiconEPGProgress" />
+		<panel name="LCDPiconEPGRemainingTime" />
+		<panel name="LCDPiconEPGStartEndTime" />
+		<panel name="LCDPiconWeather" />
+		<panel name="LCDEPGPicon" />
+		<panel name="LCDPiconStatusIcons" />
 		<panel name="LCDRecordIcon" />
 		<panel name="LCDTunerInfo" />
 		<panel name="LCDTime" />
@@ -73,11 +77,13 @@
 	
 	<!-- INFOBAR -->
 	<screen name="InfoBarSummary" position="0,0" size="720,576"> 
-		<panel name="LCDInfoBarChannelName" />
-		<panel name="LCDInfoBarProgramName" />
-		<panel name="LCDInfoBarProgress" />
-		<panel name="LCDInfoBarRemainingTime" />
-		<panel name="LCDInfoBarStartEndTime" />
+		<panel name="LCDPiconInfoBarProgramName" />
+		<panel name="LCDPiconInfoBarProgress" />
+		<panel name="LCDPiconInfoBarRemainingTime" />
+		<panel name="LCDPiconInfoBarStartEndTime" />
+		<panel name="LCDPiconWeather" />
+		<panel name="LCDPicon" />
+		<panel name="LCDPiconStatusIcons" />
 		<panel name="LCDRecordIcon" />
 		<panel name="LCDTunerInfo" />
 		<panel name="LCDTime" />
@@ -85,12 +91,7 @@
 	
 	<!-- STANDBY -->
 	<screen name="StandbySummary" position="0,0" size="720,576"> 
-		<widget source="global.CurrentTime" render="Label" position="20,107" size="670,180" font="FdLcD;100" foregroundColor="yellow" halign="center" valign="center" zPosition="10">
-			<convert type="ClockToText">Format:%H:%M:%S</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" position="20,294" size="670,75" font="FdLcD;70" foregroundColor="white" halign="center" zPosition="10">
-			<convert type="ClockToText">Format:%a  %d.%m.%Y</convert>
-		</widget>
+		<panel name="AnalogueClock" />
 	</screen>
 		
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>

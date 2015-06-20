@@ -70,8 +70,7 @@ class LogManagerPoller:
 
 	def TrashTimerJob(self):
 		print '[LogManager] Trash Poll Started'
-		self.JobTrash()
-		# Components.Task.job_manager.AddJob(self.createTrashJob())
+		Components.Task.job_manager.AddJob(self.createTrashJob())
 
 	def createTrimJob(self):
 		job = Components.Task.Job(_("LogManager"))
