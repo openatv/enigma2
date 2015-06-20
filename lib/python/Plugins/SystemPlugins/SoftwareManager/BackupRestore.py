@@ -31,6 +31,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	'/etc/minidlna.conf',
 	'/etc/vsftpd.conf',
 	'/etc/dropbear',
+	'/etc/ssh',
 ])
 
 def getBackupPath():

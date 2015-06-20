@@ -537,10 +537,11 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 					break;
 				case iDVBChannel::state_release:
 					eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
+					it->second.m_prevChannelState = state;
 					m_knownChannels.erase(it);
 					if (m_knownChannels.empty())
 						m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
-					break;
+					return;
 				default: // ignore all other events
 					return;
 			}

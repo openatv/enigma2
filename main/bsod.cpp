@@ -1,6 +1,8 @@
 #include <csignal>
 #include <fstream>
 #include <sstream>
+#include <execinfo.h>
+#include <dlfcn.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h>
@@ -123,6 +125,17 @@ void bsodFatal(const char *component)
 
 	std::string crash_emailaddr = CRASH_EMAILADDR;
 	std::string crash_component = "enigma2";
+	std::string boxtype = "";
+
+	if(access("/proc/stb/info/boxtype", F_OK) != -1)
+	{
+		std::ifstream in("/proc/stb/info/boxtype");
+		if (in.good())
+		{
+			std::getline(in, boxtype);
+			in.close();
+		}
+	}
 
 	if (component)
 		crash_component = component;
@@ -198,6 +211,7 @@ void bsodFatal(const char *component)
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);
 		xml.string("compiledate", __DATE__);
+		xml.string("component", crash_component);
 		xml.string("contactemail", crash_emailaddr);
 		xml.comment("Please email this crashlog to above address");
 
@@ -227,39 +241,39 @@ void bsodFatal(const char *component)
 		{
 			xml.open("software");
 			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
-			}
-			else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
+			if (access("/proc/stb/info/vumodel", F_OK) != -1) {
 				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
 			}
-			else if (access("/proc/stb/info/model", F_OK) != -1) {
+			if (access("/proc/stb/info/model", F_OK) != -1) {
 				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
 			}
-			else if (access("/proc/stb/info/azmodel", F_OK) != -1) {
+			if (access("/proc/stb/info/azmodel", F_OK) != -1) {
 				xml.cDataFromCmd("azboxboxsoftware", "opkg list-installed 'az*'");
 			}
-			else if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
+			if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
 				xml.cDataFromCmd("gigabluesoftware", "opkg list-installed 'gb*'");
 			}
-			else if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
+			if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
 				xml.cDataFromCmd("technomatesoftware", "opkg list-installed 'tm*'");
 			}
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			if (boxtype.substr(0,2) == "et") {
+				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
+			}
+			if (boxtype.substr(0,3) == "ini") {
 				xml.cDataFromCmd("inisoftware", "opkg list-installed 'ini*'");
 			}
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			if (boxtype.substr(0,2) == "xp") {
 				xml.cDataFromCmd("maxdigitalsoftware", "opkg list-installed 'xp*'");
-			}			
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			}
+			if (boxtype.substr(0,4) == "odin") {
 				xml.cDataFromCmd("odinsoftware", "opkg list-installed 'odin*'");
-			}		
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			}
+			if (boxtype.substr(0,4) == "ebox") {
 				xml.cDataFromCmd("eboxsoftware", "opkg list-installed 'ebox*'");
-			}	
-			else if (access("/proc/stb/info/boxtype", F_OK) != -1) {
+			}
+			if (boxtype.substr(0,4) == "ixus") {
 				xml.cDataFromCmd("medialinksoftware", "opkg list-installed 'ixuss*'");
-			}				
+			}
 			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
 			xml.close();
 		}
@@ -323,7 +337,7 @@ void bsodFatal(const char *component)
 
 	/*
 	 * When 'component' is NULL, we are called because of a python exception.
-	 * In that case, we'd prefer to to a clean shutdown of the C++ objects,
+	 * In that case, we'd prefer to do a clean shutdown of the C++ objects,
 	 * and this should be safe, because the crash did not occur in the
 	 * C++ part.
 	 * However, when we got here for some other reason, a segfault probably,
@@ -348,12 +362,40 @@ void oops(const mcontext_t &context)
 }
 #endif
 
+/* Use own backtrace print procedure because backtrace_symbols_fd
+ * only writes to files. backtrace_symbols cannot be used because
+ * it's not async-signal-safe and so must not be used in signal
+ * handlers.
+ */
+void print_backtrace()
+{
+	const int BACKTRACE_MAX_SIZE = 32;
+	void *array[BACKTRACE_MAX_SIZE];
+	size_t size;
+	size_t cnt;
+
+	size = backtrace(array, BACKTRACE_MAX_SIZE);
+	eDebug("Backtrace:");
+	for (cnt = 1; cnt < size; ++cnt)
+	{
+		Dl_info info;
+
+		if (dladdr(array[cnt], &info)
+			&& info.dli_fname != NULL && info.dli_fname[0] != '\0')
+		{
+			eDebug("%s(%s) [%p]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", array[cnt]);
+		}
+	}
+}
+
+
 void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 {
 #ifndef NO_OOPS_SUPPORT
 	ucontext_t *uc = (ucontext_t*)ctx;
 	oops(uc->uc_mcontext);
 #endif
+	print_backtrace();
 	eDebug("-------");
 	bsodFatal("enigma2, signal");
 }
