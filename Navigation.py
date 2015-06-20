@@ -7,7 +7,7 @@ from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
-from time import time
+from time import time, ctime
 import RecordTimer
 import PowerTimer
 import Screens.Standby
@@ -86,19 +86,18 @@ class Navigation:
 				self.timesynctimer.callback.append(self.TimeSynctimer)
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] [work-around] wait for time sync"
-				
-			elif abs(timediffRT) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
+			elif abs(timediffRT) <= 600: # if there is a recording sheduled in the next 10 mins, set the wasTimerWakeup flag (wakeup time is 5 min before timer starts, some boxes starts but earlier than is set)
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
 				file = f.write(str(wasTimerWakeup))
 				f.close()
-			elif abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY): # if there is a power timer in the next 5 mins, set the wasTimerWakeup flag
+			elif abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY): # if there is a power timer in the next 5 mins, set the wasTimerWakeup flag
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
 				file = f.write(str(wasTimerWakeup))
 				f.close()
 
-		print"[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup
+		print"[NAVIGATION] wasTimerWakeup = %s, current time is %s" % (wasTimerWakeup, ctime(now))
 
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
@@ -108,9 +107,9 @@ class Navigation:
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] wait for time sync"
 
-			elif self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 360:
+			elif self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 600:
 				self.__wasRecTimerWakeup = True
-				print 'RECTIMER: wakeup to standby detected.'
+				print 'RECTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextRT)
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
 				f.close()
@@ -119,17 +118,17 @@ class Navigation:
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
 
-			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
+			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
 				self.__wasPowerTimerWakeup = True
-				print 'POWERTIMER: wakeup detected.'
+				print 'POWERTIMER: wakeup detected. Timer starts at %s' % ctime(nextPT[0][0])
 				if abs(timediffPT) > 75: #more than 1 minutes to wake up from powertimer - go in standby
 					self.standbytimer = eTimer()
 					self.standbytimer.callback.append(self.gotostandby)
 					self.standbytimer.start(15000, True)
 
-			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
+			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
 				self.__wasPowerTimerWakeup = True
-				print 'POWERTIMER: wakeup to standby detected.'
+				print 'POWERTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextPT[0][0])
 				f = open("/tmp/was_powertimer_wakeup", "w")
 				f.write('1')
 				f.close()
@@ -154,9 +153,9 @@ class Navigation:
 		timediffRT = nextRT - now
 		timediffPT = nextPT[0][0] - now
 		self.syncCount += 1
-		if self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 360:
+		if self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 600:
 			self.__wasRecTimerWakeup = True
-			print 'RECTIMER: wakeup to standby detected.'
+			print 'RECTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextRT)
 			print"[NAVIGATION] getNextRecordingTime= %s" % nextRT
 			print"[NAVIGATION] current Time=%s" % now
 			print"[NAVIGATION] timediff=%s" % abs(timediffRT)
@@ -164,16 +163,14 @@ class Navigation:
 			f.write('1')
 			f.close()
 			self.gotostandby()
-		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
+		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
 			self.__wasPowerTimerWakeup = True
-			print 'POWERTIMER: wakeup detected.'
-			if abs(timediffPT) > 75: #more than 1 minutes to wake up from powertimer - go in standby
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
-		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 360 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
+			print 'POWERTIMER: wakeup detected. Timer starts at %s' % ctime(nextPT[0][0])
+			if abs(timediffPT) > 60: #more than 1 minutes to wake up from powertimer - go in standby
+				self.gotostandby()
+		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
 			self.__wasPowerTimerWakeup = True
-			print 'POWERTIMER: wakeup to standby detected.'
+			print 'POWERTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextPT[0][0])
 			print"[NAVIGATION] getNextPowerManagerTime= %s" % nextPT[0][0]
 			print"[NAVIGATION] current Time=%s" % now
 			print"[NAVIGATION] timediff=%s" % abs(timediffPT)
