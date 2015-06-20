@@ -106,6 +106,7 @@ def InitUsageConfig():
 		h = i / 3600
 		choicelist.append(("%d" % i, ngettext("%d hour", "%d hours", h) % h))
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [("0", _("No standby"))] + choicelist)
+	config.usage.hdd_standby_in_standby = ConfigSelection(default = "-1", choices = [("-1", _("Same as in active")), ("0", _("No standby"))] + choicelist)
 	config.usage.hdd_timer = ConfigYesNo(default = False)	
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
