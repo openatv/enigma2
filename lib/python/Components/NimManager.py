@@ -1189,6 +1189,12 @@ def InitNimManager(nimmgr):
 		"circular_lnb": _("Circular LNB"),
 		"user_defined": _("User defined")}
 
+	lnb_choices_USALS = {
+		"universal_lnb": _("Universal LNB"),
+		"c_band": _("C-Band"),
+		"circular_lnb": _("Circular LNB"),
+		"user_defined": _("User defined")}
+
 	lnb_choices_default = "universal_lnb"
 
 	unicablelnbproducts = {}
@@ -1533,7 +1539,10 @@ def InitNimManager(nimmgr):
 			section.diseqcRepeats = ConfigSelection(advanced_lnb_diseqc_repeat_choices, "none")
 			section.prio = ConfigSelection(prio_list, "-1")
 			section.unicable = ConfigNothing()
-			tmp = ConfigSelection(lnb_choices, lnb_choices_default)
+			if lnb > 64:
+				tmp = ConfigSelection(lnb_choices_USALS, lnb_choices_default)
+			else:
+				tmp = ConfigSelection(lnb_choices, lnb_choices_default)
 			tmp.slot_id = x
 			tmp.lnb_id = lnb
 			tmp.addNotifier(configLOFChanged, initial_call = False)
