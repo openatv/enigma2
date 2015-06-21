@@ -2765,7 +2765,8 @@ class HistoryZapSelector(Screen):
 			png = ""
 			picon = getPiconName(str(ServiceReference(x[1])))
 			if picon != "":
-				png = loadPNG(picon)
+				self.instance.setScale(1)
+				png = self.instance.loadPNG(picon)
 			if self.invertItems:
 				self.list.insert(0, (x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png))
 			else:
