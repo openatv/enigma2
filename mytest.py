@@ -659,19 +659,25 @@ def runScreenTest():
 					(session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
 		if x[0] != -1
 	]
+
+	# individual wakeup time offset
+	if config.workaround.wakeuptimeoffset.value == "standard":
+		if boxtype.startswith("gb"):
+			wpoffset = -120 # Gigaboxes already starts 2 min. before wakeup time
+		else:
+			wpoffset = 0
+	else:
+		wpoffset = int(config.workaround.wakeuptimeoffset.value)
+
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
 		startTime = wakeupList[0]
-		if (startTime[0] - nowTime) < 300: # no time to switch box back on
-			wptime = nowTime + 60  # so switch back on in 60 seconds
-		else:
-			if config.workaround.deeprecord.value:
-				wptime = startTime[0] - 300 # workaround is 5 min (config help text)
-			elif boxtype.startswith("gb"):
-				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
-			else:
-				wptime = startTime[0] - 180
+		# wakeup time is 5 min before timer starts + offset
+		wptime = startTime[0] - 300 - wpoffset
+		if (wptime - nowTime) < 60: # no time to switch box back on
+			wptime = int(nowTime) + 60  # so switch back on in 60 seconds
+
 #		if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
@@ -682,19 +688,14 @@ def runScreenTest():
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
 
-
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
 		startTime = wakeupList[0]
-		if (startTime[0] - nowTime) < 300: # no time to switch box back on
-			wptime = nowTime + 60  # so switch back on in 60 seconds
-		else:
-			if config.workaround.deeprecord.value:
-				wptime = startTime[0] - 300 # workaround is 5 min (config help text)
-			elif boxtype.startswith("gb"):
-				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
-			else:
-				wptime = startTime[0] - 180
+		# wakeup time is 5 min before timer starts + offset
+		wptime = startTime[0] - 300 - wpoffset
+		if (wptime - nowTime) < 60: # no time to switch box back on
+			wptime = int(nowTime) + 60  # so switch back on in 60 seconds
+
 #		if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
