@@ -22,7 +22,6 @@ RSsave = False
 RBsave = False
 aeDSsave = False
 wasTimerWakeup = False
-netbytes = 0
 #+++
 debug = False
 #+++
@@ -47,7 +46,7 @@ debug = False
 def resetTimerWakeup():
 	global wasTimerWakeup
 	if os.path.exists("/tmp/was_powertimer_wakeup"):
-		os.remove("/tmp/was_powertimer_wakeup")	
+		os.remove("/tmp/was_powertimer_wakeup")
 	wasTimerWakeup = False
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
@@ -108,6 +107,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.autosleepbegin = self.begin
 		self.autosleepend = self.end
 
+		self.nettraffic = 'no'
+		self.trafficlimit = 100
+		self.netip = 'no'
+		self.ipadress = "0.0.0.0"
+
 		self.log_entries = []
 		self.resetState()
 
@@ -154,6 +158,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 		if next_state == self.StatePrepared and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
+			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
 			if self.autosleepwindow == 'yes':
 				ltm = localtime(now)
 				asb = strftime("%H:%M", localtime(self.autosleepbegin)).split(':')
@@ -163,8 +168,14 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if self.autosleepend <= self.autosleepbegin:
 					self.autosleepbegin -= 86400
 			if self.getAutoSleepWindow():
-				self.begin = self.end = int(now) + int(self.autosleepdelay)*60
-			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
+				if now < self.autosleepbegin and now > self.autosleepbegin - self.prepare_time - 3:	#begin is in prepare time window
+					self.begin = self.end = self.autosleepbegin + int(self.autosleepdelay)*60
+				else:
+					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+			else:
+				return False
+			if self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+				self.getNetworkTraffic(getInitialValue = True)
 
 		if (next_state == self.StateRunning or next_state == self.StateEnded) and NavigationInstance.instance.PowerTimer is None:
 			#TODO: running/ended timer at system start has no nav instance
@@ -172,23 +183,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			#Second fix: suppress the message (A finished powertimer wants to ...)
 			if debug: print "*****NavigationInstance.instance.PowerTimer is None*****", self.timerType, self.state, ctime(self.begin), ctime(self.end)
 			return True
-		elif next_state == self.StateRunning and abs(self.begin - now) >= 60: return True 
-		elif next_state == self.StateEnded and abs(self.end - now) >= 60: return True 
+		elif next_state == self.StateRunning and abs(self.begin - now) >= 60: return True
+		elif next_state == self.StateEnded and abs(self.end - now) >= 60: return True
 
-		if next_state == self.StatePrepared:
-			self.log(6, "prepare ok, waiting for begin: %s" % ctime(self.begin))
-			if self.begin <= now:
-				self.next_activation = int(now) + 20
-			else:
-				self.next_activation = self.begin
-			self.backoff = 0
-			return True
-
-		elif next_state == self.StateRunning:
+		if next_state == self.StateRunning or next_state == self.StateEnded:
 			if os.path.exists("/tmp/was_powertimer_wakeup") and not wasTimerWakeup:
 				wasTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
 			elif os.path.exists("/tmp/was_rectimer_wakeup") and not wasTimerWakeup:
 				wasTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
+
+		if next_state == self.StatePrepared:
+			self.log(6, "prepare ok, waiting for begin: %s" % ctime(self.begin))
+			self.backoff = 0
+			return True
+
+		elif next_state == self.StateRunning:
 
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -235,9 +244,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if debug: print "self.timerType == TIMERTYPE.AUTODEEPSTANDBY:"
 				if not self.getAutoSleepWindow():
 					return False
-				if self.getNetworkTraffic() or NavigationInstance.instance.PowerTimer.isProcessing() or abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 \
+				if self.getNetworkTraffic() or self.getNetworkAdress() or NavigationInstance.instance.PowerTimer.isProcessing() or abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900 \
-					or ((self.autosleepinstandbyonly == 'yesACnetwork' or self.autosleepinstandbyonly == 'yes') and not Screens.Standby.inStandby):
+					or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
 					self.do_backoff()
 					# retry
 					self.begin = self.end = int(now) + self.backoff
@@ -544,16 +553,19 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		now = time()
 		if self.autosleepwindow == 'yes':
 			if now < self.autosleepbegin and now < self.autosleepend:
-				self.begin = self.autosleepbegin + int(self.autosleepdelay)*60
+				self.begin = self.autosleepbegin
 				self.end = self.autosleepend
 			elif now > self.autosleepbegin and now > self.autosleepend:
 				while self.autosleepend < now:
 					self.autosleepend += 86400
 				while self.autosleepbegin + 86400 < self.autosleepend:
 					self.autosleepbegin += 86400
-				self.begin = self.autosleepbegin + int(self.autosleepdelay)*60
+				self.begin = self.autosleepbegin
 				self.end = self.autosleepend
-			if not (now > self.autosleepbegin and now < self.autosleepend):
+			if not (now > self.autosleepbegin - self.prepare_time - 3 and now < self.autosleepend):
+				eActionMap.getInstance().unbindAction('', self.keyPressed)
+				self.state = 0
+				self.timeChanged()
 				return False
 		return True
 
@@ -637,11 +649,22 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, "time changed, start prepare is now: %s" % ctime(self.start_prepare))
 
-	def getNetworkTraffic(self):
-		global netbytes
-		oldbytes = netbytes
+	def getNetworkAdress(self):
+		ret = False
+		if self.netip == 'yes':
+			try:
+				for ip in self.ipadress.split(','):
+					if not os.system("ping -q -w1 -c1 " + ip):
+						ret = True
+						break
+			except:
+				print '[PowerTimer] Error reading ip! -> %s' % self.ipadress
+		return ret
+
+	def getNetworkTraffic(self, getInitialValue = False):
+		now = time()
 		newbytes = 0
-		if Screens.Standby.inStandby and self.autosleepinstandbyonly == 'yesACnetwork':
+		if self.nettraffic == 'yes':
 			try:
 				if os.path.exists('/proc/net/dev'):
 					f = open('/proc/net/dev', 'r')
@@ -650,10 +673,23 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					for lines in temp:
 						lisp = lines.split()
 						if lisp[0].endswith(':') and (lisp[0].startswith('eth') or lisp[0].startswith('wlan')):
-							newbytes += int(lisp[1]) + int(lisp[9])
-					netbytes = newbytes
-					print '[PowerTimer] Receive/Transmit Bytes : ', str(newbytes - oldbytes), '(' + str(int((newbytes - oldbytes)/1024/1024)) + ' MBytes)'
-					if (newbytes - oldbytes) > 1048576:
+							newbytes += long(lisp[1]) + long(lisp[9])
+					if getInitialValue:
+						self.netbytes = newbytes
+						self.netbytes_time = now
+						print '[PowerTimer] Receive/Transmit initialBytes=%d, time is %s' % (self.netbytes, ctime(self.netbytes_time))
+						return
+					oldbytes = self.netbytes
+					seconds = int(now-self.netbytes_time)
+					self.netbytes = newbytes
+					self.netbytes_time = now
+					diffbytes = float(newbytes - oldbytes) * 8 / 1024 / seconds 	#in kbit/s
+					if diffbytes < 0:
+						print '[PowerTimer] Receive/Transmit -> overflow interface counter, waiting for next value'
+						return True
+					else:
+						print '[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes/8/1024*seconds, seconds, self.netbytes, ctime(self.netbytes_time))
+					if diffbytes > self.trafficlimit:
 						return True
 			except:
 				print '[PowerTimer] Receive/Transmit Bytes: Error reading values! Use "cat /proc/net/dev" for testing on command line.'
@@ -691,6 +727,11 @@ def createTimer(xml):
 	autosleepbegin = int(xml.get("autosleepbegin") or begin)
 	autosleepend = int(xml.get("autosleepend") or end)
 
+	nettraffic = str(xml.get("nettraffic") or "no")
+	trafficlimit = int(xml.get("trafficlimit") or 100)
+	netip = str(xml.get("netip") or "no")
+	ipadress = str(xml.get("ipadress") or "0.0.0.0")
+
 	entry = PowerTimerEntry(begin, end, disabled, afterevent, timertype)
 	entry.repeated = int(repeated)
 	entry.autosleepinstandbyonly = autosleepinstandbyonly
@@ -699,6 +740,11 @@ def createTimer(xml):
 	entry.autosleepwindow = autosleepwindow
 	entry.autosleepbegin = autosleepbegin
 	entry.autosleepend = autosleepend
+
+	entry.nettraffic = nettraffic
+	entry.trafficlimit = trafficlimit
+	entry.netip = netip
+	entry.ipadress = ipadress
 
 	for l in xml.findall("log"):
 		ltime = int(l.get("time"))
@@ -824,6 +870,12 @@ class PowerTimer(timer.Timer):
 			list.append(' autosleepwindow="' + str(timer.autosleepwindow) + '"')
 			list.append(' autosleepbegin="' + str(int(timer.autosleepbegin)) + '"')
 			list.append(' autosleepend="' + str(int(timer.autosleepend)) + '"')
+
+			list.append(' nettraffic="' + str(timer.nettraffic) + '"')
+			list.append(' trafficlimit="' + str(int(timer.trafficlimit)) + '"')
+			list.append(' netip="' + str(timer.netip) + '"')
+			list.append(' ipadress="' + str(timer.ipadress) + '"')
+
 			list.append('>\n')
 
 			for ltime, code, msg in timer.log_entries:
