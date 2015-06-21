@@ -467,6 +467,7 @@ class LogManagerViewLog(Screen):
 		self.setTitle(selected)
 		if path.exists(config.crash.debug_path.value + selected):
 			log = file(config.crash.debug_path.value + selected).read()
+			log = log.replace("\u001B","")
 		else:
 			log = ""
 		self["list"] = ScrollLabel(str(log))
