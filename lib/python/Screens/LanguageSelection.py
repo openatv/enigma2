@@ -117,7 +117,7 @@ class LanguageSelection(Screen):
 		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?") + _(" Except %s") %(lang), default = False)
 
 	def delLangCB(self, anwser):
-		if anwser:		
+		if anwser:
 			language.delLanguage()
 			language.activateLanguage(self.oldActiveLanguage)
 			self.updateList()
