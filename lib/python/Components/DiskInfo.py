@@ -1,5 +1,6 @@
 from GUIComponent import GUIComponent
 from VariableText import VariableText
+from Tools.UnitConversions import UnitScaler
 from os import statvfs
 
 from enigma import eLabel
@@ -33,22 +34,12 @@ class DiskInfo(VariableText, GUIComponent):
 			self.update()
 
 	def convertSize(self, size):
-		if size < 10 * 10 ** 6:
-			return _("%d kB") % (size >> 10)
-		elif size < 10 * 10 ** 9:
-			return _("%d MB") % (size >> 20)
-		elif size < 10 * 10 ** 12:
-			return _("%d GB") % (size >> 30)
-		else:
-			return _("%d TB") % (size >> 40)
+		return "%s %sB" % UnitScaler()(size)
 
 	def update(self):
 		try:
 			stat = statvfs(self.path)
-		except OSError:
-			return -1
 
-		try:
 			if self.type in (self.FREE, self.USED):
 				val = (stat.f_bavail if self.type == self.FREE else stat.f_blocks - stat.f_bavail)
 				percent = '(' + str((100 * val) // stat.f_blocks) + '%)'
