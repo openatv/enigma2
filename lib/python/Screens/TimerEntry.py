@@ -282,6 +282,16 @@ class TimerEntry(Screen, ConfigListScreen):
 			ConfigListScreen.handleKeyFileCallback(self, answer)
 			self.newConfig()
 
+	def openMovieLocationBox(self, answer=""):
+		self.session.openWithCallback(
+			self.pathSelected,
+			MovieLocationBox,
+			_("Select target folder"),
+			self.timerentry_dirname.value,
+			filename = answer,
+			minFree = 100 # We require at least 100MB free space
+			)
+
 	def keySelect(self):
 		cur = self["config"].getCurrent()
 		if cur == self.channelEntry:
@@ -292,13 +302,21 @@ class TimerEntry(Screen, ConfigListScreen):
 				currentBouquet=True
 			)
 		elif config.usage.setup_level.index >= 2 and cur == self.dirname:
-			self.session.openWithCallback(
-				self.pathSelected,
-				MovieLocationBox,
-				_("Select target folder"),
-				self.timerentry_dirname.value,
-				minFree = 100 # We require at least 100MB free space
-			)
+			menu = [(_("Open select location"), "empty")]
+			if self.timerentry_type.value == "repeated" and self.timerentry_name.value:
+				menu.append((_("Open select location as timer name"), "timername"))
+			if len(menu) == 1:
+				self.openMovieLocationBox()
+			elif len(menu) == 2:
+				text = _("Select action")
+				def selectAction(choice):
+					if choice:
+						if choice[1] == "timername":
+							self.openMovieLocationBox(self.timerentry_name.value)
+						elif choice[1] == "empty":
+							self.openMovieLocationBox()
+				self.session.openWithCallback(selectAction, ChoiceBox, title=text, list=menu)
+
 		elif getPreferredTagEditor() and cur == self.tagsSet:
 			self.session.openWithCallback(
 				self.tagEditFinished,
