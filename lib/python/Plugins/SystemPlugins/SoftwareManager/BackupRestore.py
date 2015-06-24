@@ -1,9 +1,10 @@
-from os import path, makedirs, listdir, stat, rename, remove
+from os import path, makedirs, listdir, stat, rename, remove, symlink
 from datetime import date
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
+from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
@@ -12,7 +13,6 @@ from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Tools.Directories import *
-
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
@@ -268,8 +268,8 @@ class RestoreMenu(Screen):
 
 	def startRestore(self, ret=False):
 		if ret:
-			self.exe = True
-			self.session.open(Console, title=_("Restoring..."), cmdlist=["tar -xzvf " + self.path + "/" + self.sel + " -C /", "reboot"])
+			symlink(self.path + "/" + self.sel, "/tmp/enigma2settingsbackup.tar.gz")
+			self.session.open(TryQuitMainloop, retvalue=41)
 
 	def deleteFile(self):
 		if self.exe is False and self.entry is True:
@@ -281,7 +281,6 @@ class RestoreMenu(Screen):
 	def startDelete(self, ret=False):
 		if ret:
 			self.exe = True
-			print "removing:", self.val
 			if path.exists(self.val):
 				remove(self.val)
 			self.exe = False
@@ -310,7 +309,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)
 		if self.runRestore:
-			self.onShown.append(self.doRestore)
+			self.onShown.append(self.startRestore)
 
 	def layoutFinished(self):
 		self.setWindowTitle()
@@ -318,22 +317,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 	def setWindowTitle(self):
 		self.setTitle(_("Restoring..."))
 
-	def doRestore(self):
-		if path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "reboot"]
-		else:
-			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "reboot"]
-		if self.finished_cb:
-			self.session.openWithCallback(self.finished_cb, Console, title=_("Restoring..."), cmdlist=restorecmdlist)
-		else:
-			self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist)
+	def startRestore(self):
+		symlink(self.fullbackupfilename, "/tmp/enigma2settingsbackup.tar.gz")
+		self.session.open(TryQuitMainloop, retvalue=41)
 
-	def backupFinishedCB(self, retval=None):
-		self.close(True)
-
-	def backupErrorCB(self, retval=None):
-		self.close(False)
-
-	def runAsync(self, finished_cb):
-		self.finished_cb = finished_cb
-		self.doRestore()
+	def run(self):
+		self.startRestore()

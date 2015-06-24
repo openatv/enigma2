@@ -68,11 +68,16 @@ fi
 
 # enigma2 exit codes:
 #
-# 1 - halt
-# 2 - reboot
-# 3 - restart enigma
-#
-# >128 signal
+#  1 - shutdown / halt
+#  2 - reboot
+#  3 - restart enigma
+#  4 - front processor upgrade
+#  5 - GUI restart
+# 42 - Upgrade
+# 41 - Restore settings from backup and reboot
+# 43 - reflash
+# 44 - front panel upgrade
+# >128 - signal + 128
 
 ret=$?
 case $ret in
@@ -92,6 +97,10 @@ case $ret in
 		sleep 1;
 		/sbin/rmmod fp
 		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	41)
+		tar -zxf /tmp/enigma2settingsbackup.tar.gz -C /
 		/sbin/reboot
 		;;
 	42)
