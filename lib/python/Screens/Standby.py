@@ -47,33 +47,32 @@ class Standby2(Screen):
 		if getBoxType() in ('ini-7012', 'ini-7012au'):
 			if path.exists("/proc/stb/lcd/symbol_scrambled"):
 				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
-		
+
 			if path.exists("/proc/stb/lcd/symbol_1080p"):
 				open("/proc/stb/lcd/symbol_1080p", "w").write("0")
-				
+
 			if path.exists("/proc/stb/lcd/symbol_1080i"):
 				open("/proc/stb/lcd/symbol_1080i", "w").write("0")
-			  
+
 			if path.exists("/proc/stb/lcd/symbol_720p"):
 				open("/proc/stb/lcd/symbol_720p", "w").write("0")
-			  
+
 			if path.exists("/proc/stb/lcd/symbol_576i"):
 				open("/proc/stb/lcd/symbol_576i", "w").write("0")
-			  
-			if path.exists("/proc/stb/lcd/symbol_576p"): 
+
+			if path.exists("/proc/stb/lcd/symbol_576p"):
 				open("/proc/stb/lcd/symbol_576p", "w").write("0")
-			
-			if path.exists("/proc/stb/lcd/symbol_hd"): 
-				open("/proc/stb/lcd/symbol_hd", "w").write("0")  
 
-			if path.exists("/proc/stb/lcd/symbol_dolby_audio"): 
-				open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0") 
+			if path.exists("/proc/stb/lcd/symbol_hd"):
+				open("/proc/stb/lcd/symbol_hd", "w").write("0")
 
-			if path.exists("/proc/stb/lcd/symbol_mp3"): 
-				open("/proc/stb/lcd/symbol_mp3", "w").write("0") 
-				
-		self["actions"] = ActionMap( [ "StandbyActions" ],
-		{
+			if path.exists("/proc/stb/lcd/symbol_dolby_audio"):
+				open("/proc/stb/lcd/symbol_dolby_audio", "w").write("0")
+
+			if path.exists("/proc/stb/lcd/symbol_mp3"):
+				open("/proc/stb/lcd/symbol_mp3", "w").write("0")
+
+		self["actions"] = ActionMap(["StandbyActions"], {
 			"power": self.Power,
 			"discrete_on": self.Power
 		}, -1)
@@ -181,25 +180,31 @@ class QuitMainloopScreen(Screen):
 		Screen.__init__(self, session)
 		from Components.Label import Label
 
-		text = { 1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
-			2: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
-			3: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
-			4: _("Your front processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
-			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
+		text = {
+			1: _("Your %s %s is shutting down.") % (getMachineBrand(), getMachineName()),
+			2: _("Your %s %s is rebooting.") % (getMachineBrand(), getMachineName()),
+			3: _("The user interface of your %s %s is restarting.") % (getMachineBrand(), getMachineName()),
+			4: _("Your front processor will be upgraded.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
+			5: _("The user interface of your %s %s is restarting\ndue to an error.") % (getMachineBrand(), getMachineName()),
+			41: _("Restoring settings from backup.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
+			42: _("Upgrade in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
+			43: _("Reflash in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
+			44: _("Your front panel will be upgraded.\nThis may take a few minutes.")
+		}.get(retvalue)
 		self["text"] = Label(text)
-		
+
 		import os
-		text2 = { 1: _("Shutting down"),
+		text2 = {
+			1: _("Shutting down"),
 			2: _("Rebooting"),
 			3: _("GUI restarting"),
 			4: _("Front processor upgrade"),
 			5: _("GUI restarting"),
+			41: _("Restoring settings"),
 			42: _("Upgrading"),
 			43: _("Reflashing"),
-			44: _("Front panel upgrade")}.get(retvalue)
+			44: _("Front panel upgrade")
+		}.get(retvalue)
 		cmd = "echo " + text2 + " > /dev/dbox/oled0"
 		os.system(cmd)
 
@@ -208,11 +213,11 @@ class QuitMainloopScreenSummary(Screen):
 	<screen name="QuitMainloopScreenSummary" position="0,0" size="132,64">
 		<eLabel text="TEST" position="0,0" size="132,64" font="Regular;40" halign="center"/>
 	</screen>"""
-	
+
 inTryQuitMainloop = False
 
 class TryQuitMainloop(MessageBox):
-	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
+	def __init__(self, session, retvalue=1, timeout=-1, default_yes=True):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings()
@@ -220,7 +225,7 @@ class TryQuitMainloop(MessageBox):
 		for job in job_manager.getPendingJobs():
 			if job.name != dgettext('vix', 'SoftcamCheck'):
 				jobs.append(job)
-		
+
 		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
 		reason = ""
@@ -231,7 +236,7 @@ class TryQuitMainloop(MessageBox):
 			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", len(jobs)) % len(jobs)) + '\n'
 			if len(jobs) == 1:
 				job = jobs[0]
-				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end)))
 			else:
 				reason += (_("%d jobs are running in the background!") % len(jobs)) + '\n'
 		if inTimeshift:
@@ -244,15 +249,18 @@ class TryQuitMainloop(MessageBox):
 			session.nav.record_event.append(self.getRecordEvent)
 			self.skinName = ""
 		elif reason and not inStandby:
-			text = { 1: _("Really shutdown now?"),
+			text = {
+				1: _("Really shutdown now?"),
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the front processor and reboot now?"),
+				41: _("Really restore settings and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				44: _("Really upgrade the front panel and reboot now?") }.get(retvalue)
+				44: _("Really upgrade the front panel and reboot now?")
+			}.get(retvalue)
 			if text:
-				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason + text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
 				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
@@ -269,26 +277,26 @@ class TryQuitMainloop(MessageBox):
 		else:
 			if event == iRecordableService.evEnd:
 				recordings = self.session.nav.getRecordings()
-				if not recordings: # no more recordings exist
+				if not recordings:  # no more recordings exist
 					rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 					if rec_time > 0 and (rec_time - time()) < 360:
-						self.initTimeout(360) # wait for next starting timer
+						self.initTimeout(360)  # wait for next starting timer
 						self.startTimer()
 					else:
-						self.close(True) # immediate shutdown
+						self.close(True)  # immediate shutdown
 			elif event == iRecordableService.evStart:
 				self.stopTimer()
 
 	def close(self, value):
 		if self.connected:
-			self.conntected=False
+			self.connected = False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			self.hide()
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
 			self.session.nav.stopService()
-			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
+			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen, retvalue=self.retval)
 			self.quitScreen.show()
 			quitMainloop(self.retval)
 		else:
