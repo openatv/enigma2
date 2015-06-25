@@ -1,6 +1,3 @@
-# for localized messages
-from . import _
-
 from Screens.Screen import Screen
 from enigma import eTimer
 from boxbranding import getMachineBrand, getMachineName
