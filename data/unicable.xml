@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<unicable version="20150625">
+<unicable version="20150626">
 <!--
 structur of tree
 unicable (version)
@@ -99,6 +99,12 @@ unicable (version)
 		<manufacturer name="Sharp">
 			<product name="BS1R8EL600A" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 		</manufacturer>
+		<manufacturer name="Schwaiger">
+			<product name="SPS6941 531" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+		</manufacturer>
+		<manufacturer name="Telestar">
+			<product name="Skywire HC LNB" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+		</manufacturer>
 		<manufacturer name="Triax">
 			<product name="TSC 001" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 		</manufacturer>
@@ -121,6 +127,19 @@ unicable (version)
 			<product name="UCS 92420" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
 			<product name="UCS 92440" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
 		</manufacturer>
+		<manufacturer name="Astra Strobel">
+			<product name="SEV 103" format="EN50494" positions="1" scr1="1284" scr2="1400" scr3="1514"/>
+			<product name="SEV 108" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
+			<product name="SEV 208" format="EN50494" positions="2" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
+		</manufacturer>
+		<manufacturer name="Axing">
+			<product name="SES 556-19" format="EN50494" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="SES 556-09" format="EN50494" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="SES 996-19" format="EN50494" positions="2" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="SES 996-09" format="EN50494" positions="2" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="SES 46-00" format="EN50494" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+			<product name="SES 86-00" format="EN50494" positions="2" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+		</manufacturer>
 		<manufacturer name="DCT Delta">
 			<product name="SUM518" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096" alias1="SCR0" alias2="SCR1" alias3="SCR2" alias4="SCR3" alias5="SCR4" alias6="SCR5" alias7="SCR6" alias8="SCR7"/>
 			<product name="SUM918" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
@@ -140,6 +159,13 @@ unicable (version)
 			<product name="VDU586NT" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
 			<product name="VDU983NT" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
 		</manufacturer>
+		<manufacturer name="EMP-Centauri">
+			<product name="MS4/1(6)EUN-3" positions="1" scr1="1400" scr2="1632" scr3="1284" scr4="1516" scr5="1864" scr6="2096"/>
+			<product name="MS4/1(8)PIN-4" positions="1" scr1="1080" scr2="1176" scr3="1237" scr4="1413" scr5="1555" scr6="1668" scr7="1842" scr8="1960" />
+			<product name="MS8/1(8)PIN-4" positions="2" scr1="1080" scr2="1176" scr3="1237" scr4="1413" scr5="1555" scr6="1668" scr7="1842" scr8="1960"/>
+			<product name="MS5/5+2PIP-4" positions="1" scr1="1080" scr2="1176" scr3="1237" scr4="1413" scr5="1555" scr6="1668" scr7="1842" scr8="1960" />
+			<product name="MS5/5+2PEP-4" positions="1" scr1="1080" scr2="1176" scr3="1237" scr4="1413" scr5="1555" scr6="1668" scr7="1842" scr8="1960" />
+		</manufacturer>
 		<manufacturer name="Fuba">
 			<product name="MCR 212" format="EN50494" positions="1" scr1="1400" scr2="1516"/>
 			<product name="MCR 221" format="EN50607" positions="1" scr1="1280" scr2="1382"/>
@@ -150,6 +176,10 @@ unicable (version)
 		<manufacturer name="G-STAR">
 			<product name="GS-506-S1" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="GS-516-S1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
+		</manufacturer>
+		<manufacturer name="GSS (Grundig SAT-Systems)">
+			<product name="SDUC 502" positions="1" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="SDUC 902" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 		</manufacturer>
 		<manufacturer name="Inverto">
 			<product name="IDLP-UST1O1-CUO1O-4PP" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
@@ -223,7 +253,6 @@ unicable (version)
 			<product name="EXR2942" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
 			<product name="EXR2981" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="EXU908" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
-
 			<product name="EXE 159" format="SCD2" scr1="974"  permpin1="151" scr2="1076" permpin2="052" scr3="1178" permpin3="133" scr4="1280" permpin4="124" scr5="1382" permpin5="205" scr6="1484" permpin6="196" scr7="1586" permpin7="187" scr8="1688" permpin8="178" scr9="1790" permpin9="099"/>
 			<product name="EXE 259" format="SCD2" scr1="974"  permpin1="151" scr2="1076" permpin2="052" scr3="1178" permpin3="133" scr4="1280" permpin4="124" scr5="1382" permpin5="205" scr6="1484" permpin6="196" scr7="1586" permpin7="187" scr8="1688" permpin8="178" scr9="1790" permpin9="099"/>
 		</manufacturer>
@@ -233,6 +262,9 @@ unicable (version)
 			<product name="KR 5-2+4" format="DiSEqC" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
 			<product name="KR 5-5-1-8" format="DiSEqC" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790" scr7="1892" scr8="1994"/>
 			<product name="KR 5-5-2-4" format="DiSEqC" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
+		</manufacturer>
+		<manufacturer name="Rogetech">
+			<product name="CMS-518C" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
 		</manufacturer>
 		<manufacturer name="ROTEK">
 			<product name="EKL2/1" scr1="1400" scr2="1516"/>
@@ -269,7 +301,7 @@ unicable (version)
 			<product name="TechniRouter 5/2x4" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
 			<product name="TechniRouter 9/2x4" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
 		</manufacturer>
-		<manufacturer name="Telstar">
+		<manufacturer name="Telestar">
 			<product name="SCR 5/1x8" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="SCR 9/1x8" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="SCR 5/2x4" scr1="1284" scr2="1400" scr3="1516" scr4="1632"/>
@@ -286,7 +318,9 @@ unicable (version)
 			<product name="TUM 1783C" format="EN50607" positions="4" scr1="1280" scr2="1382" scr3="1484"/>
 		</manufacturer>
 		<manufacturer name="Wisi">
+			<product name="DY 64 1800" scr1="1178" scr2="1280" scr3="1382" scr4="1484" scr5="1586" scr6="1688" scr7="1790" scr8="1892"/>
 			<product name="DY 64 1810" scr1="1178" scr2="1280" scr3="1382" scr4="1484" scr5="1586" scr6="1688" scr7="1790" scr8="1892"/>
+			<product name="DY 64 2400" scr1="1178" scr2="1280" scr3="1382" scr4="1484"/>
 			<product name="DY 64 2410" scr1="1178" scr2="1280" scr3="1382" scr4="1484"/>
 			<product name="DY 68 1810" positions="2" scr1="1178" scr2="1280" scr3="1382" scr4="1484" scr5="1586" scr6="1688" scr7="1790" scr8="1892"/>
 			<product name="DY 68 2410" positions="2" scr1="1178" scr2="1280" scr3="1382" scr4="1484"/>
