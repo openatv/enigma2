@@ -2120,7 +2120,7 @@ class NetworkSamba(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.service_name = 'packagegroup-base-smbfs'
+		self.service_name = 'packagegroup-base-smbfs-server'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
@@ -2128,18 +2128,18 @@ class NetworkSamba(Screen):
 
 	def checkNetworkState(self, str, retval, extra_args):
 		if 'Collected errors' in str:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
 			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
-				self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
 	def QuestionCallback(self, val):
 		if val:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to also install samba client ?\nThis allows you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to install the samba client aswell?\nThis will allow you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
 		else:
 			self.close()
 
@@ -2153,7 +2153,7 @@ class NetworkSamba(Screen):
 
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
-		self.message.setTitle(_('Installing Service'))
+		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
@@ -2164,7 +2164,7 @@ class NetworkSamba(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
 		else:
 			self.updateService()
@@ -2175,7 +2175,7 @@ class NetworkSamba(Screen):
 
 	def doRemove(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
-		self.message.setTitle(_('Removing Service'))
+		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
