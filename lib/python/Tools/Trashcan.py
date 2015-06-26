@@ -3,6 +3,7 @@ from Components.config import config
 from Components import Harddisk
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
+from Tools.UnitConversions import UnitScaler
 import time
 import os
 import stat
@@ -214,21 +215,10 @@ class TrashInfo(VariableText, GUIComponent):
 			self.update(path)
 
 	def update(self, path):
-		try:
-			total_size = get_size(getTrashFolder(path))
-		except OSError:
-			return -1
-
 		if self.type == self.USED:
 			try:
-				if total_size < 10 * 10 ** 6:
-					total_size = _("%d kB") % (total_size >> 10)
-				elif total_size < 10 * 10 ** 9:
-					total_size = _("%d MB") % (total_size >> 20)
-				elif total_size < 10 * 10 ** 12:
-					total_size = _("%d GB") % (total_size >> 30)
-				else:
-					total_size = _("%d TB") % (size >> 40)
+				total_size = get_size(getTrashFolder(path))
+				total_size = "%s %sB" % UnitScaler()(total_size)
 			except:
 				# occurs when f_blocks is 0 or a similar error
 				total_size = " -?-"
