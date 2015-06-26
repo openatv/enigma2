@@ -239,7 +239,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.createDirCallback,
 				InputBox,
 				title = _("Please enter name of the new directory"),
-				text = ""
+				text = self.filename
 			)
 
 	def createDirCallback(self, res):
@@ -336,12 +336,29 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			ret = ''.join((self.getPreferredFolder(), self.filename))
 			if self.realBookmarks:
 				if self.autoAdd and not ret in self.bookmarks:
-					self.bookmarks.append(self.getPreferredFolder())
-					self.bookmarks.sort()
+					if self.getPreferredFolder() not in self.bookmarks:
+						self.bookmarks.append(self.getPreferredFolder())
+						self.bookmarks.sort()
 
 				if self.bookmarks != self.realBookmarks.value:
 					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
+
+				if self.filename and not pathExists(ret):
+					menu = [(_("Create new folder and exit"), "folder"), (_("Save and exit"), "exit")]
+					text = _("Select action")
+					def dirAction(choice):
+						if choice:
+							if choice[1] == "folder":
+								if not createDir(ret):
+									self.session.open(MessageBox, _("Creating directory %s failed.") % (ret), type = MessageBox.TYPE_ERROR)
+									return
+							self.close(ret)
+						else:
+							self.cancel()
+					self.session.openWithCallback(dirAction, ChoiceBox, title=text, list=menu)
+					return
+
 			self.close(ret)
 
 	def select(self):
@@ -509,8 +526,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def __repr__(self):
 		return str(type(self)) + "(" + self.text + ")"
 
-def MovieLocationBox(session, text, dir, minFree = None):
-	return LocationBox(session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
+def MovieLocationBox(session, text, dir, filename = "", minFree = None):
+	return LocationBox(session, text = text,  filename = filename, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
 
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):
