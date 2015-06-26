@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Openpli 4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 12:49+0200\n"
-"PO-Revision-Date: 2015-06-11 13:12+0200\n"
+"POT-Creation-Date: 2015-06-14 13:19+0200\n"
+"PO-Revision-Date: 2015-06-21 15:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
 "Language: et_EE\n"
@@ -241,8 +241,8 @@ msgstr "%d minutit"
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] "%d piksli laius"
-msgstr[1] "%d pikslite laius"
+msgstr[0] "laius %d piksel"
+msgstr[1] "laius %d pikslit"
 
 #, python-format
 msgid "%d second"
@@ -650,6 +650,9 @@ msgstr "Kõik"
 msgid "All ages"
 msgstr "Kõik vanused"
 
+msgid "All frequency"
+msgstr "Kõik sagedused"
+
 msgid "All satellites 1 (USALS)"
 msgstr "Kõik satelliidid 1 (USALS)"
 
@@ -712,7 +715,7 @@ msgid "Are you sure to remove all terrestrial services?"
 msgstr "Kas kindlasti eemaldada kõik maapealse TV teenused?"
 
 msgid "Are you sure to remove this entry?"
-msgstr "Kas kindlasti eemaldada see sisestus?"
+msgstr "Kas soovid kindlasti eemaldada selle sisestuse?"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -1141,6 +1144,9 @@ msgstr "Suhtlus"
 msgid "Compact flash"
 msgstr "Compact flash"
 
+msgid "Compensate for overscan"
+msgstr "Kompenseeri liighälvitus"
+
 msgid "Complete"
 msgstr "Täielik"
 
@@ -1262,7 +1268,7 @@ msgid "Copy"
 msgstr "Kopeeri"
 
 msgid "Could not connect to receiver .NFI image feed server:"
-msgstr "Ei saa ühendust vastugvõtja .NFI-tarkvara serveriga:"
+msgstr "Vastuvõtja ei saa ühendust .NFI-tarkvara serveriga:"
 
 msgid "Could not find installed channel list."
 msgstr "Paigaldatud kanalinimekirja ei leitud."
@@ -1727,7 +1733,7 @@ msgid "Downloading"
 msgstr "Laetakse alla"
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "Laeme alla laienduse infot. Palun oota."
+msgstr "Laeme alla laienduste infot. Palun oota."
 
 msgid "Dutch"
 msgstr "Hollandi"
@@ -1743,7 +1749,7 @@ msgstr "Saatekava"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
-msgstr "VIGA - otsing nurjus (%s)!"
+msgstr "VIGA - (%s) otsing nurjus!"
 
 msgid "East"
 msgstr "Ida"
@@ -1929,6 +1935,9 @@ msgstr "Ekspert"
 msgid "Extend sleeptimer 15 minutes"
 msgstr "Pikenda unetaimerit 15 minutit"
 
+msgid "Extended"
+msgstr "Laiendatud"
+
 msgid "Extended Software"
 msgstr "Laiendatud tarkvara"
 
@@ -1980,15 +1989,15 @@ msgstr "/tmp/positionersetup.logi loomine nurjus: "
 
 #, python-format
 msgid "Fan %d"
-msgstr "Ventilaator %d"
+msgstr "Vent. %d"
 
 #, python-format
 msgid "Fan %d PWM"
-msgstr "Ventilaatori %d PWM"
+msgstr "Vent. %d PWM"
 
 #, python-format
 msgid "Fan %d voltage"
-msgstr "Ventilaatori %d pinge"
+msgstr "Vent. %d pinge"
 
 msgid "Fast"
 msgstr "Kiire"
@@ -2370,7 +2379,7 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Init"
-msgstr "Alusta"
+msgstr "Init"
 
 msgid "Initial location in new timers"
 msgstr "Algne asukoht uutes taimerites"
@@ -2389,9 +2398,6 @@ msgstr "Vorminda"
 
 msgid "Initializing storage device..."
 msgstr "Andmekandja vormindamine..."
-
-msgid "Input"
-msgstr "Sisend"
 
 msgid "Input device setup"
 msgstr "Sisendseadmete seadistamine"
@@ -3127,6 +3133,9 @@ msgstr "Ekraanigraafika 3D seadistus"
 msgid "OSD name request"
 msgstr "Ekraanigraafika nime päring"
 
+msgid "OSD position setup"
+msgstr "Ekraanigraafika asetuse seadistus"
+
 msgid "OSD transparency"
 msgstr "Ekraanigraafika läbipaistvus"
 
@@ -3222,8 +3231,9 @@ msgstr "Paketi haldur"
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
+# Sellele vajutades läheb tuuner määratud kanalile ja kanaliajalugu kustutatakse. Mõeldud pornohuvilistele pereisadele. :)
 msgid "Panic to"
-msgstr "Paanika"
+msgstr "Paanikanupu kanal"
 
 msgid "Parent directory"
 msgstr "Ülemkataloog"
@@ -3655,7 +3665,7 @@ msgid "Python version: "
 msgstr "Pythoni versioon: "
 
 msgid "Quick"
-msgstr "Kiire kanalivalik"
+msgstr "Kiire"
 
 msgid "Quick zap"
 msgstr "Kiire kanalivalik"
@@ -3671,7 +3681,7 @@ msgstr "Juhuslik"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
-msgstr "Levitaja poolt toodud hinnang - %d"
+msgstr "Levitaja määratud vanusepiirang - %d"
 
 msgid "Rating undefined"
 msgstr "Hinnang määramata"
@@ -4029,7 +4039,7 @@ msgid "Save timeshift file"
 msgstr "Salvesta ajanihke fail"
 
 msgid "Save timeshift file in movie directory"
-msgstr "Sallvesta ajanihke fail filmikataloogis"
+msgstr "Salvesta ajanihke fail filmikataloogis"
 
 msgid "Save timeshift in movie dir and zap"
 msgstr "Salvesta ajanihke fail filmikataloogis ja vaheta kanalit"
@@ -4042,6 +4052,9 @@ msgstr "Skaleerija teravus"
 
 msgid "Scaling mode"
 msgstr "Skaleerimine"
+
+msgid "Scan"
+msgstr "Otsing"
 
 msgid "Scan "
 msgstr "Otsi "
@@ -4061,6 +4074,9 @@ msgstr "Otsi lisa SR"
 
 msgid "Scan files..."
 msgstr "Uuri faile..."
+
+msgid "Scan options"
+msgstr "Otsingu valikud"
 
 msgid "Scan wireless networks"
 msgstr "Otsi WiFi võrke"
@@ -4196,9 +4212,6 @@ msgstr "Vali sisendseade."
 
 msgid "Select interface"
 msgstr "Vali liides"
-
-msgid "Select location"
-msgstr "Vali asukoht"
 
 msgid "Select movie"
 msgstr "Vali film"
@@ -4603,7 +4616,7 @@ msgstr "Mõned laiendused pole saadaval:\n"
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
-msgstr " %sei ole paigaldatud!"
+msgstr "%s ei  paigaldatud!"
 
 msgid "Sorry, deleting directories can (for now) only be done through the trash can."
 msgstr "Kataloogide kustutamine on võimalik ainult läbi prügikasti."
@@ -4706,11 +4719,11 @@ msgstr "Ooterežiimis pärast praegust sündmust"
 
 #, python-format
 msgid "Standby fan %d PWM"
-msgstr "Ventilaatori %d PWM ooterežiimil"
+msgstr "Vent. %d PWM ooterežiimil"
 
 #, python-format
 msgid "Standby fan %d voltage"
-msgstr "Ventilaatori %d pinge ooterežiimil"
+msgstr "Vent. %d pinge ooterežiimil"
 
 msgid "Standby in "
 msgstr "Ooterežiimis "
@@ -4938,7 +4951,7 @@ msgid "Switch to radio mode"
 msgstr "Lülita raadio peale"
 
 msgid "Switchable tuner types:"
-msgstr "Ümberlülitatavate tuunerite tüübid:"
+msgstr "Vahetatavate tuunerite tüübid:"
 
 msgid "Symbol rate"
 msgstr "Sümbolikiirus"
@@ -4955,7 +4968,7 @@ msgstr ""
 " \n"
 " \n"
 "Eesti digi-tv foorum \n"
-"Viimati muudetud: 11. juuni 2015 \n"
+"Viimati muudetud: 21. juuni 2015 \n"
 " \n"
 "TÕLKE_INFO"
 
@@ -4978,7 +4991,7 @@ msgid "Tags"
 msgstr "Võtmesõnad"
 
 msgid "Temperature and fan control"
-msgstr "Temp. ja ventilaatori seaded"
+msgstr "Jahutus"
 
 msgid "Terrestrial"
 msgstr "Maapealne TV (DVB-T)"
@@ -5414,6 +5427,9 @@ msgstr "Katseid järel:"
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr "Otsin kaabelvõrgu sagedusi. Oota."
 
+msgid "Try to find used transponders in terrestrial network... please wait..."
+msgstr "Otsime maapealses võrgus kasutatud transpondereid... Palun oota."
+
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Üritan laadida alla uut nimekirja. Oota."
 
@@ -5596,7 +5612,7 @@ msgid "Use fastscan channel numbering"
 msgstr "Kasuta kiirotsingu kanalinumeratsiooni"
 
 msgid "Use frequency or channel"
-msgstr "Kauta sagedust või kanalinumbrit"
+msgstr "Kasuta sagedust või kanalinumbrit"
 
 msgid "Use individual settings for each directory"
 msgstr "Kasuta iga kataloogi jaoks eraldi seadeid"
@@ -6186,7 +6202,7 @@ msgid "always"
 msgstr "alati"
 
 msgid "and never ask again this session again"
-msgstr "ja ära kunagi enam küsi uuesti selle perioodi kohta"
+msgstr "ja ära seda selle seansi jooksul kunagi enam küsi"
 
 msgid "and never show this message again"
 msgstr "ja ära kunagi enam näita seda teadet"
@@ -7332,7 +7348,7 @@ msgid "Configure the IP address."
 msgstr "Määra IP aadress."
 
 msgid "Configure the behavior of the 'pause and ok' key when movie playback is already paused."
-msgstr "Määra \"paus ja OK\" klahvi toiming kui filmi taasesitus on juba seatud pausile."
+msgstr "Määra 'pausi ja OK' nupu toiming kui filmi taasesitus on juba seatud pausile."
 
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Määra käitumine filmi käsitsi peatamisel."
@@ -7439,7 +7455,7 @@ msgid "Configure the possible fast forward speeds."
 msgstr "Määra edasikerimise kiirused."
 
 msgid "Configure the possible rewind speeds."
-msgstr "Määra edasikerimise kiirused."
+msgstr "Määra tagasikerimise kiirused."
 
 msgid "Configure the primary EPG language."
 msgstr "Määra saatekava keele esimene eelistus."
@@ -7807,7 +7823,7 @@ msgid "Rewind speeds"
 msgstr "Tagasikerimise kiirused"
 
 msgid "Rewrap subtitles"
-msgstr "Paki subtriitrid ümber"
+msgstr "Subtiitrite ümberpakkimine"
 
 msgid "Satellite dish setup"
 msgstr "SAT antenni seadmine"
@@ -7915,7 +7931,7 @@ msgid "Sound carrier"
 msgstr "Heli kandevsagedus"
 
 msgid "StandbyLED"
-msgstr "Ootereziimi LED"
+msgstr "Ooterežiimi LED"
 
 msgid "Startup the set top box in standby"
 msgstr "Vastuvõtja käivitamine ooterežiimis"
@@ -8059,7 +8075,7 @@ msgid "When enabled, a radio background image will be visible while listening to
 msgstr "Määrates 'jah', näidatakse raadiokanalil oleku ajal taustapilti."
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
-msgstr "Määrates 'jah', katkestab algav salvestus vaadatava saate juhul, kui ei leidu vabat tuunerit."
+msgstr "Määrates 'jah', katkestab algav salvestus vaadatava saate juhul, kui ei leidu vaba tuunerit."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Määrates 'jah' näidatakse hoiatust ja kasutaja saab võimaluse kas peatada või jätkata ajanihet."
@@ -8256,6 +8272,9 @@ msgstr "Sagedus:"
 msgid "Index"
 msgstr "Indeks"
 
+msgid "Input"
+msgstr "Sisend"
+
 msgid "Installing software..."
 msgstr "Tarkvara paigaldamine..."
 
@@ -8324,9 +8343,6 @@ msgstr "Vastuvõtu seaded"
 
 msgid "SNR:"
 msgstr "SNR:"
-
-msgid "Scan"
-msgstr "Otsing"
 
 msgid "Seek"
 msgstr "Otsi"
@@ -8399,6 +8415,9 @@ msgstr "Salvesta"
 
 msgid "[REC]"
 msgstr "[REC]"
+
+#~ msgid "Select location"
+#~ msgstr "Vali asukoht"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 #~ msgstr "Hetkel salvestatakse. Peata salvestus, enne kui käivitad satelliidi otsimise."
