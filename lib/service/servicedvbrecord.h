@@ -27,6 +27,7 @@ public:
 	RESULT getError(int &error) { error = m_error; return 0; }
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
+	RESULT getFilenameExtension(std::string &ext) { ext = ".ts"; return 0; };
 
 		// iStreamableService
 	ePtr<iStreamData> getStreamingData();
