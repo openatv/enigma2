@@ -11,6 +11,7 @@
 #include <lib/components/file_eraser.h>
 #include <lib/gui/esubtitle.h>
 #include <lib/service/servicemp3.h>
+#include <lib/service/servicemp3record.h>
 #include <lib/service/service.h>
 #include <lib/gdi/gpixmap.h>
 
@@ -102,6 +103,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("asf");
 		extensions.push_back("wmv");
 		extensions.push_back("wma");
+		extensions.push_back("stream");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -129,6 +131,11 @@ RESULT eServiceFactoryMP3::play(const eServiceReference &ref, ePtr<iPlayableServ
 
 RESULT eServiceFactoryMP3::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
+	if (ref.path.find("://") != std::string::npos)
+	{
+		ptr = new eServiceMP3Record((eServiceReference&)ref);
+		return 0;
+	}
 	ptr=0;
 	return -1;
 }
@@ -712,7 +719,7 @@ void eServiceMP3::updateEpgCacheNowNext()
 
 DEFINE_REF(eServiceMP3);
 
-DEFINE_REF(eServiceMP3::GstMessageContainer);
+DEFINE_REF(GstMessageContainer);
 
 RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
