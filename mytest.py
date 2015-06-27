@@ -653,10 +653,10 @@ def runScreenTest():
 		setRTCtime(nowTime)
 
 	wakeupList = [
-		x for x in ((session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
+		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
 					(session.nav.RecordTimer.getNextZapTime(), 1),
 					(plugins.getNextWakeupTime(), 2),
-					(session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
+					(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
 		if x[0] != -1
 	]
 
