@@ -64,15 +64,15 @@ preferredTagEditor = None
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
-	(str(MovieList.SORT_GROUPWISE), _("Recordings by date, other media by name"), 'New->Old & A->Z'),
+	(str(MovieList.SORT_GROUPWISE), _("Recordings by date, other media by name"), 'Rec New->Old & A->Z'),
 	(str(MovieList.SORT_DATE_NEWEST_FIRST_ALPHA), _("By date, then by name"), 'New->Old, A->Z'),
 	(str(MovieList.SORT_DATE_OLDEST_FIRST_ALPHAREV), _("By reverse date, then by reverse name"), 'Old->New, Z->A'),
 	(str(MovieList.SORT_ALPHA_DATE_NEWEST_FIRST), _("By name, then by date"), 'A->Z, New->Old'),
-	(str(MovieList.SORT_ALPHA_DATE_NEWEST_FIRST_FLAT), _("Flat by name, then by date"), 'A->Z, New->Old Flat'),
+	(str(MovieList.SORT_ALPHA_DATE_NEWEST_FIRST_FLAT), _("Flat by name, then by date"), 'Flat A->Z, New->Old'),
 	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("By name, then by reverse date"), 'A->Z, Old->New'),
 	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("By reverse name, then by date"), 'Z->A, New->Old'),
 	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST), _("By reverse name, then by reverse date"), 'Z->A, Old->New'),
-	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT), _("Flat by reverse name, then by reverse date"), 'Z->A, Old->New Flat'),
+	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT), _("Flat by reverse name, then by reverse date"), 'Flat Z->A, Old->New'),
 	(str(MovieList.SHUFFLE), _("Shuffle"), 'Shuffle'),
 ]
 
@@ -328,7 +328,7 @@ class MovieMenuList(MenuList):
 def MovieMenuEntryComponent(name, item):
 	return [
 		(item),
-		MultiContentEntryText(pos=(20, 8), size=(575, 50), font=0, text=_(name)),
+		MultiContentEntryText(pos=(20, 0), size=(575, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_(name)),
 	]
 
 class MovieContextMenu(Screen):
@@ -358,7 +358,7 @@ class MovieContextMenu(Screen):
 		menu.append(MovieMenuEntryComponent((_("Settings") + "..."), csel.configure))
 		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
 		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
-		menu.append(MovieMenuEntryComponent((_("Sort by") + "..."), csel.selectSortby))
+		menu.append(MovieMenuEntryComponent((_("Sort") + "..."), csel.selectSortby))
 
 		if service:
 			if service.flags & eServiceReference.mustDescent:
@@ -642,11 +642,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': (_("Rename"), _("Rename recording, video or folder")),
 				'gohome': (_("Home"), _("Go to player home folder")),
 				'sort': (_("Sort"), _("Cycle through sort orderings")),
-				'sortby': (_("Sort order"), _("Change sort order...")),
+				'sortby': ((_("Sort") + "..."), _("Select sort order from menu")),
 				'sortdefault': (_("Default sort order"), _("Use default sort order")),
 				'preview': (_("Preview"), _("Preview recording under movie selection screen")),
 				'movieoff': (_("On end of movie"), _("Cycle through end-of-movie actions")),
-				'movieoff_menu': (_("On end of movie..."), _("Select end-of-movie action from menu")),
+				'movieoff_menu': ((_("On end of movie") + "..."), _("Select end-of-movie action from menu")),
 			}
 			userDefinedActions = {}
 			for a, desc in userDefinedDescriptions.iteritems():
@@ -1353,10 +1353,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def getPixmapSortIndex(self, which):
 		index = int(which)
-		if index == MovieList.SORT_ALPHA_DATE_OLDEST_FIRST:
-			index = MovieList.SORT_ALPHANUMERIC
-		elif index == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
-			index = MovieList.SORT_ALPHANUMERIC_REVERSE
 		return index - 1
 
 	def sortbyMenuCallback(self, choice):
