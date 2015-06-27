@@ -75,12 +75,15 @@ def getInitialTerrestrialTransponderList(tlist, region, tsystem = eDVBFrontendPa
 
 	for x in list:
 		if x[0] == 2: #TERRESTRIAL
-			if tsystem == eDVBFrontendParametersTerrestrial.System_DVB_T_T2:
-				tsystem = x[10]
 			if skip_t2 and x[10] == eDVBFrontendParametersTerrestrial.System_DVB_T2:
 				# Should be searching on TerrestrialTransponderSearchSupport.
 				continue
-			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], tsystem, x[11])
+			if tsystem == eDVBFrontendParametersTerrestrial.System_DVB_T_T2:
+				parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], x[10], x[11])
+			elif x[10] == eDVBFrontendParametersTerrestrial.System_DVB_T_T2 or x[10] == tsystem:
+				parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], tsystem, x[11])
+			else:
+				continue
 			tlist.append(parm)
 
 cable_bands = {
