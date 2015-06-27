@@ -652,13 +652,22 @@ def runScreenTest():
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
-	wakeupList = [
-		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-					(session.nav.RecordTimer.getNextZapTime(), 1),
-					(plugins.getNextWakeupTime(), 2),
-					(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
-		if x[0] != -1
-	]
+	if boxtype in ('gbipbox'):
+		wakeupList = [
+			x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
+						(session.nav.RecordTimer.getNextZapTime(), 1),
+						(plugins.getNextWakeupTime(), 2),
+						(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
+			if x[0] != -1
+		]
+	else:
+		wakeupList = [
+			x for x in ((session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
+						(session.nav.RecordTimer.getNextZapTime(), 1),
+						(plugins.getNextWakeupTime(), 2),
+						(session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
+			if x[0] != -1
+		]
 
 	# individual wakeup time offset
 	if config.workaround.wakeuptimeoffset.value == "standard":
