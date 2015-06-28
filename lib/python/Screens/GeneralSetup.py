@@ -20,6 +20,7 @@ from Screens.Satconfig import NimSelection
 from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
+from Screens.Standby import TryQuitMainloop
 
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
@@ -509,19 +510,7 @@ class GeneralSetup(Screen):
 
 			def msgClosed(ret):
 				if ret:
-					from os import system, _exit
-					system("rm -rf /etc/enigma2")
-					system("rm -rf /etc/network/interfaces")
-					system("rm -rf /etc/wpa_supplicant.ath0.conf")
-					system("rm -rf /etc/wpa_supplicant.wlan0.conf")
-					system("rm -rf /etc/wpa_supplicant.conf")
-					system("cp -a /usr/share/enigma2/defaults /etc/enigma2")
-					system("/usr/bin/showiframe /usr/share/backdrop.mvi")
-					iNetwork.setAdapterAttribute("eth0", "up", True)
-					iNetwork.setAdapterAttribute("eth0", "dhcp", True)
-					iNetwork.activateInterface("eth0", deactivateInterfaceCB)
-					iNetwork.writeNetworkConfig()
-					_exit(2)  # We want a full reboot to ensure new hostname is picked up
+					self.session.open(TryQuitMainloop, retvalue=40)
 			self.session.openWithCallback(msgClosed, FactoryReset)
 ######## Select TV Setup Menu ##############################
 		elif selected == _("Channel selection"):

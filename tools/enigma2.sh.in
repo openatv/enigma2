@@ -78,6 +78,7 @@ fi
 #  3 - restart enigma
 #  4 - front processor upgrade
 #  5 - GUI restart
+# 40 - Factory reset and reboot
 # 41 - Restore settings from backup and reboot
 # 42 - Upgrade
 # 43 - reflash
@@ -102,6 +103,15 @@ case $ret in
 		sleep 1;
 		/sbin/rmmod fp
 		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	40)
+		# Subshell to avoid polluting the environment variables
+		(
+			export prefix datarootdir datadir libexecdir
+			export sysconfdir bindir libdir
+			run-parts "${datadir}"/enigma2/factoryReset
+		)
 		/sbin/reboot
 		;;
 	41)
