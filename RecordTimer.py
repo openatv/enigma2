@@ -576,7 +576,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
 			self.autostate = Screens.Standby.inStandby
-			minRT = self.end - self.begin > 3 # do not switch to standby/deepstandby, when timer ended and timer runtime is smaller than 3s (e.g. zap-timer without end time) -> currently obsolete (timer edit set AFTEREVENT.NONE if time difference < 1 mins)
+			minRT = self.end - self.begin > 3 # do not switch to standby/deepstandby, when timer ended and timer runtime is less than 3s (e.g. zap-timer without end time) -> currently obsolete (timer edit set AFTEREVENT.NONE if time difference < 1 mins)
 			if debug: print "[RECORDTIMER] self.autostate=%s" % self.autostate, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "minRT=%s" % minRT
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and minRT):
 				if not Screens.Standby.inStandby: # not already in standby
@@ -594,7 +594,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						quitMainloop(1)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
-			elif wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO:
+			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
