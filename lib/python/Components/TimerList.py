@@ -47,7 +47,10 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			repeatedtext = begin[0] # date
 		if timer.justplay:
-			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
+			if timer.end > timer.begin + 3:
+				text = repeatedtext + ((" %s ... %s (" + _("ZAP") + ", %d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			else:
+				text = repeatedtext + ((" %s (" + _("ZAP") + ")") % (begin[1]))
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		if screenwidth and screenwidth == 1920:

@@ -183,8 +183,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			#Second fix: suppress the message (A finished powertimer wants to ...)
 			if debug: print "*****NavigationInstance.instance.PowerTimer is None*****", self.timerType, self.state, ctime(self.begin), ctime(self.end)
 			return True
-		elif next_state == self.StateRunning and abs(self.begin - now) >= 60: return True
-		elif next_state == self.StateEnded and abs(self.end - now) >= 60: return True
+		elif next_state == self.StateRunning and abs(self.begin - now) > 900: return True
+		elif next_state == self.StateEnded and abs(self.end - now) > 900: return True
 
 		if next_state == self.StateRunning or next_state == self.StateEnded:
 			if os.path.exists("/tmp/was_powertimer_wakeup") and not wasTimerWakeup:
@@ -944,6 +944,7 @@ class PowerTimer(timer.Timer):
 		return nextPTlist
 
 	def getNextPowerManagerTime(self, getNextStbPowerOn = False, getNextTimerTyp = False):
+		# using this function in mytest.py in wakeupList "session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True)" gives crash on gbipbox ! Next function "session.nav.PowerTimer.getNextWakeupTime()" fix this.
 		global DSsave, RSsave, RBsave, aeDSsave
 		nextrectime = self.getNextPowerManagerTimeOld(getNextStbPowerOn)
 		faketime = int(time()) + 300
@@ -980,6 +981,17 @@ class PowerTimer(timer.Timer):
 					return faketime
 			else:
 				return nextrectime[0][0]
+
+	def getNextWakeupTime(self):
+		nextrectime = self.getNextPowerManagerTimeOld(getNextStbPowerOn = True)
+		faketime = int(time()) + 300
+		if config.timeshift.isRecording.value:
+			if 0 < nextrectime[0][0] < faketime:
+				return nextrectime[0][0]
+			else:
+				return faketime
+		else:
+			return nextrectime[0][0]
 
 	def isNextPowerManagerAfterEventActionAuto(self):
 		now = time()

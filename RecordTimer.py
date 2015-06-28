@@ -38,7 +38,7 @@ def resetTimerWakeup():
 	global wasRecTimerWakeup
 	if os.path.exists("/tmp/was_rectimer_wakeup"):
 		os.remove("/tmp/was_rectimer_wakeup")
-	wasRecTimerWakeup = False
+	# wasRecTimerWakeup = False # -> now reset after ending timer
 
 # parses an event and returns a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
@@ -312,6 +312,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def activate(self):
 		global wasRecTimerWakeup
+		if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
+			wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
@@ -339,7 +341,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.always_zap:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
@@ -467,9 +469,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		elif next_state == self.StateRunning:
 
-			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
-				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
-
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
@@ -480,7 +479,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.justplay:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
@@ -577,11 +576,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
 			self.autostate = Screens.Standby.inStandby
-			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
-				self.keypress() #this unbinds the keypress detection
+			minRT = self.end - self.begin > 3 # do not switch to standby/deepstandby, when timer ended and timer runtime is less than 3s (e.g. zap-timer without end time) -> currently obsolete (timer edit set AFTEREVENT.NONE if time difference < 1 mins)
+			if debug: print "[RECORDTIMER] self.autostate=%s" % self.autostate, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "minRT=%s" % minRT
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and minRT):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and minRT):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
@@ -594,7 +594,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						quitMainloop(1)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
-			elif wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO:
+			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
@@ -606,6 +606,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						print "[RecordTimer] quitMainloop #2"
 						quitMainloop(1)
 
+			if debug: print "[RECORDTIMER] reset wakeup / standby state -> self.wasInStandby = wasRecTimerWakeup = False"
+			self.wasInStandby = wasRecTimerWakeup = False
 			return True
 
 	def keypress(self, key=None, flag=1):
@@ -653,9 +655,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
-		else:
-			global wasRecTimerWakeup
-			wasRecTimerWakeup = False
 
 	def getNextActivation(self, getNextStbPowerOn = False):
 		self.isStillRecording = False
@@ -1129,9 +1128,21 @@ class RecordTimer(timer.Timer):
 		return -1
 
 	def getNextRecordingTime(self, getNextStbPowerOn = False):
+		# using this function in mytest.py in wakeupList "session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True)" gives crash on gbipbox ! Next function "session.nav.RecordTimer.getNextWakeupTime()" fix this.
 		nextrectime = self.getNextRecordingTimeOld(getNextStbPowerOn)
 		faketime = time()+300
 
+		if config.timeshift.isRecording.value:
+			if 0 < nextrectime < faketime:
+				return nextrectime
+			else:
+				return faketime
+		else:
+			return nextrectime
+
+	def getNextWakeupTime(self):
+		nextrectime = self.getNextRecordingTimeOld(getNextStbPowerOn = True)
+		faketime = int(time()) + 300
 		if config.timeshift.isRecording.value:
 			if 0 < nextrectime < faketime:
 				return nextrectime

@@ -55,8 +55,10 @@ class Navigation:
 		self.syncCount = 0
 
 		now = time()
+		nextZT = self.RecordTimer.getNextZapTime()
 		nextRT = self.RecordTimer.getNextRecordingTime()
 		nextPT = self.PowerTimer.getNextPowerManagerTime(getNextTimerTyp = True)
+		timediffZT = nextZT - now
 		timediffRT = nextRT - now
 		timediffPT = nextPT[0][0] - now
 		wasTimerWakeup = getFPWasTimerWakeup()
@@ -67,8 +69,13 @@ class Navigation:
 			config.workaround.deeprecord.save()
 			config.save()
 			print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
-		
+
 		if not wasTimerWakeup and config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
+			print"=================================================================================="
+			print"[NAVIGATION] getNextZapTime= %s" % nextZT
+			print"[NAVIGATION] nextRecordTimerAfterEventActionAuto= %s" % nextRecordTimerAfterEventActionAuto
+			print"[NAVIGATION] current Time=%s" % now
+			print"[NAVIGATION] timediff=%s" % abs(timediffZT)
 			print"=================================================================================="
 			print"[NAVIGATION] getNextRecordingTime= %s" % nextRT
 			print"[NAVIGATION] nextRecordTimerAfterEventActionAuto= %s" % nextRecordTimerAfterEventActionAuto
@@ -86,7 +93,7 @@ class Navigation:
 				self.timesynctimer.callback.append(self.TimeSynctimer)
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] [work-around] wait for time sync"
-			elif abs(timediffRT) <= 600: # if there is a recording sheduled in the next 10 mins, set the wasTimerWakeup flag (wakeup time is 5 min before timer starts, some boxes starts but earlier than is set)
+			elif abs(timediffRT) <= 600 or abs(timediffZT) <= 600: # if there is a recording sheduled in the next 10 mins, set the wasTimerWakeup flag (wakeup time is 5 min before timer starts, some boxes starts but earlier than is set)
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
 				file = f.write(str(wasTimerWakeup))
@@ -99,6 +106,8 @@ class Navigation:
 
 		print"[NAVIGATION] wasTimerWakeup = %s, current time is %s" % (wasTimerWakeup, ctime(now))
 
+		stbytimer = 5 # original is 15
+
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
 			if now <= 31536000:
@@ -109,33 +118,44 @@ class Navigation:
 
 			elif self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 600:
 				self.__wasRecTimerWakeup = True
-				print 'RECTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextRT)
+				print '[NAVIGATION] RECTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextRT)
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
 				f.close()
 				# as we woke the box to record, place the box in standby.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+				self.standbytimer.start(stbytimer * 1000, True)
+
+			elif self.nextRecordTimerAfterEventActionAuto and abs(timediffZT) <= 600:
+				self.__wasRecTimerWakeup = True
+				print '[NAVIGATION] ZAPTIMER: wakeup detected. Timer starts at %s' % ctime(nextZT)
+				f = open("/tmp/was_rectimer_wakeup", "w")
+				f.write('1')
+				f.close()
+				if abs(timediffZT) > 60 + stbytimer: #more than 1 minutes to wake up from zaptimer - go in standby
+					self.standbytimer = eTimer()
+					self.standbytimer.callback.append(self.gotostandby)
+					self.standbytimer.start(stbytimer * 1000, True)
 
 			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
 				self.__wasPowerTimerWakeup = True
-				print 'POWERTIMER: wakeup detected. Timer starts at %s' % ctime(nextPT[0][0])
-				if abs(timediffPT) > 75: #more than 1 minutes to wake up from powertimer - go in standby
+				print '[NAVIGATION] POWERTIMER: wakeup detected. Timer starts at %s' % ctime(nextPT[0][0])
+				if abs(timediffPT) > 60 + stbytimer: #more than 1 minutes to wake up from powertimer - go in standby
 					self.standbytimer = eTimer()
 					self.standbytimer.callback.append(self.gotostandby)
-					self.standbytimer.start(15000, True)
+					self.standbytimer.start(stbytimer * 1000, True)
 
 			elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
 				self.__wasPowerTimerWakeup = True
-				print 'POWERTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextPT[0][0])
+				print '[NAVIGATION] POWERTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextPT[0][0])
 				f = open("/tmp/was_powertimer_wakeup", "w")
 				f.write('1')
 				f.close()
 				# as a PowerTimer WakeToStandby was actiond to it.
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+				self.standbytimer.start(stbytimer * 1000, True)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
@@ -148,32 +168,48 @@ class Navigation:
 
 	def TimeSynctimer(self):
 		now = time()
+		nextZT = self.RecordTimer.getNextZapTime()
 		nextRT = self.RecordTimer.getNextRecordingTime()
 		nextPT = self.PowerTimer.getNextPowerManagerTime(getNextTimerTyp = True)
+		timediffZT = nextZT - now
 		timediffRT = nextRT - now
 		timediffPT = nextPT[0][0] - now
 		self.syncCount += 1
 		if self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 600:
 			self.__wasRecTimerWakeup = True
-			print 'RECTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextRT)
-			print"[NAVIGATION] getNextRecordingTime= %s" % nextRT
-			print"[NAVIGATION] current Time=%s" % now
-			print"[NAVIGATION] timediff=%s" % abs(timediffRT)
+			print '[NAVIGATION] RECTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextRT)
+			print "[NAVIGATION] getNextRecordingTime= %s" % nextRT
+			print "[NAVIGATION] current Time=%s" % now
+			print "[NAVIGATION] timediff=%s" % abs(timediffRT)
 			f = open("/tmp/was_rectimer_wakeup", "w")
 			f.write('1')
 			f.close()
 			self.gotostandby()
+		elif self.nextRecordTimerAfterEventActionAuto and abs(timediffZT) <= 600:
+			self.__wasRecTimerWakeup = True
+			print '[NAVIGATION] ZAPTIMER: wakeup detected. Timer starts at %s' % ctime(nextZT)
+			print "[NAVIGATION] getNextZapTime= %s" % nextZT
+			print "[NAVIGATION] current Time=%s" % now
+			print "[NAVIGATION] timediff=%s" % abs(timediffZT)
+			f = open("/tmp/was_rectimer_wakeup", "w")
+			f.write('1')
+			f.close()
+			if abs(timediffZT) > 60: #more than 1 minutes to wake up from powertimer - go in standby
+				self.gotostandby()
 		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUP or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUP):
 			self.__wasPowerTimerWakeup = True
-			print 'POWERTIMER: wakeup detected. Timer starts at %s' % ctime(nextPT[0][0])
+			print '[NAVIGATION] POWERTIMER: wakeup detected. Timer starts at %s' % ctime(nextPT[0][0])
+			print "[NAVIGATION] getNextPowerManagerTime= %s" % nextPT[0][0]
+			print "[NAVIGATION] current Time=%s" % now
+			print "[NAVIGATION] timediff=%s" % abs(timediffPT)
 			if abs(timediffPT) > 60: #more than 1 minutes to wake up from powertimer - go in standby
 				self.gotostandby()
 		elif self.nextPowerManagerAfterEventActionAuto and abs(timediffPT) <= 600 and (nextPT[0][1] == PowerTimer.TIMERTYPE.WAKEUPTOSTANDBY or nextPT[0][2] == PowerTimer.AFTEREVENT.WAKEUPTOSTANDBY):
 			self.__wasPowerTimerWakeup = True
-			print 'POWERTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextPT[0][0])
-			print"[NAVIGATION] getNextPowerManagerTime= %s" % nextPT[0][0]
-			print"[NAVIGATION] current Time=%s" % now
-			print"[NAVIGATION] timediff=%s" % abs(timediffPT)
+			print '[NAVIGATION] POWERTIMER: wakeup to standby detected. Timer starts at %s' % ctime(nextPT[0][0])
+			print "[NAVIGATION] getNextPowerManagerTime= %s" % nextPT[0][0]
+			print "[NAVIGATION] current Time=%s" % now
+			print "[NAVIGATION] timediff=%s" % abs(timediffPT)
 			f = open("/tmp/was_powertimer_wakeup", "w")
 			f.write('1')
 			f.close()
