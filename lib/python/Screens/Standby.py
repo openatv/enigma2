@@ -18,12 +18,12 @@ inStandby = None
 class Standby2(Screen):
 	def Power(self):
 		print "leave standby"
-		#set input to encoder
+		# set input to encoder
 		self.avswitch.setInput("ENCODER")
-		#restart last played service
-		#unmute adc
+		# restart last played service
+		# unmute adc
 		self.leaveMute()
-		#kill me
+		# kill me
 		self.close(True)
 
 	def setMute(self):
@@ -81,7 +81,7 @@ class Standby2(Screen):
 
 		self.standbyTimeUnknownTimer = eTimer()
 
-		#mute adc
+		# mute adc
 		self.setMute()
 
 		self.paused_service = None
@@ -102,7 +102,7 @@ class Standby2(Screen):
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
-		#set input to vcr scart
+		# set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
 			self.avswitch.setInput("SCART")
 		else:
