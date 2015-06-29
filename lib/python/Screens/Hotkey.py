@@ -21,7 +21,7 @@ def getHotkeys():
 		(_("Blue") + " " + _("long"), "blue_long", ""),
 		("F1/LAN", "f1", ""),
 		("F1" + " " + _("long"), "f1_long", ""),
-		("F2", "f2", ""),
+		("F2", "f2", "Infobar/showPiP"),
 		("F2" + " " + _("long"), "f2_long", ""),
 		("F3", "f3", ""),
 		("F3" + " " + _("long"), "f4_long", ""),
