@@ -944,7 +944,6 @@ class PowerTimer(timer.Timer):
 		return nextPTlist
 
 	def getNextPowerManagerTime(self, getNextStbPowerOn = False, getNextTimerTyp = False):
-		# using this function in mytest.py in wakeupList "session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True)" gives crash on gbipbox ! Next function "session.nav.PowerTimer.getNextWakeupTime()" fix this.
 		global DSsave, RSsave, RBsave, aeDSsave
 		nextrectime = self.getNextPowerManagerTimeOld(getNextStbPowerOn)
 		faketime = int(time()) + 300
@@ -982,22 +981,9 @@ class PowerTimer(timer.Timer):
 			else:
 				return nextrectime[0][0]
 
-	def getNextWakeupTime(self):
-		nextrectime = self.getNextPowerManagerTimeOld(getNextStbPowerOn = True)
-		faketime = int(time()) + 300
-		if config.timeshift.isRecording.value:
-			if 0 < nextrectime[0][0] < faketime:
-				return nextrectime[0][0]
-			else:
-				return faketime
-		else:
-			return nextrectime[0][0]
-
 	def isNextPowerManagerAfterEventActionAuto(self):
-		now = time()
-		t = None
 		for timer in self.timer_list:
-			if timer.timerType == TIMERTYPE.WAKEUPTOSTANDBY or timer.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
+			if timer.timerType == TIMERTYPE.WAKEUPTOSTANDBY or timer.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY or timer.timerType == TIMERTYPE.WAKEUP or timer.afterEvent == AFTEREVENT.WAKEUP:
 				return True
 		return False
 
