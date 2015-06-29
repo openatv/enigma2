@@ -593,10 +593,8 @@ class GeneralMenu(Screen):
 
 	def up(self):
 		self.selectedSubEntry[self.selectedEntryID] -= 1
-		if self.selectedSubEntry[self.selectedEntryID] == -2 and len(gmenu_extentrys[self.selectedEntryID]) == 0:
-			self.selectedSubEntry[self.selectedEntryID] = -1
-		if self.selectedSubEntry[self.selectedEntryID] == -3:
-			self.selectedSubEntry[self.selectedEntryID] = -1
+		if self.selectedSubEntry[self.selectedEntryID] < -1:
+			self.selectedSubEntry[self.selectedEntryID] = len(self.subentrys[self.selectedEntryID]) - 1
 		if self.selectedSubEntry[self.selectedEntryID] > 4:
 			self.startSubEntry[self.selectedEntryID] = self.selectedSubEntry[self.selectedEntryID] - 4
 		else:
@@ -605,7 +603,7 @@ class GeneralMenu(Screen):
 
 	def down(self):
 		self.selectedSubEntry[self.selectedEntryID] += 1
-		if self.selectedSubEntry[self.selectedEntryID] == len(self.subentrys[self.selectedEntryID]):
+		if self.selectedSubEntry[self.selectedEntryID] >= len(self.subentrys[self.selectedEntryID]):
 			self.selectedSubEntry[self.selectedEntryID] = -1
 		if self.selectedSubEntry[self.selectedEntryID] > 4:
 			self.startSubEntry[self.selectedEntryID] = self.selectedSubEntry[self.selectedEntryID] - 4
