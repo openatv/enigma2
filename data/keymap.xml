@@ -128,8 +128,6 @@
 		<key id="BTN_0" mapto="zapUp" flags="mr"/>
 		<key id="BTN_1" mapto="zapDown" flags="mr"/>
 		<key id="KEY_ARCHIVE" mapto="openhistorybrowser" flags="mr"/>
-		<key id="KEY_F1" mapto="opendevicemanager" flags="mr"/>
-		<key id="KEY_F4" mapto="openaroraplugins" flags="mr"/>
 		<key id="KEY_GREEN" mapto="showPluginBrowser" flags="mr"/>
 		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="b"/>
 	</map>
@@ -230,14 +228,14 @@
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
-		<key id="KEY_AUDIO" mapto="audioSelection" flags="m"/>
+		<key id="KEY_AUDIO" mapto="audioSelection" flags="b"/>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_YELLOW" mapto="audioSelection" flags="b"/>
 		</device>
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">
-		<key id="KEY_F3" mapto="subtitleSelection" flags="m"/>
+		<key id="KEY_AUDIO" mapto="subtitleSelection" flags="l"/>
 	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
@@ -257,7 +255,6 @@
 	</map>
 
 	<map context="InfobarPiPActions">
-		<key id="KEY_F2" mapto="activatePiP" flags="b"/>
 		<key id="KEY_F6" mapto="activatePiP" flags="b"/>
 	</map>
 
