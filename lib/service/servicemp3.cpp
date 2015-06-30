@@ -384,6 +384,8 @@ int eServiceMP3::ac3_delay = 0,
 
 eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_nownext_timer(eTimer::create(eApp)),
+	m_cuesheet_changed(0),
+	m_cutlist_enabled(1),
 	m_ref(ref),
 	m_pump(eApp, 1)
 {
@@ -401,6 +403,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_prefillbuffer = false;
 	m_paused = false;
 	m_seek_paused = false;
+	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -746,6 +749,7 @@ RESULT eServiceMP3::stop()
 	eDebug("[eServiceMP3] stop %s", m_ref.path.c_str());
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
+	saveCuesheet();
 	m_nownext_timer->stop();
 	if (m_streamingsrc_timeout)
 		m_streamingsrc_timeout->stop();
@@ -1340,6 +1344,12 @@ RESULT eServiceMP3::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 	return 0;
 }
 
+RESULT eServiceMP3::cueSheet(ePtr<iCueSheet> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eServiceMP3::subtitle(ePtr<iSubtitleOutput> &ptr)
 {
 	ptr = this;
@@ -1617,6 +1627,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
+					if(!m_cuesheet_loaded) /* cuesheet CVR */
+						loadCuesheet();
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
@@ -2532,6 +2544,64 @@ ePtr<iStreamBufferInfo> eServiceMP3::getBufferCharge()
 {
 	return new eStreamBufferInfo(m_bufferInfo.bufferPercent, m_bufferInfo.avgInRate, m_bufferInfo.avgOutRate, m_bufferInfo.bufferingLeft, m_buffer_size);
 }
+/* cuesheet CVR */
+PyObject *eServiceMP3::getCutList()
+{
+	ePyObject list = PyList_New(0);
+
+	for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
+	{
+		ePyObject tuple = PyTuple_New(2);
+		PyTuple_SET_ITEM(tuple, 0, PyLong_FromLongLong(i->where));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(i->what));
+		PyList_Append(list, tuple);
+		Py_DECREF(tuple);
+	}
+
+	return list;
+}
+/* cuesheet CVR */
+void eServiceMP3::setCutList(ePyObject list)
+{
+	if (!PyList_Check(list))
+		return;
+	int size = PyList_Size(list);
+	int i;
+
+	m_cue_entries.clear();
+
+	for (i=0; i<size; ++i)
+	{
+		ePyObject tuple = PyList_GET_ITEM(list, i);
+		if (!PyTuple_Check(tuple))
+		{
+			eDebug("[eServiceMP3] non-tuple in cutlist");
+			continue;
+		}
+		if (PyTuple_Size(tuple) != 2)
+		{
+			eDebug("[eServiceMP3] cutlist entries need to be a 2-tuple");
+			continue;
+		}
+		ePyObject ppts = PyTuple_GET_ITEM(tuple, 0), ptype = PyTuple_GET_ITEM(tuple, 1);
+		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
+		{
+			eDebug("[eServiceMP3] cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
+			continue;
+		}
+		pts_t pts = PyLong_AsLongLong(ppts);
+		int type = PyInt_AsLong(ptype);
+		m_cue_entries.insert(cueEntry(pts, type));
+		eDebug("[eServiceMP3] adding %08llx, %d", pts, type);
+	}
+	m_cuesheet_changed = 1;
+	m_event((iPlayableService*)this, evCuesheetChanged);
+}
+
+void eServiceMP3::setCutListEnable(int enable)
+{
+	m_cutlist_enabled = enable;
+}
 
 int eServiceMP3::setBufferSize(int size)
 {
@@ -2610,4 +2680,77 @@ void eServiceMP3::setPCMDelay(int delay)
 			eTSMPEGDecoder::setHwPCMDelay(config_delay_int);
 		}
 	}
+}
+/* cuesheet CVR */
+void eServiceMP3::loadCuesheet()
+{
+	if (!m_cuesheet_loaded)
+	{
+		eDebug("[eServiceMP3] loading cuesheet");
+		m_cuesheet_loaded = true;
+	}
+	std::string filename = m_ref.path + ".cuts";
+
+	m_cue_entries.clear();
+
+	FILE *f = fopen(filename.c_str(), "rb");
+
+	if (f)
+	{
+		while (1)
+		{
+			unsigned long long where;
+			unsigned int what;
+
+			if (!fread(&where, sizeof(where), 1, f))
+				break;
+			if (!fread(&what, sizeof(what), 1, f))
+				break;
+
+			where = be64toh(where);
+			what = ntohl(what);
+
+			if (what > 3)
+				break;
+
+			m_cue_entries.insert(cueEntry(where, what));
+		}
+		fclose(f);
+		eDebug("[eServiceMP3] cuts file has %zd entries", m_cue_entries.size());
+	} else
+		eDebug("[eServiceMP3] cutfile not found!");
+
+	m_cuesheet_changed = 0;
+	m_event((iPlayableService*)this, evCuesheetChanged);
+}
+/* cuesheet CVR */
+void eServiceMP3::saveCuesheet()
+{
+	std::string filename = m_ref.path;
+
+		/* save cuesheet only when main file is accessible. */
+	if (::access(filename.c_str(), R_OK) < 0)
+		return;
+
+	filename.append(".cuts");
+
+	FILE *f = fopen(filename.c_str(), "wb");
+
+	if (f)
+	{
+		unsigned long long where;
+		int what;
+
+		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
+		{
+			where = htobe64(i->where);
+			what = htonl(i->what);
+			fwrite(&where, sizeof(where), 1, f);
+			fwrite(&what, sizeof(what), 1, f);
+
+		}
+		fclose(f);
+	}
+
+	m_cuesheet_changed = 0;
 }
