@@ -9,6 +9,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigYesNo, ConfigSelection, configfile
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Plugins.Plugin import PluginDescriptor
+from boxbranding import getMachineBuild
 import os
 import sys
 import xml.etree.cElementTree
@@ -189,6 +190,10 @@ class LCN():
 
 			if not added:  # no service found? something wrong? a log should be a good idea. Anyway we add an empty line so we keep the numeration
 				f.write("#SERVICE 1:832:d:0:0:0:0:0:0:0:\n")
+
+		# Add HDMI-IN
+		if getMachineBuild() in ('inihdp'):
+			f.write("#SERVICE 8192:0:1:0:0:0:0:0:0:0:\n")
 
 		f.close()
 		self.addInTVBouquets()
