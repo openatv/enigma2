@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-08 10:23+0100\n"
-"PO-Revision-Date: 2015-06-10 12:13+0100\n"
+"POT-Creation-Date: 2015-06-30 03:50+0100\n"
+"PO-Revision-Date: 2015-06-30 06:35+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -535,6 +535,9 @@ msgstr ""
 "Op de achtergrond wordt een controle op updates uitgevoerd. \n"
 "Wacht een paar minuten en probeer het opnieuw."
 
+msgid "A background update check is in progress, please wait a few minutes and then try again."
+msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
+
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
 
@@ -727,14 +730,17 @@ msgstr "Activeer"
 msgid "Activate HbbTV (RedButton)"
 msgstr "Activeer HbbTV (Rode Knop)"
 
-msgid "Activate MAC-address configuration"
-msgstr "Activeer MAC-adresconfiguratie"
+msgid "Activate MAC address configuration"
+msgstr "Activeer MAC-adres configuratie"
 
 msgid "Activate Picture in Picture"
 msgstr "Activeer Picture In Picture"
 
 msgid "Activate current configuration"
 msgstr "Activeer huidige configuratie"
+
+msgid "Activate network adapter configuration"
+msgstr "Start de netwerkadapter configuratie"
 
 msgid "Activate network settings"
 msgstr "Activeer netwerkinstellingen"
@@ -901,6 +907,9 @@ msgstr "Alles"
 msgid "All ages"
 msgstr "Alle leeftijden"
 
+msgid "All frequency"
+msgstr "Alle frequenties"
+
 msgid "All resolutions"
 msgstr "Alle resoluties"
 
@@ -1020,6 +1029,14 @@ msgstr "Elke activiteit"
 
 msgid "Arabic"
 msgstr "Arabisch"
+
+#, python-format
+msgid "Are you ready to install \"%s\" ?"
+msgstr "Gereed om \"%s\" te installeren?"
+
+#, python-format
+msgid "Are you ready to remove \"%s\" ?"
+msgstr "Gereed om \"%s\" te verwijderen?"
 
 msgid "Are you sure to remove this entry?"
 msgstr "weet u zeker dat deze waarde verwijderd mag worden?"
@@ -2436,6 +2453,9 @@ msgstr "Deens"
 msgid "Date"
 msgstr "Datum"
 
+msgid "De-select"
+msgstr "Deselecteer"
+
 msgid "Debug Logs"
 msgstr "Debug logs"
 
@@ -2808,6 +2828,13 @@ msgstr "Wilt u het image downloaden naar %s ?"
 
 msgid "Do you want to install the package:\n"
 msgstr "Wilt u het volgende pakket installeren:\n"
+
+msgid ""
+"Do you want to install the samba client aswell?\n"
+"This will allow you to mount your windows shares on this device."
+msgstr ""
+"Wilt u ook de Samba-client installeren?\n"
+"Deze maakt het mogelijk Windows-shares aan te maken op dit apparaat."
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Wilt u de DVD in de speler afspelen?"
@@ -3233,8 +3260,8 @@ msgstr "Afsluiten"
 msgid "Exit EPG"
 msgstr "Verlaat EPG"
 
-msgid "Exit MAC-address configuration"
-msgstr "Verlaat Activeer MAC-adresconfiguratie"
+msgid "Exit MAC address configuration"
+msgstr "Verlaat MAC-adres configuratie"
 
 msgid "Exit editor"
 msgstr "Editor afsluiten"
@@ -3248,6 +3275,9 @@ msgstr "Mediaspeler afsluiten?"
 msgid "Exit mediaplayer"
 msgstr "Mediaspeler afsluiten"
 
+msgid "Exit mounts setup menu"
+msgstr "Verlaat mountinstellingen menu"
+
 msgid "Exit movie list"
 msgstr "Opnamelijst afsluiten"
 
@@ -3260,17 +3290,29 @@ msgstr "Sluit moviespeler?"
 msgid "Exit nameserver configuration"
 msgstr "verlaat nameserver configuratie"
 
+msgid "Exit network adapter configuration"
+msgstr "Verlaat netwerkadapterconfiguratie"
+
+msgid "Exit network adapter setup menu"
+msgstr "Verlaat netwerkadapterinstellingen menu"
+
 msgid "Exit network interface list"
 msgstr "verlaat netwerkinterface lijst"
 
 msgid "Exit network wizard"
 msgstr "Verlaat netwerk wizard"
 
+msgid "Exit networkadapter setup menu"
+msgstr "Verlaat netwerkadapterinstellingen menu"
+
 msgid "Exit the wizard"
 msgstr "Wizard afsluiten"
 
 msgid "Expert"
 msgstr "Expert"
+
+msgid "Extended"
+msgstr "Uitgebreid"
 
 msgid "Extended Networksetup Plugin..."
 msgstr "Uitgebreide netwerkinstellingen..."
@@ -3452,9 +3494,6 @@ msgstr "Voltooid"
 msgid "Finished configuring your network"
 msgstr "Klaar met het configureren van uw netwerk"
 
-msgid "Finished restarting your network"
-msgstr "Herstarten van uw netwerk is voltooid"
-
 msgid "Finnish"
 msgstr "Fins"
 
@@ -3539,9 +3578,6 @@ msgstr "Paneeldisplay"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor versie: %d"
-
-msgid "Ftpd service type: Vsftpd server"
-msgstr "Ftpd service type: Vsftpd server"
 
 msgid "Full screen"
 msgstr "Volledig scherm"
@@ -3689,8 +3725,8 @@ msgstr "U: = Uurlijks / D: = Dagelijks / W: = Wekelijks / M: = Maandelijks"
 msgid "HD list"
 msgstr "HD lijst"
 
-msgid "HD1100/et7x00"
-msgstr "HD1100/et7x00"
+msgid "HD1100/et7x00/et8500"
+msgstr "HD1100/et7x00/et8500"
 
 msgid "HD2400"
 msgstr "HD2400"
@@ -4046,6 +4082,10 @@ msgstr "Opslagmedium initialiseren"
 msgid "Inotify Monitoring"
 msgstr "Inotify monitoring"
 
+#, fuzzy
+msgid "Inotify monitoring"
+msgstr "Inotify monitoring"
+
 msgid "Input"
 msgstr "Invoer"
 
@@ -4099,6 +4139,9 @@ msgid "Installing"
 msgstr "Installeert"
 
 msgid "Installing Service"
+msgstr "Installeert service"
+
+msgid "Installing service"
 msgstr "Installeert service"
 
 msgid "Instant record"
@@ -4474,10 +4517,10 @@ msgstr "Lagere framerate gebruikt minder processortijd."
 msgid "Luxembourgish"
 msgstr "Luxumburgs"
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC-adres"
 
-msgid "MAC-address settings"
+msgid "MAC address settings"
 msgstr "MAC-adresinstellingen"
 
 msgid "MAC:"
@@ -4702,6 +4745,12 @@ msgstr "Beweeg Op/Neer"
 msgid "Move down a page"
 msgstr "Ga een pagina naar beneden"
 
+msgid "Move down to last entry"
+msgstr "Verplaats omlaag naar laaste ingave"
+
+msgid "Move down to next entry"
+msgstr "Verplaats omlaag naar volgende ingave"
+
 msgid "Move east"
 msgstr "Draai oost"
 
@@ -4713,6 +4762,12 @@ msgstr "Naar positie X draaien"
 
 msgid "Move up a page"
 msgstr "Ga een pagina omhoog"
+
+msgid "Move up to first entry"
+msgstr "Verplaats omhoog naar eerste ingave"
+
+msgid "Move up to previous entry"
+msgstr "Verplaats omhoog naar vorige ingave"
 
 msgid "Move west"
 msgstr "Draai west"
@@ -4779,6 +4834,9 @@ msgstr "Multisat alle geselecteerd"
 
 msgid "Music/Ballet/Dance"
 msgstr "Muziek/Ballet/Dans"
+
+msgid "N"
+msgstr "N"
 
 msgid "N/A"
 msgstr "Niet beschikbaar"
@@ -5259,6 +5317,9 @@ msgstr "alleen na opstarten"
 msgid "Open bouquet list"
 msgstr "Open favorietenlijst"
 
+msgid "Open nameserver configuration"
+msgstr "Open naamserverconfiguratie"
+
 msgid "Open service list and select the next channel"
 msgstr "Open de zenderlijst en selecteer de volgende zender"
 
@@ -5707,9 +5768,6 @@ msgstr "Even wachten (bezig met downloaden kanaallijst)"
 msgid "Please wait (updating packages)"
 msgstr "Even wachten (bezig met upgraden)"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Een ogenblikje geduld terwijl we uw netwerk activeren..."
-
 msgid "Please wait while gathering EPG data..."
 msgstr "Wacht op het verzamelen van EPG-data..."
 
@@ -5728,7 +5786,7 @@ msgstr "Een ogenblikje geduld; uw netwerkinterface wordt ingesteld..."
 msgid "Please wait while we test your network..."
 msgstr "Een ogenblikje geduld; uw netwerk wordt getest..."
 
-msgid "Please wait while your network is restarting..."
+msgid "Please wait while your network configuration is activated..."
 msgstr "Een ogenblikje geduld; uw netwerk wordt opnieuw gestart..."
 
 msgid "Please wait..."
@@ -5909,8 +5967,8 @@ msgstr "Druk op OK om satellieten te kiezen."
 msgid "Press OK to select/deselect a CAId."
 msgstr "Druk op OK om de CAId aan/uit te zetten."
 
-msgid "Press OK to set the MAC-address."
-msgstr "Druk op OK om MAC-adresin te stallen."
+msgid "Press OK to set the MAC address."
+msgstr "Druk op OK om MAC-adres in te stellen."
 
 msgid "Press OK to start the scan"
 msgstr "Druk OK om te zoeken."
@@ -6333,6 +6391,9 @@ msgstr "Verwijderen van map %s mislukt (map niet leeg?)."
 msgid "Removing partition table"
 msgstr "Verwijdert partitietabel"
 
+msgid "Removing service"
+msgstr "Verwijdert service"
+
 msgid "Rename"
 msgstr "Hernoemen"
 
@@ -6508,6 +6569,9 @@ msgstr "Actief"
 msgid "Russian"
 msgstr "Russisch"
 
+msgid "S"
+msgstr ""
+
 msgid "S-Video"
 msgstr "S-video"
 
@@ -6530,8 +6594,8 @@ msgstr "SPDIF"
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "Samba Network File System"
-msgstr "Samba netwerk file systeem"
+msgid "Samba Log"
+msgstr "Sambalog"
 
 msgid "Samba Setup"
 msgstr "Samba-instellingen"
@@ -6644,6 +6708,9 @@ msgstr "Zoek ook op SR"
 
 msgid "Scan files..."
 msgstr "Bestanden zoeken..."
+
+msgid "Scan options"
+msgstr "Scan opties"
 
 msgid "Scan wireless networks"
 msgstr "WiFi-netwerken zoeken"
@@ -6817,6 +6884,9 @@ msgstr "Selecteer interface"
 msgid "Select location"
 msgstr "Kies lokatie"
 
+msgid "Select menu entry"
+msgstr "Selecteer menu-item"
+
 msgid "Select movie"
 msgstr "Kies een opname"
 
@@ -6898,6 +6968,9 @@ msgstr "Servisch"
 msgid "Serial No"
 msgstr "Serienummer"
 
+msgid "Serial no"
+msgstr "Serienummer"
+
 msgid "Serv.Name"
 msgstr "Serv.Naam"
 
@@ -6976,9 +7049,6 @@ msgstr "Kanalen kunnen in favorietenlijsten worden samengevoegd. Indien geactive
 msgid "Set Framerate for MiniTV"
 msgstr "Stel framerate in voor MiniTV"
 
-msgid "Set System"
-msgstr "Systeminstellingen"
-
 msgid "Set as startup service"
 msgstr "Kies kanaal na opstarten"
 
@@ -7004,8 +7074,11 @@ msgstr "Limieten instellen"
 msgid "Set startup service"
 msgstr "kanaal kiezen bij opstarten"
 
+msgid "Set system"
+msgstr "Systeminstellingen"
+
 #, python-format
-msgid "Set the MAC-address of your %s %s.\n"
+msgid "Set the MAC address of your %s %s.\n"
 msgstr "Bepaal het MAC-adres van uw %s %s.\n"
 
 msgid "Set the channel for this timer."
@@ -7634,12 +7707,6 @@ msgstr "Sofwarebeheer informatie"
 msgid "Some plugins are not available:\n"
 msgstr "Applicaties die niet beschikbaar zijn:\n"
 
-msgid "Sorry Inadyn Config is Missing"
-msgstr "Sorry, de Inadyn Configuratie ontbreekt"
-
-msgid "Sorry MiniDLNA Config is Missing"
-msgstr "MiniDLNA Configuratie ontbreekt"
-
 msgid "Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com."
 msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw. Als het probleem aanhoudt, controleer dan op openvix.co.uk of world-of-satellite.com wat er aan de hand is."
 
@@ -7652,8 +7719,14 @@ msgstr "Vanwege onderhoud zijn de feeds niet actief."
 msgid "Sorry the feeds seem to be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."
 msgstr "Sorry: de feeds lijken onstabiel te zijn. Als u die toch wilt gebruiken, moet u 'Accepteer niet geteste updates' activeren in\"Software update instellingen\"."
 
-msgid "Sorry uShare Config is Missing"
-msgstr "Sorry uShare configuratie ontbreekt"
+msgid "Sorry your Inadyn config is missing"
+msgstr "Sorry, de Inadynconfiguratie ontbreekt"
+
+msgid "Sorry your MiniDLNA config is missing"
+msgstr "MiniDLNA configuratie ontbreekt"
+
+msgid "Sorry your uShare config is missing"
+msgstr "uShare configuratie ontbreekt"
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -7909,6 +7982,9 @@ msgstr "Strepen"
 msgid "Strongest position"
 msgstr "Sterkste positie"
 
+msgid "Subnet"
+msgstr "Subnet"
+
 msgid "Subservices"
 msgstr "Subkanalen"
 
@@ -8111,6 +8187,12 @@ msgstr "Telnetpoort"
 
 msgid "Telnet Setup"
 msgstr "Telnetinstellingen"
+
+msgid "Telnet interface"
+msgstr "Telnetinterface"
+
+msgid "Telnet port"
+msgstr "Telnetpoort"
 
 msgid "Telnet setup"
 msgstr "Telnetinstellingen"
@@ -8573,12 +8655,12 @@ msgstr "Deze plugin wordt verwijderd."
 msgid ""
 "This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
+"- please check your DHCP server, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"Deze test controleert de nameservers.\n"
+"Deze test controleert de ingestelde naamservers.\n"
 "Indien u een \"onbevestigd\" bericht ziet:\n"
-"- Controleer dan uw DHCP-server, kabels en instellingen\n"
+"- Controleer dan uw DHCP-server, kabels en adapterinstellingen\n"
 "- Indien de nameservers handmatig ingesteld zijn, controleer deze dan."
 
 msgid ""
@@ -8596,7 +8678,7 @@ msgid ""
 "This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
+"- please check your DHCP server, cabling and adapter setup"
 msgstr ""
 "Deze test controleert of er voor uw LAN-adapter een geldig IP-adres gevonden is.\n"
 "Indien u de \"onbevestigd\" melding ziet:\n"
@@ -8649,9 +8731,6 @@ msgstr "TiVo support"
 msgid "Time"
 msgstr "Tijd"
 
-msgid "Time Update in Minutes"
-msgstr "Update tijd in minuten"
-
 msgid "Time Update in Minutes:"
 msgstr "Update tijd in minuten:"
 
@@ -8663,6 +8742,9 @@ msgstr "Tijd instellingen"
 
 msgid "Time to execute command or script"
 msgstr "Tijdstip van uitvoeren opdracht of script"
+
+msgid "Time update in minutes"
+msgstr "Updatetijd in minuten"
 
 msgid "Timeline 24 Hour"
 msgstr "Tijdlijn 24 uur"
@@ -8875,6 +8957,9 @@ msgstr "Aantal resterende pogingen:"
 
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr "Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik a.u.b..."
+
+msgid "Try to find used transponders in terrestrial network... please wait..."
+msgstr "Probeert gebruikte transponders op het terrestrial netwerk te vinden. Een ogenblik a.u.b..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Probeert een nieuwe pakketlijst te downloaden. Een ogenblik a.u.b..."
@@ -9479,6 +9564,9 @@ msgstr "Opnames afspelen..."
 msgid "Web Interface"
 msgstr "Webinterface"
 
+msgid "Web interface"
+msgstr "Webinterface"
+
 msgid "Wed"
 msgstr "Wo"
 
@@ -10005,14 +10093,6 @@ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg voordat uw uw %s %s
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Uw %s %s zal worden herstart na de installatie\n"
-"Gereed om \"%s\" te installeren?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -10023,11 +10103,27 @@ msgstr ""
 
 #, python-format
 msgid ""
+"Your %s %s will be restarted after the installation of the service\n"
+"Are you ready to install \"%s\" ?"
+msgstr ""
+"Uw %s %s zal worden herstart na de installatie van de service\n"
+"Gereed om \"%s\" te installeren?"
+
+#, python-format
+msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
 "Uw %s %s zal na het verwijderen van de service opnieuw worden gestart\n"
 "Wilt u nu verwijderen?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of the service\n"
+"Do you want to remove the service now ?"
+msgstr ""
+"Uw %s %s zal na het verwijderen van de service opnieuw worden gestart\n"
+"Wilt u de service nu verwijderen?"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Als u op OK drukt zal uw %s %s opnieuw opstarten."
@@ -10080,6 +10176,12 @@ msgstr "Uw internetverbinding is in orde (ip: %s)"
 
 msgid "Your network configuration has been activated."
 msgstr "Configuratie van uw netwerk is geactiveerd."
+
+msgid "Your network has finished restarting"
+msgstr "Uw netwerk is opnieuw gestart."
+
+msgid "Your network is restarting, Please wait..."
+msgstr "Uw netwerk wordt opnieuw gestart. Een ogenblik a.u.b..."
 
 msgid "Your receiver does not have an internet connection"
 msgstr "Uw %s %s heeft geen internetverbinding"
@@ -10169,9 +10271,6 @@ msgstr "een GUI om zenders/providers/caids aan de CI modules toe te voegen"
 
 msgid "about to start"
 msgstr "start direct"
-
-msgid "activate network adapter configuration"
-msgstr "start de netwerk adapter configuratie"
 
 msgid "activatePiP"
 msgstr "activeer PiP"
@@ -10418,6 +10517,9 @@ msgstr "geactiveerd"
 msgid "end cut here"
 msgstr "eindsnijpunt hier"
 
+msgid "ene"
+msgstr "ONO"
+
 msgid "enter number to jump to channel."
 msgstr "geef kanaalnummer in om naar dat kanaal te springen"
 
@@ -10442,6 +10544,9 @@ msgstr "fout bij het starten van de scan"
 msgid "error while scanning"
 msgstr "fout tijdens de scan"
 
+msgid "ese"
+msgstr "OZO"
+
 msgid "et4000"
 msgstr "ET4000"
 
@@ -10459,15 +10564,6 @@ msgstr "et9200/9500/6500"
 
 msgid "exit DVD player or return to file browser"
 msgstr "DVD-speler afsluiten of terug naar bestandslijst"
-
-msgid "exit mounts setup menu"
-msgstr "verlaat mountinstellingen menu"
-
-msgid "exit network adapter configuration"
-msgstr "verlaat netwerkadapterconfiguratie"
-
-msgid "exit networkadapter setup menu"
-msgstr "verlaat netwerkadapterinstellingen menu"
 
 msgid "experimental film/video"
 msgstr "experimentele film/video"
@@ -10680,18 +10776,6 @@ msgstr "autorijden"
 msgid "move"
 msgstr "verplaats"
 
-msgid "move down to last entry"
-msgstr "verplaats omlaag naar laaste ingave"
-
-msgid "move down to next entry"
-msgstr "verplaats omlaag naar volgende ingave"
-
-msgid "move up to first entry"
-msgstr "verplaats omhoog naar eerste ingave"
-
-msgid "move up to previous entry"
-msgstr "verplaats omhoog naar vorige ingave"
-
 msgid "movie/drama (general)"
 msgstr "film/drama (algemeen)"
 
@@ -10710,6 +10794,9 @@ msgstr "musical/opera"
 msgid "nature/animals/environment"
 msgstr "natuur/dieren/milieu"
 
+msgid "ne"
+msgstr "NO"
+
 msgid "never"
 msgstr "nooit"
 
@@ -10724,6 +10811,12 @@ msgstr "nieuws/actualiteiten (algemeen)"
 
 msgid "news/weather report"
 msgstr "nieuws/weer"
+
+msgid "nne"
+msgstr "NNO"
+
+msgid "nnw"
+msgstr "NNW"
 
 msgid "no"
 msgstr "nee"
@@ -10774,6 +10867,9 @@ msgstr "niet gebruikt"
 msgid "nothing connected"
 msgstr "niets aangesloten"
 
+msgid "nw"
+msgstr ""
+
 msgid "of a DUAL layer medium used."
 msgstr "op een DUBBELlaags medium gebruikt."
 
@@ -10797,9 +10893,6 @@ msgstr "éénmalig"
 
 msgid "only HD"
 msgstr "alleen HD"
-
-msgid "open nameserver configuration"
-msgstr "open naamserverconfiguratie"
 
 msgid "original"
 msgstr "origineel"
@@ -10931,6 +11024,9 @@ msgstr "status"
 msgid "science fiction/fantasy/horror"
 msgstr "science fiction/fantasie/horror"
 
+msgid "se"
+msgstr "ZO"
+
 msgid "second cable of motorized LNB"
 msgstr "2e kabel van gemotoriseerde LNB"
 
@@ -10942,9 +11038,6 @@ msgstr "selecteer"
 
 msgid "select CAId's"
 msgstr "Selecteer CAId's"
-
-msgid "select menu entry"
-msgstr "selecteer menu-item"
 
 msgid "serious music/classic music"
 msgstr "serieuze/klassieke muziek"
@@ -11054,6 +11147,12 @@ msgstr "Sport (algemeen)"
 msgid "sports magazine"
 msgstr "Sportrubriek"
 
+msgid "sse"
+msgstr "ZZO"
+
+msgid "ssw"
+msgstr ""
+
 msgid "standard"
 msgstr "Standaard"
 
@@ -11068,6 +11167,9 @@ msgstr "stapgrootte"
 
 msgid "stereo"
 msgstr "stereo"
+
+msgid "sw"
+msgstr "ZW"
 
 msgid "switch to bookmarks"
 msgstr "Ga naar markeerpunten"
@@ -11134,6 +11236,12 @@ msgstr "uShare Port"
 
 msgid "uShare Setup"
 msgstr "uShare Instellingen"
+
+msgid "uShare name"
+msgstr "uShare naam"
+
+msgid "uShare port"
+msgstr "uShare poort"
 
 msgid "uShare setup"
 msgstr "uShare instellingen"
@@ -11244,8 +11352,14 @@ msgstr "met tekst"
 msgid "with tuner name"
 msgstr "met tunernaam"
 
+msgid "wnw"
+msgstr ""
+
 msgid "working"
 msgstr "bezig"
+
+msgid "wsw"
+msgstr ""
 
 msgid "yellow"
 msgstr "geel"
@@ -11377,13 +11491,6 @@ msgstr "zapte"
 #~ msgid "Display"
 #~ msgstr "Display"
 
-#~ msgid ""
-#~ "Do you want to also install samba client ?\n"
-#~ "This allows you to mount your windows shares on this device."
-#~ msgstr ""
-#~ "Wilt u ook de Samba-client installeren?\n"
-#~ "Deze maakt het mogelijk Windows-shares aan te maken op dit apparaat."
-
 #~ msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 #~ msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
 
@@ -11401,6 +11508,12 @@ msgstr "zapte"
 
 #~ msgid "External (CF)"
 #~ msgstr "Extern (CF)"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Herstarten van uw netwerk is voltooid"
+
+#~ msgid "Ftpd service type: Vsftpd server"
+#~ msgstr "Ftpd service type: Vsftpd server"
 
 #~ msgid "Harddisk Setup"
 #~ msgstr "Harde schijf instellingen"
@@ -11465,6 +11578,9 @@ msgstr "zapte"
 #~ msgid "Phone number"
 #~ msgstr "Telefoonnummer"
 
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Een ogenblikje geduld terwijl we uw netwerk activeren..."
+
 #~ msgid "Please wait whilst feeds state is checked."
 #~ msgstr "Even wachten: de feeds worden gecontroleerd."
 
@@ -11490,8 +11606,8 @@ msgstr "zapte"
 #~ msgid "Restart enigma"
 #~ msgstr "De gebruikersinterface opnieuw starten"
 
-#~ msgid "Samba Log"
-#~ msgstr "Sambalog"
+#~ msgid "Samba Network File System"
+#~ msgstr "Samba netwerk file systeem"
 
 #~ msgid "Select default EPG type..."
 #~ msgstr "Kies het standaard EPG-type..."
