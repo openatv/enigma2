@@ -404,6 +404,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_paused = false;
 	m_seek_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
+#if GST_VERSION_MAJOR >= 1
+	m_use_chapter_entries = false; /* TOC chapter support CVR */
+#endif
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -1752,6 +1755,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			break;
 		}
+		/* TOC entry intercept used for chapter support CVR */
+#if GST_VERSION_MAJOR >= 1
+		case GST_MESSAGE_TOC:
+		{
+			HandleTocEntry(msg);
+			break;
+		}
+#endif
 		case GST_MESSAGE_ASYNC_DONE:
 		{
 			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
@@ -2027,7 +2038,70 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	if (_this) _this->handleMessage(message);
 	return GST_BUS_DROP;
 }
-
+/*Processing TOC CVR */
+#if GST_VERSION_MAJOR >= 1
+void eServiceMP3::HandleTocEntry(GstMessage *msg)
+{
+	/* limit TOC to dvbvideosink cue sheet only works for video media */
+	if (!strncmp(GST_MESSAGE_SRC_NAME(msg), "dvbvideosink", 12))
+	{
+		GstToc *toc;
+		gboolean updated;
+		gst_message_parse_toc(msg, &toc, &updated);
+		for (GList* i = gst_toc_get_entries(toc); i; i = i->next)
+		{
+			GstTocEntry *entry = static_cast<GstTocEntry*>(i->data);
+			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION)
+			{
+				/* extra debug info for testing purposes CVR should_be_removed later on */
+				eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
+				gint y = 0;
+				for (GList* x = gst_toc_entry_get_sub_entries (entry); x; x = x->next)
+				{
+					GstTocEntry *sub_entry = static_cast<GstTocEntry*>(x->data);
+					if (gst_toc_entry_get_entry_type (sub_entry) == GST_TOC_ENTRY_TYPE_CHAPTER)
+					{
+						if (y == 0)
+						{
+							m_use_chapter_entries = true;
+							if (m_cuesheet_loaded)
+								m_cue_entries.clear();
+							else
+								loadCuesheet();
+						}
+						/* first chapter is movie start no cut needed */
+						else if (y >= 1)
+						{
+							gint64 start = 0;
+							gint64 pts = 0;
+							gint type = 0;
+							gst_toc_entry_get_start_stop_times(sub_entry, &start, NULL);
+							type = 2;
+							if(start > 0)
+								pts = start / 11111;
+							if (pts > 0)
+							{
+								m_cue_entries.insert(cueEntry(pts, type));
+								m_cuesheet_changed = 1;
+								m_event((iPlayableService*)this, evCuesheetChanged);
+								/* extra debug info for testing purposes CVR should_be_removed later on */
+								eDebug("[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
+										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts);
+							}
+						}
+						y++;
+					}
+				}
+			}
+		}
+		eDebug("[eServiceMP3] TOC entry from source %s processed", GST_MESSAGE_SRC_NAME(msg));
+	}
+	else
+	{
+		eDebug("[eServiceMP3] TOC entry from source %s not used", GST_MESSAGE_SRC_NAME(msg));
+	}
+}
+#endif
 void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpointer user_data)
 {
 	GstElement *source = NULL;
@@ -2689,6 +2763,13 @@ void eServiceMP3::loadCuesheet()
 		eDebug("[eServiceMP3] loading cuesheet");
 		m_cuesheet_loaded = true;
 	}
+	m_cue_entries.clear();
+	/* only load manual cuts if no chapter info avbl CVR */
+#if GST_VERSION_MAJOR >= 1
+	if (m_use_chapter_entries)
+		return;
+#endif
+
 	std::string filename = m_ref.path + ".cuts";
 
 	m_cue_entries.clear();
@@ -2729,8 +2810,14 @@ void eServiceMP3::saveCuesheet()
 	std::string filename = m_ref.path;
 
 		/* save cuesheet only when main file is accessible. */
+#if GST_VERSION_MAJOR < 1
 	if (::access(filename.c_str(), R_OK) < 0)
 		return;
+#else
+		/* save cuesheet only when main file is accessible. and no TOC chapters avbl*/
+	if ((::access(filename.c_str(), R_OK) < 0) || m_use_chapter_entries)
+		return;
+#endif
 
 	filename.append(".cuts");
 
@@ -2751,6 +2838,5 @@ void eServiceMP3::saveCuesheet()
 		}
 		fclose(f);
 	}
-
 	m_cuesheet_changed = 0;
 }
