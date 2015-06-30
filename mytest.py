@@ -652,22 +652,29 @@ def runScreenTest():
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
-	if boxtype in ('gbipbox'):
-		wakeupList = [
-			x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-						(session.nav.RecordTimer.getNextZapTime(), 1),
-						(plugins.getNextWakeupTime(), 2),
-						(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
-			if x[0] != -1
-		]
+	#check RecordTimer instance
+	if str(session.nav.RecordTimer).startswith('<RecordTimer.RecordTimer instance at'):
+		nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True)
+		nextRecordingAuto = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
+		nextZapTime = session.nav.RecordTimer.getNextZapTime()
+		nextZapAuto = nextRecordingAuto
 	else:
-		wakeupList = [
-			x for x in ((session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-						(session.nav.RecordTimer.getNextZapTime(), 1),
-						(plugins.getNextWakeupTime(), 2),
-						(session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
-			if x[0] != -1
-		]
+		nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
+		nextRecordingAuto = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
+		nextZapTime = session.nav.RecordTimer.getNextZapTime()
+		nextZapAuto = False
+
+	nextPowerManagerTime = session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True)
+	nextPowerManagerAuto = session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()
+
+	wakeupList = [
+		x for x in ((nextRecordingTime, 0, nextRecordingAuto),
+					(nextZapTime, 1, nextZapAuto),
+					(plugins.getNextWakeupTime(), 2, False),
+					(nextPowerManagerTime, 3, nextPowerManagerAuto))
+		if x[0] != -1
+	]
+	wakeupList.sort()
 
 	# individual wakeup time offset
 	if config.workaround.wakeuptimeoffset.value == "standard":
@@ -678,7 +685,6 @@ def runScreenTest():
 	else:
 		wpoffset = int(config.workaround.wakeuptimeoffset.value)
 
-	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
 		startTime = wakeupList[0]
@@ -692,7 +698,7 @@ def runScreenTest():
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
-		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
+		recordTimerWakeupAuto = startTime[2]
 		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
@@ -710,7 +716,7 @@ def runScreenTest():
 #			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
-		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
+		PowerTimerWakeupAuto = startTime[2]
 		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto
 	config.misc.isNextPowerTimerAfterEventActionAuto.value = PowerTimerWakeupAuto
 	config.misc.isNextPowerTimerAfterEventActionAuto.save()
