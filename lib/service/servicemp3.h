@@ -276,6 +276,10 @@ private:
 	bool m_seek_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
+	/* servicemMP3 chapter TOC support CVR */
+#if GST_VERSION_MAJOR >= 1
+	bool m_use_chapter_entries;
+#endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
@@ -331,6 +335,8 @@ private:
 #if GST_VERSION_MAJOR < 1
 	static gint match_sinktype(GstElement *element, gpointer type);
 #else
+/* TOC processing CVR */
+	void HandleTocEntry(GstMessage *msg);
 	static gint match_sinktype(const GValue *velement, const gchar *type);
 #endif
 	static void handleElementAdded(GstBin *bin, GstElement *element, gpointer user_data);
