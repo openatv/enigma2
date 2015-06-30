@@ -95,7 +95,7 @@ typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ct
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection,
-	public iSubtitleOutput, public iStreamedService, public iAudioDelay, public Object
+	public iSubtitleOutput, public iStreamedService, public iAudioDelay, public Object, public iCueSheet
 {
 	DECLARE_REF(eServiceMP3);
 public:
@@ -116,12 +116,18 @@ public:
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
+	RESULT cueSheet(ePtr<iCueSheet> &ptr);
 
 		// not implemented (yet)
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
-	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+//	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+
+		// iCueSheet
+	PyObject *getCutList();
+	void setCutList(SWIG_PYOBJECT(ePyObject));
+	void setCutListEnable(int enable);
 
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
@@ -229,6 +235,26 @@ protected:
 	ePtr<eServiceEvent> m_event_now, m_event_next;
 	void updateEpgCacheNowNext();
 
+		/* cuesheet */
+	struct cueEntry
+	{
+		pts_t where;
+		unsigned int what;
+
+		bool operator < (const struct cueEntry &o) const
+		{
+			return where < o.where;
+		}
+		cueEntry(const pts_t &where, unsigned int what) :
+			where(where), what(what)
+		{
+		}
+	};
+
+	std::multiset<cueEntry> m_cue_entries;
+	int m_cuesheet_changed, m_cutlist_enabled;
+	void loadCuesheet();
+	void saveCuesheet();
 private:
 	static int pcm_delay;
 	static int ac3_delay;
@@ -248,6 +274,8 @@ private:
 	bool m_use_prefillbuffer;
 	bool m_paused;
 	bool m_seek_paused;
+	/* cuesheet load check */
+	bool m_cuesheet_loaded;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
