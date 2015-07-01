@@ -577,13 +577,13 @@ DEVICEDB =  \
 		},
 		"dm800":
 		{
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": "Upper USB Slot",
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": "Lower USB Slot"
+			"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": "Upper USB Slot",
+			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": "Lower USB Slot"
 		},
 		"dm7025":
 		{
-		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "CF Card Slot",
-		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
+			"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "CF Card Slot",
+			"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
 		},
 		"gbquadplus":
 		{
