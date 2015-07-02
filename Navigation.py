@@ -38,12 +38,14 @@ class Navigation:
 		self.currentlyPlayingService = None
 
 		self.RecordTimer = None
+		self.isRecordTimerImageStandard = False
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
 			self.RecordTimer = p()
 			if self.RecordTimer:
 				break
 		if not self.RecordTimer:
 			self.RecordTimer = RecordTimer.RecordTimer()
+			self.isRecordTimerImageStandard = True
 
 		self.PowerTimer = None
 		self.PowerTimer = PowerTimer.PowerTimer()
