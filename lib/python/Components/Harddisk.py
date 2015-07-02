@@ -596,6 +596,11 @@ DEVICEDB =  \
 		{
 			"/devices/platform/ehci-brcm.0/usb1/1-2/1-2:1.0": "Front USB Slot",
 			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot"
+		},
+		"gbx1":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot (LAN-Port)",
+			"/devices/platform/ehci-brcm.0/usb1/1-2/1-2:1.0": "Back USB Slot"
 		}
 	}
 
