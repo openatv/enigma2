@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Openpli 4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-14 13:19+0200\n"
-"PO-Revision-Date: 2015-06-21 15:30+0200\n"
+"POT-Creation-Date: 2015-06-29 13:01+0300\n"
+"PO-Revision-Date: 2015-07-01 19:34+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
 "Language: et_EE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.2\n"
 
 msgid ""
 "\n"
@@ -512,10 +512,10 @@ msgid "A/V settings"
 msgstr "Heli ja pildi seaded"
 
 msgid "AAC downmix"
-msgstr "AAC dekodeerimine"
+msgstr "AAC > stereo"
 
 msgid "AC3 downmix"
-msgstr "AC3 dekodeerimine"
+msgstr "AC3 > stereo"
 
 msgid "Abort"
 msgstr "Katkesta"
@@ -702,7 +702,7 @@ msgid "Arabic"
 msgstr "Araabia"
 
 msgid "Are you sure to purge all deleted userbouquets?"
-msgstr "Kas kindlasti kaotada kõik kustutatud kasutajanimekirjad?"
+msgstr "Kas puhastada kõik kustutatud lemmiknimekirjad?"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
@@ -843,7 +843,7 @@ msgid "Automatic scan"
 msgstr "Automaatotsing"
 
 msgid "Available format variables"
-msgstr "Võimalikud formati muutujad"
+msgstr "Võimalikud vormingu muutujad"
 
 msgid "B"
 msgstr "B"
@@ -888,7 +888,7 @@ msgid "Big PiP"
 msgstr "Suur PiP"
 
 msgid "Bitrate:"
-msgstr "Bitrate:"
+msgstr "Bitikiirus:"
 
 msgid "Black screen"
 msgstr "Must ekraan"
@@ -897,7 +897,7 @@ msgid "Black screen till locked"
 msgstr "Must ekraan lukustumiseni"
 
 msgid "Block noise reduction"
-msgstr "Blokeeri müra vähendamist"
+msgstr "Plokkmüra vähendamine"
 
 msgid "Blue"
 msgstr "Sinine"
@@ -1290,6 +1290,9 @@ msgstr "Kehtetu kanal %s. Salvestamine nurjus."
 msgid "Create DVD-ISO"
 msgstr "Loo DVD-ISO"
 
+msgid "Create new folder and exit"
+msgstr "Loo uus kaust ja välju"
+
 #, python-format
 msgid "Creating directory %s failed."
 msgstr "Kausta loomine %s nurjus."
@@ -1360,7 +1363,7 @@ msgid "DMM normal"
 msgstr "DMM tavaline"
 
 msgid "DTS downmix"
-msgstr "DTS dekodeerimine"
+msgstr "DTS > stereo"
 
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
@@ -2122,10 +2125,10 @@ msgid "German"
 msgstr "Saksa"
 
 msgid "Get latest experimental image"
-msgstr "Hangi viimane eksperimentaaltarkvara"
+msgstr "Hangi uusim eksperimentaalne tarkvara"
 
 msgid "Get latest release image"
-msgstr "Leia uusim väljastatud image"
+msgstr "Hangi uusim stabiilne tarkvara"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Saadakse laienduse infot. Oota..."
@@ -2220,8 +2223,8 @@ msgstr "Kaitsevahemik"
 msgid "HD list"
 msgstr "HD nimekiri"
 
-msgid "HD1100/et7x00"
-msgstr "HD1100/et7x00"
+msgid "HD1100/et7x00/et8500"
+msgstr "HD1100/et7x00/et8500"
 
 msgid "HD2400"
 msgstr "HD2400"
@@ -2269,7 +2272,7 @@ msgid "Hierarchy information"
 msgstr "Hierarhia teave"
 
 msgid "High bitrate support"
-msgstr "Kõrge bitrate tugi"
+msgstr "Kõrge bitikiiruse tugi"
 
 msgid "History back"
 msgstr "Ajaloo tagasivaade"
@@ -2760,7 +2763,7 @@ msgid "Monday"
 msgstr "Esmaspäev"
 
 msgid "Mosquito noise reduction"
-msgstr "Müra tasandus"
+msgstr "Moskiitomüra vähendamine"
 
 msgid "Motor command retries"
 msgstr "Mootori käsu kordused"
@@ -2781,7 +2784,7 @@ msgid "Move PiP to main picture"
 msgstr "Mine PiP peapildile"
 
 msgid "Move Picture in Picture"
-msgstr "Liiguta PiP-pilt"
+msgstr "Liiguta PiP-pilti"
 
 msgid "Move east"
 msgstr "Liiguta itta"
@@ -2829,7 +2832,7 @@ msgid "Multi EPG"
 msgstr "Kanalite saatekava"
 
 msgid "Multi channel downmix"
-msgstr "Paljude kanalite taasesitus"
+msgstr "Mitmekanaline heli > stereo"
 
 msgid "Multimedia"
 msgstr "Multimeedia"
@@ -3165,6 +3168,12 @@ msgstr "Ainult vabade otsimine"
 
 msgid "Only on startup"
 msgstr "Ainult alustamisel"
+
+msgid "Open select location"
+msgstr "Ava valitud asukoht"
+
+msgid "Open select location as timer name"
+msgstr ""
 
 msgid "Open service list"
 msgstr "Ava kanalinimekiri"
@@ -4022,6 +4031,9 @@ msgstr "Laupäev"
 
 msgid "Save"
 msgstr "Salvesta"
+
+msgid "Save and exit"
+msgstr "Salvesta ja välju"
 
 msgid "Save and restart timeshift"
 msgstr "Salvesta ajanihe ja alusta uuesti"
@@ -4968,7 +4980,7 @@ msgstr ""
 " \n"
 " \n"
 "Eesti digi-tv foorum \n"
-"Viimati muudetud: 21. juuni 2015 \n"
+"Viimati muudetud: 1. juuli 2015 \n"
 " \n"
 "TÕLKE_INFO"
 
@@ -5633,7 +5645,7 @@ msgid "Use the network wizard to configure your network\n"
 msgstr "Kasuta seadistusabilist oma võrgu seadistamiseks\n"
 
 msgid "Use these input device settings?"
-msgstr "Kasutad selle sisendseadme seadeid?"
+msgstr "Kas kasutad neid sisendseadme seadeid?"
 
 msgid "Use these settings?"
 msgstr "Kasutad neid seadeid?"
@@ -6097,7 +6109,7 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Kanalivahetus PiP kanalil"
 
 msgid "Zap focus to main screen"
-msgstr "Fookus peaekraanile"
+msgstr "Kanalivahetus põhipildil"
 
 msgid "Zap to"
 msgstr "Mine"
@@ -6157,7 +6169,7 @@ msgid "add bouquet"
 msgstr "lisa nimekiri"
 
 msgid "add bouquet to parental protection"
-msgstr "lisa nimekiri vanemate kontrolli alla"
+msgstr "lisa lemmiknimekirjale lapselukk"
 
 msgid "add marker"
 msgstr "lisa märgistus"
@@ -6339,7 +6351,7 @@ msgid "disable"
 msgstr "keela"
 
 msgid "disable move mode"
-msgstr "keela move mode"
+msgstr "keela liigutamine"
 
 msgid "disabled"
 msgstr "keelatud"
@@ -6387,7 +6399,7 @@ msgid "enable favourite edit"
 msgstr "luba lemmikute muutmine"
 
 msgid "enable move mode"
-msgstr "luba liigutamine menüüdes"
+msgstr "luba liigutamine"
 
 msgid "enabled"
 msgstr "lubatud"
@@ -6516,7 +6528,7 @@ msgid "go to standby"
 msgstr "mine ooterežiimi"
 
 msgid "grab this frame as bitmap"
-msgstr "salvesta see kaader bitmapina"
+msgstr "salvesta see kaader rasterpildina"
 
 msgid "green"
 msgstr "roheline"
@@ -6813,7 +6825,7 @@ msgid "remove bookmark"
 msgstr "kustuta järjehoidja"
 
 msgid "remove bouquet from parental protection"
-msgstr "kustuta kanalivalik lapseluku alt"
+msgstr "eemalda lemmiknimekirja lukustus"
 
 msgid "remove cable services"
 msgstr "kustuta kaabelTV teenused"
@@ -7248,7 +7260,7 @@ msgid "Auto language selection"
 msgstr "Automaatsed keele valikud"
 
 msgid "Automatically start timeshift after"
-msgstr "Ajanihke automaatne käivitus pärast "
+msgstr "Ajanihke automaatne käivitus pärast"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Väliste subtiitrite automaatne sisselülitus"
@@ -7260,7 +7272,7 @@ msgid "Background delete speed"
 msgstr "Taustal kustutamise kiirus"
 
 msgid "Behavior of 'pause and ok' when paused"
-msgstr "'paus ja OK' tegevus kui pilt on peatatud"
+msgstr "'pausi ja OK' tegevus kui pilt on peatatud"
 
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "0-nupu funktsioon PiP-režiimis"
@@ -7666,7 +7678,7 @@ msgid "External subtitle dialog colorisation"
 msgstr "Väliste subtiitrite dialoogi värvimine"
 
 msgid "External subtitle switch fonts"
-msgstr "Väliste subtiitrite lülitatavad fondid"
+msgstr "Väliste subtiitrite kirjatüübi vahetamine"
 
 msgid "Fallback remote receiver URL"
 msgstr "Varukaugvastuvõtja URL"
@@ -8027,8 +8039,8 @@ msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will "
 "still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr ""
-"Määrates 'jah', laadib Enigma2 linkimata kasutajavalikud. See tähendab et kasutajavalikud, mis on saadaval, aga ei sisaldu bouquets.tv vvõi bouquets.radio failides, "
-"laaditakse ikkagi. See lubab hoida enda kasutajavalikud alles samal ajal kui seaded on uuendatud"
+"Määrates 'jah', laeb enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laetakse "
+"ikkagi. Nii on võimalik oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Määrates 'jah', saab PiP sulgeda EXIT nupuga."
@@ -8415,9 +8427,6 @@ msgstr "Salvesta"
 
 msgid "[REC]"
 msgstr "[REC]"
-
-#~ msgid "Select location"
-#~ msgstr "Vali asukoht"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 #~ msgstr "Hetkel salvestatakse. Peata salvestus, enne kui käivitad satelliidi otsimise."
