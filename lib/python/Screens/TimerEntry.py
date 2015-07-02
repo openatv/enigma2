@@ -158,7 +158,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default = self.timer.end)
 		#self.timerentry_showendtime = ConfigSelection(default = False, choices = [(True, _("yes")), (False, _("no"))])
-		self.timerentry_showendtime = ConfigSelection(default = (self.timer.end > self.timer.begin + 3), choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default = (self.timer.end > self.timer.begin + 3 and self.timer.justplay), choices = [(True, _("yes")), (False, _("no"))])
 
 		default = self.timer.dirname or defaultMoviePath()
 		tmp = config.movielist.videodirs.value
