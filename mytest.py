@@ -653,7 +653,8 @@ def runScreenTest():
 		setRTCtime(nowTime)
 
 	#check RecordTimer instance
-	if str(session.nav.RecordTimer).startswith('<RecordTimer.RecordTimer instance at'):
+	#if str(session.nav.RecordTimer).startswith('<RecordTimer.RecordTimer instance at'):
+	if session.nav.isRecordTimerImageStandard:
 		nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True)
 		nextRecordingAuto = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
 		nextZapTime = session.nav.RecordTimer.getNextZapTime()
