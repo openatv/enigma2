@@ -215,18 +215,18 @@ class GenresAUS:
 	}
 
 def __getGenreStringMain(hn, ln, genres):
-#	if hn == 0:
-#		return _("Undefined content")
+	# if hn == 0:
+	# 	return _("Undefined content")
 	if hn == 15:
 		return _("User defined")
 	if 0 < hn < len(genres.maintype):
 		return genres.maintype[hn]
-#	return _("Reserved") + " " + str(hn)
+	# return _("Reserved") + " " + str(hn)
 	return ""
 
 def __getGenreStringSub(hn, ln, genres):
-#	if hn == 0:
-#		return _("Undefined content") + " " + str(ln)
+	# if hn == 0:
+	# 	return _("Undefined content") + " " + str(ln)
 	if hn == 15:
 		return _("User defined") + " " + str(ln)
 	if 0 < hn < len(genres.maintype):
@@ -234,8 +234,8 @@ def __getGenreStringSub(hn, ln, genres):
 			return _("User defined")
 		if ln < len(genres.subtype[hn]):
 			return genres.subtype[hn][ln]
-#		return _("Reserved") " " + str(ln)
-#	return _("Reserved") + " " + str(hn) + "," + str(ln)
+	# 	return _("Reserved") " " + str(ln)
+	# return _("Reserved") + " " + str(hn) + "," + str(ln)
 	return ""
 
 countries = {
@@ -260,8 +260,8 @@ def getGenreStringSub(hn, ln, country=None):
 	return countryInfo[1](hn, ln, countryInfo[2])
 
 def getGenreStringLong(hn, ln, country=None):
-#	if hn == 0:
-#		return _("Undefined content") + " " + str(ln)
+	# if hn == 0:
+	# 	return _("Undefined content") + " " + str(ln)
 	if hn == 15:
 		return _("User defined") + " " + str(ln)
 	main = getGenreStringMain(hn, ln, country=country)
@@ -270,7 +270,7 @@ def getGenreStringLong(hn, ln, country=None):
 		return main + ": " + sub
 	else:
 		return main
-#	return _("Reserved") + " " + str(hn) + "," + str(ln)
+# 	return _("Reserved") + " " + str(hn) + "," + str(ln)
 
 #
 # The End
