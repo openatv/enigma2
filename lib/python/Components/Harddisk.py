@@ -607,6 +607,35 @@ DEVICEDB =  \
 		{
 			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot (LAN-Port)",
 			"/devices/platform/ehci-brcm.0/usb1/1-2/1-2:1.0": "Back USB Slot"
+		},
+		"gb800ueplus":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot",
+			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Front USB Slot"
+		},
+		"gb800seplus":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot",
+			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Front USB Slot"
+		},
+		"gbipbox":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot"
+		},
+		"gb800ue":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot",
+			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Front USB Slot"
+		},
+		"gb800se":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot",
+			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Front USB Slot"
+		},
+		"gb800solo":
+		{
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back USB Slot",
+			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Internal USB Slot"
 		}
 	}
 
