@@ -55,6 +55,87 @@ class EventName(Converter, object):
 		else:
 			self.type = self.NAME
 
+	def getName(self, event):
+		name = event.getEventName()
+		if name == "Visibile gratis su tv terrestre e TivuSat":
+			return event.getShortDescription().title()
+		else:
+			return name
+
+	def getSRating(self, event):
+		rating = event.getParentalData()
+		if rating is None:
+			return ""
+		else:
+			age = rating.getRating()
+			if age == 0:
+				return _("All ages")
+			elif age > 15:
+				return _("bc%s") % age
+			else:
+				age += 3
+				return " %d+" % age
+
+	def getRating(self, event):
+		rating = event.getParentalData()
+		if rating is None:
+			return ""
+		else:
+			age = rating.getRating()
+			if age == 0:
+				return _("Rating undefined")
+			elif age > 15:
+				return _("Rating defined by broadcaster - %d") % age
+			else:
+				age += 3
+				return _("Minimum age %d years") % age
+
+	def getGenre(self, event):
+		genre = event.getGenreData()
+		if genre is None:
+			return ""
+		else:
+			return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
+
+	def getShortDescription(self, event):
+		return event.getShortDescription()
+
+	def getExtendedDescription(self, event):
+		return event.getExtendedDescription() or event.getShortDescription()
+
+	def getFullDescription(self, event):
+		description = self.getShortDescription(event)
+		extended = self.getExtendedDescription(event)
+		if description[0:20] == extended[0:20]:
+			return extended
+		if description and extended:
+			description += '\n\n'
+		return description + extended
+
+	def getId(self, event):
+		return str(event.getEventId())
+
+	def getNameNext(self, list):
+		return list[1][1]
+
+	def getNextDescription(self, list):
+		description = list[1][2]
+		extended = list[1][3]
+		if description[0:20] == extended[0:20]:
+			return extended
+		if description and extended:
+			description += '\n'
+		return description + extended
+
+	def getThirdDescription(self, list):
+		description = self.list[2][2]
+		extended = self.list[2][3]
+		if description[0:20] == extended[0:20]:
+			return extended
+		if description and extended:
+			description += '\n'
+		return description + extended
+
 	@cached
 	def getText(self):
 		event = self.source.event
@@ -62,59 +143,24 @@ class EventName(Converter, object):
 			return ""
 
 		if self.type == self.NAME:
-			if event.getEventName() == "Visibile gratis su tv terrestre e TivuSat":
-				return event.getShortDescription().title()
-			else:
-				return event.getEventName()
+			return self.getName(event)
 		elif self.type == self.SRATING:
-			rating = event.getParentalData()
-			if rating is None:
-				return ""
-			else:
-				country = rating.getCountryCode()
-				age = rating.getRating()
-				if age == 0:
-					return _("All ages")
-				elif age > 15:
-					return _("bc%s") % age
-				else:
-					age += 3
-					return " %d+" % age
+			return self.getSRating(event)
 		elif self.type == self.RATING:
-			rating = event.getParentalData()
-			if rating is None:
-				return ""
-			else:
-				country = rating.getCountryCode()
-				age = rating.getRating()
-				if age == 0:
-					return _("Rating undefined")
-				elif age > 15:
-					return _("Rating defined by broadcaster - %d") % age
-				else:
-					age += 3
-					return _("Minimum age %d years") % age
+			return self.getRating(event)
 		elif self.type == self.GENRE:
-			genre = event.getGenreData()
-			if genre is None:
-				return ""
-			else:
-				return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
+			return self.getGenre(event)
 		elif self.type == self.NAME_NOW:
-			return pgettext("now/next: 'now' event label", "Now") + ": " + event.getEventName()
+			return pgettext("now/next: 'now' event label", "Now") + ": " + self.getName(event)
 		elif self.type == self.SHORT_DESCRIPTION:
-			return event.getShortDescription()
+			return self.getShortDescription(event)
 		elif self.type == self.EXTENDED_DESCRIPTION:
-			return event.getExtendedDescription() or event.getShortDescription()
+			return self.getExtendedDescription(event)
 		elif self.type == self.FULL_DESCRIPTION:
-			description = event.getShortDescription()
-			extended = event.getExtendedDescription()
-			if description and extended:
-				description += '\n\n'
-			return description + extended
+			return self.getFullDescription(event)
 		elif self.type == self.ID:
-			return str(event.getEventId())
-		elif int(self.type) in (6,7) or int(self.type) >= 21:
+			return self.getId(event)
+		elif self.type in (self.NAME_NEXT, self.NAME_NEXT2) or self.type >= self.NEXT_DESCRIPTION:
 			try:
 				reference = self.source.service
 				info = reference and self.source.info
@@ -123,31 +169,23 @@ class EventName(Converter, object):
 				test = ['ITSECX', (reference.toString(), 1, -1, 1440)]  # search next 24 hours
 				self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 				if self.list:
-						if self.type == self.NAME_NEXT and self.list[1][1]:
-							return pgettext("now/next: 'next' event label", "Next") + ": " + self.list[1][1]
-						elif self.type == self.NAME_NEXT2 and self.list[1][1]:
-							return self.list[1][1]
-						elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
-							description = self.list[1][2]
-							extended = self.list[1][3]
-							if (description and extended) and (description[0:20] != extended[0:20]):
-								description += '\n'
-							return description + extended
-						elif self.type == self.THIRD_NAME and self.list[2][1]:
-							return pgettext("third event: 'third' event label", "Later") + ": " + self.list[2][1]
-						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
-							description = self.list[2][2]
-							extended = self.list[2][3]
-							if (description and extended) and (description[0:20] != extended[0:20]):
-								description += '\n'
-							return description + extended
-						else:
-							# failed to return any epg data.
-							return ""
+					if self.type == self.NAME_NEXT and self.list[1][1]:
+						return pgettext("now/next: 'next' event label", "Next") + ": " + self.getNameNext(list)
+					elif self.type == self.NAME_NEXT2 and self.list[1][1]:
+						return self.getNameNext(list)
+					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
+						return self.getNextDescription(list)
+					elif self.type == self.THIRD_NAME and self.list[2][1]:
+						return pgettext("third event: 'third' event label", "Later") + ": " + self.list[2][1]
+					elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
+						return self.getThirdDescription(list)
+					else:
+						# failed to return any epg data.
+						return ""
 			except:
 				# failed to return any epg data.
 				if self.type == self.NAME_NEXT:
-					return pgettext("now/next: 'next' event label", "Next") + ": " + event.getEventName()
+					return pgettext("now/next: 'next' event label", "Next") + ": " + self.getName(event)
 				return ""
 
 	text = property(getText)
