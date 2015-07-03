@@ -189,6 +189,7 @@ class EventNameBasic(Converter, object):
 				return ""
 
 	text = property(getText)
+
 class AusClassification(dict):
 	AUSTEXT = {
 		"": _("Not Classified"),
@@ -317,6 +318,13 @@ class EventName(EventNameBasic):
 			return rating[self.RATLONG]
 		else:
 			return super(EventName, self).getRating(event)
+
+	def getGenre(self, event):
+		genre = event.getGenreData()
+		if genre is None:
+			return ""
+		else:
+			return getGenreStringSub(genre.getLevel1(), genre.getLevel2(), country=self.country)
 
 	def getShortDescription(self, event):
 		return self.trimText(super(EventName, self).getShortDescription(event))
