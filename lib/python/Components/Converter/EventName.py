@@ -5,7 +5,7 @@ from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 
 
-class EventName(Converter, object):
+class EventNameBasic(Converter, object):
 	NAME = 0
 	SHORT_DESCRIPTION = 1
 	EXTENDED_DESCRIPTION = 2
@@ -189,3 +189,167 @@ class EventName(Converter, object):
 				return ""
 
 	text = property(getText)
+class AusClassification(dict):
+	AUSTEXT = {
+		"": _("Not Classified"),
+		"P": _("Preschool"),
+		"C": _("_(Children"),
+		"G": _("General"),
+		"PG": _("Parental Guidance Recommended"),
+		"M": _("Mature Audience 15+"),
+		"MA": _("Mature Adult Audience 15+"),
+		"AV": _("Adult, Strong Violence 15+"),
+		"R": _("Restricted 18+")
+	}
+
+	def __init__(self):
+		self.update([(i, (c, self.AUSTEXT[c])) for i, c in enumerate((
+			# 0  1   2    3    4    5    6    7
+			# NC NC
+			"", "", "P", "P", "C", "C", "G", "G",
+			# 8     9   10   11    12    13    14   15
+			"PG", "PG", "M", "M", "MA", "MA", "AV", "R"
+		))])
+
+# Each country classification object in the map tuple must be an
+# object that supports obj.get(key[, default]). It need not actually
+# be a dict object.
+# The other element is how the rating number should be formatted if
+# there is no match in the classification object.
+
+# If there is no matching country, code defaults to the classification
+# decoding in superclass (EventNameBasic).
+
+countries = {
+	"AUS": (AusClassification(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age))
+}
+
+class EventName(EventNameBasic):
+	RAWRATING = 11
+	RATINGCOUNTRY = 12
+
+	RATSHORT = 0
+	RATLONG = 1
+
+	RATNORMAL = 0
+	RATDEFAULT = 1
+
+	def __init__(self, type):
+		args = [arg.strip() for arg in type.split(',')]
+		type = args.pop(0)
+
+		print "[EventName]", type, args
+
+		super(EventName, self).__init__(type)
+
+		self.separator = "\n\n"
+		self.trim = False
+		self.country = None
+
+		for a in args:
+			if a == "Separated":
+				self.separator = "\n\n"
+			elif a == "NotSeparated":
+				self.separator = "\n"
+			elif a == "Trimmed":
+				self.trim = True
+			elif a == "NotTrimmed":
+				self.trim = False
+			elif a.startswith("Country="):
+				self.country = a.split("=", 1)[1].upper()
+
+		if type == "RawRating":
+			self.type = self.RAWRATING
+		elif type == "RatingCountry":
+			self.type = self.RATINGCOUNTRY
+
+	def trimText(self, text):
+		if self.trim:
+			return str(text).strip()
+		else:
+			return str(text)
+
+	def getName(self, event):
+		return self.trimText(super(EventName, self).getName(event))
+
+	def getRatingCountry(self, event):
+		rating = event.getParentalData()
+		if rating is None:
+			return ""
+		else:
+			return self.country or rating.getCountryCode()
+
+	def getRawRating(self, event):
+		rating = event.getParentalData()
+		if rating is None:
+			return ""
+		else:
+			return "%d" % rating.getRating()
+
+	def getRatingTuple(self, rating):
+		global countries
+		country = self.country or rating.getCountryCode().upper()
+		if country in countries:
+			age = rating.getRating()
+			c = countries[country]
+			return c[self.RATNORMAL].get(age, c[self.RATDEFAULT](age))
+		else:
+			return None
+
+	def getSRating(self, event):
+		rating = event.getParentalData()
+		if rating is None:
+			return ""
+
+		rating = self.getRatingTuple(rating)
+		if rating is not None:
+			return rating[self.RATSHORT]
+		else:
+			return super(EventName, self).getSRating(event)
+
+	def getRating(self, event):
+		rating = event.getParentalData()
+		if rating is None:
+			return ""
+
+		rating = self.getRatingTuple(rating)
+		if rating is not None:
+			return rating[self.RATLONG]
+		else:
+			return super(EventName, self).getRating(event)
+
+	def getShortDescription(self, event):
+		return self.trimText(super(EventName, self).getShortDescription(event))
+
+	def getExtendedDescription(self, event):
+		return self.trimText(super(EventName, self).getExtendedDescription(event))
+
+	def getFullDescription(self, event):
+		description = self.getShortDescription(event)
+		extended = self.getExtendedDescription(event)
+		if description[0:20] == extended[0:20]:
+			return extended
+		if description and extended:
+			description += self.separator
+		return description + extended
+
+	def getNameNext(self, list):
+		return self.trimText(list[1][1])
+
+	def getNextDescription(self, list):
+		description = self.trimText(list[1][2])
+		extended = self.trimText(list[1][3])
+		if description[0:20] == extended[0:20]:
+			return extended
+		if description and extended:
+			description += self.separator
+		return description + extended
+
+	def getThirdDescription(self, list):
+		description = self.trimText(self.list[2][2])
+		extended = self.trimText(self.list[2][3])
+		if description[0:20] == extended[0:20]:
+			return extended
+		if description and extended:
+			description += self.separator
+		return description + extended
