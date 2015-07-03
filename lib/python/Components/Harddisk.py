@@ -592,6 +592,12 @@ DEVICEDB =  \
 			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back, upper USB Slot",
 			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Back, lower USB Slot"
 		},
+		"gbquad":
+		{
+			"/devices/platform/ehci-brcm.2/usb3/3-1/3-1:1.0": "Front USB Slot",
+			"/devices/platform/ehci-brcm.0/usb1/1-1/1-1:1.0": "Back, upper USB Slot",
+			"/devices/platform/ehci-brcm.1/usb2/2-1/2-1:1.0": "Back, lower USB Slot"
+		},
 		"gbultraue":
 		{
 			"/devices/platform/ehci-brcm.0/usb1/1-2/1-2:1.0": "Front USB Slot",
