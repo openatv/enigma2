@@ -6,6 +6,15 @@ datadir=@datadir@
 libexecdir=@libexecdir@
 sysconfdir=@sysconfdir@
 bindir=@bindir@
+libdir=@libdir@
+
+# set the debug log file path if debug logging is enabled
+# Test for debug logging being enabled using [ -n "${debug_path}" ]
+if grep -q 'config.crash.enabledebug=true' ${sysconfdir}/enigma2/settings; then
+	debug_dir=$(sed -n 's/config.crash.debug_path=//p' ${sysconfdir}/enigma2/settings)
+	[ -n "${debug_dir}" -a -d "${debug_dir}" ] || debug_dir=/home/root/logs/
+	debug_path="${debug_dir}Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log"
+fi
 
 # The enigma2 config directory will not exist on first boot
 if [ ! -d ${sysconfdir}/enigma2 ]; then
@@ -41,9 +50,9 @@ fi
 
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
-	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
+	LIBS="/opt/lib/libmediaclient.so ${libdir}/libopen.so.0.0.0"
 else
-	LIBS="@libdir@/libopen.so.0.0.0"
+	LIBS="${libdir}/libopen.so.0.0.0"
 fi
 
 sync
@@ -54,13 +63,9 @@ sync
 
 if [ -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
 	/home/root/factory/enigma2
-else    
-	if [ "$(grep config.crash.enabledebug ${sysconfdir}/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-		if [ "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-			LD_PRELOAD=$LIBS ${bindir}/enigma2 &> $(grep config.crash.debug_path= ${sysconfdir}/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
-		else
-			LD_PRELOAD=$LIBS ${bindir}/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
-		fi
+else
+	if [ -n "${debug_path}" ]; then
+		LD_PRELOAD=$LIBS ${bindir}/enigma2 &> ${debug_path}
 	else
 		LD_PRELOAD=$LIBS ${bindir}/enigma2
 	fi
@@ -73,8 +78,9 @@ fi
 #  3 - restart enigma
 #  4 - front processor upgrade
 #  5 - GUI restart
-# 42 - Upgrade
+# 40 - Factory reset and reboot
 # 41 - Restore settings from backup and reboot
+# 42 - Upgrade
 # 43 - reflash
 # 44 - front panel upgrade
 # >128 - signal + 128
@@ -97,6 +103,15 @@ case $ret in
 		sleep 1;
 		/sbin/rmmod fp
 		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	40)
+		# Subshell to avoid polluting the environment variables
+		(
+			export prefix datarootdir datadir libexecdir
+			export sysconfdir bindir libdir
+			run-parts "${datadir}"/enigma2/factoryReset
+		)
 		/sbin/reboot
 		;;
 	41)
