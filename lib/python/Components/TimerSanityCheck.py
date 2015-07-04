@@ -31,6 +31,8 @@ class TimerSanityCheck:
 		if self.newtimer is not None and self.newtimer.service_ref.ref.valid():
 			self.simultimer = [ self.newtimer ]
 			for timer in self.timerlist:
+				if timer == self.newtimer:
+					return True
 				if self.newtimer.begin >= timer.begin and self.newtimer.end <= timer.end:
 					if timer.justplay and not self.newtimer.justplay:
 						continue
