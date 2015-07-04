@@ -320,13 +320,13 @@ class GeneralMenu(Screen):
 		self.exttitle['id_mainmenu_source'] = ''
 		self.exttitle['id_mainmenu_tasks'] = ''
 		self.extframe = {}
-		self.extframe['id_mainmenu_plugins'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_plugin_sl.png'))
-		self.extframe['id_mainmenu_photos'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_photo_sl.png'))
-		self.extframe['id_mainmenu_music'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_music_sl.png'))
-		self.extframe['id_mainmenu_tv'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_tv_sl.png'))
-		self.extframe['id_mainmenu_movies'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_movie_sl.png'))
-		self.extframe['id_mainmenu_source'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_source_sl.png'))
-		self.extframe['id_mainmenu_tasks'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'easy-skin-hd/gmenu/gmenu_task_sl.png'))
+		self.extframe['id_mainmenu_plugins'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_plugin_sl.png'))
+		self.extframe['id_mainmenu_photos'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_photo_sl.png'))
+		self.extframe['id_mainmenu_music'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_music_sl.png'))
+		self.extframe['id_mainmenu_tv'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_tv_sl.png'))
+		self.extframe['id_mainmenu_movies'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_movie_sl.png'))
+		self.extframe['id_mainmenu_source'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_source_sl.png'))
+		self.extframe['id_mainmenu_tasks'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_task_sl.png'))
 		self.mainmenu_ext = {}
 		self.mainmenu_ext['id_mainmenu_plugins'] = 'gmenu_plugin'
 		self.mainmenu_ext['id_mainmenu_photos'] = 'gmenu_photo'
