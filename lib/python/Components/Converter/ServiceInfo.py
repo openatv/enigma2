@@ -259,7 +259,10 @@ class ServiceInfo(Converter, object):
 			video_width = None
 			if path.exists("/proc/stb/vmpeg/0/xres"):
 				f = open("/proc/stb/vmpeg/0/xres", "r")
-				video_width = int(f.read(),16)
+				try:
+					video_width = int(f.read(),16)
+				except:
+					video_width = None
 				f.close()
 			if not video_width:
 				video_width = info.getInfo(iServiceInformation.sVideoWidth)
@@ -268,7 +271,10 @@ class ServiceInfo(Converter, object):
 			video_height = None
 			if path.exists("/proc/stb/vmpeg/0/yres"):
 				f = open("/proc/stb/vmpeg/0/yres", "r")
-				video_height = int(f.read(),16)
+				try:
+					video_height = int(f.read(),16)
+				except:
+					video_height = None
 				f.close()
 			if not video_height:
 				video_height = info.getInfo(iServiceInformation.sVideoHeight)
