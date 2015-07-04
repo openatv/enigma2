@@ -525,8 +525,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["movie_sort"] = MultiPixmap()
 		self["movie_sort"].hide()
 
+		self["diskSize"] = DiskInfo(config.movielist.last_videodir.value, DiskInfo.SIZE, update=False, label=_("Disk size:"))
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, TrashInfo.USED, update=False)
+		self["numFolders"] = Label()
+		self["numFiles"] = Label()
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", {
 			"showMovies": (self.doPathSelect, _("Select the movie path...")),
@@ -1381,6 +1384,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# Magic: this sets extra things to show
 		self.current_ref.setName('16384:jpg 16384:png 16384:gif 16384:bmp')
 
+	def updateFileFolderCounts(self):
+		(nDirs, nFiles) = self["list"].userItemCount()
+		self["numFolders"].text = "%s %d" % (_("Directories:"), nDirs)
+		self["numFiles"].text = "%s %d" % (_("Files:"), nFiles)
+
 	def reloadList(self, sel=None, home=False):
 		self.reload_sel = sel
 		self.reload_home = home
@@ -1394,6 +1402,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.setCurrentRef(path)
+			self["diskSize"].path = path
 			self["freeDiskSpace"].path = path
 			self["TrashcanSize"].update(path)
 		else:
@@ -1430,7 +1439,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						self["list"].moveToFirstMovie()
 				else:
 					self["list"].moveToFirstMovie()
+		self["diskSize"].update()
 		self["freeDiskSpace"].update()
+		self.updateFileFolderCounts()
 		self["waitingtext"].visible = False
 		self.createPlaylist()
 		if self.playGoTo:
@@ -1468,6 +1479,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				config.movielist.last_videodir.save()
 				self.loadLocalSettings()
 				self.setCurrentRef(res)
+				self["diskSize"].path = res
 				self["freeDiskSpace"].path = res
 				self["TrashcanSize"].update(res)
 				if selItem:
@@ -1796,6 +1808,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				name = item[1].getName(current)
 			moveServiceFiles(current, dest, name)
 			self["list"].removeService(current)
+			self.updateFileFolderCounts()
 		except Exception, e:
 			mbox = self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
@@ -1889,6 +1902,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						trash = Tools.Trashcan.createTrashFolder(cur_path)
 						moveServiceFiles(current, trash, name, allowCopy=True)
 						self["list"].removeService(current)
+						self.updateFileFolderCounts()
 						self.showActionFeedback(_("Deleted") + " " + name)
 						# Files were moved to .Trash, ok.
 						return
@@ -1946,6 +1960,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						self.session.open(MessageBox, _("Delete failed!") + "\n" + str(e), MessageBox.TYPE_ERROR)
 					else:
 						self["list"].removeService(current)
+						self.updateFileFolderCounts()
 						self.showActionFeedback(_("Deleted") + " " + name)
 		else:
 			if not args:
@@ -1971,6 +1986,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if trash:
 					moveServiceFiles(current, trash, name, allowCopy=True)
 					self["list"].removeService(current)
+					self.updateFileFolderCounts()
 					# Files were moved to .Trash, ok.
 					from Screens.InfoBarGenerics import delResumePoint
 					delResumePoint(current)
@@ -2007,6 +2023,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if offline.deleteFromDisk(0):
 					raise Exception("Offline delete failed")
 			self["list"].removeService(current)
+			self.updateFileFolderCounts()
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
 			self.showActionFeedback(_("Deleted") + " " + name)
@@ -2032,6 +2049,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# but not implemented yet...
 			Tools.CopyFiles.deleteFiles(cur_path, name)
 			self["list"].removeService(current)
+			self.updateFileFolderCounts()
 			self.showActionFeedback(_("Deleted") + " " + name)
 			return
 		except Exception, e:
