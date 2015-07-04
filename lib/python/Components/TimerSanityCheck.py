@@ -33,21 +33,20 @@ class TimerSanityCheck:
 			for timer in self.timerlist:
 				if timer == self.newtimer:
 					return True
-				else:
-					if self.newtimer.begin >= timer.begin and self.newtimer.end <= timer.end:
-						fl1 = timer.service_ref.ref.flags & eServiceReference.isGroup
-						fl2 = self.newtimer.service_ref.ref.flags & eServiceReference.isGroup
-						if fl1 != fl2:
-							return False
-						if fl1: #is group
-							return timer.service_ref.ref.getPath() == self.newtimer.service_ref.ref.getPath()
-						getUnsignedDataRef1 = timer.service_ref.ref.getUnsignedData
-						getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
-						for x in (1, 2, 3, 4):
-							if getUnsignedDataRef1(x) != getUnsignedDataRef2(x):
-								break;
-						else:
+				if self.newtimer.begin >= timer.begin and self.newtimer.end <= timer.end:
+					if timer.justplay and not self.newtimer.justplay:
+						continue
+					if timer.service_ref.ref.flags & eServiceReference.isGroup:
+						if self.newtimer.service_ref.ref.flags & eServiceReference.isGroup and timer.service_ref.ref.getPath() == self.newtimer.service_ref.ref.getPath():
 							return True
+						continue
+					getUnsignedDataRef1 = timer.service_ref.ref.getUnsignedData
+					getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
+					for x in (1, 2, 3, 4):
+						if getUnsignedDataRef1(x) != getUnsignedDataRef2(x):
+							break;
+					else:
+						return True
 		return False
 
 	def checkTimerlist(self, ext_timer=1):
