@@ -65,8 +65,8 @@ class About(Screen):
 			BoxName = "GigaBlue X1"
 		elif boxtype == 'gbx3':
 			BoxName = "GigaBlue X3"
-		elif boxtype == 'tomcat':
-			BoxName = "XCORE Tomcat"
+		elif boxtype == 'spycat':
+			BoxName = "XCORE Spycat"
 		elif boxtype == 'quadbox2400':
 			BoxName = "AX Quadbox HD2400"
 		else:

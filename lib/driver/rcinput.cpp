@@ -93,7 +93,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 #if KEY_FAV_TO_KEY_PVR
 	if (ev->code == KEY_FAVORITES)
 	{
-		/* tomcat remote dont have a PVR Key. Correct this, so we do not have to place hacks in the keymaps. */
+		/* spycat remote dont have a PVR Key. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_PVR;
 	}
 #endif
