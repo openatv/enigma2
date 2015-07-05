@@ -422,43 +422,59 @@ class SystemNetworkInfo(Screen):
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
+			if eth0.has_key('ifname'):
+				self.AboutText += _('Interface:\t/dev/' + eth0['ifname'] + "\n")
 			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+			if eth0.has_key('brdaddr'):
+				self.AboutText += _('Broadcast:\t' + eth0['brdaddr'] + "\n")
 			if eth0.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
 		if eth1.has_key('addr'):
+			if eth1.has_key('ifname'):
+				self.AboutText += _('Interface:\t/dev/' + eth1['ifname'] + "\n")
 			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
 			if eth1.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
+			if eth1.has_key('brdaddr'):
+				self.AboutText += _('Broadcast:\t' + eth1['brdaddr'] + "\n")
 			if eth1.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
 			self.iface = 'eth1'
-
+		
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
+			if ra0.has_key('ifname'):
+				self.AboutText += _('Interface:\t/dev/' + ra0['ifname'] + "\n")
 			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
 			if ra0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + ra0['netmask'] + "\n"
+			if ra0.has_key('brdaddr'):
+				self.AboutText += _('Broadcast:\t' + ra0['brdaddr'] + "\n")
 			if ra0.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + ra0['hwaddr'] + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
+			if wlan0.has_key('ifname'):
+				self.AboutText += _('Interface:\t/dev/' + wlan0['ifname'] + "\n")
 			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+			if wlan0.has_key('brdaddr'):
+				self.AboutText += _('Broadcast:\t' + wlan0['brdaddr'] + "\n")	
 			if wlan0.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
-		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
-		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
+		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + '  (~'  + str(int(rx_bytes)/1024/1024)  + ' MB)'  + "\n"
+		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + '  (~'  + str(int(tx_bytes)/1024/1024)+ ' MB)'  + "\n"
 
 		hostname = file('/proc/sys/kernel/hostname').read()
 		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
