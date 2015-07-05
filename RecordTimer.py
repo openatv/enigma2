@@ -208,7 +208,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(0, "Not enough free space to record")
 			return False
 		else:
-			self.log(0, "Found enough free space to record")
+			if debug:
+				self.log(0, "Found enough free space to record")
 			return True
 
 	def calculateFilename(self):
@@ -237,7 +238,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			filename = ASCIItranslit.legacyEncode(filename)
 
 		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
-		self.log(0, "Filename calculated as: '%s'" % self.Filename)
+		if debug:
+			self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
 
 	def tryPrepare(self):
@@ -316,7 +318,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 
 		next_state = self.state + 1
-		self.log(5, "activating state %d" % next_state)
+		if debug:
+			self.log(5, "activating state %d" % next_state)
 
 		# print "[TIMER] activate called",time(),next_state,self.first_try_prepare,' pending ',self.messageBoxAnswerPending,' justTried ',self.justTriedFreeingTuner,' show ',self.messageStringShow,self.messageString #TODO remove
 
@@ -358,7 +361,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						self.log(5, "zap to recording service")
 
 			if self.tryPrepare():
-				self.log(6, "prepare ok, waiting for begin")
+				if debug:
+					self.log(6, "prepare ok, waiting for begin")
 				if self.messageStringShow:
 					Notifications.AddNotification(MessageBox, _("In order to record a timer, a tuner was freed successfully:\n\n") + self.messageString, type=MessageBox.TYPE_INFO, timeout=20)
 				# create file to "reserve" the filename
