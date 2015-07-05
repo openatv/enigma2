@@ -565,7 +565,7 @@ class SecConfigure:
 			SDict = val.get('unicableMatrix', None)
 		else:
 			return
-		print "[reconstructUnicableDate] SDict %s" % SDict
+		# print "[reconstructUnicableDate] SDict %s" % SDict
 		if SDict is None:
 			return
 
