@@ -400,7 +400,7 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
             self["info_track"].setText(self.streamplayer.getMetadata("title"))
             self.summaries.setText(self.streamplayer.getMetadata("creator") + " - " + self.streamplayer.getMetadata("title"))
         else:
-            self.setTitle("Last.FM")
+            self.setTitle(config.plugins.LastFM.name.value)
             self["info_artist"].setText("N/A")
             self["info_album"].setText("N/A")
             self["info_track"].setText("N/A")
@@ -412,7 +412,7 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
             self.setCoverArt()
 
         if self.streamplayer.is_playing is not True:
-            self.setTitle(myname)
+            self.setTitle(config.plugins.LastFM.name.value)
             self.setCoverArt()
             self["info_artist"].setText("N/A")
             self["info_album"].setText("N/A")
