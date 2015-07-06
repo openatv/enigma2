@@ -225,7 +225,7 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
         self.setInfoLabel(_("login successful"))
 
     def onConnectFailed(self, text):
-        self.setInfoLabel(_("login failed! ") + text, timeout=False)
+        self.setInfoLabel("%s %s" % (_("login failed!"), text), timeout=False)
 
     def onTrackSkiped(self, reason):
         self.setInfoLabel(_("Track skipped"))
