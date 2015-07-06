@@ -170,6 +170,8 @@ class MovieList(GUIComponent):
 		self.sort_type = sort_type or self.SORT_GROUPWISE
 		self.firstFileEntry = 0
 		self.parentDirectory = 0
+		self.numUserDirs = 0  # does not include parent or Trashcan
+		self.numUserFiles = 0
 		self.fontName = "Regular"
 		if self.screenwidth and self.screenwidth == 1920:
 			self.fontSize = 28
@@ -307,6 +309,9 @@ class MovieList(GUIComponent):
 	def invalidateCurrentItem(self):
 		self.invalidateItem(self.getCurrentIndex())
 
+	def userItemCount(self):
+		return (self.numUserDirs, self.numUserFiles)
+
 	def buildMovieListEntry(self, serviceref, info, begin, data):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
@@ -328,13 +333,13 @@ class MovieList(GUIComponent):
 				if txt == ".Trash":
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, 37), png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(40 + 20, 5), size=(width - 166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT, text = _("Trashcan")))
-						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
+						res.append(MultiContentEntryText(pos=(40 + 20, 5), size=(width - 166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT, text = _("Trash")))
+						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trash")))
 						return res
 					else:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 24) / 2), size=(iconSize, 24), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Trashcan")))
-						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
+						res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Trash")))
+						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trash")))
 						return res
 			if self.screenwidth and self.screenwidth == 1920:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, iconSize), png=self.iconFolder))
@@ -520,6 +525,14 @@ class MovieList(GUIComponent):
 	def removeService(self, service):
 		index = self.findService(service)
 		if index is not None:
+			(serviceref, info, _, _) = self.list[index]
+			pathName = serviceref.getPath()
+			if serviceref.flags & eServiceReference.mustDescent:
+				name = os.path.basename(os.path.normpath(pathName))
+				if info is not None and name != ".Trash" and  self.numUserDirs > 0:
+					self.numUserDirs -= 1
+			elif self.numUserFiles > 0:
+				self.numUserFiles -= 1
 			del self.list[index]
 			self.l.setList(self.list)
 
@@ -546,6 +559,8 @@ class MovieList(GUIComponent):
 		self.list = []
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
+		self.numUserDirs = 0  # does not include parent or Trashcan
+		self.numUserFiles = 0
 
 		reflist = root and serviceHandler.list(root)
 		if reflist is None:
@@ -580,6 +595,8 @@ class MovieList(GUIComponent):
 				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
 					self.list.insert(0, (serviceref, info, begin, -1))
 					numberOfDirs += 1
+					if normname != ".Trash":
+						self.numUserDirs += 1
 				continue
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
@@ -612,6 +629,7 @@ class MovieList(GUIComponent):
 					continue
 
 			self.list.append((serviceref, info, begin, -1))
+			self.numUserFiles += 1
 
 		self.parentDirectory = 0
 
@@ -744,7 +762,7 @@ class MovieList(GUIComponent):
 			except:
 				pass
 		if name.endswith(".Trash"):
-			name = "Trashcan"
+			name = "Trash"
 		# print "[MovieList] Sorting for -%s-" % name
 
 		return 1, name and name.lower() or "", -x[2]
@@ -830,5 +848,5 @@ def getShortName(name, serviceref):
 		pathName = serviceref.getPath()
 		name = os.path.basename(os.path.normpath(pathName))
 		if name == '.Trash':
-			name = _("Trashcan")
+			name = _("Trash")
 	return name.upper()

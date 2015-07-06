@@ -18,12 +18,12 @@ inStandby = None
 class Standby2(Screen):
 	def Power(self):
 		print "leave standby"
-		#set input to encoder
+		# set input to encoder
 		self.avswitch.setInput("ENCODER")
-		#restart last played service
-		#unmute adc
+		# restart last played service
+		# unmute adc
 		self.leaveMute()
-		#kill me
+		# kill me
 		self.close(True)
 
 	def setMute(self):
@@ -81,7 +81,7 @@ class Standby2(Screen):
 
 		self.standbyTimeUnknownTimer = eTimer()
 
-		#mute adc
+		# mute adc
 		self.setMute()
 
 		self.paused_service = None
@@ -102,7 +102,7 @@ class Standby2(Screen):
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
-		#set input to vcr scart
+		# set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
 			self.avswitch.setInput("SCART")
 		else:
@@ -186,6 +186,7 @@ class QuitMainloopScreen(Screen):
 			3: _("The user interface of your %s %s is restarting.") % (getMachineBrand(), getMachineName()),
 			4: _("Your front processor will be upgraded.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
 			5: _("The user interface of your %s %s is restarting\ndue to an error.") % (getMachineBrand(), getMachineName()),
+			40: _("Resetting settings to factory defaults.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
 			41: _("Restoring settings from backup.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
 			42: _("Upgrade in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
 			43: _("Reflash in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
@@ -200,6 +201,7 @@ class QuitMainloopScreen(Screen):
 			3: _("GUI restarting"),
 			4: _("Front processor upgrade"),
 			5: _("GUI restarting"),
+			40: _("Factory reset"),
 			41: _("Restoring settings"),
 			42: _("Upgrading"),
 			43: _("Reflashing"),
@@ -254,6 +256,7 @@ class TryQuitMainloop(MessageBox):
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the front processor and reboot now?"),
+				40: _("Really do a factory reset and reboot now?"),
 				41: _("Really restore settings and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),

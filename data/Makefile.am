@@ -1,4 +1,4 @@
-SUBDIRS = spinner fonts keymaps defaults
+SUBDIRS = spinner fonts keymaps defaults factoryReset
 
 dist_pkgdata_DATA = \
 	encoding.conf \
