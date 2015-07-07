@@ -328,6 +328,11 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		self["HelpWindow"].hide()
 		self.createSetup()
 
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
+
 	def createSetup(self):
 		predefinedlist = []
 		f = listdir('/usr/scripts')
