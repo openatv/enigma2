@@ -293,13 +293,14 @@ class GmailSetup(Screen, ConfigListScreen):
 			"blue": self.openKeyboard,
 			"ok": self.keySave,
 		}, -2)
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def openKeyboard(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if sel[0] == _("Username:") or sel[0] == _("Password:"):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username:") or self.vkvar == _("Password:"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
