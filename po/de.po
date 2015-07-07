@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-06-26 21:00+0100\n"
+"PO-Revision-Date: 2015-07-07 23:44+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -348,6 +348,7 @@ msgstr "(ZAP)"
 #
 msgid "ZAP"
 msgstr "ZAP"
+
 #
 msgid "(empty)"
 msgstr "(leer)"
@@ -1134,6 +1135,7 @@ msgstr "Softcam-Panel"
 msgid "INFO-Panel..."
 msgstr "Info-Panel"
 
+#: ButtonSetup.py:64
 msgid "Audio"
 msgstr "Ton"
 
@@ -2558,8 +2560,21 @@ msgstr "Digitaler Downmix"
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
 
+#: ButtonSetup.py:56
 msgid "Directory"
 msgstr "Verzeichnis"
+
+#: ButtonSetup.py:57
+msgid "Directory long"
+msgstr "Verzeichnis lang"
+
+#: ButtonSetup.py:58 ButtonSetup.py:59
+msgid "Back/Recall"
+msgstr ""
+
+#: ButtonSetup.py:59
+msgid "long"
+msgstr "lang"
 
 #
 #, python-format
@@ -4284,7 +4299,7 @@ msgstr "Breitengrad"
 msgid "Leave DVD Player?"
 msgstr "DVD Player beenden?"
 
-#
+#: ButtonSetup.py:31
 msgid "Left"
 msgstr "Links"
 
@@ -4539,9 +4554,53 @@ msgstr "Das Medium ist nicht leer!"
 msgid "Memory"
 msgstr "Speicher"
 
-#
+#: ButtonSetup.py:44
 msgid "Menu"
 msgstr "Menü"
+
+#: ButtonSetup.py:45
+msgid "List/Fav/PVR"
+msgstr ""
+
+#: ButtonSetup.py:46
+msgid "List/Fav/PVR long"
+msgstr "List/Fav/PVR lang"
+
+#: ButtonSetup.py:47
+msgid "File"
+msgstr "Datei"
+
+#: ButtonSetup.py:48
+msgid "File long"
+msgstr "Datei lang"
+
+#: ButtonSetup.py:49
+msgid "OK long"
+msgstr "OK lang"
+
+#: ButtonSetup.py:50
+msgid "Media"
+msgstr ""
+
+#: ButtonSetup.py:51
+msgid "Media long"
+msgstr "Media lang"
+
+#: ButtonSetup.py:52
+msgid "Open"
+msgstr "Öffnen"
+
+#: ButtonSetup.py:53
+msgid "Open long"
+msgstr "Öffnen lang"
+
+#: ButtonSetup.py:54
+msgid "Www"
+msgstr "www"
+
+#: ButtonSetup.py:55
+msgid "Www long"
+msgstr "www lang"
 
 msgid "Menu config"
 msgstr "Menü-Einstellungen"
@@ -5382,7 +5441,7 @@ msgstr "Pilot"
 msgid "Pin code needed"
 msgstr "PIN-Code benötigt"
 
-#
+#: ButtonSetup.py:65
 msgid "Play"
 msgstr "Abspielen"
 
@@ -5998,7 +6057,7 @@ msgstr "RF-Ausgang"
 msgid "RGB"
 msgstr "RGB"
 
-#
+#: ButtonSetup.py:38
 msgid "Radio"
 msgstr "Radio"
 
@@ -6371,7 +6430,7 @@ msgstr "Rücklauf-Geschwindigkeiten"
 msgid "Rewrap teletext subtitles"
 msgstr "Teletext-Untertitel neu wrappen"
 
-#
+#: ButtonSetup.py:32
 msgid "Right"
 msgstr "Rechts"
 
@@ -7644,7 +7703,7 @@ msgstr "Schritt nach Osten"
 msgid "Step west"
 msgstr "Schritt nach Westen"
 
-#
+#: ButtonSetup.py:67
 msgid "Stop"
 msgstr "Stopp"
 
@@ -10176,21 +10235,27 @@ msgstr "Blacklist"
 msgid "blue"
 msgstr "Blau"
 
+#: ButtonSetup.py:21
 msgid "Green"
 msgstr "Grün"
 
+#: ButtonSetup.py:23
 msgid "Yellow"
 msgstr "Gelb"
 
+#: ButtonSetup.py:20
 msgid "Red long"
 msgstr "Rot lang"
 
+#: ButtonSetup.py:22
 msgid "Green long"
 msgstr "Grün lang"
 
+#: ButtonSetup.py:24
 msgid "Yellow long"
 msgstr "Gelb lang"
 
+#: ButtonSetup.py:26
 msgid "Blue long"
 msgstr "Blau lang"
 
@@ -12779,9 +12844,11 @@ msgstr "Zeige Uhr im Display (Deep Standby)"
 msgid "Time mode"
 msgstr "Uhrzeit Anzeige Modus"
 
+#: ButtonSetup.py:25
 msgid "Blue"
 msgstr "Blau"
 
+#: ButtonSetup.py:19
 msgid "Red"
 msgstr "Rot"
 
@@ -15110,60 +15177,82 @@ msgstr "Hier können Sie die Datenquelle für die Anzeigen in der Infobar einste
 msgid "Click on your remote on the button you want to change"
 msgstr "Drücke den Button der Fernbedienung der neu belegt werden soll und dann drücke \"OK\""
 
+#: ButtonSetup.py:27
 msgid "Info (EPG)"
 msgstr "Info/EPG"
 
+#: ButtonSetup.py:28
 msgid "Info (EPG) Long"
 msgstr "Info/EPG lang"
 
+#: ButtonSetup.py:29
 msgid "Epg/Guide"
 msgstr "EPG/Info"
 
+#: ButtonSetup.py:30
 msgid "Epg/Guide long"
 msgstr "EPG/Info lang"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und \"OK\" drücken um sie zu belegen. Benutze  \"CH+/-\" um zwischen den Listen umzuschalten. Wähle zugeordnete Funktion aus und drücke  \"OK\" um die Belegung zu entfernen."
 
+#: ButtonSetup.py:33
 msgid "Up"
 msgstr "hoch"
 
+#: ButtonSetup.py:34
 msgid "Down"
 msgstr "Runter"
 
+#: ButtonSetup.py:35
 msgid "Channel up"
 msgstr "Nächster Sender"
 
+#: ButtonSetup.py:36
 msgid "Channel down"
 msgstr "Sender zurück"
 
+#: ButtonSetup.py:37
+msgid "TV"
+msgstr ""
+
+#: ButtonSetup.py:39
 msgid "Rec"
 msgstr "Aufnahme"
 
+#: ButtonSetup.py:40
 msgid "Teletext"
 msgstr "Videotext"
 
+#: ButtonSetup.py:41
 msgid "Help"
 msgstr "Hilfe"
 
+#: ButtonSetup.py:42
 msgid "Help long"
 msgstr "Hilfe lang"
 
+#: ButtonSetup.py:43
 msgid "Subtitle"
 msgstr "Untertitel"
 
+#: ButtonSetup.py:60
 msgid "Home"
 msgstr "Home"
 
+#: ButtonSetup.py:61
 msgid "End"
 msgstr "Ende"
 
+#: ButtonSetup.py:62
 msgid "Next"
 msgstr "Nächstes"
 
+#: ButtonSetup.py:63
 msgid "Previous"
 msgstr "Vorheriges"
 
+#: ButtonSetup.py:66
 msgid "Playpause"
 msgstr "PlayPause"
 
