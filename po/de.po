@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-07-07 23:44+0100\n"
+"PO-Revision-Date: 2015-07-08 00:42+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -4454,7 +4454,7 @@ msgstr "MEHR"
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#
+#: ButtonSetup.py
 msgid "Main menu"
 msgstr "Hauptmenü"
 
@@ -7521,7 +7521,7 @@ msgstr "Diaschau-Intervall (Sek.)"
 msgid "Slot %d"
 msgstr "Steckplatz %d"
 
-#
+#: ButtonSetup.py
 msgid "Slow"
 msgstr "Langsam"
 
@@ -8630,7 +8630,7 @@ msgstr "Timer-Status:"
 msgid "Timers"
 msgstr "Timer"
 
-#
+#: ButtonSetup.py
 msgid "Timeshift"
 msgstr "Timeshift"
 
@@ -15256,66 +15256,98 @@ msgstr "Vorheriges"
 msgid "Playpause"
 msgstr "PlayPause"
 
+#: ButtonSetup.py
 msgid "Rewind"
 msgstr "Rücklauf"
 
+#: ButtonSetup.py
 msgid "Fastforward"
 msgstr "Vorlauf"
 
+#: ButtonSetup.py
 msgid "Skip back"
 msgstr "Rückwärts spulen"
 
+#: ButtonSetup.py
+msgid "Skip forward"
+msgstr "Vorwärts spulen"
+
+#: ButtonSetup.py
 msgid "activatePiP"
 msgstr "Aktiviere PiP"
 
+#: ButtonSetup.py
 msgid "Timer"
 msgstr "Timer"
 
+#: ButtonSetup.py
 msgid "Playlist"
 msgstr "Playliste"
 
+#: ButtonSetup.py
 msgid "Playlist long"
 msgstr "Playliste lang"
 
+#: ButtonSetup.py
 msgid "Homepage"
+msgstr "Homepage"
+
+#: ButtonSetup.py
+msgid "Homepage long"
 msgstr "Homepage lang"
 
+#: ButtonSetup.py
 msgid "Search/WEB"
 msgstr "Suche/Web"
 
+#: ButtonSetup.py
+msgid "Search/WEB long"
+msgstr "Suche/Web lang"
+
+#: ButtonSetup.py
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
+#: ButtonSetup.py
 msgid "Sleep"
 msgstr "Sleeptimer"
 
+#: ButtonSetup.py
 msgid "Power"
 msgstr "Aus-Taste"
 
+#: ButtonSetup.py
 msgid "Power long"
 msgstr "Aus-Taste lang"
 
+#: ButtonSetup.py
 msgid "Context"
 msgstr "Kontext"
 
 msgid "F1/F3"
 msgstr ""
 
+#: ButtonSetup.py
 msgid "F1/LAN"
 msgstr ""
 
+#: ButtonSetup.py
 msgid "F1/LAN long"
 msgstr "F1/LAN lang"
 
+#: ButtonSetup.py
 msgid "F2"
 msgstr ""
 
+#: ButtonSetup.py
 msgid "F2 long"
 msgstr "F2 lang"
 
+#: ButtonSetup.py
 msgid "F3"
 msgstr ""
 
+#: ButtonSetup.py
 msgid "F3 long"
 msgstr "F3 lang"
 
@@ -15356,6 +15388,7 @@ msgid ""
 "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
 msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
 
+#: ButtonSetup.py
 msgid "Show graphical multi EPG"
 msgstr "Grafischen Multi-EPG anzeigen"
 
@@ -15368,24 +15401,51 @@ msgstr "Einfaches EPG anzeigen"
 msgid "Show multi channel EPG"
 msgstr "Mehr-Kanal EPG anzeigen"
 
+#: ButtonSetup.py
 msgid "Show help"
 msgstr "Hilfe anzeigen"
 
+#: ButtonSetup.py
 msgid "Zap down"
 msgstr "Kanal +"
 
+#: ButtonSetup.py
 msgid "Zap up"
 msgstr "Kanal -"
 
+#: ButtonSetup.py
 msgid "Volume down"
 msgstr "Lautstärke -"
 
+#: ButtonSetup.py
 msgid "Volume up"
 msgstr "Lautstärke +"
 
+#: ButtonSetup.py
 msgid "Show Infobar"
 msgstr "Zeige Infoleiste"
 
+#: ButtonSetup.py
+msgid "Show service list"
+msgstr "Zeige Kanalliste"
+
+#: ButtonSetup.py
+msgid "Show favourites list"
+msgstr "Zeige Faforiten-Liste"
+
+#: ButtonSetup.py
+msgid "Show satellites list"
+msgstr "Zeige Sateliten-Liste"
+
+#: ButtonSetup.py
+msgid "History back"
+msgstr "History zurück"
+
+#: ButtonSetup.py
+msgid "History next"
+msgstr "History weiter"
+
+#: ButtonSetup.py
 msgid "Show extension selection"
 msgstr "Erweiterungs-Auswahl anzeigen"
 
@@ -15639,3 +15699,23 @@ msgstr "Prozessor"
 # InfoPanel
 msgid "SundtekControlCenter"
 msgstr "Sundtek Control-Center"
+
+#: ButtonSetup.py
+msgid "Pause"
+msgstr ""
+
+#: ButtonSetup.py
+msgid "SAT"
+msgstr ""
+
+#: ButtonSetup.py
+msgid "SAT long"
+msgstr "SAT lang"
+
+#: ButtonSetup.py
+msgid "Prov"
+msgstr ""
+
+#: ButtonSetup.py
+msgid "Prov long"
+msgstr "Prov lang"
