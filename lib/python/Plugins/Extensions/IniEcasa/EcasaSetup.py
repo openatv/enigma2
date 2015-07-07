@@ -37,11 +37,11 @@ class EcasaSetup(Screen, ConfigListScreen):
 		l = [
 			getConfigListEntry(_("Google Username"), config.plugins.ecasa.google_username, _("Username to use for authentication with google. Leave empty for unauthenticated use.")),
 			getConfigListEntry(_("Google Password"), config.plugins.ecasa.google_password, _("Password to the google account.")),
-			getConfigListEntry(_("Flickr API Key"), config.plugins.ecasa.flickr_api_key , _("API Key used to access Flickr. You can request one by logging in to Flickr from your computer.")),
+			getConfigListEntry(_("Flickr API Key"), config.plugins.ecasa.flickr_api_key, _("API Key used to access Flickr. You can request one by logging in to Flickr from your computer.")),
 			getConfigListEntry(_("Albums of"), config.plugins.ecasa.user, _("Show albums for this user by default. Use \"default\" for currently logged in user.")),
 			getConfigListEntry(_("Search results"), config.plugins.ecasa.searchlimit, _("Number of search results to display at most.")),
 			getConfigListEntry(_("Slideshow interval"), config.plugins.ecasa.slideshow_interval, _("Interval in slideshow before new picture is being shown.")),
-			#getConfigListEntry(_("Cache directory"), config.plugins.ecasa.cache, _("Directory used to store cached images.")),
+			# getConfigListEntry(_("Cache directory"), config.plugins.ecasa.cache, _("Directory used to store cached images.")),
 			getConfigListEntry(_("Cache size"), config.plugins.ecasa.cachesize, _("Size of local picture cache. If the maximum size is reached the cleanup process will delete the oldest existing pictured after the plugin was closed.")),
 		]
 		if allowApiChange:
@@ -55,6 +55,7 @@ class EcasaSetup(Screen, ConfigListScreen):
 			session=session,
 			on_change=self.changed
 		)
+
 		def selectionChanged():
 			if self["config"].current:
 				self["config"].current[1].onDeselect(self.session)
@@ -74,12 +75,10 @@ class EcasaSetup(Screen, ConfigListScreen):
 		self["help"] = StaticText()
 
 		# Define Actions
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-			}
-		)
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"], {
+			"cancel": self.keyCancel,
+			"save": self.keySave,
+		})
 
 		# Trigger change
 		self.changed()
