@@ -389,7 +389,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		if ret:
 			self.searchCallback(ret[1])
 
-	def setupClosed(self):
+	def setupClosed(self, *args):
 		if config.plugins.ecasa.last_backend.value == 'picasa':
 			if not isinstance(self.api, PicasaApi):
 				self.api = PicasaApi(cache=config.plugins.ecasa.cache.value)
@@ -441,9 +441,9 @@ class EcasaOverview(EcasaPictureWall):
 	def openSetup(self):
 		self.session.openWithCallback(self.setupClosed, EcasaSetup, allowApiChange=True)
 
-	def setupClosed(self):
+	def setupClosed(self, *args):
 		api = self.api
-		EcasaPictureWall.setupClosed(self)
+		EcasaPictureWall.setupClosed(self, *args)
 		if api != self.api:
 			self.pictures = ()
 			self["highlight"].hide()
