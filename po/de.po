@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-07-08 00:42+0100\n"
+"PO-Revision-Date: 2015-07-08 20:23+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1135,7 +1135,7 @@ msgstr "Softcam-Panel"
 msgid "INFO-Panel..."
 msgstr "Info-Panel"
 
-#: ButtonSetup.py:64
+#: ButtonSetup.py
 msgid "Audio"
 msgstr "Ton"
 
@@ -1198,7 +1198,7 @@ msgstr "Bild-Optimierung"
 msgid "automatic"
 msgstr "automatisch"
 
-#
+#: ButtonSetup.py
 msgid "Automatic Scan"
 msgstr "Automatischer Suchlauf"
 
@@ -1509,7 +1509,7 @@ msgstr "Zwischengespeichert:"
 msgid "Can't cancel during upgrade!!"
 msgstr "Kein Abbruch während Upgrade möglich!"
 
-#
+#: ButtonSetup.py
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -1593,6 +1593,7 @@ msgstr "Funktion der gelben Taste - lang"
 msgid "Channel 1 at start"
 msgstr "Starte auf Programmplatz 1"
 
+#: ButtonSetup.py
 msgid "Channel Info"
 msgstr "Programm-Informationen"
 
@@ -2192,7 +2193,7 @@ msgstr "Log Einstellungen"
 msgid "Logs settings"
 msgstr "Log"
 
-#
+#: ButtonSetup.py
 msgid "Recording Setup"
 msgstr "Aufnahme Einstellungen"
 
@@ -2421,6 +2422,7 @@ msgstr "Was soll mit übermittelten Crashlogs passieren?"
 msgid "Deep Standby"
 msgstr "Ausschalten"
 
+#: ButtonSetup.py
 msgid "Deep standby"
 msgstr "Ausschalten"
 
@@ -2560,19 +2562,19 @@ msgstr "Digitaler Downmix"
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
 
-#: ButtonSetup.py:56
+#: ButtonSetup.py
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#: ButtonSetup.py:57
+#: ButtonSetup.py
 msgid "Directory long"
 msgstr "Verzeichnis lang"
 
-#: ButtonSetup.py:58 ButtonSetup.py:59
+#: ButtonSetup.py
 msgid "Back/Recall"
 msgstr ""
 
-#: ButtonSetup.py:59
+#: ButtonSetup.py
 msgid "long"
 msgstr "lang"
 
@@ -3256,7 +3258,7 @@ msgstr "Ausführung beendet!"
 msgid "Exif"
 msgstr "Exif"
 
-#
+#: ButtonSetup.py
 msgid "Exit"
 msgstr "Beenden"
 
@@ -3765,11 +3767,10 @@ msgstr "TV-Standby verwalten"
 msgid "Handle wakeup from TV"
 msgstr "TV-Wakeup verwalten"
 
-#
 msgid "Harddisk"
 msgstr "Festplatte "
 
-#
+#: ButtonSetup.py
 msgid "Harddisk Setup"
 msgstr "Festplatten Einstellungen"
 
@@ -4270,7 +4271,7 @@ msgstr "Sprache auswählen"
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
-#
+#: ButtonSetup.py
 msgid "Hotkey Setup"
 msgstr "Hotkey-Einstellungen"
 
@@ -4299,7 +4300,7 @@ msgstr "Breitengrad"
 msgid "Leave DVD Player?"
 msgstr "DVD Player beenden?"
 
-#: ButtonSetup.py:31
+#: ButtonSetup.py
 msgid "Left"
 msgstr "Links"
 
@@ -4486,7 +4487,7 @@ msgstr "Receiver Software-Verwaltung"
 msgid "Manual scan"
 msgstr "Manueller Suchlauf"
 
-#
+#: ButtonSetup.py
 msgid "Manual Scan"
 msgstr "Manueller Suchlauf"
 
@@ -4554,51 +4555,51 @@ msgstr "Das Medium ist nicht leer!"
 msgid "Memory"
 msgstr "Speicher"
 
-#: ButtonSetup.py:44
+#: ButtonSetup.py
 msgid "Menu"
 msgstr "Menü"
 
-#: ButtonSetup.py:45
+#: ButtonSetup.py
 msgid "List/Fav/PVR"
 msgstr ""
 
-#: ButtonSetup.py:46
+#: ButtonSetup.py
 msgid "List/Fav/PVR long"
 msgstr "List/Fav/PVR lang"
 
-#: ButtonSetup.py:47
+#: ButtonSetup.py
 msgid "File"
 msgstr "Datei"
 
-#: ButtonSetup.py:48
+#: ButtonSetup.py
 msgid "File long"
 msgstr "Datei lang"
 
-#: ButtonSetup.py:49
+#: ButtonSetup.py
 msgid "OK long"
 msgstr "OK lang"
 
-#: ButtonSetup.py:50
+#: ButtonSetup.py
 msgid "Media"
 msgstr ""
 
-#: ButtonSetup.py:51
+#: ButtonSetup.py
 msgid "Media long"
 msgstr "Media lang"
 
-#: ButtonSetup.py:52
+#: ButtonSetup.py
 msgid "Open"
 msgstr "Öffnen"
 
-#: ButtonSetup.py:53
+#: ButtonSetup.py
 msgid "Open long"
 msgstr "Öffnen lang"
 
-#: ButtonSetup.py:54
+#: ButtonSetup.py
 msgid "Www"
 msgstr "www"
 
-#: ButtonSetup.py:55
+#: ButtonSetup.py
 msgid "Www long"
 msgstr "www lang"
 
@@ -4834,7 +4835,7 @@ msgstr "Netzwerkdienste"
 msgid "Network scan"
 msgstr "Netzwerksuchlauf"
 
-#
+#: ButtonSetup.py
 msgid "Network setup"
 msgstr "Netzwerk-Einrichtung"
 
@@ -5441,7 +5442,7 @@ msgstr "Pilot"
 msgid "Pin code needed"
 msgstr "PIN-Code benötigt"
 
-#: ButtonSetup.py:65
+#: ButtonSetup.py
 msgid "Play"
 msgstr "Abspielen"
 
@@ -6057,7 +6058,7 @@ msgstr "RF-Ausgang"
 msgid "RGB"
 msgstr "RGB"
 
-#: ButtonSetup.py:38
+#: ButtonSetup.py
 msgid "Radio"
 msgstr "Radio"
 
@@ -6348,7 +6349,7 @@ msgstr "Re-Share:"
 msgid "Resolution"
 msgstr "Auflösung"
 
-#
+#: ButtonSetup.py
 msgid "Restart"
 msgstr "Neustart"
 
@@ -6430,7 +6431,7 @@ msgstr "Rücklauf-Geschwindigkeiten"
 msgid "Rewrap teletext subtitles"
 msgstr "Teletext-Untertitel neu wrappen"
 
-#: ButtonSetup.py:32
+#: ButtonSetup.py
 msgid "Right"
 msgstr "Rechts"
 
@@ -6517,7 +6518,7 @@ msgstr "Sättigung"
 msgid "Saturday"
 msgstr "Samstag"
 
-#
+#: ButtonSetup.py
 msgid "Save"
 msgstr "Speichern"
 
@@ -6551,6 +6552,7 @@ msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern und die ak
 msgid "Stop timeshift and save timeshift buffer as movie"
 msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern"
 
+#: ButtonSetup.py
 msgid "Stop timeshift"
 msgstr "Timeshift stoppen"
 
@@ -7555,7 +7557,7 @@ msgstr "Software online aktualisieren"
 msgid "Software Update"
 msgstr "Software aktualisieren"
 
-# /SoftwareManager/plugin.py
+#: ButtonSetup.py /SoftwareManager/plugin.py
 msgid "Software update"
 msgstr "Software aktualisieren"
 
@@ -7639,7 +7641,7 @@ msgstr "Splitscreen für Vorschaumodus"
 msgid "Standard"
 msgstr "Standard"
 
-#
+#: ButtonSetup.py
 msgid "Standby"
 msgstr "Standby"
 
@@ -7703,7 +7705,7 @@ msgstr "Schritt nach Osten"
 msgid "Step west"
 msgstr "Schritt nach Westen"
 
-#: ButtonSetup.py:67
+#: ButtonSetup.py
 msgid "Stop"
 msgstr "Stopp"
 
@@ -8816,7 +8818,7 @@ msgstr "Tuner "
 msgid "Tuner Slot"
 msgstr "Tuner-Slot"
 
-#
+#: ButtonSetup.py
 msgid "Tuner Configuration"
 msgstr "Tuner-Konfiguration"
 
@@ -10235,27 +10237,27 @@ msgstr "Blacklist"
 msgid "blue"
 msgstr "Blau"
 
-#: ButtonSetup.py:21
+#: ButtonSetup.py
 msgid "Green"
 msgstr "Grün"
 
-#: ButtonSetup.py:23
+#: ButtonSetup.py
 msgid "Yellow"
 msgstr "Gelb"
 
-#: ButtonSetup.py:20
+#: ButtonSetup.py
 msgid "Red long"
 msgstr "Rot lang"
 
-#: ButtonSetup.py:22
+#: ButtonSetup.py
 msgid "Green long"
 msgstr "Grün lang"
 
-#: ButtonSetup.py:24
+#: ButtonSetup.py
 msgid "Yellow long"
 msgstr "Gelb lang"
 
-#: ButtonSetup.py:26
+#: ButtonSetup.py
 msgid "Blue long"
 msgstr "Blau lang"
 
@@ -11158,7 +11160,7 @@ msgstr "Cards mit Uphop 8 anzeigen"
 msgid "show cards with uphop 9"
 msgstr "Cards mit Uphop 9 anzeigen"
 
-#
+#: ButtonSetup.py
 msgid "show event details"
 msgstr "Sendungs-Details anzeigen"
 
@@ -12844,11 +12846,11 @@ msgstr "Zeige Uhr im Display (Deep Standby)"
 msgid "Time mode"
 msgstr "Uhrzeit Anzeige Modus"
 
-#: ButtonSetup.py:25
+#: ButtonSetup.py
 msgid "Blue"
 msgstr "Blau"
 
-#: ButtonSetup.py:19
+#: ButtonSetup.py
 msgid "Red"
 msgstr "Rot"
 
@@ -15174,85 +15176,87 @@ msgstr "Infobar Datenquelle"
 msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
 msgstr "Hier können Sie die Datenquelle für die Anzeigen in der Infobar einstellen."
 
+#: ButtonSetup.py
 msgid "Click on your remote on the button you want to change"
 msgstr "Drücke den Button der Fernbedienung der neu belegt werden soll und dann drücke \"OK\""
 
-#: ButtonSetup.py:27
+#: ButtonSetup.py
 msgid "Info (EPG)"
 msgstr "Info/EPG"
 
-#: ButtonSetup.py:28
+#: ButtonSetup.py
 msgid "Info (EPG) Long"
 msgstr "Info/EPG lang"
 
-#: ButtonSetup.py:29
+#: ButtonSetup.py
 msgid "Epg/Guide"
 msgstr "EPG/Info"
 
-#: ButtonSetup.py:30
+#: ButtonSetup.py
 msgid "Epg/Guide long"
 msgstr "EPG/Info lang"
 
+#: ButtonSetup.py
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und \"OK\" drücken um sie zu belegen. Benutze  \"CH+/-\" um zwischen den Listen umzuschalten. Wähle zugeordnete Funktion aus und drücke  \"OK\" um die Belegung zu entfernen."
 
-#: ButtonSetup.py:33
+#: ButtonSetup.py
 msgid "Up"
 msgstr "hoch"
 
-#: ButtonSetup.py:34
+#: ButtonSetup.py
 msgid "Down"
 msgstr "Runter"
 
-#: ButtonSetup.py:35
+#: ButtonSetup.py
 msgid "Channel up"
 msgstr "Nächster Sender"
 
-#: ButtonSetup.py:36
+#: ButtonSetup.py
 msgid "Channel down"
 msgstr "Sender zurück"
 
-#: ButtonSetup.py:37
+#: ButtonSetup.py
 msgid "TV"
 msgstr ""
 
-#: ButtonSetup.py:39
+#: ButtonSetup.py
 msgid "Rec"
 msgstr "Aufnahme"
 
-#: ButtonSetup.py:40
+#: ButtonSetup.py
 msgid "Teletext"
 msgstr "Videotext"
 
-#: ButtonSetup.py:41
+#: ButtonSetup.py
 msgid "Help"
 msgstr "Hilfe"
 
-#: ButtonSetup.py:42
+#: ButtonSetup.py
 msgid "Help long"
 msgstr "Hilfe lang"
 
-#: ButtonSetup.py:43
+#: ButtonSetup.py
 msgid "Subtitle"
 msgstr "Untertitel"
 
-#: ButtonSetup.py:60
+#: ButtonSetup.py
 msgid "Home"
 msgstr "Home"
 
-#: ButtonSetup.py:61
+#: ButtonSetup.py
 msgid "End"
 msgstr "Ende"
 
-#: ButtonSetup.py:62
+#: ButtonSetup.py
 msgid "Next"
 msgstr "Nächstes"
 
-#: ButtonSetup.py:63
+#: ButtonSetup.py
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: ButtonSetup.py:66
+#: ButtonSetup.py
 msgid "Playpause"
 msgstr "PlayPause"
 
@@ -15392,12 +15396,15 @@ msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn meh
 msgid "Show graphical multi EPG"
 msgstr "Grafischen Multi-EPG anzeigen"
 
+#: ButtonSetup.py
 msgid "Show eventinfo plugins"
 msgstr "Eventinfo Plugins anzeigen"
 
+#: ButtonSetup.py
 msgid "Show single service EPG"
 msgstr "Einfaches EPG anzeigen"
 
+#: ButtonSetup.py
 msgid "Show multi channel EPG"
 msgstr "Mehr-Kanal EPG anzeigen"
 
