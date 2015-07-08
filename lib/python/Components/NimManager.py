@@ -1701,6 +1701,15 @@ def InitNimManager(nimmgr):
 				tmp.lnb = lnb
 				nim.advanced.sat[x] = tmp
 
+	def scpcSearchRangeChanged(configElement):
+		fe_id = configElement.fe_id
+		slot_id = configElement.slot_id
+		name = nimmgr.nim_slots[slot_id].description
+		if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id):
+			f = open("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id, "w")
+			f.write(configElement.value)
+			f.close()
+
 	def toneAmplitudeChanged(configElement):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
@@ -1727,6 +1736,10 @@ def InitNimManager(nimmgr):
 			nim.toneAmplitude.fe_id = x - empty_slots
 			nim.toneAmplitude.slot_id = x
 			nim.toneAmplitude.addNotifier(toneAmplitudeChanged)
+			nim.scpcSearchRange = ConfigSelection([("0", _("no")), ("1", _("yes"))], "0")
+			nim.scpcSearchRange.fe_id = x - empty_slots
+			nim.scpcSearchRange.slot_id = x
+			nim.scpcSearchRange.addNotifier(scpcSearchRangeChanged)
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
