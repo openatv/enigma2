@@ -14,7 +14,7 @@ from Components.Button import Button
 import urllib2
 from Screens.Standby import TryQuitMainloop
 import feedparser
-from enigma import eTimer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, getDesktop, loadPNG , loadPic
+from enigma import eTimer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, getDesktop, loadPNG, loadPic
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
 from Components.config import config, ConfigDirectory, ConfigSubsection, ConfigSubList, \
@@ -233,10 +233,10 @@ class Gmailfeedsscrn(Screen):
 			self["info"].setText("No unseen messages.")
 			return
 
-		#set item height for menulist to 40
+		# set item height for menulist to 40
 		self["menu"].l.setItemHeight(100)
 		thegmails = []
-		#we set the font and size for each item in mylist
+		# we set the font and size for each item in mylist
 		self["menu"].l.setFont(0, gFont("Regular", 20))
 		try:
 			png = sliderfile
@@ -285,21 +285,21 @@ class GmailSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Label:"), config.plugins.gmail.label))
 		self.list.append(getConfigListEntry(_("New email check /minutes:"), config.plugins.gmail.checktimes))
 		ConfigListScreen.__init__(self, self.list, session)
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
-		{
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"], {
 			"green": self.keySave,
 			"red": self.keyClose,
 			"cancel": self.keyClose,
 			"blue": self.openKeyboard,
 			"ok": self.keySave,
 		}, -2)
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def openKeyboard(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if sel[0] == _("Username:") or sel[0] == _("Password:"):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Username:") or self.vkvar == _("Password:"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -353,8 +353,7 @@ class gmailnotifier(Screen):
 		Screen.__init__(self, session)
 
 		self.session = session
-		self["actions"] = ActionMap(["SetupActions"],
-		{
+		self["actions"] = ActionMap(["SetupActions"], {
 			"ok": self.readgmail,
 			"cancel": self.disappear,
 		}, -1)
@@ -377,7 +376,7 @@ def autostart(reason, **kwargs):
 			pass
 
 	global session
-	if reason == 0 and kwargs.has_key("session"):
+	if reason == 0 and "session" in kwargs:
 		session = kwargs["session"]
 		session.open(DocompareTimes)
 
@@ -408,10 +407,10 @@ class DocompareTimes(Screen):
 
 	def Checkcounts(self):
 		netcount = comparecounts()
-#		print "[GMail] netcount:", netcount
+		# print "[GMail] netcount:", netcount
 		if netcount > 0:
 			msg = "%d new email%s.\nPress OK to view." % (netcount, "s" if netcount > 1 else "")
-#			print "[GMail]", msg
+			# print "[GMail]", msg
 			self.session.openWithCallback(self.repeat, gmailnotifier, msg)
 		else:
 			self.repeat()
@@ -434,11 +433,11 @@ def getnewgmailcount():
 def comparecounts():
 	netcount = 0
 	oldcount = config.plugins.gmail.gmailcount.value
-#	print "[GMail] oldcount", oldcount
+	# print "[GMail] oldcount", oldcount
 	newcount = getnewgmailcount()
-#	print "[GMail] newcount", newcount
+	# print "[GMail] newcount", newcount
 	netcount = newcount - oldcount
-#	print "[GMail] netcount", netcount
+	# print "[GMail] netcount", netcount
 	if newcount and newcount != oldcount:
 		config.plugins.gmail.gmailcount.value = newcount
 		config.plugins.gmail.gmailcount.save()
@@ -471,8 +470,7 @@ class Gmailbodyviewer(Screen):
 
 		txt = ""
 		Screen.__init__(self, session)
-		self["actions"] = ActionMap(["PiPSetupActions", "WizardActions", "ColorActions"],
-		{
+		self["actions"] = ActionMap(["PiPSetupActions", "WizardActions", "ColorActions"], {
 			"cancel": self.exit,
 			"back": self.exit,
 			"red": self.exit,
@@ -492,10 +490,10 @@ class Gmailbodyviewer(Screen):
 
 	def getemailinfo(self, msg):
 		self._email = msg
-		#header=decodeHeader(_("From") +": %s" %self._email.get('from', _('no from')))
-		#msgdate = email.utils.parsedate_tz(self._email.get("date", ""))
-		#self["date"] = Label(_("Date") +": %s" % (time.ctime(email.utils.mktime_tz(msgdate)) if msgdate else _("no date")))
-		#subject = decodeHeader(_("Subject") +": %s" %self._email.get('subject', _('no subject')))
+		# header=decodeHeader(_("From") +": %s" %self._email.get('from', _('no from')))
+		# msgdate = email.utils.parsedate_tz(self._email.get("date", ""))
+		# self["date"] = Label(_("Date") +": %s" % (time.ctime(email.utils.mktime_tz(msgdate)) if msgdate else _("no date")))
+		# subject = decodeHeader(_("Subject") +": %s" %self._email.get('subject', _('no subject')))
 		body = self._email.messagebodys[0].getData()
 		if not body.strip() == "":
 			self["text"].setText(body)
@@ -518,11 +516,11 @@ class Gmailbodyviewer(Screen):
 						msg.messagebodys.append(EmailBody(part))
 					else:
 						pass
-						##debug("[EmailScreen] onMessageLoaded: unknown content type=%s/%s" %(str(part.get_content_maintype()), str(part.get_content_subtype())))
+						# debug("[EmailScreen] onMessageLoaded: unknown content type=%s/%s" %(str(part.get_content_maintype()), str(part.get_content_subtype())))
 				else:
 					pass
-					#debug("[EmailScreen] onMessageLoaded: found Attachment with  %s and name %s" %(str(part.get_content_type()), str(part.get_filename())))
-					#msg.attachments.append(EmailAttachment(part.get_filename(), part.get_content_type(), part.get_payload()))
+					# debug("[EmailScreen] onMessageLoaded: found Attachment with  %s and name %s" %(str(part.get_content_type()), str(part.get_filename())))
+					# msg.attachments.append(EmailAttachment(part.get_filename(), part.get_content_type(), part.get_payload()))
 		else:
 			msg.messagebodys.append(EmailBody(msg))
 
@@ -547,12 +545,12 @@ class EmailBody:
 			except UnicodeDecodeError:
 				pass
 		# debug('EmailBody/getData text: ' +  text)
-		#=======================================================================
+		# =======================================================================
 		# if self.getEncoding():
-		#	text = text.decode(self.getEncoding())
-		#=======================================================================
+		# 	text = text.decode(self.getEncoding())
+		# =======================================================================
 		if self.getContenttype() == "text/html":
-			#debug("[EmailBody] stripping html")
+			# debug("[EmailBody] stripping html")
 			text = strip_readable(text)
 			# debug('EmailBody/getData text: ' +  text)
 

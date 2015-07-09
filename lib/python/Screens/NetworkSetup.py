@@ -462,6 +462,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
+
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
@@ -750,14 +755,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		iNetwork.stopLinkStateConsole()
 
 	def hideInputHelp(self):
-		current = self["config"].getCurrent()
-		if current == self.wlanSSID:
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.hide()
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.value is not "Unencrypted":
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.hide()
-
+		self.HideHelp()
 
 class NetworkMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
@@ -2353,6 +2351,10 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 		self.updateList()
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
@@ -2710,6 +2712,10 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.updateList()
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
@@ -3085,6 +3091,10 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		self.updateList()
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
@@ -3564,6 +3574,10 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.updateList()
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary

@@ -1,8 +1,8 @@
 from __future__ import print_function
 
-#pragma mark - GUI
+# pragma mark - GUI
 
-#pragma mark Screens
+# pragma mark Screens
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
@@ -12,7 +12,7 @@ from Screens.MessageBox import MessageBox
 from Plugins.SystemPlugins.Toolkit.NTIVirtualKeyBoard import NTIVirtualKeyBoard
 from EcasaSetup import EcasaSetup
 
-#pragma mark Components
+# pragma mark Components
 from Components.ActionMap import HelpableActionMap
 from Components.AVSwitch import AVSwitch
 from Components.Label import Label
@@ -20,14 +20,14 @@ from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 
-#pragma mark Configuration
+# pragma mark Configuration
 from Components.config import config
 
-#pragma mark Picasa
+# pragma mark Picasa
 from .PicasaApi import PicasaApi
 from Plugins.SystemPlugins.Toolkit.TagStrip import strip_readable
 
-#pragma mark Flickr
+# pragma mark Flickr
 from .FlickrApi import FlickrApi
 
 from enigma import ePicLoad, eTimer, getDesktop
@@ -78,6 +78,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		<!-- TODO: find some better picture -->
 		<widget name="highlight" position="30,142" size="90,5"/>
 		</screen>"""
+
 	def __init__(self, session, api=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -104,7 +105,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 			self.api = api
 
 		self["key_red"] = StaticText(_("<"))
-		#self["key_green"] = StaticText(_("Albums"))
+		# self["key_green"] = StaticText(_("Albums"))
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText(_("Search"))
 		self["key_blue"] = StaticText(_(">"))
@@ -114,20 +115,19 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		self["highlight"] = MovingPixmap()
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 
-		self["overviewActions"] = HelpableActionMap(self, "EcasaOverviewActions",
-			{
-				"up": self.up,
-				"down": self.down,
-				"left": self.left,
-				"right": self.right,
-				"blue": (self.nextPage, _("Show next page")),
-				"red": (self.prevPage, _("Show previous page")),
-				"select": self.select,
-				"exit": self.close,
-				#"albums":(self.albums, _("Show your albums (if logged in)")),
-				"search":(self.search, _("Start a new search")),
-				#"contextMenu":(self.contextMenu, _("Open context menu")),
-			}, prio=-1)
+		self["overviewActions"] = HelpableActionMap(self, "EcasaOverviewActions", {
+			"up": self.up,
+			"down": self.down,
+			"left": self.left,
+			"right": self.right,
+			"blue": (self.nextPage, _("Show next page")),
+			"red": (self.prevPage, _("Show previous page")),
+			"select": self.select,
+			"exit": self.close,
+			# "albums": (self.albums, _("Show your albums (if logged in)")),
+			"search": (self.search, _("Start a new search")),
+			# "contextMenu": (self.contextMenu, _("Open context menu")),
+		}, prio=-1)
 
 		self.offset = 0
 		self.__highlighted = 0
@@ -157,14 +157,15 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 	def highlighted(self, highlighted):
 		our_print("setHighlighted", highlighted)
 		# only allow to select valid pictures
-		if highlighted + self.offset >= len(self.pictures): return
+		if highlighted + self.offset >= len(self.pictures):
+			return
 
 		self.__highlighted = highlighted
 		pixmap = self['image%d' % highlighted]
 		origpos = pixmap.getPosition()
 		origsize = pixmap.instance.size()
 		# TODO: hardcoded highlight offset is evil :P
-		self["highlight"].moveTo(origpos[0], origpos[1]+origsize.height()+2, 1)
+		self["highlight"].moveTo(origpos[0], origpos[1] + origsize.height() + 2, 1)
 		self["highlight"].startMoving()
 
 	def gotPicture(self, picInfo=None):
@@ -174,7 +175,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		if ptr is not None:
 			self['image%d' % realIdx].instance.setPixmap(ptr)
 		else:
-			our_print("gotPicture got invalid results for idx", idx, "("+str(realIdx)+")")
+			our_print("gotPicture got invalid results for idx", idx, "(" + str(realIdx) + ")")
 			# NOTE: we could use a different picture here that indicates a failure
 			self['image%d' % realIdx].instance.setPixmap(None)
 			# NOTE: the thread WILL most likely be hung and NOT recover from it, so we should remove the old picload and create a new one :/
@@ -182,7 +183,8 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		self.maybeDecode()
 
 	def maybeDecode(self):
-		if self.currentphoto is not None: return
+		if self.currentphoto is not None:
+			return
 		try:
 			filename, self.currentphoto = self.queue.pop()
 		except IndexError:
@@ -210,8 +212,8 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		pictures = self.pictures
 		for i in xrange(self.PICS_PER_PAGE):
 			try:
-				our_print("trying to initiate download of idx", i+self.offset)
-				picture = pictures[i+self.offset]
+				our_print("trying to initiate download of idx", i + self.offset)
+				picture = pictures[i + self.offset]
 				self.api.downloadThumbnail(picture).addCallbacks(self.pictureDownloaded, self.pictureDownloadFailed)
 			except IndexError:
 				# no more pictures
@@ -263,9 +265,11 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 			highlighted = 0
 		our_print("right. before:", self.highlighted, ", after:", highlighted)
 		self.highlighted = highlighted
+
 	def nextPage(self):
 		our_print("nextPage")
-		if not self.pictures: return
+		if not self.pictures:
+			return
 		offset = self.offset + self.PICS_PER_PAGE
 		Len = len(self.pictures)
 		if offset >= Len:
@@ -275,9 +279,11 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 			if offset + self.highlighted > Len:
 				self.highlighted = Len - offset - 1
 		self.setup()
+
 	def prevPage(self):
 		our_print("prevPage")
-		if not self.pictures: return
+		if not self.pictures:
+			return
 		offset = self.offset - self.PICS_PER_PAGE
 		if offset < 0:
 			Len = len(self.pictures) - 1
@@ -299,7 +305,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		photo = None
 		try:
 			# NOTE: using self.highlighted as prevPage might have moved this if the page is not full
-			photo = self.pictures[self.highlighted+self.offset]
+			photo = self.pictures[self.highlighted + self.offset]
 		except IndexError:
 			pass
 		return photo
@@ -314,27 +320,30 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		photo = None
 		try:
 			# NOTE: using self.highlighted as nextPage might have moved this if the page is not full
-			photo = self.pictures[self.highlighted+self.offset]
+			photo = self.pictures[self.highlighted + self.offset]
 		except IndexError:
 			pass
 		return photo
 
 	def select(self):
 		try:
-			photo = self.pictures[self.highlighted+self.offset]
+			photo = self.pictures[self.highlighted + self.offset]
 		except IndexError:
 			our_print("no such picture")
 			# TODO: indicate in gui
 		else:
 			self.session.open(EcasaPicture, photo, api=self.api, prevFunc=self.prevFunc, nextFunc=self.nextFunc)
+
 	def albums(self):
 		self.session.open(EcasaAlbumview, self.api, user=config.plugins.ecasa.user.value)
+
 	def search(self):
 		self.session.openWithCallback(
 			self.searchCallback,
 			NTIVirtualKeyBoard,
 			title=_("Enter text to search for")
 		)
+
 	def searchCallback(self, text=None):
 		if text:
 			# Maintain history
@@ -347,7 +356,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 				history.insert(0, text)
 			config.plugins.ecasa.searchhistory.save()
 
-			thread = SimpleThread(lambda:self.api.getSearch(text, limit=str(config.plugins.ecasa.searchlimit.value)))
+			thread = SimpleThread(lambda: self.api.getSearch(text, limit=str(config.plugins.ecasa.searchlimit.value)))
 			self.session.open(EcasaFeedview, thread, api=self.api, title=_("Search for %s") % (text))
 
 	def contextMenu(self):
@@ -389,7 +398,7 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		if ret:
 			self.searchCallback(ret[1])
 
-	def setupClosed(self):
+	def setupClosed(self, *args):
 		if config.plugins.ecasa.last_backend.value == 'picasa':
 			if not isinstance(self.api, PicasaApi):
 				self.api = PicasaApi(cache=config.plugins.ecasa.cache.value)
@@ -412,12 +421,14 @@ class EcasaPictureWall(Screen, HelpableScreen, InfoBarNotifications):
 		self.api.cache = config.plugins.ecasa.cache.value
 
 	def gotPictures(self, pictures):
-		if not self.instance: return
+		if not self.instance:
+			return
 		self.pictures = pictures
 		self.setup()
 
 	def errorPictures(self, error):
-		if not self.instance: return
+		if not self.instance:
+			return
 		our_print("errorPictures", error)
 		self.session.open(
 			MessageBox,
@@ -441,9 +452,9 @@ class EcasaOverview(EcasaPictureWall):
 	def openSetup(self):
 		self.session.openWithCallback(self.setupClosed, EcasaSetup, allowApiChange=True)
 
-	def setupClosed(self):
+	def setupClosed(self, *args):
 		api = self.api
-		EcasaPictureWall.setupClosed(self)
+		EcasaPictureWall.setupClosed(self, *args)
 		if api != self.api:
 			self.pictures = ()
 			self["highlight"].hide()
@@ -502,6 +513,7 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 			</convert>
 		</widget>
 	</screen>"""
+
 	def __init__(self, session, api, user='default'):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -515,13 +527,12 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		self['key_yellow'] = StaticText(_("Change user"))
 		self['key_blue'] = StaticText(_("User history"))
 
-		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions",
-			{
-				"select":(self.select, _("Show album")),
-				"exit":(self.close, _("Close")),
-				"users":(self.users, _("Change user")),
-				"history":(self.history, _("User history")),
-			}, prio=-1)
+		self["albumviewActions"] = HelpableActionMap(self, "EcasaAlbumviewActions", {
+			"select": (self.select, _("Show album")),
+			"exit": (self.close, _("Close")),
+			"users": (self.users, _("Change user")),
+			"history": (self.history, _("User history")),
+		}, prio=-1)
 
 		self.acquireAlbumsForUser(user)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -530,16 +541,18 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		self.setTitle(_("Flickr: Albums for user %s") % (self.user.encode('utf-8'),))
 
 	def acquireAlbumsForUser(self, user):
-		thread = SimpleThread(lambda:self.api.getAlbums(user=user))
+		thread = SimpleThread(lambda: self.api.getAlbums(user=user))
 		thread.deferred.addCallbacks(self.gotAlbums, self.errorAlbums)
 		thread.start()
 
 	def gotAlbums(self, albums):
-		if not self.instance: return
+		if not self.instance:
+			return
 		self['list'].list = albums
 
 	def errorAlbums(self, error):
-		if not self.instance: return
+		if not self.instance:
+			return
 		our_print("errorAlbums", error)
 		self['list'].setList([(_("Error downloading"), "0", None)])
 		self.session.open(
@@ -553,16 +566,17 @@ class EcasaAlbumview(Screen, HelpableScreen, InfoBarNotifications):
 		cur = self['list'].getCurrent()
 		if cur and cur[-1]:
 			album = cur[-1]
-			title = cur[0] # NOTE: retrieve from array to be independent of underlaying API as the flickr and picasa albums are not compatible here
-			thread = SimpleThread(lambda:self.api.getAlbum(album))
+			title = cur[0]  # NOTE: retrieve from array to be independent of underlaying API as the flickr and picasa albums are not compatible here
+			thread = SimpleThread(lambda: self.api.getAlbum(album))
 			self.session.open(EcasaFeedview, thread, api=self.api, title=title)
 
 	def users(self):
 		self.session.openWithCallback(
 			self.searchCallback,
 			NTIVirtualKeyBoard,
-			title = _("Enter username")
+			title=_("Enter username")
 		)
+
 	def searchCallback(self, text=None):
 		if text:
 			# Maintain history
@@ -602,6 +616,7 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 	"""Display a single picture and its metadata."""
 	PAGE_PICTURE = 0
 	PAGE_INFO = 1
+
 	def __init__(self, session, photo, api=None, prevFunc=None, nextFunc=None):
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
@@ -611,7 +626,7 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 			<widget source="summary" render="Label" position="25,60" zPosition="1" size="{labelwidth},100" valign="top" halign="left" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
 			<widget source="keywords" render="Label" position="25,160" zPosition="1" size="{labelwidth},40" valign="center" halign="left" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
 			<widget source="camera" render="Label" position="25,180" zPosition="1" size="{labelwidth},40" valign="center" halign="left" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-		</screen>""".format(size_w=size_w,size_h=size_h,labelwidth=size_w-50)
+		</screen>""".format(size_w=size_w, size_h=size_h, labelwidth=size_w - 50)
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -628,18 +643,16 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		self['summary'] = StaticText()
 		self['keywords'] = StaticText()
 
-		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions",
-			{
-				"info": (self.info, _("Show metadata")),
-				"exit": (self.close, _("Close")),
-				"contextMenu":(self.contextMenu, _("Open context menu")),
-			}, prio=-1)
+		self["pictureActions"] = HelpableActionMap(self, "EcasaPictureActions", {
+			"info": (self.info, _("Show metadata")),
+			"exit": (self.close, _("Close")),
+			"contextMenu": (self.contextMenu, _("Open context menu")),
+		}, prio=-1)
 		if prevFunc and nextFunc:
-			self["directionActions"] = HelpableActionMap(self, "DirectionActions",
-				{
-					"left": self.previous,
-					"right": self.next,
-				}, prio=-2)
+			self["directionActions"] = HelpableActionMap(self, "DirectionActions", {
+				"left": self.previous,
+				"right": self.next,
+			}, prio=-2)
 
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.gotPicture)
@@ -661,15 +674,17 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		if ptr is not None:
 			self['pixmap'].instance.setPixmap(ptr)
 			if self.nextPhoto is not None:
-				self.timer.start(config.plugins.ecasa.slideshow_interval.value*1000, True)
+				self.timer.start(config.plugins.ecasa.slideshow_interval.value * 1000, True)
 
 	def cbDownload(self, tup):
-		if not self.instance: return
+		if not self.instance:
+			return
 		filename, photo = tup
 		self.picload.startDecode(filename)
 
 	def ebDownload(self, tup):
-		if not self.instance: return
+		if not self.instance:
+			return
 		error, photo = tup
 		print("ebDownload", error)
 		self.session.open(
@@ -738,10 +753,10 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		# is slideshow currently running?
 		if self.nextPhoto is not None:
 			self.timer.stop()
-			self.previous() # we already moved forward in our parent view, so move back
+			self.previous()  # we already moved forward in our parent view, so move back
 			self.nextPhoto = None
 		else:
-			self.timer.start(config.plugins.ecasa.slideshow_interval.value*1000, True)
+			self.timer.start(config.plugins.ecasa.slideshow_interval.value * 1000, True)
 			self.timerFired()
 
 	def timerFired(self):
@@ -753,7 +768,8 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		self.api.downloadPhoto(self.nextPhoto)
 
 	def reloadData(self, photo):
-		if photo is None: return
+		if photo is None:
+			return
 		self.photo = photo
 		unk = _("unknown")
 
@@ -798,8 +814,11 @@ class EcasaPicture(Screen, HelpableScreen, InfoBarNotifications):
 		self.api.downloadPhoto(photo).addCallbacks(self.cbDownload, self.ebDownload)
 
 	def previous(self):
-		if self.prevFunc: self.reloadData(self.prevFunc())
+		if self.prevFunc:
+			self.reloadData(self.prevFunc())
 		self['pixmap'].instance.setPixmap(None)
+
 	def next(self):
-		if self.nextFunc: self.reloadData(self.nextFunc())
+		if self.nextFunc:
+			self.reloadData(self.nextFunc())
 		self['pixmap'].instance.setPixmap(None)
