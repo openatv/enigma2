@@ -69,6 +69,10 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def createConfig(self):
 		justplay = self.timer.justplay
@@ -303,21 +307,15 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup("config")
 
 	def showHelp(self):
-		self.hideTextHelp()
 		HelpableScreen.showHelp(self)
 
 	def hideTextHelp(self):
-		currConfig = self["config"].getCurrent()
-		if isinstance(currConfig[1], ConfigText) and currConfig[1].help_window.instance is not None:
-			currConfig[1].help_window.hide()
+		self.ShowHelp()
 
 	def showTextHelp(self):
-		currConfig = self["config"].getCurrent()
-		if isinstance(currConfig[1], ConfigText) and currConfig[1].help_window.instance is not None:
-			currConfig[1].help_window.show()
+		self.HideHelp()
 
 	def KeyText(self):
-		self.hideTextHelp()
 		currConfig = self["config"].getCurrent()
 		if currConfig[0] in (_('Name'), _("Description")):
 			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=currConfig[2], text=currConfig[1].value)
@@ -350,11 +348,9 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			title_text = _("Please enter new description:")
 			old_text = self.timerentry_description.value
-		self.hideTextHelp()
 		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=title_text, text=old_text)
 
 	def renameEntryCallback(self, answer):
-		self.showTextHelp()
 		if answer:
 			if self["config"].getCurrent() == self.entryName:
 				self.timerentry_name.value = answer

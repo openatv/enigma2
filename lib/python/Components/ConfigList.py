@@ -199,6 +199,24 @@ class ConfigListScreen:
 		else:
 			self.showVKeyboard(False)
 
+	def showHideHelp(self, show):
+		try:
+			currConf = self["config"].getCurrent()[1]
+			if isinstance(currConf, (ConfigText, ConfigPassword)):
+				if currConf.help_window.instance is not None:
+					if show:
+						currConf.help_window.show()
+					else:
+						currConf.help_window.hide()
+		except:
+			pass
+
+	def ShowHelp(self):
+		self.showHideHelp(True)
+
+	def HideHelp(self):
+		self.showHideHelp(False)
+
 	def showVKeyboard(self, state):
 		if "VKeyIcon" in self:
 			self["VirtualKB"].setEnabled(state)
