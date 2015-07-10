@@ -263,9 +263,9 @@ class GeneralSetup(Screen):
 	def Qnetwork(self):
 		self.sublist = []
 		# self.sublist.append(QuickSubMenuEntryComponent("Network wizard", _("Configure your network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
-		# if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed, no need as eth0 is always present
+		# if len(self.adapters) > 1: # Show adapter selection if more than 1 adapter is installed, not needed as eth0 is always present.
 		self.sublist.append(QuickSubMenuEntryComponent("Network adapter selection", _("Select LAN/WLAN"), _("Set up your network interface. If no USB WLAN stick is present, you can only select LAN")))
-		if self.activeInterface is not None:  # show only if there is already an adapter up
+		if self.activeInterface is not None: # Show only if there is already an adapter up.
 			self.sublist.append(QuickSubMenuEntryComponent("Network interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network restart", _("Restart network with current setup"), _("Restart network and remount connections")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network services", _("Setup network services"), _("Set up network services (Samba, FTP, NFS, ...)")))
@@ -370,8 +370,8 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Hard disk setup", _("Hard disk setup"), _("Configure hard disk options, such as standby timeout")))
 		self.sublist.append(QuickSubMenuEntryComponent("Format hard disk", _("Format HDD"), _("Format your hard disk")))
 		self.sublist.append(QuickSubMenuEntryComponent("File system check", _("Check HDD"), _("Check the integrity of the file system on your hard disk")))
-# 		if isFileSystemSupported("ext4"):
-# 			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system from ext3 to ext4"), _("Convert file system from ext3 to ext4")))
+		# if isFileSystemSupported("ext4"):
+		# 	self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system from ext3 to ext4"), _("Convert file system from ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):
@@ -456,8 +456,8 @@ class GeneralSetup(Screen):
 			self.session.open(NetworkMiniDLNA)
 		elif selected == _("DYN-DNS"):
 			self.session.open(NetworkInadyn)
-# 		elif selected == _("SABnzbd"):
-# 			self.session.open(NetworkSABnzbd)
+		# elif selected == _("SABnzbd"):
+		# 	self.session.open(NetworkSABnzbd)
 		elif selected == _("uShare"):
 			self.session.open(NetworkuShare)
 		elif selected == _("Telnet"):
