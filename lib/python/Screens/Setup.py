@@ -123,7 +123,11 @@ class Setup(ConfigListScreen, Screen):
 
 		self.changedEntry()
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.onClose.append(self.HideHelp)
+
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def createSetup(self):
 		list = []
@@ -145,14 +149,6 @@ class Setup(ConfigListScreen, Screen):
 		if newIdx is None:
 			newIdx = 0
 		self["config"].setCurrentIndex(newIdx)
-
-	def HideHelp(self):
-		try:
-			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
-		except:
-			pass
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))

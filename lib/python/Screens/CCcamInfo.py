@@ -78,13 +78,14 @@ class EGCCcamEditAddLine(ConfigListScreen, Screen):
 		self["key_red"] = Label(_("Save"))
 		self["key_green"] = Label(_("Cancel"))
 		self["HelpText"] = Label(_("Please to press button TXT to open Virtual keyboard"))
+		if self.ShowHelp not in self.onExecBegin:
+			self.onExecBegin.append(self.ShowHelp)
+		if self.HideHelp not in self.onExecEnd:
+			self.onExecEnd.append(self.HideHelp)
 
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			if sel == self.domain or sel == self.username or sel == self.password:
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					self["config"].getCurrent()[1].help_window.hide()
 			self.vkvar = sel[0]
 			if self.vkvar == _("Domain") + ':' or self.vkvar == _("Username") + ':' or self.vkvar == _("Password") + ':':
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
