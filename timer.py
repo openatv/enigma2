@@ -243,6 +243,7 @@ class Timer:
 
 		# calculate next activation point
 		if self.timer_list:
+			self.timer_list.sort() #  resort/refresh list, try to fix hanging timers
 			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
@@ -250,7 +251,7 @@ class Timer:
 		if int(now) < 1072224000 and min > now + 5:
 			# system time has not yet been set (before 01.01.2004), keep a short poll interval
 			min = now + 5
-
+		# print "[TIMER] self.timer_list = %s" % self.timer_list
 		self.setNextActivation(now, min)
 
 	def timeChanged(self, timer):

@@ -20,10 +20,6 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.NumericalTextInput import NumericalTextInput
 import os
 
-# for localized texts
-from . import _
-
-
 ## configs ################################################################
 
 config.plugins.SundtekControlCenter = ConfigSubsection()

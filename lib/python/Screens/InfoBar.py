@@ -382,7 +382,81 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.showMovies()
 
-class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
+def setAudioTrack(service):
+	try:
+		from Tools.ISO639 import LanguageCodes as langC
+		tracks = service and service.audioTracks()
+		nTracks = tracks and tracks.getNumberOfTracks() or 0
+		if not nTracks: return
+		idx = 0
+		trackList = []
+		for i in xrange(nTracks):
+			audioInfo = tracks.getTrackInfo(i)
+			lang = audioInfo.getLanguage()
+			if langC.has_key(lang):
+				lang = langC[lang][0]
+			desc = audioInfo.getDescription()
+			track = idx, lang,  desc
+			idx += 1
+			trackList += [track]
+		seltrack = tracks.getCurrentTrack()
+		# we need default selected language from image
+		# to set the audiotrack if "config.autolanguage.audio_autoselect...values" are not set
+		from Components.Language import language
+		syslang = language.getLanguage()[:2]
+		syslang = langC[syslang][0]
+		if (config.autolanguage.audio_autoselect1.value or config.autolanguage.audio_autoselect2.value or config.autolanguage.audio_autoselect3.value or config.autolanguage.audio_autoselect4.value) != "---":
+			audiolang = [config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value]
+			caudiolang = True
+		else:
+			audiolang = syslang
+			caudiolang = False
+		useAc3 = config.autolanguage.audio_defaultac3.value
+		if useAc3:
+			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
+			if matchedAc3: return
+			matchedMpeg = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
+			if matchedMpeg: return
+			tracks.selectTrack(0)    # fallback to track 1(0)
+			return
+		else:
+			matchedMpeg = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
+			if matchedMpeg:	return
+			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
+			if matchedAc3: return
+			tracks.selectTrack(0)    # fallback to track 1(0)
+	except Exception, e:
+		print("[MoviePlayer] audioTrack exception:\n" + str(e))
+
+def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
+	for entry in audiolang:
+		if caudiolang:
+			# we need here more replacing for other language, or new configs with another list !!!
+			# choice gives only the value, never the description
+			# so we can also make some changes in "config.py" to get the description too, then we dont need replacing here !
+			entry = entry.replace('eng qaa Englisch', 'English').replace('deu ger', 'German')
+		for x in trackList:
+			if entry == x[1] and seltrack == x[0]:
+				if useAc3:
+					if x[2].startswith('AC'):
+						print("[MoviePlayer] audio track is current selected track: " + str(x))
+						return True
+				else:
+					print("[MoviePlayer] audio track is current selected track: " + str(x))
+					return True
+			elif entry == x[1] and seltrack != x[0]:
+				if useAc3:
+					if x[2].startswith('AC'):
+						print("[MoviePlayer] audio track match: " + str(x))
+						tracks.selectTrack(x[0])
+						return True
+				else:
+					print("[MoviePlayer] audio track match: " + str(x))
+					tracks.selectTrack(x[0])
+					return True
+	return False
+
+class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG, \
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
@@ -434,8 +508,34 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.doButtonsCheck)
 
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				enigma.iPlayableService.evStart: self.__evStart
+			})
+
 		assert MoviePlayer.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		MoviePlayer.instance = self
+
+		# is needed for every first call of MoviePlayer
+		self.__evStart()
+
+	def __evStart(self):
+		self.switchAudioTimer = enigma.eTimer()
+		self.switchAudioTimer.callback.append(self.switchAudio)
+		self.switchAudioTimer.start(750, True)    # 750 is a safe-value
+
+	def switchAudio(self):
+		service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if service:
+			# we go this way for other extensions as own records(they switch over pmt)
+			path = service.getPath()
+			import os
+			ext = os.path.splitext(path)[1].lower()
+			exts = [".mkv", ".avi", ".divx", ".mp4"]      # we need more extensions here ?
+			if ext.lower() in exts:
+				service = self.session.nav.getCurrentService()
+				if service:
+					setAudioTrack(service)
 
 	def doButtonsCheck(self):
 		if config.plisettings.ColouredButtons.value:

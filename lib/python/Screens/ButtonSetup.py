@@ -88,6 +88,8 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 	(_("SAT"), "sat", "Infobar/openSatellites"),
 	(_("SAT long"), "sat_long", ""),
+	(_("Prov"), "prov", ""),
+	(_("Prov long"), "prov_long", ""),
 	(_("F1/LAN"), "f1", ""),
 	(_("F1/LAN long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
@@ -167,7 +169,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", "InfoBar"))
 	if SystemInfo["LcdLiveTV"]:
 		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
-	ButtonSetupFunctions.append((_("ButtonSetup Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
+	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
 	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
@@ -204,7 +206,8 @@ def getButtonSetupFunctions():
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 		ButtonSetupFunctions.append((_("EnhancedMovieCenter"), "EMC/", "Plugins"))
-
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/ScriptRunner.pyo"):
+		ButtonSetupFunctions.append((_("ScriptRunner"), "ScriptRunner/", "Plugins"))
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
@@ -574,6 +577,10 @@ class InfoBarButtonSetup():
 					open(showMoviesNew(InfoBar.instance))
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
+			elif selected[0] == "ScriptRunner":
+				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/ScriptRunner.pyo"):
+					from Plugins.Extensions.Infopanel.ScriptRunner import ScriptRunner
+					self.session.open (ScriptRunner)
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
@@ -583,3 +590,4 @@ class InfoBarButtonSetup():
 
 	def ToggleLCDLiveTV(self):
 		config.lcd.showTv.value = not config.lcd.showTv.value
+

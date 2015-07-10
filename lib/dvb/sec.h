@@ -257,24 +257,29 @@ public:
 	int m_prio; // to override automatic tuner management ... -1 is Auto
 #endif
 public:
-#define guard_offset_min -8000
+#define guard_offset_min (-8000)
 #define guard_offset_max 8000
 #define guard_offset_step 8000
 #define MAX_SATCR 32
-#define MAX_LNBNUM 64
 
+#define MAX_EN50607_POSITIONS 		64
+#define MAX_FIXED_LNB_POSITIONS		64
+#define MAX_MOVABLE_LNBS 		6
+
+#define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
+
+	int SatCR_positionnumber;
 	int SatCR_positions;
 	int SatCR_idx;
 	int SatCR_format;
 	unsigned int SatCRvco;
-	unsigned int UnicableTuningWord;
+	unsigned int TuningWord;
 	unsigned int UnicableConfigWord;
 	int old_frequency;
 	int old_polarisation;
 	int old_orbital_position;
 	int guard_offset_old;
 	int guard_offset;
-	int LNBNum;
 };
 
 class eDVBRegisteredFrontend;
@@ -324,7 +329,9 @@ public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends);
 	RESULT prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int frontend_id, unsigned int tunetimeout);
-	void prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr); // used for unicable
+	RESULT prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword);
+	RESULT prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword);
+	void prepareTurnOffSatCR(iDVBFrontend &frontend); // used for unicable
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id, int *highest_score_lnb=0);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
 #endif
@@ -339,7 +346,6 @@ public:
 	RESULT setLNBThreshold(int threshold);
 	RESULT setLNBIncreasedVoltage(bool onoff);
 	RESULT setLNBPrio(int prio);
-	RESULT setLNBNum(int LNBNum);
 /* DiSEqC Specific Parameters */
 	RESULT setDiSEqCMode(int diseqcmode);
 	RESULT setToneburst(int toneburst);
@@ -357,7 +363,9 @@ public:
 	RESULT setUseInputpower(bool onoff);
 	RESULT setInputpowerDelta(int delta);  // delta between running and stopped rotor
 	RESULT setRotorTurningSpeed(int speed);  // set turning speed..
+	RESULT getMaxMovableLnbNum() {return MAX_MOVABLE_LNBS;}
 /* Unicable Specific Parameters */
+	RESULT setLNBSatCRpositionnumber(int UnicablePositionNumber);
 	RESULT setLNBSatCRformat(int SatCR_format);	//DiSEqc or JESS (or ...)
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);
@@ -371,6 +379,8 @@ public:
 	RESULT setVoltageMode(int mode);
 	RESULT setToneMode(int mode);
 	RESULT setRotorPosNum(int rotor_pos_num);
+	RESULT getMaxFixedLnbPositions() {return MAX_FIXED_LNB_POSITIONS;}
+	RESULT getMaxLnbNum() {return MAX_LNBNUM;}
 /* Tuner Specific Parameters */
 	RESULT setTunerLinked(int from, int to);
 	RESULT setTunerDepends(int from, int to);

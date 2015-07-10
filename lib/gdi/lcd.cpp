@@ -83,7 +83,7 @@ eDBoxLCD::eDBoxLCD()
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
 		
-		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "hd1200\n") == 0) || (strcmp(boxtype_name, "hd500c\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0) || (strcmp(boxtype_name, "yhgd2580\n") == 0))
+		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "hd1200\n") == 0) || (strcmp(boxtype_name, "hd500c\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0) || (strcmp(boxtype_name, "yhgd2580\n") == 0) || (strcmp(boxtype_name, "osmini\n") == 0) || (strcmp(boxtype_name, "fegasusx5\n") == 0))
 		{
 			lcdfd = open("/dev/null", O_RDWR);
 		}
@@ -348,7 +348,15 @@ void eDBoxLCD::update()
 			}
 			else
 			{
-				if (FILE * file = fopen("/proc/stb/info/gbmodel", "r"))
+				FILE *file;
+				FILE *boxtype_file;
+				char boxtype_name[20];
+				if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+				{
+					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+					fclose(boxtype_file);
+				}
+				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0))
 				{
 					unsigned char gb_buffer[_stride * res.height()];
 					for (int offset = 0; offset < _stride * res.height(); offset += 2)
@@ -357,7 +365,10 @@ void eDBoxLCD::update()
 						gb_buffer[offset + 1] = ((_buffer[offset + 1] >> 5) & 0x03) | ((_buffer[offset] >> 3) & 0x1C) | ((_buffer[offset + 1] << 5) & 0x60);
 					}
 					write(lcdfd, gb_buffer, _stride * res.height());
-					fclose(file);
+					if (file != NULL)
+					{
+						fclose(file);
+					}
 				}
 				else
 				{

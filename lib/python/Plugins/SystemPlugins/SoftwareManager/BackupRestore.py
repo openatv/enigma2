@@ -313,8 +313,14 @@ class RestoreMenu(Screen):
 
 	def startRestore(self, ret = False):
 		if ret == True:
-			self.exe = True
-			self.session.open(Console, title = _("Restoring..."), cmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
+			self.session.openWithCallback(self.CB_startRestore, MessageBox, _("Do you want to delete the old settings in /etc/enigma2 first?"))
+
+	def CB_startRestore(self, ret = False):
+		self.exe = True
+		if ret == True:
+			self.session.open(Console, title = _("Restoring..."), cmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2", "/etc/init.d/autofs restart"])
+		else:
+			self.session.open(Console, title = _("Restoring..."), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2", "/etc/init.d/autofs restart"])
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -371,9 +377,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def doRestore(self):
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
+			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "/etc/init.d/autofs restart"]
 		else:
-			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /"]
+			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "/etc/init.d/autofs restart"]
 		print"[SOFTWARE MANAGER] Restore Settings !!!!"
 
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
@@ -408,7 +414,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret = None):
-		self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["init 4;reboot"])
+		self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["killall -9 enigma2"])
 
 	def restoreMetrixSkin(self, ret = None):
 		try:

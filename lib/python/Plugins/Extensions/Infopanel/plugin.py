@@ -27,7 +27,6 @@ from Components.ActionMap import ActionMap
 from Components.SystemInfo import SystemInfo
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
-from __init__ import _
 from boxbranding import getBoxType, getMachineName, getMachineBrand, getBrandOEM
 
 import os

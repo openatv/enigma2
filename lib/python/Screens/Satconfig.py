@@ -116,6 +116,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedType = None
 		self.advancedManufacturer = None
 		self.advancedSCR = None
+		self.advancedDiction = None
 		self.advancedConnected = None
 		self.showAdditionalMotorOptions = None
 		self.selectSatsEntry = None
@@ -184,6 +185,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.have_advanced = True
 			if path.exists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
 				self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
+			if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
+				self.list.append(getConfigListEntry(_("SCPC optimized search range"), self.nimConfig.scpcSearchRange))
+
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
@@ -238,7 +242,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
-					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
+					 self.advancedType, self.advancedSCR, self.advancedDiction, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
 					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
 					 self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
@@ -294,7 +298,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		lnbnum = int(Sat.lnb.value)
 		currLnb = self.nimConfig.advanced.lnb[lnbnum]
-
+		diction = None
 		if isinstance(currLnb, ConfigNothing):
 			currLnb = None
 
@@ -311,38 +315,52 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
-			if currLnb.lof.value == "unicable" or currLnb.lof.value == "jess":
+			if currLnb.lof.value == "unicable":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
-					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
+					self.advancedDiction = getConfigListEntry(_("Diction"), currLnb.dictionuser)
+					self.list.append(self.advancedDiction)
+					if currLnb.dictionuser.value == "EN50494":
+						satcr = currLnb.satcruserEN50494
+						stcrvco = currLnb.satcrvcouserEN50494[currLnb.satcruserEN50494.index]
+					elif currLnb.dictionuser.value == "EN50607":
+						satcr = currLnb.satcruserEN50607
+						stcrvco = currLnb.satcrvcouserEN50607[currLnb.satcruserEN50607.index]
+					self.advancedSCR = getConfigListEntry(_("Channel"), satcr)
 					self.list.append(self.advancedSCR)
-					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
+					self.list.append(getConfigListEntry(_("Frequency"), stcrvco))
 					self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
 					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 				elif currLnb.unicable.value == "unicable_matrix":
+					nimmanager.sec.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 					manufacturer_name = currLnb.unicableMatrixManufacturer.value
 					manufacturer = currLnb.unicableMatrix[manufacturer_name]
 					product_name = manufacturer.product.value
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableMatrixManufacturer)
-					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
-					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
 					self.list.append(self.advancedManufacturer)
-					self.list.append(self.advancedType)
-					self.list.append(self.advancedSCR)
-					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
+					if product_name in manufacturer.scr:
+						diction = manufacturer.diction[product_name].value
+						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+						self.list.append(self.advancedType)
+						self.list.append(self.advancedSCR)
+						self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
 				elif currLnb.unicable.value == "unicable_lnb":
+					nimmanager.sec.reconstructUnicableDate(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
 					manufacturer_name = currLnb.unicableLnbManufacturer.value
 					manufacturer = currLnb.unicableLnb[manufacturer_name]
 					product_name = manufacturer.product.value
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableLnbManufacturer)
-					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
-					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
 					self.list.append(self.advancedManufacturer)
-					self.list.append(self.advancedType)
-					self.list.append(self.advancedSCR)
-					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
+					if product_name in manufacturer.scr:
+						diction = manufacturer.diction[product_name].value
+						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+						self.list.append(self.advancedType)
+						self.list.append(self.advancedSCR)
+						self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
 
 				choices = []
 				connectable = nimmanager.canConnectTo(self.slotid)
@@ -360,7 +378,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
 				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
 
-			if lnbnum < 65 and not currLnb.unicable.value == "unicable_matrix" and not currLnb.unicable.value == "unicable_lnb":
+			if lnbnum < 65 and diction !="EN50607":
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":

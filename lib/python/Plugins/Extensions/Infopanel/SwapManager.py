@@ -1,6 +1,3 @@
-# for localized messages
-from . import _
-
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox

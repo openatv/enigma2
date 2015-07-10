@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
+from Components.Harddisk import harddiskmanager
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
@@ -26,7 +27,7 @@ def setLCDModeMinitTV(value):
 
 class Standby2(Screen):
 	def Power(self):
-		print "leave standby"
+		print "[Standby] leave standby"
 		if (getBrandOEM() in ('fulan')):
 			open("/proc/stb/hdmi/output", "w").write("on")
 		#set input to encoder
@@ -46,7 +47,7 @@ class Standby2(Screen):
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
 			self.wasMuted = 1
-			print "mute already active"
+			print "[Standby] mute already active"
 		else:
 			self.wasMuted = 0
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
@@ -60,7 +61,7 @@ class Standby2(Screen):
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
 
-		print "enter standby"
+		print "[Standby] enter standby"
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
@@ -112,6 +113,11 @@ class Standby2(Screen):
 			self.avswitch.setInput("AUX")
 		if (getBrandOEM() in ('fulan')):
 			open("/proc/stb/hdmi/output", "w").write("off")
+
+		if int(config.usage.hdd_standby_in_standby.value) != -1: # HDD standby timer value (box in standby) / -1 = same as when box is active
+			for hdd in harddiskmanager.HDDList():
+				hdd[1].setIdleTime(int(config.usage.hdd_standby_in_standby.value))
+
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 
@@ -132,6 +138,8 @@ class Standby2(Screen):
 				self.session.nav.playService(self.prev_running_service)
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
+		for hdd in harddiskmanager.HDDList():
+			hdd[1].setIdleTime(int(config.usage.hdd_standby.value)) # HDD standby timer value (box active)
 
 	def __onFirstExecBegin(self):
 		global inStandby

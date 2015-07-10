@@ -229,14 +229,14 @@ int eSocket::getDescriptor()
 
 int eSocket::connectToHost(std::string hostname, int port)
 {
-	sockaddr_in  serv_addr;
+	sockaddr_in6  serv_addr;
 	struct hostent *server;
 	int res;
 
 	if (mystate == Invalid)
 	{
 		/* the socket has been closed, create a new socket descriptor */
-		int s=socket(AF_INET, SOCK_STREAM, 0);
+		int s=socket(AF_INET6, SOCK_STREAM, 0);
 		mystate=Idle;
 		setSocket(s, 1, mainloop);
 	}
@@ -245,7 +245,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 		error_(errno);
 		return(-1);
 	}
-	server=gethostbyname(hostname.c_str());
+	server=gethostbyname2(hostname.c_str(), AF_INET6);
 	if(server==NULL)
 	{
 		eDebug("can't resolve %s", hostname.c_str());
@@ -253,9 +253,9 @@ int eSocket::connectToHost(std::string hostname, int port)
 		return(-2);
 	}
 	bzero(&serv_addr, sizeof(serv_addr));
-	serv_addr.sin_family=AF_INET;
-	bcopy(server->h_addr, &serv_addr.sin_addr.s_addr, server->h_length);
-	serv_addr.sin_port=htons(port);
+	serv_addr.sin6_family=AF_INET6;
+	bcopy(server->h_addr, &serv_addr.sin6_addr, server->h_length);
+	serv_addr.sin6_port=htons(port);
 	res=::connect(socketdesc, (const sockaddr*)&serv_addr, sizeof(serv_addr));
 	if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
 	{

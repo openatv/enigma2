@@ -25,7 +25,7 @@ from Tools.BoundFunction import boundFunction
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):
 		Screen.__init__(self, session)
-		self.setTitle(_('Event view'))
+		self.setTitle(_('Eventview'))
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{

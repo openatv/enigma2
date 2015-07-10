@@ -113,7 +113,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			m_tags = line;
 			break;
 		case 5:
-			m_length = atoi(line);  //movielength in pts
+			m_length = atoll(line);  //movielength in pts
 			break;
 		case 6:
 			m_filesize = atoll(line);
@@ -211,6 +211,6 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	CFile f(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
-	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
+	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%lld\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
 	return 0;
 }

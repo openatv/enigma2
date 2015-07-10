@@ -152,7 +152,7 @@
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="132,1">
-			<convert type="ServicePosition">Summary</convert>
+			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
 	</screen>
 

@@ -1574,6 +1574,12 @@ class ChannelSelectionBase(Screen):
 	def moveDown(self):
 		self.servicelist.moveDown()
 
+	def moveTop(self):
+		self.servicelist.moveTop()
+
+	def moveEnd(self):
+		self.servicelist.moveEnd()
+
 	def clearPath(self):
 		del self.servicePath[:]
 
