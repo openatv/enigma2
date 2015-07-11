@@ -82,9 +82,36 @@ public:
 
 	double getDouble(unsigned int index) const;
 	unsigned char *getBuffer(unsigned int &size) const;
-
 	void setDouble(double value);
 	void setBuffer(GstBuffer *buffer);
+};
+
+class GstMessageContainer: public iObject
+{
+	DECLARE_REF(GstMessageContainer);
+	GstMessage *messagePointer;
+	GstPad *messagePad;
+	GstBuffer *messageBuffer;
+	int messageType;
+
+public:
+	GstMessageContainer(int type, GstMessage *msg, GstPad *pad, GstBuffer *buffer)
+	{
+		messagePointer = msg;
+		messagePad = pad;
+		messageBuffer = buffer;
+		messageType = type;
+	}
+	~GstMessageContainer()
+	{
+		if (messagePointer) gst_message_unref(messagePointer);
+		if (messagePad) gst_object_unref(messagePad);
+		if (messageBuffer) gst_buffer_unref(messageBuffer);
+	}
+	int getType() { return messageType; }
+	operator GstMessage *() { return messagePointer; }
+	operator GstPad *() { return messagePad; }
+	operator GstBuffer *() { return messageBuffer; }
 };
 
 typedef struct _GstElement GstElement;
@@ -295,33 +322,6 @@ private:
 	GstElement *m_gst_playbin, *audioSink, *videoSink;
 	GstTagList *m_stream_tags;
 
-	class GstMessageContainer: public iObject
-	{
-		DECLARE_REF(GstMessageContainer);
-		GstMessage *messagePointer;
-		GstPad *messagePad;
-		GstBuffer *messageBuffer;
-		int messageType;
-
-	public:
-		GstMessageContainer(int type, GstMessage *msg, GstPad *pad, GstBuffer *buffer)
-		{
-			messagePointer = msg;
-			messagePad = pad;
-			messageBuffer = buffer;
-			messageType = type;
-		}
-		~GstMessageContainer()
-		{
-			if (messagePointer) gst_message_unref(messagePointer);
-			if (messagePad) gst_object_unref(messagePad);
-			if (messageBuffer) gst_buffer_unref(messageBuffer);
-		}
-		int getType() { return messageType; }
-		operator GstMessage *() { return messagePointer; }
-		operator GstPad *() { return messagePad; }
-		operator GstBuffer *() { return messageBuffer; }
-	};
 	eFixedMessagePump<ePtr<GstMessageContainer> > m_pump;
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
