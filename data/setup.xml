@@ -99,6 +99,7 @@
 		<item level="2" text="Keep old EPG for minutes" description="Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed.">config.epg.histminutes</item>
 		<item level="0" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="0" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
+		<item level="2" text="Country for EPG event genre information" description="Specify a country's scheme for decoding the genre information in EPG events.">config.misc.genre_country</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle settings">
 		<item level="1" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
