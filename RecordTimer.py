@@ -176,8 +176,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(0, "Not enough free space to record")
 			return False
 		else:
-			if debug:
-				self.log(0, "Found enough free space to record")
+			self.log(0, "Found enough free space to record")
 			return True
 
 	def calculateFilename(self, name=None):
@@ -200,8 +199,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			filename = ASCIItranslit.legacyEncode(filename)
 
 		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
-		if debug:
-			self.log(0, "Filename calculated as: '%s'" % self.Filename)
+		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
 
 	def tryPrepare(self):
@@ -284,8 +282,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def activate(self):
 		next_state = self.state + 1
-		if debug:
-			self.log(5, "activating state %d" % next_state)
+		self.log(5, "activating state %d" % next_state)
 
 		if next_state == self.StatePrepared:
 			if not self.justplay and not self.freespace():
@@ -319,10 +316,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 							self.log(5, "zap to recording service")
 
 			if self.tryPrepare():
-				if debug:
-					self.log(6, "prepare ok, waiting for begin")
-				if self.messageStringShow:
-					Notifications.AddNotification(MessageBox, _("In order to record a timer, a tuner was freed successfully:\n\n") + self.messageString, type=MessageBox.TYPE_INFO, timeout=20)
+				self.log(6, "prepare ok, waiting for begin")
 				# create file to "reserve" the filename
 				# because another recording at the same time on another service can try to record the same event
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
