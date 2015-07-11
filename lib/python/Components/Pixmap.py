@@ -162,16 +162,15 @@ class MovingPixmap(Pixmap):
 		self.time -= 1
 
 		if self.time == 0:
+			Pixmap.move(self, *self.path[self.currDest][0:2])
 			self.currDest += 1
 			self.moveTimer.stop()
 			self.moving = False
 			if self.currDest >= len(self.path): # end of path
 				if self.repeated:
 					self.currDest = 0
-					self.moving = False
 					self.startMoving()
 			else:
-				self.moving = False
 				self.startMoving()
 
 	def move(self, x, y = None):
