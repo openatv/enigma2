@@ -436,6 +436,8 @@ def InitUsageConfig():
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback=False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
+	config.misc.genre_country = ConfigSelection([("ETSI", _("Generic")), ("AUS", _("Australia"))], default="AUS")
+
 	config.misc.showradiopic = ConfigYesNo(default=True)
 
 	def setHDDStandby(configElement):

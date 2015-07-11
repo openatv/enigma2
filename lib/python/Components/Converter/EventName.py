@@ -3,7 +3,7 @@ from enigma import eEPGCache
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
-
+from Components.config import config
 
 class EventNameBasic(Converter, object):
 	NAME = 0
@@ -235,17 +235,17 @@ class EventName(EventNameBasic):
 	RATNORMAL = 0
 	RATDEFAULT = 1
 
+	DEFAULT_SEPARATOR = "\n\n"
+	DEFAULT_TRIMMED = False
+
 	def __init__(self, type):
 		args = [arg.strip() for arg in type.split(',')]
 		type = args.pop(0)
 
-		print "[EventName]", type, args
-
 		super(EventName, self).__init__(type)
 
-		self.separator = "\n\n"
-		self.trim = False
-		self.country = None
+		self.separator = self.DEFAULT_SEPARATOR
+		self.trim = self.DEFAULT_TRIMMED
 
 		for a in args:
 			if a == "Separated":
@@ -256,8 +256,6 @@ class EventName(EventNameBasic):
 				self.trim = True
 			elif a == "NotTrimmed":
 				self.trim = False
-			elif a.startswith("Country="):
-				self.country = a.split("=", 1)[1].upper()
 
 		if type == "RawRating":
 			self.type = self.RAWRATING
@@ -278,7 +276,7 @@ class EventName(EventNameBasic):
 		if rating is None:
 			return ""
 		else:
-			return self.country or rating.getCountryCode()
+			return rating.getCountryCode()
 
 	def getRawRating(self, event):
 		rating = event.getParentalData()
@@ -289,7 +287,7 @@ class EventName(EventNameBasic):
 
 	def getRatingTuple(self, rating):
 		global countries
-		country = self.country or rating.getCountryCode().upper()
+		country = rating.getCountryCode().upper()
 		if country in countries:
 			age = rating.getRating()
 			c = countries[country]
@@ -324,7 +322,7 @@ class EventName(EventNameBasic):
 		if genre is None:
 			return ""
 		else:
-			return getGenreStringSub(genre.getLevel1(), genre.getLevel2(), country=self.country)
+			return getGenreStringSub(genre.getLevel1(), genre.getLevel2(), country=config.misc.genre_country.value.upper())
 
 	def getShortDescription(self, event):
 		return self.trimText(super(EventName, self).getShortDescription(event))
