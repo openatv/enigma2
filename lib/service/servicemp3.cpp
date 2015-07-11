@@ -406,6 +406,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
+	m_user_paused = false; /* CVR */
 #endif
 	m_extra_headers = "";
 	m_download_buffer_path = "";
@@ -1559,6 +1560,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			{
 				case GST_STATE_CHANGE_NULL_TO_READY:
 				{
+#if GST_VERSION_MAJOR >= 1
+					/* CVR basic init done , now playbin must go to pause until mediasettings are done */
+					if(m_gst_playbin)
+					{
+						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+						m_paused = true;
+					}
+#endif
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
@@ -1637,6 +1646,9 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				{
 					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
 						m_streamingsrc_timeout->stop();
+#if GST_VERSION_MAJOR >= 1
+					m_user_paused = false;
+#endif
 					m_paused = false;
 					if (m_seek_paused)
 					{
@@ -1648,6 +1660,9 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
+#if GST_VERSION_MAJOR >= 1
+					m_user_paused = true;
+#endif
 					m_paused = true;
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_READY:
@@ -1774,6 +1789,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			g_object_get (m_gst_playbin, "n-audio", &n_audio, NULL);
 			g_object_get (m_gst_playbin, "n-text", &n_text, NULL);
 
+
 			eDebug("[eServiceMP3] async-done - %d video, %d audio, %d subtitle", n_video, n_audio, n_text);
 
 			if ( n_video + n_audio <= 0 )
@@ -1868,6 +1884,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				if (m_errorInfo.missing_codec.find("video/") == 0 || (m_errorInfo.missing_codec.find("audio/") == 0 && m_audioStreams.empty()))
 					m_event((iPlayableService*)this, evUser+12);
 			}
+#if GST_VERSION_MAJOR >= 1
+			/* CVR now all audio,video and subsettings are done playbin may go to playing */
+			if(m_paused && !m_user_paused)
+			{
+				gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+				m_paused = false;
+			}
+#endif
 			break;
 		}
 		case GST_MESSAGE_ELEMENT:
