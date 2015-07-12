@@ -179,6 +179,21 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
+	def setLCDMiniTVMode(self, value):
+		print 'setLCDMiniTVMode',value
+		f = open('/proc/stb/lcd/mode', "w")
+		f.write(value)
+		f.close()
+
+	def setLCDMiniTVPIPMode(self, value):
+		print 'setLCDMiniTVPIPMode',value
+
+	def setLCDMiniTVFPS(self, value):
+		print 'setLCDMiniTVFPS',value
+		f = open('/proc/stb/lcd/fps', "w")
+		f.write("%d \n" % value)
+		f.close()
+
 def leaveStandby():
 	config.lcd.bright.apply()
 	config.lcd.ledbrightness.apply()
@@ -287,6 +302,12 @@ def InitLcd():
 
 		def setLCDminitvmode(configElement):
 			ilcd.setLCDMiniTVMode(configElement.value)
+
+		def setLCDminitvpipmode(configElement):
+			ilcd.setLCDMiniTVPIPMode(configElement.value)
+
+		def setLCDminitvfps(configElement):
+			ilcd.setLCDMiniTVFPS(configElement.value)
 
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value);
