@@ -399,6 +399,8 @@ def InitLcd():
 			config.usage.vfd_scroll_delay = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+		else:
+			config.lcd.hdd = ConfigNothing()
 
 		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def initial_scroll_delay(el):
