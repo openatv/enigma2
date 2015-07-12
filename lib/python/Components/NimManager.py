@@ -15,6 +15,10 @@ from Tools.BoundFunction import boundFunction
 from Components.About import about
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 
+from boxbranding import getBoxType
+
+boxtype = getBoxType()
+
 maxFixedLnbPositions = 0
 
 # LNB65 3601 All satellites 1 (USALS)
@@ -949,10 +953,16 @@ class NimManager:
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
 			if entry.has_key("frontend_device"): # check if internally connectable
-				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]):
-					entry["internally_connectable"] = entry["frontend_device"] - 1
+				if boxtype in ("gbquad", "gbquadplus"):
+					if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and id > 0:
+						entry["internally_connectable"] = entry["frontend_device"] - 1
+					else:
+						entry["internally_connectable"] = None
 				else:
-					entry["internally_connectable"] = None
+					if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]):
+						entry["internally_connectable"] = entry["frontend_device"] - 1
+					else:
+						entry["internally_connectable"] = None
 			else:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
