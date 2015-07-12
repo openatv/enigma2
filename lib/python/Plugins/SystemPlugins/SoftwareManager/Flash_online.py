@@ -27,6 +27,8 @@ global imagesCounter
 imagesCounter = 0
 images.append(["openMIPS V4.1", "http://image.openmips.com/4.1", "%s/index.php?open=%s"])
 images.append(["openMIPS V4.2", "http://image.openmips.com/4.2", "%s/index.php?open=%s"])
+images.append(["openHDF V4.2", "http://v42.hdfreaks.cc", "%s/%s"])
+images.append(["openATV V4.2", "http://images.mynonpublic.com/openatv/4.2", "%s/index.php?open=%s"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
@@ -361,9 +363,15 @@ class doFlashImage(Screen):
 			tt = len(box)
 			for line in lines:
 				t = line.find("<a href='")
-				if line.find("zip'") > -1:
-					e = line.find("zip'")
-					self.imagelist.append(line[t+9+tt+1:e+3])
+				if line.find("openhdf") > -1:
+					t = line.find('<a href="')
+					if line.find('zip"') > -1:
+						e = line.find('zip"')
+						self.imagelist.append(line[t+9:e+3])
+				else:
+					if line.find("zip'") > -1:
+						e = line.find("zip'")
+						self.imagelist.append(line[t+9+tt+1:e+3])
 		else:
 			self["key_blue"].setText(_("Delete"))
 			self["key_yellow"].setText(_("Devices"))
