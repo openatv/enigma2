@@ -194,6 +194,10 @@ class ServiceInfo(Screen):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
+				if frontendData["frequency"] > 11699999 :
+					band = "High"
+				else:
+					band = "Low"
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
 						(_("System"), frontendData["system"], TYPE_TEXT),
@@ -202,6 +206,7 @@ class ServiceInfo(Screen):
 						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
 						(_("Symbol rate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
 						(_("Polarization"), frontendData["polarization"], TYPE_TEXT),
+						(_("Band"), band, TYPE_TEXT),
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
 						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT),
 						(_("Pilot"), frontendData.get("pilot", None), TYPE_TEXT),
