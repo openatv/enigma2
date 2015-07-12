@@ -285,7 +285,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + self.record_service.getFilenameExtension(), self.begin, self.end, event_id, name.replace("\n", ""), description.replace("\n", ""), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
+			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), self.descramble, self.record_ecm)
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -370,7 +370,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
 				# here then calculateFilename is happy
 				if not self.justplay:
-					open(self.Filename + self.record_service.getFilenameExtension(), "w").close()
+					open(self.Filename + ".ts", "w").close()
 					# give the Trashcan a chance to clean up
 					try:
 						Trashcan.instance.cleanIfIdle()
@@ -875,10 +875,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
 		elif event == iRecordableService.evRecordAborted:
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
-		elif event == iRecordableService.evGstRecordEnded:
-			if self.repeated:
-				self.processRepeated(findRunningEvent = False)
-			NavigationInstance.instance.RecordTimer.doActivate(self)
 
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
