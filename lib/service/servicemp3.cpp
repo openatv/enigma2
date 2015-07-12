@@ -2869,6 +2869,10 @@ void eServiceMP3::saveCuesheet()
 	if ((::access(filename.c_str(), R_OK) < 0) || m_use_chapter_entries)
 		return;
 #endif
+	/* do not save to file if there are no cuts */
+	gboolean empty_cue = FALSE;
+	if(m_cue_entries.begin() == m_cue_entries.end())
+		empty_cue = TRUE;
 
 	filename.append(".cuts");
 
@@ -2876,6 +2880,13 @@ void eServiceMP3::saveCuesheet()
 
 	if (f)
 	{
+		/* remove the cuts file if cue is empty */
+		if(empty_cue)
+		{
+			fclose(f);
+			remove(filename.c_str());
+			return;
+		}
 		unsigned long long where;
 		int what;
 
