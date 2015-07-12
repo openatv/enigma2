@@ -13,22 +13,21 @@ from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Tools.Downloader import downloadWithProgress
-from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
 import urllib2
 import os
 import shutil
-
-distro = getImageDistro()
+import math
+from boxbranding import getBoxType, getMachineBrand
 
 #############################################################################################################
-image = 0 # 0=openATV / 1=openMips
-if distro.lower() == "openmips":
-	image = 1
-elif distro.lower() == "openatv":
-	image = 0
+# Create a List of imagetypes
+# 0 = Name Of Image, 1 = link to file
+images = []
+global imagesCounter
+imagesCounter = 0
+images.append(["openMIPS V4.1", "http://image.openmips.com/4.1", "%s/index.php?open=%s"])
+images.append(["openMIPS V4.2", "http://image.openmips.com/4.2", "%s/index.php?open=%s"])
 
-feedurl_atv = 'http://images.mynonpublic.com/openatv/4.2'
-feedurl_om = 'http://image.openmips.com/4.2'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
@@ -38,7 +37,7 @@ ofgwritePath = '/usr/bin/ofgwrite'
 def Freespace(dev):
 	statdev = os.statvfs(dev)
 	space = (statdev.f_bavail * statdev.f_frsize) / 1024
-	print "[Flash Online] Free space on %s = %i bytes" %(dev, space)
+	print "[Flash Online] Free space on %s = %i kilobytes" %(dev, space)
 	return space
 
 class FlashOnline(Screen):
@@ -52,10 +51,10 @@ class FlashOnline(Screen):
 		<widget name="key_green" position="140,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_yellow" position="280,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_blue" position="420,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="info-online" position="10,30" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
+		<widget name="info-online" position="10,80" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
 		<widget name="info-local" position="10,150" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
-		
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
@@ -67,8 +66,8 @@ class FlashOnline(Screen):
 		self["key_blue"] = Button("")
 		self["info-local"] = Label(_("Local = Flash a image from local path /hdd/images"))
 		self["info-online"] = Label(_("Online = Download a image and flash it"))
-		
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"blue": self.blue,
 			"yellow": self.yellow,
@@ -89,15 +88,25 @@ class FlashOnline(Screen):
 			return False
 
 		if not os.path.exists(imagePath):
-			os.mkdir(imagePath)
+			try:
+				os.mkdir(imagePath)
+			except:
+				pass
+
 		if os.path.exists(flashPath):
-			os.system('rm -rf ' + flashPath)
-		os.mkdir(flashPath)
+			try:
+				os.system('rm -rf ' + flashPath)
+			except:
+				pass
+		try:
+			os.mkdir(flashPath)
+		except:
+			pass
 		return True
 
 	def quit(self):
-		self.close()	
-		
+		self.close()
+
 	def blue(self):
 		pass
 
@@ -115,7 +124,7 @@ class FlashOnline(Screen):
 
 class doFlashImage(Screen):
 	skin = """
-	<screen position="center,center" size="560,500" title="Flash On the fly (select a image)">
+	<screen position="center,center" size="700,500" title="Flash On the fly (select a image)">
 		<ePixmap position="0,460"   zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 		<ePixmap position="140,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 		<ePixmap position="280,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
@@ -124,9 +133,9 @@ class doFlashImage(Screen):
 		<widget name="key_green" position="140,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_yellow" position="280,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_blue" position="420,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="imageList" position="10,10" zPosition="1" size="450,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="imageList" position="10,10" zPosition="1" size="680,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
-		
+
 	def __init__(self, session, online ):
 		Screen.__init__(self, session)
 		self.session = session
@@ -136,20 +145,18 @@ class doFlashImage(Screen):
 		self["key_red"] = Button(_("Exit"))
 		self["key_blue"] = Button("")
 		self["key_yellow"] = Button("")
+		self.imagesCounter = imagesCounter
 		self.filename = None
 		self.imagelist = []
 		self.simulate = False
 		self.Online = online
 		self.imagePath = imagePath
-		self.feedurl = feedurl_atv
-		if image == 0:
-			self.feed = "atv"
-		else:
-			self.feed = "om"
+		self.feedurl = images[self.imagesCounter][1]
 		self["imageList"] = MenuList(self.imagelist)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"green": self.green,
+			"ok": self.green,
 			"yellow": self.yellow,
 			"red": self.quit,
 			"blue": self.blue,
@@ -157,18 +164,19 @@ class doFlashImage(Screen):
 		}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
 
-		
+
 	def quit(self):
-		self.close()	
-		
+		self.close()
+
 	def blue(self):
 		if self.Online:
-			if image == 1:
-				if self.feed == "atv":
-					self.feed = "om"
-				else:
-					self.feed = "atv"
-				self.layoutFinished()
+
+			if self.imagesCounter <= len(images) - 2:
+				self.imagesCounter = self.imagesCounter + 1
+			else:
+				self.imagesCounter = 0
+			self.feed = images[self.imagesCounter][0]
+			self.layoutFinished()
 			return
 		sel = self["imageList"].l.getCurrentSelection()
 		if sel == None:
@@ -183,11 +191,9 @@ class doFlashImage(Screen):
 				os.remove(self.imagePath + "/" + self.filename)
 			self.imagelist.remove(self.filename)
 			self["imageList"].l.setList(self.imagelist)
-		
+
 	def box(self):
 		box = getBoxType()
-		if box == 'odinm6':
-			box = getMachineName().lower()
 		return box
 
 	def green(self):
@@ -201,6 +207,7 @@ class doFlashImage(Screen):
 		self.hide()
 		if self.Online:
 			url = self.feedurl + "/" + box + "/" + sel
+			#print "[URL]", url
 			u = urllib2.urlopen(url)
 			f = open(file_name, 'wb')
 			meta = u.info()
@@ -237,7 +244,7 @@ class doFlashImage(Screen):
 
 	def unzip_image(self, filename, path):
 		print "Unzip %s to %s" %(filename,path)
-		self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -d ' + path, "sleep 3"], closeOnSuccess = True)
+		self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -o -d ' + path, "sleep 3"], closeOnSuccess = True)
 
 	def cmdFinished(self):
 		self.prepair_flashtmp(flashPath)
@@ -259,8 +266,8 @@ class doFlashImage(Screen):
 				cmd = "%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
 				message = "echo -e '\n"
 				message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-				message += _('Your STB will freeze during the flashing process.\n')
-				message += _('Please: DO NOT reboot your STB and turn off the power.\n')
+				message += _('Your %s %s will freeze during the flashing process.\n') % (getMachineBrand(), getMachineName())
+				message += _('Please: DO NOT reboot your %s %s and turn off the power.\n') % (getMachineBrand(), getMachineName())
 				message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
 				if self.box() == 'gb800solo':
 					message += _('GB800SOLO takes about 20 mins !!\n')
@@ -269,11 +276,14 @@ class doFlashImage(Screen):
 
 	def prepair_flashtmp(self, tmpPath):
 		if os.path.exists(flashTmp):
-			os.system('rm -rf ' + flashTmp)
-		os.mkdir(flashTmp)
+			flashTmpold = flashTmp + 'old'
+			os.system('mv %s %s' %(flashTmp, flashTmpold))
+			os.system('rm -rf %s' %flashTmpold)
+		if not os.path.exists(flashTmp):
+			os.mkdir(flashTmp)
 		kernel = True
 		rootfs = True
-		
+
 		for path, subdirs, files in os.walk(tmpPath):
 			for name in files:
 				if name.find('kernel') > -1 and name.endswith('.bin') and kernel:
@@ -286,13 +296,24 @@ class doFlashImage(Screen):
 					dest = flashTmp + '/rootfs.bin'
 					shutil.copyfile(binfile, dest)
 					rootfs = False
-					
+				elif name.find('uImage') > -1 and kernel:
+					binfile = os.path.join(path, name)
+					dest = flashTmp + '/uImage'
+					shutil.copyfile(binfile, dest)
+					kernel = False
+				elif name.find('e2jffs2') > -1 and name.endswith('.img') and rootfs:
+					binfile = os.path.join(path, name)
+					dest = flashTmp + '/e2jffs2.img'
+					shutil.copyfile(binfile, dest)
+					rootfs = False
+
 	def yellow(self):
 		if not self.Online:
 			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
 
-	def DeviceBrowserClosed(self, path):
+	def DeviceBrowserClosed(self, path, filename, binorzip):
 		if path:
+			print path, filename, binorzip
 			strPath = str(path)
 			if strPath[-1] == '/':
 				strPath = strPath[:-1]
@@ -300,11 +321,17 @@ class doFlashImage(Screen):
 			if os.path.exists(flashTmp):
 				os.system('rm -rf ' + flashTmp)
 			os.mkdir(flashTmp)
-			for files in os.listdir(self.imagePath):
-				if files.endswith(".bin") or files.endswith('.jffs2'):
-					self.prepair_flashtmp(strPath)
-					break
-			self.layoutFinished()
+			if binorzip == 0:
+				for files in os.listdir(self.imagePath):
+					if files.endswith(".bin") or files.endswith('.jffs2') or files.endswith('.img'):
+						self.prepair_flashtmp(strPath)
+						break
+				self.Start_Flashing()
+			elif binorzip == 1:
+				self.unzip_image(strPath + '/' + filename, flashPath)
+			else:
+				self.layoutFinished()
+
 		else:
 			self.imagePath = imagePath
 
@@ -313,17 +340,9 @@ class doFlashImage(Screen):
 		self.imagelist = []
 		if self.Online:
 			self["key_yellow"].setText("")
-			if image == 1:
-				if self.feed == "atv":
-					self.feedurl = feedurl_atv
-					self["key_blue"].setText("openMIPS")
-				else:
-					self.feedurl = feedurl_om
-					self["key_blue"].setText("openATV")
-			else:
-				self.feedurl = feedurl_atv
-				self["key_blue"].setText("")
-			url = '%s/index.php?open=%s' % (self.feedurl,box)
+			self.feedurl = images[self.imagesCounter][1]
+			self["key_blue"].setText(images[self.imagesCounter][0])
+			url = images[self.imagesCounter][2] % (self.feedurl,box)
 			req = urllib2.Request(url)
 			try:
 				response = urllib2.urlopen(req)
@@ -341,18 +360,18 @@ class doFlashImage(Screen):
 			lines = the_page.split('\n')
 			tt = len(box)
 			for line in lines:
-				if line.find("<a href='%s/" % box) > -1:
-					t = line.find("<a href='%s/" % box)
-					if self.feed == "atv":
-						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
-					else:
-						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
+				t = line.find("<a href='")
+				if line.find("zip'") > -1:
+					e = line.find("zip'")
+					self.imagelist.append(line[t+9+tt+1:e+3])
 		else:
 			self["key_blue"].setText(_("Delete"))
 			self["key_yellow"].setText(_("Devices"))
 			for name in os.listdir(self.imagePath):
 				if name.endswith(".zip"): # and name.find(box) > 1:
 					self.imagelist.append(name)
+#				if name.find(box):
+#					self.imagelist.append(name)
 			self.imagelist.sort()
 			if os.path.exists(flashTmp):
 				for file in os.listdir(flashTmp):
@@ -420,7 +439,7 @@ class ImageDownloadTask(Task):
 
 class DeviceBrowser(Screen, HelpableScreen):
 	skin = """
-		<screen name="DeviceBrowser" position="center,center" size="520,430" title="Please select target medium" >
+		<screen name="DeviceBrowser" position="center,center" size="520,430" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -433,6 +452,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 
 		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("Please select medium"))
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
@@ -460,7 +480,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 	def updateButton(self):
 
 		if self["filelist"].getFilename() or self["filelist"].getCurrentDirectory():
-			self["key_green"].text = _("Use")
+			self["key_green"].text = _("Flash")
 		else:
 			self["key_green"].text = ""
 
@@ -477,12 +497,13 @@ class DeviceBrowser(Screen, HelpableScreen):
 
 	def use(self):
 		print "[use]", self["filelist"].getCurrentDirectory(), self["filelist"].getFilename()
-		if self["filelist"].getCurrentDirectory() is not None:
-			if self.filelist.canDescent() and self["filelist"].getFilename() and len(self["filelist"].getFilename()) > len(self["filelist"].getCurrentDirectory()):
-				self.filelist.descent()
-			self.close(self["filelist"].getCurrentDirectory())
-		elif self["filelist"].getFilename():
-			self.close(self["filelist"].getFilename())
+		if self["filelist"].getFilename() is not None and self["filelist"].getCurrentDirectory() is not None:
+			if self["filelist"].getFilename().endswith(".bin") or self["filelist"].getFilename().endswith(".jffs2"):
+				self.close(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename(), 0)
+			elif self["filelist"].getFilename().endswith(".zip"):
+				self.close(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename(), 1)
+			else:
+				return
 
 	def exit(self):
-		self.close(False)
+		self.close(False, False, -1)
