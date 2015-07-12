@@ -126,6 +126,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Quick Launch Menu"))
+		ProtectedScreen.__init__(self)
 
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("System Info"))
@@ -169,7 +170,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.quickmenu.value
+		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.quickmenu.value
 
 	def createSummary(self):
 		pass
