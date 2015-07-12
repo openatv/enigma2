@@ -17,7 +17,7 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType, getMachineBrand
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 #############################################################################################################
 # Create a List of imagetypes
