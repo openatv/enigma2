@@ -25,10 +25,10 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName
 images = []
 global imagesCounter
 imagesCounter = 0
-images.append(["openMIPS V4.1", "http://image.openmips.com/4.1", "%s/index.php?open=%s"])
-images.append(["openMIPS V4.2", "http://image.openmips.com/4.2", "%s/index.php?open=%s"])
-images.append(["openHDF V4.2", "http://v42.hdfreaks.cc", "%s/%s"])
-images.append(["openATV V4.2", "http://images.mynonpublic.com/openatv/4.2", "%s/index.php?open=%s"])
+images.append(["openMips 4.2", "http://image.openmips.com/4.2", "%s/index.php?open=%s"])
+images.append(["openATV 4.2", "http://images.mynonpublic.com/openatv/4.2", "%s/index.php?open=%s"])
+images.append(["openHDF 4.2", "http://v42.hdfreaks.cc", "%s/%s"])
+images.append(["openMips 4.1", "http://image.openmips.com/4.1", "%s/index.php?open=%s"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
