@@ -520,6 +520,9 @@ class MovieList(GUIComponent):
 			self.load(root, filter_tags)
 		else:
 			self.load(self.root, filter_tags)
+		self.refreshDisplay()
+
+	def refreshDisplay(self):
 		self.l.setList(self.list)
 
 	def removeService(self, service):
@@ -529,12 +532,12 @@ class MovieList(GUIComponent):
 			pathName = serviceref.getPath()
 			if serviceref.flags & eServiceReference.mustDescent:
 				name = os.path.basename(os.path.normpath(pathName))
-				if info is not None and name != ".Trash" and  self.numUserDirs > 0:
+				if info is not None and name != ".Trash" and self.numUserDirs > 0:
 					self.numUserDirs -= 1
 			elif self.numUserFiles > 0:
 				self.numUserFiles -= 1
 			del self.list[index]
-			self.l.setList(self.list)
+			self.refreshDisplay()
 
 	def findService(self, service):
 		if service is None:
