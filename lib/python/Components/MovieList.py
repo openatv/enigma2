@@ -532,7 +532,7 @@ class MovieList(GUIComponent):
 			pathName = serviceref.getPath()
 			if serviceref.flags & eServiceReference.mustDescent:
 				name = os.path.basename(os.path.normpath(pathName))
-				if info is not None and name != ".Trash" and  self.numUserDirs > 0:
+				if info is not None and name != ".Trash" and self.numUserDirs > 0:
 					self.numUserDirs -= 1
 			elif self.numUserFiles > 0:
 				self.numUserFiles -= 1
