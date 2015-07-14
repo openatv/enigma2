@@ -1965,11 +1965,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						self.showActionFeedback(_("Deleted") + " " + name)
 		else:
 			if not args:
-				rec_filename = os.path.split(current.getPath())[1]
+				rec_filename = os.path.basename(current.getPath())
 				if rec_filename.endswith(".ts"):
 					rec_filename = rec_filename[:-3]
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
-					if timer.isRunning() and not timer.justplay and rec_filename in timer.Filename:
+					if timer.isRunning() and not timer.justplay and rec_filename == os.path.basename(timer.Filename):
 						choices = [
 							(_("Cancel"), None),
 							(_("Stop recording"), ("s", timer)),
