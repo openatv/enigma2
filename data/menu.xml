@@ -273,7 +273,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		-->
 	</menu>
 	<menu weight="4"  level="0" text="Information" entryID="mainmenu_tasks_info">
-		<id val="id_mainmenu_tasks_info" />
+		<id val="information" />
 		<item level="0" text="About" entryID="mainmenu_tasks_info_about">
 			<screen module="About" screen="About"/>
 		</item>

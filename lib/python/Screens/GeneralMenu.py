@@ -771,7 +771,7 @@ class GeneralMenu(Screen):
 
 		subentrys['id_mainmenu_tasks'] = self.getSubEntry('id_mainmenu_tasks', [
 			(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'shutdown', _('Power')), 20),
-			(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'id_mainmenu_tasks_info', _('Information')), 30),
+			(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'information', _('Information')), 30),
 			#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30)
 		])
 		return subentrys
