@@ -1849,6 +1849,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				timer.afterEvent = RecordTimer.AFTEREVENT.NONE
 				NavigationInstance.instance.RecordTimer.removeEntry(timer)
+			self["list"].refreshDisplay()
 
 	def onTimerChoice(self, choice):
 		if isinstance(choice, tuple) and choice[1]:

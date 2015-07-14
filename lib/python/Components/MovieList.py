@@ -520,6 +520,9 @@ class MovieList(GUIComponent):
 			self.load(root, filter_tags)
 		else:
 			self.load(self.root, filter_tags)
+		self.refreshDisplay()
+
+	def refreshDisplay(self):
 		self.l.setList(self.list)
 
 	def removeService(self, service):
@@ -534,7 +537,7 @@ class MovieList(GUIComponent):
 			elif self.numUserFiles > 0:
 				self.numUserFiles -= 1
 			del self.list[index]
-			self.l.setList(self.list)
+			self.refreshDisplay()
 
 	def findService(self, service):
 		if service is None:
