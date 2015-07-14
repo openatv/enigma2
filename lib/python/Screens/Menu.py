@@ -275,49 +275,21 @@ class Menu(Screen):
                 self.id_mainmenu = True
                 self.setTitle("Main Menu")
 
-        class MenuSelectionActionMap(NumberActionMap):
+        self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "NumberActions"], {
+            "ok": self.okbuttonClick,
+            "cancel": self.closeNonRecursive,
+            "menu": self.closeRecursive,
+            "1": self.keyNumberGlobal,
+            "2": self.keyNumberGlobal,
+            "3": self.keyNumberGlobal,
+            "4": self.keyNumberGlobal,
+            "5": self.keyNumberGlobal,
+            "6": self.keyNumberGlobal,
+            "7": self.keyNumberGlobal,
+            "8": self.keyNumberGlobal,
+            "9": self.keyNumberGlobal
+        })
 
-            def __init__(self, menu, contexts = [], actions = {}, prio = -1):
-                NumberActionMap.__init__(self, contexts, actions, prio)
-                self.menu = menu
-
-            def action(self, contexts, action):
-                print '[MENU][MenuSelectionActionMap] action:', action
-                if action == 'up' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'down' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'left' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'right' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'upRepeated' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'downRepeated' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'leftRepeated' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                elif action == 'rightRepeated' and self.menu.currentlist == self.menu.MENU_LIST:
-                    return 0
-                else:
-                    return NumberActionMap.action(self, contexts, action)
-
-	self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "NumberActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.closeNonRecursive,
-				"menu": self.closeRecursive,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal
-			})
-			
         if self.parent is not None:
             a = self.parent.get('title', '').encode('UTF-8') or None
             a = a and _(a)
