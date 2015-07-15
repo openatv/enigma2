@@ -1037,8 +1037,8 @@ class NimManager:
 		if self.nim_slots[slotid].internallyConnectableTo() is not None:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
 		for type in self.nim_slots[slotid].connectableTo():
-			for slot in self.getNimListOfType(type, exception = slotid) and slot not in slots:
-				if self.hasOutputs(slot):
+			for slot in self.getNimListOfType(type, exception = slotid):
+				if self.hasOutputs(slot) and slot not in slots:
 					slots.append(slot)
 		# remove nims, that have a conntectedTo reference on
 		for testnim in slots[:]:
