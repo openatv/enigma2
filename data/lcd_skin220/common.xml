@@ -121,6 +121,11 @@
 	<!-- Q -->
 	<!-- R -->
 	<!-- S -->
+	<screen name="ServiceScanSummary" position="fill">
+		<widget name="Title" position="0,0" size="220,30" font="RegularLCD;20" halign="left" noWrap="1" />
+		<widget name="Service" position="0,35" size="220,120" font="RegularLCD;30" halign="center" valign="center"/>
+		<widget name="scan_progress" position="0,156" size="220,20" borderWidth="2" />
+	</screen>
 	<screen name="SetupSummary" position="fill">
 		<widget source="SetupTitle" render="Label" position="top" size="220,61" font="RegularLCD;30" halign="left" />
 		<widget source="SetupEntry" render="Label" position="top" size="220,51" font="RegularLCD;25" halign="left" />

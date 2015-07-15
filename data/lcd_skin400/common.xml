@@ -169,5 +169,11 @@
 		<widget source="parent.title_summary" render="Label" position="0,0" size="160,15" font="RegularLCD;15" halign="left" noWrap="1" />
 		<widget source="parent.text_summary" render="Label" position="0,16" size="400,54" font="RegularLCD;12" halign="left" transparent="1" />
 	</screen>
+
+	<screen name="ServiceScanSummary" position="0,0" size="400,240">
+		<widget name="Title" position="0,38" size="400,40" font="RegularLCD;30" halign="left" noWrap="1" />
+		<widget name="Service" position="0,50" size="400,150" font="RegularLCD;40" halign="center" valign="center"/>
+		<widget name="scan_progress" position="0,200" size="400,30" borderWidth="3" />
+	</screen>
 	<!-- COMMON */-->
 </skin>

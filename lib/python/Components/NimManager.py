@@ -1019,7 +1019,9 @@ class NimManager:
 		if self.nim_slots[slotid].internallyConnectableTo() is not None and self.nim_slots[slotid].internallyConnectableTo() >= 0:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
 		slots = self.cleanUpAlreadyConnectedNims(slots, slotid)
+		slots = self.cleanUpDuplicates(slots, slotid)
 		slots.sort()
+		print "[NimManager] canInternalConnectTo slots: ", slots
 		return slots
 
 	def canExternalConnectTo(self, slotid):
@@ -1029,7 +1031,18 @@ class NimManager:
 				if self.hasOutputs(slot) and not "(internal)" in self.nim_slots[slot].description:
 					slots.append(slot)
 		slots = self.cleanUpAlreadyConnectedNims(slots, slotid)
+		slots = self.cleanUpDuplicates(slots, slotid)
 		slots.sort()
+		print "[NimManager] canExternalConnectTo slots: ", slots
+		return slots
+
+	def cleanUpDuplicates(self, slots, slotid):
+		# remove duplicates in slots
+		output = []
+		for x in slots:
+			if x not in output:
+				output.append(x)
+		slots = output
 		return slots
 
 	def canEqualTo(self, slotid):
