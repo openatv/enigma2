@@ -1534,7 +1534,7 @@ class InfoBarMenu:
 			if item.attrib['entryID'] == 'setup_selection':
 				menulist = item.findall('menu')
 				for item in menulist:
-					if item.attrib['entryID'] == 'system_selection':
+					if item.attrib['entryID'] == 'extended_selection':
 						menulist = item.findall('menu')
 						for item in menulist:
 							if item.attrib['entryID'] == 'network_menu':
