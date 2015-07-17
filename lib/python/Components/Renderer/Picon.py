@@ -77,6 +77,7 @@ def getPiconName(serviceName):
 			# print "[Picon] unicodedata.normalize: ", name
 			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+			print "[Picon] picon by channel name: ", name
 			if name:
 				pngname = findPicon(name)
 				if not pngname and len(name) > 2 and name.endswith('hd'):
