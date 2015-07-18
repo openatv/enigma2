@@ -118,7 +118,7 @@ def sendUrlCommand(url, contextFactory=None, timeout=60, *args, **kwargs):
 	host = parsed.hostname
 	port = parsed.port or (443 if scheme == 'https' else 80)
 	factory = myHTTPClientFactory(url, *args, **kwargs)
-	# print "[SHOUTcast] Scheme=%s host=%s port=%s path=%s" % (scheme, host, port, path)
+	# print "[SHOUTcast] scheme=%s host=%s port=%s path=%s" % (scheme, host, port, path)
 	reactor.connectTCP(host, port, factory, timeout=timeout)
 	return factory.deferred
 
