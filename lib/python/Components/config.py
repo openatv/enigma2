@@ -414,7 +414,7 @@ class ConfigSelection(ConfigElement):
 # several customized versions exist for different
 # descriptions.
 #
-boolean_descriptions = {False: _("false"), True: _("true")}
+boolean_descriptions = {False: _("False"), True: _("True")}
 class ConfigBoolean(ConfigElement):
 	def __init__(self, default = False, descriptions = boolean_descriptions, grafic = True):
 		ConfigElement.__init__(self)
@@ -448,18 +448,20 @@ class ConfigBoolean(ConfigElement):
 		return descr
 
 	def getMulti(self, selected):
-		if not self.grafic:
-			return "text", self.getText()
-		elif not self.value:
-			return ('bolean', self.falseIcon)
+		from config import config
+		if self.grafic and config.misc.boolean_graphic.value:
+			if self.value:
+				return ('bolean', self.trueIcon)
+			else:
+				return ('bolean', self.falseIcon)
 		else:
-			return ('bolean', self.trueIcon)
+			return "text", self.getText()
 
 	def tostring(self, value):
-		if not value:
-			return "false"
-		else:
+		if value:
 			return "true"
+		else:
+			return "false"
 
 	def fromstring(self, val):
 		if val == "true":
@@ -486,17 +488,17 @@ class ConfigBoolean(ConfigElement):
 			self.changedFinal()
 			self.last_value = self.value
 
-yes_no_descriptions = {False: _("no"), True: _("yes")}
+yes_no_descriptions = {False: _("No"), True: _("Yes")}
 class ConfigYesNo(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
 
-on_off_descriptions = {False: _("off"), True: _("on")}
+on_off_descriptions = {False: _("Off"), True: _("On")}
 class ConfigOnOff(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = on_off_descriptions)
 
-enable_disable_descriptions = {False: _("disable"), True: _("enable")}
+enable_disable_descriptions = {False: _("Disable"), True: _("Enable")}
 class ConfigEnableDisable(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = enable_disable_descriptions)
