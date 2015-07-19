@@ -1,3 +1,4 @@
+from boxbranding import getBoxType
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
@@ -131,9 +132,7 @@ class SecConfigure:
 	def linkNIMs(self, sec, nim1, nim2):
 		print "link tuner", nim1, "to tuner", nim2
 		# for internally connect tuner A to B
-		if '7356' not in about.getChipSetString() and nim2 == (nim1 - 1):
-			self.linkInternally(nim1)
-		elif '7356' in about.getChipSetString():
+		if getBoxType() == 'vusolo2' or nim2 == (nim1 - 1):
 			self.linkInternally(nim1)
 		sec.setTunerLinked(nim1, nim2)
 
