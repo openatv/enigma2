@@ -287,11 +287,11 @@ class SetupCronConf(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		predefinedlist = []
-		f = listdir('/usr/scripts')
+		f = listdir('/usr/script')
 		if f:
 			for line in f:
 				parts = line.split()
-				path = "/usr/scripts/"
+				path = "/usr/script/"
 				pkg = parts[0]
 				description = path + parts[0]
 				if pkg.find('.sh') >= 0:
