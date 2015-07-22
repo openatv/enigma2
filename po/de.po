@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-07-22 15:33+0200\n"
+"PO-Revision-Date: 2015-07-22 17:05+0200\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13563,7 +13563,7 @@ msgid "Show OE Log"
 msgstr "Zeige OE Log"
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
-msgstr "Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls keine freien Tuner verfügbar sind."
+msgstr "Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Wenn ausgewählt, wird eine Info angezeigt, sobald ein Film beendet ist und der nächste beginnt."
@@ -13744,7 +13744,7 @@ msgid "Recordings abort PIP"
 msgstr "Bild-in-Bild bei Aufnahmen beenden"
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "Wenn aktiviert, wird Bild-in-Bild bei Aufnahmen beendet, wenn keine freien Tuner vorhanden sind."
+msgstr "Wenn aktiviert, wird Bild-in-Bild bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
 
 msgid "Use extended List"
 msgstr "Erweiterte Liste nutzen"
@@ -15944,3 +15944,67 @@ msgstr "Lade nicht eingebundene Bouquets"
 # Customize neu 5.1
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Bouquets geladen, auch wenn sie nicht in der bouquets.tv oder bouquets.radio enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Bouquets zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
+
+# Record neu 5.1
+msgid "never abort"
+msgstr "nie abbrechen"
+
+# Record neu 5.1
+msgid "ask user"
+msgstr "Benutzer fragen"
+
+# Record neu 5.1
+msgid "just abort, no message"
+msgstr "abbrechen, ohne Hinweis"
+
+# Record neu 5.1
+msgid "just abort, show message"
+msgstr "abbrechen, zeige Hinweis"
+
+# Record neu 5.1
+msgid "Recordings abort pseudo recordings"
+msgstr "Pseudo-Aufnahmen bei Aufnahmen beenden"
+
+# Record neu 5.1
+msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
+msgstr "Wenn aktiviert, werden pseudo Aufnahmen bei Aufnahmen beenden, falls kein freier Tuner zur Verfügung steht."
+
+# Record neu 5.1
+msgid "Recordings abort streaming"
+msgstr "Streaming bei Aufnahmen beenden"
+
+# Record neu 5.1
+msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
+msgstr "Wenn aktiviert, werden Streamings bei Aufnahmen beenden, falls kein freier Tuner zur Verfügung steht."
+
+# Record neu 5.1
+msgid "Show recording symbol depending on recording type"
+msgstr "Zeige Aufnahmesymbol, abhängig vom Aufnahmetyp"
+
+# Record neu 5.1
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
+msgstr "Konfigurieren Sie, ob das Aufnahmesymbol (im Display/LCD Skin) nur angezeigt werden soll bei realen Aufnahmen oder auch bei Streaming und pseudo Aufnahmen (z.B. EPGrefresh)."
+
+# Record neu 5.1
+msgid "Show warning before box restart based on recording type"
+msgstr "Zeige Warnung bei Neustart, abhängig vom Aufnahmetyp"
+
+# Record neu 5.1
+msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr "Konfigurieren Sie, welcher Aufnahmetyp bei aktiven Aufnahmen eine Warnung zeigen soll, wenn ein Neustart der Box oder GUI erfolgen soll."
+
+# Record neu 5.1
+msgid "any recordings"
+msgstr "alle Aufnahmen"
+
+# Record neu 5.1
+msgid "real recordings"
+msgstr "echte Aufnahmen"
+
+# Record neu 5.1
+msgid "real recordings or streaming"
+msgstr "echte Aufnahmen / Streaming"
+
+# Record neu 5.1
+msgid "real or pseudo recordings"
+msgstr "echte/pseudo Aufnahmen"
