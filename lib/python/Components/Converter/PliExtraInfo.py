@@ -142,7 +142,9 @@ class PliExtraInfo(Poll, Converter, object):
 		return "%d-%d:%05d:%04d:%04d:%04d" % (onid, tsid, sidpid, vpid, apid, pcrpid)
 
 	def createTransponderInfo(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
+		if not feraw:
+			return ""
+		elif "DVB-T" in feraw.get("tuner_type"):
 			tmp = addspace(self.createChannelNumber(fedata, feraw)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata))
 		else:
 			tmp = addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata))
@@ -262,8 +264,6 @@ class PliExtraInfo(Poll, Converter, object):
 		feraw = self.feraw
 		if not feraw:
 			feraw = info.getInfoObject(iServiceInformation.sTransponderData)
-			if not feraw:
-				return ""
 			fedata = ConvertToHumanReadable(feraw)
 		else:
 			fedata = self.fedata
