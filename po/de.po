@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-07-21 19:08+0200\n"
+"PO-Revision-Date: 2015-07-22 18:08+0200\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -3966,8 +3966,8 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Falls Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren Sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte Sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie "
-"den Kontrast Ihres Fernsehers soweit wie möglich.\n"
+"Falls Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren Sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte Sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast "
+"Ihres Fernsehers soweit wie möglich.\n"
 "Verringern Sie anschließend die Helligkeit soweit wie möglich. Stellen Sie dabei sicher, dass die beiden untersten Grauschattierungen erkennbar bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
 
@@ -8425,8 +8425,8 @@ msgid ""
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
-"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware Ihrer %s %s aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-Verbindung notwendig ist.Zuerst muss ein USB-Stick vorbereitet und bootfähig gemacht werden. Im nächsten Schritt kann eine "
-"NFI-Imagedatei vom Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn Sie bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn bitte jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer Mindestgröße von 64 MB ein."
+"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware Ihrer %s %s aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-Verbindung notwendig ist.Zuerst muss ein USB-Stick vorbereitet und bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei "
+"vom Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn Sie bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn bitte jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer Mindestgröße von 64 MB ein."
 
 #
 msgid "This plugin is installed."
@@ -13566,7 +13566,7 @@ msgid "Show OE Log"
 msgstr "Zeige OE Log"
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
-msgstr "Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls keine freien Tuner verfügbar sind."
+msgstr "Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Wenn ausgewählt, wird eine Info angezeigt, sobald ein Film beendet ist und der nächste beginnt."
@@ -13747,7 +13747,7 @@ msgid "Recordings abort PIP"
 msgstr "Bild-in-Bild bei Aufnahmen beenden"
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "Wenn aktiviert, wird Bild-in-Bild bei Aufnahmen beendet, wenn keine freien Tuner vorhanden sind."
+msgstr "Wenn aktiviert, wird Bild-in-Bild bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
 
 msgid "Use extended List"
 msgstr "Erweiterte Liste nutzen"
@@ -13968,7 +13968,7 @@ msgstr "Zeige Picons auf dem Display *"
 msgid "Shutdown in (mins)"
 msgstr "Herunterfahren nach (Minuten)"
 
-msgid "Tune and Focus"
+msgid "Tune and focus"
 msgstr "Tunen und Fokusieren"
 
 msgid "Movement"
@@ -14426,8 +14426,8 @@ msgstr "Standard-Aufnahmetyp"
 
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr ""
-"'entschlüsseln und ECM aufnehmen' ermöglicht es Ihnen die Aufnahme beim Abspielen zu entschlüsseln, wenn bei der Aufnahme die Entschlüsselung fehlschlägt. 'nicht entschlüsseln, ECM aufnehmen' speichert eine verschlüsselte Aufnahme, die beim Abspielen entschlüsselt werden "
-"kann. 'normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
+"'entschlüsseln und ECM aufnehmen' ermöglicht es Ihnen die Aufnahme beim Abspielen zu entschlüsseln, wenn bei der Aufnahme die Entschlüsselung fehlschlägt. 'nicht entschlüsseln, ECM aufnehmen' speichert eine verschlüsselte Aufnahme, die beim Abspielen entschlüsselt werden kann. 'normal' "
+"entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Zeige Warnung wenn Timeshift gestoppt wird"
@@ -15387,11 +15387,8 @@ msgstr "Konfigurieren ob und wie Sendernamen in der Senderliste gezeigt werden."
 msgid "Enable fallback remote receiver"
 msgstr "Aktiviere Reservereceiver"
 
-msgid ""
-"Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://"
-"second_box:8001."
-msgstr ""
-"Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
+msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
 
 msgid "Fallback remote receiver URL"
 msgstr "Reservereceiver URL"
@@ -15399,8 +15396,7 @@ msgstr "Reservereceiver URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL des Reservereceiver"
 
-msgid ""
-"Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
+msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
 msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
 
 #: ButtonSetup.py
@@ -15955,3 +15951,95 @@ msgstr "Farbige Dialoge bei externen Untertitel"
 # Subtitle neu 5.1
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr "Diese Option ersetzt `- ` durch farbigen Text je Sprecher in Dialogen (so wie bei Teletext Untertiteln für Hörgeschädigte)."
+
+# Customize neu 5.1
+msgid "Load unlinked userbouquets"
+msgstr "Lade nicht eingebundene Bouquets"
+
+# Customize neu 5.1
+msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Bouquets geladen, auch wenn sie nicht in der bouquets.tv oder bouquets.radio enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Bouquets zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
+
+# Record neu 5.1
+msgid "never abort"
+msgstr "nie abbrechen"
+
+# Record neu 5.1
+msgid "ask user"
+msgstr "Benutzer fragen"
+
+# Record neu 5.1
+msgid "just abort, no message"
+msgstr "abbrechen, ohne Hinweis"
+
+# Record neu 5.1
+msgid "just abort, show message"
+msgstr "abbrechen, zeige Hinweis"
+
+# Record neu 5.1
+msgid "Recordings abort pseudo recordings"
+msgstr "Pseudo-Aufnahmen bei Aufnahmen beenden"
+
+# Record neu 5.1
+msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
+msgstr "Wenn aktiviert, werden pseudo Aufnahmen bei Aufnahmen beenden, falls kein freier Tuner zur Verfügung steht."
+
+# Record neu 5.1
+msgid "Recordings abort streaming"
+msgstr "Streaming bei Aufnahmen beenden"
+
+# Record neu 5.1
+msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
+msgstr "Wenn aktiviert, werden Streamings bei Aufnahmen beenden, falls kein freier Tuner zur Verfügung steht."
+
+# Record neu 5.1
+msgid "Show recording symbol depending on recording type"
+msgstr "Zeige Aufnahmesymbol, abhängig vom Aufnahmetyp"
+
+# Record neu 5.1
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
+msgstr "Konfigurieren Sie, ob das Aufnahmesymbol (im Display/LCD Skin) nur angezeigt werden soll bei realen Aufnahmen oder auch bei Streaming und pseudo Aufnahmen (z.B. EPGrefresh)."
+
+# Record neu 5.1
+msgid "Show warning before box restart based on recording type"
+msgstr "Zeige Warnung bei Neustart, abhängig vom Aufnahmetyp"
+
+# Record neu 5.1
+msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr "Konfigurieren Sie, welcher Aufnahmetyp bei aktiven Aufnahmen eine Warnung zeigen soll, wenn ein Neustart der Box oder GUI erfolgen soll."
+
+# Record neu 5.1
+msgid "any recordings"
+msgstr "alle Aufnahmen"
+
+# Record neu 5.1
+msgid "real recordings"
+msgstr "echte Aufnahmen"
+
+# Record neu 5.1
+msgid "real recordings or streaming"
+msgstr "echte Aufnahmen / Streaming"
+
+# Record neu 5.1
+msgid "real or pseudo recordings"
+msgstr "echte/pseudo Aufnahmen"
+
+# Display neu 5.1
+msgid "Initial scroll delay"
+msgstr "Verzögerung vor Text-Durchlauf"
+
+# Display neu 5.1
+msgid "Delay in miliseconds before start of scrolling text on display."
+msgstr "Hier können Sie die Verzögerung (in Millisekunden) vor einem Text-Durchlauf auf dem Display einstellen."
+
+# Display neu 5.1
+msgid "Final scroll delay"
+msgstr "Verzögerung nach Text-Durchlauf"
+
+# Display neu 5.1
+msgid "Delay in miliseconds after finish scrolling text on display."
+msgstr "Hier können Sie die Verzögerung (in Millisekunden) nach einem Text-Durchlauf auf dem Display einstellen."
+
+# LCD Skin
+msgid "< Default with Picon >"
+msgstr "< Standard mit Picon >"
