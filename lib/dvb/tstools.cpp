@@ -54,6 +54,7 @@ RESULT eTSFileSectionReader::connectRead(const Slot1<void,const uint8_t*> &r, eP
 
 eDVBTSTools::eDVBTSTools():
 	m_pid(-1),
+	m_packet_size(188),
 	m_begin_valid (0),
 	m_end_valid(0),
 	m_samples_taken(0),
@@ -65,6 +66,7 @@ eDVBTSTools::eDVBTSTools():
 void eDVBTSTools::closeSource()
 {
 	m_source = NULL;
+	m_packet_size = 188;
 }
 
 eDVBTSTools::~eDVBTSTools()
@@ -97,6 +99,7 @@ void eDVBTSTools::setSource(ePtr<iTsSource> &source, const char *stream_info_fil
 		m_streaminfo.load(stream_info_filename);
 	}
 	m_samples_taken = 0;
+	m_packet_size = m_source ? m_source->getPacketSize() : 188;
 }
 
 	/* getPTS extracts a pts value from any PID at a given offset. */
@@ -145,21 +148,22 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	if (!m_source || !m_source->valid())
 		return -1;
 
-	offset -= offset % 188;
+	offset -= offset % m_packet_size;
 
 	int left = m_maxrange;
 	int resync_failed_counter = 64;
 
-	while (left >= 188)
+	while (left >= m_packet_size)
 	{
-		unsigned char packet[188];
-		if (m_source->read(offset, packet, 188) != 188)
+		unsigned char buffer[m_packet_size];
+		unsigned char *packet = &buffer[m_packet_size - 188];
+		if (m_source->read(offset, buffer, m_packet_size) != m_packet_size)
 		{
 			eDebug("[eDVBTSTools] getPTS read error");
 			return -1;
 		}
-		left -= 188;
-		offset += 188;
+		left -= m_packet_size;
+		offset += m_packet_size;
 
 		if (packet[0] != 0x47)
 		{
@@ -419,7 +423,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 
 				offset = l->second;
 				offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
-				offset -= offset % 188;
+				offset -= offset % m_packet_size;
 				if (offset > m_offset_end)
 				{
 					/*
@@ -466,7 +470,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 		int bitrate = calcBitrate();
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
 		eDebug("[eDVBTSTools] getOffset fallback, bitrate=%d, results in %016llx", bitrate, offset);
-		offset -= offset % 188;
+		offset -= offset % m_packet_size;
 		return 0;
 	}
 }
@@ -645,7 +649,7 @@ void eDVBTSTools::takeSamples()
 	if (bytes_per_sample < 40*1024*1024)
 		bytes_per_sample = 40*1024*1024;
 
-	bytes_per_sample -= bytes_per_sample % 188;
+	bytes_per_sample -= bytes_per_sample % m_packet_size;
 
 	eDebug("[eDVBTSTools] takeSamples step %lld, pts begin %llu, pts end %llu, offs begin %lld, offs end %lld:",
 		bytes_per_sample, m_pts_begin, m_pts_end, m_offset_begin, m_offset_end);
@@ -715,16 +719,17 @@ int eDVBTSTools::findPMT(eDVBPMTParser::program &program)
 	off_t position=0;
 	m_pmtready = false;
 
-	for (int attempts_left = (5*1024*1024)/188; attempts_left != 0; --attempts_left)
+	for (int attempts_left = (5*1024*1024)/m_packet_size; attempts_left != 0; --attempts_left)
 	{
-		unsigned char packet[188];
-		int ret = m_source->read(position, packet, 188);
-		if (ret != 188)
+		unsigned char buffer[m_packet_size];
+		unsigned char *packet = &buffer[m_packet_size - 188];
+		int ret = m_source->read(position, buffer, m_packet_size);
+		if (ret != m_packet_size)
 		{
 			eDebug("[eDVBTSTools] findPMT read error");
 			break;
 		}
-		position += 188;
+		position += m_packet_size;
 
 		if (packet[0] != 0x47)
 		{
