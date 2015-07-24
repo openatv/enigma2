@@ -676,6 +676,12 @@ class PliExtraInfo(Poll, Converter, object):
 			+ addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 			+ addspace(self.createSymbolRate(fedata, feraw)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata, feraw))
 
+		if self.type == "PIDInfo":
+			return self.createPIDInfo(info)
+
+		if not feraw:
+			return ""
+
 		if self.type == "TransponderInfo":
 			return self.createTransponderInfo(fedata, feraw)
 
@@ -705,9 +711,6 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "OrbitalPositionOrTunerSystem":
 			return self.createOrbPosOrTunerSystem(fedata,feraw)
-
-		if self.type == "PIDInfo":
-			return self.createPIDInfo(info)
 
 		if self.type == "TerrestrialChannelNumber":
 			return self.createChannelNumber(fedata, feraw)

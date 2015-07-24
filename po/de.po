@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-05 18:05+0100\n"
-"PO-Revision-Date: 2015-06-05 21:12+0100\n"
+"POT-Creation-Date: 2015-06-27 19:09+0100\n"
+"PO-Revision-Date: 2015-06-29 19:09+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -533,6 +533,13 @@ msgstr ""
 "erneut versuchen."
 
 msgid ""
+"A background update check is in progress, please wait a few minutes and then "
+"try again."
+msgstr ""
+"Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und "
+"erneut versuchen."
+
+msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
@@ -736,7 +743,7 @@ msgstr "Aktiviere"
 msgid "Activate HbbTV (RedButton)"
 msgstr "Aktiviere HbbTV (Rot)"
 
-msgid "Activate MAC-address configuration"
+msgid "Activate MAC address configuration"
 msgstr "Aktiviere aktuelle MAC-Adresse"
 
 msgid "Activate Picture in Picture"
@@ -744,6 +751,9 @@ msgstr "Aktiviere Bild in Bild"
 
 msgid "Activate current configuration"
 msgstr "Aktiviere aktuelle Konfiguration"
+
+msgid "Activate network adapter configuration"
+msgstr "Netzwerkkonfiguration aktivieren"
 
 msgid "Activate network settings"
 msgstr "Aktiviere Netzwerkeinstellungen"
@@ -919,6 +929,9 @@ msgstr "Alle"
 msgid "All ages"
 msgstr "Alle Alter"
 
+msgid "All frequency"
+msgstr "Alle Frequenzen"
+
 msgid "All resolutions"
 msgstr "Alle Auflösungen"
 
@@ -1053,6 +1066,14 @@ msgstr "Irgendeine Aktivität"
 
 msgid "Arabic"
 msgstr "Arabisch"
+
+#, python-format
+msgid "Are you ready to install \"%s\" ?"
+msgstr "Fertig zur Installation von \"%s\"?"
+
+#, python-format
+msgid "Are you ready to remove \"%s\" ?"
+msgstr "Fertig zum Löschen von \"%s\"?"
 
 msgid "Are you sure to remove this entry?"
 msgstr "Sicher das dieser Eintrag entfernt werden soll?"
@@ -2630,6 +2651,9 @@ msgstr "Dänisch"
 msgid "Date"
 msgstr "Datum"
 
+msgid "De-select"
+msgstr "Markierung aufheben"
+
 msgid "Debug Logs"
 msgstr "Debug Logs"
 
@@ -3015,6 +3039,13 @@ msgstr "Das Image nach %s herunterladen?"
 
 msgid "Do you want to install the package:\n"
 msgstr "Das Paket installieren:\n"
+
+msgid ""
+"Do you want to install the samba client aswell?\n"
+"This will allow you to mount your windows shares on this device."
+msgstr ""
+"Soll der Samba-Klient ebenfalls installiert werden?\n"
+"Der Klient erlaubt es sich mit Windows-Freigaben zu verbinden."
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Die DVD im Laufwerk abspielen?"
@@ -3460,8 +3491,8 @@ msgstr "Beenden"
 msgid "Exit EPG"
 msgstr "Verlasse EPG"
 
-msgid "Exit MAC-address configuration"
-msgstr "MAC-Adresse Konfiguration beenden"
+msgid "Exit MAC address configuration"
+msgstr "MAC-Adresse Konfiguration verlassen"
 
 msgid "Exit editor"
 msgstr "Editor beenden"
@@ -3475,6 +3506,9 @@ msgstr "Mediaplayer beenden?"
 msgid "Exit mediaplayer"
 msgstr "Mediaplayer beenden"
 
+msgid "Exit mounts setup menu"
+msgstr "Mounts Einstellungen verlassen"
+
 msgid "Exit movie list"
 msgstr "Verlasse Filmliste"
 
@@ -3487,17 +3521,29 @@ msgstr "Movieplayer beenden?"
 msgid "Exit nameserver configuration"
 msgstr "DNS Konfiguration beenden"
 
+msgid "Exit network adapter configuration"
+msgstr "Netzwerkadapter-Konfiguration verlassen"
+
+msgid "Exit network adapter setup menu"
+msgstr "Netzwerkadaptermenü verlassen"
+
 msgid "Exit network interface list"
 msgstr "Netzwerkadapterübersicht beenden"
 
 msgid "Exit network wizard"
 msgstr "Netzwerkassistent beenden"
 
+msgid "Exit networkadapter setup menu"
+msgstr "Netzwerkadaptermenü verlassen"
+
 msgid "Exit the wizard"
 msgstr "Assistent beenden"
 
 msgid "Expert"
 msgstr "Experte"
+
+msgid "Extended"
+msgstr "Erweitert"
 
 msgid "Extended Networksetup Plugin..."
 msgstr "Erweiterte Netzwerkeinstellungen Plugin..."
@@ -3676,9 +3722,6 @@ msgstr "Beendet"
 msgid "Finished configuring your network"
 msgstr "Netzwerk-Konfiguration abgeschlossen"
 
-msgid "Finished restarting your network"
-msgstr "Netzwerkneustart abgeschlossen"
-
 msgid "Finnish"
 msgstr "Ende"
 
@@ -3763,9 +3806,6 @@ msgstr "VFD/LCD Einstellungen"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprozessor-Version: %d"
-
-msgid "Ftpd service type: Vsftpd server"
-msgstr "FTPD Service: VSFTP Server"
 
 msgid "Full screen"
 msgstr "Vollbild"
@@ -3914,8 +3954,8 @@ msgstr "H: = Stündlich / D: = Täglich / W: =Wöchentlich / M: =Monatlich"
 msgid "HD list"
 msgstr "HD Liste"
 
-msgid "HD1100/et7x00"
-msgstr "HD1100/et7x00"
+msgid "HD1100/et7x00/et8500"
+msgstr ""
 
 msgid "HD2400"
 msgstr ""
@@ -4324,6 +4364,9 @@ msgstr "Initialisiere Laufwerk...."
 msgid "Inotify Monitoring"
 msgstr "Inotify Überwachung"
 
+msgid "Inotify monitoring"
+msgstr "Inotify Überwachung"
+
 msgid "Input"
 msgstr "Eingabe"
 
@@ -4377,6 +4420,9 @@ msgid "Installing"
 msgstr "Installiere"
 
 msgid "Installing Service"
+msgstr "Installiere Service"
+
+msgid "Installing service"
 msgstr "Installiere Service"
 
 msgid "Instant record"
@@ -4757,10 +4803,10 @@ msgstr "Niedrigere Bildraten sparen CPU Zeit"
 msgid "Luxembourgish"
 msgstr ""
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC-Adresse"
 
-msgid "MAC-address settings"
+msgid "MAC address settings"
 msgstr "MAC-Adresse Einstellungen"
 
 msgid "MAC:"
@@ -4985,6 +5031,12 @@ msgstr "Oberer Rand"
 msgid "Move down a page"
 msgstr "Seite runter"
 
+msgid "Move down to last entry"
+msgstr "zum letzten Eintrag gehen"
+
+msgid "Move down to next entry"
+msgstr "zum nächsten Eintrag gehen"
+
 msgid "Move east"
 msgstr "Drehen nach Osten"
 
@@ -4996,6 +5048,12 @@ msgstr "Auf Position X drehen"
 
 msgid "Move up a page"
 msgstr "Seite hoch"
+
+msgid "Move up to first entry"
+msgstr "zum ersten Eintrag gehen"
+
+msgid "Move up to previous entry"
+msgstr "zum vorherigen Eintrag gehen"
 
 msgid "Move west"
 msgstr "Drehen nach Westen"
@@ -5062,6 +5120,9 @@ msgstr "Multi-Sat alle wählen"
 
 msgid "Music/Ballet/Dance"
 msgstr "Musik/Ballett/Tanz"
+
+msgid "N"
+msgstr "N"
 
 msgid "N/A"
 msgstr "N/V"
@@ -5573,6 +5634,9 @@ msgstr "Nur beim Start"
 msgid "Open bouquet list"
 msgstr "öffne Favoritenliste"
 
+msgid "Open nameserver configuration"
+msgstr "DNS Konfiguration öffnen"
+
 msgid "Open service list and select the next channel"
 msgstr "Öffne Senderliste und wähle den nächsten Sender"
 
@@ -6037,9 +6101,6 @@ msgstr "Bitte warten (Senderliste wird runter geladen)"
 msgid "Please wait (updating packages)"
 msgstr "Bitte warten (Pakete werden aktualisiert)"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
-
 msgid "Please wait while gathering EPG data..."
 msgstr "Bitte warten während ich EPG-Daten zusammenstelle..."
 
@@ -6058,8 +6119,8 @@ msgstr "Bitte warte, dass Netzwerk wird konfiguriert."
 msgid "Please wait while we test your network..."
 msgstr "Bitte warte, dass Netzwerk wird überprüft."
 
-msgid "Please wait while your network is restarting..."
-msgstr "Bitte warte, dass Netzwerk wird neu gestartet."
+msgid "Please wait while your network configuration is activated..."
+msgstr "Bitte warten bis die Netzwerkkonfiguration aktiviert ist..."
 
 msgid "Please wait..."
 msgstr "Bitte warten..."
@@ -6239,7 +6300,7 @@ msgstr "Drücke OK um einen Satelliten auszuwählen."
 msgid "Press OK to select/deselect a CAId."
 msgstr "Drücke OK um eine CAID auszuwählen/abzuwählen."
 
-msgid "Press OK to set the MAC-address."
+msgid "Press OK to set the MAC address."
 msgstr "OK drücken um die MAC-Adresse zu setzen."
 
 msgid "Press OK to start the scan"
@@ -6663,6 +6724,9 @@ msgstr "Löschen des Verzeichnisses %s fehlgeschlagen. (nicht leer?)"
 msgid "Removing partition table"
 msgstr "Partitionstabelle entfernen"
 
+msgid "Removing service"
+msgstr "Lösche Service"
+
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -6844,6 +6908,9 @@ msgstr "läuft"
 msgid "Russian"
 msgstr "Russisch"
 
+msgid "S"
+msgstr ""
+
 msgid "S-Video"
 msgstr "S-Video"
 
@@ -6865,8 +6932,8 @@ msgstr ""
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "Samba Network File System"
-msgstr "Samba Dateisystem"
+msgid "Samba Log"
+msgstr "Samba/CIFS Log"
 
 msgid "Samba Setup"
 msgstr "Samba Einstellungen"
@@ -6979,6 +7046,9 @@ msgstr "Durchsuche weitere SR"
 
 msgid "Scan files..."
 msgstr "Dateien durchsuchen..."
+
+msgid "Scan options"
+msgstr "Suchoptionen"
 
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
@@ -7159,6 +7229,9 @@ msgstr "Netzwerkkarte auswählen"
 msgid "Select location"
 msgstr "Wähle Verzeichnis"
 
+msgid "Select menu entry"
+msgstr "Wähle einen Menüpunkt"
+
 msgid "Select movie"
 msgstr "Wähle Film"
 
@@ -7250,6 +7323,9 @@ msgstr "Serbisch"
 msgid "Serial No"
 msgstr "Seriennummer"
 
+msgid "Serial no"
+msgstr "Seriennummer"
+
 msgid "Serv.Name"
 msgstr ""
 
@@ -7332,9 +7408,6 @@ msgstr ""
 msgid "Set Framerate for MiniTV"
 msgstr "Setze Bildrate für MiniTV"
 
-msgid "Set System"
-msgstr ""
-
 msgid "Set as startup service"
 msgstr "Als Startsender benutzen"
 
@@ -7359,8 +7432,11 @@ msgstr "Grenzwerte setzen"
 msgid "Set startup service"
 msgstr "Als Startsender benutzen"
 
+msgid "Set system"
+msgstr "Setze System"
+
 #, python-format
-msgid "Set the MAC-address of your %s %s.\n"
+msgid "Set the MAC address of your %s %s.\n"
 msgstr "Setze die MAC-Adresse der %s %s.\n"
 
 msgid "Set the channel for this timer."
@@ -8030,12 +8106,6 @@ msgstr "Information Softwareverwaltung"
 msgid "Some plugins are not available:\n"
 msgstr "Einige Plugins sind nicht verfügbar:\n"
 
-msgid "Sorry Inadyn Config is Missing"
-msgstr "Tut uns leid Konfiguration für Inadyn fehlt"
-
-msgid "Sorry MiniDLNA Config is Missing"
-msgstr "Entschuldigung Konfiguration für MiniDLNA fehlt"
-
 msgid ""
 "Sorry feeds are down for maintenance, please try again later. If this issue "
 "persists please check openvix.co.uk or world-of-satellite.com."
@@ -8065,7 +8135,13 @@ msgstr ""
 "erlaubt werden sollen muss das in den Einstellungen für Online-Update "
 "aktiviert werden."
 
-msgid "Sorry uShare Config is Missing"
+msgid "Sorry your Inadyn config is missing"
+msgstr "Tut uns leid Konfiguration für Inadyn fehlt"
+
+msgid "Sorry your MiniDLNA config is missing"
+msgstr "Entschuldigung Konfiguration für MiniDLNA fehlt"
+
+msgid "Sorry your uShare config is missing"
 msgstr "Entschuldigung Konfiguration für uShare fehlt"
 
 #, python-format
@@ -8324,6 +8400,9 @@ msgstr "Streifen"
 msgid "Strongest position"
 msgstr "Stärkste Position"
 
+msgid "Subnet"
+msgstr ""
+
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -8525,6 +8604,12 @@ msgstr "Telnet Port"
 
 msgid "Telnet Setup"
 msgstr "Telnet Einstellungen"
+
+msgid "Telnet interface"
+msgstr "Telnet Interface"
+
+msgid "Telnet port"
+msgstr "Telnet Port"
 
 msgid "Telnet setup"
 msgstr "Telnet Einstellungen"
@@ -9135,7 +9220,7 @@ msgstr "Diese Erweiterung wird deinstalliert."
 msgid ""
 "This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
+"- please check your DHCP server, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in "
 "the \"Nameserver\" configuration"
 msgstr ""
@@ -9160,7 +9245,7 @@ msgid ""
 "This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
+"- please check your DHCP server, cabling and adapter setup"
 msgstr ""
 "Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
 "Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
@@ -9219,9 +9304,6 @@ msgstr "TiVo Unterstützung"
 msgid "Time"
 msgstr "Zeit"
 
-msgid "Time Update in Minutes"
-msgstr "Zeit Aktualisierung in Minuten"
-
 msgid "Time Update in Minutes:"
 msgstr "Zeit Aktualisierung in Minuten:"
 
@@ -9233,6 +9315,9 @@ msgstr "Zeit Einstellungen"
 
 msgid "Time to execute command or script"
 msgstr "Zeit um Kommando oder Script auszuführen"
+
+msgid "Time update in minutes"
+msgstr "Zeit Aktualisierung in Minuten"
 
 msgid "Timeline 24 Hour"
 msgstr "Zeitleiste 24 Stunden"
@@ -9448,6 +9533,9 @@ msgid "Tries left:"
 msgstr "Übrige Versuche:"
 
 msgid "Try to find used transponders in cable network.. please wait..."
+msgstr "Suche benutzte Transponder im Kabel Netzwerk.. bitte warten..."
+
+msgid "Try to find used transponders in terrestrial network... please wait..."
 msgstr "Suche benutzte Transponder im Kabel Netzwerk.. bitte warten..."
 
 msgid "Trying to download a new packetlist. Please wait..."
@@ -10068,6 +10156,9 @@ msgid "Watch recordings..."
 msgstr "Aufnahmen abspielen..."
 
 msgid "Web Interface"
+msgstr "Web Interface"
+
+msgid "Web interface"
 msgstr "Web Interface"
 
 msgid "Wed"
@@ -10795,14 +10886,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Die %s %s wird neu gestartet wenn der Service installiert ist.\n"
-"Bereit \"%s\" zu installieren?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -10813,8 +10896,24 @@ msgstr ""
 
 #, python-format
 msgid ""
+"Your %s %s will be restarted after the installation of the service\n"
+"Are you ready to install \"%s\" ?"
+msgstr ""
+"Die %s %s wird neu gestartet wenn der Service installiert ist.\n"
+"Bereit \"%s\" zu installieren?"
+
+#, python-format
+msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+msgstr ""
+"Deine %s %s wird nach entfernen des Services neu gestartet\n"
+"Service jetzt entfernen?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of the service\n"
+"Do you want to remove the service now ?"
 msgstr ""
 "Deine %s %s wird nach entfernen des Services neu gestartet\n"
 "Service jetzt entfernen?"
@@ -10877,6 +10976,12 @@ msgstr "Deine Internetverbindung besteht (IP:%s)"
 
 msgid "Your network configuration has been activated."
 msgstr "Ihre Netzwerk-Konfiguration wurde aktiviert."
+
+msgid "Your network has finished restarting"
+msgstr "Dein Netzwerk wurde neu gestartet."
+
+msgid "Your network is restarting, Please wait..."
+msgstr "Dein Netzwerk startet neu. Bitte warten..."
 
 msgid "Your receiver does not have an internet connection"
 msgstr "Deine Box hat keine Internetverbindung"
@@ -10968,9 +11073,6 @@ msgstr "Eine GUI um Sender/Anbieter/CAIDs einem Common Interface zuzuweisen."
 
 msgid "about to start"
 msgstr "startet gleich"
-
-msgid "activate network adapter configuration"
-msgstr "Netzwerkverbindung aktivieren"
 
 msgid "activatePiP"
 msgstr "Aktiviere PiP"
@@ -11217,6 +11319,9 @@ msgstr "aktiviert"
 msgid "end cut here"
 msgstr "Schnitt endet hier"
 
+msgid "ene"
+msgstr "ost nord ost"
+
 msgid "enter number to jump to channel."
 msgstr "Gebe Zahl ein um uzm Sender zu springen"
 
@@ -11241,6 +11346,9 @@ msgstr "Fehler beim Start der Suche"
 msgid "error while scanning"
 msgstr "Fehler bei Suche"
 
+msgid "ese"
+msgstr "ost süd ost"
+
 msgid "et4000"
 msgstr "et4000"
 
@@ -11258,15 +11366,6 @@ msgstr "et9200/9500/6500"
 
 msgid "exit DVD player or return to file browser"
 msgstr "DVD Player verlassen oder zurück zur Dateiverwaltung"
-
-msgid "exit mounts setup menu"
-msgstr "Mounts Einstellungen verlassen"
-
-msgid "exit network adapter configuration"
-msgstr "Netzwerkadapter-Konfiguration verlassen"
-
-msgid "exit networkadapter setup menu"
-msgstr "Netzwerkadaptermenü verlassen"
 
 msgid "experimental film/video"
 msgstr "Experimental Filme/Video"
@@ -11479,18 +11578,6 @@ msgstr "Motorsport"
 msgid "move"
 msgstr "verschieben"
 
-msgid "move down to last entry"
-msgstr "zum letzten Eintrag gehen"
-
-msgid "move down to next entry"
-msgstr "zum nächsten Eintrag gehen"
-
-msgid "move up to first entry"
-msgstr "zum ersten Eintrag gehen"
-
-msgid "move up to previous entry"
-msgstr "zum vorherigen Eintrag gehen"
-
 msgid "movie/drama (general)"
 msgstr "Film/Drama (allgemein)"
 
@@ -11509,6 +11596,9 @@ msgstr "Musical/Oper"
 msgid "nature/animals/environment"
 msgstr "Natur/Tiere/Umwelt"
 
+msgid "ne"
+msgstr "nord ost"
+
 msgid "never"
 msgstr "niemals"
 
@@ -11523,6 +11613,12 @@ msgstr "Nachrichten/Gegenwart (allgemein)"
 
 msgid "news/weather report"
 msgstr "Nachrichten/Wetter"
+
+msgid "nne"
+msgstr "nord nord ost"
+
+msgid "nnw"
+msgstr "nord nord west"
 
 msgid "no"
 msgstr "nein"
@@ -11572,6 +11668,9 @@ msgstr "nicht verwendet"
 msgid "nothing connected"
 msgstr "Nichts angeschlossen"
 
+msgid "nw"
+msgstr "nord west"
+
 msgid "of a DUAL layer medium used."
 msgstr "eines DUAL-Layer-Mediums benutzt."
 
@@ -11595,9 +11694,6 @@ msgstr "einmalig"
 
 msgid "only HD"
 msgstr "nur HD"
-
-msgid "open nameserver configuration"
-msgstr "DNS Konfiguration öffnen"
 
 msgid "original"
 msgstr "Original"
@@ -11729,6 +11825,9 @@ msgstr "Status"
 msgid "science fiction/fantasy/horror"
 msgstr "Science Fiction/Fantasy/Horror"
 
+msgid "se"
+msgstr "süd ost"
+
 msgid "second cable of motorized LNB"
 msgstr "Zweites Kabel vom Rotor"
 
@@ -11740,9 +11839,6 @@ msgstr "wähle"
 
 msgid "select CAId's"
 msgstr "CAIDs auswählen"
-
-msgid "select menu entry"
-msgstr "Wähle einen Menüpunkt"
 
 msgid "serious music/classic music"
 msgstr "ernste Musik/klassische Musik"
@@ -11852,6 +11948,12 @@ msgstr "Sport (allgemein)"
 msgid "sports magazine"
 msgstr "Sportmagazin"
 
+msgid "sse"
+msgstr "süd süd ost"
+
+msgid "ssw"
+msgstr "süd süd west"
+
 msgid "standard"
 msgstr "Standard"
 
@@ -11866,6 +11968,9 @@ msgstr "Schrittweite"
 
 msgid "stereo"
 msgstr "Stereo"
+
+msgid "sw"
+msgstr "süd west"
 
 msgid "switch to bookmarks"
 msgstr "gehe zu Lesezeichen"
@@ -11932,6 +12037,12 @@ msgstr "uShare Port"
 
 msgid "uShare Setup"
 msgstr "uShare Einstellungen"
+
+msgid "uShare name"
+msgstr "uShare Name"
+
+msgid "uShare port"
+msgstr "uShare Port"
 
 msgid "uShare setup"
 msgstr "uShare Einstellungen"
@@ -12041,8 +12152,14 @@ msgstr "Mit Text"
 msgid "with tuner name"
 msgstr "Mit Tunernamen:"
 
+msgid "wnw"
+msgstr "west nord west"
+
 msgid "working"
 msgstr "arbeite"
+
+msgid "wsw"
+msgstr "west süd west"
 
 msgid "yellow"
 msgstr "gelb"
@@ -12065,15 +12182,17 @@ msgstr "umgeschaltet"
 #~ msgid "Configure the refresh rate of the screen."
 #~ msgstr "Konfiguriere die Wiederholrate für den Bildschirm."
 
-#~ msgid ""
-#~ "Do you want to also install samba client ?\n"
-#~ "This allows you to mount your windows shares on this device."
-#~ msgstr ""
-#~ "Soll der Samba-Klient ebenfalls installiert werden? Der Klient erlaubt es "
-#~ "sich mit Windows-Freigaben zu verbinden."
+#~ msgid "Finished restarting your network"
+#~ msgstr "Netzwerkneustart abgeschlossen"
 
-#~ msgid "Samba Log"
-#~ msgstr "Samba/CIFS Log"
+#~ msgid "Ftpd service type: Vsftpd server"
+#~ msgstr "FTPD Service: VSFTP Server"
+
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
+
+#~ msgid "Samba Network File System"
+#~ msgstr "Samba Dateisystem"
 
 #~ msgid "Show status icons in movielist"
 #~ msgstr "Zeige Status-Icons in der Filmliste"

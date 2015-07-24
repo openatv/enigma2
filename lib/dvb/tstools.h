@@ -90,6 +90,7 @@ protected:
 
 private:
 	int m_pid;
+	int m_packet_size;
 
 	ePtr<iTsSource> m_source;
 
