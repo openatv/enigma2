@@ -1437,29 +1437,18 @@ RESULT eServiceMP3::selectChannel(int i)
 
 RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 {
- 	if (i >= m_audioStreams.size())
+	if (i >= m_audioStreams.size())
+	{
 		return -2;
-		info.m_description = m_audioStreams[i].codec;
-/*	if (m_audioStreams[i].type == atMPEG)
-		info.m_description = "MPEG";
-	else if (m_audioStreams[i].type == atMP3)
-		info.m_description = "MP3";
-	else if (m_audioStreams[i].type == atAC3)
-		info.m_description = "AC3";
-	else if (m_audioStreams[i].type == atAAC)
-		info.m_description = "AAC";
-	else if (m_audioStreams[i].type == atDTS)
-		info.m_description = "DTS";
-	else if (m_audioStreams[i].type == atPCM)
-		info.m_description = "PCM";
-	else if (m_audioStreams[i].type == atOGG)
-		info.m_description = "OGG";
-	else if (m_audioStreams[i].type == atFLAC)
-		info.m_description = "FLAC";
-	else
-		info.m_description = "???";*/
+	}
+
+	info.m_description = m_audioStreams[i].codec;
+
 	if (info.m_language.empty())
+	{
 		info.m_language = m_audioStreams[i].language_code;
+	}
+
 	return 0;
 }
 
