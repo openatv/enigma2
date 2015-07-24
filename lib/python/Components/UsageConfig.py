@@ -671,7 +671,7 @@ def InitUsageConfig():
 	config.epgselection.enhanced_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.enhanced_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.enhanced_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.epgselection.enhanced_itemsperpage = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 12, max = 40, wraparound = True)
+	config.epgselection.enhanced_itemsperpage = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 3, max = 40, wraparound = True)
 	config.epgselection.multi_showbouquet = ConfigYesNo(default = False)
 	config.epgselection.multi_preview_mode = ConfigYesNo(default = True)
 	config.epgselection.multi_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
