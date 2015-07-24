@@ -4,7 +4,7 @@ from Components.Element import cached
 
 from os import path
 
-WIDESCREEN = [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
+WIDESCREEN = [1, 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
 class ServiceInfo(Converter, object):
 	HAS_TELETEXT = 1
@@ -105,12 +105,10 @@ class ServiceInfo(Converter, object):
 			except:
 				pass
 			f.close()
-
 		if not video_height:
 			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
 		if not video_aspect:
 			video_aspect = info.getInfo(iServiceInformation.sAspect)
-
 
 		if self.type == self.HAS_TELETEXT:
 			tpid = info.getInfo(iServiceInformation.sTXTPID)
