@@ -541,6 +541,8 @@ class SecConfigure:
 						sec.setVoltageMode(switchParam._14V)
 					elif currSat.voltage.value == "18V":
 						sec.setVoltageMode(switchParam._18V)
+					elif currSat.voltage.value == "0V":
+						sec.setVoltageMode(switchParam._0V)
 
 					if currSat.tonemode.value == "band":
 						sec.setToneMode(switchParam.HILO)
@@ -1458,7 +1460,7 @@ def InitNimManager(nimmgr):
 		(3601, _('All satellites 1 (USALS)'), 1), (3602, _('All satellites 2 (USALS)'), 1),
 		(3603, _('All satellites 3 (USALS)'), 1), (3604, _('All satellites 4 (USALS)'), 1), (3605, _('Selecting satellites 1 (USALS)'), 1), (3606, _('Selecting satellites 2 (USALS)'), 1)]
 	advanced_lnb_choices = [("0", _("not configured"))] + [(str(y), "LNB " + str(y)) for y in range(1, (maxFixedLnbPositions+1))]
-	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
+	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V")), ("0V", _("0 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
 	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))]
 	advanced_lnb_allsat_diseqcmode_choices = [("1_2", _("1.2"))]

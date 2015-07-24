@@ -142,7 +142,9 @@ class PliExtraInfo(Poll, Converter, object):
 		return "%d-%d:%05d:%04d:%04d:%04d" % (onid, tsid, sidpid, vpid, apid, pcrpid)
 
 	def createTransponderInfo(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
+		if not feraw:
+			return ""
+		elif "DVB-T" in feraw.get("tuner_type"):
 			tmp = addspace(self.createChannelNumber(fedata, feraw)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata))
 		else:
 			tmp = addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata))
@@ -262,8 +264,6 @@ class PliExtraInfo(Poll, Converter, object):
 		feraw = self.feraw
 		if not feraw:
 			feraw = info.getInfoObject(iServiceInformation.sTransponderData)
-			if not feraw:
-				return ""
 			fedata = ConvertToHumanReadable(feraw)
 		else:
 			fedata = self.fedata
@@ -283,6 +283,12 @@ class PliExtraInfo(Poll, Converter, object):
 			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
 			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw)) \
 			+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
+
+		if self.type == "PIDInfo":
+			return self.createPIDInfo(info)
+
+		if not feraw:
+			return ""
 
 		if self.type == "TransponderInfo":
 			return self.createTransponderInfo(fedata, feraw)
@@ -313,9 +319,6 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "OrbitalPositionOrTunerSystem":
 			return self.createOrbPosOrTunerSystem(fedata,feraw)
-
-		if self.type == "PIDInfo":
-			return self.createPIDInfo(info)
 
 		if self.type == "TerrestrialChannelNumber":
 			return self.createChannelNumber(fedata, feraw)

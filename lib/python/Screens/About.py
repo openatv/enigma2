@@ -231,16 +231,9 @@ class CommitInfo(Screen):
 
 		self.project = 0
 		self.projects = [
-			("enigma2", "Enigma2"),
-			("openpli-oe-core", "Openpli Oe Core"),
-			("enigma2-plugins", "Enigma2 Plugins"),
-			("aio-grab", "Aio Grab"),
-			("gst-plugin-dvbmediasink", "Gst Plugin Dvbmediasink"),
-			("openembedded", "Openembedded"),
-			("plugin-xmltvimport", "Plugin Xmltvimport"),
-			("plugins-enigma2", "Plugins Enigma2"),
-			("skin-magic", "Skin Magic"),
-			("tuxtxt", "Tuxtxt")
+			("stbgui", "openMips Enigma2"),
+			("skin-pax", "openMips Skin GigaBlue Pax"),
+			("oe-alliance-core", "OE Alliance")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
@@ -248,23 +241,26 @@ class CommitInfo(Screen):
 		self.Timer.start(50, True)
 
 	def readCommitLogs(self):
-		url = 'http://sourceforge.net/p/openpli/%s/feed' % self.projects[self.project][0]
-		commitlog = ""
 		from urllib2 import urlopen
+		feed = self.projects[self.project][0]
+		commitlog = 80 * '-' + '\n'
+		commitlog += feed + '\n'
+		commitlog += 80 * '-' + '\n'
+		if "oe-alliance" in feed:
+			url = 'https://github.com/oe-alliance/%s/commits/2.3' % feed[5:]
+			print "[About] url: ", url
+		else:
+			url = 'https://github.com/openmips/%s/commits/master' % feed[7:] 
+			print "[About] url: ", url
 		try:
-			commitlog += 80 * '-' + '\n'
-			commitlog += url.split('/')[-2] + '\n'
-			commitlog += 80 * '-' + '\n'
-			for x in  urlopen(url, timeout=5).read().split('<title>')[2:]:
-				for y in x.split("><"):
-					if '</title' in y:
-						title = y[:-7]
-					if '</dc:creator' in y:
-						creator = y.split('>')[1].split('<')[0]
-					if '</pubDate' in y:
-						date = y.split('>')[1].split('<')[0][:-6]
-				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
-			self.cachedProjects[self.projects[self.project][1]] = commitlog
+			for x in  urlopen(url, timeout=5).read().split('commit-title')[1:]:
+				for y in x.split('" ', 7):
+					if y[:7] == 'title="':
+						title = y.split('>', 1)[1].split('<', 1)[0]
+					if y[:4] == 'rel=':
+						author = y.split('>', 1)[1].split('<', 1)[0]
+						date = y.split('datetime="')[1][:10]
+				commitlog += date + ' ' + author + '\n' + title + 2 * '\n'
 		except:
 			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
 		self["AboutScrollLabel"].setText(commitlog)
@@ -562,4 +558,3 @@ class SystemNetworkInfo(Screen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-
