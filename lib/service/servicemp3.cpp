@@ -735,7 +735,11 @@ RESULT eServiceMP3::start()
 	if (m_gst_playbin)
 	{
 		eDebug("[eServiceMP3] starting pipeline");
+#if GST_VERSION_MAJOR < 1
 		gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+#else
+		gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+#endif
 		updateEpgCacheNowNext();
 	}
 
@@ -855,11 +859,19 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		return -1;
 	}
 
+#if GST_VERSION_MAJOR < 1
 	if (m_paused)
 	{
 		m_seek_paused = true;
 		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 	}
+#else
+	if (m_user_paused)
+	{
+		m_seek_paused = true;
+		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+	}
+#endif
 
 	return 0;
 }
