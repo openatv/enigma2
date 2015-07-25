@@ -2795,6 +2795,12 @@ void eServiceMP3::loadCuesheet()
 		eDebug("[eServiceMP3] loading cuesheet");
 		m_cuesheet_loaded = true;
 	}
+	else
+	{
+		eDebug("[eServiceMP3] skip loading cuesheet multiple times");
+		return;
+	}
+ 
 	m_cue_entries.clear();
 	/* only load manual cuts if no chapter info avbl CVR */
 #if GST_VERSION_MAJOR >= 1
@@ -2850,24 +2856,20 @@ void eServiceMP3::saveCuesheet()
 	if ((::access(filename.c_str(), R_OK) < 0) || m_use_chapter_entries)
 		return;
 #endif
-	/* do not save to file if there are no cuts */
-	gboolean empty_cue = FALSE;
-	if(m_cue_entries.begin() == m_cue_entries.end())
-		empty_cue = TRUE;
-
 	filename.append(".cuts");
+	/* do not save to file if there are no cuts */
+	/* remove the cuts file if cue is empty */
+	if(m_cue_entries.begin() == m_cue_entries.end())
+	{
+		if (::access(filename.c_str(), F_OK) == 0)
+			remove(filename.c_str());
+		return;
+	}
 
 	FILE *f = fopen(filename.c_str(), "wb");
 
 	if (f)
 	{
-		/* remove the cuts file if cue is empty */
-		if(empty_cue)
-		{
-			fclose(f);
-			remove(filename.c_str());
-			return;
-		}
 		unsigned long long where;
 		int what;
 
