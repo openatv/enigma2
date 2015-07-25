@@ -856,8 +856,156 @@ class NimManager:
 
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
-			db.readSatellites(self.satList, self.satellites, self.transponders)
-			self.satList.sort() # sort by orbpos
+			if db.readSatellites(self.satList, self.satellites, self.transponders):
+				self.satList.sort() # sort by orbpos
+			else: #satellites.xml not found or corrupted
+				from Tools.Notifications import AddPopup
+				from Screens.MessageBox import MessageBox
+				def emergencyAid():
+					if not path.exists("/etc/enigma2/lamedb"):
+						print "/etc/enigma2/lamedb not found"
+						return None
+					f = file("/etc/enigma2/lamedb","r")
+					lamedb = f.readlines()
+					f.close()
+
+					if lamedb[0].find("/3/") != -1:
+						version = 3
+					elif lamedb[0].find("/4/") != -1:
+						version = 4
+					else:
+						print "unknown lamedb version: ",lamedb[0]
+						return False
+					print "import version %d" % version
+
+					collect = False
+					transponders = []
+					tp = []
+					for line in lamedb:
+						if line == "transponders\n":
+							collect = True
+							continue
+						if line == "end\n":
+							break
+						if collect:
+							data = line.strip().split(":")
+							if data[0] == "/":
+								transponders.append(tp)
+								tp = []
+							else:
+								tp.append(data)
+
+					t1 = ("namespace","tsid","onid")
+					t2_sv3 = ("frequency",
+						"symbol_rate",
+						"polarization",
+						"fec_inner",
+						"position",
+						"inversion",
+						"system",
+						"modulation",
+						"rolloff",
+						"pilot",
+						)
+					t2_sv4 = ("frequency",
+						"symbol_rate",
+						"polarization",
+						"fec_inner",
+						"position",
+						"inversion",
+						"flags",
+						"system",
+						"modulation",
+						"rolloff",
+						"pilot"
+						)
+
+					tplist = []
+					for x in transponders:
+						tp = {}
+						if len(x[0]) > len(t1):
+							continue
+						freq = x[1][0].split()
+						if len(freq) != 2:
+							continue
+						x[1][0] = freq[1]
+						if freq[0] == "s" or freq[0] == "S":
+							if ((version == 3) and len(x[1]) > len(t2_sv3)) or ((version == 4) and len(x[1]) > len(t2_sv4)):
+								continue
+							for y in range(0, len(x[0])):
+								tp.update({t1[y]:x[0][y]})
+							for y in range(0, len(x[1])):
+								if version == 3:
+									tp.update({t2_sv3[y]:x[1][y]})
+								elif version == 4:
+									tp.update({t2_sv4[y]:x[1][y]})
+							if ((int(tp.get("namespace"),16) >> 16) & 0xFFF) != int(tp.get("position")):
+								print "Namespace %s and Position %s are not identical"% (tp.get("namespace"), tp.get("position"))
+								continue
+							if version >= 4:
+								tp.update({"supposition":((int(tp.get("namespace","0"),16) >> 24) & 0x0F)})
+						elif freq[0] == "c" or freq[0] == "C":
+							print "DVB-C"
+							continue
+						elif freq[0] == "t" or freq[0] == "T":
+							print "DVB-T"
+							continue
+						tplist.append(tp)
+
+					satDict = {}
+					for tp in tplist:
+						freq = int(tp.get("frequency",0))
+						if freq:
+							tmp_sat = satDict.get(int(tp.get("position")),{})
+							tmp_tp = self.transponders.get(int(tp.get("position")),[])
+							sat_pos = int(tp.get("position"))
+							fake_sat_pos = int(tp.get("position"))
+							if sat_pos > 1800:
+								sat_pos -= 1800
+								dir = 'W'
+							else:
+								dir = 'E'
+							if freq >= 10000000 and freq <= 13000000:
+								fake_sat_pos = sat_pos
+								tmp_sat.update({'name':'%3.1f%c Ku-band satellite' %(sat_pos/10.0, dir)})
+								#tmp_sat.update({"band":"Ku"})
+							if freq >= 3000000 and freq <= 4000000:
+								fake_sat_pos = sat_pos + 1
+								tmp_sat.update({'name':'%3.1f%c C-band satellite' %(sat_pos/10.0, dir)})
+								#tmp_sat.update({"band":"C"})
+							if freq >= 17000000 and freq <= 23000000:
+								fake_sat_pos = sat_pos + 2
+								tmp_sat.update({'name':'%3.1f%c Ka-band satellite' %(sat_pos/10.0, dir)})
+								#tmp_sat.update({"band":"Ka"})
+							tmp_tp.append((
+									0,			#???
+									int(tp.get("frequency",0)),
+									int(tp.get("symbol_rate",0)),
+									int(tp.get("polarization",0)),
+									int(tp.get("fec_inner",0)),
+									int(tp.get("system",0)),
+									int(tp.get("modulation",0)),
+									int(tp.get("inversion",0)),
+									int(tp.get("rolloff",0)),
+									int(tp.get("pilot",0)),
+									-1,			#tsid  -1 -> any tsid are valid
+									-1			#onid  -1 -> any tsid are valid
+								))
+							tmp_sat.update({'flags':int(tp.get("flags"))})
+							satDict.update({fake_sat_pos:tmp_sat})
+							self.transponders.update({fake_sat_pos:tmp_tp})
+
+					for sat_pos in satDict:
+						self.satellites.update({sat_pos: satDict.get(sat_pos).get('name')})
+						self.satList.append((sat_pos, satDict.get(sat_pos).get('name'), satDict.get(sat_pos).get('flags')))
+
+					return True
+
+				AddPopup(_("satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "SatellitesLoadFailed")
+				if not emergencyAid():
+					AddPopup(_("resoring satellites.xml not posibel!"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "SatellitesLoadFailed")
+					return
+
 		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T") or self.hasNimType("DVB-T2"):
 			print "Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
