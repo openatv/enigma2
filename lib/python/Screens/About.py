@@ -150,17 +150,16 @@ class About(Screen):
 		self["hddA"] = StaticText(hddinfo)
 		AboutText += hddinfo
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-
 		self["key_green"] = Button(_("Translations"))
 		self["key_red"] = Button(_("Latest Commits"))
 		self["key_blue"] = Button(_("Memory Info"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				#"red": self.showCommits,
-				#"green": self.showTranslationInfo,
+				"red": self.showCommits,
+				"green": self.showTranslationInfo,
 				"blue": self.showMemoryInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
@@ -237,7 +236,7 @@ class CommitInfo(Screen):
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
-		self.Timer.callback.append(self.readCommitLogs)
+		self.Timer.callback.append(self.readGithubCommitLogs)
 		self.Timer.start(50, True)
 
 	def readCommitLogs(self):
@@ -247,10 +246,10 @@ class CommitInfo(Screen):
 		commitlog += feed + '\n'
 		commitlog += 80 * '-' + '\n'
 		if "oe-alliance" in feed:
-			url = 'https://github.com/oe-alliance/%s/commits/2.3' % feed[5:]
+			url = 'https://github.com/oe-alliance/%s/commits/2.3' % self.projects[self.project][0]
 			print "[About] url: ", url
 		else:
-			url = 'https://github.com/openmips/%s/commits/master' % feed[7:] 
+			url = 'https://github.com/openmips/%s/commits/master' % self.projects[self.project][0]
 			print "[About] url: ", url
 		try:
 			for x in  urlopen(url, timeout=5).read().split('commit-title')[1:]:
@@ -263,6 +262,35 @@ class CommitInfo(Screen):
 				commitlog += date + ' ' + author + '\n' + title + 2 * '\n'
 		except:
 			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
+		self["AboutScrollLabel"].setText(commitlog)
+
+	def readGithubCommitLogs(self):
+		feed = self.projects[self.project][0]
+		print "[About] feed:\n", feed
+		if "oe-alliance" in feed:
+			url = 'https://api.github.com/repos/oe-alliance/%s/commits/2.3' % self.projects[self.project][0]
+			print "[About] url: ", url
+		else:
+			url = 'https://api.github.com/repos/openmips/%s/commits/master' % self.projects[self.project][0]
+			print "[About] url: ", url
+		commitlog = ""
+		from datetime import datetime
+		from json import loads
+		from urllib2 import urlopen
+		try:
+			commitlog += 80 * '-' + '\n'
+			commitlog += url.split('/')[-2] + '\n'
+			commitlog += 80 * '-' + '\n'
+			for c in loads(urlopen(url, timeout=5).read()):
+				creator = c['commit']['author']['name']
+				title = c['commit']['message']
+				date = datetime.strptime(c['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%x %X')
+				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
+			commitlog = commitlog.encode('utf-8')
+			self.cachedProjects[self.projects[self.project][1]] = commitlog
+			print "[About] commitlog:\n", commitlog
+		except:
+			commitlog += _("Currently the commit log cannot be retrieved - please try later again")
 		self["AboutScrollLabel"].setText(commitlog)
 
 	def updateCommitLogs(self):
