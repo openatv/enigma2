@@ -268,8 +268,7 @@ class AutoVideoMode(Screen):
 	def checkIfDedicated3D(self):
 			service = self.session.nav.getCurrentlyPlayingServiceReference()
 			servicepath = service and service.getPath()
-			if servicepath is not None:
-				if servicepath.startswith("/"):
+			if servicepath and servicepath.startswith("/"):
 					if service.toString().startswith("1:"):
 						info = eServiceCenter.getInstance().info(service)
 						service = info and info.getInfoString(service, iServiceInformation.sServiceref)
