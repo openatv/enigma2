@@ -239,31 +239,6 @@ class CommitInfo(Screen):
 		self.Timer.callback.append(self.readGithubCommitLogs)
 		self.Timer.start(50, True)
 
-	def readCommitLogs(self):
-		from urllib2 import urlopen
-		feed = self.projects[self.project][0]
-		commitlog = 80 * '-' + '\n'
-		commitlog += feed + '\n'
-		commitlog += 80 * '-' + '\n'
-		if "oe-alliance" in feed:
-			url = 'https://github.com/oe-alliance/%s/commits/2.3' % self.projects[self.project][0]
-			print "[About] url: ", url
-		else:
-			url = 'https://github.com/openmips/%s/commits/master' % self.projects[self.project][0]
-			print "[About] url: ", url
-		try:
-			for x in  urlopen(url, timeout=5).read().split('commit-title')[1:]:
-				for y in x.split('" ', 7):
-					if y[:7] == 'title="':
-						title = y.split('>', 1)[1].split('<', 1)[0]
-					if y[:4] == 'rel=':
-						author = y.split('>', 1)[1].split('<', 1)[0]
-						date = y.split('datetime="')[1][:10]
-				commitlog += date + ' ' + author + '\n' + title + 2 * '\n'
-		except:
-			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
-		self["AboutScrollLabel"].setText(commitlog)
-
 	def readGithubCommitLogs(self):
 		feed = self.projects[self.project][0]
 		print "[About] feed:\n", feed
