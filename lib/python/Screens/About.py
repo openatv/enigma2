@@ -232,7 +232,7 @@ class CommitInfo(Screen):
 		self.projects = [
 			("stbgui", "openMips Enigma2"),
 			("skin-pax", "openMips Skin GigaBlue Pax"),
-			("oe-alliance-core", "OE Alliance")
+			("oe-alliance-core", "OE Alliance Core")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
@@ -240,21 +240,20 @@ class CommitInfo(Screen):
 		self.Timer.start(50, True)
 
 	def readGithubCommitLogs(self):
-		feed = self.projects[self.project][0]
-		print "[About] feed:\n", feed
-		if "oe-alliance" in feed:
-			url = 'https://api.github.com/repos/oe-alliance/%s/commits/2.3' % self.projects[self.project][0]
-			print "[About] url: ", url
+		githubproject = self.projects[self.project][1]
+		if "OE Alliance" in githubproject:
+			url = 'https://api.github.com/repos/oe-alliance/%s/commits?branch=2.3' % self.projects[self.project][0]
+			# print "[About] url: ", url
 		else:
-			url = 'https://api.github.com/repos/openmips/%s/commits/master' % self.projects[self.project][0]
-			print "[About] url: ", url
+			url = 'https://api.github.com/repos/openmips/%s/commits?branch=master' % self.projects[self.project][0]
+			# print "[About] url: ", url
 		commitlog = ""
 		from datetime import datetime
 		from json import loads
 		from urllib2 import urlopen
 		try:
 			commitlog += 80 * '-' + '\n'
-			commitlog += url.split('/')[-2] + '\n'
+			commitlog += self.projects[self.project][0] + ' - ' + self.projects[self.project][1] + '\n'
 			commitlog += 80 * '-' + '\n'
 			for c in loads(urlopen(url, timeout=5).read()):
 				creator = c['commit']['author']['name']
@@ -263,7 +262,6 @@ class CommitInfo(Screen):
 				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
 			commitlog = commitlog.encode('utf-8')
 			self.cachedProjects[self.projects[self.project][1]] = commitlog
-			print "[About] commitlog:\n", commitlog
 		except:
 			commitlog += _("Currently the commit log cannot be retrieved - please try later again")
 		self["AboutScrollLabel"].setText(commitlog)
