@@ -232,11 +232,12 @@ class CommitInfo(Screen):
 
 		self.project = 0
 		self.projects = [
-			("stbgui", "openMips Enigma2", "master"),
-			("skin-pax", "openMips Skin GigaBlue Pax", "master"),
-			("oe-alliance-core", "OE Alliance Core", "2.3"),
-			("oe-alliance-plugins", "OE Alliance Plugins", "2.3"),
-			("enigma2-plugins", "OE Alliance Enigma2 Plugins", "2.3")
+		#	("organisation",	"repository",						"readable name",								"branch"),
+			("openmips",			"stbgui",								"openMips Enigma2",							"master"),
+			("openmips",			"skin-pax",							"openMips Skin GigaBlue Pax",		"master"),
+			("oe-alliance",		"oe-alliance-core",			"OE Alliance Core",							"2.3"),
+			("oe-alliance",		"oe-alliance-plugins",	"OE Alliance Plugins",					"2.3"),
+			("oe-alliance",		"enigma2-plugins",			"OE Alliance Enigma2 Plugins",	"2.3")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
@@ -244,20 +245,15 @@ class CommitInfo(Screen):
 		self.Timer.start(50, True)
 
 	def readGithubCommitLogs(self):
-		githubproject = self.projects[self.project][1]
-		if "OE Alliance" in githubproject:
-			url = 'https://api.github.com/repos/oe-alliance/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][2])
-			# print "[About] url: ", url
-		else:
-			url = 'https://api.github.com/repos/openmips/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][2])
-			# print "[About] url: ", url
+		url = 'https://api.github.com/repos/%s/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][1], self.projects[self.project][3])
+		# print "[About] url: ", url
 		commitlog = ""
 		from datetime import datetime
 		from json import loads
 		from urllib2 import urlopen
 		try:
 			commitlog += 80 * '-' + '\n'
-			commitlog += self.projects[self.project][0] + ' - ' + self.projects[self.project][1] + '\n'
+			commitlog += self.projects[self.project][1] + ' - ' + self.projects[self.project][2] + '\n'
 			commitlog += 80 * '-' + '\n'
 			for c in loads(urlopen(url, timeout=5).read()):
 				creator = c['commit']['author']['name']
@@ -265,14 +261,14 @@ class CommitInfo(Screen):
 				date = datetime.strptime(c['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%x %X')
 				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
 			commitlog = commitlog.encode('utf-8')
-			self.cachedProjects[self.projects[self.project][1]] = commitlog
+			self.cachedProjects[self.projects[self.project][2]] = commitlog
 		except:
 			commitlog += _("Currently the commit log cannot be retrieved - please try later again")
 		self["AboutScrollLabel"].setText(commitlog)
 
 	def updateCommitLogs(self):
-		if self.cachedProjects.has_key(self.projects[self.project][1]):
-			self["AboutScrollLabel"].setText(self.cachedProjects[self.projects[self.project][1]])
+		if self.cachedProjects.has_key(self.projects[self.project][2]):
+			self["AboutScrollLabel"].setText(self.cachedProjects[self.projects[self.project][2]])
 		else:
 			self["AboutScrollLabel"].setText(_("Please wait"))
 			self.Timer.start(50, True)
