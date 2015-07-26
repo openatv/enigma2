@@ -1,3 +1,4 @@
+from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -212,6 +213,7 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 					choices = []
 				if fileExists("/home/root/ipkgupgrade.log"):
 					choices.append((_("Show latest upgrade log"), "log"))
+				choices.append((_("Show latest commits"), "commits"))
 				if not config.usage.show_update_disclaimer.value:
 					choices.append((_("Show disclaimer"), "disclaimer"))
 				choices.append((_("Cancel"), ""))
@@ -267,8 +269,8 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 			self.channellist_only = 1
 			self.slider.setValue(1)
 			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
-		#elif answer[1] == "commits":
-		#	self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), CommitInfo)
+		elif answer[1] == "commits":
+			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), CommitInfo)
 		elif answer[1] == "disclaimer":
 			self.showDisclaimer(justShow=True)
 		elif answer[1] == "showlist":

@@ -150,17 +150,16 @@ class About(Screen):
 		self["hddA"] = StaticText(hddinfo)
 		AboutText += hddinfo
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
-
 		self["key_green"] = Button(_("Translations"))
 		self["key_red"] = Button(_("Latest Commits"))
 		self["key_blue"] = Button(_("Memory Info"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				#"red": self.showCommits,
-				#"green": self.showTranslationInfo,
+				"red": self.showCommits,
+				"green": self.showTranslationInfo,
 				"blue": self.showMemoryInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown
@@ -224,50 +223,52 @@ class CommitInfo(Screen):
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown,
 				"left": self.left,
-				"right": self.right
+				"right": self.right,
+				"deleteBackward": self.left,
+				"deleteForward": self.right
 			})
 
 		self["key_red"] = Button(_("Cancel"))
 
 		self.project = 0
 		self.projects = [
-			("stbgui", "openMips Enigma2"),
-			("skin-pax", "openMips Skin GigaBlue Pax"),
-			("oe-alliance-core", "OE Alliance")
+			#("organisation",  "repository",           "readable name",                "branch"),
+			("openmips",      "stbgui",               "openMips Enigma2",             "master"),
+			("openmips",      "skin-pax",             "openMips Skin GigaBlue Pax",   "master"),
+			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "2.3"),
+			("oe-alliance",   "oe-alliance-plugins",  "OE Alliance Plugins",          "2.3"),
+			("oe-alliance",   "enigma2-plugins",      "OE Alliance Enigma2 Plugins",  "2.3")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
-		self.Timer.callback.append(self.readCommitLogs)
+		self.Timer.callback.append(self.readGithubCommitLogs)
 		self.Timer.start(50, True)
 
-	def readCommitLogs(self):
+	def readGithubCommitLogs(self):
+		url = 'https://api.github.com/repos/%s/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][1], self.projects[self.project][3])
+		# print "[About] url: ", url
+		commitlog = ""
+		from datetime import datetime
+		from json import loads
 		from urllib2 import urlopen
-		feed = self.projects[self.project][0]
-		commitlog = 80 * '-' + '\n'
-		commitlog += feed + '\n'
-		commitlog += 80 * '-' + '\n'
-		if "oe-alliance" in feed:
-			url = 'https://github.com/oe-alliance/%s/commits/2.3' % feed[5:]
-			print "[About] url: ", url
-		else:
-			url = 'https://github.com/openmips/%s/commits/master' % feed[7:] 
-			print "[About] url: ", url
 		try:
-			for x in  urlopen(url, timeout=5).read().split('commit-title')[1:]:
-				for y in x.split('" ', 7):
-					if y[:7] == 'title="':
-						title = y.split('>', 1)[1].split('<', 1)[0]
-					if y[:4] == 'rel=':
-						author = y.split('>', 1)[1].split('<', 1)[0]
-						date = y.split('datetime="')[1][:10]
-				commitlog += date + ' ' + author + '\n' + title + 2 * '\n'
+			commitlog += 80 * '-' + '\n'
+			commitlog += self.projects[self.project][1] + ' - ' + self.projects[self.project][2] + '\n'
+			commitlog += 80 * '-' + '\n'
+			for c in loads(urlopen(url, timeout=5).read()):
+				creator = c['commit']['author']['name']
+				title = c['commit']['message']
+				date = datetime.strptime(c['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%x %X')
+				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
+			commitlog = commitlog.encode('utf-8')
+			self.cachedProjects[self.projects[self.project][2]] = commitlog
 		except:
-			commitlog = _("Currently the commit log cannot be retrieved - please try later again")
+			commitlog += _("Currently the commit log cannot be retrieved - please try later again")
 		self["AboutScrollLabel"].setText(commitlog)
 
 	def updateCommitLogs(self):
-		if self.cachedProjects.has_key(self.projects[self.project][1]):
-			self["AboutScrollLabel"].setText(self.cachedProjects[self.projects[self.project][1]])
+		if self.cachedProjects.has_key(self.projects[self.project][2]):
+			self["AboutScrollLabel"].setText(self.cachedProjects[self.projects[self.project][2]])
 		else:
 			self["AboutScrollLabel"].setText(_("Please wait"))
 			self.Timer.start(50, True)
@@ -308,7 +309,7 @@ class MemoryInfo(Screen):
 
 		self["params"] = MemoryInfoSkinParams()
 
-		self['info'] = Label(_("This info is for developers only.\nFor a normal users it is not important.\nDon't panic, please, when here will be displayed any suspicious informations!"))
+		self['info'] = Label(_("This info is for developers only.\nIt is not important for a normal user.\nPlease - do not panic on any displayed suspicious information!"))
 
 		self.setTitle(_("Memory Info"))
 		self.onLayoutFinish.append(self.getMemoryInfo)
