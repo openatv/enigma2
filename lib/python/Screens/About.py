@@ -232,9 +232,11 @@ class CommitInfo(Screen):
 
 		self.project = 0
 		self.projects = [
-			("stbgui", "openMips Enigma2"),
-			("skin-pax", "openMips Skin GigaBlue Pax"),
-			("oe-alliance-core", "OE Alliance Core")
+			("stbgui", "openMips Enigma2", "master"),
+			("skin-pax", "openMips Skin GigaBlue Pax", "master"),
+			("oe-alliance-core", "OE Alliance Core", "2.3"),
+			("oe-alliance-plugins", "OE Alliance Plugins", "2.3"),
+			("enigma2-plugins", "OE Alliance Enigma2 Plugins", "2.3")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
@@ -244,10 +246,10 @@ class CommitInfo(Screen):
 	def readGithubCommitLogs(self):
 		githubproject = self.projects[self.project][1]
 		if "OE Alliance" in githubproject:
-			url = 'https://api.github.com/repos/oe-alliance/%s/commits?branch=2.3' % self.projects[self.project][0]
+			url = 'https://api.github.com/repos/oe-alliance/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][2])
 			# print "[About] url: ", url
 		else:
-			url = 'https://api.github.com/repos/openmips/%s/commits?branch=master' % self.projects[self.project][0]
+			url = 'https://api.github.com/repos/openmips/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][2])
 			# print "[About] url: ", url
 		commitlog = ""
 		from datetime import datetime
