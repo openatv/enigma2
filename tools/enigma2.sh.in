@@ -46,7 +46,6 @@ case $ret in
 		/sbin/reboot
 		;;
 	3)
-		rm -fR /home/root/.gstreamer-0.10
 		;;
 	4)
 		/sbin/rmmod lcd
