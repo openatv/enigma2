@@ -848,7 +848,7 @@ class NimManager:
 				from Screens.MessageBox import MessageBox
 				def emergencyAid():
 					if not path.exists("/etc/enigma2/lamedb"):
-						print "/etc/enigma2/lamedb not found"
+						print "[NimManager] /etc/enigma2/lamedb not found"
 						return None
 					f = file("/etc/enigma2/lamedb","r")
 					lamedb = f.readlines()
