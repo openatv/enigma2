@@ -1998,7 +1998,7 @@ def InitNimManager(nimmgr):
 					oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
 					open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
 				except:
-					#print "[NimManager] [info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+					print "[NimManager] [info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 
 				frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
 				frontend.closeFrontend()
@@ -2007,7 +2007,7 @@ def InitNimManager(nimmgr):
 				try:
 					open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
 				except:
-					#print "[NimManager] [info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+					print "[NimManager] [info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 				nimmgr.enumerateNIMs()
 			else:
 				#print "[NimManager] tuner type is already already %d" %cur_type
