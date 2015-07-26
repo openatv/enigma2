@@ -223,7 +223,9 @@ class CommitInfo(Screen):
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown,
 				"left": self.left,
-				"right": self.right
+				"right": self.right,
+				"deleteBackward": self.left,
+				"deleteForward": self.right
 			})
 
 		self["key_red"] = Button(_("Cancel"))
@@ -309,7 +311,7 @@ class MemoryInfo(Screen):
 
 		self["params"] = MemoryInfoSkinParams()
 
-		self['info'] = Label(_("This info is for developers only.\nFor a normal users it is not important.\nDon't panic, please, when here will be displayed any suspicious informations!"))
+		self['info'] = Label(_("This info is for developers only.\nIt is not important for a normal user.\nPlease - do not panic on any displayed suspicious information!"))
 
 		self.setTitle(_("Memory Info"))
 		self.onLayoutFinish.append(self.getMemoryInfo)
