@@ -212,6 +212,7 @@ When you discover 'bugs' please keep them reported on www.gigablue-support.com.\
 					choices = []
 				if fileExists("/home/root/ipkgupgrade.log"):
 					choices.append((_("Show latest upgrade log"), "log"))
+				#choices.append((_("Show latest commits"), "commits"))
 				if not config.usage.show_update_disclaimer.value:
 					choices.append((_("Show disclaimer"), "disclaimer"))
 				choices.append((_("Cancel"), ""))
