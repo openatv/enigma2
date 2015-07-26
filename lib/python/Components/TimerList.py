@@ -22,7 +22,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		width = self.l.getItemSize().width()
 		res = [ None ]
 
-		serviceName = timer.service_ref.getServiceName()
+		serviceName = "  " + timer.service_ref.getServiceName()
 
 		serviceNameWidth = getTextBoundarySize(self.instance, self.serviceNameFont, self.l.getItemSize(), serviceName).width()
 		if 200 > width - serviceNameWidth - self.iconWidth - self.iconMargin:
