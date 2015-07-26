@@ -24,7 +24,7 @@ def onMountpointAdded(mountpoint):
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
-					#print "[Picon] adding path:", path
+					print "[Picon] adding path:", path
 					searchPaths.append(path)
 					break
 	except Exception, ex:
@@ -35,7 +35,7 @@ def onMountpointRemoved(mountpoint):
 	path = os.path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
-		#print "[Picon] removed path:", path
+		print "[Picon] removed path:", path
 	except:
 		pass
 
@@ -74,10 +74,10 @@ def getPiconName(serviceName):
 	if not pngname: # picon by channel name
 		try:
 			name = ServiceReference(serviceName).getServiceName()
-			#print "[Picon] unicodedata.normalize: ", name
+			# print "[Picon] unicodedata.normalize: ", name
 			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-			#print "[Picon] picon by channel name: ", name
+			print "[Picon] picon by channel name: ", name
 			if name:
 				pngname = findPicon(name)
 				if not pngname and len(name) > 2 and name.endswith('hd'):

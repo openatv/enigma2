@@ -29,7 +29,7 @@ def onMountpointAdded(mountpoint):
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
-					#print "[LcdPicon] adding path:", path
+					print "[LcdPicon] adding path:", path
 					searchPaths.append(path)
 					break
 	except Exception, ex:
@@ -43,7 +43,7 @@ def onMountpointRemoved(mountpoint):
 		path = os.path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
-		#print "[LcdPicon] removed path:", path
+		print "[LcdPicon] removed path:", path
 	except:
 		pass
 
