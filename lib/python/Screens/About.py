@@ -271,7 +271,10 @@ class CommitInfo(Screen):
 				creator = c['commit']['author']['name']
 				title = c['commit']['message']
 				date = datetime.strptime(c['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%x %X')
-				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
+				if title.startswith ("Merge "):
+					pass
+				else:
+					commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
 			commitlog = commitlog.encode('utf-8')
 			self.cachedProjects[self.projects[self.project][2]] = commitlog
 		except:
