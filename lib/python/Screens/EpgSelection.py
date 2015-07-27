@@ -148,8 +148,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', {
 				'left': (self.prevPage, _('Move up a page')),
 				'right': (self.nextPage, _('Move down a page')),
-				'up': (self.moveUp, _('Go to previous channel')),
-				'down': (self.moveDown, _('Go to next channel'))
+				'up': (self.moveUp, _('Go to previous event')),
+				'down': (self.moveDown, _('Go to next event'))
 			}, prio=-1, description=_('Navigation'))
 			self['epgcursoractions'].csel = self
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
@@ -193,21 +193,22 @@ class EPGSelection(Screen, HelpableScreen):
 				self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', {
 					'left': (self.prevPage, _('Move up a page')),
 					'right': (self.nextPage, _('Move down a page')),
-					'up': (self.moveUp, _('Go to previous channel')),
-					'down': (self.moveDown, _('Go to next channel'))
+					'up': (self.moveUp, _('Go to previous event')),
+					'down': (self.moveDown, _('Go to next event'))
 				}, prio=-1, description=_('Navigation'))
 				self['epgcursoractions'].csel = self
+			numHelp = _('Enter number(s) to jump to channel')
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', {
-				'0': self.keyNumberGlobal,
-				'1': self.keyNumberGlobal,
-				'2': self.keyNumberGlobal,
-				'3': self.keyNumberGlobal,
-				'4': self.keyNumberGlobal,
-				'5': (self.keyNumberGlobal, _('Enter number(s) to jump to channel.')),
-				'6': self.keyNumberGlobal,
-				'7': self.keyNumberGlobal,
-				'8': self.keyNumberGlobal,
-				'9': self.keyNumberGlobal
+				'0': (self.keyNumberGlobal, numHelp),
+				'1': (self.keyNumberGlobal, numHelp),
+				'2': (self.keyNumberGlobal, numHelp),
+				'3': (self.keyNumberGlobal, numHelp),
+				'4': (self.keyNumberGlobal, numHelp),
+				'5': (self.keyNumberGlobal, numHelp),
+				'6': (self.keyNumberGlobal, numHelp),
+				'7': (self.keyNumberGlobal, numHelp),
+				'8': (self.keyNumberGlobal, numHelp),
+				'9': (self.keyNumberGlobal, numHelp)
 			}, prio=-1, description=_('Zap by channel number'))
 			self['input_actions'].csel = self
 			self.list = []
