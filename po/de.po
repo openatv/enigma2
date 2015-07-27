@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-07-23 18:17+0100\n"
+"PO-Revision-Date: 2015-07-27 17:46+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -685,14 +685,6 @@ msgstr ""
 #
 msgid "A small overview of the available icon states and actions."
 msgstr "Eine kurze Übersicht der verfügbaren Icon-Darstellungen und -Aktionen."
-
-#
-msgid ""
-"A timer failed to record!\n"
-"Disable TV and try again?\n"
-msgstr ""
-"Timeraufnahme fehlgeschlagen.\n"
-"Fernsehprogramm ändern und erneut versuchen?\n"
 
 #
 msgid "A/V settings"
@@ -16047,3 +16039,68 @@ msgstr "< Standard mit Picon >"
 # HelpMenu
 msgid "Show quickmenu..."
 msgstr "Schnellstartmenü anzeigen"
+
+# RecordTimer.py
+msgid "The TV was switched to the recording service!\n"
+msgstr "Es wurde auf den Sender umgeschaltet, auf dem die Aufnahme läuft.\n"
+
+# RecordTimer.py
+msgid ""
+"A timer failed to record!\n"
+"Disable PIP and try again?\n"
+msgstr ""
+"Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+"PIP deaktivieren und erneut versuchen?\n"
+
+# RecordTimer.py
+msgid ""
+"A timer failed to record!\n"
+"Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
+msgstr ""
+"Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+"Pseudo-Aufnahmen (z.B. EPG Refresh) beenden und erneut versuchen?\n"
+
+# RecordTimer.py
+msgid ""
+"A timer failed to record!\n"
+"Disable TV and try again?\n"
+msgstr ""
+"Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+"TV-Sender umschalten und erneut versuchen?\n"
+
+# RecordTimer.py
+msgid ""
+"In order to record a timer, a tuner was freed successfully:\n"
+"\n"
+msgstr ""
+"Um eine Timer-Aufnahme zu starten, wurde erfolgreich ein Tuner frei gemacht:\n"
+"\n"
+
+# RecordTimer.py
+# RecordTimer.py
+msgid ""
+"No tuner is available for recording a timer!\n"
+"\n"
+"The following methods of freeing a tuner were tried without success:\n"
+"\n"
+msgstr ""
+"Eine Timer-Aufnahme konnte nicht gestartet werden, da kein Tuner verfügbar war.\n"
+"\n"
+"Folgende Maßnahmen wurden versucht, jedoch ohne Erfolg:\n"
+"\n"
+
+# RecordTimer.py
+msgid "No tuner is available for recording a timer!\n"
+msgstr "Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+
+# RecordTimer.py
+msgid "Disabled PIP.\n"
+msgstr "PIP wurde deaktiviert.\n"
+
+# RecordTimer.py
+msgid "Tried to disable PIP, suddenly found no InfoBar.instance.\n"
+msgstr "Beim Versuch, PIP zu deaktivieren, wurde keine InfoBar.instance gefunden.\n"
+
+# RecordTimer.py
+msgid "Aborted a pseudo recording.\n"
+msgstr "Eine Pseudo-Aufnahme wurde deaktiviert.\n"
