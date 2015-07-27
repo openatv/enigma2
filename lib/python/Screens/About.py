@@ -85,6 +85,18 @@ class About(Screen):
 		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
+		CPUinfo = _("CPU: ") + about.getCPUInfoString() + "\n"
+		self["CPUinfo"] = StaticText(CPUinfo)
+		AboutText += CPUinfo + "\n"
+
+		CPUspeed = _("Speed: ") + about.getCPUSpeedString() + "\n"
+		self["CPUspeed"] = StaticText(CPUspeed)
+		AboutText += CPUspeed + "\n"
+
+		ChipsetInfo = _("Chipset: ") + about.getChipSetString() + "\n"
+		self["ChipsetInfo"] = StaticText(ChipsetInfo)
+		AboutText += ChipsetInfo + "\n"
+
 		KernelVersion = _("Kernel version: ") + about.getKernelVersionString() + "\n"
 		self["KernelVersion"] = StaticText(KernelVersion)
 		AboutText += KernelVersion + "\n"
