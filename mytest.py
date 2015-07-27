@@ -671,8 +671,8 @@ def runScreenTest():
 	wakeupList = [
 		x for x in ((nextRecordingTime, 0, nextRecordingAuto),
 					(nextZapTime, 1, nextZapAuto),
-					(plugins.getNextWakeupTime(), 2, False),
-					(nextPowerManagerTime, 3, nextPowerManagerAuto))
+					(nextPowerManagerTime, 2, nextPowerManagerAuto),
+					(plugins.getNextWakeupTime(), 3, False))
 		if x[0] != -1
 	]
 	wakeupList.sort()
@@ -687,7 +687,7 @@ def runScreenTest():
 		wpoffset = int(config.workaround.wakeuptimeoffset.value)
 
 	recordTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] != 3:
+	if wakeupList and wakeupList[0][1] != 2:
 		startTime = wakeupList[0]
 		# wakeup time is 5 min before timer starts + offset
 		wptime = startTime[0] - 300 - wpoffset
@@ -705,7 +705,7 @@ def runScreenTest():
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
 
 	PowerTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] == 3:
+	if wakeupList and wakeupList[0][1] == 2:
 		startTime = wakeupList[0]
 		# wakeup time is 5 min before timer starts + offset
 		wptime = startTime[0] - 300 - wpoffset
