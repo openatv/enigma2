@@ -3,6 +3,8 @@ import struct, socket, fcntl, sys, os, time
 from sys import modules
 from Tools.HardwareInfo import HardwareInfo
 
+from boxbranding import getBoxType
+
 def getVersionString():
 	return getImageVersionString()
 
@@ -42,6 +44,54 @@ def getKernelVersionString():
 	except:
 		return _("unknown")
 
+def getChipSetString():
+	try:
+		f = open('/proc/stb/info/chipset', 'r')
+		chipset = f.read()
+		f.close()
+		return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm','').replace('sti',''))
+	except IOError:
+		return "unavailable"
+
+def getCPUString():
+	if getBoxType() in ('xc7362'):
+		return "Broadcom"
+	else:
+		try:
+			system="unknown"
+			file = open('/proc/cpuinfo', 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split(': ')
+				if len(splitted) > 1:
+					splitted[1] = splitted[1].replace('\n','')
+					if splitted[0].startswith("system type"):
+						system = splitted[1].split(' ')[0]
+					elif splitted[0].startswith("Processor"):
+						system = splitted[1].split(' ')[0]
+			file.close()
+			return system
+		except IOError:
+			return "unavailable"
+
+def getCpuCoresString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("processor"):
+					if int(splitted[1]) > 0:
+						cores = 2
+					else:
+						cores = 1
+		file.close()
+		return cores
+	except IOError:
+		return "unavailable"
+
 def getHardwareTypeString():
 	return HardwareInfo().get_device_string()
 
@@ -68,6 +118,25 @@ def getCPUInfoString():
 	except:
 		return _("undefined")
 
+def getCPUSpeedString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("cpu MHz"):
+					mhz = float(splitted[1].split(' ')[0])
+					if mhz and mhz >= 1000:
+						mhz = "%s GHz" % str(round(mhz/1000,1))
+					else:
+						mhz = "%s MHz" % str(round(mhz,1))
+		file.close()
+		return mhz
+	except IOError:
+		return "unavailable"
+
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', ifname[:15])
 	info  = fcntl.ioctl(sock.fileno(), addr, iface)
@@ -86,12 +155,12 @@ def getIfConfig(ifname):
 	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
-                print "in TRYYYYYYY", ifname
+		print "in TRYYYYYYY", ifname
 		for k,v in infos.items():
-                        print infos.items()
+			print infos.items()
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
-                print "IN EXCEEEEEEEEPT", ifname
+			print "IN EXCEEEEEEEEPT", ifname
 		pass
 	sock.close()
 	return ifreq
