@@ -608,7 +608,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		if getNextStbPowerOn:
 			if next_state == 3 and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY or self.afterEvent == AFTEREVENT.WAKEUP or  self.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY):
-				if self.begin > time() and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY): #timer start time is later as now - begin time was changed while running timer
+				if self.start_prepare > time() and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY): #timer start time is later as now - begin time was changed while running timer
+					return self.start_prepare
+				elif self.begin > time() and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY): #timer start time is later as now - begin time was changed while running timer
 					return self.begin
 				if self.afterEvent == AFTEREVENT.WAKEUP or self.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
 					return self.end
@@ -627,9 +629,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if int(wd_repeated[s]):
 							next_day = s
 							break
-				return self.begin + 86400 * count_day
-			elif next_state < 3 and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY):
+				#return self.begin + 86400 * count_day
+				return self.start_prepare + 86400 * count_day
+			elif next_state == 2 and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY):
 				return self.begin
+			elif next_state == 1 and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY):
+				return self.start_prepare
 			elif next_state < 3 and (self.afterEvent == AFTEREVENT.WAKEUP or self.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY):
 				return self.end
 			else:
