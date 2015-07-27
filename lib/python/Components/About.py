@@ -160,7 +160,7 @@ def getIfConfig(ifname):
 			print infos.items()
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
-			print "IN EXCEEEEEEEEPT", ifname
+		print "IN EXCEEEEEEEEPT", ifname
 		pass
 	sock.close()
 	return ifreq
