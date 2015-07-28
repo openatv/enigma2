@@ -697,7 +697,7 @@ def runScreenTest():
 #		if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M", localtime(wptime))
+		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[2]
 		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
@@ -715,7 +715,7 @@ def runScreenTest():
 #		if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M", localtime(wptime))
+		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
 		setFPWakeuptime(wptime)
 		PowerTimerWakeupAuto = startTime[2]
 		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto
