@@ -46,11 +46,6 @@ AC_SUBST(LIBJPEG_LIBS)
 AC_CHECK_LIB([ungif], [DGifOpen], [LIBGIF_LIBS="-lungif"], [AC_CHECK_LIB([gif], [DGifOpen], [LIBGIF_LIBS="-lgif"], [AC_MSG_ERROR([Could not find libgif or libungif])])])
 AC_SUBST(LIBGIF_LIBS)
 
-AC_LANG_PUSH([C++])
-AC_CHECK_LIB([xmlccwrap], [exit], [LIBXMLCCWRAP_LIBS="-lxmlccwrap"], [AC_MSG_ERROR([Could not find libxmlccwrap])])
-AC_SUBST(LIBXMLCCWRAP_LIBS)
-AC_LANG_POP
-
 AC_ARG_WITH(boxtype,
 	[  --with-boxtype=NAME box type [[none,dm7025,dm800...]]],
 	[BOXTYPE="$withval"],[BOXTYPE="dm800"])
