@@ -159,6 +159,18 @@ class Navigation:
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(stbytimer * 1000, True)
 
+			#workaround if wake up time is set through a plugin
+			elif not self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 600:
+				self.__wasRecTimerWakeup = True
+				print '[NAVIGATION] RECTIMER: wakeup to standby detected.(time to wakeup is set from a plugin) Timer starts at %s' % ctime(nextRT)
+				f = open("/tmp/was_rectimer_wakeup", "w")
+				f.write('1')
+				f.close()
+				# as we woke the box to record, place the box in standby.
+				self.standbytimer = eTimer()
+				self.standbytimer.callback.append(self.gotostandby)
+				self.standbytimer.start(stbytimer * 1000, True)
+
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
 
@@ -216,6 +228,17 @@ class Navigation:
 			f.write('1')
 			f.close()
 			self.gotostandby()
+		#workaround if wake up time is set through a plugin
+		elif not self.nextRecordTimerAfterEventActionAuto and abs(timediffRT) <= 600:
+			self.__wasRecTimerWakeup = True
+			print '[NAVIGATION] RECTIMER: wakeup to standby detected.(time to wakeup is set from a plugin) Timer starts at %s' % ctime(nextRT)
+			print "[NAVIGATION] getNextRecordingTime= %s" % nextRT
+			print "[NAVIGATION] current Time=%s" % now
+			print "[NAVIGATION] timediff=%s" % abs(timediffRT)
+			f = open("/tmp/was_rectimer_wakeup", "w")
+			f.write('1')
+			f.close()
+			self.gotostandby()
 		else:
 			if self.syncCount <= 24 and now <= 31536000: # max 2 mins or when time is in sync
 				self.timesynctimer.start(5000, True)
@@ -226,6 +249,8 @@ class Navigation:
 			print"[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
 		elif self.nextPowerManagerAfterEventActionAuto:
 			print"[NAVIGATION] wasPowerTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasPowerTimerWakeup, self.syncCount * 5)
+		elif not self.nextRecordTimerAfterEventActionAuto and self.__wasRecTimerWakeup:
+			print"[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
 
 	def gotostandby(self):
 		print '[NAVIGATION] TIMER: now entering standby'
