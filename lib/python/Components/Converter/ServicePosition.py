@@ -27,6 +27,7 @@ class ServicePosition(Poll, Converter, object):
 		self.detailed = 'Detailed' in args
 		self.showHours = 'ShowHours' in args
 		self.showNoSeconds = 'ShowNoSeconds' in args
+		self.OnlyMinute = 'OnlyMinute' in args
 
 		if type == "Length":
 			self.type = self.TYPE_LENGTH
@@ -283,6 +284,8 @@ class ServicePosition(Poll, Converter, object):
 								return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
 							elif self.type == self.TYPE_POSITION:
 								return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
+							elif self.type == self.TYPE_REMAINING and self.OnlyMinute:
+								return ngettext("%d", "%d", (r/60)) % (r/60)
 							elif self.type == self.TYPE_REMAINING:
 								return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 						else:
