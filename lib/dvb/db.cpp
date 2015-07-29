@@ -1081,7 +1081,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 	Element *root = tree.getRoot();
 	if (!root)
 	{
-		eDebug("[eDVBDB] couldn't open %s!!", satellitesFilename);
+		eDebug("[eDVBDB] couldn't open satellites.xml - maybe corrupted!!");
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
