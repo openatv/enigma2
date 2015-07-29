@@ -125,6 +125,7 @@ class Standby(Screen):
 			config.misc.standbyCounter.value += 1
 
 	def stopService(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 	def createSummary(self):
