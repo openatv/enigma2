@@ -1081,7 +1081,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 	Element *root = tree.getRoot();
 	if (!root)
 	{
-		eDebug("[eDVBDB] satellites.xml is maybe corrupted");
+		eDebug("[eDVBDB] couldn't open %s!!", satellitesFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
@@ -1230,12 +1230,17 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 		return NULL;
 	}
 	XMLTree tree;
-	tree.setFilename("/etc/tuxbox/cables.xml");
+	const char* cablesFilename = "/etc/enigma2/cables.xml";
+	if (::access(cablesFilename, R_OK) < 0)
+	{
+		cablesFilename = "/etc/tuxbox/cables.xml";
+	}
+	tree.setFilename(cablesFilename);
 	tree.read();
 	Element *root = tree.getRoot();
 	if (!root)
 	{
-		eDebug("[eDVBDB] couldn't open /etc/tuxbox/cables.xml!!");
+		eDebug("[eDVBDB] couldn't open %s!!", cablesFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
@@ -1350,12 +1355,17 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 		return NULL;
 	}
 	XMLTree tree;
-	tree.setFilename("/etc/tuxbox/terrestrial.xml");
+	const char* terrestrialFilename = "/etc/enigma2/terrestrial.xml";
+	if (::access(terrestrialFilename, R_OK) < 0)
+	{
+		terrestrialFilename = "/etc/tuxbox/terrestrial.xml";
+	}
+	tree.setFilename(terrestrialFilename);
 	tree.read();
 	Element *root = tree.getRoot();
 	if (!root)
 	{
-		eDebug("[eDVBDB] couldn't open /etc/tuxbox/terrestrial.xml!!");
+		eDebug("[eDVBDB] couldn't open %s!!", terrestrialFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
