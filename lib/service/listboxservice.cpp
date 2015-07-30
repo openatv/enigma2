@@ -281,7 +281,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_servicetype_icon_mode(0), m_crypto_icon_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2), m_record_indicator_mode(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_itemheight(25), m_servicetype_icon_mode(0), m_crypto_icon_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2), m_record_indicator_mode(0), m_nonplayable_margins(10), m_items_distances(8)
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -326,6 +326,13 @@ void eListboxServiceContent::cursorHome()
 	{
 		m_cursor = m_list.begin();
 		m_cursor_number = 0;
+		while (m_cursor != m_list.end())
+		{
+			if (!((m_hide_number_marker && (m_cursor->flags & eServiceReference::isNumberedMarker)) || (m_cursor->flags & eServiceReference::isInvisible)))
+				break;
+			m_cursor++;
+			m_cursor_number++;
+		}
 	}
 }
 
@@ -427,6 +434,13 @@ int eListboxServiceContent::cursorMove(int count)
 			--m_cursor_number;
 			if (!(m_cursor->flags & eServiceReference::isInvisible))
 				++count;
+		}
+		while (m_cursor != m_list.end())
+		{
+			if (!((m_hide_number_marker && (m_cursor->flags & eServiceReference::isNumberedMarker)) || (m_cursor->flags & eServiceReference::isInvisible)))
+				break;
+			m_cursor++;
+			m_cursor_number++;
 		}
 	}
 	return 0;
@@ -737,13 +751,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						service_info->getName(*m_cursor, text);
 					if (!isPlayable)
 					{
-						area.setWidth(area.width() + m_element_position[celServiceEventProgressbar].width() + 10);
+						area.setWidth(area.width() + m_element_position[celServiceEventProgressbar].width() +  m_nonplayable_margins);
 						if (m_element_position[celServiceEventProgressbar].left() == 0)
 							area.setLeft(0);
-						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() + 10)
-							area.setLeft(m_element_position[celServiceNumber].width() + 10);
+						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() +  m_nonplayable_margins)
+							area.setLeft(m_element_position[celServiceNumber].width() +  m_nonplayable_margins);
 					}
-					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+					if (!(m_record_indicator_mode == 3 && isRecorded) && isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
 						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
@@ -825,9 +839,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					eRect bbox = para->getBoundBox();
 
 					int servicenameWidth = ((!isPlayable || m_column_width == -1 || (!piconPixmap && !m_column_width)) ? bbox.width() : m_column_width);
-					m_element_position[celServiceInfo].setLeft(area.left() + servicenameWidth + 8 + xoffs);
+					m_element_position[celServiceInfo].setLeft(area.left() + servicenameWidth + m_items_distances + xoffs);
 					m_element_position[celServiceInfo].setTop(area.top());
-					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + 8 + xoffs));
+					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + m_items_distances + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
 
 					if (isPlayable)
@@ -871,17 +885,17 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							{
 								eSize pixmap_size = pixmap->size();
 								eRect area = m_element_position[celServiceInfo];
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
 								int offs = 0;
 								if (m_servicetype_icon_mode == 1)
 								{
 									area = m_element_position[celServiceName];
 									offs = xoffs;
-									xoffs += pixmap_size.width() + 8;
+									xoffs += pixmap_size.width() + m_items_distances;
 								}
 								else if (m_crypto_icon_mode == 1 && m_pixmaps[picCrypto])
-									offs = offs + m_pixmaps[picCrypto]->size().width() + 8;
+									offs = offs + m_pixmaps[picCrypto]->size().width() + m_items_distances;
 								int correction = (area.height() - pixmap_size.height()) / 2;
 								area.moveBy(offset);
 								painter.clip(area);
@@ -898,11 +912,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							int offs = 0;
 							if (m_crypto_icon_mode == 1)
 							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
 								area = m_element_position[celServiceName];
 								offs = xoffs;
-								xoffs += pixmap_size.width() + 8;
+								xoffs += pixmap_size.width() + m_items_distances;
 							}
 							int correction = (area.height() - pixmap_size.height()) / 2;
 							area.moveBy(offset);
@@ -910,8 +924,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							{
 								if (m_crypto_icon_mode == 2)
 								{
-									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
 								}
 								painter.clip(area);
 								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
@@ -927,18 +941,18 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							int offs = 0;
 							if (m_record_indicator_mode == 1)
 							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
 								area = m_element_position[celServiceName];
 								offs = xoffs;
-								xoffs += pixmap_size.width() + 8;
+								xoffs += pixmap_size.width() + m_items_distances;
 							}
 							int correction = (area.height() - pixmap_size.height()) / 2;
 							area.moveBy(offset);
 							if (m_record_indicator_mode == 2)
 							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
 							}
 							painter.clip(area);
 							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
@@ -976,7 +990,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (e == celFolderPixmap)
 						if (m_element_position[celServiceEventProgressbar].left() == 0)
 							area.setLeft(0);
-						xoffset = pixmap_size.width() + 8;
+						xoffset = pixmap_size.width() + m_items_distances;
 					area.moveBy(offset);
 					painter.clip(area);
 					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHABLEND);

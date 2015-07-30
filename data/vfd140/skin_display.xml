@@ -432,25 +432,31 @@
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="140,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
 	<!-- LCD screen EMC -->
-  	<screen name="EMCMoviePlayerSummary" position="0,0" size="140,32" >
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="140,32" >
 		<widget source="session.CurrentService" render="Label" position="1,1" size="130,12" font="FdLcD;14" halign="center">
-			  <convert type="ServiceName">Name</convert>
+			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="Service" render="Progress" position="1,15" size="130,4" zPosition="2" borderWidth="1">
-			  <convert type="EMCServicePosition">Position</convert>
+			<convert type="EMCServicePosition">Position</convert>
 		</widget>
 		<widget source="Service" render="Progress" position="1,15" size="130,4" zPosition="1" borderWidth="1">
-			  <convert type="EMCRecordPosition">Position</convert>
+			<convert type="EMCRecordPosition">Position</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="1,22" size="58,25" font="FdLcD;12" halign="center">
-			  <convert type="ClockToText">Format:%H:%M</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="65,22" size="72,25" font="FdLcD;12" halign="center">
-			  <convert type="ServicePosition">Remaining,Negate</convert>
+			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="REC" position="67,22" size="70,25" font="FdLcD;12" halign="center">
-			  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			  <convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-  </screen>	
+	</screen>
+	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="140,32">
+		<widget source="SetupTitle" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" noWrap="1"  />
+		<widget source="SetupEntry" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="left" noWrap="1" />
+		<!--<widget source="SetupValue" render="Label" position="0,50" size="140,14" font="FdLcD;12" halign="left" transparent="1" />-->
+		<!-- <panel name="SummaryTunerStatusPanel" /> -->
+	</screen>
 </skin>

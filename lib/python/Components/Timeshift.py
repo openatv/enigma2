@@ -47,7 +47,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT, SCOPE_AUTORECORD
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService, eEPGCache
 from boxbranding import getBoxType, getBrandOEM
 
 from time import time, localtime, strftime
@@ -1228,9 +1228,8 @@ class InfoBarTimeshift:
 	def ptsCreateEITFile(self, filename):
 		if self.pts_curevent_eventid is not None:
 			try:
-				import Components.eitsave
 				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref.toString()
-				Components.eitsave.SaveEIT(serviceref, filename+".eit", self.pts_curevent_eventid, -1, -1)
+				eEPGCache.getinstance().saveEventToFile(filename+".eit", serviceref, self.pts_curevent_eventid, -1, -1)
 			except Exception, errormsg:
 				print "[Timeshift] %s" % errormsg
 

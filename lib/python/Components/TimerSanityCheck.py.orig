@@ -182,9 +182,8 @@ class TimerSanityCheck:
 				else:
 					fakeRecResult = -1
 				if not fakeRecResult: # tune okay
-					feinfo = fakeRecService.frontendInfo()
-					if feinfo:
-						tunerType.append(feinfo.getFrontendData().get("tuner_type"))
+					feinfo = fakeRecService.frontendInfo().getFrontendData()
+					tunerType.append(feinfo.get("tuner_type"))
 				else: # tune failed.. so we must go another way to get service type (DVB-S, DVB-T, DVB-C)
 
 					def getServiceType(ref): # helper function to get a service type of a service reference

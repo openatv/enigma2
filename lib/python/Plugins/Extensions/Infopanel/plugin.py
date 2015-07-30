@@ -298,6 +298,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.session = session
 		self.skin = MENU_SKIN
 		self.onShown.append(self.setWindowTitle)
+		ProtectedScreen.__init__(self)
 		self.service = None
 		global pluginlist
 		global videomode
@@ -349,7 +350,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["Mlist"].onSelectionChanged.append(self.selectionChanged)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.infopanel.value
+		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.infopanel.value
 
 	def createSummary(self):
 		pass

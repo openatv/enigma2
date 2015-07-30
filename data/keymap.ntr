@@ -47,6 +47,8 @@
 		<key id="KEY_GREEN" mapto="save" flags="b" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
@@ -110,6 +112,7 @@
 		<key id="KEY_F4" mapto="showPluginBrowser" flags="l" />
 		<key id="KEY_F4" mapto="extensions" flags="b" />
 		<key id="KEY_BLUE" mapto="extensions" flags="l" />
+		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
 	</map>
 
 	<map context="InfoBarQuickMenu">
@@ -919,7 +922,7 @@
 			</device-->
 		</map>
 
-		<map context="ButtonSetupActions">
+	<map context="ButtonSetupActions">
 		<key id="KEY_RED" mapto="red" flags="b"/>
 		<key id="KEY_RED" mapto="red_long" flags="l"/>
 		<key id="KEY_GREEN" mapto="green" flags="b"/>
@@ -999,6 +1002,8 @@
 		<key id="KEY_F2" mapto="f2_long" flags="l"/>
 		<key id="KEY_F3" mapto="f3" flags="b"/>
 		<key id="KEY_F3" mapto="f3_long" flags="l"/>
+		<key id="KEY_AUX" mapto="HDMIin" flags="b"/>
+		<key id="KEY_AUX" mapto="HDMIin_long" flags="l"/>
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />

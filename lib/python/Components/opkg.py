@@ -19,10 +19,7 @@ def enumPlugins(filter_start=''):
 	for feed in enumFeeds():
 		package = None
 		try:
-			if getImageVersion() == '4.0':
-				file = open('/var/lib/opkg/lists/%s' % feed, 'r')
-			else:
-				file = open('/var/lib/opkg/%s' % feed, 'r')
+			file = open(os.path.join(listsDirPath(), feed), 'r')
 			for line in file:
 				if line.startswith('Package:'):
 					package = line.split(":",1)[1].strip()
@@ -52,6 +49,15 @@ def enumPlugins(filter_start=''):
 			file.close()
 		except IOError:
 			pass
+
+def listsDirPath():
+	try:
+		for line in open('/etc/opkg/opkg.conf', "r"):
+			if line.startswith('lists_dir'):
+				return line.replace('\n','').split(' ')[2]
+	except IOError:
+		print "[opkg] cannot open %s" % path
+	return '/var/lib/opkg'
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):

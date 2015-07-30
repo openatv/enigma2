@@ -179,10 +179,12 @@ class Setup(ConfigListScreen, Screen):
 				self["VKeyIcon"].boolean = False
 
 	def HideHelp(self):
+		self.help_window_was_shown = False
 		try:
 			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
 				if self["config"].getCurrent()[1].help_window.instance is not None:
 					self["config"].getCurrent()[1].help_window.hide()
+					self.help_window_was_shown = True
 		except:
 			pass
 

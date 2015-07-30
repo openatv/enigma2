@@ -7,7 +7,7 @@ class ChannelNumbers:
 
 	def getChannelNumber(self, frequency, nim):
 
-		f = self.getMHz(frequency)
+		f = int(self.getMHz(frequency))
 		descr = self.getTunerDescription(nim)
 
 		if "Europe" in descr:

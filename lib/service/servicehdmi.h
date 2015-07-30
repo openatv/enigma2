@@ -95,6 +95,7 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
+	RESULT getFilenameExtension(std::string &ext) { ext = ".ts"; return 0; };
 
 private:
 	enum { stateIdle, statePrepared, stateRecording };

@@ -1175,7 +1175,7 @@ class InfoBarNumberZap:
 		return service, bouquet
 
 	def selectAndStartService(self, service, bouquet):
-		if service and not service.flags & eServiceReference.isMarker:
+		if service:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
 				if self.servicelist.bouquet_root != bouquet:
@@ -3359,8 +3359,9 @@ class InfoBarPiP:
 		else:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
+			if info:
+				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+			if info and int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
@@ -3368,8 +3369,27 @@ class InfoBarPiP:
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-					if SystemInfo["LCDMiniTV"]:
-						if config.lcd.modepip.value >= "1":
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+						print '[LCDMiniTV] enable PIP'
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.minitvpipmode.value)
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_width", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_height", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+						f.write("1")
+						f.close()
+				else:
+					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+					if self.session.pip.playService(newservice):
+						self.session.pipshown = True
+						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+						if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
+							print '[LCDMiniTV] enable PIP'
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modepip.value)
 							f.close()
@@ -3382,17 +3402,14 @@ class InfoBarPiP:
 							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
 							f.write("1")
 							f.close()
-				else:
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-					if self.session.pip.playService(newservice):
-						self.session.pipshown = True
-						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 					else:
 						self.lastPiPService = None
 						self.session.pipshown = False
 						del self.session.pip
-			else:
+			elif info:
 				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+			else:
+				self.session.open(MessageBox, _("No active channel found."), type = MessageBox.TYPE_INFO,timeout = 5 )
 		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
 			self.screenSaverTimer.stop()
 
@@ -3592,11 +3609,15 @@ class InfoBarInstantRecord:
 		# try to get event info
 		event = None
 		try:
-			service = self.session.nav.getCurrentService()
 			epg = eEPGCache.getInstance()
 			event = epg.lookupEventTime(info["serviceref"], -1, 0)
 			if event is None:
-				event = service.info().getEvent(0)
+				if hasattr(self, "SelectedInstantServiceRef") and self.SelectedInstantServiceRef:
+					service_info = eServiceCenter.getInstance().info(self.SelectedInstantServiceRef)
+					event = service_info and service_info.getEvent(self.SelectedInstantServiceRef)
+				else:
+					service = self.session.nav.getCurrentService()
+					event = service and service.info().getEvent(0)
 		except:
 			pass
 
@@ -4652,7 +4673,7 @@ class InfoBarTeletextPlugin:
 			print "no teletext plugin found!"
 
 	def startTeletext(self):
-		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
+		self.teletext_plugin and self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
 
 class InfoBarSubtitleSupport(object):
 	def __init__(self):
@@ -4853,7 +4874,7 @@ class InfoBarHdmi:
 			return _("Turn on HDMI-IN Full screen mode")
 		else:
 			return _("Turn off HDMI-IN Full screen mode")
-	      
+
 	def getHDMIInPiPScreen(self):
 		if not self.hdmi_enabled_pip:
 			return _("Turn on HDMI-IN PiP mode")
