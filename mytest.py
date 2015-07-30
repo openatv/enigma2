@@ -613,6 +613,11 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 
+profile("EpgCacheSched")
+import Components.EpgLoadSave
+Components.EpgLoadSave.EpgCacheSaveCheck()
+Components.EpgLoadSave.EpgCacheLoadCheck()
+
 profile("RFMod")
 import Components.RFmod
 Components.RFmod.InitRFmod()
