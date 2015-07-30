@@ -103,7 +103,13 @@
 		<item level="2" text="Enable Virgin EPG" description="Use Virgin EPG information when it is available.">config.epg.virgin</item>
 		<item level="2" text="Maintain old EPG data for" description="Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed.">config.epg.histminutes</item>
 		<item level="2" text="EPG Cache Path" description="Configure where epg.dat will be stored.">config.misc.epgcache_filename</item>
+		<item level="2" text="Automatic load" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
+		<!--<item level="2" text="Load every (in hours)" requires="config.epg.cacheloadsched" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item> -->
+		<item level="2" text="Load every (in hours)" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
+		<item level="2" text="Automatic save" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
+		<!--<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item> -->
+		<item level="2" text="Save every (in hours)" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle settings">
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>

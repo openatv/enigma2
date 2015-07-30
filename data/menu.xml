@@ -99,6 +99,31 @@
 				<menu weight="25" level="0" text="EPG" entryID="epg_menu">
 					<id val="epg_menu" />
 					<item weight="0" level="0" text="Basic settings" entryID="epg_settings"><setup id="epgsettings" /></item>
+					<menu weight="10" level="2" text="Manual load or save epg.dat" entryID="epgloadsave_menu">
+						<id val="epgloadsave_menu" />
+						<item weight="0" level="0" entryID="loadepgcache" text="Load EPG">
+							<code>
+from Components.EpgLoadSave import EpgLoadMsg
+def msgClosed(ret):
+	if ret:
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.load()
+self.session.openWithCallback(msgClosed, EpgLoadMsg)
+</code>
+						</item>
+						<item weight="50" level="0" entryID="saveepgcache" text="Save EPG">
+							<code>
+from Components.EpgLoadSave import EpgSaveMsg
+def msgClosed(ret):
+	if ret:
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.save()
+self.session.openWithCallback(msgClosed, EpgSaveMsg)
+</code>
+						</item>
+					</menu>
 				</menu>
 
 				<!-- Menu / Settings / System / Network Menu -->
