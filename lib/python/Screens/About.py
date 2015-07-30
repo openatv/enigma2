@@ -54,9 +54,11 @@ def getAboutText():
 	driversdate = '-'.join((year, month, day))
 	AboutText += _("Drivers:\t%s") % driversdate + "\n"
 
-	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
-
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
+	AboutText += _("Python:\t%s\n") % about.getPythonVersionString() + "\n"
+
+	AboutText += _("Installed:\t%s\n") % about.getFlashDateString() + "\n"
+	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
@@ -96,7 +98,7 @@ class About(Screen):
 		Screen.setTitle(self, _("Image Information"))
 		self.skinName = "AboutOE"
 		self.populate()
-		
+
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
@@ -112,54 +114,9 @@ class About(Screen):
 		self["lab1"] = StaticText(_("openATV"))
 		self["lab2"] = StaticText(_("By openATV Image Team"))
 		model = None
-		AboutText = ""
 		self["lab3"] = StaticText(_("Support at") + " www.opena.tv")
 
-		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
-
-		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
-
-		AboutText += _("CPU:\t%s\n") % about.getCPUString()
-		AboutText += _("CPU Speed:\t%s\n") % about.getCPUSpeedString()
-		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
-
-		AboutText += _("Version:\t%s\n") % getImageVersion()
-		AboutText += _("Build:\t%s\n") % getImageBuild()
-		
-		string = getDriverDate()
-		year = string[0:4]
-		month = string[4:6]
-		day = string[6:8]
-		driversdate = '-'.join((year, month, day))
-		AboutText += _("Drivers:\t%s\n") % driversdate
-		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		
-		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
-		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-
-		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
-		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
-
-		fp_version = getFPVersion()
-		if fp_version is None:
-			fp_version = ""
-		elif fp_version != 0:
-			fp_version = _("Frontprocessor version: %d") % fp_version
-			AboutText += fp_version + "\n"
-
-		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value') and getBoxType() not in ('gbquad'):
-			f = open('/proc/stb/sensors/temp0/value', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/proc/stb/fp/temp_sensor') and getBoxType() not in ('gbquad'):
-			f = open('/proc/stb/fp/temp_sensor', 'r')
-			tempinfo = f.read()
-			f.close()
-		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s%sC\n\n") % (tempinfo.replace('\n', ''), mark)
+		AboutText = getAboutText()[0]
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
