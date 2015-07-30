@@ -101,7 +101,7 @@
 					<item weight="0" level="0" text="Basic settings" entryID="epg_settings"><setup id="epgsettings" /></item>
 					<menu weight="10" level="2" text="Manual load or save epg.dat" entryID="epgloadsave_menu">
 						<id val="epgloadsave_menu" />
-						<item weight="0" level="0" entryID="loadepgcache" text="Load EPG">
+						<!-- <item weight="0" level="0" entryID="loadepgcache" text="Load EPG">
 							<code>
 from Components.EpgLoadSave import EpgLoadMsg
 def msgClosed(ret):
@@ -111,7 +111,7 @@ def msgClosed(ret):
 		epgcache.load()
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
 </code>
-						</item>
+						</item> -->
 						<item weight="50" level="0" entryID="saveepgcache" text="Save EPG">
 							<code>
 from Components.EpgLoadSave import EpgSaveMsg
