@@ -144,8 +144,21 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
-		self.descramble = descramble
-		self.record_ecm = record_ecm
+
+		if descramble == 'notset' and record_ecm == 'notset':
+			if config.recording.ecm_data.value == 'descrambled+ecm':
+				self.descramble = True
+				self.record_ecm = True
+			elif config.recording.ecm_data.value == 'scrambled+ecm':
+				self.descramble = False
+				self.record_ecm = True
+			elif config.recording.ecm_data.value == 'normal':
+				self.descramble = True
+				self.record_ecm = False
+		else:
+			self.descramble = descramble
+			self.record_ecm = record_ecm
+
 		self.wasInStandby = False
 		self.isAutoTimer = isAutoTimer
 
