@@ -106,8 +106,8 @@
 		<!--<item level="2" text="Automatic load EPG" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item> -->
 		<!--<item level="2" text="Load EPG every (in hours)" requires="config.epg.cacheloadsched" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item> -->
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
+		<item level="2" text="Automatic save EPG" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save EPG every (in hours)" requires="config.epg.cachesavesched" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item>
-		<item level="2" text="Save EPG every (in hours)" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle settings">
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
