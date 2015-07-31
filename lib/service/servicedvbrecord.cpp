@@ -416,6 +416,9 @@ int eDVBServiceRecord::doRecord()
 				}
 			}
 
+			/* add AIT pid (if any) */
+			if (program.aitPid >= 0) pids_to_record.insert(program.aitPid);
+
 				/* find out which pids are NEW and which pids are obsolete.. */
 			std::set<int> new_pids, obsolete_pids;
 
