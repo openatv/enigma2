@@ -4,6 +4,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/base/httpstream.h>
 #include <fcntl.h>
+#include <lib/base/nconfig.h>
 
 	/* for cutlist */
 #include <byteswap.h>
@@ -437,7 +438,14 @@ int eDVBServiceRecord::doRecord()
 				}
 			}
 
-				/* find out which pids are NEW and which pids are obsolete.. */
+			bool include_ait = eConfigManager::getConfigBoolValue("config.recording.include_ait");
+			if (include_ait)
+			{
+				/* add AIT pid (if any) */
+				if (program.aitPid >= 0) pids_to_record.insert(program.aitPid);
+			}
+
+			/* find out which pids are NEW and which pids are obsolete.. */
 			std::set<int> new_pids, obsolete_pids;
 
 			std::set_difference(pids_to_record.begin(), pids_to_record.end(),

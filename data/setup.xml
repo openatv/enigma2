@@ -191,6 +191,7 @@
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="Descramble &amp; record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">config.recording.ecm_data</item>
+		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
 		<item level="2" text="Show recording symbol depending on recording type" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before box restart based on recording type" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
 	</setup>
