@@ -650,8 +650,8 @@ def runScreenTest():
 	wakeupList = [
 		x for x in ((nextRecordingTime, 0, nextRecordingAuto),
 					(nextZapTime, 1, nextZapAuto),
-					(plugins.getNextWakeupTime(), 2, False),
-					(nextPowerManagerTime, 3, nextPowerManagerAuto))
+					(nextPowerManagerTime, 2, nextPowerManagerAuto),
+					(plugins.getNextWakeupTime(), 3, False))
 		if x[0] != -1
 	]
 	wakeupList.sort()
@@ -666,7 +666,7 @@ def runScreenTest():
 		wpoffset = int(config.workaround.wakeuptimeoffset.value)
 
 	recordTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] != 3:
+	if wakeupList and wakeupList[0][1] != 2:
 		startTime = wakeupList[0]
 		# wakeup time is 5 min before timer starts + offset
 		wptime = startTime[0] - 300 - wpoffset
@@ -676,7 +676,7 @@ def runScreenTest():
 #		if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M", localtime(wptime))
+		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[2]
 		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
@@ -684,7 +684,7 @@ def runScreenTest():
 	config.misc.isNextRecordTimerAfterEventActionAuto.save()
 
 	PowerTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] == 3:
+	if wakeupList and wakeupList[0][1] == 2:
 		startTime = wakeupList[0]
 		# wakeup time is 5 min before timer starts + offset
 		wptime = startTime[0] - 300 - wpoffset
@@ -694,7 +694,7 @@ def runScreenTest():
 #		if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M", localtime(wptime))
+		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
 		setFPWakeuptime(wptime)
 		PowerTimerWakeupAuto = startTime[2]
 		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto

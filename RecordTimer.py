@@ -684,9 +684,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if int(wd_repeated[s]):
 							next_day = s
 							break
-				return self.begin + 86400 * count_day
-			elif next_state < 3:
+				#return self.begin + 86400 * count_day
+				return self.start_prepare + 86400 * count_day
+			elif next_state == 2:
 				return self.begin
+			elif next_state == 1:
+				return self.start_prepare
 			else:
 				return -1
 
