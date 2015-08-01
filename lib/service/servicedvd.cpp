@@ -180,6 +180,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 
 void eServiceDVD::gotThreadMessage(const int &msg)
 {
+eDebug("[eServiceDVD] gotThreadMessage %d!", msg);
 	switch(msg)
 	{
 	case 1: // thread stopped
@@ -213,11 +214,11 @@ void eServiceDVD::gotMessage(int /*what*/)
 				return 1;
 			}
 */
-			eDebug("[eServiceDVD] no support for 8bpp framebuffer in dvdplayer yet!");
+			eDebug("[eServiceDVD] DDVD_COLORTABLE_UPDATE: no support for 8bpp framebuffer in dvdplayer yet!");
 			break;
 		}
 		case DDVD_SCREEN_UPDATE:
-			eDebug("[eServiceDVD] DVD_SCREEN_UPDATE!");
+			eDebug("[eServiceDVD] DVD_SCREEN_UPDATE");
 			if (m_subtitle_widget) {
 				int x1,x2,y1,y2;
 				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
@@ -226,7 +227,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 
 #ifdef DDVD_SUPPORTS_GET_BLIT_DESTINATION
 				ddvd_get_blit_destination(m_ddvdconfig, &x_offset, &y_offset, &width, &height);
-				eDebug("[eServiceDVD] values got from ddvd: %d %d %d %d", x_offset, y_offset, width, height);
+				eDebug("[eServiceDVD] DVD_SCREEN_UPDATE: values got from ddvd: %d %d %d %d", x_offset, y_offset, width, height);
 				y_offset = -y_offset;
 				width -= x_offset * 2;
 				height -= y_offset * 2;
@@ -239,54 +240,54 @@ void eServiceDVD::gotMessage(int /*what*/)
 			break;
 		case DDVD_SHOWOSD_STATE_PLAY:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_PLAY!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_PLAY");
 			m_current_trick = 0;
 			m_event(this, evUser+1);
 			break;
 		}
 		case DDVD_SHOWOSD_STATE_PAUSE:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_PAUSE!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_PAUSE");
 			m_event(this, evUser+2);
 			break;
 		}
 		case DDVD_SHOWOSD_STATE_FFWD:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_FFWD!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_FFWD");
 			m_event(this, evUser+3);
 			break;
 		}
 		case DDVD_SHOWOSD_STATE_FBWD:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_FBWD!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STATE_FBWD");
 			m_event(this, evUser+4);
 			break;
 		}
 		case DDVD_SHOWOSD_STRING:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_STRING!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_STRING");
 			m_event(this, evUser+5);
 			break;
 		}
 		case DDVD_SHOWOSD_AUDIO:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_AUDIO!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_AUDIO");
 			m_event(this, evUser+6);
 			break;
 		}
 		case DDVD_SHOWOSD_SUBTITLE:
 		{
-			eDebug("[eServiceDVD] DVD_SHOWOSD_SUBTITLE!");
+			eDebug("[eServiceDVD] DVD_SHOWOSD_SUBTITLE");
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			m_event(this, evUser+7);
 			break;
 		}
 		case DDVD_EOF_REACHED:
-			eDebug("[eServiceDVD] DVD_EOF_REACHED!");
+			eDebug("[eServiceDVD] DVD_EOF_REACHED");
 			m_event(this, evEOF);
 			break;
 		case DDVD_SOF_REACHED:
-			eDebug("[eServiceDVD] DVD_SOF_REACHED!");
+			eDebug("[eServiceDVD] DVD_SOF_REACHED");
 			m_event(this, evSOF);
 			break;
 		case DDVD_SHOWOSD_ANGLE:
@@ -301,7 +302,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		{
 			static struct ddvd_time last_info;
 			struct ddvd_time info;
-//			eDebug("DVD_SHOWOSD_TIME!");
+//			eDebug("[eServiceDVD] DVD_SHOWOSD_TIME");
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			if ( info.pos_chapter != last_info.pos_chapter )
 				m_event(this, evUser+8); // chapterUpdated
@@ -313,7 +314,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		case DDVD_SHOWOSD_TITLESTRING:
 		{
 			ddvd_get_title_string(m_ddvdconfig, m_ddvd_titlestring);
-			eDebug("[eServiceDVD] DDVD_SHOWOSD_TITLESTRING: %s",m_ddvd_titlestring);
+			eDebug("[eServiceDVD] DDVD_SHOWOSD_TITLESTRING: %s", m_ddvd_titlestring);
 			loadCuesheet();
 			if (!m_cue_pts)
 				unpause();
@@ -321,13 +322,13 @@ void eServiceDVD::gotMessage(int /*what*/)
 			break;
 		}
 		case DDVD_MENU_OPENED:
-			eDebug("[eServiceDVD] DVD_MENU_OPENED!");
+			eDebug("[eServiceDVD] DVD_MENU_OPENED");
 			m_state = stMenu;
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+11);
 			break;
 		case DDVD_MENU_CLOSED:
-			eDebug("[eServiceDVD] DVD_MENU_CLOSED!");
+			eDebug("[eServiceDVD] DVD_MENU_CLOSED");
 			m_state = stRunning;
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
@@ -337,6 +338,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		{
 			int changed = m_width != -1 && m_height != -1 && m_aspect != -1;
 			ddvd_get_last_size(m_ddvdconfig, &m_width, &m_height, &m_aspect);
+			eDebug("[eServiceDVD] DVD_SIZE_CHANGED %d: %dx%d %d", changed, m_width, m_height, m_aspect);
 			if (changed)
 				m_event((iPlayableService*)this, evVideoSizeChanged);
 			break;
@@ -345,6 +347,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		{
 			int changed = m_progressive != -1;
 			ddvd_get_last_progressive(m_ddvdconfig, &m_progressive);
+			eDebug("[eServiceDVD] DVD_PROGRESSIVE_CHANGED %d: %d", changed, m_progressive);
 			if (changed)
 				m_event((iPlayableService*)this, evVideoProgressiveChanged);
 			break;
@@ -353,19 +356,21 @@ void eServiceDVD::gotMessage(int /*what*/)
 		{
 			int changed = m_framerate != -1;
 			ddvd_get_last_framerate(m_ddvdconfig, &m_framerate);
+			eDebug("[eServiceDVD] DVD_FRAMERATE_CHANGED %d: %d", changed, m_framerate);
 			if (changed)
 				m_event((iPlayableService*)this, evVideoFramerateChanged);
 			break;
 		}
 #endif
 		default:
+			eDebug("[eServiceDVD] Unknown Message");
 			break;
 	}
 }
 
 eServiceDVD::~eServiceDVD()
 {
-	eDebug("[eServiceDVD] destruct!");
+	eDebug("[eServiceDVD] destruct");
 	kill();
 	saveCuesheet();
 	ddvd_close(m_ddvdconfig);
@@ -401,30 +406,35 @@ RESULT eServiceDVD::stop()
 
 RESULT eServiceDVD::setTarget(int /*target*/)
 {
+	eDebug("[eServiceDVD] setTarget");
 	return -1;
 }
 
 RESULT eServiceDVD::pause(ePtr<iPauseableService> &ptr)
 {
 	ptr=this;
+	eDebug("[eServiceDVD] pause");
 	return 0;
 }
 
 RESULT eServiceDVD::seek(ePtr<iSeekableService> &ptr)
 {
 	ptr=this;
+	// eDebug("[eServiceDVD] seek");
 	return 0;
 }
 
 RESULT eServiceDVD::subtitle(ePtr<iSubtitleOutput> &ptr)
 {
 	ptr=this;
+	eDebug("[eServiceDVD] subtitle");
 	return 0;
 }
 
 RESULT eServiceDVD::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 {
 	ptr = this;
+	eDebug("[eServiceDVD] audioTracks");
 	return 0;
 }
 
@@ -432,6 +442,7 @@ int eServiceDVD::getNumberOfTracks()
 {
 	int i = 0;
 	ddvd_get_audio_count(m_ddvdconfig, &i);
+	eDebug("[eServiceDVD] getNumberOfTracks: %d", i);
 	return i;
 }
 
@@ -440,23 +451,27 @@ int eServiceDVD::getCurrentTrack()
 	int audio_id,audio_type;
 	uint16_t audio_lang;
 	ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
+	eDebug("[eServiceDVD] getCurrentTracks: id=%d lang=%X type=%d", audio_id, audio_lang, audio_type);
 	return audio_id;
 }
 
 RESULT eServiceDVD::selectTrack(unsigned int i)
 {
+	eDebug("[eServiceDVD] selectTrack: %d", i);
 	ddvd_set_audio(m_ddvdconfig, i);
 	return 0;
 }
 
 RESULT eServiceDVD::getTrackInfo(struct iAudioTrackInfo &info, unsigned int audio_id)
 {
+	eDebug("[eServiceDVD] getTrackInfo");
 	int audio_type;
 	uint16_t audio_lang;
 	ddvd_get_audio_byid(m_ddvdconfig, audio_id, &audio_lang, &audio_type);
 	char audio_string[3]={audio_lang >> 8, audio_lang, 0};
 	info.m_pid = audio_id+1;
 	info.m_language = audio_string;
+	eDebug("[eServiceDVD] getTrackInfo: id=%d lang=%X type=%d", audio_id, audio_lang, audio_type);
 	switch(audio_type)
 	{
 		case DDVD_MPEG:
@@ -480,6 +495,7 @@ RESULT eServiceDVD::getTrackInfo(struct iAudioTrackInfo &info, unsigned int audi
 RESULT eServiceDVD::keys(ePtr<iServiceKeys> &ptr)
 {
 	ptr=this;
+	eDebug("[eServiceDVD] keys");
 	return 0;
 }
 
@@ -505,34 +521,35 @@ RESULT eServiceDVD::setFastForward(int trick)
 
 RESULT eServiceDVD::pause()
 {
-	eDebug("[eServiceDVD] set pause!\n");
+	eDebug("[eServiceDVD] pause sending key\n");
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_PAUSE);
 	return 0;
 }
 
 RESULT eServiceDVD::unpause()
 {
-	eDebug("[eServiceDVD] set unpause!\n");
+	eDebug("[eServiceDVD] unpause sending key\n");
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_PLAY);
 	return 0;
 }
 
 void eServiceDVD::thread()
 {
-	eDebug("[eServiceDVD] dvd thread started");
+	eDebug("[eServiceDVD] thread_started");
 	hasStarted();
 	ddvd_run(m_ddvdconfig);
 }
 
 void eServiceDVD::thread_finished()
 {
-	eDebug("[eServiceDVD] dvd thread finished");
+	eDebug("[eServiceDVD] thread_finished");
 	m_pump.send(1); // inform main thread
 }
 
 RESULT eServiceDVD::info(ePtr<iServiceInformation>&i)
 {
 	i = this;
+	eDebug("[eServiceDVD] info");
 	return 0;
 }
 
@@ -545,11 +562,13 @@ RESULT eServiceDVD::getName(std::string &name)
 			name = m_ref.name;
 		else
 			name = m_ref.path;
+	eDebug("[eServiceDVD] getName: %s", name.c_str());
 	return 0;
 }
 
 int eServiceDVD::getInfo(int w)
 {
+	eDebug("[eServiceDVD] getInfo: %d", w); 
 	switch (w)
 	{
 		case sCurrentChapter:
@@ -609,9 +628,10 @@ std::string eServiceDVD::getInfoString(int w)
 	switch(w)
 	{
 		case sServiceref:
+			eDebug("[eServiceDVD] getInfoString ServiceRef %s", m_ref.toString().c_str());
 			return m_ref.toString();
 		default:
-			eDebug("[eServiceDVD] unhandled getInfoString(%d)", w);
+			eDebug("[eServiceDVD] getInfoString %d unsupported", w);
 	}
 	return "";
 }
@@ -620,7 +640,6 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 {
 	eServiceDVDInfoContainer *container = new eServiceDVDInfoContainer;
 	ePtr<iServiceInfoContainer> retval = container;
-	eDebug("[eServiceDVD] getInfoObject %d", w);
 	switch (w)
 	{
 		case sUser + 6:
@@ -629,6 +648,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			uint16_t audio_lang;
 			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
 			char audio_string[3] = {audio_lang >> 8, audio_lang, 0};
+	                eDebug("[eServiceDVD] getInfoObject sUser+6:  audio_id=%d lang=%X type=%d", audio_id, audio_lang, audio_type);
 			container->addInteger(audio_id + 1);
 			container->addString(audio_string);
 			switch (audio_type)
@@ -653,6 +673,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
+	                eDebug("[eServiceDVD] getInfoObject sUser+7:  spu_id=%d lang=%X", spu_id, spu_lang);
 			char spu_string[3] = {spu_lang >> 8, spu_lang, 0};
 			if (spu_id == -1)
 			{
@@ -670,12 +691,13 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 		{
 			int current, num;
 			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
+	                eDebug("[eServiceDVD] getInfoObject sUser+8:  angle=%d num=%X", current, num);
 			container->addInteger(current);
 			container->addInteger(num);
 			break;
 		}
 		default:
-			eDebug("[eServiceDVD] unhandled getInfoObject(%d)", w);
+			eDebug("[eServiceDVD] getInfoObject %d unsupported", w);
 	}
 	return retval;
 }
@@ -716,6 +738,7 @@ RESULT eServiceDVD::enableSubtitles(iSubtitleUser *user, SubtitleTrack &track)
 
 RESULT eServiceDVD::disableSubtitles()
 {
+	eDebug("[eServiceDVD] disableSubtitles");
 	if (m_subtitle_widget) m_subtitle_widget->destroy();
 	m_subtitle_widget = 0;
 	return 0;
@@ -725,6 +748,7 @@ RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 {
 	unsigned int spu_count = 0;
 	ddvd_get_spu_count(m_ddvdconfig, &spu_count);
+	eDebug("[eServiceDVD] getSubtitleList: %d spus", spu_count);
 
 	for ( unsigned int spu_id = 0; spu_id < spu_count; spu_id++ )
 	{
