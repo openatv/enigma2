@@ -9,7 +9,8 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
-#include <xmlccwrap/xmlccwrap.h>
+#include <libxml/parser.h>
+#include <libxml/tree.h>
 #include <dvbsi++/service_description_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
@@ -1030,8 +1031,6 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 
 eDVBDB *eDVBDB::instance;
 
-using namespace xmlcc;
-
 eDVBDB::eDVBDB()
 	: m_numbering_mode(false), m_load_unlinked_userbouquets(true)
 {
@@ -1064,7 +1063,6 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
-	XMLTree tree;
 	std::string satellitesFilename = eEnv::resolve("${sysconfdir}/enigma2/satellites.xml").c_str();
 	if (::access(satellitesFilename.c_str(), R_OK) < 0)
 	{
@@ -1076,54 +1074,53 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			return Py_False;
 		}
 	}
-	tree.setFilename(satellitesFilename);
-	tree.read();
-	Element *root = tree.getRoot();
-	if (!root)
+
+	xmlDoc *doc = xmlReadFile(satellitesFilename, NULL, 0);
+	if (!doc)
 	{
 		eDebug("[eDVBDB] couldn't open satellites.xml - maybe corrupted!!");
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
+
 	int tmp, *dest = NULL,
 		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff, tsid, onid;
 	char *end_ptr;
-	const Attribute *at;
-	std::string name;
-	const ElementList &root_elements = root->getElementList();
-	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+
+	xmlNode *root_element = xmlDocGetRootElement(doc);
+	xmlNode *satellite = root_element ? root_element->children : NULL;
+
+	while(satellite)
 	{
-//		eDebug("[eDVBDB] element: %s", (*it)->name().c_str());
-		const Element *el = *it;
-		const ElementList &sat_elements = el->getElementList();
-		const AttributeList &sat_attributes = el->getAttributeList();
 		ePyObject sat_name;
 		ePyObject sat_pos;
 		ePyObject sat_flags;
-		for (AttributeConstIterator it(sat_attributes.begin()); it != sat_attributes.end(); ++it)
+
+		for(xmlAttrPtr attr = satellite->properties; attr; attr = attr->next)
 		{
-//			eDebug("[eDVBDB] \tattr: %s", at->name().c_str());
-			at = *it;
-			name = at->name();
+			std::string name((const char*)attr->name);
 			if (name == "name")
-				sat_name = PyString_FromString(at->value().c_str());
+			{
+				sat_name = PyString_FromString((const char*)attr->children->content);
+			}
 			else if (name == "flags")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
+				{
 					sat_flags = PyInt_FromLong(tmp);
+				}
 			}
 			else if (name == "position")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
 				{
-					if (tmp < 0)
-						tmp = 3600 + tmp;
-					sat_pos = PyInt_FromLong(tmp);
+					sat_pos = PyInt_FromLong(tmp < 0 ? 3600 + tmp : tmp);
 				}
 			}
 		}
+
 		if (sat_pos && sat_name)
 		{
 			ePyObject tplist = PyList_New(0);
@@ -1137,11 +1134,11 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			Py_DECREF(tuple);
 			PyDict_SetItem(sat_dict, sat_pos, sat_name);
 			PyDict_SetItem(tp_dict, sat_pos, tplist);
-			for (ElementConstIterator it(sat_elements.begin()); it != sat_elements.end(); ++it)
+
+			xmlNode *transponder = satellite->children;
+
+			while(transponder)
 			{
-				//eDebug("[eDVBDB] \telement: %s", (*it)->name().c_str());
-				const AttributeList &tp_attributes = (*it)->getAttributeList();
-				AttributeConstIterator end = tp_attributes.end();
 				modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
 				system = eDVBFrontendParametersSatellite::System_DVB_S;
 				freq = 0;
@@ -1154,11 +1151,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				tsid = -1;
 				onid = -1;
 
-				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+				for(xmlAttrPtr attr = transponder->properties; attr; attr = attr->next)
 				{
-					at = *it;
-					//eDebug("[eDVBDB] \t\tattr: %s", at->name().c_str());
-					name = at->name();
+					std::string name((const char*)attr->name);
 					if (name == "modulation") dest = &modulation;
 					else if (name == "system") dest = &system;
 					else if (name == "frequency") dest = &freq;
@@ -1171,14 +1166,17 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "tsid") dest = &tsid;
 					else if (name == "onid") dest = &onid;
 					else continue;
+
 					if (dest)
 					{
-						//eDebug("[eDVBDB] \t\t\tvalue: %s", at->value().c_str());
-						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 						if (!*end_ptr)
+						{
 							*dest = tmp;
+						}
 					}
 				}
+
 				if (freq && sr && pol != -1)
 				{
 					tuple = PyTuple_New(12);
@@ -1197,7 +1195,11 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
+
+				// next transponder
+				transponder = transponder->next;
 			}
+
 			Py_DECREF(tplist);
 		}
 		else
@@ -1209,7 +1211,13 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			if (sat_flags)
 				Py_DECREF(sat_flags);
 		}
+
+		// next satellite
+		satellite = satellite->next;
 	}
+
+	xmlFreeDoc(doc);
+
 	Py_INCREF(Py_True);
 	return Py_True;
 }
@@ -1229,49 +1237,46 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 			eDebug("[eDVBDB] readCables arg 0 is not a python list");
 		return NULL;
 	}
-	XMLTree tree;
+
 	const char* cablesFilename = "/etc/enigma2/cables.xml";
 	if (::access(cablesFilename, R_OK) < 0)
 	{
 		cablesFilename = "/etc/tuxbox/cables.xml";
 	}
-	tree.setFilename(cablesFilename);
-	tree.read();
-	Element *root = tree.getRoot();
-	if (!root)
+
+	xmlDoc *doc = xmlReadFile(cablesFilename, NULL, 0);
+	if (!doc)
 	{
 		eDebug("[eDVBDB] couldn't open %s!!", cablesFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
-	const Attribute *at;
+
 	int tmp, *dest,
 		modulation, fec, freq, sr, inversion, system;
-	std::string name;
 	char *end_ptr;
-	const ElementList &root_elements = root->getElementList();
-	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+
+	xmlNode *root_element = xmlDocGetRootElement(doc);
+	xmlNode *cable = root_element ? root_element->children : NULL;
+
+	while(cable)
 	{
-//		eDebug("[eDVBDB] element: %s", el->name().c_str());
-		const Element *el = *it;
-		const ElementList &cab_elements = el->getElementList();
-		const AttributeList &cab_attributes = el->getAttributeList();
 		ePyObject cab_name;
 		ePyObject cab_flags;
-		for (AttributeConstIterator it(cab_attributes.begin()); it != cab_attributes.end(); ++it)
+
+		for(xmlAttrPtr attr = cable->properties; attr; attr = attr->next)
 		{
-//			eDebug("[eDVBDB]\tattr: %s", at->name().c_str());
-			at = *it;
-			name = at->name();
+			std::string name((const char*)attr->name);
 			if (name == "name")
-				cab_name = PyString_FromString(at->value().c_str());
+				cab_name = PyString_FromString((const char*)attr->children->content);
 			else if (name == "flags")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
 					cab_flags = PyInt_FromLong(tmp);
 			}
 		}
+
 		if (cab_name)
 		{
 			ePyObject tplist = PyList_New(0);
@@ -1283,23 +1288,22 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 			PyList_Append(cab_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, cab_name, tplist);
-			for (ElementConstIterator it(cab_elements.begin()); it != cab_elements.end(); ++it)
+
+			xmlNode *transponder = cable->children;
+
+			while(transponder)
 			{
-//				eDebug("[eDVBDB]\telement: %s", (*it)->name().c_str());
-				const AttributeList &tp_attributes = (*it)->getAttributeList();
-				AttributeConstIterator end = tp_attributes.end();
 				modulation = eDVBFrontendParametersCable::Modulation_QAM64;
 				fec = eDVBFrontendParametersCable::FEC_Auto;
 				system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A;
 				inversion = eDVBFrontendParametersCable::Inversion_Unknown;
 				freq = 0;
 				sr = 0;
-				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+
+				for(xmlAttrPtr attr = transponder->properties; attr; attr = attr->next)
 				{
-//					eDebug("[eDVBDB]\t\tattr: %s", at->name().c_str());
-					at = *it;
 					dest = 0;
-					name = at->name();
+					std::string name((const char*)attr->name);
 					if (name == "modulation") dest = &modulation;
 					else if (name == "frequency") dest = &freq;
 					else if (name == "symbol_rate") dest = &sr;
@@ -1307,13 +1311,17 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 					else if (name == "inversion") dest = &inversion;
 					else if (name == "system") dest = &system;
 					else continue;
+
 					if (dest)
 					{
-						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 						if (!*end_ptr)
+						{
 							*dest = tmp;
+						}
 					}
 				}
+
 				if (freq && sr)
 				{
 					while (freq > 999999)
@@ -1329,12 +1337,24 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
+
+				// next transponder
+				transponder = transponder->next;
 			}
+
 			Py_DECREF(tplist);
 		}
 		else if (cab_flags)
+		{
 			Py_DECREF(cab_flags);
+		}
+
+		// next cable
+		cable = cable->next;
 	}
+
+	xmlFreeDoc(doc);
+
 	Py_INCREF(Py_True);
 	return Py_True;
 }
@@ -1354,49 +1374,50 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 			eDebug("[eDVBDB] readTerrestrials arg 0 is not a python list");
 		return NULL;
 	}
-	XMLTree tree;
+
 	const char* terrestrialFilename = "/etc/enigma2/terrestrial.xml";
 	if (::access(terrestrialFilename, R_OK) < 0)
 	{
 		terrestrialFilename = "/etc/tuxbox/terrestrial.xml";
 	}
-	tree.setFilename(terrestrialFilename);
-	tree.read();
-	Element *root = tree.getRoot();
-	if (!root)
+
+	xmlDoc *doc = xmlReadFile(terrestrialFilename, NULL, 0);
+	if (!doc)
 	{
 		eDebug("[eDVBDB] couldn't open %s!!", terrestrialFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
-	const Attribute *at;
-	std::string name;
+
 	int tmp, *dest,
 		freq, bw, constellation, crh, crl, guard, transm, hierarchy, inv, system, plpid;
 	char *end_ptr;
-	const ElementList &root_elements = root->getElementList();
-	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+
+	xmlNode *root_element = xmlDocGetRootElement(doc);
+	xmlNode *terrestrial = root_element ? root_element->children : NULL;
+
+	while(terrestrial)
 	{
-//		eDebug("[eDVBDB] element: %s", el->name().c_str());
-		const Element *el = *it;
-		const ElementList &ter_elements = el->getElementList();
-		const AttributeList &ter_attributes = el->getAttributeList();
 		ePyObject ter_name;
 		ePyObject ter_flags;
-		for (AttributeConstIterator it(ter_attributes.begin()); it != ter_attributes.end(); ++it)
+
+		for(xmlAttrPtr attr = terrestrial->properties; attr; attr = attr->next)
 		{
-//			eDebug("[eDVBDB]\tattr: %s", at->name().c_str());
-			at = *it;
-			name = at->name();
+			std::string name((const char*)attr->name);
 			if (name == "name")
-				ter_name = PyString_FromString(at->value().c_str());
+			{
+				ter_name = PyString_FromString((const char*)attr->children->content);
+			}
 			else if (name == "flags")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
+				{
 					ter_flags = PyInt_FromLong(tmp);
+				}
 			}
 		}
+
 		if (ter_name)
 		{
 			ePyObject tplist = PyList_New(0);
@@ -1408,11 +1429,11 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 			PyList_Append(ter_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, ter_name, tplist);
-			for (ElementConstIterator it(ter_elements.begin()); it != ter_elements.end(); ++it)
+
+			xmlNode *transponder = terrestrial->children;
+
+			while(transponder)
 			{
-//				eDebug("[eDVBDB]\telement: %s", (*it)->name().c_str());
-				const AttributeList &tp_attributes = (*it)->getAttributeList();
-				AttributeConstIterator end = tp_attributes.end();
 				freq = 0;
 				bw = eDVBFrontendParametersTerrestrial::Bandwidth_Auto;
 				constellation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
@@ -1424,12 +1445,11 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				inv = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
 				system = eDVBFrontendParametersTerrestrial::System_DVB_T_T2;
 				plpid = 0;
-				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+
+				for(xmlAttrPtr attr = transponder->properties; attr; attr = attr->next)
 				{
-//					eDebug("[eDVBDB]\t\tattr: %s", at->name().c_str());
-					at = *it;
 					dest = 0;
-					name = at->name();
+					std::string name((const char*)attr->name);
 					if (name == "centre_frequency") dest = &freq;
 					else if (name == "bandwidth") dest = &bw;
 					else if (name == "constellation") dest = &constellation;
@@ -1442,13 +1462,17 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					else if (name == "system") dest = &system;
 					else if (name == "plp_id") dest = &plpid;
 					else continue;
+
 					if (dest)
 					{
-						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						tmp = strtol((const char*)attr->name, &end_ptr, 10);
 						if (!*end_ptr)
+						{
 							*dest = tmp;
+						}
 					}
 				}
+
 				if (freq)
 				{
 					switch (bw)
@@ -1482,12 +1506,24 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
+
+				// next transponder
+				transponder = transponder->next;
 			}
+
 			Py_DECREF(tplist);
 		}
 		else if (ter_flags)
+		{
 			Py_DECREF(ter_flags);
+		}
+
+		// next terrestrial
+		terrestrial = terrestrial->next;
 	}
+
+	xmlFreeDoc(doc);
+
 	Py_INCREF(Py_True);
 	return Py_True;
 }
