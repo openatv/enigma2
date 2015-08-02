@@ -83,10 +83,6 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		self["key_blue"].setBoolean(False)
 
-		service = self.session.nav.getCurrentService()
-		self.audioTracks = audio = service and service.audioTracks()
-		n = audio and audio.getNumberOfTracks() or 0
-
 		subtitlelist = self.getSubtitleList()
 
 		if self.settings.menupage.getValue() == PAGE_AUDIO:
