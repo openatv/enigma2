@@ -1,14 +1,12 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
 	<map context="CutlistSeekActions">
-		<device name="dreambox remote control (native)">
-			<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
-			<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
-			<key id="KEY_RED" mapto="seekBack" flags="b" />
-			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
-			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
-			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
-		</device>
+		<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
+		<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
+		<key id="KEY_RED" mapto="seekBack" flags="b" />
+		<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+		<key id="KEY_RED" mapto="seekBackManual" flags="l" />
+		<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
 		<device name="dreambox advanced remote control (native)">
 			<!--key id="KEY_GREEN" mapto="unPauseService" flags="m" /-->
 			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
@@ -45,7 +43,9 @@
 		<key id="KEY_CHANNELDOWN" mapto="removeMark" flags="m" /> -->
 		<key id="KEY_EXIT" mapto="leave" flags="m" />
 		<key id="KEY_ESC" mapto="leave" flags="m" />
+		<key id="KEY_STOP" mapto="leave" flags="m" />
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
 		<key id="KEY_ENTER" mapto="showMenu" flags="m" />
+		<key id="KEY_MENU" mapto="showMenu" flags="m" />
 	</map>
 </keymap>
