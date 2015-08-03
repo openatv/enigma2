@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-08-02 20:26+0100\n"
-"Last-Translator: mike99 <mike99@mail.to>\n"
+"PO-Revision-Date: 2015-08-03 17:39+0200\n"
+"Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Stop recording now"
@@ -4145,6 +4145,10 @@ msgstr "Fortgeschritten"
 msgid "Internal flash"
 msgstr "Interner Flash"
 
+#
+msgid "Internal Flash"
+msgstr "Interner Flash"
+
 msgid "Internal hdd only"
 msgstr "Nur interne Festplatte"
 
@@ -5231,7 +5235,7 @@ msgid "On end of movie"
 msgstr "Am Ende eines Films"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
-msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der %s %s bestimmt werden"
+msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der Box bestimmt werden"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behaviour."
 msgstr "Am Ende der Wiedergabe eines Filmes kann das Verhalten bestimmt werden."
@@ -11095,9 +11099,6 @@ msgstr "Den Filmpfad auswählen"
 msgid "service PIN"
 msgstr "Service-PIN"
 
-msgid "Change PIN"
-msgstr "Service-PIN eingeben"
-
 msgid "set as startup service"
 msgstr "Kanal als Startkanal auswählen"
 
@@ -14553,7 +14554,12 @@ msgstr "Speichergeräte"
 msgid "Channel list cursor behavior"
 msgstr "Cursorverhalten"
 
+# 4.2 Version
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgstr "Position des Cursors beim Öffnen der Kanalliste festlegen. Auf dem laufenden Kanal oder einen Eintrag hoch/runter positionieren. Ausserdem kann die Belegung der B+/B- Tasten getauscht werden"
+
+# 5.1 Version
+msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr "Position des Cursors beim Öffnen der Kanalliste festlegen. Auf dem laufenden Kanal oder einen Eintrag hoch/runter positionieren. Ausserdem kann die Belegung der B+/B- Tasten getauscht werden"
 
 msgid "Keep service"
@@ -15310,9 +15316,6 @@ msgstr "QuickMenü schützen"
 msgid "Protect configuration"
 msgstr "Konfiguration schützen"
 
-msgid "Protect context menus"
-msgstr "Kontextmenüs schützen"
-
 msgid "Protect main menu"
 msgstr "Hauptmenü schützen"
 
@@ -15327,15 +15330,6 @@ msgstr "Ausschaltmenü schützen"
 
 msgid "Protect timer menu"
 msgstr "Timermenü schützen"
-
-msgid "Protect on epg age"
-msgstr "Auf EPG Alter schützen"
-
-msgid "Protect Screens"
-msgstr "Screens schützen"
-
-msgid "Reload blacklists"
-msgstr "Blacklist aktualisieren"
 
 msgid "Setup Subtitle"
 msgstr "Untertitel Einstellungen"
@@ -15506,7 +15500,7 @@ msgstr "SAT lang"
 
 #: ButtonSetup.py
 msgid "Prov"
-msgstr "Anbieter"
+msgstr "Prov"
 
 #: ButtonSetup.py
 msgid "Prov long"
@@ -15943,3 +15937,128 @@ msgstr "Drücken Sie OK, um den Satelliten auszuwählen"
 # Satconfig.py
 msgid "Positioner (selecting satellites)"
 msgstr "Positioner (Satelliten auswählen)"
+
+#: ParentalControlSetup.py:109 (4.2)
+msgid "Reload black-/white lists"
+msgstr "\"schwarz/weiß\" Liste neu laden"
+
+#: ParentalControlSetup.py:204 (4.2)
+msgid "Parental control editor"
+msgstr "Jugendschutz Editor"
+
+#: ParentalControlSetup.py:74
+msgid "Hide parentel locked services"
+msgstr "Jugendschutz geschützte Kanäle verbergen"
+
+#: ParentalControlSetup.py:75
+msgid "Protect on epg age"
+msgstr "Schützen durch EPG-Altersangaben"
+
+#: ParentalControlSetup.py:76
+msgid "Reload blacklists"
+msgstr "\"scharze\" Liste neu laden"
+
+#: ParentalControlSetup.py:78
+msgid "Protect Screens"
+msgstr "Bedienoberfläche schützen"
+
+#: ParentalControlSetup.py:90
+msgid "Protect context menus"
+msgstr "Kontextmenüs schützen"
+
+#: ParentalControlSetup.py:70 ParentalControlSetup.py:81
+msgid "Change PIN"
+msgstr "PIN ändern"
+
+#: ParentalControlSetup.py:176
+msgid "Re-enter new PIN"
+msgstr "Neue PIN wiederholen"
+
+#: ParentalControl
+msgid "No age block"
+msgstr "Keine Altersbeschränkung"
+
+#: extended GUI Menu
+msgid "Extended GUI"
+msgstr "Erweitertes GUI"
+
+# cablescan
+msgid "Enable auto cable scan"
+msgstr "Automatischer Kabel-Suchlauf"
+
+#: MovieSelection.py:1827
+msgid "Do you really want to move to trashcan ?"
+msgstr "Wollen Sie wirklich in den Papierkorb verschieben?"
+
+#: MovieSelection.py:1839 MovieSelection.py:1919 MovieSelection.py:1924
+#, python-format
+msgid "Do you really want to delete %s ?"
+msgstr ""
+"Wollen Sie \n"
+" %s\n"
+" wirklich löschen?"
+
+#: MovieSelection.py:1854
+msgid "Do you really want to permanently remove from trash can ?"
+msgstr "Wollen Sie wirklich dauerhaft aus dem Papierkorb entfernen?"
+
+#: MovieSelection.py:1856 MovieSelection.py:1903
+msgid "Do you really want to delete ?"
+msgstr "Wollen Sie wirklich löschen?"
+
+#: MovieSelection.py:633
+msgid "On end of movie (as menu)"
+msgstr "Am Ende des Films (als Menü)"
+
+#: MovieSelection.py:1318
+msgid "Sort list:"
+msgstr "Liste sortieren:"
+
+#: MovieSelection.py:1435
+#, python-format
+msgid "Directory %s does not exist."
+msgstr "Das Verzeichnis %s existiert nicht."
+
+#: MovieSelection.py:495
+msgid "Movie selection"
+msgstr "Filmauswahl"
+
+#: MovieSelection.py:209
+msgid "Clean network trash cans"
+msgstr "Netzwerk-Papierkörbe leeren"
+
+#: MovieSelection.py:214
+msgid "Number of rows to display"
+msgstr "Hier können Sie einstellen, wie viele Zeilen angezeigt werden sollen."
+
+#: MovieSelection.py:214
+msgid "Use the alternative screen"
+msgstr "Legen Sie fest, ob ein alternative Anzeige benutzt werden soll."
+
+#: MovieSelection.py:208
+msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgstr "Hier können Sie festlegen, wie viele Tage der Inhalt vom Papierkorb erhalten bleibt, bis automatisch gelöscht wird."
+
+#: MovieSelection.py:209
+msgid "When enabled, network trash cans are probed for cleaning."
+msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe überprüft werden zum Löschen."
+
+#: MovieSelection.py:219
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Hier können Sie auswählen, ob nach dem Stoppen zur Filmliste zurückgekehrt werden soll."
+
+#: MovieSelection.py:220
+msgid "Shows the watched status of the movie."
+msgstr "Hier können Sie einstellen, ob und wie der Filmfortschritt in der Filmliste angezeigt werden soll."
+
+#: MovieSelection.py:222
+msgid "Shows the icons when new/unseen, else will not show an icon."
+msgstr "Hier können Sie einstellen, ob und wie neue oder nicht angesehene Filme in der Filmliste angezeigt werden sollen."
+
+#: MovieSelection.py:225
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Hier können Sie einstellen, ob die Dateiendungen von bekannten Dateiformaten ausgeblendet werden sollen."
+
+#: MovieSelection.py:228
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Hier können Sie die Belegung der Tasten einstellen."
