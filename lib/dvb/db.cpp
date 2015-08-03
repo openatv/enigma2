@@ -1466,7 +1466,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 
 					if (dest)
 					{
-						tmp = strtol((const char*)attr->name, &end_ptr, 10);
+						tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 						if (!*end_ptr)
 						{
 							*dest = tmp;
