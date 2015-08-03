@@ -59,8 +59,9 @@ radiopic = resolveFilename(SCOPE_ACTIVE_SKIN, "radio.mvi")
 if os.path.exists(resolveFilename(SCOPE_CONFIG, "radio.mvi")):
 	radiopic = resolveFilename(SCOPE_CONFIG, "radio.mvi")
 config.misc.radiopic = ConfigText(default = radiopic)
-config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
+#config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
+#config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
+config.misc.nextWakeup = ConfigText(default = "-1,-1,0,0,-1,0")	#wakeup time, timer begins, set by (0=rectimer,1=zaptimer, 2=powertimer or 3=plugin), go in standby, next rectimer, force rectimer
 config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
 config.misc.NTPserver = ConfigText(default = 'pool.ntp.org', fixed_size=False)
 
@@ -527,7 +528,7 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value, config.misc.isNextPowerTimerAfterEventActionAuto.value)
+	nav = Navigation(config.misc.nextWakeup.value)
 	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
@@ -615,7 +616,7 @@ def runScreenTest():
 
 	# kill showiframe if it is running (sh4 hack...)
 	os.system("killall -9 showiframe")
-	
+
 	runReactor()
 
 	print "[mytest.py] normal shutdown"
@@ -627,31 +628,36 @@ def runScreenTest():
 
 	#get currentTime
 	nowTime = time()
+#	if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 	if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb') or getBrandOEM().startswith('ini'):
 		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 		setRTCtime(nowTime)
 
-	#check RecordTimer instance
-	#if str(session.nav.RecordTimer).startswith('<RecordTimer.RecordTimer instance at'):
-	if session.nav.isRecordTimerImageStandard:
-		nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True)
-		nextRecordingAuto = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
-		nextZapTime = session.nav.RecordTimer.getNextZapTime()
-		nextZapAuto = nextRecordingAuto
+	#recordtimer
+	if session.nav.isRecordTimerImageStandard:	#check RecordTimer instance
+		tmp = session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn = True)
+		nextRecordTime = tmp[0]
+		nextRecordTimeInStandby = tmp[1]
 	else:
-		nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
-		nextRecordingAuto = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
-		nextZapTime = session.nav.RecordTimer.getNextZapTime()
-		nextZapAuto = False
-
-	nextPowerManagerTime = session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True)
-	nextPowerManagerAuto = session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()
+		nextRecordTime = session.nav.RecordTimer.getNextRecordingTime()
+		nextRecordTimeInStandby = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
+	#zaptimer
+	nextZapTime = session.nav.RecordTimer.getNextZapTime()
+	nextZapTimeInStandby = 0
+	#powertimer
+	tmp = session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn = True)
+	nextPowerTime = tmp[0]
+	nextPowerTimeInStandby = tmp[1]
+	#plugintimer
+	nextPluginTime = plugins.getNextWakeupTime()
+	nextPluginTimeInStandby = 1
 
 	wakeupList = [
-		x for x in ((nextRecordingTime, 0, nextRecordingAuto),
-					(nextZapTime, 1, nextZapAuto),
-					(nextPowerManagerTime, 2, nextPowerManagerAuto),
-					(plugins.getNextWakeupTime(), 3, False))
+		x for x in ((nextRecordTime, 0, nextRecordTimeInStandby),
+					(nextZapTime, 1, nextZapTimeInStandby),
+					(nextPowerTime, 2, nextPowerTimeInStandby),
+					(nextPluginTime, 3, nextPluginTimeInStandby))
+		#if x[0] != -1 and x[0] >= nowTime - 60 #no startTime[0] in the past (e.g. vps-plugin -> if current time between 'recordtimer begin - vps initial time' is startTime in the past ...)
 		if x[0] != -1
 	]
 	wakeupList.sort()
@@ -665,41 +671,45 @@ def runScreenTest():
 	else:
 		wpoffset = int(config.workaround.wakeuptimeoffset.value)
 
-	recordTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] != 2:
+	config.misc.nextWakeup.value = "-1,-1,0,0,-1,0"
+	if wakeupList and wakeupList[0][0] > 0:
 		startTime = wakeupList[0]
 		# wakeup time is 5 min before timer starts + offset
 		wptime = startTime[0] - 300 - wpoffset
-		if (wptime - nowTime) < 60: # no time to switch box back on
-			wptime = int(nowTime) + 60  # so switch back on in 60 seconds
+		if (wptime - nowTime) < 120: # no time to switch box back on
+			wptime = int(nowTime) + 120  # so switch back on in 120 seconds
 
-#		if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb'):
-#			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-#			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
+		forceNextRecord = 0
+		if startTime[1] != 0 and nextRecordTime > 0:
+			#check for plugin-, zap- or power-timer to enable the forced record-timer wakeup - when next record starts in 15 mins
+			if abs(nextRecordTime - startTime[0]) <= 900:
+				forceNextRecord = 1
+			else:
+			#check for vps-plugin to enable the record-timer wakeup
+				try:
+					if config.plugins.vps.allow_wakeup.value:
+						if startTime[0] + config.plugins.vps.initial_time.value * 60 == nextRecordTime \
+						or startTime[0] - 20 + config.plugins.vps.initial_time.value * 60 == nextRecordTime: #vps using begin time, not start prepare time
+							forceNextRecord = 1
+				except:
+					pass
+		setStandby = startTime[2]
+		print "="*100
+		print "[mytest.py] set next wakeup type to '%s' %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[startTime[1]],{0:"and starts normal",1:"and starts in standby"}[setStandby])
+		if forceNextRecord:
+			print "[mytest.py] timer is set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag"
+		print "[mytest.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
+		#set next wakeup
 		setFPWakeuptime(wptime)
-		recordTimerWakeupAuto = startTime[2]
-		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
-	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
-	config.misc.isNextRecordTimerAfterEventActionAuto.save()
-
-	PowerTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] == 2:
-		startTime = wakeupList[0]
-		# wakeup time is 5 min before timer starts + offset
-		wptime = startTime[0] - 300 - wpoffset
-		if (wptime - nowTime) < 60: # no time to switch box back on
-			wptime = int(nowTime) + 60  # so switch back on in 60 seconds
-
-#		if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
-#			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-#			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
-		setFPWakeuptime(wptime)
-		PowerTimerWakeupAuto = startTime[2]
-		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto
-	config.misc.isNextPowerTimerAfterEventActionAuto.value = PowerTimerWakeupAuto
-	config.misc.isNextPowerTimerAfterEventActionAuto.save()
+		#set next standby only after shutdown in deep standby
+		#print Screens.Standby.quitMainloopCode
+		if setStandby and Screens.Standby.quitMainloopCode != 1:
+			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec, 1=standby, 2=no standby, when before was not in deep-standby
+		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
+	else:
+		print "[mytest.py] no set next wakeup time"
+	print "="*100
+	config.misc.nextWakeup.save()
 
 	profile("stopService")
 	session.nav.stopService()

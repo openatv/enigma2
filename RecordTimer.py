@@ -34,11 +34,13 @@ wasRecTimerWakeup = False
 debug = False
 #+++
 
+#reset wakeup state after ending timer
 def resetTimerWakeup():
 	global wasRecTimerWakeup
 	if os.path.exists("/tmp/was_rectimer_wakeup"):
 		os.remove("/tmp/was_rectimer_wakeup")
-	# wasRecTimerWakeup = False # -> now reset after ending timer
+		if debug: print "[RECORDTIMER] reset wakeup state"
+	wasRecTimerWakeup = False
 
 # parses an event and returns a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
@@ -597,6 +599,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby) or (self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup):
 					print '[Timer] PowerTimer due is next 15 mins or is actual currently active, not return to deepstandby'
 				self.wasInStandby = False
+				resetTimerWakeup()
 				return True
 
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
@@ -612,8 +615,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						print "[RecordTimer] quitMainloop #2"
 						quitMainloop(1)
 
-			if debug: print "[RECORDTIMER] reset wakeup state"
-			self.wasInStandby = wasRecTimerWakeup = False
+			self.wasInStandby = False
+			resetTimerWakeup()
 			return True
 
 	def keypress(self, key=None, flag=1):
@@ -997,6 +1000,11 @@ class RecordTimer(timer.Timer):
 		self.stateChanged(w)
 
 	def isRecTimerWakeup(self):
+		global wasRecTimerWakeup
+		if os.path.exists("/tmp/was_rectimer_wakeup"):
+			wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
+		else:
+			wasRecTimerWakeup = False
 		return wasRecTimerWakeup
 
 	def isRecording(self):
@@ -1120,17 +1128,17 @@ class RecordTimer(timer.Timer):
 	def getNextRecordingTimeOld(self, getNextStbPowerOn = False):
 		now = time()
 		if getNextStbPowerOn:
-			save_act = -1
+			save_act = -1, 0
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation(getNextStbPowerOn)
 				if timer.justplay or next_act < now:
 					continue
 				if debug: print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
-				if save_act == -1:
-					save_act = next_act
+				if save_act[0] == -1:
+					save_act = next_act, int(not timer.always_zap)
 				else:
-					if next_act < save_act:
-						save_act = next_act
+					if next_act < save_act[0]:
+						save_act = next_act, int(not timer.always_zap)
 			return save_act
 		else:
 			for timer in self.timer_list:
@@ -1141,16 +1149,26 @@ class RecordTimer(timer.Timer):
 		return -1
 
 	def getNextRecordingTime(self, getNextStbPowerOn = False):
+		#getNextStbPowerOn = True returns tuple -> (timer.begin, set standby)
 		nextrectime = self.getNextRecordingTimeOld(getNextStbPowerOn)
 		faketime = time()+300
 
-		if config.timeshift.isRecording.value:
-			if 0 < nextrectime < faketime:
-				return nextrectime
+		if getNextStbPowerOn:
+			if config.timeshift.isRecording.value:
+				if 0 < nextrectime[0] < faketime:
+					return nextrectime
+				else:
+					return faketime, 0
 			else:
-				return faketime
+				return nextrectime
 		else:
-			return nextrectime
+			if config.timeshift.isRecording.value:
+				if 0 < nextrectime < faketime:
+					return nextrectime
+				else:
+					return faketime
+			else:
+				return nextrectime
 
 	def isNextRecordAfterEventActionAuto(self):
 		for timer in self.timer_list:
