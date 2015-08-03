@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-08-03 15:51+0200\n"
+"PO-Revision-Date: 2015-08-03 17:39+0200\n"
 "Last-Translator: husky <husky@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -5235,7 +5235,7 @@ msgid "On end of movie"
 msgstr "Am Ende eines Films"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
-msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der %s %s bestimmt werden"
+msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der Box bestimmt werden"
 
 msgid "On reaching the end of a file during playback, you can choose the box's behaviour."
 msgstr "Am Ende der Wiedergabe eines Filmes kann das Verhalten bestimmt werden."
@@ -15985,3 +15985,80 @@ msgstr "Erweitertes GUI"
 # cablescan
 msgid "Enable auto cable scan"
 msgstr "Automatischer Kabel-Suchlauf"
+
+#: MovieSelection.py:1827
+msgid "Do you really want to move to trashcan ?"
+msgstr "Wollen Sie wirklich in den Papierkorb verschieben?"
+
+#: MovieSelection.py:1839 MovieSelection.py:1919 MovieSelection.py:1924
+#, python-format
+msgid "Do you really want to delete %s ?"
+msgstr ""
+"Wollen Sie \n"
+" %s\n"
+" wirklich löschen?"
+
+#: MovieSelection.py:1854
+msgid "Do you really want to permanently remove from trash can ?"
+msgstr "Wollen Sie wirklich dauerhaft aus dem Papierkorb entfernen?"
+
+#: MovieSelection.py:1856 MovieSelection.py:1903
+msgid "Do you really want to delete ?"
+msgstr "Wollen Sie wirklich löschen?"
+
+#: MovieSelection.py:633
+msgid "On end of movie (as menu)"
+msgstr "Am Ende des Films (als Menü)"
+
+#: MovieSelection.py:1318
+msgid "Sort list:"
+msgstr "Liste sortieren:"
+
+#: MovieSelection.py:1435
+#, python-format
+msgid "Directory %s does not exist."
+msgstr "Das Verzeichnis %s existiert nicht."
+
+#: MovieSelection.py:495
+msgid "Movie selection"
+msgstr "Filmauswahl"
+
+#: MovieSelection.py:209
+msgid "Clean network trash cans"
+msgstr "Netzwerk-Papierkörbe leeren"
+
+#: MovieSelection.py:214
+msgid "Number of rows to display"
+msgstr "Hier können Sie einstellen, wie viele Zeilen angezeigt werden sollen."
+
+#: MovieSelection.py:214
+msgid "Use the alternative screen"
+msgstr "Legen Sie fest, ob ein alternative Anzeige benutzt werden soll."
+
+#: MovieSelection.py:208
+msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgstr "Hier können Sie festlegen, wie viele Tage der Inhalt vom Papierkorb erhalten bleibt, bis automatisch gelöscht wird."
+
+#: MovieSelection.py:209
+msgid "When enabled, network trash cans are probed for cleaning."
+msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe überprüft werden zum Löschen."
+
+#: MovieSelection.py:219
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Hier können Sie auswählen, ob nach dem Stoppen zur Filmliste zurückgekehrt werden soll."
+
+#: MovieSelection.py:220
+msgid "Shows the watched status of the movie."
+msgstr "Hier können Sie einstellen, ob und wie der Filmfortschritt in der Filmliste angezeigt werden soll."
+
+#: MovieSelection.py:222
+msgid "Shows the icons when new/unseen, else will not show an icon."
+msgstr "Hier können Sie einstellen, ob und wie neue oder nicht angesehene Filme in der Filmliste angezeigt werden sollen."
+
+#: MovieSelection.py:225
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Hier können Sie einstellen, ob die Dateiendungen von bekannten Dateiformaten ausgeblendet werden sollen."
+
+#: MovieSelection.py:228
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Hier können Sie die Belegung der Tasten einstellen."
