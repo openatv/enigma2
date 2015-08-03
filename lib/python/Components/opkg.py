@@ -54,7 +54,7 @@ def listsDirPath():
 					return line[2].strip()
 	except Exception, ex:
 		print "[opkg]", ex
-	return '/var/lib/opkg'
+	return '/var/lib/opkg/lists'
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):
