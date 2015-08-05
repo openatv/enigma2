@@ -35,6 +35,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 		extensions.push_back("img");
 		sc->addServiceFactory(eServiceFactoryDVD::id, this, extensions);
 	}
+	m_service_info = new eStaticServiceDVDInfo();
 }
 
 eServiceFactoryDVD::~eServiceFactoryDVD()
@@ -71,14 +72,72 @@ RESULT eServiceFactoryDVD::list(const eServiceReference &, ePtr<iListableService
 
 RESULT eServiceFactoryDVD::info(const eServiceReference &/*ref*/, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr=0;
-	return -1;
+	ptr = m_service_info;
+	return 0;
 }
 
 RESULT eServiceFactoryDVD::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
 	ptr = 0;
 	return -1;
+}
+
+DEFINE_REF(eStaticServiceDVDInfo)
+
+eStaticServiceDVDInfo::eStaticServiceDVDInfo()
+{
+}
+
+RESULT eStaticServiceDVDInfo::getName(const eServiceReference &ref, std::string &name)
+{
+	if ( ref.name.length() )
+		name = ref.name;
+	else
+	{
+		size_t last = ref.path.rfind('/');
+		if (last != std::string::npos)
+			name = ref.path.substr(last+1);
+		else
+			name = ref.path;
+	}
+	return 0;
+}
+
+
+int eStaticServiceDVDInfo::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sTimeCreate:
+		{
+			struct stat s;
+			if (stat(ref.path.c_str(), &s) == 0)
+			{
+				return s.st_mtime;
+			}
+		}
+		break;
+	case iServiceInformation::sFileSize:
+		{
+			struct stat s;
+			if (stat(ref.path.c_str(), &s) == 0)
+			{
+				return s.st_size;
+			}
+		}
+		break;
+	}
+	return iServiceInformation::resNA;
+}
+
+long long eStaticServiceDVDInfo::getFileSize(const eServiceReference &ref)
+{
+	struct stat s;
+	if (stat(ref.path.c_str(), &s) == 0)
+	{
+		return s.st_size;
+	}
+	return 0;
 }
 
 DEFINE_REF(eServiceDVDInfoContainer);
