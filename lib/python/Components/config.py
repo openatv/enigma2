@@ -1872,6 +1872,7 @@ class ConfigFile:
 	def load(self):
 		try:
 			config.loadFromFile(self.CONFIG_FILE, True)
+			print "Config file loaded ok..."
 		except IOError, e:
 			print "unable to load config (%s), assuming defaults..." % str(e)
 

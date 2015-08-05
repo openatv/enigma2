@@ -4,6 +4,18 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+if [ -f /proc/stb/fp/rtc ] ; then
+	LIMIT_TIME=1388534400 #01.01.2014
+	RTC_TIME=$( cat /proc/stb/fp/rtc )
+	SYSTEM_TIME=$(date +%s)
+	if [ "$RTC_TIME" -gt "$LIMIT_TIME" ]; then
+		if [ "$SYSTEM_TIME" -lt "$LIMIT_TIME" ]; then
+			date -s @$RTC_TIME
+			echo "set rtc time ..."
+		fi
+	fi
+fi
+
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
@@ -61,7 +73,6 @@ case $ret in
 		/sbin/reboot
 		;;
 	3)
-		rm -fR /home/root/.gstreamer-0.10
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
