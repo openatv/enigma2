@@ -2153,12 +2153,9 @@ class RemoteTunerServer(Screen):
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
-		print"INSTALL"
-		print '/usr/bin/opkg list_installed ' + self.service_name
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		print "checkNetworkState ", str
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -2171,7 +2168,6 @@ class RemoteTunerServer(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
-		print "checkNetworkStateFinished ", result
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -2180,7 +2176,6 @@ class RemoteTunerServer(Screen):
 			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
-		print "InstallPackage ", val
 		if val:
 			self.doInstall(self.installComplete, self.service_name)
 		else:
@@ -2188,12 +2183,10 @@ class RemoteTunerServer(Screen):
 			self.close()
 
 	def InstallPackageFailed(self, val):
-		print "InstallPackageFailed"
 		self.feedscheck.close()
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		print "doInstall " ,callback, pkgname
 		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
