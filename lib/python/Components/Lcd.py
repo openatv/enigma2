@@ -39,7 +39,10 @@ class IconCheckPoller:
 		self.timer.stop()
 
 	def iconcheck(self):
-		threads.deferToThread(self.JobTask)
+		try:
+			threads.deferToThread(self.JobTask)
+		except:
+			pass
 		self.timer.startLongTimer(30)
 
 	def JobTask(self):

@@ -21,7 +21,7 @@
 		<font filename="Roboto-Bold.ttf" name="LCD" scale="100"/>
 	</fonts>
 
-<!-- template V1.6.5 02.06.2015-->
+<!-- template V1.6.6a 04.08.2015-->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText"></convert>
@@ -181,7 +181,7 @@
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>		
-<!-- channelselection V1.6.5 -->
+<!-- channelselection V1.6.6a -->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
@@ -206,19 +206,19 @@
 	</screen>
 <!-- Numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="400,240">
-		<widget source="parent.number_summary" render="Label" position="0,20" size="400,100" font="FdLcD;70" halign="center" valign="center" />
-		<widget source="parent.service_summary" render="Label" position="0,120" size="400,100" font="FdLcD;45" halign="center" valign="top" />
+		<widget source="parent.number_summary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
+		<widget source="parent.service_summary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
 	</screen>
 <!-- NumberZapExt -->    
 	<screen name="NumberZapExt_summary" position="0,0" size="400,240">
-		<widget source="parent.number_summary" render="Label" position="0,20" size="400,100" font="FdLcD;70" halign="center" valign="center" />
-		<widget source="parent.service_summary" render="Label" position="0,120" size="400,100" font="FdLcD;45" halign="center" valign="top" />
+		<widget source="parent.number_summary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
+		<widget source="parent.service_summary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
 	</screen>
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget source="parent.title" render="Label" position="top" size="*,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="parent.menu" render="Label" position="top" size="*,115" font="FdLcD;35" halign="center" valign="center">
+		<widget source="parent.menu" render="Label" position="top" size="*,115" font="FdLcD;38" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -243,10 +243,10 @@
 	<screen name="SetupSummary" position="fill">
 		<widget source="SetupTitle" render="Label" position="top" size="*,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="left"  valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,65" font="FdLcD;25" halign="left" valign="center" />
+		<widget source="SetupEntry" render="Label" position="top" size="*,95" font="FdLcD;25" halign="left" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
 		<widget source="SetupValue" render="Label" position="top" size="*,65" font="FdLcD;25" foregroundColor="#F4FA58" halign="left" valign="center" />
-	</screen>	
+	</screen>		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
@@ -262,7 +262,7 @@
 	</screen>		
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,178" font="FdLcD;35" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="0,0" size="400,178" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="WizardSummary" position="fill">
@@ -352,6 +352,11 @@
 			<convert type="ClockToText"></convert>
 		</widget>		
 	</screen>
+<!-- IMDbLCDScreen -->
+	<screen name="IMDbLCDScreen" position="0,0" size="400,240">
+		<widget name="headline"  position="0,0" size="400,178" font="FdLcD;35" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
+	</screen>	
 <!-- System -->
 	<screen name="ChoiceBox_summary" position="fill" >
 		<widget source="parent.summary_list" render="Label" position="fill" font="FdLcD;21" noWrap="1" valign="top" />
@@ -437,34 +442,34 @@
 	</screen>
 <!-- Neu -->	
 	<screen name="BackupSelection_summary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
+		<widget source="parent.Title" render="Label" position="0,0" size="400,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,106" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,107" size="400,133" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
 	</screen>
 	<screen name="RestoreScreen_summary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 	
+		<widget source="parent.Title" render="Label" position="0,0" size="400,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,106" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,107" size="400,133" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 	
 	</screen>
 	<screen name="installedPlugins_summary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
+		<widget source="parent.Title" render="Label" position="0,0" size="400,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,106" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,107" size="400,133" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
 	</screen>
 	<screen name="RestartNetwork_summary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
+		<widget source="parent.Title" render="Label" position="0,0" size="400,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,106" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,107" size="400,133" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
 	</screen>
 	<screen name="RestorePlugins_summary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
+		<widget source="parent.Title" render="Label" position="0,0" size="400,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,106" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,107" size="400,133" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
 	</screen>
 	<screen name="RestoreMenu_summary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="parent.summary_description" render="Label" position="0,88" size="400,152" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
+		<widget source="parent.Title" render="Label" position="0,0" size="400,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,106" size="400,1" backgroundColor="white" />
+		<widget source="parent.summary_description" render="Label" position="0,107" size="400,133" zPosition="1" font="FdLcD;35" halign="center" valign="center" /> 
 	</screen> 
 <!-- DVD -->
 	<screen name="DVDSummary" position="fill">
