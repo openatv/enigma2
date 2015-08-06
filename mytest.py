@@ -703,7 +703,7 @@ def runScreenTest():
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
 		#print Screens.Standby.quitMainloopCode
-		if setStandby and Screens.Standby.quitMainloopCode != 1:
+		if Screens.Standby.quitMainloopCode != 1:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec, 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:
