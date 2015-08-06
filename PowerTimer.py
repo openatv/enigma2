@@ -248,10 +248,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if debug: print "self.timerType == TIMERTYPE.AUTODEEPSTANDBY:"
 				if not self.getAutoSleepWindow():
 					return False
-				if self.getNetworkTraffic() or self.getNetworkAdress() or NavigationInstance.instance.PowerTimer.isProcessing() or abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 \
-					or isRecTimerWakeup \
-					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900 \
-					or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
+				if isRecTimerWakeup or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) \
+					or NavigationInstance.instance.PowerTimer.isProcessing() or abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or self.getNetworkAdress() or self.getNetworkTraffic() \
+					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					self.do_backoff()
 					# retry
 					self.begin = self.end = int(now) + self.backoff
@@ -287,8 +286,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					breakPT = False
 					shiftPT = True
 				#shift or break
-				if shiftPT or breakPT \
-					or isRecTimerWakeup \
+				if isRecTimerWakeup or shiftPT or breakPT \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not RSsave:
 						self.savebegin = self.begin
@@ -348,8 +346,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					breakPT = False
 					shiftPT = True
 				#shift or break
-				if shiftPT or breakPT \
-					or isRecTimerWakeup \
+				if isRecTimerWakeup or shiftPT or breakPT \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not RBsave:
 						self.savebegin = self.begin
@@ -409,8 +406,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					breakPT = False
 					shiftPT = True
 				#shift or break
-				if shiftPT or breakPT \
-					or isRecTimerWakeup \
+				if isRecTimerWakeup or shiftPT or breakPT \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not DSsave:
 						self.savebegin = self.begin
@@ -480,8 +476,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				runningPT = False
 				#option: check other powertimer is running (current disabled)
 				#runningPT = NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = TIMERTYPE.NONE, endedTimer = self.timerType)
-				if shiftPT or breakPT or runningPT \
-					or isRecTimerWakeup \
+				if isRecTimerWakeup or shiftPT or breakPT or runningPT \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not aeDSsave:
 						self.savebegin = self.begin
