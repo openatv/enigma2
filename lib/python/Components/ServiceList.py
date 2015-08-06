@@ -82,6 +82,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
 		def foregroundColorServiceNotAvail(value):
 			self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+		def foregroundColorServiceSelected(value):
+			self.l.setColor(eListboxServiceContent.serviceSelected, parseColor(value))
 		def foregroundColorEvent(value):
 			self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
 		def colorServiceDescription(value):
