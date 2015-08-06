@@ -9,6 +9,9 @@
 
 #include <string>
 
+#include <unistd.h>
+#include <sys/syscall.h>
+
 #ifdef MEMLEAK_CHECK
 AllocList *allocList;
 pthread_mutex_t memLock =
@@ -99,43 +102,58 @@ void eFatal(const char* fmt, ...)
 }
 
 #ifdef DEBUG
+static bool midline = false;
+
 void eDebug(const char* fmt, ...)
 {
 	char buf[1024];
+	pid_t tid = syscall(SYS_gettid);
+	char tag[16];
+	sprintf(tag, "{%d}", tid);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(buf) + "\n");
+	if (midline) tag[0] = '\0';
+	logOutput(lvlDebug, std::string(tag) + std::string(buf) + "\n");
 	if (logOutputConsole)
-		fprintf(stderr, "%s\n", buf);
+		fprintf(stderr, "%s%s\n", tag, buf);
+	midline = false;
 }
 
 void eDebugNoNewLine(const char* fmt, ...)
 {
 	char buf[1024];
+	pid_t tid = syscall(SYS_gettid);
+	char tag[16];
+	sprintf(tag, "{%d}", tid);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, buf);
+	if (midline) tag[0] = '\0';
+	logOutput(lvlDebug, std::string(tag) + std::string(buf));
 	if (logOutputConsole)
-		fprintf(stderr, "%s", buf);
+		fprintf(stderr, "%s%s", tag, buf);
+	midline = true;
 }
 
 void eWarning(const char* fmt, ...)
 {
 	char buf[1024];
+	pid_t tid = syscall(SYS_gettid);
+	char tag[16];
+	sprintf(tag, "{%d}", tid);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(buf) + "\n");
+	logOutput(lvlWarning, std::string(tag) + std::string(buf) + "\n");
 	if (logOutputConsole)
-		fprintf(stderr, "%s\n", buf);
+		fprintf(stderr, "%s%s\n", tag, buf);
 }
 #endif // DEBUG
 
