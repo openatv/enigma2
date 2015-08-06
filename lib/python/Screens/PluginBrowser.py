@@ -1,9 +1,9 @@
+from boxbranding import getImageVersion
+import os
 from Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
-from boxbranding import getImageVersion
-
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
@@ -23,7 +23,6 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
-import os
 
 config.pluginfilter = ConfigSubsection()
 config.pluginfilter.kernel = ConfigYesNo(default = False)
@@ -65,6 +64,9 @@ def CreateFeedConfig():
 config.misc.pluginbrowser = ConfigSubsection()
 config.misc.pluginbrowser.plugin_order = ConfigText(default="")
 
+config.misc.pluginbrowser = ConfigSubsection()
+config.misc.pluginbrowser.plugin_order = ConfigText(default="")
+
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
@@ -91,6 +93,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Plugin Browser"))
+		ProtectedScreen.__init__(self)
 
 		self.firsttime = True
 
@@ -128,9 +131,12 @@ class PluginBrowser(Screen, ProtectedScreen):
 				if not os.path.exists("/etc/opkg/user-feed.conf"):
 					CreateFeedConfig()
 
+	def openSetup(self):
+		from Screens.Setup import Setup
+		self.session.open(Setup, "pluginbrowsersetup")
+		
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.plugin_browser.value
-
+		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
 	def menu(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
 
@@ -468,9 +474,6 @@ class PluginDownloadBrowser(Screen):
 	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed")
 
-	def startIpkgListAvailable(self):
-		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list")
-
 	def startRun(self):
 		listsize = self["list"].instance.size()
 		self["list"].instance.hide()
@@ -522,7 +525,19 @@ class PluginDownloadBrowser(Screen):
 				self.startIpkgListInstalled()
 		elif self.run == 1 and self.type == self.DOWNLOAD:
 			self.run = 2
-			self.startIpkgListAvailable()
+			from Components import opkg
+			pluginlist = []
+			self.pluginlist = pluginlist
+			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
+				if not plugin[0].endswith('-common') and not plugin[0].endswith('-meta') and plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
+					pluginlist.append(plugin + (plugin[0][15:],))
+			if pluginlist:
+				self["text"].hide()
+				pluginlist.sort()
+				self.updateList()
+				self["list"].instance.show()
+			else:
+				self["text"].setText(_("No new plugins found"))
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()

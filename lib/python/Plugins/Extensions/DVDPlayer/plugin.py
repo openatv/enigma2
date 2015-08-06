@@ -779,7 +779,7 @@ def filescan_open(list, session, **kwargs):
 		splitted = list[0].path.split('/')
 		if len(splitted) > 2:
 			if splitted[1] == 'media' and (splitted[2].startswith('sr') or splitted[2] == 'dvd'):
-				session.open(DVDPlayer, dvd_device="/dev/%s" %(splitted[2]))
+				session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(splitted[2]))
 				return
 	else:
 		dvd_filelist = []

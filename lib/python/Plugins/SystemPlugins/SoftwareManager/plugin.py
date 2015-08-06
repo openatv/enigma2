@@ -93,6 +93,7 @@ config.plugins.softwaremanager.updatetype = ConfigSelection(
 					("hot", _("Upgrade with GUI")),
 					("cold", _("Unattended upgrade without GUI")),
 				], "hot")
+config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump

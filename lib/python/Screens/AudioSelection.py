@@ -1,7 +1,7 @@
-from enigma import iPlayableService, eTimer
-
 from Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
+from Screens.InputBox import PinInput
+from Screens.MessageBox import MessageBox
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -13,8 +13,11 @@ from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
 from Components.VolumeControl import VolumeControl
-from Tools.ISO639 import LanguageCodes
 
+from enigma import iPlayableService, eTimer, eSize
+
+from Tools.ISO639 import LanguageCodes
+from Tools.BoundFunction import boundFunction
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
@@ -32,6 +35,8 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_right"] = Pixmap()
 		self["switchdescription"] = Label(_("Switch between Audio-, Subtitlepage"))
 		self["summary_description"] = StaticText("")
+
+		self.protectContextMenu = True
 
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
@@ -464,7 +469,17 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.keyRight()
 
 	def openAutoLanguageSetup(self):
-		self.session.open(Setup, "autolanguagesetup")
+		if self.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value:
+			self.session.openWithCallback(self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+		else:
+			self.protectResult(True)
+
+	def protectResult(self, answer):
+		if answer:
+			self.session.open(Setup, "autolanguagesetup")
+			self.protectContextMenu = False
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def cancel(self):
 		self.close(0)
@@ -511,6 +526,8 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			menu = [
 				getConfigMenuItem("config.subtitles.pango_subtitles_delay"),
 				getConfigMenuItem("config.subtitles.pango_subtitle_colors"),
+				getConfigMenuItem("config.subtitles.pango_subtitle_fontswitch"),
+				getConfigMenuItem("config.subtitles.colourise_dialogs"),
 				getConfigMenuItem("config.subtitles.subtitle_fontsize"),
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
@@ -528,6 +545,12 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			"cancel": self.cancel,
 			"ok": self.ok,
 		},-2)
+
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		if not self["videofps"].text:
+			self.instance.resize(eSize(self.instance.size().width(), self["config"].l.getItemSize().height()*len(self["config"].getList()) + 10))
 
 	def changedEntry(self):
 		if self["config"].getCurrent() in [getConfigMenuItem("config.subtitles.pango_subtitles_delay"),getConfigMenuItem("config.subtitles.pango_subtitles_fps")]:

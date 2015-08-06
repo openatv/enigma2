@@ -42,11 +42,13 @@ debug = False
 #-autodeepstandby timer is only effective if no other timer is active or current time is in the time window
 #-priority for repeated timer: shift from begin and end time only temporary, end-action priority is higher as the begin-action
 #----------------------------------------------------------------------------------------------------
-#reset wakeupstatus
+
+#reset wakeup state after ending timer
 def resetTimerWakeup():
 	global wasTimerWakeup
 	if os.path.exists("/tmp/was_powertimer_wakeup"):
 		os.remove("/tmp/was_powertimer_wakeup")
+		if debug: print "[POWERTIMER] reset wakeup state"
 	wasTimerWakeup = False
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
@@ -153,7 +155,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 	def activate(self):
 		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup
-		breakPT = shiftPT = False
+		isRecTimerWakeup = breakPT = shiftPT = False
 		now = time()
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
@@ -187,10 +189,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded and abs(self.end - now) > 900: return True
 
 		if next_state == self.StateRunning or next_state == self.StateEnded:
-			if os.path.exists("/tmp/was_powertimer_wakeup") and not wasTimerWakeup:
+			if NavigationInstance.instance.isRecordTimerImageStandard:
+				isRecTimerWakeup = NavigationInstance.instance.RecordTimer.isRecTimerWakeup()
+			if isRecTimerWakeup:
+				wasTimerWakeup = True
+			elif os.path.exists("/tmp/was_powertimer_wakeup") and not wasTimerWakeup:
 				wasTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
-			elif os.path.exists("/tmp/was_rectimer_wakeup") and not wasTimerWakeup:
-				wasTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 
 		if next_state == self.StatePrepared:
 			self.log(6, "prepare ok, waiting for begin: %s" % ctime(self.begin))
@@ -245,6 +249,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if not self.getAutoSleepWindow():
 					return False
 				if self.getNetworkTraffic() or self.getNetworkAdress() or NavigationInstance.instance.PowerTimer.isProcessing() or abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 \
+					or isRecTimerWakeup \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900 \
 					or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby):
 					self.do_backoff()
@@ -283,6 +288,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					shiftPT = True
 				#shift or break
 				if shiftPT or breakPT \
+					or isRecTimerWakeup \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not RSsave:
 						self.savebegin = self.begin
@@ -343,6 +349,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					shiftPT = True
 				#shift or break
 				if shiftPT or breakPT \
+					or isRecTimerWakeup \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not RBsave:
 						self.savebegin = self.begin
@@ -403,6 +410,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					shiftPT = True
 				#shift or break
 				if shiftPT or breakPT \
+					or isRecTimerWakeup \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not DSsave:
 						self.savebegin = self.begin
@@ -473,6 +481,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				#option: check other powertimer is running (current disabled)
 				#runningPT = NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = TIMERTYPE.NONE, endedTimer = self.timerType)
 				if shiftPT or breakPT or runningPT \
+					or isRecTimerWakeup \
 					or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not aeDSsave:
 						self.savebegin = self.begin
@@ -506,6 +515,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 				aeDSsave = False
 			NavigationInstance.instance.PowerTimer.saveTimer()
+			resetTimerWakeup()
 			return True
 
 	def setAutoincreaseEnd(self, entry = None):
@@ -949,10 +959,21 @@ class PowerTimer(timer.Timer):
 		return nextPTlist
 
 	def getNextPowerManagerTime(self, getNextStbPowerOn = False, getNextTimerTyp = False):
+		#getNextStbPowerOn = True returns tuple -> (timer.begin, set standby)
+		#getNextTimerTyp = True returns next timer list -> [(timer.begin, timer.timerType, timer.afterEvent, timer.state)]
 		global DSsave, RSsave, RBsave, aeDSsave
 		nextrectime = self.getNextPowerManagerTimeOld(getNextStbPowerOn)
 		faketime = int(time()) + 300
-		if getNextTimerTyp:
+
+		if getNextStbPowerOn:
+			if config.timeshift.isRecording.value:
+				if 0 < nextrectime[0][0] < faketime:
+					return nextrectime[0][0], int(nextrectime[0][1] == 2 or nextrectime[0][2] == 2)
+				else:
+					return faketime, 0
+			else:
+				return nextrectime[0][0], int(nextrectime[0][1] == 2 or nextrectime[0][2] == 2)
+		elif getNextTimerTyp:
 			#check entrys and plausibility of shift state (manual canceled timer has shift/save state not reset)
 			tt = ae = []
 			now = time()

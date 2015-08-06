@@ -188,7 +188,6 @@ class Menu(Screen, ProtectedScreen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-
 		list = []
 
 		menuID = None
@@ -238,6 +237,8 @@ class Menu(Screen, ProtectedScreen):
 		if menuID is not None:
 			self.skinName.append("menu_" + menuID)
 		self.skinName.append("Menu")
+		self.menuID = menuID
+		ProtectedScreen.__init__(self)
 
 		# Sort by Weight
 		if config.usage.sort_menus.value:
@@ -300,6 +301,16 @@ class Menu(Screen, ProtectedScreen):
 	def createSummary(self):
 		return MenuSummary
 
+	def isProtected(self):
+		if config.ParentalControl.setuppinactive.value:
+			if config.ParentalControl.config_sections.main_menu.value:
+				return self.menuID == "mainmenu"
+			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
+				return True
+			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
+				return True
+			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
+				return True
 class MainMenu(Menu):
 	#add file load functions for the xml-file
 

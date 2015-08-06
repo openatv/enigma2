@@ -49,6 +49,18 @@ class TimeDateInput(Screen, ConfigListScreen):
 		configlist.list = self.list
 		configlist.l.setList(self.list)
 
+	def keyPageDown(self):
+		sel = self["config"].getCurrent()
+		if sel and sel[1] == self.timeinput_time:
+			self.timeinput_time.decrement()
+			self["config"].invalidateCurrent()
+
+	def keyPageUp(self):
+		sel = self["config"].getCurrent()
+		if sel and sel[1] == self.timeinput_time:
+			self.timeinput_time.increment()
+			self["config"].invalidateCurrent()
+
 	def keySelect(self):
 		self.keyGo()
 

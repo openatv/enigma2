@@ -447,29 +447,29 @@
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="255,64" >
 		<!-- Movie name -->		
 		<widget source="session.CurrentService" render="Label" position="1,1" size="130,37" font="Regular;16" halign="center">
-			  <convert type="ServiceName">Name</convert>
+			<convert type="ServiceName">Name</convert>
 		</widget>
 		<!-- Movie progress -->
 		<widget source="Service" render="Progress" position="1,40" size="130,4" zPosition="2" borderWidth="1">
-			  <convert type="EMCServicePosition">Position</convert>
+			<convert type="EMCServicePosition">Position</convert>
 		</widget>
 		<!-- Movie recording progress -->
 		<widget source="Service" render="Progress" position="1,37" size="130,4" zPosition="1" borderWidth="1">
-			  <convert type="EMCRecordPosition">Position</convert>
+			<convert type="EMCRecordPosition">Position</convert>
 		</widget>
 		<!-- Current time -->
 		<widget source="global.CurrentTime" render="Label" position="1,44" size="58,20" font="Regular;17" halign="center">
-			  <convert type="ClockToText">Format:%H:%M</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<!-- Remaining movie time -->
 		<widget source="session.CurrentService" render="Label" position="60,44" size="72,20" font="Regular;17" halign="center">
-			  <convert type="ServicePosition">Remaining,Negate</convert>
-			  <!--convert type="ServicePosition">Summary</convert-->
+			<convert type="ServicePosition">Remaining,Negate</convert>
+			<!--convert type="ServicePosition">Summary</convert-->
 		</widget>
 		<!-- Recording indicator-->
 		<widget source="session.RecordState" render="FixedLabel" text="REC" position="62,44" size="70,20" font="Regular;18" halign="center">
-			  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			  <convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
@@ -535,5 +535,12 @@
 		<widget source="parent.title_summary" render="Label" position="120,0" size="136,40" font="FdLcD;17" halign="center" valign="bottom" />
 		<widget source="parent.text_summary" render="Label" position="0,42" size="256,22" zPosition="1" font="FdLcD;20" halign="center" valign="center" />
 	</screen>
-	
+	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="255,64">
+		<widget source="SetupTitle" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1"  />
+		<widget source="SetupEntry" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
+		<widget source="SetupValue" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>
 </skin>

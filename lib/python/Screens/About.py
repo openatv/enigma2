@@ -54,9 +54,11 @@ def getAboutText():
 	driversdate = '-'.join((year, month, day))
 	AboutText += _("Drivers:\t%s") % driversdate + "\n"
 
-	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
-
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
+	AboutText += _("Python:\t%s\n") % about.getPythonVersionString() + "\n"
+
+	AboutText += _("Installed:\t%s\n") % about.getFlashDateString() + "\n"
+	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
@@ -619,6 +621,7 @@ class TranslationInfo(Screen):
 			infomap[type] = value
 		print infomap
 
+		self["key_red"] = Button(_("Cancel"))
 		self["TranslationInfo"] = StaticText(info)
 
 		translator_name = infomap.get("Language-Team", "none")
