@@ -2992,7 +2992,8 @@ class InfoBarCueSheetSupport:
 		print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
 
-		if self.ENABLE_RESUME_SUPPORT:
+		service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if self.ENABLE_RESUME_SUPPORT and not(service and service.toString().startswith("4369:")): #when resume support and not a DVD
 			for (pts, what) in self.cut_list:
 				if what == self.CUT_TYPE_LAST:
 					last = pts
