@@ -72,7 +72,10 @@ if [ ! -e /etc/enigma2/settings ]; then
 fi
 
 #check for default sat settings
-if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ]; then
+if [ -e /proc/stb/info/subtype ]; then
+   stbcheck=`cat /proc/stb/info/subtype`
+fi
+if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ]; then
 	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
 fi
 
