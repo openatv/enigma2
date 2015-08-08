@@ -55,9 +55,9 @@ def getAboutText():
 	AboutText += _("Drivers:\t%s") % driversdate + "\n"
 
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-	AboutText += _("Python:\t%s\n") % about.getPythonVersionString() + "\n"
+	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	AboutText += _("Installed:\t%s\n") % about.getFlashDateString() + "\n"
+	AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 
 	fp_version = getFPVersion()
