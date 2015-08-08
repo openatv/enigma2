@@ -53,18 +53,18 @@ class ChapterZap(Screen):
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(int(self["number"].getText()))
+		self.close(self.field and int(self.field))
 
 	def keyNumberGlobal(self, number):
-		self.Timer.start(3000, True)		#reset timer
+		self.Timer.start(3000, True)
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
 		if len(self.field) >= 4:
 			self.keyOK()
 
-	def __init__(self, session, number):
+	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.field = str(number)
+		self.field = ""
 
 		self["chapter"] = Label(_("Chapter:"))
 
@@ -251,19 +251,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"seekBeginning": self.seekBeginning,
 			}, -2)
 
-		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+		self["DVDPlayerColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal,
-			})
+				"blue": (self.chapterZap, _("jump to chapter by number")),
+			}, -2)
 
 		self.onClose.append(self.__onClose)
 
@@ -302,13 +293,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		open("/proc/stb/fb/dst_top", "w").write(self.top)
 		open("/proc/stb/fb/dst_height", "w").write(self.height)
 
-	def keyNumberGlobal(self, number):
-		print "You pressed number " + str(number)
-		self.session.openWithCallback(self.numberEntered, ChapterZap, number)
+	def chapterZap(self):
+		self.session.openWithCallback(self.numberEntered, ChapterZap)
 
 	def numberEntered(self, retval):
-#		print self.servicelist
-		if retval > 0:
+		if retval:
 			self.zapToNumber(retval)
 
 	def getServiceInterface(self, iface):
@@ -335,12 +324,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def __menuOpened(self):
 		self.hide()
 		self.in_menu = True
-		self["NumberActions"].setEnabled(False)
 
 	def __menuClosed(self):
 		self.show()
 		self.in_menu = False
-		self["NumberActions"].setEnabled(True)
 
 	def setChapterLabel(self):
 		chapterLCD = "Menu"

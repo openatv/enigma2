@@ -35,6 +35,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 		extensions.push_back("img");
 		sc->addServiceFactory(eServiceFactoryDVD::id, this, extensions);
 	}
+	m_service_info = new eStaticServiceDVDInfo();
 }
 
 eServiceFactoryDVD::~eServiceFactoryDVD()
@@ -71,14 +72,72 @@ RESULT eServiceFactoryDVD::list(const eServiceReference &, ePtr<iListableService
 
 RESULT eServiceFactoryDVD::info(const eServiceReference &/*ref*/, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr=0;
-	return -1;
+	ptr = m_service_info;
+	return 0;
 }
 
 RESULT eServiceFactoryDVD::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
 	ptr = 0;
 	return -1;
+}
+
+DEFINE_REF(eStaticServiceDVDInfo)
+
+eStaticServiceDVDInfo::eStaticServiceDVDInfo()
+{
+}
+
+RESULT eStaticServiceDVDInfo::getName(const eServiceReference &ref, std::string &name)
+{
+	if ( ref.name.length() )
+		name = ref.name;
+	else
+	{
+		size_t last = ref.path.rfind('/');
+		if (last != std::string::npos)
+			name = ref.path.substr(last+1);
+		else
+			name = ref.path;
+	}
+	return 0;
+}
+
+
+int eStaticServiceDVDInfo::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sTimeCreate:
+		{
+			struct stat s;
+			if (stat(ref.path.c_str(), &s) == 0)
+			{
+				return s.st_mtime;
+			}
+		}
+		break;
+	case iServiceInformation::sFileSize:
+		{
+			struct stat s;
+			if (stat(ref.path.c_str(), &s) == 0)
+			{
+				return s.st_size;
+			}
+		}
+		break;
+	}
+	return iServiceInformation::resNA;
+}
+
+long long eStaticServiceDVDInfo::getFileSize(const eServiceReference &ref)
+{
+	struct stat s;
+	if (stat(ref.path.c_str(), &s) == 0)
+	{
+		return s.st_size;
+	}
+	return 0;
 }
 
 DEFINE_REF(eServiceDVDInfoContainer);
@@ -451,7 +510,7 @@ int eServiceDVD::getCurrentTrack()
 	int audio_id,audio_type;
 	uint16_t audio_lang;
 	ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-	eDebug("[eServiceDVD] getCurrentTracks: id=%d lang=%X type=%d", audio_id, audio_lang, audio_type);
+	eDebug("[eServiceDVD] getCurrentTrack: id=%d lang=%c%c type=%d", audio_id, (audio_lang >> 8) &0xff, audio_lang & 0xff, audio_type);
 	return audio_id;
 }
 
@@ -468,10 +527,10 @@ RESULT eServiceDVD::getTrackInfo(struct iAudioTrackInfo &info, unsigned int audi
 	int audio_type;
 	uint16_t audio_lang;
 	ddvd_get_audio_byid(m_ddvdconfig, audio_id, &audio_lang, &audio_type);
-	char audio_string[3]={audio_lang >> 8, audio_lang, 0};
+	char audio_string[3]={(char) ((audio_lang >> 8) & 0xff), (char)(audio_lang & 0xff), 0};
+	eDebug("[eServiceDVD] getTrackInfo: id=%d lang=%s type=%d", audio_id, audio_string, audio_type);
 	info.m_pid = audio_id+1;
 	info.m_language = audio_string;
-	eDebug("[eServiceDVD] getTrackInfo: id=%d lang=%X type=%d", audio_id, audio_lang, audio_type);
 	switch(audio_type)
 	{
 		case DDVD_MPEG:
@@ -647,8 +706,8 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int audio_id,audio_type;
 			uint16_t audio_lang;
 			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-			char audio_string[3] = {audio_lang >> 8, audio_lang, 0};
-	                eDebug("[eServiceDVD] getInfoObject sUser+6:  audio_id=%d lang=%X type=%d", audio_id, audio_lang, audio_type);
+			char audio_string[3]={(char) ((audio_lang >> 8) & 0xff), (char)(audio_lang & 0xff), 0};
+			eDebug("[eServiceDVD] getInfoObject sUser+6: audio_id=%d lang=%s type=%d", audio_id, audio_string, audio_type);
 			container->addInteger(audio_id + 1);
 			container->addString(audio_string);
 			switch (audio_type)
@@ -673,8 +732,8 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
-	                eDebug("[eServiceDVD] getInfoObject sUser+7:  spu_id=%d lang=%X", spu_id, spu_lang);
-			char spu_string[3] = {spu_lang >> 8, spu_lang, 0};
+			char spu_string[3]={(char) ((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
+			eDebug("[eServiceDVD] getInfoObject sUser+7: spu_id=%d lang=%s", spu_id, spu_string);
 			if (spu_id == -1)
 			{
 				container->addInteger(0);
@@ -755,7 +814,8 @@ RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 		struct SubtitleTrack track;
 		uint16_t spu_lang;
 		ddvd_get_spu_byid(m_ddvdconfig, spu_id, &spu_lang);
-		char spu_string[3]={spu_lang >> 8, spu_lang, 0};
+		char spu_string[3]={(char) ((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
+		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string);
 
 		track.type = 2;
 		track.pid = spu_id + 1;
@@ -942,7 +1002,7 @@ void eServiceDVD::loadCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%x.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
 			}
 			else
 			{
@@ -1031,7 +1091,7 @@ void eServiceDVD::saveCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%x.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
 			}
 			else
 			{

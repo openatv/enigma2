@@ -117,6 +117,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		if self.instance is not None:
 			self.instance.moveSelection(self.instance.pageDown)
 
+	def selectionEnabled(self, enabled):
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)
+
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"],
