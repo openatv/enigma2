@@ -376,6 +376,7 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 		else if (p == 'f')
 		{
 			sscanf(v.c_str(), "%x", &s->m_flags);
+			s->m_flags &= ~eDVBService::dxDontshow;
 		} else if (p == 'c')
 		{
 			int cid, val;
