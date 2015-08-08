@@ -6,6 +6,10 @@
 #include <lib/gdi/lcd.h>
 #include "gpixmap.h"
 
+#ifndef FBIO_WAITFORVSYNC
+#define FBIO_WAITFORVSYNC _IOW('F', 0x20, uint32_t)
+#endif
+
 class eFbLCD: public eLCD
 {
 	int m_xRes, m_yRes, m_bpp;
