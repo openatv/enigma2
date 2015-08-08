@@ -72,6 +72,7 @@ if [ ! -e /etc/enigma2/settings ]; then
 fi
 
 #check for default sat settings
+stbcheck=00
 if [ -e /proc/stb/info/subtype ]; then
    stbcheck=`cat /proc/stb/info/subtype`
 fi
