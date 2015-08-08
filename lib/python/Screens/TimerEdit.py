@@ -402,8 +402,8 @@ class TimerSanityConflict(Screen):
 			self.timer[x].disabled = False
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 		elif not self.timer[x].isRunning():
-				self.timer[x].disabled = True
-				self.session.nav.RecordTimer.timeChanged(self.timer[x])
+			self.timer[x].disabled = True
+			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 		self.finishedEdit((True, self.timer[0]))
 
 	def finishedEdit(self, answer):
@@ -443,27 +443,27 @@ class TimerSanityConflict(Screen):
 				self["key_green"].setText(_("Disable"))
 				self.key_green_choice = self.DISABLE
 
-		if len(self.timer) > 1:
-			x = self["list"].getSelectedIndex()
-			if self.timer[x] is not None:
+		total = len(self.timer)
+		timer2 = self["timer2"].getCurrent()
+		if total > 1:
+			if timer2 is not None:
 				if self.key_yellow_choice == self.EMPTY:
 					self["actions"].actions.update({"yellow":self.editTimer2})
 					self["key_yellow"].setText(_("Edit"))
 					self.key_yellow_choice = self.EDIT
-				if self.timer[x].disabled and self.key_blue_choice != self.ENABLE:
+				if timer2.disabled and self.key_blue_choice != self.ENABLE:
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
 					self.key_blue_choice = self.ENABLE
-				elif self.timer[x].isRunning() and not self.timer[x].repeated and self.key_blue_choice != self.EMPTY:
+				elif timer2.isRunning() and not timer2.repeated and self.key_blue_choice != self.EMPTY:
 					self.removeAction("blue")
 					self["key_blue"].setText(" ")
 					self.key_blue_choice = self.EMPTY
-				elif (not self.timer[x].isRunning() or self.timer[x].repeated ) and self.key_blue_choice != self.DISABLE:
+				elif (not timer2.isRunning() or timer2.repeated) and self.key_blue_choice != self.DISABLE:
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Disable"))
 					self.key_blue_choice = self.DISABLE
-		else:
-#FIXME.... this doesnt hide the buttons self.... just the text
+		if total < 2 or timer2 is None:
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
 				self["key_yellow"].setText(" ")
