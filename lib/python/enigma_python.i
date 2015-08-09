@@ -40,7 +40,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/smartptr.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
-#include <lib/base/etpm.h>
 #include <lib/base/message.h>
 #include <lib/driver/rc.h>
 #include <lib/driver/rcinput_swig.h>
@@ -189,7 +188,6 @@ typedef long time_t;
 %immutable eTuxtxtApp::appClosed;
 %immutable iDVBChannel::receivedTsidOnid;
 %include <lib/base/message.h>
-%include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
 %include <lib/driver/rcinput_swig.h>
 %include <lib/gdi/fb.h>
