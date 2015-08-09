@@ -156,7 +156,6 @@ class QuickMenu(Screen, ProtectedScreen):
 			"down": self.goDown,
 		}, -1)
 
-
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": self.keyred,
@@ -182,7 +181,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if self.selectedList == self["list"]:
 			item = self["list"].getCurrent()
 			if item:
-				self["description"].setText(_(item[4]))
+				self["description"].text = item[4][7]
 				self["summary_description"].text = item[0]
 				self.okList()
 
@@ -190,7 +189,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if self.selectedList == self["sublist"]:
 			item = self["sublist"].getCurrent()
 			if item:
-				self["description"].setText(_(item[3]))
+				self["description"].text = item[3][7]
 				self["summary_description"].text = item[0]
 
 	def goLeft(self):
@@ -645,18 +644,18 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 	if screenwidth and screenwidth == 1920:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(90, 10), size=(width-90, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(90, 39), size=(width-90, 26), font=1, text = _(description)),
-			MultiContentEntryPixmapAlphaBlend(pos=(15, 10), size=(60, 60), png = png),
-			_(long_description),
+			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text = _(name)),
+			MultiContentEntryText(pos=(90, 38), size=(width-90, 30), font=1, text = _(description)),
+			MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), png = png),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 		]
 	else:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(60, 5), size=(width-60, 25), font=0, text = _(name)),
-			MultiContentEntryText(pos=(60, 26), size=(width-60, 17), font=1, text = _(description)),
+			MultiContentEntryText(pos=(60, 3), size=(width-60, 25), font=0, text = _(name)),
+			MultiContentEntryText(pos=(60, 25), size=(width-60, 20), font=1, text = _(description)),
 			MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png = png),
-			_(long_description),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 		]
 
 def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
@@ -664,16 +663,16 @@ def QuickSubMenuEntryComponent(name, description, long_description = None, width
 	if screenwidth and screenwidth == 1920:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(15, 8), size=(width-15, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(15, 39), size=(width-15, 26), font=1, text = _(description)),
-			_(long_description),
+			MultiContentEntryText(pos=(15, 5), size=(width-15, 38), font=0, text = _(name)),
+			MultiContentEntryText(pos=(15, 38), size=(width-15, 30), font=1, text = _(description)),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 		]
 	else:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(10, 5), size=(width-10, 25), font=0, text = _(name)),
-			MultiContentEntryText(pos=(10, 26), size=(width-10, 17), font=1, text = _(description)),
-			_(long_description),
+			MultiContentEntryText(pos=(10, 3), size=(width-10, 25), font=0, text = _(name)),
+			MultiContentEntryText(pos=(10, 25), size=(width-10, 20), font=1, text = _(description)),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 		]
 
 class QuickMenuList(MenuList):
@@ -682,11 +681,11 @@ class QuickMenuList(MenuList):
 		screenwidth = getDesktop(0).size().width()
 		if screenwidth and screenwidth == 1920:
 			self.l.setFont(0, gFont("Regular", 30))
-			self.l.setFont(1, gFont("Regular", 21))
+			self.l.setFont(1, gFont("Regular", 24))
 			self.l.setItemHeight(75)
 		else:
 			self.l.setFont(0, gFont("Regular", 20))
-			self.l.setFont(1, gFont("Regular", 14))
+			self.l.setFont(1, gFont("Regular", 16))
 			self.l.setItemHeight(50)
 
 class QuickMenuSubList(MenuList):
@@ -695,11 +694,11 @@ class QuickMenuSubList(MenuList):
 		screenwidth = getDesktop(0).size().width()
 		if screenwidth and screenwidth == 1920:
 			self.l.setFont(0, gFont("Regular", 30))
-			self.l.setFont(1, gFont("Regular", 21))
+			self.l.setFont(1, gFont("Regular", 24))
 			self.l.setItemHeight(75)
 		else:
 			self.l.setFont(0, gFont("Regular", 20))
-			self.l.setFont(1, gFont("Regular", 14))
+			self.l.setFont(1, gFont("Regular", 16))
 			self.l.setItemHeight(50)
 
 class QuickMenuDevices(Screen):
