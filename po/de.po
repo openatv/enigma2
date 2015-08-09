@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-08-07 20:03+0100\n"
+"PO-Revision-Date: 2015-08-09 18:14+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -6846,13 +6846,13 @@ msgid "Select how to activate the Quick EPG mode:"
 msgstr "Wählen Sie die Taste die QuickEPG aktivieren soll:"
 
 msgid "Select what you want the EPG button to activate:"
-msgstr "Wähle Sie was die EPG-Taste, öffnen soll:"
+msgstr "Wählen Sie was die EPG-Taste, öffnen soll:"
 
 msgid "Select what you want the INFO button to activate:"
 msgstr "Wählen Sie was die INFO-Taste, öffnen soll:"
 
 msgid "Select how you want recording names to be populated."
-msgstr "Wähle Sie wie dieFilmliste sortiert werden soll."
+msgstr "Wählen Sie wie die Filmliste sortiert werden soll."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wählen Sie, wie sich Timeshift verhalten bzw. was mit der Timeshift-Datei geschehen soll, nach dem Umschalten."
@@ -7107,7 +7107,7 @@ msgid "Set the maximum number of events (programs) that timeshift may handle."
 msgstr "Wähle die maximale Anzahl von Sendungen die Timeshift verarbeiten können soll."
 
 msgid "Set the number of days you want old timers to be kept."
-msgstr "Wähle Sie die maximale Anzahl von Tagen für die Timer aufbewahrt werden sollen."
+msgstr "Wählen Sie die maximale Anzahl von Tagen für Timer die aufbewahrt werden sollen."
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wählen Sie die Durchlaufgeschwindigkeit für Text im Display."
@@ -8305,7 +8305,7 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr "Diese Option erlaubt Ihnen zu wählen ob verbleibende/verstrichene Zeit oder beides in Medienwiedergabe angezeigt wird."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
-msgstr "Diese Option erlaubt Innen zu wählen ob verbleibende/verstrichene Zeit oder beides für Transponder angezeigt wird."
+msgstr "Diese Option erlaubt Ihnen zu wählen ob verbleibende/verstrichene Zeit oder beides für Transponder angezeigt wird."
 
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr "Diese Option erlaubt Ihnen zu wählen ob verbleibende/verstrichene Zeit oder beides bei Medienwiedergabe angezeigt wird."
@@ -8331,7 +8331,7 @@ msgstr ""
 "was der erste Tastendruck in der Kanalliste bewirkt ('2' springt zu '2' oder 'A' zuerst)"
 
 msgid "This option allows you to disable sorting of the menus"
-msgstr "Diese Option erlaubt dir die Sortierung in den Menüs auszuschalten"
+msgstr "Diese Option erlaubt Ihnen die Sortierung in den Menüs auszuschalten"
 
 msgid "This option allows you to disable sorting of the option in setting screen's"
 msgstr "Diese Option erlaubt Ihnen die Sortierung in den Einstellungen auszuschalten"
@@ -12468,7 +12468,7 @@ msgstr "Beende Bild in Bild mit Exit"
 
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
-msgstr "Wenn aktiviert, wird Bild in Bild beim drücken der Exit-Taste beendet."
+msgstr "Wenn aktiviert, wird Bild in Bild beim Drücken der Exit-Taste beendet."
 
 msgid "Show VCR scart on main menu"
 msgstr "Zeige Scart-Videorekorder im Hauptmenü"
@@ -13157,13 +13157,13 @@ msgid "Timeshift checking for older files [in minutes]"
 msgstr "Timeshift-Überprüfung auf ältere Dateien [in Minuten]"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Zusätzlich zu der Überprüfung bei einem Event-Start kann diese Einstellung genutzt werden. Damit wird die Bedingung 'Puffer Limit in Stunden' oder 'Überprüfung auf freien Speicherplatzt' eher erkannt."
+msgstr "Zusätzlich zu der Überprüfung bei einem Event-Start kann diese Einstellung genutzt werden. Damit wird die Bedingung 'Puffer Limit in Stunden' oder 'Überprüfung auf freien Speicherplatz' eher erkannt."
 
 msgid "Timeshift checking for free space?"
 msgstr "Timeshift-Überprüfung auf freien Speicherplatz?"
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
-msgstr "Wenn der freie Speicherplatz kleiner als der eingestellt Wert ist, wird versucht, die alten Timeshift-Dateien löschen."
+msgstr "Wenn der freie Speicherplatz kleiner als der eingestellte Wert ist, wird versucht, die alten Timeshift-Dateien zu löschen."
 
 msgid "If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust."
 msgstr "Wenn 'Nein' eingestellt ist, wird nur eine Datei als Puffer verwendet. Es wird empfohlen 'Timeshift-Überprüfung auf ältere Dateien [in Minuten]' und 'Timeshift-Überprüfung auf freien Speicherplatz?' anzupassen."
@@ -13227,7 +13227,7 @@ msgstr "Erweiterungsliste alphabetisch sortieren"
 
 # Menue Anpassungen OSD
 msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Diese Option erlaubt es, die alpabetische Sortierung der Erweiterungsliste auszuschalten"
+msgstr "Diese Option erlaubt es, die alphabetische Sortierung der Erweiterungsliste auszuschalten"
 
 # HDD Standby
 msgid "Option to enable the Hardware Standby Timer"
@@ -13501,7 +13501,7 @@ msgid "Clean network trash can's"
 msgstr "Netzwerk-Papierkörbe leeren"
 
 msgid "When enabled, network trash can's are probed for cleaning."
-msgstr "Wenn Aktiviert, werden die Netzwerk-Papierkörbe geleert."
+msgstr "Wenn aktiviert, werden die Netzwerk-Papierkörbe geleert."
 
 msgid "Recordings abort PIP"
 msgstr "Bild-in-Bild bei Aufnahmen beenden"
@@ -13583,7 +13583,7 @@ msgid "Configure the minimum amount of disk space to be available for recordings
 msgstr "Den erforderlichen Speicherplatz einstellen, der für Aufnahmen zur Verfügung stehen muss.  Wird der Wert erreicht, werden Inhalte aus dem Papierkorb gelöscht."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Konfigurieren Sie, ob gelöschte Aufnahmen in den Papierkorb verschoben werden sollen. Sonst werden Aufnahmen sofort undwiderruflich gelöscht."
+msgstr "Konfigurieren Sie, ob gelöschte Aufnahmen in den Papierkorb verschoben werden sollen. Sonst werden Aufnahmen sofort unwiderruflich gelöscht."
 
 #
 msgid ""
@@ -14692,7 +14692,7 @@ msgid "Enable Autorecord"
 msgstr "Aktiviert automatische Aufnahme"
 
 msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Aktiviert die Automatischeaufnahme für Timeshift im Hintergrund."
+msgstr "Aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
 
 msgid "Autorecord location"
 msgstr "Verzeichnis für automatische Aufnahme"
@@ -14874,7 +14874,7 @@ msgstr "Verlange Authentifizierung für HTTP-Streams"
 
 #: usage
 msgid "When enabled, authentication is required to watch http streams."
-msgstr "Wenn Sie diese Option aktivieren, wir eine Authentifizierung für HTTP-Streams benötigt."
+msgstr "Wenn Sie diese Option aktivieren, wird eine Authentifizierung für HTTP-Streams benötigt."
 
 #: remote
 msgid "Select what you want the RED button to activate:"
