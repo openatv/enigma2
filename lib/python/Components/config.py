@@ -449,7 +449,7 @@ class ConfigBoolean(ConfigElement):
 
 	def getMulti(self, selected):
 		from config import config
-		if self.grafic and config.misc.boolean_graphic.value:
+		if self.grafic and config.usage.boolean_graphic.value:
 			if self.value:
 				return ('bolean', self.trueIcon)
 			else:
