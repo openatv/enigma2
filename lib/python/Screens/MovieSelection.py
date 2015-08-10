@@ -189,7 +189,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self.session = session
-		self.skinName = "Setup"
+		self.skinName = [self.skinName, "Setup"]
 		self.setup_title = "Movie List Actions"
 		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
@@ -335,7 +335,7 @@ class MovieContextMenu(Screen):
 	# Contract: On OK returns a callable object (e.g. delete)
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
-		self.skinName = "Setup"
+		self.skinName = [self.skinName, "Setup"]
 		self.setup_title = "Movie List Setup"
 		Screen.setTitle(self, _(self.setup_title))
 		self["HelpWindow"] = Pixmap()
