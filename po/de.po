@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-08-09 18:14+0100\n"
+"PO-Revision-Date: 2015-08-10 18:32+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1762,7 +1762,7 @@ msgid "Choose the location where the EPG data will be stored when the %s %s is s
 msgstr "Wählen Sie einen Ort zur Speicherung der EPG-Daten, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
-msgstr "Wählen Sie den Dateinamen für die EPG-Daten, wenn die %s %s ausgeschaltetet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
+msgstr "Wählen Sie den Dateinamen für die EPG-Daten, wenn die %s %s ausgeschaltetet wird. Das kann nützlich sein, wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wählen Sie den Zeitintervall, auf den die Grafiken gerundet werden sollen."
@@ -3906,30 +3906,30 @@ msgid "If set to 'yes', allows you use the seekbar to jump to a point within the
 msgstr "Wenn 'Ja' eingestellt ist, können Sie innerhalb der SeekBar zu jedem beliebigen Zeitpunkt vor oder zurück springen."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr "Wenn 'Ja' eingestellt ist werden Sender ohne EPG nicht angezeigt."
+msgstr "Wenn 'Ja' eingestellt ist, werden Sender ohne EPG nicht angezeigt."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr "Wenn 'Ja' eingestellt ist wird PIG (kleines TV-Bild) im EPG angezeigt."
+msgstr "Wenn 'Ja' eingestellt ist, wird PIG (kleines TV-Bild) im EPG angezeigt."
 
 msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
-msgstr "Wenn 'Ja' eingestellt ist öffnet sich das EPG jedes Mal auf dem ersten Sender. Wenn 'Nein' eingestellt ist öffnet sich das EPG auf dem aktuellen Sender."
+msgstr "Wenn 'Ja' eingestellt ist, öffnet sich das EPG jedes Mal auf dem ersten Sender. Wenn 'Nein' eingestellt ist, öffnet sich das EPG auf dem aktuellen Sender."
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
-msgstr "Wenn 'Ja' eingestellt ist werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt"
+msgstr "Wenn 'Ja' eingestellt ist, werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt"
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr "Wenn 'Ja' eingestellt ist werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt."
+msgstr "Wenn 'Ja' eingestellt ist, werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
 msgstr ""
-"Wenn 'Ja' eingestellt ist wird die Kanalliste angezeigt,\n"
+"Wenn 'Ja' eingestellt ist, wird die Kanalliste angezeigt,\n"
 "wenn zwischen Fernsehen und Radio gewechselt wird."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt wenn ein neues Programm anfängt."
+msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar angezeigt, wenn ein neues Programm anfängt."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt wenn der Sender gewechselt wird."
+msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar angezeigt, wenn der Sender gewechselt wird."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3 Ton benutzen (wenn verfügbar)."
@@ -3938,13 +3938,13 @@ msgid "When enabled, the receiver will automatically use the audio track which y
 msgstr "Wenn auf 'Ja' gestellt wird die %s %s die Tonspur benutzen die zuvor ausgewählt wurde."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr "Wenn 'Ja' eingestellt ist erhalten Sie eine Programmvorschau im EPG."
+msgstr "Wenn 'Ja' eingestellt ist, erhalten Sie eine Programmvorschau im EPG."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 msgstr "Wenn 'Ja' Programmvorschau im EPG. Mit OK die Vorschau, ein zweiter Druck beendet EPG und schaltet zum gewählten Sender, mit 'EXIT' Sender vor Aufruf vom EPG."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
-msgstr "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf in Medienwiedergabe angezeigt."
+msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar bei schnellem Vor- und Rücklauf in der Medienwiedergabe angezeigt."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
@@ -5931,9 +5931,9 @@ msgstr "OK drücken um weitere Details zu %s zu erhalten."
 #
 msgid "Press OK to scan"
 msgstr ""
-"OK drücken zum starten des Suchlaufs.\n"
-"Bei meheren Tunern bitte Suchlauf\n"
-"für jeden Tuner einzeln Starten."
+"OK drücken zum Starten des Suchlaufs.\n"
+"Bei mehreren Tunern bitte Suchlauf\n"
+"für jeden Tuner einzeln starten."
 
 #
 msgid "Press OK to select a Provider."
@@ -5945,7 +5945,7 @@ msgstr "OK drücken um eine CAID aus- / abzuwählen"
 
 #
 msgid "Press OK to start the scan"
-msgstr "OK drücken zum starten des Suchlaufs"
+msgstr "OK drücken zum Starten des Suchlaufs"
 
 #
 msgid "Press OK to toggle the selection."
@@ -6833,7 +6833,7 @@ msgid "Select destination for:"
 msgstr "Auswahl Speicherort für:"
 
 msgid "Select files for backup."
-msgstr "Dateien zum sichern auswählen."
+msgstr "Dateien zum Sichern auswählen."
 
 #
 msgid "Select files/folders to backup"
@@ -8761,6 +8761,10 @@ msgstr "Übersetzung"
 #
 msgid "Translation:"
 msgstr "Übersetzung:"
+
+# About.py
+msgid "Translation Information"
+msgstr "Übersetzungs-Informationen"
 
 #
 msgid "Transmission Mode"
@@ -12844,7 +12848,7 @@ msgid "Choose the files to backup"
 msgstr "Zu sichernde Dateien"
 
 msgid "Here you can select which files should be added to backupfile. (default: E2-setup, channels, network"
-msgstr "Dateien zum sichern auswählen (default: E2-Einstellungen, Kanäle, Netzwerk)."
+msgstr "Dateien zum Sichern auswählen (default: E2-Einstellungen, Kanäle, Netzwerk)."
 
 msgid "Open the Plugin Browser"
 msgstr "Öffne Plugin Manager"
@@ -12862,10 +12866,10 @@ msgid "Delete Plugins"
 msgstr "Entfernen der Erweiterungen"
 
 msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
-msgstr "Entfernen Installierter Erweiterungen. Dadurch wird das Plugin von der Box entfernt"
+msgstr "Entfernen installierter Erweiterungen. Dadurch wird das Plugin von der Box entfernt"
 
 msgid "Setup Plugin filter"
-msgstr "Auswahl Einschränken"
+msgstr "Auswahl einschränken"
 
 msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
 msgstr "Hier können Sie auswählen, welche Erweiterungen im PluginBrowser angezeigt werden"
@@ -13079,22 +13083,22 @@ msgid "Use image coloured Buttons *"
 msgstr "Farbtasten vom Image benutzen *"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr "Verwende ViaSat EPG Information wenn Sie verfügbar ist."
+msgstr "Verwende ViaSat EPG Information, wenn sie verfügbar ist."
 
 msgid "Use MHW EPG information when it is available."
-msgstr "Verwende MHW EPG Information wenn Sie verfügbar ist."
+msgstr "Verwende MHW EPG Information, wenn sie verfügbar ist."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr "Verwende Netmed EPG Information wenn Sie verfügbar ist."
+msgstr "Verwende Netmed EPG Information, wenn sie verfügbar ist."
 
 msgid "Use EIT EPG information when it is available."
-msgstr "Verwende EIT EPG Information wenn Sie vorhanden ist."
+msgstr "Verwende EIT EPG Information, wenn sie verfügbar ist."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr "Verwende FreeSat EPG Information wenn Sie verfügbar ist."
+msgstr "Verwende FreeSat EPG Information, wenn sie verfügbar ist."
 
 msgid "Use Virgin EPG information when it is available."
-msgstr "Verwende Virgin EPG Information wenn Sie verfügbar ist."
+msgstr "Verwende Virgin EPG Information, wenn sie verfügbar ist."
 
 # Informationen
 msgid "Network Information"
@@ -13819,7 +13823,7 @@ msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Diese Option erlaubt es die Transparenz der Oberfläche einzustellen"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
+msgstr "Benutze die Tasten Links/Rechts der Fernbedienung um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr "Benutze die Tasten Links/Rechts um das OSD nach oben/unten zu verschieben"
