@@ -54,7 +54,7 @@ def profile(id):
 				elif boxtype in ("mixosf5", "gi9196m", "osmini"):
 					f = open("/proc/progress", "w")
 					f.write("%d" % perc)
-				elif boxtype in ("xpeedlx3", "sezammarvel", "atemionemesis", "fegasusx5"):
+				elif boxtype in ("xpeedlx3", "sezammarvel", "atemionemesis", "fegasusx3", "fegasusx5s", "fegasusx5t"):
 					f = open("/proc/vfd", "w")
 					f.write("Loading %d %%" % perc)
 				elif boxtype in ('amikomini', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120'):
