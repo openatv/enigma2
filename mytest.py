@@ -649,15 +649,34 @@ def runScreenTest():
 	nextPowerTime = tmp[0]
 	nextPowerTimeInStandby = tmp[1]
 	#plugintimer
-	nextPluginTime = plugins.getNextWakeupTime()
-	nextPluginTimeInStandby = 1
+	tmp = plugins.getNextWakeupTime(withPluginIdent=True)
+	nextPluginTime = tmp[0]
+	nextPluginIdent = tmp[1]																		#"pluginname | pluginfolder"
+	#individual start in standby by plugin type
+	if "EPGRefresh" in nextPluginIdent:																#epg refresh
+		nextPluginName = "EPGRefresh"
+		nextPluginTimeInStandby = 1
+	elif "SerienRecorder" in nextPluginIdent or  "serienrecorder" in nextPluginIdent:				#SerienRecorder
+		nextPluginName = "SerienRecorder"
+		nextPluginTimeInStandby = 0
+	elif "Elektro" in nextPluginIdent:																#Elektro
+		nextPluginName = "Elektro"
+		nextPluginTimeInStandby = 0
+	elif "vps" in nextPluginIdent or "VPS" in nextPluginIdent:										#VPS
+		nextPluginName = "VPS"
+		nextPluginTimeInStandby = 1
+	elif "EnhancedPowersave" in nextPluginIdent or "Enhanced Powersave" in nextPluginIdent:			#Enhanced Powersave
+		nextPluginName = "EnhancedPowersave"
+		nextPluginTimeInStandby = 0
+	else:
+		nextPluginName = nextPluginIdent
+		nextPluginTimeInStandby = 0																	#default for plugins
 
 	wakeupList = [
 		x for x in ((nextRecordTime, 0, nextRecordTimeInStandby),
 					(nextZapTime, 1, nextZapTimeInStandby),
 					(nextPowerTime, 2, nextPowerTimeInStandby),
 					(nextPluginTime, 3, nextPluginTimeInStandby))
-		#if x[0] != -1 and x[0] >= nowTime - 60 #no startTime[0] in the past (e.g. vps-plugin -> if current time between 'recordtimer begin - vps initial time' is startTime in the past ...)
 		if x[0] != -1
 	]
 	wakeupList.sort()
@@ -679,30 +698,27 @@ def runScreenTest():
 		if (wptime - nowTime) < 120: # no time to switch box back on
 			wptime = int(nowTime) + 120  # so switch back on in 120 seconds
 
+		setStandby = startTime[2]
 		forceNextRecord = 0
 		if startTime[1] != 0 and nextRecordTime > 0:
 			#check for plugin-, zap- or power-timer to enable the forced record-timer wakeup - when next record starts in 15 mins
 			if abs(nextRecordTime - startTime[0]) <= 900:
-				forceNextRecord = 1
-			else:
+				setStandby = forceNextRecord = 1
 			#check for vps-plugin to enable the record-timer wakeup
-				try:
-					if config.plugins.vps.allow_wakeup.value:
-						if startTime[0] + config.plugins.vps.initial_time.value * 60 == nextRecordTime \
-						or startTime[0] - 20 + config.plugins.vps.initial_time.value * 60 == nextRecordTime: #vps using begin time, not start prepare time
-							forceNextRecord = 1
-				except:
-					pass
-		setStandby = startTime[2]
+			elif nextPluginName == "VPS":
+				setStandby = forceNextRecord = 1
+		if startTime[1] == 3:
+			nextPluginName = " (%s)" % nextPluginName
+		else:
+			nextPluginName = ""
 		print "="*100
-		print "[mytest.py] set next wakeup type to '%s' %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[startTime[1]],{0:"and starts normal",1:"and starts in standby"}[setStandby])
+		print "[mytest.py] set next wakeup type to '%s'%s %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[startTime[1]], nextPluginName, {0:"and starts normal",1:"and starts in standby"}[setStandby])
 		if forceNextRecord:
-			print "[mytest.py] timer is set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag"
+			print "[mytest.py] set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag"
 		print "[mytest.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
-		#print Screens.Standby.quitMainloopCode
 		if Screens.Standby.quitMainloopCode != 1:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec, 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
