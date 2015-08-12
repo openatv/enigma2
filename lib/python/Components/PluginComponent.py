@@ -148,7 +148,7 @@ class PluginComponent:
 	def resetWarnings(self):
 		self.warnings = [ ]
 
-	def getNextWakeupTime(self, withPluginIdent=False):
+	def getNextWakeupTime(self, getPluginIdent=False):
 		wakeup = -1
 		pident = ""
 		for p in self.pluginList:
@@ -156,9 +156,8 @@ class PluginComponent:
 			if current > -1 and (wakeup > current or wakeup == -1):
 				wakeup = current
 				pident = p.name + " | " + p.path.split('/')[-1]
-		if withPluginIdent:
+		if getPluginIdent:
 			return int(wakeup), pident
-		else:
-			return int(wakeup)
+		return int(wakeup)
 
 plugins = PluginComponent()
