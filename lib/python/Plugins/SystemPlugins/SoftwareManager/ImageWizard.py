@@ -117,7 +117,8 @@ class ImageWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
-		Screen.setTitle(self, _("Welcome..."))
+		#Screen.setTitle(self, _("Welcome..."))
+		Screen.setTitle(self, _("ImageWizard"))
 		self.selectedDevice = None
 
 	def markDone(self):
