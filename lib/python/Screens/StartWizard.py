@@ -21,7 +21,8 @@ class StartWizard(WizardLanguage, Rc):
 		WizardLanguage.__init__(self, session, showSteps = False)
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
-		Screen.setTitle(self, _("Welcome..."))
+		#Screen.setTitle(self, _("Welcome..."))
+		Screen.setTitle(self, _("StartWizard"))
 
 	def markDone(self):
 		# setup remote control, all stb have same settings except dm8000 which uses a different settings
