@@ -1078,7 +1078,15 @@ void eServiceDVD::saveCuesheet()
 	{
 		std::string filename = m_ref.path;
 		filename += "/dvd.cuts";
-		f = fopen(filename.c_str(), "wb");
+		/* CVR We do not keep a resume file with position 0 */
+		if (m_cue_pts == 0)
+		{
+			if (::access(filename.c_str(), F_OK) == 0)
+				remove(filename.c_str());
+			f = NULL;
+		}
+		else
+			f = fopen(filename.c_str(), "wb");
 	}
 	if (f == NULL)
 	{
@@ -1098,8 +1106,17 @@ void eServiceDVD::saveCuesheet()
 				strcpy(filename, "/home/root/dvd-untitled.cuts");
 			}
 		}
-		eDebug("[eServiceDVD] saveCuesheet filename=%s",filename);
-		f = fopen(filename, "wb");
+		/* CVR We do not keep a resume file with position 0 */
+		if (m_cue_pts == 0)
+		{
+			if (::access(filename, F_OK) == 0)
+				remove(filename);
+		}
+		else
+		{
+			eDebug("[eServiceDVD] saveCuesheet filename=%s",filename);
+			f = fopen(filename, "wb");
+		}
 	}
 
 	if (f)
