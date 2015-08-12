@@ -170,15 +170,15 @@ class EventNameBasic(Converter, object):
 				self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 				if self.list:
 					if self.type == self.NAME_NEXT and self.list[1][1]:
-						return pgettext("now/next: 'next' event label", "Next") + ": " + self.getNameNext(list)
+						return pgettext("now/next: 'next' event label", "Next") + ": " + self.getNameNext(self.list)
 					elif self.type == self.NAME_NEXT2 and self.list[1][1]:
-						return self.getNameNext(list)
+						return self.getNameNext(self.list)
 					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
-						return self.getNextDescription(list)
+						return self.getNextDescription(self.list)
 					elif self.type == self.THIRD_NAME and self.list[2][1]:
 						return pgettext("third event: 'third' event label", "Later") + ": " + self.list[2][1]
 					elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
-						return self.getThirdDescription(list)
+						return self.getThirdDescription(self.list)
 					else:
 						# failed to return any epg data.
 						return ""
