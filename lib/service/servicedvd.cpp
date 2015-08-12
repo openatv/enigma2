@@ -389,6 +389,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		case DDVD_MENU_CLOSED:
 			eDebug("[eServiceDVD] DVD_MENU_CLOSED");
 			m_state = stRunning;
+			m_dvd_menu_closed = true;
 			if(m_cue_pts > 0 && m_resume)
 			{
 				m_resume = false;
@@ -452,6 +453,7 @@ RESULT eServiceDVD::start()
 	ASSERT(m_state == stIdle);
 	m_state = stRunning;
 	m_resume = false;
+	m_dvd_menu_closed = false;
 	eDebug("[eServiceDVD] starting");
 // 	m_event(this, evStart);
 	return 0;
@@ -854,10 +856,16 @@ RESULT eServiceDVD::getLength(pts_t &len)
 RESULT eServiceDVD::seekTo(pts_t to)
 {
 	eDebug("[eServiceDVD] seekTo(%lld)",to);
+	if(!m_dvd_menu_closed && !m_resume)
+	{
+		m_resume = true;
+		return -1;
+	}
 	if ( to > 0 )
 	{
 		eDebug("[eServiceDVD] set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
+		m_resume == false;
 	}
 	return 0;
 }

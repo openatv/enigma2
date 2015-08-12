@@ -630,11 +630,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print "playLastCB", answer, self.resume_point
 		if self.service:
 			if answer == True:
+				self.resumeDvd()
 				seekable = self.getSeek()
 				if seekable:
 					seekable.seekTo(self.resume_point)
-				else:
-					self.resumeDvd()
 			pause = self.service.pause()
 			pause.unpause()
 		self.hideAfterResume()
