@@ -389,6 +389,11 @@ void eServiceDVD::gotMessage(int /*what*/)
 		case DDVD_MENU_CLOSED:
 			eDebug("[eServiceDVD] DVD_MENU_CLOSED");
 			m_state = stRunning;
+			if(m_cue_pts > 0 && m_resume)
+			{
+				m_resume = false;
+				seekTo(m_cue_pts);
+			}
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
 			break;
@@ -446,6 +451,7 @@ RESULT eServiceDVD::start()
 {
 	ASSERT(m_state == stIdle);
 	m_state = stRunning;
+	m_resume = false;
 	eDebug("[eServiceDVD] starting");
 // 	m_event(this, evStart);
 	return 0;
@@ -947,6 +953,10 @@ RESULT eServiceDVD::keyPressed(int key)
 		break;
 	case iServiceKeys::keyUser+8:
 		ddvd_send_key(m_ddvdconfig, DDVD_KEY_ANGLE);
+		break;
+	case iServiceKeys::keyUser+21:
+		eDebug("[eServiceDVD] Enable resume");
+		m_resume = true;
 		break;
 	default:
 		return -1;

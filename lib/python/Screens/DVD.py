@@ -475,6 +475,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def nextAngle(self):
 		self.sendKey(iServiceKeys.keyUser+8)
 
+	def resumeDvd(self):
+		self.sendKey(iServiceKeys.keyUser+21)
+
 	def seekBeginning(self):
 		if self.service:
 			seekable = self.getSeek()
@@ -630,6 +633,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				seekable = self.getSeek()
 				if seekable:
 					seekable.seekTo(self.resume_point)
+				else:
+					self.resumeDvd()
 			pause = self.service.pause()
 			pause.unpause()
 		self.hideAfterResume()
