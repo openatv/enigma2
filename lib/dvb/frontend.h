@@ -94,6 +94,8 @@ private:
 	ePtr<eSocketNotifier> m_sn;
 	int m_tuning;
 	ePtr<eTimer> m_timeout, m_tuneTimer;
+	static std::list<eDVBFrontend*> tunerQueue;
+	bool m_inQueue;
 
 	eSecCommandList m_sec_sequence;
 
