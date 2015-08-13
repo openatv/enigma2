@@ -867,7 +867,7 @@ RESULT eServiceDVD::seekTo(pts_t to)
 			m_resume_info.block = m_resume_info.block - 6000; //resume - 15 seconds
 		eDebug("[eServiceDVD] set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
-		m_resume == false;
+		m_resume = false;
 	}
 	return 0;
 }
