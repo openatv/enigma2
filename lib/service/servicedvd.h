@@ -167,6 +167,7 @@ private:
 	void saveCuesheet();
 
 	int m_width, m_height, m_aspect, m_framerate, m_progressive;
+	bool m_resume, m_dvd_menu_closed;
 };
 
 #endif
