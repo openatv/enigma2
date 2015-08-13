@@ -1084,6 +1084,7 @@ void eServiceDVD::saveCuesheet()
 		pos += info.pos_minutes * 60;
 		pos += info.pos_seconds;
 		pos *= 90000;
+		m_cue_pts = pos;
 		eDebug("[eServiceDVD] ddvd_get_resume_pos resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d  (pts=%llu)",resume_info.title,resume_info.chapter,resume_info.block,resume_info.audio_id, resume_info.audio_lock, resume_info.spu_id, resume_info.spu_lock,m_cue_pts);
 	}
 	else
