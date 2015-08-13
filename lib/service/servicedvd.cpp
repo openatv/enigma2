@@ -1022,17 +1022,17 @@ void eServiceDVD::loadCuesheet()
 	{
 		char filename[128];
 		if ( m_ddvd_titlestring[0] != '\0' )
-			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+			snprintf(filename, sizeof(filename), "/home/root/.dvdcuts/%s.cuts", m_ddvd_titlestring);
 		else
 		{
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/.dvdcuts/%lx.cuts", st.st_mtime);
 			}
 			else
 			{
-				strcpy(filename, "/home/root/dvd-untitled.cuts");
+				strcpy(filename, "/home/root/.dvdcuts/untitled.cuts");
 			}
 		}
 		eDebug("[eServiceDVD] loadCuesheet filename=%s",filename);
@@ -1121,19 +1121,22 @@ void eServiceDVD::saveCuesheet()
 	}
 	if (f == NULL)
 	{
+		if(stat("/home/root", &st) == 0 && stat("/home/root/.dvdcuts", &st) != 0)
+			mkdir("/home/root/.dvdcuts", 0755);
+			
 		char filename[128];
 		if ( m_ddvd_titlestring[0] != '\0' )
-			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+			snprintf(filename, sizeof(filename), "/home/root/.dvdcuts/%s.cuts", m_ddvd_titlestring);
 		else
 		{
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/.dvdcuts/%lx.cuts", st.st_mtime);
 			}
 			else
 			{
-				strcpy(filename, "/home/root/dvd-untitled.cuts");
+				strcpy(filename, "/home/root/.dvdcuts/untitled.cuts");
 			}
 		}
 		/* CVR We do not keep a resume file with position 0 */
