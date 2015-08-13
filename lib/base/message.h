@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <lib/base/elock.h>
 #include <lib/base/wrappers.h>
-#include <sys/eventfd.h>
+
 
 /**
  * \brief A generic messagepump.
@@ -31,18 +31,6 @@ protected:
 	int getOutputFD() const { return fd[0]; }
 };
 
-class FD
-{
-protected:
-	int m_fd;
-public:
-	FD(int fd): m_fd(fd) {}
-	~FD()
-	{
-		::close(m_fd);
-	}
-};
-
 /**
  * \brief A messagepump with fixed-length packets.
  *
@@ -50,32 +38,20 @@ public:
  * Automatically creates a eSocketNotifier and gives you a callback.
  */
 template<class T>
-class eFixedMessagePump: public Object, FD
+class eFixedMessagePump: public Object
 {
-	eSingleLock lock;
 	ePtr<eSocketNotifier> sn;
 	std::queue<T> m_queue;
+	int m_pipe[2];
+	eSingleLock lock;
 	void do_recv(int)
 	{
-		uint64_t data;
-		if (::read(m_fd, &data, sizeof(data)) <= 0)
-		{
-			eFatal("[eFixedMessagePump] read error %m");
-			return;
-		}
+		char byte;
+		if (singleRead(m_pipe[0], &byte, sizeof(byte)) <= 0) return;
 
-		/* eventfd reads the number of writes since the last read. This
-		 * will not exceed 4G, so an unsigned int is big enough to count
-		 * down the events. */
-		for(unsigned int count = (unsigned int)data; count != 0; --count)
+		lock.lock();
+		if (!m_queue.empty())
 		{
-			lock.lock();
-			if (m_queue.empty())
-			{
-				lock.unlock();
-				eFatal("[eFixedMessagePump] Got event but queue is empty");
-				break;
-			}
 			T msg = m_queue.front();
 			m_queue.pop();
 			lock.unlock();
@@ -88,12 +64,10 @@ class eFixedMessagePump: public Object, FD
 			 */
 			/*emit*/ recv_msg(msg);
 		}
-	}
-	void trigger_event()
-	{
-		static const uint64_t data = 1;
-		if (::write(m_fd, &data, sizeof(data)) < 0)
-			eFatal("[eFixedMessagePump] write error %m");
+		else
+		{
+			lock.unlock();
+		}
 	}
 public:
 	Signal1<void,const T&> recv_msg;
@@ -103,19 +77,20 @@ public:
 			eSingleLocker s(lock);
 			m_queue.push(msg);
 		}
-		trigger_event();
+		char byte = 0;
+		writeAll(m_pipe[1], &byte, sizeof(byte));
 	}
-	eFixedMessagePump(eMainloop *context, int mt):
-		FD(eventfd(0, EFD_CLOEXEC)),
-		sn(eSocketNotifier::create(context, m_fd, eSocketNotifier::Read, false))
+	eFixedMessagePump(eMainloop *context, int mt)
 	{
+		pipe(m_pipe);
+		sn = eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read, false);
 		CONNECT(sn->activated, eFixedMessagePump<T>::do_recv);
 		sn->start();
 	}
 	~eFixedMessagePump()
 	{
-		/* sn is refcounted and still referenced, so call stop() here */
-		sn->stop();
+		close(m_pipe[0]);
+		close(m_pipe[1]);
 	}
 };
 #endif
