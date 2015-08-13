@@ -466,13 +466,19 @@ DEFINE_REF(eDVBFrontend);
 
 int eDVBFrontend::PriorityOrder=0;
 int eDVBFrontend::PreferredFrontendIndex = -1;
+#if SERIALISE_TUNER_ACCESS
 std::list<eDVBFrontend*> eDVBFrontend::tunerQueue;
+#endif // SERIALISE_TUNER_ACCESS
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_simulate_fe(simulate_fe), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false)
-	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0), m_inQueue(false)
+	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
+#if SERIALISE_TUNER_ACCESS
+	m_inQueue = false;
+#endif //SERIALISE_TUNER_ACCESS
+
 	m_filename = devicenodename;
 
 	m_timeout = eTimer::create(eApp);
@@ -1257,9 +1263,9 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 	if ( m_sec_sequence && m_sec_sequence.current() != m_sec_sequence.end() )
 	{
 		delay = 0;
-		// Workaround for problems o "zero length" recordings
-		// sometimes wneg timers start simultaneously on
-		// the Beyonwiz T4.
+#if SERIALISE_TUNER_ACCESS
+		// Workaround for problems with "zero length" recordings
+		// sometimes when timers start simultaneously on the Beyonwiz T4.
 		// Serialises access to the tuners.
 		if(!m_simulate) {
 			if(!m_inQueue) {
@@ -1272,6 +1278,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				return delay;
 			}
 		}
+#endif //SERIALISE_TUNER_ACCESS
 		long *sec_fe_data = sec_fe->m_data;
 //		eDebugNoSimulate("[FE] tuneLoop %d\n", m_sec_sequence.current()->cmd);
 		switch (m_sec_sequence.current()->cmd)
@@ -1615,6 +1622,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 		}
 		if (!m_simulate)
 			m_tuneTimer->start(delay,true);
+#if SERIALISE_TUNER_ACCESS
 	} else if(!m_simulate) {
 		if(m_inQueue && tunerQueue.front() == this) {
 			eDebug("[FE] tuneLoopInt 0x%x tuner %d finished", (unsigned int)this, m_dvbid);
@@ -1625,6 +1633,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				tunerQueue.front()->m_tuneTimer->start(0,true);
 			}
 		}
+#endif //SERIALISE_TUNER_ACCESS
 	}
 	if (regFE)
 		regFE->dec_use();
