@@ -389,6 +389,12 @@ void eServiceDVD::gotMessage(int /*what*/)
 		case DDVD_MENU_CLOSED:
 			eDebug("[eServiceDVD] DVD_MENU_CLOSED");
 			m_state = stRunning;
+			m_dvd_menu_closed = true;
+			if(m_cue_pts > 0 && m_resume)
+			{
+				m_resume = false;
+				seekTo(m_cue_pts);
+			}
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
 			break;
@@ -446,6 +452,8 @@ RESULT eServiceDVD::start()
 {
 	ASSERT(m_state == stIdle);
 	m_state = stRunning;
+	m_resume = false;
+	m_dvd_menu_closed = false;
 	eDebug("[eServiceDVD] starting");
 // 	m_event(this, evStart);
 	return 0;
@@ -848,10 +856,18 @@ RESULT eServiceDVD::getLength(pts_t &len)
 RESULT eServiceDVD::seekTo(pts_t to)
 {
 	eDebug("[eServiceDVD] seekTo(%lld)",to);
+	if(!m_dvd_menu_closed && !m_resume)
+	{
+		m_resume = true;
+		return -1;
+	}
 	if ( to > 0 )
 	{
+		if(m_resume_info.block > 10000)
+			m_resume_info.block = m_resume_info.block - 6000; //resume - 15 seconds
 		eDebug("[eServiceDVD] set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
+		m_resume == false;
 	}
 	return 0;
 }
@@ -948,6 +964,10 @@ RESULT eServiceDVD::keyPressed(int key)
 	case iServiceKeys::keyUser+8:
 		ddvd_send_key(m_ddvdconfig, DDVD_KEY_ANGLE);
 		break;
+	case iServiceKeys::keyUser+21:
+		eDebug("[eServiceDVD] Enable resume");
+		m_resume = true;
+		break;
 	default:
 		return -1;
 	}
@@ -985,28 +1005,34 @@ void eServiceDVD::setCutListEnable(int /*enable*/)
 
 void eServiceDVD::loadCuesheet()
 {
+	struct stat st;
 	FILE* f;
 	{
 		std::string filename = m_ref.path;
-		filename += "/dvd.cuts";
+		if (stat(m_ref.path.c_str(), &st) == 0)
+		{
+			if( st.st_mode & S_IFDIR )
+				filename += "/dvd.cuts";
+			else
+				filename += ".cuts";
+		}
 		f = fopen(filename.c_str(), "rb");
 	}
 	if (f == NULL)
 	{
 		char filename[128];
 		if ( m_ddvd_titlestring[0] != '\0' )
-			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+			snprintf(filename, sizeof(filename), "/home/root/.dvdcuts/%s.cuts", m_ddvd_titlestring);
 		else
 		{
-			struct stat st;
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/.dvdcuts/%lx.cuts", st.st_mtime);
 			}
 			else
 			{
-				strcpy(filename, "/home/root/dvd-untitled.cuts");
+				strcpy(filename, "/home/root/.dvdcuts/untitled.cuts");
 			}
 		}
 		eDebug("[eServiceDVD] loadCuesheet filename=%s",filename);
@@ -1035,8 +1061,7 @@ void eServiceDVD::loadCuesheet()
 		what = ntohl(what);
 		if (what != 4 )
 			return;
-
- 		m_cue_pts = where;
+		m_cue_pts = where;
 
 		fclose(f);
 	} else
@@ -1073,33 +1098,58 @@ void eServiceDVD::saveCuesheet()
 		eDebug("[eServiceDVD] we're in a menu or somewhere else funny. so save cuesheet with pts=0");
 		m_cue_pts = 0;
 	}
-
+	struct stat st;
 	FILE* f;
 	{
 		std::string filename = m_ref.path;
-		filename += "/dvd.cuts";
-		f = fopen(filename.c_str(), "wb");
+		if (stat(m_ref.path.c_str(), &st) == 0)
+		{
+			if( st.st_mode & S_IFDIR )
+				filename += "/dvd.cuts";
+			else
+				filename += ".cuts";
+		}
+		/* CVR We do not keep a resume file with position 0 */
+		if (m_cue_pts == 0)
+		{
+			if (::access(filename.c_str(), F_OK) == 0)
+				remove(filename.c_str());
+			f = NULL;
+		}
+		else
+			f = fopen(filename.c_str(), "wb");
 	}
 	if (f == NULL)
 	{
+		if(stat("/home/root", &st) == 0 && stat("/home/root/.dvdcuts", &st) != 0)
+			mkdir("/home/root/.dvdcuts", 0755);
+			
 		char filename[128];
 		if ( m_ddvd_titlestring[0] != '\0' )
-			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+			snprintf(filename, sizeof(filename), "/home/root/.dvdcuts/%s.cuts", m_ddvd_titlestring);
 		else
 		{
-			struct stat st;
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/.dvdcuts/%lx.cuts", st.st_mtime);
 			}
 			else
 			{
-				strcpy(filename, "/home/root/dvd-untitled.cuts");
+				strcpy(filename, "/home/root/.dvdcuts/untitled.cuts");
 			}
 		}
-		eDebug("[eServiceDVD] saveCuesheet filename=%s",filename);
-		f = fopen(filename, "wb");
+		/* CVR We do not keep a resume file with position 0 */
+		if (m_cue_pts == 0)
+		{
+			if (::access(filename, F_OK) == 0)
+				remove(filename);
+		}
+		else
+		{
+			eDebug("[eServiceDVD] saveCuesheet filename=%s",filename);
+			f = fopen(filename, "wb");
+		}
 	}
 
 	if (f)
