@@ -1005,10 +1005,17 @@ void eServiceDVD::setCutListEnable(int /*enable*/)
 
 void eServiceDVD::loadCuesheet()
 {
+	struct stat st;
 	FILE* f;
 	{
 		std::string filename = m_ref.path;
-		filename += "/dvd.cuts";
+		if (stat(m_ref.path.c_str(), &st) == 0)
+		{
+			if( st.st_mode & S_IFDIR )
+				filename += "/dvd.cuts";
+			else
+				filename += ".cuts";
+		}
 		f = fopen(filename.c_str(), "rb");
 	}
 	if (f == NULL)
@@ -1018,7 +1025,6 @@ void eServiceDVD::loadCuesheet()
 			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
 		else
 		{
-			struct stat st;
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
@@ -1092,11 +1098,17 @@ void eServiceDVD::saveCuesheet()
 		eDebug("[eServiceDVD] we're in a menu or somewhere else funny. so save cuesheet with pts=0");
 		m_cue_pts = 0;
 	}
-
+	struct stat st;
 	FILE* f;
 	{
 		std::string filename = m_ref.path;
-		filename += "/dvd.cuts";
+		if (stat(m_ref.path.c_str(), &st) == 0)
+		{
+			if( st.st_mode & S_IFDIR )
+				filename += "/dvd.cuts";
+			else
+				filename += ".cuts";
+		}
 		/* CVR We do not keep a resume file with position 0 */
 		if (m_cue_pts == 0)
 		{
@@ -1114,7 +1126,6 @@ void eServiceDVD::saveCuesheet()
 			snprintf(filename, sizeof(filename), "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
 		else
 		{
-			struct stat st;
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
