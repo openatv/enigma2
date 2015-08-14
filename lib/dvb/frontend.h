@@ -94,6 +94,10 @@ private:
 	ePtr<eSocketNotifier> m_sn;
 	int m_tuning;
 	ePtr<eTimer> m_timeout, m_tuneTimer;
+#if SERIALISE_TUNER_ACCESS
+	static std::list<eDVBFrontend*> tunerQueue;
+	bool m_inQueue;
+#endif // SERIALISE_TUNER_ACCESS
 
 	eSecCommandList m_sec_sequence;
 

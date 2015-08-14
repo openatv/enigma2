@@ -466,12 +466,19 @@ DEFINE_REF(eDVBFrontend);
 
 int eDVBFrontend::PriorityOrder=0;
 int eDVBFrontend::PreferredFrontendIndex = -1;
+#if SERIALISE_TUNER_ACCESS
+std::list<eDVBFrontend*> eDVBFrontend::tunerQueue;
+#endif // SERIALISE_TUNER_ACCESS
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_simulate_fe(simulate_fe), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
+#if SERIALISE_TUNER_ACCESS
+	m_inQueue = false;
+#endif //SERIALISE_TUNER_ACCESS
+
 	m_filename = devicenodename;
 
 	m_timeout = eTimer::create(eApp);
@@ -1255,9 +1262,25 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 
 	if ( m_sec_sequence && m_sec_sequence.current() != m_sec_sequence.end() )
 	{
+		delay = 0;
+#if SERIALISE_TUNER_ACCESS
+		// Workaround for problems with "zero length" recordings
+		// sometimes when timers start simultaneously on the Beyonwiz T4.
+		// Serialises access to the tuners.
+		if(!m_simulate) {
+			if(!m_inQueue) {
+				eDebug("[FE] tuneLoopInt 0x%x add tuner %d to queue", (unsigned int)this, m_dvbid);
+				tunerQueue.push_back(this);
+				m_inQueue = true;
+			}
+			if(tunerQueue.front() != this) {
+				eDebug("[FE] tuneLoopInt 0x%x tuner %d waiting in queue", (unsigned int)this, m_dvbid);
+				return delay;
+			}
+		}
+#endif //SERIALISE_TUNER_ACCESS
 		long *sec_fe_data = sec_fe->m_data;
 //		eDebugNoSimulate("[FE] tuneLoop %d\n", m_sec_sequence.current()->cmd);
-		delay = 0;
 		switch (m_sec_sequence.current()->cmd)
 		{
 			case eSecCommand::SLEEP:
@@ -1599,6 +1622,18 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 		}
 		if (!m_simulate)
 			m_tuneTimer->start(delay,true);
+#if SERIALISE_TUNER_ACCESS
+	} else if(!m_simulate) {
+		if(m_inQueue && tunerQueue.front() == this) {
+			eDebug("[FE] tuneLoopInt 0x%x tuner %d finished", (unsigned int)this, m_dvbid);
+			tunerQueue.pop_front();
+			m_inQueue = false;
+			if(!tunerQueue.empty()) {
+				eDebug("[FE] tuneLoopInt 0x%x kickstarting 0x%x tuner %d", (unsigned int)this, (unsigned int)tunerQueue.front(), tunerQueue.front()->m_dvbid);
+				tunerQueue.front()->m_tuneTimer->start(0,true);
+			}
+		}
+#endif //SERIALISE_TUNER_ACCESS
 	}
 	if (regFE)
 		regFE->dec_use();

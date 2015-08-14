@@ -194,12 +194,12 @@ class AusClassification(dict):
 	AUSTEXT = {
 		"": _("Not Classified"),
 		"P": _("Preschool"),
-		"C": _("_(Children"),
+		"C": _("Children"),
 		"G": _("General"),
 		"PG": _("Parental Guidance Recommended"),
 		"M": _("Mature Audience 15+"),
 		"MA": _("Mature Adult Audience 15+"),
-		"AV": _("Adult, Strong Violence 15+"),
+		"AV": _("Adult Audience, Strong Violence 15+"),
 		"R": _("Restricted 18+")
 	}
 
