@@ -48,7 +48,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		icon = None
-		if not processed and not timer.disabled:
+		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
 			if timer.state == TimerEntry.StateWaiting:
 				state = _("waiting")
 				icon = self.iconWait
