@@ -81,6 +81,11 @@ class AVSwitch:
 		del modes["YPbPr"]
 	if modes.has_key("Scart") and getBoxType() in ('fusionhd', 'force2', 'force2plus', 'optimussos', 'tmnanose', 'tmnanosecombo', 'gbx1', 'gbx3'):
 		del modes["Scart"]
+		
+	if getBoxType() in ('mutant2400'):
+		f = open("/proc/stb/info/board_revision", "r").read()
+		if f >= "2":
+			del modes["YPbPr"]
 
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
