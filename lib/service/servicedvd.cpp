@@ -383,6 +383,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 		case DDVD_MENU_OPENED:
 			eDebug("[eServiceDVD] DVD_MENU_OPENED");
 			m_state = stMenu;
+			m_dvd_menu_closed = false;
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+11);
 			break;
@@ -392,9 +393,9 @@ void eServiceDVD::gotMessage(int /*what*/)
 			m_dvd_menu_closed = true;
 			if(m_cue_pts > 0 && m_resume)
 			{
-				m_resume = false;
 				seekTo(m_cue_pts);
 			}
+			m_resume = false;
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
 			break;
@@ -856,18 +857,12 @@ RESULT eServiceDVD::getLength(pts_t &len)
 RESULT eServiceDVD::seekTo(pts_t to)
 {
 	eDebug("[eServiceDVD] seekTo(%lld)",to);
-	if(!m_dvd_menu_closed && !m_resume)
-	{
-		m_resume = true;
-		return -1;
-	}
 	if ( to > 0 )
 	{
-		if(m_resume_info.block > 10000)
-			m_resume_info.block = m_resume_info.block - 6000; //resume - 15 seconds
+		if(m_resume_info.block > 8000)
+			m_resume_info.block = m_resume_info.block - 4000; //resume - 10 seconds
 		eDebug("[eServiceDVD] set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
-		m_resume = false;
 	}
 	return 0;
 }
@@ -888,7 +883,10 @@ RESULT eServiceDVD::getPlayPosition(pts_t &pos)
 	pos = info.pos_hours * 3600;
 	pos += info.pos_minutes * 60;
 	pos += info.pos_seconds;
-// 	eDebug("[eServiceDVD] getPlayPosition %lld", pos);
+ 	//eDebug("[eServiceDVD] getPlayPosition %lld", pos);
+	/* Once the dvd is well playing the resume if still there must be deactivated */
+	if (pos > 10 && m_resume)
+		m_resume = false;		
 	pos *= 90000;
 	return 0;
 }
