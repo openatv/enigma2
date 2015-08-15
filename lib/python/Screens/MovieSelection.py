@@ -321,14 +321,14 @@ class MovieContextMenuSummary(Screen):
 class MovieMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
+		self.l.setFont(0, gFont("Regular", 24))
 		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		self.l.setItemHeight(30)
 
 def MovieMenuEntryComponent(name, item):
 	return [
 		(item),
-		MultiContentEntryText(pos=(20, 0), size=(575, 50), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_(name)),
+		MultiContentEntryText(pos=(20, 0), size=(575, 30), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_(name)),
 	]
 
 class MovieContextMenu(Screen):
