@@ -969,9 +969,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (pixmap)
 				{
 					eSize pixmap_size = pixmap->size();
-					eRect area = m_element_position[e == celFolderPixmap ? celServiceName: celServiceNumber];
+					int celServiceNumberWidth = m_element_position[celServiceNumber].width();
+					eRect area = m_element_position[e == celFolderPixmap || celServiceNumberWidth <= 0 ? celServiceName: celServiceNumber];
 					int correction = (area.height() - pixmap_size.height()) / 2;
-					if (e == celFolderPixmap)
+					if (e == celFolderPixmap || celServiceNumberWidth <= 0)
 						if (m_element_position[celServiceEventProgressbar].left() == 0)
 							area.setLeft(0);
 						xoffset = pixmap_size.width() + m_items_distances;
