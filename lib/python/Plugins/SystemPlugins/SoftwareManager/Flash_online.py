@@ -36,10 +36,10 @@ if ImageVersion3 == '':
 	feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
 else:
 	feedurl_atv = 'http://images2.mynonpublic.com/openatv/%s' %ImageVersion3
-if ImageVersion == '4.1' or ImageVersion == '4.0' or ImageVersion == '3.0' or ImageVersion == '4.3':
+if ImageVersion == '4.1' or ImageVersion == '4.0' or ImageVersion == '3.0' or ImageVersion == '4.3' or ImageVersion == '5.1':
 	ImageVersion2= '4.2'
 else:
-	ImageVersion2= '5.0'
+	ImageVersion2= '5.1'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
 feedurl_om = 'http://image.openmips.com/4.2'
 imagePath = '/media/hdd/images'
