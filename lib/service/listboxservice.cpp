@@ -966,12 +966,17 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (pixmap)
 				{
 					eSize pixmap_size = pixmap->size();
-					eRect area = m_element_position[e == celFolderPixmap ? celServiceName: celServiceNumber];
-					int correction = (area.height() - pixmap_size.height()) / 2;
-					if (e == celFolderPixmap)
+					eRect area;
+					if (e == celFolderPixmap || m_element_position[celServiceNumber].width() < pixmap_size.width())
+					{
+						area = m_element_position[celServiceName];
 						if (m_element_position[celServiceEventProgressbar].left() == 0)
 							area.setLeft(0);
-						xoffset = pixmap_size.width() + m_items_distances;
+						xoffset = pixmap_size.width() + m_items_distances;			
+					}
+					else
+						area = m_element_position[celServiceNumber];
+					int correction = (area.height() - pixmap_size.height()) / 2;
 					area.moveBy(offset);
 					painter.clip(area);
 					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHATEST);
