@@ -145,6 +145,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setTitle(_("PicturePlayer"))
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
 		self.skinName = ["PicturePlayerSetup", "Setup"]
 		self.setup_title = _("Settings")
