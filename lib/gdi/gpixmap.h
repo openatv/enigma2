@@ -197,11 +197,8 @@ public:
 		accelAlways = 1,
 	};
 
-	typedef void (*gPixmapDisposeCallback)(gPixmap* pixmap);
-
 	gPixmap(gUnmanagedSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
-	gPixmap(int width, int height, int bpp, gPixmapDisposeCallback on_dispose, int accel = accelAuto);
 
 	gUnmanagedSurface *surface;
 
@@ -211,7 +208,7 @@ public:
 	eSize size() const { return eSize(surface->x, surface->y); }
 
 private:
-	gPixmapDisposeCallback on_dispose;
+	bool must_delete_surface;
 
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
