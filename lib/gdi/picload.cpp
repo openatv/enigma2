@@ -267,7 +267,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 //---------------------------------------------------------------------
 
-static void png_load(Cfilepara* filepara, int background)
+static void png_load(Cfilepara* filepara, unsigned int background)
 {
 	png_uint_32 width, height;
 	unsigned int i;
@@ -1139,7 +1139,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 	if (m_filepara->bits == 8)
 	{
-		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 8, NULL, gPixmap::accelAlways);
+		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 8, gPixmap::accelAlways);
 		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;
@@ -1161,7 +1161,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 			h_x = m_filepara->max_x - m_filepara->ox - v_x;
 		}
 
-		int background;
+		gColor background;
 		gRGB bg(m_conf.background);
 		background = surface->clut.findColor(bg);
 
@@ -1199,7 +1199,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	}
 	else
 	{
-		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 32, NULL, gPixmap::accelAuto);
+		result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32, gPixmap::accelAuto);
 		gUnmanagedSurface *surface = result->surface;
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 
@@ -1218,7 +1218,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 			h_x = m_filepara->max_x - m_filepara->ox - v_x;
 		}
 
-		int background = m_conf.background;
+		unsigned int background = m_conf.background;
 		if(m_filepara->oy < m_filepara->max_y)
 		{
 			for (int y = o_y; y != 0; --y)
@@ -1323,7 +1323,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 //------------------------------------------------------------------------------------
 
 //for old plugins
-SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, int background, std::string cachefile)
+SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, unsigned int background, std::string cachefile)
 {
 	long asp1, asp2;
 	result = 0;
