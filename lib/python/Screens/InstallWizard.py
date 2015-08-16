@@ -49,11 +49,11 @@ class InstallWizard(Screen, ConfigListScreen):
 			modes = {"19e": "Astra 1", "23e": "Astra 3", "19e-23e": "Astra 1 Astra 3", "19e-23e-28e": "Astra 1 Astra 2 Astra 3", "13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
 			self.channellist_type = ConfigSelection(choices = modes, default = "19e")
 			self.createMenu()
-# 		elif self.index == self.STATE_CHOISE_SOFTCAM:
-# 			self.enabled = ConfigYesNo(default = True)
-# 			modes = {"cccam": _("default") + " (CCcam)", "scam": "scam"}
-# 			self.softcam_type = ConfigSelection(choices = modes, default = "cccam")
-# 			self.createMenu()
+#		elif self.index == self.STATE_CHOISE_SOFTCAM:
+#			self.enabled = ConfigYesNo(default = True)
+#			modes = {"cccam": _("default") + " (CCcam)", "scam": "scam", "oscam": "oscam"}
+#			self.softcam_type = ConfigSelection(choices = modes, default = "cccam")
+#			self.createMenu()
 
 	def checkNetworkCB(self, data):
 		if data < 3:
