@@ -65,7 +65,7 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 		int max_x;
 		int max_y;
 		double aspect_ratio;
-		int background;
+		unsigned int background;
 		bool resizetype;
 		bool usecache;
 		int thumbnailsize;
@@ -108,6 +108,6 @@ public:
 };
 
 //for old plugins
-SWIG_VOID(int) loadPic(ePtr<gPixmap> &SWIG_OUTPUT, std::string filename, int x, int y, int aspect, int resize_mode=0, int rotate=0, int background=0, std::string cachefile="");
+SWIG_VOID(int) loadPic(ePtr<gPixmap> &SWIG_OUTPUT, std::string filename, int x, int y, int aspect, int resize_mode=0, int rotate=0, unsigned int background=0, std::string cachefile="");
 
 #endif // __picload_h__
