@@ -73,6 +73,9 @@ int eDVBAudio::startPid(int pid, int type)
 		case 3:
 			pes.pes_type = DMX_PES_AUDIO3;
 			break;
+		default:
+			eDebug("[eDVBAudio] unexpected m_dev (%d), setting pes_type to OTHER", m_dev);
+			pes.pes_type = DMX_PES_OTHER;
 		}
 		pes.flags    = 0;
 		eDebugNoNewLine("[eDVBAudio] DMX_SET_PES_FILTER(0x%02x) - audio - ", pid);
@@ -355,6 +358,9 @@ int eDVBVideo::startPid(int pid, int type)
 		case 3:
 			pes.pes_type = DMX_PES_VIDEO3;
 			break;
+		default:
+			eDebug("[eDVBVideo] unexpected m_dev (%d), setting pes_type to OTHER", m_dev);
+			pes.pes_type = DMX_PES_OTHER;
 		}
 		pes.flags    = 0;
 		eDebugNoNewLine("[eDVBVideo] DMX_SET_PES_FILTER(0x%02x) - video - ", pid);
@@ -661,6 +667,9 @@ int eDVBPCR::startPid(int pid)
 	case 3:
 		pes.pes_type = DMX_PES_PCR3;
 		break;
+	default:
+		eDebug("[eDVBPCR] unexpected m_dev (%d), setting pes_type to OTHER", m_dev);
+		pes.pes_type = DMX_PES_OTHER;
 	}
 	pes.flags    = 0;
 	eDebugNoNewLine("[eDVBPCR] DMX_SET_PES_FILTER(0x%02x) - pcr - ", pid);
@@ -730,6 +739,9 @@ int eDVBTText::startPid(int pid)
 	case 3:
 		pes.pes_type = DMX_PES_TELETEXT3;
 		break;
+	default:
+		eDebug("[eDVBTText] unexpected m_dev (%d), setting pes_type to OTHER", m_dev);
+		pes.pes_type = DMX_PES_OTHER;
 	}
 	pes.flags    = 0;
 
