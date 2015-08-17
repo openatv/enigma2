@@ -297,98 +297,76 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 
 	png_read_info(png_ptr, info_ptr);
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
+	int pixel_cnt = width * height;
 
-	if (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE)
+	if (bit_depth == 16)
+		png_set_strip_16(png_ptr);
+
+	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+		png_set_gray_to_rgb(png_ptr);
+
+	if ((color_type == PNG_COLOR_TYPE_PALETTE)||(color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)||(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
+		png_set_expand(png_ptr);
+
+	int number_passes = png_set_interlace_handling(png_ptr);
+	png_read_update_info(png_ptr, info_ptr);
+
+	int bpp =  png_get_rowbytes(png_ptr, info_ptr)/width;
+	if ((bpp!=4) && (bpp!=3))
 	{
-		if (bit_depth < 8)
-		{
-			png_set_packing(png_ptr);
-			bit_depth = 8;
-		}
-		unsigned char *pic_buffer = new unsigned char[height * width];
-		filepara->ox = width;
-		filepara->oy = height;
-		filepara->pic_buffer = pic_buffer;
-		filepara->bits = 8;
-
-		png_bytep *rowptr=new png_bytep[height];
-		for (unsigned int i=0; i!=height; i++)
-		{
-			rowptr[i]=(png_byte*)pic_buffer;
-			pic_buffer += width;
-		}
-		png_read_rows(png_ptr, rowptr, 0, height);
-		delete [] rowptr;
-
-		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE))
-		{
-			png_color *palette;
-			int num_palette;
-			png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
-			filepara->palette_size = num_palette;
-			if (num_palette)
-				filepara->palette = new gRGB[num_palette];
-			for (int i=0; i<num_palette; i++)
-			{
-				filepara->palette[i].a=0;
-				filepara->palette[i].r=palette[i].red;
-				filepara->palette[i].g=palette[i].green;
-				filepara->palette[i].b=palette[i].blue;
-			}
-			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
-			{
-				png_byte *trans;
-				png_get_tRNS(png_ptr, info_ptr, &trans, &num_palette, 0);
-				for (int i=0; i<num_palette; i++)
-					filepara->palette[i].a=255-trans[i];
-			}
-		}
+		eDebug("[png_load] Error processing");
+		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+		return ;
 	}
-	else
-	{
-		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
-			png_set_expand(png_ptr);
-		if (bit_depth == 16)
-			png_set_strip_16(png_ptr);
-		if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
-			png_set_gray_to_rgb(png_ptr);
-		if ((color_type == PNG_COLOR_TYPE_RGB_ALPHA) || (color_type == PNG_COLOR_TYPE_GRAY_ALPHA))
-		{
-			png_set_strip_alpha(png_ptr);
-			png_color_16 bg;
-			bg.red = (background >> 16) & 0xFF;
-			bg.green = (background >> 8) & 0xFF;
-			bg.blue = (background) & 0xFF;
-			bg.gray = bg.green;
-			bg.index = 0;
-			png_set_background(png_ptr, &bg, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
-		}
-		int number_passes = png_set_interlace_handling(png_ptr);
-		png_read_update_info(png_ptr, info_ptr);
 
-		if (width * 3 != png_get_rowbytes(png_ptr, info_ptr))
+	unsigned char * pic_buffer = new unsigned char[pixel_cnt * bpp];
+	if(!pic_buffer)
+		return;
+	for(int pass = 0; pass < number_passes; pass++)
+	{
+		fbptr = (png_byte *)pic_buffer;
+		for (i = 0; i < height; i++, fbptr += width * bpp)
+			png_read_row(png_ptr, fbptr, NULL);
+	}
+	png_read_end(png_ptr, info_ptr);
+	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+
+	if (bpp == 4)
+	{
+		unsigned char * pic_buffer24 = new unsigned char[pixel_cnt * 3];
+		if(!pic_buffer24)
 		{
-			eDebug("[Picload] Error processing (did not get RGB data from PNG file)");
-			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+			eDebug("[png_load] alloc mem");
+			delete [] pic_buffer;
 			return;
 		}
 
-		unsigned char *pic_buffer = new unsigned char[height * width * 3];
-		filepara->ox = width;
-		filepara->oy = height;
+		unsigned char *src = pic_buffer;
+		unsigned char *dst = pic_buffer24;
+		int a, r, g, b;
+		int bg_r = (background >> 16) & 0xFF;
+		int bg_g = (background >> 8) & 0xFF;
+		int bg_b = background & 0xFF;
+		for(i=0; i < pixel_cnt; i++)
+		{
+			r = (int)*src++;
+			g = (int)*src++;
+			b = (int)*src++;
+			a = (int)*src++;
+
+			*dst++ = ((r-bg_r)*a)/255 + bg_r;
+			*dst++ = ((g-bg_g)*a)/255 + bg_g;
+			*dst++ = ((b-bg_b)*a)/255 + bg_b;
+		}
+		delete [] pic_buffer;
+		filepara->pic_buffer = pic_buffer24;
+	}
+	else
 		filepara->pic_buffer = pic_buffer;
 
-		for(int pass = 0; pass < number_passes; pass++)
-		{
-			fbptr = (png_byte *)pic_buffer;
-			for (i = 0; i < height; i++, fbptr += width * 3)
-				png_read_row(png_ptr, fbptr, NULL);
-		}
-		png_read_end(png_ptr, info_ptr);
-	}
-	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+	filepara->ox = width;
+	filepara->oy = height;
 }
-
 //-------------------------------------------------------------------
 
 struct r_jpeg_error_mgr
