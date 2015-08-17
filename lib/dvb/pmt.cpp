@@ -734,7 +734,7 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 					eDebug("[eDVBServicePMTHandler] sdt update done!");
 				}
 				else
-					eDebug("[eDVBServicePMTHandler] ignore sdt update data.... incorrect transponder tuned!!!");
+					eDebug("[eDVBServicePMTHandler] ignore sdt update data.... incorrect transponder tuned wanted %s got %s!!!", chid.toString().c_str(), m_dvb_scan->getCurrentChannelID().toString().c_str());
 			}
 			break;
 		}

@@ -74,6 +74,7 @@ DEFINE_REF(eDVBDemux)
 
 RESULT eDVBDemux::setSourceFrontend(int fenum)
 {
+	eDebug("DMX_SET_SOURCE adapter%d/demux%d to frontend %d", adapter, demux, fenum);
 	int fd = openDemux();
 	if (fd < 0) return -1;
 	int n = DMX_SOURCE_FRONT0 + fenum;
@@ -88,6 +89,7 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 
 RESULT eDVBDemux::setSourcePVR(int pvrnum)
 {
+	eDebug("DMX_SET_SOURCE adapter%d/demux%d to dvr %d (%d)", adapter, demux, pvrnum, DMX_SOURCE_DVR0 + pvrnum);
 	int fd = openDemux();
 	if (fd < 0) return -1;
 	int n = DMX_SOURCE_DVR0 + pvrnum;
@@ -694,7 +696,7 @@ RESULT eDVBTSRecorder::start()
 
 	if (m_source_fd < 0)
 	{
-		eDebug("FAILED to open demux (%s) in ts recoder (%m)", filename);
+		eDebug("[eDVBTSRecorder] FAILED to open demux (%s): %m", filename);
 		return -3;
 	}
 
@@ -736,7 +738,7 @@ RESULT eDVBTSRecorder::setBufferSize(int size)
 {
 	int res = ::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, size);
 	if (res < 0)
-		eDebug("eDVBTSRecorder DMX_SET_BUFFER_SIZE failed(%m)");
+		eDebug("[eDVBTSRecorder] DMX_SET_BUFFER_SIZE failed(%m)");
 	return res;
 }
 
