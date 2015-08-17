@@ -7,6 +7,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		tunertype = tp.get("tuner_type", "None")
 	if tp.get("tuner_number") is not None:
 		ret["tuner_name"] = chr(ord('A') + tp["tuner_number"])
+		print 'tuner_number:', tp["tuner_number"]
+		print 'tuner_name:', ret["tuner_name"]
 	if tunertype == "DVB-S":
 		ret["tuner_type"] = _("Satellite")
 		ret["inversion"] = {
