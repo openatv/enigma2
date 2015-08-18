@@ -46,8 +46,14 @@ class InstallWizard(Screen, ConfigListScreen):
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.enabled = ConfigYesNo(default = True)
-			modes = {"19e": "Astra 1", "23e": "Astra 3", "19e-23e": "Astra 1 Astra 3", "19e-23e-28e": "Astra 1 Astra 2 Astra 3", "13e-19e-23e-28e": "Astra 1 Astra 2 Astra 3 Hotbird"}
-			self.channellist_type = ConfigSelection(choices = modes, default = "19e")
+			modes = {
+								"19e": "Astra 19.2e",
+								"19e-13e": "Astra 19.2e Hotbird 13.0e",
+								"kabel-bw": "Kabel BW",
+								"kabeldeutschland": " Kabel Deutschland",
+								"unity-media": "Kabel Unitymedia"
+							}
+			self.channellist_type = ConfigSelection(choices = modes, default = "19e-13e")
 			self.createMenu()
 #		elif self.index == self.STATE_CHOISE_SOFTCAM:
 #			self.enabled = ConfigYesNo(default = True)
@@ -105,7 +111,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			if config.misc.installwizard.hasnetwork.value:
 				self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), IpkgComponent.CMD_UPDATE)
 		elif self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value:
-			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-henksat-' + self.channellist_type.value})
+			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading channel list)'), IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-gigablue-' + self.channellist_type.value})
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.value:
 # 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading softcam)'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
 		return
