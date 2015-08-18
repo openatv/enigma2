@@ -4,6 +4,7 @@ from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.PluginComponent import plugins
+from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -610,6 +611,8 @@ class InfoBarHotkey():
 				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
+				else:
+					exec "self.session.open(Console,_(selected[1]),[command])"
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
