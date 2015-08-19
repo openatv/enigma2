@@ -359,6 +359,7 @@ class MovieContextMenu(Screen):
 		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
 		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
 		menu.append(MovieMenuEntryComponent((_("Sort") + "..."), csel.selectSortby))
+		menu.append(MovieMenuEntryComponent((_("On end of movie") + "..."), csel.do_movieoff_menu))
 
 		if service:
 			if service.flags & eServiceReference.mustDescent:
