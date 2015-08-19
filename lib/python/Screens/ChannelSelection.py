@@ -1420,12 +1420,13 @@ class ChannelSelectionBase(Screen):
 				else:
 					end_ref = None
 				nameStr = self.getServiceName(base_ref)
-				titleStr += ' - ' + nameStr
+				if not 'Bouquets' in nameStr:
+					titleStr += ' - ' + nameStr
 				if end_ref is not None:
 					if Len > 2:
-						titleStr += '/../'
+						titleStr += ' -..- '
 					else:
-						titleStr += '/'
+						titleStr += ' - '
 					nameStr = self.getServiceName(end_ref)
 					titleStr += nameStr
 				self.setTitle(titleStr)
