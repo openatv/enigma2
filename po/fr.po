@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-18 20:12+0200\n"
+"POT-Creation-Date: 2015-08-20 16:31+0200\n"
 "PO-Revision-Date: 2015-08-18 21:24+0200\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -602,6 +602,9 @@ msgstr "Paramètres adaptateur"
 
 msgid "Add"
 msgstr "Ajouter"
+
+msgid "Add Bookmark"
+msgstr "Ajouter Marque-page"
 
 msgid "Add a mark"
 msgstr "Ajouter un marqueur"
@@ -2014,8 +2017,16 @@ msgstr "Répertoire"
 msgid "Directory %s does not exist."
 msgstr "Répertoire %s n'existe pas."
 
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr "Répertoire %s n'existe pas."
+
 msgid "Directory browser"
 msgstr "Navigateur répertoire"
+
+#, python-format
+msgid "Directory contains %d file(s) and %d sub-directories.\n"
+msgstr "Le répertoire contient %d fichier(s) et %d sous-répertoire(s).\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -2418,6 +2429,9 @@ msgstr ""
 
 msgid "Estonian"
 msgstr "Estonien"
+
+msgid "EtPortal"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Interface réseau Ethernet"
@@ -3304,6 +3318,9 @@ msgstr "Lituanien"
 msgid "Load"
 msgstr "Charger"
 
+msgid "Load Length of Movies in Movielist"
+msgstr "Charger la durée des films dans la liste des films"
+
 msgid "Load length of movies in movie list"
 msgstr "Charger longueur des films dans liste des films"
 
@@ -3499,6 +3516,9 @@ msgstr "Déplacer l'incrustation d'image"
 msgid "Move east"
 msgstr "Déplacer vers l'est"
 
+msgid "Move to other directory"
+msgstr "Déplacer vers un autre répertoire"
+
 msgid "Move to position X"
 msgstr "Déplacer vers position X"
 
@@ -3513,6 +3533,12 @@ msgstr "Déplacer vers l'indice de position"
 
 msgid "Movement"
 msgstr "Déplacement"
+
+msgid "Movie List Configuration"
+msgstr "Configuration de la liste des films"
+
+msgid "Movie Selection"
+msgstr "Sélection d'un film"
 
 msgid "Movie list configuration"
 msgstr "Configuration de la liste des Films"
@@ -4670,6 +4696,9 @@ msgstr "Se rappeler le dernier service en PiP"
 msgid "Remember service PIN"
 msgstr "Enregistrer PIN service"
 
+msgid "Remember these settings for each folder"
+msgstr "Se rappeler de ces paramètres pour chaque dossier"
+
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Rappel, vous avez choisi de sauvegarder votre fichier PauseDirect."
 
@@ -5503,6 +5532,9 @@ msgstr "Afficher menu éteindre"
 
 msgid "Show single service EPG"
 msgstr "Afficher l'EPG simple du service"
+
+msgid "Show status icons in Movielist"
+msgstr "Afficher l'icône du statut dans la liste des films"
 
 msgid "Show status icons in movie list"
 msgstr "Afficher icônes d'état dans liste des films"
@@ -7861,6 +7893,9 @@ msgstr "par défaut"
 msgid "delete cut"
 msgstr "Effacer coupe"
 
+msgid "delete..."
+msgstr "Efface..."
+
 msgid "descramble and record ecm"
 msgstr "Décoder et enregistrer ecm"
 
@@ -7974,6 +8009,9 @@ msgstr "et9200/9500/6500"
 
 msgid "exit DVD player or return to file browser"
 msgstr "Quitter le lecteur DVD ou retourner au sélecteur de fichiers"
+
+msgid "exit movielist"
+msgstr ""
 
 msgid "exit network adapter configuration"
 msgstr "Quitter configuration adaptateur réseau"
@@ -8272,6 +8310,9 @@ msgstr "Marche"
 msgid "on READ ONLY medium."
 msgstr "Sur support en LECTURE SEULE"
 
+msgid "on end of movie"
+msgstr "À la fin du film"
+
 msgid "once"
 msgstr "Une fois"
 
@@ -8434,6 +8475,12 @@ msgstr "Sélectionner CAId's"
 msgid "select menu entry"
 msgstr "Sélectionner entrée menu"
 
+msgid "select movie"
+msgstr "Choisir un film"
+
+msgid "select the movie path"
+msgstr "Sélectionner le chemin des films"
+
 msgid "serious music/classic music"
 msgstr "Musique classique"
 
@@ -8455,6 +8502,9 @@ msgstr "Afficher alternatifs"
 msgid "show event details"
 msgstr "Afficher détails événement"
 
+msgid "show extended description"
+msgstr "Afficher la description étendue"
+
 msgid "show mediaplayer on mainmenu"
 msgstr "Afficher le lecteur multimédia dans le menu principal"
 
@@ -8463,6 +8513,9 @@ msgstr "Montrer le gestionnaire de logiciels dans le menu configuration"
 
 msgid "show softwaremanager on blue button"
 msgstr "Montrer le gestionnaire de logiciels sur le bouton bleu"
+
+msgid "show tag menu"
+msgstr "Afficher le menu des marqueurs"
 
 msgid "show transponder info"
 msgstr "Afficher info transpondeur"
@@ -8680,6 +8733,9 @@ msgstr "Zapper et enregistrer"
 msgid "zapped"
 msgstr "Zappé"
 
+msgid "®"
+msgstr ""
+
 #~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 #~ msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant de démarrer la recherche satellites."
 
@@ -8691,9 +8747,6 @@ msgstr "Zappé"
 
 #~ msgid "Activate PiP"
 #~ msgstr "Activer l'incrustation d'image"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Ajouter Marque-page"
 
 #~ msgid "Add more details to the crash log"
 #~ msgstr "Créer un crash log plus détaillé"
@@ -8755,12 +8808,6 @@ msgstr "Zappé"
 #~ msgid "Dialing:"
 #~ msgstr "Appel :"
 
-#~ msgid "Directory %s nonexistent."
-#~ msgstr "Répertoire %s n'existe pas."
-
-#~ msgid "Directory contains %d file(s) and %d sub-directories.\n"
-#~ msgstr "Le répertoire contient %d fichier(s) et %d sous-répertoire(s).\n"
-
 #~ msgid "Disconnect"
 #~ msgstr "Déconnecter"
 
@@ -8775,18 +8822,6 @@ msgstr "Zappé"
 
 #~ msgid "List EPG functions..."
 #~ msgstr "Liste fonctions EPG..."
-
-#~ msgid "Load Length of Movies in Movielist"
-#~ msgstr "Charger la durée des films dans la liste des films"
-
-#~ msgid "Move to other directory"
-#~ msgstr "Déplacer vers un autre répertoire"
-
-#~ msgid "Movie List Configuration"
-#~ msgstr "Configuration de la liste des films"
-
-#~ msgid "Movie Selection"
-#~ msgstr "Sélection d'un film"
 
 #~ msgid "New PIN"
 #~ msgstr "Nouveau PIN"
@@ -8836,9 +8871,6 @@ msgstr "Zappé"
 #~ msgid "Reenter new PIN"
 #~ msgstr "Re-saisir nouveau PIN"
 
-#~ msgid "Remember these settings for each folder"
-#~ msgstr "Se rappeler de ces paramètres pour chaque dossier"
-
 #~ msgid "Select default EPG type..."
 #~ msgstr "Sélectionnez le type d'EPG par défaut ..."
 
@@ -8847,9 +8879,6 @@ msgstr "Zappé"
 
 #~ msgid "Show services beginning with"
 #~ msgstr "Afficher les services commençant par"
-
-#~ msgid "Show status icons in Movielist"
-#~ msgstr "Afficher l'icône du statut dans la liste des films"
 
 #~ msgid "Show tag menu"
 #~ msgstr "Afficher menu étiquette"
@@ -8887,14 +8916,8 @@ msgstr "Zappé"
 #~ msgid "complex"
 #~ msgstr "Complexe"
 
-#~ msgid "delete..."
-#~ msgstr "Efface..."
-
 #~ msgid "fine-tune your display"
 #~ msgstr "Réglage avancé de votre affichage"
-
-#~ msgid "on end of movie"
-#~ msgstr "À la fin du film"
 
 #~ msgid "open EPG..."
 #~ msgstr "Afficher EPG..."
@@ -8908,23 +8931,11 @@ msgstr "Zappé"
 #~ msgid "select Info..."
 #~ msgstr "Sélection Info..."
 
-#~ msgid "select movie"
-#~ msgstr "Choisir un film"
-
-#~ msgid "select the movie path"
-#~ msgstr "Sélectionner le chemin des films"
-
 #~ msgid "service PIN"
 #~ msgstr "Pin service"
 
 #~ msgid "setup PIN"
 #~ msgstr "PIN paramètres"
-
-#~ msgid "show extended description"
-#~ msgstr "Afficher la description étendue"
-
-#~ msgid "show tag menu"
-#~ msgstr "Afficher le menu des marqueurs"
 
 #~ msgid "special characters"
 #~ msgstr "Caractères spéciaux"
