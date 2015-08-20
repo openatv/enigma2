@@ -146,7 +146,7 @@ struct eDVBChannelID
 	std::string toString(void) const
 	{
 		char buf[30];
-		snprintf(buf, sizeof (buf), "%x:%x:%x", transport_stream_id.get(), original_network_id.get(), dvbnamespace.get());
+		sprintf(buf, "%x:%x:%x", transport_stream_id.get(), original_network_id.get(), dvbnamespace.get());
 		return std::string(buf);
 	}
 
