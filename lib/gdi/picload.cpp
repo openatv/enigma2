@@ -28,6 +28,18 @@ static std::string getSize(const char* file)
 	return tmp;
 }
 
+static void convert_8Bit_to_24Bit(Cfilepara *filepara, unsigned char *dest)
+{
+	unsigned char *src = filepara->pic_buffer;
+	int pixel_cnt = filepara->ox * filepara->oy;
+	for( int i = 0; i < pixel_cnt; i++)
+	{
+		*dest++ = filepara->palette[*src].r;
+		*dest++ = filepara->palette[*src].g;
+		*dest++ = filepara->palette[*src++].b;
+	}
+}
+
 static unsigned char *simple_resize_24(unsigned char *orgin, int ox, int oy, int dx, int dy)
 {
 	unsigned char *cr = new unsigned char[dx * dy * 3];
@@ -56,6 +68,7 @@ static unsigned char *simple_resize_24(unsigned char *orgin, int ox, int oy, int
 
 static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int dx, int dy)
 {
+	eDebug("[picload.cpp simple_resize_8] x:%d y:%d  x:%d  y:%d ",ox,oy,dx,dy);
 	unsigned char* cr = new unsigned char[dx * dy];
 	if (cr == NULL)
 	{
@@ -79,6 +92,7 @@ static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int 
 
 static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx, int dy)
 {
+	eDebug("[picload.cpp color_resize] x:%d y:%d  x:%d  y:%d ",ox,oy,dx,dy);
 	unsigned char* cr = new unsigned char[dx * dy * 3];
 	if (cr == NULL)
 	{
@@ -970,14 +984,25 @@ void ePicLoad::decodeThumb()
 				imy = (int)( (m_conf.thumbnailsize * ((double)m_filepara->oy)) / ((double)m_filepara->ox) );
 			}
 
-			m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+			if (m_filepara->bits == 8)
+				m_filepara->pic_buffer = simple_resize_8(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+			else
+				m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+
 			m_filepara->ox = imx;
 			m_filepara->oy = imy;
-
 #endif
-
-			if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, m_filepara->pic_buffer))
-				eDebug("[Picload] error saving cachefile");
+			if (m_filepara->bits == 8)
+			{
+				unsigned char * tmp = new unsigned char [m_filepara->ox * m_filepara->oy * 3];
+				convert_8Bit_to_24Bit(m_filepara, tmp);
+				if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, tmp))
+					eDebug("[Picload] error saving cachefile");
+				delete [] tmp;
+			}
+			else
+				if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, m_filepara->pic_buffer))
+					eDebug("[Picload] error saving cachefile");
 		}
 
 		resizePic();
