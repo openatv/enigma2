@@ -103,8 +103,8 @@
 		<item level="2" text="Enable Virgin EPG" description="Use Virgin EPG information when it is available.">config.epg.virgin</item>
 		<item level="2" text="Maintain old EPG data for" description="Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed.">config.epg.histminutes</item>
 		<item level="2" text="EPG Cache Path" description="Configure where epg.dat will be stored.">config.misc.epgcache_filename</item>
-		<!--<item level="2" text="Scheduled load of epg.dat" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item> -->
-		<!--<item level="2" text="Load EPG every (in hours)" requires="config.epg.cacheloadsched" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item> -->
+		<item level="2" text="Scheduled load of epg.dat" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
+		<item level="2" text="Load EPG every (in hours)" requires="config.epg.cacheloadsched" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
 		<item level="2" text="Scheduled save of epg.dat" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save EPG every (in hours)" requires="config.epg.cachesavesched" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item>
