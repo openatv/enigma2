@@ -209,6 +209,8 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((_("EnhancedMovieCenter"), "EMC/", "Plugins"))
 	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/ScriptRunner.pyo"):
 		ButtonSetupFunctions.append((_("ScriptRunner"), "ScriptRunner/", "Plugins"))
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/QuickMenu.pyo"):
+		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
@@ -584,6 +586,10 @@ class InfoBarButtonSetup():
 				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/ScriptRunner.pyo"):
 					from Plugins.Extensions.Infopanel.ScriptRunner import ScriptRunner
 					self.session.open (ScriptRunner)
+			elif selected[0] == "QuickMenu":
+				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/QuickMenu.pyo"):
+					from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
+					self.session.open (QuickMenu)
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
