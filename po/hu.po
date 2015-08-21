@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 16:31+0200\n"
+"POT-Creation-Date: 2015-08-21 09:29+0200\n"
 "PO-Revision-Date: 2014-02-11 21:04+0100\n"
 "Last-Translator: robertut <robertut@yahoo.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -602,9 +602,6 @@ msgstr "Adapter beállításai"
 
 msgid "Add"
 msgstr "Hozzáadás"
-
-msgid "Add Bookmark"
-msgstr "Bookmark hozzáadása"
 
 msgid "Add a mark"
 msgstr "Jelző hozzáadása"
@@ -2013,16 +2010,8 @@ msgstr "Mappa"
 msgid "Directory %s does not exist."
 msgstr "A %s mappa nem létezik"
 
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "%s mappa nem létezik."
-
 msgid "Directory browser"
 msgstr "Mappa tallózása"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "A mappa %d fájlt és %d al-mappát tartalmaz.\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -3317,9 +3306,6 @@ msgstr "Litván"
 msgid "Load"
 msgstr "Betöltés"
 
-msgid "Load Length of Movies in Movielist"
-msgstr "Filmek hosszának betöltése a filmlistában"
-
 msgid "Load length of movies in movie list"
 msgstr "Filmek hosszának betöltése a filmlistában"
 
@@ -3515,9 +3501,6 @@ msgstr "Kép-A-Képben mozgatása"
 msgid "Move east"
 msgstr "Kelet felé"
 
-msgid "Move to other directory"
-msgstr "Áthelyezés másik mappába"
-
 msgid "Move to position X"
 msgstr "Mozgatás az X pozícióra"
 
@@ -3532,12 +3515,6 @@ msgstr "Mozgatás sorszámra"
 
 msgid "Movement"
 msgstr "Mozgás"
-
-msgid "Movie List Configuration"
-msgstr "Fájllista konfigurációja"
-
-msgid "Movie Selection"
-msgstr "Film választása"
 
 msgid "Movie list configuration"
 msgstr "Fájllista konfigurációja"
@@ -4697,9 +4674,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr "Szerviz-PIN megjegyzése"
 
-msgid "Remember these settings for each folder"
-msgstr "Beállítások megtartása minden mappára"
-
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Figyelem, azt választotta, hogy az időcsűsztatás felvétele ne törlődjön."
 
@@ -5531,9 +5505,6 @@ msgstr "kikapcsolási menü"
 
 msgid "Show single service EPG"
 msgstr "Egy csatorna EPG-jének megjelenítése"
-
-msgid "Show status icons in Movielist"
-msgstr "Státusz ikonok megjelenítése a listában"
 
 msgid "Show status icons in movie list"
 msgstr "Állapot-jelző ikonok megjelenítése a felvétel-listában"
@@ -7875,9 +7846,6 @@ msgstr "Alapértelmezett"
 msgid "delete cut"
 msgstr "vágópont törlése"
 
-msgid "delete..."
-msgstr "törlés..."
-
 msgid "descramble and record ecm"
 msgstr "ECM felvétel és dekódolás"
 
@@ -7991,9 +7959,6 @@ msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "DVD Player bezárása és visszatérés a keresőbe"
-
-msgid "exit movielist"
-msgstr "Kilépés"
 
 msgid "exit network adapter configuration"
 msgstr "kliépés a hálózati adapter beállításaiból"
@@ -8292,9 +8257,6 @@ msgstr "be"
 msgid "on READ ONLY medium."
 msgstr "a csak olvasható hordozón."
 
-msgid "on end of movie"
-msgstr "film lejátszás végén"
-
 msgid "once"
 msgstr "egyszeri"
 
@@ -8457,12 +8419,6 @@ msgstr "CAId-ek kijelölése"
 msgid "select menu entry"
 msgstr "válasszon menütételt"
 
-msgid "select movie"
-msgstr "felvétel kiválasztása"
-
-msgid "select the movie path"
-msgstr "válassza ki a felvételek útvonalát"
-
 msgid "serious music/classic music"
 msgstr "komolyzene"
 
@@ -8484,9 +8440,6 @@ msgstr "alternatívák megjelenítése"
 msgid "show event details"
 msgstr "részletes adatok megjelenítése"
 
-msgid "show extended description"
-msgstr "részletes leírás megjelenítése"
-
 msgid "show mediaplayer on mainmenu"
 msgstr "Médialejátszó megjelenítése a főmenüben"
 
@@ -8495,9 +8448,6 @@ msgstr "Szoftverkezelő megjelenítése a beállítások menüben"
 
 msgid "show softwaremanager on blue button"
 msgstr "Szoftverkezelő megjelenítése a kék-gombos menüben"
-
-msgid "show tag menu"
-msgstr "metaadat menü megjelenítése"
 
 msgid "show transponder info"
 msgstr "transzponder infó megjelenítése"
@@ -8717,258 +8667,3 @@ msgstr "ugrott"
 
 msgid "®"
 msgstr ""
-
-#~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-#~ msgstr "Egy felvétel éppen folyamatban van. Ha futtani kívánja a Műholdkeresőt, akkor elötte állítsa meg a felvételt."
-
-#~ msgid "AA"
-#~ msgstr "AA"
-
-#~ msgid "AB"
-#~ msgstr "AB"
-
-#~ msgid "AC3/DTS downmix"
-#~ msgstr "AC3/DTS lekeverés"
-
-#~ msgid "Activate PiP"
-#~ msgstr "Kép-a-Képben bekapcsolása"
-
-#~ msgid "Add more details to the crash log"
-#~ msgstr "Részletesebb hibanapló generálása fájlba, zöldhalál esetén"
-
-#~ msgid "Add/remove timer for current event"
-#~ msgstr "Aktuális esemény időzítésének kezelése"
-
-#~ msgid "Adjust HDMI CEC settings"
-#~ msgstr "HDMI CEC távvezérlési beállítások"
-
-#~ msgid "All satellites"
-#~ msgstr "Összes műhold"
-
-#~ msgid "And will shutdown your receiver over "
-#~ msgstr "Kikapcsolás:"
-
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "A 'szünet' gomb amikor a lejátszás szüneteltetve van"
-
-#~ msgid "Change pin code"
-#~ msgstr "PIN kód megváltoztatása"
-
-#~ msgid "Change service PIN"
-#~ msgstr "Szerviz PIN módosítás"
-
-#~ msgid "Change service PINs"
-#~ msgstr "Szerviz PIN-ek módosítása"
-
-#~ msgid "Change setup PIN"
-#~ msgstr "Beállítások PIN módosítás"
-
-#~ msgid "Committed DiSEqC command"
-#~ msgstr "Elkötelezett DiSEqC parancs"
-
-#~ msgid "Configure if and how service type icons will be shown."
-#~ msgstr "A csatornák típusának megjelenítésének módja és lehetősége a csatornalistában"
-
-#~ msgid "Configure if service picons will be shown in the servicelist."
-#~ msgstr "A csatornák pikonjainak megjelenítésének módja és lehetősége a csatornalistában."
-
-#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-#~ msgstr "A 'szünet' gomb működése abban az esetben, amikor a lejástás már szüneteltetett állapotban van."
-
-#~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
-#~ msgstr "Ennyi óra tétlenség után mi történjen: kikapcsolás, készenlét."
-
-#~ msgid "Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
-#~ msgstr "Ennyi perc után mi történjen: kikapcsolás, készenlét (elalvás időzítés). Válassza ezt a menüpontot, majd az OK vagy a zöld gomb lenyomásával aktiválja a beállítást az elalváshoz."
-
-#~ msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-#~ msgstr "Milyen tuner típus legyen automatikusan választva, ha ugyanaz a csatorna egyszerre több típusú tuneren keresztül is fogható (a csatornának vannak beállított alternatívái)."
-
-#~ msgid "Connected!"
-#~ msgstr "Csatlakoztatva!"
-
-#~ msgid "Create more detailed crash log"
-#~ msgstr "Részletesebb hibanapló generálása"
-
-#~ msgid "Delete..."
-#~ msgstr "törlés..."
-
-#~ msgid "DiSEqC repeats"
-#~ msgstr "DiSEqC ismétlések"
-
-#~ msgid "Dialing:"
-#~ msgstr "Tárcsázás: "
-
-#~ msgid "Disconnect"
-#~ msgstr "Kapcsolat bontása"
-
-#~ msgid "Edit bouquets list"
-#~ msgstr "Bouquet-listák szerkesztése"
-
-#~ msgid "Edit services list"
-#~ msgstr "Csatornalista szerkesztése"
-
-#~ msgid "Enable parental control"
-#~ msgstr "Gyermekzár engedélyezése"
-
-#~ msgid "Goto specific data/time"
-#~ msgstr "Ugrás bizonyos dátum/időre"
-
-#~ msgid "Helps setting up your dish"
-#~ msgstr "Segítség az antenna beállításhoz"
-
-#~ msgid "Hide numbered markers"
-#~ msgstr "Sorszámozott elválasztók elrejtése"
-
-#~ msgid "List EPG functions..."
-#~ msgstr "EPG-nézetek listája..."
-
-#~ msgid "Memory positions"
-#~ msgstr "Pozíció memória"
-
-#~ msgid "New PIN"
-#~ msgstr "Új PIN"
-
-#~ msgid "No satellite frontend found!!"
-#~ msgstr "Nem találtam műholdas tunert!!"
-
-#~ msgid ""
-#~ "No valid service PIN found!\n"
-#~ "Do you like to change the service PIN now?\n"
-#~ "When you say 'No' here the service protection stay disabled!"
-#~ msgstr ""
-#~ "Nem találtam érvényes csatornavédelem PIN kódot!\n"
-#~ "Meg szeretné most változtatni a csatornavédelem PIN kódot?\n"
-#~ "Ha 'Nem'-el válaszol, akkor a csatornavédelem kikapcsolva marad!"
-
-#~ msgid ""
-#~ "No valid setup PIN found!\n"
-#~ "Do you like to change the setup PIN now?\n"
-#~ "When you say 'No' here the setup protection stay disabled!"
-#~ msgstr ""
-#~ "Nem találtam érvényes menüvédelmi PIN kódot!\n"
-#~ "Meg szeretné most változtatni a menüvédelmi PIN kódot?\n"
-#~ "Ha 'Nem'-el válaszol, akkor a menüvédelem kikapcsolva marad!"
-
-#~ msgid "Open service list and select next channel"
-#~ msgstr "Csatornalista megnnyítása és a következő csatorna választása"
-
-#~ msgid "Open service list and select previous channel"
-#~ msgstr "Csatornalista megnnyítása és az előző csatorna választása"
-
-#~ msgid "PPanels"
-#~ msgstr "PPanel-ek"
-
-#~ msgid "Parental control type"
-#~ msgstr "Gyermekzár típusa"
-
-#~ msgid "Password"
-#~ msgstr "Jelszó"
-
-#~ msgid "Phone number"
-#~ msgstr "Telefonszám"
-
-#~ msgid "Please select a default EPG type..."
-#~ msgstr "Kérem, válasszon egy alapértelmezett EPG típust..."
-
-#~ msgid "Press '0' to toggle internal/external PiP."
-#~ msgstr "A Kép-a-Képben felcserélése a '0' gombbal történik."
-
-#~ msgid "Protect setup"
-#~ msgstr "Menürendszer védelme"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Új PIN-kód mégegyszer"
-
-#~ msgid "Reload black-/white lists"
-#~ msgstr "Fekete és fehérlisták újratöltése"
-
-#~ msgid "Remove timer"
-#~ msgstr "Időzítés eltávolítása"
-
-#~ msgid "Rewrap teletext subtitles"
-#~ msgstr "Teletext felirat sorainak átrendezése"
-
-#~ msgid "Select default EPG type..."
-#~ msgstr "Alapértelmezett EPG típus-választás..."
-
-#~ msgid "Select location"
-#~ msgstr "Válassza ki a helyet"
-
-#~ msgid "Show latest commits on sourceforge"
-#~ msgstr "A legutolsó változási naplók megtekintése a sourceforge-ról"
-
-#~ msgid "Show picons in servicelist"
-#~ msgstr "Pikonok mejelenítése a csatornalistában"
-
-#~ msgid "Show services beginning with"
-#~ msgstr "Csatornák, melyek első betűje"
-
-#~ msgid "Show tag menu"
-#~ msgstr "cimke menü megjelenítése"
-
-#~ msgid "Shutdown after current event"
-#~ msgstr "Kikapcsolás az aktuális műsor végén"
-
-#~ msgid "Shutdown in "
-#~ msgstr "Kikapcsolás: "
-
-#~ msgid "Single transponder"
-#~ msgstr "Egyetlen transzponder"
-
-#~ msgid "Switch next channel"
-#~ msgstr "Következő csatorna"
-
-#~ msgid "Tuning step size"
-#~ msgstr "Hangolás léptéke"
-
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Nem elkötelezett DiSEqC parancs"
-
-#~ msgid "Username"
-#~ msgstr "Felhasználónév"
-
-#~ msgid "Video fine tuning"
-#~ msgstr "Kép finomhangolás"
-
-#~ msgid "When enabled, numbered markers will be hiden."
-#~ msgstr "A csatornalistában esetleg lévő, sorszámozott elválasztó elemek elrejtése."
-
-#~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
-#~ msgstr "Az eredeti sorvégződések eltávolítása a teletext feliratokból."
-
-#~ msgid "Your receiver will shutdown due to inactivity."
-#~ msgstr "A készülék most kikapcsol inaktivitás miatt."
-
-#~ msgid "Your receiver will shutdown due to the sleeptimer."
-#~ msgstr "A készülék most kikapcsol elalvás-időzítés miatt."
-
-#~ msgid "Zap back to service before satfinder?"
-#~ msgstr "Ugorjunk vissza a műholdkereső elött nézett csatornához?"
-
-#~ msgid "complex"
-#~ msgstr "komplex"
-
-#~ msgid "fine-tune your display"
-#~ msgstr "megjelenítő finom beállítása"
-
-#~ msgid "service PIN"
-#~ msgstr "szerviz-PIN"
-
-#~ msgid "setup PIN"
-#~ msgstr "PIN-kód beállítása"
-
-#~ msgid "special characters"
-#~ msgstr "speciális karakterek"
-
-#~ msgid "tuner is not supported"
-#~ msgstr "nem támogatott tuner"
-
-#~ msgid "whitelist"
-#~ msgstr "engedélyezett lista"

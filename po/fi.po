@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 16:31+0200\n"
+"POT-Creation-Date: 2015-08-21 09:29+0200\n"
 "PO-Revision-Date: 2013-10-15 19:32+0200\n"
 "Last-Translator: BoxFreak\n"
 "Language-Team: none\n"
@@ -661,10 +661,6 @@ msgstr "Sovittimen asetukset"
 #
 msgid "Add"
 msgstr "Lisää"
-
-#
-msgid "Add Bookmark"
-msgstr "Kirjanmerkki"
 
 #
 msgid "Add a mark"
@@ -2280,17 +2276,8 @@ msgid "Directory %s does not exist."
 msgstr "Hakemistoa %s ei löydy."
 
 #
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "Hakemistoa %s ei löydy."
-
-#
 msgid "Directory browser"
 msgstr "Hakemistoselain"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Hakemisto sisältää %d tiedostoa ja %d alihakemistoa.\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -3786,10 +3773,6 @@ msgid "Load"
 msgstr "Lataa"
 
 #
-msgid "Load Length of Movies in Movielist"
-msgstr "Lataa tallenteiden pituus tallenneluetteloon"
-
-#
 msgid "Load length of movies in movie list"
 msgstr "Lataa tallenteiden pituus tallenneluettelossa"
 
@@ -4022,9 +4005,6 @@ msgstr "Siirrä PiP-kuvaa"
 msgid "Move east"
 msgstr "Liikuta itään"
 
-msgid "Move to other directory"
-msgstr "Siirrä toiseen hakemistoon"
-
 msgid "Move to position X"
 msgstr "Käännä paikkaan X"
 
@@ -4040,12 +4020,6 @@ msgstr "Käännettiin sijaintiin luettelossa"
 
 msgid "Movement"
 msgstr "Liike"
-
-msgid "Movie List Configuration"
-msgstr "Tallenneluettelon asetukset"
-
-msgid "Movie Selection"
-msgstr "Tallenteen valinta"
 
 msgid "Movie list configuration"
 msgstr "Tallenneluettelon asetukset"
@@ -5417,9 +5391,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr "Muista kanavan PIN"
 
-msgid "Remember these settings for each folder"
-msgstr "Muista nämä asetuksen jokaiselle hakemistolle"
-
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Muistutus, halusit tallentaa ajansiirtotiedoston."
 
@@ -6390,9 +6361,6 @@ msgstr "Näytä sammutusvalikko"
 
 msgid "Show single service EPG"
 msgstr "Näytä yhden kanavan ohjelmaopas"
-
-msgid "Show status icons in Movielist"
-msgstr "Näytä tilakuvakkeet tallenneluettelossa"
 
 msgid "Show status icons in movie list"
 msgstr "Näytä tilakuvakkeet tallenneluettelossa"
@@ -9073,13 +9041,6 @@ msgstr "Oletus"
 msgid "delete cut"
 msgstr "Poista leikkausmääritys"
 
-#
-#  Teksti esiintyy vain tallenteiden käsittelyvalikossa
-#  Kolme pistettä ovat turhia, tästä aukeaa vain
-#  varmistusikkuna, ei alivalikkoa tai asetusruutua.
-msgid "delete..."
-msgstr "Poista..."
-
 msgid "descramble and record ecm"
 msgstr "pura salaus ja tallenna"
 
@@ -9212,10 +9173,6 @@ msgstr ""
 #
 msgid "exit DVD player or return to file browser"
 msgstr "poistu DVD-soittimesta tai palaa tiedostonhallintaan"
-
-#
-msgid "exit movielist"
-msgstr "Poistu tallenneluettelosta"
 
 #
 msgid "exit network adapter configuration"
@@ -9566,9 +9523,6 @@ msgstr "Päällä"
 msgid "on READ ONLY medium."
 msgstr "vain-luku levystä."
 
-msgid "on end of movie"
-msgstr "Tallenteen lopussa"
-
 #
 msgid "once"
 msgstr "kerran"
@@ -9763,14 +9717,6 @@ msgstr "valitse CAId:t"
 msgid "select menu entry"
 msgstr "valitse valikon kohta"
 
-#
-msgid "select movie"
-msgstr "Valitse tallenne"
-
-#
-msgid "select the movie path"
-msgstr "Valitse tallennehakemisto"
-
 msgid "serious music/classic music"
 msgstr "vakava musiikki/klassinen musiikki"
 
@@ -9795,10 +9741,6 @@ msgstr "Näytä vaihtoehtoiset kanavat"
 msgid "show event details"
 msgstr "Näytä ohjelman tarkemmat tiedot"
 
-#
-msgid "show extended description"
-msgstr "Näytä laajennettu ohjelmakuvaus"
-
 msgid "show mediaplayer on mainmenu"
 msgstr "Näytä Mediasoitin päävalikossa"
 
@@ -9807,10 +9749,6 @@ msgstr "Näytä ohjelmistonhallinta asetusvalikossa"
 
 msgid "show softwaremanager on blue button"
 msgstr "Näytä ohjelmistonhallinta sinisestä napista"
-
-#
-msgid "show tag menu"
-msgstr "Näytä avainsanavalikko"
 
 #
 msgid "show transponder info"
@@ -10066,784 +10004,3 @@ msgstr "Vaihdettu"
 
 msgid "®"
 msgstr ""
-
-#
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Järjestelmä käynnistyy uudelleen palautuksen jälkeen!"
-
-#
-#~ msgid " wireless networks found!"
-#~ msgstr "WLAN-verkkoja löytyi!"
-
-#
-#~ msgid "/usr/share/enigma2 directory"
-#~ msgstr "/usr/share/enigma2-hakemisto"
-
-#
-#~ msgid "/var directory"
-#~ msgstr "”/var”-hakemisto"
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "Demo-lisäosa TPM:n käyttöön"
-
-#
-#~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-#~ msgstr ""
-#~ "Tallennus on parhaillaan käynnissä. Pysäytä tallennus\n"
-#~ "ennen kuin käynnistät satelliittietsimen."
-
-#
-#~ msgid "AA"
-#~ msgstr "AA"
-
-#
-#~ msgid "AB"
-#~ msgstr "AB"
-
-#~ msgid "AC3/DTS downmix"
-#~ msgstr "AC3/DTS muunnos stereoksi"
-
-#
-#~ msgid "Action:"
-#~ msgstr "Toiminto:"
-
-#~ msgid "Activate PiP"
-#~ msgstr "Aktivoi PiP-kuva"
-
-#
-#~ msgid "Add WLAN configuration?"
-#~ msgstr "Lisää tiedot WLAN-verkosta?"
-
-#~ msgid "Add more details to the crash log"
-#~ msgstr "Lisää enemmän yksityiskohtia kaatumislokiin."
-
-#
-#~ msgid "Add network configuration?"
-#~ msgstr "Lisää tiedot lähiverkosta?"
-
-#~ msgid "Add/remove timer for current event"
-#~ msgstr "Lisää/poista ajastus tähän ohjelmaan"
-
-#
-#~ msgid "Adds network configuration if enabled."
-#~ msgstr "Jos valittu, lisätään tiedot lähiverkosta."
-
-#
-#~ msgid "Adds wlan configuration if enabled."
-#~ msgstr "Jos valittu, lisätään tiedot WLAN-verkosta."
-
-#~ msgid "Adjust HDMI CEC settings"
-#~ msgstr "Säädä HDMI CEC-asetuksia"
-
-#~ msgid "After pressing OK, please wait!"
-#~ msgstr "Odota OK:n painamisen jälkeen"
-
-#
-#~ msgid "All satellites"
-#~ msgstr "Kaikki satelliitit"
-
-#
-#~ msgid "Always ask before sending"
-#~ msgstr "Kysy aina ennen lähettämistä"
-
-#~ msgid "And will shutdown your receiver over "
-#~ msgstr "Ja sammuttaa vastaanottimen yli"
-
-#
-#~ msgid "Anonymize crashlog?"
-#~ msgstr "Anonyymi kaatumisloki?"
-
-#
-#~ msgid ""
-#~ "Are you sure you want to restore\n"
-#~ "following backup:\n"
-#~ msgstr ""
-#~ "Oletko varma, että haluat palauttaa seuraavan\n"
-#~ "varmuuskopion:\n"
-
-#~ msgid "Auto-focus"
-#~ msgstr "Automaattikohdistus"
-
-#
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#
-#~ msgid "Backup"
-#~ msgstr "Luo"
-
-#
-#~ msgid "Backup Location"
-#~ msgstr "Mihin tallennetaan"
-
-#
-#~ msgid "Backup Mode"
-#~ msgstr "Mitä tallennetaan"
-
-#
-#~ msgid "Backup done."
-#~ msgstr "Varmuuskopiointi suoritettu."
-
-#
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "Pause-näppäimen toiminto"
-
-#
-#~ msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
-#~ msgstr "Painamalla kaukosäätimen OK-näppäintä, näet tietopalkin."
-
-#
-#~ msgid "CF Drive"
-#~ msgstr "CompactFlash-kortti"
-
-#
-#~ msgid "Change pin code"
-#~ msgstr "Vaihda tunnusluku"
-
-#~ msgid "Change service PIN"
-#~ msgstr "Muuta kanavan PIN"
-
-#~ msgid "Change service PINs"
-#~ msgstr "Muuta kanavan PIN:it"
-
-#~ msgid "Change setup PIN"
-#~ msgstr "Muuta asetuksien PIN"
-
-#~ msgid "Choose a wireless network"
-#~ msgstr "Valitse WLAN-verkko"
-
-#
-#~ msgid "Choose bouquet"
-#~ msgstr "Valitse suosikkilista"
-
-#
-#~ msgid "Choose upgrade source"
-#~ msgstr "Valitse päivityslähde"
-
-#
-#~ msgid "Choose your Skin"
-#~ msgstr "Valitse teema"
-
-#
-#~ msgid "Cleanup Wizard"
-#~ msgstr "Puhdistusavustaja"
-
-#
-#~ msgid "Cleanup Wizard settings"
-#~ msgstr "Puhdistusavustajan asetukset"
-
-#
-#~ msgid "CleanupWizard"
-#~ msgstr "Puhdistusavustaja"
-
-#
-#~ msgid "Committed DiSEqC command"
-#~ msgstr "Committed DiSEqC-käsky"
-
-#~ msgid "CommonInterface"
-#~ msgstr "Common Interface"
-
-#
-#~ msgid "Configuration Mode"
-#~ msgstr "Toimintatila"
-
-#~ msgid "Configure if and how service type icons will be shown."
-#~ msgstr "Määrittele näytetäänkö ja kuinka näytetään kanavatyypin kuvakkeet"
-
-#~ msgid "Configure if service picons will be shown in the servicelist."
-#~ msgstr "Määrittele näytetäänkö kanavalogot kanavalistassa. "
-
-#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-#~ msgstr "Määrittää 'Tauko' näppäimen toiminnan kun tallenteen toisto on jo taukotilassa."
-
-#~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
-#~ msgstr "Määrittele kesto tunneissa ja toiminta, mikä voi olla sammuta tai aseta valmiustilaan, kun vastaanottimella ei tehdä mitään."
-
-#~ msgid "Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
-#~ msgstr "Määrittele uniajastimelle kesto minuuteissa ja toiminta, mikä voi olla sammuta tai aseta valmiustilaan.Valitse tämä rivi ja paina OK tai vihreää nappia käynnistääksesi tai sammuttaksesi uniajastimen."
-
-#~ msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-#~ msgstr "Määrittää minkä tyyppistä viritintä suositaan, kun sama kanava on saatavilla eri lähteistä."
-
-#
-#~ msgid "Confirm shutdown:"
-#~ msgstr "Kysy varmistus ennen sammutusta:"
-
-#~ msgid "Connected!"
-#~ msgstr "Yhdistetty!"
-
-#
-#~ msgid "Crashlog settings"
-#~ msgstr "Kaatumislokin asetukset"
-
-#
-#~ msgid "CrashlogAutoSubmit"
-#~ msgstr "Kaatumislokien automaattilähetys"
-
-#
-#~ msgid "CrashlogAutoSubmit settings"
-#~ msgstr "Kaatumislokien automaattilähetys"
-
-#
-#~ msgid "CrashlogAutoSubmit settings..."
-#~ msgstr "Kaatumislokien automaattilähetys..."
-
-#~ msgid "Create more detailed crash log"
-#~ msgstr "Luo täsmällinen kaatumisloki"
-
-#~ msgid "Custom text position"
-#~ msgstr "Muokattu tekstin paikka"
-
-#
-#~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
-#~ msgstr "Valitse haluatko ottaa puhdistusavustajan käyttöön."
-
-#
-#~ msgid "Decide what should be done when crashlogs are found."
-#~ msgstr "Valitse mitä tehdään kun kaatumislokeja löytyy."
-
-#
-#~ msgid "Decide what should happen to the crashlogs after submission."
-#~ msgstr "Valitse mitä kaatumislokeille tehdään lähettämisen jälkeen."
-
-#
-#~ msgid "Delete crashlogs"
-#~ msgstr "Poista kaatumislokit"
-
-#
-#~ msgid ""
-#~ "Delete no more configured satellite\n"
-#~ "%s?"
-#~ msgstr ""
-#~ "Poistetaanko ei määritelty satelliitti\n"
-#~ "%s?"
-
-#
-#  Teksti esiintyy vain tallenteiden käsittelyvalikossa
-#  Kolme pistettä ovat turhia, tästä aukeaa vain
-#  varmistusikkuna, ei alivalikkoa tai asetusruutua.
-#~ msgid "Delete..."
-#~ msgstr "Poista tallenne"
-
-#
-#~ msgid "DiSEqC repeats"
-#~ msgstr "DiSEqC-toistoja"
-
-#~ msgid "Dialing:"
-#~ msgstr "Soitto:"
-
-#
-#~ msgid "Disable crashlog reporting"
-#~ msgstr "Raportointi pois käytöstä"
-
-#
-#~ msgid "Disconnect"
-#~ msgstr "Katkaise yhteys"
-
-#
-#~ msgid "Dish"
-#~ msgstr "Antenni"
-
-#
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \"%s\"?"
-#~ msgstr ""
-#~ "Haluatko poistaa\n"
-#~ "lisäosan \"%s\"?"
-
-#
-#~ msgid ""
-#~ "Do you want to backup now?\n"
-#~ "After pressing OK, please wait!"
-#~ msgstr ""
-#~ "Haluatko luoda varmuuskopion?\n"
-#~ "Paina OK ja odota!"
-
-#
-#~ msgid "Do you want to submit your email address and name so that we can contact you if needed?"
-#~ msgstr "Haluatko lähettää sähköpostiosoitteesi ja nimesi mahdollista yhteydenottoa varten?"
-
-#
-#~ msgid "Do you want to view a tutorial?"
-#~ msgstr "Haluatko katsoa opasohjelman?"
-
-#
-#~ msgid "Don't ask, just send"
-#~ msgstr "Lähetä ilman kysymystä"
-
-#
-#~ msgid "Done - Installed or upgraded %d packages"
-#~ msgstr "Valmis - asennettu tai päivitetty %d lisäosaa"
-
-#
-#~ msgid "Edit Title"
-#~ msgstr "Editoi"
-
-#~ msgid "Edit bouquets list"
-#~ msgstr "Muokkaa suosikkilistaa"
-
-#
-#~ msgid "Edit services list"
-#~ msgstr "Muokkaa kanavalistaa"
-
-#
-#~ msgid "Enable Cleanup Wizard?"
-#~ msgstr "Käytä puhdistusavustajaa?"
-
-#
-#~ msgid "Enable parental control"
-#~ msgstr "Ota lapsilukko käyttöön"
-
-#
-#~ msgid "Enable timer"
-#~ msgstr "Ajastin päälle"
-
-#
-#~ msgid "EndTime"
-#~ msgstr "Lopetusaika"
-
-#~ msgid ""
-#~ "Enigma2 Skinselector\n"
-#~ "\n"
-#~ "If you experience any problems please contact\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-#~ msgstr ""
-#~ "Enigma2 teemavalitsin\n"
-#~ "\n"
-#~ "Ongelmatapauksissa ota yhteyttä\n"
-#~ "stephan@reichholf.net\n"
-#~ "\n"
-#~ "© 2006 - Stephan Reichholf"
-
-#
-#~ msgid "Enter your email address so that we can contact you if needed."
-#~ msgstr "Syötä sähköpostiosoitteesi jotta voimme tarvittaessa ottaa yhteyttä."
-
-#
-#~ msgid "Exit the cleanup wizard"
-#~ msgstr "Lopeta puhdistusavustaja"
-
-#
-#  Ohjatun asennustoiminnon kakkosruudun valintateksti
-#~ msgid "Exit wizard"
-#~ msgstr "Poistu (määritä kaikki asetukset käsin)"
-
-#~ msgid "For more information see www.openpli.org"
-#~ msgstr "Lisätietoja katso www.openpli.org"
-
-#~ msgid "General AC3 delay (ms)"
-#~ msgstr "AC3-viive (ms)"
-
-#~ msgid "General PCM delay (ms)"
-#~ msgstr "PCM-viive (ms)"
-
-#~ msgid "Goto specific data/time"
-#~ msgstr "Mene määrättyy tietoon/aikaan"
-
-#
-#~ msgid "Guard Interval"
-#~ msgstr "Suojaväli"
-
-#~ msgid "Helps setting up your dish"
-#~ msgstr "Auttaa lautasantennisi asennuksessa"
-
-#
-#~ msgid "How to handle found crashlogs?"
-#~ msgstr "Mitä löydetyille lokeille tehdään?"
-
-#
-#~ msgid "Include your email and name (optional) in the mail?"
-#~ msgstr "Lisää lähetykseen sähköpostiosoite ja nimi?"
-
-#
-#~ msgid "Install settings, skins, software..."
-#~ msgstr "Asenna asetuksia, teemoja, ohjelmistoja..."
-
-#
-#~ msgid "Installation finished."
-#~ msgstr "Asennus suoritettu."
-
-#
-#~ msgid "Installing default sat lists... Please wait..."
-#~ msgstr "Asennetaan oletussatelliittilistat.. Odota..."
-
-#
-#~ msgid "Installing defaults... Please wait..."
-#~ msgstr "Asennetaan oletukset...Odota..."
-
-#
-#~ msgid "Installing package content... Please wait..."
-#~ msgstr "Asennetaan paketin sisältö...Odota..."
-
-#~ msgid "Keep old timers for how many days"
-#~ msgstr "Säilytä vanhoja ajastuksia (päivää)"
-
-#~ msgid "Kill partition table"
-#~ msgstr "Poista osiotaulukko"
-
-#
-#~ msgid "LOF"
-#~ msgstr "LOF"
-
-#
-#~ msgid "LOF/H"
-#~ msgstr "LOF/H"
-
-#
-#~ msgid "LOF/L"
-#~ msgstr "LOF/L"
-
-#~ msgid "Letzeburgesch"
-#~ msgstr "Letzeburgesch"
-
-#
-#~ msgid "List EPG functions..."
-#~ msgstr "EPG-näkymät..."
-
-#
-#~ msgid "Mainmenu"
-#~ msgstr "Päävalikko"
-
-#
-#~ msgid "Margin after record"
-#~ msgstr "Lisäaika tallenteen loppuun (minuuttia)"
-
-#~ msgid "MediaPlayer"
-#~ msgstr "Mediasoitin"
-
-#
-#~ msgid "Memory positions"
-#~ msgstr "Muistipaikat"
-
-#
-#~ msgid "Network Setup"
-#~ msgstr "Lähiverkon asetukset"
-
-#
-#~ msgid "NetworkWizard"
-#~ msgstr "Verkkoavustaja"
-
-#~ msgid "New PIN"
-#~ msgstr "Uusi PIN"
-
-#, fuzzy
-#~ msgid "Next"
-#~ msgstr "Seuraava"
-
-#
-#~ msgid "No packages were upgraded yet. So you can check your network and try again."
-#~ msgstr ""
-#~ "Ohjelmistoja ei ole vielä päivitetty.\n"
-#~ "Voit tarkistaa verkkoasetukset ja yrittää uudelleen."
-
-#
-#~ msgid "No picture on TV? Press EXIT and retry."
-#~ msgstr "Ei kuvaa TV:ssä? Paina EXIT ja yritä uudelleen."
-
-#~ msgid "No sat tuner found!"
-#~ msgstr "Satelliittiviritintä ei löytynyt!"
-
-#
-#~ msgid "No satellite frontend found!!"
-#~ msgstr "Laitteessa ei ole satelliittiviritintä."
-
-#
-#~ msgid ""
-#~ "No valid service PIN found!\n"
-#~ "Do you like to change the service PIN now?\n"
-#~ "When you say 'No' here the service protection stay disabled!"
-#~ msgstr ""
-#~ "Kanavan lapsilukon tunnuslukua ei löydy!\n"
-#~ "Haluatko määrittää kanavan tunnusluvun?\n"
-#~ "Jos vastaat 'Ei', kanavaa ei suojata tunnusluvulla."
-
-#
-#~ msgid ""
-#~ "No valid setup PIN found!\n"
-#~ "Do you like to change the setup PIN now?\n"
-#~ "When you say 'No' here the setup protection stay disabled!"
-#~ msgstr ""
-#~ "Asetuksien tunnuslukua ei löydy!\n"
-#~ "Haluatko määrittää asetuksien tunnusluvun?\n"
-#~ "Jos vastaat 'Ei', asetuksia ei suojata tunnusluvulla."
-
-#
-#~ msgid "No, but restart from beginning"
-#~ msgstr "Ei, mutta aloita alusta"
-
-#
-#~ msgid "No, not now"
-#~ msgstr "Ei, ei nyt"
-
-#
-#  Ohjatun asennuksen (Startup Wizard) kutosruudun valintateksti
-#~ msgid "No, scan later manually"
-#~ msgstr "Ei, kanavat haetaan myöhemmin manuaalisesti"
-
-#
-#~ msgid "No, send them never"
-#~ msgstr "Ei, älä lähetä koskaan"
-
-#~ msgid "Nothing to upgrade"
-#~ msgstr "Ei päivitettävää"
-
-#
-#~ msgid "OK, remove another extensions"
-#~ msgstr "OK, poista toinen laajennus"
-
-#
-#~ msgid "OK, remove some extensions"
-#~ msgstr "OK, poista joitain laajennuksia"
-
-#
-#~ msgid "OSD visibility"
-#~ msgstr "OSD:n läpinäkyvyys"
-
-#~ msgid "Open service list and select next channel"
-#~ msgstr "Avaa kanavalista ja valitse seuraava kanava"
-
-#~ msgid "Open service list and select previous channel"
-#~ msgstr "Avaa kanavalista ja valitse edellinen kanava"
-
-#
-#~ msgid "Optionally enter your name if you want to."
-#~ msgstr "Jos haluat, lisää nimesi."
-
-#
-#~ msgid "Orbital Position"
-#~ msgstr "Sijainti"
-
-#~ msgid "Package removal failed.\n"
-#~ msgstr "Ohjelmapaketin poisto epäonnistui.\n"
-
-#~ msgid "Package removed successfully.\n"
-#~ msgstr "Ohjelmapaketin poisto onnistui.\n"
-
-#~ msgid "Packages"
-#~ msgstr "Paketit"
-
-#
-#~ msgid "Parental control type"
-#~ msgstr "Lapsilukon tyyppi"
-
-#
-#~ msgid "Password"
-#~ msgstr "Salasana"
-
-#~ msgid "Phone number"
-#~ msgstr "Puhelinnumero"
-
-#~ msgid "Please be aware, that anyone can disable the parental control, if you have not set a PIN."
-#~ msgstr "Huomaa, että kuka tahansa voi poistaa lapsilukon jos et aseta PIN-koodia."
-
-#
-#~ msgid "Please choose he package..."
-#~ msgstr "Valitse ohjelmapaketti..."
-
-#
-#~ msgid "Please choose the default services lists you want to install."
-#~ msgstr "Valitse oletuskanavalistat jotka haluat asentaa ja paina OK."
-
-#
-#~ msgid "Please enter your email address here:"
-#~ msgstr "Syötä sähköpostiosoitteesi:"
-
-#
-#~ msgid "Please enter your name here (optional):"
-#~ msgstr "Syötä nimesi (ei pakollinen):"
-
-#
-#~ msgid "Please press OK!"
-#~ msgstr "Paina OK."
-
-#~ msgid "Please select a default EPG type..."
-#~ msgstr "Valitse oletus ohjelmaoppaan tyyppi..."
-
-#
-#~ msgid "Please select an extension to remove."
-#~ msgstr "Valitse poistettava lisäosa."
-
-#
-#~ msgid "Please select an option below."
-#~ msgstr "Valitse jokin vaihtoehto."
-
-#
-#~ msgid "Please wait while removing selected package..."
-#~ msgstr "Odota, valittua pakettia poistetaan..."
-
-#
-#~ msgid "Please wait while searching for removable packages..."
-#~ msgstr "Odota, poistettavia paketteja haetaan..."
-
-#~ msgid "Press '0' to toggle internal/external PiP."
-#~ msgstr "Vaihda sisäisen/ulkoisen PiP-kuvan välillä painamalla 0-näppäintä"
-
-#, fuzzy
-#~ msgid "Prev"
-#~ msgstr "Edellinen"
-
-#
-#~ msgid "Protect setup"
-#~ msgstr "Suojaa asetukset"
-
-#, fuzzy
-#~ msgid "Recording data sync size"
-#~ msgstr "Tallennuksen tyyppi"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Syötä uusi PIN uudelleen"
-
-#~ msgid "Reload black-/white lists"
-#~ msgstr "Lataa esto-/sallilistat uudestaan"
-
-#
-#~ msgid "Remove timer"
-#~ msgstr "Poista ajastus"
-
-#~ msgid "Rewrap teletext subtitles"
-#~ msgstr "Uudelleenrivitä teksti-tv tekstitys"
-
-#~ msgid "Select default EPG type..."
-#~ msgstr "Valitse oletus ohjelmaoppaan tyyppi"
-
-#
-#~ msgid "Select location"
-#~ msgstr "Valitse sijainti"
-
-#~ msgid "Show picons in servicelist"
-#~ msgstr "Näytä kanavalogot kanavaluettelossa"
-
-#
-#~ msgid "Show services beginning with"
-#~ msgstr "Näytä kanavat jotka alkavat"
-
-#
-#~ msgid "Show tag menu"
-#~ msgstr "Näytä avainsanavalikko"
-
-#
-#~ msgid "Shutdown after current event"
-#~ msgstr "Sammuta menossa olevan ohjelman jälkeen"
-
-#
-#~ msgid "Shutdown in "
-#~ msgstr "Sammuta kun kulunut "
-
-#
-#~ msgid "Single transponder"
-#~ msgstr "Yksi lähetin"
-
-#
-#~ msgid "Sleep timer action:"
-#~ msgstr "Uniajastintoiminta:"
-
-#
-#~ msgid "Switch next channel"
-#~ msgstr "Vaihda seuraavalle kanavalle"
-
-#
-#~ msgid "Timer status:"
-#~ msgstr "Ajastimen tila:"
-
-#~ msgid "Tuning step size"
-#~ msgstr "Viritysaskeleen koko"
-
-#
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Uncommitted DiSEqC-käsky"
-
-#
-#~ msgid "Use time of currently running service"
-#~ msgstr "käytä katseltavan kanavan aikaa"
-
-#
-#~ msgid "Username"
-#~ msgstr "Käyttäjänimi"
-
-#~ msgid "Video fine tuning"
-#~ msgstr "TV-kuvan hienosäätö"
-
-#~ msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
-#~ msgstr "Kun päällä, ulkoiset tekstitykset (media tiedostoissa) näytetään keltaisella alkuperäisen värin sijaan."
-
-#~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
-#~ msgstr "Kun päällä, alkuperäisessä teksti-tv pohjaisessa tekstityksessä olevat rivinvaihdot poistetaan."
-
-#~ msgid "Your receiver will shutdown due to inactivity."
-#~ msgstr "Käyttämättömyysajastin sammuttaa vastaanottimen. "
-
-#~ msgid "Your receiver will shutdown due to the sleeptimer."
-#~ msgstr "Uniajastin sammuttaa vastaanottimesi."
-
-#
-#~ msgid "Zap back to service before satfinder?"
-#~ msgstr ""
-#~ "Vaihdetaanko takaisin kanavalle, jota katsottiin\n"
-#~ "ennen satelliittietsimen käyttöä?"
-
-#
-#~ msgid "complex"
-#~ msgstr "monimutkainen"
-
-#~ msgid "dreambox advanced remote control (native)"
-#~ msgstr "Laajennettu kauko-ohjain (alkup.)"
-
-#~ msgid "dreambox front panel"
-#~ msgstr "etupaneeli"
-
-#~ msgid "dreambox ir keyboard"
-#~ msgstr "IR-näppäimistö"
-
-#~ msgid "dreambox ir mouse"
-#~ msgstr "IR-hiiri"
-
-#~ msgid "dreambox remote control (native)"
-#~ msgstr "Kauko-ohjain (alkup.)"
-
-#
-#~ msgid "fine-tune your display"
-#~ msgstr "hienosäädä näyttöä"
-
-#
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "toista seuraavasta merkistä tai valinnasta"
-
-#
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "toista edellisestä merkistä tai valinnasta"
-
-#~ msgid "service PIN"
-#~ msgstr "Kanavan PIN"
-
-#~ msgid "setup PIN"
-#~ msgstr "Määrittele PIN"
-
-#
-#~ msgid "shutdown"
-#~ msgstr "sammuta"
-
-#
-#~ msgid "special characters"
-#~ msgstr "erikoismerkit"
-
-#
-#~ msgid "standby"
-#~ msgstr "valmiustila"
-
-#~ msgid "tuner is not supported"
-#~ msgstr "viritin ei ole tuettu"
-
-#
-#~ msgid "whitelist"
-#~ msgstr "hyväksytyt"

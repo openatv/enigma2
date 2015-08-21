@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 16:31+0200\n"
+"POT-Creation-Date: 2015-08-21 09:29+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -584,9 +584,6 @@ msgstr "ตั้งค่าอะแด๊ปเตอร์"
 
 msgid "Add"
 msgstr "เพิ่ม"
-
-msgid "Add Bookmark"
-msgstr "เพิ่มบุ๊คมาร์ค"
 
 msgid "Add a mark"
 msgstr "เพิ่มจุด"
@@ -2063,16 +2060,8 @@ msgstr ""
 msgid "Directory %s does not exist."
 msgstr "ไม่พบโฟล์เดอร์ %s ในระบบ"
 
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr ""
-
 msgid "Directory browser"
 msgstr "ดูโฟล์เดอร์"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Directory contains %s and %s."
@@ -3432,9 +3421,6 @@ msgstr "ภาษาลิธูเนี่ยน"
 msgid "Load"
 msgstr "โหลด"
 
-msgid "Load Length of Movies in Movielist"
-msgstr ""
-
 #, fuzzy
 msgid "Load length of movies in movie list"
 msgstr "โหลดความยาวของภาพยนต์"
@@ -3643,9 +3629,6 @@ msgstr "ย้ายภาพซ้อนภาพ"
 msgid "Move east"
 msgstr "เคลื่อนไปทางทิศตะวันออก"
 
-msgid "Move to other directory"
-msgstr ""
-
 msgid "Move to position X"
 msgstr ""
 
@@ -3659,12 +3642,6 @@ msgid "Moved to position at index"
 msgstr ""
 
 msgid "Movement"
-msgstr ""
-
-msgid "Movie List Configuration"
-msgstr ""
-
-msgid "Movie Selection"
 msgstr ""
 
 #, fuzzy
@@ -4866,9 +4843,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr ""
 
-msgid "Remember these settings for each folder"
-msgstr ""
-
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr ""
 
@@ -5748,9 +5722,6 @@ msgid "Show shutdown menu"
 msgstr "แสดงเมนูปิดเครื่อง"
 
 msgid "Show single service EPG"
-msgstr ""
-
-msgid "Show status icons in Movielist"
 msgstr ""
 
 msgid "Show status icons in movie list"
@@ -8131,9 +8102,6 @@ msgstr "ค่าเริ่มต้น"
 msgid "delete cut"
 msgstr "ลบส่วนตัดต่อ"
 
-msgid "delete..."
-msgstr ""
-
 msgid "descramble and record ecm"
 msgstr ""
 
@@ -8247,9 +8215,6 @@ msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "ออกจากโหมดเครื่องเล่นดีวีดี หรือกลับไปดูไฟล์ข้อมูล"
-
-msgid "exit movielist"
-msgstr ""
 
 msgid "exit network adapter configuration"
 msgstr "ออกจากการตั้งค่าระบบเครือข่าย"
@@ -8550,9 +8515,6 @@ msgstr "เปิด"
 msgid "on READ ONLY medium."
 msgstr "บนสื่อบันทึกอ่านได้อย่างเดียว"
 
-msgid "on end of movie"
-msgstr ""
-
 msgid "once"
 msgstr "ครั้งเดียว"
 
@@ -8715,12 +8677,6 @@ msgstr "เลือก CAId's"
 msgid "select menu entry"
 msgstr "เลือกเมนูจากรายการ"
 
-msgid "select movie"
-msgstr "เลือกภาพยนต์"
-
-msgid "select the movie path"
-msgstr ""
-
 msgid "serious music/classic music"
 msgstr ""
 
@@ -8742,9 +8698,6 @@ msgstr "แสดงทางเลือกอื่น"
 msgid "show event details"
 msgstr "แสดงรายละเอียดรายการ"
 
-msgid "show extended description"
-msgstr ""
-
 msgid "show mediaplayer on mainmenu"
 msgstr ""
 
@@ -8752,9 +8705,6 @@ msgid "show softwaremanager in setup menu"
 msgstr ""
 
 msgid "show softwaremanager on blue button"
-msgstr ""
-
-msgid "show tag menu"
 msgstr ""
 
 msgid "show transponder info"
@@ -8975,137 +8925,3 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 msgid "®"
 msgstr ""
-
-#~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-#~ msgstr "กำลังบันทึกรายอยู่ หยุดการบันทึกก่อนค้นหาดาวเทียม"
-
-#~ msgid "AA"
-#~ msgstr "AA"
-
-#~ msgid "AB"
-#~ msgstr "AB"
-
-#, fuzzy
-#~ msgid "Activate PiP"
-#~ msgstr "ภาพซ้อนภาพ"
-
-#, fuzzy
-#~ msgid "Add/remove timer for current event"
-#~ msgstr "บันทึกรายการ (หยุดเมื่อจบรายการ)"
-
-#, fuzzy
-#~ msgid "All satellites"
-#~ msgstr "ดาวเทียมทั้งหมด"
-
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "เมื่อกด 'หยุดเล่นชั่วคราว' ให้"
-
-#~ msgid "Change pin code"
-#~ msgstr "เปลี่ยนรหัส"
-
-#~ msgid "Committed DiSEqC command"
-#~ msgstr "คำสั่ง Committed DiSEqC"
-
-#~ msgid "Connected!"
-#~ msgstr "เชื่อมต่อแล้ว!"
-
-#, fuzzy
-#~ msgid "Delete..."
-#~ msgstr "ลบ..."
-
-#~ msgid "DiSEqC repeats"
-#~ msgstr "DiSEqC repeats"
-
-#~ msgid "Dialing:"
-#~ msgstr "กำลังโทร:"
-
-#~ msgid "Disconnect"
-#~ msgstr "ตัดการเชื่อมต่อ"
-
-#~ msgid "Edit services list"
-#~ msgstr "แก้ไขสารบัญบริการ"
-
-#~ msgid "Enable parental control"
-#~ msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
-
-#~ msgid "No satellite frontend found!!"
-#~ msgstr "ไม่พบอุปกรณ์ดาวเทียม"
-
-#~ msgid ""
-#~ "No valid service PIN found!\n"
-#~ "Do you like to change the service PIN now?\n"
-#~ "When you say 'No' here the service protection stay disabled!"
-#~ msgstr ""
-#~ "ไม่พบรหัสผ่านใดๆ สำหรับบริการ!\n"
-#~ "ท่านต้องการตั้งรหัสผ่านตอนนี้เลยหรือไม่?\n"
-#~ "หากตอบ 'ไม่' หมายถืงท่านไม่ต้องการควบคุมการรับชม"
-
-#~ msgid ""
-#~ "No valid setup PIN found!\n"
-#~ "Do you like to change the setup PIN now?\n"
-#~ "When you say 'No' here the setup protection stay disabled!"
-#~ msgstr ""
-#~ "ไม่พบรหัสผ่านสำหรับตั้งค่าเครื่อง!\n"
-#~ "ต้องการเปลี่ยนรหัสตอนนี้หรือไม่?\n"
-#~ "หากตอบ 'ไม่' หมายถึงยกเลิกการป้องกันด้วยรหัสผ่าน"
-
-#~ msgid "Parental control type"
-#~ msgstr "ชนิดการควบคุมอายุ"
-
-#~ msgid "Password"
-#~ msgstr "รหัสผ่าน"
-
-#~ msgid "Phone number"
-#~ msgstr "เลขหมาย"
-
-#~ msgid "Protect setup"
-#~ msgstr "ป้องกันการตั้งค่า"
-
-#~ msgid "Remove timer"
-#~ msgstr "เอาตารางเวลานี้ออก"
-
-#, fuzzy
-#~ msgid "Select location"
-#~ msgstr "เลือกตำแหน่ง"
-
-#~ msgid "Show services beginning with"
-#~ msgstr "แสดงบริการที่เริ่มต้นด้วย"
-
-#, fuzzy
-#~ msgid "Show tag menu"
-#~ msgstr "แสดงเมนูป้าย"
-
-#~ msgid "Single transponder"
-#~ msgstr "ทรานสปอนเดอร์เดียว"
-
-#, fuzzy
-#~ msgid "Switch next channel"
-#~ msgstr "รายการต่อไป"
-
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "คำสั่ง Uncommitted DiSEqC"
-
-#~ msgid "Username"
-#~ msgstr "ชื่อผู้ใช้"
-
-#, fuzzy
-#~ msgid "Video fine tuning"
-#~ msgstr "ปรับวิดีโอแบบละเอียด"
-
-#~ msgid "Zap back to service before satfinder?"
-#~ msgstr "ย้ายไปยังช่องบริกการก่อนที่ค้นหาดาวเทียม"
-
-#~ msgid "complex"
-#~ msgstr "ซับซ้อน"
-
-#~ msgid "fine-tune your display"
-#~ msgstr "ปรับหน้าจอแบบละเอียด"
-
-#~ msgid "whitelist"
-#~ msgstr "รายการที่อนุญาต"

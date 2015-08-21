@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 16:31+0200\n"
+"POT-Creation-Date: 2015-08-21 09:29+0200\n"
 "PO-Revision-Date: 2013-10-23 19:15+0100\n"
 "Last-Translator: andy1 <dmmm8000pvr@gmail.com>\n"
 "Language-Team: none\n"
@@ -654,10 +654,6 @@ msgstr "Nettverksinstillinger"
 #
 msgid "Add"
 msgstr "Legge til"
-
-#
-msgid "Add Bookmark"
-msgstr "Legge til bokmerke"
 
 #
 msgid "Add a mark"
@@ -2223,16 +2219,8 @@ msgstr "katalog"
 msgid "Directory %s does not exist."
 msgstr "Katalog %s finnes ikke."
 
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "Katalog %s ikke eksisterende."
-
 msgid "Directory browser"
 msgstr "Søk i kataloger"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Katalogen inneholder %d fil(er) og %d under-kataloger.\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -3714,9 +3702,6 @@ msgstr "Litauisk"
 msgid "Load"
 msgstr "Last inn"
 
-msgid "Load Length of Movies in Movielist"
-msgstr "Vis opptakslengde i listen"
-
 msgid "Load length of movies in movie list"
 msgstr "Last inn opptakslengden i opptaksliste"
 
@@ -3946,9 +3931,6 @@ msgstr "Flytt Bilde i Bilde"
 msgid "Move east"
 msgstr "Kjør østover"
 
-msgid "Move to other directory"
-msgstr "Flytt til annen katalog"
-
 msgid "Move to position X"
 msgstr "Flyttet til posisjon X"
 
@@ -3964,12 +3946,6 @@ msgstr "Flyttet til startposisjon"
 
 msgid "Movement"
 msgstr "Bevegelse"
-
-msgid "Movie List Configuration"
-msgstr "Innstilling for opptaksliste"
-
-msgid "Movie Selection"
-msgstr "Opptaksvalg"
 
 msgid "Movie list configuration"
 msgstr "Innstilling for opptaksliste"
@@ -5272,9 +5248,6 @@ msgstr ""
 msgid "Remember service PIN"
 msgstr "Lagre PIN kode"
 
-msgid "Remember these settings for each folder"
-msgstr "Lagre disse innstillinger for hver mappe"
-
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Påminnelse, du har valgt å lagre en timeshift fil"
 
@@ -6198,9 +6171,6 @@ msgstr "Vis av/på meny"
 
 msgid "Show single service EPG"
 msgstr "Vis enkel kanal EPG"
-
-msgid "Show status icons in Movielist"
-msgstr "Vis  framgangs status i opptaksliste"
 
 msgid "Show status icons in movie list"
 msgstr "Vis programbasert framgang i opptaksliste"
@@ -8810,10 +8780,6 @@ msgstr "standard"
 msgid "delete cut"
 msgstr "slette klipp"
 
-#
-msgid "delete..."
-msgstr "slett..."
-
 msgid "descramble and record ecm"
 msgstr "dekode og ta opp ecm"
 
@@ -8944,9 +8910,6 @@ msgstr ""
 #
 msgid "exit DVD player or return to file browser"
 msgstr "avslutt DVD spiller eller gå til til fil søker"
-
-msgid "exit movielist"
-msgstr "Avslutte opptaksliste"
 
 #
 msgid "exit network adapter configuration"
@@ -9292,9 +9255,6 @@ msgstr "på"
 msgid "on READ ONLY medium."
 msgstr "på READ ONLY medium."
 
-msgid "on end of movie"
-msgstr "på slutten av opptaket"
-
 #
 msgid "once"
 msgstr "en gang"
@@ -9473,12 +9433,6 @@ msgstr "velg CAId's"
 msgid "select menu entry"
 msgstr "velg meny"
 
-msgid "select movie"
-msgstr "Velge opptak"
-
-msgid "select the movie path"
-msgstr "Velg målmappen for opptak"
-
 msgid "serious music/classic music"
 msgstr "seriøs musikk/klassisk musikk"
 
@@ -9503,10 +9457,6 @@ msgstr "vis alternativer"
 msgid "show event details"
 msgstr "vis programdetaljer"
 
-#
-msgid "show extended description"
-msgstr "Vis utvidet  beskrivelse"
-
 msgid "show mediaplayer on mainmenu"
 msgstr "vis mediespiller på hovedmeny"
 
@@ -9515,10 +9465,6 @@ msgstr "vis programvareoppsett"
 
 msgid "show softwaremanager on blue button"
 msgstr "vis programvareoppsett med blå knapp"
-
-#
-msgid "show tag menu"
-msgstr "Vis tag meny"
 
 #
 msgid "show transponder info"
@@ -9763,264 +9709,3 @@ msgstr "gått til"
 
 msgid "®"
 msgstr ""
-
-#~ msgid "A demo plugin for TPM usage."
-#~ msgstr "En test- app til TPM bruk."
-
-#~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-#~ msgstr "Et opptak er igang. Vennligst stopp opptaket før du starter et satellittsøk."
-
-#~ msgid "AC3/DTS downmix"
-#~ msgstr "AC3/DTS blanding"
-
-#
-#~ msgid "Activate PiP"
-#~ msgstr "Aktivere PiP (bilde i bilde)"
-
-#~ msgid "Add more details to the crash log"
-#~ msgstr "Legge til flere detaljer i krasj logg"
-
-#~ msgid "Add/remove timer for current event"
-#~ msgstr "Legge til/slett tidtaker i nåværende program"
-
-#~ msgid "Adjust HDMI CEC settings"
-#~ msgstr "Justere HDMI CEC innstillinger"
-
-#~ msgid "All satellites"
-#~ msgstr "Alle satellitter"
-
-#~ msgid "And will shutdown your receiver over "
-#~ msgstr "Og mottakeren vil slåes helt av etter"
-
-#
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "Innstilling for 'pause' knappen når satt i pause"
-
-#~ msgid "Change pin code"
-#~ msgstr "Endre PIN kode"
-
-#~ msgid "Change service PIN"
-#~ msgstr "Endre PIN kode for kanal"
-
-#~ msgid "Change service PINs"
-#~ msgstr "Endre PIN kode for kanaler"
-
-#~ msgid "Change setup PIN"
-#~ msgstr "Endre oppsetts PIN"
-
-#~ msgid "Committed DiSEqC command"
-#~ msgstr "Utvidet DiSEqC kommando"
-
-#~ msgid "Configure if and how service type icons will be shown."
-#~ msgstr "Still inn om eller hvordan kanal picons skal vises."
-
-#~ msgid "Configure if service picons will be shown in the servicelist."
-#~ msgstr "Still inn om kanal picons skal vises i kanallisten."
-
-#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-#~ msgstr "Still inn oppførsel til 'pause' knappen når en avspilling er satt i pause."
-
-#~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
-#~ msgstr "Still inn varigheten i antall timer fra mottakeren er inaktiv til den automatisk skal slåes av/slåes helt av."
-
-#~ msgid "Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
-#~ msgstr "Still inn varigheten i antall minutter når tidtakeren skal velge å slå av/slå helt av mottakeren. Velg denne oppføringen og klikk OK eller grønn knapp for start/stopp av tidtakeren"
-
-#~ msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-#~ msgstr "Velg tuneren som skal foretrekkes når samme kanal er tilgjengelig på flere tunertyper."
-
-#
-#~ msgid "Connected!"
-#~ msgstr "Sammenkoblet!"
-
-#~ msgid "Create more detailed crash log"
-#~ msgstr "Lage mer detaljert krasj logg"
-
-#
-#~ msgid "Delete..."
-#~ msgstr "Slette..."
-
-#~ msgid "DiSEqC repeats"
-#~ msgstr "DiSEqC gjentakelse"
-
-#
-#~ msgid "Dialing:"
-#~ msgstr "Ringer opp:"
-
-#
-#~ msgid "Disconnect"
-#~ msgstr "Frakoble"
-
-#~ msgid "Edit bouquets list"
-#~ msgstr "Redigere kanallister"
-
-#~ msgid "Edit services list"
-#~ msgstr "Redigere kanallister"
-
-#
-#~ msgid "Enable parental control"
-#~ msgstr "Aktivere foreldrekontroll"
-
-#~ msgid "Goto specific data/time"
-#~ msgstr "Gå til en bestemt data/tid"
-
-#~ msgid "Helps setting up your dish"
-#~ msgstr "Hjelper til med ditt paraboloppsett"
-
-#~ msgid "List EPG functions..."
-#~ msgstr "Vis EPG funksjoner..."
-
-#
-#~ msgid "Memory positions"
-#~ msgstr "Lagre posisjoner"
-
-#~ msgid "New PIN"
-#~ msgstr "Ny PIN"
-
-#~ msgid "No satellite frontend found!!"
-#~ msgstr "Ingen satellitt posisjon ble funnet!!"
-
-#
-#~ msgid ""
-#~ "No valid service PIN found!\n"
-#~ "Do you like to change the service PIN now?\n"
-#~ "When you say 'No' here the service protection stay disabled!"
-#~ msgstr ""
-#~ "Ingen gyldig PIN kode ble funnet!\n"
-#~ "Vil du endre kanal PIN nå?\n"
-#~ "Velger du 'Nei' vil kanal beskyttelsen være deaktivert!"
-
-#
-#~ msgid ""
-#~ "No valid setup PIN found!\n"
-#~ "Do you like to change the setup PIN now?\n"
-#~ "When you say 'No' here the setup protection stay disabled!"
-#~ msgstr ""
-#~ "Ingen gyldig PIN kode ble funnet!\n"
-#~ "Vil du endre PIN kode nå?\n"
-#~ "Velger du 'Nei' vil oppsetts beskyttelsen være deaktivert!"
-
-#~ msgid "Open service list and select next channel"
-#~ msgstr "Åpne kanallisten og velg neste kanal"
-
-#~ msgid "Open service list and select previous channel"
-#~ msgstr "Åpne kanallisten og velg forrige kanal"
-
-#
-#~ msgid "Parental control type"
-#~ msgstr "Foreldrekontroll type"
-
-#
-#~ msgid "Password"
-#~ msgstr "Passord"
-
-#
-#~ msgid "Phone number"
-#~ msgstr "Tlf. nr."
-
-#~ msgid "Please select a default EPG type..."
-#~ msgstr "Vennligst velg standard EPG..."
-
-#~ msgid "Press '0' to toggle internal/external PiP."
-#~ msgstr "Trykk '0' for å bytte internt/eksternt PiP (Bilde i bilde)."
-
-#
-#~ msgid "Protect setup"
-#~ msgstr "Beskytte oppsett"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Skriv inn PIN kode på nytt"
-
-#~ msgid "Reload black-/white lists"
-#~ msgstr "Restart sort-/hvit lister"
-
-#
-#~ msgid "Remove timer"
-#~ msgstr "Slette tidtaker"
-
-#~ msgid "Rewrap teletext subtitles"
-#~ msgstr "Bryt tekst-TV undertekst"
-
-#~ msgid "Select default EPG type..."
-#~ msgstr "Velg standard EPG..."
-
-#
-#~ msgid "Select location"
-#~ msgstr "Velg plassering"
-
-#~ msgid "Show picons in servicelist"
-#~ msgstr "Vis picons i kanalliste"
-
-#
-#~ msgid "Show services beginning with"
-#~ msgstr "Vis kanaler som begynner med"
-
-#
-#~ msgid "Show tag menu"
-#~ msgstr "Vis tag meny"
-
-#
-#~ msgid "Shutdown after current event"
-#~ msgstr "Slå av etter nåværende program"
-
-#~ msgid "Shutdown in "
-#~ msgstr "Slå helt av om"
-
-#
-#~ msgid "Single transponder"
-#~ msgstr "En transponder"
-
-#
-#~ msgid "Switch next channel"
-#~ msgstr "Gå til neste kanal"
-
-#~ msgid "Tuning step size"
-#~ msgstr "Søketrinnstørrelse"
-
-#
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Uncommitted DiSEqC kommando"
-
-#
-#~ msgid "Username"
-#~ msgstr "Brukernavn"
-
-#
-#~ msgid "Video fine tuning"
-#~ msgstr "Finjustering av bilde"
-
-#~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
-#~ msgstr "Når dette er valgt, vil opprinnelig linjeskift automatisk bli fjernet fra tekst-TV undertekst."
-
-#~ msgid "Your receiver will shutdown due to inactivity."
-#~ msgstr "Mottakeren slåes av på grunn av inaktivitet."
-
-#~ msgid "Your receiver will shutdown due to the sleeptimer."
-#~ msgstr "Mottakeren slåes av etter tidtakerinnstillingen."
-
-#~ msgid "Zap back to service before satfinder?"
-#~ msgstr "Gå tilbake til kanal og avslutt satellittsøker?"
-
-#~ msgid "complex"
-#~ msgstr "kompleks"
-
-#
-#~ msgid "fine-tune your display"
-#~ msgstr "fininnstill din skjerm"
-
-#~ msgid "service PIN"
-#~ msgstr "kanal PIN"
-
-#~ msgid "setup PIN"
-#~ msgstr "velg PIN"
-
-#
-#~ msgid "special characters"
-#~ msgstr "spesial tegn"
-
-#~ msgid "tuner is not supported"
-#~ msgstr "tuner er ikke støttet"
-
-#
-#~ msgid "whitelist"
-#~ msgstr "hvitliste"
