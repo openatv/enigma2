@@ -355,7 +355,6 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 
 		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE))
 		{
-			eDebug("[png_load] %d",__LINE__);
 			png_color *palette;
 			int num_palette;
 			png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
@@ -1075,7 +1074,7 @@ void ePicLoad::gotMessage(const Message &msg)
 			break;
 		case Message::decode_finished: // called from main thread
 			//eDebug("[Picload] decode finished... %s", m_filepara->file);
-			if(m_filepara->callback)
+			if((m_filepara != NULL) && (m_filepara->callback))
 				PictureData(m_filepara->picinfo.c_str());
 			else
 			{
@@ -1085,6 +1084,9 @@ void ePicLoad::gotMessage(const Message &msg)
 					m_filepara = NULL;
 				}
 			}
+			break;
+		case Message::decode_error:
+			msg_main.send(Message(Message::decode_finished));
 			break;
 		default:
 			eDebug("unhandled thread message");
@@ -1109,7 +1111,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	int file_id = -1;
 	unsigned char id[10];
 	int fd = ::open(file, O_RDONLY);
-	if (fd == -1) return 1;
+	if (fd == -1) return -errno;
 	::read(fd, id, 10);
 	::close(fd);
 
@@ -1119,25 +1121,33 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	else if(id[0] == 'B' && id[1] == 'M' )					file_id = F_BMP;
 	else if(id[0] == 'G' && id[1] == 'I' && id[2] == 'F')			file_id = F_GIF;
 
-	if(file_id < 0)
-	{
-		eDebug("[Picload] <format not supported>");
-		return 1;
-	}
-
 	m_filepara = new Cfilepara(file, file_id, getSize(file));
 	m_filepara->max_x = x > 0 ? x : m_conf.max_x;
 	m_filepara->max_y = x > 0 ? y : m_conf.max_y;
 
-	if(m_filepara->max_x <= 0 || m_filepara->max_y <= 0)
+	if(file_id < 0 || m_filepara->max_x <= 0 || m_filepara->max_y <= 0)
 	{
+		if(file_id < 0)
+			eDebug("[Picload] <format not supported>");
+		else
+			eDebug("[Picload] <error in Para>");
+		if(async)
+		{
+			msg_thread.send(Message(Message::decode_error));
+			run();
+			return 0;
+		}
+
 		delete m_filepara;
 		m_filepara = NULL;
-		eDebug("[Picload] <error in Para>");
-		return 1;
-	}
 
-	if (async) {
+		if(file_id < 0)
+			return 2;
+		else
+			return 3;
+	}
+	if(async)
+	{
 		if(what==1)
 			msg_thread.send(Message(Message::decode_Pic));
 		else
@@ -1145,9 +1155,29 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 		run();
 	}
 	else if (what == 1)
+	{
 		decodePic();
+		if(!m_filepara->pic_buffer)
+		{
+		// in case of memeory leak, maybe we need this
+		//	delete m_filepara;
+		//	m_filepara = NULL;
+			eDebug("[Picload] <no data>");
+			return 4;
+		}
+	}
 	else
+	{
 		decodeThumb();
+		if(!m_filepara->pic_buffer)
+		{
+		//in case of memeory leak, maybe we need this
+		//	delete m_filepara;
+		//	m_filepara = NULL;
+			eDebug("[Picload] <no data>");
+			return 4;
+		}
+	}
 	return 0;
 }
 
