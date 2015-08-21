@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 16:31+0200\n"
-"PO-Revision-Date: 2015-08-18 21:24+0200\n"
+"POT-Creation-Date: 2015-08-20 19:13+0200\n"
+"PO-Revision-Date: 2015-08-21 01:48+0200\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -553,7 +553,7 @@ msgid "A/V settings"
 msgstr "Paramètres A/V"
 
 msgid "AAC downmix"
-msgstr "Downmix ACC"
+msgstr "Downmix AAC"
 
 msgid "AC3 downmix"
 msgstr "Downmix AC3"
@@ -602,9 +602,6 @@ msgstr "Paramètres adaptateur"
 
 msgid "Add"
 msgstr "Ajouter"
-
-msgid "Add Bookmark"
-msgstr "Ajouter Marque-page"
 
 msgid "Add a mark"
 msgstr "Ajouter un marqueur"
@@ -2017,16 +2014,8 @@ msgstr "Répertoire"
 msgid "Directory %s does not exist."
 msgstr "Répertoire %s n'existe pas."
 
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "Répertoire %s n'existe pas."
-
 msgid "Directory browser"
 msgstr "Navigateur répertoire"
-
-#, python-format
-msgid "Directory contains %d file(s) and %d sub-directories.\n"
-msgstr "Le répertoire contient %d fichier(s) et %d sous-répertoire(s).\n"
 
 #, python-format
 msgid "Directory contains %s and %s."
@@ -2431,7 +2420,7 @@ msgid "Estonian"
 msgstr "Estonien"
 
 msgid "EtPortal"
-msgstr ""
+msgstr "EtPortal"
 
 msgid "Ethernet network interface"
 msgstr "Interface réseau Ethernet"
@@ -3318,9 +3307,6 @@ msgstr "Lituanien"
 msgid "Load"
 msgstr "Charger"
 
-msgid "Load Length of Movies in Movielist"
-msgstr "Charger la durée des films dans la liste des films"
-
 msgid "Load length of movies in movie list"
 msgstr "Charger longueur des films dans liste des films"
 
@@ -3516,9 +3502,6 @@ msgstr "Déplacer l'incrustation d'image"
 msgid "Move east"
 msgstr "Déplacer vers l'est"
 
-msgid "Move to other directory"
-msgstr "Déplacer vers un autre répertoire"
-
 msgid "Move to position X"
 msgstr "Déplacer vers position X"
 
@@ -3533,12 +3516,6 @@ msgstr "Déplacer vers l'indice de position"
 
 msgid "Movement"
 msgstr "Déplacement"
-
-msgid "Movie List Configuration"
-msgstr "Configuration de la liste des films"
-
-msgid "Movie Selection"
-msgstr "Sélection d'un film"
 
 msgid "Movie list configuration"
 msgstr "Configuration de la liste des Films"
@@ -4696,9 +4673,6 @@ msgstr "Se rappeler le dernier service en PiP"
 msgid "Remember service PIN"
 msgstr "Enregistrer PIN service"
 
-msgid "Remember these settings for each folder"
-msgstr "Se rappeler de ces paramètres pour chaque dossier"
-
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Rappel, vous avez choisi de sauvegarder votre fichier PauseDirect."
 
@@ -5532,9 +5506,6 @@ msgstr "Afficher menu éteindre"
 
 msgid "Show single service EPG"
 msgstr "Afficher l'EPG simple du service"
-
-msgid "Show status icons in Movielist"
-msgstr "Afficher l'icône du statut dans la liste des films"
 
 msgid "Show status icons in movie list"
 msgstr "Afficher icônes d'état dans liste des films"
@@ -7893,9 +7864,6 @@ msgstr "par défaut"
 msgid "delete cut"
 msgstr "Effacer coupe"
 
-msgid "delete..."
-msgstr "Efface..."
-
 msgid "descramble and record ecm"
 msgstr "Décoder et enregistrer ecm"
 
@@ -8009,9 +7977,6 @@ msgstr "et9200/9500/6500"
 
 msgid "exit DVD player or return to file browser"
 msgstr "Quitter le lecteur DVD ou retourner au sélecteur de fichiers"
-
-msgid "exit movielist"
-msgstr ""
 
 msgid "exit network adapter configuration"
 msgstr "Quitter configuration adaptateur réseau"
@@ -8310,9 +8275,6 @@ msgstr "Marche"
 msgid "on READ ONLY medium."
 msgstr "Sur support en LECTURE SEULE"
 
-msgid "on end of movie"
-msgstr "À la fin du film"
-
 msgid "once"
 msgstr "Une fois"
 
@@ -8475,12 +8437,6 @@ msgstr "Sélectionner CAId's"
 msgid "select menu entry"
 msgstr "Sélectionner entrée menu"
 
-msgid "select movie"
-msgstr "Choisir un film"
-
-msgid "select the movie path"
-msgstr "Sélectionner le chemin des films"
-
 msgid "serious music/classic music"
 msgstr "Musique classique"
 
@@ -8502,9 +8458,6 @@ msgstr "Afficher alternatifs"
 msgid "show event details"
 msgstr "Afficher détails événement"
 
-msgid "show extended description"
-msgstr "Afficher la description étendue"
-
 msgid "show mediaplayer on mainmenu"
 msgstr "Afficher le lecteur multimédia dans le menu principal"
 
@@ -8513,9 +8466,6 @@ msgstr "Montrer le gestionnaire de logiciels dans le menu configuration"
 
 msgid "show softwaremanager on blue button"
 msgstr "Montrer le gestionnaire de logiciels sur le bouton bleu"
-
-msgid "show tag menu"
-msgstr "Afficher le menu des marqueurs"
 
 msgid "show transponder info"
 msgstr "Afficher info transpondeur"
@@ -8734,211 +8684,4 @@ msgid "zapped"
 msgstr "Zappé"
 
 msgid "®"
-msgstr ""
-
-#~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-#~ msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant de démarrer la recherche satellites."
-
-#~ msgid "AA"
-#~ msgstr "AA"
-
-#~ msgid "AB"
-#~ msgstr "AB"
-
-#~ msgid "Activate PiP"
-#~ msgstr "Activer l'incrustation d'image"
-
-#~ msgid "Add more details to the crash log"
-#~ msgstr "Créer un crash log plus détaillé"
-
-#~ msgid "Adjust HDMI CEC settings"
-#~ msgstr "Ajuster les paramètres HDMI CEC"
-
-#~ msgid "And will shutdown your receiver over "
-#~ msgstr "Et va éteindre votre récepteur après"
-
-#~ msgid "Autoresolution"
-#~ msgstr "Résolution automatique"
-
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "Comportement de 'pause' si déjà  en pause"
-
-#~ msgid "Change pin code"
-#~ msgstr "Changer code pin"
-
-#~ msgid "Change service PIN"
-#~ msgstr "Changer PIN service"
-
-#~ msgid "Change service PINs"
-#~ msgstr "Changer PINs service"
-
-#~ msgid "Configure if and how service type icons will be shown."
-#~ msgstr "Configurez si et comment les icônes de type de service seront affichés."
-
-#~ msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-#~ msgstr "Configurez le comportement de la touche «pause» quand la lecture du film est déjà en pause."
-
-#~ msgid "Configure the duration in hours and action, which could be shut down or standby, when the receiver is not controlled."
-#~ msgstr "Configure la durée en heures et l'action, qui peut être éteindre ou mettre en veille, lorsque le récepteur n'est pas utilisé."
-
-#~ msgid "Configure the duration in minutes and action, which could be shut down or standby, for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
-#~ msgstr "Configure la durée en minutes et l'action, qui peut être éteindre ou mettre en veille, pour l'arrêt automatique. Sélectionnez cette entrée et cliquez sur OK ou VERT pour démarrer/arrêter l'arrêt automatique."
-
-#~ msgid "Connected!"
-#~ msgstr "Connecté !"
-
-#~ msgid "Create more detailed crash log"
-#~ msgstr "Créer un crash log plus détaillé"
-
-#~ msgid "Currently the commit log cannot be retreived - please try later again"
-#~ msgstr "Actuellement le log des commits ne peut pas être récupéré - merci de réessayer plus tard "
-
-#~ msgid "DVB_C"
-#~ msgstr "DVB_C"
-
-#~ msgid "Delete..."
-#~ msgstr "Effacer..."
-
-#~ msgid "Dialing:"
-#~ msgstr "Appel :"
-
-#~ msgid "Disconnect"
-#~ msgstr "Déconnecter"
-
-#~ msgid "Edit bouquets list"
-#~ msgstr "Éditer liste bouquets"
-
-#~ msgid "Edit services list"
-#~ msgstr "Éditer liste services"
-
-#~ msgid "Enable parental control"
-#~ msgstr "Activer contrôle parental"
-
-#~ msgid "List EPG functions..."
-#~ msgstr "Liste fonctions EPG..."
-
-#~ msgid "New PIN"
-#~ msgstr "Nouveau PIN"
-
-#~ msgid "No satellite frontend found!!"
-#~ msgstr "Aucun tuner satellite trouvé !!"
-
-#~ msgid ""
-#~ "No valid service PIN found!\n"
-#~ "Do you like to change the service PIN now?\n"
-#~ "When you say 'No' here the service protection stay disabled!"
-#~ msgstr ""
-#~ "Aucun Service-PIN trouvé !\n"
-#~ "Voulez-vous changer le Service-PIN maintenant ?\n"
-#~ "Si vous répondez 'NON', la protection de service restera désactivé !"
-
-#~ msgid ""
-#~ "No valid setup PIN found!\n"
-#~ "Do you like to change the setup PIN now?\n"
-#~ "When you say 'No' here the setup protection stay disabled!"
-#~ msgstr ""
-#~ "Aucun Réglages-PIN trouvé !\n"
-#~ "Voulez-vous changer le Réglages-PIN maintenant ?\n"
-#~ "Si vous répondez 'NON', la protection des Réglages restera désactivé !"
-
-#~ msgid "Open service list and select next channel"
-#~ msgstr "Ouvrir la liste des services et sélectionner la chaine suivante"
-
-#~ msgid "Open service list and select previous channel"
-#~ msgstr "Ouvrir la liste des services et sélectionner la chaine précédente"
-
-#~ msgid "Parental control type"
-#~ msgstr "Type du contrôle parental"
-
-#~ msgid "Password"
-#~ msgstr "Mot de passe"
-
-#~ msgid "Phone number"
-#~ msgstr "Numéro de téléphone"
-
-#~ msgid "Please select a default EPG type..."
-#~ msgstr "S'il vous plaît sélectionner un type d'EPG par défaut ..."
-
-#~ msgid "Press '0' to toggle internal/external PiP."
-#~ msgstr "Appuyez sur '0' pour basculer PiP (interne/externe)."
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Re-saisir nouveau PIN"
-
-#~ msgid "Select default EPG type..."
-#~ msgstr "Sélectionnez le type d'EPG par défaut ..."
-
-#~ msgid "Show latest commits on sourceforge"
-#~ msgstr "Afficher les derniers 'commits' sur sourceforge"
-
-#~ msgid "Show services beginning with"
-#~ msgstr "Afficher les services commençant par"
-
-#~ msgid "Show tag menu"
-#~ msgstr "Afficher menu étiquette"
-
-#~ msgid "Show updated packages"
-#~ msgstr "Afficher les paquets mis-à-jour"
-
-#~ msgid "Shutdown in "
-#~ msgstr "Éteindre dans "
-
-#~ msgid "Single transponder"
-#~ msgstr "Transpondeur unique"
-
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Commande DiSEqC non validée"
-
-#~ msgid "Username"
-#~ msgstr "Nom utilisateur"
-
-#~ msgid "Video fine tuning"
-#~ msgstr "Réglage Vidéo avancé"
-
-#~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
-#~ msgstr "Lorsqu'elle est activée, les sauts de lignes originales seront retirés des sous-titres télétexte."
-
-#~ msgid "Your receiver will shutdown due to inactivity."
-#~ msgstr "Votre récepteur va s'éteindre faute d'activité."
-
-#~ msgid "Your receiver will shutdown due to the sleeptimer."
-#~ msgstr "Votre récepteur va s'éteindre à cause du timer d'inactivité (sleeptimer)."
-
-#~ msgid "Zap back to service before satfinder?"
-#~ msgstr "Revenir sur le service avant le pointage?"
-
-#~ msgid "complex"
-#~ msgstr "Complexe"
-
-#~ msgid "fine-tune your display"
-#~ msgstr "Réglage avancé de votre affichage"
-
-#~ msgid "open EPG..."
-#~ msgstr "Afficher EPG..."
-
-#~ msgid "open Info..."
-#~ msgstr "Ouvrir Info..."
-
-#~ msgid "select EPG..."
-#~ msgstr "Sélectionner EPG..."
-
-#~ msgid "select Info..."
-#~ msgstr "Sélection Info..."
-
-#~ msgid "service PIN"
-#~ msgstr "Pin service"
-
-#~ msgid "setup PIN"
-#~ msgstr "PIN paramètres"
-
-#~ msgid "special characters"
-#~ msgstr "Caractères spéciaux"
-
-#~ msgid "whitelist"
-#~ msgstr "Liste autorisée (whitelist)"
+msgstr "®"
