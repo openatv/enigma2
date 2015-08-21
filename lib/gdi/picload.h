@@ -30,6 +30,10 @@ struct Cfilepara
 		palette_size(0),
 		bits(24),
 		id(mid),
+		max_x(0),
+		max_y(0),
+		ox(0),
+		oy(0),
 		picinfo(mfile),
 		callback(true)
 	{
@@ -81,6 +85,7 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 			decode_Pic,
 			decode_Thumb,
 			decode_finished,
+			decode_error,
 			quit
 		};
 		Message(int type=0)
