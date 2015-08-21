@@ -44,8 +44,12 @@ class PerServiceBase(object):
 
 	def destroy(self):
 		EventMap = PerServiceBase.EventMap.setdefault
-		for x in self.eventmap.iteritems():
-			EventMap(x[0], []).remove((self.with_event, x[1]))
+#TODO investigate what happens with self.eventmap if it disappears
+		try:
+			for x in self.eventmap.iteritems():
+				EventMap(x[0], []).remove((self.with_event, x[1]))
+		except:
+			pass
 
 	def enablePolling(self, interval=60000):
 		if interval:
