@@ -28,16 +28,25 @@ static std::string getSize(const char* file)
 	return tmp;
 }
 
-static void convert_8Bit_to_24Bit(Cfilepara *filepara, unsigned char *dest)
+static int convert_8Bit_to_24Bit(Cfilepara *filepara, unsigned char *dest)
 {
+	if( (!filepara) || (!dest))
+		return -1;
+
 	unsigned char *src = filepara->pic_buffer;
-	int pixel_cnt = filepara->ox * filepara->oy;
+	gRGB * palette     = filepara->palette;
+	int pixel_cnt      = filepara->ox * filepara->oy;
+
+	if( (!src) || (!palette) || (!pixel_cnt))
+		return -1;
+
 	for( int i = 0; i < pixel_cnt; i++)
 	{
-		*dest++ = filepara->palette[*src].r;
-		*dest++ = filepara->palette[*src].g;
-		*dest++ = filepara->palette[*src++].b;
+		*dest++ = palette[*src].r;
+		*dest++ = palette[*src].g;
+		*dest++ = palette[*src++].b;
 	}
+	return 0;
 }
 
 static unsigned char *simple_resize_24(unsigned char *orgin, int ox, int oy, int dx, int dy)
@@ -404,7 +413,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 		png_read_update_info(png_ptr, info_ptr);
 
 		int bpp =  png_get_rowbytes(png_ptr, info_ptr)/width;
-		if ((bpp!=4) && (bpp!=3))
+		if ((bpp != 4) && (bpp != 3))
 		{
 			eDebug("[png_load] Error processing");
 			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
@@ -422,7 +431,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 		for(int pass = 0; pass < number_passes; pass++)
 		{
 			fbptr = (png_byte *)pic_buffer;
-			for (i = 0; i < height; i++, fbptr += width * bpp)
+			for (int i = 0; i < height; i++, fbptr += width * bpp)
 				png_read_row(png_ptr, fbptr, NULL);
 		}
 		png_read_end(png_ptr, info_ptr);
@@ -444,7 +453,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 			int bg_r = (background >> 16) & 0xFF;
 			int bg_g = (background >> 8) & 0xFF;
 			int bg_b = background & 0xFF;
-			for(i=0; i < pixel_cnt; i++)
+			for(int i = 0; i < pixel_cnt; i++)
 			{
 				r = (int)*src++;
 				g = (int)*src++;
@@ -995,16 +1004,24 @@ void ePicLoad::decodeThumb()
 			if (m_filepara->bits == 8)
 			{
 				unsigned char * tmp = new unsigned char [m_filepara->ox * m_filepara->oy * 3];
-				convert_8Bit_to_24Bit(m_filepara, tmp);
-				if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, tmp))
-					eDebug("[Picload] error saving cachefile");
-				delete [] tmp;
+				if(tmp)
+				{
+					if(!convert_8Bit_to_24Bit(m_filepara, tmp))
+					{
+						if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, tmp))
+							eDebug("[Picload] error saving cachefile");
+					}
+					else
+						eDebug("[Picload] error saving cachefile");
+					delete [] tmp;
+				}
+				else
+					eDebug("[Picload] Error malloc");
 			}
 			else
 				if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, m_filepara->pic_buffer))
 					eDebug("[Picload] error saving cachefile");
 		}
-
 		resizePic();
 	}
 }
