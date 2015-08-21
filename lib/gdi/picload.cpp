@@ -77,7 +77,6 @@ static unsigned char *simple_resize_24(unsigned char *orgin, int ox, int oy, int
 
 static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int dx, int dy)
 {
-	eDebug("[picload.cpp simple_resize_8] x:%d y:%d  x:%d  y:%d ",ox,oy,dx,dy);
 	unsigned char* cr = new unsigned char[dx * dy];
 	if (cr == NULL)
 	{
@@ -101,7 +100,6 @@ static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int 
 
 static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx, int dy)
 {
-	eDebug("[picload.cpp color_resize] x:%d y:%d  x:%d  y:%d ",ox,oy,dx,dy);
 	unsigned char* cr = new unsigned char[dx * dy * 3];
 	if (cr == NULL)
 	{
