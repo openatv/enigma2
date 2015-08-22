@@ -10,11 +10,14 @@ from Tools.Notifications import AddPopup
 from time import time
 
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
+	def __init__(self, session, title = "", windowTitle = None, useableChars = None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
+
+		if windowTitle is None:
+			windowTitle = _("Input")
 		self.onShown.append(boundFunction(self.setTitle, windowTitle))
 		if useableChars is not None:
 			self["input"].setUseableChars(useableChars)
