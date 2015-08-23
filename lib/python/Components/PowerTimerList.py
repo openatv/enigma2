@@ -75,9 +75,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 					flags >>= 1
 				if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
 					repeatedtext = _('Everyday')
-				elif len(repeatedtext) == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
+				elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
 					repeatedtext = _('Weekday')
-				elif len(repeatedtext) == [_("Sat"), _("Sun")]:
+				elif repeatedtext == [_("Sat"), _("Sun")]:
 					repeatedtext = _('Weekend')
 				else:
 					repeatedtext = ", ".join(repeatedtext)
