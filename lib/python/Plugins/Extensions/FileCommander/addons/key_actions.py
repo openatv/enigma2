@@ -160,7 +160,7 @@ class key_actions():
 		longname = self.sourceDir.getCurrentDirectory() + self.sourceDir.getFilename()
 		answer = answer and answer[1]
 		if answer == "SINGLE":
-			fileRef = eServiceReference("4097:0:0:0:0:0:0:0:0:0:" + longname)
+			fileRef = eServiceReference(eServiceReference.idServiceMP3, 0, longname)
 			self.session.open(MoviePlayer, fileRef)
 		elif answer == "LIST":
 			self.music_playlist()
@@ -231,10 +231,10 @@ class key_actions():
 		if filetype == ".ipk":
 			self.session.openWithCallback(self.onFileActionCB, ipkMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".ts":
-			fileRef = eServiceReference("1:0:0:0:0:0:0:0:0:0:" + longname)
+			fileRef = eServiceReference(eServiceReference.idDVB, 0, longname)
 			self.session.open(MoviePlayer, fileRef)
 		elif filetype in MOVIE_EXTENSIONS:
-			fileRef = eServiceReference("4097:0:0:0:0:0:0:0:0:0:" + longname)
+			fileRef = eServiceReference(eServiceReference.idServiceMP3, 0, longname)
 			self.session.open(MoviePlayer, fileRef)
 		elif filetype in DVD_EXTENSIONS:
 			if DVDPlayerAvailable:
