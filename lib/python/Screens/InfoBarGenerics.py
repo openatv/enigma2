@@ -2473,7 +2473,8 @@ class InfoBarSeek:
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
-			return 0
+			#return 0 # if 'return 0', plays timeshift again from the beginning
+			return
 		self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def doPause(self, pause):
@@ -2512,6 +2513,24 @@ class InfoBarSeek:
 		self.doSeekRelative(pts)
 
 	def doSeekRelative(self, pts):
+		try:
+			if "<class 'Screens.InfoBar.InfoBar'>" in `self`:
+				if InfoBarTimeshift.timeshiftEnabled(self):
+					length = InfoBarTimeshift.ptsGetLength(self)
+					position = InfoBarTimeshift.ptsGetPosition(self)
+					if length is None or position is None:
+						return
+					if position + pts >= length:
+						InfoBarTimeshift.evEOF(self, position + pts - length)
+						return
+					elif position + pts < 0:
+						InfoBarTimeshift.evSOF(self, position + pts)
+						self.showAfterSeek()
+						return
+		except:
+			from sys import exc_info
+			print "[InfoBarGeneretics] error in 'def doSeekRelative'", exc_info()[:2]
+
 		seekable = self.getSeek()
 		if seekable is None and int(self.seek.getLength()[1]) < 1:
 			return
