@@ -1002,74 +1002,143 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		return 0;
 	}
 
-	result = new gPixmap(m_filepara->max_x, m_filepara->max_y, m_filepara->bits == 8 ? 8 : 32,
-				NULL, m_filepara->bits == 8 ? gPixmap::accelAlways : gPixmap::accelAuto);
-	gUnmanagedSurface *surface = result->surface;
-	int o_y = 0, u_y = 0, v_x = 0, h_x = 0;
-	unsigned char *tmp_buffer = ((unsigned char *)(surface->data));
-	unsigned char *origin = m_filepara->pic_buffer;
-	if (m_filepara->oy < m_filepara->max_y)
-	{
-		o_y = (m_filepara->max_y - m_filepara->oy) / 2;
-		u_y = m_filepara->max_y - m_filepara->oy - o_y;
-	}
-	if (m_filepara->ox < m_filepara->max_x)
-	{
-		v_x = (m_filepara->max_x - m_filepara->ox) / 2;
-		h_x = m_filepara->max_x - m_filepara->ox - v_x;
-	}
-
 	if (m_filepara->bits == 8)
 	{
+		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 8, NULL, gPixmap::accelAlways);
+		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = m_filepara->palette;
 		surface->clut.colors = m_filepara->palette_size;
 		m_filepara->palette = NULL; // transfer ownership
+		int o_y=0, u_y=0, v_x=0, h_x=0;
+		int extra_stride = surface->stride - surface->x;
 
-		if (o_y != 0 || v_x != 0) {
-			// have borders, fill with background color
-			gRGB bg(m_conf.background);
-			int background = surface->clut.findColor(bg);
-			memset(tmp_buffer, background, m_filepara->max_y * surface->stride);
+		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
+		unsigned char *origin = m_filepara->pic_buffer;
+
+		if(m_filepara->oy < m_filepara->max_y)
+		{
+			o_y = (m_filepara->max_y - m_filepara->oy) / 2;
+			u_y = m_filepara->max_y - m_filepara->oy - o_y;
+		}
+		if(m_filepara->ox < m_filepara->max_x)
+		{
+			v_x = (m_filepara->max_x - m_filepara->ox) / 2;
+			h_x = m_filepara->max_x - m_filepara->ox - v_x;
+		}
+
+		int background;
+		gRGB bg(m_conf.background);
+		background = surface->clut.findColor(bg);
+
+		if(m_filepara->oy < m_filepara->max_y)
+		{
+			memset(tmp_buffer, background, o_y * surface->stride);
 			tmp_buffer += o_y * surface->stride;
-			tmp_buffer += v_x;
 		}
 
 		for(int a = m_filepara->oy; a > 0; --a)
 		{
+			if(m_filepara->ox < m_filepara->max_x)
+			{
+				memset(tmp_buffer, background, v_x);
+				tmp_buffer += v_x;
+			}
+
 			memcpy(tmp_buffer, origin, m_filepara->ox);
-			tmp_buffer += surface->stride;
+			tmp_buffer += m_filepara->ox;
 			origin += m_filepara->ox;
+
+			if(m_filepara->ox < m_filepara->max_x)
+			{
+				memset(tmp_buffer, background, h_x);
+				tmp_buffer += h_x;
+			}
+
+			tmp_buffer += extra_stride;
+		}
+
+		if(m_filepara->oy < m_filepara->max_y)
+		{
+			memset(tmp_buffer, background, u_y * surface->stride);
 		}
 	}
 	else
 	{
+		result=new gPixmap(m_filepara->max_x, m_filepara->max_y, 32, NULL, gPixmap::accelAuto);
+		gUnmanagedSurface *surface = result->surface;
+		int o_y=0, u_y=0, v_x=0, h_x=0;
+
+		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
+		unsigned char *origin = m_filepara->pic_buffer;
 		int extra_stride = surface->stride - (surface->x * surface->bypp);
-		if (o_y != 0 || v_x != 0) {
-			// have borders, fill with background color
-			unsigned int background = m_conf.background;
-			unsigned int* row_buffer = (unsigned int *) tmp_buffer;
-			for (int x = 0; x < m_filepara->max_x; ++x)
-				*row_buffer++ = background;
-			for (int y = 1; y < m_filepara->max_y; ++y)
-				memcpy(tmp_buffer + y*surface->stride, tmp_buffer, m_filepara->max_x * surface->bypp);
-			tmp_buffer += o_y * surface->stride;
+
+		if(m_filepara->oy < m_filepara->max_y)
+		{
+			o_y = (m_filepara->max_y - m_filepara->oy) / 2;
+			u_y = m_filepara->max_y - m_filepara->oy - o_y;
+		}
+		if(m_filepara->ox < m_filepara->max_x)
+		{
+			v_x = (m_filepara->max_x - m_filepara->ox) / 2;
+			h_x = m_filepara->max_x - m_filepara->ox - v_x;
+		}
+
+		int background = m_conf.background;
+		if(m_filepara->oy < m_filepara->max_y)
+		{
+			for (int y = o_y; y != 0; --y)
+			{
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
+			}
 		}
 
 		for(int a = m_filepara->oy; a > 0; --a)
 		{
+			if(m_filepara->ox < m_filepara->max_x)
+			{
+				for(int b = v_x; b != 0; --b)
+				{
+					*(int*)tmp_buffer = background;
+					tmp_buffer += 4;
+				}
+			}
 
-			tmp_buffer += v_x * 4;
 			for(int b = m_filepara->ox; b != 0; --b)
 			{
-				tmp_buffer[2] = *origin++;
-				tmp_buffer[1] = *origin++;
-				tmp_buffer[0] = *origin++;
+				tmp_buffer[2] = *origin;
+				++origin;
+				tmp_buffer[1] = *origin;
+				++origin;
+				tmp_buffer[0] = *origin;
+				++origin;
 				tmp_buffer[3] = 0xFF; // alpha
 				tmp_buffer += 4;
 			}
 
-			tmp_buffer += h_x * 4;
+			if(m_filepara->ox < m_filepara->max_x)
+			{
+				for(int b = h_x; b != 0; --b)
+				{
+					*(int*)tmp_buffer = background;
+					tmp_buffer += 4;
+				}
+			}
+
 			tmp_buffer += extra_stride;
+		}
+
+		if(m_filepara->oy < m_filepara->max_y)
+		{
+			for (int y = u_y; y != 0; --y)
+			{
+				int* row_buffer = (int*)tmp_buffer;
+				for (int x = m_filepara->ox; x !=0; --x)
+					*row_buffer++ = background;
+				tmp_buffer += surface->stride;
+			}
 		}
 	}
 
