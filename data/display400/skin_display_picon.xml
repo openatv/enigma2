@@ -18,10 +18,9 @@
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
-		<font filename="Roboto-Bold.ttf" name="LCD" scale="100"/>
 	</fonts>
 
-<!-- template V1.6.6a 04.08.2015-->
+<!-- template V1.6.6b 24.08.2015-->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText"></convert>
@@ -121,9 +120,9 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<eLabel position="0,168" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.Event_Now" render="Label" position="275,173" size="200,38" font="LCD;38" zPosition="0" foregroundColor="#A9E2F3" halign="right" transparent="1">
+		<widget source="session.Event_Now" render="Label" position="300,173" size="100,40" font="FdLcD;40" zPosition="0" foregroundColor="#A9E2F3" halign="right" transparent="1">
 			<convert type="EventTime">Remaining</convert>
-			<convert type="RemainingToText">FOLLOW</convert>
+			<convert type="RemainingToText">OnlyMinute</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
 		<panel name="SummaryClockPanel" />
@@ -139,8 +138,8 @@
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<eLabel position="0,168" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="255,173" size="200,38" font="LCD;38" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
-			<convert type="ServicePosition">Remaining</convert>
+		<widget source="session.CurrentService" render="Label" position="300,173" size="100,40" font="FdLcD;40" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
 		<panel name="SummaryClockPanel" />
@@ -174,14 +173,14 @@
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<eLabel position="0,168" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="255,173" size="200,38" font="LCD;38" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
-			<convert type="ServicePosition">Remaining</convert>
+		<widget source="session.CurrentService" render="Label" position="300,173" size="100,40" font="FdLcD;40" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>		
-<!-- channelselection V1.6.6a -->
+<!-- channelselection V1.6.6b -->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
@@ -203,6 +202,16 @@
 			<convert type="EventName">Name</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" /> 
+	</screen>
+<!-- RadioChannelselection  -->
+	<screen name="ChannelSelectionRadio_summary" position="0,0" size="400,240">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="400,40" foregroundColor="#87CEFA" font="FdLcD;38" halign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.RdsDecoder" render="Label" position="0,45"  size="400,125" font="FdLcD;37" halign="center" valign="center">
+			<convert type="RdsInfo">RadioText</convert>
+		</widget>
+		<panel name="SummaryClockPanel" />
 	</screen>
 <!-- Numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="400,240">
@@ -517,12 +526,11 @@
 			  <convert type="EMCServicePosition">Position</convert>
 		</widget>
 		<eLabel position="0,168" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />		
-		<widget source="session.CurrentService" render="Label" position="255,173" size="200,38" font="LCD;38" zPosition="0" foregroundColor="#A9E2F3" halign="right" transparent="1">
-			<convert type="ServicePosition">Remaining</convert>
+		<widget source="session.CurrentService" render="Label" position="300,173" size="100,40" font="FdLcD;40" zPosition="0" foregroundColor="#A9E2F3" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>	
->>>>>>> master
 </skin>
