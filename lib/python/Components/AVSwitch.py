@@ -451,7 +451,7 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
 			iAVSwitch.setColorFormat(3)
 		elif config.av.videoport and config.av.videoport.value in ("RCA"):
-			iAVSwitch.setColorFormat(0)			
+			iAVSwitch.setColorFormat(0)
 		else:
 			if getBoxType() == 'et6x00':
 				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
