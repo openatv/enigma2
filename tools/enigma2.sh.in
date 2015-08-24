@@ -4,6 +4,11 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+# perform a NTP update sync, before starting Enigma2, as it is broke in OE.
+if [ -x /usr/sbin/ntpdate ]; then
+	/usr/sbin/ntpdate -s -u pool.ntp.org && sleep 2
+fi
+
 # hook to execute user startup script before enigma2 start
 if [ -x /etc/enigma2/startup.sh ]; then
 	/etc/enigma2/startup.sh

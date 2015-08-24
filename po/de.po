@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-27 19:09+0100\n"
-"PO-Revision-Date: 2015-06-29 19:09+0100\n"
+"POT-Creation-Date: 2015-08-14 12:01+0100\n"
+"PO-Revision-Date: 2015-08-16 21:38+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -507,6 +507,12 @@ msgstr "720p"
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
 
+msgid "< Default >"
+msgstr "<Standard>"
+
+msgid "< Default with Picon >"
+msgstr "<Standard mit PIcon>"
+
 msgid "<Current movielist location>"
 msgstr "<Aktuelles Filmverzeichnis>"
 
@@ -529,8 +535,8 @@ msgid ""
 "A background update check is in progress,\n"
 "please wait a few minutes and try again."
 msgstr ""
-"Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und "
-"erneut versuchen."
+"Eine Updateprüfung läuft im Hintergrund.\n"
+"Bitte ein paar Minuten warten und erneut versuchen."
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and then "
@@ -583,7 +589,6 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Ein Powertimer will die Benutzeroberfläche neu starten.\n"
-"\n"
 "Jetzt neu starten?"
 
 #, python-format
@@ -661,9 +666,9 @@ msgid ""
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
-"Eine zweite konfigurierte Netzwerkverbindung wurde gefunden.\n"
+"Ein zweites konfiguriertes Netzwerkgerät wurde gefunden.\n"
 "\n"
-"Die zweite Netzwerkverbindung deaktivieren?"
+"Das zweite Netzwerkgerät deaktivieren?"
 
 #, python-format
 msgid ""
@@ -2935,6 +2940,9 @@ msgstr "Nicht ändern"
 msgid "Do not record"
 msgstr "Nicht aufnehmen"
 
+msgid "Do nothing"
+msgstr "Nichts machen"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -3469,6 +3477,9 @@ msgstr "Programmname zuerst"
 
 msgid "Event view"
 msgstr "Sendungsdetails"
+
+msgid "Event view menu"
+msgstr "Sendungsdetails Menü"
 
 msgid "Everywhere"
 msgstr "überall"
@@ -4320,7 +4331,7 @@ msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "Infobar fade-out speed"
-msgstr "Gescwindigkeit vom Ausblenden"
+msgstr "Geschwindigkeit vom Ausblenden"
 
 msgid "Infobar frontend data source"
 msgstr "Datenquelle der Informationen in Infobar"
@@ -11250,9 +11261,6 @@ msgstr "Tag"
 msgid "decrease uphop by 1"
 msgstr "uhop um 1 verringern"
 
-msgid "default"
-msgstr "Standard"
-
 msgid "delete"
 msgstr "löschen"
 
@@ -12199,6 +12207,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
+
+#~ msgid "default"
+#~ msgstr "Standard"
 
 #~ msgid "leave movie player..."
 #~ msgstr "Abspielmodus verlassen..."

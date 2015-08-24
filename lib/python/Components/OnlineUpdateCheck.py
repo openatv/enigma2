@@ -52,12 +52,9 @@ class FeedsStatusCheck:
 	def getFeedsBool(self):
 		global error
 		feedstatus = feedsstatuscheck.getFeedSatus()
-		if feedstatus == -2:
-			print '[OnlineVersionCheck] Error -2'
-			return -2
-		elif feedstatus == 404:
-			print '[OnlineVersionCheck] Error 404'
-			return 404
+		if feedstatus in (-2, 403, 404):
+			print '[OnlineVersionCheck] Error %s' % feedstatus
+			return feedstatus
 		elif error:
 			print '[OnlineVersionCheck] Check already in progress'
 			return 'inprogress'
@@ -75,10 +72,10 @@ class FeedsStatusCheck:
 			return _("Your %s %s has no network access, please check your network settings and make sure you have network cable connected and try again.") % (getMachineBrand(), getMachineName())
 		elif feedstatus == 404:
 			return _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
-		elif feedstatus == 'updating':
+		elif feedstatus in ('updating', 403):
 			return _("Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com.")
 		elif error:
-			return _("A background update check is in progress, please wait a few minutes and try again.")
+			return _("There has been an error, please try again later. If this issue persists, please check openvix.co.uk or world-of-satellite.com")
 
 	def startCheck(self):
 		global error

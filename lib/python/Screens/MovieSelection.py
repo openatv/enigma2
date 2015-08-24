@@ -62,15 +62,14 @@ preferredTagEditor = None
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
-	(str(MovieList.SORT_GROUPWISE), _("default") , '02/01 & A-Z'),
 	(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
 	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A-Z'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A-Z Flat'),
+	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat'),
 	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
+	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A-Z Flat'),
 	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
 	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat'),
-	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
 	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"),  'Z1 A2 A1')]
 
 def defaultMoviePath():
@@ -758,7 +757,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
 			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
-			config.movielist.btn_blue = ConfigSelection(default='sort', choices=userDefinedActions)
+			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedActions)
 			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedActions)
 			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedActions)
 			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedActions)

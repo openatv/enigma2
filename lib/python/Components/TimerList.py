@@ -39,7 +39,14 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				if flags & 1 == 1:
 					repeatedtext.append(days[x])
 				flags >>= 1
-			repeatedtext = ", ".join(repeatedtext)
+			if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
+				repeatedtext = _('Everyday')
+			elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
+				repeatedtext = _('Weekday')
+			elif repeatedtext == [_("Sat"), _("Sun")]:
+				repeatedtext = _('Weekend')
+			else:
+				repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
 		else:
