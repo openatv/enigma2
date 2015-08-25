@@ -156,9 +156,9 @@
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="220,176">
 		<widget source="parent.summary_job_name" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="parent.summary_job_task" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="FdLcD;12" zposition="0" halign="center" transparent="1" >
+		<widget source="parent.summary_job_task" render="Label" position="0,80" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
+		<widget source="parent.summary_job_progress" render="Progress" position="6,125" size="100,15" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="115,120" size="95,25" font="FdLcD;22" zposition="0" transparent="1" >
 			<convert type="ProgressToText" />
 		</widget>
 		<panel name="SummaryIconsPanel" />
