@@ -363,7 +363,7 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 							continue;
 						}
 						else
-							eDebugNoNewLine("ignore unimplemented: ");
+							eDebug("ignore unimplemented: ");
 					}
 					else //0..39 means column 0..39
 					{
@@ -401,17 +401,17 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 									continue;
 								}
 								else
-									eDebugNoNewLine("ignore G2 char < 0x20: ");
+									eDebug("ignore G2 char < 0x20: ");
 							}
 							else
-								eDebugNoNewLine("ignore unimplemented: ");
+								eDebug("ignore unimplemented: ");
 						}
 						else
-							eDebugNoNewLine("row is not selected.. ignore: ");
+							eDebug("row is not selected.. ignore: ");
 					}
-					eDebugNoNewLine("triplet = %08x(%s) ", val, get_bits(val, 18));
-					eDebugNoNewLine("address = %02x(%s) ", addr, get_bits(addr, 6));
-					eDebugNoNewLine("mode = %02x(%s) ", mode, get_bits(mode, 5));
+					eDebug("triplet = %08x(%s) ", val, get_bits(val, 18));
+					eDebug("address = %02x(%s) ", addr, get_bits(addr, 6));
+					eDebug("mode = %02x(%s) ", mode, get_bits(mode, 5));
 					eDebug("data = %02x(%s)", data, get_bits(data, 7));
 				}
 			}

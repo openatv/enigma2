@@ -17,10 +17,10 @@ eDVBCIApplicationManagerSession::~eDVBCIApplicationManagerSession()
 
 int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eDebugNoNewLine("SESSION(%d)/APP %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+	eDebugNoNewLineStart("SESSION(%d)/APP %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebug("");
+	eDebugNoNewLineEnd("");
 
 	if ((tag[0]==0x9f) && (tag[1]==0x80))
 	{
@@ -34,11 +34,11 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			eDebug("  application_type: %d", ((unsigned char*)data)[0]);
 			eDebug("  application_manufacturer: %02x %02x", ((unsigned char*)data)[2], ((unsigned char*)data)[1]);
 			eDebug("  manufacturer_code: %02x %02x", ((unsigned char*)data)[4],((unsigned char*)data)[3]);
-			eDebugNoNewLine("  menu string: ");
+			eDebugNoNewLineStart("  menu string: ");
 			dl=((unsigned char*)data)[5];
 			if ((dl + 6) > len)
 			{
-				eDebug("warning, invalid length (%d vs %d)", dl+6, len);
+				eDebugNoNewLineEnd("warning, invalid length (%d vs %d)", dl+6, len);
 				dl=len-6;
 			}
 			char str[dl + 1];
@@ -46,7 +46,7 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			str[dl] = '\0';
 			for (int i = 0; i < dl; ++i)
 				eDebugNoNewLine("%c", ((unsigned char*)data)[i+6]);
-			eDebug("");
+			eDebugNoNewLineEnd("");
 
 			eDVBCI_UI::getInstance()->setAppName(slot->getSlotID(), str);
 

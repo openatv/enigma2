@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <unistd.h>
+#include <time.h>
 
 #include <string>
 
@@ -81,30 +82,47 @@ int logOutputConsole=1;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+char *printtime(char buffer[], int size)
+{
+	struct tm loctime ;
+	struct timeval tim;
+	gettimeofday(&tim, NULL);
+	localtime_r(&tim.tv_sec, &loctime);
+	snprintf(buffer, size, "%02d:%02d:%02d.%03ld", loctime.tm_hour, loctime.tm_min, loctime.tm_sec, tim.tv_usec / 1000L);
+	return buffer;
+}
+
 extern void bsodFatal(const char *component);
 
-void eFatal(const char* fmt, ...)
+void _eFatal(const char *file, int line, const char *function, const char* fmt, ...)
 {
 	char buf[1024];
+	char timebuffer[32];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
 	va_end(ap);
+
 	{
 		singleLock s(DebugLock);
-		logOutput(lvlFatal, "FATAL: " + std::string(buf) + "\n");
-		fprintf(stderr, "FATAL: %s\n",buf );
+		logOutput(lvlFatal, std::string(buf) + "\n");
+		fprintf(stderr, "FATAL: %s\n", buf);
 	}
 	bsodFatal("enigma2");
 }
 
 #ifdef DEBUG
-void eDebug(const char* fmt, ...)
+void _eDebug(const char *file, int line, const char *function, const char* fmt, ...)
 {
 	char buf[1024];
+	char timebuffer[32];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(buf) + "\n");
@@ -112,25 +130,57 @@ void eDebug(const char* fmt, ...)
 		fprintf(stderr, "%s\n", buf);
 }
 
+void _eDebugNoNewLineStart(const char *file, int line, const char *function, const char* fmt, ...)
+{
+	char buf[1024];
+	char timebuffer[32];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
+	va_end(ap);
+	singleLock s(DebugLock);
+	logOutput(lvlDebug, std::string(buf));
+	if (logOutputConsole)
+		fprintf(stderr, "%s", buf);
+}
+
 void eDebugNoNewLine(const char* fmt, ...)
 {
 	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, buf);
+	logOutput(lvlDebug, std::string(buf));
 	if (logOutputConsole)
 		fprintf(stderr, "%s", buf);
 }
 
-void eWarning(const char* fmt, ...)
+void eDebugNoNewLineEnd(const char* fmt, ...)
 {
 	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
+	va_end(ap);
+	singleLock s(DebugLock);
+	logOutput(lvlDebug, std::string(buf));
+	if (logOutputConsole)
+		fprintf(stderr, "%s\n", buf);
+}
+
+void _eWarning(const char *file, int line, const char *function, const char* fmt, ...)
+{
+	char buf[1024];
+	char timebuffer[32];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+	va_list ap;
+	va_start(ap, fmt);
+	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, std::string(buf) + "\n");
@@ -139,13 +189,18 @@ void eWarning(const char* fmt, ...)
 }
 #endif // DEBUG
 
-void ePythonOutput(const char *string)
+
+void ePythonOutput(const char *file, int line, const char *function, const char *string)
 {
 #ifdef DEBUG
+	char buf[1024];
+	char timebuffer[32];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[34;1m%s:%d \e[33;1m%s\e[30;1m %s", timebuffer, file, line, function, string);
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, string);
 	if (logOutputConsole)
-		fwrite(string, 1, strlen(string), stderr);
+		fwrite(buf, 1, strlen(buf), stderr);
 #endif
 }
 

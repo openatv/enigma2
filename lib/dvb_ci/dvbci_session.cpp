@@ -225,11 +225,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	unsigned char tag = *pkt++;
 	int llen, hlen;
 
-	eDebug("slot: %p",slot);
+	eDebugNoNewLineStart("slot: %p ",slot);
 
 	for(unsigned int i=0;i<len;i++)
 		eDebugNoNewLine("%02x ",ptr[i]);
-	eDebug("");
+	eDebugNoNewLineEnd("");
 
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;

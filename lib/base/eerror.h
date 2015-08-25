@@ -112,33 +112,43 @@ void DumpUnfreed();
 extern Signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
 
-void CHECKFORMAT eFatal(const char*, ...);
+void _eFatal(const char *file, int line, const char *function, const char* fmt, ...);
+#define eFatal(args ...) _eFatal(__FILE__, __LINE__, __FUNCTION__, args)
 enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 
 #ifdef DEBUG
-    void CHECKFORMAT eDebug(const char*, ...);
-    void CHECKFORMAT eDebugNoNewLine(const char*, ...);
-    void CHECKFORMAT eWarning(const char*, ...);
-    #define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
+	void _eDebug(const char *file, int line, const char *function, const char* fmt, ...);
+#define eDebug(args ...) _eDebug(__FILE__, __LINE__, __FUNCTION__, args)
+	void _eDebugNoNewLineStart(const char *file, int line, const char *function, const char* fmt, ...);
+#define eDebugNoNewLineStart(args ...) _eDebugNoNewLineStart(__FILE__, __LINE__, __FUNCTION__, args)
+	void CHECKFORMAT eDebugNoNewLine(const char*, ...);
+	void CHECKFORMAT eDebugNoNewLineEnd(const char*, ...);
+	void _eWarning(const char *file, int line, const char *function, const char* fmt, ...);
+#define eWarning(args ...) _eWarning(__FILE__, __LINE__, __FUNCTION__, args)
+	#define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
 #else  // DEBUG
-    inline void eDebug(const char* fmt, ...)
-    {
-    }
+	inline void eDebug(const char* fmt, ...)
+	{
+	}
 
-    inline void eDebugNoNewLine(const char* fmt, ...)
-    {
-    }
+	inline void eDebugNoNewLineStart(const char* fmt, ...)
+	{
+	}
 
-    inline void eWarning(const char* fmt, ...)
-    {
-    }
-    #define ASSERT(x) do { } while (0)
+	inline void eDebugNoNewLine(const char* fmt, ...)
+	{
+	}
+
+	inline void eWarning(const char* fmt, ...)
+	{
+	}
+	#define ASSERT(x) do { } while (0)
 #endif //DEBUG
 
 void eWriteCrashdump();
 
 #endif // SWIG
 
-void ePythonOutput(const char *);
+void ePythonOutput(const char *file, int line, const char *function, const char *string);
 
 #endif // __E_ERROR__

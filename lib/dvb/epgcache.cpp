@@ -1978,7 +1978,7 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 	tidMap &calcedSections = this->calcedSections[map];
 	if ( (state == 1 && calcedSections == seenSections) || state > 1 )
 	{
-		eDebugNoNewLine("[EPGC] ");
+		eDebugNoNewLineStart("[EPGC] ");
 		switch (source)
 		{
 			case NOWNEXT:
@@ -2019,7 +2019,7 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 #endif
 			default: eDebugNoNewLine("unknown");break;
 		}
-		eDebug(" finished(%ld)", ::time(0));
+		eDebugNoNewLineEnd(" finished(%ld)", ::time(0));
 		if ( reader )
 			reader->stop();
 		isRunning &= ~source;

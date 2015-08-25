@@ -236,10 +236,10 @@ void eSocketMMIHandler::connDataAvail(int what)
 #endif
 			}
 #ifdef MMIDEBUG
-			eDebug("Put to buffer:");
+			eDebugNoNewLineStart("Put to buffer:");
 			for (int i=0; i < len; ++i)
 				eDebugNoNewLine("%02x ", data[i]);
-			eDebug("\n--------");
+			eDebugNoNewLineEnd("");
 #endif
 			buffer.write( data, len );
 
@@ -269,10 +269,10 @@ void eSocketMMIHandler::connDataAvail(int what)
 					unsigned char dest[messageLength];
 					buffer.read(dest, messageLength);
 #ifdef MMIDEBUG
-					eDebug("dump mmi:");
+					eDebugNoNewLineStart("dump mmi:");
 					for (int i=0; i < messageLength; ++i)
 						eDebugNoNewLine("%02x ", dest[i]);
-					eDebug("\n--------");
+					eDebugNoNewLineEnd("");
 #endif
 					/*emit*/ mmi_progress(0, dest, (const void*)(dest+3+LengthBytes), messageLength-3-LengthBytes);
 				}
