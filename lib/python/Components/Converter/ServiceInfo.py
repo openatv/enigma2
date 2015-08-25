@@ -1,5 +1,5 @@
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService
+from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Components.Element import cached
 from Tools.Transponder import ConvertToHumanReadable
 
@@ -64,7 +64,7 @@ class ServiceInfo(Converter, object):
 			"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
 			"Framerate": (self.FRAMERATE, (iPlayableService.evVideoFramerateChanged, iPlayableService.evUpdatedInfo,)),
 			"Progressive": (self.PROGRESSIVE, (iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
-			"VideoInfo": (self.VIDEO_INFO, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
+			"VideoInfo": (self.VIDEO_INFO, (iPlayableService.evStart, iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
 			"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
 			"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo,)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
@@ -277,6 +277,8 @@ class ServiceInfo(Converter, object):
 			out = "Freq: %s %s %s %s %s" % (frequency, polarization, sr_txt, symbolrate, fec)
 			return out
 		elif self.type == self.VIDEO_INFO:
+			if service.type == eServiceReference.idServiceHDMIIn
+					return ""
 			progressive = self._getProgressiveStr(info)
 			fieldrate = self._getFrameRate(info)
 			if fieldrate > 0:
