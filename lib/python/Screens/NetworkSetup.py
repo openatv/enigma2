@@ -3567,11 +3567,13 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
 		Screen.setTitle(self, _("MiniDLNA Setup"))
 		self.skinName = "NetworkuShareSetup"
-		self['key_red'] = Label(_("Save"))
-		self['key_green'] = Label(_("Shares"))
+		self['key_red'] = Label(_("Cancel"))
+		self['key_green'] = Label(_("Save"))
+		self['key_yellow'] = Label(_("Shares"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {
-			'red': self.saveMinidlna,
-			'green': self.selectfolders,
+			'red': self.close,
+			'green': self.saveMinidlna,
+			'yellow': self.selectfolders,
 			'back': self.close,
 		})
 		self["VKeyIcon"] = Pixmap()
