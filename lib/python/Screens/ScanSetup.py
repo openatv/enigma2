@@ -1493,15 +1493,16 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			need_scan = False
 			networks = self.getNetworksForNim(nim)
 
-			# print "nim %d provides" % nim.slot, networks
-			# print "known:", known_networks
+			print "nim %d provides" % nim.slot, networks
+			print "known:", known_networks
 
 			# we only need to scan on the first tuner which provides a network.
 			# this gives the first tuner for each network priority for scanning.
 			for x in networks:
 				if x not in known_networks:
 					need_scan = True
-					print x, "not in ", known_networks
+					# Terrestrial delivers a string which is not correctly handled - FIX ME
+					# print x, "not in ", known_networks
 					known_networks.append(x)
 
 			# don't offer to scan nims if nothing is connected
