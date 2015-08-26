@@ -114,10 +114,6 @@ cable_autoscan_nimtype = {
 terrestrial_autoscan_nimtype = {
 'SSH108' : 'ssh108_t2_scan',
 'TT3L10' : 'tt3l10_t2_scan',
-'SI4765' : 'gigablue_autoscan',
-'SI4768' : 'gigablue_autoscan',
-'SI41652' : 'gigablue_autoscan',
-'SI41682' : 'gigablue_autoscan',
 'TURBO' : 'vuplus_turbo_t'
 }
 
@@ -1501,8 +1497,8 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			need_scan = False
 			networks = self.getNetworksForNim(nim)
 
-			print "nim %d provides" % nim.slot, networks
-			print "known:", known_networks
+			# print "nim %d provides" % nim.slot, networks
+			# print "known:", known_networks
 
 			# we only need to scan on the first tuner which provides a network.
 			# this gives the first tuner for each network priority for scanning.
