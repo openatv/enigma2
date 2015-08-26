@@ -5,10 +5,10 @@
 
 int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eDebugNoNewLine("[CI DT] SESSION(%d)/DATETIME %02x %02x %02x: ", session_nb, tag[0],tag[1], tag[2]);
+	eDebugNoNewLineStart("SESSION(%d)/DATETIME %02x %02x %02x: ", session_nb, tag[0],tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebugNoNewLine("\n");
+	eDebugNoNewLineEnd("");
 
 	if ((tag[0]==0x9f) && (tag[1]==0x84))
 	{
@@ -19,7 +19,7 @@ int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *dat
 			return 1;
 			break;
 		default:
-			eDebug("[CI DT] unknown APDU tag 9F 84 %02x", tag[2]);
+			eDebug("unknown APDU tag 9F 84 %02x", tag[2]);
 			break;
 		}
 	}
@@ -40,7 +40,7 @@ int eDVBCIDateTimeSession::doAction()
 		return 0;
 	}
 	case stateFinal:
-		eDebug("[CI DT] stateFinal and action should not happen");
+		eDebug("stateFinal und action! kann doch garnicht sein ;)");
 	default:
 		return 0;
 	}
