@@ -21,8 +21,7 @@ public:
 		idDVB,
 		idFile,
 		idUser=0x1000,
-		idServiceMP3=0x1001,
-		idServiceHDMIIn=0x2000
+		idServiceMP3=0x1001
 	};
 	int type;
 
