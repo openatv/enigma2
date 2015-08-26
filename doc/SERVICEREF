@@ -1,0 +1,96 @@
+Structure and interpretation of servicerefs
+===========================================
+
+REFTYPE:FLAGS:STYPE:SID:TSID:ONID:NS:PARENT_SID:PARENT_TSID:UNUSED:PATH:NAME
+
+"Printf" format of the string format of a serviceref:
+    %d:%d:%x:%x:%x:%x:%x:%x:%x:%x:%d:%s%s
+
+=== REFTYPE ===
+
+idInvalid      =   -1
+idStructure    =    0         service_id == 0 is root
+idDVB          =    1
+idFile         =    2
+idUser         = 4096/0x1000
+idServiceMP3   = 4097/0x1001
+HDMI IN        = 8192/0x2000
+
+Defined in class eServiceReference in enigma2/lib/service/iservice.h,
+except for HDMI IN valus.
+
+=== FLAGS ===
+
+isDirectory      =   1  SHOULD enter  (implies mustDescent)
+mustDescent      =   2  cannot be played directly
+canDescent       =   4  supports enterDirectory/leaveDirectory
+flagDirectory    =   7  (isDirectory|mustDescent|canDescent)
+shouldSort       =   8  should be ASCII-sorted according to service_name.
+                        great for directories.
+hasSortKey       =  16  has a sort key in data[3]. not having a sort key
+                        implies 0.
+sort1            =  32  sort key is 1 instead of 0
+isMarker         =  64  Marker
+isGroup          = 128  is a group of services
+isNumberedMarker = 256  use together with isMarker,
+                        to force the marker to be numbered
+isInvisible      = 512  use together with isMarker and isNumberedMarker,
+                        to force an empty number
+
+Defined in class eServiceReference in enigma2/lib/service/iservice.h.
+
+=== STYPE ===
+
+stype  1 = digital television service
+stype  4 = nvod reference service (NYI)
+stype  2 = digital radio sound service
+stype 10 = advanced codec digital radio sound service
+stype 13 = ??? used for filler entries in
+           /etc/enigma2/userbouquet.terrestrial_lcn.tv
+stype 17 = MPEG-2 HD digital television service
+stype 22 = advanced codec SD digital television
+stype 24 = advanced codec SD NVOD reference service (NYI)
+stype 25 = advanced codec HD digital television
+stype 27 = advanced codec HD NVOD reference service (NYI)
+
+Documented in enigma2/RecordTimer.py, except for stype 13.
+
+=== DVB fields ===
+
+SID         - Stream ID
+
+TSID        - Transport stream ID
+
+ONID        - Originating network ID
+
+NS          - DVB namespace
+
+PARENT_SID  - Service parent Stream ID
+
+PARENT_TSID - Service parent Transport stream ID
+
+=== "UNUSED" field ===
+
+Is in fact used for servicerefs with idServiceMP3
+
+0    no buffering
+1    buffering enabled
+3    progressive download and buffering enabled
+
+
+Documented in enigma2/lib/service/servicemp3.cpp.
+
+=== PATH ===
+
+Path specifying the source of the service data. E.g. filesystem
+path name for files being played, URL for streaming services,
+directory pathname for isDirectory/mustDescent/canDescent services
+in a file system. Empty for broadcast services and HDMI IN.
+
+=== NAME ===
+
+REFTYPE-dependent text data associated with the service ref. Used,
+for example, to store additional filename extension mappings in
+idFile servicerefs where any flagDirectory bits are set, to store
+the playlist name in idServiceMP3 servicerefs, and to store service
+name information in idDVB servicerefs.

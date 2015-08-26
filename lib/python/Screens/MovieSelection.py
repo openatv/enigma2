@@ -359,6 +359,7 @@ class MovieContextMenu(Screen):
 		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
 		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
 		menu.append(MovieMenuEntryComponent((_("Sort") + "..."), csel.selectSortby))
+		menu.append(MovieMenuEntryComponent((_("On end of movie") + "..."), csel.do_movieoff_menu))
 
 		if service:
 			if service.flags & eServiceReference.mustDescent:
@@ -1376,7 +1377,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["list"].setSortType(type)
 
 	def setCurrentRef(self, path):
-		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		self.current_ref = eServiceReference(eServiceReference.idFile, eServiceReference.isDirectory, path)
 		# Magic: this sets extra things to show
 		self.current_ref.setName('16384:jpg 16384:png 16384:gif 16384:bmp')
 
@@ -1481,7 +1482,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if selItem:
 					self.reloadList(home=True, sel=selItem)
 				else:
-					self.reloadList(home=True, sel=eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
+					self.reloadList(home=True, sel=eServiceReference(eServiceReference.idFile, eServiceReference.isDirectory, currentDir))
+
 			else:
 				mbox = self.session.open(
 					MessageBox,
@@ -1649,7 +1651,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			os.mkdir(path)
 			if not path.endswith('/'):
 				path += '/'
-			self.reloadList(sel=eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path))
+			self.reloadList(sel=eServiceReference(eServiceReference.idFile, eServiceReference.isDirectory, path))
 		except OSError, e:
 			print "Error %s:" % e.errno, e
 			if e.errno == 17:
@@ -1725,7 +1727,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				msg = None
 				print "[ML] rename", path, "to", newpath
 				os.rename(path, newpath)
-				self.reloadList(sel=eServiceReference("2:0:1:0:0:0:0:0:0:0:" + newpath))
+				self.reloadList(sel=eServiceReference(eServiceReference.idFile, eServiceReference.isDirectory, newpath))
 			except OSError, e:
 				print "Error %s:" % e.errno, e
 				if e.errno == 17:
