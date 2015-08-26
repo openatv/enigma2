@@ -104,10 +104,6 @@ cable_bands = {
 cable_autoscan_nimtype = {
 'SSH108' : 'ssh108',
 'TT3L10' : 'tt3l10',
-'SI4765' : 'gigablue_autoscan',
-'SI4768' : 'gigablue_autoscan',
-'SI41652' : 'gigablue_autoscan',
-'SI41682' : 'gigablue_autoscan',
 'TURBO' : 'vuplus_turbo_c'
 }
 
