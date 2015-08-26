@@ -77,7 +77,8 @@ void DumpUnfreed()
 #endif
 
 Signal2<void, int, const std::string&> logOutput;
-int logOutputConsole=1;
+int logOutputConsole = 1;
+int logOutputColors = 1;
 
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
@@ -96,10 +97,9 @@ extern void bsodFatal(const char *component);
 
 void _eFatal(const char *file, int line, const char *function, const char* fmt, ...)
 {
-	char buf[1024];
 	char timebuffer[32];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+	char header[256];
+	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
@@ -108,7 +108,12 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 	{
 		singleLock s(DebugLock);
 		logOutput(lvlFatal, std::string(buf) + "\n");
-		fprintf(stderr, "FATAL: %s\n", buf);
+		if (logOutputColors)
+		{
+			printtime(timebuffer, sizeof(timebuffer));
+			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+		}
+		fprintf(stderr, "FATAL: %s%s\n", logOutputColors ? header : "", buf);
 	}
 	bsodFatal("enigma2");
 }
@@ -116,34 +121,46 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 #ifdef DEBUG
 void _eDebug(const char *file, int line, const char *function, const char* fmt, ...)
 {
-	char buf[1024];
 	char timebuffer[32];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+	char header[256];
+	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
+	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(buf) + "\n");
 	if (logOutputConsole)
-		fprintf(stderr, "%s\n", buf);
+	{
+		if (logOutputColors)
+		{
+			printtime(timebuffer, sizeof(timebuffer));
+			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+		}
+		fprintf(stderr, "%s%s\n", logOutputColors ? header : "", buf);
+	}
 }
 
 void _eDebugNoNewLineStart(const char *file, int line, const char *function, const char* fmt, ...)
 {
-	char buf[1024];
 	char timebuffer[32];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+	char header[256];
+	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(buf));
 	if (logOutputConsole)
-		fprintf(stderr, "%s", buf);
+	{
+		if (logOutputColors)
+		{
+			printtime(timebuffer, sizeof(timebuffer));
+			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+		}
+		fprintf(stderr, "%s%s", logOutputColors ? header : "", buf);
+	}
 }
 
 void eDebugNoNewLine(const char* fmt, ...)
@@ -167,25 +184,31 @@ void eDebugNoNewLineEnd(const char* fmt, ...)
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(buf));
+	logOutput(lvlDebug, std::string(buf) + "\n");
 	if (logOutputConsole)
 		fprintf(stderr, "%s\n", buf);
 }
 
 void _eWarning(const char *file, int line, const char *function, const char* fmt, ...)
 {
-	char buf[1024];
 	char timebuffer[32];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+	char header[256];
+	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, std::string(buf) + "\n");
 	if (logOutputConsole)
-		fprintf(stderr, "%s\n", buf);
+	{
+		if (logOutputColors)
+		{
+			printtime(timebuffer, sizeof(timebuffer));
+			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+		}
+		fprintf(stderr, "%s%s\n", logOutputColors ? header : "", buf);
+	}
 }
 #endif // DEBUG
 
@@ -193,14 +216,20 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 void ePythonOutput(const char *file, int line, const char *function, const char *string)
 {
 #ifdef DEBUG
-	char buf[1024];
 	char timebuffer[32];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(buf, sizeof(buf), "\e[31;1m%s \e[34;1m%s:%d \e[33;1m%s\e[30;1m %s", timebuffer, file, line, function, string);
+	char header[256];
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, string);
 	if (logOutputConsole)
-		fwrite(buf, 1, strlen(buf), stderr);
+	{
+		if (logOutputColors)
+		{
+			printtime(timebuffer, sizeof(timebuffer));
+			snprintf(header, sizeof(header), "\e[31;1m%s \e[34;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+			fwrite(header, 1, strlen(header), stderr);
+		}
+		fwrite(string, 1, strlen(string), stderr);
+	}
 #endif
 }
 
