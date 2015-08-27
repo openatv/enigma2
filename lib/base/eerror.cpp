@@ -100,20 +100,21 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 
 	{
 		singleLock s(DebugLock);
-		logOutput(lvlFatal, std::string(buf) + "\n");
+		logOutput(lvlFatal, std::string(header) + std::string(buf) + "\n");
 		if (logOutputColors)
 		{
-			printtime(timebuffer, sizeof(timebuffer));
 			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
 		}
-		fprintf(stderr, "FATAL: %s%s\n", logOutputColors ? header : "", buf);
+		fprintf(stderr, "FATAL: %s%s\n", header , buf);
 	}
 	bsodFatal("enigma2");
 }
@@ -124,20 +125,21 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(buf) + "\n");
+	logOutput(lvlDebug, std::string(header) + std::string(buf) + "\n");
 	if (logOutputConsole)
 	{
 		if (logOutputColors)
 		{
-			printtime(timebuffer, sizeof(timebuffer));
 			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
 		}
-		fprintf(stderr, "%s%s\n", logOutputColors ? header : "", buf);
+		fprintf(stderr, "%s%s\n", header, buf);
 	}
 }
 
@@ -146,20 +148,21 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(buf));
+	logOutput(lvlDebug, std::string(header) + std::string(buf));
 	if (logOutputConsole)
 	{
 		if (logOutputColors)
 		{
-			printtime(timebuffer, sizeof(timebuffer));
 			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
 		}
-		fprintf(stderr, "%s%s", logOutputColors ? header : "", buf);
+		fprintf(stderr, "%s%s", header, buf);
 	}
 }
 
@@ -194,20 +197,21 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(buf) + "\n");
+	logOutput(lvlWarning, std::string(header) + std::string(buf) + "\n");
 	if (logOutputConsole)
 	{
 		if (logOutputColors)
 		{
-			printtime(timebuffer, sizeof(timebuffer));
 			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
 		}
-		fprintf(stderr, "%s%s\n", logOutputColors ? header : "", buf);
+		fprintf(stderr, "%s%s\n", header, buf);
 	}
 }
 #endif // DEBUG
@@ -218,16 +222,17 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 #ifdef DEBUG
 	char timebuffer[32];
 	char header[256];
+	printtime(timebuffer, sizeof(timebuffer));
+	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, string);
+	logOutput(lvlWarning, std::string(header) + std::string(string));
 	if (logOutputConsole)
 	{
 		if (logOutputColors)
 		{
-			printtime(timebuffer, sizeof(timebuffer));
 			snprintf(header, sizeof(header), "\e[31;1m%s \e[34;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
-			fwrite(header, 1, strlen(header), stderr);
 		}
+		fwrite(header, 1, strlen(header), stderr);
 		fwrite(string, 1, strlen(string), stderr);
 	}
 #endif
