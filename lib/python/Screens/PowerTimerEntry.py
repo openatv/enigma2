@@ -28,7 +28,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		self["summary_description"] = StaticText("")
+		#self["summary_description"] = StaticText("")
+		self["description"] = Label("")
 
 		self.createConfig()
 
@@ -121,7 +122,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 		self.timerrntry_autosleepdelay = ConfigSelection(choices = time_table, default = self.timer.autosleepdelay)
 		self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = self.timer.autosleeprepeat)
-		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("Yes")), ("no", _("No"))],default = self.timer.autosleepinstandbyonly)
+		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("only in Standby")), ("no", _("Standard (always)")), ("noquery", _("without Query"))],default = self.timer.autosleepinstandbyonly)
 		self.timerrntry_autosleepwindow = ConfigSelection(choices = [("yes",_("Yes")), ("no", _("No"))],default = self.timer.autosleepwindow)
 		self.timerrntry_autosleepbegin = ConfigClock(default = self.timer.autosleepbegin)
 		self.timerrntry_autosleepend = ConfigClock(default = self.timer.autosleepend)
@@ -172,7 +173,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
 			if self.timerentry_timertype.value == "autodeepstandby":
-				self.list.append(getConfigListEntry(_("Only active when in standby"), self.timerrntry_autosleepinstandbyonly))
+				self.list.append(getConfigListEntry(_("Execution condition"), self.timerrntry_autosleepinstandbyonly, _("The setting 'without query' is the same as 'standard' without additional confirmation query. So can the receiver shutdown also if you not watch tv (e.g. video, hbbtv) -  only recommended for sleep timer. All other dependencies (e.g. recordings, time range) stay persist.")))
 			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
 			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
 
@@ -235,7 +236,11 @@ class TimerEntry(Screen, ConfigListScreen):
 		pass
 
 	def checkSummary(self):
-		self["summary_description"].text = self["config"].getCurrent()[0]
+		#self["summary_description"].text = self["config"].getCurrent()[0]
+		if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
+			self["description"].setText(self["config"].getCurrent()[2])
+		else:
+			self["description"].setText("")
 
 	def newConfig(self):
 		if self["config"].getCurrent() in (self.timerType, self.timerTypeEntry, self.frequencyEntry, self.entryShowEndTime, self.autosleepwindowEntry, self.netExtendedEntry, self.nettrafficEntry, self.netipEntry, self.ipcountEntry):

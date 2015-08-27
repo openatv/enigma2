@@ -258,7 +258,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				elif not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if self.autosleeprepeat == "once":
 						self.disabled = True
-					if Screens.Standby.inStandby: # in standby
+					if Screens.Standby.inStandby or self.autosleepinstandbyonly == 'noquery': # in standby or option 'without query' is enabled
 						print "[PowerTimer] quitMainloop #1"
 						quitMainloop(1)
 						return True
