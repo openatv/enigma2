@@ -111,6 +111,7 @@ void DumpUnfreed();
 
 extern Signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
+extern int logOutputColors;
 
 void _eFatal(const char *file, int line, const char *function, const char* fmt, ...);
 #define eFatal(args ...) _eFatal(__FILE__, __LINE__, __FUNCTION__, args)
