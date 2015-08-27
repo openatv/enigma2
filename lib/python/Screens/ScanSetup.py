@@ -1077,7 +1077,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					channel = _(' (Channel %s)') % (channelnumbers.getChannelNumber(tp[1], index_to_scan))
 				if default is None and self.compareTerrTransponders(tp, compare):
 					default = str(i)
-				list.append((str(i), '%s MHz %s' % (str(tp[1] / 1000000), channel)))
+				list.append((str(i), '%1.3f MHz %s' % (tp[1] / 1000000.0, channel)))
 				i += 1
 				print "channel", channel
 		self.TerrestrialTransponders = ConfigSelection(choices = list, default = default)

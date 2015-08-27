@@ -1,5 +1,6 @@
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getMachineProcModel
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
+from os import path as os_path, remove, unlink, rename, chmod, access, fdopen, X_OK
+from tempfile import mkstemp
 from shutil import move
 import commands
 import time
@@ -3332,7 +3333,10 @@ class NetworkuShareLog(Screen):
 		self['infotext'].setText(strview)
 
 config.networkminidlna = ConfigSubsection()
-config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
+config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=[]))
+
+MINIDLNA_CONF = '/etc/minidlna.conf'
+
 class NetworkMiniDLNA(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3352,7 +3356,7 @@ class NetworkMiniDLNA(Screen):
 		self['labport'] = Label()
 		self['serialno'] = Label(_("Serial No") + ":")
 		self['labserialno'] = Label()
-		self['sharedir'] = Label(_("Share Folder's") + ":")
+		self['sharedir'] = Label(_("Share Folders") + ":")
 		self['labsharedir'] = Label()
 		self['inotify'] = Label(_("Inotify Monitoring") + ":")
 		self['inotifyactive'] = Pixmap()
@@ -3497,9 +3501,9 @@ class NetworkMiniDLNA(Screen):
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['status'].text + ' ' + self['labstop'].text
-
-		if fileExists('/etc/minidlna.conf'):
-			f = open('/etc/minidlna.conf', 'r')
+		mediafolders = []
+		if fileExists(MINIDLNA_CONF):
+			f = open(MINIDLNA_CONF, 'r')
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith('friendly_name='):
@@ -3515,9 +3519,8 @@ class NetworkMiniDLNA(Screen):
 					line = line[7:]
 					self['labserialno'].setText(line)
 				elif line.startswith('media_dir='):
-					line = line[10:]
-					self.mediafolders = line
-					self['labsharedir'].setText(line)
+					line = line[10:].strip()
+					mediafolders.append(line)
 				elif line.startswith('inotify='):
 					if line[8:] == 'no':
 						self['inotifyactive'].hide()
@@ -3540,6 +3543,10 @@ class NetworkMiniDLNA(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
+			self['labsharedir'].setText('\n'.join(mediafolders))
+			self.mediafolders = ', '.join(mediafolders)
+			config.networkminidlna.mediafolders.value = mediafolders
+
 		title = _("MiniDLNA Setup")
 
 		for cb in self.onChangedEntry:
@@ -3560,11 +3567,13 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
 		Screen.setTitle(self, _("MiniDLNA Setup"))
 		self.skinName = "NetworkuShareSetup"
-		self['key_red'] = Label(_("Save"))
-		self['key_green'] = Label(_("Shares"))
+		self['key_red'] = Label(_("Cancel"))
+		self['key_green'] = Label(_("Save"))
+		self['key_yellow'] = Label(_("Shares"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {
-			'red': self.saveMinidlna,
-			'green': self.selectfolders,
+			'red': self.close,
+			'green': self.saveMinidlna,
+			'yellow': self.selectfolders,
 			'back': self.close,
 		})
 		self["VKeyIcon"] = Pixmap()
@@ -3605,8 +3614,8 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.minidlna_tivo = NoSave(ConfigYesNo(default='True'))
 		self.minidlna_strictdlna = NoSave(ConfigYesNo(default='True'))
 
-		if fileExists('/etc/minidlna.conf'):
-			f = open('/etc/minidlna.conf', 'r')
+		if fileExists(MINIDLNA_CONF):
+			f = open(MINIDLNA_CONF, 'r')
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith('friendly_name='):
@@ -3655,11 +3664,14 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self['config'].l.setList(self.list)
 
 	def saveMinidlna(self):
-		if fileExists('/etc/minidlna.conf'):
-			inme = open('/etc/minidlna.conf', 'r')
-			out = open('/etc/minidlna.conf.tmp', 'w')
+		tmpname = None
+		if fileExists(MINIDLNA_CONF):
+			inme = open(MINIDLNA_CONF, 'r')
+			(outfd, tmpname) = mkstemp(prefix=MINIDLNA_CONF + '.')
+			out = fdopen(outfd, "w")
+			printMediaDirs = True
 			for line in inme.readlines():
-				line = line.replace('\n', '')
+				line = line.strip()
 				if line.startswith('friendly_name='):
 					line = ('friendly_name=' + self.minidlna_name.value.strip())
 				elif line.startswith('network_interface='):
@@ -3669,7 +3681,11 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 				elif line.startswith('serial='):
 					line = ('serial=' + str(self.minidlna_serialno.value))
 				elif line.startswith('media_dir='):
-					line = ('media_dir=' + ', '.join(config.networkminidlna.mediafolders.value))
+					if printMediaDirs:
+						line = 'media_dir=' + '\nmedia_dir='.join(config.networkminidlna.mediafolders.value)
+						printMediaDirs = False
+					else:
+						continue
 				elif line.startswith('inotify='):
 					if not self.minidlna_inotify.value:
 						line = 'inotify=no'
@@ -3691,8 +3707,8 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		else:
 			self.session.open(MessageBox, _("Sorry MiniDLNA Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
-		if fileExists('/etc/minidlna.conf.tmp'):
-			rename('/etc/minidlna.conf.tmp', '/etc/minidlna.conf')
+		if tmpname and fileExists(tmpname):
+			rename(tmpname, MINIDLNA_CONF)
 		self.myStop()
 
 	def myStop(self):
@@ -3710,14 +3726,17 @@ class MiniDLNASelection(Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
 
-		if fileExists('/etc/minidlna.conf'):
-			f = open('/etc/minidlna.conf', 'r')
+		mediafolders = []
+		if fileExists(MINIDLNA_CONF):
+			f = open(MINIDLNA_CONF, 'r')
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith('media_dir='):
-					line = line[11:]
-					self.mediafolders = line
-		self.selectedFiles = [str(n) for n in self.mediafolders.split(', ')]
+					line = line[10:].strip()
+					mediafolders.append(line)
+			self.mediafolders = ', '.join(mediafolders)
+
+		self.selectedFiles = mediafolders
 		defaultDir = '/media/'
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, showFiles=False)
 		self["checkList"] = self.filelist
