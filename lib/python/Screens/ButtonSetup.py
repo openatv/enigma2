@@ -13,7 +13,6 @@ from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
-from Screens.Console import Console
 import os
 
 ButtonSetupKeys = [	(_("Red"), "red", ""),
@@ -576,6 +575,7 @@ class InfoBarButtonSetup():
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
 				else:
+					from Screens.Console import Console
 					exec "self.session.open(Console,_(selected[1]),[command])"
 			elif selected[0] == "EMC":
 				try:
