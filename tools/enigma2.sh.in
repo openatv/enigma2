@@ -82,6 +82,9 @@ fi
 
 sync
 
+# in case sysctl.conf is not properly loaded - load sysctl.conf here again...
+sysctl -p
+
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
