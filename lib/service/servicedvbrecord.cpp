@@ -31,12 +31,12 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 
 void eDVBServiceRecord::serviceEvent(int event)
 {
-	eDebug("RECORD service event %d", event);
+	eDebug("[eDVBServiceRecord::serviceEvent] event %d", event);
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
-		eDebug("tuned..");
+		eDebug("[eDVBServiceRecord::serviceEvent] tuned");
 		m_tuned = 1;
 
 			/* start feeding EIT updates */
@@ -61,12 +61,13 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 	case eDVBServicePMTHandler::eventTuneFailed:
 	{
-		eDebug("record failed to tune");
+		eDebug("[eDVBServiceRecord::serviceEvent] failed to tune");
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
 	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 	{
+		eDebug("[eDVBServiceRecord::serviceEvent] new program info");
 		if (m_state == stateIdle)
 			doPrepare();
 		else if (m_want_record) /* doRecord can be called from Prepared and Recording state */
@@ -75,18 +76,23 @@ void eDVBServiceRecord::serviceEvent(int event)
 		break;
 	}
 	case eDVBServicePMTHandler::eventMisconfiguration:
+		eDebug("[eDVBServiceRecord::serviceEvent] miconfiguration");
 		m_error = errMisconfiguration;
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
 	case eDVBServicePMTHandler::eventNoResources:
+		eDebug("[eDVBServiceRecord::serviceEvent] no resources");
 		m_error = errNoResources;
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
 	case eDVBServicePMTHandler::eventStopped:
+		eDebug("[eDVBServiceRecord::serviceEvent] stopped");
 		/* recording data source has stopped, stop recording */
 		stop();
 		m_event((iRecordableService*)this, evRecordAborted);
 		break;
+	default:
+		eDebug("[eDVBServiceRecord::serviceEvent] unhandled event");
 	}
 }
 
@@ -150,7 +156,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				eEPGCache::getInstance()->Lock();
 				if ( eit_event_id != -1 )
 				{
-					eDebug("query epg event id %d", eit_event_id);
+					eDebug("[eDVBServiceRecord::prepare] query epg event id %d", eit_event_id);
 					eEPGCache::getInstance()->lookupEventId(ref, eit_event_id, event);
 				}
 				if ( !event && (begTime != -1 && endTime != -1) )
@@ -160,7 +166,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 					localtime_r(&begTime, &beg);
 					localtime_r(&endTime, &end);
 					localtime_r(&queryTime, &query);
-					eDebug("query stime %d:%d:%d, etime %d:%d:%d, qtime %d:%d:%d",
+					eDebug("[eDVBServiceRecord::prepare] query stime %02d:%02d:%02d, etime %02d:%02d:%02d, qtime %02d:%02d:%02d",
 						beg.tm_hour, beg.tm_min, beg.tm_sec,
 						end.tm_hour, end.tm_min, end.tm_sec,
 						query.tm_hour, query.tm_min, query.tm_sec);
@@ -168,7 +174,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				}
 				if ( event )
 				{
-					eDebug("found event.. store to disc");
+					eDebug("[eDVBServiceRecord::prepare] found event.. store to disc");
 					std::string fname = filename;
 					fname.erase(fname.length()-2, 2);
 					fname+="eit";
@@ -178,7 +184,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 						int evLen=HILO(event->descriptors_loop_length)+12/*EIT_LOOP_SIZE*/;
 						int wr = ::write( fd, (unsigned char*)event, evLen );
 						if ( wr != evLen )
-							eDebug("eit write error (%m)");
+							eDebug("[eDVBServiceRecord::prepare] eit write error (%m)");
 						::close(fd);
 					}
 				}
@@ -213,7 +219,7 @@ RESULT eDVBServiceRecord::start(bool simulate)
 RESULT eDVBServiceRecord::stop()
 {
 	if (!m_simulate)
-		eDebug("stop recording!");
+		eDebug("[eDVBServiceRecord::stop] stop recording");
 	if (m_state == stateRecording)
 	{
 		if (m_record)
@@ -228,7 +234,7 @@ RESULT eDVBServiceRecord::stop()
 
 		m_state = statePrepared;
 	} else if (!m_simulate)
-		eDebug("(was not recording)");
+		eDebug("[eDVBServiceRecord::stop] was not recording");
 	if (m_state == statePrepared)
 	{
 		m_record = 0;
