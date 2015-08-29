@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 07:30+0100\n"
-"PO-Revision-Date: 2015-07-02 16:57+0300\n"
+"POT-Creation-Date: 2015-08-24 22:02+0100\n"
+"PO-Revision-Date: 2015-08-28 14:38+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.8.4\n"
 
 msgid ""
 "\n"
@@ -139,13 +139,13 @@ msgid " (disabled)"
 msgstr " (keelatud)"
 
 msgid " (higher than any auto)"
-msgstr " (suurem kui mistahes auto)"
+msgstr " (suurem kui mistahes autom.)"
 
 msgid " (higher than rotor any auto)"
-msgstr " (suurem kui ajami mistahes auto)"
+msgstr " (suurem kui ajami mistahes autom.)"
 
 msgid " (lower than any auto)"
-msgstr " (väiksem kui mistahes auto)"
+msgstr " (väiksem kui mistahes autom.)"
 
 msgid " and"
 msgstr "ja"
@@ -381,7 +381,7 @@ msgid "* = Restart Required"
 msgstr "* = Vajalik taaskäivitus"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Ainult enam kui ühe aktiivse liidese puhul."
+msgstr "* Ainult enama kui ühe aktiivse liidese puhul."
 
 msgid "* current animation"
 msgstr "* kasutatav animatsioon"
@@ -450,7 +450,7 @@ msgid "1X"
 msgstr "1X"
 
 msgid "1st Infobar timeout"
-msgstr "Inforiba näitamine"
+msgstr "Inforiba kuvamine"
 
 msgid "23.976"
 msgstr "23.976"
@@ -506,8 +506,14 @@ msgstr "720p"
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
 
+msgid "< Default >"
+msgstr "< Vaikimisi >"
+
+msgid "< Default with Picon >"
+msgstr "< Vaikimisi kanalilogoga >"
+
 msgid "<Current movielist location>"
-msgstr "<Filmilisti hetkeasukoht >"
+msgstr "<Filmilisti praegune asukoht >"
 
 msgid "<Default movie location>"
 msgstr "<Salvestuste tavaasukoht >"
@@ -530,6 +536,9 @@ msgid ""
 msgstr ""
 "Taustal toimub uuenduste otsing.\n"
 "Oota paar minutit ja proovi uuesti."
+
+msgid "A background update check is in progress, please wait a few minutes and then try again."
+msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
@@ -723,7 +732,7 @@ msgstr "Käivita"
 msgid "Activate HbbTV (RedButton)"
 msgstr "Käivita HbbTV (punane nupp)"
 
-msgid "Activate MAC-address configuration"
+msgid "Activate MAC address configuration"
 msgstr "Jõusta MAC-aadressi seadistused"
 
 msgid "Activate Picture in Picture"
@@ -731,6 +740,9 @@ msgstr "Ava PiP"
 
 msgid "Activate current configuration"
 msgstr "Jõusta praegused seaded"
+
+msgid "Activate network adapter configuration"
+msgstr "Aktiveeri võrgukaardi seadistused"
 
 msgid "Activate network settings"
 msgstr "Aktiveeri võrguseaded"
@@ -790,7 +802,7 @@ msgid "Add alternatives"
 msgstr "Lisa asenduskanaleid"
 
 msgid "Add bookmark"
-msgstr "Lisa uus tähis"
+msgstr "Lisa järjehoidja"
 
 msgid "Add bouquet"
 msgstr "Lisa lemmiknimekiri"
@@ -862,7 +874,7 @@ msgid "Address"
 msgstr "Aadress"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Kohanda värvuse sätted nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testipiltide valikuks."
+msgstr "Kohanda värvuse sätted nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testtabelite valikuks."
 
 msgid "Advanced"
 msgstr "Lisavalikud"
@@ -994,7 +1006,7 @@ msgid "Always hide infobar"
 msgstr "Inforiba alati varjatud"
 
 msgid "Always show bouquets"
-msgstr "Lemmiknimekirju näidatakse iga kord"
+msgstr "Lemmiknimekirjad kuvatakse iga kord"
 
 msgid "An empty filename is illegal."
 msgstr "Tühi failinimi ei ole lubatud."
@@ -1019,6 +1031,14 @@ msgstr "Iga tegevus"
 
 msgid "Arabic"
 msgstr "Araabia"
+
+#, python-format
+msgid "Are you ready to install \"%s\" ?"
+msgstr "Kas paigaldad \"%s\"?"
+
+#, python-format
+msgid "Are you ready to remove \"%s\" ?"
+msgstr "Kas eemaldad \"%s\"?"
 
 msgid "Are you sure to remove this entry?"
 msgstr "Kas eemaldad selle kirje?"
@@ -1599,7 +1619,7 @@ msgid "Change recording (add time)"
 msgstr "Muuda salvestust (lisa aeg)"
 
 msgid "Change recording (duration)"
-msgstr "Muuda salvestuse kestust"
+msgstr "Muuda salvestust (kestus)"
 
 msgid "Change recording (end time)"
 msgstr "Muuda salvestust (lõpuaeg)"
@@ -1644,7 +1664,7 @@ msgid "Channel list cursor behavior"
 msgstr "Kursori käitumine kanalinimekirjas"
 
 msgid "Channel list on mode change"
-msgstr "Kanalinimekiri TV ja raadiorežiimi vahetusel"
+msgstr "Kanalinimekiri tele- ja raadiorežiimi vahetusel"
 
 msgid "Channel list preview"
 msgstr "Eelvaade kanalinimekirjas"
@@ -1656,7 +1676,7 @@ msgid "Channel list type"
 msgstr "Kanalinimekirja stiil"
 
 msgid "Channel not in services list"
-msgstr "Kanal ei ole kanalinimekirjas"
+msgstr "Kanal puudub kanalinimekirjast"
 
 msgid "Channel preview mode"
 msgstr "Kanali eelvaatlus"
@@ -1674,10 +1694,10 @@ msgid "Channel:"
 msgstr "Kanal:"
 
 msgid "ChannelEPG settings"
-msgstr "Kanali saatekava seaded"
+msgstr "Kanali EPG seaded"
 
 msgid "Chap."
-msgstr "Peatükk."
+msgstr "Ptk."
 
 msgid "Chapter"
 msgstr "Peatükk"
@@ -1774,7 +1794,7 @@ msgid "Choose which tuner to configure."
 msgstr "Vali seadistatav tuuner."
 
 msgid "Chose between record and ZAP."
-msgstr "Vali, kas salvestus või kanalivahetus."
+msgstr "Vali salvestamise ja kanalivahetuse vahel."
 
 msgid "Circular LNB"
 msgstr "Ringpolar LNB"
@@ -1789,7 +1809,7 @@ msgid "Clean network trash cans"
 msgstr "Tühjenda võrguketta prügikast"
 
 msgid "Cleaning Trashes"
-msgstr "Prügikasti puhastamine"
+msgstr "Prügikasti tühjendamine"
 
 msgid "Cleanup"
 msgstr "Puhastus"
@@ -1819,7 +1839,7 @@ msgid "Close"
 msgstr "Sulge"
 
 msgid "Close PiP on exit"
-msgstr "PiP sulgemine 'EXIT' nupuga"
+msgstr "Sulge PiP 'EXIT' nupuga"
 
 msgid "Close bouquet list."
 msgstr "Sulge lemmiknimekirjad"
@@ -1923,7 +1943,7 @@ msgid "Configure if and how the record indicator will be shown in the channel se
 msgstr "Määra, kas ja kuidas tähistatakse kanalinimekirjas salvestavad kanalid."
 
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
-msgstr "Määra, kas ja kui laialt kuvatakse kanalinimekirjas kanalinimesi."
+msgstr "Määra, kas ja kui laialt kuvatakse kanalinimekirjas kanalinime tulpa."
 
 msgid "Configure if picons will be shown in the service list."
 msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
@@ -1974,7 +1994,7 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Määra esipaneeli näidiku heledus ooteseisundis."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
-msgstr "Määra väliste subtiitrite värv - alternatiivne, valge või kollane. Alternatiivne: tavatekst valge, kaldtekst kollane, rasvane tekst tsüaansinine, allajoonitud tekst roheline."
+msgstr "Määra väliste subtiitrite värv - alternatiivne, valge või kollane. Alternatiivne: tavakiri valge, kursiivkiri kollane, rasvane kiri tsüaansinine, allajoonitud kiri roheline."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Määra teleteksti subtiitrite värv."
@@ -2034,7 +2054,7 @@ msgid "Configure the minimum amount of disk space to be available for recordings
 msgstr "Määra väikseim kettaruum (GB), mis peab olema vaba enne salvestuse algamist. Selleks kustutatakse vajadusel faile prügikastist."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
-msgstr "Määra vähim laius enne 'i' ikooni näitamist. Määrates '0', ikooni ei näidata"
+msgstr "Määra vähim laius enne 'i' ikooni kuvamist. Määrates '0', ikooni ei kuvata."
 
 msgid "Configure the nameserver (DNS)."
 msgstr "Seadista nimeserver (DNS)."
@@ -2157,7 +2177,7 @@ msgid "Configure your wireless LAN again"
 msgstr "Seadista traadita kohtvõrk uuesti"
 
 msgid "Configures which video output connector will be used."
-msgstr "See valik määrab, millist ühenduspesa video väljund kasutab."
+msgstr "See valik määrab, millist ühenduspesa videoväljund kasutab."
 
 msgid "Configuring"
 msgstr "Seadistamine"
@@ -2434,6 +2454,9 @@ msgstr "Taani"
 msgid "Date"
 msgstr "Kuupäev"
 
+msgid "De-select"
+msgstr "Valik maha"
+
 msgid "Debug Logs"
 msgstr "Silumislogid"
 
@@ -2587,10 +2610,10 @@ msgid "Details for plugin: "
 msgstr "Laienduse üksikasjad: "
 
 msgid "Detected Devices:"
-msgstr "Andmekandjad"
+msgstr "Andmekandjad:"
 
 msgid "Detected Tuners:"
-msgstr "Leitud tuunerid:"
+msgstr "Tuunerid:"
 
 msgid "Device Information"
 msgstr "Seadmed"
@@ -2679,13 +2702,13 @@ msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Salvestistele tagatud kettaruum (GB)"
 
 msgid "Display 16:9 content as"
-msgstr "16:9 sisu kuvamine"
+msgstr "Kuva 16:9 sisu"
 
 msgid "Display 4:3 content as"
-msgstr "4:3 sisu kuvamine"
+msgstr "Kuva 4:3 sisu"
 
 msgid "Display >16:9 content as"
-msgstr ">16:9 sisu kuvamine"
+msgstr "Kuva >16:9 sisu"
 
 msgid "Display and user interface"
 msgstr "Esipaneel ja kasutajaliides"
@@ -2701,6 +2724,9 @@ msgstr "Ära muuda"
 
 msgid "Do not record"
 msgstr "Ära salvesta"
+
+msgid "Do nothing"
+msgstr "Ära tee midagi"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -2806,6 +2832,13 @@ msgstr "Kas laadid tõmmise asukohta %s ?"
 msgid "Do you want to install the package:\n"
 msgstr "Kas paigaldad paketi:\n"
 
+msgid ""
+"Do you want to install the samba client aswell?\n"
+"This will allow you to mount your windows shares on this device."
+msgstr ""
+"Kas paigaldad ka samba kliendi?\n"
+"Nii saab haakida ka windowsi jaod."
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Kas soovid panna DVD mängima?"
 
@@ -2886,7 +2919,7 @@ msgid "Download plugins"
 msgstr "Paigalda laiendusi"
 
 msgid "Downloading"
-msgstr "Laaditakse alla"
+msgstr "Allalaadimine"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laienduste andmete laadimine. Oota veidi."
@@ -2906,7 +2939,7 @@ msgid "Dynamic contrast"
 msgstr "Dünaamiline kontrast"
 
 msgid "E"
-msgstr ""
+msgstr "E"
 
 msgid "ECM Statistics"
 msgstr "ECM statistika"
@@ -3047,7 +3080,7 @@ msgid "Enable Wake On LAN"
 msgstr "Luba WOL"
 
 msgid "Enable auto cable scan"
-msgstr "Luba automaatne kaabelvõrgu otsing"
+msgstr "Luba kaabelvõrgu automaatotsing"
 
 msgid "Enable auto fast scan"
 msgstr "Luba automaatne kiirotsing"
@@ -3209,6 +3242,12 @@ msgstr "Esmalt saate nimi"
 msgid "Event view"
 msgstr "Saateinfo"
 
+msgid "Event view menu"
+msgstr "Saateinfo menüü"
+
+msgid "Everyday"
+msgstr "Iga päev"
+
 msgid "Everywhere"
 msgstr "Kõikjal"
 
@@ -3230,7 +3269,7 @@ msgstr "Välju"
 msgid "Exit EPG"
 msgstr "Sulge saatekava"
 
-msgid "Exit MAC-address configuration"
+msgid "Exit MAC address configuration"
 msgstr "Lõpeta MAC-aadressi seadistamine"
 
 msgid "Exit editor"
@@ -3245,6 +3284,9 @@ msgstr "Kas sulged meediamängija?"
 msgid "Exit mediaplayer"
 msgstr "Sulge meediamängija"
 
+msgid "Exit mounts setup menu"
+msgstr "Välju haakimise menüüst"
+
 msgid "Exit movie list"
 msgstr "Sulge filmilist"
 
@@ -3257,11 +3299,20 @@ msgstr "Kas lõpetad taasesituse?"
 msgid "Exit nameserver configuration"
 msgstr "Välju nimeserverite seadistusest"
 
+msgid "Exit network adapter configuration"
+msgstr "Lõpeta võrgukaardi seadistamine"
+
+msgid "Exit network adapter setup menu"
+msgstr "Välju võrgu seadistusmenüüst"
+
 msgid "Exit network interface list"
 msgstr "Välju võrguliideste nimekirjast"
 
 msgid "Exit network wizard"
 msgstr "Välju võrgu häälestusest"
+
+msgid "Exit networkadapter setup menu"
+msgstr "Välju võrgukaardi seadistusmenüüst"
 
 msgid "Exit the wizard"
 msgstr "Välju juhendatud seadistusabist"
@@ -3449,9 +3500,6 @@ msgstr "Lõppenud"
 msgid "Finished configuring your network"
 msgstr "Võrgu seadistamine lõpetatud"
 
-msgid "Finished restarting your network"
-msgstr "Võrk on taaskäivitatud"
-
 msgid "Finnish"
 msgstr "Soome"
 
@@ -3537,9 +3585,6 @@ msgstr "Esipaneeli ekraan"
 msgid "Frontprocessor version: %d"
 msgstr "Esiprotsessori versioon: %d"
 
-msgid "Ftpd service type: Vsftpd server"
-msgstr "Ftpd teenus: Vsftpd server"
-
 msgid "Full screen"
 msgstr "Täisekraan"
 
@@ -3547,7 +3592,7 @@ msgid "Full transparency"
 msgstr "Täiesti läbipaistev"
 
 msgid "Fulview resulution"
-msgstr "Ekraanilahutus täisekraanil"
+msgstr "Eraldusvõime täisekraanil"
 
 msgid "GB"
 msgstr "GB"
@@ -3570,10 +3615,10 @@ msgid "General"
 msgstr "Üldine"
 
 msgid "General AC3 delay"
-msgstr "Üldine AC3 viide"
+msgstr "Üldine AC3 viiteaeg"
 
 msgid "General PCM delay"
-msgstr "Üldine PCM viide"
+msgstr "Üldine PCM viiteaeg"
 
 msgid "Genre"
 msgstr "Žanr"
@@ -3810,10 +3855,10 @@ msgid "Hourly"
 msgstr "Kord tunnis"
 
 msgid "Hours Mins"
-msgstr "Tunnid minutid"
+msgstr "Tundi minutit"
 
 msgid "Hours Mins Secs"
-msgstr "Tunnid minutid sekundid"
+msgstr "Tundi minutit sekundit"
 
 msgid "How many minutes do you want add to the recording?"
 msgstr "Mitu minutit soovid salvestusele lisada?"
@@ -3894,7 +3939,7 @@ msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr "Määrates 'jah', näidatakse saatekavas kanali eelvaadet."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
-msgstr "Määrates 'jah', näidatakse kanalinimekirjas eelvaadet. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' lähed tagasi kanalile, millelt alustasid."
+msgstr "Määrates 'jah', võib kanalinimekirjas vaadata kanali eelvaadet. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' naased kanalile, millelt alustasid."
 
 msgid "If set to 'yes', allows you to use the seekbar to jump to a point within the event."
 msgstr "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
@@ -3934,7 +3979,7 @@ msgid "Image Type:\t%s\n"
 msgstr "Tarkvara tüüp:\t%s\n"
 
 msgid "Immediate shutdown"
-msgstr "Kohene väljalülitus"
+msgstr "Kohene seiskamine"
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "Sunnitud kanalivahetus. Salvestustaimer vajab seda tuunerit!\n"
@@ -4041,6 +4086,9 @@ msgstr "Andmekandja vormindamine"
 msgid "Inotify Monitoring"
 msgstr "Inotify jälgimine"
 
+msgid "Inotify monitoring"
+msgstr "Inotify jälgimine"
+
 msgid "Input"
 msgstr "Sisend"
 
@@ -4094,6 +4142,9 @@ msgid "Installing"
 msgstr "Paigaldamine"
 
 msgid "Installing Service"
+msgstr "Teenuse paigaldamine"
+
+msgid "Installing service"
 msgstr "Teenuse paigaldamine"
 
 msgid "Instant record"
@@ -4397,7 +4448,7 @@ msgid "Load"
 msgstr "Laadi"
 
 msgid "Load EPG"
-msgstr "EPG laadimine"
+msgstr "Laadi EPG"
 
 msgid "Load playlist"
 msgstr "Mängukava laadimine"
@@ -4438,8 +4489,8 @@ msgstr "Logide asukoht"
 msgid "Logs manager"
 msgstr "Logihaldur"
 
-msgid "Logs older than the specified no of days will be deleted."
-msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
+msgid "Logs older than the specified number of days will be deleted."
+msgstr "Määratud päevade arvust vanemad logid kustutatakse."
 
 msgid "Logs settings"
 msgstr "Logimise seaded"
@@ -4468,10 +4519,10 @@ msgstr "Madalam kaadrisagedus säästab protsessoriaega"
 msgid "Luxembourgish"
 msgstr "Luksemburgi"
 
-msgid "MAC-address"
+msgid "MAC address"
 msgstr "MAC-aadress"
 
-msgid "MAC-address settings"
+msgid "MAC address settings"
 msgstr "MAC-aadressi seaded"
 
 msgid "MAC:"
@@ -4550,8 +4601,8 @@ msgstr "Maks.alla -"
 msgid "Maxdown: "
 msgstr "Maks.alla: "
 
-msgid "Maximum no of days"
-msgstr "Suurim lubatud päevade arv:"
+msgid "Maximum number of days"
+msgstr "Suurim lubatud päevade arv"
 
 msgid "Maximum total space used (MB)"
 msgstr "Suurim lubatud kettaruum (MB)"
@@ -4696,6 +4747,12 @@ msgstr "Liiguta üles/alla"
 msgid "Move down a page"
 msgstr "Liigu lehe lõppu"
 
+msgid "Move down to last entry"
+msgstr "Liigu viimasele reale"
+
+msgid "Move down to next entry"
+msgstr "Liigu järgmisele reale"
+
 msgid "Move east"
 msgstr "Liiguta itta"
 
@@ -4707,6 +4764,12 @@ msgstr "Liigu positsioonile X"
 
 msgid "Move up a page"
 msgstr "Liigu lehe algusesse"
+
+msgid "Move up to first entry"
+msgstr "Liigu esimesele reale"
+
+msgid "Move up to previous entry"
+msgstr "Liigu eelmisele reale"
 
 msgid "Move west"
 msgstr "Liiguta läände"
@@ -4775,16 +4838,16 @@ msgid "Music/Ballet/Dance"
 msgstr "Muusika/ballett/tants"
 
 msgid "N"
-msgstr ""
+msgstr "N"
 
 msgid "N/A"
 msgstr "Ei ole kasutusel"
 
 msgid "NFI image flashing"
-msgstr "NFI image paigaldamine"
+msgstr "NFI tõmmise paigaldamine"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
+msgstr "NFI tõmmis on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
 
 msgid "NFS Setup"
 msgstr "NFS seaded"
@@ -4906,7 +4969,7 @@ msgid "No (supported) DVDROM found!"
 msgstr "Ei leitud (toetatud) DVDROM-i!"
 
 msgid "No Connection"
-msgstr "Pole ühendust"
+msgstr "Ühendus puudub"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kõvaketas puudub või on vormindamata!"
@@ -4930,7 +4993,7 @@ msgid "No card inserted!"
 msgstr "Kaart ei ole sisestatud!"
 
 msgid "No connection"
-msgstr "Pole ühendust"
+msgstr "Ühendus puudub"
 
 msgid ""
 "No data on transponder!\n"
@@ -4994,7 +5057,7 @@ msgid "No priority"
 msgstr "Eelistus puudub"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
-msgstr "Ühtegi tuunerit ei ole seadistatud. Kontrolli tuuneri seadeid."
+msgstr "Ühtegi tuunerit ei ole seadistatud. Kontrolli tuuneri seadistusi."
 
 msgid "No service"
 msgstr "Teenus puudub"
@@ -5208,7 +5271,7 @@ msgid "Off"
 msgstr "Väljas"
 
 msgid "Offline decode delay (ms)"
-msgstr "Võrguta dekodeerimise viide (ms)"
+msgstr "Võrguta dekodeerimise viiteaeg (ms)"
 
 msgid "On"
 msgstr "Sees"
@@ -5251,6 +5314,9 @@ msgstr "Ainult alglaadimisel"
 
 msgid "Open bouquet list"
 msgstr "Kuva lemmiknimekirju"
+
+msgid "Open nameserver configuration"
+msgstr "Ava nimeserveri seaded"
 
 msgid "Open service list and select the next channel"
 msgstr "Ava kanalinimekiri ja vali järgmine kanal"
@@ -5525,7 +5591,7 @@ msgid "Playpause"
 msgstr "Paus"
 
 msgid "Please add titles to the compilation."
-msgstr "Lisa failid kogumikku."
+msgstr "Lisa nimetused kogumikku."
 
 msgid "Please change the recording end time"
 msgstr "Muuda salvestuse lõpuaega"
@@ -5629,7 +5695,7 @@ msgid "Please select a subservice..."
 msgstr "Vali alamkanal"
 
 msgid "Please select an NFI file and press green key to flash!"
-msgstr "Vali NFI fail ja vajuta flashimiseks rohelist nuppu!"
+msgstr "Vali NFI fail ja vajuta paigaldamiseks rohelist nuppu!"
 
 msgid "Please select medium to be scanned"
 msgstr "Vali andmekandja, millelt otsitakse"
@@ -5698,9 +5764,6 @@ msgstr "Oota (kanalinimekirja hankimine)"
 msgid "Please wait (updating packages)"
 msgstr "Oota (pakettide uuendamine)"
 
-msgid "Please wait for activation of your network configuration..."
-msgstr "Oota, kuni võrguseaded aktiveeritakse"
-
 msgid "Please wait while gathering EPG data..."
 msgstr "Oota, kuni kogutakse EPG andmeid"
 
@@ -5719,8 +5782,8 @@ msgstr "Oota, kuni toimub võrguliideste seadistamine"
 msgid "Please wait while we test your network..."
 msgstr "Oota, kuni toimub võrgu testimine"
 
-msgid "Please wait while your network is restarting..."
-msgstr "Oota, kuni võrk taaskäivitub"
+msgid "Please wait while your network configuration is activated..."
+msgstr "Oota, kuni võrgu seadistused jõustatakse"
 
 msgid "Please wait..."
 msgstr "Oota..."
@@ -5858,19 +5921,19 @@ msgid "Preferred tuner for recordings"
 msgstr "Eelistatud tuuner salvestamiseks"
 
 msgid "Prepare another USB stick for image flashing"
-msgstr "Valmista image paigaldamiseks ette teine USB pulk"
+msgstr "Valmista tõmmise paigaldamiseks ette teine USB pulk"
 
 msgid "Preparing... Please wait"
 msgstr "Ettevalmistamine...Oota"
 
 msgid "Press '0' to toggle PiP mode"
-msgstr "PiP-režiimi vahetamiseks vajuta '0'"
+msgstr "PiP-režiimi vahetamiseks vajuta '0'."
 
 msgid "Press INFO on your remote control for additional information."
-msgstr "Vajuta INFO nuppu puldil lisainfo saamiseks."
+msgstr "Lisainfo saamiseks vajuta 'INFO'."
 
 msgid "Press MENU on your remote control for additional options."
-msgstr "Vajuta MENU puldil lisavõimaluste kasutamiseks."
+msgstr "Lisavõimaluste kasutamiseks vajuta 'MENU'."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Jätkamiseks vajuta OK."
@@ -5900,7 +5963,7 @@ msgstr "Satelliitide valimiseks vajuta OK."
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAId valiku muutmiseks vajuta OK"
 
-msgid "Press OK to set the MAC-address."
+msgid "Press OK to set the MAC address."
 msgstr "MAC-aadressi määramiseks vajuta OK."
 
 msgid "Press OK to start the scan"
@@ -5955,7 +6018,7 @@ msgid "Progress bar right"
 msgstr "Edenemisriba paremal"
 
 msgid "Properties of current title"
-msgstr "Pealkirja omadused"
+msgstr "Nimetuse omadused"
 
 msgid "Protect configuration"
 msgstr "Lukusta seadistused"
@@ -6279,7 +6342,7 @@ msgid "Remove completed timers after (days)"
 msgstr "Eemalda lõpetatud taimerid pärast (päeva)"
 
 msgid "Remove currently selected title"
-msgstr "Eemalda valitud pealkiri"
+msgstr "Eemalda valitud nimetus"
 
 msgid "Remove entry"
 msgstr "Eemalda"
@@ -6323,6 +6386,9 @@ msgstr "Kataloogi eemaldamine %s nurjus. (Ehk ei ole tühi?)"
 
 msgid "Removing partition table"
 msgstr "Partitsioonitabeli eemaldamine"
+
+msgid "Removing service"
+msgstr "Teenuse eemaldamine"
 
 msgid "Rename"
 msgstr "Nimeta ümber"
@@ -6441,7 +6507,7 @@ msgid "Resume position at %s"
 msgstr "Jätka alates %s"
 
 msgid "Resuming playback"
-msgstr "Taasesituse jätkamine"
+msgstr "Taasesitus jätkub katkestatud kohalt"
 
 msgid "Return to movie list"
 msgstr "Tagasi filmilisti"
@@ -6498,7 +6564,7 @@ msgid "Russian"
 msgstr "Vene"
 
 msgid "S"
-msgstr ""
+msgstr "S"
 
 msgid "S-Video"
 msgstr "S-video (Y/C)"
@@ -6521,8 +6587,8 @@ msgstr "SPDIF"
 msgid "SSID:"
 msgstr "SSID:"
 
-msgid "Samba Network File System"
-msgstr "Samba failisüsteem"
+msgid "Samba Log"
+msgstr "Samba logi"
 
 msgid "Samba Setup"
 msgstr "Samba seaded"
@@ -6570,7 +6636,7 @@ msgid "Save"
 msgstr "Salvesta"
 
 msgid "Save EPG"
-msgstr "EPG talletamine"
+msgstr "Talleta EPG"
 
 msgid "Save and record"
 msgstr "Talleta ja salvesta"
@@ -6810,6 +6876,9 @@ msgstr "Vali liides"
 msgid "Select location"
 msgstr "Vali asukoht"
 
+msgid "Select menu entry"
+msgstr "Vali menüüpunkt"
+
 msgid "Select movie"
 msgstr "Vali film"
 
@@ -6877,7 +6946,7 @@ msgid "Send DiSEqC only on satellite change"
 msgstr "Saada DiSEqC ainult satelliidi vahetamisel"
 
 msgid "Send yourself a copy"
-msgstr "Endale koopia saatmine"
+msgstr "Saada endale koopia"
 
 msgid "Seperate titles with a main menu"
 msgstr "Eraldi salvestised peamenüüga"
@@ -6889,6 +6958,9 @@ msgid "Serbian"
 msgstr "Serbia"
 
 msgid "Serial No"
+msgstr "Seerianumber"
+
+msgid "Serial no"
 msgstr "Seerianumber"
 
 msgid "Serv.Name"
@@ -6969,14 +7041,11 @@ msgstr "Kanalid saab rühmitada lemmiknimekirjadesse. Määrates 'jah', saad kas
 msgid "Set Framerate for MiniTV"
 msgstr "Määra MiniTV kaadrisagedus"
 
-msgid "Set System"
-msgstr "Määra süsteem"
-
 msgid "Set as startup service"
 msgstr "Määra käivituskanaliks"
 
 msgid "Set default"
-msgstr "Määra vaikimisi"
+msgstr "Taasta vaikeväärtus"
 
 msgid "Set end time"
 msgstr "Määra lõpuaeg"
@@ -6996,8 +7065,11 @@ msgstr "Määra piirid"
 msgid "Set startup service"
 msgstr "Määra käivituskanal"
 
+msgid "Set system"
+msgstr "Määra süsteem"
+
 #, python-format
-msgid "Set the MAC-address of your %s %s.\n"
+msgid "Set the MAC address of your %s %s.\n"
 msgstr "Määra %s %s MAC-aadress.\n"
 
 msgid "Set the channel for this timer."
@@ -7197,7 +7269,7 @@ msgid "Show OScam Info in extensions?"
 msgstr "Kuva OScam info laienduste menüüs"
 
 msgid "Show PIP"
-msgstr "PiP"
+msgstr "Kuva PiP"
 
 msgid "Show PIP in the Front Display"
 msgstr "Kuva PIP esipaneeli"
@@ -7368,7 +7440,7 @@ msgid "Show screensaver"
 msgstr "Ekraanisäästja"
 
 msgid "Show second infobar"
-msgstr "Teise inforiba näitamine"
+msgstr "Teise inforiba kuvamine"
 
 msgid "Show select audio track"
 msgstr "Heliriba valik"
@@ -7452,7 +7524,7 @@ msgid "Shows the watched status of the movie."
 msgstr "Tähista vaadatud salvestised."
 
 msgid "Shuffle playlist"
-msgstr "Sega mängukava"
+msgstr "Juhuslik mängukava"
 
 msgid "Shutdown"
 msgstr "Lülita välja"
@@ -7530,7 +7602,7 @@ msgid "Skip back"
 msgstr "Tagasihüpe"
 
 msgid "Skip empty services"
-msgstr "Jäta tühjad kanalid vahele"
+msgstr "Tühje kanaleid ei kuvata"
 
 msgid "Skip forward"
 msgstr "Edasihüpe"
@@ -7623,12 +7695,6 @@ msgstr "Tarkvarahalduri andmed"
 msgid "Some plugins are not available:\n"
 msgstr "Mõned laiendused pole saadaval:\n"
 
-msgid "Sorry Inadyn Config is Missing"
-msgstr "Inadyn on seadistamata"
-
-msgid "Sorry MiniDLNA Config is Missing"
-msgstr "MiniDLNA on seadistamata"
-
 msgid "Sorry feeds are down for maintenance, please try again later. If this issue persists please check openvix.co.uk or world-of-satellite.com."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti. Kui probleem on kestev, vaata lehele openvix.co.uk or world-of-satellite.com."
 
@@ -7641,7 +7707,13 @@ msgstr "Käivad serverite hooldustööd"
 msgid "Sorry the feeds seem to be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."
 msgstr "Uuendused serverites ei ole stabiilsed. Kui soovid neid kasutada luba 'Testimata uuendused' tarkvara uuendamise seadistustes."
 
-msgid "Sorry uShare Config is Missing"
+msgid "Sorry your Inadyn config is missing"
+msgstr "Inadyn on seadistamata"
+
+msgid "Sorry your MiniDLNA config is missing"
+msgstr "MiniDLNA on seadistamata"
+
+msgid "Sorry your uShare config is missing"
 msgstr "uShare on seadistamata"
 
 #, python-format
@@ -7788,7 +7860,7 @@ msgid "Stop"
 msgstr "Peata"
 
 msgid "Stop PiP"
-msgstr "PiP sulgemine"
+msgstr "Sulge PiP"
 
 msgid "Stop all current recordings"
 msgstr "Peata kõik käimasolevad salvestused"
@@ -7851,10 +7923,10 @@ msgid "Stop timer recording"
 msgstr "Peata taimeriga salvestamine "
 
 msgid "Stop timeshift"
-msgstr "Ajanihke peatamine"
+msgstr "Peata ajanihe"
 
 msgid "Stop timeshift while recording?"
-msgstr "Ajanihke peatamine salvestamise ajal"
+msgstr "Peata ajanihe salvestamise ajaks"
 
 msgid "Stop using as startup service"
 msgstr "Ära kasuta käivituskanalina"
@@ -7897,6 +7969,9 @@ msgstr "Triibud"
 
 msgid "Strongest position"
 msgstr "Tugevaim positsioon"
+
+msgid "Subnet"
+msgstr "Alamvõrk"
 
 msgid "Subservices"
 msgstr "Alamkanalid"
@@ -8100,11 +8175,17 @@ msgstr "Telneti port"
 msgid "Telnet Setup"
 msgstr "Telneti seaded"
 
+msgid "Telnet interface"
+msgstr "Telneti kasutajaliides"
+
+msgid "Telnet port"
+msgstr "Telneti port"
+
 msgid "Telnet setup"
 msgstr "Telneti seaded"
 
 msgid "Terrestrial"
-msgstr "Maapealne TV (DVB-T)"
+msgstr "Maapealne levi (DVB-T)"
 
 msgid "Terrestrial provider"
 msgstr "DVB-T levitaja"
@@ -8123,10 +8204,10 @@ msgid "Test type"
 msgstr "Testi tüüp"
 
 msgid "Testscreens"
-msgstr "Testpildid"
+msgstr "Testtabelid"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
-msgstr "Testpidid on abiks pildi peenhäälestuseks"
+msgstr "Testtabelid on abiks pildi peenhäälestusel"
 
 msgid "Text"
 msgstr "Tekst"
@@ -8149,7 +8230,7 @@ msgid ""
 "Please press OK to start using your %s %s."
 msgstr ""
 "Täname, et kasutasid abilist. %s %s on nüüd kasutamiseks valmis.\n"
-"%s %s käikuvõtmiseks vajuta OK."
+"%s %s kasutusse võtmiseks vajuta OK."
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "%s %s loeb salvestatud EPG andmeid iga (tund)."
@@ -8193,7 +8274,7 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
-"Ajanihkeks valitud andmekandja ei toeta hardlinke.\n"
+"Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
 "Vorminda see EXT2 või EXT3 failisüsteemi!"
 
 msgid ""
@@ -8227,7 +8308,7 @@ msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
 "Make sure you select a valid partition type."
 msgstr ""
-"Kataloog %s ei ole EXT2, EXT3, EXT4 or NFS partitsioon.\n"
+"Kataloog %s ei ole EXT2, EXT3, EXT4 või NTFS partitsioon.\n"
 "Veendu, et valisid kehtiva partitsiooni tüübi."
 
 #, python-format
@@ -8347,8 +8428,11 @@ msgstr "Täitmata tegevusi ei ole."
 msgid "There are no updates available."
 msgstr "Uuendusi ei ole saadaval."
 
+msgid "There has been an error, please try again later. If this issue persists, please check openvix.co.uk or world-of-satellite.com"
+msgstr "Toimus viga, proovi hiljem uuesti. Probleemi jätkudes vaata lehele openvix.co.uk või world-of-satellite.com"
+
 msgid "There is no [webif] section in oscam.conf"
-msgstr "'oscam.conf' ei oma veebiliidest"
+msgstr "Veebiliidese osa puudub 'oscam.conf' failis"
 
 msgid "There is no signal to lock on !"
 msgstr "Lukustamiseks puudub signaal!"
@@ -8530,7 +8614,7 @@ msgid "This option sets the scaler sharpness, used when stretching picture from 
 msgstr "See valik määrab skaleerija teravuse 4:3 > 16:9 pildi venitamisel."
 
 msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
-msgstr "See valik keelab summutab digitaalsed võltskontuurid, mis on vähese diskreetsete väärtuste tagajärjeks."
+msgstr "See valik summutab digitaalsed võltskontuurid, mis on vähese diskreetsete väärtuste tagajärjeks."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "See valik määrab pildi teravuse ülesskaleerimisel."
@@ -8562,13 +8646,13 @@ msgstr "See laiendus eemaldatakse."
 msgid ""
 "This test checks for configured nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP, cabling and adapter setup\n"
+"- please check your DHCP server, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"Test kontrollib nimeserveri sätteid.\n"
+"Test kontrollib nimeserveri seadeid.\n"
 "Kui tekib \"kinnitamata\" kiri:\n"
-"- kontrolli DHCP-d, kaableid ja adapteri seadeid \n"
-"- kui seadistasid nimeserverid käsitsi, siis kontrolli üle \"nimeserver\" seaded"
+"- kontrolli üle DHCP, kaabeldus ja võrgukaardi seaded \n"
+"- kui seadistasid oma nimeserverid käsitsi, siis kontrolli üle nimeserveri seaded"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
@@ -8585,7 +8669,7 @@ msgid ""
 "This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- no valid IP address was found\n"
-"- please check your DHCP, cabling and adapter setup"
+"- please check your DHCP server, cabling and adapter setup"
 msgstr ""
 "See test kontrollib, kas kohtvõrgukaardile on leitud kehtiv IP aadress.\n"
 "Kui näed teadet \"kinnitamata\":\n"
@@ -8600,12 +8684,12 @@ msgid ""
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
-"See test kontrollib, kas kohtvõrgukaart on seadistatud automaatse IP aadressi jaoks DHCP-d kasutades.\n"
+"See test kontrollib, kas kohtvõrgu kaart on seadistatud automaatse IP aadressi jaoks DHCP-d kasutades.\n"
 "Kui näed teadet \"keelatud\":\n"
-"- siis kohtvõrgukaart on seadistatud IP käsitsi määramiseks\n"
+"- siis kohtvõrgu kaart on seadistatud IP käsitsi määramiseks\n"
 "- kontrolli, et menüüs 'Võrgukaardi seaded'. on IP andmed sisestatud korrektselt.\n"
 "Kui näed teadet \"lubatud\":\n"
-"kontrolli, et võrgus on seadistatud ja töötav DHCP server."
+"- kontrolli, et võrgus on seadistatud ja töötav DHCP server."
 
 msgid "This test detects your configured LAN adapter."
 msgstr "See test kontrollib seadistatud kohtvõrku."
@@ -8638,9 +8722,6 @@ msgstr "TiVo toetus"
 msgid "Time"
 msgstr "Aeg"
 
-msgid "Time Update in Minutes"
-msgstr "Kellaaja uuendamine (min)"
-
 msgid "Time Update in Minutes:"
 msgstr "Kellaaja uuendamine (min):"
 
@@ -8653,8 +8734,11 @@ msgstr "Aja seaded"
 msgid "Time to execute command or script"
 msgstr "Skripti või käsu käivitamise aeg"
 
+msgid "Time update in minutes"
+msgstr "Kellaaja uuendamine (min)"
+
 msgid "Timeline 24 Hour"
-msgstr "24 tunni kell"
+msgstr "Ajaskaala 24 tundi"
 
 msgid "Timeline font size"
 msgstr "Ajaskaala tähesuurus"
@@ -8725,10 +8809,10 @@ msgid "Timeshift save failed!"
 msgstr "Ajanihke talletamine nurjus!"
 
 msgid "Timeshift save recording (Select event)"
-msgstr "Ajanihke talletamine (vali saade)"
+msgstr "Talleta ajanihe (vali saade)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
+msgstr "Talleta ajanihe (lõpeta peale praegust saadet)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Ajanihe talletati kõvakettale!"
@@ -8752,7 +8836,7 @@ msgid "Title properties"
 msgstr "Omadused"
 
 msgid "Titleset mode"
-msgstr "Testpilt"
+msgstr "Pealkirja seadmine"
 
 #, python-format
 msgid ""
@@ -8770,22 +8854,22 @@ msgid "Today"
 msgstr "Täna"
 
 msgid "Toggle Digital downmix..."
-msgstr "Digital >< stereo lülitamine"
+msgstr "Digital > stereo lüliti"
 
 msgid "Toggle HDMI-In PiP"
-msgstr "HDMI sisendi vahetamine PiP ekraanil"
+msgstr "HDMI-In lüliti PiP ekraanil"
 
 msgid "Toggle HDMI-In full screen"
-msgstr "HDMI sisendi vahetamine peaekraanil"
+msgstr "HDMI-In lüliti täisekraanil"
 
 msgid "Toggle LCD LiveTV"
 msgstr "Telepildi esipaneelile kloonimise lüliti"
 
 msgid "Toggle PIP-ZAP"
-msgstr "PIP-ZAP lülitamine"
+msgstr "PIP-ZAP lüliti"
 
 msgid "Toggle Picture In Graphics"
-msgstr "PiG lülitamine"
+msgstr "PiG lüliti"
 
 msgid "Toggle a cut mark at the current position"
 msgstr "Pane lõikemärk praegusele kohale"
@@ -8824,10 +8908,10 @@ msgid "Total cards:"
 msgstr "Kaarte kokku:"
 
 msgid "Total handled client ecm's"
-msgstr "Kõik käsitletud kliendi ECMid"
+msgstr "Kõik käsitletud kliendi ECM-id"
 
 msgid "Total handled client emm's"
-msgstr "Kõik käsitletud kliendi EMMid"
+msgstr "Kõik käsitletud kliendi EMM-id"
 
 msgid "Total:"
 msgstr "Kokku:"
@@ -8983,7 +9067,7 @@ msgid "Unencrypted"
 msgstr "Koodivaba"
 
 msgid "Unhide parental control services"
-msgstr "Lapselukuga kanalite näitamine"
+msgstr "Näita lapselukuga kanaleid"
 
 msgid "Unicable"
 msgstr "Unicable"
@@ -9019,7 +9103,7 @@ msgid "Update"
 msgstr "Uuendus"
 
 msgid "Update channel list only"
-msgstr "Ainult kanalinimekirja uuendamine"
+msgstr "Uuenda ainult kanalinimekiri"
 
 #, python-format
 msgid "Update completed, %d package was installed."
@@ -9078,7 +9162,7 @@ msgid "Use"
 msgstr "Kasuta"
 
 msgid "Use DHCP"
-msgstr "DHCP kasutamine"
+msgstr "Kasuta DHCP-d"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Kasuta saadavusel EIT EPG infot."
@@ -9108,7 +9192,7 @@ msgid "Use a gateway"
 msgstr "Kasuta lüüsi"
 
 msgid "Use circular LNB"
-msgstr "Ringpolaarse LNB kasutamine"
+msgstr "Ringpolar LNB kasutamine"
 
 msgid "Use fastscan channel names"
 msgstr "Kasuta kiirotsingu kanalinimesi"
@@ -9156,7 +9240,7 @@ msgid "Use the alternative screen"
 msgstr "Kasuta alternatiivset vaadet"
 
 msgid "Use the network wizard to configure selected network adapter"
-msgstr "Kasuta võrguabilist valitud võrguliidese seadmiseks"
+msgstr "Kasuta võrguabilist valitud võrguliidese seadistamiseks"
 
 msgid "Use the network wizard to configure your Network\n"
 msgstr "Kasuta võrgu seadistamiseks võrguabilist\n"
@@ -9298,7 +9382,7 @@ msgid "Video mode: %s"
 msgstr "Videorežiim: %s"
 
 msgid "Video output"
-msgstr "Video väljund"
+msgstr "Videoväljund"
 
 #, python-format
 msgid "Video: %s fps"
@@ -9398,7 +9482,7 @@ msgid "Voltage mode"
 msgstr "Pinge tüüp"
 
 msgid "W"
-msgstr ""
+msgstr "W"
 
 msgid "WARNING: feeds may be unstable."
 msgstr "HOIATUS: uuendused võivad olla ebastabiilsed."
@@ -9464,6 +9548,9 @@ msgstr "Vaata salvestisi"
 msgid "Web Interface"
 msgstr "Veebiliides"
 
+msgid "Web interface"
+msgstr "Veebiliides"
+
 msgid "Wed"
 msgstr "K"
 
@@ -9472,6 +9559,9 @@ msgstr "Kolmapäev"
 
 msgid "Weekday"
 msgstr "Nädalapäev"
+
+msgid "Weekend"
+msgstr "Nädalavahetus"
 
 msgid "Weekly"
 msgstr "Iga nädal"
@@ -9990,14 +10080,6 @@ msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi l
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service\n"
-"Ready to install \"%s\" ?"
-msgstr ""
-"Pärast teenuse paigaldamist %s %s taaskäivitub\n"
-"Kas paigaldad \"%s\"?"
-
-#, python-format
-msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
@@ -10008,8 +10090,24 @@ msgstr ""
 
 #, python-format
 msgid ""
+"Your %s %s will be restarted after the installation of the service\n"
+"Are you ready to install \"%s\" ?"
+msgstr ""
+"Pärast teenuse paigaldamist %s %s taaskäivitub\n"
+"Kas paigaldad \"%s\"?"
+
+#, python-format
+msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
+msgstr ""
+"%s %s taaskäivitub pärast teenuse eemaldamist\n"
+"Kas eemaldad kohe?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of the service\n"
+"Do you want to remove the service now ?"
 msgstr ""
 "%s %s taaskäivitub pärast teenuse eemaldamist\n"
 "Kas eemaldad kohe?"
@@ -10064,6 +10162,12 @@ msgstr "Internetiühendus töötab (ip: %s)"
 
 msgid "Your network configuration has been activated."
 msgstr "Võrguseadistus on aktiveeritud."
+
+msgid "Your network has finished restarting"
+msgstr "Võrk on taaskäivitatud"
+
+msgid "Your network is restarting, Please wait..."
+msgstr "Võrk taaskäivitub. Oota."
 
 msgid "Your receiver does not have an internet connection"
 msgstr "Vastuvõtjal puudub internetiühendus"
@@ -10154,14 +10258,11 @@ msgstr "Kasutajaliides kanalite/levitajate/CAIde CI-moodulile määramiseks"
 msgid "about to start"
 msgstr "algamas"
 
-msgid "activate network adapter configuration"
-msgstr "aktiveeri võrgukaardi seaded"
-
 msgid "activatePiP"
 msgstr "PiP käivitamine"
 
 msgid "add bookmark"
-msgstr "lisa uus tähis"
+msgstr "lisa järjehoidja"
 
 msgid "address:"
 msgstr "aadress:"
@@ -10312,7 +10413,7 @@ msgid "continue"
 msgstr "jätka"
 
 msgid "cooking"
-msgstr "kokandus"
+msgstr "kokasaade"
 
 msgid "copy"
 msgstr "kopeeri"
@@ -10322,7 +10423,7 @@ msgstr "loo kataloog"
 
 #, python-format
 msgid "currently installed image: %s"
-msgstr "paigaldatud image: %s"
+msgstr "paigaldatud tõmmis: %s"
 
 msgid "daily"
 msgstr "iga päev"
@@ -10332,9 +10433,6 @@ msgstr "päev"
 
 msgid "decrease uphop by 1"
 msgstr "vähenda uphop 1 võrra"
-
-msgid "default"
-msgstr "vaikimisi"
 
 msgid "delete"
 msgstr "kustuta"
@@ -10449,15 +10547,6 @@ msgstr "et9200/9500/6500"
 
 msgid "exit DVD player or return to file browser"
 msgstr "välju DVD-mängijast või naase failisirvijasse"
-
-msgid "exit mounts setup menu"
-msgstr "välju menüüst"
-
-msgid "exit network adapter configuration"
-msgstr "lõpeta võrgu häälestamine"
-
-msgid "exit networkadapter setup menu"
-msgstr "välju võrguliidese seadistusmenüüst"
 
 msgid "experimental film/video"
 msgstr "eksperimentaalne film/video"
@@ -10596,10 +10685,10 @@ msgid "jazz"
 msgstr "džäss"
 
 msgid "jump back to the previous title"
-msgstr "hüppa eelmisele failile"
+msgstr "hüppa eelmisele nimetusele"
 
 msgid "jump forward to the next title"
-msgstr "hüppa järgmisele failile"
+msgstr "hüppa järgmisele nimetusele"
 
 msgid "languages"
 msgstr "keeled"
@@ -10656,7 +10745,7 @@ msgid "minute"
 msgstr "minut"
 
 msgid "minutes"
-msgstr "minutid"
+msgstr "minutit"
 
 msgid "month"
 msgstr "kuu"
@@ -10669,18 +10758,6 @@ msgstr "autondus"
 
 msgid "move"
 msgstr "liiguta"
-
-msgid "move down to last entry"
-msgstr "liigu viimasele reale"
-
-msgid "move down to next entry"
-msgstr "liigu järgmisele reale"
-
-msgid "move up to first entry"
-msgstr "liigu esimesele reale"
-
-msgid "move up to previous entry"
-msgstr "liigu eelmisele reale"
 
 msgid "movie/drama (general)"
 msgstr "film/draama"
@@ -10798,9 +10875,6 @@ msgstr "üks kord"
 
 msgid "only HD"
 msgstr "ainult HD"
-
-msgid "open nameserver configuration"
-msgstr "nimeserveri seaded"
 
 msgid "original"
 msgstr "algupärane"
@@ -10945,10 +11019,7 @@ msgid "select"
 msgstr "vali"
 
 msgid "select CAId's"
-msgstr "vali CAIDid"
-
-msgid "select menu entry"
-msgstr "vali menüüpunkt"
+msgstr "vali CAID-id"
 
 msgid "serious music/classic music"
 msgstr "süvamuusika/klassikaline muusika"
@@ -11148,6 +11219,12 @@ msgstr "uShare port"
 msgid "uShare Setup"
 msgstr "uShare seaded"
 
+msgid "uShare name"
+msgstr "uShare nimi"
+
+msgid "uShare port"
+msgstr "uShare port"
+
 msgid "uShare setup"
 msgstr "uShare seaded"
 
@@ -11167,7 +11244,7 @@ msgid "unpublished"
 msgstr "avaldamata"
 
 msgid "until standby/restart"
-msgstr "ooteseisundini/taaskäivitamiseni"
+msgstr "ooteseisundi/taaskäivitamiseni"
 
 msgid "updates available."
 msgstr "uuendust saadaval."
@@ -11179,7 +11256,7 @@ msgid "using:"
 msgstr "kasutuses:"
 
 msgid "variety show"
-msgstr "varieteeprogramm"
+msgstr "mitmesugust"
 
 msgid "vertical"
 msgstr "vertikaalne"
@@ -11326,6 +11403,9 @@ msgstr "vahetatud"
 
 #~ msgid "Activate HbbTV (Redbutton)"
 #~ msgstr "HbbTV aktiveerimine"
+
+#~ msgid "Activate MAC-address configuration"
+#~ msgstr "Jõusta MAC-aadressi seadistused"
 
 #~ msgid "Activate timeshift End"
 #~ msgstr "Ajanihke lõpetamise aktiveerimine"
@@ -11509,11 +11589,20 @@ msgstr "vahetatud"
 #~ msgid "Error: No network connection found. Please ensure your receiver is connected to the internet."
 #~ msgstr "Viga: Ühtegi võrguühendust ei leitud. Veendu, et vastuvõtja on ühendatud internetti."
 
+#~ msgid "Exit MAC-address configuration"
+#~ msgstr "Lõpeta MAC-aadressi seadistamine"
+
 #~ msgid "External (CF)"
 #~ msgstr "Väline (CF)"
 
+#~ msgid "Finished restarting your network"
+#~ msgstr "Võrk on taaskäivitatud"
+
 #~ msgid "Fontsize"
 #~ msgstr "Tähesuurus"
+
+#~ msgid "Ftpd service type: Vsftpd server"
+#~ msgstr "Ftpd teenus: Vsftpd server"
 
 #~ msgid "Fullview resolution"
 #~ msgstr "Täisekraani lahutus"
@@ -11538,6 +11627,9 @@ msgstr "vahetatud"
 
 #~ msgid "Goto specific data/time"
 #~ msgstr "Mine kindlale kellaajale/kuupäevale"
+
+#~ msgid "HD1100/et7x00"
+#~ msgstr "HD1100/et7x00"
 
 #~ msgid "Harddisk Setup"
 #~ msgstr "Kõvaketta seaded"
@@ -11590,6 +11682,12 @@ msgstr "vahetatud"
 
 #~ msgid "Last update:\t%s"
 #~ msgstr "Uuendatud:\t%s"
+
+#~ msgid "MAC-address"
+#~ msgstr "MAC-aadress"
+
+#~ msgid "MAC-address settings"
+#~ msgstr "MAC-aadressi seaded"
 
 #~ msgid "Mark service as dedicated 3D service"
 #~ msgstr "märgista 3D kanalina"
@@ -11705,8 +11803,14 @@ msgstr "vahetatud"
 #~ msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 #~ msgstr "Kasuta keele valimiseks 'ÜLES' ja 'ALLA' nuppe, seejärel vajuta OK."
 
+#~ msgid "Please wait for activation of your network configuration..."
+#~ msgstr "Oota, kuni võrguseaded aktiveeritakse"
+
 #~ msgid "Please wait while gathering data..."
 #~ msgstr "Andmete kogumine..."
+
+#~ msgid "Please wait while your network is restarting..."
+#~ msgstr "Oota, kuni võrk taaskäivitub"
 
 #~ msgid "Please wait whilst feeds state is checked."
 #~ msgstr "Oota, kuni serverite olek on kontrollitud."
@@ -11717,6 +11821,9 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Kanaliotsingud eelmääratud transponderilt on võimalik juhul kui\n"
 #~ "'Tuuneri seadetes' on kanaliotsingu liigiks määratud 'Levitaja'"
+
+#~ msgid "Press OK to set the MAC-address."
+#~ msgstr "MAC-aadressi määramiseks vajuta OK."
 
 #~ msgid "Protect Screens"
 #~ msgstr "Menüüde lukustamine"
@@ -11745,8 +11852,8 @@ msgstr "vahetatud"
 #~ msgid "Rewrap teletext subtitles"
 #~ msgstr "Teleteksti subtiitrite algne reamurdmine"
 
-#~ msgid "Samba Log"
-#~ msgstr "Samba logi"
+#~ msgid "Samba Network File System"
+#~ msgstr "Samba failisüsteem"
 
 #~ msgid "Search IMDb for information about current event."
 #~ msgstr "IMDb otsing käesoleva saate kohta."
@@ -11780,6 +11887,12 @@ msgstr "vahetatud"
 
 #~ msgid "Service has been added to the selected bouquet."
 #~ msgstr "Kanal on lisatud valitud lemmiknimekirja."
+
+#~ msgid "Set System"
+#~ msgstr "Määra süsteem"
+
+#~ msgid "Set the MAC-address of your %s %s.\n"
+#~ msgstr "Määra %s %s MAC-aadress.\n"
 
 #~ msgid "Set the time before checking video source for resolution infomation."
 #~ msgstr "Määra ajahulk, enne mida videolahutust ei kontrollita."
@@ -11833,6 +11946,12 @@ msgstr "vahetatud"
 #~ msgid "Shows the icons when new/unseen, else will not show an icon."
 #~ msgstr "Tähistab uued/vaatamata ikooniga, ülejäänutel ikooni ei näita."
 
+#~ msgid "Sorry Inadyn Config is Missing"
+#~ msgstr "Inadyn on seadistamata"
+
+#~ msgid "Sorry MiniDLNA Config is Missing"
+#~ msgstr "MiniDLNA on seadistamata"
+
 #~ msgid "Sorry feeds are down for maintenance"
 #~ msgstr "Käivad serverite hooldustööd"
 
@@ -11844,6 +11963,9 @@ msgstr "vahetatud"
 
 #~ msgid "Sorry that tuner is not available."
 #~ msgstr "See tuuner ei ole saadaval."
+
+#~ msgid "Sorry uShare Config is Missing"
+#~ msgstr "uShare on seadistamata"
 
 #~ msgid "Stop current event and disable coming events"
 #~ msgstr "Peata toimuv salvestus ja keela tulevad"
@@ -11885,6 +12007,31 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Cool TV Guide ei ole paigaldatud!\n"
 #~ "Paigalda see."
+
+#~ msgid ""
+#~ "This test checks for configured nameservers.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- please check your DHCP, cabling and adapter setup\n"
+#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
+#~ msgstr ""
+#~ "Test kontrollib nimeserveri sätteid.\n"
+#~ "Kui tekib \"kinnitamata\" kiri:\n"
+#~ "- kontrolli DHCP-d, kaableid ja adapteri seadeid \n"
+#~ "- kui seadistasid nimeserverid käsitsi, siis kontrolli üle \"nimeserver\" seaded"
+
+#~ msgid ""
+#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
+#~ "If you get a \"unconfirmed\" message:\n"
+#~ "- no valid IP address was found\n"
+#~ "- please check your DHCP, cabling and adapter setup"
+#~ msgstr ""
+#~ "See test kontrollib, kas kohtvõrgu kaardile on leitud kehtiv IP aadress.\n"
+#~ "Kui näed teadet \"kinnitamata\":\n"
+#~ "- kehtivat IP aadressi ei leitud\n"
+#~ "- kontrolli DHCP ja võrgukaardi seadeid ning kaabeldust"
+
+#~ msgid "Time Update in Minutes"
+#~ msgstr "Kellaaja uuendamine (min)"
 
 #~ msgid "Timeshift will get saved at end of event!"
 #~ msgstr "Ajanihe talletatakse saate lõppedes!"
@@ -11979,6 +12126,13 @@ msgstr "vahetatud"
 #~ msgstr "Ajanihe on kasutusel. Ajanihke peatamisel pilt hetkeks kaob."
 
 #~ msgid ""
+#~ "Your %s %s will be restarted after the installation of service\n"
+#~ "Ready to install \"%s\" ?"
+#~ msgstr ""
+#~ "Pärast teenuse paigaldamist %s %s taaskäivitub\n"
+#~ "Kas paigaldad \"%s\"?"
+
+#~ msgid ""
 #~ "Your config file is not well-formed:\n"
 #~ "%s"
 #~ msgstr ""
@@ -11993,6 +12147,9 @@ msgstr "vahetatud"
 
 #~ msgid "abort favourites edit"
 #~ msgstr "tühista muudatused"
+
+#~ msgid "activate network adapter configuration"
+#~ msgstr "aktiveeri võrgukaardi seaded"
 
 #~ msgid "add alternatives"
 #~ msgstr "lisa asenduskanaleid"
@@ -12027,6 +12184,9 @@ msgstr "vahetatud"
 #~ msgid "copy to bouquets"
 #~ msgstr "kopeeri nimekirjadesse"
 
+#~ msgid "default"
+#~ msgstr "vaikimisi"
+
 #~ msgid "disable move mode"
 #~ msgstr "keela liigutamine"
 
@@ -12057,6 +12217,15 @@ msgstr "vahetatud"
 #~ msgid "et9x00/6500"
 #~ msgstr "et9x00/6500"
 
+#~ msgid "exit mounts setup menu"
+#~ msgstr "välju menüüst"
+
+#~ msgid "exit network adapter configuration"
+#~ msgstr "lõpeta võrgu häälestamine"
+
+#~ msgid "exit networkadapter setup menu"
+#~ msgstr "välju võrguliidese seadistusmenüüst"
+
 #~ msgid "file oscam.conf could not be found"
 #~ msgstr "oscam.conf faili ei leitud"
 
@@ -12076,8 +12245,23 @@ msgstr "vahetatud"
 #~ msgid "leave movie player..."
 #~ msgstr "sulge filmimängija..."
 
+#~ msgid "move down to last entry"
+#~ msgstr "liigu viimasele reale"
+
+#~ msgid "move down to next entry"
+#~ msgstr "liigu järgmisele reale"
+
+#~ msgid "move up to first entry"
+#~ msgstr "liigu esimesele reale"
+
+#~ msgid "move up to previous entry"
+#~ msgstr "liigu eelmisele reale"
+
 #~ msgid "open bouquetlist"
 #~ msgstr "näita lemmiknimekirju"
+
+#~ msgid "open nameserver configuration"
+#~ msgstr "nimeserveri seaded"
 
 #~ msgid "play as picture in picture"
 #~ msgstr "näita kanal pilt-pildis"
@@ -12120,6 +12304,9 @@ msgstr "vahetatud"
 
 #~ msgid "restore deleted userbouquets"
 #~ msgstr "kustutatud lemmikimekirjade taastamine"
+
+#~ msgid "select menu entry"
+#~ msgstr "vali menüüpunkt"
 
 #~ msgid "service PIN"
 #~ msgstr "kanali PIN"
@@ -12169,165 +12356,72 @@ msgstr "vahetatud"
 #~ msgid "whitelist"
 #~ msgstr "valge nimekiri"
 
-#~ msgid "A background update check is in progress, please wait a few minutes and then try again."
-#~ msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
+#~ msgid "3d mode"
+#~ msgstr "3d mode"
 
-#~ msgid "Activate MAC address configuration"
-#~ msgstr "Jõusta MAC-aadressi seadistused"
+#~ msgid "AA"
+#~ msgstr "AA"
 
-#~ msgid "Activate network adapter configuration"
-#~ msgstr "Aktiveeri võrgukaardi seadistused"
+#~ msgid "AB"
+#~ msgstr "AB"
 
-#~ msgid "Are you ready to install \"%s\" ?"
-#~ msgstr "Kas paigaldad \"%s\"?"
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Adjust 3D settings"
 
-#~ msgid "Are you ready to remove \"%s\" ?"
-#~ msgstr "Kas eemaldad \"%s\"?"
+#~ msgid "Advanced video setup"
+#~ msgstr "Geavanceerde video-instellingen"
 
-#~ msgid "De-select"
-#~ msgstr "Valik maha"
+#~ msgid "All satellites 1 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 1 (DiSEqC 1.2)"
 
-#~ msgid ""
-#~ "Do you want to install the samba client aswell?\n"
-#~ "This will allow you to mount your windows shares on this device."
-#~ msgstr ""
-#~ "Kas paigaldad ka samba kliendi?\n"
-#~ "Nii saab haakida ka windowsi jaod."
+#~ msgid "All satellites 2 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 2 (DiSEqC 1.2)"
 
-#~ msgid "Exit MAC address configuration"
-#~ msgstr "Lõpeta MAC-aadressi seadistamine"
+#~ msgid "All satellites 3 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 3 (DiSEqC 1.2)"
 
-#~ msgid "Exit mounts setup menu"
-#~ msgstr "Välju haakimise menüüst"
+#~ msgid "All satellites 4 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 4 (DiSEqC 1.2)"
 
-#~ msgid "Exit network adapter configuration"
-#~ msgstr "Lõpeta võrgukaardi seadistamine"
+#~ msgid "BA"
+#~ msgstr "BA"
 
-#~ msgid "Exit network adapter setup menu"
-#~ msgstr "Välju võrgu seadistusmenüüst"
+#~ msgid "BB"
+#~ msgstr "BB"
 
-#~ msgid "Exit networkadapter setup menu"
-#~ msgstr "Välju võrgukaardi seadistusmenüüst"
+#~ msgid "Channel +/- button mode"
+#~ msgstr "CH +/- nuppude toiming"
 
-#~ msgid "Inotify monitoring"
-#~ msgstr "Inotify jälgimine"
+#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+#~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
 
-#~ msgid "Installing service"
-#~ msgstr "Teenuse paigaldamine"
+#, fuzzy
+#~ msgid "Devide"
+#~ msgstr "Seadmed"
 
-#~ msgid "MAC address"
-#~ msgstr "MAC-aadress"
+#~ msgid "Display"
+#~ msgstr "Display"
 
-#~ msgid "MAC address settings"
-#~ msgstr "MAC-aadressi seaded"
+#~ msgid "Lamedb"
+#~ msgstr "Lamedb"
 
-#~ msgid "Move down to last entry"
-#~ msgstr "Liigu viimasele reale"
+#~ msgid "Single transponder"
+#~ msgstr "Üksik transponder"
 
-#~ msgid "Move down to next entry"
-#~ msgstr "Liigu järgmisele reale"
+#~ msgid "TV button mode"
+#~ msgstr "TV nupu toiming"
 
-#~ msgid "Move up to first entry"
-#~ msgstr "Liigu esimesele reale"
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "Uncommitted DiSEqC käsk"
 
-#~ msgid "Move up to previous entry"
-#~ msgstr "Liigu eelmisele reale"
+#~ msgid "Video setup"
+#~ msgstr "Video-instellingen"
 
-#~ msgid "Open nameserver configuration"
-#~ msgstr "Ava nimeserveri seaded"
+#~ msgid "Video wizard"
+#~ msgstr "Video-wizard"
 
-#~ msgid "Please wait while your network configuration is activated..."
-#~ msgstr "Oota, kuni võrgu seadistused jõustatakse"
+#~ msgid "Logs older than the specified no of days will be deleted."
+#~ msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
 
-#~ msgid "Press OK to set the MAC address."
-#~ msgstr "MAC-aadressi määramiseks vajuta OK."
-
-#~ msgid "Removing service"
-#~ msgstr "Teenuse eemaldamine"
-
-#~ msgid "Select menu entry"
-#~ msgstr "Vali menüüpunkt"
-
-#~ msgid "Serial no"
-#~ msgstr "Seerianumber"
-
-#~ msgid "Set system"
-#~ msgstr "Määra süsteem"
-
-#~ msgid "Set the MAC address of your %s %s.\n"
-#~ msgstr "Määra %s %s MAC-aadress.\n"
-
-#~ msgid "Sorry your Inadyn config is missing"
-#~ msgstr "Inadyn on seadistamata"
-
-#~ msgid "Sorry your MiniDLNA config is missing"
-#~ msgstr "MiniDLNA on seadistamata"
-
-#~ msgid "Sorry your uShare config is missing"
-#~ msgstr "uShare on seadistamata"
-
-#~ msgid "Subnet"
-#~ msgstr "Alamvõrk"
-
-#~ msgid "Telnet interface"
-#~ msgstr "Telneti kasutajaliides"
-
-#~ msgid "Telnet port"
-#~ msgstr "Telneti port"
-
-#~ msgid ""
-#~ "This test checks for configured nameservers.\n"
-#~ "If you get a \"unconfirmed\" message:\n"
-#~ "- please check your DHCP server, cabling and adapter setup\n"
-#~ "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-#~ msgstr ""
-#~ "Test kontrollib nimeserveri seadeid.\n"
-#~ "Kui tekib \"kinnitamata\" kiri:\n"
-#~ "- kontrolli üle DHCP, kaabeldus ja võrgukaardi seaded \n"
-#~ "- kui seadistasid oma nimeserverid käsitsi, siis kontrolli üle nimeserveri seaded"
-
-#~ msgid ""
-#~ "This test checks whether a valid IP address is found for your LAN adapter.\n"
-#~ "If you get a \"unconfirmed\" message:\n"
-#~ "- no valid IP address was found\n"
-#~ "- please check your DHCP server, cabling and adapter setup"
-#~ msgstr ""
-#~ "See test kontrollib, kas kohtvõrgukaardile on leitud kehtiv IP aadress.\n"
-#~ "Kui näed teadet \"kinnitamata\":\n"
-#~ "- kehtivat IP aadressi ei leitud\n"
-#~ "- kontrolli DHCP ja võrgukaardi seadeid ning kaabeldust"
-
-#~ msgid "Time update in minutes"
-#~ msgstr "Kellaaja uuendamine (min)"
-
-#~ msgid "Web interface"
-#~ msgstr "Veebiliides"
-
-#~ msgid ""
-#~ "Your %s %s will be restarted after the installation of the service\n"
-#~ "Are you ready to install \"%s\" ?"
-#~ msgstr ""
-#~ "Pärast teenuse paigaldamist %s %s taaskäivitub\n"
-#~ "Kas paigaldad \"%s\"?"
-
-#~ msgid ""
-#~ "Your %s %s will be restarted after the removal of the service\n"
-#~ "Do you want to remove the service now ?"
-#~ msgstr ""
-#~ "%s %s taaskäivitub pärast teenuse eemaldamist\n"
-#~ "Kas eemaldad kohe?"
-
-#~ msgid "Your network has finished restarting"
-#~ msgstr "Võrk on taaskäivitatud"
-
-#~ msgid "Your network is restarting, Please wait..."
-#~ msgstr "Võrk taaskäivitub. Oota."
-
-#~ msgid "uShare name"
-#~ msgstr "uShare nimi"
-
-#~ msgid "uShare port"
-#~ msgstr "uShare port"
-
-#~ msgid "HD1100/et7x00"
-#~ msgstr "HD1100/et7x00"
+#~ msgid "Maximum no of days"
+#~ msgstr "Suurim lubatud päevade arv:"
