@@ -295,6 +295,10 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 	char header[256];
 	char buf[1024];
 	char ncbuf[1024];
+	bool is_alert = false;
+
+	if(strstr(file, "e2reactor.py") || strstr(file, "traceback.py"))
+		is_alert = true;
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	snprintf(buf, sizeof(buf), "%s", string);
@@ -308,11 +312,11 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 		else
 		{
 			snprintf(header, sizeof(header),	\
-				ANSI_WHITE	"%s "		/*color of timestamp*/\
+						"%s%s "		/*color of timestamp*/\
 				ANSI_CYAN	"%s:%d "	/*color of filename and linenumber*/\
 				ANSI_BCYAN	"%s "		/*color of functionname*/\
 				ANSI_BWHITE			/*color of debugmessage*/\
-				, timebuffer, file, line, function);
+				,is_alert?ANSI_BRED:ANSI_WHITE, timebuffer, file, line, function);
 			fprintf(stderr, "%s%s"ANSI_RESET, header, buf);
 		}
 	}
