@@ -20,7 +20,7 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template V1.6.6b 24.08.2015-->
+<!-- template V1.6.6c 31.08.2015-->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText"></convert>
@@ -180,7 +180,7 @@
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>		
-<!-- channelselection V1.6.6b -->
+<!-- channelselection -->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
@@ -380,6 +380,11 @@
 	</screen>
 	<screen name="AboutSummary" position="0,0" size="400,240">
 		<widget source="AboutText" render="Label" position="0,0" size="400,240" font="FdLcD;11" />
+	</screen>
+<!-- LocationBox_summary -->
+	<screen name="LocationBox_summary" position="0,0" size="400,240">
+		<widget source="parent.text" render="Label" position="0,0" size="400,178" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
 	</screen>
 <!-- console -->
 	<screen name="Console_summary" position="0,0" size="400,240">
