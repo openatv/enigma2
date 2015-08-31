@@ -398,7 +398,7 @@ if test "$BOXTYPE" == "xc7362"; then
 fi
 
 if test "$BOXTYPE" == "sf108"; then
-	AC_DEFINE(KEY_LAST_TO_KEY_BACK, 1,[[define when rc sends a KEY_LAST event for its KEY_BACK key]])
+	AC_DEFINE(KEY_LAST_TO_KEY_BACK, 1,[define when rc sends a KEY_LAST event for its KEY_BACK key])
 fi
 
 if test "$BOXTYPE" == "hd2400" -o "$BOXTYPE" == "hd1100" -o "$BOXTYPE" == "hd1200" -o "$BOXTYPE" == "hd500c"; then
