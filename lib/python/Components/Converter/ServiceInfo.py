@@ -1,5 +1,5 @@
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService
+from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Components.Element import cached
 from Tools.Transponder import ConvertToHumanReadable
 
@@ -79,8 +79,14 @@ class ServiceInfo(Converter, object):
 			"Is576": (self.IS_576, (iPlayableService.evVideoSizeChanged,)),
 			"Is480": (self.IS_480, (iPlayableService.evVideoSizeChanged,)),
 		}[type]
+		self.interesting_events += (iPlayableService.evStart,)
+
+	def _isHDMIIn(self, info):
+		return eServiceReference(info.getInfoString(iServiceInformation.sServiceref)).type == eServiceReference.idServiceHDMIIn
 
 	def getServiceInfoString(self, info, what, convert=lambda x: "%d" % x):
+		if self._isHDMIIn(info):
+			return "N/A"
 		v = info.getInfo(what)
 		if v == -1:
 			return "N/A"
@@ -101,41 +107,43 @@ class ServiceInfo(Converter, object):
 		return val
 
 	def _getVal(self, pathname, info, infoVal, base=10):
+		if self._isHDMIIn(info):
+			return None
 		val = self._getProcVal(pathname, base=base)
 
-		if val is not None:
-			return val
-		else:
-			return info.getInfo(infoVal)
+		return val if val is not None else info.getInfo(infoVal)
+
+	def _getValInt(self, pathname, info, infoVal, base=10, default=-1):
+		val = self._getVal(pathname, info, infoVal, base)
+		return val if val is not None else default
 
 	def _getValStr(self, pathname, info, infoVal, base=10, convert=lambda x: "%d" % x):
+		if self._isHDMIIn(info):
+			return "N/A"
 		val = self._getProcVal(pathname, base=base)
 
-		if val is not None:
-			return convert(val)
-		else:
-			return self.getServiceInfoString(info, infoVal, convert)
+		return convert(val) if val is not None else self.getServiceInfoString(info, infoVal, convert)
 
 	def _getVideoHeight(self, info):
-		return self._getVal("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16)
+		return self._getValInt("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16)
 
 	def _getVideoHeightStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
 		return self._getValStr("/proc/stb/vmpeg/0/yres", info, iServiceInformation.sVideoHeight, base=16, convert=convert)
 
 	def _getVideoWidth(self, info):
-		return self._getVal("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16)
+		return self._getValInt("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16)
 
 	def _getVideoWidthStr(self, info, convert=lambda x: "%d" % x if x > 0 else "?"):
 		return self._getValStr("/proc/stb/vmpeg/0/xres", info, iServiceInformation.sVideoWidth, base=16, convert=convert)
 
 	def _getFrameRate(self, info):
-		return self._getVal("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate)
+		return self._getValInt("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate)
 
 	def _getFrameRateStr(self, info, convert=lambda x: "%d" % x if x > 0 else ""):
 		return self._getValStr("/proc/stb/vmpeg/0/framerate", info, iServiceInformation.sFrameRate, convert=convert)
 
 	def _getProgressive(self, info):
-		return self._getVal("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive)
+		return self._getValInt("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, default=0)
 
 	def _getProgressiveStr(self, info, convert=lambda x: "" if x else "i"):
 		return self._getValStr("/proc/stb/vmpeg/0/progressive", info, iServiceInformation.sProgressive, convert=convert)
@@ -277,6 +285,8 @@ class ServiceInfo(Converter, object):
 			out = "Freq: %s %s %s %s %s" % (frequency, polarization, sr_txt, symbolrate, fec)
 			return out
 		elif self.type == self.VIDEO_INFO:
+			if self._isHDMIIn(info):
+					return ""
 			progressive = self._getProgressiveStr(info)
 			fieldrate = self._getFrameRate(info)
 			if fieldrate > 0:
@@ -310,4 +320,12 @@ class ServiceInfo(Converter, object):
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
+			# Only want to update on iPlayableService.evStart
+			# if the service is HDMI IN.
+			if len(what) > 1 and what[1] == iPlayableService.evStart:
+				service = self.source.service
+				info = service and service.info()
+				if info and not self._isHDMIIn(info):
+					return
+
 			Converter.changed(self, what)
