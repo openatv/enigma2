@@ -15,31 +15,29 @@
 #define I2C_SLAVE_FORCE	0x0706
 #endif
 
+#define eDebugNoSimulateNoNewLineEnd(x...) \
+	do { \
+		if (!m_simulate) \
+			eDebugNoNewLineEnd(x); \
+	} while(0)
+
 #define eDebugNoSimulate(x...) \
 	do { \
 		if (!m_simulate) \
 			eDebug(x); \
 	} while(0)
-#if 0
-		else \
-		{ \
-			eDebugNoNewLine("SIMULATE:"); \
-			eDebug(x); \
-		}
-#endif
+
+#define eDebugNoSimulateNoNewLineStart(x...) \
+	do { \
+		if (!m_simulate) \
+			eDebugNoNewLineStart(x); \
+	} while(0)
 
 #define eDebugNoSimulateNoNewLine(x...) \
 	do { \
 		if (!m_simulate) \
 			eDebugNoNewLine(x); \
 	} while(0)
-#if 0
-		else \
-		{ \
-			eDebugNoNewLine("SIMULATE:"); \
-			eDebugNoNewLine(x); \
-		}
-#endif
 
 void eDVBDiseqcCommand::setCommandString(const char *str)
 {
@@ -1379,15 +1377,15 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SEND_DISEQC:
 				sec_fe->sendDiseqc(m_sec_sequence.current()->diseqc);
-				eDebugNoSimulateNoNewLine("[SEC] sendDiseqc: ");
+				eDebugNoSimulateNoNewLineStart("[SEC] sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoSimulateNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
 			 	if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
-					eDebugNoSimulate("(DiSEqC reset)");
+					eDebugNoSimulateNoNewLineEnd("(DiSEqC reset)");
 				else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
-					eDebugNoSimulate("(DiSEqC peripherial power on)");
+					eDebugNoSimulateNoNewLineEnd("(DiSEqC peripherial power on)");
 				else
-					eDebugNoSimulate("(?)");
+					eDebugNoSimulateNoNewLineEnd("(?)");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:

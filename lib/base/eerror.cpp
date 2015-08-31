@@ -9,6 +9,7 @@
 #include <time.h>
 
 #include <string>
+#include <ansidebug.h>
 
 #ifdef MEMLEAK_CHECK
 AllocList *allocList;
@@ -83,6 +84,69 @@ int logOutputColors = 1;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+
+static char *alertToken[] = {
+// !!! all strings must be written in lower case !!!
+	"error",
+	"fail",
+	"not available",
+	"no module",
+	"no such file",
+	"cannot"
+};
+
+
+bool findAlertToken(char *src)
+{
+	bool res = false;
+	if(!src)
+		return res;
+
+	char *tmp = new char[strlen(src)+1];
+	if(!tmp)
+		return res;
+	int idx=0;
+	do{
+		tmp[idx] = tolower(src[idx]);
+	}while(src[idx++]);
+
+	for(idx=0; idx < sizeof(alertToken)/sizeof(char*); idx++)
+	{
+		if(strstr(tmp, alertToken[idx]))
+		{
+			res = true;
+			break;
+		}
+	}
+	delete [] tmp;
+	return res;
+}
+
+void removeAnsiEsc(char *src)
+{
+	char *dest = src;
+	bool cut = false;
+	for(; *src; src++)
+	{
+		if (*src == (char)0x1b) cut = true;
+		if (!cut) *dest++ = *src;
+		if (*src == 'm' || *src == 'K') cut = false;
+	}
+	*dest = '\0';
+}
+
+void removeAnsiEsc(char *src, char *dest)
+{
+	bool cut = false;
+	for(; *src; src++)
+	{
+		if (*src == (char)0x1b) cut = true;
+		if (!cut) *dest++ = *src;
+		if (*src == 'm' || *src == 'K') cut = false;
+	}
+	*dest = '\0';
+}
+
 char *printtime(char buffer[], int size)
 {
 	struct tm loctime ;
@@ -100,21 +164,28 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	char ncbuf[1024];
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
+	removeAnsiEsc(buf, ncbuf);
+	singleLock s(DebugLock);
+	logOutput(lvlFatal, std::string(header) + std::string(ncbuf) + "\n");
 
+	if (!logOutputColors)
+		fprintf(stderr, "FATAL: %s%s\n", header , ncbuf);
+	else
 	{
-		singleLock s(DebugLock);
-		logOutput(lvlFatal, std::string(header) + std::string(buf) + "\n");
-		if (logOutputColors)
-		{
-			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
-		}
-		fprintf(stderr, "FATAL: %s%s\n", header , buf);
+		snprintf(header, sizeof(header),	\
+			ANSI_RED	"%s "		/*color of timestamp*/\
+			ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
+			ANSI_BGREEN	"%s "		/*color of functionname*/\
+			ANSI_BWHITE			/*color of debugmessage*/\
+			, timebuffer, file, line, function);
+		fprintf(stderr, "FATAL: %s%s\n"ANSI_RESET, header , buf);
 	}
 	bsodFatal("enigma2");
 }
@@ -125,21 +196,33 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	char ncbuf[1024];
+	bool is_alert = false;
+
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
+	removeAnsiEsc(buf, ncbuf);
+	is_alert = findAlertToken(ncbuf);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(header) + std::string(buf) + "\n");
+	logOutput(lvlDebug, std::string(header) + std::string(ncbuf) + "\n");
 	if (logOutputConsole)
 	{
-		if (logOutputColors)
+		if (!logOutputColors)
+			fprintf(stderr, "%s%s\n", header , ncbuf);
+		else
 		{
-			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+			snprintf(header, sizeof(header),	\
+						"%s%s "		/*color of timestamp*/\
+				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
+				ANSI_BGREEN	"%s "		/*color of functionname*/\
+				ANSI_BWHITE			/*color of debugmessage*/\
+				, is_alert?ANSI_BRED:ANSI_WHITE, timebuffer, file, line, function);
+			fprintf(stderr, "%s%s\n"ANSI_RESET, header, buf);
 		}
-		fprintf(stderr, "%s%s\n", header, buf);
 	}
 }
 
@@ -148,48 +231,67 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	char ncbuf[1024];
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
+	removeAnsiEsc(buf, ncbuf);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(header) + std::string(buf));
+	logOutput(lvlDebug, std::string(header) + std::string(ncbuf));
 	if (logOutputConsole)
 	{
-		if (logOutputColors)
+		if (!logOutputColors)
+			fprintf(stderr, "%s%s", header, ncbuf);
+		else
 		{
-			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+			snprintf(header, sizeof(header),	\
+				ANSI_WHITE	"%s "		/*color of timestamp*/\
+				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
+				ANSI_BGREEN	"%s "		/*color of functionname*/\
+				ANSI_BWHITE			/*color of debugmessage*/\
+				, timebuffer, file, line, function);
+			fprintf(stderr, "%s%s", header, buf);
 		}
-		fprintf(stderr, "%s%s", header, buf);
 	}
 }
 
 void eDebugNoNewLine(const char* fmt, ...)
 {
 	char buf[1024];
+	char ncbuf[1024];
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
+	removeAnsiEsc(buf, ncbuf);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(buf));
+	logOutput(lvlDebug, std::string(ncbuf));
 	if (logOutputConsole)
-		fprintf(stderr, "%s", buf);
+		fprintf(stderr, "%s", logOutputColors? buf : ncbuf);
+
 }
 
 void eDebugNoNewLineEnd(const char* fmt, ...)
 {
 	char buf[1024];
+	char ncbuf[1024];
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
+	removeAnsiEsc(buf, ncbuf);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(buf) + "\n");
+	logOutput(lvlDebug, std::string(ncbuf) + "\n");
 	if (logOutputConsole)
-		fprintf(stderr, "%s\n", buf);
+	{
+		if(!logOutputColors)
+			fprintf(stderr, "%s\n", ncbuf);
+		else
+			fprintf(stderr, "%s\n"ANSI_RESET, buf);
+	}
 }
 
 void _eWarning(const char *file, int line, const char *function, const char* fmt, ...)
@@ -197,21 +299,30 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 	char timebuffer[32];
 	char header[256];
 	char buf[1024];
+	char ncbuf[1024];
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, ap);
+	removeAnsiEsc(buf, ncbuf);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(header) + std::string(buf) + "\n");
+	logOutput(lvlWarning, std::string(header) + std::string(ncbuf) + "\n");
 	if (logOutputConsole)
 	{
-		if (logOutputColors)
+		if (!logOutputColors)
+			fprintf(stderr, "%s%s", header, ncbuf);
+		else
 		{
-			snprintf(header, sizeof(header), "\e[31;1m%s \e[32;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+			snprintf(header, sizeof(header),	\
+				ANSI_BLINK ANSI_BYELLOW	"%s "	/*color of timestamp*/\
+				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
+				ANSI_BGREEN	"%s "		/*color of functionname*/\
+				ANSI_BWHITE			/*color of debugmessage*/\
+				, timebuffer, file, line, function);
+			fprintf(stderr, "%s%s\n"ANSI_RESET, header, buf);
 		}
-		fprintf(stderr, "%s%s\n", header, buf);
 	}
 }
 #endif // DEBUG
@@ -222,18 +333,33 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 #ifdef DEBUG
 	char timebuffer[32];
 	char header[256];
+	char buf[1024];
+	char ncbuf[1024];
+	bool is_alert = false;
+
+	if(strstr(file, "e2reactor.py") || strstr(file, "traceback.py"))
+		is_alert = true;
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
+	snprintf(buf, sizeof(buf), "%s", string);
+	removeAnsiEsc(buf, ncbuf);
+	is_alert |= findAlertToken(ncbuf);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(header) + std::string(string));
+	logOutput(lvlWarning, std::string(header) + std::string(ncbuf));
 	if (logOutputConsole)
 	{
-		if (logOutputColors)
+		if (!logOutputColors)
+			fprintf(stderr, "%s%s", header, ncbuf);
+		else
 		{
-			snprintf(header, sizeof(header), "\e[31;1m%s \e[34;1m%s:%d \e[33;1m%s\e[30;1m ", timebuffer, file, line, function);
+			snprintf(header, sizeof(header),	\
+						"%s%s "		/*color of timestamp*/\
+				ANSI_CYAN	"%s:%d "	/*color of filename and linenumber*/\
+				ANSI_BCYAN	"%s "		/*color of functionname*/\
+				ANSI_BWHITE			/*color of debugmessage*/\
+				, is_alert?ANSI_BRED:ANSI_WHITE, timebuffer, file, line, function);
+			fprintf(stderr, "%s%s"ANSI_RESET, header, buf);
 		}
-		fwrite(header, 1, strlen(header), stderr);
-		fwrite(string, 1, strlen(string), stderr);
 	}
 #endif
 }
