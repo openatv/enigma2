@@ -106,6 +106,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_LAST_TO_KEY_BACK
+	if (ev->code == KEY_LAST)
+	{
+		/* sf108 Remote rc has a Funktion key, which sends KEY_LAST events but we need a KEY_BACK. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_BACK;
+	}
+#endif
+
 #if KEY_MEDIA_TO_KEY_LIST
 	if (ev->code == KEY_MEDIA)
 	{
