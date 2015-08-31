@@ -85,7 +85,9 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
-	LD_PRELOAD=$LIBS @bindir@/enigma2
+	#LD_PRELOAD=$LIBS @bindir@/enigma2
+	#on regular start of enigma2 pipe to /dev/null instead of serialport
+	LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
 fi
 
 # enigma2 exit codes:
