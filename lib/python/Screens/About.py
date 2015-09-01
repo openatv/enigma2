@@ -265,7 +265,8 @@ class CommitInfo(Screen):
 		from urllib2 import urlopen
 		try:
 			commitlog += 80 * '-' + '\n'
-			commitlog += self.projects[self.project][1] + ' - ' + self.projects[self.project][2] + '\n'
+			commitlog += self.projects[self.project][2] + ' - ' + self.projects[self.project][1] + ' - branch:' + self.projects[self.project][3] + '\n'
+			commitlog += 'URL: https://github.com/' + self.projects[self.project][0] + '/' + self.projects[self.project][1] + '/tree/' + self.projects[self.project][3] + '\n'
 			commitlog += 80 * '-' + '\n'
 			for c in loads(urlopen(url, timeout=5).read()):
 				creator = c['commit']['author']['name']
