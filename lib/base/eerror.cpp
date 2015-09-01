@@ -92,14 +92,20 @@ static char *alertToken[] = {
 	"not available",
 	"no module",
 	"no such file",
-	"cannot"
+	"cannot",
+	NULL		//end of list
 };
 
+static char *warningToken[] = {
+// !!! all strings must be written in lower case !!!
+	"warning",
+	NULL		//end of list
+};
 
-bool findAlertToken(char *src)
+bool findToken(char *src, char **list)
 {
 	bool res = false;
-	if(!src)
+	if(!src || !list)
 		return res;
 
 	char *tmp = new char[strlen(src)+1];
@@ -110,9 +116,9 @@ bool findAlertToken(char *src)
 		tmp[idx] = tolower(src[idx]);
 	}while(src[idx++]);
 
-	for(idx=0; idx < sizeof(alertToken)/sizeof(char*); idx++)
+	for(idx=0; list[idx]; idx++)
 	{
-		if(strstr(tmp, alertToken[idx]))
+		if(strstr(tmp, list[idx]))
 		{
 			res = true;
 			break;
@@ -198,6 +204,7 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 	char buf[1024];
 	char ncbuf[1024];
 	bool is_alert = false;
+	bool is_warning = false;
 
 	printtime(timebuffer, sizeof(timebuffer));
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
@@ -206,7 +213,9 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	removeAnsiEsc(buf, ncbuf);
-	is_alert = findAlertToken(ncbuf);
+	is_alert = findToken(ncbuf, alertToken);
+	if(!is_alert)
+		is_warning = findToken(ncbuf, warningToken);
 	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(header) + std::string(ncbuf) + "\n");
 	if (logOutputConsole)
@@ -220,7 +229,7 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
 				ANSI_BGREEN	"%s "		/*color of functionname*/\
 				ANSI_BWHITE			/*color of debugmessage*/\
-				, is_alert?ANSI_BRED:ANSI_WHITE, timebuffer, file, line, function);
+				, is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
 			fprintf(stderr, "%s%s\n"ANSI_RESET, header, buf);
 		}
 	}
@@ -336,6 +345,7 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 	char buf[1024];
 	char ncbuf[1024];
 	bool is_alert = false;
+	bool is_warning = false;
 
 	if(strstr(file, "e2reactor.py") || strstr(file, "traceback.py"))
 		is_alert = true;
@@ -343,7 +353,9 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	snprintf(buf, sizeof(buf), "%s", string);
 	removeAnsiEsc(buf, ncbuf);
-	is_alert |= findAlertToken(ncbuf);
+	is_alert |= findToken(ncbuf, alertToken);
+	if(!is_alert)
+		is_warning = findToken(ncbuf, warningToken);
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, std::string(header) + std::string(ncbuf));
 	if (logOutputConsole)
@@ -357,7 +369,7 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 				ANSI_CYAN	"%s:%d "	/*color of filename and linenumber*/\
 				ANSI_BCYAN	"%s "		/*color of functionname*/\
 				ANSI_BWHITE			/*color of debugmessage*/\
-				, is_alert?ANSI_BRED:ANSI_WHITE, timebuffer, file, line, function);
+				, is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
 			fprintf(stderr, "%s%s"ANSI_RESET, header, buf);
 		}
 	}
