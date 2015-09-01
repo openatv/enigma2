@@ -80,6 +80,7 @@ class ServiceInfo(Screen):
 		}, -1)
 
 		if serviceref:
+			Screen.setTitle(self, _("Transponder Information"))
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
@@ -88,6 +89,7 @@ class ServiceInfo(Screen):
 			self.info = None
 			self.feinfo = None
 		else:
+			Screen.setTitle(self, _("Service Information"))
 			self.type = TYPE_SERVICE_INFO
 			self["key_red"] = self["red"] = Label(_("Service"))
 			self["key_green"] = self["green"] = Label(_("PIDs"))
