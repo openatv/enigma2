@@ -319,6 +319,7 @@
 		<item level="2" text="Enable Autorecord" description="If set to 'yes', enable autorecord for automatically background timeshift">config.timeshift.autorecord</item>
 		<item level="1" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
+		<item level="2" text="Show status messages when switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showlivetvmsg</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop timeshift while recording?" description="Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)">config.timeshift.stopwhilerecording</item>
 		<item level="2" text="Use timeshift seekbar while timeshifting?" description="If set to 'yes', allows you use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>

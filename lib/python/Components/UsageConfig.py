@@ -505,6 +505,7 @@ def InitUsageConfig():
 	config.timeshift.timeshiftCheckFreeSpace = ConfigSelection(default = "0", choices = [("0", _("No")), ("1024", _("1 GB")),("2048", _("2 GB")),("4096", _("4 GB")),("8192", _("8 GB")),])
 	config.timeshift.deleteAfterZap = ConfigYesNo(default = True)
 	config.timeshift.filesplitting = ConfigYesNo(default = True)
+	config.timeshift.showlivetvmsg = ConfigYesNo(default = True)
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")

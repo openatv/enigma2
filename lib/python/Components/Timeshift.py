@@ -285,7 +285,7 @@ class InfoBarTimeshift:
 			self.posDiff = 0
 			if self.pts_FileJump_timer.isActive():
 				self.pts_FileJump_timer.stop()
-				Notifications.AddNotification(MessageBox, _("First playable timeshift file!"), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("First playable timeshift file!"), MessageBox.TYPE_INFO, timeout=3)
 			if not self.pts_FileJump_timer.isActive():
 				self.pts_FileJump_timer.start(5000, True)
 			return
@@ -337,8 +337,8 @@ class InfoBarTimeshift:
 			self.pts_CheckFileChanged_timer.start(1000, False)
 			self.pts_file_changed = False
 		else:
-			if not int(config.timeshift.startdelay.value):
-				Notifications.AddNotification(MessageBox, _("Switching to live TV - timeshift is still active!"), MessageBox.TYPE_INFO, timeout=5)
+			if not int(config.timeshift.startdelay.value) and config.timeshift.showlivetvmsg.value:
+				Notifications.AddNotification(MessageBox, _("Switching to live TV - timeshift is still active!"), MessageBox.TYPE_INFO, timeout=3)
 			self.posDiff = 0
 			self.pts_lastposition = 0
 			self.pts_currplaying -= 1
@@ -1506,11 +1506,12 @@ class InfoBarTimeshift:
 
 		if self.pts_CheckFileChanged_counter >= 5 and not self.pts_file_changed:
 			if self.pts_switchtolive:
-				self.ptsAskUser("livetv")
+				if config.timeshift.showlivetvmsg.value:
+					self.ptsAskUser("livetv")
 			elif self.pts_lastplaying <= self.pts_currplaying:
 				self.ptsAskUser("nextfile")
 			else:
-				Notifications.AddNotification(MessageBox, _("Can't play the previous timeshift file! You can try again."), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Can't play the previous timeshift file! You can try again."), MessageBox.TYPE_INFO, timeout=3)
 				self.doSeek(0)
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				#self.pts_firstplayable = self.pts_lastplaying
