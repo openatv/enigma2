@@ -257,7 +257,7 @@ class CommitInfo(Screen):
 		self.Timer.start(50, True)
 
 	def readGithubCommitLogs(self):
-		url = 'https://api.github.com/repos/%s/%s/commits?branch=%s' % (self.projects[self.project][0], self.projects[self.project][1], self.projects[self.project][3])
+		url = 'https://api.github.com/repos/%s/%s/commits?sha=%s' % (self.projects[self.project][0], self.projects[self.project][1], self.projects[self.project][3])
 		# print "[About] url: ", url
 		commitlog = ""
 		from datetime import datetime
