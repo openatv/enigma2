@@ -1253,6 +1253,16 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		else:
 			self.startScan(self.tlist, self.flags, self.feid)
 
+	def setTerrestrialTransponderSearchResult(self, tlist):
+		if tlist is not None:
+			self.tlist.extend(tlist)
+
+	def terrestrialTransponderSearchFinished(self):
+		if self.tlist is None:
+			self.tlist = []
+		else:
+			self.startScan(self.tlist, self.flags, self.feid)
+
 	def predefinedTranspondersList(self, orbpos):
 		default = None
 		if orbpos is not None:
