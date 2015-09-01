@@ -85,7 +85,12 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
-	LD_PRELOAD=$LIBS @bindir@/enigma2
+	# in case $TERM is "linux" the serial output is activated - discard debug output
+	if [ "$TERM" = linux ]; then
+		LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
+	else
+		LD_PRELOAD=$LIBS @bindir@/enigma2
+	fi
 fi
 
 # enigma2 exit codes:

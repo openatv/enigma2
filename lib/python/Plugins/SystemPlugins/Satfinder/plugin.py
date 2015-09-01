@@ -29,7 +29,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.typeOfInputEntry = None
 
 		ScanSetup.__init__(self, session)
-		self.setTitle(_("Satfinder"))
+		self.setTitle(_("Signal Finder"))
 		self["introduction"].setText(_("Press OK to scan"))
 		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
 
@@ -425,7 +425,7 @@ def SatfinderMain(session, close=None, **kwargs):
 		if n.config_mode  in ("loopthrough", "satposdepends", "nothing"):
 			continue
 		if n.isCompatible("DVB-S") and n.config_mode == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
-				continue
+			continue
 		nimList.append(n)
 
 	if len(nimList) == 0:
@@ -435,12 +435,12 @@ def SatfinderMain(session, close=None, **kwargs):
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Satfinder"), SatfinderMain, "satfinder", None)]
+		return [(_("Signal Finder"), SatfinderMain, "satfinder", None)]
 	else:
 		return []
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-S") or nimmanager.hasNimType("DVB-T") or nimmanager.hasNimType("DVB-C"):
-		return PluginDescriptor(name=_("Satfinder"), description=_("Helps setting up your antenna"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
+		return PluginDescriptor(name=_("Signal Finder"), description=_("Helps setting up your signal"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
 	else:
 		return []
