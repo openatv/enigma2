@@ -207,6 +207,8 @@ class EPGFetcher(object):
                 stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = stop - start
             title = show.get("title", "").encode("utf8")
+            if "previously-shown" in show:
+                title += " [Rpt]"
             short = show.get("subtitle", "").encode("utf8")
             extended = show.get("desc", "").encode("utf8")
             res[channel_id].append((start, duration, title, short, extended, 0, event_id))
