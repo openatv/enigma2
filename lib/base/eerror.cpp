@@ -321,7 +321,7 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 	if (logOutputConsole)
 	{
 		if (!logOutputColors)
-			fprintf(stderr, "%s%s", header, ncbuf);
+			fprintf(stderr, "%s%s\n", header, ncbuf);
 		else
 		{
 			snprintf(header, sizeof(header),	\
