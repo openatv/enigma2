@@ -325,7 +325,7 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 		else
 		{
 			snprintf(header, sizeof(header),	\
-				ANSI_BLINK ANSI_BYELLOW	"%s "	/*color of timestamp*/\
+				ANSI_BYELLOW	"%s "	/*color of timestamp*/\
 				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
 				ANSI_BGREEN	"%s "		/*color of functionname*/\
 				ANSI_BWHITE			/*color of debugmessage*/\
