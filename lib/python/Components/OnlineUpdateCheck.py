@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild
+from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild, getImageType
 
 from time import time
 from boxbranding import getImageVersion
@@ -26,6 +26,10 @@ class FeedsStatusCheck:
 		self.ipkg.addCallback(self.ipkgCallback)
 
 	def getFeedSatus(self):
+		status = '1'
+		if getImageType() == 'developer':
+			config.softwareupdate.updateisunstable.setValue(status)
+			return 'stable'
 		trafficLight = 'unknown'
 		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wlan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
 			try:
@@ -41,7 +45,6 @@ class FeedsStatusCheck:
 			except urllib2, err:
 				print 'ERROR:',err
 				trafficLight = err
-			status = '1'
 			if trafficLight == 'stable':
 				status = '0'
 			config.softwareupdate.updateisunstable.setValue(status)
