@@ -136,7 +136,7 @@ class UpdatePlugin(Screen):
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = None
 				self.total_packages = len(self.ipkg.getFetchedList())
-				message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
+				message = _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [
@@ -145,7 +145,9 @@ class UpdatePlugin(Screen):
 						# (_("Upgrade and reboot system"), "cold")
 					]
 					choices.append((_("Cancel"), ""))
-					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices")
+					if self.total_packages > 200:
+						message += "\n" + _("You should consider a full USB update instead.")
+					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, text=message, list=choices, skin_name="SoftwareUpdateChoices")
 					upgrademessage.setTitle(_('Software update'))
 				else:
 					upgrademessage = self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -196,14 +198,14 @@ class UpdatePlugin(Screen):
 			return
 
 		if answer[1] == "menu":
-			message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
+			message = _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [
 				(_("View the changes"), "showlist"),
 				(_("Update and ask to reboot"), "hot"),
 				# (_("Upgrade and reboot system"), "cold")
 			]
 			choices.append((_("Cancel"), ""))
-			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices")
+			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, text=message, list=choices, skin_name="SoftwareUpdateChoices")
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "showlist":
 			format = "%-38.38s %-32.32s %-32.32s\n"

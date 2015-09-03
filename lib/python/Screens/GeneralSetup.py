@@ -252,7 +252,7 @@ class GeneralSetup(Screen):
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Front panel settings", _("Front panel setup"), _("Set up your front panel")))
 		if SystemInfo["GraphicLCD"]:
-			self.sublist.append(QuickSubMenuEntryComponent("Display skin", _("Skin setup"), _("Set up your display skin")))
+			self.sublist.append(QuickSubMenuEntryComponent("Front panel skin", _("Skin setup"), _("Set up your front panel skin")))
 		if SystemInfo["Fan"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Fan settings", _("Fan setup"), _("Set up your fan")))
 		self.sublist.append(QuickSubMenuEntryComponent("Remote control code settings", _("Remote control code setup"), _("Set up your remote control")))
@@ -474,7 +474,7 @@ class GeneralSetup(Screen):
 			self.openSetup("display")
 		elif selected == _("Skin setup"):
 			self.session.open(SkinSelector)
-		elif selected == _("Display skin"):
+		elif selected == _("Front panel skin"):
 			self.session.open(LcdSkinSelector)
 		elif selected == _("GUI settings"):
 			self.openSetup("userinterface")
