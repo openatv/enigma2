@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from Screens.ChannelSelection import ChannelSelectionBase
+from Screens.ChannelSelection import *
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigNothing
