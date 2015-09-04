@@ -725,11 +725,8 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			uint8_t *srcptr=(uint8_t*)src.surface->data;
 			uint8_t *dstptr=(uint8_t*)surface->data;
 
-			srcptr+=srcarea.left()+srcarea.top()*src.surface->stride;
-			dstptr+=area.left()+area.top()*surface->stride;
-
-			if (flag & blitAlphaBlend)
-				eWarning("[gPixmap] ignore unsupported 32bpp -> 16bpp alphablend!");
+			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
+			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 
 			for (int y=0; y<area.height(); y++)
 			{
@@ -737,7 +734,44 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				uint32_t *srcp=(uint32_t*)srcptr;
 				uint16_t *dstp=(uint16_t*)dstptr;
 
-				if (flag & blitAlphaTest)
+				if (flag & blitAlphaBlend)
+				{
+					while (width--)
+					{
+						if (!((*srcp)&0xFF000000))
+						{
+							srcp++;
+							dstp++;
+						} else
+						{
+							gRGB icol = *srcp++;
+#if BYTE_ORDER == LITTLE_ENDIAN
+							uint32_t jcol = bswap_16(*dstp);
+#else
+							uint32_t jcol = *dstp;
+#endif
+							int bg_b = (jcol >> 8) & 0xF8;
+							int bg_g = (jcol >> 3) & 0xFC;
+							int bg_r = (jcol << 3) & 0xF8;
+
+							int a = icol.a;
+							int r = icol.r;
+							int g = icol.g;
+							int b = icol.b;
+
+							r = ((r-bg_r)*a)/255 + bg_r;
+							g = ((g-bg_g)*a)/255 + bg_g;
+							b = ((b-bg_b)*a)/255 + bg_b;
+
+#if BYTE_ORDER == LITTLE_ENDIAN
+							*dstp++ = bswap_16( (b >> 3) << 11 | (g >> 2) << 5 | r  >> 3 );
+#else
+							*dstp++ = (b >> 3) << 11 | (g >> 2) << 5 | r  >> 3 ;
+#endif
+						}
+					}
+				}
+				else if (flag & blitAlphaTest)
 				{
 					while (width--)
 					{
