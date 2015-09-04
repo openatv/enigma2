@@ -7,6 +7,8 @@
 #include <lib/gdi/picexif.h>
 
 extern "C" {
+#define HAVE_BOOLEAN
+#define boolean int
 #include <jpeglib.h>
 #include <gif_lib.h>
 }
