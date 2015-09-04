@@ -157,7 +157,7 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 		break;
 	case 0x00240041:
 		session=new eDVBCIDateTimeSession;
-		eDebug("[CI SESS] DATE-TIME");
+		eDebug("DATE-TIME");
 		break;
 	case 0x00400041:
 		session = new eDVBCIMMISession(slot);
