@@ -4159,7 +4159,7 @@ class InfoBarAspectSelection:
 		tlist.append((_("Resolution"), "resolution"))
 		tlist.append(("--", ""))
 		try:
-			policy = open("/proc/stb/video/policy_choices").read()[:-1]
+			policy = open("/proc/stb/video/policy_choices").read()[:-1].rstrip()
 		except IOError:
 			print "couldn't read available policymodes."
 			policy_available = [ ]
