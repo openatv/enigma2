@@ -110,7 +110,7 @@ class picshow(Screen):
 			self.session.open(Pic_Exif, self.picload.getInfo(self.filelist.getCurrentDirectory() + self.filelist.getFilename()))
 
 	def KeyMenu(self):
-		self.session.openWithCallback(self.setConf ,Pic_Setup)
+		self.session.openWithCallback(self.setConf, Pic_Setup)
 
 	def KeyOk(self):
 		if self.filelist.canDescent():
@@ -468,6 +468,7 @@ class Pic_Full_View(Screen):
 			"left": self.prevPic,
 			"right": self.nextPic,
 			"showEventInfo": self.StartExif,
+			"contextMenu": self.KeyMenu,
 		}, -1)
 
 		self["point"] = Pixmap()
@@ -511,13 +512,16 @@ class Pic_Full_View(Screen):
 			self.onLayoutFinish.append(self.setPicloadConf)
 
 	def setPicloadConf(self):
-		sc = getScale()
-		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
-
+		self.setConf()
 		self["play_icon"].hide()
 		if config.pic.infoline.value == False:
 			self["file"].setText("")
 		self.start_decode()
+
+	def setConf(self, retval=None):
+		sc = getScale()
+		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
+		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
 
 	def ShowPicture(self):
 		if self.shownow and len(self.currPic):
@@ -594,6 +598,9 @@ class Pic_Full_View(Screen):
 		if self.maxentry < 0:
 			return
 		self.session.open(Pic_Exif, self.picload.getInfo(self.filelist[self.lastindex]))
+
+	def KeyMenu(self):
+		self.session.openWithCallback(self.setConf, Pic_Setup)
 
 	def Exit(self):
 		del self.picload
