@@ -13,7 +13,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 
 import xml.etree.cElementTree
 
-from Screens.Setup import Setup, getSetupTitle
+from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 
 mainmenu = _("Main menu")
 
@@ -178,6 +178,8 @@ class Menu(Screen, ProtectedScreen):
 			elif x.tag == 'setup':
 				id = x.get("id")
 				if item_text == "":
+					if getSetupTitleLevel(id) > config.usage.setup_level.index:
+						return
 					item_text = _(getSetupTitle(id))
 				else:
 					item_text = _(item_text)
@@ -200,8 +202,10 @@ class Menu(Screen, ProtectedScreen):
 					self.addItem(list, x)
 					count += 1
 			elif x.tag == 'menu':
-				self.addMenu(list, x)
-				count += 1
+				item_level = int(x.get("level", 0))
+				if item_level <= config.usage.setup_level.index:
+					self.addMenu(list, x)
+					count += 1
 			elif x.tag == "id":
 				menuID = x.get("val")
 				count = 0

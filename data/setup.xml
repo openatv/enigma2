@@ -96,7 +96,7 @@
 		<item level="1" text="Service info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.serviceinfo_fontsize</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Setup how to control the channel changing.">config.misc.zapmode</item>
 	</setup>
-	<setup key="epgsettings" title="EPG settings">
+	<setup level="2" key="epgsettings" title="EPG settings">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
 		<item level="2" text="Automatic refresh" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
@@ -115,7 +115,7 @@
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 	</setup>
-	<setup key="subtitlesetup" title="Subtitle settings">
+	<setup level="2" key="subtitlesetup" title="Subtitle settings">
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>
 		<item level="2" text="Rewrap subtitles" description="When enabled, reformat subtitles to match the width of the screen.">config.subtitles.subtitle_rewrap</item>
@@ -137,7 +137,7 @@
 		<item level="2" text="HI-cleanup for external subtitles" description="Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard).">config.subtitles.pango_subtitle_removehi</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will be always turned on for playback movie.">config.subtitles.pango_autoturnon</item>
 	</setup>
-	<setup key="autolanguagesetup" title="Auto language selection">
+	<setup level="1" key="autolanguagesetup" title="Auto language selection">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
 		<item level="1" text="Audio language selection 2" description="Configure the second audio language.">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" description="Configure the third audio language.">config.autolanguage.audio_autoselect3</item>
@@ -212,7 +212,7 @@
 		<item text="Nameserver" description="Configure the nameserver (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
-	<setup key="RFmod" title="RF output">
+	<setup level="1" key="RFmod" title="RF output">
 		<item level="1" text="Modulator">config.rfmod.enable</item>
 		<item level="2" text="Test mode">config.rfmod.test</item>
 		<item level="2" text="Sound">config.rfmod.sound</item>
@@ -274,7 +274,7 @@
 		<item text="Latitude" description="Configure the latitude of your location.">config.sat.diseqcb</item>
 		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)." >config.sat.diseqcc</item>
 	</setup>
-	<setup key="softwareupdate" title="Softwareupdate">
+	<setup level="1" key="softwareupdate" title="Softwareupdate">
 		<item level="1" text="Background check" description="Perform an online update check in the background">config.softwareupdate.check</item>
 		<item level="1" text="Check every (hours)" description="Setup the interval to check for online updates. (in hours)" requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
 		<item level="1" text="Allow unstable (untested) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item>
@@ -300,11 +300,11 @@
 		<item level="0" text="Select Yellow Key Action long" description="Select what you want the YELLOW-Long button to activate:">config.plugins.infopanel_yellowkey.listLong</item>
 		<item level="0" text="BlueSwitch: Blue-Short/Blue-Long" description="Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)">config.workaround.blueswitch</item>
 		</setup>
-	<setup key="softcamsetup" title="Softcam settings">
+	<setup level="2" key="softcamsetup" title="Softcam settings">
 		<item level="2" text="Show CCcam in extensions ?" description="Allows you to show/hide CCcam in extensions (blue button).">config.cccaminfo.showInExtensions</item>
 		<item level="2" text="Show OScam in extensions ?" description="Allows you to show/hide OScam in extensions (blue button).">config.oscaminfo.showInExtensions</item>
 	</setup>
-	<setup key="logs" title="Logs settings">
+	<setup level="2" key="logs" title="Logs settings">
 		<item level="2" text="Logs location" description="Choose the location for crash and debuglogs.">config.crash.debug_path</item>
 		<item level="2" text="Enable debug log" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
@@ -315,7 +315,7 @@
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
-	<setup key="timeshift" title="Timeshift settings">
+	<setup level="1" key="timeshift" title="Timeshift settings">
 		<item level="2" text="Enable Autorecord" description="If set to 'yes', enable autorecord for automatically background timeshift">config.timeshift.autorecord</item>
 		<item level="1" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
@@ -330,12 +330,12 @@
 		<item level="2" text="Timeshift buffer delete after zap?" description="If set to 'no', can you save older events even after zapping or interruption of the timeshift.">config.timeshift.deleteAfterZap</item>
 		<item level="2" text="Timeshift event based file splitting" description="If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust.">config.timeshift.filesplitting</item>
 	</setup>
-	<setup key="epgsingle" title="ChannelEPG settings">
+	<setup level="2" key="epgsingle" title="ChannelEPG settings">
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="epgmulti" title="MultiEPG settings">
+	<setup level="2" key="epgmulti" title="MultiEPG settings">
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.multi_preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.multi_showbouquet</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
@@ -345,7 +345,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.multi_eventfs</item>
 	</setup>
-	<setup key="epgenhanced" title="SingleEPG settings">
+	<setup level="2" key="epgenhanced" title="SingleEPG settings">
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.enhanced_preview_mode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
@@ -354,7 +354,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="epginfobar" title="InfobarEPG settings">
+	<setup level="2" key="epginfobar" title="InfobarEPG settings">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
@@ -364,7 +364,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="epginfobargraphical" title="Graphical InfobarEPG settings">
+	<setup level="2" key="epginfobargraphical" title="Graphical InfobarEPG settings">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.infobar_servicetitle_mode</item>
@@ -384,7 +384,7 @@
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.infobar_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
-	<setup key="epggraphical" title="GraphicalEPG settings">
+	<setup level="2" key="epggraphical" title="GraphicalEPG settings">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.graph_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.graph_preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.graph_showbouquet</item>
@@ -412,8 +412,8 @@
 	<setup key="dvdplayer" title="DVD-Player Setup">
 		<item level="0" text="Show DVD-Player in Mainmenu when BMC is installed ?" description="Show DVD-Player in Mainmenu">config.usage.show_dvdplayer</item>
 	</setup>
-	<setup key="pluginbrowsersetup" title="Pluginbrowser Settings">
+	<setup level="2" key="pluginbrowsersetup" title="Pluginbrowser Settings">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
 	</setup>
-</setupxml>
+	</setupxml>
