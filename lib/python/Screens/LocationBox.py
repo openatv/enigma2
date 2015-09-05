@@ -88,6 +88,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Initialize Target
 		self["target"] = Label()
+		self["targetfreespace"] = Label()
 
 		if self.userMode:
 			self.usermodeOn()
@@ -381,6 +382,13 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Write Combination of Folder & Filename when Folder is valid
 		currFolder = self.getPreferredFolder()
 		if currFolder is not None:
+			free = ""
+			try:
+				stat = os.statvfs(currFolder)
+				free = ("(%0.1f GB " + _("free") + ")") % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024)
+			except:
+				pass
+			self["targetfreespace"].setText(free)
 			self["target"].setText(''.join((currFolder, self.filename)))
 		# Display a Warning otherwise
 		else:
