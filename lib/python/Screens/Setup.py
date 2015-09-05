@@ -223,7 +223,7 @@ class Setup(ConfigListScreen, Screen):
 					self.onNotifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
-				if item_level > self.onNotifiers.index:
+				if item_level > config.usage.setup_level.index:
 					continue
 
 				requires = x.get("requires")
