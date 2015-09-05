@@ -50,9 +50,9 @@
 		</menu>
 
 		<!-- Menu / Settings / Audio Menu -->
-		<menu weight="5" level="0" text="Audio" entryID="audio_menu">
+		<menu weight="5" level="1" text="Audio" entryID="audio_menu">
 			<id val="audio_menu" />
-			<item weight="0" level="0" text="Basic settings" entryID="audio_setup"><screen module="VideoMode" screen="AudioSetup" /></item>
+			<item weight="0" level="1" text="Basic settings" entryID="audio_setup"><screen module="VideoMode" screen="AudioSetup" /></item>
 			<item weight="10" level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 			<item weight="15" level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 		</menu>
