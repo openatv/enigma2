@@ -819,7 +819,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					frontend.setData(eDVBFrontend::LFSR, lfsr);
 					tunetimeout += (lfsr & 0x3FF);		// add random value 0..1023 ms
 				}
-				eDebugNoSimulate("tune timeout %dms");
+				eDebugNoSimulate("tune timeout %dms", tunetimeout);
 
 				if((oldSatcr != -1) && (oldSatcr != lnb_param.SatCR_idx))
 				{
