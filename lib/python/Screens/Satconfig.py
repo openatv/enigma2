@@ -747,7 +747,7 @@ class SelectSatsEntryScreen(Screen):
 			<ePixmap pixmap="skin_default/div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphatest="on" />
 			<widget name="hint" position="10,380" size="540,25" font="Regular;19" halign="center" transparent="1" />
 		</screen>"""
-	def __init__(self, session, userSatlist=[]):
+	def __init__(self, session, userSatlist=""):
 		Screen.__init__(self, session)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
@@ -755,9 +755,14 @@ class SelectSatsEntryScreen(Screen):
 		self["key_blue"] = Button(_("Select all"))
 		self["hint"] = Label(_("Press OK to toggle the selection"))
 		SatList = []
+		if not isinstance(userSatlist, str):
+			userSatlist = ""
+		else:
+			userSatlist = userSatlist.replace("]", "").replace("[", "")
 		for sat in nimmanager.getSatList():
 			selected = False
-			if isinstance(userSatlist, str) and str(sat[0]) in userSatlist:
+			sat_str = str(sat[0])
+			if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))):
 				selected = True
 			SatList.append((sat[0], sat[1], sat[2], selected))
 		sat_list = [SelectionEntryComponent(x[1], x[0], x[2], x[3]) for x in SatList]
