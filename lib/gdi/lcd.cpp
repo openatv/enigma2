@@ -268,6 +268,7 @@ void eDBoxLCD::update()
 		}
 		else
 		{
+			FILE *file;
 			if ((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL )
 			{
 				//gggrrrrrbbbbbggg bit order from memory
