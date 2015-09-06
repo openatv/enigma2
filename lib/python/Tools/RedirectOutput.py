@@ -16,7 +16,7 @@ class EnigmaOutput:
 				filename = filename.replace('/usr/lib/enigma2/python/', '')
 			elif '/git/' in filename:
 				filename = filename.split('/git/')[1]
-			ePythonOutput(filename, sys._getframe(1).f_code.co_firstlineno, sys._getframe(1).f_code.co_name, self.buf)
+			ePythonOutput(filename, sys._getframe(1).f_lineno, sys._getframe(1).f_code.co_name, self.buf)
 			self.buf = ''
 		else:
 			self.buf += data
