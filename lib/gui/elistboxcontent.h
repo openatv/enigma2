@@ -55,11 +55,9 @@ class eListboxPythonConfigContent: public eListboxPythonStringContent
 public:
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	void setSeperation(int sep) { m_seperation = sep; }
-	void setItemHeight(int height) { m_itemheight = height; }
 	int currentCursorSelectable();
 private:
 	int m_seperation;
-	int m_itemheight;
 };
 
 class eListboxPythonMultiContent: public eListboxPythonStringContent
