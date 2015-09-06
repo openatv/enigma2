@@ -61,7 +61,7 @@
 			<item weight="25" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
 			<!-- Menu / Settings / CAM/CI Menu -->
-			<menu weight="30" text="CAM/CI" entryID="cam_setup">
+			<menu weight="30" level="1" text="CAM/CI" entryID="cam_setup">
 				<id val="cam" />
 				<item weight="0" level="1" text="CI" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 				<item weight="5" level="1" text="CI PIN" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
@@ -101,7 +101,7 @@
 					<item weight="0" level="0" text="Basic settings" entryID="epg_settings"><setup id="epgsettings" /></item>
 					<menu weight="10" level="2" text="Manual load or save epg.dat" entryID="epgloadsave_menu">
 						<id val="epgloadsave_menu" />
-						<item weight="0" level="0" entryID="loadepgcache" text="Load EPG">
+						<item weight="0" level="2" entryID="loadepgcache" text="Load EPG">
 							<code>
 from Components.EpgLoadSave import EpgLoadMsg
 def msgClosed(ret):
@@ -112,7 +112,7 @@ def msgClosed(ret):
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
 </code>
 						</item>
-						<item weight="50" level="0" entryID="saveepgcache" text="Save EPG">
+						<item weight="50" level="2" entryID="saveepgcache" text="Save EPG">
 							<code>
 from Components.EpgLoadSave import EpgSaveMsg
 def msgClosed(ret):
@@ -145,7 +145,7 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 						<item weight="15" level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 						<item weight="20" level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 					</menu>
-					<item weight="10" text="Keyboard"><setup id="keyboard" /></item>
+					<item weight="10" level="1" text="Keyboard"><setup id="keyboard" /></item>
 					<item weight="15" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				</menu>
 
@@ -163,7 +163,7 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 					<id val="system_menu" />
 				</menu> -->
 
-				<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
+				<item weight="99" level="1" text="Factory reset" entryID="factory_reset">
 					<code>
 from Screens.FactoryReset import FactoryReset
 def msgClosed(ret):
@@ -182,7 +182,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		</menu>
 
 		<!-- Menu / Standby/Restart -->
-		<menu weight="25" text="Standby / restart" entryID="standby_restart_list">
+		<menu weight="25" level="0" text="Standby / restart" entryID="standby_restart_list">
 			<id val="shutdown" />
 			<item weight="0" level="0" text="Deep standby" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item weight="5" level="0" text="WOL standby" requires="GBWOL" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">43</screen></item>			

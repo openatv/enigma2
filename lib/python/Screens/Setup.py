@@ -154,7 +154,7 @@ class Setup(ConfigListScreen, Screen):
 					self.onNotifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
-				if item_level > self.onNotifiers.index:
+				if item_level > config.usage.setup_level.index:
 					continue
 
 				requires = x.get("requires")
@@ -186,3 +186,14 @@ def getSetupTitle(id):
 		if x.get("key") == id:
 			return x.get("title", "").encode("UTF-8")
 	raise SetupError("unknown setup id '%s'!" % repr(id))
+
+def getSetupTitleLevel(id):
+	try:
+		xmldata = setupdom().getroot()
+		for x in xmldata.findall("setup"):
+			if x.get("key") == id:
+				return int(x.get("level", 0))
+		raise SetupError("unknown setup level id '%s'!" % repr(id))
+		return 0
+	except:
+		pass
