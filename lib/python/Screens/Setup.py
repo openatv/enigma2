@@ -188,8 +188,12 @@ def getSetupTitle(id):
 	raise SetupError("unknown setup id '%s'!" % repr(id))
 
 def getSetupTitleLevel(id):
-	xmldata = setupdom().getroot()
-	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
-			return int(x.get("level", 0))
-	return 0
+	try:
+		xmldata = setupdom().getroot()
+		for x in xmldata.findall("setup"):
+			if x.get("key") == id:
+				return int(x.get("level", 0))
+		raise SetupError("unknown setup level id '%s'!" % repr(id))
+		return 0
+	except:
+		pass
