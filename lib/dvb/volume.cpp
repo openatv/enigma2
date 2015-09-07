@@ -6,7 +6,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#if HAVE_DVB_API_VERSION < 3
+#include <linux/dvb/version.h>
+#if DVB_API_VERSION < 3
 #define VIDEO_DEV "/dev/dvb/card0/video0"
 #define AUDIO_DEV "/dev/dvb/card0/audio0"
 #include <ost/audio.h>
@@ -142,7 +143,7 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	int fd = openMixer();
 	if (fd >= 0)
 	{
-#ifdef HAVE_DVB_API_VERSION
+#ifdef DVB_API_VERSION
 		if (ioctl(fd, AUDIO_SET_MIXER, &mixer) < 0) {
 			eDebug("[eDVBVolumecontrol] Setvolume failed: %m");
 		}
@@ -179,7 +180,7 @@ void eDVBVolumecontrol::volumeMute()
 	int fd = openMixer();
 	if (fd >= 0)
 	{
-#ifdef HAVE_DVB_API_VERSION
+#ifdef DVB_API_VERSION
 		ioctl(fd, AUDIO_SET_MUTE, true);
 #endif
 		closeMixer(fd);
@@ -201,7 +202,7 @@ void eDVBVolumecontrol::volumeUnMute()
 	int fd = openMixer();
 	if (fd >= 0)
 	{
-#ifdef HAVE_DVB_API_VERSION
+#ifdef DVB_API_VERSION
 		ioctl(fd, AUDIO_SET_MUTE, false);
 #endif
 		closeMixer(fd);
