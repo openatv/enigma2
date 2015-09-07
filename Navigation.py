@@ -97,7 +97,10 @@ class Navigation:
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
 			print "-"*100
-			print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
+			if self.wakeuptime > 0:
+				print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
+			else:
+				print "[NAVIGATION] wakeup time was not set"
 			if now <= 31536000:
 				self.timesynctimer = eTimer()
 				self.timesynctimer.callback.append(self.TimeSynctimer)
@@ -211,13 +214,11 @@ class Navigation:
 			self.wakeupCheck()
 
 	def gotopower(self):
-		import Screens.Standby
 		if Screens.Standby.inStandby:
 			print '[NAVIGATION] now entering normal operation'
 			Screens.Standby.inStandby.Power()
 
 	def gotostandby(self):
-		import Screens.Standby
 		if not Screens.Standby.inStandby:
 			from Tools import Notifications
 			print '[NAVIGATION] now entering standby'
