@@ -7,6 +7,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
+from Components.config import config
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate
 
@@ -56,7 +57,8 @@ class About(Screen):
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
 		AboutText += _("Image Type:\t%s\n") % getImageType().title()
-		
+		AboutText += _("Skin Name:\t%s\n") % config.skin.primary_skin.value[0:-9]
+
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -64,7 +66,7 @@ class About(Screen):
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s\n") % driversdate
 		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		
+
 		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
@@ -101,7 +103,6 @@ class About(Screen):
 
 	def createSummary(self):
 		return AboutSummary
-
 
 class Devices(Screen):
 	def __init__(self, session):
