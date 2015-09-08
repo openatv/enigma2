@@ -108,8 +108,10 @@ class SecConfigure:
 			if diseqcmode == 4:
 				user_satList = []
 				if orbpos and isinstance(orbpos, str):
+					orbpos = orbpos.replace("]", "").replace("[", "")
 					for user_sat in self.NimManager.satList:
-						if str(user_sat[0]) in orbpos:
+						sat_str = str(user_sat[0])
+						if ("," not in orbpos and sat_str == orbpos) or ((', ' + sat_str + ',' in orbpos) or (orbpos.startswith(sat_str + ',')) or (orbpos.endswith(', ' + sat_str))):
 							user_satList.append(user_sat)
 			for x in user_satList:
 				print "[NimManager] Add sat " + str(x[0])
@@ -316,8 +318,10 @@ class SecConfigure:
 		for x in range(3605, 3607):
 			lnb = int(config.Nims[slotid].advanced.sat[x].lnb.value)
 			if lnb != 0:
+				userSatlist = config.Nims[slotid].advanced.sat[x].userSatellitesList.value.replace("]", "").replace("[", "")
 				for user_sat in self.NimManager.satList:
-					if str(user_sat[0]) in config.Nims[slotid].advanced.sat[x].userSatellitesList.value:
+					sat_str = str(user_sat[0])
+					if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))):
 						print "[NimManager] add", user_sat[0], "to", lnb
 						lnbSat[lnb].append(user_sat[0])
 
@@ -1300,9 +1304,11 @@ class NimManager:
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
-				if dm == "positioner_select":
+				if dm == "positioner_select": 
+					userSatlist = nim.userSatellitesList.value.replace("]", "").replace("[", "")
 					for x in self.satList:
-						if str(x[0]) in nim.userSatellitesList.value:
+						sat_str = str(x[0])
+						if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))):
 							list.append(x)
 			elif configMode == "advanced":
 				for x in range(3601, 3605):
@@ -1315,8 +1321,10 @@ class NimManager:
 							list.append(x)
 				for x in range(3605, 3607):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
+						userSatlist = nim.advanced.sat[x].userSatellitesList.value.replace("]", "").replace("[", "")
 						for user_sat in self.satList:
-							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
+							sat_str = str(user_sat[0])
+							if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))) and user_sat not in list:
 								list.append(user_sat)
 		return list
 
@@ -1330,8 +1338,10 @@ class NimManager:
 					for x in self.satList:
 						list.append(x)
 				elif nim.diseqcMode.value == "positioner_select":
+					userSatlist = nim.userSatellitesList.value.replace("]", "").replace("[", "")
 					for x in self.satList:
-						if str(x[0]) in nim.userSatellitesList.value:
+						sat_str = str(x[0])
+						if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))):
 							list.append(x)
 			elif configMode == "advanced":
 				for x in range(3601, 3605):
@@ -1347,8 +1357,10 @@ class NimManager:
 								list.append(x)
 				for x in range(3605, 3607):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
+						userSatlist = nim.advanced.sat[x].userSatellitesList.value.replace("]", "").replace("[", "")
 						for user_sat in self.satList:
-							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
+							sat_str = str(user_sat[0])
+							if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))) and user_sat not in list:
 								list.append(user_sat)
 		return list
 
