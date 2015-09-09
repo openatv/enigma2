@@ -95,6 +95,7 @@ static char *alertToken[] = {
 	"cannot",
 	"invalid",
 	"bad parameter",
+	"not found",
 	NULL		//end of list
 };
 
