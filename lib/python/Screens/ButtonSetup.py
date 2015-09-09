@@ -212,6 +212,8 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((_("ScriptRunner"), "ScriptRunner/", "Plugins"))
 	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/QuickMenu.pyo"):
 		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
+		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", "Plugins"))
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
@@ -592,6 +594,10 @@ class InfoBarButtonSetup():
 				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/QuickMenu.pyo"):
 					from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 					self.session.open (QuickMenu)
+			elif selected[0] == "Kodi":
+				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
+					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
+					self.session.open(KodiMainScreen)
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
