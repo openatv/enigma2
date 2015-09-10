@@ -8,11 +8,10 @@ from Poll import Poll
 import time
 import os
 
-weather_city = '711665'
-time_update = 20
-time_update_ms = 30000
-
 class YWeather(Poll, Converter, object):
+        weather_city = '711665'
+        time_update = 20
+        time_update_ms = 30000
         city = 0
         country = 1
         direction = 2
@@ -122,7 +121,7 @@ class YWeather(Poll, Converter, object):
                         self.type = self.date5
                 elif type == "picon5":
                         self.type = self.picon5
-                self.poll_interval = time_update_ms
+                self.poll_interval = self.time_update_ms
                 self.poll_enabled = True
                 
         @cached
@@ -137,15 +136,15 @@ class YWeather(Poll, Converter, object):
                 direct = 0
                 info = ""
                 if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/iSkin/Weather/Config/Location_id"):
-                        weather_city = open("/usr/lib/enigma2/python/Plugins/Extensions/iSkin/Weather/Config/Location_id").read()
+                        self.weather_city = open("/usr/lib/enigma2/python/Plugins/Extensions/iSkin/Weather/Config/Location_id").read()
                 elif fileExists("/usr/lib/enigma2/python/Plugins/Extensions/YahooWeather/Config/Location_id"):
-                        weather_city = open("/usr/lib/enigma2/python/Plugins/Extensions/YahooWeather/Config/Location_id").read()
+                        self.weather_city = open("/usr/lib/enigma2/python/Plugins/Extensions/YahooWeather/Config/Location_id").read()
                 if fileExists("/tmp/yweather.xml"):
-                        if int((time.time() - os.stat("/tmp/yweather.xml").st_mtime)/60) >= time_update:
+                        if int((time.time() - os.stat("/tmp/yweather.xml").st_mtime)/60) >= self.time_update:
                                 os.system("rm /tmp/yweather.xml")
-                                os.system("wget -P /tmp -T2 'http://weather.yahooapis.com/forecastrss?w=%s&u=c' -O /tmp/yweather.xml" % weather_city)
+                                os.system("wget -P /tmp -T2 'http://weather.yahooapis.com/forecastrss?w=%s&u=c' -O /tmp/yweather.xml" % self.weather_city)
                 else:
-                        os.system("wget -P /tmp -T2 'http://weather.yahooapis.com/forecastrss?w=%s&u=c' -O /tmp/yweather.xml" % weather_city)
+                        os.system("wget -P /tmp -T2 'http://weather.yahooapis.com/forecastrss?w=%s&u=c' -O /tmp/yweather.xml" % self.weather_city)
                         if not fileExists("/tmp/yweather.xml"):
                                 os.system("echo -e 'None' >> /tmp/yweather.xml")
                                 return 'N/A'
