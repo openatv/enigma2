@@ -15,7 +15,6 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.MultiContent import MultiContentEntryText
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
-from enigma import eServiceReference, iServiceInformation
 from os import system
 from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 import xml.etree.cElementTree
@@ -39,16 +38,16 @@ class MenuUpdater():
     def __init__(self):
         self.updatedMenuItems = {}
 
-    def addMenuItem(self, id, pos, text, module, screen, weight, endtext = '>'):
+    def addMenuItem(self, id, pos, text, module, screen, weight, endtext='>'):
         if not self.updatedMenuAvailable(id):
             self.updatedMenuItems[id] = []
         self.updatedMenuItems[id].append([text, pos, module, screen, weight, endtext])
 
-    def delMenuItem(self, id, pos, text, module, screen, weight, endtext = '>'):
+    def delMenuItem(self, id, pos, text, module, screen, weight, endtext='>'):
         self.updatedMenuItems[id].remove([text, pos, module, screen, weight, endtext])
 
     def updatedMenuAvailable(self, id):
-        return self.updatedMenuItems.has_key(id)
+        return id in self.updatedMenuItems
 
     def getUpdatedMenu(self, id):
         return self.updatedMenuItems[id]
@@ -62,7 +61,7 @@ def CharEntryComponent(char):
 
 class CharList(MenuList):
 
-    def __init__(self, list, enableWrapAround = False):
+    def __init__(self, list, enableWrapAround=False):
         MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
         self.l.setFont(0, gFont('Regular', 22))
         self.l.setFont(1, gFont('Regular', 18))
@@ -245,7 +244,7 @@ class Menu(Screen):
 
         destList.append((_(item_text), self.nothing, entryID, weight, end_text))
 
-    def __init__(self, session, parent, menuID = None, default = 0, update = 0, overrides = 1, endtext = '>', sort = 'sort', findmenu = 0):
+    def __init__(self, session, parent, menuID=None, default=0, update=0, overrides=1, endtext='>', sort='sort', findmenu=0):
         Screen.__init__(self, session)
         self.currentlist = self.MENU_LIST
         self.parent = parent
@@ -326,8 +325,10 @@ class Menu(Screen):
                     if menuupdater.updatedMenuAvailable(self.menuID):
                         for x in menuupdater.getUpdatedMenu(self.menuID):
                             if x[1] == count:
-                                self.list.append((x[0],
-                                 boundFunction(self.runScreen, (x[2], x[3] + ', ')), x[4], '>'))
+                                self.list.append((
+                                    x[0],
+                                    boundFunction(self.runScreen, (x[2], x[3] + ', ')), x[4], '>'
+                                ))
                                 count += 1
 
         if self.menuID is not None:
@@ -417,7 +418,7 @@ class Menu(Screen):
         self['title'].text = text
         self.menu_title = text
 
-    def setDefault(self, index = None):
+    def setDefault(self, index=None):
         lenmenu = len(self['menu'].list)
         if lenmenu == 0:
             return
@@ -471,12 +472,12 @@ class MainMenu(Menu):
 
 class MainMenuID(Menu):
 
-    def __init__(self, session, menuID = None):
+    def __init__(self, session, menuID=None):
         self.skinName = 'Menu'
         Menu.__init__(self, session, self.getParentMenuID(menuID))
         self.setTitle("Main Menu")
 
-    def getParentMenuID(self, menuID, root = None):
+    def getParentMenuID(self, menuID, root=None):
         if root is None:
             root = mdom.getroot()
         for menu in root.findall('menu'):
@@ -492,21 +493,21 @@ class MainMenuID(Menu):
 
 class UserMenu(Menu):
 
-    def __init__(self, session, parent = None, menuID = None, default = 0, update = 0, overrides = 1, sort = 'sort', findmenu = 0):
+    def __init__(self, session, parent=None, menuID=None, default=0, update=0, overrides=1, sort='sort', findmenu=0):
         self.skinName = 'Menu'
         Menu.__init__(self, session, parent, menuID=menuID, default=default, update=update, overrides=overrides, sort=sort, findmenu=findmenu)
 
 
 class UserMenuID(Menu):
 
-    def __init__(self, session, parent = None, menuID = None, default = 0, update = 0, overrides = 1, sort = 'sort', findmenu = 0):
+    def __init__(self, session, parent=None, menuID=None, default=0, update=0, overrides=1, sort='sort', findmenu=0):
         self.skinName = 'Menu'
         parent = self.getParentMenuID(menuID)
         if parent is not None:
             menuID = None
         Menu.__init__(self, session, parent, menuID=menuID, default=default, update=update, overrides=overrides, sort=sort, findmenu=findmenu)
 
-    def getParentMenuID(self, menuID, root = None):
+    def getParentMenuID(self, menuID, root=None):
         if root is None:
             root = mdom.getroot()
         for menu in root.findall('menu'):

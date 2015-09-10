@@ -272,8 +272,9 @@ int eDVBServiceRecord::doPrepare()
 				/*
 				* streams are considered to be descrambled by default;
 				* user can indicate a stream is scrambled, by using servicetype id + 0x100
+				* (or idDVB + idServiceIsScrambled == idDVBScrambled)
 				*/
-				m_descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+				m_descramble = (m_ref.type == eServiceReference::idDVBScrambled);
 				m_record_ecm = false;
 				servicetype = eDVBServicePMTHandler::streamclient;
 				eHttpStream *f = new eHttpStream();

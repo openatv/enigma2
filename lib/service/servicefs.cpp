@@ -209,7 +209,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 				if (type != -1)
 				{
 					eServiceReference service(type,
-						0,
+						eServiceReference::noFlags,
 						filename);
 					service.data[0] = 0;
 					list.push_back(service);

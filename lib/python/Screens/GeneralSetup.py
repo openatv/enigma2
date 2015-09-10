@@ -347,11 +347,11 @@ class GeneralSetup(Screen):
 # ####### Software Manager Menu ##############################
 	def Qsoftware(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Update now", _("Online software update"), _("Check for and install online updates. You must have a working Internet connection.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Update settings", _("Configure online checks for software updates"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Create backup", _("Backup your current settings"), _("Backup your current settings. This includes setup, channels, network and all files selected using the settings below")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore backup", _("Restore settings from a backup"), _("Restore your settings from a backup. After restore your %s %s will reboot in order to activate the new settings") % (getMachineBrand(), getMachineName())))
-		self.sublist.append(QuickSubMenuEntryComponent("Backup settings", _("Choose the files to backup"), _("Select which files should be added to the backup option above.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Configure backups", _("Choose the files to backup"), _("Select which files should be added to the backup option above.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Check for updates now", _("Online software update"), _("Check for and install online updates. You must have a working Internet connection.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Configure update check", _("Configure online checks for software updates"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -583,10 +583,6 @@ class GeneralSetup(Screen):
 		elif HAVE_LCN_SCANNER and selected == _("LCN renumber"):
 			self.session.open(LCNScannerPlugin)
 # ####### Select Software Manager Menu ##############################
-		elif selected == _("Update now"):
-			self.session.open(UpdatePlugin)
-		elif selected == _("Update settings"):
-			self.openSetup("softwareupdate")
 		elif selected == _("Create backup"):
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif selected == _("Restore backup"):
@@ -602,8 +598,12 @@ class GeneralSetup(Screen):
 					(getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-		elif selected == _("Backup settings"):
+		elif selected == _("Configure backups"):
 			self.session.openWithCallback(self.backupfiles_choosen, BackupSelection)
+		elif selected == _("Check for updates now"):
+			self.session.open(UpdatePlugin)
+		elif selected == _("Configure update check"):
+			self.openSetup("softwareupdate")
 		# elif selected == _("Software Manager Setup"):
 		# 	self.session.open(SoftwareManagerSetup)
 # ####### Select PluginDownloadBrowser Menu ##############################
