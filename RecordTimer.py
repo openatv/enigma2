@@ -5,7 +5,7 @@ from bisect import insort
 from sys import maxint
 import os
 
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceID, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
 
 from Components.config import config
 from Components import Harddisk
@@ -14,6 +14,7 @@ from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 import Screens.InfoBar
+from Tools.ServiceReference import service_types_tv_ref, serviceRefAppendPath
 from Tools import Directories, Notifications, ASCIItranslit, Trashcan
 from Tools.XMLTools import stringToXML
 import timer
@@ -81,7 +82,7 @@ def findSafeRecordPath(dirname):
 # type 2 = digital radio sound service
 # type 10 = advanced codec digital radio sound service
 
-service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+service_types_tv = service_types_tv_ref.toString()
 wasRecTimerWakeup = False
 
 # Please do not translate log messages
@@ -404,15 +405,17 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
 					self.service_types = service_types_tv
+					self.service_types_ref = service_types_tv_ref
 					if ChannelSelectionInstance:
 						if config.usage.multibouquet.value:
-							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+							bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceID.dTv)
+							bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 						else:
-							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
-						rootstr = ''
+							bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+
 						serviceHandler = eServiceCenter.getInstance()
-						rootbouquet = eServiceReference(bqrootstr)
-						bouquet = eServiceReference(bqrootstr)
+						rootbouquet = bqroot
+						bouquet = eServiceReference(bqroot)
 						bouquetlist = serviceHandler.list(bouquet)
 						if bouquetlist is not None:
 							while True:
@@ -550,15 +553,16 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
 			self.service_types = service_types_tv
+			self.service_types_ref = service_types_tv_ref
 			if ChannelSelectionInstance:
 				if config.usage.multibouquet.value:
-					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+					bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceID.dTv)
+					bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 				else:
-					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
-				rootstr = ''
+					bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
 				serviceHandler = eServiceCenter.getInstance()
-				rootbouquet = eServiceReference(bqrootstr)
-				bouquet = eServiceReference(bqrootstr)
+				rootbouquet = bqroot
+				bouquet = eServiceReference(bqroot)
 				bouquetlist = serviceHandler.list(bouquet)
 				if bouquetlist is not None:
 					while True:

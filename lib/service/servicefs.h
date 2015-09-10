@@ -9,7 +9,7 @@ class eServiceFactoryFS: public iServiceHandler
 public:
 	eServiceFactoryFS();
 	virtual ~eServiceFactoryFS();
-	enum { id = 0x2 };
+	enum { id = eServiceReference::idFile };
 
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
