@@ -9,7 +9,7 @@ class eServiceFactoryM2TS: public iServiceHandler
 public:
 	eServiceFactoryM2TS();
 	virtual ~eServiceFactoryM2TS();
-	enum { id = 0x3 };
+	enum { id = eServiceReference::idServiceM2TS };
 
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);

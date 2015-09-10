@@ -18,7 +18,7 @@ class eServiceFactoryMP3: public iServiceHandler
 public:
 	eServiceFactoryMP3();
 	virtual ~eServiceFactoryMP3();
-	enum { id = 0x1001 };
+	enum { id = eServiceReference::idServiceMP3 };
 
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);

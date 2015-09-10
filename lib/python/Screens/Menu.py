@@ -15,7 +15,6 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.MultiContent import MultiContentEntryText
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
-from enigma import eServiceReference, iServiceInformation
 from os import system
 from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 import xml.etree.cElementTree

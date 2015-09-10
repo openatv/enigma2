@@ -13,7 +13,7 @@ class eServiceFactoryHDMI: public iServiceHandler
 public:
 	eServiceFactoryHDMI();
 	virtual ~eServiceFactoryHDMI();
-	enum { id = 0x2000 };
+	enum { id = eServiceReference::idServiceHDMIIn };
 
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
