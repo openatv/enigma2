@@ -40,4 +40,3 @@ service_types_radio_ref.setPath(makeServiceQueryStr((
 
 def hdmiInServiceRef():
 	return eServiceReference(eServiceReference.idServiceHDMIIn, eServiceReference.noFlags, eServiceID.dTv)
-
