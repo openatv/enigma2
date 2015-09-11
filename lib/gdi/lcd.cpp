@@ -278,6 +278,7 @@ int eDBoxLCD::setLED(int value, int option)
 				eDebug("[LED] can't set led blinking time");
 			break;
 	}
+	return(0);
 }
 
 eDBoxLCD::~eDBoxLCD()
