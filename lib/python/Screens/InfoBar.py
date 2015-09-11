@@ -266,10 +266,7 @@ class InfoBar(
 
 	def showWWW(self):
 		try:
-			try:
-				from Plugins.Extensions.HbbTV.plugin import OperaBrowser
-			except:
-				from Plugins.Extensions.IniHbbTV.plugin import OperaBrowser
+			from Plugins.Extensions.HbbTV.plugin import OperaBrowser
 
 			self.session.open(OperaBrowser)
 			no_plugin = False
