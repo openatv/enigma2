@@ -740,22 +740,19 @@ class RestartNetwork(Screen):
 		self.close()
 
 # ####### Create MENULIST format #######################
-def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=540):
+def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=400):
 	return [
 		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(20, 10), size=(width - 120, 35), font=0, text=_(name)),
-		# MultiContentEntryText(pos=(20, 26), size=(width - 120, 17), font=1, text=_(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text=_(description)),
-		MultiContentEntryText(pos=(350, 10), size=(35, 35), text = ">")
+		MultiContentEntryText(pos=(10, 0), size=(width - 30, 32), font=0, text=_(name)),
+		MultiContentEntryText(pos=(width - 30, 0), size=(20, 32), font=0, text=endtext),
+		MultiContentEntryText(pos=(10, 32), size=(width - 20, 18), font=1, text=_(description)),
 	]
 
-def QuickSubMenuEntryComponent(name, description, long_description=None, width=540):
+def QuickSubMenuEntryComponent(name, description, long_description=None, width=300):
 	return [
 		(_(name), _(long_description)),
-		# MultiContentEntryText(pos=(20, 5), size=(width - 10, 25), font=0, text=_(name)),
-		MultiContentEntryText(pos=(20, 15), size=(width - 10, 25), font=0, text=_(name)),
-		# MultiContentEntryText(pos=(20, 26), size=(width - 10, 17), font=1, text=_(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text=_(description))
+		MultiContentEntryText(pos=(10, 0), size=(width - 20, 23), font=0, text=_(name)),
+		MultiContentEntryText(pos=(10, 23), size=(width - 20, 17), font=1, text=_(description)),
 	]
 
 class GeneralSetupList(MenuList):
@@ -770,4 +767,4 @@ class GeneralSetupSubList(MenuList):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		self.l.setItemHeight(45)
