@@ -243,21 +243,14 @@ class GeneralSetup(Screen):
 # ####### Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
+		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
+		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Network wizard", _("Configure your network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		# if len(self.adapters) > 1: # Show adapter selection if more than 1 adapter is installed, not needed as eth0 is always present.
 		self.sublist.append(QuickSubMenuEntryComponent("Network adapter selection", _("Select LAN/WLAN"), _("Set up your network interface. If no USB WLAN stick is present, you can only select LAN")))
-		if self.activeInterface is not None: # Show only if there is already an adapter up.
+		if self.activeInterface is not None:  # Show only if there is already an adapter up.
 			self.sublist.append(QuickSubMenuEntryComponent("Network interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network restart", _("Restart network with current setup"), _("Restart network and remount connections")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network services", _("Setup network services"), _("Set up network services (Samba, FTP, NFS, ...)")))
-		# test
-		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
-		self["sublist"].l.setList(self.sublist)
-
-# ### Network Services Menu ##############################
-	def Qnetworkservices(self):
-		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Samba", _("Set up Samba"), _("Set up Samba")))
 		self.sublist.append(QuickSubMenuEntryComponent("NFS", _("Set up NFS"), _("Set up NFS")))
 		self.sublist.append(QuickSubMenuEntryComponent("FTP", _("Set up FTP"), _("Set up FTP")))
@@ -420,9 +413,6 @@ class GeneralSetup(Screen):
 			self.session.open(AdapterSetup, self.activeInterface)
 		elif selected == _("Network restart"):
 			self.session.open(RestartNetwork)
-		elif selected == _("Network services"):
-			self.Qnetworkservices()
-			self["sublist"].moveToIndex(0)
 		elif selected == _("Samba"):
 			self.session.open(NetworkSamba)
 		elif selected == _("NFS"):
