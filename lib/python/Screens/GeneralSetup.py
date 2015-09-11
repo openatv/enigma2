@@ -12,7 +12,6 @@ from Components.SystemInfo import SystemInfo
 
 from Screens.Screen import Screen
 from Screens.NetworkSetup import *
-from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
@@ -91,11 +90,11 @@ def isFileSystemSupported(filesystem):
 
 class GeneralSetup(Screen):
 	skin = """
-		<screen name="GeneralSetup" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder">
-			<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
-			<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
-			<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
-			<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
+		<screen name="GeneralSetup" position="center,center" size="1185,600" backgroundColor="black" flags="wfBorder">
+			<widget name="list" position="21,32" size="400,400" backgroundColor="black" itemHeight="50" transparent="1" />
+			<eLabel position="422,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
+			<widget name="sublist" position="425,32" size="300,400" backgroundColor="black" itemHeight="45" />
+			<widget source="session.VideoPicture" render="Pig" position="730,30" size="450,300" backgroundColor="transparent" zPosition="1" />
 			<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
 			<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
 			<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
@@ -138,13 +137,6 @@ class GeneralSetup(Screen):
 			"up": self.goUp,
 			"down": self.goDown,
 		}, -1)
-
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
-			"red": self.keyred,
-			# "green": self.keygreen,
-			# "yellow": self.keyyellow,
-			# "blue": self.keyblue,
-		})
 
 		self.MainQmenu()
 		self.selectedList = self["list"]
@@ -196,34 +188,24 @@ class GeneralSetup(Screen):
 		else:
 			self.close()
 
-	def keygreen(self):
-		self.session.open(About)
-
-	def keyyellow(self):
-		from Screens.ServiceInfo import ServiceInfo
-		self.session.open(ServiceInfo)
-
-	def keyblue(self):
-		from Screens.About import Devices
-		self.session.open(Devices)
-
 # ####### Main Menu ##############################
 	def MainQmenu(self):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(GeneralSetupEntryComponent("System", _("System setup"), _("Set up your system"), ">"))
+		self.list.append(GeneralSetupEntryComponent("AV setup", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
+		self.list.append(GeneralSetupEntryComponent("System", _("System setup"), _("Set up your system")))
 		if not SystemInfo["IPTVSTB"]:
-			self.list.append(GeneralSetupEntryComponent("Tuners", _("Set up tuners"), _("Set up your tuners and search for channels"), ">"))
+			self.list.append(GeneralSetupEntryComponent("Tuners", _("Set up tuners"), _("Set up your tuners and search for channels")))
 		else:
-			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuners"), _("Set up your tuners and search for channels"), ">"))
-		self.list.append(GeneralSetupEntryComponent("TV", _("Set up basic TV options"), _("Set up your TV options"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Media", _("Set up pictures, music and movies"), _("Set up picture, music and movie player"), ">"))
+			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuners"), _("Set up your tuners and search for channels")))
+		self.list.append(GeneralSetupEntryComponent("TV", _("Set up basic TV options"), _("Set up your TV options")))
+		self.list.append(GeneralSetupEntryComponent("Media", _("Set up pictures, music and movies"), _("Set up picture, music and movie player")))
 		# self.list.append(GeneralSetupEntryComponent("Mounts", _("Mount setup"), _("Set up your mounts for network")))
-		self.list.append(GeneralSetupEntryComponent("Network", _("Set up your local network"), _("Set up your local network. For WLAN you need to boot with a USB-WLAN stick"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Storage", _("Hard disk setup"), _("Set up your hard disk"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Plugins", _("Download plugins"), _("Show download and install available plugins"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Software manager", _("Update/backup/restore"), _("Update firmware. Backup / restore settings"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Network", _("Set up your local network"), _("Set up your local network. For WLAN you need to boot with a USB-WLAN stick")))
+		self.list.append(GeneralSetupEntryComponent("Storage", _("Hard disk setup"), _("Set up your hard disk")))
+		self.list.append(GeneralSetupEntryComponent("Plugins", _("Download plugins"), _("Show download and install available plugins")))
+		self.list.append(GeneralSetupEntryComponent("Software manager", _("Update/backup/restore"), _("Update firmware. Backup / restore settings")))
 		self["list"].l.setList(self.list)
 
 # ####### TV Setup Menu ##############################
@@ -243,7 +225,6 @@ class GeneralSetup(Screen):
 # ####### System Setup Menu ##############################
 	def Qsystem(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("AV setup", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("GUI settings", _("GUI and on screen display"), _("Configure your user interface and OSD (on screen display)")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button settings", _("Button assignment"), _("Set up your buttons")))
 		if not getMachineBrand() == "Beyonwiz":
@@ -262,21 +243,14 @@ class GeneralSetup(Screen):
 # ####### Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
+		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
+		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Network wizard", _("Configure your network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
-		# if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed, no need as eth0 is always present
+		# if len(self.adapters) > 1: # Show adapter selection if more than 1 adapter is installed, not needed as eth0 is always present.
 		self.sublist.append(QuickSubMenuEntryComponent("Network adapter selection", _("Select LAN/WLAN"), _("Set up your network interface. If no USB WLAN stick is present, you can only select LAN")))
-		if self.activeInterface is not None:  # show only if there is already an adapter up
+		if self.activeInterface is not None:  # Show only if there is already an adapter up.
 			self.sublist.append(QuickSubMenuEntryComponent("Network interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network restart", _("Restart network with current setup"), _("Restart network and remount connections")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network services", _("Setup network services"), _("Set up network services (Samba, FTP, NFS, ...)")))
-		# test
-		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
-		self["sublist"].l.setList(self.sublist)
-
-# ### Network Services Menu ##############################
-	def Qnetworkservices(self):
-		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Samba", _("Set up Samba"), _("Set up Samba")))
 		self.sublist.append(QuickSubMenuEntryComponent("NFS", _("Set up NFS"), _("Set up NFS")))
 		self.sublist.append(QuickSubMenuEntryComponent("FTP", _("Set up FTP"), _("Set up FTP")))
@@ -351,7 +325,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Restore backup", _("Restore settings from a backup"), _("Restore your settings from a backup. After restore your %s %s will reboot in order to activate the new settings") % (getMachineBrand(), getMachineName())))
 		self.sublist.append(QuickSubMenuEntryComponent("Configure backups", _("Choose the files to backup"), _("Select which files should be added to the backup option above.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Check for updates now", _("Online software update"), _("Check for and install online updates. You must have a working Internet connection.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Configure update check", _("Configure online checks for software updates"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Configure update check", _("Configure online update checks"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -370,8 +344,8 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Hard disk setup", _("Hard disk setup"), _("Configure hard disk options, such as standby timeout")))
 		self.sublist.append(QuickSubMenuEntryComponent("Format hard disk", _("Format HDD"), _("Format your hard disk")))
 		self.sublist.append(QuickSubMenuEntryComponent("File system check", _("Check HDD"), _("Check the integrity of the file system on your hard disk")))
-# 		if isFileSystemSupported("ext4"):
-# 			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system from ext3 to ext4"), _("Convert file system from ext3 to ext4")))
+		# if isFileSystemSupported("ext4"):
+		# 	self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system from ext3 to ext4"), _("Convert file system from ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):
@@ -417,7 +391,7 @@ class GeneralSetup(Screen):
 # ####### Select PluginDownloadBrowser Menu ##############################
 		elif selected == _("Plugins"):
 			self.Qplugin()
-# ####### Select Tuner Setup Menu ##############################
+# ####### Select Storage Setup Menu ##############################
 		elif selected == _("Storage"):
 			self.Qharddisk()
 		self["sublist"].selectionEnabled(0)
@@ -439,9 +413,6 @@ class GeneralSetup(Screen):
 			self.session.open(AdapterSetup, self.activeInterface)
 		elif selected == _("Network restart"):
 			self.session.open(RestartNetwork)
-		elif selected == _("Network services"):
-			self.Qnetworkservices()
-			self["sublist"].moveToIndex(0)
 		elif selected == _("Samba"):
 			self.session.open(NetworkSamba)
 		elif selected == _("NFS"):
@@ -456,8 +427,8 @@ class GeneralSetup(Screen):
 			self.session.open(NetworkMiniDLNA)
 		elif selected == _("DYN-DNS"):
 			self.session.open(NetworkInadyn)
-# 		elif selected == _("SABnzbd"):
-# 			self.session.open(NetworkSABnzbd)
+		# elif selected == _("SABnzbd"):
+		# 	self.session.open(NetworkSABnzbd)
 		elif selected == _("uShare"):
 			self.session.open(NetworkuShare)
 		elif selected == _("Telnet"):
@@ -740,22 +711,19 @@ class RestartNetwork(Screen):
 		self.close()
 
 # ####### Create MENULIST format #######################
-def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=540):
+def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=400):
 	return [
 		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(20, 10), size=(width - 120, 35), font=0, text=_(name)),
-		# MultiContentEntryText(pos=(20, 26), size=(width - 120, 17), font=1, text=_(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text=_(description)),
-		MultiContentEntryText(pos=(350, 10), size=(35, 35), text = ">")
+		MultiContentEntryText(pos=(10, 0), size=(width - 30, 32), font=0, text=_(name)),
+		MultiContentEntryText(pos=(width - 30, 0), size=(20, 32), font=0, text=endtext),
+		MultiContentEntryText(pos=(10, 32), size=(width - 20, 18), font=1, text=_(description)),
 	]
 
-def QuickSubMenuEntryComponent(name, description, long_description=None, width=540):
+def QuickSubMenuEntryComponent(name, description, long_description=None, width=300):
 	return [
 		(_(name), _(long_description)),
-		# MultiContentEntryText(pos=(20, 5), size=(width - 10, 25), font=0, text=_(name)),
-		MultiContentEntryText(pos=(20, 15), size=(width - 10, 25), font=0, text=_(name)),
-		# MultiContentEntryText(pos=(20, 26), size=(width - 10, 17), font=1, text=_(description)),
-		MultiContentEntryText(pos=(20, 26), size=(0, 0), font=1, text=_(description))
+		MultiContentEntryText(pos=(10, 0), size=(width - 20, 23), font=0, text=_(name)),
+		MultiContentEntryText(pos=(10, 23), size=(width - 20, 17), font=1, text=_(description)),
 	]
 
 class GeneralSetupList(MenuList):
@@ -770,4 +738,4 @@ class GeneralSetupSubList(MenuList):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		self.l.setItemHeight(45)

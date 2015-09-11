@@ -17,7 +17,7 @@ class eServiceFactoryXine: public iServiceHandler
 public:
 	eServiceFactoryXine();
 	virtual ~eServiceFactoryXine();
-	enum { id = 0x1010 };
+	enum { id = eServiceReference::idServiceXINE };
 
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
