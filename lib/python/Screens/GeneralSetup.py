@@ -351,7 +351,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Restore backup", _("Restore settings from a backup"), _("Restore your settings from a backup. After restore your %s %s will reboot in order to activate the new settings") % (getMachineBrand(), getMachineName())))
 		self.sublist.append(QuickSubMenuEntryComponent("Configure backups", _("Choose the files to backup"), _("Select which files should be added to the backup option above.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Check for updates now", _("Online software update"), _("Check for and install online updates. You must have a working Internet connection.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Configure update check", _("Configure online checks for software updates"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Configure update check", _("Configure online update checks"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self["sublist"].l.setList(self.sublist)
 
