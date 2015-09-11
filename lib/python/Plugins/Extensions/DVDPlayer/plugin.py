@@ -26,11 +26,12 @@ def DVDOverlay(*args, **kwargs):
 def filescan_open(list, session, **kwargs):
 	from Screens import DVD
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
-		splitted = list[0].path.split('/')
-		if len(splitted) > 2:
-			if splitted[1] == 'media' and (splitted[2].startswith('sr') or splitted[2] == 'dvd'):
-				session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(splitted[2]))
-				return
+		cd = harddiskmanager.getCD()
+		if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS"))
+				or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "video_ts"))):
+			print "[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+			session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())))
+			return
 	else:
 		dvd_filelist = []
 		for x in list:
@@ -66,24 +67,26 @@ def onPartitionChange(action, partition):
 	if partition != harddiskmanager.getCD():
 		global detected_DVD
 		if action == 'remove':
-			print "[@] DVD removed"
+			print "[DVDplayer] DVD removed"
 			detected_DVD = False
 		elif action == 'add':
-			print "[@] DVD Inserted"
+			print "[DVDplayer] DVD Inserted"
 			detected_DVD = None
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		global detected_DVD
-		if detected_DVD is None:
+		if detected_DVD == None or detected_DVD == True:
 			cd = harddiskmanager.getCD()
-			if cd and os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
+			if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS"))
+					or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "video_ts"))):
+				print "[DVDplayer] Mountpoint is present and is", harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
 				detected_DVD = True
 			else:
 				detected_DVD = False
 			if onPartitionChange not in harddiskmanager.on_partition_list_change:
 				harddiskmanager.on_partition_list_change.append(onPartitionChange)
-		if detected_DVD:
+		if detected_DVD == True:
 			return [(_("DVD player"), play, "dvd_player", 46)]
 	return []
 
