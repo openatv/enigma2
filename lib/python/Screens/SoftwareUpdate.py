@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild
+from boxbranding import getImageVersion, getImageBuild, getImageDistro, getImageType, getMachineBrand, getMachineName, getMachineBuild
 from os import rename, path, remove
 from gettext import dgettext
 import urllib
@@ -74,7 +74,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://www.openvix.co.uk/feeds/%s/%s/%s-git.log' % (getImageDistro(), getImageVersion(), self.logtype)
+			sourcefile = 'http://www.openvix.co.uk/feeds/%s/%s/%s/%s-git.log' % (getImageDistro(), getImageType(), getImageVersion(), self.logtype)
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
