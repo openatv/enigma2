@@ -212,19 +212,19 @@ class GeneralSetup(Screen):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(GeneralSetupEntryComponent("AV setup", _("Set up video mode"), _("Set up your video mode, video output and other video settings"), ">"))
-		self.list.append(GeneralSetupEntryComponent("System", _("System setup"), _("Set up your system"), ">"))
+		self.list.append(GeneralSetupEntryComponent("AV setup", _("Set up video mode"), _("Set up your video mode, video output and other video settings")))
+		self.list.append(GeneralSetupEntryComponent("System", _("System setup"), _("Set up your system")))
 		if not SystemInfo["IPTVSTB"]:
-			self.list.append(GeneralSetupEntryComponent("Tuners", _("Set up tuners"), _("Set up your tuners and search for channels"), ">"))
+			self.list.append(GeneralSetupEntryComponent("Tuners", _("Set up tuners"), _("Set up your tuners and search for channels")))
 		else:
-			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuners"), _("Set up your tuners and search for channels"), ">"))
-		self.list.append(GeneralSetupEntryComponent("TV", _("Set up basic TV options"), _("Set up your TV options"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Media", _("Set up pictures, music and movies"), _("Set up picture, music and movie player"), ">"))
+			self.list.append(GeneralSetupEntryComponent("IPTV configuration", _("Set up tuners"), _("Set up your tuners and search for channels")))
+		self.list.append(GeneralSetupEntryComponent("TV", _("Set up basic TV options"), _("Set up your TV options")))
+		self.list.append(GeneralSetupEntryComponent("Media", _("Set up pictures, music and movies"), _("Set up picture, music and movie player")))
 		# self.list.append(GeneralSetupEntryComponent("Mounts", _("Mount setup"), _("Set up your mounts for network")))
-		self.list.append(GeneralSetupEntryComponent("Network", _("Set up your local network"), _("Set up your local network. For WLAN you need to boot with a USB-WLAN stick"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Storage", _("Hard disk setup"), _("Set up your hard disk"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Plugins", _("Download plugins"), _("Show download and install available plugins"), ">"))
-		self.list.append(GeneralSetupEntryComponent("Software manager", _("Update/backup/restore"), _("Update firmware. Backup / restore settings"), ">"))
+		self.list.append(GeneralSetupEntryComponent("Network", _("Set up your local network"), _("Set up your local network. For WLAN you need to boot with a USB-WLAN stick")))
+		self.list.append(GeneralSetupEntryComponent("Storage", _("Hard disk setup"), _("Set up your hard disk")))
+		self.list.append(GeneralSetupEntryComponent("Plugins", _("Download plugins"), _("Show download and install available plugins")))
+		self.list.append(GeneralSetupEntryComponent("Software manager", _("Update/backup/restore"), _("Update firmware. Backup / restore settings")))
 		self["list"].l.setList(self.list)
 
 # ####### TV Setup Menu ##############################
