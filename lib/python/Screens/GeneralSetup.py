@@ -12,7 +12,6 @@ from Components.SystemInfo import SystemInfo
 
 from Screens.Screen import Screen
 from Screens.NetworkSetup import *
-from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginBrowser
 from Screens.LanguageSelection import LanguageSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
@@ -139,13 +138,6 @@ class GeneralSetup(Screen):
 			"down": self.goDown,
 		}, -1)
 
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
-			"red": self.keyred,
-			# "green": self.keygreen,
-			# "yellow": self.keyyellow,
-			# "blue": self.keyblue,
-		})
-
 		self.MainQmenu()
 		self.selectedList = self["list"]
 		self.selectionChanged()
@@ -195,17 +187,6 @@ class GeneralSetup(Screen):
 			self.goLeft()
 		else:
 			self.close()
-
-	def keygreen(self):
-		self.session.open(About)
-
-	def keyyellow(self):
-		from Screens.ServiceInfo import ServiceInfo
-		self.session.open(ServiceInfo)
-
-	def keyblue(self):
-		from Screens.About import Devices
-		self.session.open(Devices)
 
 # ####### Main Menu ##############################
 	def MainQmenu(self):
