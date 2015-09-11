@@ -85,7 +85,7 @@ static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
 
-static char *alertToken[] = {
+static const char *alertToken[] = {
 // !!! all strings must be written in lower case !!!
 	"error",
 	"fail",
@@ -99,14 +99,14 @@ static char *alertToken[] = {
 	NULL		//end of list
 };
 
-static char *warningToken[] = {
+static const char *warningToken[] = {
 // !!! all strings must be written in lower case !!!
 	"warning",
 	"unknown",
 	NULL		//end of list
 };
 
-bool findToken(char *src, char **list)
+bool findToken(char *src, const char **list)
 {
 	bool res = false;
 	if(!src || !list)
