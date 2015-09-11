@@ -398,7 +398,7 @@ class GeneralSetup(Screen):
 # ####### Select PluginDownloadBrowser Menu ##############################
 		elif selected == _("Plugins"):
 			self.Qplugin()
-# ####### Select Tuner Setup Menu ##############################
+# ####### Select Storage Setup Menu ##############################
 		elif selected == _("Storage"):
 			self.Qharddisk()
 		self["sublist"].selectionEnabled(0)
