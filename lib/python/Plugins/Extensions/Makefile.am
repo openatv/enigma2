@@ -13,7 +13,6 @@ SUBDIRS = TuxboxPlugins \
 	IniZapHistoryBrowser \
 	AccuWeather \
 	IniGmailReader \
-	IniHbbTV \
 	FileCommander \
 	IniEcasa \
 	IniWebcamViewer \

@@ -439,7 +439,6 @@ lib/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/1280x720/Makefile
 lib/python/Plugins/Extensions/IniEcasa/Makefile
 lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
-lib/python/Plugins/Extensions/IniHbbTV/Makefile
 lib/python/Plugins/Extensions/IniMyTube/Makefile
 lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
 lib/python/Plugins/Extensions/IniLastFM/Makefile

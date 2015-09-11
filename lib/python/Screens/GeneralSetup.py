@@ -90,11 +90,11 @@ def isFileSystemSupported(filesystem):
 
 class GeneralSetup(Screen):
 	skin = """
-		<screen name="GeneralSetup" position="center,center" size="1185,600" backgroundColor="black" flags="wfBorder">
+		<screen name="GeneralSetup" position="center,center" size="1195,600" backgroundColor="black" flags="wfBorder">
 			<widget name="list" position="21,32" size="400,400" backgroundColor="black" itemHeight="50" transparent="1" />
 			<eLabel position="422,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
-			<widget name="sublist" position="425,32" size="300,400" backgroundColor="black" itemHeight="45" />
-			<widget source="session.VideoPicture" render="Pig" position="730,30" size="450,300" backgroundColor="transparent" zPosition="1" />
+			<widget name="sublist" position="425,32" size="320,400" backgroundColor="black" itemHeight="45" />
+			<widget source="session.VideoPicture" render="Pig" position="745,30" size="450,300" backgroundColor="transparent" zPosition="1" />
 			<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
 			<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
 			<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
@@ -710,20 +710,24 @@ class RestartNetwork(Screen):
 	def getInterfacesDataAvail(self, data):
 		self.close()
 
+scrollbar_width = 10
+padding_width = 10
+
 # ####### Create MENULIST format #######################
 def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=400):
+	endtext_width = 20
 	return [
 		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(10, 0), size=(width - 30, 32), font=0, text=_(name)),
-		MultiContentEntryText(pos=(width - 30, 0), size=(20, 32), font=0, text=endtext),
-		MultiContentEntryText(pos=(10, 32), size=(width - 20, 18), font=1, text=_(description)),
+		MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width - endtext_width, 32), text=_(name)),
+		MultiContentEntryText(pos=(width - scrollbar_width - padding_width - endtext_width, 0), size=(endtext_width, 32), text=endtext),
+		MultiContentEntryText(pos=(padding_width, 32), size=(width - scrollbar_width - 2 * padding_width, 18), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=_(description)),
 	]
 
-def QuickSubMenuEntryComponent(name, description, long_description=None, width=300):
+def QuickSubMenuEntryComponent(name, description, long_description=None, width=320):
 	return [
 		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(10, 0), size=(width - 20, 23), font=0, text=_(name)),
-		MultiContentEntryText(pos=(10, 23), size=(width - 20, 17), font=1, text=_(description)),
+		MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width, 23), text=_(name)),
+		MultiContentEntryText(pos=(padding_width, 23), size=(width - scrollbar_width - 2 * padding_width, 17), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=_(description)),
 	]
 
 class GeneralSetupList(MenuList):
