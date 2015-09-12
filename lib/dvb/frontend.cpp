@@ -1250,7 +1250,7 @@ int eDVBFrontend::readInputpower()
 
 bool eDVBFrontend::setSecSequencePos(int steps)
 {
-	eDebugNoSimulate("[eDVBFrontend] set sequence pos %d", steps);
+//	eDebugNoSimulate("[eDVBFrontend] set sequence pos %d", steps);
 	if (!steps)
 		return false;
 	while( steps > 0 )
