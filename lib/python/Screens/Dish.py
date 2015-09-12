@@ -150,8 +150,9 @@ class Dish(Screen):
 			self.hide()
 
 	def __serviceTunedIn(self):
-		self.pmt_timeout = self.close_timeout
-		self.timeoutTimer.start(500, False)
+		if self.close_timeout is not None:
+			self.pmt_timeout = self.close_timeout
+			self.timeoutTimer.start(500, False)
 
 	def testIsTuned(self):
 		if self.pmt_timeout >= 0:
