@@ -51,9 +51,9 @@ class MovieInfo(Converter, object):
 			elif self.type == self.MOVIE_REC_FILESIZE:
 				if (service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 					return _("Directory")
-				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
-				if filesize is not None:
-					return _("%d MB") % (filesize / (1024*1024))
+				filesize = info.getFileSize(service)
+				if filesize:
+					return _("%d MB") % (filesize / (1024 * 1024))
 		return ""
 
 	text = property(getText)
