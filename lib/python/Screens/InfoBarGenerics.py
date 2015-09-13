@@ -147,12 +147,12 @@ class InfoBarUnhandledKey:
 	def actionA(self, key, flag):
 		####key debug
 		#try:
-		#	print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())
+		#	print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0])
 		#except:
 		#	try:
-		#		print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.now()) # inverse dictionary lookup in KEYIDS
+		#		print 'KEY: %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next()) # inverse dictionary lookup in KEYIDS
 		#	except:
-		#		print 'KEY: %s %s' % (key,datetime.now())
+		#		print 'KEY: %s' % (key)
 		self.unhandledKeyDialog.hide()
 		if flag != 4:
 			if self.flags & (1<<1):
