@@ -207,8 +207,7 @@ class Setup(ConfigListScreen, Screen):
 	def changedEntry(self):
 		self.item = self["config"].getCurrent()
 		try:
-			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
-				self.createSetup()
+			self.createSetup()
 		except:
 			pass
 

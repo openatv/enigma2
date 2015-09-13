@@ -121,8 +121,13 @@ class LCD:
 		value /= 10
 		if value > 255:
 			value = 255
-		self.Brightness = value
-		self.DimUpEvent(None, None)
+		self.autoDimDownLCDTimer.stop()
+		self.autoDimUpLCDTimer.stop()
+		self.currBrightness = self.Brightness = value
+		eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
+		if self.dimBrightness is not None and  self.currBrightness > self.dimBrightness:
+			if self.dimDelay is not None and self.dimDelay > 0:
+				self.autoDimDownLCDTimer.startLongTimer(self.dimDelay)
 
 	def setStandbyBright(self, value):
 		value *= 255
@@ -346,7 +351,7 @@ def InitLcd():
 			("60000", "1 " + _("minute")),
 			("300000", "5 " + _("minutes")),
 			("noscrolling", _("off"))])
-		config.lcd.dimdelay = ConfigSelection(default = "15", choices = [
+		config.lcd.dimdelay = ConfigSelection(default = 15, choices = [
 			(5, "5 " + _("seconds")),
 			(10, "10 " + _("seconds")),
 			(15, "15 " + _("seconds")),
