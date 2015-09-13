@@ -117,6 +117,10 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			break;
 		case 6:
 			m_filesize = atoll(line);
+			if (m_filesize == 0)
+			{
+				m_filesize = fileSize(tsname);
+			}
 			break;
 		case 7:
 			m_service_data = line;
