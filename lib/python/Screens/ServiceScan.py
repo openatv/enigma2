@@ -1,5 +1,5 @@
 import Screens.InfoBar
-from enigma import eServiceReference
+from enigma import eServiceReference, eTimer
 
 from Screens.Screen import Screen
 from Components.ServiceScan import ServiceScan as CScan
@@ -33,6 +33,14 @@ class ServiceScanSummary(Screen):
 		self["Service"].setText(name)
 
 class ServiceScan(Screen):
+
+	def up(self):
+		self["servicelist"].up()
+		self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
+
+	def down(self):
+		self["servicelist"].down()
+		self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
 
 	def ok(self):
 		if self["scan"].isDone():
@@ -99,6 +107,8 @@ class ServiceScan(Screen):
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
+			"up": self.up,
+			"down": self.down,
 			"ok": self.ok,
 			"save": self.ok,
 			"cancel": self.cancel,
@@ -106,10 +116,19 @@ class ServiceScan(Screen):
 		}, -2)
 		self.setTitle(_("Service scan"))
 		self.onFirstExecBegin.append(self.doServiceScan)
+		self.scanTimer = eTimer()
+		self.scanTimer.callback.append(self.scanPoll)
+
+	def scanPoll(self):
+		if self["scan"].isDone():
+			self["servicelist"].moveToIndex(0)
+			self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
+			self.scanTimer.stop()
 
 	def doServiceScan(self):
 		self["servicelist"].len = self["servicelist"].instance.size().height() / self["servicelist"].l.getItemSize().height()
 		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], self.scanList, self["network"], self["transponder"], self["FrontendInfo"], self.session.summary)
+		self.scanTimer.start(250)
 
 	def createSummary(self):
 		return ServiceScanSummary
