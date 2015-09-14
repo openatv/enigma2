@@ -351,7 +351,7 @@ def InitLcd():
 			("60000", "1 " + _("minute")),
 			("300000", "5 " + _("minutes")),
 			("noscrolling", _("off"))])
-		config.lcd.dimdelay = ConfigSelection(default = 15, choices = [
+		config.lcd.dimdelay = ConfigSelection(default = 0, choices = [
 			(5, "5 " + _("seconds")),
 			(10, "10 " + _("seconds")),
 			(15, "15 " + _("seconds")),
