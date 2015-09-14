@@ -98,7 +98,7 @@ class LCD:
 	def DimUpEvent(self, key, flag):
 		self.autoDimDownLCDTimer.stop()
 		if self.Brightness is not None and not self.autoDimUpLCDTimer.isActive():
-			self.autoDimUpLCDTimer.start(1)
+			self.autoDimUpLCDTimer.start(10, True)
 
 	def autoDimDownLCD(self):
 		if self.dimBrightness is not None and  self.currBrightness > self.dimBrightness:
@@ -109,6 +109,7 @@ class LCD:
 	def autoDimUpLCD(self):
 		if self.currBrightness < self.Brightness:
 			self.currBrightness = self.currBrightness + 1
+			self.autoDimUpLCDTimer.start(10, true)
 			eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
 		else:
 			self.autoDimUpLCDTimer.stop()
