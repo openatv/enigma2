@@ -21,6 +21,8 @@
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 
+#include <time.h>
+
 #define HTTP_TIMEOUT 30
 
 /*
@@ -2104,10 +2106,7 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 					{
 						if (y == 0)
 						{
-							m_use_chapter_entries = true;
-							if (m_cuesheet_loaded)
-								m_cue_entries.clear();
-							else
+							if (!m_cuesheet_loaded)
 								loadCuesheet();
 						}
 						/* first chapter is movie start no cut needed */
@@ -2122,7 +2121,21 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 								pts = start / 11111;
 							if (pts > 0)
 							{
-								m_cue_entries.insert(cueEntry(pts, type));
+								/* check cue and toc for identical entries */
+								bool tocadd = true;
+								for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
+								{
+									/* toc not add if cue available */
+									if (pts == i->where && type == i->what)
+									{			
+										tocadd = false;
+										break;										
+									}			
+								}			
+								if (tocadd)
+								{									
+									m_cue_entries.insert(cueEntry(pts, type));
+								}
 								m_cuesheet_changed = 1;
 								m_event((iPlayableService*)this, evCuesheetChanged);
 								/* extra debug info for testing purposes CVR should_be_removed later on */
@@ -2815,15 +2828,8 @@ void eServiceMP3::loadCuesheet()
 		m_cuesheet_loaded = true;
 	}
 	m_cue_entries.clear();
-	/* only load manual cuts if no chapter info avbl CVR */
-#if GST_VERSION_MAJOR >= 1
-	if (m_use_chapter_entries)
-		return;
-#endif
 
 	std::string filename = m_ref.path + ".cuts";
-
-	m_cue_entries.clear();
 
 	FILE *f = fopen(filename.c_str(), "rb");
 
@@ -2860,43 +2866,62 @@ void eServiceMP3::saveCuesheet()
 {
 	std::string filename = m_ref.path;
 
-		/* save cuesheet only when main file is accessible. */
-#if GST_VERSION_MAJOR < 1
+	/* save cuesheet only when main file is accessible. */
 	if (::access(filename.c_str(), R_OK) < 0)
 		return;
-#else
-		/* save cuesheet only when main file is accessible. and no TOC chapters avbl*/
-	if ((::access(filename.c_str(), R_OK) < 0) || m_use_chapter_entries)
-		return;
-#endif
-	/* do not save to file if there are no cuts */
-	gboolean empty_cue = FALSE;
-	if(m_cue_entries.begin() == m_cue_entries.end())
-		empty_cue = TRUE;
 
 	filename.append(".cuts");
+
+	bool removefile = false;
+	struct stat s;
+	if (stat(filename.c_str(), &s) == 0)
+	{		
+		time_t now;			
+		time(&now);
+		/* check time difference when file was modified - it is possible, the file has been write from another side */
+		if (now - s.st_mtime > 1 && m_cue_entries.size() == 0)
+			/* no entrys and file was not modified -> delete file */
+			removefile = true;
+		else
+			/* no entrys -> do nothing, have entries -> write file */
+			if (m_cue_entries.size() == 0)
+				return;
+	}
+	else
+		/* no file and no entries -> do nothing, have entries -> write file */
+		if (m_cue_entries.size() == 0)
+			return;
 
 	FILE *f = fopen(filename.c_str(), "wb");
 
 	if (f)
 	{
-		/* remove the cuts file if cue is empty */
-		if(empty_cue)
+		if (removefile)
 		{
 			fclose(f);
 			remove(filename.c_str());
+			eDebug("[eServiceMP3] cuts file has been removed");
 			return;
 		}
-		unsigned long long where;
-		int what;
+
+		unsigned long long where = 0;
+		int what = 0;
 
 		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 		{
-			where = htobe64(i->where);
-			what = htonl(i->what);
-			fwrite(&where, sizeof(where), 1, f);
-			fwrite(&what, sizeof(what), 1, f);
-
+			if (where == i->where && what == i->what)
+				/* ignore double entries */
+				continue;
+			else
+			{			
+				where = htobe64(i->where);
+				what = htonl(i->what);
+				fwrite(&where, sizeof(where), 1, f);
+				fwrite(&what, sizeof(what), 1, f);
+				/* temorary save for comparing */
+				where = i->where;
+				what = i->what;
+			}
 		}
 		fclose(f);
 	}
