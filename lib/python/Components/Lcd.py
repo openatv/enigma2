@@ -8,6 +8,7 @@ from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, Conf
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 from Screens.Screen import Screen
+import Screens.Standby
 import usb
 
 
@@ -91,30 +92,43 @@ class LCD:
 		self.autoDimDownLCDTimer.callback.append(self.autoDimDownLCD)
 		self.autoDimUpLCDTimer = eTimer()
 		self.autoDimUpLCDTimer.callback.append(self.autoDimUpLCD)
-
 		self.currBrightness = self.dimBrightness = self.Brightness = None
-		self.dimDelay = 10
+		self.dimDelay = 0
+		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call = False)
+
+	def standbyCounterChanged(self, configElement):
+		Screens.Standby.inStandby.onClose.append(self.leaveStandby)
+		self.autoDimDownLCDTimer.stop()
+		self.autoDimUpLCDTimer.stop()
+		eActionMap.getInstance().unbindAction('', self.DimUpEvent)
+
+	def leaveStandby(self):
+		eActionMap.getInstance().bindAction('', -maxint -1, self.DimUpEvent)
 
 	def DimUpEvent(self, key, flag):
 		self.autoDimDownLCDTimer.stop()
-		if self.Brightness is not None and not self.autoDimUpLCDTimer.isActive():
-			self.autoDimUpLCDTimer.start(10, True)
+		if not Screens.Standby.inTryQuitMainloop:
+			if self.Brightness is not None and not self.autoDimUpLCDTimer.isActive():
+				self.autoDimUpLCDTimer.start(10, True)
 
 	def autoDimDownLCD(self):
-		if self.dimBrightness is not None and  self.currBrightness > self.dimBrightness:
-			self.autoDimDownLCDTimer.start(10, True)
-			self.currBrightness = self.currBrightness - 1
-			eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
+		if not Screens.Standby.inTryQuitMainloop:
+			if self.dimBrightness is not None and  self.currBrightness > self.dimBrightness:
+				self.currBrightness = self.currBrightness - 1
+				eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
+				self.autoDimDownLCDTimer.start(10, True)
 
 	def autoDimUpLCD(self):
-		if self.currBrightness < self.Brightness:
-			self.currBrightness = self.currBrightness + 1
-			self.autoDimUpLCDTimer.start(10, True)
-			eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
-		else:
-			self.autoDimUpLCDTimer.stop()
-			if self.dimBrightness is not None and  self.currBrightness > self.dimBrightness:
-				if self.dimDelay is not None and self.dimDelay > 0:
+		if not Screens.Standby.inTryQuitMainloop:
+			self.autoDimDownLCDTimer.stop()
+			if self.currBrightness < self.Brightness:
+				self.currBrightness = self.currBrightness + 5
+				if self.currBrightness >= self.Brightness:
+					self.currBrightness = self.Brightness
+				eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
+				self.autoDimUpLCDTimer.start(10, True)
+			else:
+				if self.dimBrightness is not None and self.currBrightness > self.dimBrightness and self.dimDelay is not None and self.dimDelay > 0:
 					self.autoDimDownLCDTimer.startLongTimer(self.dimDelay)
 
 	def setBright(self, value):
@@ -142,7 +156,7 @@ class LCD:
 			self.dimBrightness = value
 		if self.currBrightness is None:
 			self.currBrightness = value
-		self.autoDimDownLCD()
+		eDBoxLCD.getInstance().setLCDBrightness(self.Brightness)
 
 	def setDimBright(self, value):
 		value *= 255
@@ -277,8 +291,7 @@ def leaveStandby():
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def standbyCounterChanged(configElement):
-	from Screens.Standby import inStandby
-	inStandby.onClose.append(leaveStandby)
+	Screens.Standby.inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
 	config.lcd.ledbrightnessstandby.apply()
 	config.lcd.ledbrightnessdeepstandby.apply()
