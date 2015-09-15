@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 14:56+0200\n"
-"PO-Revision-Date: 2015-08-27 15:03+0200\n"
+"POT-Creation-Date: 2015-09-16 00:24+0200\n"
+"PO-Revision-Date: 2015-09-16 00:45+0200\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -1836,6 +1836,9 @@ msgstr "Liste des bouquets"
 msgid "Brightness"
 msgstr "Luminosité"
 
+msgid "Brightness (Dimmed)"
+msgstr "Luminosité (affaiblie)"
+
 msgid "Brightness (Normal)"
 msgstr "Luminosité (normal)"
 
@@ -2538,6 +2541,9 @@ msgstr "Configure le comportement en atteignant la fin d’un film, pendant la l
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Configure la largeur de bordure des sous-titres. La bordure noire rend les sous-titres faciles à lire sur un fond clair."
 
+msgid "Configure the brightness level of the front panel display for dimmed operation."
+msgstr "Configurer le niveau de l'affichage du panneau avant pour le fonctionnement de la luminosité tamisée."
+
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Configure le niveau de luminosité de l’affichage du panneau avant en mode normal."
 
@@ -2952,6 +2958,9 @@ msgstr "Statut courant:"
 msgid "Current device: "
 msgstr "Périphérique actuel: "
 
+msgid "Current location"
+msgstr "Emplacement actuel"
+
 #, python-format
 msgid "Current mode: %s \n"
 msgstr "Mode courant: %s \n"
@@ -3345,6 +3354,12 @@ msgstr "Retrait contour digital"
 
 msgid "Digital downmix"
 msgstr "Downmix numérique"
+
+msgid "Dim delay"
+msgstr "Délai avant affaiblissement"
+
+msgid "Dim the LCD after specified time."
+msgstr "Affaiblir le LCD après la durée spécifiée."
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Lecture direct des titres liés sans menu"
@@ -4075,6 +4090,9 @@ msgstr "Dépasse la capacité du support blue disc!"
 msgid "Exceeds dual layer medium!"
 msgstr "Dépasse la capacité du support double couche!"
 
+msgid "Execution condition"
+msgstr "Condition d’exécution"
+
 msgid "Execution finished!!"
 msgstr "Exécution terminée!!"
 
@@ -4233,7 +4251,7 @@ msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Echec lors de la sauvegarde de /tmp/positionersetup.log: "
 
 msgid "Fallback remote receiver URL"
-msgstr "URL du récepteur de repli distant. Spécifier l'URL complète, y compris http:// et le numéro de port (normalement ...: 8001 ), par exemple http://second_box:8001."
+msgstr "URL du récepteur de repli distant"
 
 #, python-format
 msgid "Fan %d"
@@ -5349,6 +5367,9 @@ msgstr "Sélection keymap"
 
 msgid "Keymap changed, you need to restart the GUI"
 msgstr "Le keymap a changé, vous devez redémarrer l’IGU"
+
+msgid "Kodi MediaCenter"
+msgstr "Kodi MediaCenter"
 
 msgid "LAN adapter"
 msgstr "Adaptateur réseau local"
@@ -6602,9 +6623,6 @@ msgstr "Mise à jour logiciel en ligne"
 
 msgid "OnlineVersionCheck"
 msgstr "Vérification de la version en ligne"
-
-msgid "Only active when in standby"
-msgstr "Seulement actif en veille"
 
 msgid "Only extensions."
 msgstr "Extensions seules"
@@ -9445,6 +9463,9 @@ msgstr "Afficher l’indicateur occupé lorsque le système est occupé."
 msgid "Show status icons in movielist"
 msgstr "Afficher les icônes de statut dans la liste des films"
 
+msgid "Show status messages when switch to live TV"
+msgstr "Afficher les messages de statut lorsqu’on bascule sur la TV en direct."
+
 msgid "Show subservice selection"
 msgstr "Afficher le choix des sous-services"
 
@@ -9868,6 +9889,9 @@ msgstr "Sports"
 msgid "Standard"
 msgstr "Standard"
 
+msgid "Standard (always)"
+msgstr "Standard (toujours)"
+
 msgid "Standart list"
 msgstr "Liste standard"
 
@@ -10284,7 +10308,7 @@ msgstr ""
 "Traduction Française\n"
 "Enigma2 - OpenATV\n"
 "Support: www.opena.tv\n"
-"Dernière MAJ: 19 août 2015"
+"Dernière MAJ: 16 septembre 2015"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Fichier TS trop grand pour le niveau 1 ISO9660!"
@@ -10570,6 +10594,9 @@ msgstr "Les résultats ont été écrit sur %s."
 
 msgid "The servicelist is reloaded."
 msgstr "La liste des services a été rechargée."
+
+msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. So can the receiver shutdown also if you not watch tv (e.g. video, hbbtv) -  only recommended for sleep timer. All other dependencies (e.g. recordings, time range) stay persist."
+msgstr "Ce paramètre ‘sans demander’ est le même que ‘standard’ sans la question de confirmation supplémentaire. Donc le récepteur peut aussi s’éteindre même si vous regardez la TV (p.e. vidéo, hbbtv) - recommandé uniquement pour le timer de sommeil. Toutes les autres dépendances restent (p.e. enregistrements, interval de temps)."
 
 msgid "The sleep timer has been activated."
 msgstr "Le timer de sommeil a été activé."
@@ -11038,7 +11065,7 @@ msgid "Time scale"
 msgstr "Echelle de temps"
 
 msgid "Time settings"
-msgstr "Configuration du temps"
+msgstr "Configuration de l’heure"
 
 msgid "Time to execute command or script"
 msgstr "Délai pour exécuter les commandes ou les scriptes"
@@ -11401,7 +11428,7 @@ msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
 msgid "URL of fallback remote receiver"
-msgstr "URL du récepteur distant de repli"
+msgstr "URL du récepteur de repli distant. Spécifier l'URL complète, y compris http:// et le numéro de port (normalement ...: 8001 ), par exemple http://second_box:8001."
 
 msgid "USALS"
 msgstr "USALS"
@@ -12258,6 +12285,9 @@ msgstr "Lorsqu’elle est activée, reformatte les sous-titres pour correspondre
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Lorsqu’il est activé, affiche le numéro de la chaîne dans l’écran de sélection des chaînes."
+
+msgid "When enabled, show status or error messages."
+msgstr "Lorsqu’elle est activée, indique le statut ou les messages d’erreur."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Lorsqu’il est activé, les sous-titres pour les mal entendants peuvent être utilisés."
@@ -13740,6 +13770,9 @@ msgstr "une fois"
 msgid "only HD"
 msgstr "seulement HD"
 
+msgid "only in Standby"
+msgstr "uniquement en veille"
+
 msgid "open nameserver configuration"
 msgstr "ouvrir configuration nom serveur"
 
@@ -14329,6 +14362,9 @@ msgstr "avec les boutons gauche/droit"
 
 msgid "with long OK press"
 msgstr "avec un appui long sur OK"
+
+msgid "without Query"
+msgstr "sans demander"
 
 msgid "working"
 msgstr "travail en cours..."
