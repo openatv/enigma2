@@ -2411,6 +2411,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setStartRoot(self.startRoot)
 			self.new_service_played = True
 			self.session.nav.playService(self.startServiceRef)
+			self.setCurrentSelection(self.startServiceRef)
 			self.saveChannel(self.startServiceRef)
 		else:
 			self.restoreMode()
@@ -2419,8 +2420,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.dopipzap:
 			# This unfortunately won't work with subservices
 			self.setCurrentSelection(self.session.pip.getCurrentService())
-		else:
-			self.setCurrentSelection(currentPlayedRef)
 
 	def setStartRoot(self, root):
 		if root:
