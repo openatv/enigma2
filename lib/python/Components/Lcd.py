@@ -365,16 +365,6 @@ def InitLcd():
 			("60000", "1 " + _("minute")),
 			("300000", "5 " + _("minutes")),
 			("noscrolling", _("off"))])
-		config.lcd.dimdelay = ConfigSelection(default = 0, choices = [
-			(5, "5 " + _("seconds")),
-			(10, "10 " + _("seconds")),
-			(15, "15 " + _("seconds")),
-			(20, "20 " + _("seconds")),
-			(30, "30 " + _("seconds")),
-			(60, "1 " + _("minute")),
-			(120, "2 " + _("minutes")),
-			(300, "5 " + _("minutes")),
-			(0, _("off"))])
 
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value);
@@ -457,6 +447,16 @@ def InitLcd():
 			config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
 		config.lcd.dimbright.addNotifier(setLCDdimbright);
 		config.lcd.dimbright.apply = lambda : setLCDdimbright(config.lcd.dimbright)
+		config.lcd.dimdelay = ConfigSelection(default = "0", choices = [
+			("5", "5 " + _("seconds")),
+			("10", "10 " + _("seconds")),
+			("15", "15 " + _("seconds")),
+			("20", "20 " + _("seconds")),
+			("30", "30 " + _("seconds")),
+			("60", "1 " + _("minute")),
+			("120", "2 " + _("minutes")),
+			("300", "5 " + _("minutes")),
+			("0", _("off"))])
 		config.lcd.dimdelay.addNotifier(setLCDdimdelay);
 		config.lcd.standby.addNotifier(setLCDstandbybright);
 		config.lcd.standby.apply = lambda : setLCDstandbybright(config.lcd.standby)
