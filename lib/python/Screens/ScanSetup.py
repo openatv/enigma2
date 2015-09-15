@@ -327,6 +327,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Manual Scan"))
 
+		self["description"] = Label("")
+
 		self.finished_cb = None
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
@@ -391,7 +393,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		index_to_scan = int(self.scan_nims.value)
 		print "ID: ", index_to_scan
 
-		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
+		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims, _("Select the tuner to use for scanning."))
 		self.list.append(self.tunerEntry)
 
 		if self.scan_nims == []:
@@ -406,17 +408,17 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.TerrestrialRegionEntry = None
 		nim = nimmanager.nim_slots[index_to_scan]
 		if nim.isCompatible("DVB-S"):
-			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_type)
+			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_type, _("The type of scan to perform."))
 			self.list.append(self.typeOfScanEntry)
 		elif nim.isCompatible("DVB-C"):
 			if config.Nims[index_to_scan].cable.scan_type.value != "provider":  # only show predefined transponder if in provider mode
 				if self.scan_typecable.value == "predefined_transponder":
 					self.scan_typecable.value = self.cable_toggle[self.last_scan_typecable]
 			self.last_scan_typecable = self.scan_typecable.value
-			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typecable)
+			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typecable, _("The type of scan to perform."))
 			self.list.append(self.typeOfScanEntry)
 		elif nim.isCompatible("DVB-T"):
-			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
+			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial, _("The type of scan to perform."))
 			self.list.append(self.typeOfScanEntry)
 
 		self.scan_networkScan.value = False
@@ -482,13 +484,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_networkScan.value = True	 # Required for LCNs
 			if self.scan_typeterrestrial.value == "single_transponder":
 				if nim.isCompatible("DVB-T2"):
-					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system)
+					self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.system, _("Type of broadcasting system."))
 					self.list.append(self.systemEntry)
 				else:
 					self.scan_ter.system.value = eDVBFrontendParametersTerrestrial.System_DVB_T
-				freq_entry = getConfigListEntry(_("Frequency"), self.scan_ter.frequency)
+				freq_entry = getConfigListEntry(_("Frequency"), self.scan_ter.frequency, _("Centre frequency of the broadcast channel."))
 				if self.ter_channel_input:
-					ch_entry = getConfigListEntry(_("Channel"), self.scan_ter.channel)
+					ch_entry = getConfigListEntry(_("Channel"), self.scan_ter.channel, _("Channel designation."))
 					self.list.append(ch_entry)
 
 					def ChannelChanged(configElement):
@@ -508,29 +510,29 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 					self.scan_ter.frequency.addNotifier(FrequencyChanged)
 				self.list.append(freq_entry)
-				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
-				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
-				self.list.append(getConfigListEntry(_("Code rate HP"), self.scan_ter.fechigh))
-				self.list.append(getConfigListEntry(_("Code rate LP"), self.scan_ter.feclow))
-				self.list.append(getConfigListEntry(_("Modulation"), self.scan_ter.modulation))
-				self.list.append(getConfigListEntry(_("Transmission mode"), self.scan_ter.transmission))
-				self.list.append(getConfigListEntry(_("Guard interval"), self.scan_ter.guard))
-				self.list.append(getConfigListEntry(_("Hierarchy info"), self.scan_ter.hierarchy))
+				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion, _("Inversion setting.")))
+				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth, _("Channel bandwidth.")))
+				self.list.append(getConfigListEntry(_("Code rate HP"), self.scan_ter.fechigh, _("Forward error correction code rate - high.")))
+				self.list.append(getConfigListEntry(_("Code rate LP"), self.scan_ter.feclow, _("Forward error correction rate - low.")))
+				self.list.append(getConfigListEntry(_("Modulation"), self.scan_ter.modulation, _("Modulation type.")))
+				self.list.append(getConfigListEntry(_("Transmission mode"), self.scan_ter.transmission, _("Transmission mode.")))
+				self.list.append(getConfigListEntry(_("Guard interval"), self.scan_ter.guard, _("Guard interval.")))
+				self.list.append(getConfigListEntry(_("Hierarchy info"), self.scan_ter.hierarchy, _("Hierarchy information.")))
 				if self.scan_ter.system.value == eDVBFrontendParametersTerrestrial.System_DVB_T2:
-					self.list.append(getConfigListEntry(_('PLP ID'), self.scan_ter.plp_id))
+					self.list.append(getConfigListEntry(_('PLP ID'), self.scan_ter.plp_id, _("PLP identifier.")))
 			elif self.scan_typeterrestrial.value == "predefined_transponder":
 				self.TerrestrialRegion = self.terrestrial_nims_regions[index_to_scan]
-				self.TerrestrialRegionEntry = getConfigListEntry(_('Region'), self.TerrestrialRegion)
+				self.TerrestrialRegionEntry = getConfigListEntry(_('Region'), self.TerrestrialRegion, _("Geographical region. If in doubt, use Full Scan setting."))
 				self.list.append(self.TerrestrialRegionEntry)
 				self.predefinedTerrTranspondersList()
-				self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders))
+				self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders, _("The frequency / channel to scan.")))
 			elif self.scan_typeterrestrial.value == "complete":
 				self.TerrestrialRegion = self.terrestrial_nims_regions[index_to_scan]
-				self.TerrestrialRegionEntry = getConfigListEntry(_('Region'), self.TerrestrialRegion)
+				self.TerrestrialRegionEntry = getConfigListEntry(_('Region'), self.TerrestrialRegion, _("Geographical region. If in doubt, use Full Scan setting."))
 				self.list.append(self.TerrestrialRegionEntry)
-		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
-		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
-		self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree))
+		self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan, _("Read NIT (Network Information Table) sent by broadcasters. The NIT will provide additional frequencies for alternate transmitters.")))
+		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices, _("Remove old services before scan.")))
+		self.list.append(getConfigListEntry(_("Only free scan"), self.scan_onlyfree, _("Only add Free To Air channels, ignore PayTV.")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
