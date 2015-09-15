@@ -122,7 +122,7 @@ class LCN():
 				break
 
 			line = line.strip()
-			#print "[LCNScanner]", line
+			# print "[LCNScanner]", line
 			if len(line) != 38:
 				continue
 
@@ -408,10 +408,10 @@ def LCNScannerMain(session, **kwargs):
 	session.open(LCNScannerPlugin)
 
 def LCNScannerSetup(menuid, **kwargs):
-	#if menuid == "scan":
-	#	return [("LCN Scanner", LCNScannerMain, "lcnscanner", None)]
+	# if menuid == "scan":
+	# 	return [("LCN Scanner", LCNScannerMain, "lcnscanner", None)]
 	return []
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where=PluginDescriptor.WHERE_MENU, fnc=LCNScannerSetup)
-	#return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=LCNScannerMain)
+	# return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=LCNScannerMain)
