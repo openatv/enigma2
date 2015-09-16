@@ -167,7 +167,7 @@ class LCN():
 
 	def writeBouquet(self, filename, name_marker, extras=[]):
 		try:
-			f = open('/etc/enigma2/' + filename, "w")
+			f = open(resolveFilename(SCOPE_CONFIG, filename), "w")
 		except Exception, e:
 			print "[LCNScanner]", e
 			return
@@ -228,7 +228,7 @@ class LCN():
 		self.addInTVBouquets()
 
 	def addInBouquets(self, bouquets_filename, bouquet_filename, bouquet_entry):
-		f = open('/etc/enigma2/' + bouquets_filename, 'r')
+		f = open(resolveFilename(SCOPE_CONFIG, bouquets_filename), 'r')
 		ret = f.read().split("\n")
 		f.close()
 
@@ -238,7 +238,7 @@ class LCN():
 				return
 			i += 1
 
-		f = open('/etc/enigma2/' + bouquets_filename, 'w')
+		f = open(resolveFilename(SCOPE_CONFIG, bouquets_filename), 'w')
 		f.write(ret[0] + "\n")
 		f.write("#SERVICE " + bouquet_entry.toString() + "\n")
 		i = 1
@@ -262,7 +262,7 @@ class LCN():
 class LCNBuildHelper():
 	def __init__(self):
 		self.bouquetlist = []
-		for x in self.readBouquetsTvList("/etc/enigma2"):
+		for x in self.readBouquetsTvList():
 			self.bouquetlist.append((x[0], x[1]))
 
 		self.rulelist = []
@@ -276,15 +276,15 @@ class LCNBuildHelper():
 		config.lcn.bouquet = ConfigSelection(default="userbouquet.LastScanned.tv", choices=self.bouquetlist)
 		config.lcn.rules = ConfigSelection(self.rulelist)
 
-	def readBouquetsTvList(self, pwd):
-		return self.readBouquetsList(pwd, "bouquets.tv")
+	def readBouquetsTvList(self):
+		return self.readBouquetsList("bouquets.tv")
 
-	def readBouquetsRadioList(self, pwd):
-		return self.readBouquetsList(pwd, "bouquets.radio")
+	def readBouquetsRadioList(self):
+		return self.readBouquetsList("bouquets.radio")
 
-	def readBouquetsList(self, pwd, bouquetname):
+	def readBouquetsList(self, bouquetname):
 		try:
-			f = open(pwd + "/" + bouquetname)
+			f = open(resolveFilename(SCOPE_CONFIG, bouquetname))
 		except Exception, e:
 			print "[LCNScanner]", e
 			return
