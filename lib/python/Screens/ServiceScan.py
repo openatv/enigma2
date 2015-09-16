@@ -35,6 +35,13 @@ class ServiceScan(Screen):
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
+			try:
+				from Plugins.SystemPlugins.LCNScanner.plugin import LCNBuildHelper
+				lcn = LCNBuildHelper()
+				lcn.buildAfterScan()
+			except Exception, e:
+				print e
+
 			if self.currentInfobar.__class__.__name__ == "InfoBar":
 				selectedService = self["servicelist"].getCurrentSelection()
 				if selectedService and self.currentServiceList is not None:
