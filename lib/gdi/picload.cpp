@@ -1226,7 +1226,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 	m_conf.resizetype = resizeType;
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
-		m_conf.background = strtoul(bg_str+1, NULL, 16);
+		m_conf.background = strtoul(bg_str+1, NULL, 16) | 0xFF000000;
 	eDebug("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X auto_orient=%d",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background, m_conf.auto_orientation);
