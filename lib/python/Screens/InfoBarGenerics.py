@@ -2239,13 +2239,13 @@ class InfoBarPiP:
 			slist.togglePipzap()
 			if slist.dopipzap:
 				currentServicePath = slist.getCurrentServicePath()
-				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+				slist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
 		self.lastPiPServiceTimeoutTimer.stop()
+		slist = self.servicelist
 		if self.session.pipshown:
-			slist = self.servicelist
 			if slist and slist.dopipzap:
 				self.togglePipzap()
 			if self.session.pipshown:
@@ -2266,10 +2266,10 @@ class InfoBarPiP:
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or (slist and slist.servicelist.getCurrent())
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
-				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				self.session.pip.servicePath = slist and slist.getCurrentServicePath()
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
 						f = open("/proc/stb/lcd/mode", "w")
@@ -2283,12 +2283,12 @@ class InfoBarPiP:
 						f.close()
 						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
 						f.write("1")
-						f.close()				
+						f.close()
 			else:
-				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				newservice = self.session.nav.getCurrentlyPlayingServiceReference() or (slist and slist.servicelist.getCurrent())
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					self.session.pip.servicePath = slist and slist.getCurrentServicePath()
 				else:
 					self.session.pipshown = False
 					del self.session.pip
@@ -2318,16 +2318,19 @@ class InfoBarPiP:
 			swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			pipref = self.session.pip.getCurrentService()
 			if swapservice and pipref and pipref.toString() != swapservice.toString():
-				currentServicePath = self.servicelist.getCurrentServicePath()
-				currentBouquet = self.servicelist and self.servicelist.getRoot()
-				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+				slist = self.servicelist
+				if slist:
+					currentServicePath = slist.getCurrentServicePath()
+					currentBouquet = slist.getRoot()
+					slist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.playService(swapservice)
 				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
-				self.session.pip.servicePath = currentServicePath
-				self.session.pip.servicePath[1] = currentBouquet
-				if self.servicelist.dopipzap:
+				if slist:
+					self.session.pip.servicePath = currentServicePath
+					self.session.pip.servicePath[1] = currentBouquet
+				if slist and slist.dopipzap:
 					# This unfortunately won't work with subservices
-					self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
+					slist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
 		if self.pipShown():
