@@ -22,6 +22,8 @@ class Satfinder(ScanSetup, ServiceScan):
 		del feinfo
 		del service
 
+		self.TerrestrialTransponders = None
+		self.CableTransponders = None
 		self.typeOfTuningEntry = None
 		self.systemEntry = None
 		self.satfinderTunerEntry = None
@@ -154,11 +156,9 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.pilotEntry = getConfigListEntry(_('Pilot'), self.scan_sat.pilot)
 					self.list.append(self.pilotEntry)
 			elif self.tuning_type.value == "predefined_transponder":
-				try:
-					self.list.append(getConfigListEntry(_("Transponder"), self.preDefTransponders))
-				except:
+				if self.preDefTransponders is None:
 					self.updatePreDefTransponders()
-					self.list.append(getConfigListEntry(_("Transponder"), self.preDefTransponders))
+				self.list.append(getConfigListEntry(_("Transponder"), self.preDefTransponders))
 		elif nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-C"):
 			self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning_type)
 			if config.Nims[self.feid].cable.scan_type.value != "provider" or len(nimmanager.getTranspondersCable(int(self.satfinder_scan_nims.value))) < 1: # only show 'predefined transponder' if in provider mode and transponders exist
@@ -173,7 +173,8 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
 			elif self.tuning_type.value == "predefined_transponder":
 				self.scan_nims.value = self.satfinder_scan_nims.value
-				self.predefinedCabTranspondersList()
+				if self.CableTransponders is None:
+					self.predefinedCabTranspondersList()
 				self.list.append(getConfigListEntry(_('Transponder'), self.CableTransponders))
 		elif nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-T"):
 			self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning_type)
@@ -194,15 +195,15 @@ class Satfinder(ScanSetup, ServiceScan):
 				else:
 					self.scan_input_as.value = self.scan_input_as.choices[0]
 				if self.ter_channel_input and self.scan_input_as.value == "channel":
-					channel = getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
-					if channel:
-						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
+#					channel = getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
+#					if channel:
+#						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
 					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
 				else:
-					prev_val = self.scan_ter.frequency.value
-					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
-					if self.scan_ter.frequency.value == 474000:
-						self.scan_ter.frequency.value = prev_val
+#					prev_val = self.scan_ter.frequency.value
+#					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
+#					if self.scan_ter.frequency.value == 474000:
+#						self.scan_ter.frequency.value = prev_val
 					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
@@ -216,10 +217,12 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.list.append(getConfigListEntry(_('PLP ID'), self.scan_ter.plp_id))
 			elif self.tuning_type.value == "predefined_transponder":
 				self.scan_nims.value = self.satfinder_scan_nims.value
-				self.predefinedTerrTranspondersList()
+				if self.TerrestrialTransponders is None:
+					self.predefinedTerrTranspondersList()
 				self.list.append(getConfigListEntry(_('Transponder'), self.TerrestrialTransponders))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+
 
 	def createConfig(self, foo):
 		self.tuning_type = ConfigSelection(default = "predefined_transponder", choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))])
