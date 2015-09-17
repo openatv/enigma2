@@ -74,7 +74,8 @@ class Satfinder(ScanSetup, ServiceScan):
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
-		self.updatePreDefTransponders()
+		if nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-S"):
+			self.updatePreDefTransponders()
 		self.createSetup()
 		self.retune(None)
 
