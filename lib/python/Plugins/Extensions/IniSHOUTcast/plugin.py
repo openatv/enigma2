@@ -801,7 +801,7 @@ class SHOUTcastWidget(Screen):
 		self.session.nav.stopService()
 		if config.plugins.shoutcast.showcover.value:
 			self["cover"].doHide()
-		sref = eServiceReference(eServiceReference.idServiceMP3, 0, url)
+		sref = eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, url)
 		try:
 			self.session.nav.playService(sref)
 		except:

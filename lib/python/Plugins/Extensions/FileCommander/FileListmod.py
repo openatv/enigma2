@@ -185,7 +185,8 @@ class FileList(MenuList):
 			files = []
 			directories = []
 		elif self.useServiceRef:
-			root = eServiceReference(eServiceReference.idFile, eServiceReference.isDirectory, directory)
+			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, 1)
+			root.setPath(directory)
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
@@ -410,7 +411,8 @@ class MultiFileSelectList(FileList):
 			files = []
 			directories = []
 		elif self.useServiceRef:
-			root = eServiceReference(eServiceReference.idFile, eServiceReference.isDirectory, directory)
+			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, 1)
+			root.setPath(directory)
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
