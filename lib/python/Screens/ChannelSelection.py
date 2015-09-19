@@ -542,7 +542,7 @@ class ChannelContextMenu(Screen):
 		if sel and sel.valid() and not self.csel.entry_marked:
 			currentPlayingService = (hasattr(self.csel, "dopipzap") and self.csel.dopipzap) and self.session.pip.getCurrentService() or self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.csel.servicelist.setCurrent(currentPlayingService, adjust=False)
-			if self.csel.getCurrentSelection() != currentPlayingService:
+			if currentPlayingService and self.csel.getCurrentSelection() != currentPlayingService:
 				self.csel.setCurrentSelection(sel)
 			self.close()
 		else:
@@ -1180,7 +1180,8 @@ class ChannelSelectionEdit:
 				mutableList.flushChanges()  # FIXME dont flush on each single removed service
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
-				if not bouquet and ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
+				curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+				if not bouquet and curref and ref == curref:
 					self.zap(enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None)
 
 	def addServiceToBouquet(self, dest, service=None):
@@ -1796,7 +1797,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			self.servicelist.setCurrent(service, adjust=False)
 
 	def setCurrentSelectionAlternative(self, ref):
-		if self.bouquet_mark_edit == EDIT_ALTERNATIVES and not (ref.flags & eServiceReference.isDirectory):
+		if self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref and not (ref.flags & eServiceReference.isDirectory):
 			for markedService in self.servicelist.getMarked():
 				markedService = eServiceReference(markedService)
 				self.setCurrentSelection(markedService)
@@ -1852,7 +1853,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			service = self.session.nav.getCurrentService()
 			if service:
 				info = service.info()
-				if info:
+				if info and self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					provider = info.getInfoString(iServiceInformation.sProvider)
 					op = self.session.nav.getCurrentlyPlayingServiceOrGroup().getUnsignedData(4) >> 16
 					ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory)
