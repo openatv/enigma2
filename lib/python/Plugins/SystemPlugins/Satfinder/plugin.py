@@ -303,7 +303,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return self.retuneTerr()
 		if nim.isCompatible("DVB-C"):
 			return self.retuneCab()
-		print "error: tuner not supported ", nim.frontend_id
+		print "error: tuner not supported ", nim.getType()
 
 	def retuneCab(self):
 		if self.initcomplete:
