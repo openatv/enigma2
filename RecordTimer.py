@@ -168,7 +168,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.setAdvancedPriorityFrontend = None
 		rec_ref = self.service_ref and self.service_ref.ref
 		str_service = rec_ref and rec_ref.toString()
-		if '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
+		if str_service and '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
 			type_service = rec_ref.getUnsignedData(4) >> 16
 			if type_service == 0xEEEE:
 				if SystemInfo["DVB-T_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbt.value != "-2":
