@@ -53,6 +53,9 @@ dom_skins = [ ]
 
 def addSkin(name, scope = SCOPE_SKIN):
 	# read the skin
+	if name is None or not len(name):
+		print "[SKIN ERROR] attempt to add a skin without filename"
+		return False
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
