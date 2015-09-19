@@ -286,7 +286,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 
 		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
 		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
-		bool show_background = eConfigManager::getConfigBoolValue("config.subtitles.show_background");
+		bool show_background = eConfigManager::getConfigBoolValue("config.subtitles.showbackground");
 
 		if (m_pixmap)
 		{
@@ -402,7 +402,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					else
 						bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
 					bbox.setWidth(bboxWidth + borderwidth * 2);
-					int bboxTop = area.top() + area.height() - bbox.height() - borderwidth;
+					int bboxTop = area.top() + area.height() - bbox.height() - 2 * borderwidth;
 					int bboxHeight = bbox.height() + borderwidth * 2;
 					bbox.setTop(bboxTop);
 					bbox.setHeight(bboxHeight);
