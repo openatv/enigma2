@@ -79,7 +79,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-S"):
 			self.updatePreDefTransponders()
 		self.createSetup()
-		self.retune(None)
+		self.retune()
 
 	def __onClose(self):
 		self.session.nav.playService(self.session.postScanService)
@@ -109,7 +109,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.pilotEntry,
 			self.modulationEntry
 			):
-			self.retune(None)
+			self.retune()
 
 	def createSetup(self):
 		self.list = []
@@ -241,7 +241,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.scan_ter.guard, self.scan_ter.hierarchy, self.scan_ter.plp_id,
 			self.scan_cab.frequency, self.scan_cab.inversion, self.scan_cab.symbolrate,
 			self.scan_cab.modulation, self.scan_cab.fec):
-			x.addNotifier(self.retuneTriggeredByAnEvent, initial_call = False)
+			x.addNotifier(self.retuneTriggeredByConfigElement, initial_call = False)
 
 		satfinder_nim_list = []
 		for n in nimmanager.nim_slots:
@@ -290,9 +290,21 @@ class Satfinder(ScanSetup, ServiceScan):
 	def updatePreDefTransponders(self):
 		ScanSetup.predefinedTranspondersList(self, self.tuning_sat.orbital_position)
 
-	def retuneCab(self, configElement):
-		if not nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-C"):
-			return
+	def retuneTriggeredByConfigElement(self, configElement):
+		self.createSetup()
+		self.retune()
+
+	def retune(self):
+		nim = nimmanager.nim_slots[int(self.satfinder_scan_nims.value)]
+		if nim.isCompatible("DVB-S"):
+			return self.retuneSat()
+		if nim.isCompatible("DVB-T"):
+			return self.retuneTerr()
+		if nim.isCompatible("DVB-C"):
+			return self.retuneCab()
+		print "error: tuner not supported ", nim.frontend_id
+
+	def retuneCab(self):
 		if self.initcomplete:
 			if self.tuning_type.value == "single_transponder":
 				transponder = (
@@ -302,8 +314,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.scan_cab.fec.value,
 					self.scan_cab.inversion.value
 				)
-				if self.initcomplete:
-					self.tuner.tuneCab(transponder)
+				self.tuner.tuneCab(transponder)
 				self.transponder = transponder
 			elif self.tuning_type.value == "predefined_transponder":
 				tps = nimmanager.getTranspondersCable(int(self.satfinder_scan_nims.value))
@@ -311,13 +322,10 @@ class Satfinder(ScanSetup, ServiceScan):
 					tp = tps[self.CableTransponders.index]
 					# tp = 0 transponder type, 1 freq, 2 sym, 3 mod, 4 fec, 5 inv, 6 sys
 					transponder = (tp[1], tp[2], tp[3], tp[4], tp[5])
-					if self.initcomplete:
-						self.tuner.tuneCab(transponder)
+					self.tuner.tuneCab(transponder)
 					self.transponder = transponder
 
-	def retuneTerr(self, configElement):
-		if not nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-T"):
-			return self.retuneCab(configElement)
+	def retuneTerr(self):
 		if self.initcomplete:
 			if self.scan_input_as.value == "channel":
 				frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
@@ -337,8 +345,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.scan_ter.inversion.value,
 					self.scan_ter.system.value,
 					self.scan_ter.plp_id.value]
-				if self.initcomplete:
-					self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
+				self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
 				self.transponder = transponder
 			elif self.tuning_type.value == "predefined_transponder":
 				region = nimmanager.getTerrestrialDescription(int(self.satfinder_scan_nims.value))
@@ -346,48 +353,40 @@ class Satfinder(ScanSetup, ServiceScan):
 				if len(tps) > self.TerrestrialTransponders.index :
 					transponder = tps[self.TerrestrialTransponders.index]
 					# frequency 1, inversion 9, bandwidth 2, fechigh 4, feclow 5, modulation 3, transmission 7, guard 6, hierarchy 8, system 10, plpid 11
-					if self.initcomplete:
-						self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
+					self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
 					self.transponder = transponder
 
-	def retuneTriggeredByAnEvent(self, configElement):
-		self.createSetup()
-		self.retune(configElement)
-
-	def retune(self, configElement): # satellite
-		if not nimmanager.nim_slots[int(self.satfinder_scan_nims.value)].isCompatible("DVB-S"):
-			return self.retuneTerr(configElement)
+	def retuneSat(self):
 		if not self.tuning_sat.value:
 			return
-		satpos = int(self.tuning_sat.value)
-		if self.tuning_type.value == "single_transponder":
-			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
-				fec = self.scan_sat.fec_s2.value
-			else:
-				fec = self.scan_sat.fec.value
-			transponder = (
-				self.scan_sat.frequency.value,
-				self.scan_sat.symbolrate.value,
-				self.scan_sat.polarization.value,
-				fec,
-				self.scan_sat.inversion.value,
-				satpos,
-				self.scan_sat.system.value,
-				self.scan_sat.modulation.value,
-				self.scan_sat.rolloff.value,
-				self.scan_sat.pilot.value)
-			if self.initcomplete:
+		if self.initcomplete:
+			satpos = int(self.tuning_sat.value)
+			if self.tuning_type.value == "single_transponder":
+				if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
+					fec = self.scan_sat.fec_s2.value
+				else:
+					fec = self.scan_sat.fec.value
+				transponder = (
+					self.scan_sat.frequency.value,
+					self.scan_sat.symbolrate.value,
+					self.scan_sat.polarization.value,
+					fec,
+					self.scan_sat.inversion.value,
+					satpos,
+					self.scan_sat.system.value,
+					self.scan_sat.modulation.value,
+					self.scan_sat.rolloff.value,
+					self.scan_sat.pilot.value)
 				self.tuner.tune(transponder)
-			self.transponder = transponder
-		elif self.tuning_type.value == "predefined_transponder":
-			tps = nimmanager.getTransponders(satpos)
-			if len(tps) > self.preDefTransponders.index:
-				tp = tps[self.preDefTransponders.index]
-				transponder = (tp[1] / 1000, tp[2] / 1000,
-					tp[3], tp[4], 2, satpos, tp[5], tp[6], tp[8], tp[9])
-				if self.initcomplete:
-					self.tuner.tune(transponder)
 				self.transponder = transponder
+			elif self.tuning_type.value == "predefined_transponder":
+				tps = nimmanager.getTransponders(satpos)
+				if len(tps) > self.preDefTransponders.index:
+					tp = tps[self.preDefTransponders.index]
+					transponder = (tp[1] / 1000, tp[2] / 1000,
+						tp[3], tp[4], 2, satpos, tp[5], tp[6], tp[8], tp[9])
+					self.tuner.tune(transponder)
+					self.transponder = transponder
 
 	def keyGoScan(self):
 		self.frontend = None
