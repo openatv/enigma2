@@ -22,6 +22,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		del feinfo
 		del service
 
+		self.preDefTransponders = None
 		self.TerrestrialTransponders = None
 		self.CableTransponders = None
 		self.typeOfTuningEntry = None
