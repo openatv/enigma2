@@ -233,18 +233,9 @@ def InitUsageConfig():
 	config.usage.frontend_priority_dvbc = ConfigSelection(default = "-2", choices = list(dvbc_nims))
 	dvbc_nims.insert(1,("-1", _("auto")))
 	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default = "-2", choices = dvbc_nims)
-	if len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2):
-		SystemInfo["DVB-S_priority_tuner_available"] = True
-	else:
-		SystemInfo["DVB-S_priority_tuner_available"] = False
-	if len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2):
-		SystemInfo["DVB-T_priority_tuner_available"] = True
-	else:
-		SystemInfo["DVB-T_priority_tuner_available"] = False
-	if len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2):
-		SystemInfo["DVB-C_priority_tuner_available"] = True
-	else:
-		SystemInfo["DVB-C_priority_tuner_available"] = False
+	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2)
+	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2)
+	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2)
 
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
