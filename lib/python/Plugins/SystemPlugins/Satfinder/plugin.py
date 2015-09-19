@@ -196,15 +196,16 @@ class Satfinder(ScanSetup, ServiceScan):
 				else:
 					self.scan_input_as.value = self.scan_input_as.choices[0]
 				if self.ter_channel_input and self.scan_input_as.value == "channel":
-#					channel = getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
-#					if channel:
-#						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
+					self.scan_ter.frequency.removeNotifier(self.retuneTriggeredByConfigElement)
+					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
+					self.scan_ter.frequency.addNotifier(self.retuneTriggeredByConfigElement, initial_call = False)
 					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
 				else:
-#					prev_val = self.scan_ter.frequency.value
-#					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
-#					if self.scan_ter.frequency.value == 474000:
-#						self.scan_ter.frequency.value = prev_val
+					channel = getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
+					if channel:
+						self.scan_ter.channel.removeNotifier(self.retuneTriggeredByConfigElement)
+						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
+						self.scan_ter.channel.addNotifier(self.retuneTriggeredByConfigElement, initial_call = False)
 					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
