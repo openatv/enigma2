@@ -322,7 +322,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 							bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
 						bbox.setWidth(bboxWidth + borderwidth * 2);
 						bbox.setHeight(area.height());
-						painter.setForegroundColor(gRGB(0,0,0,32));
+						painter.setForegroundColor(gRGB(0,0,0,64));
 						painter.fill(bbox);
 						borderwidth = 0;
 					}
@@ -402,8 +402,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					else
 						bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
 					bbox.setWidth(bboxWidth + borderwidth * 2);
-					bbox.setHeight(area.height());
-					painter.setForegroundColor(gRGB(0,0,0,32));
+					int bboxTop = area.top() + area.height() - bbox.height() - borderwidth;
+					int bboxHeight = bbox.height() + borderwidth * 2;
+					bbox.setTop(bboxTop);
+					bbox.setHeight(bboxHeight);
+					painter.setForegroundColor(gRGB(0,0,0,64));
 					painter.fill(bbox);
 					borderwidth = 0;
 				}
