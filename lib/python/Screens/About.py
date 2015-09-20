@@ -71,7 +71,7 @@ class About(Screen):
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
-		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
+		AboutText += _("Last Update:\t%s\n\n") % getEnigmaVersionString()
 
 		fp_version = getFPVersion()
 		if fp_version is None:
