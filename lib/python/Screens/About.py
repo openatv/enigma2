@@ -51,13 +51,13 @@ class About(Screen):
 			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
 
 		AboutText += _("CPU:\t%s\n") % about.getCPUString()
-		AboutText += _("CPU Speed:\t%s\n") % about.getCPUSpeedString()
+		AboutText += _("CPU speed:\t%s\n") % about.getCPUSpeedString()
 		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
-		AboutText += _("Image Type:\t%s\n") % getImageType().title()
-		AboutText += _("Skin Name:\t%s\n") % config.skin.primary_skin.value[0:-9]
+		AboutText += _("Image type:\t%s\n") % getImageType().title()
+		AboutText += _("Skin name:\t%s\n") % config.skin.primary_skin.value[0:-9]
 
 		string = getDriverDate()
 		year = string[0:4]
@@ -71,7 +71,7 @@ class About(Screen):
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
-		AboutText += _("Last Update:\t%s\n\n") % getEnigmaVersionString()
+		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -108,9 +108,9 @@ class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
-		self["TunerHeader"] = StaticText(_("Detected Tuners:"))
-		self["HDDHeader"] = StaticText(_("Detected Devices:"))
-		self["MountsHeader"] = StaticText(_("Network Servers:"))
+		self["TunerHeader"] = StaticText(_("Detected tuners:"))
+		self["HDDHeader"] = StaticText(_("Detected devices:"))
+		self["MountsHeader"] = StaticText(_("Network servers:"))
 		self["nims"] = StaticText()
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
@@ -244,10 +244,10 @@ class SystemMemoryInfo(Screen):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Memory:") + "\t" + MemTotal[1] + "\n"
+				self.AboutText += _("Total memory:") + "\t" + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				self.AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+				self.AboutText += _("Free memory:") + "\t" + MemFree[1] + "\n"
 			if "Buffers:" in tstLine:
 				Buffers = out_lines[lidx].split()
 				self.AboutText += _("Buffers:") + "\t" + Buffers[1] + "\n"
@@ -256,10 +256,10 @@ class SystemMemoryInfo(Screen):
 				self.AboutText += _("Cached:") + "\t" + Cached[1] + "\n"
 			if "SwapTotal:" in tstLine:
 				SwapTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
+				self.AboutText += _("Total swap:") + "\t" + SwapTotal[1] + "\n"
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
+				self.AboutText += _("Free swap:") + "\t" + SwapFree[1] + "\n\n"
 
 		self["actions"].setEnabled(False)
 		self.Console = Console()
