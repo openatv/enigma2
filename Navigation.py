@@ -172,9 +172,9 @@ class Navigation:
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
-				dvb_service = '%3a//' not in playref.toString() and not playref.toString().rsplit(":", 1)[1].startswith("/")
 				setPriorityFrontend = False
-				if dvb_service:
+				str_service = playref.toString()
+				if '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
 					type_service = playref.getUnsignedData(4) >> 16
 					if type_service == 0xEEEE:
 						if SystemInfo["DVB-T_priority_tuner_available"] and config.usage.frontend_priority_dvbt.value != "-2":

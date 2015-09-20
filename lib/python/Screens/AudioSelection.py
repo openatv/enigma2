@@ -404,9 +404,9 @@ class SubtitleSelection(AudioSelection):
 
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 	skin = """
-	<screen position="50,50" size="480,280" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
-		<widget name="config" position="5,5" size="470,250" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
-		<widget name="videofps" position="5,255" size="470,20" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;16" valign="center" halign="left" foregroundColor="blue"/>
+	<screen position="50,50" size="480,305" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
+		<widget name="config" position="5,5" size="470,275" font="Regular;18" zPosition="1" transparent="1" selectionPixmap="PLi-HD/buttons/sel.png" valign="center" />
+		<widget name="videofps" position="5,280" size="470,20" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;16" valign="center" halign="left" foregroundColor="blue"/>
 	</screen>"""
 
 	def __init__(self, session, infobar):
@@ -438,6 +438,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_rewrap"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
+				getConfigMenuItem("config.subtitles.showbackground"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
 				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
@@ -454,6 +455,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_rewrap"),
 				getConfigMenuItem("config.subtitles.pango_subtitle_removehi"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
+				getConfigMenuItem("config.subtitles.showbackground"),
 				getConfigMenuItem("config.subtitles.pango_subtitles_fps"),
 			]
 			self["videofps"].setText(_("Video: %s fps") % (self.getFps().rstrip(".000")))
