@@ -128,9 +128,10 @@ class ServiceScan(Screen):
 
 	def scanPoll(self):
 		if self["scan"].isDone():
-			self["servicelist"].moveToIndex(0)
-			self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
 			self.scanTimer.stop()
+			self["servicelist"].moveToIndex(0)
+			if self["servicelist"].getCurrentSelection() is not None:
+				self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
 
 	def doServiceScan(self):
 		self["servicelist"].len = self["servicelist"].instance.size().height() / self["servicelist"].l.getItemSize().height()
