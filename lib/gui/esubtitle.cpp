@@ -286,7 +286,6 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 
 		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
 		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
-		bool show_background = eConfigManager::getConfigBoolValue("config.subtitles.showbackground");
 
 		if (m_pixmap)
 		{
@@ -307,11 +306,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				if (!element.m_text.empty())
 				{
 					eRect &area = element.m_area;
-					if (show_background)
+					if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
 					{
 						eTextPara *para = new eTextPara(area);
 						para->setFont(subtitleStyles[Subtitle_TTX].font);
-						para->renderString(element.m_text.c_str());
+						para->renderString(element.m_text.c_str(), RS_WRAP);
 						eRect bbox = para->getBoundBox();
 						int bboxWidth = bbox.width();
 						if (alignmentValue == "right")
@@ -321,7 +320,16 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 						else
 							bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
 						bbox.setWidth(bboxWidth + borderwidth * 2);
-						bbox.setHeight(area.height());
+						if (eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position"))
+							bbox.setHeight(area.height());
+						else
+						{
+							int bboxTop = area.top() + area.height() - bbox.height() - 2 * borderwidth;
+							int bboxHeight = bbox.height() + borderwidth * 2;
+							bbox.setTop(bboxTop);
+							bbox.setHeight(bboxHeight);
+							area.setTop(area.top() - borderwidth);
+						}
 						painter.setForegroundColor(gRGB(0,0,0,64));
 						painter.fill(bbox);
 						borderwidth = 0;
@@ -384,11 +392,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
 				eRect &area = element.m_area;
-				if (show_background)
+				if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
 				{
 					eTextPara *para = new eTextPara(area);
 					para->setFont(subtitleStyles[face].font);
-					para->renderString(text.c_str());
+					para->renderString(text.c_str(), RS_WRAP);
 					eRect bbox = para->getBoundBox();
 					int bboxWidth = bbox.width();
 					if (alignmentValue == "right")
