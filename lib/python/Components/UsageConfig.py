@@ -205,17 +205,37 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default = False);
 	config.usage.remote_fallback = ConfigText(default = "", fixed_size = False);
+	config.usage.remote_fallback_port = ConfigInteger(default = 8001, limits = (1, 65535));
 
+	dvbs_nims = [("-2", _("Disabled"))]
+	dvbt_nims = [("-2", _("Disabled"))]
+	dvbc_nims = [("-2", _("Disabled"))]
 	nims = [("-1", _("auto"))]
 	rec_nims = [("-2", _("Disabled")), ("-1", _("auto"))]
 	for x in nimmanager.nim_slots:
+		if x.isCompatible("DVB-S"):
+			dvbs_nims.append((str(x.slot), x.getSlotName()))
+		elif x.isCompatible("DVB-T"):
+			dvbt_nims.append((str(x.slot), x.getSlotName()))
+		elif x.isCompatible("DVB-C"):
+			dvbc_nims.append((str(x.slot), x.getSlotName()))
 		nims.append((str(x.slot), x.getSlotName()))
 		rec_nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = rec_nims)
-	config.misc.disable_background_scan = ConfigYesNo(default = False)
-
+	config.usage.frontend_priority_dvbs = ConfigSelection(default = "-2", choices = list(dvbs_nims))
+	dvbs_nims.insert(1,("-1", _("auto")))
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
+	config.usage.recording_frontend_priority_dvbs = ConfigSelection(default = "-2", choices = dvbs_nims)
+	config.usage.frontend_priority_dvbt = ConfigSelection(default = "-2", choices = list(dvbt_nims))
+	dvbt_nims.insert(1,("-1", _("auto")))
+	config.usage.recording_frontend_priority_dvbt = ConfigSelection(default = "-2", choices = dvbt_nims)
+	config.usage.frontend_priority_dvbc = ConfigSelection(default = "-2", choices = list(dvbc_nims))
+	dvbc_nims.insert(1,("-1", _("auto")))
+	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default = "-2", choices = dvbc_nims)
+	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2)
+	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2)
+	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2)
 
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
@@ -513,6 +533,7 @@ def InitUsageConfig():
 	config.subtitles.colourise_dialogs = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
 	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["%d" % x for x in range(16,101) if not x % 2], default = "40")
+	config.subtitles.showbackground = ConfigYesNo(default = False)
 
 	subtitle_delay_choicelist = []
 	for i in range(-900000, 1845000, 45000):

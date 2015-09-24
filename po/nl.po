@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-03 21:20+0100\n"
-"PO-Revision-Date: 2015-09-06 07:36+0100\n"
+"POT-Creation-Date: 2015-09-23 21:22+0100\n"
+"PO-Revision-Date: 2015-09-24 08:30+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -1210,6 +1210,9 @@ msgstr "Auto"
 msgid "Auto Deep Standby"
 msgstr "Uitschakelen"
 
+msgid "Auto EXIF Orientation rotation/flipping"
+msgstr "Auto EXIF-orientatie: rotatie/spiegelen"
+
 msgid "Auto Standby"
 msgstr "Stand-by"
 
@@ -1528,8 +1531,8 @@ msgid "CI assignment"
 msgstr "CI toewijzing"
 
 #, python-format
-msgid "CPU Speed:\t%s\n"
-msgstr "CPU snelheid:\t%s\n"
+msgid "CPU speed:\t%s\n"
+msgstr "CPU -snelheid:\t%s\n"
 
 #, python-format
 msgid "CPU:\t%s\n"
@@ -1949,6 +1952,9 @@ msgstr "Stel in of en hoe de opname-indicatie in de kanaallijst wordt getoond."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Stel in of en hoe breed de kanaalnaam moeten worden getoond in de kanaallijst."
 
+msgid "Configure if behind the subtitles a background is shown."
+msgstr "Configureer ondertitel achtergrond."
+
 msgid "Configure if picons will be shown in the service list."
 msgstr "Stel in of de servicetype-iconen worden getoond."
 
@@ -2156,11 +2162,11 @@ msgstr "Stel in of de rotorpositie getoond moet worden in de infobar"
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Bepaal welk kleurformaat voor de scart-aansluiting wordt benut"
 
+msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
+
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "Bepaal welk tunertype de voorkeur heeft, als hetzelfde kanaal beschikbaar is voor verschillende types tuner."
-
-msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
-msgstr "Stel in welke tuner de voorkeur heeft voor opnames als meerdere tuners beschikbaar zijn. \"Uitgeschakeld\" betekent dat de tunerkeuze wordt bepaald door de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\". \"Auto\" betekent dat de keuze wordt gebaseerd op de standaard regels van Enigma, waarbij de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\" wordt genegeerd. "
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Stel in welke tuner de voorkeur heeft, als meerdere tuners beschikbaar zijn. In de stand 'auto' zal de voorkeur worden gegeven aan de tuner met het kleinste aantal kanalen/satellieten."
@@ -2602,9 +2608,6 @@ msgstr "Diepte"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "'Descramble & record ECM' geeft de optie om achteraf te decoderen indien het decoderen tijdens de opname faalde. 'Don't descramble, record ECM' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normal' betekent decoderen en geen ECM opnemen."
 
-msgid "Descramble http streams"
-msgstr "Descramble http streams"
-
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -2614,10 +2617,10 @@ msgstr "Deselecteer"
 msgid "Details for plugin: "
 msgstr "Details voor plugin: "
 
-msgid "Detected Devices:"
+msgid "Detected devices:"
 msgstr "Gedetecteerde media:"
 
-msgid "Detected Tuners:"
+msgid "Detected tuners:"
 msgstr "Gedetecteerde tuners:"
 
 msgid "Device Information"
@@ -2690,9 +2693,6 @@ msgstr "Animatie uitschakelen"
 
 msgid "Disable Picture in Picture"
 msgstr "Beeld-in-beeld uitschakelen"
-
-msgid "Disable background scanning"
-msgstr "Scannen op de achtergrond uitschakelen"
 
 msgid "Disable move mode"
 msgstr "Verplaatsmodus deactiveren"
@@ -3118,20 +3118,17 @@ msgstr "Paniektoets gebruiken"
 msgid "Enable parental protection"
 msgstr "Kinderslot inschakelen"
 
-msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
-
 msgid "Enable teletext caching"
 msgstr "Teletekst caching inschakelen"
+
+msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
+msgstr "Maakt het mogelijk de tuners van een remote E2-STB te gebruiken, als geen locale tuner beschikbaar is (b.v. als de tuner bezet is of er helemaal geen tuner aanwezig is)."
 
 msgid "Enable unlinked bouquets"
 msgstr "Schakel niet-verbonden favorietenlijsten in"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
-
-msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen (als de ECM-data in de opname is opgenomen en een geldige smartcard aanwezig is)"
 
 msgid "Encrypted: "
 msgstr "Gecodeerd"
@@ -3434,6 +3431,9 @@ msgstr "Mislukt te schrijven naar /tmp/positionersetup.log: "
 msgid "Fallback remote receiver URL"
 msgstr "Fallback remote-ontvanger URL"
 
+msgid "Fallback remote receiver streaming port"
+msgstr "Fallback remote-ontvanger poort"
+
 #
 #, python-format
 msgid "Fan %d"
@@ -3542,12 +3542,6 @@ msgstr "Geef volume opdrachten door"
 msgid "Frame size in full view"
 msgstr "Framegrootte in vol beeld"
 
-msgid "Free Memory:"
-msgstr "Vrij:"
-
-msgid "Free Swap:"
-msgstr "Vrije swap:"
-
 msgid "Free To Air"
 msgstr "FTA"
 
@@ -3556,6 +3550,9 @@ msgstr "Vrij geheugen"
 
 msgid "Free memory:"
 msgstr "Vrij geheugen:"
+
+msgid "Free swap:"
+msgstr "Vrije swap:"
 
 msgid "Free:"
 msgstr "Vrij:"
@@ -3986,7 +3983,7 @@ msgid "Image Manager"
 msgstr "Imagemanager"
 
 #, python-format
-msgid "Image Type:\t%s\n"
+msgid "Image type:\t%s\n"
 msgstr "Imagetype:\t%s\n"
 
 msgid "Immediate shutdown"
@@ -4916,9 +4913,6 @@ msgstr "Netwerkinformatie"
 msgid "Network MAC settings"
 msgstr "Netwerk MAC-instellingen"
 
-msgid "Network Servers:"
-msgstr "Netwerkservers:"
-
 msgid "Network Setup"
 msgstr "Netwerkinstellingen"
 
@@ -4936,6 +4930,9 @@ msgstr "Netwerknaam (SSID)"
 
 msgid "Network scan"
 msgstr "Netwerk zoeken"
+
+msgid "Network servers:"
+msgstr "Netwerkservers:"
 
 msgid "Network setup"
 msgstr "Netwerkinstellingen"
@@ -5934,6 +5931,24 @@ msgstr "Voorkeur voor ondertitels die eerder zijn gekozen"
 
 msgid "Preferred tuner"
 msgstr "Voorkeurstuner"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Voorkeurs DVB-C tuner"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Voorkeurstuner DVB-C voor opnames"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Voorkeurs DVB-S tuner"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Voorkeurs DVB-S tuner voor opnames"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Voorkeurs DVB-T tuner"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Voorkeurs DVB-T tuner voor opnames"
 
 msgid "Preferred tuner for recordings"
 msgstr "Voorkeurstuner voor opnames"
@@ -7331,6 +7346,9 @@ msgstr "Toon alternatieven"
 msgid "Show animation while busy"
 msgstr "Laat animatie zien wanneer bezet"
 
+msgid "Show background behind subtitles"
+msgstr "Toon achtergrond achter ondertitels"
+
 msgid "Show background in Radio mode"
 msgstr "Toon achtergrond in radiomodus"
 
@@ -7566,7 +7584,6 @@ msgstr "Signaal OK, gaat door"
 msgid "Signal Strength:"
 msgstr "Signaalsterkte:"
 
-#, fuzzy
 msgid "Signal finder"
 msgstr "Signaalzoeker"
 
@@ -7620,6 +7637,10 @@ msgstr "Grootte:"
 
 msgid "Skin Setting"
 msgstr "Skin instellen"
+
+#, python-format
+msgid "Skin name:\t%s\n"
+msgstr "Skin naam:\t%s\n"
 
 msgid "Skin setup"
 msgstr "Skin kiezen"
@@ -7990,6 +8011,9 @@ msgstr "Stream-tv"
 
 msgid "Streaming"
 msgstr "Streaming"
+
+msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
+msgstr "Poort van de remote ontvanger. Standaard is dat '08001'."
 
 msgid "Strict DLNA"
 msgstr "Strict DLNA"
@@ -8490,6 +8514,9 @@ msgstr "Hier stelt u de lettergrootte in t.o.v. de waarde die in de skin staat. 
 msgid "This allows you to change the number of rows shown."
 msgstr "Hier kunt u het aantal regels dat vertoond wordt aanpassen."
 
+msgid "This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box')."
+msgstr "Dit kan het IP-adres of de naam van de remote ontvanger zijn (dus of 'xxx.xxx.xxx.xxx' of 'naam-van-de-box')."
+
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Met deze optie bepaalt u de mate van onderdrukking van 'blokruis' ('blokruis' is blokvorming als resultaat van sterke compressie). Uiteraard gaat dit ten koste van de beeldscherpte."
 
@@ -8928,12 +8955,6 @@ msgstr "Boven en -onderkant"
 msgid "Total"
 msgstr "Totaal"
 
-msgid "Total Memory:"
-msgstr "Totaal:"
-
-msgid "Total Swap:"
-msgstr "Totale swap:"
-
 msgid "Total cards:"
 msgstr "Aantal kaarten:"
 
@@ -8942,6 +8963,12 @@ msgstr "Total afgehandelde klant ecm's"
 
 msgid "Total handled client emm's"
 msgstr "Total afgehandelde klant emm's"
+
+msgid "Total memory:"
+msgstr "Totaal geheugen:"
+
+msgid "Total swap:"
+msgstr "Totale swap:"
 
 msgid "Total:"
 msgstr "Totaal:"
@@ -9072,9 +9099,6 @@ msgstr "Zoekmodus"
 
 msgid "Type: "
 msgstr "Type: "
-
-msgid "URL of fallback remote receiver"
-msgstr "URL van de fallback-ontvanger"
 
 msgid "USALS"
 msgstr "USALS"
@@ -9775,6 +9799,12 @@ msgstr "Indien 'Ja' is gekozen, zal AC3 geluid worden doorgegeven (indien beschi
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Indien 'Ja' is gekozen, zal AC3+ geluid worden doorgegeven (indien beschikbaar)."
 
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "Indien ingeschakeld heeft deze instelling meer gewicht dan 'Voorkeurstuner voor opnames'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "Indien ingeschakeld heeft deze instelling meer gewicht dan 'Voorkeurstuner'."
+
 msgid "When enabled, timeshift starts automatically in background after the specified time."
 msgstr "Indien ingeschakeld, start timeshift automatisch op de achtergrond na de ingestelde tijd."
 
@@ -9804,9 +9834,6 @@ msgstr "Als het beeld een verhouding heeft van 16:9 kan het beeld worden uitgere
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Als het beeld een verhouding heeft van 4:3 kan het beeld worden uitgerekt of geschaald."
-
-msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
-msgstr "Als uw %s %s op een kanaal is afgestemd, wordt normaal gesproken de transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker bent van wat u doet. "
 
 #, python-format
 msgid ""
@@ -11485,8 +11512,8 @@ msgstr "zapte"
 #~ msgid "Configure the refresh rate of the screen."
 #~ msgstr "Bepaal de verversingsfrequentie van het scherm."
 
-#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-#~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
+#~ msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
+#~ msgstr "Stel in welke tuner de voorkeur heeft voor opnames als meerdere tuners beschikbaar zijn. \"Uitgeschakeld\" betekent dat de tunerkeuze wordt bepaald door de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\". \"Auto\" betekent dat de keuze wordt gebaseerd op de standaard regels van Enigma, waarbij de instelling \"Voorkeurstuner\" in het scherm \"Aanpassen\" wordt genegeerd. "
 
 #~ msgid "Connected!"
 #~ msgstr "Verbonden!"
@@ -11503,11 +11530,17 @@ msgstr "zapte"
 #~ msgid "Delete..."
 #~ msgstr "Wissen..."
 
+#~ msgid "Descramble http streams"
+#~ msgstr "Descramble http streams"
+
 #~ msgid "Devide"
 #~ msgstr "Verdeel"
 
 #~ msgid "Dialing:"
 #~ msgstr "Bellen:"
+
+#~ msgid "Disable background scanning"
+#~ msgstr "Scannen op de achtergrond uitschakelen"
 
 #~ msgid "Disconnect"
 #~ msgstr "Verbreken"
@@ -11524,6 +11557,12 @@ msgstr "zapte"
 #~ msgid "Edit services list"
 #~ msgstr "Wijzig zenderlijst"
 
+#~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+#~ msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
+
+#~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
+#~ msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen (als de ECM-data in de opname is opgenomen en een geldige smartcard aanwezig is)"
+
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
 
@@ -11535,6 +11574,9 @@ msgstr "zapte"
 
 #~ msgid "Finished restarting your network"
 #~ msgstr "Herstarten van uw netwerk is voltooid"
+
+#~ msgid "Free Memory:"
+#~ msgstr "Vrij:"
 
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "Ftpd service type: Vsftpd server"
@@ -11699,6 +11741,9 @@ msgstr "zapte"
 #~ msgid "Tuner Configuration"
 #~ msgstr "Tunerconfiguratie"
 
+#~ msgid "URL of fallback remote receiver"
+#~ msgstr "URL van de fallback-ontvanger"
+
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
 
@@ -11722,6 +11767,9 @@ msgstr "zapte"
 
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Indien geactiveerd worden de regeleindes van de teletekst ondertitels verwijderd."
+
+#~ msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
+#~ msgstr "Als uw %s %s op een kanaal is afgestemd, wordt normaal gesproken de transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker bent van wat u doet. "
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "U kunt de telnetserver uitschakelen en ssh gebruiken om in te loggen."

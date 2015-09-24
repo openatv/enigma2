@@ -7,6 +7,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
+from Components.config import config
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate
 
@@ -50,13 +51,14 @@ class About(Screen):
 			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
 
 		AboutText += _("CPU:\t%s\n") % about.getCPUString()
-		AboutText += _("CPU Speed:\t%s\n") % about.getCPUSpeedString()
+		AboutText += _("CPU speed:\t%s\n") % about.getCPUSpeedString()
 		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
 		AboutText += _("Build:\t%s\n") % getImageBuild()
-		AboutText += _("Image Type:\t%s\n") % getImageType().title()
-		
+		AboutText += _("Image type:\t%s\n") % getImageType().title()
+		AboutText += _("Skin name:\t%s\n") % config.skin.primary_skin.value[0:-9]
+
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -64,7 +66,7 @@ class About(Screen):
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s\n") % driversdate
 		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		
+
 		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
@@ -102,14 +104,13 @@ class About(Screen):
 	def createSummary(self):
 		return AboutSummary
 
-
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Device Information"))
-		self["TunerHeader"] = StaticText(_("Detected Tuners:"))
-		self["HDDHeader"] = StaticText(_("Detected Devices:"))
-		self["MountsHeader"] = StaticText(_("Network Servers:"))
+		self["TunerHeader"] = StaticText(_("Detected tuners:"))
+		self["HDDHeader"] = StaticText(_("Detected devices:"))
+		self["MountsHeader"] = StaticText(_("Network servers:"))
 		self["nims"] = StaticText()
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
@@ -243,10 +244,10 @@ class SystemMemoryInfo(Screen):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Memory:") + "\t" + MemTotal[1] + "\n"
+				self.AboutText += _("Total memory:") + "\t" + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				self.AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+				self.AboutText += _("Free memory:") + "\t" + MemFree[1] + "\n"
 			if "Buffers:" in tstLine:
 				Buffers = out_lines[lidx].split()
 				self.AboutText += _("Buffers:") + "\t" + Buffers[1] + "\n"
@@ -255,10 +256,10 @@ class SystemMemoryInfo(Screen):
 				self.AboutText += _("Cached:") + "\t" + Cached[1] + "\n"
 			if "SwapTotal:" in tstLine:
 				SwapTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
+				self.AboutText += _("Total swap:") + "\t" + SwapTotal[1] + "\n"
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
+				self.AboutText += _("Free swap:") + "\t" + SwapFree[1] + "\n\n"
 
 		self["actions"].setEnabled(False)
 		self.Console = Console()
