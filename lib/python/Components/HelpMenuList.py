@@ -162,7 +162,11 @@ class HelpMenuList(GUIComponent):
 		for i, ent in enumerate(l):
 			if ent[0] is not None:
 				for b in ent[0][3]:
-					self.buttonMap[b] = i
+					# Ignore "break" events from
+					# OK and EXIT on return from
+					# help popup
+					if b[0] not in ('OK', 'EXIT'):
+						self.buttonMap[b] = i
 
 		self.l.setList(l)
 
