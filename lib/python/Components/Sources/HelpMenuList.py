@@ -1,5 +1,3 @@
-from GUIComponent import GUIComponent
-
 from Components.Sources.List import List
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
 from Components.config import config
@@ -22,6 +20,16 @@ from collections import defaultdict
 
 # The code recognises that more than one button can map to an action and
 # places a button name list instead of a single button in the help entry.
+
+# In the template for HelpMenuList:
+
+# Template "default" for simple string help items
+# Use data[1] = helpText and data[2] = ""  for non-indented text
+# and data[1] = "" and data[2] = helpText  for indented text (20 pixel indent)
+
+# Template for list/tuple help items
+# Use data[1:3] = helpTuple and data[3:5] = ["", ""] for non-indented text
+# and data[1:3] = ["", ""] and data[3:5] = helpTuple for indented text
 
 
 class HelpMenuList(List):
@@ -116,11 +124,11 @@ class HelpMenuList(List):
 				# only show non-empty entries with keys that are available on the used rc
 				if not (buttonNames and help):
 					continue
-				if isinstance(help, list):
+				if isinstance(help, (tuple, list)):
 					self.extendedHelp = True
 				if helpTags:
 					helpTagStr = " (" + ", ".join(helpTags) + ")"
-					if isinstance(help, list):
+					if isinstance(help, (tuple, list)):
 						help[0] += helpTagStr
 					else:
 						help += helpTagStr
@@ -179,7 +187,7 @@ class HelpMenuList(List):
 				bl1.append(b)
 
 	def _filterHelpList(self, ent, seen):
-		hlp = tuple(ent[1] if isinstance(ent[1], list) else [ent[1], ''])
+		hlp = tuple(ent[1] if isinstance(ent[1], (tuple, list)) else [ent[1], ''])
 		if hlp in seen:
 			self._mergeButLists(seen[hlp], ent[0][3])
 			return False
@@ -195,7 +203,7 @@ class HelpMenuList(List):
 				ent[1:] = ('', '', '', '')
 			else:
 				ent[1:] = ('', '')
-			if isinstance(help, list):
+			if isinstance(help, (tuple, list)):
 				ent[1 + indent] = help[0]
 				ent[3 + indent] = help[1]
 			else:
@@ -224,7 +232,7 @@ class HelpMenuList(List):
 	def _sortKeyAlpha(self, hlp):
 		# Convert normal help to extended help form for comparison
 		# and ignore case
-		return map(str.lower, hlp[1] if isinstance(hlp[1], list) else [hlp[1], ''])
+		return map(str.lower, hlp[1] if isinstance(hlp[1], (tuple, list)) else [hlp[1], ''])
 
 	def ok(self):
 		# a list entry has a "private" tuple as first entry...
