@@ -2,12 +2,11 @@ import os
 import time
 import cPickle as pickle
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
 
 from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
-from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
 from Components.DiskInfo import DiskInfo
@@ -20,6 +19,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
+from Components.Sources.List import List
 import Components.Harddisk
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Boolean import Boolean
@@ -316,20 +316,7 @@ class MovieContextMenuSummary(Screen):
 
 	def selectionChanged(self):
 		item = self.parent["config"].getCurrent()
-		self["selected"].text = item[1][7]
-
-class MovieMenuList(MenuList):
-	def __init__(self, list, enableWrapAround=False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 24))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(30)
-
-def MovieMenuEntryComponent(name, item):
-	return [
-		(item),
-		MultiContentEntryText(pos=(20, 0), size=(575, 30), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_(name)),
-	]
+		self["selected"].text = item[1]
 
 class MovieContextMenu(Screen):
 	# Contract: On OK returns a callable object (e.g. delete)
@@ -354,33 +341,38 @@ class MovieContextMenu(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
-		menu = []
-		menu.append(MovieMenuEntryComponent((_("Settings") + "..."), csel.configure))
-		menu.append(MovieMenuEntryComponent((_("Add bookmark")), csel.do_addbookmark))
-		menu.append(MovieMenuEntryComponent((_("Create directory")), csel.do_createdir))
-		menu.append(MovieMenuEntryComponent((_("Sort") + "..."), csel.selectSortby))
-		menu.append(MovieMenuEntryComponent((_("On end of movie") + "..."), csel.do_movieoff_menu))
+		menu = [
+			(csel.configure, _("Settings") + "..."),
+			(csel.do_addbookmark, _("Add bookmark")),
+			(csel.do_createdir, _("Create directory")),
+			(csel.selectSortby, _("Sort") + "..."),
+			(csel.do_movieoff_menu, _("On end of movie") + "..."),
+		]
 
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
-					menu.append(MovieMenuEntryComponent((_("Permanently remove all deleted items")), csel.purgeAll))
+					menu.append((csel.purgeAll, _("Permanently remove all deleted items")))
 				else:
-					menu.append(MovieMenuEntryComponent((_("Delete")), csel.do_delete))
-					menu.append(MovieMenuEntryComponent((_("Move")), csel.do_move))
-					menu.append(MovieMenuEntryComponent((_("Copy")), csel.do_copy))
-					menu.append(MovieMenuEntryComponent((_("Rename")), csel.do_rename))
+					menu += [
+						(csel.do_delete, _("Delete")),
+						(csel.do_move, _("Move")),
+						(csel.do_copy, _("Copy")),
+						(csel.do_rename, _("Rename")),
+					]
 			else:
-				menu.append(MovieMenuEntryComponent((_("Delete")), csel.do_delete))
-				menu.append(MovieMenuEntryComponent((_("Move")), csel.do_move))
-				menu.append(MovieMenuEntryComponent((_("Copy")), csel.do_copy))
-				menu.append(MovieMenuEntryComponent((_("Reset playback position")), csel.do_reset))
-				menu.append(MovieMenuEntryComponent((_("Rename")), csel.do_rename))
-				menu.append(MovieMenuEntryComponent((_("Start offline decode")), csel.do_decode))
+				menu += [
+					(csel.do_delete, _("Delete")),
+					(csel.do_move, _("Move")),
+					(csel.do_copy, _("Copy")),
+					(csel.do_reset, _("Reset playback position")),
+					(csel.do_rename, _("Rename")),
+					(csel.do_decode, _("Start offline decode")),
+				]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				menu.extend([MovieMenuEntryComponent((p.description), boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+				menu += [(boundFunction(p, session, service), p.description) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)]
 
-		self["config"] = MovieMenuList(menu)
+		self["config"] = List(menu)
 
 	def createSummary(self):
 		return MovieContextMenuSummary
