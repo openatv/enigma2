@@ -81,11 +81,12 @@ Cexif::~Cexif()
 
 void Cexif::ClearExif()
 {
-	if(freeinfo)
+	if (freeinfo)
 	{
-		for(int i=0;i<MAX_SECTIONS;i++)
-			if(Sections[i].Data) free(Sections[i].Data);
-				delete m_exifinfo;
+		for (int i=0; i<MAX_SECTIONS; i++)
+			if (Sections[i].Data)
+				free(Sections[i].Data);
+		delete m_exifinfo;
 		freeinfo = false;
 	}
 }
@@ -97,45 +98,50 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		return false;
 
 	m_exifinfo = new EXIFINFO;
-	memset(m_exifinfo,0,sizeof(EXIFINFO));
+	memset(m_exifinfo, 0, sizeof(EXIFINFO));
 	freeinfo = true;
 	m_exifinfo->Thumnailstate = Thumb;
 
-	m_szLastError[0]='\0';
-	ExifImageWidth = MotorolaOrder = SectionsRead=0;
+	m_szLastError[0] = '\0';
+	ExifImageWidth = MotorolaOrder = SectionsRead = 0;
 	memset(&Sections, 0, MAX_SECTIONS * sizeof(Section_t));
 
 	int HaveCom = 0;
 	int a = fgetc(hFile);
-	strcpy(m_szLastError,"EXIF-Data not found");
+	strcpy(m_szLastError, "EXIF-Data not found");
 
-	if (a != 0xff || fgetc(hFile) != M_SOI) return false;
+	if (a != 0xff || fgetc(hFile) != M_SOI)
+		return false;
 
-	for(;;)
+	for (;;)
 	{
 		int marker = 0;
-		int ll,lh, got, itemlen;
+		int ll, lh, got, itemlen;
 		unsigned char * Data;
 
 		if (SectionsRead >= MAX_SECTIONS)
 		{
-			strcpy(m_szLastError,"Too many sections in jpg file"); return false;
+			strcpy(m_szLastError, "Too many sections in jpg file");
+			return false;
 		}
 
-		for (a=0;a<7;a++)
+		for (a=0; a<7; a++)
 		{
 			marker = fgetc(hFile);
-			if (marker != 0xff) break;
+			if (marker != 0xff)
+				break;
 
 			if (a >= 6)
 			{
-				strcpy(m_szLastError,"too many padding unsigned chars\n"); return false;
+				strcpy(m_szLastError, "Too many padding unsigned chars");
+				return false;
 			}
 		}
 
 		if (marker == 0xff)
 		{
-			strcpy(m_szLastError,"too many padding unsigned chars!"); return false;
+			strcpy(m_szLastError, "Too many padding unsigned chars!");
+			return false;
 		}
 
 		Sections[SectionsRead].Type = marker;
@@ -147,14 +153,16 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 
 		if (itemlen < 2)
 		{
-			strcpy(m_szLastError,"invalid marker"); return false;
+			strcpy(m_szLastError, "Invalid marker");
+			return false;
 		}
 		Sections[SectionsRead].Size = itemlen;
 
 		Data = (unsigned char *)malloc(itemlen);
 		if (Data == NULL)
 		{
-			strcpy(m_szLastError,"Could not allocate memory"); return false;
+			strcpy(m_szLastError, "Could not allocate memory");
+			return false;
 		}
 		Sections[SectionsRead].Data = Data;
 
@@ -162,12 +170,13 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		Data[0] = (unsigned char)lh;
 		Data[1] = (unsigned char)ll;
 
-		got = fread(Data+2, 1, itemlen-2,hFile);
+		got = fread(Data+2, 1, itemlen-2, hFile);
 		if (got != itemlen-2)
 		{
-			strcpy(m_szLastError,"Premature end of file?"); return false;
+			strcpy(m_szLastError, "Premature end of file?");
+			return false;
 		}
-		SectionsRead += 1;
+		SectionsRead++;
 
 		switch(marker)
 		{
@@ -180,7 +189,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			if (HaveCom)
 			{
 				free(Sections[--SectionsRead].Data);
-				Sections[SectionsRead].Data=0;
+				Sections[SectionsRead].Data = 0;
 			}
 			else
 			{
@@ -190,17 +199,17 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			break;
 		case M_JFIF:
 			free(Sections[--SectionsRead].Data);
-			Sections[SectionsRead].Data=0;
+			Sections[SectionsRead].Data = 0;
 			break;
 		case M_EXIF:
 			if (memcmp(Data+2, "Exif", 4) == 0)
 			{
-				m_exifinfo->IsExif = process_EXIF((unsigned char *)Data+2, itemlen);
+				m_exifinfo->IsExif = process_EXIF(Data+2, itemlen);
 			}
 			else
 			{
 				free(Sections[--SectionsRead].Data);
-				Sections[SectionsRead].Data=0;
+				Sections[SectionsRead].Data = 0;
 			}
 			break;
 		case M_SOF0:
@@ -232,33 +241,37 @@ bool Cexif::process_EXIF(unsigned char * CharBuf, unsigned int length)
 	ExifImageWidth = 0;
 
 	static const unsigned char ExifHeader[] = "Exif\0\0";
-	if(memcmp(CharBuf+0, ExifHeader,6))
+	if (memcmp(CharBuf+0, ExifHeader, 6))
 	{
-		strcpy(m_szLastError,"Incorrect Exif header"); return false;
+		strcpy(m_szLastError, "Incorrect Exif header");
+		return false;
 	}
 
-	if (memcmp(CharBuf+6,"II",2) == 0) MotorolaOrder = 0;
+	if (memcmp(CharBuf+6, "II", 2) == 0)
+		MotorolaOrder = 0;
+	else if (memcmp(CharBuf+6, "MM", 2) == 0)
+		MotorolaOrder = 1;
 	else
 	{
-		if (memcmp(CharBuf+6,"MM",2) == 0) MotorolaOrder = 1;
-		else
-		{
-			strcpy(m_szLastError,"Invalid Exif alignment marker."); return false;
-		}
+		strcpy(m_szLastError, "Invalid Exif alignment marker");
+		return false;
 	}
 
 	if (Get16u(CharBuf+8) != 0x2a)
 	{
-		strcpy(m_szLastError,"Invalid Exif start (1)"); return false;
+		strcpy(m_szLastError, "Invalid Exif start (1)");
+		return false;
 	}
 	int FirstOffset = Get32u(CharBuf+10);
 	if (FirstOffset < 8 || FirstOffset > 16)
 	{
-		strcpy(m_szLastError,"Suspicious offset of first IFD value"); return 0;
+		strcpy(m_szLastError, "Suspicious offset of first IFD value");
+		return false;
 	}
 	unsigned char * LastExifRefd = CharBuf;
 
-	if (!ProcessExifDir(CharBuf+14, CharBuf+6, length-6, m_exifinfo, &LastExifRefd)) return false;
+	if (!ProcessExifDir(CharBuf+14, CharBuf+6, length-6, m_exifinfo, &LastExifRefd))
+		return false;
 
 	if (m_exifinfo->FocalplaneXRes != 0)
 		m_exifinfo->CCDWidth = (float)(ExifImageWidth * m_exifinfo->FocalplaneUnits / m_exifinfo->FocalplaneXRes);
@@ -274,25 +287,17 @@ int Cexif::Get16m(void * Short)
 int Cexif::Get16u(void * Short)
 {
 	if (MotorolaOrder)
-	{
 		return (((unsigned char *)Short)[0] << 8) | ((unsigned char *)Short)[1];
-	}
 	else
-	{
 		return (((unsigned char *)Short)[1] << 8) | ((unsigned char *)Short)[0];
-	}
 }
 
 long Cexif::Get32s(void * Long)
 {
 	if (MotorolaOrder)
-	{
         	return  ((( char *)Long)[0] << 24) | (((unsigned char *)Long)[1] << 16) | (((unsigned char *)Long)[2] << 8 ) | (((unsigned char *)Long)[3] << 0 );
-	}
 	else
-	{
         	return  ((( char *)Long)[3] << 24) | (((unsigned char *)Long)[2] << 16) | (((unsigned char *)Long)[1] << 8 ) | (((unsigned char *)Long)[0] << 0 );
-	}
 }
 
 unsigned long Cexif::Get32u(void * Long)
@@ -310,10 +315,11 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 
 	if ((DirStart+2+NumDirEntries*12) > (OffsetBase+ExifLength))
 	{
-		strcpy(m_szLastError,"Illegally sized directory"); return 0;
+		strcpy(m_szLastError, "Illegally sized directory");
+		return false;
 	}
 
-	for (de=0;de<NumDirEntries;de++)
+	for (de=0; de<NumDirEntries; de++)
 	{
 		int Tag, Format, Components;
 		unsigned char * ValuePtr;
@@ -326,7 +332,8 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 
 		if ((Format-1) >= NUM_FORMATS)
 		{
-			strcpy(m_szLastError,"Illegal format code in EXIF dir"); return 0;
+			strcpy(m_szLastError, "Illegal format code in EXIF dir");
+			return false;
 		}
 
 		BytesCount = Components * BytesPerFormat[Format];
@@ -337,13 +344,15 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			OffsetVal = Get32u(DirEntry+8);
         		if (OffsetVal+BytesCount > ExifLength)
 			{
-        			strcpy(m_szLastError,"Illegal pointer offset value in EXIF."); return 0;
+				strcpy(m_szLastError, "Illegal pointer offset value in EXIF");
+				return false;
         		}
         		ValuePtr = OffsetBase+OffsetVal;
         	}
 		else ValuePtr = DirEntry+8;
 
-	        if (*LastExifRefdP < ValuePtr+BytesCount) *LastExifRefdP = ValuePtr+BytesCount;
+	        if (*LastExifRefdP < ValuePtr+BytesCount)
+			*LastExifRefdP = ValuePtr+BytesCount;
 
         	switch(Tag)
 		{
@@ -354,27 +363,20 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			strncpy(m_exifinfo->CameraModel, (char*)ValuePtr, 39);
 			break;
 		case TAG_EXIF_VERSION:
-			strncpy(m_exifinfo->Version,(char*)ValuePtr, 4);
+			strncpy(m_exifinfo->Version, (char*)ValuePtr, 4);
 			break;
 		case TAG_DATETIME_ORIGINAL:
 			strncpy(m_exifinfo->DateTime, (char*)ValuePtr, 19);
 			break;
 		case TAG_USERCOMMENT:
-			for (a=BytesCount;;)
+			a = BytesCount-1;
+			while (a >= 0 && ((char*)ValuePtr)[a] == ' ')
+				((char*)ValuePtr)[a--] = '\0';
+			if (memcmp(ValuePtr, "ASCII", 5) == 0)
 			{
-				a--;
-				if (((char*)ValuePtr)[a] == ' ') ((char*)ValuePtr)[a] = '\0';
-				else break;
-
-				if (a == 0) break;
-			}
-
-			if (memcmp(ValuePtr, "ASCII",5) == 0)
-			{
-				for (a=5;a<10;a++)
+				for (a=5; a<10; a++)
 				{
-					char c;
-					c = ((char*)ValuePtr)[a];
+					char c = ((char*)ValuePtr)[a];
 					if (c != '\0' && c != ' ')
 					{
 						strncpy(m_exifinfo->Comments, (char*)ValuePtr+a, 199);
@@ -383,7 +385,8 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 				}
 
 			}
-			else strncpy(m_exifinfo->Comments, (char*)ValuePtr, 199);
+			else
+				strncpy(m_exifinfo->Comments, (char*)ValuePtr, 199);
 			break;
 		case TAG_FNUMBER:
 			m_exifinfo->ApertureFNumber = (float)ConvertAnyFormat(ValuePtr, Format);
@@ -414,28 +417,28 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			}
 			break;
 		case TAG_FLASH:
-			if ((int)ConvertAnyFormat(ValuePtr, Format) & 7) strcpy(m_exifinfo->FlashUsed,"fire");
-			else strcpy(m_exifinfo->FlashUsed,"not fired");
+			strcpy(m_exifinfo->FlashUsed, ((int)ConvertAnyFormat(ValuePtr, Format) & 7) ? "fire" : "not fired");
 			break;
 		case TAG_ORIENTATION:
 			m_exifinfo->Orient = (int)ConvertAnyFormat(ValuePtr, Format);
 			switch((int)ConvertAnyFormat(ValuePtr, Format))
 			{
-			case 1:		strcpy(m_exifinfo->Orientation,"Top-Left"); break;
-			case 2:		strcpy(m_exifinfo->Orientation,"Top-Right"); break;
-			case 3:		strcpy(m_exifinfo->Orientation,"Bottom-Right"); break;
-			case 4:		strcpy(m_exifinfo->Orientation,"Bottom-Left"); break;
-			case 5:		strcpy(m_exifinfo->Orientation,"Left-Top"); break;
-			case 6:		strcpy(m_exifinfo->Orientation,"Right-Top"); break;
-			case 7:		strcpy(m_exifinfo->Orientation,"Right-Bottom"); break;
-			case 8:		strcpy(m_exifinfo->Orientation,"Left-Bottom"); break;
-			default:	strcpy(m_exifinfo->Orientation,"Undefined"); break;
+			case 1:	strcpy(m_exifinfo->Orientation, "Top-Left"); break;
+			case 2:	strcpy(m_exifinfo->Orientation, "Top-Right"); break;
+			case 3:	strcpy(m_exifinfo->Orientation, "Bottom-Right"); break;
+			case 4:	strcpy(m_exifinfo->Orientation, "Bottom-Left"); break;
+			case 5:	strcpy(m_exifinfo->Orientation, "Left-Top"); break;
+			case 6:	strcpy(m_exifinfo->Orientation, "Right-Top"); break;
+			case 7:	strcpy(m_exifinfo->Orientation, "Right-Bottom"); break;
+			case 8:	strcpy(m_exifinfo->Orientation, "Left-Bottom"); break;
+			default:strcpy(m_exifinfo->Orientation, "Undefined"); break;
 			}
 			break;
 		case TAG_EXIF_IMAGELENGTH:
 		case TAG_EXIF_IMAGEWIDTH:
 			a = (int)ConvertAnyFormat(ValuePtr, Format);
-			if (ExifImageWidth < a) ExifImageWidth = a;
+			if (ExifImageWidth < a)
+				ExifImageWidth = a;
 			break;
 		case TAG_FOCALPLANEXRES:
 			m_exifinfo->FocalplaneXRes = (float)ConvertAnyFormat(ValuePtr, Format);
@@ -446,9 +449,9 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 		case TAG_RESOLUTIONUNIT:
 			switch((int)ConvertAnyFormat(ValuePtr, Format))
 			{
-				case 2: strcpy(m_exifinfo->ResolutionUnit,"inches"); break;
-				case 3: strcpy(m_exifinfo->ResolutionUnit,"centimeters"); break;
-				default: strcpy(m_exifinfo->ResolutionUnit,"reserved");
+				case 2: strcpy(m_exifinfo->ResolutionUnit, "inches"); break;
+				case 3: strcpy(m_exifinfo->ResolutionUnit, "centimeters"); break;
+				default:strcpy(m_exifinfo->ResolutionUnit, "reserved");
 			}
 			break;
 		case TAG_FOCALPLANEUNITS:
@@ -467,50 +470,51 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 		case TAG_WHITEBALANCE:
 			switch((int)ConvertAnyFormat(ValuePtr, Format))
 			{
-				case 0: strcpy(m_exifinfo->LightSource,"unknown"); break;
-				case 1: strcpy(m_exifinfo->LightSource,"Daylight"); break;
-				case 2: strcpy(m_exifinfo->LightSource,"Fluorescent"); break;
-				case 3: strcpy(m_exifinfo->LightSource,"Tungsten"); break;
-				case 17: strcpy(m_exifinfo->LightSource,"Standard light A"); break;
-				case 18: strcpy(m_exifinfo->LightSource,"Standard light B"); break;
-				case 19: strcpy(m_exifinfo->LightSource,"Standard light C"); break;
-				case 20: strcpy(m_exifinfo->LightSource,"D55"); break;
-				case 21: strcpy(m_exifinfo->LightSource,"D65"); break;
-				case 22: strcpy(m_exifinfo->LightSource,"D75"); break;
-				default: strcpy(m_exifinfo->LightSource,"other"); break;
+				case 0:  strcpy(m_exifinfo->LightSource, "unknown"); break;
+				case 1:  strcpy(m_exifinfo->LightSource, "Daylight"); break;
+				case 2:  strcpy(m_exifinfo->LightSource, "Fluorescent"); break;
+				case 3:  strcpy(m_exifinfo->LightSource, "Tungsten"); break;
+				case 17: strcpy(m_exifinfo->LightSource, "Standard light A"); break;
+				case 18: strcpy(m_exifinfo->LightSource, "Standard light B"); break;
+				case 19: strcpy(m_exifinfo->LightSource, "Standard light C"); break;
+				case 20: strcpy(m_exifinfo->LightSource, "D55"); break;
+				case 21: strcpy(m_exifinfo->LightSource, "D65"); break;
+				case 22: strcpy(m_exifinfo->LightSource, "D75"); break;
+				default: strcpy(m_exifinfo->LightSource, "other"); break;
 			}
 			break;
 		case TAG_METERING_MODE:
 			switch((int)ConvertAnyFormat(ValuePtr, Format))
 			{
-				case 0: strcpy(m_exifinfo->MeteringMode,"unknown"); break;
-				case 1: strcpy(m_exifinfo->MeteringMode,"Average"); break;
-				case 2: strcpy(m_exifinfo->MeteringMode,"Center-Weighted-Average"); break;
-				case 3: strcpy(m_exifinfo->MeteringMode,"Spot"); break;
-				case 4: strcpy(m_exifinfo->MeteringMode,"MultiSpot"); break;
-				case 5: strcpy(m_exifinfo->MeteringMode,"Pattern"); break;
-				case 6: strcpy(m_exifinfo->MeteringMode,"Partial"); break;
-				default: strcpy(m_exifinfo->MeteringMode,"other"); break;
+				case 0: strcpy(m_exifinfo->MeteringMode, "unknown"); break;
+				case 1: strcpy(m_exifinfo->MeteringMode, "Average"); break;
+				case 2: strcpy(m_exifinfo->MeteringMode, "Center-Weighted-Average"); break;
+				case 3: strcpy(m_exifinfo->MeteringMode, "Spot"); break;
+				case 4: strcpy(m_exifinfo->MeteringMode, "MultiSpot"); break;
+				case 5: strcpy(m_exifinfo->MeteringMode, "Pattern"); break;
+				case 6: strcpy(m_exifinfo->MeteringMode, "Partial"); break;
+				default:strcpy(m_exifinfo->MeteringMode, "other"); break;
 			}
 			break;
 		case TAG_EXPOSURE_PROGRAM:
 			switch((int)ConvertAnyFormat(ValuePtr, Format))
 			{
-				case 0: strcpy(m_exifinfo->ExposureProgram,"not defined"); break;
-				case 1: strcpy(m_exifinfo->ExposureProgram,"Manual"); break;
-				case 2: strcpy(m_exifinfo->ExposureProgram,"Normal program"); break;
-				case 3: strcpy(m_exifinfo->ExposureProgram,"Aperture priority"); break;
-				case 4: strcpy(m_exifinfo->ExposureProgram,"Shutter priority"); break;
-				case 5: strcpy(m_exifinfo->ExposureProgram,"Creative program"); break;
-				case 6: strcpy(m_exifinfo->ExposureProgram,"Action program"); break;
-				case 7: strcpy(m_exifinfo->ExposureProgram,"Portrait mode"); break;
-				case 8: strcpy(m_exifinfo->ExposureProgram,"Landscape mode"); break;
-				default: strcpy(m_exifinfo->ExposureProgram,"reserved"); break;
+				case 0: strcpy(m_exifinfo->ExposureProgram, "not defined"); break;
+				case 1: strcpy(m_exifinfo->ExposureProgram, "Manual"); break;
+				case 2: strcpy(m_exifinfo->ExposureProgram, "Normal program"); break;
+				case 3: strcpy(m_exifinfo->ExposureProgram, "Aperture priority"); break;
+				case 4: strcpy(m_exifinfo->ExposureProgram, "Shutter priority"); break;
+				case 5: strcpy(m_exifinfo->ExposureProgram, "Creative program"); break;
+				case 6: strcpy(m_exifinfo->ExposureProgram, "Action program"); break;
+				case 7: strcpy(m_exifinfo->ExposureProgram, "Portrait mode"); break;
+				case 8: strcpy(m_exifinfo->ExposureProgram, "Landscape mode"); break;
+				default:strcpy(m_exifinfo->ExposureProgram, "reserved"); break;
 			}
 			break;
 		case TAG_ISO_EQUIVALENT:
 			m_exifinfo->ISOequivalent = (int)ConvertAnyFormat(ValuePtr, Format);
-			if ( m_exifinfo->ISOequivalent < 50 ) m_exifinfo->ISOequivalent *= 200;
+			if (m_exifinfo->ISOequivalent < 50)
+				m_exifinfo->ISOequivalent *= 200;
 			break;
 		case TAG_COMPRESSION_LEVEL:
 			m_exifinfo->CompressionLevel = (int)ConvertAnyFormat(ValuePtr, Format);
@@ -535,13 +539,13 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			SubdirStart = OffsetBase + Get32u(ValuePtr);
 			if (SubdirStart < OffsetBase || SubdirStart > OffsetBase+ExifLength)
 			{
-				strcpy(m_szLastError,"Illegal subdirectory link"); return 0;
+				strcpy(m_szLastError, "Illegal subdirectory link");
+				return false;
 			}
 			ProcessExifDir(SubdirStart, OffsetBase, ExifLength, m_exifinfo, LastExifRefdP);
 			continue;
 		}
 	}
-
 
 	unsigned char * SubdirStart;
 	unsigned Offset;
@@ -551,7 +555,8 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 		SubdirStart = OffsetBase + Offset;
 		if (SubdirStart < OffsetBase || SubdirStart > OffsetBase+ExifLength)
 		{
-			strcpy(m_szLastError,"Illegal subdirectory link"); return 0;
+			strcpy(m_szLastError, "Illegal subdirectory link");
+			return false;
 		}
 		ProcessExifDir(SubdirStart, OffsetBase, ExifLength, m_exifinfo, LastExifRefdP);
         }
@@ -560,16 +565,16 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 	{
 		if (ThumbnailSize + ThumbnailOffset <= ExifLength)
 		{
-			if(FILE *tf = fopen(THUMBNAILTMPFILE, "w"))
+			if (FILE *tf = fopen(THUMBNAILTMPFILE, "w"))
 			{
-				fwrite( OffsetBase + ThumbnailOffset, ThumbnailSize, 1, tf);
+				fwrite(OffsetBase + ThumbnailOffset, ThumbnailSize, 1, tf);
 				fclose(tf);
 				m_exifinfo->Thumnailstate = 2;
 			}
 		}
 	}
 
-	return 1;
+	return true;
 }
 
 double Cexif::ConvertAnyFormat(void * ValuePtr, int Format)
@@ -587,8 +592,10 @@ double Cexif::ConvertAnyFormat(void * ValuePtr, int Format)
 		{
 			int Num = Get32s(ValuePtr);
 			int Den = Get32s(4+(char *)ValuePtr);
-			if (Den == 0) Value = 0;
-			else Value = (double)Num/Den;
+			if (Den == 0)
+				Value = 0;
+			else
+				Value = (double)Num/Den;
 			break;
 		}
 		case FMT_SSHORT:	Value = (signed short)Get16u(ValuePtr);	break;
@@ -601,32 +608,34 @@ double Cexif::ConvertAnyFormat(void * ValuePtr, int Format)
 
 void Cexif::process_COM (const unsigned char * Data, int length)
 {
-	int ch,a;
+	int ch, a;
 	char Comment[MAX_COMMENT+1];
-	int nch=0;
+	int nch = 0;
 
-	if (length > MAX_COMMENT) length = MAX_COMMENT;
+	if (length > MAX_COMMENT)
+		length = MAX_COMMENT;
 
-	for (a=2;a<length;a++)
+	for (a=2; a<length; a++)
 	{
 		ch = Data[a];
-		if (ch == '\r' && Data[a+1] == '\n') continue;
-		if ((ch>=0x20) || ch == '\n' || ch == '\t') Comment[nch++] = (char)ch;
-		else Comment[nch++] = '?';
+		if (ch == '\r' && Data[a+1] == '\n')
+			continue;
+		if ((ch>=0x20) || ch == '\n' || ch == '\t')
+			Comment[nch++] = (char)ch;
+		else
+			Comment[nch++] = '?';
 	}
 	Comment[nch] = '\0';
-	strcpy(m_exifinfo->Comments,Comment);
+	strcpy(m_exifinfo->Comments, Comment);
 }
 
 void Cexif::process_SOFn (const unsigned char * Data, int marker)
 {
 	m_exifinfo->Height = Get16m((void*)(Data+3));
-	m_exifinfo->Width = Get16m((void*)(Data+5));
+	m_exifinfo->Width  = Get16m((void*)(Data+5));
 	unsigned char num_components = Data[7];
 
-	if (num_components == 3) strcpy(m_exifinfo->IsColor,"yes");
-	else strcpy(m_exifinfo->IsColor,"no");
-
+	strcpy(m_exifinfo->IsColor, num_components == 3 ? "yes" : "no");
 	m_exifinfo->Process = marker;
 }
 
