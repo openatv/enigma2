@@ -105,6 +105,10 @@ class About(Screen):
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 		AboutText += _("Enigma (re)starts: %d\n") % config.misc.startCounter.value
+		
+		EnigmaSkin = _("Skin: ") + config.skin.primary_skin.value[0:-9]
+		self["EnigmaSkin"] = StaticText(EnigmaSkin)
+		AboutText += EnigmaSkin + "\n"
 
 		GStreamerVersion = _("GStreamer: ") + about.getGStreamerVersionString().replace("GStreamer","")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
