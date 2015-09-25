@@ -27,7 +27,7 @@ class FeedsStatusCheck:
 
 	def getFeedSatus(self):
 		status = '1'
-		if getImageType() == 'developer':
+		if getImageType() != 'release':
 			config.softwareupdate.updateisunstable.setValue(status)
 			return 'stable'
 		trafficLight = 'unknown'
