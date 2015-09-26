@@ -181,6 +181,10 @@ class GeneralMenu(Screen):
 		]
 
 		self.startSubEntry = {}
+		# self.selectedSubEntry == -1 means that the top menu
+		# bar item is selected,
+		# selectedSubEntry >= 0 means that a dropdown menu item
+		# is selected
 		self.selectedSubEntry = {}
 		for key in [k[1] for k in self.entrys]:
 			self.startSubEntry[key] = 0
@@ -239,9 +243,9 @@ class GeneralMenu(Screen):
 
 	def left(self):
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		#print "ID---------------------------------"
-		#print self.selectedEntryID
-		#print "ID---------------------------------"
+		# print "ID---------------------------------"
+		# print self.selectedEntryID
+		# print "ID---------------------------------"
 		self.selectedEntry -= 1
 		if self.selectedEntry == -1:
 			self.selectedEntry = 0
@@ -264,9 +268,9 @@ class GeneralMenu(Screen):
 
 	def right(self):
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		#print "ID---------------------------------"
-		#print self.selectedEntryID
-		#print "ID---------------------------------"
+		# print "ID---------------------------------"
+		# print self.selectedEntryID
+		# print "ID---------------------------------"
 		self.selectedEntry += 1
 		if self.selectedEntry == len(self.entrys):
 			self.selectedEntry = len(self.entrys) - 1
@@ -395,11 +399,11 @@ class GeneralMenu(Screen):
 			'id_mainmenu_plugins': self.getSubEntry(None, []),
 
 			'id_mainmenu_photos': self.getSubEntry('id_mainmenu_photos', [
-				#(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
-				#(_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
-				#(_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
+				# (_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
+				# (_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
+				# (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
 				(_('Flickr'), 'mainmenu_photos_playlists', boundFunction(self.openFlickr), 60),
-				#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100),
+				# (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100),
 			]),
 
 			'id_mainmenu_music': self.getSubEntry('id_mainmenu_music', []),
@@ -419,7 +423,7 @@ class GeneralMenu(Screen):
 			'id_mainmenu_tasks': self.getSubEntry('id_mainmenu_tasks', [
 				(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'shutdown', _('Power')), 20),
 				(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'information', _('Information')), 30),
-				#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30),
+				# (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30),
 			]),
 		}
 
@@ -453,10 +457,10 @@ class GeneralMenu(Screen):
 					menuitem = [(_(d)), d, boundFunction(self.openFileManager, "/media/upnp/"+d+"/"), i+10]
 					list.append(tuple(menuitem))
 				"""
-		#if SystemInfo.get('ScartMenu', True):
-		#	     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]
-		#	     list.append(tuple(menuitem))
-		#
+		# if SystemInfo.get('ScartMenu', True):
+		# 	     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]
+		# 	     list.append(tuple(menuitem))
+
 		return list
 
 	def openScart(self):
@@ -496,7 +500,7 @@ class GeneralMenu(Screen):
 		InfoBar.instance.showMovies()
 
 	def openProgramGuide(self):
-		#InfoBar.instance.openMultiServiceEPG()
+		# InfoBar.instance.openMultiServiceEPG()
 		InfoBar.instance.openGraphEPG()
 
 	# Photos
