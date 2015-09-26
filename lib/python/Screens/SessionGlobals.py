@@ -7,6 +7,7 @@ from Components.Sources.Source import Source
 from Components.Sources.TunerInfo import TunerInfo
 from Components.Sources.Boolean import Boolean
 from Components.Sources.RecordState import RecordState
+from Components.Sources.HddState import HddState
 from Components.Converter.Combine import Combine
 from Components.Renderer.FrontpanelLed import FrontpanelLed
 
@@ -22,12 +23,14 @@ class SessionGlobals(Screen):
 		self["TunerInfo"] = TunerInfo()
 		self["RecordState"] = RecordState(session)
 		self["Standby"] = Boolean(fixed = False)
+		self["HddSleepingState"] = HddState(session)
 
 		from Components.SystemInfo import SystemInfo
 
 		combine = Combine(func = lambda s: {(False, False): 0, (False, True): 1, (True, False): 2, (True, True): 3}[(s[0].boolean, s[1].boolean)])
 		combine.connect(self["Standby"])
 		combine.connect(self["RecordState"])
+		combine.connect(self["HddSleepingState"])
 
 		#                      |  two leds  | single led |
 		# recordstate  standby   red green

@@ -17,6 +17,7 @@ dist_install_DATA = \
 	faz.png \
 	folder.png \
 	fza.png \
+	hdd.png \
 	ico_mp_forward.png \
 	ico_mp_pause.png \
 	ico_mp_play.png \
