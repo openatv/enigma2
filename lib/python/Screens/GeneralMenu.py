@@ -15,23 +15,17 @@ from Components.SystemInfo import SystemInfo
 from Components.MenuList import MenuList
 from Components.Label import Label, MultiColorLabel
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.config import *
+from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.PluginComponent import plugins
 from Components.Sources.StaticText import StaticText
 from Components.ParentalControl import parentalControl
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.LoadPixmap import LoadPixmap
+from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
-
-class boundFunction:
-	def __init__(self, fnc, *args):
-		self.fnc = fnc
-		self.args = args
-
-	def __call__(self):
-		self.fnc(*self.args)
 
 class GeneralMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
