@@ -24,24 +24,6 @@ from Components.ParentalControl import parentalControl
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Plugins.Plugin import PluginDescriptor
 
-gmenu_extentrys = {}
-gmenu_extentrys['id_mainmenu_plugins'] = []
-gmenu_extentrys['id_mainmenu_photos'] = []
-gmenu_extentrys['id_mainmenu_music'] = []
-gmenu_extentrys['id_mainmenu_tv'] = []
-gmenu_extentrys['id_mainmenu_movies'] = []
-gmenu_extentrys['id_mainmenu_source'] = []
-gmenu_extentrys['id_mainmenu_tasks'] = []
-
-config.gmenu = ConfigSubsection()
-config.gmenu.ext_sel_id_mainmenu_plugins = ConfigNumber(default=-1)
-config.gmenu.ext_sel_id_mainmenu_photos = ConfigNumber(default=-1)
-config.gmenu.ext_sel_id_mainmenu_music = ConfigNumber(default=-1)
-config.gmenu.ext_sel_id_mainmenu_tv = ConfigNumber(default=-1)
-config.gmenu.ext_sel_id_mainmenu_movies = ConfigNumber(default=-1)
-config.gmenu.ext_sel_id_mainmenu_source = ConfigNumber(default=-1)
-config.gmenu.ext_sel_id_mainmenu_tasks = ConfigNumber(default=-1)
-
 
 class boundFunction:
 	def __init__(self, fnc, *args):
@@ -207,13 +189,9 @@ class GeneralMenu(Screen):
 
 		self.startSubEntry = {}
 		self.selectedSubEntry = {}
-		self.selectedExtEntry = {}
 		for key in [k[1] for k in self.entrys]:
 			self.startSubEntry[key] = 0
 			self.selectedSubEntry[key] = -1
-			self.selectedExtEntry[key] = eval('config.gmenu.ext_sel_%s' % key).value
-			if self.selectedExtEntry[key] == -1:
-				self.selectedExtEntry[key] = 0
 
 		self.subentrys = self.getSubEntrys()
 		self.mainmenu_ext = {
@@ -261,49 +239,16 @@ class GeneralMenu(Screen):
 	def __onFirstExecBegin(self):
 		print "__onFirstExecBegin"
 		self.buildGeneralMenu()
-		self.fillExtEntry(self.selectedEntryID)
 
 	def __onShow(self):
 		print "__onShow"
 		self.buildGeneralMenu()
-		self.fillExtEntry(self.selectedEntryID)
-
-	def fillExtEntry(self, menuID):
-		gmenu_extentrys[menuID] = self.getExtEntry(menuID)
-		if eval('config.gmenu.ext_sel_%s' % menuID).value == -1 and len(gmenu_extentrys[menuID]) > 0:
-			self.selectedExtEntry[menuID] = len(gmenu_extentrys[menuID]) // 2
-			eval('config.gmenu.ext_sel_%s' % menuID).value = self.selectedExtEntry[menuID]
-		if self.selectedExtEntry[menuID] > len(gmenu_extentrys[menuID]) - 1:
-			self.selectedExtEntry[menuID] = len(gmenu_extentrys[menuID]) - 1
-			eval('config.gmenu.ext_sel_%s' % menuID).value = self.selectedExtEntry[menuID]
-
-	def getExtEntry(self, menuID):
-		self.subentrys = self.getSubEntrys()
-		if menuID == 'id_mainmenu_plugins2':
-			return self.subentrys['id_mainmenu_plugins'][:7]
-		elif menuID == 'id_mainmenu_tasks2':
-			return self.subentrys['id_mainmenu_tasks'][:7]
-
-		return []
 
 	def left(self):
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
 		#print "ID---------------------------------"
 		#print self.selectedEntryID
 		#print "ID---------------------------------"
-		if selectedSubEntry == -2:
-			if len(gmenu_extentrys[self.selectedEntryID]) > 0:
-				self.selectedExtEntry[self.selectedEntryID] -= 1
-				if self.selectedExtEntry[self.selectedEntryID] < 0:
-					self.selectedExtEntry[self.selectedEntryID] = min(6, len(gmenu_extentrys[self.selectedEntryID]) - 1)
-					if self.selectedExtEntry[self.selectedEntryID] == -1:
-						self.selectedExtEntry[self.selectedEntryID] = 0
-			else:
-				self.selectedExtEntry[self.selectedEntryID] = 0
-				self.selectedSubEntry[self.selectedEntryID] = -1
-			eval('config.gmenu.ext_sel_%s' % self.selectedEntryID).value = self.selectedExtEntry[self.selectedEntryID]
-			self.buildGeneralMenu()
-			return
 		self.selectedEntry -= 1
 		if self.selectedEntry == -1:
 			self.selectedEntry = 0
@@ -323,24 +268,12 @@ class GeneralMenu(Screen):
 		else:
 			self.startSubEntry[self.selectedEntryID] = 0
 		self.buildGeneralMenu()
-		self.fillExtEntry(self.selectedEntryID)
 
 	def right(self):
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
 		#print "ID---------------------------------"
 		#print self.selectedEntryID
 		#print "ID---------------------------------"
-		if selectedSubEntry == -2:
-			if len(gmenu_extentrys[self.selectedEntryID]) > 0:
-				self.selectedExtEntry[self.selectedEntryID] += 1
-				if self.selectedExtEntry[self.selectedEntryID] > 6 or self.selectedExtEntry[self.selectedEntryID] == len(gmenu_extentrys[self.selectedEntryID]):
-					self.selectedExtEntry[self.selectedEntryID] = 0
-			else:
-				self.selectedExtEntry[self.selectedEntryID] = 0
-				self.selectedSubEntry[self.selectedEntryID] = -1
-			eval('config.gmenu.ext_sel_%s' % self.selectedEntryID).value = self.selectedExtEntry[self.selectedEntryID]
-			self.buildGeneralMenu()
-			return
 		self.selectedEntry += 1
 		if self.selectedEntry == len(self.entrys):
 			self.selectedEntry = len(self.entrys) - 1
@@ -360,7 +293,6 @@ class GeneralMenu(Screen):
 		else:
 			self.startSubEntry[self.selectedEntryID] = 0
 		self.buildGeneralMenu()
-		self.fillExtEntry(self.selectedEntryID)
 
 	def up(self):
 		self.selectedSubEntry[self.selectedEntryID] -= 1
@@ -389,10 +321,6 @@ class GeneralMenu(Screen):
 		if selectedSubEntry > -1:
 			if selectedSubEntry < len(self.subentrys[self.selectedEntryID]):
 				self.subentrys[self.selectedEntryID][selectedSubEntry][2]()
-		if selectedSubEntry == -2:
-			index = self.selectedExtEntry[self.selectedEntryID]
-			if index != -1 and index < len(gmenu_extentrys[self.selectedEntryID]):
-				gmenu_extentrys[self.selectedEntryID][index][2]()
 
 	def hideMenuIfServiceRunning(self):
 		self.close()
@@ -465,14 +393,6 @@ class GeneralMenu(Screen):
 			self['list'].selectionEnabled(1)
 			self.summaries.setTextTitle('')
 			self.summaries.setTextMenu(self.entrys[self.selectedEntry][0])
-		elif selectedSubEntry == -2:
-			self['list'].selectionEnabled(0)
-			self.summaries.setTextTitle(self.entrys[self.selectedEntry][0])
-			countitem = self.selectedExtEntry[self.selectedEntryID]
-			if countitem is not None and countitem != -1 and countitem < len(gmenu_extentrys[self.selectedEntryID]):
-				self.summaries.setTextMenu(gmenu_extentrys[self.selectedEntryID][countitem][0])
-			else:
-				self.summaries.setTextMenu('')
 		else:
 			self.summaries.setTextTitle('')
 			self.summaries.setTextMenu('')
