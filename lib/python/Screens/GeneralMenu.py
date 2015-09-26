@@ -216,41 +216,23 @@ class GeneralMenu(Screen):
 				self.selectedExtEntry[key] = 0
 
 		self.subentrys = self.getSubEntrys()
-		self.mainmenu_ext = {}
-		self.mainmenu_ext['id_mainmenu_plugins'] = 'gmenu_plugin'
-		self.mainmenu_ext['id_mainmenu_photos'] = 'gmenu_photo'
-		self.mainmenu_ext['id_mainmenu_music'] = 'gmenu_music'
-		self.mainmenu_ext['id_mainmenu_tv'] = 'gmenu_tv'
-		self.mainmenu_ext['id_mainmenu_movies'] = 'gmenu_movie'
-		self.mainmenu_ext['id_mainmenu_source'] = 'gmenu_source'
-		self.mainmenu_ext['id_mainmenu_tasks'] = 'gmenu_task'
+		self.mainmenu_ext = {
+			'id_mainmenu_plugins': 'gmenu_plugin',
+			'id_mainmenu_photos': 'gmenu_photo',
+			'id_mainmenu_music': 'gmenu_music',
+			'id_mainmenu_tv': 'gmenu_tv',
+			'id_mainmenu_movies': 'gmenu_movie',
+			'id_mainmenu_source': 'gmenu_source',
+			'id_mainmenu_tasks': 'gmenu_task',
+		}
 		self['id_mainmenu_ext'] = StaticText()
 		self['list'] = GeneralMenuList([])
-		self['list_sub_0'] = GeneralSubMenuList([])
-		self['list_sub_1'] = GeneralSubMenuList([])
-		self['list_sub_2'] = GeneralSubMenuList([])
-		self['list_sub_3'] = GeneralSubMenuList([])
-		self['list_sub_4'] = GeneralSubMenuList([])
-		self['up_sub_0'] = Pixmap()
-		self['up_sub_1'] = Pixmap()
-		self['up_sub_2'] = Pixmap()
-		self['up_sub_3'] = Pixmap()
-		self['up_sub_4'] = Pixmap()
-		self['down_sub_0'] = Pixmap()
-		self['down_sub_1'] = Pixmap()
-		self['down_sub_2'] = Pixmap()
-		self['down_sub_3'] = Pixmap()
-		self['down_sub_4'] = Pixmap()
-		self['up_sub_0'].hide()
-		self['up_sub_1'].hide()
-		self['up_sub_2'].hide()
-		self['up_sub_3'].hide()
-		self['up_sub_4'].hide()
-		self['down_sub_0'].hide()
-		self['down_sub_1'].hide()
-		self['down_sub_2'].hide()
-		self['down_sub_3'].hide()
-		self['down_sub_4'].hide()
+		for i in range(5):
+			self['list_sub_%d' % i] = GeneralSubMenuList([])
+			self['up_sub_%d' % i] = Pixmap()
+			self['down_sub_%d' % i] = Pixmap()
+			self['up_sub_%d' % i].hide()
+			self['down_sub_%d' % i].hide()
 
 		self['actions'] = ActionMap(['OkCancelActions', 'DirectionActions'], {
 			'ok': self.keyOK,
@@ -298,10 +280,9 @@ class GeneralMenu(Screen):
 	def getExtEntry(self, menuID):
 		self.subentrys = self.getSubEntrys()
 		if menuID == 'id_mainmenu_plugins2':
-			return [tuple(x) for x in self.subentrys['id_mainmenu_plugins'][:7]]
-
+			return self.subentrys['id_mainmenu_plugins'][:7]
 		elif menuID == 'id_mainmenu_tasks2':
-			return [tuple(x) for x in self.subentrys['id_mainmenu_tasks'][:7]]
+			return self.subentrys['id_mainmenu_tasks'][:7]
 
 		return []
 
@@ -497,37 +478,37 @@ class GeneralMenu(Screen):
 			self.summaries.setTextMenu('')
 
 	def getSubEntrys(self):
-		subentrys = {}
-		subentrys['id_mainmenu_plugins'] = self.getSubEntry(None, [])
+		return {
+			'id_mainmenu_plugins': self.getSubEntry(None, []),
 
-		subentrys['id_mainmenu_photos'] = self.getSubEntry('id_mainmenu_photos', [
-			#(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
-			#(_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
-			#(_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
-			(_('Flickr'), 'mainmenu_photos_playlists', boundFunction(self.openFlickr), 60),
-			#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100),
-		])
+			'id_mainmenu_photos': self.getSubEntry('id_mainmenu_photos', [
+				#(_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
+				#(_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
+				#(_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
+				(_('Flickr'), 'mainmenu_photos_playlists', boundFunction(self.openFlickr), 60),
+				#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100),
+			]),
 
-		subentrys['id_mainmenu_music'] = self.getSubEntry('id_mainmenu_music', [])
+			'id_mainmenu_music': self.getSubEntry('id_mainmenu_music', []),
 
-		subentrys['id_mainmenu_tv'] = self.getSubEntry('id_mainmenu_tv', [
-			(_('History'), 'mainmenu_tv_zaphistory', boundFunction(self.openHisotryChannelSelection), 50),
-			(_('Timers'), 'mainmenu_tv_timer', boundFunction(self.openDialog, TimerEditList), 60),
-			(_('Program Guide'), 'mainmenu_tv_timer', boundFunction(self.openProgramGuide), 70),
-		])
+			'id_mainmenu_tv': self.getSubEntry('id_mainmenu_tv', [
+				(_('History'), 'mainmenu_tv_zaphistory', boundFunction(self.openHisotryChannelSelection), 50),
+				(_('Timers'), 'mainmenu_tv_timer', boundFunction(self.openDialog, TimerEditList), 60),
+				(_('Program Guide'), 'mainmenu_tv_timer', boundFunction(self.openProgramGuide), 70),
+			]),
 
-		subentrys['id_mainmenu_movies'] = self.getSubEntry('id_mainmenu_movies', [
-			(_('Recordings'), 'mainmenu_tv_recorded', boundFunction(self.openRecordings), 50),
-		])
+			'id_mainmenu_movies': self.getSubEntry('id_mainmenu_movies', [
+				(_('Recordings'), 'mainmenu_tv_recorded', boundFunction(self.openRecordings), 50),
+			]),
 
-		subentrys['id_mainmenu_source'] = self.getSubEntry('id_mainmenu_source', self.getScart(None, []))
+			'id_mainmenu_source': self.getSubEntry('id_mainmenu_source', self.getScart(None, [])),
 
-		subentrys['id_mainmenu_tasks'] = self.getSubEntry('id_mainmenu_tasks', [
-			(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'shutdown', _('Power')), 20),
-			(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'information', _('Information')), 30),
-			#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30)
-		])
-		return subentrys
+			'id_mainmenu_tasks': self.getSubEntry('id_mainmenu_tasks', [
+				(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'shutdown', _('Power')), 20),
+				(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'information', _('Information')), 30),
+				#(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30),
+			]),
+		}
 
 	def openGeneralSetup(self):
 		from Screens.GeneralSetup import GeneralSetup
