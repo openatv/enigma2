@@ -158,8 +158,6 @@ class GeneralMenuSummary(Screen):
 class GeneralMenu(Screen):
 	skin = '''
 		<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
-			<widget name="frame" position="12,95" size="170,220" zPosition="1" alphatest="on" />
-
 			<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />
 
 			<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
@@ -209,81 +207,10 @@ class GeneralMenu(Screen):
 			(_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup)),
 		]
 
-		self.pos = {}
-		self.pos['id_mainmenu_plugins'] = [
-			(12, 120),
-			(190, 120),
-			(368, 120),
-			(546, 120),
-			(724, 120),
-			(902, 120),
-			(1080, 120),
-		]
-
-		self.pos['id_mainmenu_photos'] = [
-			(12, 120),
-			(190, 120),
-			(368, 120),
-			(546, 120),
-			(724, 120),
-			(902, 120),
-			(1080, 120),
-		]
-
-		self.pos['id_mainmenu_music'] = [
-			(12, 120),
-			(190, 120),
-			(368, 120),
-			(546, 120),
-			(724, 120),
-			(902, 120),
-			(1080, 120),
-		]
-
-		self.pos['id_mainmenu_tv'] = [
-			(12, 120),
-			(190, 120),
-			(368, 120),
-			(546, 120),
-			(724, 120),
-			(902, 120),
-			(1080, 120),
-		]
-
-		self.pos['id_mainmenu_movies'] = [
-			(12, 95),
-			(190, 95),
-			(368, 95),
-			(546, 95),
-			(724, 95),
-			(902, 95),
-			(1080, 95),
-		]
-
-		self.pos['id_mainmenu_source'] = [
-			(12, 120),
-			(190, 120),
-			(368, 120),
-			(546, 120),
-			(724, 120),
-			(902, 120),
-			(1080, 120),
-		]
-
-		self.pos['id_mainmenu_tasks'] = [
-			(12, 120),
-			(190, 120),
-			(368, 120),
-			(546, 120),
-			(724, 120),
-			(902, 120),
-			(1080, 120),
-		]
-
 		self.startSubEntry = {}
 		self.selectedSubEntry = {}
 		self.selectedExtEntry = {}
-		for key in self.pos.keys():
+		for key in [k[1] for k in self.entrys]:
 			self.startSubEntry[key] = 0
 			self.selectedSubEntry[key] = -1
 			self.selectedExtEntry[key] = eval('config.gmenu.ext_sel_%s' % key).value
@@ -300,14 +227,6 @@ class GeneralMenu(Screen):
 		self.exttitle['id_mainmenu_movies'] = ''
 		self.exttitle['id_mainmenu_source'] = ''
 		self.exttitle['id_mainmenu_tasks'] = ''
-		self.extframe = {}
-		self.extframe['id_mainmenu_plugins'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_plugin_sl.png'))
-		self.extframe['id_mainmenu_photos'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_photo_sl.png'))
-		self.extframe['id_mainmenu_music'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_music_sl.png'))
-		self.extframe['id_mainmenu_tv'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_tv_sl.png'))
-		self.extframe['id_mainmenu_movies'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_movie_sl.png'))
-		self.extframe['id_mainmenu_source'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_source_sl.png'))
-		self.extframe['id_mainmenu_tasks'] = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_task_sl.png'))
 		self.mainmenu_ext = {}
 		self.mainmenu_ext['id_mainmenu_plugins'] = 'gmenu_plugin'
 		self.mainmenu_ext['id_mainmenu_photos'] = 'gmenu_photo'
@@ -343,8 +262,6 @@ class GeneralMenu(Screen):
 		self['down_sub_2'].hide()
 		self['down_sub_3'].hide()
 		self['down_sub_4'].hide()
-		self['frame'] = MovingPixmap()
-		self['frame'].hide()
 
 		self['actions'] = ActionMap(['OkCancelActions', 'DirectionActions'], {
 			'ok': self.keyOK,
@@ -388,10 +305,6 @@ class GeneralMenu(Screen):
 		if self.selectedExtEntry[menuID] > len(gmenu_extentrys[menuID]) - 1:
 			self.selectedExtEntry[menuID] = len(gmenu_extentrys[menuID]) - 1
 			eval('config.gmenu.ext_sel_%s' % menuID).value = self.selectedExtEntry[menuID]
-		pos = self.pos[menuID][self.selectedExtEntry[menuID]]
-		self['frame'].instance.setPixmap(self.extframe[menuID])
-		self['frame'].moveTo(pos[0], pos[1], 1)
-		self['frame'].startMoving()
 
 	def getExtEntry(self, menuID):
 		self.subentrys = self.getSubEntrys()
@@ -581,14 +494,8 @@ class GeneralMenu(Screen):
 		if selectedSubEntry == -2:
 			countitem = self.selectedExtEntry[self.selectedEntryID]
 			if countitem is None or countitem == -1:
-				self['frame'].hide()
 				self['title'].setForegroundColorNum(1)
 			else:
-				pos = self.pos[self.selectedEntryID][countitem]
-				self['frame'].instance.setPixmap(self.extframe[self.selectedEntryID])
-				self['frame'].moveTo(pos[0], pos[1], 1)
-				self['frame'].startMoving()
-				self['frame'].show()
 				self['title'].setForegroundColorNum(1)
 				try:
 					selstr = str(gmenu_extentrys[self.selectedEntryID][countitem][0])
@@ -598,14 +505,8 @@ class GeneralMenu(Screen):
 		else:
 			countitem = self.selectedExtEntry[self.selectedEntryID]
 			if countitem is None or countitem == -1:
-				self['frame'].hide()
 				self['title'].setForegroundColorNum(0)
 			else:
-				pos = self.pos[self.selectedEntryID][countitem]
-				self['frame'].hide()
-				self['frame'].instance.setPixmap(self.extframe[self.selectedEntryID])
-				self['frame'].moveTo(pos[0], pos[1], 1)
-				self['frame'].startMoving()
 				self['title'].setForegroundColorNum(0)
 		if selectedSubEntry > -1:
 			self['list'].selectionEnabled(0)
