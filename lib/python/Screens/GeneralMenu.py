@@ -134,7 +134,7 @@ class GeneralMenuSummary(Screen):
 class GeneralMenu(Screen):
 	skin = '''
 		<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
-			<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
+			<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="gmenu/" alphatest="on" zPosition="2" transparent="1" />
 			<widget position="0,210" size="1280,76" name="list" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
 
 			<widget position="15,290" size="250,250" name="list_sub_0" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
@@ -143,17 +143,17 @@ class GeneralMenu(Screen):
 			<widget position="765,290" size="250,250" name="list_sub_3" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
 			<widget position="1015,290" size="250,250" name="list_sub_4" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
 
-			<widget position="122,280" size="35,10" name="up_sub_0" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="372,280" size="35,10" name="up_sub_1" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="622,280" size="35,10" name="up_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="872,280" size="35,10" name="up_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="1122,290" size="35,10" name="up_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="122,280" size="35,10" name="up_sub_0" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="372,280" size="35,10" name="up_sub_1" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="622,280" size="35,10" name="up_sub_2" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="872,280" size="35,10" name="up_sub_3" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="1122,290" size="35,10" name="up_sub_4" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
 
-			<widget position="122,540" size="35,10" name="down_sub_0" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="372,540" size="35,10" name="down_sub_1" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="622,540" size="35,10" name="down_sub_2" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="872,540" size="35,10" name="down_sub_3" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="1122,540" size="35,10" name="down_sub_4" pixmap="easy-skin-hd/gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="122,540" size="35,10" name="down_sub_0" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="372,540" size="35,10" name="down_sub_1" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="622,540" size="35,10" name="down_sub_2" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="872,540" size="35,10" name="down_sub_3" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="1122,540" size="35,10" name="down_sub_4" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
 		</screen>'''
 
 	ALLOW_SUSPEND = True
