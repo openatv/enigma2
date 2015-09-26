@@ -158,8 +158,6 @@ class GeneralMenuSummary(Screen):
 class GeneralMenu(Screen):
 	skin = '''
 		<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
-			<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />
-
 			<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
 			<widget position="0,210" size="1280,76" name="list" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
 
@@ -218,15 +216,6 @@ class GeneralMenu(Screen):
 				self.selectedExtEntry[key] = 0
 
 		self.subentrys = self.getSubEntrys()
-		self['title'] = MultiColorLabel()
-		self.exttitle = {}
-		self.exttitle['id_mainmenu_plugins'] = ''
-		self.exttitle['id_mainmenu_photos'] = ''
-		self.exttitle['id_mainmenu_music'] = ''
-		self.exttitle['id_mainmenu_tv'] = ''
-		self.exttitle['id_mainmenu_movies'] = ''
-		self.exttitle['id_mainmenu_source'] = ''
-		self.exttitle['id_mainmenu_tasks'] = ''
 		self.mainmenu_ext = {}
 		self.mainmenu_ext['id_mainmenu_plugins'] = 'gmenu_plugin'
 		self.mainmenu_ext['id_mainmenu_photos'] = 'gmenu_photo'
@@ -484,30 +473,6 @@ class GeneralMenu(Screen):
 		list.append(GeneralMenuEntryComponent(entrys, selectedSubEntry, self.selectedEntry - self.startEntry, onLeft, onRight))
 		self['list'].setList(list)
 		self['id_mainmenu_ext'].setText(self.mainmenu_ext[self.selectedEntryID])
-		self.exttitle['id_mainmenu_plugins'] = ''
-		self.exttitle['id_mainmenu_photos'] = ''
-		self.exttitle['id_mainmenu_music'] = ''
-		self.exttitle['id_mainmenu_tv'] = ''
-		self.exttitle['id_mainmenu_movies'] = ''
-		self.exttitle['id_mainmenu_source'] = ''
-		self.exttitle['id_mainmenu_tasks'] = ''
-		if selectedSubEntry == -2:
-			countitem = self.selectedExtEntry[self.selectedEntryID]
-			if countitem is None or countitem == -1:
-				self['title'].setForegroundColorNum(1)
-			else:
-				self['title'].setForegroundColorNum(1)
-				try:
-					selstr = str(gmenu_extentrys[self.selectedEntryID][countitem][0])
-				except:
-					selstr = ''
-				self.exttitle[self.selectedEntryID] += ' >> ' + selstr
-		else:
-			countitem = self.selectedExtEntry[self.selectedEntryID]
-			if countitem is None or countitem == -1:
-				self['title'].setForegroundColorNum(0)
-			else:
-				self['title'].setForegroundColorNum(0)
 		if selectedSubEntry > -1:
 			self['list'].selectionEnabled(0)
 			self.summaries.setTextTitle(self.entrys[self.selectedEntry][0])
@@ -530,7 +495,6 @@ class GeneralMenu(Screen):
 		else:
 			self.summaries.setTextTitle('')
 			self.summaries.setTextMenu('')
-		self['title'].setText(self.exttitle[self.selectedEntryID])
 
 	def getSubEntrys(self):
 		subentrys = {}
