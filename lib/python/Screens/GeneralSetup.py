@@ -4,11 +4,11 @@ from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineB
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
 from Components.SystemInfo import SystemInfo
+from Components.Sources.List import List
 
 from Screens.Screen import Screen
 from Screens.NetworkSetup import *
@@ -91,10 +91,49 @@ def isFileSystemSupported(filesystem):
 class GeneralSetup(Screen):
 	skin = """
 		<screen name="GeneralSetup" position="center,center" size="1195,600" backgroundColor="black" flags="wfBorder">
-			<widget name="list" position="21,32" size="400,400" backgroundColor="black" itemHeight="50" transparent="1" />
+			<widget source="list" render="Listbox" position="21,32" size="400,400" itemHeight="50" scrollbarMode="showOnDemand" transparent="1" >
+				# Eval is used to allow parameterisation of the
+				# template used in the old embedded template to be
+				# used in the same way here.
+				# Functions imported into Components.Converter.TemplatedMultiContent
+				# must also be forwarded into the eval().
+
+				# Data indexes:
+				# 1: item name
+				# 2: item end text
+				# 3: item short description
+				<convert type="TemplatedMultiContent">
+					eval('''{
+						  "template": [
+						    MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width - endtext_width, 32), text=1),
+						    MultiContentEntryText(pos=(width - scrollbar_width - padding_width - endtext_width, 0), size=(endtext_width, 32), text=2),
+						    MultiContentEntryText(pos=(padding_width, 32), size=(width - scrollbar_width - 2 * padding_width, 18), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=3),
+						  ],
+						  "fonts": [gFont("Regular", 28), gFont("Regular", 14)],
+						  "itemHeight": 50
+						}''',
+						dict(width=400, endtext_width=20, scrollbar_width=10, padding_width=10,
+						     MultiContentEntryText=MultiContentEntryText, gFont=gFont)
+					)
+				</convert>
+			</widget>
 			<eLabel position="422,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
-			<widget name="sublist" position="425,32" size="320,400" backgroundColor="black" itemHeight="45" />
-			<widget source="session.VideoPicture" render="Pig" position="745,30" size="450,300" backgroundColor="transparent" zPosition="1" />
+			<widget source="sublist" render="Listbox" position="425,32" size="320,400" itemHeight="45" scrollbarMode="showOnDemand" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					eval('''{
+						  "template": [
+						    MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width, 23), text=1),
+						    MultiContentEntryText(pos=(padding_width, 23), size=(width - scrollbar_width - 2 * padding_width, 17), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=2),
+						  ],
+						  "fonts": [gFont("Regular", 20), gFont("Regular", 14)],
+						  "itemHeight": 45
+						}''',
+						dict(width=320, scrollbar_width=10, padding_width=10,
+						     MultiContentEntryText=MultiContentEntryText, gFont=gFont)
+					)
+				</convert>
+			</widget>
+			<widget source="session.VideoPicture" render="Pig" position="771,30" size="398,252" backgroundColor="transparent" zPosition="1" />
 			<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
 			<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
 			<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
@@ -120,9 +159,9 @@ class GeneralSetup(Screen):
 
 		self.menu = 0
 		self.list = []
-		self["list"] = GeneralSetupList(self.list)
+		self["list"] = List(self.list, enableWrapAround=True)
 		self.sublist = []
-		self["sublist"] = GeneralSetupSubList(self.sublist)
+		self["sublist"] = List(self.sublist, enableWrapAround=True)
 		self.selectedList = []
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
@@ -140,11 +179,11 @@ class GeneralSetup(Screen):
 
 		self.MainQmenu()
 		self.selectedList = self["list"]
-		self.selectionChanged()
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["sublist"].selectionEnabled(0)
+		self.selectionChanged()
+		self["sublist"].setSelectionEnabled(0)
 
 	def selectionChanged(self):
 		if self.selectedList == self["list"]:
@@ -163,24 +202,24 @@ class GeneralSetup(Screen):
 		if self.menu != 0:
 			self.menu = 0
 			self.selectedList = self["list"]
-			self["list"].selectionEnabled(1)
-			self["sublist"].selectionEnabled(0)
+			self["list"].setSelectionEnabled(1)
+			self["sublist"].setSelectionEnabled(0)
 			self.selectionChanged()
 
 	def goRight(self):
 		if self.menu == 0:
 			self.menu = 1
 			self.selectedList = self["sublist"]
-			self["sublist"].moveToIndex(0)
-			self["list"].selectionEnabled(0)
-			self["sublist"].selectionEnabled(1)
+			self["sublist"].setIndex(0)
+			self["list"].setSelectionEnabled(0)
+			self["sublist"].setSelectionEnabled(1)
 			self.selectionSubChanged()
 
 	def goUp(self):
-		self.selectedList.up()
+		self.selectedList.selectPrevious()
 
 	def goDown(self):
-		self.selectedList.down()
+		self.selectedList.selectNext()
 
 	def keyred(self):
 		if self.menu != 0:
@@ -206,7 +245,7 @@ class GeneralSetup(Screen):
 		self.list.append(GeneralSetupEntryComponent("Storage", _("Hard disk setup"), _("Set up your hard disk")))
 		self.list.append(GeneralSetupEntryComponent("Plugins", _("Download plugins"), _("Show download and install available plugins")))
 		self.list.append(GeneralSetupEntryComponent("Software manager", _("Update/backup/restore"), _("Update firmware. Backup / restore settings")))
-		self["list"].l.setList(self.list)
+		self["list"].list = self.list
 
 # ####### TV Setup Menu ##############################
 	def Qtv(self):
@@ -220,7 +259,7 @@ class GeneralSetup(Screen):
 		if not getMachineBrand() == "Beyonwiz":
 			self.sublist.append(QuickSubMenuEntryComponent("Common Interface", _("Common Interface configuration"), _("Active/reset and manage your CI")))
 		self.sublist.append(QuickSubMenuEntryComponent("Parental control", _("Lock/unlock channels"), _("Set up parental controls")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### System Setup Menu ##############################
 	def Qsystem(self):
@@ -238,7 +277,7 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent("Fan settings", _("Fan setup"), _("Set up your fan")))
 		self.sublist.append(QuickSubMenuEntryComponent("Remote control code settings", _("Remote control code setup"), _("Set up your remote control")))
 		self.sublist.append(QuickSubMenuEntryComponent("Factory reset", _("Load default"), _("Reset all settings to defaults")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Network Menu ##############################
 	def Qnetwork(self):
@@ -261,7 +300,7 @@ class GeneralSetup(Screen):
 		# self.sublist.append(QuickSubMenuEntryComponent("SABnzbd", _("Set up SABnzbd"), _("Set up SABnzbd")))
 		# self.sublist.append(QuickSubMenuEntryComponent("uShare", _("Set up uShare"), _("Set up uShare")))
 		self.sublist.append(QuickSubMenuEntryComponent("Telnet", _("Set up Telnet"), _("Set up Telnet")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Mount Settings Menu ##############################
 	def Qmount(self):
@@ -269,14 +308,14 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Mount manager", _("Manage network mounts"), _("Set up your network mounts")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network browser", _("Search for network shares"), _("Search for network shares")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Device manager", _("Mounts devices"), _("Set up your device mounts (USB, HDD, others...)")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Media Menu ##############################
 	def Qmedia(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Picture player", _("Set up picture player"), _("Configure timeout, thumbnails, etc. for picture slide show")))
 		self.sublist.append(QuickSubMenuEntryComponent("Media player", _("Set up media player"), _("Manage play lists, sorting, repeat")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### A/V Settings Menu ##############################
 	def Qavsetup(self):
@@ -293,7 +332,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Skin setup", _("Choose menu skin"), _("Choose user interface skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("HDMI-CEC", _("Consumer Electronics Control"), _("Control up to ten CEC-enabled devices connected through HDMI")))
 
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Tuner Menu ##############################
 	def Qtuner(self):
@@ -316,7 +355,7 @@ class GeneralSetup(Screen):
 				self.sublist.append(QuickSubMenuEntryComponent("LCN renumber", _("Automatic LCN assignment"), _("Automatic LCN assignment")))
 		if REMOTEBOX:
 			self.sublist.append(QuickSubMenuEntryComponent("Remote IP channels", _("Setup channel server IP"), _("Setup server IP for your IP channels")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Software Manager Menu ##############################
 	def Qsoftware(self):
@@ -327,7 +366,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Check for updates now", _("Online software update"), _("Check for and install online updates. You must have a working Internet connection.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Configure update check", _("Configure online update checks"), _("Configure periodical checks for online updates. You must have a working Internet connection.")))
 		# self.sublist.append(QuickSubMenuEntryComponent("Complete backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Plugins Menu ##############################
 	def Qplugin(self):
@@ -336,7 +375,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("Download plugins", _("Download and install plugins"), _("Shows available plugins or download and install new ones")))
 		self.sublist.append(QuickSubMenuEntryComponent("Remove plugins", _("Delete plugins"), _("Delete and uninstall plugins.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Package installer", _("Install local extension"), _("Scan HDD and USB media for local extensions and install them")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 # ####### Harddisk Menu ##############################
 	def Qharddisk(self):
@@ -346,7 +385,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent("File system check", _("Check HDD"), _("Check the integrity of the file system on your hard disk")))
 		# if isFileSystemSupported("ext4"):
 		# 	self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system from ext3 to ext4"), _("Convert file system from ext3 to ext4")))
-		self["sublist"].l.setList(self.sublist)
+		self["sublist"].list = self.sublist
 
 	def ok(self):
 		if self.menu > 0:
@@ -394,7 +433,7 @@ class GeneralSetup(Screen):
 # ####### Select Storage Setup Menu ##############################
 		elif selected == _("Storage"):
 			self.Qharddisk()
-		self["sublist"].selectionEnabled(0)
+		self["sublist"].setSelectionEnabled(0)
 
 # ####################################################################
 # ####### Make Selection SUB MENU LIST ##############################
@@ -714,32 +753,8 @@ scrollbar_width = 10
 padding_width = 10
 
 # ####### Create MENULIST format #######################
-def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">", width=400):
-	endtext_width = 20
-	return [
-		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width - endtext_width, 32), text=_(name)),
-		MultiContentEntryText(pos=(width - scrollbar_width - padding_width - endtext_width, 0), size=(endtext_width, 32), text=endtext),
-		MultiContentEntryText(pos=(padding_width, 32), size=(width - scrollbar_width - 2 * padding_width, 18), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=_(description)),
-	]
+def GeneralSetupEntryComponent(name, description, long_description=None, endtext=">"):
+	return ((_(name), _(long_description)), _(name), endtext, _(description))
 
-def QuickSubMenuEntryComponent(name, description, long_description=None, width=320):
-	return [
-		(_(name), _(long_description)),
-		MultiContentEntryText(pos=(padding_width, 0), size=(width - scrollbar_width - 2 * padding_width, 23), text=_(name)),
-		MultiContentEntryText(pos=(padding_width, 23), size=(width - scrollbar_width - 2 * padding_width, 17), color=0x00AAAAAA, color_sel=0x00AAAAAA, font=1, text=_(description)),
-	]
-
-class GeneralSetupList(MenuList):
-	def __init__(self, lst, enableWrapAround=True):
-		MenuList.__init__(self, lst, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
-
-class GeneralSetupSubList(MenuList):
-	def __init__(self, sublist, enableWrapAround=True):
-		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(45)
+def QuickSubMenuEntryComponent(name, description, long_description=None):
+	return ((_(name), _(long_description)), _(name), _(description))
