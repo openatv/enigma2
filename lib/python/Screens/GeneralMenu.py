@@ -9,18 +9,17 @@ from Screens.ChannelSelection import ChannelSelection
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Plugins.Extensions.FileCommander.plugin import FileCommanderScreen
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 import os
 from Components.SystemInfo import SystemInfo
 from Components.MenuList import MenuList
-from Components.Label import Label, MultiColorLabel
-from Components.Pixmap import Pixmap, MovingPixmap
+from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.PluginComponent import plugins
 from Components.Sources.StaticText import StaticText
-from Components.ParentalControl import parentalControl
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.BoundFunction import boundFunction
@@ -525,7 +524,7 @@ class GeneralMenu(Screen):
 		if option is None:
 			return
 		path = option[1] + "/"
-		from Plugins.Extensions.PicturePlayer.ui import config, picshow
+		from Plugins.Extensions.PicturePlayer.ui import picshow
 		try:
 			config.pic.lastDir.setValue(path)
 		except:
