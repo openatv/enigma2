@@ -162,14 +162,6 @@ class GeneralMenu(Screen):
 
 			<widget position="40,25" size="1200,25" name="title" font="Regular;22"  zPosition="2" transparent="1" foregroundColors="#555555,#999999" />
 
-			<widget position="22,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_0" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="200,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_1" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="378,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_2" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="556,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_3" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="734,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_4" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="912,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_5" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="1090,20" size="150,150" source="id_mainmenu_plugins_tumb_ext_6" render="Micon" pixmap="easy-skin-hd/gmenu/gmenu_plugin_bg.png" alphatest="on" zPosition="2" transparent="1" />
-
 			<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="easy-skin-hd/gmenu/" alphatest="on" zPosition="2" transparent="1" />
 			<widget position="0,210" size="1280,76" name="list" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
 
@@ -325,55 +317,6 @@ class GeneralMenu(Screen):
 		self.mainmenu_ext['id_mainmenu_source'] = 'gmenu_source'
 		self.mainmenu_ext['id_mainmenu_tasks'] = 'gmenu_task'
 		self['id_mainmenu_ext'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_plugins_tumb_ext_6'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_photos_tumb_ext_6'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_music_tumb_ext_6'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_tv_tumb_ext_6'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_movies_tumb_ext_6'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_source_tumb_ext_6'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_0'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_1'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_2'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_3'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_4'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_5'] = StaticText()
-		self['id_mainmenu_tasks_tumb_ext_6'] = StaticText()
 		self['list'] = GeneralMenuList([])
 		self['list_sub_0'] = GeneralSubMenuList([])
 		self['list_sub_1'] = GeneralSubMenuList([])
@@ -438,15 +381,6 @@ class GeneralMenu(Screen):
 		self.fillExtEntry(self.selectedEntryID)
 
 	def fillExtEntry(self, menuID):
-		extentrys = gmenu_extentrys[menuID]
-		countitems = 0
-		for extentry in extentrys:
-			self[menuID + '_tumb_ext_' + str(countitems)].setText(str(extentry[1]))
-			countitems += 1
-
-		for x in range(7 - len(extentrys)):
-			self[menuID + '_tumb_ext_' + str(countitems + x)].setText(None)
-
 		gmenu_extentrys[menuID] = self.getExtEntry(menuID)
 		if eval('config.gmenu.ext_sel_%s' % menuID).value == -1 and len(gmenu_extentrys[menuID]) > 0:
 			self.selectedExtEntry[menuID] = len(gmenu_extentrys[menuID]) // 2
@@ -459,46 +393,15 @@ class GeneralMenu(Screen):
 		self['frame'].moveTo(pos[0], pos[1], 1)
 		self['frame'].startMoving()
 
-	def clearExtEntry(self, menuID):
-		for x in range(7):
-			self[menuID + '_tumb_ext_' + str(x)].setText(None)
-
 	def getExtEntry(self, menuID):
 		self.subentrys = self.getSubEntrys()
-		ret_list = []
 		if menuID == 'id_mainmenu_plugins2':
-			wight = 100
-			countitems = 0
-			for x in self.subentrys['id_mainmenu_plugins']:
-				if countitems == 7:
-					break
-				ret_list.append((x[0], x[1], x[2], x[3]))
-				if self.selectedEntryID == menuID:
-					picon = str(x[1]).replace('.png', '_g.png')
-					if self[menuID + '_tumb_ext_' + str(countitems)].getText() != picon:
-						self[menuID + '_tumb_ext_' + str(countitems)].setText(picon)
-				else:
-					self[menuID + '_tumb_ext_' + str(countitems)].setText(None)
-				countitems += 1
-				wight += 1
+			return [tuple(x) for x in self.subentrys['id_mainmenu_plugins'][:7]]
 
 		elif menuID == 'id_mainmenu_tasks2':
-			wight = 100
-			countitems = 0
-			for x in self.subentrys['id_mainmenu_tasks']:
-				if countitems == 7:
-					break
-				ret_list.append((x[0], x[1], x[2], x[3]))
-				if self.selectedEntryID == menuID:
-					picon = str(x[1])
-					if self[menuID + '_tumb_ext_' + str(countitems)].getText() != picon:
-						self[menuID + '_tumb_ext_' + str(countitems)].setText(picon)
-				else:
-					self[menuID + '_tumb_ext_' + str(countitems)].setText(None)
-				countitems += 1
-				wight += 1
+			return [tuple(x) for x in self.subentrys['id_mainmenu_tasks'][:7]]
 
-		return ret_list
+		return []
 
 	def left(self):
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
@@ -523,7 +426,6 @@ class GeneralMenu(Screen):
 			self.selectedEntry = 0
 			self.startEntry = 0
 			return
-		oldSelectedEntryID = self.selectedEntryID
 		if self.selectedEntry == 0:
 			self.startEntry = 0
 		else:
@@ -538,7 +440,6 @@ class GeneralMenu(Screen):
 		else:
 			self.startSubEntry[self.selectedEntryID] = 0
 		self.buildGeneralMenu()
-		self.clearExtEntry(oldSelectedEntryID)
 		self.fillExtEntry(self.selectedEntryID)
 
 	def right(self):
@@ -562,7 +463,6 @@ class GeneralMenu(Screen):
 			self.selectedEntry = len(self.entrys) - 1
 			self.startEntry = 2
 			return
-		oldSelectedEntryID = self.selectedEntryID
 		if self.selectedEntry == 6:
 			self.startEntry = 2
 		else:
@@ -577,7 +477,6 @@ class GeneralMenu(Screen):
 		else:
 			self.startSubEntry[self.selectedEntryID] = 0
 		self.buildGeneralMenu()
-		self.clearExtEntry(oldSelectedEntryID)
 		self.fillExtEntry(self.selectedEntryID)
 
 	def up(self):
