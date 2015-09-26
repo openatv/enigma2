@@ -58,9 +58,6 @@ class GeneralMenuList(MenuList):
 		self.l.setItemHeight(76)
 
 def GeneralMenuEntryComponent(entrys, enableEntry, selectedEntry, onLeft=False, onRight=False):
-	x = 15
-	count = 0
-	width = 250
 	res = [entrys]
 	entry_of = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_off.png'))
 	entry_en = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_en.png'))
@@ -71,48 +68,47 @@ def GeneralMenuEntryComponent(entrys, enableEntry, selectedEntry, onLeft=False, 
 	entry_of_right = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_ar_off.png'))
 	entry_en_right = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_ar_en.png'))
 	entry_on_right = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_ar_on.png'))
-	for entry in entrys:
-		if count == 0 and onLeft:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_of_left))
-		elif count == 4 and onRight:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_of_right))
-		else:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_of))
-		x += width
-		count += 1
 
-	x = 15
-	count = 0
-	for entry in entrys:
-		real_width = 100
-		if selectedEntry == count and enableEntry == -1:
-			if count == 0 and onLeft:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_on_left))
-			elif count == 4 and onRight:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_on_right))
-			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_on))
-			if width > real_width:
-				res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 76), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, color=0x00ffffff, color_sel=0x00ffffff))
-			else:
-				res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 76), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=0x00ffffff, color_sel=0x00ffffff))
-		elif selectedEntry == count and enableEntry != -1:
-			if count == 0 and onLeft:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_en_left))
-			elif count == 4 and onRight:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_en_right))
-			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(x - 15, 0), size=(width + 30, 76), png=entry_en))
-			if width > real_width:
-				res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 76), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, color=0x00dddddd, color_sel=0x00dddddd))
-			else:
-				res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 76), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=0x00dddddd, color_sel=0x00dddddd))
-		elif width > real_width:
-			res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 76), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, color=0x00777777, color_sel=0x00777777))
-		else:
-			res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 76), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=0x00777777, color_sel=0x00777777))
+	entry_pixmaps = (
+		(entry_of_left, entry_of, entry_of_right),  # Not selected
+		(entry_en_left, entry_en, entry_en_right),  # Selected, enabled != -1
+		(entry_on_left, entry_on, entry_on_right),  # Selected, enabled == -1
+	)
+	colors = (
+		0x00777777,  # Not selected
+		0x00dddddd,  # Selected, enabled != -1
+		0x00ffffff,  # Selected, enabled == -1
+	)
+
+	def sel3(first, second):
+		return 0 if first else 2 if second else 1
+
+	def select_pixmap(sel, enabled, left, right):
+		return entry_pixmaps[sel3(sel, enabled)][sel3(left, right)]
+
+	width = 250
+	real_width = 100
+	x_off = 15
+
+	align = (RT_HALIGN_CENTER if width > real_width else RT_HALIGN_LEFT) | RT_VALIGN_CENTER
+
+	x = x_off
+	for count, entry in enumerate(entrys):
+		if selectedEntry != count:
+			pixmap = select_pixmap(True, False, count == 0 and onLeft, count == 4 and onRight)
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, 76), png=pixmap))
 		x += width
-		count += 1
+
+	x = x_off
+	for count, entry in enumerate(entrys):
+		if selectedEntry == count:
+			pixmap = select_pixmap(False, enableEntry == -1, count == 0 and onLeft, count == 4 and onRight)
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, 76), png=pixmap))
+
+		color = colors[sel3(selectedEntry != count, enableEntry == -1)]
+
+		res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, 76), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
+		x += width
 	return res
 
 
@@ -124,25 +120,18 @@ class GeneralSubMenuList(MenuList):
 
 def GeneralSubMenuEntryComponent(entry, enableEntry=False, selectedEntry=False, onUp=False, onDown=False):
 	x = 0
+	x_off = 15
 	width = 250
 	res = [entry]
 	entry_sl = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_250x50_on.png'))
 	real_width = 100
+
+	align = (RT_HALIGN_CENTER if width > real_width else RT_HALIGN_LEFT) | RT_VALIGN_CENTER
+	color = 0x00ffffff if selectedEntry else 0x00999999 if enableEntry else 0x00555555
+
 	if selectedEntry:
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 50), png=entry_sl))
-		if width > real_width:
-			res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 50), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, color=0x00ffffff))
-		else:
-			res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 50), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=0x00ffffff))
-	elif enableEntry:
-		if width > real_width:
-			res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 50), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, color=0x00999999))
-		else:
-			res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 50), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=0x00999999))
-	elif width > real_width:
-		res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 50), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, color=0x00555555))
-	else:
-		res.append(MultiContentEntryText(pos=(x + 15, 0), size=(width - 30, 50), font=0, text=entry.encode('utf-8'), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, color=0x00555555))
+	res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, 50), font=0, text=entry.encode('utf-8'), flags=align, color=color))
 	return res
 
 class GeneralMenuSummary(Screen):
