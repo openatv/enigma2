@@ -367,7 +367,8 @@ class SecConfigure:
 						position_idx = (posnum - 1) % manufacturer_positions_value
 						if product_name in manufacturer_scr:
 							diction = manufacturer.diction[product_name].value
-							if diction !="EN50607" or (posnum <= manufacturer_positions_value and x <= maxFixedLnbPositions): #for every allowed position
+							positionsoffset = manufacturer.positionsoffset[product_name][0].value
+							if diction !="EN50607" or ((posnum <= (positionsoffset + manufacturer_positions_value) and (posnum > positionsoffset) and x <= maxFixedLnbPositions)): #for every allowed position
 								if diction =="EN50607":
 									sec.setLNBSatCRformat(1)	#JESS
 								else:
@@ -1499,6 +1500,9 @@ def InitNimManager(nimmgr):
 				diction = "EN50494"
 			p_update({"diction":tuple([diction])})								#add diction to dict product
 
+			positionsoffset = product.get("positionsoffset",0)
+			p_update({"positionsoffset":tuple([positionsoffset])})						#add positionsoffset to dict product
+
 			positions=[]
 			positions_append = positions.append
 			positions_append(int(product.get("positions",1)))
@@ -1541,6 +1545,9 @@ def InitNimManager(nimmgr):
 			else:
 				diction = "EN50494"
 			p_update({"diction":tuple([diction])})								#add diction to dict product
+
+			positionsoffset = product.get("positionsoffset",0)
+			p_update({"positionsoffset":tuple([positionsoffset])})						#add positionsoffset to dict product
 
 			positions=[]
 			positions_append = positions.append
@@ -1653,13 +1660,18 @@ def InitNimManager(nimmgr):
 						tmp.lofl = ConfigSubDict()
 						tmp.lofh = ConfigSubDict()
 						tmp.loft = ConfigSubDict()
+						tmp.positionsoffset = ConfigSubDict()
 						tmp.positions = ConfigSubDict()
 						tmp.diction = ConfigSubDict()
 						for article in products:
 							positionslist = unicableproducts[manufacturer][article].get("positions")
+							positionsoffsetlist = unicableproducts[manufacturer][article].get("positionsoffset")
+							positionsoffset = int(positionsoffsetlist[0])
 							positions = int(positionslist[0])
 							dictionlist = [unicableproducts[manufacturer][article].get("diction")]
-							if lnb <= positions or dictionlist[0][0] !="EN50607":
+							if dictionlist[0][0] !="EN50607" or ((lnb > positionsoffset) and (lnb <= (positions + positionsoffset))):
+								tmp.positionsoffset[article] = ConfigSubList()
+								tmp.positionsoffset[article].append(ConfigInteger(default=positionsoffset, limits = (positionsoffset, positionsoffset)))
 								tmp.positions[article] = ConfigSubList()
 								tmp.positions[article].append(ConfigInteger(default=positions, limits = (positions, positions)))
 								tmp.diction[article] = ConfigSelection(choices = dictionlist, default = dictionlist[0][0])
