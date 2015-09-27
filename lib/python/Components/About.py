@@ -120,6 +120,7 @@ def getCPUInfoString():
 		return _("undefined")
 
 def getCPUSpeedString():
+	mhz = "unavailable"
 	try:
 		file = open('/proc/cpuinfo', 'r')
 		lines = file.readlines()
