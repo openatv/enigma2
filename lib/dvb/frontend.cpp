@@ -2460,6 +2460,80 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	return score;
 }
 
+bool eDVBFrontend::changeType(int type)
+{
+#if DVB_API_VERSION >= 5
+	struct dtv_property p[2];
+	struct dtv_properties cmdseq;
+	cmdseq.props = p;
+	cmdseq.num = 2;
+	p[0].cmd = DTV_CLEAR;
+	p[1].cmd = DTV_DELIVERY_SYSTEM;
+	p[1].u.data = SYS_UNDEFINED;
+
+	switch (type)
+	{
+		case feSatellite:
+			p[1].u.data = SYS_DVBS;
+			break;
+#ifdef feSatellite2
+		case feSatellite2:
+			p[1].u.data = SYS_DVBS2;
+			break;
+#endif
+		case feTerrestrial:
+			p[1].u.data = SYS_DVBT;
+			break;
+		case feCable:
+#ifdef SYS_DVBC_ANNEX_A
+			p[1].u.data = SYS_DVBC_ANNEX_A;
+#else
+			p[1].u.data = SYS_DVBC_ANNEX_AC;
+#endif
+			break;
+#ifdef feATSC
+		case feATSC:
+			p[1].u.data = SYS_ATSC;
+			break;
+#endif
+		default:
+			eDebug("not supported delivery system type %i", type);
+			return false;
+	}
+
+	eDebug("data %d",p[1].u.data );
+	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
+	{
+		eDebug("data %d",p[1].u.data );
+		perror("FE_SET_PROPERTY failed ");
+		return false;
+	}
+
+	FILE *f = fopen("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "rw");
+	if (f)
+	{
+		int old;
+		if (fscanf(f, "%d", &old) != 1)
+			eDebug("read dvb_shutdown_timeout failed");
+		if (fprintf(f, "%d", 0) == 0)
+			eDebug("write dvb_shutdown_timeout failed");
+		closeFrontend();
+		reopenFrontend();
+		if (fprintf(f, "%d", old) == 0)
+			eDebug("rewrite dvb_shutdown_timeout failed");
+		fclose(f);
+	}
+	else
+	{
+		closeFrontend();
+		reopenFrontend();
+	}
+	return true;
+#else //if DVB_API_VERSION < 5
+	return false;
+#endif
+}
+
 bool eDVBFrontend::supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist)
 {
 	std::map<fe_delivery_system_t, bool>::iterator it = m_delsys.find(sys);
