@@ -20,7 +20,7 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template V1.6.6c 31.08.2015-->
+<!-- template V1.6.7 28.09.2015-->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText"></convert>
@@ -82,7 +82,7 @@
 	</screen>	
 <!-- EPG Panel -->	
 	<screen name="MyEPGPanel" position="0,0" size="400,240">
-		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="1" alphatest="on">
+		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" zPosition="1" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget> 
 		<eLabel position="0,92" size="400,1" backgroundColor="#BDBDBD" />
@@ -104,7 +104,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="LcdPicon" position="100,0" zPosition="2" size="200,120" halign="center" alphatest="on">
+		<widget source="session.CurrentService" render="LcdPicon" position="100,0" zPosition="2" size="200,120" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,83" size="98,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
@@ -182,7 +182,7 @@
 	</screen>		
 <!-- channelselection -->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
-		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="2" alphatest="on">
+		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<eLabel position="0,92" size="400,1" backgroundColor="#BDBDBD" />
