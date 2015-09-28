@@ -2045,9 +2045,9 @@ def InitNimManager(nimmgr):
 				else:
 					ret = False
 				if not ret:
-					print "%d: tunerTypeChange to '%s' failed" %(slot_id, system)
+					print "%d: tunerTypeChange to '%s' failed" %(fe_id, system)
 			else:
-				print "%d: tunerTypeChange to '%s' failed (BUSY)" %(slot_id, configElement.getText())
+				print "%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, configElement.getText())
 		else:
 			print "api <5"
 			if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
