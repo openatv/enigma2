@@ -2030,8 +2030,8 @@ def InitNimManager(nimmgr):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
 		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-		if iDVBFrontend.dvb_api_version >= 5:
-			print "api >=5"
+		if not path.exists("/proc/stb/frontend/%d/mode" % fe_id) and iDVBFrontend.dvb_api_version >= 5:
+			print "api >=5 and new style tuner driver"
 			if frontend:
 				system = configElement.getText()
 				if system == 'DVB-C':
@@ -2049,7 +2049,7 @@ def InitNimManager(nimmgr):
 			else:
 				print "%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, configElement.getText())
 		else:
-			print "api <5"
+			print "api <5 or old style tuner driver"
 			if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
 				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
 				if cur_type != int(configElement.value):
