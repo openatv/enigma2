@@ -67,6 +67,40 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.settings.menupage = ConfigSelection(choices=choicelist, default=page)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
+	@staticmethod
+	def __getLanguage(code, undetermined=None):
+		if undetermined is None or code != "und":
+			if code in LanguageCodes:
+				return _(LanguageCodes[code][0])
+			else:
+				return code
+		return undetermined
+
+	@staticmethod
+	def getSubtitleLanguage(st, undetermined=None):
+		return AudioSelection.__getLanguage(st[4], undetermined=undetermined)
+
+	@staticmethod
+	def getSubtitleDescription(st):
+		number = str(st[1])
+		if st[0] == 0:
+			description = "DVB"
+			number = "%x" % (st[1])
+		elif st[0] == 1:
+			description = "teletext"
+			number = "%x%02x" % (st[3] and st[3] or 8, st[2])
+		elif st[0] == 2:
+			types = (
+				"unknown", "embedded", "SSA file", "ASS file",
+				"SRT file", "VOB file", "PGS file"
+			)
+			try:
+				description = types[st[2]]
+			except:
+				description = _("unknown") + ": %s" % st[2]
+			number = str(st[1] + 1)
+		return description, number
+
 	def __layoutFinished(self):
 		self["config"].instance.setSelectionEnable(False)
 		self.focus = FOCUS_STREAMS
@@ -201,48 +235,28 @@ class AudioSelection(Screen, ConfigListScreen):
 				subtitlelist = []
 
 			for x in subtitlelist:
-				number = str(x[1])
-				description = "?"
-				language = ""
 				selected = ""
 
 				if self.selectedSubtitle and x[:4] == self.selectedSubtitle[:4]:
 					selected = "X"
 					selectedidx = idx
 
-				try:
-					if x[4] != "und":
-						if x[4] in LanguageCodes:
-							language = _(LanguageCodes[x[4]][0])
-						else:
-							language = x[4]
-				except:
-					language = ""
-
-				if x[0] == 0:
-					description = "DVB"
-					number = "%x" % (x[1])
-
-				elif x[0] == 1:
-					description = "teletext"
-					number = "%x%02x" % (x[3] and x[3] or 8, x[2])
-
-				elif x[0] == 2:
-					types = (
-						"unknown", "embedded", "SSA file", "ASS file",
-						"SRT file", "VOB file", "PGS file"
-					)
-					try:
-						description = types[x[2]]
-					except:
-						description = _("unknown") + ": %s" % x[2]
-					number = str(int(number) + 1)
+				language = self.getSubtitleLanguage(x, undetermined="")
+				description, number = self.getSubtitleDescription(x)
 
 				streams.append((x, "", number, description, language, selected))
 				idx += 1
 
 			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0) and ".DVDPlayer'>" not in repr(self.infobar):
 				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing(), None))
+
+			self.settings.hide_teletext_undetermined_list = ConfigOnOff(default=config.subtitles.hide_teletext_undetermined_list.value)
+			self.settings.hide_teletext_undetermined_list.addNotifier(self.changeSubHideList, initial_call=False)
+			conflist.append(getConfigListEntry(_("Hide undetermined language teletext subtitles in list"), self.settings.hide_teletext_undetermined_list, None))
+
+			self.settings.hide_teletext_undetermined_cycle = ConfigOnOff(default=config.subtitles.hide_teletext_undetermined_cycle.value)
+			self.settings.hide_teletext_undetermined_cycle.addNotifier(self.changeSubHideCycle, initial_call=False)
+			conflist.append(getConfigListEntry(_("Hide undetermined lang ttxt subtitles when cycling them"), self.settings.hide_teletext_undetermined_cycle, None))
 
 		if len(conflist) > 0 and conflist[0][0]:
 			self["key_red"].setBoolean(True)
@@ -262,10 +276,18 @@ class AudioSelection(Screen, ConfigListScreen):
 	def __updatedInfo(self):
 		self.fillList()
 
+	# Subtitle list tuples are
+	# (type, pid, page_number, magazine_number, language_code)
+
 	def getSubtitleList(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
 		subtitlelist = subtitle and subtitle.getSubtitleList()
+		if subtitlelist is None:
+			subtitlelist = []
+		if config.subtitles.hide_teletext_undetermined_list.value:
+			subtitlelist = [s for s in subtitlelist if s[0] != 1 or s[4] != "und"]
+
 		self.selectedSubtitle = None
 		if self.subtitlesEnabled():
 			self.selectedSubtitle = self.infobar.selected_subtitle
@@ -347,6 +369,16 @@ class AudioSelection(Screen, ConfigListScreen):
 			if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > track:
 				self.audioTracks.selectTrack(track)
 
+	def changeSubHideCycle(self, hide):
+		config.subtitles.hide_teletext_undetermined_cycle.value = self.settings.hide_teletext_undetermined_cycle.value
+		config.subtitles.hide_teletext_undetermined_cycle.save()
+		self.settings.menupage.changed()
+
+	def changeSubHideList(self, hide):
+		config.subtitles.hide_teletext_undetermined_list.value = self.settings.hide_teletext_undetermined_list.value
+		config.subtitles.hide_teletext_undetermined_list.save()
+		self.settings.menupage.changed()
+
 	def keyLeft(self):
 		if self.focus == FOCUS_CONFIG:
 			ConfigListScreen.keyLeft(self)
@@ -357,7 +389,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		if config or self.focus == FOCUS_CONFIG:
 			if self.settings.menupage.value == PAGE_AUDIO and self["config"].getCurrent()[2]:
 				self["config"].getCurrent()[2]()
-			elif self.settings.menupage.value == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0):
+			elif self["config"].getCurrent()[0] == _("Subtitle Quickmenu") and self.settings.menupage.value == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0):
 				self.session.open(QuickSubtitlesConfigMenu, self.infobar)
 			else:
 				ConfigListScreen.keyRight(self)
@@ -449,7 +481,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					self.__updatedInfo()
 					self["streams"].setIndex(selectedidx)
 				else:
-					self.enableSubtitle(cur[0][:5])
+					self.enableSubtitle(cur[0])
 					self.__updatedInfo()
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:

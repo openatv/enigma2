@@ -644,6 +644,9 @@ def InitUsageConfig():
 		("30000", _("30"))])
 	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
 
+	config.subtitles.hide_teletext_undetermined_list = ConfigYesNo(default=False)
+	config.subtitles.hide_teletext_undetermined_cycle = ConfigYesNo(default=True)
+
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices = [
 		("---", _("None")),

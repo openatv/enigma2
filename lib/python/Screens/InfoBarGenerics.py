@@ -41,6 +41,7 @@ from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
+from Screens.AudioSelection import SubtitleSelection
 from ServiceReference import ServiceReference, isPlayableForCur
 
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
@@ -3764,6 +3765,7 @@ class InfoBarSubtitleSupport(object):
 		object.__init__(self)
 		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions", {
 			"subtitleSelection": (self.subtitleSelection, _("Subtitle selection")),
+			"subtitleSelectionLong": (self.subtitleCycle, _("Cycle through subtitle streams")),
 		}, description=_("Subtitles"))
 
 		self.selected_subtitle = None
@@ -3787,15 +3789,53 @@ class InfoBarSubtitleSupport(object):
 		service = self.session.nav.getCurrentService()
 		return service and service.subtitle()
 
+	# Subtitle list tuples are
+	# (type, pid, page_number, magazine_number, language_code)
+
 	def subtitleSelection(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
 		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.selected_subtitle or subtitlelist and len(subtitlelist) > 0:
-			from Screens.AudioSelection import SubtitleSelection
+		if self.selected_subtitle or subtitlelist:
 			self.session.open(SubtitleSelection, self)
 		else:
 			return 0
+
+	def subtitleCycle(self):
+		service = self.session.nav.getCurrentService()
+		subtitle = service and service.subtitle()
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		sel = None
+		message = None
+		messagetype = MessageBox.TYPE_INFO
+		if subtitlelist:
+			if config.subtitles.hide_teletext_undetermined_cycle.value:
+				subtitlelist = [s for s in subtitlelist if s[0] != 1 or s[4] != "und"]
+			subtitlelist = [None] + subtitlelist
+			if self.selected_subtitle in subtitlelist:
+				index = subtitlelist.index(self.selected_subtitle) + 1
+				if index >= len(subtitlelist):
+					index = 0
+				sel = subtitlelist[index]
+				if sel is not None:
+					language = SubtitleSelection.getSubtitleLanguage(sel)
+					description, number = SubtitleSelection.getSubtitleDescription(sel)
+					message = _("Selected %s subtitles from %s (%s)") % (language, description, number)
+			else:
+				message = _("Can't find next subtitle")
+				messagetype = MessageBox.TYPE_WARNING
+		else:
+			message = _("No subtitles available")
+		if sel is None and message is None:
+			if self.selected_subtitle:
+				message = _("Subtitles off")
+			else:
+				message = _("Subtitles already off")
+
+		if sel != self.selected_subtitle:
+			self.enableSubtitle(sel)
+
+		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="SubtitleToggle")
 
 	def __serviceChanged(self):
 		if self.selected_subtitle:
