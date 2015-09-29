@@ -652,22 +652,26 @@ def runScreenTest():
 	tmp = plugins.getNextWakeupTime(getPluginIdent = True)
 	nextPluginTime = tmp[0]
 	nextPluginIdent = tmp[1] #"pluginname | pluginfolder"
+	tmp = tmp[1].lower()
 	#start in standby, depending on plugin type
-	if "EPGRefresh" in nextPluginIdent:
+	if "epgrefresh" in tmp:
 		nextPluginName = "EPGRefresh"
 		nextPluginTimeInStandby = 1
-	elif "vps" in nextPluginIdent or "VPS" in nextPluginIdent:
+	elif "vps" in tmp:
 		nextPluginName = "VPS"
 		nextPluginTimeInStandby = 1
-	elif "SerienRecorder" in nextPluginIdent or "serienrecorder" in nextPluginIdent:
+	elif "serienrecorder" in tmp:
 		nextPluginName = "SerienRecorder"
-		nextPluginTimeInStandby = 0
-	elif "Elektro" in nextPluginIdent:
+		nextPluginTimeInStandby = 0   #plugin can't shut down if starts in standby
+	elif "elektro" in tmp:
 		nextPluginName = "Elektro"
-		nextPluginTimeInStandby = 0
-	elif "EnhancedPowersave" in nextPluginIdent or "Enhanced Powersave" in nextPluginIdent:
+		nextPluginTimeInStandby = 1
+	elif "minipowersave" in tmp:
+		nextPluginName = "MiniPowersave"
+		nextPluginTimeInStandby = 1
+	elif "enhancedpowersave" in tmp:
 		nextPluginName = "EnhancedPowersave"
-		nextPluginTimeInStandby = 0
+		nextPluginTimeInStandby = 1
 	else:
 		#default for plugins
 		nextPluginName = nextPluginIdent
