@@ -223,6 +223,7 @@ def InitUsageConfig():
 		rec_nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = rec_nims)
+	config.misc.disable_background_scan = ConfigYesNo(default = False)
 	config.usage.frontend_priority_dvbs = ConfigSelection(default = "-2", choices = list(dvbs_nims))
 	dvbs_nims.insert(1,("-1", _("auto")))
 	config.usage.jobtaskextensions = ConfigYesNo(default = True)
