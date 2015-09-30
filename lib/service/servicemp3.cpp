@@ -1747,6 +1747,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_REPLACE);
 			if (result)
 			{
+				if (m_stream_tags && gst_tag_list_is_equal(m_stream_tags, result))
+				{
+					gst_tag_list_free(tags);
+					gst_tag_list_free(result);
+					break;
+				}
 				if (m_stream_tags)
 					gst_tag_list_free(m_stream_tags);
 				m_stream_tags = result;
