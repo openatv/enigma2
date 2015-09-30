@@ -52,6 +52,11 @@ The pixmaps list in Components.Pixmap.MultiPixmap is resolved in
 MultiPixmap.applySkin(), and resolves using SCOPE_SKIN_IMAGE,
 SCOPE_ACTIVE_LCDSKIN and SCOPE_ACTIVE_SKIN in that priority order.
 
+"~/" path prefix expansion does not work for expansion of pixmap filenames
+in the pixmaps attribute of MultiPixmap widgets, nor does it work for
+pixmap filenames used in the MultiContentEntryPixmap* functions in
+Components.MultiContent.
+
 Pixmaps loaded by the skin or MultiPixmap.applySkin() have any
 resolved path suffix starting with '#' stripped from the path.
 Using a '#' in a pixmap filename in that way will affect the pixmap
