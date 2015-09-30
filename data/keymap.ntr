@@ -399,15 +399,15 @@
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
-		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
-		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
+		<key id="KEY_LEFT" mapto="seekBackManual" flags="m" />
+		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="m" />
 
 		<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 		<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
 		<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_NEXTSONG" mapto="SeekbarFwd" flags="l" />
 
-		<key id="KEY_OK" mapto="unPauseService" flags="m" />
+		<key id="KEY_OK" mapto="toggleShow" flags="m" />
 
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
 		<key id="KEY_3" mapto="seekdef:3" flags="m" />
