@@ -7,8 +7,11 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
 from Components.Language import language
+from Tools.Directories import fileCheck
 from enigma import getDesktop
 from os import access, R_OK
+
+from boxbranding import getBoxType
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
@@ -75,15 +78,16 @@ def InitOsd():
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def set3DMode(configElement):
-		if SystemInfo["CanChange3DOsd"]:
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
 			print 'Setting 3D mode:',configElement.value
-			f = open("/proc/stb/fb/3dmode", "w")
+			file3d = fileCheck('/proc/stb/fb/3dmode') or fileCheck('/proc/stb/fb/primary/3d')
+			f = open(file3d, "w")
 			f.write(configElement.value)
 			f.close()
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
-		if SystemInfo["CanChange3DOsd"]:
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
 			print 'Setting 3D depth:',configElement.value
 			f = open("/proc/stb/fb/znorm", "w")
 			f.write('%d' % int(configElement.value))
