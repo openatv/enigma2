@@ -986,6 +986,10 @@ msgstr "Alternativer Radio-Modus"
 msgid "Alternative services tuner priority"
 msgstr "Tuner-Priorität bei alternativen Services"
 
+# UsageConfig.py:236
+msgid "No priority"
+msgstr "Keine Priorität"
+
 msgid "Always ask"
 msgstr "Immer nachfragen"
 
@@ -2018,7 +2022,7 @@ msgid "Configure which tuner type will be preferred, when the same service is av
 msgstr "Konfigurieren der bevorzugten von mehreren für einen Sender verfügbaren Empfangsarten."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
-msgstr "Konfigurieren, welcher von mehreren Tunern bevorzugt benutzt werden soll. Bei 'Auto' wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
+msgstr "Konfigurieren, welcher von mehreren Tunern bevorzugt benutzt werden soll. Bei 'Automatisch' wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
 
 msgid "Configure your internal LAN"
 msgstr "Internes Netzwerk konfigurieren"
@@ -7300,8 +7304,17 @@ msgstr "Netzwerkfreigaben"
 msgid "Sharpness"
 msgstr "Schärfe"
 
+# RecordingConfig.py:16
 msgid "Short filenames"
 msgstr "Kurze Dateinamen"
+
+# RecordingConfig.py:14
+msgid "Very very short filenames - Warning"
+msgstr "Extrem kurze Dateinamen - Warnung"
+
+# RecordingConfig.py:15
+msgid "Very short filenames"
+msgstr "Sehr kurze Dateinamen"
 
 msgid "Show /tmp/ecm.info"
 msgstr "Zeige /tmp/ecm.info"
@@ -12358,6 +12371,14 @@ msgstr "Servicemodus*"
 msgid "Jump first press in channel selection"
 msgstr "Springe zuerst in Programmauswahl"
 
+# UsageConfig.py:297 
+msgid "Number"
+msgstr "Nummer"
+
+# UsageConfig.py:295 
+msgid "Quick Actions"
+msgstr "Nur Nummern"
+
 msgid "Show infobar lite *"
 msgstr "Zeige einfache Infoleiste *"
 
@@ -12381,6 +12402,10 @@ msgstr "Tonspur-Auswahl"
 
 msgid "Default (Timeshift)"
 msgstr "Standard (Timeshift)"
+
+#: Infopanel/plugin.py:74
+msgid "Toggle Pillarbox <> Pan&Scan"
+msgstr "Wechsel Pillarbox <> Pan&Scan"
 
 msgid "Yellow-Key-Action"
 msgstr "Gelbe Taste"
@@ -15345,7 +15370,7 @@ msgid "URL of fallback remote receiver"
 msgstr "URL des Reservereceiver"
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
-msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll, wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
+msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll, wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Automatisch' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
 
 #: ButtonSetup.py
 msgid "Show graphical multi EPG"
