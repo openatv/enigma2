@@ -8256,11 +8256,11 @@ msgstr "Die Ergebnisse des Tests wurden in der Datei %s gespeichert."
 
 #
 msgid "The sleep timer has been activated."
-msgstr "Der Ausschalt-Timer wurde aktiviert"
+msgstr "Der Ausschalt-Timer wurde aktiviert."
 
 #
 msgid "The sleep timer has been disabled."
-msgstr "Der Ausschalt-Timer wurde deaktiviert"
+msgstr "Der Ausschalt-Timer wurde deaktiviert."
 
 msgid "The status of the current beta image could not be checked because www.openpli.org could not be reached for some reason"
 msgstr "Der Status des derzeitigen Beta-Image konnte nicht überprüft werden da www.openpli.org nicht erreichbar ist"
@@ -16408,3 +16408,47 @@ msgstr "Neue Beschreibung eingeben:"
 #: TimerEntry.py
 msgid "Select target folder"
 msgstr "Wählen Sie das Zielverzeichnis"
+
+#: UsageConfig.py
+msgid "Execute in "
+msgstr "Ausführen in "
+
+#: UsageConfig.py
+msgid "Execute after current event"
+msgstr "Ausführen nach der Sendung"
+
+#: SleepTimerEdit.py
+msgid "Timer is activated: +%d min"
+msgstr "Timer ist aktiviert:  +%d min"
+
+#: SleepTimerEdit.py
+msgid "Timer is not activated"
+msgstr "Timer ist nicht aktiviert"
+
+#: SleepTimerEdit.py
+msgid "Timer action"
+msgstr "Timer Aktion"
+
+#: SleepTimerEdit.py
+msgid "Configure the duration in minutes for the sleep timer."
+msgstr "Konfigurieren Sie die Dauer in Minuten für den Ausschalt-Timer."
+
+#: SleepTimerEdit.py
+msgid "Select the sleep timer action."
+msgstr "Wählen Sie die Ausschalt-Timer-Aktion."
+
+#: InfoBarGenerics.py
+msgid "A sleep timer wants to set your %s %s to standby.\nDo that now or set extend additional minutes?"
+msgstr "Ein Ausschalt-Timer möchte ihre %s %s in den Standby versetzen.\nJetzt ausführen oder zusätzliche Minuten einstellen?"
+
+#: InfoBarGenerics.py
+msgid "A sleep timer wants to shut down your %s %s.\nDo that now or set extend additional minutes?"
+msgstr "Ein Ausschalt-Timer möchte ihre %s %s ausschalten.\nJetzt ausführen oder zusätzliche Minuten einstellen?"
+
+#: InfoBarGenerics.py
+msgid "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\nExtend sleep timer 30 minutes. Your %s %s\nwill shut down after Recording or Powertimer event. Get in Standby now?"
+msgstr "Eine Aufnahme, Aufnahmetimer oder Powertimer ist aktiv oder beginnt in 15 Minuten.\nDer Ausschalt-Timer wird um 30 Minuten verlängert und schaltet ihre\n%s %s nach dem Aufnahme oder Powertimer Ereignis ab.\nJetzt in den Standby gehen?"
+
+#: InfoBarGenerics.py
+msgid "Extend"
+msgstr "Verlängern"

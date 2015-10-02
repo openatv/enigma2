@@ -239,7 +239,8 @@ else:
 	self.session.open(TryQuitMainloop, 1)
 </code>
 		</item>
-		<item weight="5" level="0" text="WOL Standby" requires="GBWOL" entryID="deep_standby">
+		<item weight="5" level="0" text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+		<item weight="10" level="0" text="WOL Standby" requires="GBWOL" entryID="deep_standby">
 			<code>
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -257,10 +258,10 @@ else:
 	self.session.open(TryQuitMainloop, 45)
 </code>
 		</item>
-		<item weight="10" level="0" text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
-		<item weight="15" level="0" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-		<item weight="20" level="0" text="Restart Gui" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
-		<item weight="25" level="0" text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+		<item weight="15" level="0" text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
+		<item weight="20" level="0" text="Sleep Timer" requires="DeepstandbySupport" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
+		<item weight="25" level="0" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
+		<item weight="30" level="0" text="Restart Gui" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 	</menu>
 
 </menu>

@@ -45,7 +45,7 @@ from Screens.TimerEntry import TimerEntry as TimerEntry
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop
 from boxbranding import getBoxType, getMachineProcModel, getMachineBuild, getMachineBrand, getMachineName
 
 from time import time, localtime, strftime
@@ -4929,3 +4929,72 @@ class InfoBarHdmi:
 		else:
 			self.hdmi_enabled_full = False
 			self.session.nav.playService(slist.servicelist.getCurrent())
+
+class InfoBarSleepTimer:
+	def __init__(self):
+		self.sleepTimer = eTimer()
+		self.sleepStartTime = 0
+		self.sleepTimer.callback.append(self.sleepTimerTimeout)
+
+	def sleepTimerState(self):
+		if self.sleepTimer.isActive():
+			return (self.sleepStartTime - time()) / 60
+		return 0
+
+	def setSleepTimer(self, sleepTime, showMessage = True):
+		print "[InfoBarSleepTimer] set sleeptimer", sleepTime
+		if sleepTime:
+			m = abs(sleepTime / 60)
+			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
+			self.sleepTimer.startLongTimer(sleepTime)
+			self.sleepStartTime = time() + sleepTime
+		else:
+			message = _("The sleep timer has been disabled.")
+			self.sleepTimer.stop()
+		if showMessage:
+			Notifications.AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
+
+	def sleepTimerTimeout(self):
+		if config.usage.sleep_timer_action.value != "standby":
+			isRecordTime = abs(self.session.nav.RecordTimer.getNextRecordingTime() - time()) <= 900 or self.session.nav.RecordTimer.getStillRecording() or abs(self.session.nav.RecordTimer.getNextZapTime() - time()) <= 900
+			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer = 0)
+			if isRecordTime or isPowerTime:
+				self.setSleepTimer(1800, False)
+				if not Screens.Standby.inStandby:
+					message = _("A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\nExtend sleep timer 30 minutes. Your %s %s\nwill shut down after Recording or Powertimer event. Get in Standby now?") % (getMachineBrand(), getMachineName())
+					self.session.openWithCallback(self.goStandby, MessageBox, message, MessageBox.TYPE_YESNO, timeout=180, default=True)
+				return
+		if not Screens.Standby.inStandby:
+			list = [ (_("Yes"), True),
+					(_("No"), False),
+					(_("Extend"), "extend") ]
+			if config.usage.sleep_timer_action.value == "standby":
+				message = _("A sleep timer wants to set your %s %s to standby.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
+			else:
+				message = _("A sleep timer wants to shut down your %s %s.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=180, simple=True, list=list, default=True)
+		else:
+			self.goStandby()
+
+	def sleepTimerTimeoutCallback(self, answer):
+		if answer == "extend":
+			from Screens.SleepTimerEdit import SleepTimerEdit
+			self.session.open(SleepTimerEdit)
+		elif answer:
+			self.goStandby()
+		else:
+			self.setSleepTimer(0)
+
+	def goStandby(self, answer = None):
+		if config.usage.sleep_timer_action.value == "standby" or answer:
+			if not Screens.Standby.inStandby:
+				print "[InfoBarSleepTimer] goto standby"
+				self.session.open(Screens.Standby.Standby)
+		elif answer is None:
+			if not Screens.Standby.inStandby:
+				if not Screens.Standby.inTryQuitMainloop:
+					print "[InfoBarSleepTimer] goto deep standby"
+					self.session.open(Screens.Standby.TryQuitMainloop, 1)
+			else:
+				print "[InfoBarSleepTimer] goto deep standby"
+				quitMainloop(1)
