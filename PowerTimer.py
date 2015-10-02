@@ -163,10 +163,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 	def activate(self):
 		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup, InfoBar
 
-		try:
-			from Screens.InfoBar import InfoBar
-		except Exception, e:
-			print "[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
+		if not InfoBar:
+			try:
+				from Screens.InfoBar import InfoBar
+			except Exception, e:
+				print "[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
 
 		isRecTimerWakeup = breakPT = shiftPT = False
 		now = time()
