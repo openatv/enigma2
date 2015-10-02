@@ -897,9 +897,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.reloadList()
 
 	def can_move(self, item):
-		if not item:
-			return False
 		return canMove(item)
+
+	def can_copy(self, item):
+		return canCopy(item)
+
+	def can_rename(self, item):
+		return canRename(item)
 
 	def can_delete(self, item):
 		if not item:
