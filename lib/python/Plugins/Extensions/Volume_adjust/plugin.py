@@ -315,6 +315,7 @@ class mySmallChannelSelection(ChannelSelectionBase):
 		self.skin = mySmallChannelSelection.skin
 		ChannelSelectionBase.__init__(self, session)
 		self.onShown.append(self.__onExecCallback)
+		self.bouquet_mark_edit = OFF
 		service = self.session.nav.getCurrentService()
 		if service:
 			info = service.info()
