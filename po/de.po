@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-09-22 00:46+0100\n"
+"PO-Revision-Date: 2015-10-02 20:41+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -7655,7 +7655,7 @@ msgstr ""
 msgid "Sorry, no Details available!"
 msgstr "Entschuldigung, keine Details verfügbar"
 
-#
+#: BackupRestore.py:124 BackupRestore.py:126
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -7664,6 +7664,10 @@ msgstr ""
 "Entschuldigung, Ihr Sicherungsverzeichnis ist nicht beschreibbar.\n"
 "\n"
 "Bitte wählen Sie ein anderes Verzeichnis."
+
+#: BackupRestore.py:316
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Wollen Sie jetzt die alten Einstellungen in /etc/enigma2 wirklich löschen?"
 
 msgid "Sort"
 msgstr "Sortieren"
@@ -12371,11 +12375,11 @@ msgstr "Servicemodus*"
 msgid "Jump first press in channel selection"
 msgstr "Springe zuerst in Programmauswahl"
 
-# UsageConfig.py:297 
+# UsageConfig.py:297
 msgid "Number"
 msgstr "Nummer"
 
-# UsageConfig.py:295 
+# UsageConfig.py:295
 msgid "Quick Actions"
 msgstr "Nur Nummern"
 
@@ -16438,16 +16442,31 @@ msgid "Select the sleep timer action."
 msgstr "Wählen Sie die Ausschalt-Timer-Aktion."
 
 #: InfoBarGenerics.py
-msgid "A sleep timer wants to set your %s %s to standby.\nDo that now or set extend additional minutes?"
-msgstr "Ein Ausschalt-Timer möchte ihre %s %s in den Standby versetzen.\nJetzt ausführen oder zusätzliche Minuten einstellen?"
+msgid ""
+"A sleep timer wants to set your %s %s to standby.\n"
+"Do that now or set extend additional minutes?"
+msgstr ""
+"Ein Ausschalt-Timer möchte ihre %s %s in den Standby versetzen.\n"
+"Jetzt ausführen oder zusätzliche Minuten einstellen?"
 
 #: InfoBarGenerics.py
-msgid "A sleep timer wants to shut down your %s %s.\nDo that now or set extend additional minutes?"
-msgstr "Ein Ausschalt-Timer möchte ihre %s %s ausschalten.\nJetzt ausführen oder zusätzliche Minuten einstellen?"
+msgid ""
+"A sleep timer wants to shut down your %s %s.\n"
+"Do that now or set extend additional minutes?"
+msgstr ""
+"Ein Ausschalt-Timer möchte ihre %s %s ausschalten.\n"
+"Jetzt ausführen oder zusätzliche Minuten einstellen?"
 
 #: InfoBarGenerics.py
-msgid "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\nExtend sleep timer 30 minutes. Your %s %s\nwill shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr "Eine Aufnahme, Aufnahmetimer oder Powertimer ist aktiv oder beginnt in 15 Minuten.\nDer Ausschalt-Timer wird um 30 Minuten verlängert und schaltet ihre\n%s %s nach dem Aufnahme oder Powertimer Ereignis ab.\nJetzt in den Standby gehen?"
+msgid ""
+"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+"Extend sleep timer 30 minutes. Your %s %s\n"
+"will shut down after Recording or Powertimer event. Get in Standby now?"
+msgstr ""
+"Eine Aufnahme, Aufnahmetimer oder Powertimer ist aktiv oder beginnt in 15 Minuten.\n"
+"Der Ausschalt-Timer wird um 30 Minuten verlängert und schaltet ihre\n"
+"%s %s nach dem Aufnahme oder Powertimer Ereignis ab.\n"
+"Jetzt in den Standby gehen?"
 
 #: InfoBarGenerics.py
 msgid "Extend"
