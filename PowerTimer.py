@@ -22,6 +22,11 @@ RSsave = False
 RBsave = False
 aeDSsave = False
 wasTimerWakeup = False
+try:
+	from Screens.InfoBar import InfoBar
+except Exception, e:
+	print "[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
+	InfoBar = False
 #+++
 debug = False
 #+++
@@ -117,6 +122,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.log_entries = []
 		self.resetState()
 
+		self.messageBoxAnswerPending = False
+
 		#check autopowertimer
 		if (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY) and not self.disabled and time() > 3600 and self.begin > time():
 			self.begin = int(time())						#the begin is in the future -> set to current time = no start delay of this timer
@@ -154,7 +161,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff)/60))
 
 	def activate(self):
-		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup
+		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup, InfoBar
+
+		try:
+			from Screens.InfoBar import InfoBar
+		except Exception, e:
+			print "[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
+
 		isRecTimerWakeup = breakPT = shiftPT = False
 		now = time()
 		next_state = self.state + 1
@@ -227,15 +240,32 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
 				if not Screens.Standby.inStandby and not breakPT: # not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+					callback = self.sendStandbyNotification
+					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
+					messageboxtyp = MessageBox.TYPE_YESNO
+					timeout = 180
+					default = True
+					if InfoBar and InfoBar.instance:
+						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+					else:
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 				return True
 
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
 				if debug: print "self.timerType == TIMERTYPE.AUTOSTANDBY:"
 				if not self.getAutoSleepWindow():
 					return False
-				if not Screens.Standby.inStandby: # not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+				if not Screens.Standby.inStandby and not self.messageBoxAnswerPending: # not already in standby
+					self.messageBoxAnswerPending = True
+					callback = self.sendStandbyNotification
+					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
+					messageboxtyp = MessageBox.TYPE_YESNO
+					timeout = 180
+					default = True
+					if InfoBar and InfoBar.instance:
+						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+					else:
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 					if self.autosleeprepeat == "once":
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
 						return True
@@ -262,13 +292,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print "[PowerTimer] quitMainloop #1"
 						quitMainloop(1)
 						return True
-					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+					elif not self.messageBoxAnswerPending:
+						self.messageBoxAnswerPending = True
+						callback = self.sendTryQuitMainloopNotification
+						message = _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
+						messageboxtyp = MessageBox.TYPE_YESNO
+						timeout = 180
+						default = True
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+						else:
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 						if self.autosleeprepeat == "once":
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
 							return True
-						else:
-							self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
 
 			elif self.timerType == TIMERTYPE.RESTART:
 				if debug: print "self.timerType == TIMERTYPE.RESTART:"
@@ -326,7 +364,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print "[PowerTimer] quitMainloop #4"
 						quitMainloop(3)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryToRestartNotification, MessageBox, _("A finished powertimer wants to restart the user interface.\nDo that now?"), timeout = 180)
+						callback = self.sendTryToRestartNotification
+						message = _("A finished powertimer wants to restart the user interface.\nDo that now?") % (getMachineBrand(), getMachineName())
+						messageboxtyp = MessageBox.TYPE_YESNO
+						timeout = 180
+						default = True
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+						else:
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 				RSsave = False
 				return True
 
@@ -386,7 +432,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print "[PowerTimer] quitMainloop #3"
 						quitMainloop(2)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryToRebootNotification, MessageBox, _("A finished powertimer wants to reboot your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+						callback = self.sendTryToRebootNotification
+						message = _("A finished powertimer wants to reboot your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
+						messageboxtyp = MessageBox.TYPE_YESNO
+						timeout = 180
+						default = True
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+						else:
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 				RBsave = False
 				return True
 
@@ -446,7 +500,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print "[PowerTimer] quitMainloop #2"
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+						callback = self.sendTryQuitMainloopNotification
+						message = _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
+						messageboxtyp = MessageBox.TYPE_YESNO
+						timeout = 180
+						default = True
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+						else:
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 				DSsave = False
 				return True
 
@@ -456,7 +518,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 			elif self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+					callback = self.sendStandbyNotification
+					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
+					messageboxtyp = MessageBox.TYPE_YESNO
+					timeout = 180
+					default = True
+					if InfoBar and InfoBar.instance:
+						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+					else:
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if debug: print "self.afterEvent == AFTEREVENT.DEEPSTANDBY:"
 				#check priority
@@ -507,7 +577,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print "[PowerTimer] quitMainloop #5"
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
+						callback = self.sendTryQuitMainloopNotification
+						message = _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
+						messageboxtyp = MessageBox.TYPE_YESNO
+						timeout = 180
+						default = True
+						if InfoBar and InfoBar.instance:
+							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
+						else:
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 				aeDSsave = False
 			NavigationInstance.instance.PowerTimer.saveTimer()
 			resetTimerWakeup()
@@ -535,20 +613,42 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		return True
 
 	def sendStandbyNotification(self, answer):
+		self.messageBoxAnswerPending = False
 		if answer:
-			Notifications.AddNotification(Screens.Standby.Standby)
+			session = Screens.Standby.Standby
+			option = None
+			if InfoBar and InfoBar.instance:
+				InfoBar.instance.openInfoBarSession(session, option)
+			else:
+				Notifications.AddNotification(session)
 
 	def sendTryQuitMainloopNotification(self, answer):
+		self.messageBoxAnswerPending = False
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+			session = Screens.Standby.TryQuitMainloop
+			option = 1
+			if InfoBar and InfoBar.instance:
+				InfoBar.instance.openInfoBarSession(session, option)
+			else:
+				Notifications.AddNotification(session, option)
 
 	def sendTryToRebootNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
+			session = Screens.Standby.TryQuitMainloop
+			option = 2
+			if InfoBar and InfoBar.instance:
+				InfoBar.instance.openInfoBarSession(session, option)
+			else:
+				Notifications.AddNotification(session, option)
 
 	def sendTryToRestartNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3)
+			session = Screens.Standby.TryQuitMainloop
+			option = 3
+			if InfoBar and InfoBar.instance:
+				InfoBar.instance.openInfoBarSession(session, option)
+			else:
+				Notifications.AddNotification(session, option)
 
 	def keyPressed(self, key, tag):
 		if self.getAutoSleepWindow():

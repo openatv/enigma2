@@ -4998,3 +4998,32 @@ class InfoBarSleepTimer:
 			else:
 				print "[InfoBarSleepTimer] goto deep standby"
 				quitMainloop(1)
+
+#########################################################################################
+# for displayed power or record timer messages in foreground and for callback execution #
+#########################################################################################
+class InfoBarOpenOnTopHelper:
+	def __init__(self):
+		pass
+
+	def openInfoBarMessage(self, message, messageboxtyp, timeout=-1):
+		try:
+			self.session.open(MessageBox, message, messageboxtyp, timeout=timeout)
+		except Exception, e:
+			print "[InfoBarOpenMessage] Exception:", e
+
+	def openInfoBarMessageWithCallback(self, callback, message, messageboxtyp, timeout=-1, default=True):
+		try:
+			self.session.openWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+		except Exception, e:
+			print "[openInfoBarMessageWithCallback] Exception:", e
+
+	def openInfoBarSession(self, session, option=None):
+		try:
+			if option is None:
+				self.session.open(session)
+			else:
+				self.session.open(session, option)
+		except Exception, e:
+			print "[openInfoBarSession] Exception:", e
+#########################################################################################
