@@ -13,7 +13,7 @@ POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
 		global symbolspoller, POLLTIME
-		if getBoxType() in ('ixussone', 'ixusszero', 'mbmicro', 'e4hd'):
+		if getBoxType() in ('ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdc'):
 			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
@@ -84,7 +84,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif getBoxType() in ('mbmicro', 'e4hd'):
+		elif getBoxType() in ('mbmicro', 'e4hd', 'e4hdc'):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
