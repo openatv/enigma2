@@ -337,42 +337,44 @@ class GeneralMenu(Screen):
 		list = []
 		extlist = []
 		entrys = []
-		count = 0
 		self.selectedEntryID = self.entrys[self.selectedEntry][1]
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		for x in self.entrys:
+		for count, x in enumerate(self.entrys):
 			if count >= self.startEntry and count < self.startEntry + 5:
 				entrys.append(x[0])
 				sublist = []
-				subcount = 0
-				for y in self.subentrys[x[1]]:
+
+				widgetPos = str(count - self.startEntry)
+				sublistWidget = 'list_sub_' + widgetPos
+				upWidget = 'up_sub_' + widgetPos
+				downWidget = 'down_sub_' + widgetPos
+
+				for subcount, y in enumerate(self.subentrys[x[1]]):
 					if subcount >= self.startSubEntry[x[1]] and subcount < self.startSubEntry[x[1]] + 5:
 						if count == self.selectedEntry:
 							sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
-							# self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
+							# self[sublistWidget].show() ## for show only current sublist
 						else:
 							sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=False, selectedEntry=False))
-							# self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
-					subcount += 1
+							# self[sublistWidget].hide() ## for show only current sublist
 
-				self['list_sub_' + str(count - self.startEntry)].setList(sublist)
+				self[sublistWidget].setList(sublist)
 
 				if count == self.selectedEntry and selectedSubEntry > -1 and len(sublist) > 0:
-					self['list_sub_' + str(count - self.startEntry)].selectionEnabled(1)
-					self['list_sub_' + str(count - self.startEntry)].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
+					self[sublistWidget].selectionEnabled(1)
+					self[sublistWidget].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
 					# print '[LINE MENU] start sub entry:', str(self.startSubEntry[x[1]])
 					# print '[LINE MENU] select sub entry:', str(selectedSubEntry - self.startSubEntry[x[1]])
 				else:
-					self['list_sub_' + str(count - self.startEntry)].selectionEnabled(0)
+					self[sublistWidget].selectionEnabled(0)
 				if self.startSubEntry[x[1]] > 0:
-					self['up_sub_' + str(count - self.startEntry)].show()
+					self[upWidget].show()
 				else:
-					self['up_sub_' + str(count - self.startEntry)].hide()
+					self[upWidget].hide()
 				if len(self.subentrys[x[1]]) > 5 and self.selectedSubEntry[x[1]] != len(self.subentrys[x[1]]) - 1:
-					self['down_sub_' + str(count - self.startEntry)].show()
+					self[downWidget].show()
 				else:
-					self['down_sub_' + str(count - self.startEntry)].hide()
-			count += 1
+					self[downWidget].hide()
 
 		onLeft = self.startEntry > 0
 		onRight = self.startEntry + 5 < len(self.entrys)
