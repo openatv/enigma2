@@ -3,7 +3,7 @@ from time import localtime, strftime
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
 
 from Screens.Screen import Screen
-from Screens.TimerEdit import TimerSanityConflict
+from Screens.TimerEdit import TimerSanityCheck, TimerSanityConflict
 from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -95,6 +95,32 @@ class EventViewBase:
 		if self.cbFunc is not None:
 			self.cbFunc(self.setEvent, self.setService, +1)
 
+	def editTimer(self, timer):
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, timer)
+
+	def finishedEdit(self, answer):
+		if answer[0]:
+			entry = answer[1]
+			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+			success = False
+			if not timersanitycheck.check():
+				simulTimerList = timersanitycheck.getSimulTimerList()
+				if simulTimerList is not None:
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					if not timersanitycheck.check():
+						simulTimerList = timersanitycheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+					else:
+						success = True
+			else:
+				success = True
+			if success:
+				self.session.nav.RecordTimer.timeChanged(entry)
+# 		else:
+# 			print "Timeredit aborted"
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
