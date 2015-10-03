@@ -3155,9 +3155,9 @@ class InfoBarInstantRecord:
 class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", {
-			"audioSelection": (self.audioSelection, _("Audio options...")),
-			"audioSelectionLong": (self.audioSelectionLong, _("Toggle digital downmix...")),
-		}, description=_("Audio downmix and other audio options"))
+			"audioSelection": (self.audioSelectionCycle, _("Cycle through audio tracks")),
+			"audioSelectionLong": (self.audioSelection, _("Audio options & track selection...")),
+		}, description=_("Audio track selection, downmix and other audio options"))
 
 	def audioSelection(self):
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
@@ -3165,7 +3165,7 @@ class InfoBarAudioSelection:
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
-	def audioSelectionLong(self):
+	def audioSelectionCycle(self):
 		service = self.session.nav.getCurrentService()
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
@@ -3779,8 +3779,8 @@ class InfoBarSubtitleSupport(object):
 	def __init__(self):
 		object.__init__(self)
 		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions", {
-			"subtitleSelection": (self.subtitleSelection, _("Subtitle selection")),
-			"subtitleSelectionLong": (self.subtitleCycle, _("Cycle through subtitle streams")),
+			"subtitleSelectionLong": (self.subtitleSelection, _("Subtitle selection")),
+			"subtitleSelection": (self.subtitleCycle, _("Cycle through subtitle streams")),
 		}, description=_("Subtitles"))
 
 		self.selected_subtitle = None
@@ -3850,7 +3850,7 @@ class InfoBarSubtitleSupport(object):
 		if sel != self.selected_subtitle:
 			self.enableSubtitle(sel)
 
-		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="SubtitleToggle")
+		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="SubtitleCycle")
 
 	def __serviceChanged(self):
 		if self.selected_subtitle:
