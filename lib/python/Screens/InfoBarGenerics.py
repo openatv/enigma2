@@ -41,7 +41,7 @@ from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
-from Screens.AudioSelection import SubtitleSelection
+from Screens.AudioSelection import AudioSelection, SubtitleSelection
 from ServiceReference import ServiceReference, isPlayableForCur
 
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
@@ -3160,24 +3160,39 @@ class InfoBarAudioSelection:
 		}, description=_("Audio downmix and other audio options"))
 
 	def audioSelection(self):
-		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
 	def audioSelectionLong(self):
-		if SystemInfo["CanDownmixAC3"]:
-			if config.av.downmix_ac3.value:
-				message = _("Dobly Digital downmix is now") + " " + _("disabled")
-				print '[Audio] Dobly Digital downmix is now disabled'
-				config.av.downmix_ac3.setValue(False)
-			else:
-				config.av.downmix_ac3.setValue(True)
-				message = _("Dobly Digital downmix is now") + " " + _("enabled")
-				print '[Audio] Dobly Digital downmix is now enabled'
-			Notifications.AddPopup(text=message, type=MessageBox.TYPE_INFO, timeout=5, id="DDdownmixToggle")
+		service = self.session.nav.getCurrentService()
+		audio = service and service.audioTracks()
+		n = audio and audio.getNumberOfTracks() or 0
 
+		if n > 0:
+			origAudio = selectedAudio = audio.getCurrentTrack()
+			selectedAudio += 1
+			if selectedAudio >= n or selectedAudio < 0:
+				selectedAudio = 0
+			if selectedAudio != origAudio:
+				audio.selectTrack(selectedAudio)
+			messagetype = MessageBox.TYPE_INFO
+			number = str(selectedAudio + 1)
+			info = audio.getTrackInfo(selectedAudio)
+			language = AudioSelection.getAudioLanguage(info)
+			description = AudioSelection.getAudioDescription(info)
+			if n == 1:
+				message = _("Only one audio track:\n%s %s (%s)")
+			elif selectedAudio == origAudio:
+				message = _("Can't change audio track from:\n%s %s (%s)")
+				messagetype = MessageBox.TYPE_WARNING
+			else:
+				message = _("Changed audio track to:\n%s %s (%s)")
+			message = message % (language, description, number)
+		else:
+			message = _("No audio tracks to select from")
+		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="AudioCycle")
 
 class InfoBarSubserviceSelection:
 	def __init__(self):

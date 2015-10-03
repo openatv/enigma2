@@ -101,6 +101,14 @@ class AudioSelection(Screen, ConfigListScreen):
 			number = str(st[1] + 1)
 		return description, number
 
+	@staticmethod
+	def getAudioLanguage(at, undetermined=None):
+		return '/'.join([AudioSelection.__getLanguage(l, undetermined=undetermined) for l in at.getLanguage().split('/')])
+
+	@staticmethod
+	def getAudioDescription(at):
+		return at.getDescription() or ""
+
 	def __layoutFinished(self):
 		self["config"].instance.setSelectionEnable(False)
 		self.focus = FOCUS_STREAMS
@@ -115,10 +123,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_green"].setBoolean(False)
 		self["key_yellow"].setBoolean(False)
 		self["key_blue"].setBoolean(False)
-
-		service = self.session.nav.getCurrentService()
-		self.audioTracks = audio = service and service.audioTracks()
-		n = audio and audio.getNumberOfTracks() or 0
 
 		if self.settings.menupage.value == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
@@ -157,24 +161,13 @@ class AudioSelection(Screen, ConfigListScreen):
 				for x in range(n):
 					number = str(x + 1)
 					i = audio.getTrackInfo(x)
-					languages = i.getLanguage().split('/')
-					description = i.getDescription() or ""
+					language = self.getAudioLanguage(i)
+					description = self.getAudioDescription(i)
 					selected = ""
-					language = ""
 
 					if selectedAudio == x:
 						selected = "X"
 						selectedidx = x
-
-					cnt = 0
-					for lang in languages:
-						if cnt:
-							language += ' / '
-						if lang in LanguageCodes:
-							language += _(LanguageCodes[lang][0])
-						else:
-							language += lang
-						cnt += 1
 
 					streams.append((x, "", number, description, language, selected))
 
