@@ -141,7 +141,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			if SystemInfo["CanAACTranscode"]:
 				choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
-				self.settings.transcodeaac = ConfigSelection(choices = choice_list, default = "off")
+				self.settings.transcodeaac = ConfigSelection(choices=choice_list, default="off")
 				self.settings.transcodeaac.addNotifier(self.setAACTranscode)
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
@@ -176,27 +176,27 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			if SystemInfo["Can3DSurround"]:
 				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-				self.settings.surround_3d = ConfigSelection(choices = choice_list, default = config.av.surround_3d.value)
-				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
+				self.settings.surround_3d = ConfigSelection(choices=choice_list, default=config.av.surround_3d.value)
+				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call=False)
 				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d, None))
 
 			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
 				choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
-				self.settings.surround_3d_speaker = ConfigSelection(choices = choice_list, default = config.av.surround_3d_speaker.value)
+				self.settings.surround_3d_speaker = ConfigSelection(choices=choice_list, default=config.av.surround_3d_speaker.value)
 				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker)
 				conflist.append(getConfigListEntry(_("3D Surround Speaker Position"), self.settings.surround_3d_speaker, None))
 
 			if SystemInfo["CanAutoVolume"]:
 				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-				self.settings.autovolume = ConfigSelection(choices = choice_list, default = config.av.autovolume.value)
+				self.settings.autovolume = ConfigSelection(choices=choice_list, default=config.av.autovolume.value)
 				self.settings.autovolume.addNotifier(self.changeAutoVolume)
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
-#			if SystemInfo["Canedidchecking"]:
-#				choice_list = [("00000000", _("off")), ("00000001", _("on"))]
-#				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
-#				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
-#				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
+			# if SystemInfo["Canedidchecking"]:
+				# choice_list = [("00000000", _("off")), ("00000001", _("on"))]
+				# self.settings.bypass_edid_checking = ConfigSelection(choices=choice_list, default=config.av.bypass_edid_checking.value)
+				# self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
+				# conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
 
 			from Components.PluginComponent import plugins
 			from Plugins.Plugin import PluginDescriptor
@@ -213,8 +213,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
 				if len(Plugins):
 					for x in Plugins:
-						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
-							conflist.append(getConfigListEntry(x[0], ConfigNothing(),x[1]))
+						if x[0] != 'AudioEffect':  # always make AudioEffect Blue button.
+							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
