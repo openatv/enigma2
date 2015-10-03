@@ -32,11 +32,12 @@ def getChipSetString():
 		f = open('/proc/stb/info/chipset', 'r')
 		chipset = f.read()
 		f.close()
-		return str(chipset.lower().replace('\n','').replace('bcm',''))
+		return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm',''))
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def getCPUSpeedString():
+	mhz = _("unavailable")
 	try:
 		file = open('/proc/cpuinfo', 'r')
 		lines = file.readlines()
@@ -53,7 +54,7 @@ def getCPUSpeedString():
 		file.close()
 		return mhz
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def getCPUString():
 	try:
@@ -68,7 +69,7 @@ def getCPUString():
 		file.close()
 		return system
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def getCpuCoresString():
 	try:
@@ -86,7 +87,7 @@ def getCpuCoresString():
 		file.close()
 		return cores
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', ifname[:15])

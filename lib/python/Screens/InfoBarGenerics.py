@@ -2657,7 +2657,7 @@ class InfoBarJobman:
 		self.addExtension(extension = self.getJobList, type = InfoBarExtensions.EXTENSION_LIST)
 
 	def getJobList(self):
-		if config.usage.jobtaksextensions.value:
+		if config.usage.jobtaskextensions.value:
 			return [((boundFunction(self.getJobName, job), boundFunction(self.showJobView, job), lambda: True), None) for job in job_manager.getPendingJobs()]
 		else:
 			return []
