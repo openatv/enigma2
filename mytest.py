@@ -669,7 +669,7 @@ def runScreenTest():
 		nextPluginTimeInStandby = 1
 	elif "serienrecorder" in tmp:
 		nextPluginName = "SerienRecorder"
-		nextPluginTimeInStandby = 0   #plugin can't shut down if starts in standby
+		nextPluginTimeInStandby = 1
 	elif "elektro" in tmp:
 		nextPluginName = "Elektro"
 		nextPluginTimeInStandby = 1
