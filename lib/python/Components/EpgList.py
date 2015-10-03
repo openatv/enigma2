@@ -6,11 +6,12 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 from Components.Renderer.Picon import getPiconName
-from skin import parseColor, parseFont
+from skin import parseFont
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 from Components.config import config
 from ServiceReference import ServiceReference
+from Tools.ExtraAttributes import applyExtraSkinAttributes
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 
@@ -62,48 +63,6 @@ def _loadPixmapsToAttrs(obj, map):
 	pixmaps = _loadPixmaps(map.values())
 	for (attr, pixmap) in zip(attrNames, pixmaps):
 		setattr(obj, attr, pixmap)
-
-def _applySkinAttributes(obj, skinAttrs, attribMap, callerApplyMap=None):
-	def applyStrAttrib(obj, objAttrs, value):
-		setattr(obj, objAttrs[0], value)
-
-	def applyIntAttrib(obj, objAttrs, value):
-		setattr(obj, objAttrs[0], int(value))
-
-	def applyFontAttrib(obj, objAttrs, value):
-		font = parseFont(value, ((1, 1), (1, 1)))
-		setattr(obj, objAttrs[0], font.family)
-		setattr(obj, objAttrs[1], font.pointSize)
-
-	def applyColorAttrib(obj, objAttrs, value):
-		setattr(obj, objAttrs[0], parseColor(value).argb())
-
-	applyMap = {
-		"str": applyStrAttrib,
-		"int": applyIntAttrib,
-		"font": applyFontAttrib,
-		"color": applyColorAttrib,
-	}
-
-	# Callers can override/extend function map
-	if callerApplyMap is not None:
-		applyMap = dict(applyMap.items() + callerApplyMap.items())
-
-	if skinAttrs is not None:
-		attribs = []
-		for (attrib, value) in skinAttrs:
-			if attrib in attribMap:
-				mapEnt = attribMap[attrib]
-				type = mapEnt[0]
-				if type in applyMap:
-					applyMap[type](obj, mapEnt[1:], value)
-				else:
-					print "[EPGList]", "Unknown type %s in attribute map for skin attribute %s" % (type, attrib)
-			else:
-				attribs.append((attrib, value))
-		return attribs
-	else:
-		return None
 
 def _makeBorder(rect, borderWidth, pixmaps):
 	size = (
@@ -319,7 +278,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.numberOfRows = None
 
 	def applySkin(self, desktop, screen):
-		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
@@ -1399,7 +1358,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def applySkin(self, desktop, screen):
-		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		if self.skinAttributes is not None:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
@@ -1625,7 +1584,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.bouquetNameWrap = 'no'
 
 	def applySkin(self, desktop, screen):
-		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
