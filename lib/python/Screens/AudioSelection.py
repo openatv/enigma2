@@ -94,7 +94,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["CanDownmixAC3"]:
 				self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call=False)
-				conflist.append(getConfigListEntry(_("Digital downmix"), self.settings.downmix_ac3, None))
+				conflist.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), self.settings.downmix_ac3, None))
 
 			if SystemInfo["CanDownmixAAC"]:
 				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
@@ -118,7 +118,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					choicelist = [("0", _("left")), ("1", _("stereo")), ("2", _("right"))]
 					self.settings.channelmode = ConfigSelection(choices=choicelist, default=str(self.audioChannel.getCurrentChannel()))
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call=False)
-					conflist.append(getConfigListEntry(_("Channel"), self.settings.channelmode, None))
+					conflist.append(getConfigListEntry(_("Channels"), self.settings.channelmode, None))
 				selectedAudio = self.audioTracks.getCurrentTrack()
 				for x in range(n):
 					number = str(x + 1)
