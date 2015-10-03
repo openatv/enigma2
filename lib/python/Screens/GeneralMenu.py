@@ -9,7 +9,7 @@ from Screens.ChannelSelection import ChannelSelection
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Plugins.Extensions.FileCommander.plugin import FileCommanderScreen
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER
+from enigma import eListboxPythonMultiContent, gRGB, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 import os
 from Components.SystemInfo import SystemInfo
 from Components.MenuList import MenuList
@@ -22,17 +22,42 @@ from Components.PluginComponent import plugins
 from Components.Sources.StaticText import StaticText
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
+from Tools.ExtraAttributes import applyExtraSkinAttributes
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
 
 class GeneralMenuList(MenuList):
+	attribMap = {
+		# Plain ints
+		"itemHeight": ("int", "itemHeight"),
+		# Fonts
+		"font": ("font", "fontName", "fontSize"),
+		# Colors
+		"offColor": ("color", "offColor"),
+		"enabledColor": ("color", "enabledColor"),
+		"selectedColor": ("color", "selectedColor"),
+	}
+
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont('Regular', 23))
-		self.l.setItemHeight(76)
+		self.selectedColor = 0x00ffffff
+		self.enabledColor = 0x00dddddd
+		self.offColor = 0x00777777
+		self.fontName = "Regular"
+		self.fontSize = 23
+		self.itemHeight = 76
 
-def GeneralMenuEntryComponent(entrys, enableEntry, selectedEntry, onLeft=False, onRight=False):
+	def applySkin(self, desktop, screen):
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
+		rc = super(GeneralMenuList, self).applySkin(desktop, screen)
+
+		self.l.setFont(0, gFont(self.fontName, self.fontSize))
+		self.l.setItemHeight(self.itemHeight)
+
+		return rc
+
+def GeneralMenuEntryComponent(entrys, menuList, enableEntry, selectedEntry, onLeft=False, onRight=False):
 	res = [entrys]
 	entry_of = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_off.png'))
 	entry_en = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_en.png'))
@@ -50,9 +75,9 @@ def GeneralMenuEntryComponent(entrys, enableEntry, selectedEntry, onLeft=False, 
 		(entry_on_left, entry_on, entry_on_right),  # Selected, enabled == -1
 	)
 	colors = (
-		0x00777777,  # Not selected
-		0x00dddddd,  # Selected, enabled != -1
-		0x00ffffff,  # Selected, enabled == -1
+		menuList.offColor,  # Not selected
+		menuList.enabledColor,  # Selected, enabled != -1
+		menuList.selectedColor,  # Selected, enabled == -1
 	)
 
 	def sel3(first, second):
@@ -88,12 +113,36 @@ def GeneralMenuEntryComponent(entrys, enableEntry, selectedEntry, onLeft=False, 
 
 
 class GeneralSubMenuList(MenuList):
+	attribMap = {
+		# Plain ints
+		"itemHeight": ("int", "itemHeight"),
+		# Fonts
+		"font": ("font", "fontName", "fontSize"),
+		# Colors
+		"offColor": ("color", "offColor"),
+		"enabledColor": ("color", "enabledColor"),
+		"selectedColor": ("color", "selectedColor"),
+	}
+
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont('Regular', 22))
-		self.l.setItemHeight(50)
+		self.selectedColor = 0x00ffffff
+		self.enabledColor = 0x00999999
+		self.offColor = 0x00555555
+		self.fontName = "Regular"
+		self.fontSize = 22
+		self.itemHeight = 50
 
-def GeneralSubMenuEntryComponent(entry, enableEntry=False, selectedEntry=False, onUp=False, onDown=False):
+	def applySkin(self, desktop, screen):
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
+		rc = super(GeneralSubMenuList, self).applySkin(desktop, screen)
+
+		self.l.setFont(0, gFont(self.fontName, self.fontSize))
+		self.l.setItemHeight(self.itemHeight)
+
+		return rc
+
+def GeneralSubMenuEntryComponent(entry, subMenulist, enableEntry=False, selectedEntry=False, onUp=False, onDown=False):
 	x = 0
 	x_off = 15
 	width = 250
@@ -102,11 +151,11 @@ def GeneralSubMenuEntryComponent(entry, enableEntry=False, selectedEntry=False, 
 	real_width = 100
 
 	align = (RT_HALIGN_CENTER if width > real_width else RT_HALIGN_LEFT) | RT_VALIGN_CENTER
-	color = 0x00ffffff if selectedEntry else 0x00999999 if enableEntry else 0x00555555
+	color = subMenulist.selectedColor if selectedEntry else subMenulist.enabledColor if enableEntry else subMenulist.offColor
 
 	if selectedEntry:
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 50), png=entry_sl))
-	res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, 50), font=0, text=entry.encode('utf-8'), flags=align, color=color))
+	res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, 50), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
 	return res
 
 class GeneralMenuSummary(Screen):
@@ -337,46 +386,48 @@ class GeneralMenu(Screen):
 		list = []
 		extlist = []
 		entrys = []
-		count = 0
 		self.selectedEntryID = self.entrys[self.selectedEntry][1]
 		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		for x in self.entrys:
+		for count, x in enumerate(self.entrys):
 			if count >= self.startEntry and count < self.startEntry + 5:
 				entrys.append(x[0])
 				sublist = []
-				subcount = 0
-				for y in self.subentrys[x[1]]:
+
+				widgetPos = str(count - self.startEntry)
+				sublistWidget = 'list_sub_' + widgetPos
+				upWidget = 'up_sub_' + widgetPos
+				downWidget = 'down_sub_' + widgetPos
+
+				for subcount, y in enumerate(self.subentrys[x[1]]):
 					if subcount >= self.startSubEntry[x[1]] and subcount < self.startSubEntry[x[1]] + 5:
 						if count == self.selectedEntry:
-							sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
-							# self['list_sub_' + str(count - self.startEntry)].show() ## for show only current sublist
+							sublist.append(GeneralSubMenuEntryComponent(y[0], self[sublistWidget], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
+							# self[sublistWidget].show() ## for show only current sublist
 						else:
-							sublist.append(GeneralSubMenuEntryComponent(y[0], enableEntry=False, selectedEntry=False))
-							# self['list_sub_' + str(count - self.startEntry)].hide() ## for show only current sublist
-					subcount += 1
+							sublist.append(GeneralSubMenuEntryComponent(y[0], self[sublistWidget], enableEntry=False, selectedEntry=False))
+							# self[sublistWidget].hide() ## for show only current sublist
 
-				self['list_sub_' + str(count - self.startEntry)].setList(sublist)
+				self[sublistWidget].setList(sublist)
 
 				if count == self.selectedEntry and selectedSubEntry > -1 and len(sublist) > 0:
-					self['list_sub_' + str(count - self.startEntry)].selectionEnabled(1)
-					self['list_sub_' + str(count - self.startEntry)].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
+					self[sublistWidget].selectionEnabled(1)
+					self[sublistWidget].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
 					# print '[LINE MENU] start sub entry:', str(self.startSubEntry[x[1]])
 					# print '[LINE MENU] select sub entry:', str(selectedSubEntry - self.startSubEntry[x[1]])
 				else:
-					self['list_sub_' + str(count - self.startEntry)].selectionEnabled(0)
+					self[sublistWidget].selectionEnabled(0)
 				if self.startSubEntry[x[1]] > 0:
-					self['up_sub_' + str(count - self.startEntry)].show()
+					self[upWidget].show()
 				else:
-					self['up_sub_' + str(count - self.startEntry)].hide()
+					self[upWidget].hide()
 				if len(self.subentrys[x[1]]) > 5 and self.selectedSubEntry[x[1]] != len(self.subentrys[x[1]]) - 1:
-					self['down_sub_' + str(count - self.startEntry)].show()
+					self[downWidget].show()
 				else:
-					self['down_sub_' + str(count - self.startEntry)].hide()
-			count += 1
+					self[downWidget].hide()
 
 		onLeft = self.startEntry > 0
 		onRight = self.startEntry + 5 < len(self.entrys)
-		list.append(GeneralMenuEntryComponent(entrys, selectedSubEntry, self.selectedEntry - self.startEntry, onLeft, onRight))
+		list.append(GeneralMenuEntryComponent(entrys, self['list'], selectedSubEntry, self.selectedEntry - self.startEntry, onLeft, onRight))
 		self['list'].setList(list)
 		self['id_mainmenu_ext'].setText(self.mainmenu_ext[self.selectedEntryID])
 		if selectedSubEntry > -1:
