@@ -73,6 +73,8 @@
 
 Cexif::Cexif()
 {
+	m_exifinfo = NULL;
+	Data = NULL;
 }
 
 Cexif::~Cexif()
@@ -81,14 +83,10 @@ Cexif::~Cexif()
 
 void Cexif::ClearExif()
 {
-	if (freeinfo)
-	{
-		for (int i=0; i<MAX_SECTIONS; i++)
-			if (Sections[i].Data)
-				free(Sections[i].Data);
+	if (Data)
+		free(Data);
+	if (m_exifinfo)
 		delete m_exifinfo;
-		freeinfo = false;
-	}
 }
 
 bool Cexif::DecodeExif(const char *filename, int Thumb)
@@ -99,13 +97,12 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 
 	m_exifinfo = new EXIFINFO;
 	memset(m_exifinfo, 0, sizeof(EXIFINFO));
-	freeinfo = true;
 	m_exifinfo->Thumnailstate = Thumb;
 
 	m_szLastError[0] = '\0';
-	ExifImageWidth = MotorolaOrder = SectionsRead = 0;
-	memset(&Sections, 0, MAX_SECTIONS * sizeof(Section_t));
+	ExifImageWidth = MotorolaOrder = 0;
 
+	Data = NULL;
 	int HaveCom = 0;
 	int a = fgetc(hFile);
 	strcpy(m_szLastError, "EXIF-Data not found");
@@ -116,14 +113,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 	for (;;)
 	{
 		int marker = 0;
-		int ll, lh, got, itemlen;
-		unsigned char * Data;
-
-		if (SectionsRead >= MAX_SECTIONS)
-		{
-			strcpy(m_szLastError, "Too many sections in jpg file");
-			return false;
-		}
+		int ll, lh, itemlen;
 
 		for (a = 0; a < 7; a++)
 		{
@@ -138,39 +128,31 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			return false;
 		}
 
-		Sections[SectionsRead].Type = marker;
-
 		lh = fgetc(hFile);
 		ll = fgetc(hFile);
 
 		itemlen = (lh << 8) | ll;
-
 		if (itemlen < 2)
 		{
 			strcpy(m_szLastError, "Invalid marker");
 			return false;
 		}
-		Sections[SectionsRead].Size = itemlen;
 
+		if (Data)
+			free(Data);
+		itemlen -= 2;
 		Data = (unsigned char *)malloc(itemlen);
 		if (Data == NULL)
 		{
 			strcpy(m_szLastError, "Could not allocate memory");
 			return false;
 		}
-		Sections[SectionsRead].Data = Data;
 
-
-		Data[0] = (unsigned char)lh;
-		Data[1] = (unsigned char)ll;
-
-		got = fread(Data+2, 1, itemlen-2, hFile);
-		if (got != itemlen-2)
+		if (fread(Data, 1, itemlen, hFile) != itemlen)
 		{
 			strcpy(m_szLastError, "Premature end of file?");
 			return false;
 		}
-		SectionsRead++;
 
 		switch(marker)
 		{
@@ -180,30 +162,18 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			eDebug("[Cexif] No image in jpeg!\n");
 			return false;
 		case M_COM:
-			if (HaveCom)
-			{
-				free(Sections[--SectionsRead].Data);
-				Sections[SectionsRead].Data = 0;
-			}
-			else
+			if (!HaveCom)
 			{
 				process_COM(Data, itemlen);
 				HaveCom = 1;
 			}
 			break;
 		case M_JFIF:
-			free(Sections[--SectionsRead].Data);
-			Sections[SectionsRead].Data = 0;
 			break;
 		case M_EXIF:
-			if (memcmp(Data+2, "Exif", 4) == 0)
+			if (memcmp(Data, "Exif", 4) == 0)
 			{
-				m_exifinfo->IsExif = process_EXIF(Data+2, itemlen);
-			}
-			else
-			{
-				free(Sections[--SectionsRead].Data);
-				Sections[SectionsRead].Data = 0;
+				m_exifinfo->IsExif = process_EXIF(Data, itemlen);
 			}
 			break;
 		case M_SOF0:
@@ -609,7 +579,7 @@ void Cexif::process_COM (const unsigned char * Data, int length)
 	if (length > MAX_COMMENT)
 		length = MAX_COMMENT;
 
-	for (a=2; a<length; a++)
+	for (a=0; a<length; a++)
 	{
 		ch = Data[a];
 		if (ch == '\r' && Data[a+1] == '\n')
@@ -625,9 +595,9 @@ void Cexif::process_COM (const unsigned char * Data, int length)
 
 void Cexif::process_SOFn (const unsigned char * Data, int marker)
 {
-	m_exifinfo->Height = Get16m((void*)(Data+3));
-	m_exifinfo->Width  = Get16m((void*)(Data+5));
-	unsigned char num_components = Data[7];
+	m_exifinfo->Height = Get16m((void*)(Data+1));
+	m_exifinfo->Width  = Get16m((void*)(Data+3));
+	unsigned char num_components = Data[5];
 
 	strcpy(m_exifinfo->IsColor, num_components == 3 ? "yes" : "no");
 	m_exifinfo->Process = marker;
