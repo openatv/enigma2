@@ -54,7 +54,6 @@ class FeedsStatusCheck:
 	def getFeedsBool(self):
 		global error
 		feedstatus = feedsstatuscheck.getFeedSatus()
-		print 'FEED STATUS:', feedstatus
 		if feedstatus in (-2, 403, 404):
 			print '[OnlineVersionCheck] Error %s' % feedstatus
 			return feedstatus
