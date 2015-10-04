@@ -57,6 +57,7 @@
 		<item level="1" text="Show PVR status in Movie Player infobar" description="This option moves the PVR status from the separate window into the Movie Player infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on EXIT" description="In live TV, if not set to 'No', EXIT closes the PiP on EXIT as well as closing the infobar display. When playing in the Movie Player, EXIT closes the infobar if shown, otherwise closes PiP if not set to 'No' and PiP is shown. If neither PiP nor infobar are shown, EXIT follows setting of 'Quit Movie Player with EXIT button'.">config.usage.pip_hideOnExit</item>
 <!-- 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item> -->
+		<item level="2" text="Show True/False as graphical switch" description="When enabled, True/False, Yes/No, On/Off and Enabled/Disabled set up options will be displayed as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for every bouquet.">config.usage.alternative_number_mode</item>
