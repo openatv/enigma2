@@ -50,11 +50,6 @@ static const int BytesPerFormat[] = {0,1,1,2,4,8,1,1,2,4,8,4,8};
 
 class Cexif
 {
-	typedef struct tag_Section_t{
-	unsigned char* Data;
-	int Type;
-	unsigned Size;
-	} Section_t;
 public:
 	EXIFINFO* m_exifinfo;
 	char m_szLastError[256];
@@ -74,9 +69,7 @@ protected:
 	bool ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase, unsigned ExifLength, EXIFINFO * const pInfo, unsigned 	char ** const LastExifRefdP);
 	int ExifImageWidth;
 	int MotorolaOrder;
-	Section_t Sections[MAX_SECTIONS];
-	int SectionsRead;
-	bool freeinfo;
+	unsigned char * Data;
 };
 
 #endif// __exif_h__
