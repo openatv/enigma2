@@ -414,7 +414,7 @@ class ConfigSelection(ConfigElement):
 # several customized versions exist for different
 # descriptions.
 #
-boolean_descriptions = {False: _("False"), True: _("True")}
+boolean_descriptions = {False: _("false"), True: _("true")}
 class ConfigBoolean(ConfigElement):
 	def __init__(self, default = False, descriptions = boolean_descriptions, grafic = True):
 		ConfigElement.__init__(self)
@@ -458,10 +458,10 @@ class ConfigBoolean(ConfigElement):
 			return "text", self.getText()
 
 	def tostring(self, value):
-		if value:
-			return "true"
-		else:
+		if not value:
 			return "false"
+		else:
+			return "true"
 
 	def fromstring(self, val):
 		if val == "true":
@@ -488,17 +488,17 @@ class ConfigBoolean(ConfigElement):
 			self.changedFinal()
 			self.last_value = self.value
 
-yes_no_descriptions = {False: _("No"), True: _("Yes")}
+yes_no_descriptions = {False: _("no"), True: _("yes")}
 class ConfigYesNo(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
 
-on_off_descriptions = {False: _("Off"), True: _("On")}
+on_off_descriptions = {False: _("off"), True: _("on")}
 class ConfigOnOff(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = on_off_descriptions)
 
-enable_disable_descriptions = {False: _("Disable"), True: _("Enable")}
+enable_disable_descriptions = {False: _("disable"), True: _("enable")}
 class ConfigEnableDisable(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = enable_disable_descriptions)
