@@ -125,17 +125,11 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			return false;
 		}
 
-		for (a=0; a<7; a++)
+		for (a = 0; a < 7; a++)
 		{
 			marker = fgetc(hFile);
 			if (marker != 0xff)
 				break;
-
-			if (a >= 6)
-			{
-				strcpy(m_szLastError, "Too many padding unsigned chars");
-				return false;
-			}
 		}
 
 		if (marker == 0xff)
