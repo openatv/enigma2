@@ -21,6 +21,8 @@ def getType(file):
 		# Detect some unknown types
 		if file[-12:].lower() == "video_ts.ifo":
 			return "video/x-dvd"
+		if file == "/media/audiocd/cdplaylist.cdpls":
+			return "audio/x-cda"
 
 		p = file.rfind('.')
 		if p == -1:
@@ -132,7 +134,7 @@ def scanDevice(mountpoint):
 		for root, dirs, files in os.walk(path):
 			for f in files:
 				path = os.path.join(root, f)
-				if is_cdrom and f.endswith(".wav") and f.startswith("track"):
+				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
 					sfile = ScanFile(path,"audio/x-cda")
 				else:
 					sfile = ScanFile(path)

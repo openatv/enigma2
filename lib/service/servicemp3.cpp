@@ -486,7 +486,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		m_sourceinfo.audiotype = atMP3;
 	else if ( strcasecmp(ext, ".wma") == 0 )
 		m_sourceinfo.audiotype = atWMA;
-	else if ( (strncmp(filename, "/media/sr", 9) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
+	else if ( strcasecmp(ext, ".wav") == 0 )
+		m_sourceinfo.audiotype = atPCM;
+	else if ( strcasecmp(ext, ".cda") == 0)
 		m_sourceinfo.containertype = ctCDA;
 	if ( strcasecmp(ext, ".dat") == 0 )
 	{
@@ -528,7 +530,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
 	{
-		int i_track = atoi(filename+17);
+		int i_track = atoi(filename+(strlen(filename) - 6));
 		uri = g_strdup_printf ("cdda://%i", i_track);
 	}
 	else if ( m_sourceinfo.containertype == ctVCD )

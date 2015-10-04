@@ -1,4 +1,4 @@
-import os
+import os, os.path
 from time import strftime
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad
 from ServiceReference import ServiceReference
@@ -613,8 +613,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			self.playlist.clear()
 			self.savePlaylistOnExit = False
 			self.isAudioCD = True
-			for file in self.cdAudioTrackFiles:
-				ref = eServiceReference(4097, 0, file)
+			for x in self.cdAudioTrackFiles:
+				ref = eServiceReference(4097, 0, x)
 				self.playlist.addFile(ref)
 			try:
 				from Plugins.Extensions.CDInfo.plugin import Query
@@ -973,22 +973,19 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.session.open(SubtitleSelection, self)
 
 	def hotplugCB(self, dev, media_state):
-		if dev == harddiskmanager.getCD():
-			if media_state == "1":
-				from Components.Scanner import scanDevice
-				devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
-				self.cdAudioTrackFiles = []
-				res = scanDevice(devpath)
-				list = [ (r.description, r, res[r], self.session) for r in res ]
-				if list:
-					(desc, scanner, files, session) = list[0]
-					for file in files:
-						if file.mimetype == "audio/x-cda":
-							self.cdAudioTrackFiles.append(file.path)
-			else:
-				self.cdAudioTrackFiles = []
-				if self.isAudioCD:
-					self.clear_playlist()
+		if media_state == "audiocd" or media_state == "audiocdadd":
+			self.cdAudioTrackFiles = []
+			list = open("/media/audiocd/cdplaylist.cdpls")
+			if list:
+				self.isAudioCD = True
+				for x in list:
+					xnon = x.replace("\n", "")
+					self.cdAudioTrackFiles.append(xnon)
+				self.playAudioCD()
+		else:
+			self.cdAudioTrackFiles = []
+			if self.isAudioCD:
+				self.clear_playlist()
 
 class MediaPlayerLCDScreen(Screen):
 	skin = (
@@ -1054,10 +1051,31 @@ def filescan_open(list, session, **kwargs):
 
 def audioCD_open(list, session, **kwargs):
 	from enigma import eServiceReference
-
 	mp = session.open(MediaPlayer)
-	mp.cdAudioTrackFiles = [f.path for f in list]
-	mp.playAudioCD()
+	list = open("/media/audiocd/cdplaylist.cdpls")
+	if list:
+		mp.isAudioCD = True
+		for x in list:
+			xnon = x.replace("\n", "")
+			mp.cdAudioTrackFiles.append(xnon)
+		mp.playAudioCD()
+	else:
+		# to do : addings msgbox to inform user about failure of opening audiocd.
+		return False
+
+def audioCD_open_mn(session, **kwargs):
+	from enigma import eServiceReference
+	mp = session.open(MediaPlayer)
+	list = open("/media/audiocd/cdplaylist.cdpls")
+	if list:
+		mp.isAudioCD = True
+		for x in list:
+			xnon = x.replace("\n", "")
+			mp.cdAudioTrackFiles.append(xnon)
+		mp.playAudioCD()
+	else:
+		# to do : addings msgbox to inform user about failure of opening audiocd.
+		return False
 
 def movielist_open(list, session, **kwargs):
 	if not list:
@@ -1076,6 +1094,14 @@ def movielist_open(list, session, **kwargs):
 			path += '/'
 		config.movielist.last_videodir.value = path
 		InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
+
+def audiocdscan(menuid, **kwargs):
+	from Plugins.SystemPlugins.Hotplug.plugin import AudiocdAdded
+	if menuid == "mainmenu" and (AudiocdAdded() or os.path.isfile('/media/audiocd/cdplaylist.cdpls')):
+		list = ['/media/audiocd/cdplaylist.cdpls']
+		return [(_("Play audio-CD..."), audioCD_open_mn, "play_cd", 45)]
+	else:
+		return []
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -1125,5 +1151,6 @@ def Plugins(**kwargs):
 	return [
 		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
 		PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = audiocdscan),
 		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
 	]
