@@ -88,6 +88,9 @@ class Satfinder(ScanSetup, ServiceScan):
 	def newConfig(self):
 		cur = self["config"].getCurrent()
 		if cur == self.satfinderTunerEntry:
+			self.preDefTransponders = None
+			self.TerrestrialTransponders = None
+			self.CableTransponders = None
 			self.feid = int(self.satfinder_scan_nims.value)
 			self.createSetup()
 			self.prepareFrontend()
@@ -97,6 +100,9 @@ class Satfinder(ScanSetup, ServiceScan):
 					msg += _("\nRecording in progress.")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
+			if cur == self.satEntry:
+				self.preDefTransponders = None
+
 			self.createSetup()
 		if cur not in (
 			self.systemEntry,
