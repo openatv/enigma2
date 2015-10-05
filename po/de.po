@@ -789,7 +789,7 @@ msgid "Add Timer"
 msgstr "Timer hinzufügen"
 
 msgid "Add a auto timer for current event"
-msgstr "Autotimer für aktuelles Programm hinzufügen"
+msgstr "AutoTimer für ausgewählte Sendung hinzufügen"
 
 msgid "Add a margin after the end time of programmed timers referred to EPG"
 msgstr "Nachlaufzeit zum Timer hinzufügen"
@@ -834,7 +834,7 @@ msgid "Add to favourites"
 msgstr "Zu Favoriten hinzufügen"
 
 msgid "Add/Remove timer for current event"
-msgstr "Timer für aktuelle Sendung hinzufügen/entfernen"
+msgstr "Timer für ausgewählte Sendung hinzufügen/entfernen"
 
 msgid "Adding schedule..."
 msgstr "Zeitplan hinzufügen..."
@@ -4024,6 +4024,7 @@ msgstr "Integriere ECM in HTTP-Streams"
 msgid "Include EIT in http streams"
 msgstr "Integriere EIT in HTTP-Streams"
 
+#: EpgSelection.py:304
 msgid "Increase time scale"
 msgstr "Erhöhe Zeitspanne"
 
@@ -16479,3 +16480,111 @@ msgstr ""
 #: InfoBarGenerics.py
 msgid "Extend"
 msgstr "Verlängern"
+
+#: EpgSelection.py:103
+msgid "Close dialog"
+msgstr "Dialog schließen "
+
+#: EpgSelection.py:111
+msgid "Zap to channel (setup in menu)"
+msgstr "Schalte zum Sender (Einstellung im Menü)"
+
+#: EpgSelection.py:112
+msgid "Zap to channel and close (setup in menu)"
+msgstr "Schalte zum Sender und schließe (Einstellung im Menü)"
+
+#: EpgSelection.py:117
+msgid "IMDB search for current event"
+msgstr "IMBD-Suche für die ausgewählte Sendung"
+
+#: EpgSelection.py:118
+msgid "Sort EPG List"
+msgstr "EPG-Liste sortieren"
+
+#: EpgSelection.py:120
+msgid "Show Timer List"
+msgstr "Zeige alle Timer"
+
+#: EpgSelection.py:121
+msgid "Search for similar events"
+msgstr "Suche nach ähnlichen Sendungen"
+
+#: EpgSelection.py:123
+msgid "Show AutoTimer List"
+msgstr "Zeige alle AutoTimer"
+
+#: EpgSelection.py:137
+msgid "Show detailed event info"
+msgstr "Zeige detaillierte Sendungsinformationen"
+
+#: EpgSelection.py:168
+msgid "Move down a page"
+msgstr "Seitenweise nach unten blättern"
+
+#: EpgSelection.py:168
+msgid "Move up a page"
+msgstr "Seitenweise nach oben blättern"
+
+#: EpgSelection.py:209
+msgid "enter number to jump to channel."
+msgstr "Nummer, um zum Kanal zu wechseln"
+
+#: EpgSelection.py:259
+msgid "Close bouquet list."
+msgstr "Schließe Bouquet-Liste"
+
+#: EpgSelection.py:260
+msgid "Change to bouquet"
+msgstr "Zum Bouquet wechseln"
+
+#: EpgSelection.py:286
+msgid "Jump forward 24 hours"
+msgstr "Springe 24 Stunden vorwärts"
+
+#: EpgSelection.py:287
+msgid "Jump back 24 hours"
+msgstr "Springe 24 Stunden rückwärts"
+
+#: EpgSelection.py:291
+msgid "Show single epg for current channel"
+msgstr "Zeige SingleEPG vom aktuellen Programm"
+
+#: EpgSelection.py:294
+msgid "Toggle between bouquet/epg lists"
+msgstr "Zwischen Bouquet/EPG-Liste wechseln"
+
+#: EpgSelection.py:295
+msgid "Toggle Picture In Graphics"
+msgstr "Kanal-Vorschau im grafischen EPG ein/ausblenden"
+
+#: EpgSelection.py:302
+msgid "Reduce time scale"
+msgstr "Reduziere Zeitspanne"
+
+#: EpgSelection.py:303
+msgid "Page up"
+msgstr "Seite vor"
+
+#: EpgSelection.py:305
+msgid "page left"
+msgstr "Seite nach links"
+
+#: EpgSelection.py:306
+msgid "Jump to current time"
+msgstr "Springe zur aktuellen Zeit"
+
+#: EpgSelection.py:307
+msgid "Page right"
+msgstr "Seite nach rechts"
+
+#: EpgSelection.py:309
+msgid "Page down"
+msgstr "Seite zurück"
+
+#: EpgSelection.py:310
+msgid "Jump to prime time"
+msgstr "Springe zur Prime-Time"
+
+#: EpgSelection.py:311
+msgid "Move to home of list"
+msgstr "Springe zum Anfang der Liste"
