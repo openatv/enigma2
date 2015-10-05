@@ -41,6 +41,7 @@ from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
+from Screens.AudioSelection import AudioSelection, SubtitleSelection
 from ServiceReference import ServiceReference, isPlayableForCur
 
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
@@ -3154,29 +3155,44 @@ class InfoBarInstantRecord:
 class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", {
-			"audioSelection": (self.audioSelection, _("Audio options...")),
-			"audioSelectionLong": (self.audioSelectionLong, _("Toggle digital downmix...")),
-		}, description=_("Audio downmix and other audio options"))
+			"audioSelection": (self.audioSelectionCycle, _("Cycle through audio tracks")),
+			"audioSelectionLong": (self.audioSelection, _("Audio options & track selection...")),
+		}, description=_("Audio track selection, downmix and other audio options"))
 
 	def audioSelection(self):
-		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
-	def audioSelectionLong(self):
-		if SystemInfo["CanDownmixAC3"]:
-			if config.av.downmix_ac3.value:
-				message = _("Dobly Digital downmix is now") + " " + _("disabled")
-				print '[Audio] Dobly Digital downmix is now disabled'
-				config.av.downmix_ac3.setValue(False)
-			else:
-				config.av.downmix_ac3.setValue(True)
-				message = _("Dobly Digital downmix is now") + " " + _("enabled")
-				print '[Audio] Dobly Digital downmix is now enabled'
-			Notifications.AddPopup(text=message, type=MessageBox.TYPE_INFO, timeout=5, id="DDdownmixToggle")
+	def audioSelectionCycle(self):
+		service = self.session.nav.getCurrentService()
+		audio = service and service.audioTracks()
+		n = audio and audio.getNumberOfTracks() or 0
 
+		if n > 0:
+			origAudio = selectedAudio = audio.getCurrentTrack()
+			selectedAudio += 1
+			if selectedAudio >= n or selectedAudio < 0:
+				selectedAudio = 0
+			if selectedAudio != origAudio:
+				audio.selectTrack(selectedAudio)
+			messagetype = MessageBox.TYPE_INFO
+			number = str(selectedAudio + 1)
+			info = audio.getTrackInfo(selectedAudio)
+			language = AudioSelection.getAudioLanguage(info)
+			description = AudioSelection.getAudioDescription(info)
+			if n == 1:
+				message = _("Only one audio track:\n%s %s (%s)")
+			elif selectedAudio == origAudio:
+				message = _("Can't change audio track from:\n%s %s (%s)")
+				messagetype = MessageBox.TYPE_WARNING
+			else:
+				message = _("Changed audio track to:\n%s %s (%s)")
+			message = message % (language, description, number)
+		else:
+			message = _("No audio tracks to select from")
+		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="AudioCycle")
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
@@ -3763,7 +3779,8 @@ class InfoBarSubtitleSupport(object):
 	def __init__(self):
 		object.__init__(self)
 		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions", {
-			"subtitleSelection": (self.subtitleSelection, _("Subtitle selection")),
+			"subtitleSelectionLong": (self.subtitleSelection, _("Subtitle selection")),
+			"subtitleSelection": (self.subtitleCycle, _("Cycle through subtitle streams")),
 		}, description=_("Subtitles"))
 
 		self.selected_subtitle = None
@@ -3787,15 +3804,53 @@ class InfoBarSubtitleSupport(object):
 		service = self.session.nav.getCurrentService()
 		return service and service.subtitle()
 
+	# Subtitle list tuples are
+	# (type, pid, page_number, magazine_number, language_code)
+
 	def subtitleSelection(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
 		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.selected_subtitle or subtitlelist and len(subtitlelist) > 0:
-			from Screens.AudioSelection import SubtitleSelection
+		if self.selected_subtitle or subtitlelist:
 			self.session.open(SubtitleSelection, self)
 		else:
 			return 0
+
+	def subtitleCycle(self):
+		service = self.session.nav.getCurrentService()
+		subtitle = service and service.subtitle()
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		sel = None
+		message = None
+		messagetype = MessageBox.TYPE_INFO
+		if subtitlelist:
+			if config.subtitles.hide_teletext_undetermined_cycle.value:
+				subtitlelist = [s for s in subtitlelist if s[0] != 1 or s[4] != "und"]
+			subtitlelist = [None] + subtitlelist
+			if self.selected_subtitle in subtitlelist:
+				index = subtitlelist.index(self.selected_subtitle) + 1
+				if index >= len(subtitlelist):
+					index = 0
+				sel = subtitlelist[index]
+				if sel is not None:
+					language = SubtitleSelection.getSubtitleLanguage(sel)
+					description, number = SubtitleSelection.getSubtitleDescription(sel)
+					message = _("Selected %s subtitles from %s (%s)") % (language, description, number)
+			else:
+				message = _("Can't find next subtitle")
+				messagetype = MessageBox.TYPE_WARNING
+		else:
+			message = _("No subtitles available")
+		if sel is None and message is None:
+			if self.selected_subtitle:
+				message = _("Subtitles off")
+			else:
+				message = _("Subtitles already off")
+
+		if sel != self.selected_subtitle:
+			self.enableSubtitle(sel)
+
+		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="SubtitleCycle")
 
 	def __serviceChanged(self):
 		if self.selected_subtitle:
