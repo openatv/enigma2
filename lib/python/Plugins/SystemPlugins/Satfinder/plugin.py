@@ -102,7 +102,6 @@ class Satfinder(ScanSetup, ServiceScan):
 		else:
 			if cur == self.satEntry:
 				self.preDefTransponders = None
-
 			self.createSetup()
 		if cur not in (
 			self.systemEntry,
