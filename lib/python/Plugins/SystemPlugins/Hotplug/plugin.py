@@ -1,7 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 from twisted.internet.protocol import Protocol, Factory
-import os, os.path
+import os
 
 # globals
 hotplugNotifier = []
