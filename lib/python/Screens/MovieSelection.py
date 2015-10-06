@@ -628,6 +628,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'delete': (_("Delete"), _("Delete recordings and empty trash")),
 				'move': (_("Move"), _("Move to other directory")),
 				'copy': (_("Copy"), _("Copy to other directory")),
+				'createdir': (_("Create directory"), _("Create directory")),
 				'reset': (_("Reset"), _("Reset playback resume position")),
 				'tags': (_("Tags"), _("Show tagged movies")),
 				'addbookmark': _("Add bookmark"),
