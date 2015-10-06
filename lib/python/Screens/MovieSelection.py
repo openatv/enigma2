@@ -924,6 +924,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def selectionChanged(self):
 		self.updateButtons()
+		self._updateButtonTexts()
 		if self.savePos and config.movielist.use_last_videodirpos.value:
 			config.movielist.last_videodirpos.value = self["list"].getCurrent().toString() + ',' + str(self["list"].getCurrentIndex())
 		self.savePos = True
@@ -931,7 +932,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
-			self['key_' + k].setText(userDefinedActions[btn.value])
+			label = userDefinedActions[btn.value]
+			if btn.value == 'delete':
+				item = self.getCurrentSelection()
+				if item and isTrashFolder(item[0]):
+					label = _("Empty trash")
+			self['key_' + k].text = label
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
