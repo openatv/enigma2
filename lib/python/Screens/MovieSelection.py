@@ -649,17 +649,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				userDefinedActions[a] = desc
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
-			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
-			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
-			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
-			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedActions)
-			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedActions)
-			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedActions)
-			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedActions)
-			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedActions)
-			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedActions)
-			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
-			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedActions)
+			userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
+			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedChoices)
+			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedChoices)
+			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedChoices)
+			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedChoices)
+			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedChoices)
+			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedChoices)
+			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedChoices)
+			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedChoices)
+			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedChoices)
+			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedChoices)
+			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices)
 
 			# Fill in descriptions for plugin actions
 			for act, val in userDefinedActions.items():
