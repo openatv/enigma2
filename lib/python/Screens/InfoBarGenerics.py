@@ -78,8 +78,8 @@ def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
-	if (service is not None) and (ref is not None):  # and (ref.type != 1):
-		# ref type 1 has its own memory...
+	if (service is not None) and (ref is not None):
+		# If we can seek, create/update resume point
 		seek = service.seek()
 		if seek:
 			pos = seek.getPlayPosition()
@@ -92,13 +92,19 @@ def setResumePoint(session):
 				else:
 					l = None
 				resumePointCache[key] = [lru, pos[1], l]
+
+				# TODO: This ought to be asynchronous, so that clean up of stale resume points
+				#       does not hold up the user interface.
+				# Remove stale cache entries older than a day
 				for k, v in resumePointCache.items():
-					if v[0] < lru:
+					if v[0] < (lru - (24 * 60 * 60)):
 						candidate = k
 						filepath = os.path.realpath(candidate.split(':')[-1])
-						mountpoint = findMountPoint(filepath)
-						if os.path.ismount(mountpoint) and not os.path.exists(filepath):
+						# The following test could be potentially expensive
+						if not os.path.exists(filepath):
 							del resumePointCache[candidate]
+
+				# Save resume points to non-volatile storage
 				saveResumePoints()
 
 def delResumePoint(ref):
