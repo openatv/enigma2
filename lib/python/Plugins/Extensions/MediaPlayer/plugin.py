@@ -1,5 +1,5 @@
-import os, os.path
-from time import strftime
+import os
+import time
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad
 from ServiceReference import ServiceReference
 from Screens.Screen import Screen
@@ -671,7 +671,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if name is not None:
 			name = name.strip()
 			if name == "":
-				name = strftime("%y%m%d_%H%M%S")
+				name = time.strftime("%y%m%d_%H%M%S")
 			self.playlistname = name
 			name += ".e2pls"
 			self.playlistIOInternal.clear()
