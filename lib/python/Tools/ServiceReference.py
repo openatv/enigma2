@@ -1,4 +1,4 @@
-from enigma import eServiceReference, eServiceID
+from enigma import eServiceReference, eServiceReferenceDVB
 
 # type 1 = digital television service
 # type 4 = nvod reference service (NYI)
@@ -21,22 +21,22 @@ def serviceRefAppendPath(sref, path):
 	nsref.setPath(nsref.getPath() + path)
 	return nsref
 
-service_types_tv_ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceID.dTv)
+service_types_tv_ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
 
 service_types_tv_ref.setPath(makeServiceQueryStr((
-	eServiceID.dTv,
-	eServiceID.mpeg2HdTv,
-	eServiceID.avcSdTv,
-	eServiceID.avcHdTv,
-	eServiceID.user134,
-	eServiceID.user195,
+	eServiceReferenceDVB.dTv,
+	eServiceReferenceDVB.mpeg2HdTv,
+	eServiceReferenceDVB.avcSdTv,
+	eServiceReferenceDVB.avcHdTv,
+	eServiceReferenceDVB.user134,
+	eServiceReferenceDVB.user195,
 )))
 
-service_types_radio_ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceID.dRadio)
+service_types_radio_ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dRadio)
 service_types_radio_ref.setPath(makeServiceQueryStr((
-	eServiceID.dRadio,
-	eServiceID.dRadioAvc,
+	eServiceReferenceDVB.dRadio,
+	eServiceReferenceDVB.dRadioAvc,
 )))
 
 def hdmiInServiceRef():
-	return eServiceReference(eServiceReference.idServiceHDMIIn, eServiceReference.noFlags, eServiceID.dTv)
+	return eServiceReference(eServiceReference.idServiceHDMIIn, eServiceReference.noFlags, eServiceReferenceDVB.dTv)
