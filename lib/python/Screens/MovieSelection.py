@@ -628,6 +628,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'delete': (_("Delete"), _("Delete recordings and empty trash")),
 				'move': (_("Move"), _("Move to other directory")),
 				'copy': (_("Copy"), _("Copy to other directory")),
+				'createdir': (_("Create directory"), _("Create directory")),
 				'reset': (_("Reset"), _("Reset playback resume position")),
 				'tags': (_("Tags"), _("Show tagged movies")),
 				'addbookmark': _("Add bookmark"),
@@ -648,17 +649,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				userDefinedActions[a] = desc
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 				userDefinedActions['@' + p.name] = p.description
-			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
-			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
-			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
-			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedActions)
-			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedActions)
-			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedActions)
-			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedActions)
-			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedActions)
-			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedActions)
-			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedActions)
-			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedActions)
+			userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
+			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedChoices)
+			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedChoices)
+			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedChoices)
+			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedChoices)
+			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedChoices)
+			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedChoices)
+			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedChoices)
+			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedChoices)
+			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedChoices)
+			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedChoices)
+			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices)
 
 			# Fill in descriptions for plugin actions
 			for act, val in userDefinedActions.items():
@@ -922,6 +924,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 	def selectionChanged(self):
 		self.updateButtons()
+		self._updateButtonTexts()
 		if self.savePos and config.movielist.use_last_videodirpos.value:
 			config.movielist.last_videodirpos.value = self["list"].getCurrent().toString() + ',' + str(self["list"].getCurrentIndex())
 		self.savePos = True
@@ -929,7 +932,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
-			self['key_' + k].setText(userDefinedActions[btn.value])
+			label = userDefinedActions[btn.value]
+			if btn.value == 'delete':
+				item = self.getCurrentSelection()
+				if item and isTrashFolder(item[0]):
+					label = _("Empty trash")
+			self['key_' + k].text = label
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
