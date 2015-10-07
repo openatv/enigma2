@@ -520,9 +520,7 @@ class MoviePlayer(
 			return
 		if not playing:
 			return
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref:
-			delResumePoint(ref)
+		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_eof.value)
 
 	def up(self):
