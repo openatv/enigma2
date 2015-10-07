@@ -69,54 +69,56 @@ def lastPlayPosFromCache(ref):
 
 def moviePlayState(cutsFileName, ref, length):
 	"""Returns None, 0..100 for percentage"""
-	try:
-		# read the cuts file first
-		f = open(cutsFileName, 'rb')
-		lastCut = None
-		cutPTS = None
-		while 1:
-			data = f.read(cutsParser.size)
-			if len(data) < cutsParser.size:
-				break
-			cut, cutType = cutsParser.unpack(data)
-			if cutType == 3:  # undocumented, but 3 appears to be the stop
-				cutPTS = cut
-			else:
-				lastCut = cut
-		f.close()
-		# See what we have in RAM (it might help)
-		last = lastPlayPosFromCache(ref)
-		if last:
-			# Get the length from the cache
-			if not lastCut:
-				lastCut = last[2]
-			# Get the cut point from the cache if not in the file
-			if not cutPTS:
-				cutPTS = last[1]
-		if cutPTS is None:
-			# Unseen movie
-			return None
-		if not lastCut:
-			if length and (length > 0):
-				lastCut = length * 90000
-			else:
-				# dunno
-				return 0
-		if cutPTS >= lastCut:
+	# .cuts file - bookmarks, edit points and resume, kept with a recording
+	resume, end = _getCutsResumeInfo(cutsFileName)
+
+	if length is None or (length <= 0):
+		length = end
+
+	# There was enough info in the .cuts file
+	if resume and length:
+		if resume >= length:
 			return 100
-		return (100 * cutPTS) // lastCut
+		return (100 * resume) // length
+
+	# Need to gather more info
+	# Resume position and end pts, stored in non-volatile memory, cached in RAM
+	cache = lastPlayPosFromCache(ref)
+	if cache:
+		_, cache_resume, cache_end = cache
+
+		if length is None or (length <= 0):
+			length = cache_end
+
+		if resume is None or (resume <= 0):
+			resume = cache_resume
+
+		if length and resume:
+			if resume >= length:
+				return 100
+			return (100 * resume) // length
+
+		return 0
+	return None
+
+
+def _getCutsResumeInfo(filename):
+	last_mark_pts = None
+	resume_pts = None
+	try:
+		with open(filename, 'rb') as f:
+			while True:
+				data = f.read(cutsParser.size)
+				if len(data) < cutsParser.size:
+					break
+				cut, cutType = cutsParser.unpack(data)
+				if cutType == 3:  # Resume point
+					resume_pts = cut
+				elif last_mark_pts is None or cut > last_mark_pts:
+					last_mark_pts = cut
 	except:
-		cutPTS = lastPlayPosFromCache(ref)
-		if cutPTS:
-			if not length or (length < 0):
-				length = cutPTS[2]
-			if length:
-				if cutPTS[1] >= length:
-					return 100
-				return (100 * cutPTS[1]) // length
-			else:
-				return 0
-		return None
+		pass
+	return resume_pts, last_mark_pts
 
 def resetMoviePlayState(cutsFileName, ref=None):
 	try:
@@ -382,12 +384,8 @@ class MovieList(GUIComponent):
 				data.icon = self.iconMoviePlay
 			else:
 				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
-				if data.part is not None and data.part <= 3:
-					data.part = 0
-				if data.part is not None and data.part >= 97:
-					data.part = 100
 				if switch == 'i':
-					if data.part is not None and data.part > 0:
+					if data.part is not None and data.part >= 0:
 						data.icon = self.iconPart[data.part // 25]
 					else:
 						if config.usage.movielist_unseen.value:
