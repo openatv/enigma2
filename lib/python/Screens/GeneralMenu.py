@@ -96,18 +96,18 @@ def GeneralMenuEntryComponent(entrys, menuList, enableEntry, selectedEntry, onLe
 	for count, entry in enumerate(entrys):
 		if selectedEntry != count:
 			pixmap = select_pixmap(True, False, count == 0 and onLeft, count == 4 and onRight)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, 76), png=pixmap))
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, menuList.itemHeight), png=pixmap))
 		x += width
 
 	x = x_off
 	for count, entry in enumerate(entrys):
 		if selectedEntry == count:
 			pixmap = select_pixmap(False, enableEntry == -1, count == 0 and onLeft, count == 4 and onRight)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, 76), png=pixmap))
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, menuList.itemHeight), png=pixmap))
 
 		color = colors[sel3(selectedEntry != count, enableEntry == -1)]
 
-		res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, 76), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
+		res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, menuList.itemHeight), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
 		x += width
 	return res
 
@@ -154,8 +154,8 @@ def GeneralSubMenuEntryComponent(entry, subMenulist, enableEntry=False, selected
 	color = subMenulist.selectedColor if selectedEntry else subMenulist.enabledColor if enableEntry else subMenulist.offColor
 
 	if selectedEntry:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 50), png=entry_sl))
-	res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, 50), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
+		res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, subMenulist.itemHeight), png=entry_sl))
+	res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, subMenulist.itemHeight), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
 	return res
 
 class GeneralMenuSummary(Screen):

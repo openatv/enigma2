@@ -21,7 +21,7 @@ from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eActionMap, eServiceID, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
+from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
 from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -924,10 +924,10 @@ class ChannelSelectionEdit:
 			name = cur_service.getServiceName()
 			flags = eServiceReference.isGroup | eServiceReference.canDescent | eServiceReference.mustDescent
 			if self.mode == MODE_TV:
-				ref = eServiceReference(eServiceReference.idDVB, flags, eServiceID.dTv)
+				ref = eServiceReference(eServiceReference.idDVB, flags, eServiceReferenceDVB.dTv)
 				ref.setPath('FROM BOUQUET "alternatives.%s.tv" ORDER BY bouquet' % self.buildBouquetID(name))
 			else:
-				ref = eServiceReference(eServiceReference.idDVB, flags, eServiceID.dRadio)
+				ref = eServiceReference(eServiceReference.idDVB, flags, eServiceReferenceDVB.dRadio)
 				ref.setPath('FROM BOUQUET "alternatives.%s.radio" ORDER BY bouquet' % self.buildBouquetID(name))
 			new_ref = ServiceReference(ref)
 			if not mutableBouquet.addService(new_ref.ref, cur_service.ref):
