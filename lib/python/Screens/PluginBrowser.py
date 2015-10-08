@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion
+from boxbranding import getImageVersion, getImageType
 from urllib import urlopen
 import socket
 import os
@@ -402,8 +402,10 @@ class PluginDownloadBrowser(Screen):
 		self.listHeight = listsize.height()
 
 		if self.type == self.DOWNLOAD:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable', 'unknown'):
 				self["text"].setText(feedsstatuscheck.getFeedsErrorMessage())
+			elif config.softwareupdate.updateisunstable.value == '1' and getImageType() != 'release':
+				self.container.execute(self.ipkg + " update")
 			elif config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 				self["text"].setText(_("WARNING: feeds may be unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
 				self.container.execute(self.ipkg + " update")
