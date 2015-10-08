@@ -6,7 +6,7 @@ from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename, fileExists
 
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
-	eServiceReference, eServiceCenter, gFont
+	eServiceReference, eServiceReferenceFS, eServiceCenter, gFont
 from Tools.LoadPixmap import LoadPixmap
 from os import listdir, remove, rename, system, path, symlink, chdir
 from os.path import splitext
@@ -185,7 +185,7 @@ class FileList(MenuList):
 			files = []
 			directories = []
 		elif self.useServiceRef:
-			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, 1)
+			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			root.setPath(directory)
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
@@ -411,7 +411,7 @@ class MultiFileSelectList(FileList):
 			files = []
 			directories = []
 		elif self.useServiceRef:
-			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, 1)
+			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			root.setPath(directory)
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)

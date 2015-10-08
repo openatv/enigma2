@@ -1,6 +1,6 @@
 # plugin from Sif Team, with some modds for EGAMI use
 
-from enigma import eDVBDB, eServiceID, eServiceReference, eServiceCenter
+from enigma import eDVBDB, eServiceReferenceDVB, eServiceReference, eServiceCenter
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
@@ -37,13 +37,13 @@ class LCN():
 	sr_tv_bouquet_entry = eServiceReference(
 		eServiceReference.idDVB,
 		eServiceReference.isInvisible | eServiceReference.isNumberedMarker | eServiceReference.isMarker,
-		eServiceID.dTv
+		eServiceReferenceDVB.dTv
 	)
 	sr_tv_bouquet_entry.setPath('FROM BOUQUET "userbouquet.terrestrial_lcn.tv" ORDER BY bouquet')
 	sr_radio_bouquet_entry = eServiceReference(
 		eServiceReference.idDVB,
 		eServiceReference.isInvisible | eServiceReference.isNumberedMarker | eServiceReference.isMarker,
-		eServiceID.dRadio
+		eServiceReferenceDVB.dRadio
 	)
 	sr_radio_bouquet_entry.setPath('FROM BOUQUET "userbouquet.terrestrial_lcn.radio" ORDER BY bouquet')
 

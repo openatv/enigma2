@@ -5,7 +5,7 @@ from bisect import insort
 from sys import maxint
 import os
 
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceID, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReferenceDVB, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
 
 from Components.config import config
 from Components import Harddisk
@@ -408,7 +408,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.service_types_ref = service_types_tv_ref
 					if ChannelSelectionInstance:
 						if config.usage.multibouquet.value:
-							bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceID.dTv)
+							bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
 							bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 						else:
 							bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
@@ -556,7 +556,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.service_types_ref = service_types_tv_ref
 			if ChannelSelectionInstance:
 				if config.usage.multibouquet.value:
-					bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceID.dTv)
+					bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
 					bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 				else:
 					bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
