@@ -3172,6 +3172,8 @@ class InfoBarAudioSelection:
 		print "[infobar::audioSelected]", ret
 
 	def audioSelectionCycle(self):
+		messagetype = MessageBox.TYPE_INFO
+
 		service = self.session.nav.getCurrentService()
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
@@ -3183,7 +3185,6 @@ class InfoBarAudioSelection:
 				selectedAudio = 0
 			if selectedAudio != origAudio:
 				audio.selectTrack(selectedAudio)
-			messagetype = MessageBox.TYPE_INFO
 			number = str(selectedAudio + 1)
 			info = audio.getTrackInfo(selectedAudio)
 			language = AudioSelection.getAudioLanguage(info)
