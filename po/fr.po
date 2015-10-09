@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-16 00:24+0200\n"
-"PO-Revision-Date: 2015-09-16 00:45+0200\n"
+"POT-Creation-Date: 2015-10-07 14:55+0200\n"
+"PO-Revision-Date: 2015-10-07 15:14+0200\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -830,6 +830,17 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+#, python-format
+msgid ""
+"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+"Extend sleep timer 30 minutes. Your %s %s\n"
+"will shut down after Recording or Powertimer event. Get in Standby now?"
+msgstr ""
+"Un enregistrement, un enregistrement planifié ou une programmation d’alimentation est en cours\n"
+" \n"
+"ou commence dans 15 minutes. Etendre la programmation de veille de 30 minutes.\n"
+"Votre %s %s sera éteinds après l’enregistrement ou la programmation d’alimentation. Aller en veille maintenant?"
+
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Une chercher de mise-à-jour en tâche de fond est en cours, merci de patienter quelques minutes et de réessayer."
 
@@ -949,11 +960,27 @@ msgstr ""
 
 #, python-format
 msgid ""
+"A sleep timer wants to set your %s %s to standby.\n"
+"Do that now or set extend additional minutes?"
+msgstr ""
+"Une programmation de mise en veille veut passer votre %s %s en veille.\n"
+"Procéder maintenant ou étendre de quelques minutes?"
+
+#, python-format
+msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Une programmation de mise en veille veut\n"
 "arrêter votre %s %s. Eteindre maintenant?"
+
+#, python-format
+msgid ""
+"A sleep timer wants to shut down your %s %s.\n"
+"Do that now or set extend additional minutes?"
+msgstr ""
+"Une programmation de mise en veille veutarrêter votre %s %s.\n"
+"Eteindre maintenant ou étendre de quelques minutes?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Une vue d'ensemble des icônes d'états et d'actions disponibles."
@@ -1031,9 +1058,6 @@ msgstr "À propos..."
 
 msgid "Accesspoint:"
 msgstr "Point d'accès:"
-
-msgid "Action"
-msgstr "Action"
 
 msgid "Action on long powerbutton press"
 msgstr "Action lorsqu’on appuie longtemps sur le bouton power"
@@ -1452,9 +1476,6 @@ msgstr "Artistes"
 
 msgid "Arts/Culture"
 msgstr "Arts/Culture"
-
-msgid "Ask before shutdown"
-msgstr "Demander avant d’éteindre"
 
 msgid "Ask user"
 msgstr "Demander à l'utilisateur"
@@ -1958,6 +1979,10 @@ msgstr "Lecteur CF"
 
 msgid "CH"
 msgstr "CH"
+
+#, python-format
+msgid "CH%s"
+msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "CHANGER BOUQUET"
@@ -2564,6 +2589,9 @@ msgstr "Configure le comportement du curseur dans la liste de sélection des cha
 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configure la durée en minutes de l’écran de veille."
+
+msgid "Configure the duration in minutes for the sleep timer."
+msgstr "Configure la durée en minutes de la programmation de mise en veille."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configure la première langue audio (priorité la plus élevée)."
@@ -3942,9 +3970,6 @@ msgstr "Activer la mise en cache du télétexte"
 msgid "Enable terrestrial LCN:"
 msgstr "Activer le LCN terrestre (numérotation officielle):"
 
-msgid "Enable timer"
-msgstr "Activer timer"
-
 msgid "Enable unlinked bouquets"
 msgstr "Activer les bouquets non liés"
 
@@ -3977,9 +4002,6 @@ msgstr "Heure fin"
 
 msgid "English"
 msgstr "Anglais"
-
-msgid "EnhancedMovieCenter"
-msgstr "EnhancedMovieCenter"
 
 msgid "Enigma2 Changes"
 msgstr "Changements Enigma2"
@@ -4090,6 +4112,12 @@ msgstr "Dépasse la capacité du support blue disc!"
 msgid "Exceeds dual layer medium!"
 msgstr "Dépasse la capacité du support double couche!"
 
+msgid "Execute after current event"
+msgstr "Exécuter après l’évènement courant."
+
+msgid "Execute in "
+msgstr "Exécuter dans "
+
 msgid "Execution condition"
 msgstr "Condition d’exécution"
 
@@ -4143,6 +4171,9 @@ msgstr "Quitter l'assistant"
 
 msgid "Expert"
 msgstr "Expert"
+
+msgid "Extend"
+msgstr "Etendre"
 
 msgid "Extended GUI"
 msgstr "IGU étendue"
@@ -4735,7 +4766,7 @@ msgstr "Help"
 msgid "Help long"
 msgstr "Help long"
 
-msgid "Helps setting up your antenna"
+msgid "Helps setting up your signal"
 msgstr "Aide au pointage de l’antenne"
 
 msgid "Here you can select which files should be added to backupfile. (default: E2-setup, channels, network"
@@ -7364,11 +7395,20 @@ msgstr ""
 "Extinction pendant qu’un enregistrement est en cours!\n"
 "Mise en veille, après l’enregistrement le récepteur sera éteind."
 
+msgid "PowerTimer"
+msgstr "Programmations d’alimentation"
+
+msgid "PowerTimer DeepStandby"
+msgstr "Programmations d’alimentation de veille profonde"
+
 msgid "PowerTimer List"
 msgstr "Liste des PowerTimer"
 
 msgid "PowerTimer Overview"
 msgstr "Aperçu des PowerTimers"
+
+msgid "PowerTimer Standby"
+msgstr "Programmations d’alimentation  de veille"
 
 msgid "PowerTimers"
 msgstr "Programmations d’alimentation"
@@ -7637,6 +7677,9 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "Radio"
+
+msgid "Radio long"
+msgstr "Radio long"
 
 msgid "Ram"
 msgstr "Ram"
@@ -8587,6 +8630,9 @@ msgstr "Choisir la fonction désirée et cliquer sur « OK » pour l’assigne
 
 msgid "Select the movie path"
 msgstr "Choisir le chemin des films"
+
+msgid "Select the sleep timer action."
+msgstr "Définir l’action de la programmations d’alimentation de veille"
 
 msgid "Select upgrade source"
 msgstr "Choisissez la source de mise à niveau"
@@ -9556,14 +9602,14 @@ msgstr "Mélanger liste lecture"
 msgid "Shutdown"
 msgstr "Eteindre"
 
-msgid "Shutdown in (mins)"
-msgstr "Eteindre en (mins)"
-
 msgid "Side by Side"
 msgstr "Côte à Côte"
 
 msgid "Side by side"
 msgstr "Côte à côte"
+
+msgid "Signal Finder"
+msgstr "Pointeur satellites"
 
 msgid "Signal OK, proceeding"
 msgstr "Signal correct, traitement en cours"
@@ -9655,14 +9701,14 @@ msgstr "Passer la vérification de la connexion Internet (désactive l’install
 msgid "Sleep"
 msgstr "Veille programmée"
 
+msgid "Sleep Timer"
+msgstr "Programmation de mise en veille"
+
 msgid "Sleep delay"
 msgstr "Délai de la veille programmée"
 
-msgid "Sleeptimer DeepStandby"
-msgstr "Timer de veille profonde"
-
-msgid "Sleeptimer Standby"
-msgstr "Timer de veille"
+msgid "SleepTimer"
+msgstr "Programmation de mise en veille"
 
 msgid "Slide drop"
 msgstr "Diapo tombe"
@@ -10595,8 +10641,8 @@ msgstr "Les résultats ont été écrit sur %s."
 msgid "The servicelist is reloaded."
 msgstr "La liste des services a été rechargée."
 
-msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. So can the receiver shutdown also if you not watch tv (e.g. video, hbbtv) -  only recommended for sleep timer. All other dependencies (e.g. recordings, time range) stay persist."
-msgstr "Ce paramètre ‘sans demander’ est le même que ‘standard’ sans la question de confirmation supplémentaire. Donc le récepteur peut aussi s’éteindre même si vous regardez la TV (p.e. vidéo, hbbtv) - recommandé uniquement pour le timer de sommeil. Toutes les autres dépendances restent (p.e. enregistrements, interval de temps)."
+msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
+msgstr "Ce paramètre ‘sans demander’ est le même que ‘standard’ sans la question de confirmation supplémentaire. Toutes les autres dépendances restent (p.e. enregistrements, interval de temps)."
 
 msgid "The sleep timer has been activated."
 msgstr "Le timer de sommeil a été activé."
@@ -11077,10 +11123,13 @@ msgid "Timeline font size"
 msgstr "Police de caractère de la ligne de temps"
 
 msgid "Timer"
-msgstr "Timer"
+msgstr "Programmation"
 
 msgid "Timer List"
 msgstr "Liste des programmations"
+
+msgid "Timer action"
+msgstr "Action de la minuterie"
 
 msgid "Timer edit"
 msgstr "Editer programmation"
@@ -11090,6 +11139,13 @@ msgstr "Editer programmation"
 
 msgid "Timer entry"
 msgstr "Saisir programmation"
+
+#, python-format
+msgid "Timer is activated: +%d min"
+msgstr "La programmation est activée: +%d min"
+
+msgid "Timer is not activated"
+msgstr "La programmation n’est pas activée"
 
 msgid "Timer log"
 msgstr "Journal des enregistrements"
@@ -11125,9 +11181,6 @@ msgstr "Sélection de programmation"
 
 msgid "Timer selection..."
 msgstr "Sélection de programmation…"
-
-msgid "Timer status:"
-msgstr "Statut programmation:"
 
 msgid "Timer type"
 msgstr "Type programmation"
@@ -11728,9 +11781,6 @@ msgstr "Utiliser ces paramètres vidéo améliorés?"
 
 msgid "Use time jumps for fast forward/backward"
 msgstr "Utiliser le saut dans le temps pour l’avance/le retour rapide"
-
-msgid "Use time of currently running service"
-msgstr "Utiliser l’heure du service en cours"
 
 msgid "Use timeshift seekbar while timeshifting?"
 msgstr "Utiliser la barre de recherche du PauseDirect pendant un PauseDirect?"
@@ -13713,6 +13763,9 @@ msgstr "aucun"
 
 msgid "normal"
 msgstr "normal"
+
+msgid "not activated"
+msgstr "pas activé"
 
 msgid "not configured"
 msgstr "pas configuré"
