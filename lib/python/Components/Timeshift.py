@@ -507,6 +507,7 @@ class InfoBarTimeshift:
 					message = _("You seem to be in timeshift. What do you want to do?")
 					choice = [
 						(_("Leave timeshift"), "noSave"),
+						(_("Always leave timeshift and don't ask again"), "noSaveNoAsk"),
 						(_("Save timeshift and stop recording"), "savetimeshift"),
 						(_("Save timeshift and continue recording"), "savetimeshiftandrecord"),
 						(_("Continue timeshifting"), "no")
@@ -535,9 +536,13 @@ class InfoBarTimeshift:
 		# print 'returnFunction', returnFunction
 		# print 'answer', answer
 		if answer:
-			if answer == "savetimeshift" or answer == "savetimeshiftandrecord":
+			if answer == "noSaveNoAsk":
+				config.usage.check_timeshift.value = False
+				config.usage.check_timeshift.save()
+				answer = "noSave"
+			if answer in ("savetimeshift", "savetimeshiftandrecord"):
 				self.save_current_timeshift = True
-			elif answer == "noSave" or answer == "no":
+			elif answer in ("noSave", "no"):
 				self.save_current_timeshift = False
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
