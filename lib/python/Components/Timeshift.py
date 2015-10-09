@@ -494,22 +494,22 @@ class InfoBarTimeshift:
 				# print 'TEST2'
 				if self.save_current_timeshift:
 					# print 'TEST3'
-					message = _("You have chosen to save the current timeshift event, but the event has not yet finished\nWhat do you want to do ?")
+					message = _("You have chosen to save the current timeshift event, but the event has not yet finished. What do you want to do?")
 					choice = [
-						(_("Save timeshift as movie and stop recording"), "savetimeshift"),
-						(_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
-						(_("Cancel save timeshift as movie"), "noSave"),
-						(_("Nothing, just leave this menu"), "no")
+						(_("Save timeshift and stop recording"), "savetimeshift"),
+						(_("Save timeshift and continue recording"), "savetimeshiftandrecord"),
+						(_("Cancel save timeshift"), "noSave"),
+						(_("Continue timeshifting"), "no")
 					]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice)
 				else:
 					# print 'TEST4'
-					message = _("You seem to be in timeshift, Do you want to leave timeshift ?")
+					message = _("You seem to be in timeshift. What do you want to do?")
 					choice = [
-						(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
-						(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
-						(_("Yes, but don't save timeshift as movie"), "noSave"),
-						(_("No"), "no")
+						(_("Leave timeshift"), "noSave"),
+						(_("Save timeshift and stop recording"), "savetimeshift"),
+						(_("Save timeshift and continue recording"), "savetimeshiftandrecord"),
+						(_("Continue timeshifting"), "no")
 					]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice)
 			else:
@@ -519,7 +519,7 @@ class InfoBarTimeshift:
 					self.checkTimeshiftRunningCallback(returnFunction, "savetimeshiftandrecord")
 				else:
 					# print 'TEST7'
-					message = _("You seem to be in timeshift, Do you want to leave timeshift ?")
+					message = _("You seem to be in timeshift, Do you want to leave timeshift?")
 					choice = [
 						(_("Yes"), config.timeshift.favoriteSaveAction.value),
 						(_("No"), "no")
@@ -826,7 +826,7 @@ class InfoBarTimeshift:
 
 						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value, copy_file, fullname), copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
-							Notifications.AddNotification(MessageBox, _("Saving timeshift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=5)
+							Notifications.AddNotification(MessageBox, _("Saving timeshift now. This might take a while!"), MessageBox.TYPE_INFO, timeout=5)
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
@@ -1356,7 +1356,7 @@ class InfoBarTimeshift:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 
 			if self.isSeekable():
-				Notifications.AddNotification(MessageBox, _("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Recording started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=5)
 
 			self.switchToLive = False
 			self.stopTimeshiftcheckTimeshiftRunningCallback(True)
