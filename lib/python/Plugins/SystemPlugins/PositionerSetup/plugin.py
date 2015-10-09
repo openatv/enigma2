@@ -102,7 +102,7 @@ class PositionerSetup(Screen):
 				cur_info = feInfo.getTransponderData(True)
 				frontendData = feInfo.getAll(True)
 				getCurrentTuner = frontendData and frontendData.get("tuner_number", None)
-				getCurrentSat = cur_info.get('orbital_position', 0)
+				getCurrentSat = cur_info.get('orbital_position', None)
 			del feInfo
 			del service
 			if self.oldref and getCurrentTuner is not None:
@@ -110,7 +110,7 @@ class PositionerSetup(Screen):
 					self.oldref_stop = True
 				if self.oldref_stop:
 					self.session.nav.stopService() # try to disable foreground service
-					if getCurrentSat != 0 and getCurrentSat in self.availablesats:
+					if getCurrentSat is not None and getCurrentSat in self.availablesats:
 						cur = cur_info
 					else:
 						self.rotor_diseqc = False
@@ -124,9 +124,9 @@ class PositionerSetup(Screen):
 						cur_pip_info = feInfo.getTransponderData(True)
 						frontendData = feInfo.getAll(True)
 						getCurrentTuner = frontendData and frontendData.get("tuner_number", None)
-						getCurrentSat = cur_pip_info.get('orbital_position', 0)
+						getCurrentSat = cur_pip_info.get('orbital_position', None)
 						if getCurrentTuner is not None and getCurrentTuner < 4 and self.feid == getCurrentTuner:
-							if getCurrentSat != 0 and getCurrentSat in self.availablesats:
+							if getCurrentSat is not None and getCurrentSat in self.availablesats:
 								cur = cur_pip_info
 							else:
 								self.rotor_diseqc = False
@@ -370,8 +370,8 @@ class PositionerSetup(Screen):
 			if self.frontend:
 				self.frontend.getFrontendData(fe_data)
 				self.frontend.getTransponderData(fe_data, True)
-				orb_pos = fe_data.get("orbital_position", 0)
-				if orb_pos != 0 and orb_pos in self.availablesats:
+				orb_pos = fe_data.get("orbital_position", None)
+				if orb_pos is not None and orb_pos in self.availablesats:
 					rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
 				lnb = self.getLNBfromConfig(orb_pos)
 			self.setLNB(lnb)
@@ -397,18 +397,18 @@ class PositionerSetup(Screen):
 				fe_data = { }
 				self.frontend.getFrontendData(fe_data)
 				self.frontend.getTransponderData(fe_data, True)
-				orb_pos = fe_data.get("orbital_position", 0)
+				orb_pos = fe_data.get("orbital_position", -9999)
 				try:
 					pos = str(PositionerSetup.orbital2metric(self.orbitalposition.float, self.orientation.value))
 					orb_val = int(pos.replace('.', ''))
 				except:
-					orb_val = 0
-				sat = 0
+					orb_val = -9999
+				sat = -9999
 				if orb_val == orb_pos:
 					sat = orb_pos
-				elif orb_val != 0 and orb_val in self.availablesats:
+				elif orb_val != -9999 and orb_val in self.availablesats:
 					sat = orb_val
-				if sat != 0 and sat in self.availablesats:
+				if sat != -9999 and sat in self.availablesats:
 					usals = self.advancedsats[sat].usals.value
 					self.rotor_diseqc = True
 				return usals
@@ -441,9 +441,7 @@ class PositionerSetup(Screen):
 		self.list.append((_("Movement"), self.positioner_move, "move"))
 		self.list.append((_("Fine movement"), self.positioner_finemove, "finemove"))
 		self.list.append((_("Set limits"), self.positioner_limits, "limits"))
-		text = _("Memory index")
-		if self.getUsals() is True:
-			text += " (USALS)"
+		self.list.append((_("Memory index") + (self.getUsals() and " (USALS)" or ""), self.positioner_storage, "storage"))
 		self.list.append((text, self.positioner_storage, "storage"))
 		self.list.append((_("Goto"), self.orbitalposition, "goto"))
 		self.list.append((" ", self.orientation, "goto"))
@@ -597,14 +595,14 @@ class PositionerSetup(Screen):
 			if self.getUsals() is False:
 				menu = [(_("Yes"), "yes"), (_("No"), "no")]
 				available_orbos = False
-				orbos = 0
+				orbos = None
 				if self.advanced:
 					try:
 						orb_pos = str(PositionerSetup.orbital2metric(self.orbitalposition.float, self.orientation.value))
 						orbos = int(orb_pos.replace('.', ''))
 					except:
 						pass
-					if orbos != 0 and orbos in self.availablesats:
+					if orbos is not None and orbos in self.availablesats:
 						available_orbos = True
 						menu.append((_("Yes (save index in setup tuner)"), "save"))
 				index = int(self.positioner_storage.value)
@@ -666,7 +664,7 @@ class PositionerSetup(Screen):
 			self.gotoX(satlon)
 		elif entry == "tune":
 			# Start USALS calibration
-			self.printMsg(_("USALS Calibration"))
+			self.printMsg(_("USALS calibration"))
 			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
 			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
 			Thread(target = self.gotoXcalibration).start()
@@ -1313,15 +1311,15 @@ class TunerScreen(ConfigListScreen, Screen):
 
 	def createConfig(self, frontendData):
 		satlist = nimmanager.getRotorSatListForNim(self.feid)
-		orb_pos = self.fe_data.get("orbital_position", 0)
-		orb_pos_str = str(orb_pos)
+		orb_pos = self.fe_data.get("orbital_position", None)
 		self.tuning = ConfigSubsection()
 		self.tuning.type = ConfigSelection(
 				default = "manual_transponder",
 				choices = { "manual_transponder" : _("Manual transponder"),
 							"predefined_transponder" : _("Predefined transponder") } )
 		self.tuning.sat = ConfigSatlist(list = satlist)
-		if orb_pos != 0:
+		if orb_pos is not None:
+			orb_pos_str = str(orb_pos)
 			for sat in satlist:
 				if sat[0] == orb_pos and self.tuning.sat.value != orb_pos_str:
 					self.tuning.sat.value = orb_pos_str
