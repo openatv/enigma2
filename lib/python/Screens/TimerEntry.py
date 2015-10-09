@@ -249,7 +249,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
 				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
 				c = 100.0 * b / a
-				free = ("%0.1f GB (%0.1f %s) " + _("free diskspace")) % (b,c,"%")
+				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
 				description = _("Current location")
 		except:
 			pass
