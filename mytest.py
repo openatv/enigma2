@@ -669,7 +669,7 @@ def runScreenTest():
 		nextPluginTimeInStandby = 1
 	elif "serienrecorder" in tmp:
 		nextPluginName = "SerienRecorder"
-		nextPluginTimeInStandby = 1
+		nextPluginTimeInStandby = 0 # plugin function for deep standby from standby not compatible (not available)
 	elif "elektro" in tmp:
 		nextPluginName = "Elektro"
 		nextPluginTimeInStandby = 1
