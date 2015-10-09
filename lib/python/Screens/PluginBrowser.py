@@ -402,7 +402,7 @@ class PluginDownloadBrowser(Screen):
 		self.listHeight = listsize.height()
 
 		if self.type == self.DOWNLOAD:
-			if (getImageType() != 'release' and feedsstatuscheck.getFeedsBool() != 'unknown') or (getImageType() == 'release' and feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'))
+			if (getImageType() != 'release' and feedsstatuscheck.getFeedsBool() != 'unknown') or (getImageType() == 'release' and feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable')):
 				self["text"].setText(feedsstatuscheck.getFeedsErrorMessage())
 			elif getImageType() != 'release' or (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value):
 				self["text"].setText(_("WARNING: feeds may be unstable.") + '\n' + _("Downloading plugin information. Please wait..."))
