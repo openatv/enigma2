@@ -516,6 +516,14 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			gettimeofday(&tnow,0);
 			tnow.tv_sec=t;
 			settimeofday(&tnow,0);
+#ifdef DEBUG
+			linuxTime=time(0);
+			localtime_r(&linuxTime, &now);
+			eDebug("[eDVBLocalTimerHandler] time after update is %02d:%02d:%02d",
+			now.tm_hour,
+			now.tm_min,
+			now.tm_sec);
+#endif
 		}
 
  		 /*emit*/ m_timeUpdated();
