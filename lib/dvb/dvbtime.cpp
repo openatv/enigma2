@@ -386,9 +386,20 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 	{
 		std::map< eDVBChannelID, int >::iterator it( m_timeOffsetMap.find( chan->getChannelID() ) );
 
- // current linux time
+// current linux time
 		time_t linuxTime = time(0);
-
+#ifdef DEBUG
+// current transponder time
+		tm tp_now;
+		localtime_r(&tp_time, &tp_now);
+		eDebug("[eDVBLocalTimerHandler] Transponder time is %02d.%02d.%04d %02d:%02d:%02d",
+			tp_now.tm_mday,
+			tp_now.tm_mon + 1,
+			tp_now.tm_year + 1900,
+			tp_now.tm_hour,
+			tp_now.tm_min,
+			tp_now.tm_sec);
+#endif
 	// difference between current enigma time and transponder time
 		int enigma_diff = tp_time-linuxTime;
 
