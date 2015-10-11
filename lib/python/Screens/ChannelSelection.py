@@ -321,8 +321,8 @@ class ChannelContextMenu(Screen):
 		return ""
 
 	def removeEntry(self):
-		currentPlayingService = (hasattr(self.csel, "dopipzap") and self.csel.dopipzap) and self.session.pip.getCurrentService() or self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid() and (self.csel.servicelist.getCurrent() != currentPlayingService):
+		ref = self.csel.servicelist.getCurrent()
+		if self.removeFunction and ref and ref.valid():
 			if self.csel.confirmRemove:
 				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
 				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
@@ -1299,7 +1299,27 @@ class ChannelSelectionEdit:
 				self.servicelist.resetRoot()
 				playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				if not bouquet and playingref and ref == playingref:
-					self.channelSelected()
+					try:
+						doClose = not config.usage.servicelistpreview_mode.value or ref == self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					except:
+						doClose = False
+					if self.startServiceRef is None and not doClose:
+						self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					ref = self.getCurrentSelection()
+					if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
+						self.toggleMoveMarked()
+					elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+						if Components.ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
+							self.enterPath(ref)
+							self.gotoCurrentServiceOrProvider(ref)
+					elif self.bouquet_mark_edit != OFF:
+						if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
+							self.doMark()
+					elif not (ref.flags & eServiceReference.isMarker or ref.type == -1):
+						root = self.getRoot()
+						if not root or not (root.flags & eServiceReference.isGroup):
+							self.zap(enable_pipzap=doClose, preview_zap=not doClose)
+							self.asciiOff()
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
