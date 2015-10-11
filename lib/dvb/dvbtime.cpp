@@ -173,7 +173,7 @@ void TDT::ready(int error)
 
 int TDT::createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 {
-	if ( data && (data[0] == 0x70 || data[0] == 0x73 ))
+	if ( data && (data[0] == TID_TDT || data[0] == TID_TOT ))
 	{
 		int length = ((data[1] & 0x0F) << 8) | data[2];
 		if ( length >= 5 )
@@ -386,9 +386,20 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 	{
 		std::map< eDVBChannelID, int >::iterator it( m_timeOffsetMap.find( chan->getChannelID() ) );
 
- // current linux time
+// current linux time
 		time_t linuxTime = time(0);
-
+#ifdef DEBUG
+// current transponder time
+		tm tp_now;
+		localtime_r(&tp_time, &tp_now);
+		eDebug("[eDVBLocalTimerHandler] Transponder time is %02d.%02d.%04d %02d:%02d:%02d",
+			tp_now.tm_mday,
+			tp_now.tm_mon + 1,
+			tp_now.tm_year + 1900,
+			tp_now.tm_hour,
+			tp_now.tm_min,
+			tp_now.tm_sec);
+#endif
 	// difference between current enigma time and transponder time
 		int enigma_diff = tp_time-linuxTime;
 
@@ -505,6 +516,14 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			gettimeofday(&tnow,0);
 			tnow.tv_sec=t;
 			settimeofday(&tnow,0);
+#ifdef DEBUG
+			linuxTime=time(0);
+			localtime_r(&linuxTime, &now);
+			eDebug("[eDVBLocalTimerHandler] time after update is %02d:%02d:%02d",
+			now.tm_hour,
+			now.tm_min,
+			now.tm_sec);
+#endif
 		}
 
  		 /*emit*/ m_timeUpdated();

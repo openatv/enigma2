@@ -975,13 +975,18 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 	def hotplugCB(self, dev, media_state):
 		if media_state == "audiocd" or media_state == "audiocdadd":
 			self.cdAudioTrackFiles = []
-			list = open("/media/audiocd/cdplaylist.cdpls")
-			if list:
-				self.isAudioCD = True
-				for x in list:
-					xnon = x.replace("\n", "")
-					self.cdAudioTrackFiles.append(xnon)
-				self.playAudioCD()
+			if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
+				list = open("/media/audiocd/cdplaylist.cdpls")
+				if list:
+					self.isAudioCD = True
+					for x in list:
+						xnon = x.replace("\n", "")
+						self.cdAudioTrackFiles.append(xnon)
+					self.playAudioCD()
+			else:
+				self.cdAudioTrackFiles = []
+				if self.isAudioCD:
+					self.clear_playlist()
 		else:
 			self.cdAudioTrackFiles = []
 			if self.isAudioCD:
@@ -1051,8 +1056,12 @@ def filescan_open(list, session, **kwargs):
 
 def audioCD_open(list, session, **kwargs):
 	from enigma import eServiceReference
+	if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
+		list = open("/media/audiocd/cdplaylist.cdpls")
+	else:
+		# to do : adding msgbox to inform user about failure of opening audiocd.
+		return False
 	mp = session.open(MediaPlayer)
-	list = open("/media/audiocd/cdplaylist.cdpls")
 	if list:
 		mp.isAudioCD = True
 		for x in list:
@@ -1060,13 +1069,17 @@ def audioCD_open(list, session, **kwargs):
 			mp.cdAudioTrackFiles.append(xnon)
 		mp.playAudioCD()
 	else:
-		# to do : addings msgbox to inform user about failure of opening audiocd.
+		# to do : adding msgbox to inform user about failure of opening audiocd.
 		return False
 
 def audioCD_open_mn(session, **kwargs):
 	from enigma import eServiceReference
+	if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
+		list = open("/media/audiocd/cdplaylist.cdpls")
+	else:
+		# to do : adding msgbox to inform user about failure of opening audiocd.
+		return False
 	mp = session.open(MediaPlayer)
-	list = open("/media/audiocd/cdplaylist.cdpls")
 	if list:
 		mp.isAudioCD = True
 		for x in list:
@@ -1074,7 +1087,7 @@ def audioCD_open_mn(session, **kwargs):
 			mp.cdAudioTrackFiles.append(xnon)
 		mp.playAudioCD()
 	else:
-		# to do : addings msgbox to inform user about failure of opening audiocd.
+		# to do : adding msgbox to inform user about failure of opening audiocd.
 		return False
 
 def movielist_open(list, session, **kwargs):
@@ -1096,9 +1109,12 @@ def movielist_open(list, session, **kwargs):
 		InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 
 def audiocdscan(menuid, **kwargs):
-	from Plugins.SystemPlugins.Hotplug.plugin import AudiocdAdded
-	if menuid == "mainmenu" and (AudiocdAdded() or os.path.isfile('/media/audiocd/cdplaylist.cdpls')):
-		list = ['/media/audiocd/cdplaylist.cdpls']
+	try:
+		from Plugins.SystemPlugins.Hotplug.plugin import AudiocdAdded
+	except Exception, e:
+		print "[Mediaplayer.plugin] no hotplug support",e
+		return []
+	if menuid == "mainmenu" and AudiocdAdded() and os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
 		return [(_("Play audio-CD..."), audioCD_open_mn, "play_cd", 45)]
 	else:
 		return []
