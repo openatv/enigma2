@@ -454,7 +454,6 @@ class RestoreMyMetrixHD(Screen):
 			</screen> """
 		self.skin = skin
 		self.session = session
-		self.error = False
 		self["label"] = Label(_("Please wait while your skin setting is restoring..."))
 		self["summary_description"] = StaticText(_("Please wait while your skin setting is restoring..."))
 		self.onShown.append(self.setWindowTitle) 
