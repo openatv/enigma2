@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-27 12:33+0100\n"
-"PO-Revision-Date: 2015-10-02 14:29+0200\n"
+"POT-Creation-Date: 2015-10-07 21:54+0100\n"
+"PO-Revision-Date: 2015-10-11 14:32+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/Timo/Samzan\n"
 "Language: fi\n"
@@ -1240,7 +1240,7 @@ msgstr "Haluatko varmasti uudelleenladata EPG-tiedot täältä:\n"
 
 #, python-format
 msgid "Are you sure you want to remove all %d.%d%s%s services?"
-msgstr "Oletko varma että haluat poistaa %d.%d%s%s palvelut?"
+msgstr "Oletko varma että haluat poistaa kaikki %d.%d%s%s palvelut?"
 
 msgid "Are you sure you want to remove all cable services?"
 msgstr "Haluatko poistaa kaikki kaapelikanavat?"
@@ -2237,7 +2237,7 @@ msgid ""
 msgstr "Määrittää kuinka leveänä kanavanimet näytetään kanavalistassa."
 
 msgid "Configure if behind the subtitles a background is shown."
-msgstr "Valitse näytetäänkö tekstityksen tausta"
+msgstr "Valitse näytetäänkö tekstityksen tausta."
 
 msgid "Configure if picons will be shown in the service list."
 msgstr "Määrittää näytetäänkö kanavalogot kanavalistassa."
@@ -2536,7 +2536,9 @@ msgstr "Määritä mitä värijärjestelmää käytetään SCART-ulostulossa."
 msgid ""
 "Configure which tuner for recordings will be preferred, when more than one "
 "tuner is available."
-msgstr "Määrittää oletusvirittimen tallennuksille."
+msgstr ""
+"Määrittää ensisijaisen virittimen tallennuksille jos useampia on "
+"käytettävissä."
 
 msgid ""
 "Configure which tuner type will be preferred, when the same service is "
@@ -2663,7 +2665,7 @@ msgstr "Kopioi"
 
 #
 msgid "Copy to bouquets"
-msgstr "Kopioi suosikkilistalle"
+msgstr "Kopioi suosikkilistoille"
 
 msgid "Copying files"
 msgstr "Kopioidaan tiedostoja"
@@ -2693,7 +2695,7 @@ msgstr "Tiedostoa %s ei voitu avata!"
 
 #, python-format
 msgid "Could not record due to a conflicting timer %s"
-msgstr "Ei voida tallentaa ristiriitaisen ajastuksen takia: %s"
+msgstr "Ei voida tallentaa ristiriitaisen ajastuksen takia %s"
 
 #, python-format
 msgid "Could not record due to an invalid service %s"
@@ -2893,7 +2895,7 @@ msgstr "Päiväys"
 
 #
 msgid "De-select"
-msgstr "Poista valinta"
+msgstr "Uudelleen valitse"
 
 msgid "Debug Logs"
 msgstr "Debug-lokit"
@@ -3056,6 +3058,9 @@ msgstr ""
 "tallennusvaiheessa. 'Älä pura, tallenna ECM' tallentaa salattuna, tallenteen "
 "voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
 
+msgid "Descramble http streams"
+msgstr "Pura http-streamit"
+
 #
 msgid "Description"
 msgstr "Kuvaus"
@@ -3072,7 +3077,7 @@ msgstr "Tunnistetut laitteet:"
 
 #
 msgid "Detected tuners:"
-msgstr "Virittimet:"
+msgstr "Tunnistetut virittimet:"
 
 msgid "Device Information"
 msgstr "Laitetietoja"
@@ -3158,6 +3163,9 @@ msgstr "Estä animaatiot"
 #
 msgid "Disable Picture in Picture"
 msgstr "Sulje PiP-kuva"
+
+msgid "Disable background scanning"
+msgstr "Poista taustahaku käytöstä"
 
 #
 msgid "Disable move mode"
@@ -3254,14 +3262,14 @@ msgid ""
 "All the data on the device will be lost!"
 msgstr ""
 "Haluatko varmasti alustaa tämän laitteen?\n"
-"Kaikki tiedot katoaa!"
+"Kaikki tieto katoaa!"
 
 msgid "Do you really want to move to the trash can ?"
 msgstr "Haluatko varmasti siirtää roskakoriin?"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from the trash can ?"
-msgstr "Haluatko varmasti poistaa pysyvästi '%s' roskakorista?"
+msgstr "Haluatko varmasti poistaa pysyvästi  '%s' roskakorista?"
 
 msgid "Do you really want to permanently remove from the trash can ?"
 msgstr "Haluatko varmasti poistaa pysyvästi roskakorista?"
@@ -3672,6 +3680,13 @@ msgstr "Salli piilotetut suosikkilistat"
 msgid "Enabled"
 msgstr "Käytössä"
 
+msgid ""
+"Enables a feature so that the receiver can decrypt streams (if the ECM data "
+"is included in the stream and a valid card is available)."
+msgstr ""
+"Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa streamejä (jos ECM-"
+"tiedot on mukana streamissä ja sopiva katselukortti on saatavilla)."
+
 msgid "Encrypted: "
 msgstr "Salattu: "
 
@@ -3807,7 +3822,7 @@ msgid "Event view menu"
 msgstr "Ohjelmanäkymä"
 
 msgid "Everyday"
-msgstr "Jokapäivä"
+msgstr "Joka päivä"
 
 msgid "Everywhere"
 msgstr "Kaikkialla"
@@ -4011,7 +4026,7 @@ msgid "Fallback remote receiver URL"
 msgstr "Etävastaanottimen URL-osoite"
 
 msgid "Fallback remote receiver streaming port"
-msgstr "Etävastaanottimen stream-portti"
+msgstr "Etävastaanottimen portti"
 
 #, python-format
 msgid "Fan %d"
@@ -4654,7 +4669,7 @@ msgstr "Image-varmuuskopiot"
 
 #, python-format
 msgid "Image type:\t%s\n"
-msgstr "Ohjelmisto:\t%s\n"
+msgstr "Ohjelmistotila:\t%s\n"
 
 #
 msgid "Immediate shutdown"
@@ -4984,7 +4999,7 @@ msgid "Keep service"
 msgstr "Säilytä kanava"
 
 msgid "Keeps the movie list open whilst playing audio files."
-msgstr "Pitää tallennelistan auki äänitiedostojen toiston aikana"
+msgstr "Pidä tallennelista auki äänitiedostojen toiston aikana"
 
 #, python-format
 msgid "Kernel:\t%s\n"
@@ -6003,7 +6018,7 @@ msgstr ""
 
 #
 msgid "No, but restart from the beginning"
-msgstr "Ei mutta aloita alusta"
+msgstr "Ei, aloita alusta"
 
 #
 msgid "No, do nothing."
@@ -6486,7 +6501,7 @@ msgid "Play Music..."
 msgstr "Soita musiikkia..."
 
 msgid "Play as picture in picture"
-msgstr "Toista kuva-kuvassa"
+msgstr "Toista kuva-kuvassa kuvana"
 
 msgid "Play audio in background"
 msgstr "Toista ääni taustalla"
@@ -6752,7 +6767,7 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 "Siirrä PiP-kuvaa nuolinapeilla.\n"
-"Muuta ikkunan kokoa Bouquet +/- napeilla.\n"
+"Muuta ikkunan kokoa kanava +/- napeilla.\n"
 "Palaa TV-tilaan OK-näppäimellä tai hylkää siirto EXIT-näppäimellä."
 
 msgid "Please wait (downloading channel list)"
@@ -6763,7 +6778,7 @@ msgstr "Odota (päivitetään paketteja)"
 
 #
 msgid "Please wait while gathering EPG data..."
-msgstr "Odota, haetaan tietoja..."
+msgstr "Odota, haetaan EPG tietoja..."
 
 msgid "Please wait while scanning for devices..."
 msgstr "Odota, laitteita haetaan..."
@@ -6786,7 +6801,7 @@ msgstr "Odota, testaamme verkkoa..."
 
 #
 msgid "Please wait while your network configuration is activated..."
-msgstr "Odota, verkko käynnistetään uudelleen..."
+msgstr "Odota, verkkoasetuksia aktivoidaan..."
 
 #
 msgid "Please wait..."
@@ -7449,7 +7464,7 @@ msgstr "Poista suosikkilista lapsilukosta"
 
 #
 msgid "Remove cable services"
-msgstr "Poista kaapelikanavat"
+msgstr "Poista kaapelikanavia"
 
 msgid "Remove completed timers after (days)"
 msgstr "Poista tallennetut ajastukset (päivää) jälkeen"
@@ -7487,7 +7502,7 @@ msgstr "Poista valittu satelliitti"
 
 #
 msgid "Remove terrestrial services"
-msgstr "Poista antennikanavat"
+msgstr "Poista antennikanavia"
 
 #
 msgid "Remove timer"
@@ -7514,7 +7529,7 @@ msgid "Removing partition table"
 msgstr "Poistetaan levyosioita"
 
 msgid "Removing service"
-msgstr "Poistetaan kanava"
+msgstr "Poistetaan kanavia"
 
 #
 msgid "Rename"
@@ -7554,7 +7569,7 @@ msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
 
 #
 msgid "Repeating the event currently recording... What do you want to do?"
-msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
+msgstr "Toistetaan ohjelmaa jota juuri tallennetaan... Mitä haluat tehdä?"
 
 #
 msgid "Repeats"
@@ -7936,7 +7951,7 @@ msgid "Search"
 msgstr "Haku"
 
 msgid "Search IMDb for information about the current event."
-msgstr "Hae IMDb:stä tietoja katseltavasta ohjelmasta."
+msgstr "Hae IMDb:stä tietoja katseltavasta ohjelmasta"
 
 #
 msgid "Search east"
@@ -7946,7 +7961,7 @@ msgid "Search for similar events"
 msgstr "Hae samanlaisia ohjelmia"
 
 msgid "Search the epg for the current event."
-msgstr "Hae kanavaoppaasta nykyistä ohjelmaa."
+msgstr "Hae kanavaoppaasta nykyistä ohjelmaa"
 
 #
 msgid "Search west"
@@ -8536,7 +8551,7 @@ msgid "Show EPG for current service"
 msgstr "Näytä nykyisen kanavan ohjelmaopas"
 
 msgid "Show EPG..."
-msgstr "Näytä EPG..."
+msgstr "Näytä ohjelmaopas..."
 
 msgid "Show Games show"
 msgstr "Show Visailu"
@@ -8769,7 +8784,7 @@ msgid "Show service list"
 msgstr "Avaa kanavalista"
 
 msgid "Show service list or movies"
-msgstr "Näytä kanavalista tai tallennukset"
+msgstr "Avaa kanavalista tai tallennukset"
 
 #
 msgid "Show service type icons"
@@ -10384,7 +10399,7 @@ msgid "Time to execute command or script"
 msgstr "Käskyn tai komentojonon suoritusaika"
 
 msgid "Time update in minutes"
-msgstr "Ajan muutos minuutteina"
+msgstr "Ajanpäivitys minuutteina"
 
 msgid "Timeline 24 Hour"
 msgstr "Aikajakso 24 tuntia"
@@ -10586,7 +10601,7 @@ msgid "Total memory:"
 msgstr "Kokonaismuisti:"
 
 msgid "Total swap:"
-msgstr "Kokonais swap:"
+msgstr "Kokonais swap"
 
 msgid "Total:"
 msgstr "Kokonais:"
@@ -11646,10 +11661,10 @@ msgstr "Kun päällä, vastaanotin valitsee AC3+ ääniraidan (kun saatavilla)."
 msgid ""
 "When enabled, this setting has more weight than 'Preferred tuner for "
 "recordings'."
-msgstr "Kun päällä, tämä ohittaa oletusviritin tallennuksille valinnan"
+msgstr "Kun päällä, tämä ohittaa tallennusten ensisijainen viritin valinnan"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Kun päällä, tämä ohittaa oletusviritin valinnan"
+msgstr "Kun päällä, tämä ohittaa ensisijainen viritin valinnan"
 
 msgid ""
 "When enabled, timeshift starts automatically in background after the "
@@ -11709,6 +11724,14 @@ msgid ""
 msgstr ""
 "Kun ohjelman kuvasuhde on 4:3, valitse skaalataanko/venytetäänkö kuvaa."
 
+msgid ""
+"When tuned to a service the system will normally scan the transponder for "
+"any changes and save them. Only set to 'yes' if you're absolutely sure of "
+"what you're doing."
+msgstr ""
+"Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muutokset "
+"ja tallentaa ne. Valitse 'kyllä' vain jos olet täysin varma siitä mitä teet."
+
 #, python-format
 msgid ""
 "When you perform a factory reset, you will lose ALL your configuration data\n"
@@ -11718,7 +11741,7 @@ msgid ""
 "\n"
 "Do you really want to do a factory reset?"
 msgstr ""
-"Jos palautat tehdasasetukset, häviää kaikki asetukset\n"
+"Jos palautat tehdasasetukset, häviää kaikki tekemäsi omat asetukset\n"
 "(sisältäen suosikkilistat, kanavat, satelliitit ...)\n"
 "Tehdasasetusten palautuksen jälkeen vastaanotin %s %s käynnistyy "
 "automaattisesti uudelleen!\n"
@@ -11919,7 +11942,7 @@ msgid "You can cancel the removal."
 msgstr "Voit keskeyttää poiston."
 
 msgid "You can continue watching TV while this is running."
-msgstr "Voit jatkaa TV:n katselua yms. kun tehtävää suoritetaan."
+msgstr "Voit jatkaa TV:n katselua kun tehtävää suoritetaan."
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr "Voit valita listaan aika- tai aakkosjärjestyksen."
@@ -12345,7 +12368,7 @@ msgid "and never ask again this session"
 msgstr "Älä kysy uudelleen tällä kerralla"
 
 msgid "are you sure you want to cancel all the changes"
-msgstr "Haluatko varmasti peruuttaa kaikki muutokset?"
+msgstr "Haluatko varmasti peruuttaa kaikki muutokset"
 
 msgid "arts/culture (without music, general)"
 msgstr "taide/kulttuuri (ilman musiikkia, yleinen)"
@@ -12737,7 +12760,7 @@ msgid ""
 "has been sent to the ViX team.\n"
 "please quote"
 msgstr ""
-"on lähetetty ViX teamille.\n"
+"on lähetetty ViX beta teemille.\n"
 "lainaa"
 
 msgid "height"
@@ -13574,12 +13597,6 @@ msgstr "vaihdettu"
 #~ "mukaan. 'Auto' valitsee E2:n oletussääntöjen mukaan, ohittaen "
 #~ "asetusruudun määrityksen."
 
-#~ msgid "Descramble http streams"
-#~ msgstr "Pura http-streamit"
-
-#~ msgid "Disable background scanning"
-#~ msgstr "Poista taustahaku käytöstä"
-
 #~ msgid ""
 #~ "Enable remote enigma2 receiver to be tried to tune into services that "
 #~ "cannot be tuned into locally (e.g. tuner is occupied or service type is "
@@ -13590,10 +13607,3 @@ msgstr "vaihdettu"
 #~ "viritin on varattu ja lähiverkon palvelu ei ole saatavilla. Määrittele "
 #~ "URL-osoite mukaanluettuna http:// ja portin numero (normaalisti :8001), "
 #~ "esim. http://second_box:8001."
-
-#~ msgid ""
-#~ "Enables a feature so that the receiver can decrypt streams (if the ECM "
-#~ "data is included in the stream and a valid card is available)."
-#~ msgstr ""
-#~ "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa streamejä (jos ECM-"
-#~ "tiedot on mukana streamissä ja sopiva katselukortti on saatavilla)."
