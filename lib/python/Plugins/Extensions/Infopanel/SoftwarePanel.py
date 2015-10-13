@@ -218,8 +218,10 @@ class SoftwarePanel(Screen):
 #					except:
 #						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
 
-			self['list'].setList(self.list)
-
+			if self.list:
+				self['list'].setList(self.list)
+			else:
+				self.setStatus('noupdate')
 		elif len(fetchedList) == 0:
 			self.setStatus('noupdate')
 		else:
