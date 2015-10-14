@@ -170,7 +170,7 @@ class ParentalControl:
 			self.sessionPinCached = True
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
-	def servicePinEntered(self, service, result):
+	def servicePinEntered(self, service, result=None):
 		if result is not None and result:
 			self.setSessionPinCached()
 			self.hideBlacklist()
