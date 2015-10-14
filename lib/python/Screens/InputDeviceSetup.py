@@ -273,7 +273,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("14", _("XP1000")),
 			("16", _("HD1100/HD1200/HD500C/et7x00/et8500")),
 			("17", _("XP3000")),
-			("18", _("F1/F3")),
+			("18", _("F1/F3/TRIPLEX")),
 			("19", _("HD2400"))
 			]
 
@@ -296,6 +296,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("hd2400",19),
 			("formuler1",18),
 			("formuler3",18),
+			("triplex",18),
 			("xp1000", 14),
 			("xp3000", 17)
 			]
