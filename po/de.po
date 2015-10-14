@@ -6167,10 +6167,17 @@ msgstr "Aufnahme"
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Aufnahme gestartet! Timeshift wird  gestoppt..."
 
-#
-#, python-format
+#: InfoBarGenerics.py:3700
 msgid "Record time limited due to conflicting timer %s"
-msgstr "Aufnahmezeit aufgrund kollidierender Timer %s begrenzt"
+msgstr "Aufnahmezeit aufgrund kollidierender Timer '%s' begrenzt"
+
+#: InfoBarGenerics.py:3702
+msgid "Could not record due to conflicting timer %s"
+msgstr "Keine Aufnahme wegen Timerkonflikt mit Timer '%s'"
+
+#: InfoBarGenerics.py:3704
+msgid "Could not record due to invalid service %s"
+msgstr "Could not record due to invalid service '%s'"
 
 #
 msgid "Recorded files..."
