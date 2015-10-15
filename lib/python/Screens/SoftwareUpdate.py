@@ -274,7 +274,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = None
-				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+				if getImageType() != 'release' or (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value):
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				elif config.softwareupdate.updateisunstable.value == '0':

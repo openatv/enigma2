@@ -96,7 +96,7 @@ class FeedsStatusCheck:
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				if self.total_packages and ((config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value) or config.softwareupdate.updateisunstable.value == '0'):
+				if self.total_packages and (getImageType() != 'release' or (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value) or config.softwareupdate.updateisunstable.value == '0'):
 					print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 					config.softwareupdate.updatefound.setValue(True)
 		pass
@@ -150,7 +150,7 @@ class VersionCheck:
 
 	def getStableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
-			if config.softwareupdate.updateisunstable.value == '0':
+			if getImageType() != 'release' or config.softwareupdate.updateisunstable.value == '0':
 				print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
@@ -161,7 +161,7 @@ class VersionCheck:
 
 	def getUnstableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
-			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
+			if getImageType() != 'release' or (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value):
 				print '[OnlineVersionCheck] New Experimental updates found'
 				return True
 			else:
