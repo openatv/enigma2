@@ -217,11 +217,14 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	{
 		ePtr<iServiceHandler> service_center;
 		ePtr<iStaticServiceInformation> service_info;
-		std::string service_name;
 		eServiceCenter::getInstance(service_center);
 		service_center->info(ref, service_info);
-		service_info->getName(ref, service_name);
-		ref.setName(service_name);
+		if (service_info)
+		{
+			std::string service_name;
+			service_info->getName(ref, service_name);
+			ref.setName(service_name);
+		}
 	}
 
 	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
