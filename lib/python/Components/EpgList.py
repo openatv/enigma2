@@ -202,7 +202,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				x += self.col[0]
 				self.datetime_rect = Rect(x, 0, self.gap(self.col[1]), height)
 				x += self.col[1]
-				self.descr_rect = Rect(x, 0, width-x, height)
+				self.service_rect = Rect(x, 0, width-x, height)
 			else:
 				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
 				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)

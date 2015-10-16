@@ -349,6 +349,7 @@ class PositionerSetup(Screen):
 
 	def createConfig(self):
 		rotorposition = 1
+		orb_pos = 0
 		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
 		if not self.advanced:
 			self.printMsg(_("Configuration mode: %s") % _("simple"))
