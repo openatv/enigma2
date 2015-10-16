@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-24 22:02+0100\n"
-"PO-Revision-Date: 2015-08-28 14:38+0300\n"
+"POT-Creation-Date: 2015-09-27 07:44+0100\n"
+"PO-Revision-Date: 2015-10-02 07:45+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 
 msgid ""
 "\n"
@@ -1206,6 +1206,9 @@ msgstr "Auto."
 msgid "Auto Deep Standby"
 msgstr "Automaatne puhkeseisund"
 
+msgid "Auto EXIF Orientation rotation/flipping"
+msgstr ""
+
 msgid "Auto Standby"
 msgstr "Automaatne ooteseisund"
 
@@ -1524,7 +1527,7 @@ msgid "CI assignment"
 msgstr "CI määrangud"
 
 #, python-format
-msgid "CPU Speed:\t%s\n"
+msgid "CPU speed:\t%s\n"
 msgstr "CPU kiirus:\t%s\n"
 
 #, python-format
@@ -1604,7 +1607,7 @@ msgid "Cascade PiP"
 msgstr "PiP kaskaad"
 
 msgid "Center DVB subtitles"
-msgstr "DVB subtiitrid ekraani keskel"
+msgstr "DVB subtiitrid tsentris"
 
 msgid "Change PIN"
 msgstr "Muuda PIN"
@@ -1945,6 +1948,9 @@ msgstr "Määra, kas ja kuidas tähistatakse kanalinimekirjas salvestavad kanali
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Määra, kas ja kui laialt kuvatakse kanalinimekirjas kanalinime tulpa."
 
+msgid "Configure if behind the subtitles a background is shown."
+msgstr "Määra, kas subtiitritele kuvatakse taust."
+
 msgid "Configure if picons will be shown in the service list."
 msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
 
@@ -2152,11 +2158,11 @@ msgstr "Määra, kas ajami positsiooni näidatakse inforibal"
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Määra SCART väljundi poolt kasutatav värvisüsteem."
 
-msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-msgstr "Määra, millist tuunerit eelistatakse, kui sama kanal on saadaval mitmel erinevat tüüpi tuuneril."
+msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
+msgstr "Määra, millist tuunerit eelistatakse salvestamisel, kui saadaval on rohkem kui üks tuuner."
 
-msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
-msgstr "Määra, millist tuunerit kasutatakse salvestamiseks mitme tuuneri olemasolul. Määrates 'Keelatud', kasutatakse kasutaja eelistustes määratud tuunerit. 'Auto' puhul kasutatakse E2 vaikeväärtusi ja kasutaja valikutes määratud tuuneri eelistusi eiratakse."
+msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
+msgstr "Määra, millist tuunerit eelistatakse, kui sama kanal on saadaval erinevat tüüpi tuuneritel."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Määra, millist tuunerit eelistatakse mitme tuuneriga vastuvõtjas. Valikul 'automaatne' annab süsteem eelistuse tuunerile, millel on kõige vähem kanaleid/satelliite."
@@ -2597,9 +2603,6 @@ msgstr "Sügavus"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekodeerimiseks, juhul kui dekodeerimine salvestamise ajal nurjus. 'Ära dekodeeri, talleta ecm' valimisel salvestatakse saade kodeerituna ja dekodeerimine toimub taasesitusel. Valikul 'tavaline' salvestatakse saade dekodeerituna ja ECM ei salvestata."
 
-msgid "Descramble http streams"
-msgstr "Dekodeeri http vood"
-
 msgid "Description"
 msgstr "Sisututvustus"
 
@@ -2609,10 +2612,10 @@ msgstr "Tühista valik"
 msgid "Details for plugin: "
 msgstr "Laienduse üksikasjad: "
 
-msgid "Detected Devices:"
+msgid "Detected devices:"
 msgstr "Andmekandjad:"
 
-msgid "Detected Tuners:"
+msgid "Detected tuners:"
 msgstr "Tuunerid:"
 
 msgid "Device Information"
@@ -2685,9 +2688,6 @@ msgstr "Keela animatsioonid"
 
 msgid "Disable Picture in Picture"
 msgstr "Sulge pilt-pildis"
-
-msgid "Disable background scanning"
-msgstr "Keela kanaliotsing taustal"
 
 msgid "Disable move mode"
 msgstr "Lõpeta liigutamine"
@@ -3092,7 +3092,7 @@ msgid "Enable debug logs *"
 msgstr "Luba silumislogid *"
 
 msgid "Enable fallback remote receiver"
-msgstr "Luba tagavara kaugvastuvõtja"
+msgstr "Luba kaugvastuvõtja"
 
 msgid "Enable favourite edit"
 msgstr "Luba lemmikute muutmine"
@@ -3112,20 +3112,17 @@ msgstr "Luba paanikanupp"
 msgid "Enable parental protection"
 msgstr "Luba lapselukk"
 
-msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr "Luba kasutada enigma2 kaugvastuvõtjat häälestumiseks kanalitele, mida kohalik vastuvõtja ei ole võimeline vastu võtma (nt. tuuner on hõivatud või kanalitüüp on kohalikule tuunerile sobimatu). Vajalik on täielik URL k.a. http:/ ja pordi number (tavaliselt ...:8001). Näiteks http://teine_tuuner:8001."
-
 msgid "Enable teletext caching"
 msgstr "Luba teleteksti puhverdamine"
+
+msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
+msgstr "Luba enigma2 kaugvastuvõtja tuunerite kasutamine, kui kohalik tuuner ei ole saadaval (nt. tuuner on hõivatud või kanalitüüp on kohaliku tuuneri jaoks sobimatu)."
 
 msgid "Enable unlinked bouquets"
 msgstr "Luba sidumata lemmiknimekirjad"
 
 msgid "Enabled"
 msgstr "Kasutusel"
-
-msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-msgstr "Nii saab vastuvõtja voo dekodeerida (kui ECM andmed on kaasatud ja olemas on kehtiv kaart)."
 
 msgid "Encrypted: "
 msgstr "Kodeeritud: "
@@ -3424,7 +3421,10 @@ msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "/tmp/positionersetup.logi loomine nurjus: "
 
 msgid "Fallback remote receiver URL"
-msgstr "Tagavara kaugvastuvõtja URL"
+msgstr "Kaugvastuvõtja URL"
+
+msgid "Fallback remote receiver streaming port"
+msgstr "Kaugvastuvõtja voogesituse port"
 
 #, python-format
 msgid "Fan %d"
@@ -3533,12 +3533,6 @@ msgstr "Kasuta helitugevuse nuppe"
 msgid "Frame size in full view"
 msgstr "Kaadri suurus täisvaates"
 
-msgid "Free Memory:"
-msgstr "Vaba mälu:"
-
-msgid "Free Swap:"
-msgstr "Vaba saale:"
-
 msgid "Free To Air"
 msgstr "FTA"
 
@@ -3547,6 +3541,9 @@ msgstr "Vaba mälu"
 
 msgid "Free memory:"
 msgstr "Vaba mälu:"
+
+msgid "Free swap:"
+msgstr "Vaba saale:"
 
 msgid "Free:"
 msgstr "Vaba:"
@@ -3975,7 +3972,7 @@ msgid "Image Manager"
 msgstr "Süsteemitõmmised"
 
 #, python-format
-msgid "Image Type:\t%s\n"
+msgid "Image type:\t%s\n"
 msgstr "Tarkvara tüüp:\t%s\n"
 
 msgid "Immediate shutdown"
@@ -4036,7 +4033,7 @@ msgid "InfoBar EPG"
 msgstr "Inforiba EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Inforiba EPG näitamine"
+msgstr "Inforiba EPG kuvamine"
 
 msgid "Infobar EPG"
 msgstr "Inforiba EPG"
@@ -4904,9 +4901,6 @@ msgstr "Võrgumaski teave"
 msgid "Network MAC settings"
 msgstr "Võrgu MAC seaded"
 
-msgid "Network Servers:"
-msgstr "Võrguserverid:"
-
 msgid "Network Setup"
 msgstr "Võrgu häälestamine"
 
@@ -4924,6 +4918,9 @@ msgstr "Võrgu nimi (SSID)"
 
 msgid "Network scan"
 msgstr "Võrguotsing"
+
+msgid "Network servers:"
+msgstr "Võrguserverid:"
 
 msgid "Network setup"
 msgstr "Võrgu häälestamine"
@@ -5917,6 +5914,24 @@ msgstr "Eelista käsitsi määratud subtiitreid"
 msgid "Preferred tuner"
 msgstr "Eelistatud tuuner"
 
+msgid "Preferred tuner DVB-C"
+msgstr "DVB-C eelistatud tuuner"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "DVB-C eelistatud tuuner salvestamiseks"
+
+msgid "Preferred tuner DVB-S"
+msgstr "DVB-S eelistatud tuuner"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "DVB-S eelistatud tuuner salvestamiseks"
+
+msgid "Preferred tuner DVB-T"
+msgstr "DVB-T eelistatud tuuner"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "DVB-T eelistatud tuuner salvestamiseks"
+
 msgid "Preferred tuner for recordings"
 msgstr "Eelistatud tuuner salvestamiseks"
 
@@ -6620,9 +6635,6 @@ msgstr "Satelliidi pikkuskraad:"
 msgid "Satellites"
 msgstr "Satelliidid"
 
-msgid "Satfinder"
-msgstr "Satelliidiotsija"
-
 msgid "Sats"
 msgstr "Satelliidid"
 
@@ -7308,7 +7320,10 @@ msgid "Show alternatives"
 msgstr "Näita asenduskanaleid"
 
 msgid "Show animation while busy"
-msgstr "Näita süsteemi hõivatusel animatsiooni."
+msgstr "Näita süsteemi hõivatusel animatsiooni"
+
+msgid "Show background behind subtitles"
+msgstr "Tausta kasutmine subtiitritel"
 
 msgid "Show background in Radio mode"
 msgstr "Näita raadioolekus taustapilti"
@@ -7535,11 +7550,17 @@ msgstr "Kõrvuti"
 msgid "Side by side"
 msgstr "Kõrvuti"
 
+msgid "Signal Finder"
+msgstr "Signaalimõõdik"
+
 msgid "Signal OK, proceeding"
 msgstr "Korralik signaal, jätkame"
 
 msgid "Signal Strength:"
 msgstr "Signaali tugevus:"
+
+msgid "Signal finder"
+msgstr "Signaalimõõdik"
 
 msgid "Signal quality"
 msgstr "Signaali kvaliteet"
@@ -7591,6 +7612,10 @@ msgstr "Suurus: "
 
 msgid "Skin Setting"
 msgstr "Kujunduse seaded"
+
+#, python-format
+msgid "Skin name:\t%s\n"
+msgstr "Kujunduse nimi:\t%s\n"
 
 msgid "Skin setup"
 msgstr "Kujunduse valik"
@@ -7960,6 +7985,9 @@ msgstr "IPTV"
 
 msgid "Streaming"
 msgstr "Voogesitus"
+
+msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
+msgstr "Kaugvastuvõtja voogesituse port. Vaikimisi on see '8001'"
 
 msgid "Strict DLNA"
 msgstr "Puhas DLNA"
@@ -8460,6 +8488,9 @@ msgstr "Siin saab muuta tähesuurust kujunduse suhtes. 1 suurendab ja -1 vähend
 msgid "This allows you to change the number of rows shown."
 msgstr "Siin saab muuta kuvatavate ridade arvu."
 
+msgid "This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box')."
+msgstr "See võib olla kas IP või kaugvastuvõtja nimi ilma pordi numbrita (nt. kas 'xxx.xxx.xxx.xxx' või 'teise_vastuvõtja_nimi)"
+
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "See valik võimaldab vähendada pildi plokkmüra (block-noise). Seda tehakse pildi teravuse arvelt."
 
@@ -8898,12 +8929,6 @@ msgstr "Üleval ja all"
 msgid "Total"
 msgstr "Kokku"
 
-msgid "Total Memory:"
-msgstr "Mälumaht:"
-
-msgid "Total Swap:"
-msgstr "Saale:"
-
 msgid "Total cards:"
 msgstr "Kaarte kokku:"
 
@@ -8912,6 +8937,12 @@ msgstr "Kõik käsitletud kliendi ECM-id"
 
 msgid "Total handled client emm's"
 msgstr "Kõik käsitletud kliendi EMM-id"
+
+msgid "Total memory:"
+msgstr "Mälumaht:"
+
+msgid "Total swap:"
+msgstr "Saale:"
 
 msgid "Total:"
 msgstr "Kokku:"
@@ -8933,6 +8964,9 @@ msgstr "Läbipaistev"
 
 msgid "Transponder"
 msgstr "Transponder"
+
+msgid "Transponder Information"
+msgstr "Transponderi info"
 
 msgid "Transponder type"
 msgstr "Transponderi tüüp"
@@ -9035,9 +9069,6 @@ msgstr "Otsingu tüüp"
 
 msgid "Type: "
 msgstr "Tüüp: "
-
-msgid "URL of fallback remote receiver"
-msgstr "Tagavara kaugvastuvõtja URL"
 
 msgid "USALS"
 msgstr "USALS"
@@ -9204,7 +9235,7 @@ msgid "Use frequency or channel"
 msgstr "Kasuta sagedust või kanalit"
 
 msgid "Use individual settings for each directory"
-msgstr "Omadused jäetakse iga kataloogi puhul meelde"
+msgstr "Igal kataloogil võivad olla oma seadistused"
 
 msgid "Use interface"
 msgstr "Kasuta võrguliidest"
@@ -9216,10 +9247,10 @@ msgid "Use original DVB subtitle position"
 msgstr "DVB subtiitrite asukoht"
 
 msgid "Use original teletext position"
-msgstr "Kasuta algset teleteksti asukohta"
+msgstr "Teleteksti algse asukoha kasutamine"
 
 msgid "Use power measurement"
-msgstr "Kasuta võimsuse mõõtmist"
+msgstr "Kasuta voolutarbe mõõtmist"
 
 msgid "Use slim screen"
 msgstr "Kasuta kitsast vaadet"
@@ -9594,7 +9625,7 @@ msgid ""
 msgstr ""
 "Tere tulemast.\n"
 "\n"
-"See abiline juhendab võrgu seadistamisel, kui tahad %s %s ühendada internetti.\n"
+"See abiline juhendab võrgu seadistamisel, kui tahad ühendada %s %s internetti.\n"
 "\n"
 "Võrgu seadistamise alustamiseks vajuta OK"
 
@@ -9676,7 +9707,7 @@ msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitl
 msgstr "Määrates 'jah', eelistatakse mõlema olemasolul DVB subtiitreid teleteksti omadele."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr "Määrates 'jah', kuvatakse DVB subtiitrid horisontaalselt tsentreerituna."
+msgstr "Määrates 'jah', tsentreeritakse DVB subtiitrid horisontaalselt."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende algsel asukohal."
@@ -9735,6 +9766,12 @@ msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3+ heli."
 
+msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
+msgstr "See valik kaalub üle valiku 'Eelistatud tuuner salvestamiseks'."
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr "See valik kaalub üle valiku 'Eelistatud tuuner'."
+
 msgid "When enabled, timeshift starts automatically in background after the specified time."
 msgstr "Kui lubatud, käivitub ajanihe automaatselt pärast määratud aja möödumist."
 
@@ -9764,9 +9801,6 @@ msgstr "Määra, kas 16:9 sisuga pilti tuleb skaleerida/venitada."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Määra, kas 4:3 sisuga pilti tuleb skaleerida/venitada."
-
-msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
-msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi ja salvestab need. Määra 'ei' ainult juhul, kui oled täiesti kindel, et tead, mida teed."
 
 #, python-format
 msgid ""
@@ -11370,6 +11404,9 @@ msgstr "vahetatud"
 #~ msgid "%Y-%m-%d %H:%M"
 #~ msgstr "%Y-%m-%d %H:%M"
 
+#~ msgid "3d mode"
+#~ msgstr "3d mode"
+
 #~ msgid ""
 #~ "A recording is currently running.\n"
 #~ "What do you want to do?"
@@ -11395,6 +11432,12 @@ msgstr "vahetatud"
 #~ "Unetaimer soovib %s %s välja lülitada.\n"
 #~ "Kas nõustud?"
 
+#~ msgid "AA"
+#~ msgstr "AA"
+
+#~ msgid "AB"
+#~ msgstr "AB"
+
 #~ msgid "Action on long power button press"
 #~ msgstr "Toitenupu pikk vajutus"
 
@@ -11409,6 +11452,24 @@ msgstr "vahetatud"
 
 #~ msgid "Activate timeshift End"
 #~ msgstr "Ajanihke lõpetamise aktiveerimine"
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Adjust 3D settings"
+
+#~ msgid "Advanced video setup"
+#~ msgstr "Geavanceerde video-instellingen"
+
+#~ msgid "All satellites 1 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 1 (DiSEqC 1.2)"
+
+#~ msgid "All satellites 2 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 2 (DiSEqC 1.2)"
+
+#~ msgid "All satellites 3 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 3 (DiSEqC 1.2)"
+
+#~ msgid "All satellites 4 (DiSEqC mode 1.2)"
+#~ msgstr "Kõik satelliidid 4 (DiSEqC 1.2)"
 
 #~ msgid "Allows more detailed information to be in the crash log"
 #~ msgstr "Võimaldab rohkemate üksikasjadega vealogide loomise"
@@ -11433,6 +11494,12 @@ msgstr "vahetatud"
 
 #~ msgid "AutoTimer Overview"
 #~ msgstr "Autotaimeri ülevaade"
+
+#~ msgid "BA"
+#~ msgstr "BA"
+
+#~ msgid "BB"
+#~ msgstr "BB"
 
 #~ msgid "Build:\t%s"
 #~ msgstr "Järk:\t%s"
@@ -11467,6 +11534,9 @@ msgstr "vahetatud"
 #~ msgid "Change sort by..."
 #~ msgstr "Järjestuse muutmine..."
 
+#~ msgid "Channel +/- button mode"
+#~ msgstr "CH +/- nuppude toiming"
+
 #~ msgid "Checking Feeds"
 #~ msgstr "Serverite kontroll"
 
@@ -11487,6 +11557,9 @@ msgstr "vahetatud"
 
 #~ msgid "Configure the refresh rate of the screen."
 #~ msgstr "Määra ekraani värskendussagedus."
+
+#~ msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
+#~ msgstr "Määra, millist tuunerit kasutatakse salvestamiseks mitme tuuneri olemasolul. Määrates 'Keelatud', kasutatakse kasutaja eelistustes määratud tuunerit. 'Auto' puhul kasutatakse E2 vaikeväärtusi ja kasutaja valikutes määratud tuuneri eelistusi eiratakse."
 
 #~ msgid "Connected!"
 #~ msgstr "Ühendatud!"
@@ -11512,11 +11585,24 @@ msgstr "vahetatud"
 #~ msgid "Delete..."
 #~ msgstr "Kustuta..."
 
+#~ msgid "Descramble http streams"
+#~ msgstr "Dekodeeri http vood"
+
+#, fuzzy
+#~ msgid "Devide"
+#~ msgstr "Seadmed"
+
 #~ msgid "Dialing:"
 #~ msgstr "Valin numbrit:"
 
+#~ msgid "Disable background scanning"
+#~ msgstr "Keela kanaliotsing taustal"
+
 #~ msgid "Disconnect"
 #~ msgstr "Katkesta ühendus"
+
+#~ msgid "Display"
+#~ msgstr "Display"
 
 #~ msgid ""
 #~ "Do you really want to initialize the device?\n"
@@ -11579,6 +11665,12 @@ msgstr "vahetatud"
 #~ msgid "Enable parental control"
 #~ msgstr "Lapseluku lubamine"
 
+#~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+#~ msgstr "Luba kasutada enigma2 kaugvastuvõtjat häälestumiseks kanalitele, mida kohalik vastuvõtja ei ole võimeline vastu võtma (nt. tuuner on hõivatud või kanalitüüp on kohalikule tuunerile sobimatu). Vajalik on täielik URL k.a. http:/ ja pordi number (tavaliselt ...:8001). Näiteks http://teine_tuuner:8001."
+
+#~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
+#~ msgstr "Nii saab vastuvõtja voo dekodeerida (kui ECM andmed on kaasatud ja olemas on kehtiv kaart)."
+
 #, fuzzy
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enigma2 muudatused"
@@ -11600,6 +11692,9 @@ msgstr "vahetatud"
 
 #~ msgid "Fontsize"
 #~ msgstr "Tähesuurus"
+
+#~ msgid "Free Memory:"
+#~ msgstr "Vaba mälu:"
 
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "Ftpd teenus: Vsftpd server"
@@ -11680,8 +11775,14 @@ msgstr "vahetatud"
 #~ msgid "Kernel:\t%s"
 #~ msgstr "Kernel:\t%s"
 
+#~ msgid "Lamedb"
+#~ msgstr "Lamedb"
+
 #~ msgid "Last update:\t%s"
 #~ msgstr "Uuendatud:\t%s"
+
+#~ msgid "Logs older than the specified no of days will be deleted."
+#~ msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
 
 #~ msgid "MAC-address"
 #~ msgstr "MAC-aadress"
@@ -11691,6 +11792,9 @@ msgstr "vahetatud"
 
 #~ msgid "Mark service as dedicated 3D service"
 #~ msgstr "märgista 3D kanalina"
+
+#~ msgid "Maximum no of days"
+#~ msgstr "Suurim lubatud päevade arv:"
 
 #~ msgid "Message"
 #~ msgstr "Teade"
@@ -11946,6 +12050,9 @@ msgstr "vahetatud"
 #~ msgid "Shows the icons when new/unseen, else will not show an icon."
 #~ msgstr "Tähistab uued/vaatamata ikooniga, ülejäänutel ikooni ei näita."
 
+#~ msgid "Single transponder"
+#~ msgstr "Üksik transponder"
+
 #~ msgid "Sorry Inadyn Config is Missing"
 #~ msgstr "Inadyn on seadistamata"
 
@@ -12001,6 +12108,9 @@ msgstr "vahetatud"
 #~ msgid "Switch to previous channel in history"
 #~ msgstr "Eelmisele kanalile ajaloos"
 
+#~ msgid "TV button mode"
+#~ msgstr "TV nupu toiming"
+
 #~ msgid ""
 #~ "The Cool TV Guide plugin is not installed!\n"
 #~ "Please install it."
@@ -12054,6 +12164,12 @@ msgstr "vahetatud"
 #~ msgid "Turn on HDMI-IN Full screen mode"
 #~ msgstr "HDMI-IN täisekraani puhul sees"
 
+#~ msgid "URL of fallback remote receiver"
+#~ msgstr "Tagavara kaugvastuvõtja URL"
+
+#~ msgid "Uncommitted DiSEqC command"
+#~ msgstr "Uncommitted DiSEqC käsk"
+
 #~ msgid "Unmark service as dedicated 3D service"
 #~ msgstr "Eemalda 3D kanali märgistus"
 
@@ -12081,11 +12197,20 @@ msgstr "vahetatud"
 #~ msgid "Video fine-tuning"
 #~ msgstr "Pildi peenhäälestus"
 
+#~ msgid "Video setup"
+#~ msgstr "Video-instellingen"
+
+#~ msgid "Video wizard"
+#~ msgstr "Video-wizard"
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Määrates 'jah', kasutatakse teleteksti subtiitritel parandamata reamurdmist."
 
 #~ msgid "When set each folder will show the previous state used, when off the default values will be shown."
 #~ msgstr "Määrates 'jah', peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse vaikeväärtusi."
+
+#~ msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
+#~ msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi ja salvestab need. Määra 'ei' ainult juhul, kui oled täiesti kindel, et tead, mida teed."
 
 #~ msgid ""
 #~ "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -12356,72 +12481,29 @@ msgstr "vahetatud"
 #~ msgid "whitelist"
 #~ msgstr "valge nimekiri"
 
-#~ msgid "3d mode"
-#~ msgstr "3d mode"
+#~ msgid "CPU Speed:\t%s\n"
+#~ msgstr "CPU kiirus:\t%s\n"
 
-#~ msgid "AA"
-#~ msgstr "AA"
+#~ msgid "Detected Devices:"
+#~ msgstr "Andmekandjad:"
 
-#~ msgid "AB"
-#~ msgstr "AB"
+#~ msgid "Detected Tuners:"
+#~ msgstr "Tuunerid:"
 
-#~ msgid "Adjust 3D settings"
-#~ msgstr "Adjust 3D settings"
+#~ msgid "Free Swap:"
+#~ msgstr "Vaba saale:"
 
-#~ msgid "Advanced video setup"
-#~ msgstr "Geavanceerde video-instellingen"
+#~ msgid "Image Type:\t%s\n"
+#~ msgstr "Tarkvara tüüp:\t%s\n"
 
-#~ msgid "All satellites 1 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 1 (DiSEqC 1.2)"
+#~ msgid "Network Servers:"
+#~ msgstr "Võrguserverid:"
 
-#~ msgid "All satellites 2 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 2 (DiSEqC 1.2)"
+#~ msgid "Total Memory:"
+#~ msgstr "Mälumaht:"
 
-#~ msgid "All satellites 3 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 3 (DiSEqC 1.2)"
+#~ msgid "Total Swap:"
+#~ msgstr "Saale:"
 
-#~ msgid "All satellites 4 (DiSEqC mode 1.2)"
-#~ msgstr "Kõik satelliidid 4 (DiSEqC 1.2)"
-
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#~ msgid "Channel +/- button mode"
-#~ msgstr "CH +/- nuppude toiming"
-
-#~ msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-#~ msgstr "Bepaal welke tuner de voorkeur heeft voor opnames, als hetzelfde kanaal beschikbaar is voor verschillende tuners."
-
-#, fuzzy
-#~ msgid "Devide"
-#~ msgstr "Seadmed"
-
-#~ msgid "Display"
-#~ msgstr "Display"
-
-#~ msgid "Lamedb"
-#~ msgstr "Lamedb"
-
-#~ msgid "Single transponder"
-#~ msgstr "Üksik transponder"
-
-#~ msgid "TV button mode"
-#~ msgstr "TV nupu toiming"
-
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Uncommitted DiSEqC käsk"
-
-#~ msgid "Video setup"
-#~ msgstr "Video-instellingen"
-
-#~ msgid "Video wizard"
-#~ msgstr "Video-wizard"
-
-#~ msgid "Logs older than the specified no of days will be deleted."
-#~ msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
-
-#~ msgid "Maximum no of days"
-#~ msgstr "Suurim lubatud päevade arv:"
+#~ msgid "Satfinder"
+#~ msgstr "Satelliidiotsija"

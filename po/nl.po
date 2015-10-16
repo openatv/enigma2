@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-23 21:22+0100\n"
-"PO-Revision-Date: 2015-09-24 08:30+0100\n"
+"POT-Creation-Date: 2015-10-08 20:21+0100\n"
+"PO-Revision-Date: 2015-10-09 07:15+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -2608,6 +2608,9 @@ msgstr "Diepte"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "'Descramble & record ECM' geeft de optie om achteraf te decoderen indien het decoderen tijdens de opname faalde. 'Don't descramble, record ECM' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normal' betekent decoderen en geen ECM opnemen."
 
+msgid "Descramble http streams"
+msgstr "Descramble http streams"
+
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -2693,6 +2696,9 @@ msgstr "Animatie uitschakelen"
 
 msgid "Disable Picture in Picture"
 msgstr "Beeld-in-beeld uitschakelen"
+
+msgid "Disable background scanning"
+msgstr "Scannen op de achtergrond uitschakelen"
 
 msgid "Disable move mode"
 msgstr "Verplaatsmodus deactiveren"
@@ -3130,6 +3136,9 @@ msgstr "Schakel niet-verbonden favorietenlijsten in"
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
+msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
+msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen (als de ECM-data in de opname is opgenomen en een geldige smartcard aanwezig is)"
+
 msgid "Encrypted: "
 msgstr "Gecodeerd"
 
@@ -3462,6 +3471,9 @@ msgstr "Favorieten"
 
 msgid "Feeds status:   Stable"
 msgstr "Feeds status:   Stabiel"
+
+msgid "Feeds status:   Unkown"
+msgstr "Feeds status:   Onbekend"
 
 msgid "Feeds status:   Unstable"
 msgstr "Feeds status:   Onstabiel"
@@ -4826,7 +4838,7 @@ msgid "Multi EPG"
 msgstr "Multi-EPG"
 
 msgid "MultiEPG settings"
-msgstr "Mult-iEPG instellingen"
+msgstr "Multi-EPG instellingen"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -9835,6 +9847,9 @@ msgstr "Als het beeld een verhouding heeft van 16:9 kan het beeld worden uitgere
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Als het beeld een verhouding heeft van 4:3 kan het beeld worden uitgerekt of geschaald."
 
+msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
+msgstr "Als uw %s %s op een kanaal is afgestemd, wordt normaal gesproken de transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker bent van wat u doet. "
+
 #, python-format
 msgid ""
 "When you perform a factory reset, you will lose ALL your configuration data\n"
@@ -11530,17 +11545,11 @@ msgstr "zapte"
 #~ msgid "Delete..."
 #~ msgstr "Wissen..."
 
-#~ msgid "Descramble http streams"
-#~ msgstr "Descramble http streams"
-
 #~ msgid "Devide"
 #~ msgstr "Verdeel"
 
 #~ msgid "Dialing:"
 #~ msgstr "Bellen:"
-
-#~ msgid "Disable background scanning"
-#~ msgstr "Scannen op de achtergrond uitschakelen"
 
 #~ msgid "Disconnect"
 #~ msgstr "Verbreken"
@@ -11559,9 +11568,6 @@ msgstr "zapte"
 
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
-
-#~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-#~ msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen (als de ECM-data in de opname is opgenomen en een geldige smartcard aanwezig is)"
 
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
@@ -11767,9 +11773,6 @@ msgstr "zapte"
 
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Indien geactiveerd worden de regeleindes van de teletekst ondertitels verwijderd."
-
-#~ msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
-#~ msgstr "Als uw %s %s op een kanaal is afgestemd, wordt normaal gesproken de transponder gescand op veranderingen. Schakel dit alleen uit, als u zeker bent van wat u doet. "
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "U kunt de telnetserver uitschakelen en ssh gebruiken om in te loggen."
