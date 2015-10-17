@@ -180,7 +180,6 @@ class ButtonSetup(Screen):
 		self['description'] = Label(_('On your remote, click on the button you want to change'))
 		self.session = session
 		self.setTitle(_("Button setup"))
-		self["key_red"] = Button(_("Exit"))
 		self.list = []
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in ButtonSetupKeys:
