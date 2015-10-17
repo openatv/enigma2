@@ -20,7 +20,7 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template V1.6.7 28.09.2015-->
+<!-- template V1.6.8 17.10.2015-->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText"></convert>
@@ -315,12 +315,12 @@
 	</screen>
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="400,240">
-		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="400,38" font="FdLcD;38" zposition="0" halign="center" valign="center" transparent="1" >
+		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="400,70" font="FdLcD;70" zposition="0" halign="center" valign="center" transparent="1" >
 			<convert type="ProgressToText">InPercent</convert>
 		</widget>
-		<widget source="parent.summary_job_progress" render="Progress" position="0,45" size="400,30" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_name" render="Label" position="0,80" size="400,60" font="FdLcD;26" halign="left" />
-		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" />
+		<widget source="parent.summary_job_progress" render="Progress" position="0,90" size="400,40" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_name" render="Label" position="0,140" size="400,100" font="FdLcD;28" halign="left" valign="center" />
+<!-- 		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" /> -->
 	</screen>
 
 	<screen name="EventView_summary" position="0,0" size="400,240">
