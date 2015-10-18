@@ -27,6 +27,7 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 
 		self["ok"] = Button(_("OK"))
 		self["cancel"] = Button(_("Cancel"))
+		self.setTitle(_("Video clipping setup"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
