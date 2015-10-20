@@ -691,7 +691,7 @@ class GeneralMenu(Screen):
 					_("MediaPortal"),
 					_("Picture player"),
 					_("YouTube TV Settings")]:
-					print "Skip =>", l.name
+					print "Skip menu =>", l[0]
 				else:
 					list.append(tuple(menuitem))
 			# This is little HACK to show AutoTimer in TV section, as We do not want to clone AutTimer git and reqwrite it to show in our section
