@@ -1716,6 +1716,7 @@ class UpdatePlugin(Screen):
 			elif config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and config.plugins.MyMetrixLiteOther.FHDenabled.value:
 				from Plugins.Extensions.MyMetrixLite.MainSettingsView import MainSettingsView
 				MainSettingsView(None).getFHDiconRefresh()
+				self.restoreMetrixHDCallback()
 			else:
 				self.restoreMetrixHDCallback()
 		except:
