@@ -27,91 +27,6 @@ from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
 
-class GeneralMenuList(MenuList):
-	attribMap = {
-		# Plain ints
-		"itemHeight": ("int", "itemHeight"),
-		# Fonts
-		"font": ("font", "fontName", "fontSize"),
-		# Colors
-		"offColor": ("color", "offColor"),
-		"enabledColor": ("color", "enabledColor"),
-		"selectedColor": ("color", "selectedColor"),
-	}
-
-	def __init__(self, list, enableWrapAround=False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.selectedColor = 0x00ffffff
-		self.enabledColor = 0x00dddddd
-		self.offColor = 0x00777777
-		self.fontName = "Regular"
-		self.fontSize = 23
-		self.itemHeight = 76
-
-	def applySkin(self, desktop, screen):
-		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
-		rc = super(GeneralMenuList, self).applySkin(desktop, screen)
-
-		self.l.setFont(0, gFont(self.fontName, self.fontSize))
-		self.l.setItemHeight(self.itemHeight)
-
-		return rc
-
-def GeneralMenuEntryComponent(entrys, menuList, enableEntry, selectedEntry, onLeft=False, onRight=False):
-	res = [entrys]
-	entry_of = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_off.png'))
-	entry_en = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_en.png'))
-	entry_on = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_280x76_on.png'))
-	entry_of_left = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_al_off.png'))
-	entry_en_left = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_al_en.png'))
-	entry_on_left = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_al_on.png'))
-	entry_of_right = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_ar_off.png'))
-	entry_en_right = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_ar_en.png'))
-	entry_on_right = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_ar_on.png'))
-
-	entry_pixmaps = (
-		(entry_of_left, entry_of, entry_of_right),  # Not selected
-		(entry_en_left, entry_en, entry_en_right),  # Selected, enabled != -1
-		(entry_on_left, entry_on, entry_on_right),  # Selected, enabled == -1
-	)
-	colors = (
-		menuList.offColor,  # Not selected
-		menuList.enabledColor,  # Selected, enabled != -1
-		menuList.selectedColor,  # Selected, enabled == -1
-	)
-
-	def sel3(first, second):
-		return 0 if first else 2 if second else 1
-
-	def select_pixmap(sel, enabled, left, right):
-		return entry_pixmaps[sel3(sel, enabled)][sel3(left, right)]
-
-	width = 250
-	real_width = 100
-	x_off = 15
-
-	align = (RT_HALIGN_CENTER if width > real_width else RT_HALIGN_LEFT) | RT_VALIGN_CENTER
-
-	x = x_off
-	for count, entry in enumerate(entrys):
-		if selectedEntry != count:
-			pixmap = select_pixmap(True, False, count == 0 and onLeft, count == 4 and onRight)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, menuList.itemHeight), png=pixmap))
-		x += width
-
-	x = x_off
-	for count, entry in enumerate(entrys):
-		if selectedEntry == count:
-			pixmap = select_pixmap(False, enableEntry == -1, count == 0 and onLeft, count == 4 and onRight)
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x - x_off, 0), size=(width + x_off * 2, menuList.itemHeight), png=pixmap))
-
-		color = colors[sel3(selectedEntry != count, enableEntry == -1)]
-
-		res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, menuList.itemHeight), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
-		x += width
-	return res
-
-
 class GeneralSubMenuList(MenuList):
 	attribMap = {
 		# Plain ints
@@ -147,14 +62,11 @@ def GeneralSubMenuEntryComponent(entry, subMenulist, enableEntry=False, selected
 	x_off = 15
 	width = 250
 	res = [entry]
-	entry_sl = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'gmenu/gmenu_250x50_on.png'))
 	real_width = 100
 
 	align = (RT_HALIGN_CENTER if width > real_width else RT_HALIGN_LEFT) | RT_VALIGN_CENTER
 	color = subMenulist.selectedColor if selectedEntry else subMenulist.enabledColor if enableEntry else subMenulist.offColor
 
-	if selectedEntry:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, subMenulist.itemHeight), png=entry_sl))
 	res.append(MultiContentEntryText(pos=(x + x_off, 0), size=(width - x_off * 2, subMenulist.itemHeight), font=0, text=entry.encode('utf-8'), flags=align, color=color, color_sel=color))
 	return res
 
@@ -183,75 +95,63 @@ class GeneralMenu(Screen):
 	skin = '''
 		<screen position="0,150" size="1280,570" flags="wfNoBorder" name="GeneralMenu">
 			<widget position="0,10" size="1280,180" source="id_mainmenu_ext" render="Micon" path="gmenu/" alphatest="on" zPosition="2" transparent="1" />
-			<widget position="0,210" size="1280,76" name="list" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
 
-			<widget position="15,290" size="250,250" name="list_sub_0" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-			<widget position="265,290" size="250,250" name="list_sub_1" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-			<widget position="515,290" size="250,250" name="list_sub_2" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-			<widget position="765,290" size="250,250" name="list_sub_3" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
-			<widget position="1015,290" size="250,250" name="list_sub_4" transparent="1"  backgroundColorSelected="#41000000" enableWrapAround="1"/>
+			<widget position="122,190" size="35,10" name="up_sub_0" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="372,190" size="35,10" name="up_sub_1" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="622,190" size="35,10" name="up_sub_2" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="872,190" size="35,10" name="up_sub_3" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="1122,190" size="35,10" name="up_sub_4" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
 
-			<widget position="122,280" size="35,10" name="up_sub_0" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="372,280" size="35,10" name="up_sub_1" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="622,280" size="35,10" name="up_sub_2" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="872,280" size="35,10" name="up_sub_3" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
-			<widget position="1122,290" size="35,10" name="up_sub_4" pixmap="gmenu/gmenu_up.png" alphatest="on" zPosition="2"/>
+			<widget position="15,200" size="250,300" name="list_sub_0" transparent="1" enableWrapAround="1"/>
+			<widget position="265,200" size="250,300" name="list_sub_1" transparent="1" enableWrapAround="1"/>
+			<widget position="515,200" size="250,300" name="list_sub_2" transparent="1" enableWrapAround="1"/>
+			<widget position="765,200" size="250,300" name="list_sub_3" transparent="1" enableWrapAround="1"/>
+			<widget position="1015,200" size="250,300" name="list_sub_4" transparent="1" enableWrapAround="1"/>
 
-			<widget position="122,540" size="35,10" name="down_sub_0" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="372,540" size="35,10" name="down_sub_1" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="622,540" size="35,10" name="down_sub_2" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="872,540" size="35,10" name="down_sub_3" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
-			<widget position="1122,540" size="35,10" name="down_sub_4" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="122,500" size="35,10" name="down_sub_0" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="372,500" size="35,10" name="down_sub_1" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="622,500" size="35,10" name="down_sub_2" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="872,500" size="35,10" name="down_sub_3" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
+			<widget position="1122,500" size="35,10" name="down_sub_4" pixmap="gmenu/gmenu_down.png" alphatest="on" zPosition="2"/>
 		</screen>'''
 
 	ALLOW_SUSPEND = True
+
+	COLUMNS = 5
+	ROWS = 6
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
 		self.thread = None
-		self.startEntry = 1
-		self.selectedEntry = 3
-		self.selectedEntryID = 'id_mainmenu_tv'
+		self.selectedColumn = 2
+		self.selectedColumnID = 'id_mainmenu_tv'
 
-		if SystemInfo["IPTVSTB"]:
-			tvEntryTitle = 'IPTV Channels'
-		else:
-			tvEntryTitle = 'TV / RADIO'
-
-		self.entrys = [
-			(_('Plugins'), 'id_mainmenu_plugins', boundFunction(self.openDialog, PluginBrowser)),
-			(_('Photos'), 'id_mainmenu_photos', boundFunction(self.openPicturePlayer)),
-			(_('Music'), 'id_mainmenu_music', boundFunction(self.openMediaPlayer)),
-			(_(tvEntryTitle), 'id_mainmenu_tv', boundFunction(self.openChannelSelection)),
-			(_('Videos'), 'id_mainmenu_movies', boundFunction(self.openRecordings)),
-			(_('Sources'), 'id_mainmenu_source', boundFunction(self.openMediaScanner)),
-			(_('Setup'), 'id_mainmenu_tasks', boundFunction(self.openGeneralSetup)),
+		# Hardcoded to 5 columns
+		self.columns = [
+			(_('Plugins'), 'id_mainmenu_plugins'),
+			(_('Media'), 'id_mainmenu_media'),
+			(_('Channels'), 'id_mainmenu_tv'),
+			(_('Internet'), 'id_mainmenu_internet'),
+			(_('Tasks'), 'id_mainmenu_tasks'),
 		]
-
-		self.startSubEntry = {}
-		# self.selectedSubEntry == -1 means that the top menu
-		# bar item is selected,
-		# selectedSubEntry >= 0 means that a dropdown menu item
-		# is selected
-		self.selectedSubEntry = {}
-		for key in [k[1] for k in self.entrys]:
-			self.startSubEntry[key] = 0
-			self.selectedSubEntry[key] = -1
-
-		self.subentrys = self.getSubEntrys()
 		self.mainmenu_ext = {
 			'id_mainmenu_plugins': 'gmenu_plugin',
-			'id_mainmenu_photos': 'gmenu_photo',
-			'id_mainmenu_music': 'gmenu_music',
+			'id_mainmenu_media': 'gmenu_media',
 			'id_mainmenu_tv': 'gmenu_tv',
-			'id_mainmenu_movies': 'gmenu_movie',
-			'id_mainmenu_source': 'gmenu_source',
+			'id_mainmenu_internet': 'gmenu_internet',
 			'id_mainmenu_tasks': 'gmenu_task',
 		}
+
+		self.startRow = {}
+		self.selectedRow = {}
+		for key in [k[1] for k in self.columns]:
+			self.startRow[key] = 0
+			self.selectedRow[key] = 0
+
+		self.subentrys = self.getSubEntrys()
 		self['id_mainmenu_ext'] = StaticText()
-		self['list'] = GeneralMenuList([])
-		for i in range(5):
+		for i in range(self.COLUMNS):
 			self['list_sub_%d' % i] = GeneralSubMenuList([])
 			self['up_sub_%d' % i] = Pixmap()
 			self['down_sub_%d' % i] = Pixmap()
@@ -271,102 +171,63 @@ class GeneralMenu(Screen):
 			'rightRepeated': self.right
 		}, -2)
 
-		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-		hotplugNotifier.append(self.hotplugCB)
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onShow.append(self.__onShow)
-		self.onClose.append(self.__onClose)
-
-	def __onClose(self):
-		print "__onClose"
-		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-		hotplugNotifier.remove(self.hotplugCB)
 
 	def __onFirstExecBegin(self):
-		print "__onFirstExecBegin"
 		self.buildGeneralMenu()
 
 	def __onShow(self):
-		print "__onShow"
 		self.buildGeneralMenu()
 
 	def left(self):
-		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		# print "ID---------------------------------"
-		# print self.selectedEntryID
-		# print "ID---------------------------------"
-		self.selectedEntry -= 1
-		if self.selectedEntry == -1:
-			self.selectedEntry = 0
-			self.startEntry = 0
-			return
-		if self.selectedEntry == 0:
-			self.startEntry = 0
+		selectedRow = self.selectedRow[self.selectedColumnID]
+		self.selectedColumn = (self.selectedColumn - 1) % self.COLUMNS
+		self.selectedColumnID = self.columns[self.selectedColumn][1]
+		if selectedRow > len(self.subentrys[self.selectedColumnID]) - 1:
+			self.selectedRow[self.selectedColumnID] = len(self.subentrys[self.selectedColumnID]) - 1
 		else:
-			self.startEntry = 1
-		self.selectedEntryID = self.entrys[self.selectedEntry][1]
-		if selectedSubEntry > len(self.subentrys[self.selectedEntryID]) - 1:
-			self.selectedSubEntry[self.selectedEntryID] = len(self.subentrys[self.selectedEntryID]) - 1
+			self.selectedRow[self.selectedColumnID] = selectedRow
+		if self.selectedRow[self.selectedColumnID] > (self.ROWS - 1):
+			self.startRow[self.selectedColumnID] = self.selectedRow[self.selectedColumnID] - (self.ROWS - 1)
 		else:
-			self.selectedSubEntry[self.selectedEntryID] = selectedSubEntry
-		if self.selectedSubEntry[self.selectedEntryID] > 4:
-			self.startSubEntry[self.selectedEntryID] = self.selectedSubEntry[self.selectedEntryID] - 4
-		else:
-			self.startSubEntry[self.selectedEntryID] = 0
+			self.startRow[self.selectedColumnID] = 0
 		self.buildGeneralMenu()
 
 	def right(self):
-		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		# print "ID---------------------------------"
-		# print self.selectedEntryID
-		# print "ID---------------------------------"
-		self.selectedEntry += 1
-		if self.selectedEntry == len(self.entrys):
-			self.selectedEntry = len(self.entrys) - 1
-			self.startEntry = 2
-			return
-		if self.selectedEntry == 6:
-			self.startEntry = 2
+		selectedRow = self.selectedRow[self.selectedColumnID]
+		self.selectedColumn = (self.selectedColumn + 1) % self.COLUMNS
+		self.selectedColumnID = self.columns[self.selectedColumn][1]
+		if selectedRow > len(self.subentrys[self.selectedColumnID]) - 1:
+			self.selectedRow[self.selectedColumnID] = len(self.subentrys[self.selectedColumnID]) - 1
 		else:
-			self.startEntry = 1
-		self.selectedEntryID = self.entrys[self.selectedEntry][1]
-		if selectedSubEntry > len(self.subentrys[self.selectedEntryID]) - 1:
-			self.selectedSubEntry[self.selectedEntryID] = len(self.subentrys[self.selectedEntryID]) - 1
+			self.selectedRow[self.selectedColumnID] = selectedRow
+		if self.selectedRow[self.selectedColumnID] > (self.ROWS - 1):
+			self.startRow[self.selectedColumnID] = self.selectedRow[self.selectedColumnID] - (self.ROWS - 1)
 		else:
-			self.selectedSubEntry[self.selectedEntryID] = selectedSubEntry
-		if self.selectedSubEntry[self.selectedEntryID] > 4:
-			self.startSubEntry[self.selectedEntryID] = self.selectedSubEntry[self.selectedEntryID] - 4
-		else:
-			self.startSubEntry[self.selectedEntryID] = 0
+			self.startRow[self.selectedColumnID] = 0
 		self.buildGeneralMenu()
 
 	def up(self):
-		self.selectedSubEntry[self.selectedEntryID] -= 1
-		if self.selectedSubEntry[self.selectedEntryID] < -1:
-			self.selectedSubEntry[self.selectedEntryID] = len(self.subentrys[self.selectedEntryID]) - 1
-		if self.selectedSubEntry[self.selectedEntryID] > 4:
-			self.startSubEntry[self.selectedEntryID] = self.selectedSubEntry[self.selectedEntryID] - 4
+		self.selectedRow[self.selectedColumnID] = (self.selectedRow[self.selectedColumnID] - 1) % len(self.subentrys[self.selectedColumnID])
+		if self.selectedRow[self.selectedColumnID] > (self.ROWS - 1):
+			self.startRow[self.selectedColumnID] = self.selectedRow[self.selectedColumnID] - (self.ROWS - 1)
 		else:
-			self.startSubEntry[self.selectedEntryID] = 0
+			self.startRow[self.selectedColumnID] = 0
 		self.buildGeneralMenu()
 
 	def down(self):
-		self.selectedSubEntry[self.selectedEntryID] += 1
-		if self.selectedSubEntry[self.selectedEntryID] >= len(self.subentrys[self.selectedEntryID]):
-			self.selectedSubEntry[self.selectedEntryID] = -1
-		if self.selectedSubEntry[self.selectedEntryID] > 4:
-			self.startSubEntry[self.selectedEntryID] = self.selectedSubEntry[self.selectedEntryID] - 4
+		self.selectedRow[self.selectedColumnID] = (self.selectedRow[self.selectedColumnID] + 1) % len(self.subentrys[self.selectedColumnID])
+		if self.selectedRow[self.selectedColumnID] > (self.ROWS - 1):
+			self.startRow[self.selectedColumnID] = self.selectedRow[self.selectedColumnID] - (self.ROWS - 1)
 		else:
-			self.startSubEntry[self.selectedEntryID] = 0
+			self.startRow[self.selectedColumnID] = 0
 		self.buildGeneralMenu()
 
 	def keyOK(self):
-		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		if selectedSubEntry == -1:
-			self.entrys[self.selectedEntry][2]()
-		if selectedSubEntry > -1:
-			if selectedSubEntry < len(self.subentrys[self.selectedEntryID]):
-				self.subentrys[self.selectedEntryID][selectedSubEntry][2]()
+		selectedRow = self.selectedRow[self.selectedColumnID]
+		if selectedRow < len(self.subentrys[self.selectedColumnID]):
+			self.subentrys[self.selectedColumnID][selectedRow][2]()
 
 	def hideMenuIfServiceRunning(self):
 		self.close()
@@ -383,98 +244,79 @@ class GeneralMenu(Screen):
 		self.session.openWithCallback(self.menuClosed, dialog)
 
 	def buildGeneralMenu(self):
-		list = []
 		extlist = []
-		entrys = []
-		self.selectedEntryID = self.entrys[self.selectedEntry][1]
-		selectedSubEntry = self.selectedSubEntry[self.selectedEntryID]
-		for count, x in enumerate(self.entrys):
-			if count >= self.startEntry and count < self.startEntry + 5:
-				entrys.append(x[0])
-				sublist = []
+		columns = []
+		self.selectedColumnID = self.columns[self.selectedColumn][1]
+		selectedRow = self.selectedRow[self.selectedColumnID]
+		for count, x in enumerate(self.columns):
+			columns.append(x[0])
+			sublist = []
 
-				widgetPos = str(count - self.startEntry)
-				sublistWidget = 'list_sub_' + widgetPos
-				upWidget = 'up_sub_' + widgetPos
-				downWidget = 'down_sub_' + widgetPos
+			widgetPos = str(count)
+			sublistWidget = 'list_sub_' + widgetPos
+			upWidget = 'up_sub_' + widgetPos
+			downWidget = 'down_sub_' + widgetPos
 
-				for subcount, y in enumerate(self.subentrys[x[1]]):
-					if subcount >= self.startSubEntry[x[1]] and subcount < self.startSubEntry[x[1]] + 5:
-						if count == self.selectedEntry:
-							sublist.append(GeneralSubMenuEntryComponent(y[0], self[sublistWidget], enableEntry=True, selectedEntry=selectedSubEntry == subcount))
-							# self[sublistWidget].show() ## for show only current sublist
-						else:
-							sublist.append(GeneralSubMenuEntryComponent(y[0], self[sublistWidget], enableEntry=False, selectedEntry=False))
-							# self[sublistWidget].hide() ## for show only current sublist
+			for subcount, y in enumerate(self.subentrys[x[1]]):
+				if subcount >= self.startRow[x[1]] and subcount < self.startRow[x[1]] + self.ROWS:
+					if count == self.selectedColumn:
+						sublist.append(GeneralSubMenuEntryComponent(y[0], self[sublistWidget], enableEntry=True, selectedEntry=selectedRow == subcount))
+						# self[sublistWidget].show() ## for show only current sublist
+					else:
+						sublist.append(GeneralSubMenuEntryComponent(y[0], self[sublistWidget], enableEntry=False, selectedEntry=False))
+						# self[sublistWidget].hide() ## for show only current sublist
 
-				self[sublistWidget].setList(sublist)
+			self[sublistWidget].setList(sublist)
 
-				if count == self.selectedEntry and selectedSubEntry > -1 and len(sublist) > 0:
-					self[sublistWidget].selectionEnabled(1)
-					self[sublistWidget].moveToIndex(selectedSubEntry - self.startSubEntry[x[1]])
-					# print '[LINE MENU] start sub entry:', str(self.startSubEntry[x[1]])
-					# print '[LINE MENU] select sub entry:', str(selectedSubEntry - self.startSubEntry[x[1]])
-				else:
-					self[sublistWidget].selectionEnabled(0)
-				if self.startSubEntry[x[1]] > 0:
-					self[upWidget].show()
-				else:
-					self[upWidget].hide()
-				if len(self.subentrys[x[1]]) > 5 and self.selectedSubEntry[x[1]] != len(self.subentrys[x[1]]) - 1:
-					self[downWidget].show()
-				else:
-					self[downWidget].hide()
-
-		onLeft = self.startEntry > 0
-		onRight = self.startEntry + 5 < len(self.entrys)
-		list.append(GeneralMenuEntryComponent(entrys, self['list'], selectedSubEntry, self.selectedEntry - self.startEntry, onLeft, onRight))
-		self['list'].setList(list)
-		self['id_mainmenu_ext'].setText(self.mainmenu_ext[self.selectedEntryID])
-		if selectedSubEntry > -1:
-			self['list'].selectionEnabled(0)
-			self.summaries.setTextTitle(self.entrys[self.selectedEntry][0])
-			if selectedSubEntry < len(self.subentrys[self.selectedEntryID]):
-				self.summaries.setTextMenu(self.subentrys[self.selectedEntryID][selectedSubEntry][0])
+			if count == self.selectedColumn and selectedRow > -1 and len(sublist) > 0:
+				self[sublistWidget].selectionEnabled(1)
+				self[sublistWidget].moveToIndex(selectedRow - self.startRow[x[1]])
 			else:
-				self.summaries.setTextMenu('')
-		elif selectedSubEntry == -1:
-			self['list'].selectionEnabled(1)
-			self.summaries.setTextTitle('')
-			self.summaries.setTextMenu(self.entrys[self.selectedEntry][0])
+				self[sublistWidget].selectionEnabled(0)
+			if self.startRow[x[1]] > 0:
+				self[upWidget].show()
+			else:
+				self[upWidget].hide()
+			if len(self.subentrys[x[1]]) > self.ROWS and self.selectedRow[x[1]] != len(self.subentrys[x[1]]) - 1:
+				self[downWidget].show()
+			else:
+				self[downWidget].hide()
+
+		self['id_mainmenu_ext'].setText(self.mainmenu_ext[self.selectedColumnID])
+		self.summaries.setTextTitle(self.columns[self.selectedColumn][0])
+		if selectedRow < len(self.subentrys[self.selectedColumnID]):
+			self.summaries.setTextMenu(self.subentrys[self.selectedColumnID][selectedRow][0])
 		else:
-			self.summaries.setTextTitle('')
 			self.summaries.setTextMenu('')
 
 	def getSubEntrys(self):
 		return {
-			'id_mainmenu_plugins': self.getSubEntry(None, []),
-
-			'id_mainmenu_photos': self.getSubEntry('id_mainmenu_photos', [
-				# (_('Albums'),'mainmenu_photos_albums',boundFunction(self.openPicturePlayerAlbum),30),
-				# (_('Slideshow'),'mainmenu_photos_playlists',boundFunction(self.openPicturePlayerSlideshow), 40),
-				# (_('Thumbnails'),'mainmenu_photos_bouquets',boundFunction(self.openPicturePlayerThumb),50),
-				(_('Flickr'), 'mainmenu_photos_playlists', boundFunction(self.openFlickr), 60),
-				# (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openPicturePlayerSetup), 100),
+			'id_mainmenu_plugins': self.getSubEntry(None, [
+				(_('Plugins'), 'mainmenu_plugins_browser', boundFunction(self.openDialog, PluginBrowser), -10),
 			]),
 
-			'id_mainmenu_music': self.getSubEntry('id_mainmenu_music', []),
+			'id_mainmenu_media': self.getSubEntry('mainmenu', [
+				(_('Recordings'), 'mainmenu_tv_recorded', boundFunction(self.openRecordings), 0),
+				(_('Music'), 'mainmenu_music', boundFunction(self.openMediaPlayer), 1),
+				(_('Photos'), 'mainmenu_photos', boundFunction(self.openPicturePlayer), 2),
+			]),
 
 			'id_mainmenu_tv': self.getSubEntry('id_mainmenu_tv', [
+				(_('Channels'), 'mainmenu_tv_channels', boundFunction(self.openChannelSelection), 0),
+				(_('Program Guide'), 'mainmenu_tv_timer', boundFunction(self.openProgramGuide), 10),
 				(_('History'), 'mainmenu_tv_zaphistory', boundFunction(self.openHistoryChannelSelection), 50),
 				(_('Timers'), 'mainmenu_tv_timer', boundFunction(self.openDialog, TimerEditList), 60),
-				(_('Program Guide'), 'mainmenu_tv_timer', boundFunction(self.openProgramGuide), 70),
 			]),
 
-			'id_mainmenu_movies': self.getSubEntry('id_mainmenu_movies', [
-				(_('Recordings'), 'mainmenu_tv_recorded', boundFunction(self.openRecordings), 50),
-			]),
-
-			'id_mainmenu_source': self.getSubEntry('id_mainmenu_source', self.getScart(None, [])),
+			'id_mainmenu_internet': self.getSubEntry('id_mainmenu_music', self.getSubEntry('id_mainmenu_photos', self.getSubEntry('id_mainmenu_movies', [
+				(_('Flickr'), 'mainmenu_photos_playlists', boundFunction(self.openFlickr), 60),
+			]))),
 
 			'id_mainmenu_tasks': self.getSubEntry('id_mainmenu_tasks', [
+				(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 0),
+				(_('File Manager'), 'mainmenu_tasks_filemanager', boundFunction(self.openFileManager), 10),
 				(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'shutdown', _('Power')), 20),
 				(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'information', _('Information')), 30),
-				# (_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 30),
 			]),
 		}
 
@@ -485,37 +327,11 @@ class GeneralMenu(Screen):
 	def notReadyMessage(self):
 		self.session.open(MessageBox, _('This part is not ready yet!'), MessageBox.TYPE_INFO)
 
-	def openFileManager(self, path):
+	def doNothingAtAll(self):
+		pass
+
+	def openFileManager(self, path=None):
 		self.session.open(FileCommanderScreen, path)
-
-	# sources
-	def getScart(self, menuID, list):
-		list = []
-		i = 0
-		if menuID is None:
-			from Components.Harddisk import harddiskmanager
-			for r in harddiskmanager.getMountedPartitions(onlyhotplug=False):
-				menuitem = [r.tabbedShortDescription().split('\t')[0], r.mountpoint, boundFunction(self.openFileManager, r.mountpoint), i + 10]
-				if menuitem[0] in ((_("Internal Flash")), _(".message")):  # , _("DLNA")):
-					print "[MENU] Skip source:", menuitem[0]
-				else:
-					list.append(tuple(menuitem))
-				"""
-				deviceList = [ name for name in os.listdir("/media/upnp/") if os.path.isdir(os.path.join("/media/upnp/", name)) ]
-				deviceList.sort()
-				for d in deviceList:
-					if d[0] in ('.', '_'): continue
-					menuitem = [(_(d)), d, boundFunction(self.openFileManager, "/media/upnp/"+d+"/"), i+10]
-					list.append(tuple(menuitem))
-				"""
-		# if SystemInfo.get('ScartMenu', True):
-		# 	     menuitem = [(_('Scart')), 'mainmenu_source_scart', boundFunction(self.openScart),1]
-		# 	     list.append(tuple(menuitem))
-
-		return list
-
-	def openScart(self):
-		self.session.scart.VCRSbChanged(3)
 
 	# tv
 	def openChannelSelection(self):
@@ -672,9 +488,10 @@ class GeneralMenu(Screen):
 					_("Software management"),
 					_("MediaPortal"),
 					_("AutoTimer"),
+					_("Media Player"),
 					_("Picture player"),
 					_("YouTube TV Settings")]:
-					print "Skip =>", l.name
+					print "Skip plugin =>", l.name
 				else:
 					list.append(tuple(menuitem))
 		else:
@@ -689,6 +506,7 @@ class GeneralMenu(Screen):
 					_("OpenWebif"),
 					_("Software management"),
 					_("MediaPortal"),
+					_("Media Player"),
 					_("Picture player"),
 					_("YouTube TV Settings")]:
 					print "Skip menu =>", l[0]
@@ -725,8 +543,3 @@ class GeneralMenu(Screen):
 
 	def createSummary(self):
 		return GeneralMenuSummary
-
-	def hotplugCB(self, dev, media_state):
-		print "hotplugCB"
-		self.subentrys = self.getSubEntrys()
-		self.buildGeneralMenu()
