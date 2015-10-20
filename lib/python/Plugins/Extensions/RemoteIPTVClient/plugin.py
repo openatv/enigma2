@@ -62,10 +62,9 @@ class RemoteTunerScanner(Screen):
 		
 		statusTxt =  _("Here is a list of detected %s IPTV servers. You can choose one to connect Your %s %s to retrive channel list and watch them by network, without SAT, CABLE or TERRESTRIAL signal") % (getMachineBrand(), getMachineBrand(), getMachineName())
 		self["text"] = Label(statusTxt)
-		
+
 		self.updateList()
-		self.stopService()
-		
+
 		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
 		{
 			'ok': self.save,
@@ -124,12 +123,7 @@ class RemoteTunerScanner(Screen):
 				self.session.openWithCallback(self.Red, RemoteTunerServerEditor, iptable, user, password, 21, False)
 			else:
 				print "[RemoteTunerScanner] Still searching for the IP servers or did not find any"
-	
-	def stopService(self):
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
-	        self.session.nav.stopService()
-		os_system('/usr/bin/showiframe /usr/share/enigma2/black.mvi')
-		
+
 	def updateList(self):
 		print "[RemoteTunerScanner] updateList"
 		self.searchinglist = []
