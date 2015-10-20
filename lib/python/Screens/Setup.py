@@ -157,7 +157,7 @@ class Setup(ConfigListScreen, Screen):
 		self.setTitle(_(self.setup_title))
 
 	def showHideFootnote(self):
-		if self["config"].getCurrent()[0].endswith( "*"):
+		if self["config"].getCurrent()[0].endswith("*"):
 			self['footnote'].show()
 		else:
 			self['footnote'].hide()
