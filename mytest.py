@@ -41,7 +41,7 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigSubsection
 InitFallbackFiles()
 
 profile("config.misc")
@@ -638,6 +638,21 @@ Components.RecordingConfig.InitRecordingConfig()
 profile("UsageConfig")
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
+
+# Clean up after IceTV plugin has been removed. This is needed to restore normal FTA EPG.
+if not os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/IceTV")):
+	config.plugins.icetv = ConfigSubsection()
+	config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
+	if config.plugins.icetv.enable_epg.value:
+		config.usage.show_eit_nownext.value = True
+		config.usage.show_eit_nownext.save()
+		config.epg.eit.value = True
+		config.epg.save()
+		config.plugins.icetv = ConfigSubsection()
+		config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
+		config.plugins.icetv.enable_epg.value = False
+		config.plugins.icetv.save()
+		configfile.save()
 
 # profile("Init:DebugLogCheck")
 # import Screens.LogManager
