@@ -22,6 +22,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 	m_record_ecm = false;
 	m_descramble = true;
 	m_is_stream_client = isstreamclient;
+	m_is_pvr = !m_ref.path.empty() && !m_is_stream_client;
 	m_tuned = 0;
 	m_target_fd = -1;
 	m_error = 0;
