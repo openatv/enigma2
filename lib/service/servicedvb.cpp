@@ -1343,46 +1343,9 @@ RESULT eDVBServicePlay::start()
 	bool scrambled = true;
 	int packetsize = 188;
 	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
-	ePtr<eDVBResourceManager> res_mgr;
 
-	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
-	std::string remote_fallback_url = eConfigManager::getConfigValue("config.usage.remote_fallback");
-
-	if(!m_is_stream && !m_is_pvr &&
-			remote_fallback_enabled &&
-			(remote_fallback_url.length() > 0) &&
-			!eDVBResourceManager::getInstance(res_mgr))
-	{
-		eDVBChannelID chid, chid_ignore;
-		int system;
-
-		service.getChannelID(chid);
-		eServiceReferenceDVB().getChannelID(chid_ignore);
-
-		if(!res_mgr->canAllocateChannel(chid, chid_ignore, system))
-		{
-			size_t index;
-
-			while((index = remote_fallback_url.find(':')) != std::string::npos)
-			{
-				remote_fallback_url.erase(index, 1);
-				remote_fallback_url.insert(index, "%3a");
-			}
-
-			std::ostringstream remote_service_ref;
-			remote_service_ref << std::hex << service.type << ":" << service.flags << ":" << 
-					service.getData(0) << ":" << service.getData(1) << ":" << service.getData(2) << ":0:0:0:0:0:" <<
-					remote_fallback_url << "/" <<
-					service.type << "%3a" << service.flags;
-			for(index = 0; index < 8; index++)
-					remote_service_ref << "%3a" << service.getData(index);
-
-			service = eServiceReferenceDVB(remote_service_ref.str());
-
-			m_is_stream = true;
-			m_is_pvr = false;
-		}
-	}
+	if(tryFallbackTuner(/*REF*/service, /*REF*/m_is_stream, m_is_pvr, /*simulate*/false))
+		eDebug("ServicePlay: fallback tuner selected");
 
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using
 		   two (one for decoding, one for data source), as we must be prepared
@@ -2318,6 +2281,53 @@ ePyObject eDVBServicePlay::getRassInteractiveMask()
 	if (m_rds_decoder)
 		return m_rds_decoder->getRassPictureMask();
 	Py_RETURN_NONE;
+}
+
+bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_stream, bool is_pvr, bool simulate)
+{
+	ePtr<eDVBResourceManager> res_mgr;
+	std::ostringstream remote_service_ref;
+	eDVBChannelID chid, chid_ignore;
+	int system;
+	size_t index;
+
+	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
+	std::string remote_fallback_url = eConfigManager::getConfigValue("config.usage.remote_fallback");
+
+	if(is_stream || is_pvr || simulate ||
+			!remote_fallback_enabled || (remote_fallback_url.length() == 0) ||
+			eDVBResourceManager::getInstance(res_mgr))
+		return(false);
+
+	service.getChannelID(chid); 						// this sets chid
+	eServiceReferenceDVB().getChannelID(chid_ignore);	// this sets chid_ignore
+
+	if(res_mgr->canAllocateChannel(chid, chid_ignore, system))	// this sets system
+		return(false);
+
+	while((index = remote_fallback_url.find(':')) != std::string::npos)
+	{
+		remote_fallback_url.erase(index, 1);
+		remote_fallback_url.insert(index, "%3a");
+	}
+
+	remote_service_ref << std::hex << service.type << ":" << service.flags << ":";
+
+	for(index = 0; index < 8; index++)
+		remote_service_ref << std::hex << service.getData(index) << ":";
+
+	remote_service_ref << std::hex << remote_fallback_url << "/" << service.type << "%3a" << service.flags;
+
+	for(index = 0; index < 8; index++)
+		remote_service_ref << std::hex << "%3a" << service.getData(index);
+
+	eDebug("Fallback tuner: redirected unavailable service to: %s\n", remote_service_ref.str().c_str());
+
+	service = eServiceReferenceDVB(remote_service_ref.str());
+
+	is_stream = true;
+
+	return(true);
 }
 
 int eDVBServiceBase::getFrontendInfo(int w)
