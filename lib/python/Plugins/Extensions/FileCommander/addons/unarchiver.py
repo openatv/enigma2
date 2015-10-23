@@ -67,9 +67,8 @@ class ArchiverMenuScreen(Screen):
 		self["key_blue"] = Label("")
 
 		self["setupActions"] = ActionMap(["SetupActions"], {
-			"red": self.cancel,
-			"green": self.ok,
 			"cancel": self.cancel,
+			"save": self.ok,
 			"ok": self.ok,
 		}, -2)
 
@@ -197,15 +196,14 @@ class ArchiverInfoScreen(Screen):
 
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
 
-		self["key_red"] = Label(_("cancel"))
-		self["key_green"] = Label(_("ok"))
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("OK"))
 		self["key_yellow"] = Label("")
 		self["key_blue"] = Label("")
 
 		self["setupActions"] = ActionMap(["SetupActions"], {
-			"red": self.cancel,
-			"green": self.cancel,
 			"cancel": self.cancel,
+			"save": self.cancel,
 			"ok": self.cancel,
 		}, -2)
 
