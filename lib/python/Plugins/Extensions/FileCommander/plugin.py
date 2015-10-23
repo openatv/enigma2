@@ -62,13 +62,13 @@ pname = _("File Commander")
 pdesc = _("manage local Files")
 
 config.plugins.filecommander = ConfigSubsection()
-config.plugins.filecommander.savedir_left = ConfigYesNo(default=True)
-config.plugins.filecommander.savedir_right = ConfigYesNo(default=True)
+config.plugins.filecommander.savedir_left = ConfigYesNo(default=False)
+config.plugins.filecommander.savedir_right = ConfigYesNo(default=False)
 config.plugins.filecommander.add_mainmenu_entry = ConfigYesNo(default=False)
 config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default=False)
-config.plugins.filecommander.path_default = ConfigText(default="/")
-config.plugins.filecommander.path_left = ConfigText(default="/")
-config.plugins.filecommander.path_right = ConfigText(default="/")
+config.plugins.filecommander.path_default = ConfigText(default="")
+config.plugins.filecommander.path_left = ConfigText(default="")
+config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
 config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My Extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
@@ -168,22 +168,30 @@ class FileCommanderScreen(Screen, key_actions):
 		</screen>"""
 
 	def __init__(self, session, path_left=None):
+		# path_left == "" means device list, whereas path_left == None means saved or default value
 		if path_left is None:
-			if os_path_isdir(config.plugins.filecommander.path_left.value) and config.plugins.filecommander.savedir_left:
+			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and os_path_isdir(config.plugins.filecommander.path_left.value):
 				path_left = config.plugins.filecommander.path_left.value
-			else:
+			elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
 				path_left = config.plugins.filecommander.path_default.value
 
-		if os_path_isdir(config.plugins.filecommander.path_right.value) and config.plugins.filecommander.savedir_right:
+		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and os_path_isdir(config.plugins.filecommander.path_right.value):
 			path_right = config.plugins.filecommander.path_right.value
-		else:
+		elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
 			path_right = config.plugins.filecommander.path_default.value
+		else:
+			path_right = None
 
-		if os_path_isdir(path_left) and path_left[-1] != "/":
+		if path_left and os_path_isdir(path_left) and path_left[-1] != "/":
 			path_left += "/"
 
-		if os_path_isdir(path_right) and path_right[-1] != "/":
+		if path_right and os_path_isdir(path_right) and path_right[-1] != "/":
 			path_right += "/"
+
+		if path_left == "":
+			path_left = None
+		if path_right == "":
+			path_right = None
 
 		self.session = session
 		Screen.__init__(self, session)
