@@ -42,6 +42,7 @@ private:
 	bool m_record_ecm;
 	bool m_descramble;
 	bool m_is_stream_client;
+	bool m_is_pvr;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient = false);
 

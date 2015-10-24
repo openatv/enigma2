@@ -204,6 +204,7 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default = False)
 	config.usage.remote_fallback = ConfigText(default = "http://IP-ADRESS:8001", fixed_size = False)
+	config.usage.timer_sanity_check_enabled = ConfigYesNo(default = True);
 
 	dvbs_nims = [("-2", _("Disabled"))]
 	dvbt_nims = [("-2", _("Disabled"))]
@@ -607,6 +608,7 @@ def InitUsageConfig():
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)
 	config.streaming.descramble = ConfigYesNo(default = True)
+	config.streaming.descramble_client = ConfigYesNo(default = False)
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
 	config.streaming.authentication = ConfigYesNo(default = False)
