@@ -71,7 +71,7 @@ inline int eDVBServiceList::compareLessEqual(const eServiceReference &a, const e
 class eDVBServiceBase: public iFrontendInformation
 {
 protected:
-	bool tryFallbackTuner(eServiceReferenceDVB &service,
+	static bool tryFallbackTuner(eServiceReferenceDVB &service,
 			bool &is_stream, bool is_pvr, bool simulate);
 
 	eDVBServicePMTHandler m_service_handler;
