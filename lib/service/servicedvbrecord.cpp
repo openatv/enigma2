@@ -310,6 +310,7 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] NO DEMUX available!");
 			m_error = errNoDemuxAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoDemuxAvailable;
 		}
 		demux->createTSRecorder(m_record);
@@ -318,6 +319,7 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] no ts recorder available.");
 			m_error = errNoTsRecorderAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoTsRecorderAvailable;
 		}
 		m_record->setTargetFD(fd);
