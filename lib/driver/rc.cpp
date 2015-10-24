@@ -94,7 +94,7 @@ void eRCInputEventDriver::keyPressed(int)
 	struct input_event ev;
 	while (1)
 	{
-		if (read(handle, &ev, sizeof(struct input_event))!=sizeof(struct input_event))
+		if (read(handle, &ev, sizeof(input_event))!=sizeof(input_event))
 			break;
 		if (enabled && !input->islocked())
 			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)

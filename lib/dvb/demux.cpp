@@ -498,7 +498,7 @@ int eDVBRecordFileThread::AsyncIO::poll()
 
 int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, void* buffer)
 {
-	memset(&aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
+	memset(&aio, 0, sizeof(aiocb)); // Documentation says "zero it before call".
 	aio.aio_fildes = fd;
 	aio.aio_nbytes = nbytes;
 	aio.aio_offset = offset;   // Offset can be omitted with O_APPEND
