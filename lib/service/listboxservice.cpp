@@ -560,11 +560,13 @@ bool eListboxServiceContent::checkServiceIsRecorded(eServiceReference ref)
 			ePtr<eDVBResourceManager> res;
 			eDVBResourceManager::getInstance(res);
 			res->getChannelList(db);
-			eBouquet *bouquet=0;
-			db->getBouquet(ref, bouquet);
-			for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++i)
-				if (*i == it->second)
-					return true;
+			eBouquet *bouquet = NULL;
+			if (!db->getBouquet(ref, bouquet))
+			{
+				for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++i)
+					if (*i == it->second)
+						return true;
+			}
 		}
 		else if (ref == it->second)
 			return true;
