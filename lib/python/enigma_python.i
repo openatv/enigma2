@@ -93,6 +93,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
+#include <lib/dvb/streamserver.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
 #include <lib/components/tuxtxtapp.h>
@@ -249,6 +250,7 @@ typedef long time_t;
 %include <lib/python/python.h>
 %include <lib/python/pythonconfig.h>
 %include <lib/gdi/picload.h>
+%include <lib/dvb/streamserver.h>
 /**************  eptr  **************/
 
 /**************  signals  **************/
