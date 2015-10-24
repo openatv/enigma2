@@ -204,6 +204,7 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default = False)
 	config.usage.remote_fallback = ConfigText(default = "http://IP-ADRESS:8001", fixed_size = False)
+	config.usage.timer_sanity_check_enabled = ConfigYesNo(default = True);
 
 	dvbs_nims = [("-2", _("Disabled"))]
 	dvbt_nims = [("-2", _("Disabled"))]
