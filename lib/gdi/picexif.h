@@ -61,12 +61,12 @@ protected:
 	bool process_EXIF(unsigned char * CharBuf, unsigned int length);
 	void process_COM (const unsigned char * Data, int length);
 	void process_SOFn (const unsigned char * Data, int marker);
+	bool ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase, unsigned ExifLength, unsigned char ** const LastExifRefdP);
 	int Get16u(void * Short);
 	int Get16m(void * Short);
 	long Get32s(void * Long);
 	unsigned long Get32u(void * Long);
 	double ConvertAnyFormat(void * ValuePtr, int Format);
-	bool ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase, unsigned ExifLength, EXIFINFO * const pInfo, unsigned 	char ** const LastExifRefdP);
 	int ExifImageWidth;
 	int MotorolaOrder;
 	unsigned char * Data;
