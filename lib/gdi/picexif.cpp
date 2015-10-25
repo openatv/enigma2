@@ -334,13 +334,13 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			break;
 		case TAG_USERCOMMENT:
 			a = BytesCount-1;
-			while (a >= 0 && ((char*)ValuePtr)[a] == ' ')
-				((char*)ValuePtr)[a--] = '\0';
+			while (a >= 0 && ValuePtr[a] == ' ')
+				ValuePtr[a--] = '\0';
 			if (memcmp(ValuePtr, "ASCII", 5) == 0)
 			{
 				for (a=5; a<10; a++)
 				{
-					char c = ((char*)ValuePtr)[a];
+					char c = (char)ValuePtr[a];
 					if (c != '\0' && c != ' ')
 					{
 						strncpy(m_exifinfo->Comments, (char*)ValuePtr+a, 199);
@@ -572,25 +572,21 @@ double Cexif::ConvertAnyFormat(void * ValuePtr, int Format)
 
 void Cexif::process_COM (const unsigned char * Data, int length)
 {
-	int ch, a;
-	char Comment[MAX_COMMENT+1];
-	int nch = 0;
+	char *Comment = m_exifinfo->Comments;
 
 	if (length > MAX_COMMENT)
 		length = MAX_COMMENT;
 
-	for (a=0; a<length; a++)
+	for (int a = 0; a < length; a++)
 	{
-		ch = Data[a];
+		char ch = (char) Data[a];
 		if (ch == '\r' && Data[a+1] == '\n')
 			continue;
-		if ((ch>=0x20) || ch == '\n' || ch == '\t')
-			Comment[nch++] = (char)ch;
-		else
-			Comment[nch++] = '?';
+		if (ch < 0x20 && ch != '\n' && ch != '\t')
+			ch = '?';
+		*Comment++ = ch;
 	}
-	Comment[nch] = '\0';
-	strcpy(m_exifinfo->Comments, Comment);
+	*Comment = '\0';
 }
 
 void Cexif::process_SOFn (const unsigned char * Data, int marker)
