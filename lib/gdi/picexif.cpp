@@ -234,7 +234,7 @@ bool Cexif::process_EXIF(unsigned char * CharBuf, unsigned int length)
 	}
 	unsigned char * LastExifRefd = CharBuf;
 
-	if (!ProcessExifDir(CharBuf+14, CharBuf+6, length-6, m_exifinfo, &LastExifRefd))
+	if (!ProcessExifDir(CharBuf+14, CharBuf+6, length-6, &LastExifRefd))
 		return false;
 
 	if (m_exifinfo->FocalplaneXRes != 0)
@@ -269,7 +269,7 @@ unsigned long Cexif::Get32u(void * Long)
 	return (unsigned long)Get32s(Long) & 0xffffffff;
 }
 
-bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase, unsigned ExifLength, EXIFINFO * const m_exifinfo, unsigned char ** const LastExifRefdP )
+bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase, unsigned ExifLength, unsigned char ** const LastExifRefdP )
 {
 	int de, a, NumDirEntries;
 	unsigned ThumbnailOffset = 0;
@@ -506,7 +506,7 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 				strcpy(m_szLastError, "Illegal subdirectory link");
 				return false;
 			}
-			ProcessExifDir(SubdirStart, OffsetBase, ExifLength, m_exifinfo, LastExifRefdP);
+			ProcessExifDir(SubdirStart, OffsetBase, ExifLength, LastExifRefdP);
 			continue;
 		}
 	}
@@ -522,7 +522,7 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			strcpy(m_szLastError, "Illegal subdirectory link");
 			return false;
 		}
-		ProcessExifDir(SubdirStart, OffsetBase, ExifLength, m_exifinfo, LastExifRefdP);
+		ProcessExifDir(SubdirStart, OffsetBase, ExifLength, LastExifRefdP);
         }
 
 	if (ThumbnailSize && ThumbnailOffset && m_exifinfo->Thumnailstate)
