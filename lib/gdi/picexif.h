@@ -36,6 +36,7 @@ typedef struct tag_ExifInfo {
 	float FocalLength;
 	float ApertureFNumber;
 	int   Height, Width;
+	int   BitsPerColor;
 	int   CompressionLevel;
 	int   ISOequivalent;
 	int   Process;

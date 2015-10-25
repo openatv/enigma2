@@ -591,11 +591,10 @@ void Cexif::process_COM (const unsigned char * Data, int length)
 
 void Cexif::process_SOFn (const unsigned char * Data, int marker)
 {
+	m_exifinfo->BitsPerColor = Data[0];
 	m_exifinfo->Height = Get16m((void*)(Data+1));
 	m_exifinfo->Width  = Get16m((void*)(Data+3));
-	unsigned char num_components = Data[5];
-
-	strcpy(m_exifinfo->IsColor, num_components == 3 ? "yes" : "no");
+	strcpy(m_exifinfo->IsColor, Data[5] == 3 ? "yes" : "no"); // color components
 	m_exifinfo->Process = marker;
 }
 
