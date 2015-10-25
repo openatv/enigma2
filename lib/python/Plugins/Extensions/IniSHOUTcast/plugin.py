@@ -705,11 +705,11 @@ class SHOUTcastWidget(Screen):
 			except:
 				pass
 		self.stopReloadStationListTimer()
-		self.session.nav.playService(self.CurrentService)
 		self.session.nav.event.remove(self.__event)
 		self.currPlay = None
 		containerStreamripper.dataAvail.remove(self.streamripperDataAvail)
 		containerStreamripper.appClosed.remove(self.streamripperClosed)
+		self.session.nav.playService(self.CurrentService)
 
 	def GoogleImageCallback(self, result):
 		global coverfiles
