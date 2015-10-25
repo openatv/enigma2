@@ -4,6 +4,20 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+# set TASKSETVALUE to start enigma2
+if [ -f /proc/stb/info/chipset ]; then
+  BOXCHIPSET=$(head /proc/stb/info/chipset)
+else
+  BOXCHIPSET='unknown'
+fi
+
+case "$BOXCHIPSET" in
+bcm7356|bcm7362 )
+  TASKSETVALUE=2;;
+* )
+  TASKSETVALUE=1;;
+esac
+
 # disable oom killer
 # echo 99 >/proc/sys/vm/overcommit_ratio
 # echo 2 >/proc/sys/vm/overcommit_memory
@@ -80,16 +94,16 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 	fi
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		LD_PRELOAD=$LIBS taskset $TASKSETVALUE @bindir@/enigma2 --debug-no-color &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		LD_PRELOAD=$LIBS taskset $TASKSETVALUE @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
 	# in case $TERM is "linux" the serial output is activated - discard debug output
 	if [ "$TERM" = linux ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
+		LD_PRELOAD=$LIBS taskset $TASKSETVALUE @bindir@/enigma2 2> /dev/null
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2
+		LD_PRELOAD=$LIBS taskset $TASKSETVALUE @bindir@/enigma2
 	fi
 fi
 
