@@ -54,6 +54,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.select_rect = None
 		self.event_rect = None
 		self.service_rect = None
+		self.widthSize = None
 		self.currentlyPlaying = None
 		self.showPicon = False
 		self.showServiceTitle = True
@@ -561,6 +562,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		esize = self.l.getItemSize()
 		width = esize.width()
 		height = esize.height()
+		self.widthSize = width
 		if self.type == EPG_TYPE_MULTI:
 			xpos = 0
 			w = width / 10 * 3
@@ -568,10 +570,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			xpos += w
 			w = width / 10 * 2
 			self.start_end_rect = Rect(xpos, 0, w-10, height)
-			self.progress_rect = Rect(xpos, int(height/2/2), w-10, int(height/2))
+			self.progress_rect = Rect(xpos, int(height/4), w-10, int(height/2))
 			xpos += w
 			w = width / 10 * 5
-			self.descr_rect = Rect(xpos, 0, w+10, height)
+			self.descr_rect = Rect(xpos, 0, w, height)
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			servicew = 0
 			piconw = 0
@@ -596,7 +598,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
 			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width * 24) / 100, height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width * 65) / 100, height)
+			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width * 66) / 100, height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -625,6 +627,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			return None
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
+		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+			self.recalcEntrySize()
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
@@ -640,8 +644,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				if self.screenwidth and self.screenwidth == 1920:
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-52, (r3.h/2-13), 25, 25, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-52, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-50, (r3.h/2-13), 25, 25, self.autotimericon),
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-50, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
 						))
 				else:
 					res.extend((
@@ -665,6 +669,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
+		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+			self.recalcEntrySize()
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
@@ -680,8 +686,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				if self.screenwidth and self.screenwidth == 1920:
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-52, (r3.h/2-13), 25, 25, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-52, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
+						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-50, (r3.h/2-13), 25, 25, self.autotimericon),
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-50, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name)
 					))
 				else:
 					res.extend((
@@ -705,6 +711,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
+		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+			self.recalcEntrySize()
 		r1 = self.service_rect
 		r2 = self.progress_rect
 		r3 = self.descr_rect
@@ -740,39 +748,38 @@ class EPGList(HTMLComponent, GUIComponent):
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, fact1, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
 				))
 			if clock_types:
-				if clock_types in (1,6,11):
-					pos = r3.x+r3.w
-				else:
-					pos = r3.x+r3.w-10
+				pos = r3.x+r3.w
 				if self.wasEntryAutoTimer and clock_types in (2,7,12):
 					if self.screenwidth and self.screenwidth == 1920:
 						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 135, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-26, (r3.h/2-13), 25, 25, self.autotimericon)
+							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 135, r3.y, r3.w-185, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-50, (r3.h/2-13), 25, 25, self.autotimericon)
 						))
 					else:
 						res.extend((
 							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-131, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-22, (r3.h/2-11), 21, 21, self.autotimericon)
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-42, (r3.h/2-11), 21, 21, self.autotimericon)
 						))
 				else:
 					if self.screenwidth and self.screenwidth == 1920:
 						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 135, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-13), 25, 25, self.clocks[clock_types])
+							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 135, r3.y, r3.w-160, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-25, (r3.h/2-13), 25, 25, self.clocks[clock_types])
 						))
 					else:
 						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-110, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h/2-11), 21, 21, self.clocks[clock_types])
+							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w-111, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName),
+							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-21, (r3.h/2-11), 21, 21, self.clocks[clock_types])
 						))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + fact2, r3.y, r3.w-100, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + fact2, r3.y, r3.w-fact2, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon):
+		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+			self.recalcEntrySize()
 		r1 = self.service_rect
 		r2 = self.event_rect
 		left = r2.x
