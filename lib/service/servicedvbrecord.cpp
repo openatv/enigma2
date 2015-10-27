@@ -2,6 +2,7 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
+#include <lib/base/nconfig.h> 
 #include <lib/base/httpstream.h>
 #include <fcntl.h>
 #include <lib/base/nconfig.h>
@@ -9,7 +10,6 @@
 	/* for cutlist */
 #include <byteswap.h>
 #include <netinet/in.h>
-#include <lib/base/nconfig.h> // access to python config
 
 DEFINE_REF(eDVBServiceRecord);
 
@@ -96,10 +96,13 @@ void eDVBServiceRecord::serviceEvent(int event)
 
 RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm)
 {
+	bool config_recording_always_ecm = eConfigManager::getConfigBoolValue("config.recording.always_ecm", false);
+	bool config_recording_never_decrypt = eConfigManager::getConfigBoolValue("config.recording.never_decrypt", false);
+
 	m_filename = filename;
 	m_streaming = 0;
-	m_descramble = descramble;
-	m_record_ecm = recordecm;
+	m_descramble = config_recording_never_decrypt ? false : descramble;
+	m_record_ecm = config_recording_always_ecm ? true : recordecm;
 
 	if (m_state == stateIdle)
 	{
@@ -146,7 +149,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				meta.m_description = descr;
 			if (tags)
 				meta.m_tags = tags;
-			meta.m_scrambled = m_record_ecm; /* assume we will record scrambled data, when ecm will be included in the recording */
+			meta.m_scrambled = config_recording_never_decrypt ? true : m_record_ecm; /* assume we will record scrambled data, when ecm will be included in the recording */
 			ret = meta.updateMeta(filename) ? -255 : 0;
 			if (!ret)
 			{
@@ -311,6 +314,7 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] NO DEMUX available!");
 			m_error = errNoDemuxAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoDemuxAvailable;
 		}
 		demux->createTSRecorder(m_record);
@@ -319,6 +323,7 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] no ts recorder available.");
 			m_error = errNoTsRecorderAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoTsRecorderAvailable;
 		}
 		m_record->setTargetFD(fd);
