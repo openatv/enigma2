@@ -314,7 +314,7 @@ class GeneralMenu(Screen):
 
 			'id_mainmenu_tasks': self.getSubEntry('id_mainmenu_tasks', [
 				(_('Setup'), 'mainmenu_tasks_setup', boundFunction(self.openGeneralSetup), 0),
-				(_('File Manager'), 'mainmenu_tasks_filemanager', boundFunction(self.openFileManager), 10),
+				(_('Sources / Files'), 'mainmenu_tasks_filemanager', boundFunction(self.openFileManager), 10),
 				(_('Power'), 'mainmenu_tasks_power', boundFunction(self.openMenuID, 'shutdown', _('Power')), 20),
 				(_('Information'), 'mainmenu_tasks_info', boundFunction(self.openMenuID, 'information', _('Information')), 30),
 			]),
