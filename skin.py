@@ -14,6 +14,7 @@ from Components.RcModel import rc_model
 
 colorNames = {}
 switchPixmap = dict()
+windowStyles = []
 
 # Predefined fonts, typically used in built-in screens and for components like
 # the movie list and so.
@@ -442,6 +443,10 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 def applyAllAttributes(guiObject, desktop, attributes, scale):
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
+def reloadWindowstyles():
+	for ws in windowStyles:
+		loadSingleSkinData(*ws)
+
 def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
 	assert skin.tag == "skin", "root element in skin must be 'skin'!"
@@ -684,6 +689,7 @@ def loadSkinData(desktop):
 	skins.reverse()
 	for (path, dom_skin) in skins:
 		loadSingleSkinData(desktop, dom_skin, path)
+		windowstyleTree = None
 		for elem in dom_skin:
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
@@ -700,10 +706,16 @@ def loadSkinData(desktop):
 				else:
 					# without name, it's useless!
 					elem.clear()
+			elif elem.tag == 'windowstyle':
+				if windowstyleTree is None:
+					windowstyleTree = xml.etree.cElementTree.ElementTree(xml.etree.cElementTree.Element("skin"))
+				windowstyleTree.getroot().append(elem)
 			else:
-				# non-screen element, no need for it any longer
+				# non-screen, windowstyle element, no need for it any longer
 				elem.clear()
-	# no longer needed, we know where the screens are now.
+		if windowstyleTree is not None:
+			windowStyles.append((desktop, windowstyleTree, path))
+	# no longer needed, we know where the screens and windowstyles are now.
 	del dom_skins
 
 class additionalWidget:
