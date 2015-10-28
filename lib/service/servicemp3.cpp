@@ -513,7 +513,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		}
 		if (m_useragent.empty())
 			m_useragent = "Enigma2 Mediaplayer";
-		m_extra_headers = eConfigManager::getConfigValue("config.mediaplayer.extraHeaders");
 		if ( m_ref.getData(7) & BUFFERING_ENABLED )
 		{
 			m_use_prefillbuffer = true;
