@@ -486,7 +486,6 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def doMakesym(self, newname):
 		if newname:
-			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
 			try:
@@ -508,7 +507,6 @@ class FileCommanderScreen(Screen, key_actions):
 		else:
 			movetext = _("Symlink to ")
 		testfile = filename[:-1]
-		test = path.islink(testfile)
 		if (filename is None) or (sourceDir is None):
 			return
 		if path.islink(testfile):
@@ -539,7 +537,6 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def doMakedir(self, newname):
 		if newname:
-			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			# self.session.openWithCallback(self.doMakedirCB, Console, title = _("create folder"), cmdlist=["mkdir \"" + sourceDir + newname + "\""])
 			try:
@@ -556,7 +553,6 @@ class FileCommanderScreen(Screen, key_actions):
 		testFileName = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		subFile = sourceDir + testFileName
-		fps = 0
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
 			print "[FileCommander] Downloading subtitle for: ", subFile
 			# For Future USE
