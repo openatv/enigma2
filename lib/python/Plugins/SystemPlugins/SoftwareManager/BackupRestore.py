@@ -495,7 +495,7 @@ class RestoreMyMetrixHD(Screen):
 		if self.check >= 12 or result:
 			self.checkSkinTimer.stop()
 			if resultCode > 0:
-				infotext = ({1:_("Unknown Error creating Skin."),
+				infotext = ({1:_("Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."),
 							2:_("Error creating HD-Skin. Not enough flash memory free."),
 							3:_("Error creating FullHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
 							4:_("Error creating FullHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
