@@ -350,9 +350,9 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		f.write(MAC)
 		f.close()
 		route = commands.getoutput("route -n |grep UG | awk '{print $2}'")
-		os_system('ifconfig eth0 down')
-		os_system('ifconfig eth0 hw ether %s up' % MAC)
-		os_system('route add default gw %s eth0' % route)
+		os.system('ifconfig eth0 down')
+		os.system('ifconfig eth0 hw ether %s up' % MAC)
+		os.system('route add default gw %s eth0' % route)
 		self.close()
 
 	def run(self):
@@ -480,7 +480,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			f.close()
 		else:
 			fp.write("0")
-			os_system("rm -R "+ipv6)
+			os.system("rm -R "+ipv6)
 		fp.close()
 		self.restoreinetdData()
 		self.close()
