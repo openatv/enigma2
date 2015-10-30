@@ -1,8 +1,6 @@
 import sys
 from enigma import ePythonOutput
 
-buff=''
-
 class EnigmaOutput:
 	def __init__(self):
 		self.buf = ''
