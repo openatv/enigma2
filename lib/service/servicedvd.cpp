@@ -363,7 +363,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 				m_event(this, evUser + 8); // chapterUpdated
 			if ( info.pos_title != last_info.pos_title )
 				m_event(this, evUser + 9); // titleUpdated
-			memcpy(&last_info, &info, sizeof(struct ddvd_time));
+			memcpy(&last_info, &info, sizeof(last_info));
 			break;
 		}
 		case DDVD_SHOWOSD_TITLESTRING:
@@ -1055,7 +1055,7 @@ void eServiceDVD::loadCuesheet()
 		if (fread(&where, sizeof(where), 1, f))
 			if (fread(&what, sizeof(what), 1, f))
 				if (ntohl(what) == 3)
-					if (fread(&m_resume_info, sizeof(struct ddvd_resume), 1, f))
+					if (fread(&m_resume_info, sizeof(m_resume_info), 1, f))
 						if (fread(&what, sizeof(what), 1, f))
 							if (ntohl(what) == 4)
 								m_cue_pts = be64toh(where);
@@ -1166,7 +1166,7 @@ void eServiceDVD::saveCuesheet()
 		what = htonl(3);
 		fwrite(&what, sizeof(what), 1, f);
 
-		fwrite(&resume_info, sizeof(struct ddvd_resume), 1, f);
+		fwrite(&resume_info, sizeof(resume_info), 1, f);
 		what = htonl(4);
 		fwrite(&what, sizeof(what), 1, f);
 
