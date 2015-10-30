@@ -1353,7 +1353,7 @@ std::string eServiceMP3::getInfoString(int w)
 	}
 	if ( !tag )
 		return "";
-	gchar *value;
+	gchar *value = NULL;
 	if (m_stream_tags && gst_tag_list_get_string(m_stream_tags, tag, &value))
 	{
 		std::string res = value;
