@@ -152,12 +152,18 @@ class RecordingSettings(Screen,ConfigListScreen):
 	# for summary:
 	def changedEntry(self):
 		self.item = self["config"].getCurrent()
-		if self["config"].getCurrent()[0] == _("Default movie location") or self["config"].getCurrent()[0] == _("Timer record location") or self["config"].getCurrent()[0] == _("Instant record location") or self["config"].getCurrent()[0] == _("Movie location"):
-			self.checkReadWriteDir(self["config"].getCurrent()[1])
+		if self.item[0] in (_("Default movie location"), _("Timer record location"), _("Instant record location"), _("Movie location")):
+			self.checkReadWriteDir(self.item[1])
 		for x in self.onChangedEntry:
 			x()
+		if self.item[1] is self.default_dirname:
+			config.usage.default_path.value = self.default_dirname.value
+		elif self.item[1] is self.timer_dirname:
+			config.usage.timer_path.value = self.timer_dirname.value
+		elif self.item[1] is self.instantrec_dirname:
+			config.usage.instantrec_path.value = self.instantrec_dirname.value
 		try:
-			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
+			if isinstance(self.item[1], ConfigYesNo) or isinstance(self.item[1], ConfigSelection):
 				self.createSetup()
 		except:
 			pass
