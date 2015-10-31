@@ -169,13 +169,16 @@ class RecordingSettings(Screen,ConfigListScreen):
 			pass
 
 	def getCurrentEntry(self):
-		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+		currentry = self["config"].getCurrent()
+		return currentry and currentry[0] or ""
 
 	def getCurrentValue(self):
-		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+		currentry = self["config"].getCurrent()
+		return currentry and str(currentry[1].getText()) or ""
 
 	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+		currentry = self["config"].getCurrent()
+		return currentry and len(currentry) > 2 and currentry[2] or ""
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
