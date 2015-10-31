@@ -21,6 +21,7 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = OSDScreenPosition.skin
 		Screen.__init__(self, session)
+		self.setup_title = _("OSD position setup")
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
@@ -39,7 +40,7 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 
 		left = config.plugins.OSDPositionSetup.dst_left.value
 		width = config.plugins.OSDPositionSetup.dst_width.value
@@ -54,8 +55,23 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("width"), self.dst_width))
 		self.list.append(getConfigListEntry(_("top"), self.dst_top))
 		self.list.append(getConfigListEntry(_("height"), self.dst_height))
+		self.onChangedEntry = []
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+
+	def getCurrentValue(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 1 and str(self["config"].getCurrent()[1].getText()) or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
