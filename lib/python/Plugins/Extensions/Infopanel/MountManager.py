@@ -99,7 +99,7 @@ class HddMount(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]',device) and not search('mmcblk[0-9]p[1-9]',device):
 				continue
 			if device in list2:
 				continue
@@ -152,19 +152,64 @@ class HddMount(Screen):
 				device2 = device.replace('8', '')
 		except:
 			device2 = ''
+		try:
+			if device.find('p1') > 1:
+				device2 = device.replace('p1', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p2') > 1:
+				device2 = device.replace('p2', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p3') > 1:
+				device2 = device.replace('p3', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p4') > 1:
+				device2 = device.replace('p4', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p5') > 1:
+				device2 = device.replace('p5', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p6') > 1:
+				device2 = device.replace('p6', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p7') > 1:
+				device2 = device.replace('p7', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p8') > 1:
+				device2 = device.replace('p8', '')
+		except:
+			device2 = ''
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
-		model = file('/sys/block/' + device2 + '/device/model').read()
+		if device2.startswith('mmcblk'):
+			model = file('/sys/block/' + device2 + '/device/name').read()
+			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_mmc.png'
+			name = 'MMC: '
+		else:
+			model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
-		if devicetype.find('/devices/pci') != -1:
+		if devicetype.find('/devices/pci') != -1 or devicetype.find('ahci') != -1:
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
 		name = name + model
 		self.Console = Console()
-		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
+		self.Console.ePopen("sfdisk -l | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
 		sleep(0.5)
 		try:
 			f = open('/tmp/devices.tmp', 'r')
@@ -345,7 +390,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		self.list = []
 		list2 = []
 		self.Console = Console()
-		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
+		self.Console.ePopen("sfdisk -l | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
 		sleep(0.5)
 		f = open('/tmp/devices.tmp', 'r')
 		swapdevices = f.read()
@@ -360,7 +405,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]',device) and not search('mmcblk[0-9]p[1-9]',device):
 				continue
 			if device in list2:
 				continue
@@ -375,33 +420,99 @@ class DevicePanelConf(Screen, ConfigListScreen):
 
 	def buildMy_rec(self, device):
 		try:
-			if device.find('1') > 0:
+			if device.find('1') > 1:
 				device2 = device.replace('1', '')
 		except:
 			device2 = ''
 		try:
-			if device.find('2') > 0:
+			if device.find('2') > 1:
 				device2 = device.replace('2', '')
 		except:
 			device2 = ''
 		try:
-			if device.find('3') > 0:
+			if device.find('3') > 1:
 				device2 = device.replace('3', '')
 		except:
 			device2 = ''
 		try:
-			if device.find('4') > 0:
+			if device.find('4') > 1:
 				device2 = device.replace('4', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('5') > 1:
+				device2 = device.replace('5', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('6') > 1:
+				device2 = device.replace('6', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('7') > 1:
+				device2 = device.replace('7', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('8') > 1:
+				device2 = device.replace('8', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p1') > 1:
+				device2 = device.replace('p1', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p2') > 1:
+				device2 = device.replace('p2', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p3') > 1:
+				device2 = device.replace('p3', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p4') > 1:
+				device2 = device.replace('p4', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p5') > 1:
+				device2 = device.replace('p5', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p6') > 1:
+				device2 = device.replace('p6', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p7') > 1:
+				device2 = device.replace('p7', '')
+		except:
+			device2 = ''
+		try:
+			if device.find('p8') > 1:
+				device2 = device.replace('p8', '')
 		except:
 			device2 = ''
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
-		model = file('/sys/block/' + device2 + '/device/model').read()
+		if device2.startswith('mmcblk'):
+			model = file('/sys/block/' + device2 + '/device/name').read()
+			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_mmc.png'
+			name = 'MMC: '
+		else:
+			model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
-		if devicetype.find('/devices/pci') != -1:
+		print "test:" 
+		if devicetype.find('/devices/pci') != -1 or devicetype.find('ahci') != -1:
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
 		name = name + model
@@ -449,6 +560,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		('/media/usb', '/media/usb'),
 		('/media/usb2', '/media/usb2'),
 		('/media/usb3', '/media/usb3'),
+		('/media/mmc', '/media/mmc'),
+		('/media/mmc2', '/media/mmc2'),
+		('/media/mmc3', '/media/mmc3'),
 		('/usr', '/usr')]))
 		if dtype == 'Linux':
 			dtype = 'ext3'
