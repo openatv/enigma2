@@ -74,6 +74,15 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	{
 		port = 80;
 	}
+
+	std::string extra_headers = "";
+	size_t pos = uri.find('#');
+	if (pos != std::string::npos)
+	{
+		extra_headers = uri.substr(pos + 1);
+		uri = uri.substr(0, pos);
+	}
+
 	streamSocket = Connect(hostname.c_str(), port, 10);
 	if (streamSocket < 0)
 		goto error;
@@ -86,6 +95,41 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	{
 		request.append("Authorization: Basic ").append(authorizationData).append("\r\n");
 	}
+
+	pos = 0;
+	while (pos != std::string::npos && !extra_headers.empty())
+	{
+		std::string name, value;
+		size_t start = pos;
+		size_t len = std::string::npos;
+		pos = extra_headers.find('=', pos);
+		if (pos != std::string::npos)
+		{
+			len = pos - start;
+			pos++;
+			name = extra_headers.substr(start, len);
+			start = pos;
+			len = std::string::npos;
+			pos = extra_headers.find('&', pos);
+			if (pos != std::string::npos)
+			{
+				len = pos - start;
+				pos++;
+			}
+			value = extra_headers.substr(start, len);
+		}
+		if (!name.empty() && !value.empty())
+		{
+			eDebug("[eHttpStream] setting extra-header '%s:%s'", name.c_str(), value.c_str());
+			request.append(name).append(": ").append(value).append("\r\n");
+		}
+		else
+		{
+			eDebug("[eHttpStream] Invalid header format %s", extra_headers.c_str());
+			break;
+		}
+	}
+
 	request.append("Accept: */*\r\n");
 	request.append("Connection: close\r\n");
 	request.append("\r\n");
