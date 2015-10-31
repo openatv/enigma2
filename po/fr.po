@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 14:55+0200\n"
-"PO-Revision-Date: 2015-10-07 15:14+0200\n"
+"POT-Creation-Date: 2015-10-31 13:51+0100\n"
+"PO-Revision-Date: 2015-10-31 14:04+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -2509,6 +2509,9 @@ msgstr "Configure la façon dont les noms de fichiers d’enregistrement sont co
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Configure si et où les picons d’encryption seront affichés dans la liste des chaînes."
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr "Configure si et combien de temps le dernier service en PiP sera mémorisé."
+
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configure si et où l’icône du type de service sera affiché."
 
@@ -4051,6 +4054,37 @@ msgstr "Erreur"
 msgid "Error code"
 msgstr "Code d'erreur"
 
+msgid ""
+"Error creating FullHD-Skin.\n"
+"Using HD-Skin!"
+msgstr ""
+"Erreur lors de la création du thème FullHD.\n"
+"Utilisation du thème HD!"
+
+msgid ""
+"Error creating FullHD-Skin. Icon package download not available.\n"
+"Using HD-Skin!"
+msgstr ""
+"Erreur lors de la création du thème FullHD. Impossible de télécharger le pack d’icône.\n"
+"Utilisation du thème HD!"
+
+msgid ""
+"Error creating FullHD-Skin. Not enough flash memory free.\n"
+"Using HD-Skin!"
+msgstr ""
+"Erreur lors de la création du thème FullHD. Pas assez de mémoire flash libre.\n"
+"Utilisation du thème HD!"
+
+msgid "Error creating HD-Skin. Not enough flash memory free."
+msgstr "Erreur lors de la création du skin HD. Pas assez de mémoire flash libre."
+
+msgid ""
+"Error creating MetrixHD-Skin.\n"
+"Please check after reboot MyMetrixLite-Plugin and apply your settings."
+msgstr ""
+"Erreur lors de la création du thème MetrixHD.\n"
+"Après le redémarrage merci de vérifier le plugin MyMetrixLite et d’appliquer vos paramètres."
+
 msgid "Error downloading change log."
 msgstr "Erreur lors du téléchargement du log des changements."
 
@@ -4236,8 +4270,8 @@ msgstr "Options supplémentaire du moteur"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1/F3"
-msgstr "F1/F3"
+msgid "F1/F3/TRIPLEX"
+msgstr "F1/F3/TRIPLEX"
 
 msgid "F1/LAN"
 msgstr "F1/LAN"
@@ -7268,6 +7302,9 @@ msgstr "Veuillez patienter pendant le test de votre réseau..."
 msgid "Please wait while your network is restarting..."
 msgstr "Veullez attendre pendant le redémarrage de votre réseau..."
 
+msgid "Please wait while your skin setting is restoring..."
+msgstr "Veuillez patienter pendant la restauration des paramètres de votre thème…"
+
 msgid "Please wait whilst feeds state is checked."
 msgstr "Merci de patienter pendant que l’état de la liste des feeds est vérifié."
 
@@ -7900,6 +7937,9 @@ msgstr "Restant"
 msgid "Remaining & Elapsed"
 msgstr "Restant et écoulé"
 
+msgid "Remember last service in PiP"
+msgstr "Se rappeler le dernier service en PiP"
+
 msgid "Remember service PIN"
 msgstr "Enregistrer PIN service"
 
@@ -8088,6 +8128,9 @@ msgstr "Relancer votre connexion réseau et vos interfaces.\n"
 
 msgid "Restore"
 msgstr "Restaurer"
+
+msgid "Restore MetrixHD Settings"
+msgstr "Restaurer les paramètres MetrixHD"
 
 msgid "Restore Plugins"
 msgstr "Restaurer les plugins"
@@ -9812,6 +9855,13 @@ msgstr "Gestionnaire logiciel"
 
 msgid "Softwareupdate"
 msgstr "Mise à jour logiciel"
+
+msgid ""
+"Some FullHD-Icons are missing.\n"
+"Using HD-Icons!"
+msgstr ""
+"Certains icônes FullHD sont manquants.\n"
+"Utilisation des icônes HD!"
 
 msgid "Some plugins are not available:\n"
 msgstr "Des plugins ne sont pas disponible:\n"
@@ -11552,6 +11602,13 @@ msgstr "LNB universel"
 msgid "Unknown"
 msgstr "Inconnu"
 
+msgid ""
+"Unknown Error creating Skin.\n"
+"Please check after reboot MyMetrixLite-Plugin and apply your settings."
+msgstr ""
+"Erreur inconnue lors de la création du thème.\n"
+"Après le redémarrage merci de vérifier le plugin MyMetrixLite et d’appliquer vos paramètres."
+
 msgid "Unmount"
 msgstr "Démonter"
 
@@ -11890,6 +11947,9 @@ msgstr "Paramètres vidéo"
 
 msgid "Video clipping"
 msgstr "Montage vidéo"
+
+msgid "Video clipping setup"
+msgstr "Configuration montage vidéo"
 
 #, python-format
 msgid "Video content: %ix%i%s %iHz"
@@ -12750,6 +12810,10 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s will Reboot..."
+msgstr "Votre %s %s va rédemarrer…"
+
+#, python-format
+msgid "Your %s %s will Restart..."
 msgstr "Votre %s %s va rédemarrer…"
 
 #, python-format
