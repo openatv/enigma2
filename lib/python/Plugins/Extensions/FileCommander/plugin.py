@@ -410,6 +410,8 @@ class FileCommanderScreen(Screen, key_actions):
 			if result[1]:
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
+				if sourceDir is None:
+					return
 				if sourceDir not in filename:
 					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=(("rm", sourceDir + filename),))
 				else:
@@ -437,6 +439,8 @@ class FileCommanderScreen(Screen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
+				if (filename is None) or (sourceDir is None) or (targetDir is None):
+					return
 				dst_file = targetDir
 				if dst_file.endswith("/"):
 					targetDir = dst_file[:-1]
@@ -468,6 +472,8 @@ class FileCommanderScreen(Screen, key_actions):
 		if newname:
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			if (filename is None) or (sourceDir is None):
+				return
 			if sourceDir not in filename:
 				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=(("mv", sourceDir + filename, sourceDir + newname),))
 			else:
@@ -486,9 +492,10 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def doMakesym(self, newname):
 		if newname:
-			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
+			if (sourceDir is None) or (targetDir is None):
+				return
 			try:
 				symlink(sourceDir, targetDir + newname)
 			except OSError as oe:
@@ -503,12 +510,13 @@ class FileCommanderScreen(Screen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if (filename is None) or (sourceDir is None) or (targetDir is None):
+			return
 		if sourceDir not in filename:
 			movetext = _("Create symlink to file")
 		else:
 			movetext = _("Symlink to ")
 		testfile = filename[:-1]
-		test = path.islink(testfile)
 		if (filename is None) or (sourceDir is None):
 			return
 		if path.islink(testfile):
@@ -521,6 +529,8 @@ class FileCommanderScreen(Screen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
+				if (filename is None) or (sourceDir is None) or (targetDir is None):
+					return
 				if sourceDir not in filename:
 					return
 					# self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=["mv \"" + sourceDir + filename + "\" \"" + sourceDir + newname + "\""])
@@ -539,8 +549,9 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def doMakedir(self, newname):
 		if newname:
-			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			if sourceDir is None:
+				return
 			# self.session.openWithCallback(self.doMakedirCB, Console, title = _("create folder"), cmdlist=["mkdir \"" + sourceDir + newname + "\""])
 			try:
 				os.mkdir(sourceDir + newname)
@@ -555,8 +566,9 @@ class FileCommanderScreen(Screen, key_actions):
 	def downloadSubtitles(self):
 		testFileName = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
+		if (testFileName is None) or (sourceDir is None):
+			return
 		subFile = sourceDir + testFileName
-		fps = 0
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
 			print "[FileCommander] Downloading subtitle for: ", subFile
 			# For Future USE
