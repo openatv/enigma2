@@ -1008,8 +1008,12 @@ class EPGSelection(Screen, HelpableScreen):
 		if title:
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
-			posy = self['list'].getSelectionPosition(serviceref)
-			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
+			pos = self['list'].getSelectionPosition(serviceref)
+			posx = pos[0]
+			dialogwidth = self.ChoiceBoxDialog.instance.size().width()
+			if posx - dialogwidth < 0:
+				posx = dialogwidth
+			self.ChoiceBoxDialog.instance.move(ePoint(posx-dialogwidth,self.instance.position().y()+pos[1]))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
