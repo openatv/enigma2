@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-23 20:54+0100\n"
-"PO-Revision-Date: 2015-09-25 23:03+0100\n"
+"POT-Creation-Date: 2015-10-30 23:21+0000\n"
+"PO-Revision-Date: 2015-10-31 18:51+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -2605,6 +2605,12 @@ msgstr "Tiefe"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "'Entschlüsseln & ECM aufnehmen' erlaubt es auch nachträglich zu entschlüsseln falls es während der Aufnahme fehlgeschlagen ist. 'Nicht entschlüsseln & ECM aufnehmen' nimmt verschlüsselt auf und erlaubt es nachträglich zu entschlüsseln. 'Normal' bedeutet das entschlüsselt aufgenommen wird und keine ECM gespeichert werden."
 
+msgid "Descramble receiving http streams"
+msgstr "HTTP Streams bei Empfang entschlüsseln"
+
+msgid "Descramble sending http streams"
+msgstr "HTTP Streams entschlüsselt senden"
+
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -2690,6 +2696,9 @@ msgstr "Animationen deaktivieren"
 
 msgid "Disable Picture in Picture"
 msgstr "Bild in Bild ausschalten"
+
+msgid "Disable background scanning"
+msgstr "Hintergrundsuche deaktivieren"
 
 msgid "Disable move mode"
 msgstr "Verschiebemodus beenden"
@@ -3120,6 +3129,9 @@ msgstr "Videotext Cache aktivieren"
 msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
 msgstr "Aktiviere die Benutzung eines anderen Enigma2 Receivers im Netzwerk wenn kein lokaler Tuner mehr verfügbar ist, z.B. wenn alle Tuner durch Aufnahmen/Streams belegt sind oder es für die Empfangsart (Kabel/Sat) keinen lokalen Tuner gibt."
 
+msgid "Enable timer conflict detection"
+msgstr "Aktiviere Konfliktprüfung bei Timern"
+
 msgid "Enable unlinked bouquets"
 msgstr "Aktiviere nicht verbundene Favoritenlisten"
 
@@ -3455,6 +3467,9 @@ msgstr "Favoriten"
 
 msgid "Feeds status:   Stable"
 msgstr "Feed Status: stabil"
+
+msgid "Feeds status:   Unkown"
+msgstr "Feed Status: unbekannt"
 
 msgid "Feeds status:   Unstable"
 msgstr "Feed Status: instabil"
@@ -9691,6 +9706,9 @@ msgstr "Wenn aktiviert ist es einer Aufnahme gestattet das Live-Programm zu unte
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Wenn aktiviert wird eine Warnung angezeigt und der Benutzer hat die Möglichkeit TimeShift zu stoppen oder fortzuführen."
 
+msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
+msgstr "Wenn aktiviert werden empfangene Streams entschlüsselt. Diese Option verlang nach mehr Resourcen (entschlüsseln demuxer). Nur aktivieren wenn nötig. Einzelne Streams werden immer entschlüsselt wenn 0x100 als Service Typ benutzt wird. Standard ist aus."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Wenn aktiviert wird Authentifizierung für HTTP-Streams benötigt."
 
@@ -9720,6 +9738,9 @@ msgstr "Wenn aktiviert werden grafische DVB Untertitel an der Originalposition d
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Wenn aktiviert werden grafische DVB Untertitel in Gelb statt der Originalfarbe dargestellt."
+
+msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
+msgstr "Wenn aktiviert werdeb Streams entschlüsselt gesendet. Der Empfänger muss nicht entschlüsseln. Standard is an."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
 msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
@@ -9808,6 +9829,9 @@ msgstr "Wenn der Bildinhalt ein Aspect/Ratio von 16:9 hat wähle ob das Bild ska
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Wenn der Bildinhalt ein Aspect/Ratio von 4:3 hat wähle ob das Bild skaliert/gestreckt werden soll."
 
+msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
+msgstr "Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
+
 #, python-format
 msgid ""
 "When you perform a factory reset, you will lose ALL your configuration data\n"
@@ -9821,6 +9845,9 @@ msgstr ""
 "Nach der Wiederherstellung wird die %s %s automatisch neu starten\n"
 "\n"
 "Werkseinstellungen wirklich wiederherstellen?"
+
+msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
+msgstr "Wenn Ausweichreceiver frü Aufnahmen benutzt werden arbeitet die Konflikterkennung von Timer nicht. Mit dieser Option kann die Konflikterkennung abgeschaltet werden."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin die Einstellungen sichern?"
@@ -11407,12 +11434,6 @@ msgstr "umgeschaltet"
 #~ msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
 #~ msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
 
-#~ msgid "Descramble http streams"
-#~ msgstr "HTTP Streams entschlüsseln"
-
-#~ msgid "Disable background scanning"
-#~ msgstr "Hintergrundsuche deaktivieren"
-
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
 
@@ -11439,9 +11460,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "URL vom Reserve Receiver"
-
-#~ msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
-#~ msgstr "Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
