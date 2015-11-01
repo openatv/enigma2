@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.FileList import FileList
 from Components.Sources.StaticText import StaticText
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigYesNo, ConfigDirectory, NoSave
+from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigYesNo, ConfigDirectory
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
@@ -18,7 +18,6 @@ config.mediaplayer.alternateUserAgent = ConfigText(default="")
 config.mediaplayer.sortPlaylists = ConfigYesNo(default=False)
 config.mediaplayer.alwaysHideInfoBar = ConfigYesNo(default=True)
 config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
-config.mediaplayer.extraHeaders = NoSave(ConfigText(default=""))
 
 class DirectoryBrowser(Screen, HelpableScreen):
 
