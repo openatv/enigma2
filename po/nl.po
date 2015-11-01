@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 20:21+0100\n"
-"PO-Revision-Date: 2015-10-09 07:15+0100\n"
+"POT-Creation-Date: 2015-10-31 00:08+0000\n"
+"PO-Revision-Date: 2015-11-01 10:49+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
 "Language: Nederlands\n"
@@ -2608,8 +2608,11 @@ msgstr "Diepte"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "'Descramble & record ECM' geeft de optie om achteraf te decoderen indien het decoderen tijdens de opname faalde. 'Don't descramble, record ECM' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normal' betekent decoderen en geen ECM opnemen."
 
-msgid "Descramble http streams"
-msgstr "Descramble http streams"
+msgid "Descramble receiving http streams"
+msgstr "Descramble ontvangen http streams"
+
+msgid "Descramble sending http streams"
+msgstr "Descramble verzonden http streams"
 
 msgid "Description"
 msgstr "Beschrijving"
@@ -3130,14 +3133,14 @@ msgstr "Teletekst caching inschakelen"
 msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
 msgstr "Maakt het mogelijk de tuners van een remote E2-STB te gebruiken, als geen locale tuner beschikbaar is (b.v. als de tuner bezet is of er helemaal geen tuner aanwezig is)."
 
+msgid "Enable timer conflict detection"
+msgstr "Timer conflict detectie inschakelen"
+
 msgid "Enable unlinked bouquets"
 msgstr "Schakel niet-verbonden favorietenlijsten in"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
-
-msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen (als de ECM-data in de opname is opgenomen en een geldige smartcard aanwezig is)"
 
 msgid "Encrypted: "
 msgstr "Gecodeerd"
@@ -9730,6 +9733,9 @@ msgstr "Indien ingeschakeld mogen opnames live-TV beeindigen als er niet voldoen
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Indien ingeschakeld krijgt u de keuze om timeshift te stoppen of door te laten lopen."
 
+msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
+msgstr "Indien ingeschakeld zullen inkomende streams altijd gedecodeerd worden. Dit gebruikt meer systeembronnen (decoderen, demuxen), zodat het verstandig is dit alleen in te schakelen indien nodig. Bovendien wordt dit niet door alle STB's ondersteund. Individuele streams zullen altijd worden gedecodeerd als '0x100' is toegevoegd aan het service-type, ongeacht de instelling die hier is gemaakt. De standaard waarde is 'uit'."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Indien geactiveerd is authenticatie voor HTTP-streams noodzakelijk"
 
@@ -9759,6 +9765,9 @@ msgstr "Indien ingeschakeld zullen grafische DVB-ondertitels op hun originele pl
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Indien ingeschakeld worden grafische DVB-ondertitels vertoond in geel in plaats van in de originele kleur."
+
+msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
+msgstr "Indie ingeschakeld worden streams altijd door de server gedecodeerd. De client-box hoeft niet te decoderen. De standaardwaarde is 'Aan'."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
 msgstr "Indien ingeschakeld kan de speler (ook) verlaten worden door op de exit-toets te drukken."
@@ -9863,6 +9872,9 @@ msgstr ""
 "Na voltooiing van de fabrieksinstellingen, zal uw %s %s automatisch herstarten!\n"
 "\n"
 "Werkelijk uitvoeren?"
+
+msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
+msgstr "Wanneer u de 'remote fallback tuner' gebruit voor opnames, kan de timer conflict manager niet goed functioneren. Daarom kunt u die in dat geval uitschakelen."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u de instellingen opslaan?"
@@ -11568,6 +11580,9 @@ msgstr "zapte"
 
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
+
+#~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
+#~ msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen (als de ECM-data in de opname is opgenomen en een geldige smartcard aanwezig is)"
 
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
