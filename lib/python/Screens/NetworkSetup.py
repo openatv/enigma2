@@ -1650,7 +1650,7 @@ class NetworkAfp(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
@@ -1856,7 +1856,7 @@ class NetworkNfs(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
@@ -1982,7 +1982,7 @@ class NetworkOpenvpn(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage, MessageBox, _('Are you ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
@@ -2130,7 +2130,7 @@ class NetworkSamba(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
@@ -2380,7 +2380,7 @@ class NetworkInadyn(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage, MessageBox, _('Are you ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
@@ -2717,7 +2717,7 @@ class NetworkuShare(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage, MessageBox, _('Are you ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
@@ -3193,7 +3193,7 @@ class NetworkMiniDLNA(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable','unknown'):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage, MessageBox, _('Are you ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
