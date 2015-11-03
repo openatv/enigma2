@@ -2,19 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 22:52+0200\n"
-"PO-Revision-Date: 2015-10-18 03:37+0100\n"
-"Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
-"Language-Team: pr2\n"
+"POT-Creation-Date: 2015-11-02 19:59+0100\n"
+"PO-Revision-Date: 2015-11-02 20:02+0100\n"
+"Last-Translator: Pr2 <dummy@dummy.com>\n"
+"Language-Team: french\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
 
 msgid ""
 "\n"
@@ -955,7 +953,7 @@ msgid "Allows you to adjust the amount of time the resolution infomation display
 msgstr "Vous permez d’ajuster la durée d’affichage de la résolution sur l’écran."
 
 msgid "Allows you to enable the debug logs. They contain very detailed information about everything the system does. Reboot required to enable this!"
-msgstr "Permet d’activer les journaux de débogage. Ils contiennent des informations très détaillées sur tout ce que fait le systΦme. Redémarrage requis pour permettre ceci!"
+msgstr "Permet d’activer les journaux de débogage. Ils contiennent des informations très détaillées sur tout ce que fait le systFme. Redémarrage requis pour permettre ceci!"
 
 msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Vous permet d’activer/désactiver l’affichage des icônes sur la face avant."
@@ -2606,8 +2604,11 @@ msgstr "Profondeur"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "‘Décoder & enregistrer ECM’ permet de décoder plus tard si le décodage lors de l’enregistrement échoue. ‘Ne pas décoder, enregistrer ECM’ sauvegarde un enregistrement encodé qui pourra être décodé lors de la lecture. ‘Normal’ décode l’enregistrement et ne sauvegarde pas les ECMs."
 
-msgid "Descramble http streams"
-msgstr "Décoder les streams http"
+msgid "Descramble receiving http streams"
+msgstr "Décrypter les flux HTTP reçus"
+
+msgid "Descramble sending http streams"
+msgstr "Décrypter les flux HTTP envoyés"
 
 msgid "Description"
 msgstr "Description"
@@ -3127,14 +3128,14 @@ msgstr "Activer la mise en cache du télétexte"
 msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
 msgstr "Activer l’utilisation d’un récepteur enigma2 distant lorsqu’aucun tuner local n’est disponible (par exemple lorsque le tuner est occupé ou le type de service n’est pas disponible sur le tuner local)."
 
+msgid "Enable timer conflict detection"
+msgstr "Activer la détection des conflits de la minuterie"
+
 msgid "Enable unlinked bouquets"
 msgstr "Activer les bouquets non liés"
 
 msgid "Enabled"
 msgstr "Activer"
-
-msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-msgstr "Permet une option afin que le récepteur peut déchiffrer des flux (si les données de l'ECM est inclus dans le flux et une carte valide est disponible)."
 
 msgid "Encrypted: "
 msgstr "Crypté: "
@@ -3465,6 +3466,9 @@ msgstr "Favoris"
 
 msgid "Feeds status:   Stable"
 msgstr "Statut du feed:  Stable"
+
+msgid "Feeds status:   Unkown"
+msgstr "Statut des sources:  inconnu"
 
 msgid "Feeds status:   Unstable"
 msgstr "Statut du feed:  instable"
@@ -9691,6 +9695,9 @@ msgstr "Lorsqu’il est activé, un enregistrement est autorisé à interromptre
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Lorsqu’il est activé, un avertisement sera affiché et l’utilisateur pourra choisir une option pour arrêter ou continer le PauseDirect."
 
+msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
+msgstr "Lorsqu’il est activé, toujours décrypter la réception de flux http. Cela prend plus de ressources (de demuxers de décodages), n’activer que si c’est nécessaire. Les flux individuels sont toujours décryptés si 0x100 est ajouté au type de service, indépendamment de ce paramètre. Désactivé par défaut."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Lorsqu’il est activé, l’authentification est requise pour regarder les streams http."
 
@@ -9720,6 +9727,9 @@ msgstr "Lorsqu’il est activé, les sous-titres DVB graphique seront affichés 
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Lorsqu’il est activé, les sous-titres DVB graphiques seront affichés en jaune, à la place de leur couleur d’origine."
+
+msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
+msgstr "Lorsqu'elle est activée, les flux http sont décryptés du côté serveur. Le récepteur client (distant) n'aura pas a décrypter. Par défaut: actif."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
 msgstr "Lorsqu’il est activé, il est possible de quitter le lecteur de film en appuyant sur exit."
@@ -9824,6 +9834,9 @@ msgstr ""
 "Lorsque la réinitialisation usine sera accomplie, votre %s %s redémarrera automatiquement!\n"
 "\n"
 "Vraiment faire une réinitialisation usine?"
+
+msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
+msgstr "Lorsque vous utilisez le tuner distant de repli pour effectuer l’enregistrement, la détection des conflits de programmation ne peut pas gérer à distance les tuners de repli. Cette option vous permet de désactiver la détection des conflicts de programmation."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Où voulez-vous sauver vos paramètres?"
@@ -11403,3 +11416,5 @@ msgstr "zapper et enregistrer"
 msgid "zapped"
 msgstr "zappé"
 
+#~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
+#~ msgstr "Permet une option afin que le récepteur peut déchiffrer des flux (si les données de l'ECM est inclus dans le flux et une carte valide est disponible)."
