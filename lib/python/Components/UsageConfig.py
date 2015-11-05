@@ -27,6 +27,7 @@ def InitUsageConfig():
 	config.usage.boot_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby"))])
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
+	config.usage.maxchannelnumlen = ConfigSelection(default = "4", choices = [("4", _("4")), ("5", _("5"))])
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):

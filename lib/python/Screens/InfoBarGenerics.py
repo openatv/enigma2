@@ -1004,7 +1004,7 @@ class NumberZap(Screen):
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
 
-		if len(self.numberString) >= 4:
+		if len(self.numberString) >= config.usage.maxchannelnumlen.value:
 			self.keyOK()
 
 	def __init__(self, session, number, searchNumberFunction = None):
