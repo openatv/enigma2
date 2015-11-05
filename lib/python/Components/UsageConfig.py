@@ -259,6 +259,10 @@ def InitUsageConfig():
 	config.usage.movielist_unseen = ConfigYesNo(default = False)
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
+	config.usage.maxchannelnumlen = ConfigSelection(default = "5", choices = [("4", _("4")), ("5", _("5"))])
+	config.usage.numzaptimeoutmode = ConfigSelection(default = "standard", choices = [("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("off"))])
+	config.usage.numzaptimeout1 = ConfigSlider(default = 3000, increment = 250, limits = (750, 5000))
+	config.usage.numzaptimeout2 = ConfigSlider(default = 1000, increment = 250, limits = (750, 5000))
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
