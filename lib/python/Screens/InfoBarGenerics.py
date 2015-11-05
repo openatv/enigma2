@@ -995,7 +995,11 @@ class NumberZap(Screen):
 			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 
 	def keyNumberGlobal(self, number):
-		self.Timer.start(1000, True)
+		if config.usage.numzaptimeoutmode.value is not "off":
+			if config.usage.numzaptimeoutmode.value is "standart":
+				self.Timer.start(1000, True)
+			else:
+				self.Timer.start(config.usage.numzaptimeout2.value, True)
 		self.numberString += str(number)
 		self["number"].setText(self.numberString)
 		self["number_summary"].setText(self.numberString)
@@ -1004,7 +1008,7 @@ class NumberZap(Screen):
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
 
-		if len(self.numberString) >= config.usage.maxchannelnumlen.value:
+		if len(self.numberString) >= int(config.usage.maxchannelnumlen.value):
 			self.keyOK()
 
 	def __init__(self, session, number, searchNumberFunction = None):
@@ -1045,7 +1049,11 @@ class NumberZap(Screen):
 
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
-		self.Timer.start(3000, True)
+		if config.usage.numzaptimeoutmode.value is not "off":
+			if config.usage.numzaptimeoutmode.value is "standart":
+				self.Timer.start(3000, True)
+			else:
+				self.Timer.start(config.usage.numzaptimeout1.value, True)
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
