@@ -173,7 +173,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 
 	def checkNetworkState(self):
 		self.trafficLight = feedsstatuscheck.getFeedsBool()
-		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'inprogress': _('ERROR: Check is already running in background'), 'unknown': _('Feeds status:   Unkown')}
+		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'inprogress': _('ERROR: Check is already running in background'), 'unknown': _('Feeds status:   Unknown')}
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
 		self['tl_green'].hide()
