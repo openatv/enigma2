@@ -183,13 +183,12 @@
 
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="400,240">
-		<widget source="parent.summary_job_name" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="parent.summary_job_task" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="FdLcD;12" zposition="0" halign="center" transparent="1" >
+		<widget source="parent.summary_job_name" render="Label" position="0,38" size="400,58" font="FdLcD;24" halign="left" />
+		<widget source="parent.summary_job_task" render="Label" position="0,100" size="400,25" font="FdLcD;19" halign="left" />
+		<widget source="parent.summary_job_progress" render="Progress" position="0,0" size="285,30" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="290,0" size="100,30" font="FdLcD;24" zposition="0" halign="center" valign="center" transparent="1" >
 			<convert type="ProgressToText" />
 		</widget>
-		<panel name="SummaryIconsPanel" />
 	</screen>
 
 	<screen name="EventView_summary" position="0,0" size="400,240">
@@ -225,7 +224,7 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="400,240">
-		<widget source="parent.summary_list" render="Label" position="0,0" size="400,240" font="FdLcD;16" noWrap="1" />
+		<widget source="parent.summary_list" render="Label" position="0,0" size="400,240" font="FdLcD;18" noWrap="1" />
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="400,240">
@@ -242,13 +241,18 @@
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="400,240">
-		<widget source="service" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="name" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="time" render="Label" position="0,86" size="400,20" font="FdLcD;19" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="0,110" size="400,20" font="FdLcD;19" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="0,110" size="400,20" font="FdLcD;19" halign="right" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerStatusPanel" />
+		<widget source="parent.Title" render="Label" position="0,0" size="400,26" font="FdLcD;24" halign="center" noWrap="1" />
+		<widget source="service" render="Label" position="0,40" size="400,30" font="FdLcD;28" halign="center" noWrap="1" />
+		<widget source="name" render="Label" position="0,80" size="400,100" font="FdLcD;28" halign="center" valign="center" />
+		<widget source="time" render="Label" position="0,188" size="400,28" font="FdLcD;24" halign="left" transparent="1" />
+		<widget source="duration" render="Label" position="0,214" size="400,28" font="FdLcD;24" halign="left" transparent="1" />
+		<widget source="state" render="Label" position="0,214" size="400,28" font="FdLcD;24" halign="right" transparent="1" />
+	</screen>
+
+	<screen name="AutoTimerOverviewSummary" position="0,0" size="400,240">
+		<widget source="parent.Title" render="Label" position="0,0" size="400,26" font="FdLcD;24" halign="center" noWrap="1" />
+		<widget source="entry" render="Label" position="0,40" size="400,125" font="FdLcD;28" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
 	</screen>
 
 	<screen name="WizardSummary" position="0,0" size="400,240">
@@ -314,36 +318,38 @@
 	</screen>
 	
 	<!-- LCD screen EMC -->
-	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,64" >
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,240" >
 		<!-- Movie name -->		
-		<widget source="session.CurrentService" render="Label" position="1,1" size="130,37" font="Regular;16" halign="center">
-			  <convert type="ServiceName">Name</convert>
+		<widget source="session.CurrentService" render="Label" position="0,10" size="400,148" font="FdLcD;40" halign="center" valign="center" transparent="1" >
+			<convert type="ServiceName">Name</convert>
 		</widget>
 		<!-- Movie progress -->
-		<widget source="Service" render="Progress" position="1,40" size="130,4" zPosition="2" borderWidth="1">
-			  <convert type="EMCServicePosition">Position</convert>
+		<widget source="Service" render="Progress" position="0,150" size="400,30" zPosition="2" borderWidth="1"  transparent="1" >
+			<convert type="EMCServicePosition">Position</convert>
 		</widget>
 		<!-- Movie recording progress -->
-		<widget source="Service" render="Progress" position="1,37" size="130,4" zPosition="1" borderWidth="1">
+<!-- 		<widget source="Service" render="Progress" position="0,90" size="400,10" zPosition="1" borderWidth="1">
 			  <convert type="EMCRecordPosition">Position</convert>
-		</widget>
+		</widget> -->
 		<!-- Current time -->
-		<widget source="global.CurrentTime" render="Label" position="1,44" size="58,20" font="Regular;17" halign="center">
-			  <convert type="ClockToText">Format:%H:%M</convert>
+		<widget source="global.CurrentTime" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="left" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<!-- Remaining movie time -->
-		<widget source="session.CurrentService" render="Label" position="60,44" size="72,20" font="Regular;17" halign="center">
-			  <convert type="ServicePosition">Remaining,Negate</convert>
-			  <!--convert type="ServicePosition">Summary</convert-->
+		<widget source="session.CurrentService" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+			<!--convert type="ServicePosition">Summary</convert-->
 		</widget>
 		<!-- Recording indicator-->
-		<widget source="session.RecordState" render="FixedLabel" text="REC" position="62,44" size="70,20" font="Regular;18" halign="center">
-			  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			  <convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="FixedLabel" text="REC" position="350,0" size="50,22" halign="right" foregroundColor="#ff0000" font="FdLcD;19"  zPosition="1" noWrap="1" >
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryClockPanel" />
-	</screen>
+		<widget source="session.RecordState" render="FixedLabel" text="REC" position="350,0" size="50,22" halign="right" foregroundColor="#ff0000" font="FdLcD;19"  zPosition="1" noWrap="1" >
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>	
 	<screen name="CrossEPG_Downloader_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
