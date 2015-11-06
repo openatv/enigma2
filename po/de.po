@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-10-26 20:55+0100\n"
+"PO-Revision-Date: 2015-11-06 18:51+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -10117,6 +10117,38 @@ msgstr "Fokus umschalten zum Hauptbildschirm"
 msgid "Zap mode"
 msgstr "Umschaltmodus"
 
+#: data/setup.xml
+msgid "Channel zap delay mode"
+msgstr "Umschaltverzögerung"
+
+#: data/setup.xml
+msgid "Setup delay mode to zap to channels."
+msgstr "Hier können Sie den Verzögerungsmodus  beim Umschalten einstellen."
+
+#: data/setup.xml
+msgid "Channel zap delay first button"
+msgstr "Umschaltverzögerung der ersten Ziffer"
+
+#: data/setup.xml
+msgid "User defined delay when you press the first button to zap to the channel."
+msgstr "Hier können Sie die Umschaltverzögerung der ersten Ziffer einstellen."
+
+#: data/setup.xml
+msgid "Channel zap delay another button"
+msgstr "Umschaltverzögerung weiterer Ziffern"
+
+#: data/setup.xml
+msgid "User defined delay when you press another button to zap to the channel."
+msgstr "Hier können Sie die Umschaltverzögerung der weiteren Zifferntasten einstellen."
+
+#: data/setup.xml
+msgid "Number of digits in channel number"
+msgstr "Anzahl der Stellen in der Kanalnummer "
+
+#: data/setup.xml
+msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgstr "Hier können Sie die Anzahl der Stellen auf 5 setzen, wenn Sie mehr als 9999 Kanäle haben."
+
 msgid "[TimeShift] - Merging records failed!"
 msgstr "TimeShift - Zusammenführen der Aufnahmen fehlgeschlagen!"
 
@@ -15034,8 +15066,12 @@ msgstr ""
 "Bitte überprüfen und übernehmen Sie ihre Einstellungen nach einem Neustart in dem MyMetrixLite-Plugin."
 
 #: BackupRestore.py
-msgid "Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."
-msgstr "Unbekannter Fehler beim erstellen des Skins.\nBitte überprüfen und übernehmen Sie ihre Einstellungen nach einem Neustart in dem MyMetrixLite-Plugin."
+msgid ""
+"Unknown Error creating Skin.\n"
+"Please check after reboot MyMetrixLite-Plugin and apply your settings."
+msgstr ""
+"Unbekannter Fehler beim erstellen des Skins.\n"
+"Bitte überprüfen und übernehmen Sie ihre Einstellungen nach einem Neustart in dem MyMetrixLite-Plugin."
 
 #: BackupRestore.py
 msgid "Error creating HD-Skin. Not enough flash memory free."
