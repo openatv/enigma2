@@ -71,6 +71,15 @@
 			<menu weight="35" level="0" text="System" entryID="system_selection">
 				<id val="system" />
 
+				<!-- Menu / Settings / System / General Menu -->
+				<menu weight="5" level="0" text="Basic settings" entryID="general_menu">
+					<id val="general_menu" />
+					<item weight="0" level="0" entryID="usage_setup"><setup id="usage" /></item>
+					<item weight="5" level="0" entryID="logs_setup"><setup id="logs" /></item>
+					<item weight="10" level="0" entryID="time_setup"><setup id="time_setup"/></item>
+					<item weight="15" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				</menu>
+
 				<!-- Menu / Settings / System / UI Menu -->
 				<menu weight="10" level="0" text="User interface" entryID="ui_menu">
 					<id val="ui_menu" />
@@ -147,15 +156,6 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 					</menu>
 					<item weight="10" level="1" text="Keyboard"><setup id="keyboard" /></item>
 					<item weight="15" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
-				</menu>
-
-				<!-- Menu / Settings / System / General Menu -->
-				<menu weight="40" level="0" text="Basic settings" entryID="general_menu">
-					<id val="general_menu" />
-					<item weight="0" level="0" entryID="usage_setup"><setup id="usage" /></item>
-					<item weight="5" level="0" entryID="logs_setup"><setup id="logs" /></item>
-					<item weight="10" level="0" entryID="time_setup"><setup id="time_setup"/></item>
-					<item weight="15" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				</menu>
 
 				<!-- Menu / Settings / System / Setup Menu
