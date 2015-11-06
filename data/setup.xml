@@ -26,6 +26,10 @@
 	<setup level="0" key="usage" title="Customize">
 		<item level="0" text="Setup mode" description="Configure which access level to use for the configuration menu. Expert level gives access to all items.">config.usage.setup_level</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Configure the way in which the receiver changes channels.">config.misc.zapmode</item>
+		<item level="2" text="Channel zap delay mode" description="Setup delay mode to zap to channels.">config.usage.numzaptimeoutmode</item>
+		<item level="2" text="Channel zap delay first button" description="User defined delay when you press the first button to zap to the channel.">config.usage.numzaptimeout1</item>
+		<item level="2" text="Channel zap delay another button" description="User defined delay when you press another button to zap to the channel.">config.usage.numzaptimeout2</item>
+		<item level="2" text="Number of channel number digits" description="This allows you to set the number of digits to 5, if you have more than 9999 channels.">config.usage.maxchannelnumlen</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output" requires="12V_Output.">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners. Choose 'no priority' to try each alternative one by one independent from tuner type.">config.usage.alternatives_priority</item>

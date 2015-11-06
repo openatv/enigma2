@@ -2,6 +2,7 @@ from Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -31,6 +32,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
 		self.protectContextMenu = True
+		self.Plugins = []
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
 
@@ -157,20 +159,16 @@ class AudioSelection(Screen, ConfigListScreen):
 					def __call__(self, *args, **kwargs):
 						self.fnc(*self.args)
 
-				Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
+				self.Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
 
-				if len(Plugins):
+				if self.Plugins:
 					self["key_blue"].setBoolean(True)
-					conflist.append(getConfigListEntry(Plugins[0][0], ConfigNothing()))
-					self.plugincallfunc = Plugins[0][1]
-				else:
-					self["key_blue"].setBoolean(False)
-					conflist.append(('',))
-				if len(Plugins) > 1:
-					print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
-			else:
-				self["key_blue"].setBoolean(False)
-				conflist.append(('',))
+					if len(self.Plugins) > 1:
+						conflist.append(getConfigListEntry(_("Audio plugins"), ConfigNothing()))
+						self.plugincallfunc = [(x[0], x[1]) for x in self.Plugins]
+					else:
+						conflist.append(getConfigListEntry(self.Plugins[0][0], ConfigNothing()))
+						self.plugincallfunc = self.Plugins[0][1]
 
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 
@@ -291,7 +289,13 @@ class AudioSelection(Screen, ConfigListScreen):
 				ConfigListScreen.keyRight(self)
 			elif self["config"].getCurrentIndex() == 3:
 				if self.settings.menupage.getValue() == PAGE_AUDIO and hasattr(self, "plugincallfunc"):
-					self.plugincallfunc()
+					if len(self.Plugins) > 1:
+						def runPluginAction(choice):
+							if choice:
+								choice[1]()
+						self.session.openWithCallback(runPluginAction, ChoiceBox, title=_("Audio plugins"), list=self.plugincallfunc)
+					else:
+						self.plugincallfunc()
 				elif self.settings.menupage.getValue() == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
 					self.session.open(QuickSubtitlesConfigMenu, self.infobar)
 		if self.focus == FOCUS_STREAMS and self["streams"].count() and config == False:

@@ -14,7 +14,7 @@ from Components.Network import iNetwork
 
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
-
+from os import popen
 from Tools.StbHardware import getFPVersion
 
 from boxbranding import getBoxType
@@ -74,8 +74,10 @@ class About(Screen):
 
 		ImageType = about.getImageTypeString()
 		self["ImageType"] = StaticText(ImageType)
+		
+		Boxserial = popen('cat /proc/stb/info/sn').read()
 
-		AboutHeader = ImageType + " - " + BoxName
+		AboutHeader = ImageType + " - " + BoxName + " - Serial: " + Boxserial
 		self["AboutHeader"] = StaticText(AboutHeader)
 
 		AboutText = AboutHeader + "\n"
