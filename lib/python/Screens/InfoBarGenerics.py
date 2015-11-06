@@ -485,7 +485,7 @@ class NumberZap(Screen):
 			if config.usage.numzaptimeoutmode.value is "standard":
 				self.Timer.start(1000, True)
 			else:
-				self.Timer.start(config.usage.numzaptimeout2.value, True)
+				self.Timer.start(int(config.usage.numzaptimeout2.value), True)
 		self.numberString = self.numberString + str(number)
 		self["number"].text = self["number_summary"].text = self.numberString
 		self.field = self.numberString
@@ -534,7 +534,7 @@ class NumberZap(Screen):
 			if config.usage.numzaptimeoutmode.value is "standard":
 				self.Timer.start(3000, True)
 			else:
-				self.Timer.start(config.usage.numzaptimeout1.value, True)
+				self.Timer.start(int(config.usage.numzaptimeout1.value), True)
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
