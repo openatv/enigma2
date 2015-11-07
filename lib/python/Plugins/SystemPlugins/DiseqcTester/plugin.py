@@ -482,6 +482,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.timer.stop()
 			if hasattr(self, 'frontend'):
 				self.frontend = None
+			if hasattr(self, 'raw_channel'):
+				del self.raw_channel
 		except:
 			pass
 		self.session.nav.playService(self.oldref)
