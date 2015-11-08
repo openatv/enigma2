@@ -25,24 +25,32 @@ class FeedsStatusCheck:
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
+	def IsInt(self, val):
+		try: 
+			int(val)
+			return True
+		except ValueError:
+			return False
+
 	def getFeedSatus(self):
 		status = '1'
 		trafficLight = 'unknown'
 		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wlan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
 			try:
+				print '[OnlineVersionCheck] Checking feeds state'
 				req = urllib2.Request('http://openvix.co.uk/TrafficLightState.php')
 				d = urllib2.urlopen(req)
 				trafficLight = d.read()
 			except urllib2.HTTPError, err:
-				print 'ERROR:',err
+				print '[OnlineVersionCheck] ERROR:',err
 				trafficLight = err.code
 			except urllib2.URLError, err:
-				print 'ERROR:',err.reason[0]
+				print '[OnlineVersionCheck] ERROR:',err.reason[0]
 				trafficLight = err.reason[0]
 			except urllib2, err:
-				print 'ERROR:',err
+				print '[OnlineVersionCheck] ERROR:',err
 				trafficLight = err
-			if not trafficLight.isdigit() and getImageType() != 'release':
+			if not self.IsInt(trafficLight) and getImageType() != 'release':
 				trafficLight = 'unknown'
 			elif trafficLight == 'stable':
 				status = '0'
