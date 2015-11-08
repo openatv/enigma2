@@ -2823,10 +2823,10 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			}
 			eDebugNoNewLine(")");
 		}
-		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		pcrpid = program.pcrPid;
-		eDebugNoNewLineEnd(", and the text pid is %04x", program.textPid);
+		eDebugNoNewLine(", and the pcr pid is %04x", pcrpid);
 		tpid = program.textPid;
+		eDebugNoNewLineEnd(", and the text pid is %04x", tpid);
 	}
 
 	m_have_video_pid = 0;
@@ -2888,8 +2888,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		m_decoder->setVideoPID(vpid, vpidtype);
 		m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 
-
-		if (!(m_is_pvr || m_is_stream || m_timeshift_active))
+		if (!(m_is_pvr || m_is_stream || m_timeshift_active || (pcrpid == 0x1FFF)))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
