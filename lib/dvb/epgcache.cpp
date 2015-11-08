@@ -454,10 +454,10 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 #endif
 #ifdef ENABLE_MHW_EPG
 		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 Canal+ Spain
-		//data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 Canal+ Spain
-		//data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 Canal+ Spain
-		data->m_mhw2_title_pid = 0x284; // change for fix 7 days epg Canal+ Spain
-		data->m_mhw2_summary_pid = 0x282; // change for fix 7 days epg Canal+ Spain
+		data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 Canal+ Spain
+		data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 Canal+ Spain
+		//data->m_mhw2_title_pid = 0x284; // change for fix 7 days epg Canal+ Spain
+		//data->m_mhw2_summary_pid = 0x282; // change for fix 7 days epg Canal+ Spain
 #endif
 		singleLock s(channel_map_lock);
 		m_knownChannels.insert( std::pair<iDVBChannel*, channel_data* >(chan, data) );
