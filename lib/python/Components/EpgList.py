@@ -838,8 +838,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					backcolor = None, backcolor_sel = None, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
-				namefont = 1
-				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				namefont = 0
+				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 				namewidth = piconWidth
 				piconWidth = 0
 			else:
