@@ -808,7 +808,7 @@ int eTSMPEGDecoder::setState()
 		m_changed |= changeText | changeState;
 
 	const char *decoder_states[] = {"stop", "pause", "play", "decoderfastforward", "trickmode", "slowmotion"};
-	eDebug("decoder state: %s, vpid=%d, apid=%d", decoder_states[m_state], m_vpid, m_apid);
+	eDebug("decoder state: %s, vpid=%d, apid=%d, pcrpid=%d", decoder_states[m_state], m_vpid, m_apid, m_pcrpid);
 
 	int changed = m_changed;
 	if (m_changed & changePCR)

@@ -2165,6 +2165,22 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	m_current_audio_pid = apid;
 
+	pts_t a_pts, v_pts;
+	a_pts = v_pts = 0;
+	m_decoder->getPTS(2, a_pts);
+	m_decoder->getPTS(1, v_pts);
+	eDebug("a: %lld   v: %lld  %lld",a_pts, v_pts, a_pts-v_pts);
+	bool radio_workaround = false;
+	if(v_pts && a_pts && (abs(a_pts-v_pts) > 15000))
+		radio_workaround = true;
+
+	if(radio_workaround)
+		if (m_decoder->setAudioPID(-1, 0))
+		{
+			eDebug("set audio pid failed");
+			return -4;
+		}
+
 	if (m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("set audio pid failed");
@@ -2194,6 +2210,9 @@ int eDVBServicePlay::selectAudioStream(int i)
 			}
 		}
 	}
+
+	if(radio_workaround)
+		m_decoder->setSyncPCR(-1);
 
 			/* store new pid as default only when:
 				a.) we have an entry in the service db for the current service,
@@ -2869,12 +2888,13 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		m_decoder->setVideoPID(vpid, vpidtype);
 		m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 
-		selectAudioStream();
 
 		if (!(m_is_pvr || m_is_stream || m_timeshift_active))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
+
+		selectAudioStream();
 
 		if (m_decoder_index == 0)
 		{
