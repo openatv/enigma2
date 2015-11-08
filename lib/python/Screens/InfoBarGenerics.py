@@ -1370,11 +1370,11 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
-		self["SeekActionsPTS"].setEnabled(False)
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
 
+			self["SeekActionsPTS"].setEnabled(False)
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
@@ -1427,14 +1427,15 @@ class InfoBarChannelSelection:
 				self.servicelist2.moveUp()
 			self.servicelist2.zap(enable_pipzap = True)
 			ChannelSelectionInstance.dopipzap = False
-		self["SeekActionsPTS"].setEnabled(True)
+		if self.timeshiftEnabled() and self.isSeekable():
+			self["SeekActionsPTS"].setEnabled(True)
 
 	def zapDown(self):
-		self["SeekActionsPTS"].setEnabled(False)
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
 
+			self["SeekActionsPTS"].setEnabled(False)
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
@@ -1486,7 +1487,8 @@ class InfoBarChannelSelection:
 				self.servicelist2.moveDown()
 			self.servicelist2.zap(enable_pipzap = True)
 			ChannelSelectionInstance.dopipzap = False
-		self["SeekActionsPTS"].setEnabled(True)
+		if self.timeshiftEnabled() and self.isSeekable():
+			self["SeekActionsPTS"].setEnabled(True)
 
 	def volumeUp(self):
 		VolumeControl.instance.volUp()
