@@ -871,8 +871,6 @@ alloc_fe_by_id_not_possible:
 	return err;
 }
 
-#define capHoldDecodeReference 64
-
 RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int &cap)
 {
 		/* find first unused demux which is on same adapter as frontend (or any, if PVR)
@@ -889,7 +887,6 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
 	int source = fe ? fe->m_frontend->getDVBID() : -1;
-	cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 	if (!fe && !(cap & iDVBChannel::capDecode))
 	{
 		eDebug("[eDVBResourceManager] pvr playback, start with last demux");
@@ -1984,18 +1981,6 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 			return -1;
 
 		demux = *our_demux;
-
-		/* don't hold a reference to the decoding demux, we don't need it. */
-
-		/* FIXME: by dropping the 'allocated demux' in favour of the 'iDVBDemux',
-		   the refcount is lost. thus, decoding demuxes are never allocated.
-
-		   this poses a big problem for PiP. */
-
-		if (cap & capHoldDecodeReference) // this is set in eDVBResourceManager::allocateDemux for non DM7025 boxes
-			;
-		else if (cap & capDecode)
-			our_demux = 0;
 	}
 	else
 		demux = *our_demux;
