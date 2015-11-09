@@ -55,8 +55,10 @@ class FeedsStatusCheck:
 			elif trafficLight == 'stable':
 				status = '0'
 			config.softwareupdate.updateisunstable.setValue(status)
+			print '[OnlineVersionCheck] PASSED:',trafficLight
 			return trafficLight
 		else:
+			print '[OnlineVersionCheck] ERROR: -2'
 			return -2
 
 	def getFeedsBool(self):
@@ -162,7 +164,7 @@ class VersionCheck:
 				print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
-				print '[OnlineVersionCheck] skipping as beta is not wanted'
+				print '[OnlineVersionCheck] skipping as unstable is not wanted'
 				return False
 		else:
 			return False
