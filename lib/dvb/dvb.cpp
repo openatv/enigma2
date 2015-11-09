@@ -986,9 +986,8 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
 		int source = fe ? fe->m_frontend->getDVBID() : -1;
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		if (!fe && !(cap & iDVBChannel::capDecode))
+		if (!fe)
 		{
-			eDebug("[eDVBResourceManager] pvr playback, start with last demux");
 			/*
 			 * For pvr playback, start with the last demux.
 			 * On some hardware, we have less ca devices than demuxes,
