@@ -305,7 +305,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		if config.crontimers.runwhen.value == 'Weekly':
 			self.list.append(getConfigListEntry(_("What Day of week ?"), config.crontimers.dayofweek))
 		if config.crontimers.runwhen.value == 'Monthly':
-			self.list.append(getConfigListEntry(_("What date of month ?"), config.crontimers.dayofmonth))
+			self.list.append(getConfigListEntry(_("What Day of month ?"), config.crontimers.dayofmonth))
 		self.list.append(getConfigListEntry(_("Command type"), config.crontimers.commandtype))
 		if config.crontimers.commandtype.value == 'custom':
 			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.user_command))
