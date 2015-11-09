@@ -99,73 +99,8 @@ eDVBResourceManager::eDVBResourceManager()
 		addAdapter(adapter, true);
 	}
 
-	m_boxtype = -1;
-	int fd = open("/proc/stb/info/model", O_RDONLY);
-	if (fd >= 0) {
-		char tmp[16];
-		int rd = read(fd, tmp, sizeof(tmp));
-		close(fd);
-
-		if (rd == 0)
-			eDebug("[eDVBResourceManager] /proc/stb/info empty. Use fallback via demux count!");
-		else if (!strncmp(tmp, "dm7025\n", rd))
-			m_boxtype = DM7025;
-		else if (!strncmp(tmp, "dm8000\n", rd))
-			m_boxtype = DM8000;
-		else if (!strncmp(tmp, "dm800\n", rd))
-			m_boxtype = DM800;
-		else if (!strncmp(tmp, "dm500hd\n", rd))
-			m_boxtype = DM500HD;
-		else if (!strncmp(tmp, "dm800se\n", rd))
-			m_boxtype = DM800SE;
-		else if (!strncmp(tmp, "dm7020hd\n", rd))
-			m_boxtype = DM7020HD;
-		else if (!strncmp(tmp, "Gigablue\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gb800solo\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gb800se\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gb800ue\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gb800seplus\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gb800ueplus\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbipbox\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbquad\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbquadplus\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbultra\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbultrase\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbultraue\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbx1\n", rd))
-			m_boxtype = GIGABLUE;
-		else if (!strncmp(tmp, "gbx3\n", rd))
-			m_boxtype = GIGABLUE;
-		else
-			eDebug("[eDVBResourceManager] boxtype detection via /proc/stb/info/model not possible... use fallback via demux count!\n");
-		}
-	else {
-		eDebug("[eDVBResourceManager] cannot open /proc/stb/info. Use fallback via demux count!");
-	}
-
-	if (m_boxtype == -1) {
-		if (m_demux.size() == 3)
-			m_boxtype = DM800;
-		else if (m_demux.size() < 5)
-			m_boxtype = DM7025;
-		else
-			m_boxtype = DM8000;
-	}
-
-	eDebug("[eDVBResourceManager] found %zd adapter, %zd frontends(%zd sim) and %zd demux, boxtype %d",
-		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
+	eDebug("[eDVBResourceManager] found %zd adapter, %zd frontends(%zd sim) and %zd demux",
+		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size());
 
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
@@ -952,84 +887,52 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
-	if (m_boxtype == DM7025) // ATI
+	iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
+	int source = fe ? fe->m_frontend->getDVBID() : -1;
+	cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
+	if (!fe && !(cap & iDVBChannel::capDecode))
 	{
-		/* FIXME: hardware demux policy */
-		int n=0;
-		if (!(cap & iDVBChannel::capDecode))
-		{
-			if (m_demux.size() > 2)  /* assumed to be true, otherwise we have lost anyway */
-			{
-				++i, ++n;
-				++i, ++n;
-			}
-		}
-
-		for (; i != m_demux.end(); ++i, ++n)
-		{
-			int is_decode = n < 2;
-
-			int in_use = is_decode ? (i->m_demux->getRefCount() != 2) : i->m_inuse;
-
-			//eDebug("[eDVBResourceManager] for DM7025 n=%d, is_decode=%d, in_use=%d refcnt=%d, m_inuse=%d", n, is_decode, in_use, i->m_demux->getRefCount(), i->m_inuse);
-			if ((!in_use) && ((!fe) || (i->m_adapter == fe->m_adapter)))
-			{
-				if ((cap & iDVBChannel::capDecode) && !is_decode)
-					continue;
-				unused = i;
-				break;
-			}
-		}
+		eDebug("[eDVBResourceManager] pvr playback, start with last demux");
+		/*
+		 * For pvr playback, start with the last demux.
+		 * On some hardware, we have less ca devices than demuxes,
+		 * so we should try to leave the first demuxes for live tv,
+		 * and start with the last for pvr playback
+		 */
+		i = m_demux.end();
+		--i;
 	}
-	else
+	while (i != m_demux.end())
 	{
-		iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
-		int source = fe ? fe->m_frontend->getDVBID() : -1;
-		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		if (!fe && !(cap & iDVBChannel::capDecode))
+		if (i->m_adapter == adapter)
 		{
-			eDebug("[eDVBResourceManager] pvr playback, start with last demux");
-			/*
-			 * For pvr playback, start with the last demux.
-			 * On some hardware, we have less ca devices than demuxes,
-			 * so we should try to leave the first demuxes for live tv,
-			 * and start with the last for pvr playback
-			 */
-			i = m_demux.end();
-			--i;
-		}
-		while (i != m_demux.end())
-		{
-			if (i->m_adapter == adapter)
+			if (!i->m_inuse)
 			{
-				if (!i->m_inuse)
-				{
-					/* mark the first unused demux, we'll use that when we do not find a better match */
-					if (!unused) unused = i;
-				}
-				else
-				{
-					/* demux is in use, see if we can share it */
-					if (source >= 0 && i->m_demux->getSource() == source)
-					{
-						i->m_demux->getCAAdapterID(a);
-						i->m_demux->getCADemuxID(d);
-						eDebug("[eDVBResourceManager] allocating shared demux adapter=%d, demux=%d, source=%d", a, d, i->m_demux->getSource());
-						demux = new eDVBAllocatedDemux(i);
-						return 0;
-					}
-				}
-			}
-			if (fe || (cap & iDVBChannel::capDecode))
-			{
-				++i;
-			}
+				/* mark the first unused demux, we'll use that when we do not find a better match */
+				if (!unused) unused = i;
+			}				else
 			else
 			{
-				if (i == m_demux.begin())
-					break;
-				--i;
+				/* demux is in use, see if we can share it */
+				if (source >= 0 && i->m_demux->getSource() == source)
+				{
+					i->m_demux->getCAAdapterID(a);
+					i->m_demux->getCADemuxID(d);
+					eDebug("[eDVBResourceManager] allocating shared demux adapter=%d, demux=%d, source=%d", a, d, i->m_demux->getSource());
+					demux = new eDVBAllocatedDemux(i);
+					return 0;
+				}
 			}
+		}
+		if (fe || (cap & iDVBChannel::capDecode))
+		{
+			++i;
+		}
+		else
+		{
+			if (i == m_demux.begin())
+				break;
+			--i;
 		}
 	}
 
