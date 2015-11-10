@@ -142,6 +142,14 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Software Update"))
 
+		self["actions"] = ActionMap(["WizardActions"],
+		{
+			"ok": self.exit,
+			"back": self.exit
+		}, -1)
+		self['actions'].csel = self
+		self["actions"].setEnabled(False)
+
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
@@ -164,6 +172,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.SettingsBackupDone = False
 		self.ImageBackupDone = False
 		self.autobackuprunning = False
+		self.updating = False
 
 		self.packages = 0
 		self.error = 0
@@ -197,6 +206,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				self.session.openWithCallback(self.close, MessageBox, _("Sorry the feeds seem to be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 
 	def startCheck(self):
+		self.updating = True
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
@@ -204,15 +214,6 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
-		self.updating = False
-
-		self["actions"] = ActionMap(["WizardActions"],
-		{
-			"ok": self.exit,
-			"back": self.exit
-		}, -1)
-
-		self.updating = True
 		self.activityTimer.start(100, False)
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 
@@ -260,6 +261,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
 				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
+				self["actions"].setEnabled(True)
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
@@ -299,9 +301,11 @@ class UpdatePlugin(Screen, ProtectedScreen):
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
+					self["actions"].setEnabled(True)
 					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight)
 					upgrademessage.setTitle(_('Software update'))
 				else:
+					self["actions"].setEnabled(True)
 					upgrademessage = self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 					upgrademessage.setTitle(_('Software update'))
 			elif self.channellist_only > 0:
@@ -362,6 +366,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
+			self["actions"].setEnabled(True)
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight)
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "changes":
