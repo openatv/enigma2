@@ -10,8 +10,7 @@ from Components.Ipkg import IpkgComponent
 from Components.config import config
 from Components.About import about
 
-import urllib2 
-import socket
+import urllib2, socket, sys
 
 error = 0
 
@@ -50,6 +49,9 @@ class FeedsStatusCheck:
 			except urllib2, err:
 				print '[OnlineVersionCheck] ERROR:',err
 				trafficLight = err
+			except:
+				print '[OnlineVersionCheck] ERROR:', sys.exc_info()[0]
+				trafficLight = -2
 			if not self.IsInt(trafficLight) and getImageType() != 'release':
 				trafficLight = 'unknown'
 			elif trafficLight == 'stable':
