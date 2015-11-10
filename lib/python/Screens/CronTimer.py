@@ -340,7 +340,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 	def checkentry(self):
 		msg = ''
 		if (config.crontimers.commandtype.value == 'predefined' and config.crontimers.predefined_command.value == '') or config.crontimers.commandtype.value == 'custom' and config.crontimers.user_command.value == '':
-			msg = 'You must set at least one Command'
+			msg = _("You must set at least one Command")
 		if msg:
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
