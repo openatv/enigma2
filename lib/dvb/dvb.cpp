@@ -880,6 +880,12 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin();
 	int source = fe ? fe->m_frontend->getDVBID() : -1;
 
+	eDebug("[eDVBResourceManager] allocate demux cap=%02X", cap);
+	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
+
+	if (i == m_demux.end())
+		return -1;
+
 	/*
 	 * For pvr playback, start with the last demux.
 	 * On some hardware, we have less ca devices than demuxes,
@@ -888,11 +894,11 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	 */
 	bool use_decode_demux = (fe || (cap & iDVBChannel::capDecode));
 
-	eDebug("[eDVBResourceManager] allocate demux cap=%02X", cap);
-	eSmartPtrList<eDVBRegisteredDemux>::iterator i(use_decode_demux ? m_demux.begin() :  m_demux.rbegin());
-
-	if (i == m_demux.end())
-		return -1;
+	if (!use_decode_demux)
+	{
+		i = m_demux.end();
+		--i;
+	}
 
 	ePtr<eDVBRegisteredDemux> unused;
 	uint8_t d, a;
@@ -919,7 +925,16 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				}
 			}
 		}
-		++i;
+		if (use_decode_demux)
+		{
+			++i;
+		}
+		else
+		{
+			if(i == m_demux.begin())
+				break;
+			--i;
+		}
 	}
 
 	if (unused)
