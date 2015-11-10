@@ -341,7 +341,7 @@ class SetupCronConf(Screen, ConfigListScreen):
 	def checkentry(self):
 		msg = ''
 		if (config.infopanel.cronmanager_commandtype.value == 'predefined' and config.infopanel.cronmanager_predefined_command.value == '') or config.infopanel.cronmanager_commandtype.value == 'custom' and config.infopanel.cronmanager_user_command.value == '':
-			msg = 'You must set at least one Command'
+			msg = _("You must set at least one Command")
 		if msg:
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		else:
