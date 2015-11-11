@@ -260,7 +260,7 @@ int eDVBServiceRecord::doPrepare()
 				source = ePtr<iTsSource>(f);
 			}
 		}
-		return m_service_handler.tuneExt(m_ref, 0, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
+		return m_service_handler.tuneExt(m_ref, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
 	}
 	return 0;
 }
