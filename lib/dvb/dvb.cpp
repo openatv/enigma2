@@ -878,7 +878,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	 * look for a demux on the same adapter as the frontend, or the first adapter for dvr playback
 	 */
 	iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin();
-	int source = fe ? fe->m_frontend->getDVBID() : -1;
+	int fesource = fe ? fe->m_frontend->getDVBID() : -1;
 
 	eDebug("[eDVBResourceManager] allocate demux cap=%02X", cap);
 	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
@@ -915,7 +915,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			else
 			{
 				/* demux is in use, see if we can share it */
-				if (source >= 0 && i->m_demux->getSource() == source)
+				if (fesource >= 0 && i->m_demux->getSource() == fesource)
 				{
 					i->m_demux->getCAAdapterID(a);
 					i->m_demux->getCADemuxID(d);
@@ -941,10 +941,10 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	{
 		unused->m_demux->getCAAdapterID(a);
 		unused->m_demux->getCADemuxID(d);
-		eDebug("[eDVBResourceManager] allocating demux adapter=%d, demux=%d, source=%d fesource=%d", a, d, unused->m_demux->getSource(), fe ? fe->m_frontend->getDVBID() : -1);
+		eDebug("[eDVBResourceManager] allocating demux adapter=%d, demux=%d, source=%d fesource=%d", a, d, unused->m_demux->getSource(), fesource);
 		demux = new eDVBAllocatedDemux(unused);
 		if (fe)
-			demux->get().setSourceFrontend(fe->m_frontend->getDVBID());
+			demux->get().setSourceFrontend(fesource);
 		else
 			demux->get().setSourcePVR(0);
 		return 0;
