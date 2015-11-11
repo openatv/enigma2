@@ -1,9 +1,11 @@
-from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
+from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Plugins.Plugin import PluginDescriptor
-
+from Screens.Satconfig import NimSetup
+from Screens.InfoBar import InfoBar
 from Components.Label import Label
 from Components.Button import Button
 from Components.ConfigList import ConfigList
@@ -60,6 +62,7 @@ class PositionerSetup(Screen):
 		else:
 			return -position, "south"
 
+	FIRST_UPDATE_INTERVAL = 500				# milliseconds
 	UPDATE_INTERVAL = 50					# milliseconds
 	STATUS_MSG_TIMEOUT = 2					# seconds
 	LOG_SIZE = 16 * 1024					# log buffer size
@@ -67,8 +70,17 @@ class PositionerSetup(Screen):
 	def __init__(self, session, feid):
 		self.session = session
 		Screen.__init__(self, session)
+		self.setTitle(_("Positioner setup"))
 		self.feid = feid
-		self.oldref = None
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.oldref_stop = False
+		self.rotor_diseqc = True
+		self.frontend = None
+		self.rotor_pos = config.usage.showdish.value and config.misc.lastrotorposition.value != 9999
+		self.orb_pos = 0
+		getCurrentTuner = None
+		getCurrentSat = None
+		self.availablesats = []
 		log.open(self.LOG_SIZE)
 		if config.Nims[self.feid].configMode.value == 'advanced':
 			self.advanced = True
@@ -77,32 +89,58 @@ class PositionerSetup(Screen):
 			self.availablesats = map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid))
 		else:
 			self.advanced = False
+			self.availablesats = map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid))
 
 		cur = { }
 		if not self.openFrontend():
-			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
-			service = session.nav.getCurrentService()
+			service = self.session.nav.getCurrentService()
 			feInfo = service and service.frontendInfo()
 			if feInfo:
-				cur = feInfo.getTransponderData(True)
+				cur_info = feInfo.getTransponderData(True)
+				frontendData = feInfo.getAll(True)
+				getCurrentTuner = frontendData and frontendData.get("tuner_number", None)
+				getCurrentSat = cur_info.get('orbital_position', None)
 			del feInfo
 			del service
-			session.nav.stopService() # try to disable foreground service
+			if self.oldref and getCurrentTuner is not None:
+				if getCurrentTuner < 4 and self.feid == getCurrentTuner:
+					self.oldref_stop = True
+				if self.oldref_stop:
+					self.session.nav.stopService() # try to disable foreground service
+					if getCurrentSat is not None and getCurrentSat in self.availablesats:
+						cur = cur_info
+					else:
+						self.rotor_diseqc = False
+			getCurrentTuner = None
+			getCurrentSat = None
 			if not self.openFrontend():
-				if session.pipshown: # try to disable pip
+				if hasattr(session, 'pipshown') and session.pipshown: # try to disable pip
 					service = self.session.pip.pipservice
 					feInfo = service and service.frontendInfo()
 					if feInfo:
-						cur = feInfo.getTransponderData(True)
+						cur_pip_info = feInfo.getTransponderData(True)
+						frontendData = feInfo.getAll(True)
+						getCurrentTuner = frontendData and frontendData.get("tuner_number", None)
+						getCurrentSat = cur_pip_info.get('orbital_position', None)
+						if getCurrentTuner is not None and getCurrentTuner < 4 and self.feid == getCurrentTuner:
+							if getCurrentSat is not None and getCurrentSat in self.availablesats:
+								cur = cur_pip_info
+							else:
+								self.rotor_diseqc = False
 					del feInfo
 					del service
-					from Screens.InfoBar import InfoBar
 					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
-				if not self.openFrontend():
-					self.frontend = None # in normal case this should not happen
-					if hasattr(self, 'raw_channel'):
-						del self.raw_channel
-
+					if hasattr(session, 'pip'):  # try to disable pip again
+						del session.pip
+						session.pipshown = False
+					if not self.openFrontend():
+						self.frontend = None # in normal case this should not happen
+						if hasattr(self, 'raw_channel'):
+							del self.raw_channel
+			if self.frontend is None:
+				self.messageTimer = eTimer()
+				self.messageTimer.callback.append(self.showMessageBox)
+				self.messageTimer.start(2000, True)
 		self.frontendStatus = { }
 		self.diseqc = Diseqc(self.frontend)
 		# True means we dont like that the normal sec stuff sends commands to the rotor!
@@ -136,24 +174,35 @@ class PositionerSetup(Screen):
 		self["list"] = ConfigList(self.list)
 
 		self["snr_db"] = TunerInfo(TunerInfo.SNR_DB, statusDict = self.frontendStatus)
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
 		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
+		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
+		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, statusDict = self.frontendStatus)
+		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, statusDict = self.frontendStatus)
+		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
 		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
 		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
 
+		self["rotorstatus"] = Label("")
 		self["frequency_value"] = Label("")
 		self["symbolrate_value"] = Label("")
 		self["fec_value"] = Label("")
 		self["polarisation"] = Label("")
 		self["status_bar"] = Label("")
+		if self.rotor_pos:
+			if hasattr(eDVBSatelliteEquipmentControl.getInstance(), "getTargetOrbitalPosition"):
+				current_pos = eDVBSatelliteEquipmentControl.getInstance().getTargetOrbitalPosition()
+				if current_pos != 0 and current_pos != config.misc.lastrotorposition.value:
+					config.misc.lastrotorposition.value = current_pos
+					config.misc.lastrotorposition.save()
+			text = _("Current rotor position: ") + self.OrbToStr(config.misc.lastrotorposition.value)
+			self["rotorstatus"].setText(text)
 		self.statusMsgTimeoutTicks = 0
 		self.statusMsgBlinking = False
 		self.statusMsgBlinkCount = 0
 		self.statusMsgBlinkRate = 500 / self.UPDATE_INTERVAL	# milliseconds
 		self.tuningChangedTo(tp)
 
-		self["actions"] = NumberActionMap(["DirectionActions", "OkCancelActions", "ColorActions", "TimerEditActions", "InputActions"],
+		self["actions"] = NumberActionMap(["DirectionActions", "OkCancelActions", "ColorActions", "TimerEditActions", "InputActions", "InfobarMenuActions"],
 		{
 			"ok": self.keyOK,
 			"cancel": self.keyCancel,
@@ -166,6 +215,7 @@ class PositionerSetup(Screen):
 			"yellow": self.yellowKey,
 			"blue": self.blueKey,
 			"log": self.showLog,
+			"mainMenu": self.furtherOptions,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -179,14 +229,14 @@ class PositionerSetup(Screen):
 		}, -1)
 
 		self.updateColors("tune")
-
 		self.statusTimer = eTimer()
+		self.rotorStatusTimer = eTimer()
 		self.statusTimer.callback.append(self.updateStatus)
+		self.rotorStatusTimer.callback.append(self.startStatusTimer)
 		self.collectingStatistics = False
-		self.statusTimer.start(self.UPDATE_INTERVAL, True)
+		self.statusTimer.start(self.FIRST_UPDATE_INTERVAL, True)
 		self.dataAvailable = Event()
 		self.onClose.append(self.__onClose)
-
 		self.createConfig()
 		self.createSetup()
 
@@ -195,22 +245,59 @@ class PositionerSetup(Screen):
 		log.close()
 		self.session.nav.playService(self.oldref)
 
+	def OrbToStr(self, orbpos):
+		if orbpos > 1800:
+			orbpos = 3600 - orbpos
+			return "%d.%d\xc2\xb0 W" % (orbpos/10, orbpos%10)
+		return "%d.%d\xc2\xb0 E" % (orbpos/10, orbpos%10)
+
+	def setDishOrbosValue(self):
+		if self.getRotorMovingState():
+			if self.orb_pos != 0 and self.orb_pos != config.misc.lastrotorposition.value:
+				config.misc.lastrotorposition.value = self.orb_pos
+				config.misc.lastrotorposition.save()
+			text = _("Moving to position") + " " + self.OrbToStr(self.orb_pos)
+			self.startStatusTimer()
+		else:
+			text = _("Current rotor position: ") + self.OrbToStr(config.misc.lastrotorposition.value)
+		self["rotorstatus"].setText(text)
+
+	def startStatusTimer(self):
+		self.rotorStatusTimer.start(1000, True)
+
+	def getRotorMovingState(self):
+		return eDVBSatelliteEquipmentControl.getInstance().isRotorMoving()
+
+	def showMessageBox(self):
+		text = _("Sorry, this tuner is in use.")
+		if self.session.nav.getRecordings():
+			text += "\n"
+			text += _("Maybe the reason that recording is currently running. Please stop the recording before trying to configure the positioner.")
+		self.session.open(MessageBox, text, MessageBox.TYPE_ERROR)
+
 	def restartPrevService(self, yesno):
 		if yesno:
 			if self.frontend:
 				self.frontend = None
-				del self.raw_channel
+				if hasattr(self, 'raw_channel'):
+					del self.raw_channel
 		else:
-			self.oldref=None
+			self.oldref = None
 		self.close(None)
 
 	def keyCancel(self):
-		if self.oldref:
-			self.session.openWithCallback(self.restartPrevService, MessageBox, _("Zap back to service before positioner setup?"), MessageBox.TYPE_YESNO)
+		if self.oldref is not None:
+			if self.oldref_stop:
+				self.session.openWithCallback(self.restartPrevService, MessageBox, _("Zap back to service before positioner setup?"), MessageBox.TYPE_YESNO)
+			else:
+				self.restartPrevService(True)
 		else:
 			self.restartPrevService(False)
 
 	def openFrontend(self):
+		self.frontend = None
+		if hasattr(self, 'raw_channel'):
+			del self.raw_channel
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
 			self.raw_channel = res_mgr.allocateRawChannel(self.feid)
@@ -248,26 +335,10 @@ class PositionerSetup(Screen):
 		self.sitelat = PositionerSetup.orbital2metric(self.sitelat, self.latitudeOrientation)
 		self.sitelon = PositionerSetup.orbital2metric(self.sitelon, self.longitudeOrientation)
 
-	def getLNBfromConfig(self, orb_pos):
-		lnb = None
-		if orb_pos in self.availablesats:
-			lnbnum = int(self.advancedsats[orb_pos].lnb.value)
-			if not lnbnum:
-				for allsats in range(3601, 3607):
-					lnbnum = int(self.advancedsats[allsats].lnb.value)
-					if lnbnum:
-						break
-			if lnbnum:
-				self.printMsg(_("Using LNB %d") % lnbnum)
-				lnb = self.advancedconfig.lnb[lnbnum]
-		if not lnb:
-			self.logMsg(_("Warning: no LNB; using factory defaults."), timeout = 4)
-		return lnb
-
 	def createConfig(self):
 		rotorposition = 1
 		orb_pos = 0
-		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
+ 		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
 		if not self.advanced:
 			self.printMsg(_("Configuration mode: %s") % _("simple"))
 			nim = config.Nims[self.feid]
@@ -282,14 +353,17 @@ class PositionerSetup(Screen):
 			self.turningspeedH = nim.turningspeedH.float
 			self.turningspeedV = nim.turningspeedV.float
 		else:	# it is advanced
+			lnb = None
 			self.printMsg(_("Configuration mode: %s") % _("advanced"))
 			fe_data = { }
-			self.frontend.getFrontendData(fe_data)
-			self.frontend.getTransponderData(fe_data, True)
-			orb_pos = fe_data.get("orbital_position", None)
-			if orb_pos in self.availablesats:
-				rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
-			self.setLNB(self.getLNBfromConfig(orb_pos))
+			if self.frontend:
+				self.frontend.getFrontendData(fe_data)
+				self.frontend.getTransponderData(fe_data, True)
+				orb_pos = fe_data.get("orbital_position", None)
+				if orb_pos is not None and orb_pos in self.availablesats:
+					rotorposition = int(self.advancedsats[orb_pos].rotorposition.value)
+				lnb = self.getLNBfromConfig(orb_pos)
+			self.setLNB(lnb)
 		self.positioner_tune = ConfigNothing()
 		self.positioner_move = ConfigNothing()
 		self.positioner_finemove = ConfigNothing()
@@ -298,14 +372,65 @@ class PositionerSetup(Screen):
 		self.allocatedIndices = []
 		m = PositionerSetup.satposition2metric(orb_pos)
 		self.orbitalposition = ConfigFloat(default = [int(m[0] / 10), m[0] % 10], limits = [(0,180),(0,9)])
-		self.orientation = ConfigSelection([("east", _("East")), ("west", _("West"))], m[1])
+		self.orientation = ConfigSelection([("east", _("East")), ("west", _("West"))], default = m[1])
+		for x in (self.positioner_tune, self.positioner_storage, self.orbitalposition):
+			x.addNotifier(self.retune, initial_call = False)
+
+	def retune(self, configElement):
+		self.createSetup()
+
+	def getUsals(self):
+		usals = None
+		if self.frontend is not None:
+			if self.advanced:
+				fe_data = { }
+				self.frontend.getFrontendData(fe_data)
+				self.frontend.getTransponderData(fe_data, True)
+				orb_pos = fe_data.get("orbital_position", -9999)
+				try:
+					pos = str(PositionerSetup.orbital2metric(self.orbitalposition.float, self.orientation.value))
+					orb_val = int(pos.replace('.', ''))
+				except:
+					orb_val = -9999
+				sat = -9999
+				if orb_val == orb_pos:
+					sat = orb_pos
+				elif orb_val != -9999 and orb_val in self.availablesats:
+					sat = orb_val
+				if sat != -9999 and sat in self.availablesats:
+					usals = self.advancedsats[sat].usals.value
+					self.rotor_diseqc = True
+				return usals
+			else:
+				self.rotor_diseqc = True
+				return True
+		return usals
+
+	def getLNBfromConfig(self, orb_pos):
+		if orb_pos is None or orb_pos == 0:
+			return None
+		lnb = None
+		if orb_pos in self.availablesats:
+			lnbnum = int(self.advancedsats[orb_pos].lnb.value)
+			if not lnbnum:
+				for allsats in range(3601, 3607):
+					lnbnum = int(self.advancedsats[allsats].lnb.value)
+					if lnbnum:
+						break
+			if lnbnum:
+				self.printMsg(_("Using LNB %d") % lnbnum)
+				lnb = self.advancedconfig.lnb[lnbnum]
+		if not lnb:
+			self.logMsg(_("Warning: no LNB; using factory defaults."), timeout = 8)
+		return lnb
 
 	def createSetup(self):
+		self.list = []
 		self.list.append((_("Tune and focus"), self.positioner_tune, "tune"))
 		self.list.append((_("Movement"), self.positioner_move, "move"))
 		self.list.append((_("Fine movement"), self.positioner_finemove, "finemove"))
 		self.list.append((_("Set limits"), self.positioner_limits, "limits"))
-		self.list.append((_("Memory index"), self.positioner_storage, "storage"))
+		self.list.append((_("Memory index") + (self.getUsals() and " (USALS)" or ""), self.positioner_storage, "storage"))
 		self.list.append((_("Goto"), self.orbitalposition, "goto"))
 		self.list.append((" ", self.orientation, "goto"))
 		self["list"].l.setList(self.list)
@@ -327,15 +452,23 @@ class PositionerSetup(Screen):
 			self.updateColors(self.getCurrentConfigPath())
 
 	def keyNumberGlobal(self, number):
+		if self.frontend is None:
+			return
 		self["list"].handleKey(KEY_0 + number)
 
 	def keyLeft(self):
+		if self.frontend is None:
+			return
 		self["list"].handleKey(KEY_LEFT)
 
 	def keyRight(self):
+		if self.frontend is None:
+			return
 		self["list"].handleKey(KEY_RIGHT)
 
 	def updateColors(self, entry):
+		if self.frontend is None:
+			return
 		if entry == "tune":
 			self.red.setText(_("Tune"))
 			self.green.setText(_("Auto focus"))
@@ -364,9 +497,13 @@ class PositionerSetup(Screen):
 			self.blue.setText(_("Limits on"))
 		elif entry == "storage":
 			self.red.setText("")
-			self.green.setText(_("Store position"))
-			self.yellow.setText(_("Goto position"))
-			if self.advanced:
+			if self.getUsals() is False:
+				self.green.setText(_("Store position"))
+				self.yellow.setText(_("Goto position"))
+			else:
+				self.green.setText("")
+				self.yellow.setText("")
+			if self.advanced and self.getUsals() is False:
 				self.blue.setText(_("Allocate"))
 			else:
 				self.blue.setText("")
@@ -393,6 +530,8 @@ class PositionerSetup(Screen):
 		self.statusMsg(_("Stopped"), timeout = self.STATUS_MSG_TIMEOUT)
 
 	def redKey(self):
+		if self.frontend is None:
+			return
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
@@ -417,6 +556,8 @@ class PositionerSetup(Screen):
 			self.session.openWithCallback(self.tune, TunerScreen, self.feid, fe_data)
 
 	def greenKey(self):
+		if self.frontend is None:
+			return
 		entry = self.getCurrentConfigPath()
 		if entry == "tune":
 			# Auto focus
@@ -439,10 +580,31 @@ class PositionerSetup(Screen):
 			self.diseqccommand("moveWest", 0xFF) # one step
 			self.statusMsg(_("Stepped west"), timeout = self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			self.printMsg(_("Store at index"))
-			index = int(self.positioner_storage.value)
-			self.diseqccommand("store", index)
-			self.statusMsg((_("Position stored at index") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+			if self.getUsals() is False:
+				menu = [(_("Yes"), "yes"), (_("No"), "no")]
+				available_orbos = False
+				orbos = None
+				if self.advanced:
+					try:
+						orb_pos = str(PositionerSetup.orbital2metric(self.orbitalposition.float, self.orientation.value))
+						orbos = int(orb_pos.replace('.', ''))
+					except:
+						pass
+					if orbos is not None and orbos in self.availablesats:
+						available_orbos = True
+						menu.append((_("Yes (save index in setup tuner)"), "save"))
+				index = int(self.positioner_storage.value)
+				text =  _("Really store at index %2d for current position?") % index
+				def saveAction(choice):
+					if choice:
+						if choice[1] in ("yes", "save"):
+							self.printMsg(_("Store at index"))
+							self.diseqccommand("store", index)
+							self.statusMsg((_("Position stored at index") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+							if choice[1] == "save" and available_orbos:
+								self.advancedsats[orbos].rotorposition.value = index
+								self.advancedsats[orbos].rotorposition.save()
+				self.session.openWithCallback(saveAction, ChoiceBox, title=text, list=menu)
 		elif entry == "limits":
 			self.printMsg(_("Limit west"))
 			self.diseqccommand("limitWest")
@@ -453,6 +615,8 @@ class PositionerSetup(Screen):
 			self.statusMsg(_("Moved to position 0"), timeout = self.STATUS_MSG_TIMEOUT)
 
 	def yellowKey(self):
+		if self.frontend is None:
+			return
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
@@ -469,10 +633,11 @@ class PositionerSetup(Screen):
 			self.diseqccommand("moveEast", 0xFF) # one step
 			self.statusMsg(_("Stepped east"), timeout = self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			self.printMsg(_("Goto index position"))
-			index = int(self.positioner_storage.value)
-			self.diseqccommand("moveTo", index)
-			self.statusMsg((_("Moved to position at index") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+			if self.getUsals() is False:
+				self.printMsg(_("Goto index position"))
+				index = int(self.positioner_storage.value)
+				self.diseqccommand("moveTo", index)
+				self.statusMsg((_("Moved to position at index") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
 		elif entry == "limits":
 			self.printMsg(_("Limit east"))
 			self.diseqccommand("limitEast")
@@ -487,12 +652,14 @@ class PositionerSetup(Screen):
 			self.gotoX(satlon)
 		elif entry == "tune":
 			# Start USALS calibration
-			self.printMsg(_("USALS calibration"))
+			self.printMsg(_("USALS Calibration"))
 			print>>log, (_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat)
 			print>>log, (_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon)
 			Thread(target = self.gotoXcalibration).start()
 
 	def blueKey(self):
+		if self.frontend is None:
+			return
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
@@ -511,14 +678,14 @@ class PositionerSetup(Screen):
 			# Start (re-)calculate
 			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default = False, timeout = 10)
 		elif entry == "storage":
-			if self.advanced:
+			if self.advanced and self.getUsals() is False:
 				self.printMsg(_("Allocate unused memory index"))
 				while True:
 					if not len(self.allocatedIndices):
 						for sat in self.availablesats:
-							current_index = int(self.advancedsats[sat].rotorposition.value)
-							if current_index not in self.allocatedIndices:
-								self.allocatedIndices.append(current_index)
+							usals = self.advancedsats[sat].usals.value
+							if not usals:
+								self.allocatedIndices.append(int(self.advancedsats[sat].rotorposition.value))
 						if len(self.allocatedIndices) == self.rotorPositions:
 							self.statusMsg(_("No free index available"), timeout = self.STATUS_MSG_TIMEOUT)
 							break
@@ -558,12 +725,14 @@ class PositionerSetup(Screen):
 
 	def diseqccommand(self, cmd, param = 0):
 		print>>log, "Diseqc(%s, %X)" % (cmd, param)
+		self["rotorstatus"].setText("")
 		self.diseqc.command(cmd, param)
 		self.tuner.retune()
 
 	def tune(self, transponder):
 		# re-start the update timer
 		self.statusTimer.start(self.UPDATE_INTERVAL, True)
+		self.createSetup()
 		if transponder is not None:
 			self.tuner.tune(transponder)
 			self.tuningChangedTo(transponder)
@@ -579,6 +748,22 @@ class PositionerSetup(Screen):
 				self.allocatedIndices = []
 			self.setLNB(self.getLNBfromConfig(orb_pos))
 
+	def furtherOptions(self):
+		menu = []
+		text = _("Select action")
+		description = _("Open setup tuner ") + "%s" % chr(0x41 + self.feid)
+		menu.append((description, self.openTunerSetup))
+		def openAction(choice):
+			if choice:
+				choice[1]()
+		self.session.openWithCallback(openAction, ChoiceBox, title=text, list=menu)
+
+	def openTunerSetup(self):
+		self.session.openWithCallback(self.closeTunerSetup, NimSetup, self.feid)
+
+	def closeTunerSetup(self):
+		self.restartPrevService(True)
+
 	def isLocked(self):
 		return self.frontendStatus.get("tuner_locked", 0) == 1
 
@@ -593,12 +778,15 @@ class PositionerSetup(Screen):
 		self.statusTimer.start(self.UPDATE_INTERVAL, True)
 		if self.frontend:
 			self.frontend.getFrontendStatus(self.frontendStatus)
-		self["snr_db"].update()
-		self["snr_percentage"].update()
-		self["ber_value"].update()
-		self["snr_bar"].update()
-		self["ber_bar"].update()
-		self["lock_state"].update()
+		if self.rotor_diseqc:
+			self["snr_db"].update()
+			self["snr_percentage"].update()
+			self["ber_value"].update()
+			self["snr_bar"].update()
+			self["agc_percentage"].update()
+			self["agc_bar"].update()
+			self["ber_bar"].update()
+			self["lock_state"].update()
 		if self.statusMsgBlinking:
 			self.statusMsgBlinkCount += 1
 			if self.statusMsgBlinkCount == self.statusMsgBlinkRate:
@@ -640,12 +828,13 @@ class PositionerSetup(Screen):
 		self.symbolrate = tp[1]
 		self.polarisation = tp[2]
 		self.MAX_LOW_RATE_ADAPTER_COUNT = setLowRateAdapterCount(self.symbolrate)
+
 		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
 		self["frequency_value"].setText(str(transponderdata.get("frequency")))
 		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
 		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
 		self["polarisation"].setText(str(transponderdata.get("polarization")))
-	
+
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
 		return round(float(rotorCmd & 0xFFF) / 0x10 / stepsize) * (1 - ((rotorCmd & 0x1000) >> 11))
@@ -1012,18 +1201,17 @@ class PositionerSetupLog(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self["key_red"] = Button(_("Clear"))
-		self["key_green"] = Button()
-		self["key_yellow"] = Button()
-		self["key_blue"] = Button(_("Save"))
+		self.setTitle(_("Positioner setup log"))
+		self["key_red"] = Button(_("Exit/OK"))
+		self["key_green"] = Button(_("Save"))
+		self["key_blue"] = Button(_("Clear"))
 		self["list"] = ScrollLabel(log.getvalue())
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ColorActions"],
 		{
-			"red": self.clear,
-			"green": self.cancel,
-			"yellow": self.cancel,
+			"red": self.cancel,
+			"green": self.save,
 			"save": self.save,
-			"blue": self.save,
+			"blue": self.clear,
 			"cancel": self.cancel,
 			"ok": self.cancel,
 			"left": self["list"].pageUp,
@@ -1039,6 +1227,7 @@ class PositionerSetupLog(Screen):
 			f = open('/tmp/positionersetup.log', 'w')
 			f.write(log.getvalue())
 			f.close()
+			self.session.open(MessageBox, _("Write to /tmp/positionersetup.log"), MessageBox.TYPE_INFO, timeout = 5)
 		except Exception, e:
 			self["list"].setText(_("Failed to write /tmp/positionersetup.log: ") + str(e))
 		self.close(True)
@@ -1053,15 +1242,16 @@ class PositionerSetupLog(Screen):
 
 class TunerScreen(ConfigListScreen, Screen):
 	skin = """
-		<screen position="90,100" size="520,400" title="Tune">
+		<screen position="center,center" size="520,400" title="Tune">
 			<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
-			<widget name="introduction" position="20,360" size="350,30" font="Regular;23" />
+			<widget name="introduction" position="60,360" size="450,23" halign="left" font="Regular;20" />
 		</screen>"""
 
 	def __init__(self, session, feid, fe_data):
 		self.feid = feid
 		self.fe_data = fe_data
 		Screen.__init__(self, session)
+		self.setTitle(_("Tune"))
 		ConfigListScreen.__init__(self, None)
 		self.createConfig(fe_data)
 		self.initialSetup()
@@ -1075,11 +1265,11 @@ class TunerScreen(ConfigListScreen, Screen):
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
 		}, -2)
+		self["introduction"] = Label(_("Press OK, save and exit..."))
 
 	def createConfig(self, frontendData):
 		satlist = nimmanager.getRotorSatListForNim(self.feid)
 		orb_pos = self.fe_data.get("orbital_position", None)
-		orb_pos_str = str(orb_pos)
 		self.tuning = ConfigSubsection()
 		self.tuning.type = ConfigSelection(
 				default = "manual_transponder",
@@ -1087,6 +1277,7 @@ class TunerScreen(ConfigListScreen, Screen):
 							"predefined_transponder" : _("Predefined transponder") } )
 		self.tuning.sat = ConfigSatlist(list = satlist)
 		if orb_pos is not None:
+			orb_pos_str = str(orb_pos)
 			for sat in satlist:
 				if sat[0] == orb_pos and self.tuning.sat.value != orb_pos_str:
 					self.tuning.sat.value = orb_pos_str
@@ -1270,13 +1461,13 @@ class TunerScreen(ConfigListScreen, Screen):
 
 class RotorNimSelection(Screen):
 	skin = """
-		<screen position="140,165" size="400,130" title="select Slot">
+		<screen position="center,center" size="400,130" title="Select slot">
 			<widget name="nimlist" position="20,10" size="360,100" />
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
+		self.setTitle(_("Select slot"))
 		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
 		for x in nimlist:
@@ -1300,20 +1491,17 @@ def PositionerMain(session, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 	else:
-		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
+		usableNims = []
+		for x in nimList:
+			configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
+			if len(configured_rotor_sats) != 0:
+				usableNims.append(x)
+		if len(usableNims) == 1:
+			session.open(PositionerSetup, usableNims[0])
+		elif len(usableNims) > 1:
+			session.open(RotorNimSelection)
 		else:
-			usableNims = []
-			for x in nimList:
-				configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
-				if len(configured_rotor_sats) != 0:
-					usableNims.append(x)
-			if len(usableNims) == 1:
-				session.open(PositionerSetup, usableNims[0])
-			elif len(usableNims) > 1:
-				session.open(RotorNimSelection)
-			else:
-				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+			session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
 def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan":

@@ -1,6 +1,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
+#include <lib/service/iservice.h>
 #include <errno.h>
 #include <sys/stat.h>
 
@@ -211,6 +212,21 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	CFile f(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
+
+	if (ref.getName().empty())
+	{
+		ePtr<iServiceHandler> service_center;
+		ePtr<iStaticServiceInformation> service_info;
+		eServiceCenter::getInstance(service_center);
+		service_center->info(ref, service_info);
+		if (service_info)
+		{
+			std::string service_name;
+			service_info->getName(ref, service_name);
+			ref.setName(service_name);
+		}
+	}
+
 	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
 	return 0;
 }

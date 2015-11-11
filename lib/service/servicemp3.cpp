@@ -435,7 +435,17 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_state = stIdle;
 	eDebug("[eServiceMP3] construct!");
 
-	const char *filename = m_ref.path.c_str();
+	const char *filename;
+	std::string filename_str;
+	size_t pos = m_ref.path.find('#');
+	if (pos != std::string::npos && m_ref.path.compare(0, 4, "http") == 0)
+	{
+		filename_str = m_ref.path.substr(0, pos);
+		filename = filename_str.c_str();
+		m_extra_headers = m_ref.path.substr(pos + 1);
+	}
+	else
+		filename = m_ref.path.c_str();
 	const char *ext = strrchr(filename, '.');
 	if (!ext)
 		ext = filename + strlen(filename);
@@ -511,7 +521,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		}
 		if (m_useragent.empty())
 			m_useragent = "Enigma2 Mediaplayer";
-		m_extra_headers = eConfigManager::getConfigValue("config.mediaplayer.extraHeaders");
 		if ( m_ref.getData(7) & BUFFERING_ENABLED )
 		{
 			m_use_prefillbuffer = true;
@@ -1293,7 +1302,7 @@ std::string eServiceMP3::getInfoString(int w)
 	}
 	if ( !tag )
 		return "";
-	gchar *value;
+	gchar *value = NULL;
 	if (m_stream_tags && gst_tag_list_get_string(m_stream_tags, tag, &value))
 	{
 		std::string res = value;
@@ -1777,6 +1786,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_REPLACE);
 			if (result)
 			{
+				if (m_stream_tags && gst_tag_list_is_equal(m_stream_tags, result))
+				{
+					gst_tag_list_free(tags);
+					gst_tag_list_free(result);
+					break;
+				}
 				if (m_stream_tags)
 					gst_tag_list_free(m_stream_tags);
 				m_stream_tags = result;
@@ -2204,7 +2219,7 @@ void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpoin
 				std::string name, value;
 				size_t start = pos;
 				size_t len = std::string::npos;
-				pos = _this->m_extra_headers.find(':', pos);
+				pos = _this->m_extra_headers.find('=', pos);
 				if (pos != std::string::npos)
 				{
 					len = pos - start;
@@ -2212,7 +2227,7 @@ void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpoin
 					name = _this->m_extra_headers.substr(start, len);
 					start = pos;
 					len = std::string::npos;
-					pos = _this->m_extra_headers.find('|', pos);
+					pos = _this->m_extra_headers.find('&', pos);
 					if (pos != std::string::npos)
 					{
 						len = pos - start;

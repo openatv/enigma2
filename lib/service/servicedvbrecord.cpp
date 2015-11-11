@@ -8,7 +8,7 @@
 	/* for cutlist */
 #include <byteswap.h>
 #include <netinet/in.h>
-
+#include <lib/base/nconfig.h> // access to python config
 
 DEFINE_REF(eDVBServiceRecord);
 
@@ -21,6 +21,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 	m_record_ecm = false;
 	m_descramble = true;
 	m_is_stream_client = isstreamclient;
+	m_is_pvr = !m_ref.path.empty() && !m_is_stream_client;
 	m_tuned = 0;
 	m_target_fd = -1;
 	m_error = 0;
@@ -213,6 +214,10 @@ int eDVBServiceRecord::doPrepare()
 	if (m_state == stateIdle)
 	{
 		eDVBServicePMTHandler::serviceType servicetype;
+
+		if(tryFallbackTuner(/*REF*/m_ref, /*REF*/m_is_stream_client, m_is_pvr, m_simulate))
+			eDebug("ServiceRecord: fallback tuner selected");
+
 		if (m_streaming)
 		{
 			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
@@ -236,7 +241,13 @@ int eDVBServiceRecord::doPrepare()
 				* streams are considered to be descrambled by default;
 				* user can indicate a stream is scrambled, by using servicetype id + 0x100
 				*/
+				bool config_descramble_client = eConfigManager::getConfigBoolValue("config.streaming.descramble_client", false);
+
 				m_descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+
+				if(config_descramble_client)
+					m_descramble = true;
+
 				m_record_ecm = false;
 				servicetype = eDVBServicePMTHandler::streamclient;
 				eHttpStream *f = new eHttpStream();
@@ -299,6 +310,7 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] NO DEMUX available!");
 			m_error = errNoDemuxAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoDemuxAvailable;
 		}
 		demux->createTSRecorder(m_record);
@@ -307,6 +319,7 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] no ts recorder available.");
 			m_error = errNoTsRecorderAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoTsRecorderAvailable;
 		}
 		m_record->setTargetFD(fd);
