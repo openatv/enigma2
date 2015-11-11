@@ -2171,7 +2171,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	m_decoder->getPTS(1, v_pts);
 	eDebug("a: %lld   v: %lld  %lld",a_pts, v_pts, a_pts-v_pts);
 	bool radio_workaround = false;
-	if(v_pts && a_pts && (abs(a_pts-v_pts) > 15000))
+	if(v_pts && a_pts && (abs(a_pts-v_pts) > 2* 90000))
 		radio_workaround = true;
 
 	if(radio_workaround)
