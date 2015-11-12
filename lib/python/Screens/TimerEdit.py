@@ -416,6 +416,7 @@ class TimerSanityConflict(Screen):
 			self.close((True, self.timer[0]))
 		else:
 			self.updateState()
+			self.timer[0].disabled = True
 			self.session.open(MessageBox, _("Conflict not resolved!"), MessageBox.TYPE_ERROR, timeout=3)
 
 	def leave_cancel(self):
