@@ -111,11 +111,34 @@ class EventViewBase:
 					if choice[1] == "delete":
 						self.removeTimer(timer)
 					elif choice[1] == "edit":
-						self.session.open(TimerEntry, timer)
+						self.session.openWithCallback(self.finishedEdit, TimerEntry, timer)
 			self.session.openWithCallback(timerAction, ChoiceBox, title=title_text + _("Select action for timer '%s'.") % timer.name, list=menu, keys=buttons)
 		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+
+	def finishedEdit(self, answer=None):
+		if answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
+					self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
+					return
+				else:
+					self.session.nav.RecordTimer.timeChanged(entry)
+		if answer is not None:
+			entry = answer[1]
+			if not entry.disabled:
+				self["key_green"].setText(_("Change timer"))
+				self.key_green_choice = self.REMOVE_TIMER
+			else:
+				self["key_green"].setText(_("Add timer"))
+				self.key_green_choice = self.ADD_TIMER
 
 	def finishedAdd(self, answer):
 		print "finished add"
