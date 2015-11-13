@@ -390,7 +390,7 @@ class TimerSanityConflict(Screen):
 		self.session.openWithCallback(self.editTimerCallBack, TimerEntry, self["timerlist"].getCurrent())
 
 	def showLog(self):
-		selected_timer=self["timerlist"].getCurrent()
+		selected_timer = self["timerlist"].getCurrent()
 		if selected_timer:
 			self.session.openWithCallback(self.editTimerCallBack, TimerLog, selected_timer)
 
@@ -400,23 +400,26 @@ class TimerSanityConflict(Screen):
 
 	def toggleTimer(self):
 		selected_timer = self["timerlist"].getCurrent()
-		if selected_timer:
+		if selected_timer and self["key_yellow"].getText() != " ":
 			selected_timer.disabled = not selected_timer.disabled
 			self.leave_ok()
 
-	def ignoreConflict(self):
-		selected_timer = self["timerlist"].getCurrent()
-		if selected_timer and selected_timer.conflict_detection:
-			selected_timer.conflict_detection = False
-			selected_timer.disabled = False
-			self.leave_ok()
+	def ignoreConflict(self,  answer = None):
+			selected_timer = self["timerlist"].getCurrent()
+			if selected_timer and selected_timer.conflict_detection:
+				if answer is None:
+					self.session.openWithCallback(self.ignoreConflict, MessageBox, _("Warning!\nThis option need only you use the remote fallback tuner to do recording.\nReally disable timer conflict detection?"))
+				elif answer:
+					selected_timer.conflict_detection = False
+					selected_timer.disabled = False
+					self.leave_ok()
 
 	def leave_ok(self):
 		if self.isResolvedConflict():
 			self.close((True, self.timer[0]))
 		else:
-			self.updateState()
 			self.timer[0].disabled = True
+			self.updateState()
 			self.session.open(MessageBox, _("Conflict not resolved!"), MessageBox.TYPE_ERROR, timeout=3)
 
 	def leave_cancel(self):
@@ -451,9 +454,11 @@ class TimerSanityConflict(Screen):
 
 	def up(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
+		self.updateState()
 
 	def down(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveDown)
+		self.updateState()
 
 	def updateState(self):
 		selected_timer = self["timerlist"].getCurrent()
