@@ -408,7 +408,7 @@ class TimerSanityConflict(Screen):
 			selected_timer = self["timerlist"].getCurrent()
 			if selected_timer and selected_timer.conflict_detection:
 				if answer is None:
-					self.session.openWithCallback(self.ignoreConflict, MessageBox, _("Warning!\nThis option need only you use the remote fallback tuner to do recording.\nReally disable timer conflict detection?"))
+					self.session.openWithCallback(self.ignoreConflict, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"))
 				elif answer:
 					selected_timer.conflict_detection = False
 					selected_timer.disabled = False
