@@ -358,7 +358,7 @@ class TimerSanityConflict(Screen):
 			self.list.append((timer[count], False))
 			count += 1
 		if count == 1:
-			self.setTitle((_("Channel in not in services list")))
+			self.setTitle((_("Channel not in services list")))
 		else:
 			self.setTitle(_("Timer sanity error"))
 
