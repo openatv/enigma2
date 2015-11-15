@@ -381,6 +381,7 @@ void eDVBScan::PMTready(int err)
 				switch ((*es)->getType())
 				{
 				case 0x1b: // AVC Video Stream (MPEG4 H264)
+				case 0x24: // H265 HEVC
 				case 0x10: // MPEG 4 Part 2
 				case 0x01: // MPEG 1 video
 				case 0x02: // MPEG 2 video

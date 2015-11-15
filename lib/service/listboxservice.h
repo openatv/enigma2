@@ -21,6 +21,8 @@ public:
 	void setIgnoreService( const eServiceReference &service );
 	void setRoot(const eServiceReference &ref, bool justSet=false);
 	void getCurrent(eServiceReference &ref);
+	void getPrev(eServiceReference &ref);
+	void getNext(eServiceReference &ref);
 
 	int getNextBeginningWithChar(char c);
 	int getPrevMarkerPos();

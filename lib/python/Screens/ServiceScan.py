@@ -9,6 +9,8 @@ from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.config import config
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 
 
 class ServiceScanSummary(Screen):
@@ -106,6 +108,11 @@ class ServiceScan(Screen):
 		}, -2)
 		self.setTitle(_("Service scan"))
 		self.onFirstExecBegin.append(self.doServiceScan)
+		self.onClose.append(self.doPluginCB)
+	
+	def doPluginCB(self):
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_SERVICESCAN):
+			p()
 
 	def doServiceScan(self):
 		self["servicelist"].len = self["servicelist"].instance.size().height() / self["servicelist"].l.getItemSize().height()

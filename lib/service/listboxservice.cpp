@@ -113,6 +113,37 @@ void eListboxServiceContent::getCurrent(eServiceReference &ref)
 		ref = eServiceReference();
 }
 
+void eListboxServiceContent::getPrev(eServiceReference &ref)
+{
+	if (cursorValid())
+	{
+		list::iterator cursor(m_cursor);
+		if (cursor == m_list.begin())
+		{
+			cursor = m_list.end();
+		}
+		ref = *(--cursor);
+	}
+	else
+		ref = eServiceReference();
+}
+
+void eListboxServiceContent::getNext(eServiceReference &ref)
+{
+	if (cursorValid())
+	{
+		list::iterator cursor(m_cursor);
+		cursor++;
+		if (cursor == m_list.end())
+		{
+			cursor = m_list.begin();
+		}
+ 		ref = *(cursor);
+	}
+	else
+		ref = eServiceReference();
+}
+
 int eListboxServiceContent::getNextBeginningWithChar(char c)
 {
 //	printf("Char: %c\n", c);

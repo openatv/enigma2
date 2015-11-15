@@ -12,6 +12,7 @@
 #include <lib/dvb/tstools.h>
 #include <lib/dvb/esection.h>
 #include <connection.h>
+#include <lib/dvb/fbc.h>
 
 #include <dvbsi++/service_description_section.h>
 
@@ -186,6 +187,7 @@ class eDVBResourceManager: public iObject, public Object
 	static eDVBResourceManager *instance;
 
 	friend class eDVBChannel;
+	friend class eFBCTunerManager;
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
 
