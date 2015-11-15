@@ -110,7 +110,7 @@ class VideoWizard(WizardLanguage, Rc):
 				if descr == 'HDMI' and has_dvi:
 					descr = 'DVI'
 				if descr == 'Scart' and has_rca:
-					descr = 'RCA'					
+					descr = 'RCA'
 				if port != "DVI-PC":
 					list.append((descr,port))
 		list.sort(key = lambda x: x[0])

@@ -126,6 +126,9 @@ class VideoSetup(Screen, ConfigListScreen):
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
+		if SystemInfo["havecolorspace"]:
+			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you can config the Colorspace from Auto to RGB")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:

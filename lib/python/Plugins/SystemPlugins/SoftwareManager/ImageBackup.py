@@ -1,5 +1,5 @@
 #################################################################################
-# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 2.0     			#
+# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 3.2     			#
 #	                         						                            #
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
@@ -18,10 +18,10 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 4.1 openATV"
+VERSION = "Version 5.1 openATV"
 
 HaveGZkernel = True
-if getBrandOEM() in ("fulan"):
+if getBrandOEM() in ("fulan") or getBoxType() in ("vusolo4k"):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -102,7 +102,7 @@ class ImageBackup(Screen):
 		return True
 		
 	def quit(self):
-		self.close()	
+		self.close()
 		
 	def red(self):
 		if self.check_hdd():
@@ -131,7 +131,7 @@ class ImageBackup(Screen):
 					for file in listdir("/media/" + dir):
 						if file.find("backupstick") > -1:
 							print "USB-DEVICE found on: /media/%s" % dir
-							return "/media/" + dir						
+							return "/media/" + dir
 			break
 		return "XX"
 
@@ -143,6 +143,9 @@ class ImageBackup(Screen):
 		self.IMAGEVERSION = self.imageInfo() #strftime("%Y%m%d", localtime(self.START))
 		if "ubi" in self.ROOTFSTYPE.split():
 			self.MKFS = "/usr/sbin/mkfs.ubifs"
+		elif "tar.bz2" in self.ROOTFSTYPE.split():
+			self.MKFS = "/bin/tar"
+			self.BZIP2 = "/usr/bin/bzip2"
 		else:
 			self.MKFS = "/usr/sbin/mkfs.jffs2"
 		self.UBINIZE = "/usr/sbin/ubinize"
@@ -175,6 +178,9 @@ class ImageBackup(Screen):
 		if self.ROOTFSTYPE == "ubi":
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 3-12 minutes for this system\n")
+		elif "tar.bz2" in self.ROOTFSTYPE.split():
+			self.message += _("because of the used filesystem the back-up\n")
+			self.message += _("will take about 1-4 minutes for this system\n")
 		else:
 			self.message += _("this will take between 2 and 9 minutes\n")
 		self.message += "\n_________________________________________________\n\n"
@@ -192,6 +198,10 @@ class ImageBackup(Screen):
 		if "jffs2" in self.ROOTFSTYPE.split():
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
+		elif "tar.bz2" in self.ROOTFSTYPE.split():
+			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude=/var/nmbd/* ." % (self.MKFS, self.WORKDIR)
+			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
+			cmd3 = None
 		else:
 			f = open("%s/ubinize.cfg" %self.WORKDIR, "w")
 			f.write("[ubifs]\n")
@@ -214,12 +224,16 @@ class ImageBackup(Screen):
 		cmdlist.append(cmd1)
 		if cmd2:
 			cmdlist.append(cmd2)
+		if cmd3:
 			cmdlist.append(cmd3)
 		cmdlist.append("chmod 644 %s/root.%s" %(self.WORKDIR, self.ROOTFSTYPE))
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "Create: kerneldump"')
 		cmdlist.append('echo " "')
-		cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
+		if self.MTDKERNEL == "mmcblk0p1":
+			cmdlist.append("dd if=/dev/%s of=%s/kernel_auto.bin" % (self.MTDKERNEL ,self.WORKDIR))
+		else:
+			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
 		
 		if HaveGZkernel:
@@ -257,9 +271,18 @@ class ImageBackup(Screen):
 		f.write(self.IMAGEVERSION)
 		f.close()
 
-		system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-		system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
-		cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+		if self.ROOTFSBIN == "rootfs.tar.bz2":
+			system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
+		else:
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+		if self.KERNELBIN == "kernel_auto.bin":
+			system('mv %s/kernel_auto.bin %s/kernel_auto.bin' %(self.WORKDIR, self.MAINDEST))
+		else:
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+		if self.MODEL in ("vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuzero" , "vuuno"):
+			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' %self.MAINDEST)
+		else:
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 
 		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus", "gbultraue", "twinboxlcd"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'

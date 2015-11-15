@@ -2976,6 +2976,9 @@ class InfoBarExtensions:
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
 			self.addExtension(extension = self.getRestartNetwork, type = InfoBarExtensions.EXTENSION_LIST)
 
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
+			p(self)
+
 	def bluekey_qm(self):
 		if config.workaround.blueswitch.value == "1":
 			self.showExtensionSelection()
@@ -3511,7 +3514,7 @@ class InfoBarINFOpanel:
 				"softcamPanel": (self.softcamPanel, _("Softcam-Panel...")),
 			})
 		self.onHBBTVActivation = [ ]
-		self.onRedButtonActivation = [ ]	
+		self.onRedButtonActivation = [ ]
 
 	def selectRedKeytask(self):
 		isWEBBROWSER = None
@@ -3525,6 +3528,8 @@ class InfoBarINFOpanel:
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/NXHbbTV/plugin.pyo"):
 			isHBBTV = True
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/OpenOpera/plugin.pyo"):
+			isHBBTV = True
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebkitHbbTV/plugin.pyo"):
 			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:

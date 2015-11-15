@@ -10,8 +10,8 @@ if HAVE_LIBVUGLES2
 SUBDIRS += AnimationSetup
 endif
 
-if HAVE_LIBVUGLES2
-SUBDIRS += AnimationSetup
+if VUSOLO4K
+SUBDIRS += FastZapSupport
 endif
 
 if DREAMBOX
