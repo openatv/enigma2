@@ -346,8 +346,6 @@ class TimerEditList(Screen):
 		self.refill()
 		self.updateState()
 
-confirmConflict = True
-
 class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -411,8 +409,8 @@ class TimerSanityConflict(Screen):
 	def ignoreConflict(self):
 			selected_timer = self["timerlist"].getCurrent()
 			if selected_timer and selected_timer.conflict_detection:
-				if confirmConflict:
-					list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
+				if config.usage.show_timer_conflict_warning.value:
+					list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask this again"), "never")]
 					self.session.openWithCallback(self.ignoreConflictConfirm, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"), list=list)
 				else:
 					self.ignoreConflictConfirm(True)
@@ -421,8 +419,8 @@ class TimerSanityConflict(Screen):
 		selected_timer = self["timerlist"].getCurrent()
 		if answer and selected_timer and selected_timer.conflict_detection:
 			if answer == "never":
-				global confirmConflict
-				confirmConflict = False
+				config.usage.show_timer_conflict_warning.value = False
+				config.usage.show_timer_conflict_warning.save()
 			selected_timer.conflict_detection = False
 			selected_timer.disabled = False
 			self.session.nav.RecordTimer.timeChanged(selected_timer)
