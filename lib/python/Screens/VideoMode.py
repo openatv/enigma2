@@ -580,7 +580,10 @@ class AutoVideoMode(Screen):
 				if  (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'): # for compatibility with old ConfigEnableDisable
 					write_mode = '1080p' + new_rate
 				elif config.av.smart1080p.value == '1080i50':
-					write_mode = '1080i' + new_rate
+					if new_rate == '24':
+						write_mode = '1080p24' # instead of 1080i24
+					else:
+						write_mode = '1080i' + new_rate
 				elif config.av.smart1080p.value == '720p50':
 					write_mode = '720p' + new_rate
 
