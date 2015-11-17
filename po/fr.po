@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-31 13:51+0100\n"
-"PO-Revision-Date: 2015-10-31 14:04+0100\n"
+"POT-Creation-Date: 2015-11-16 13:50+0100\n"
+"PO-Revision-Date: 2015-11-16 14:04+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -31,6 +31,13 @@ msgstr ""
 "\n"
 "\n"
 "[User - bouquets (TV)]\n"
+
+msgid ""
+"\n"
+"<This tuner is configured automatically>"
+msgstr ""
+"\n"
+"<Ce tuner est configuré automatiquement>"
 
 msgid ""
 "\n"
@@ -2215,6 +2222,15 @@ msgstr "Paramètres de la sélection des chaînes"
 msgid "Channel up"
 msgstr "Chaîne haut"
 
+msgid "Channel zap delay another button"
+msgstr "Délai du zap des chaînes pour les autres touches"
+
+msgid "Channel zap delay first button"
+msgstr "Délai du zap des chaînes pour le premier bouton"
+
+msgid "Channel zap delay mode"
+msgstr "Mode de délai du zap des chaînes"
+
 msgid "Channel:"
 msgstr "Chaîne:"
 
@@ -3414,6 +3430,12 @@ msgstr "Désactiver"
 msgid "Disable Animations"
 msgstr "Désactiver animations"
 
+msgid "Disable FastZapping"
+msgstr "Désactiver le zapping rapide"
+
+msgid "Disable MiniTV"
+msgstr "Désactiver MiniTV"
+
 msgid "Disable Picture in Picture"
 msgstr "Désactiver l'incrustation d'image"
 
@@ -3904,8 +3926,14 @@ msgstr "Activer CIHelper pour SLOT CI1"
 msgid "Enable EIT EPG"
 msgstr "Activer EPG EIT"
 
+msgid "Enable FastZapping"
+msgstr "Activer le zapping rapide"
+
 msgid "Enable MHW EPG"
 msgstr "Activer EPG MHW"
+
+msgid "Enable MiniTV"
+msgstr "Activer MiniTV"
 
 msgid "Enable Netmed EPG"
 msgstr "Activer EPG Netmed"
@@ -4739,8 +4767,8 @@ msgstr "DISQUE DUR: "
 msgid "HD list"
 msgstr "Liste HD"
 
-msgid "HD1100/HD1200/HD500C/et7x00/et8500"
-msgstr "HD1100/HD1200/HD500C/et7x00/et8500"
+msgid "HD1100/HD1200/HD1265/HD500C/et7x00/et8500"
+msgstr "HD1100/HD1200/HD1265/HD500C/et7x00/et8500"
 
 msgid "HD2400"
 msgstr "HD2400"
@@ -4760,6 +4788,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "Configuration HDMI CEC"
+
+msgid "HDMI Colorspace"
+msgstr "Espace colorimétrique HDMI"
 
 msgid "HDMIin"
 msgstr "HDMIin"
@@ -5444,6 +5475,9 @@ msgstr "Connexion LAN"
 
 msgid "LCD Skin Setup"
 msgstr "Configuration du thème LCD"
+
+msgid "LCD SkinSelector"
+msgstr "Sélectionneur de thème LCD"
 
 msgid "LCD scroll speed"
 msgstr "Vitess de défilement du LCD"
@@ -6587,6 +6621,9 @@ msgstr "Maintenant, utilisez les paramètres de contraste pour indiquer la lumin
 msgid "Number"
 msgstr "Nombre"
 
+msgid "Number of digits in channel number"
+msgstr "Nombre de chiffre dans le numéro de la chaîne"
+
 msgid "Number of rows"
 msgstr "Nombre de lignes"
 
@@ -6784,6 +6821,9 @@ msgstr "Menu principal d’Oscam Info"
 
 msgid "OscamInfo"
 msgstr "OscamInfo"
+
+msgid "OscamInfo Mainmenu"
+msgstr "Menu principal d’OscamInfo"
 
 msgid "Other"
 msgstr "Autre"
@@ -7245,6 +7285,24 @@ msgstr "Veuillez paramétrer le tuner C"
 
 msgid "Please set up tuner D"
 msgstr "Veuillez paramétrer le tuner D"
+
+msgid "Please set up tuner E"
+msgstr "Merci de configurer le tuner E"
+
+msgid "Please set up tuner F"
+msgstr "Merci de configurer le tuner F"
+
+msgid "Please set up tuner G"
+msgstr "Merci de configurer le tuner G"
+
+msgid "Please set up tuner H"
+msgstr "Merci de configurer le tuner H"
+
+msgid "Please set up tuner I"
+msgstr "Merci de configurer le tuner I"
+
+msgid "Please set up tuner J"
+msgstr "Merci de configurer le tuner J"
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
@@ -9071,6 +9129,9 @@ msgstr "Configure tuner"
 msgid "Setup Videomode"
 msgstr "Configure le mode vidéo"
 
+msgid "Setup delay mode to zap to channels."
+msgstr "Définir le mode de délai pour zapper les chaînes"
+
 msgid "Setup each tuner for your satellite system"
 msgstr "Configure chaque tuner de votre installation satellite"
 
@@ -9725,6 +9786,9 @@ msgstr "Configure thème"
 
 msgid "Skin setup"
 msgstr "Configurer thème/skin"
+
+msgid "SkinSelector"
+msgstr "Sélectionneur de thème"
 
 msgid "Skins"
 msgstr "Thèmes"
@@ -10404,7 +10468,7 @@ msgstr ""
 "Traduction Française\n"
 "Enigma2 - OpenATV\n"
 "Support: www.opena.tv\n"
-"Dernière MAJ: 16 septembre 2015"
+"Dernière MAJ: 16 novembre 2015"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Fichier TS trop grand pour le niveau 1 ISO9660!"
@@ -10820,6 +10884,9 @@ msgstr "Cela vous permets de changer la taille de la police relativement à la t
 msgid "This allows you change the number of rows shown."
 msgstr "Permet de modifier le nombre de lignes affichées."
 
+msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgstr "Cela vous permets de définir le nombre de chiffre à 5, si vous avez plus de 9999 chaînes."
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Cela permet d’afficher le module des pilotes (drivers) dans les téléchargements."
 
@@ -10867,6 +10934,9 @@ msgstr "Cette option permet de réduire le bruit dans l’image. Évidemment, ce
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Cette option permet de définir le niveau de contraste dynamique de l'image."
+
+msgid "This option allows you can config the Colorspace from Auto to RGB"
+msgstr "Cette option vous permet de configurer l’espace colorimétrique de Auto vers RGB"
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr "Cette option permet de choisir comment afficher le temps écoulé comme + ou -"
@@ -11863,6 +11933,12 @@ msgstr "Perso - bouquets"
 msgid "User defined"
 msgstr "Défini par l'utilisateur"
 
+msgid "User defined delay when you press another button to zap to the channel."
+msgstr "Délai défini par l’utilisateur lorsque vous appuyez sur un autre bouton pour zapper vers une chaîne."
+
+msgid "User defined delay when you press the first button to zap to the channel."
+msgstr "Délai défini par l’utilisateur lorsque vous appuyez sur le premier bouton pour zapper vers une chaîne."
+
 msgid "User defined transponder"
 msgstr "Transpondeur défini par l’utilisateur"
 
@@ -12300,9 +12376,6 @@ msgstr "Quel jour de la semaine?"
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr "Quelle action est requise à la fin d’une programmation? ‘Auto’ laisse le récepteur retourner dans l’état qu’il avait quand la programmation a démarré. ‘Ne rien faire’, ‘Aller en veille’ et ‘Aller en veille profonde’ font ce qu’ils décrivent."
 
-msgid "What date of month ?"
-msgstr "Quel jour du mois?"
-
 msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser?"
 
@@ -12716,6 +12789,9 @@ msgstr "Vous devez créer un fichier swap avant d'activer le démarrage automati
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Vous devez attendre %s!"
+
+msgid "You must set at least one Command"
+msgstr "Vous devez définir au minimum une commande"
 
 msgid ""
 "You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.opena.tv.\n"
@@ -14455,6 +14531,9 @@ msgstr "large"
 
 msgid "width"
 msgstr "largeur"
+
+msgid "will take about 1-4 minutes for this system\n"
+msgstr "cela prendre de 1 à 4 minutes sur votre système\n"
 
 msgid "will take about 3-12 minutes for this system\n"
 msgstr "cela prendre 3 à 12 minutes sur votre système\n"
