@@ -143,15 +143,15 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 			eDebug("[fb] FBIOPUT_VSCREENINFO: %m");
 			return -1;
 		}
-		eDebug("[fb] double buffering not available.");
+		eDebug("[fb] double buffering not available!");
 	} else
-		eDebug("[fb] double buffering available!");
+		eDebug("[fb] double buffering is available.");
 
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
 
 	ioctl(fbFd, FBIOGET_VSCREENINFO, &screeninfo);
 
-	if ((screeninfo.xres!=nxRes) && (screeninfo.yres!=nyRes) && (screeninfo.bits_per_pixel!=nbpp))
+	if ((screeninfo.xres!=nxRes) || (screeninfo.yres!=nyRes) || (screeninfo.bits_per_pixel!=nbpp))
 	{
 		eDebug("[fb] SetMode failed: wanted: %dx%dx%d, got %dx%dx%d",
 			nxRes, nyRes, nbpp,

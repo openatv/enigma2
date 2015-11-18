@@ -1,5 +1,4 @@
 import NavigationInstance
-from config import config
 from time import localtime, mktime, gmtime
 from ServiceReference import ServiceReference
 from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
@@ -17,13 +16,13 @@ class TimerSanityCheck:
 		self.eflag = 1
 
 	def check(self, ext_timer=1):
-		if not config.usage.timer_sanity_check_enabled.value:
-			return True
 		if ext_timer != 1:
 			self.newtimer = ext_timer
 		if self.newtimer is None:
 			self.simultimer = []
 		else:
+			if not self.newtimer.conflict_detection:
+				return True
 			self.simultimer = [ self.newtimer ]
 		return self.checkTimerlist()
 
@@ -94,6 +93,8 @@ class TimerSanityCheck:
 		idx = 0
 		for timer in self.timerlist:
 			if (timer != self.newtimer) and (not timer.disabled):
+				if not timer.conflict_detection:
+					continue
 				if timer.repeated:
 					rflags = timer.repeated
 					rflags = ((rflags & 0x7F)>> 3)|((rflags & 0x07)<<4)

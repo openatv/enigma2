@@ -1389,7 +1389,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::SET_FRONTEND:
 			{
 				int enableEvents = (m_sec_sequence.current()++)->val;
-				eDebugNoSimulate("[eDVBFrontend] setFrontend %d", enableEvents);
+				eDebugNoSimulate("[eDVBFrontend] setFrontend: events %s", enableEvents ? "enabled":"disabled");
 				setFrontend(enableEvents);
 				break;
 			}
@@ -2001,16 +2001,17 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, unsigned int tunetimeout)
 {
 	int res;
-	satfrequency = feparm.frequency;
 	if (!m_sec)
 	{
 		eWarning("[eDVBFrontend] no SEC module active!");
 		return -ENOENT;
 	}
+	satfrequency = feparm.frequency;
 	res = m_sec->prepare(*this, feparm, satfrequency, 1 << m_slotid, tunetimeout);
 	if (!res)
 	{
-		eDebugNoSimulate("[eDVBFrontend] prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d",
+		eDebugNoSimulate("[eDVBFrontend] frontend %d prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d",
+			m_dvbid,
 			feparm.system,
 			feparm.frequency,
 			feparm.polarisation,
@@ -2035,7 +2036,13 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 
 RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 {
-	eDebugNoSimulate("[eDVBFrontend] tuning to %d khz, sr %d, fec %d, modulation %d, inversion %d",
+	if (!m_sec)
+	{
+		eWarning("[eDVBFrontend] no SEC module active!");
+		return -ENOENT;
+	}
+	eDebugNoSimulate("[eDVBFrontend] frontend %d tuning dvb-c to %d khz, sr %d, fec %d, modulation %d, inversion %d",
+		m_dvbid,
 		feparm.frequency,
 		feparm.symbol_rate,
 		feparm.fec_inner,
@@ -2047,12 +2054,43 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 
 RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial &feparm)
 {
+	if (!m_sec)
+	{
+		eWarning("[eDVBFrontend] no SEC module active!");
+		return -ENOENT;
+	}
+	eDebugNoSimulate("[eDVBFrontend] frontend %d tuning dvb-t to %d khz, bandwidth %d, modulation %d, inversion %d",
+	m_dvbid,
+	feparm.frequency,
+	feparm.bandwidth,
+//	feparm.code_rate_HP,
+//	feparm.code_rate_LP,
+	feparm.modulation,
+//	feparm.transmission_mode,
+//	feparm.guard_interval,
+//	feparm.hierarchy,
+	feparm.inversion
+//	feparm.system,
+//	feparm.plpid,
+	);
 	oparm.setDVBT(feparm);
 	return 0;
 }
 
 RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 {
+	if (!m_sec)
+	{
+		eWarning("no SEC module active!");
+		return -ENOENT;
+	}
+	eDebugNoSimulate("frontend %d tuning atsc to %d khz, modulation %d, inversion %d",
+	m_dvbid,
+	feparm.frequency,
+	feparm.modulation,
+	feparm.inversion
+//	feparm.system;
+	);
 	oparm.setATSC(feparm);
 	return 0;
 }

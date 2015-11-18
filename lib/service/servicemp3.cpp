@@ -403,6 +403,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
+	m_bitrate = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
 	m_cachedSubtitleStream = 0; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
@@ -1797,6 +1798,22 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				if (m_stream_tags)
 					gst_tag_list_free(m_stream_tags);
 				m_stream_tags = result;
+
+				/* send evUpdatedInfo only when bitrate changes from 0 in order to reduce events */
+				guint value;
+				if(gst_tag_list_get_uint(m_stream_tags, GST_TAG_BITRATE, &value))
+				{
+					if(!m_bitrate && value)
+					{
+						m_bitrate = value;
+					}
+					else
+					{
+						m_bitrate = value;
+						gst_tag_list_free(tags);
+						break;
+					}
+				}
 			}
 
 			const GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);

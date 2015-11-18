@@ -347,94 +347,91 @@ class TimerEditList(Screen):
 		self.updateState()
 
 class TimerSanityConflict(Screen):
-	EMPTY = 0
-	ENABLE = 1
-	DISABLE = 2
-	EDIT = 3
-
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
+		self.skinName = "TimerEditList"
 		self.timer = timer
-		print "[TimerSanityConflict] open window"
 
-		self["timer1"] = TimerList(self.getTimerList(timer[0]))
 		self.list = []
-		self.list2 = []
 		count = 0
 		for x in timer:
-			if count != 0:
-				self.list.append((_("Conflicting timer") + " " + str(count), x))
-				self.list2.append((timer[count], False))
+			self.list.append((timer[count], False))
 			count += 1
 		if count == 1:
-			self.list.append((_("Channel not in services list")))
+			self.setTitle((_("Channel not in services list")))
+		else:
+			self.setTitle(_("Timer sanity error"))
 
-		self["list"] = MenuList(self.list)
-		self["timer2"] = TimerList(self.list2)
+		self["timerlist"] = TimerList(self.list)
 
-		self["key_red"] = Button("Edit")
+		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(" ")
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
 
-		self.key_green_choice = self.EMPTY
-		self.key_yellow_choice = self.EMPTY
-		self.key_blue_choice = self.EMPTY
-
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
-				"ok": self.leave_ok,
 				"cancel": self.leave_cancel,
-				"red": self.editTimer1,
+				"red": self.leave_cancel,
+				"green": self.editTimer,
+				"ok": self.editTimer,
+				"yellow": self.toggleTimer,
+				"blue": self.ignoreConflict,
 				"up": self.up,
-				"down": self.down
+				"down": self.down,
+				"log": self.showLog
 			}, -1)
-		self.setTitle(_("Timer sanity error"))
 		self.onShown.append(self.updateState)
 
 	def getTimerList(self, timer):
 		return [(timer, False)]
 
-	def editTimer1(self):
-		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer1"].getCurrent())
+	def editTimer(self):
+		self.session.openWithCallback(self.editTimerCallBack, TimerEntry, self["timerlist"].getCurrent())
 
-	def toggleTimer1(self):
-		time_changed = False
-		if self.timer[0].disabled:
-			self.timer[0].enable()
-			time_changed = True
-		elif not self.timer[0].isRunning():
-			self.timer[0].disable()
-			time_changed = True
-		if time_changed:
-			self.session.nav.RecordTimer.timeChanged(self.timer[0])
+	def showLog(self):
+		selected_timer = self["timerlist"].getCurrent()
+		if selected_timer:
+			self.session.openWithCallback(self.editTimerCallBack, TimerLog, selected_timer)
+
+	def editTimerCallBack(self, answer=None):
+		if answer and len(answer) > 1 and answer[0] is True:
+			self.session.nav.RecordTimer.timeChanged(answer[1])
 			self.leave_ok()
 
-	def editTimer2(self):
-		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer2"].getCurrent())
+	def toggleTimer(self):
+		selected_timer = self["timerlist"].getCurrent()
+		if selected_timer and self["key_yellow"].getText() != " ":
+			selected_timer.disabled = not selected_timer.disabled
+			self.session.nav.RecordTimer.timeChanged(selected_timer)
+			self.leave_ok()
 
-	def toggleTimer2(self):
-		time_changed = False
-		timer2 = self["timer2"].getCurrent()
-		if timer2 is not None:
-			if timer2.disabled:
-				timer2.enable()
-				time_changed = True
-			elif not timer2.isRunning():
-				timer2.disable()
-				time_changed = True
-			if time_changed:
-				self.session.nav.RecordTimer.timeChanged(timer2)
-				self.leave_ok()
+	def ignoreConflict(self):
+			selected_timer = self["timerlist"].getCurrent()
+			if selected_timer and selected_timer.conflict_detection:
+				if config.usage.show_timer_conflict_warning.value:
+					list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask this again"), "never")]
+					self.session.openWithCallback(self.ignoreConflictConfirm, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"), list=list)
+				else:
+					self.ignoreConflictConfirm(True)
 
-	def finishedEdit(self, answer=None):
-		if answer is not None and len(answer) > 1 and answer[0] is True:
+	def ignoreConflictConfirm(self, answer):
+		selected_timer = self["timerlist"].getCurrent()
+		if answer and selected_timer and selected_timer.conflict_detection:
+			if answer == "never":
+				config.usage.show_timer_conflict_warning.value = False
+				config.usage.show_timer_conflict_warning.save()
+			selected_timer.conflict_detection = False
+			selected_timer.disabled = False
+			self.session.nav.RecordTimer.timeChanged(selected_timer)
 			self.leave_ok()
 
 	def leave_ok(self):
 		if self.isResolvedConflict():
 			self.close((True, self.timer[0]))
 		else:
+			self.timer[0].disabled = True
+			self.session.nav.RecordTimer.timeChanged(self.timer[0])
 			self.updateState()
 			self.session.open(MessageBox, _("Conflict not resolved!"), MessageBox.TYPE_ERROR, timeout=3)
 
@@ -469,59 +466,28 @@ class TimerSanityConflict(Screen):
 		return success
 
 	def up(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
+		self.updateState()
 
 	def down(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
-
-	def removeAction(self, descr):
-		actions = self["actions"].actions
-		if descr in actions:
-			del actions[descr]
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveDown)
+		self.updateState()
 
 	def updateState(self):
-		if self.timer[0] is not None:
-			if self.timer[0].disabled and self.key_green_choice != self.ENABLE:
-				self["actions"].actions.update({"green":self.toggleTimer1})
-				self["key_green"].setText(_("Enable"))
-				self.key_green_choice = self.ENABLE
-			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
-				self.removeAction("green")
-				self["key_green"].setText(" ")
-				self.key_green_choice = self.EMPTY
-			elif (not self.timer[0].isRunning() or self.timer[0].repeated ) and self.key_green_choice != self.DISABLE:
-				self["actions"].actions.update({"green":self.toggleTimer1})
-				self["key_green"].setText(_("Disable"))
-				self.key_green_choice = self.DISABLE
-
-		total = len(self.timer)
-		timer2 = self["timer2"].getCurrent()
-		if total > 1:
-			if timer2 is not None:
-				if self.key_yellow_choice == self.EMPTY:
-					self["actions"].actions.update({"yellow":self.editTimer2})
-					self["key_yellow"].setText(_("Edit"))
-					self.key_yellow_choice = self.EDIT
-				if timer2.disabled and self.key_blue_choice != self.ENABLE:
-					self["actions"].actions.update({"blue":self.toggleTimer2})
-					self["key_blue"].setText(_("Enable"))
-					self.key_blue_choice = self.ENABLE
-				elif timer2.isRunning() and not timer2.repeated and self.key_blue_choice != self.EMPTY:
-					self.removeAction("blue")
-					self["key_blue"].setText(" ")
-					self.key_blue_choice = self.EMPTY
-				elif (not timer2.isRunning() or timer2.repeated) and self.key_blue_choice != self.DISABLE:
-					self["actions"].actions.update({"blue":self.toggleTimer2})
-					self["key_blue"].setText(_("Disable"))
-					self.key_blue_choice = self.DISABLE
-		if total < 2 or timer2 is None:
-			if self.key_yellow_choice != self.EMPTY:
-				self.removeAction("yellow")
+		selected_timer = self["timerlist"].getCurrent()
+		if selected_timer:
+			self["key_green"].setText(_("Edit"))
+			if selected_timer.disabled:
+				self["key_yellow"].setText(_("Enable"))
+			elif selected_timer.isRunning() and not selected_timer.repeated:
 				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
-			if self.key_blue_choice != self.EMPTY:
-				self.removeAction("blue")
+			elif not selected_timer.isRunning() or selected_timer.repeated:
+				self["key_yellow"].setText(_("Disable"))
+			if selected_timer.conflict_detection:
+				self["key_blue"].setText(_("Ignore conflict"))
+			else:
 				self["key_blue"].setText(" ")
-				self.key_blue_choice = self.EMPTY
+		else:
+			self["key_green"].setText(" ")
+			self["key_yellow"].setText(" ")
+			self["key_blue"].setText(" ")

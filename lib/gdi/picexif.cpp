@@ -1,6 +1,8 @@
-#include "picexif.h"
-#include <lib/base/eerror.h>
 #include <lib/base/cfile.h>
+#include <lib/base/eerror.h>
+#include <lib/gdi/picexif.h>
+#define PNG_SKIP_SETJMP_CHECK
+#include <png.h>
 
 #define M_SOF0  0xC0
 #define M_SOF1  0xC1
@@ -89,31 +91,46 @@ void Cexif::ClearExif()
 		delete m_exifinfo;
 }
 
-bool Cexif::DecodeExif(const char *filename, int Thumb)
+bool Cexif::DecodeExif(const char * filename, int Thumb, int fileType)
 {
-	CFile hFile(filename, "rb");
-	if (!hFile)
-		return false;
-
 	m_exifinfo = new EXIFINFO;
 	memset(m_exifinfo, 0, sizeof(EXIFINFO));
 	m_exifinfo->Thumnailstate = Thumb;
-
 	m_szLastError[0] = '\0';
-	ExifImageWidth = MotorolaOrder = 0;
 
-	Data = NULL;
-	int HaveCom = 0;
-	int a = fgetc(hFile);
-	strcpy(m_szLastError, "EXIF-Data not found");
-
-	if (a != 0xff || fgetc(hFile) != M_SOI)
+	bool rc;
+	if (fileType == F_JPEG)
+		rc = DecodeExifJpeg(filename);
+	else if (fileType == F_PNG)
+		rc = DecodeExifPNG(filename);
+	else {
+		eDebug("[DecodeEXIF]: unsupported filetype %d", fileType);
 		return false;
+	}
+	// eDebug("[DecodeEXIF]: file parser rc=%d, %s", rc, m_szLastError);
+	return rc;
+}
+
+bool Cexif::DecodeExifJpeg(const char * filename)
+{
+	eDebug("[EXIF] getting exif from JPEG");
+	int HaveCom = 0;
+	CFile hFile(filename, "rb");
+	if (!hFile) {
+		strcpy(m_szLastError, "Cannot open image file: %m");
+		return false;
+	}
+	int a = fgetc(hFile);
+
+	if (a != 0xff || fgetc(hFile) != M_SOI) {
+		strcpy(m_szLastError, "Not a JPEG file");
+		return false;
+	}
 
 	for (;;)
 	{
 		int marker = 0;
-		int ll, lh, itemlen;
+		unsigned int ll, lh, itemlen;
 
 		for (a = 0; a < 7; a++)
 		{
@@ -134,7 +151,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		itemlen = (lh << 8) | ll;
 		if (itemlen < 2)
 		{
-			strcpy(m_szLastError, "Invalid marker");
+			strcpy(m_szLastError, "Marker too short");
 			return false;
 		}
 
@@ -172,9 +189,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 			break;
 		case M_EXIF:
 			if (memcmp(Data, "Exif", 4) == 0)
-			{
 				m_exifinfo->IsExif = process_EXIF(Data, itemlen);
-			}
 			break;
 		case M_SOF0:
 		case M_SOF1:
@@ -198,6 +213,94 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 
 	return true;
 }
+
+bool Cexif::DecodeExifPNG(const char * filename)
+{
+	png_uint_32 width, height;
+	int bit_depth, color_type, channels;
+	CFile hFile(filename, "rb");
+
+	if (!hFile) {
+		strcpy(m_szLastError, "Cannot open image file: %m");
+		return false;
+	}
+
+	eDebug("[EXIF] getting exif from PNG");
+	strcpy(m_szLastError, "Cannot get PNG EXIF data");
+	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (png_ptr == NULL)
+		return false;
+	png_infop info_ptr = png_create_info_struct(png_ptr);
+	if (info_ptr == NULL) {
+		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
+		return false;
+	}
+
+	if (setjmp(png_jmpbuf(png_ptr))) {
+		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+		return false;
+	}
+
+	png_init_io(png_ptr, hFile);
+	png_read_info(png_ptr, info_ptr);
+	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, NULL, NULL, NULL);
+	channels = png_get_channels(png_ptr, info_ptr);
+
+	png_byte *row = (unsigned char*) malloc(width * channels*bit_depth/8);
+	for (png_uint_32 i = 0; i < height; i++)
+		png_read_row(png_ptr, row, NULL);
+	png_read_end(png_ptr, info_ptr);
+
+	png_textp text_ptr;
+	int num_text;
+	if (png_get_text(png_ptr, info_ptr, &text_ptr, &num_text)) {
+		// eDebug("[PNGtext] %d text chunks", num_text);
+		for (int i = 0; i< num_text; i++) {
+			char * s = text_ptr[i].text;
+			if (!strcmp(text_ptr[i].key, "Raw profile type exif")) {
+				int size;
+				// eDebug("Found exif key");
+				if (sscanf(s, "\nexif\n%d\n", &size) == 1) {
+					s = strchr(s, '\n');
+					s++;
+					s = strchr(s, '\n');
+					s++;
+					s = strchr(s, '\n');
+					s++;
+					unsigned char *Data = (unsigned char *)malloc(size);
+					unsigned char * d = Data;
+					while (*s && *(s + 1)) {
+						int x = *s++;
+						int y = *s++;
+						if (x > 0x39)
+							x += 9;
+						if (y > 0x39)
+							y += 9;
+						*d++ = ((x & 0xf) << 4) | (y & 0xf);
+						if (*s == '\n')
+							s++;
+					}
+					m_szLastError[0] = '\0';
+					m_exifinfo->IsExif = process_EXIF(Data, size);
+				}
+			}
+			else if (!strcmp(text_ptr[i].key, "exif:ImageWidth"))
+				m_exifinfo->Width  = atoi(s);
+			else if (!strcmp(text_ptr[i].key, "exif:ImageLength"))
+				m_exifinfo->Height = atoi(s);
+			//else
+			//	eDebug("[PNGtext] %d compression=%d len=%d key=%s text=%s",
+			//		i, text_ptr[i].compression,
+			//		text_ptr[i].text_length,
+			//		text_ptr[i].key,
+			//		s);
+		}
+	}
+	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+
+	return true;
+}
+
 
 bool Cexif::process_EXIF(unsigned char * CharBuf, unsigned int length)
 {
@@ -289,6 +392,7 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 		unsigned char * ValuePtr;
 		int BytesCount;
 		unsigned char * DirEntry;
+
 		DirEntry = DirStart+2+12*de;
 		Tag = Get16u(DirEntry);
 		Format = Get16u(DirEntry+2);
@@ -495,6 +599,8 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 		case TAG_THUMBNAIL_LENGTH:
 			ThumbnailSize = (unsigned)ConvertAnyFormat(ValuePtr, Format);
 			break;
+		//default:
+		//	eDebug("[picexif] unsupported tag %d format %d: %d components %d bytes)", Tag, Format, Components, BytesCount);
 		}
 
 		if (Tag == TAG_EXIF_OFFSET || Tag == TAG_INTEROP_OFFSET)

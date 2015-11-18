@@ -40,6 +40,7 @@ from Tools.Alternatives import CompareWithAlternatives
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
+from Components.SystemInfo import SystemInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EventView import EventViewEPGSelect
 import os
@@ -480,6 +481,8 @@ class ChannelContextMenu(Screen):
 		if self.session.pipshown:
 			del self.session.pip
 		self.session.pip = self.session.instantiateDialog(PictureInPicture)
+		if SystemInfo["hasOSDAnimation"]:
+			self.session.pip.setAnimationMode(0)
 		self.session.pip.show()
 		newservice = self.csel.servicelist.getCurrent()
 		currentBouquet = self.csel.servicelist and self.csel.servicelist.getRoot()
@@ -2332,6 +2335,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.onLayoutFinish.append(self.onCreate)
 
 		self.info = session.instantiateDialog(RadioInfoBar) # our simple infobar
+		if SystemInfo["hasOSDAnimation"]:
+			self.info.setAnimationMode(0)
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
