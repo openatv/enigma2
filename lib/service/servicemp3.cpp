@@ -753,7 +753,11 @@ RESULT eServiceMP3::start()
 	if (m_gst_playbin)
 	{
 		// eDebug("eServiceMP3::starting pipeline");
+#if GST_VERSION_MAJOR < 1
 		gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+#else
+		gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+#endif
 		updateEpgCacheNowNext();
 	}
 
