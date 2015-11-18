@@ -126,7 +126,7 @@ AC_ARG_WITH(osdanimation,
 	[[withosdanimation=no]]
 )
 if test x"$withosdanimation" != xno ; then
-	AC_DEFINE(HAVE_HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
+	AC_DEFINE(HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
 fi
 AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withtosdanimation" != xno)
 
