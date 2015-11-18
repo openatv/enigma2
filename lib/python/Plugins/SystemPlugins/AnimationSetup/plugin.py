@@ -9,6 +9,8 @@ from Plugins.Plugin import PluginDescriptor
 
 from enigma import setAnimation_current, setAnimation_speed
 
+from boxbranding import getBrandOEM
+
 # default = simple fade
 g_default = {
         "current": 1,
@@ -90,17 +92,35 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 
 
 class AnimationSetupScreen(Screen):
-	animationSetupItems = [
-		{"idx":0, "name":_("Disable Animations")},
-		{"idx":1, "name":_("Simple fade")},
-		{"idx":2, "name":_("Grow drop")},
-		{"idx":3, "name":_("Grow from left")},
-		{"idx":4, "name":_("Popup")},
-		{"idx":5, "name":_("Slide drop")},
-		{"idx":6, "name":_("Slide left to right")},
-		{"idx":7, "name":_("Slide top to bottom")},
-		{"idx":8, "name":_("Stripes")},
-	]
+	if getBrandOEM() == 'gigablue':
+		animationSetupItems = [
+			{"idx":0, "name":_("Disable Animations")},
+			{"idx":1, "name":_("Simple fade")},
+			{"idx":2, "name":_("Grow drop")},
+			{"idx":3, "name":_("Grow from left")},
+			{"idx":4, "name":_("Extrude from left")},
+			{"idx":5, "name":_("Popup")},
+			{"idx":6, "name":_("Slide drop")},
+			{"idx":7, "name":_("Slide from left")},
+			{"idx":8, "name":_("Slide left to right")},
+			{"idx":9, "name":_("Slide right to left")},
+			{"idx":10, "name":_("Slide top to bottom")},
+			{"idx":11, "name":_("Zoom from left")},
+			{"idx":12, "name":_("Zoom from right")},
+			{"idx":13, "name":_("Stripes")},
+		]
+	else:
+		animationSetupItems = [
+			{"idx":0, "name":_("Disable Animations")},
+			{"idx":1, "name":_("Simple fade")},
+			{"idx":2, "name":_("Grow drop")},
+			{"idx":3, "name":_("Grow from left")},
+			{"idx":4, "name":_("Popup")},
+			{"idx":5, "name":_("Slide drop")},
+			{"idx":6, "name":_("Slide left to right")},
+			{"idx":7, "name":_("Slide top to bottom")},
+			{"idx":8, "name":_("Stripes")},
+		]
 
 	skin = """
 		<screen name="AnimationSetup" position="center,center" size="580,400" title="Animation Setup">
