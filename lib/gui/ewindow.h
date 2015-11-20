@@ -16,7 +16,7 @@ public:
 	std::string getTitle() const;
 	eWidget *child() { return m_child; }
 
-#ifdef HAVE_OSDANIMATION	
+#ifdef HAVE_OSDANIMATION
 	void show();
 	void hide();
 #endif
