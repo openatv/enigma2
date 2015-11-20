@@ -609,7 +609,7 @@ void gPainter::end()
 		return;
 }
 
-#ifdef HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 void gPainter::sendShow(ePoint point, eSize size) {
 	if ( m_dc->islocked() )
 		return;
@@ -633,7 +633,7 @@ void gPainter::sendHide(ePoint point, eSize size) {
 	o.parm.setShowHideInfo->size = size;
 	m_rc->submit(o); 
 }
-#endif
+//*** #endif
 
 gDC::gDC()
 {
@@ -847,12 +847,12 @@ void gDC::exec(const gOpcode *o)
 	case gOpcode::flush:
 		break;
 
-#ifdef HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 	case gOpcode::sendShow:
 		break;
 	case gOpcode::sendHide:
 		break;
-#endif
+//*** #endif
 
 	case gOpcode::enableSpinner:
 		enableSpinner();
