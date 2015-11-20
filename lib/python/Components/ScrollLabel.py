@@ -145,7 +145,9 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			curPos = self.long_text.position()
 			if curPos.y() < 0:
 				self.long_text.move( ePoint( curPos.x(), curPos.y() + self.pageHeight ) )
-				self.split and self.right_text.move( ePoint( curPos.x(), curPos.y() + self.pageHeight ) )
+				if self.split:
+					curRPos = self.right_text.position()
+					self.right_text.move( ePoint( curRPos.x(), curRPos.y() + self.pageHeight ) )
 				self.updateScrollbar()
 
 	def pageDown(self):
@@ -153,7 +155,9 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			curPos = self.long_text.position()
 			if self.total-self.pageHeight >= abs( curPos.y() - self.pageHeight ):
 				self.long_text.move( ePoint( curPos.x(), curPos.y() - self.pageHeight ) )
-				self.split and self.right_text.move( ePoint( curPos.x(), curPos.y() - self.pageHeight ) )
+				if self.split:
+					curRPos = self.right_text.position()
+					self.right_text.move( ePoint( curRPos.x(), curRPos.y() - self.pageHeight ) )
 				self.updateScrollbar()
 
 	def lastPage(self):

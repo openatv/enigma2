@@ -609,6 +609,32 @@ void gPainter::end()
 		return;
 }
 
+#ifdef HAVE_OSDANIMATION
+void gPainter::sendShow(ePoint point, eSize size) {
+	if ( m_dc->islocked() )
+		return;
+	gOpcode o;
+	o.opcode=gOpcode::sendShow;
+	o.dc = m_dc.grabRef();
+	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
+	o.parm.setShowHideInfo->point = point;
+	o.parm.setShowHideInfo->size = size;
+	m_rc->submit(o); 
+}
+
+void gPainter::sendHide(ePoint point, eSize size) {
+	if ( m_dc->islocked() )
+		return;
+	gOpcode o;
+	o.opcode=gOpcode::sendHide;
+	o.dc = m_dc.grabRef();
+	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
+	o.parm.setShowHideInfo->point = point;
+	o.parm.setShowHideInfo->size = size;
+	m_rc->submit(o); 
+}
+#endif
+
 gDC::gDC()
 {
 	m_spinner_pic = 0;
@@ -820,6 +846,14 @@ void gDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::flush:
 		break;
+
+#ifdef HAVE_OSDANIMATION
+	case gOpcode::sendShow:
+		break;
+	case gOpcode::sendHide:
+		break;
+#endif
+
 	case gOpcode::enableSpinner:
 		enableSpinner();
 		break;

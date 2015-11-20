@@ -7,6 +7,10 @@
 
 #include <time.h>
 
+#ifdef HAVE_OSDANIMATION
+#include <lib/base/cfile.h>
+#endif
+
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
@@ -145,6 +149,16 @@ void gFBDC::exec(const gOpcode *o)
 	case gOpcode::flush:
 		fb->blit();
 		break;
+
+#ifdef HAVE_OSDANIMATION
+	case gOpcode::sendShow:
+		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x01);
+		break;
+	case gOpcode::sendHide:
+		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x10);
+		break;
+#endif
+
 	default:
 		gDC::exec(o);
 		break;
