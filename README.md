@@ -72,4 +72,3 @@
 11 - Finally you can start building a image
 
     make MACHINE=gbquadplus DISTRO=openmips image
-    
