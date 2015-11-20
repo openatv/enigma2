@@ -63,3 +63,4 @@ SystemInfo["LCDMiniTV"] = fileExists("/proc/stb/lcd/mode")
 SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"] and getBoxType() != 'gb800ueplus'
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach")
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
+SystemInfo["grautec"] = fileExists("/tmp/usbtft")
