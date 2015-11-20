@@ -128,7 +128,7 @@ AC_ARG_WITH(osdanimation,
 if test x"$withosdanimation" != xno ; then
 	AC_DEFINE(HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
 fi
-AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withtosdanimation" != xno)
+AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withosdanimation" != xno)
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),

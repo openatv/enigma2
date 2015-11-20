@@ -418,6 +418,12 @@ extern void addFont(const char *filename, const char *alias, int scale_factor, i
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
+
+#ifdef HAVE_OSDANIMATION
+extern void setAnimation_current(int a);
+extern void setAnimation_speed(int speed);
+#endif
+
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -428,6 +434,11 @@ extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
+
+#ifdef HAVE_OSDANIMATION
+extern void setAnimation_current(int a);
+extern void setAnimation_speed(int speed);
+#endif
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>

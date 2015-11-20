@@ -2,6 +2,7 @@ from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
 from Components.Harddisk import harddiskmanager
+from Components.SystemInfo import SystemInfo
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
@@ -882,6 +883,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
+			if SystemInfo["hasOSDAnimation"]:
+				self.help_window.setAnimationMode(0)
 			self.help_window.show()
 
 	def onDeselect(self, session):
