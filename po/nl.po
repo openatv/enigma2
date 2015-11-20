@@ -3,19 +3,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-31 00:08+0000\n"
-"PO-Revision-Date: 2015-11-01 10:49+0100\n"
+"POT-Creation-Date: 2015-11-19 09:20+0000\n"
+"PO-Revision-Date: 2015-11-20 14:40+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
-"Language-Team: Andy Blackburn, Rob van der Does,Delagroov\n"
-"Language: Nederlands\n"
+"Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-Language: Dutch\n"
-"X-Poedit-Country: The Netherlands\n"
+"X-Generator: Poedit 1.8.6\n"
+
+msgid ""
+"\n"
+"<This tuner is configured automatically>"
+msgstr ""
+"\n"
+"<Deze tuner wordt automatisch geconfigureerd>"
 
 msgid ""
 "\n"
@@ -456,6 +461,21 @@ msgstr "1X"
 msgid "1st Infobar timeout"
 msgstr "1e informatiebalk timeout"
 
+msgid "2160p 24Hz"
+msgstr "2160p 24Hz"
+
+msgid "2160p 25Hz"
+msgstr "2160p 25Hz"
+
+msgid "2160p 30Hz"
+msgstr "2160p 30Hz"
+
+msgid "2160p 50Hz"
+msgstr "2160p 50Hz"
+
+msgid "2160p 60Hz"
+msgstr "2160p 60Hz"
+
 msgid "23.976"
 msgstr "23.976"
 
@@ -632,9 +652,6 @@ msgid ""
 msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
-
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "U bent aan het opnemen. Stop de opname voordat u probeert de rotor instellingen te wijzigen."
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Een opname is nu bezig. Stop de opname voor u gaat scannen."
@@ -2353,6 +2370,9 @@ msgstr "Huidig apparaat: "
 msgid "Current mode: %s \n"
 msgstr "Huidige modus: %s \n"
 
+msgid "Current rotor position: "
+msgstr "Actuele rotorpositie::"
+
 msgid "Current settings:"
 msgstr "Huidige instellingen:"
 
@@ -2696,6 +2716,12 @@ msgstr "Uit"
 
 msgid "Disable Animations"
 msgstr "Animatie uitschakelen"
+
+msgid "Disable FastZapping"
+msgstr "Snel zappen uitschakelen"
+
+msgid "Disable MiniTV"
+msgstr "Schakel mini-TV uit"
 
 msgid "Disable Picture in Picture"
 msgstr "Beeld-in-beeld uitschakelen"
@@ -3076,11 +3102,17 @@ msgstr "5V voor actieve antenne inschakelen"
 msgid "Enable EIT EPG"
 msgstr "EIT EPG inschakelen"
 
+msgid "Enable FastZapping"
+msgstr "Schakel snel zappen in"
+
 msgid "Enable FreeSat EPG"
 msgstr "Freesat EPG inschakelen"
 
 msgid "Enable MHW EPG"
 msgstr "MHW EPG inschakelen"
+
+msgid "Enable MiniTV"
+msgstr "Schakel mini-TV in"
 
 msgid "Enable Netmed EPG"
 msgstr "Netmed EPG inschakelen"
@@ -3332,6 +3364,9 @@ msgstr "Verlaat netwerkadapterinstellingen menu"
 msgid "Exit the wizard"
 msgstr "Wizard afsluiten"
 
+msgid "Exit/OK"
+msgstr "Exit/OK"
+
 msgid "Expert"
 msgstr "Expert"
 
@@ -3475,7 +3510,7 @@ msgstr "Favorieten"
 msgid "Feeds status:   Stable"
 msgstr "Feeds status:   Stabiel"
 
-msgid "Feeds status:   Unkown"
+msgid "Feeds status:   Unknown"
 msgstr "Feeds status:   Onbekend"
 
 msgid "Feeds status:   Unstable"
@@ -3766,6 +3801,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC instellingen"
+
+msgid "HDMI Colorspace"
+msgstr "HDMI kleurruimte"
 
 msgid "HDMIin"
 msgstr "HDMI-in"
@@ -4631,6 +4669,9 @@ msgstr "Maximum aantal dagen"
 msgid "Maximum total space used (MB)"
 msgstr "Maximaal ruimtebeslag (MB)"
 
+msgid "Maybe the reason that recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "U bent aan het opnemen. Stop de opname voordat u probeert de rotor instellingen te wijzigen."
+
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Afspeeltijden Resterend/Verstreken weergeven als "
 
@@ -5358,6 +5399,9 @@ msgstr "Open de zenderlijst en selecteer de vorige zender"
 msgid "Open service list and select the previous channel for PiP"
 msgstr "Open de zenderlijst en selecteer de vorige zender voor PiP"
 
+msgid "Open setup tuner "
+msgstr "Open de tunerconfiguratie"
+
 msgid "Open the favourites list"
 msgstr "Open de favorietenlijst"
 
@@ -5758,7 +5802,7 @@ msgstr ""
 "Druk op OK om verder te gaan."
 
 msgid "Please set up tuner A"
-msgstr "Cofigureer tuner A"
+msgstr "Configureer tuner A"
 
 msgid "Please set up tuner B"
 msgstr "Instellingen voor tuner B"
@@ -5768,6 +5812,24 @@ msgstr "Instellingen voor tuner C"
 
 msgid "Please set up tuner D"
 msgstr "Instellingen voor tuner D"
+
+msgid "Please set up tuner E"
+msgstr "Configureer tuner E"
+
+msgid "Please set up tuner F"
+msgstr "Configureer tuner F"
+
+msgid "Please set up tuner G"
+msgstr "Configureer tuner G"
+
+msgid "Please set up tuner H"
+msgstr "Configureer tuner H"
+
+msgid "Please set up tuner I"
+msgstr "Configureer tuner I"
+
+msgid "Please set up tuner J"
+msgstr "Configureer tuner J"
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
@@ -5893,11 +5955,14 @@ msgstr "Positioner (selecteert satellieten)"
 msgid "Positioner setup"
 msgstr "Rotor instellingen"
 
+msgid "Positioner setup log"
+msgstr "Rotor instellingen log"
+
 msgid "Power"
 msgstr "Power"
 
 msgid "Power LCD Display"
-msgstr ""
+msgstr "Power LCD Display"
 
 msgid "Power long"
 msgstr "Power lang"
@@ -6022,6 +6087,9 @@ msgstr "Druk op OK om de selectie te wisselen."
 
 msgid "Press OK to toggle the selection."
 msgstr "Druk op OK om de selectie te (de)activeren."
+
+msgid "Press OK, save and exit..."
+msgstr "Klik op OK, sla op en sluit af..."
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Druk op geel om deze interface als standaard in te stellen."
@@ -6226,6 +6294,10 @@ msgstr "Nu herstarten?"
 
 msgid "Really shutdown now?"
 msgstr "Nu uitschakelen?"
+
+#, python-format
+msgid "Really store at index %2d for current position?"
+msgstr "Huidige positie echt opslaan in index %2d?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "De frontprocessor nu bijwerken en opneiuw opstarten?"
@@ -6867,6 +6939,9 @@ msgstr "Selecteer CAId"
 msgid "Select a wireless network"
 msgstr "Kies een draadloos netwerk"
 
+msgid "Select action"
+msgstr "Kies actie"
+
 #, python-format
 msgid "Select action for timer %s:"
 msgstr "Kies bestemming voor %s:"
@@ -6945,6 +7020,9 @@ msgstr "Hier geeft u aan of de zoekbalk wordt geactiveerd met pijl-L/R (lang) of
 
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
+
+msgid "Select slot"
+msgstr "Kies slot"
 
 msgid "Select sort method:"
 msgstr "Selecteer sorteermodus:"
@@ -7264,6 +7342,15 @@ msgstr "Toon 1080p 25fps als"
 
 msgid "Show 1080p 30fps as"
 msgstr "Toon 1080p 30fps als"
+
+msgid "Show 2160p 24fps as"
+msgstr "Toon 2160p 24fps als"
+
+msgid "Show 2160p 25fps as"
+msgstr "Toon 2160p 25fps als"
+
+msgid "Show 2160p 30fps as"
+msgstr "Toon 2160p 30fps als"
 
 msgid "Show 480/576p 24fps as"
 msgstr "Toon480/576p 24fps als"
@@ -7791,6 +7878,9 @@ msgstr "Sorry, geen backup gevonden!"
 
 msgid "Sorry, no details available!"
 msgstr "Sorry, geen details beschikbaar"
+
+msgid "Sorry, this tuner is in use."
+msgstr "Deze tuner is niet beschikbaar"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -8568,6 +8658,9 @@ msgstr "Met deze instelling kunt u de groene kleuren in het beeld versterken."
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "U hunt de HDMI EDID controle omzeilen."
 
+msgid "This option allows you to change the Colorspace from Auto to RGB"
+msgstr "Met deze optie verandert u de kleurruimte van Auto naar RGB."
+
 msgid "This option allows you to change the virtuell loadspeaker position."
 msgstr "Met deze optie bepaalt u de virtuele luidsprekeropstelling."
 
@@ -8582,6 +8675,15 @@ msgstr "Hier kunt u aangeven hoe 1080p25 op uw TV moet worden weergegeven (omdat
 
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Hier kunt u aangeven hoe 1080p30 op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
+
+msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 2160p 24Hz op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)."
+
+msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 2160p 25Hz op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)."
+
+msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Hier kunt u aangeven hoe 2160p 30Hz op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
 
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Hier kunt u aangeven hoe 720p24 op uw TV moet worden weergegeven (omdat niet alle TV's deze resolutie ondersteunen)"
@@ -9118,8 +9220,8 @@ msgstr "Type: "
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USALS calibration"
-msgstr "USALS calibratie"
+msgid "USALS Calibration"
+msgstr "USALS kalibratie"
 
 msgid "USB stick wizard"
 msgstr "USB-stick wizard"
@@ -9873,8 +9975,8 @@ msgstr ""
 "\n"
 "Werkelijk uitvoeren?"
 
-msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
-msgstr "Wanneer u de 'remote fallback tuner' gebruit voor opnames, kan de timer conflict manager niet goed functioneren. Daarom kunt u die in dat geval uitschakelen."
+msgid "When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'."
+msgstr "Wanneer u de 'remote fallback tuner' gebruikt voor opnames, kan de timer conflict manager niet goed functioneren. Daarom kunt u die in dat geval uitschakelen. Deze optie is alleen voor gevorderde gebruikers; de default waarde is 'Ja'."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u de instellingen opslaan?"
@@ -9938,6 +10040,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Schrijven mislukt!"
 
+msgid "Write to /tmp/positionersetup.log"
+msgstr "Schrijf naar /tmp/positionersetup.log"
+
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
 
@@ -9961,6 +10066,9 @@ msgstr "Lang-geel"
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Yes (save index in setup tuner)"
+msgstr "Ja (sla index op in tuner instellingen)"
 
 msgid "Yes to all"
 msgstr "Ja op alles"
@@ -10969,6 +11077,9 @@ msgstr "op ALLEEN LEZEN medium."
 msgid "once"
 msgstr "éénmalig"
 
+msgid "only 4K"
+msgstr "alleen 4K"
+
 msgid "only HD"
 msgstr "alleen HD"
 
@@ -11737,9 +11848,6 @@ msgstr "zapte"
 
 #~ msgid "Sorry feeds are down for maintenance, please try again later."
 #~ msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
-
-#~ msgid "Sorry that tuner is not available."
-#~ msgstr "Die tuner is niet beschikbaar"
 
 #~ msgid "Subservice mode"
 #~ msgstr "Subservice-mode"
