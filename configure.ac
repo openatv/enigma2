@@ -130,6 +130,8 @@ if test x"$withosdanimation" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withosdanimation" != xno)
 
+AC_DEFINE(HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
+
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],
@@ -181,17 +183,6 @@ if test x"$withbwlcd255" != xno ; then
 fi
 
 AM_CONDITIONAL(HAVE_BWLCD255, test x"$withbwlcd255" != xno)
-
-AC_ARG_WITH(textlcd,
-	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
-	[[withtextlcd=$withval]],
-	[[withtextlcd=no]]
-)
-if test x"$withtextlcd" != xno ; then
-	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
-fi
-
-AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
 AC_ARG_WITH(oldpvr,
 	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
