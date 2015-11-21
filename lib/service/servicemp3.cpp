@@ -768,6 +768,7 @@ RESULT eServiceMP3::start()
 void eServiceMP3::sourceTimeout()
 {
 	eDebug("[eServiceMP3] http source timeout! issuing eof...");
+	stop();
 	m_event((iPlayableService*)this, evEOF);
 }
 
