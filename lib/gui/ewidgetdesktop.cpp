@@ -536,7 +536,7 @@ eRect eWidgetDesktop::bounds() const
 		);
 }
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 void eWidgetDesktop::sendShow(ePoint point, eSize size) {
 	if(m_style_id!=0)
 		return;

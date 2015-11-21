@@ -37,7 +37,7 @@
 
 #include <gst/gst.h>
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 #include <lib/base/cfile.h>
 //*** #endif
 
@@ -395,7 +395,7 @@ void dump_malloc_stats(void)
 	eDebug("MALLOC: %d total", mi.uordblks);
 }
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 void setAnimation_current(int a) {
 	switch (a) {
 		case 1:

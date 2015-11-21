@@ -7,7 +7,7 @@
 
 #include <time.h>
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 #include <lib/base/cfile.h>
 //*** #endif
 
@@ -150,7 +150,7 @@ void gFBDC::exec(const gOpcode *o)
 		fb->blit();
 		break;
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 	case gOpcode::sendShow:
 		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x01);
 		break;

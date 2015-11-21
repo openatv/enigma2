@@ -65,7 +65,7 @@ struct gOpcode
 
 		setCompositing,
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 		sendShow,
 		sendHide,
 //*** #endif
@@ -151,7 +151,7 @@ struct gOpcode
 
 		gCompositingData *setCompositing;
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 		struct psetShowHideInfo {
 			ePoint point;
 			eSize size;
@@ -288,7 +288,7 @@ public:
 
 	void flush();
 
-//*** #if HAVE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 	void sendShow(ePoint point, eSize size);
 	void sendHide(ePoint point, eSize size);
 //*** #endif
