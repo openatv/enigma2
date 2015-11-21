@@ -137,9 +137,8 @@ is usually caused by not marking PSignals as immutable.
    "$result = t_output_helper($result, ((*$1) ? SWIG_NewPointerObj((void*)($1), $1_descriptor, 1) : (delete $1, Py_INCREF(Py_None), Py_None)));"
 %enddef
 
-
-#define DEBUG
 typedef long time_t;
+%include <enigma2_config.h>
 %include "typemaps.i"
 %include "std_string.i"
 %include <lib/python/swig.h>
@@ -194,6 +193,7 @@ typedef long time_t;
 %include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
+%include <lib/gdi/gfbdc.h>
 %include <lib/gdi/gmaindc.h>
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
@@ -419,11 +419,6 @@ extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 
-#ifdef HAVE_OSDANIMATION
-extern void setAnimation_current(int a);
-extern void setAnimation_speed(int speed);
-#endif
-
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -434,11 +429,6 @@ extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
-
-#ifdef HAVE_OSDANIMATION
-extern void setAnimation_current(int a);
-extern void setAnimation_speed(int speed);
-#endif
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
