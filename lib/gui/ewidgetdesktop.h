@@ -74,7 +74,7 @@ public:
 	void resize(eSize size);
 	eSize size() const { return m_screen.m_screen_size; }
 
-//*** #ifdef HAVE_OSDANIMATION
+//*** #if HAVE_OSDANIMATION
 	void sendShow(ePoint point, eSize size);
 	void sendHide(ePoint point, eSize size);
 //*** #endif
