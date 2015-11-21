@@ -419,7 +419,7 @@ extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 
-//*** #ifdef HAVE_OSDANIMATION
+//*** #if HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
 //*** #endif
@@ -435,7 +435,7 @@ extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 
-//*** #ifdef HAVE_OSDANIMATION
+//*** #if HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
 //*** #endif
