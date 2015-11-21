@@ -16,10 +16,10 @@ public:
 	std::string getTitle() const;
 	eWidget *child() { return m_child; }
 
-//*** #if HAVE_OSDANIMATION
+#if HAVE_OSDANIMATION
 	void show();
 	void hide();
-//*** #endif
+#endif
 
 	enum {
 		wfNoBorder = 1
@@ -30,9 +30,9 @@ public:
 	void setFlag(int flags);
 	void clearFlag(int flags);
 
-//*** #if HAVE_OSDANIMATION
+#if HAVE_OSDANIMATION
 	void setAnimationMode(int mode);
-//*** #endif
+#endif
 
 protected:
 	enum eWindowEvents
@@ -46,9 +46,9 @@ private:
 	int m_flags;
 	eWidgetDesktop *m_desktop;
 
-//*** #if HAVE_OSDANIMATION
+#if HAVE_OSDANIMATION
 	int m_animation_mode;
-//*** #endif
+#endif
 
 };
 
