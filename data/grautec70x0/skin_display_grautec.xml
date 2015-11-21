@@ -21,7 +21,7 @@
 	<widget source="session.Event_Now" render="RunningText" position="0,95" size="400,55" font="LCD1;52" halign="center" zPosition="1" options="movetype=running,direction=left,repeat=0,steptime=40,startdelay=2000,noWrap">
    		  <convert type="EventName">Name</convert>
 	</widget>
-    <widget source="session.CurrentService" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+    <widget source="session.CurrentService" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
           <convert type="ServiceName">Reference</convert>
           <!-- <convert type="ServiceName">Name</convert>
 	 	  <convert type="ConverterRotator">60</convert> -->
@@ -56,7 +56,7 @@
 		<convert type="ConditionalShowHide">Blink</convert>
 	 </widget>
 	 <widget source="global.CurrentTime" render="Label" position="0,150" size="400,60" font="LCD1;55" zPosition="2" transparent="1" halign="center">
-		<convert type="DatumToText">Format:%a, %d. %b %Y</convert>
+		<convert type="ClockToText">Format:%a, %d. %b %Y</convert>
 	 </widget>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
@@ -68,7 +68,7 @@
 	<widget source="parent.ServiceEvent" render="Label" position="0,12" size="400,155" font="LCD1;52" halign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.ServiceEvent" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.ServiceEvent" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -96,7 +96,7 @@
 	<widget source="parent.ServiceEvent" render="Label" position="0,12" size="400,155" font="LCD1;52" halign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.ServiceEvent" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.ServiceEvent" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -124,7 +124,7 @@
 	<widget source="session.Event_Now" render="Label" position="0,12" size="400,155" font="LCD1;52" halign="center">
    		  <convert type="EventName">Name</convert>
 	</widget>
-    <widget source="session.CurrentService" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+    <widget source="session.CurrentService" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
           <convert type="ServiceName">Reference</convert>
           <!-- <convert type="ServiceName">Name</convert>
 	 	  <convert type="ConverterRotator">60</convert> -->
@@ -546,7 +546,7 @@
 	<widget source="session.Event_Now" render="RunningText" position="0,95" size="400,55" font="LCD1;52" halign="center" zPosition="1" options="movetype=running,direction=left,repeat=0,steptime=40,startdelay=2000,noWrap">
    		  <convert type="EventName">Name</convert>
 	</widget>
-    <widget source="session.CurrentService" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+    <widget source="session.CurrentService" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
           <convert type="ServiceName">Reference</convert>
           <!-- <convert type="ServiceName">Name</convert>
 	 	  <convert type="ConverterRotator">60</convert> -->
@@ -770,7 +770,7 @@
 	<widget source="parent.Service" render="RunningText" position="0,12" size="400,55" font="LCD1;52" halign="center" foregroundColor="oled1" zPosition="1" options="movetype=swimming,direction=top,repeat=0,steptime=100,startdelay=4000,pause=2000,wrap">
 		<convert type="ServiceName">Name</convert>
 	</widget>
-<!--	<widget source="parent.Service" render="LCDPicon" position="0,2" size="400,170" zPosition="2">
+<!--	<widget source="parent.Service" render="LcdPicon" position="0,2" size="400,170" zPosition="2">
 	    <convert type="ServiceName2">Reference</convert>
         <convert type="ConverterRotator"></convert>
 	</widget> -->
@@ -802,7 +802,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" valign="center" halign="center">
 		<convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	    <convert type="ServiceName2">Reference</convert>
         <convert type="ConverterRotator"></convert>
 	</widget>
@@ -828,7 +828,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" valign="center" halign="center">
 		<convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	    <convert type="ServiceName2">Reference</convert>
         <convert type="ConverterRotator"></convert>
 	</widget>
@@ -936,7 +936,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -962,7 +962,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -988,7 +988,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1014,7 +1014,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1040,7 +1040,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1066,7 +1066,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1092,7 +1092,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1118,7 +1118,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1144,7 +1144,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1170,7 +1170,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1196,7 +1196,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1222,7 +1222,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1248,7 +1248,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1274,7 +1274,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>
@@ -1300,7 +1300,7 @@
 	<widget source="parent.Service" render="Label" position="0,2" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
-	<widget source="parent.Service" render="LCDPicon" position="0,0" size="400,170" zPosition="2">
+	<widget source="parent.Service" render="LcdPicon" position="0,0" size="400,170" zPosition="2">
 	     <convert type="ServiceName2">Reference</convert>
          <convert type="ConverterRotator"></convert>
 	</widget>

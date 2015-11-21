@@ -6,6 +6,7 @@ from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 from boxbranding import getBoxType
 from ServiceReference import ServiceReference
+from Components.SystemInfo import SystemInfo
 
 searchPaths = []
 lastLcdPiconPath = None
