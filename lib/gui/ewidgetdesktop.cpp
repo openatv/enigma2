@@ -536,7 +536,7 @@ eRect eWidgetDesktop::bounds() const
 		);
 }
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 void eWidgetDesktop::sendShow(ePoint point, eSize size) {
 	if(m_style_id!=0)
 		return;
@@ -554,4 +554,4 @@ void eWidgetDesktop::sendHide(ePoint point, eSize size)
 	painter.sendHide(point, size);
 }
 
-#endif
+//*** #endif

@@ -10,9 +10,9 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 	m_animation_mode = 0x11;
-#endif
+//*** #endif
 
 	m_desktop = desktop;
 		/* ask style manager for current style */
@@ -119,7 +119,7 @@ int eWindow::event(int event, void *data, void *data2)
 	return eWidget::event(event, data, data2);
 }
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 void eWindow::show() {
 	if (m_animation_mode & 0x01)
 		m_desktop->sendShow(position(), size());
@@ -141,4 +141,4 @@ void eWindow::setAnimationMode(int mode) {
 	 */
 	m_animation_mode = mode;
 }
-#endif
+//*** #endif

@@ -37,9 +37,9 @@
 
 #include <gst/gst.h>
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 #include <lib/base/cfile.h>
-#endif
+//*** #endif
 
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
@@ -395,7 +395,7 @@ void dump_malloc_stats(void)
 	eDebug("MALLOC: %d total", mi.uordblks);
 }
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 void setAnimation_current(int a) {
 	switch (a) {
 		case 1:
@@ -446,4 +446,4 @@ void setAnimation_current(int a) {
 void setAnimation_speed(int speed) {
 	CFile::writeInt("/proc/stb/fb/animation_speed", speed);
 }
-#endif
+//*** #endif

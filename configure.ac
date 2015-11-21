@@ -135,10 +135,6 @@ if test x"$withosdanimation" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withosdanimation" != xno)
 
-if test "$BOXTYPE" == "gbultraue" -o "$BOXTYPE" == "gbultrase" -o "$BOXTYPE" == "gbx1" -o "$BOXTYPE" == "gbx3" -o "$BOXTYPE" == "gb7362"; then
-	AC_DEFINE(USE_OSDANIMATION, 1,[Define if driver supports animation of osd])
-fi
-
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],

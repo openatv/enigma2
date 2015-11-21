@@ -419,10 +419,10 @@ extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
-#endif
+//*** #endif
 
 %}
 
@@ -435,10 +435,10 @@ extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 
-#ifdef USE_OSDANIMATION
+//*** #ifdef HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
-#endif
+//*** #endif
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
