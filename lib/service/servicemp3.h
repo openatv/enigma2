@@ -306,8 +306,6 @@ private:
 	/* servicemMP3 chapter TOC support CVR */
 #if GST_VERSION_MAJOR >= 1
 	bool m_use_chapter_entries;
-	/* CVR needed for user requested media pause */
-	bool m_user_paused;
 	/* last used seek position gst-1 only */
 	gint64 m_last_seek_pos;
 #endif
