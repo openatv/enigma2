@@ -420,7 +420,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
-	m_user_paused = false; /* CVR */
 #endif
 	m_extra_headers = "";
 	m_download_buffer_path = "";
@@ -753,15 +752,8 @@ RESULT eServiceMP3::start()
 	if (m_gst_playbin)
 	{
 		// eDebug("eServiceMP3::starting pipeline");
-#if GST_VERSION_MAJOR < 1
-		gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
-#else
 		gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
-#endif
-		updateEpgCacheNowNext();
 	}
-
-	m_event(this, evStart);
 
 	return 0;
 }
@@ -781,8 +773,21 @@ RESULT eServiceMP3::stop()
 		return -1;
 
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
-	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
+	
+       GstStateChangeReturn ret;
+       GstState state, pending;
+       /* make sure that last state change was successfull */
+       ret = gst_element_get_state(m_gst_playbin, &state, &pending, GST_CLOCK_TIME_NONE);
+       eDebug("[eServiceMP3] stop state:%s pending:%s ret:%s",
+               gst_element_state_get_name(state),
+               gst_element_state_get_name(pending),
+               gst_element_state_change_return_get_name(ret));
+
+       ret = gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
+       if (ret != GST_STATE_CHANGE_SUCCESS)
+               eDebug("[eServiceMP3] stop GST_STATE_NULL failure");
+
 	saveCuesheet();
 	m_subtitles_paused = false;
 	m_nownext_timer->stop();
@@ -825,6 +830,7 @@ RESULT eServiceMP3::pause()
 
 	m_subtitles_paused = true;
 	m_subtitle_sync_timer->start(1, true);
+	eDebug("[eServiceMP3] pause");
 	trickSeek(0.0);
 
 	return 0;
@@ -837,6 +843,15 @@ RESULT eServiceMP3::unpause()
 
 	m_subtitles_paused = false;
 	m_subtitle_sync_timer->start(1, true);
+	
+	/* no need to unpase if we are not paused already */
+	if (m_currentTrickRatio == 1.0 && !m_paused)
+	{
+		eDebug("[eServiceMP3] trickSeek no need to unpause!");
+		return 0;
+	}
+
+	eDebug("[eServiceMP3] unpause");
 	trickSeek(1.0);
 
 	return 0;
@@ -1651,17 +1666,11 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			{
 				case GST_STATE_CHANGE_NULL_TO_READY:
 				{
-#if GST_VERSION_MAJOR >= 1
-					/* CVR basic init done , now playbin must go to pause until mediasettings are done */
-					if(m_gst_playbin)
-					{
-						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-						m_paused = true;
-					}
-#endif
+					m_event(this, evStart);
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
+					gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 #if GST_VERSION_MAJOR >= 1
 					GValue result = { 0, };
 #endif
@@ -1732,14 +1741,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					setPCMDelay(pcm_delay);
 					if(!m_cuesheet_loaded) /* cuesheet CVR */
 						loadCuesheet();
+					updateEpgCacheNowNext();
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
 					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
 						m_streamingsrc_timeout->stop();
-#if GST_VERSION_MAJOR >= 1
-					m_user_paused = false;
-#endif
 					m_paused = false;
 					if (m_seek_paused)
 					{
@@ -1751,9 +1758,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
-#if GST_VERSION_MAJOR >= 1
-					m_user_paused = true;
-#endif
 					m_paused = true;
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_READY:
@@ -1996,14 +2000,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				if (m_errorInfo.missing_codec.find("video/") == 0 || (m_errorInfo.missing_codec.find("audio/") == 0 && m_audioStreams.empty()))
 					m_event((iPlayableService*)this, evUser+12);
 			}
-#if GST_VERSION_MAJOR >= 1
-			/* CVR now all audio,video and subsettings are done playbin may go to playing */
-			if(m_paused && !m_user_paused)
-			{
-				gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
-				m_paused = false;
-			}
-#endif
 			break;
 		}
 		case GST_MESSAGE_ELEMENT:
