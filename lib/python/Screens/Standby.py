@@ -281,7 +281,7 @@ class TryQuitMainloop(MessageBox):
 	def close(self, value):
 		global quitMainloopCode
 		if self.connected:
-			self.conntected=False
+			self.connected=False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			self.hide()
