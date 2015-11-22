@@ -21,7 +21,6 @@ from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import *
 from os import system, path as os_path
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from __init__ import _
 global ListChange
 ListChange = None
 config.Volume  = ConfigSubsection()

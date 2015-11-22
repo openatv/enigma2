@@ -631,7 +631,6 @@ lib/python/Plugins/Extensions/Infopanel/Makefile
 lib/python/Plugins/Extensions/Infopanel/meta/Makefile
 lib/python/Plugins/Extensions/Infopanel/icons/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
-lib/python/Plugins/Extensions/Volume_adjust/nl/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/AnimationSetup/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
