@@ -369,7 +369,7 @@ class TimerSanityConflict(Screen):
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
 
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions", "MenuActions"],
 			{
 				"cancel": self.leave_cancel,
 				"red": self.leave_cancel,
@@ -379,7 +379,8 @@ class TimerSanityConflict(Screen):
 				"blue": self.ignoreConflict,
 				"up": self.up,
 				"down": self.down,
-				"log": self.showLog
+				"log": self.showLog,
+				"menu": self.openExtendedSetup
 			}, -1)
 		self.onShown.append(self.updateState)
 
@@ -464,6 +465,18 @@ class TimerSanityConflict(Screen):
 		else:
 			success = True
 		return success
+
+	def openExtendedSetup(self):
+		menu = []
+		if not config.usage.show_timer_conflict_warning.value:
+			menu.append((_("Show warning before set 'Ignore conflict'"), "blue_key_warning"))
+		def showAction(choice):
+			if choice is not None:
+				if choice[1] == "blue_key_warning":
+					config.usage.show_timer_conflict_warning.value = True
+					config.usage.show_timer_conflict_warning.save()
+		if menu:
+			self.session.openWithCallback(showAction, ChoiceBox, title= _("Select action"), list=menu)
 
 	def up(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
