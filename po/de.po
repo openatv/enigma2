@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-30 23:21+0000\n"
-"PO-Revision-Date: 2015-10-31 18:51+0100\n"
+"POT-Creation-Date: 2015-11-16 11:53+0000\n"
+"PO-Revision-Date: 2015-11-18 20:21+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13,6 +13,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"<This tuner is configured automatically>"
+msgstr ""
+"\n"
+"<Dieser Tuner wird automatisch konfiguriert>"
 
 msgid ""
 "\n"
@@ -453,6 +460,21 @@ msgstr "1X"
 msgid "1st Infobar timeout"
 msgstr "1. Infobar Timeout"
 
+msgid "2160p 24Hz"
+msgstr "2160p 24Hz"
+
+msgid "2160p 25Hz"
+msgstr "2160p 25Hz"
+
+msgid "2160p 30Hz"
+msgstr "2160p 30Hz"
+
+msgid "2160p 50Hz"
+msgstr "2160p 50Hz"
+
+msgid "2160p 60Hz"
+msgstr "2160p 60Hz"
+
 msgid "23.976"
 msgstr "23.976"
 
@@ -629,9 +651,6 @@ msgid ""
 msgstr ""
 "Zur Zeit sind Aufnahmen aktiv.\n"
 "Was soll getan werden?"
-
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor die Rotor Einstellungen vorgenommen werden."
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor gesucht wird."
@@ -2350,6 +2369,9 @@ msgstr "Aktuelles Gerät:"
 msgid "Current mode: %s \n"
 msgstr "Aktueller Modus: %s\n"
 
+msgid "Current rotor position: "
+msgstr "Aktuelle Rotorposition:"
+
 msgid "Current settings:"
 msgstr "Aktuelle Einstellungen:"
 
@@ -2693,6 +2715,12 @@ msgstr "Aus"
 
 msgid "Disable Animations"
 msgstr "Animationen deaktivieren"
+
+msgid "Disable FastZapping"
+msgstr "Deaktiviere schnelles Umschalten"
+
+msgid "Disable MiniTV"
+msgstr "Deaktiviere MiniTV"
 
 msgid "Disable Picture in Picture"
 msgstr "Bild in Bild ausschalten"
@@ -3072,11 +3100,17 @@ msgstr "5V für aktive Antenne"
 msgid "Enable EIT EPG"
 msgstr "EIT EPG aktivieren"
 
+msgid "Enable FastZapping"
+msgstr "Aktiviere schnelles Umschalten"
+
 msgid "Enable FreeSat EPG"
 msgstr "Freesat EPG aktivieren"
 
 msgid "Enable MHW EPG"
 msgstr "MHW EPG aktivieren"
+
+msgid "Enable MiniTV"
+msgstr "Aktiviere MiniTV"
 
 msgid "Enable Netmed EPG"
 msgstr "Netmed EPG aktivieren"
@@ -3328,6 +3362,9 @@ msgstr "Netzwerkadaptermenü verlassen"
 msgid "Exit the wizard"
 msgstr "Assistent beenden"
 
+msgid "Exit/OK"
+msgstr "Verlassen/OK"
+
 msgid "Expert"
 msgstr "Experte"
 
@@ -3468,7 +3505,7 @@ msgstr "Favoriten"
 msgid "Feeds status:   Stable"
 msgstr "Feed Status: stabil"
 
-msgid "Feeds status:   Unkown"
+msgid "Feeds status:   Unknown"
 msgstr "Feed Status: unbekannt"
 
 msgid "Feeds status:   Unstable"
@@ -3760,6 +3797,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC Einstellungen"
+
+msgid "HDMI Colorspace"
+msgstr "HDMI Farbraum"
 
 msgid "HDMIin"
 msgstr "HDMIin"
@@ -4622,6 +4662,9 @@ msgstr "Maximalzahl von Tagen"
 msgid "Maximum total space used (MB)"
 msgstr "Maximaler Speicherbedarf (MB)"
 
+msgid "Maybe the reason that recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor die Rotor Einstellungen vorgenommen werden."
+
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Zeige Zeit bei Wiedergabe verbleibend/verstrichen"
 
@@ -5349,6 +5392,9 @@ msgstr "Öffne Senderliste und wähle den vorherigen Sender"
 msgid "Open service list and select the previous channel for PiP"
 msgstr "Öffne Senderliste und wähle den vorherigen Sender für PiP"
 
+msgid "Open setup tuner "
+msgstr "Tunerkonfiguration öffnen"
+
 msgid "Open the favourites list"
 msgstr "Öffne Favoritenliste"
 
@@ -5758,6 +5804,24 @@ msgstr "Einstellungen für Tuner C."
 msgid "Please set up tuner D"
 msgstr "Einstellungen für Tuner D."
 
+msgid "Please set up tuner E"
+msgstr "Bitte Tuner E konfigurieren"
+
+msgid "Please set up tuner F"
+msgstr "Bitte Tuner F konfigurieren"
+
+msgid "Please set up tuner G"
+msgstr "Bitte Tuner G konfigurieren"
+
+msgid "Please set up tuner H"
+msgstr "Bitte Tuner H konfigurieren"
+
+msgid "Please set up tuner I"
+msgstr "Bitte Tuner I konfigurieren"
+
+msgid "Please set up tuner J"
+msgstr "Bitte Tuner J konfigurieren"
+
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
@@ -5881,6 +5945,9 @@ msgstr "Rotos (wähle Satelliten)"
 
 msgid "Positioner setup"
 msgstr "Rotor Einstellungen"
+
+msgid "Positioner setup log"
+msgstr "Rotor Setup Protokoll"
 
 msgid "Power"
 msgstr "Aus-Taste"
@@ -6011,6 +6078,9 @@ msgstr "Drücke OK um die Auswahl umzuschalten."
 
 msgid "Press OK to toggle the selection."
 msgstr "Drücke OK um die Auswahl umzuschalten."
+
+msgid "Press OK, save and exit..."
+msgstr "Dürcke OK für Speichern und Verlassen..."
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücke Gelb um diese Schnittstelle als Standard zu setzen."
@@ -6215,6 +6285,10 @@ msgstr "Trotzdem neu starten?"
 
 msgid "Really shutdown now?"
 msgstr "Trotzdem ausschalten?"
+
+#, python-format
+msgid "Really store at index %2d for current position?"
+msgstr "Aktuelle Position wirklich mit Index %2d speichern?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Den Frontprozessor wirklich aktualisieren und neu starten?"
@@ -6854,6 +6928,9 @@ msgstr "CAID auswählen"
 msgid "Select a wireless network"
 msgstr "Wähle Funk-Netzwerk"
 
+msgid "Select action"
+msgstr "Wähle Aktion"
+
 #, python-format
 msgid "Select action for timer %s:"
 msgstr "Wäjle Aktion für Timer %s:"
@@ -6932,6 +7009,9 @@ msgstr "Wähle ob Seekbar mit Pfeil links/rechts (lang) oder Sprung vorwärts/r�
 
 msgid "Select service to add..."
 msgstr "Wähle einen Sender zum Hinzufügen"
+
+msgid "Select slot"
+msgstr "Wähle Einschub"
 
 msgid "Select sort method:"
 msgstr "Wähle den Sortier-Modus"
@@ -7249,6 +7329,15 @@ msgstr "Zeige 1080p 25FPS als"
 
 msgid "Show 1080p 30fps as"
 msgstr "Zeige 1080p 30FPS als"
+
+msgid "Show 2160p 24fps as"
+msgstr "Zeige 2160p 24FPS als"
+
+msgid "Show 2160p 25fps as"
+msgstr "Zeige 2160p 25FPS als"
+
+msgid "Show 2160p 30fps as"
+msgstr "Zeige 2160p 30FPS als"
 
 msgid "Show 480/576p 24fps as"
 msgstr "Zeige 480/576p 24FPS als"
@@ -7774,6 +7863,9 @@ msgstr "Entschuldigung keine Backups gefunden!"
 
 msgid "Sorry, no details available!"
 msgstr "Entschuldigung, keine Details verfügbar!"
+
+msgid "Sorry, this tuner is in use."
+msgstr "Entschuldigung Tuner ist in Benutzung."
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -8552,6 +8644,9 @@ msgstr "Diese Option erlaubt es den Grünanteil des Bildes zu verstärken."
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Diese Option erlaubt es den HDMI EDID zu deaktivieren"
 
+msgid "This option allows you to change the Colorspace from Auto to RGB"
+msgstr "Dies Option erlaubt es den Farbraum von Auto auf RGB zu stellen."
+
 msgid "This option allows you to change the virtuell loadspeaker position."
 msgstr "Dies Option erlaubt es virtuelle Lautsprecherpositionen anzugeben."
 
@@ -8566,6 +8661,15 @@ msgstr "Diese Option erlaubt es einzustellen wie ein 1080p 25Hz Video angezeigt 
 
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Diese Option erlaubt es einzustellen wie ein 1080p 30Hz Video angezeigt wird. (Nicht alle Fernseher unterstützen alle Formate)"
+
+msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Diese Option erlaubt es einzustellen wie ein 2160p 24Hz Video angezeigt wird. (Nicht alle Fernseher unterstützen alle Formate)"
+
+msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Diese Option erlaubt es einzustellen wie ein 2160p 25Hz Video angezeigt wird. (Nicht alle Fernseher unterstützen alle Formate)"
+
+msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Diese Option erlaubt es einzustellen wie ein 2160p 30Hz Video angezeigt wird. (Nicht alle Fernseher unterstützen alle Formate)"
 
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Diese Option erlaubt es einzustellen wie ein 720p 24Hz Video angezeigt wird. (Nicht alle Fernseher unterstützen alle Formate)"
@@ -9094,7 +9198,7 @@ msgstr "Typ:"
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USALS calibration"
+msgid "USALS Calibration"
 msgstr "USALS Kalibrierung"
 
 msgid "USB stick wizard"
@@ -9846,8 +9950,8 @@ msgstr ""
 "\n"
 "Werkseinstellungen wirklich wiederherstellen?"
 
-msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
-msgstr "Wenn Ausweichreceiver frü Aufnahmen benutzt werden arbeitet die Konflikterkennung von Timer nicht. Mit dieser Option kann die Konflikterkennung abgeschaltet werden."
+msgid "When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'."
+msgstr "Wenn Ausweichreceiver für Aufnahmen benutzt werden arbeitet die Konflikterkennung von Timer nicht richtig. Mit dieser Option kann die Konflikterkennung abgeschaltet werden. Diese Option ist nur für erfahrene Anwender. Standard ist 'JA'"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin die Einstellungen sichern?"
@@ -9911,6 +10015,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
 
+msgid "Write to /tmp/positionersetup.log"
+msgstr "Nach /tmp/positionersetup.log schreiben: "
+
 msgid "XBox 360 support"
 msgstr "XBox 360 Unterstützung"
 
@@ -9934,6 +10041,9 @@ msgstr "Gelb lang"
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Yes (save index in setup tuner)"
+msgstr "Ja Index speichern"
 
 msgid "Yes to all"
 msgstr "Ja zu allen"
@@ -10940,6 +11050,9 @@ msgstr "auf dem nicht beschreibbaren Medium."
 
 msgid "once"
 msgstr "einmalig"
+
+msgid "only 4K"
+msgstr "nur 4K"
 
 msgid "only HD"
 msgstr "nur HD"
