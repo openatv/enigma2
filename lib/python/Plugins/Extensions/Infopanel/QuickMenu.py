@@ -251,7 +251,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
 		if SystemInfo["LCDSKINSetup"]:
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
-		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Skin Setup"),_("Setup your Skin")))	
+		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Skin Setup"),_("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
@@ -333,7 +333,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update",_("Online software update"),_("Check/Install online updates (you must have a working internet connection)")))
 		if not getBoxType().startswith('az') and not getBoxType().startswith('dm') and not getBrandOEM().startswith('cube') and not getBoxType().startswith('vusolo4k'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online",_("Flash Online a new image"),_("Flash on the fly your your Receiver software.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		if not getBoxType().startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek'):
+			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to backupfile. (default: E2-setup, channels, network")))
