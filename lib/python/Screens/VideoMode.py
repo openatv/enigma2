@@ -180,6 +180,8 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.hw.setMode(port, '1080p', '50Hz')
 			elif (smart1080p == '1080p50') or (smart1080p == 'true'): # for compatibility with old ConfigEnableDisable
 				self.hw.setMode(port, '1080p', '50Hz')
+			elif smart1080p == '2160p50':
+				self.hw.setMode(port, '2160p', '50Hz')
 			elif smart1080p == '1080i50':
 				self.hw.setMode(port, '1080i', '50Hz')
 			elif smart1080p == '720p50':
@@ -539,7 +541,6 @@ class AutoVideoMode(Screen):
 			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
 			# always use a fixed resolution and correct rate (e.g. 1080p24/p50/p60 for all other videos
 			if config.av.smart1080p.value != 'false':
-				print "DEBUG VIDEOMODE/ smart1080p enabled"
 				ref = self.session.nav.getCurrentlyPlayingServiceReference()
 				if ref is not None:
 					try:
@@ -579,6 +580,8 @@ class AutoVideoMode(Screen):
 				
 				if  (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'): # for compatibility with old ConfigEnableDisable
 					write_mode = '1080p' + new_rate
+				elif config.av.smart1080p.value == '2160p50':
+					write_mode = '2160p' + new_rate
 				elif config.av.smart1080p.value == '1080i50':
 					if new_rate == '24':
 						write_mode = '1080p24' # instead of 1080i24
@@ -586,6 +589,7 @@ class AutoVideoMode(Screen):
 						write_mode = '1080i' + new_rate
 				elif config.av.smart1080p.value == '720p50':
 					write_mode = '720p' + new_rate
+				print "[VideoMode] smart1080p mode, selecting ",write_mode
 
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				# first we read now the real available values for every stb,
