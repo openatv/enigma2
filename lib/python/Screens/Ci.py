@@ -32,7 +32,7 @@ def InitCiConfig():
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
 
 class MMIDialog(Screen):
-	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = _("wait for ci...") ):
+	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = ""):
 		Screen.__init__(self, session)
 
 		print "[CI] with action" + str(action)
@@ -72,7 +72,10 @@ class MMIDialog(Screen):
 		self.action = action
 
 		self.handler = handler
-		self.wait_text = wait_text
+		if wait_text == "":
+			self.wait_text = _("wait for ci...")
+		else:
+			self.wait_text = wait_text
 
 		if action == 2:		#start MMI
 			handler.startMMI(self.slotid)
