@@ -640,6 +640,10 @@ class AutoVideoMode(Screen):
 						vf.close()
 				except Exception, e:
 					print("[VideoMode] read videomode_choices exception:" + str(e))
+			elif write_mode and current_mode != write_mode:
+				# TODO: sometimes the resolution remains stuck at a wrong setting as self.bufferfull is False
+				# not sure whether that condition is correct in the 'if' above
+				print "[VideoMode] not changing from",current_mode,"to",write_mode,"as self.bufferfull is",self.bufferfull
 
 		iAVSwitch.setAspect(config.av.aspect)
 		iAVSwitch.setWss(config.av.wss)
