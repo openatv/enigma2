@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-11-06 19:10+0100\n"
+"PO-Revision-Date: 2015-11-26 17:53+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -4594,6 +4594,43 @@ msgstr ""
 
 msgid "May"
 msgstr "Mai"
+
+#: MediaPlayer/plugin.py:177
+msgid "Exit mediaplayer"
+msgstr "Mediaplayer beenden"
+
+#: MediaPlayer/plugin.py:184
+msgid "Stop entry"
+msgstr "Wiedergabe anhalten"
+
+#: MediaPlayer/plugin.py:188
+msgid "Jump to beginning of list"
+msgstr "Zum Anfang der Liste springen"
+
+#: MediaPlayer/plugin.py:189
+msgid "Jump to end of list"
+msgstr "Zum Ende der Liste springen"
+
+#: MediaPlayer/plugin.py:190 plugin.py:191
+msgid "Switch between filelist/playlist"
+msgstr "Wechseln zwischen Dateiliste und Playliste"
+
+#: MediaPlayer/plugin.py:341 plugin.py:347
+#, python-format
+msgid "This %s %s cannot decode %s streams!"
+msgstr "Die %s %s kann nicht entschüsseln %s streams!"
+
+#: MediaPlayer/plugin.py:621 plugin.py:1238
+msgid "Play audio-CD..."
+msgstr "Audio-CD wiedergeben..."
+
+#: MediaPlayer/plugin.py:626
+msgid "Add files to playlist"
+msgstr "Zur Playliste hinzufügen"
+
+#: MediaPlayer/plugin.py:1220
+msgid "View video CD..."
+msgstr "Video-CD wiedergeben..."
 
 #
 msgid "Media player"
@@ -11974,9 +12011,12 @@ msgstr ""
 "backupstick oder backupstick.txt vorhanden sein."
 
 msgid ""
-"No USB-Device found for fullbackup !!\n\n\n"
+"No USB-Device found for fullbackup !!\n"
+"\n"
+"\n"
 "To back-up directly to the USB-stick, the USB-stick MUST\n"
-"contain a file with the name: \n\n"
+"contain a file with the name: \n"
+"\n"
 "backupstick or backupstick.txt"
 msgstr ""
 "Kein USB-Stick für das Fullbackup gefunden!!\n"
@@ -12519,35 +12559,39 @@ msgstr "Gelbe Taste"
 msgid "RedPanel"
 msgstr "Rote Taste"
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "Run how often ?"
 msgstr "Wie oft ausführen?"
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "Time to execute command or script"
 msgstr "Startzeit für Befehls- / Script-Ausführung"
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "Command To Run"
 msgstr "Befehl zum Ausführen"
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "What Day of week ?"
 msgstr "An welchem Wochentag?"
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "What Day of month ?"
 msgstr "An welchem Tag des Monats?"
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "Remove Confirmation"
 msgstr "Löschen bestätigen"
 
-#:CronTimer.py : CronManager.py
-msgid "Are you sure you want to delete this:\n "
-msgstr "Sicher das Sie löschen wollen:\n "
+#: CronTimer.py : CronManager.py
+msgid ""
+"Are you sure you want to delete this:\n"
+" "
+msgstr ""
+"Sicher das Sie löschen wollen:\n"
+" "
 
-#:CronTimer.py : CronManager.py
+#: CronTimer.py : CronManager.py
 msgid "You must set at least one Command"
 msgstr "Sie müssen mindestens einen Befehl setzen"
 
@@ -16817,8 +16861,12 @@ msgstr "Video Clipping"
 msgid "clip overscan / letterbox borders"
 msgstr ""
 
-msgid "\n<This tuner is configured automatically>"
-msgstr "\n<Diese Tuner wird automatisch verwaltet>"
+msgid ""
+"\n"
+"<This tuner is configured automatically>"
+msgstr ""
+"\n"
+"<Diese Tuner wird automatisch verwaltet>"
 
 msgid "HDMI Colorspace"
 msgstr "HDMI Farbraum"
