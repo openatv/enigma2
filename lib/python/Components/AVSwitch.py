@@ -81,12 +81,18 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('vusolo4k', 'et4x00', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano','tmnanose','tmnanosecombo','tmnano2super','tmnano3t','iqonios300hd', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity', 'uniboxhd1'):
+	
+	# Machines that do not have component video (red, green and blue RCA sockets).
+	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','iqonios300hd','ixusszero','odimm7','optimussos1','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','xp1000'):
 		del modes["YPbPr"]
-	if modes.has_key("Scart") and getBoxType() in ('tmnano','tmnanosecombo','tmnano3t','tmnano2super'):
+		
+	# Machines that have composite video (yellow RCA socket) but do not have Scart.
+	if modes.has_key("Scart") and getBoxType() in ('gb800ueplus','tmnano','tmnano2super','tmnano3t','tmnanosecombo','xpeedlx3'):
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
-	if modes.has_key("Scart") and getBoxType() in ('vusolo4k', 'gbquad', 'et5x00', 'ixussone', 'et6x00', 'tmnano','tmnanose','tmnanosecombo','tmnano2t', 'tmnano2super'):
+		
+	# Machines that have neither RCA nor Scart sockets 
+	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','ixussone','tmnano2t','tmnanose','vusolo4k'):
 		del modes["Scart"]
 
 	def __init__(self):
