@@ -1357,9 +1357,9 @@ msgstr "Verhalten beim Stoppen eines Films"
 msgid "Behavior when a movie reaches the end"
 msgstr "Verhalten bei Filmende"
 
-#
+#: About.py:453
 msgid "Bitrate:"
-msgstr "Datenrate:"
+msgstr "Datenrate:\t"
 
 msgid "Black"
 msgstr "Schwarz"
@@ -3166,9 +3166,9 @@ msgstr "WLAN-Sicherheitsschlüssel"
 msgid "Encryption Keytype"
 msgstr "Typ des Sicherheitsschlüssels"
 
-#
+#: About.py:467
 msgid "Encryption:"
-msgstr "Verschlüsselung:\t\t"
+msgstr "Verschlüsselung:\t"
 
 #
 msgid "End time"
@@ -3913,9 +3913,21 @@ msgstr "IMDb Suche"
 msgid "IP address"
 msgstr "IP-Adresse"
 
-#
+#: About.py:374 : 383 : 392 : 401
 msgid "IP:"
-msgstr "IP:"
+msgstr "IP:\t"
+
+#: About.py:376 : 385 : 394 : 403
+msgid "Netmask:"
+msgstr "Netmask:\t"
+
+#: About.py:378 : 387 : 396 : 405
+msgid "MAC:"
+msgstr "MAC:\t"
+
+#: About.py:413
+msgid "Hostname:"
+msgstr "Hostname:\t"
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -4950,7 +4962,7 @@ msgstr "Teste Netzwerk..."
 msgid "Network test: "
 msgstr "Netzwerktest: "
 
-#
+#: About.py:482
 msgid "Network:"
 msgstr "Netzwerk:"
 
@@ -7581,9 +7593,9 @@ msgstr "%s %s herunterfahren nach"
 msgid "Side by Side"
 msgstr "Nebeneinander"
 
-#
+#: About.py:457
 msgid "Signal Strength:"
-msgstr "Signalstärke:"
+msgstr "Signalstärke:\t"
 
 msgid "Signal strength:"
 msgstr "Signalstärke:\t"
