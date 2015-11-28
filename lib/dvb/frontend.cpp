@@ -1019,6 +1019,18 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		if (!strcmp(m_description, "FTS-260 (Montage RS6000)"))
 			sat_max = 1490;
 	}
+	else if (!strcmp(m_description, "Si216x"))
+	{
+		eDVBFrontendParametersTerrestrial parm;
+		oparm.getDVBT(parm);
+		switch (parm.system)
+		{
+			case eDVBFrontendParametersTerrestrial::System_DVB_T:
+			case eDVBFrontendParametersTerrestrial::System_DVB_T2: 
+			case eDVBFrontendParametersTerrestrial::System_DVB_T_T2: ret = (int)((snr * 10) / 15); break;
+			default: break;
+		}
+	}
 
 	signalqualitydb = ret;
 	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
