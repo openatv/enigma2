@@ -967,10 +967,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
 	}
-//	else if (!strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")) // Gigablue
-//	{
-//		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
-//	}
+	else if (!strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")) // Gigablue
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
+	}
 	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")) // Gigablue
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
@@ -1007,6 +1007,20 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 
 		if (!strcmp(m_description, "FTS-260 (Montage RS6000)"))
 			sat_max = 1490;
+	}
+	else if (!strcmp(m_description, "Si216x"))
+	{
+		eDVBFrontendParametersTerrestrial parm;
+
+		oparm.getDVBT(parm);
+
+		switch (parm.system)
+		{
+			case eDVBFrontendParametersTerrestrial::System_DVB_T:
+			case eDVBFrontendParametersTerrestrial::System_DVB_T2: 
+			case eDVBFrontendParametersTerrestrial::System_DVB_T_T2: ret = (int)((snr * 10) / 15); break;
+			default: break;
+		}
 	}
 
 	signalqualitydb = ret;
