@@ -747,6 +747,7 @@ RESULT eServiceMP3::start()
 {
 	ASSERT(m_state == stIdle);
 
+	m_state = stRunning;
 	m_subtitles_paused = false;
 	if (m_gst_playbin)
 	{
