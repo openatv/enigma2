@@ -616,16 +616,6 @@ def find_in_list(list, search, listpos=0):
 
 global_session = None
 
-def isModule():
-	if eDVBCIInterfaces.getInstance().getNumOfSlots():
-		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
-		if NUM_CI > 0:
-			for slot in range(NUM_CI):
-				state = eDVBCI_UI.getInstance().getState(slot)
-				if state > 0:
-					return True
-	return False
-
 def sessionstart(reason, session):
 	global global_session
 	global_session = session
