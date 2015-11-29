@@ -18,14 +18,15 @@ SKINXML = "skin.xml"
 DEFAULTSKIN = "<Default Skin>"
 
 class SkinSelector(Screen):
-	# for i18n:
-	# _("Choose your Skin")
+
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")
 
 	def __init__(self, session, args = None):
 
 		Screen.__init__(self, session)
+
+		self.setTitle(_("Select your Skin"))
 
 		self.skinlist = []
 		self.previewPath = ""
@@ -100,7 +101,7 @@ class SkinSelector(Screen):
 
 		print "Skinselector: Selected Skin: "+self.root+self.skinfile
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_("Restart GUI now?"))
+		restartbox.setTitle(_("Restart GUI"))
 
 	def loadPreview(self):
 		if self["SkinList"].getCurrent() == DEFAULTSKIN:
@@ -133,4 +134,4 @@ def SkinSelSetup(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Skinselector", description="Select Your Skin", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)
+	return PluginDescriptor(name=_("Skin selector"), description= _("Select your Skin"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)

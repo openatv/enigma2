@@ -108,7 +108,7 @@ class CutListContextMenu(FixedMenu):
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
-	<screen position="0,0" size="720,576" title="Cutlist editor" flags="wfNoBorder">
+	<screen position="0,0" size="720,576" title="Cutlist Editor" flags="wfNoBorder">
 		<eLabel text="Cutlist editor" position="65,60" size="300,25" font="Regular;20" />
 		<widget source="global.CurrentTime" render="Label" position="268,60" size="394,20" font="Regular;20" halign="right">
 			<convert type="ClockToText">Format:%A %B %d, %H:%M</convert>
@@ -144,6 +144,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
+		self.setTitle(_("Cutlist Editor"))
 		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
 		InfoBarBase.__init__(self, steal_current_service = True)

@@ -15,6 +15,8 @@ class SecParameterSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = SecParameterSetup.skin
 
+		self.setTitle(_("Satellite equipment setup"))
+
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
 			"ok": self.keySave,

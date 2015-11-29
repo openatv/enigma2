@@ -16,6 +16,7 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
+		self.setTitle(_("Subservices"))
 		for x in InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 				InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
 				InfoBarTimeshiftState, InfoBarSubtitleSupport, \

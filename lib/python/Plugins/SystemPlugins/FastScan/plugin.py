@@ -30,6 +30,7 @@ class FastScanStatus(Screen):
 
 	def __init__(self, session, scanTuner=0, transponderParameters=None, scanPid=900, keepNumbers=False, keepSettings=False, providerName='Favorites'):
 		Screen.__init__(self, session)
+		self.setTitle(_("Fast Scan"))
 		self.scanPid = scanPid
 		self.scanTuner = scanTuner
 		self.transponderParameters = transponderParameters
@@ -146,6 +147,8 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session, nimList):
 		Screen.__init__(self, session)
+
+		self.setTitle(_("Fast Scan"))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{

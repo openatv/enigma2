@@ -27,6 +27,8 @@ class FPUpgrade(Screen):
 		self.skin = FPUpgrade.skin
 		Screen.__init__(self, session)
 
+		self.setTitle(_("FP upgrade required"))
+
 		from Tools.StbHardware import getFPVersion
 		version = str(getFPVersion() or "N/A")
 		newversion = str(getUpgradeVersion() or "N/A")
@@ -58,6 +60,8 @@ class SystemMessage(Screen):
 
 		Screen.__init__(self, session)
 
+		self.setTitle(_("System Message"))
+
 		self["text"] = StaticText(message)
 
 		self["actions"] = ActionMap(["OkCancelActions"],
@@ -76,11 +80,11 @@ def Plugins(**kwargs):
 	newversion = getUpgradeVersion() or 0
 	list = []
 	if version is not None and version < newversion:
-		list.append(PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(8, FPUpgrade)))
+		list.append(PluginDescriptor(name=_("FP Upgrade"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(8, FPUpgrade)))
 
 	try:
 		msg = open("/proc/stb/message").read()
-		list.append(PluginDescriptor(name="System Message Check", where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(9, SystemMessage, msg)))
+		list.append(PluginDescriptor(name=_("System Message Check"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(9, SystemMessage, msg)))
 	except:
 		pass
 
