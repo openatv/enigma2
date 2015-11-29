@@ -420,6 +420,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
+	m_last_seek_pos = 0; /* CVR last seek position */
 #endif
 	m_extra_headers = "";
 	m_download_buffer_path = "";
@@ -752,7 +753,7 @@ RESULT eServiceMP3::start()
 		// eDebug("eServiceMP3::starting pipeline");
 		GstStateChangeReturn ret;
 		ret = gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
- 
+
 		switch(ret)
 		{
 		case GST_STATE_CHANGE_FAILURE:
@@ -898,10 +899,17 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 RESULT eServiceMP3::seekToImpl(pts_t to)
 {
 		/* convert pts to nanoseconds */
+#if GST_VERSION_MAJOR < 1
 	gint64 time_nanoseconds = to * 11111LL;
 	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
 		GST_SEEK_TYPE_SET, time_nanoseconds,
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+#else
+	m_last_seek_pos = to * 11111LL;
+	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+		GST_SEEK_TYPE_SET, m_last_seek_pos,
+		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+#endif
 	{
 		eDebug("eServiceMP3::seekTo failed");
 		return -1;
@@ -1014,7 +1022,7 @@ seek_unpause:
 	{
 		if (ratio >= 0.0)
 		{
-			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 		}
 		else
 		{
@@ -1634,6 +1642,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		return;
 	gchar *sourceName;
 	GstObject *source;
+	GstElement *subsink;
 	source = GST_MESSAGE_SRC(msg);
 	if (!GST_IS_OBJECT(source))
 		return;
@@ -1680,7 +1689,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					GValue result = { 0, };
 #endif
 					GstIterator *children;
-					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
+					subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
@@ -1808,6 +1817,35 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			g_error_free(err);
 			break;
 		}
+#if GST_VERSION_MAJOR >= 1
+		case GST_MESSAGE_WARNING:
+		{
+			gchar *debug_warn = NULL;
+			GError *warn = NULL;
+			gst_message_parse_warning (msg, &warn, &debug_warn);
+			/* CVR this Warning occurs from time to time with external srt files
+			When a new seek is done the problem off to long wait times before subtitles appears,
+			after movie was restarted with a resume position is solved. */
+			if(!strncmp(warn->message , "Internal data flow problem", 26) && !strncmp(sourceName, "subtitle_sink", 13))
+			{
+				eWarning("[eServiceMP3] Gstreamer warning : %s (%i) from %s" , warn->message, warn->code, sourceName);
+				subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
+				if(subsink)
+				{
+					if (!gst_element_seek (subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+						GST_SEEK_TYPE_SET, m_last_seek_pos,
+						GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+					{
+						eDebug("[eServiceMP3] seekToImpl subsink failed");
+					}
+					gst_object_unref(subsink);
+				}
+			}
+			g_free(debug_warn);
+			g_error_free(warn);
+			break;
+		}
+#endif
 		case GST_MESSAGE_INFO:
 		{
 			gchar *debug;
@@ -2204,6 +2242,7 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 					{
 						if (y == 0)
 						{
+
 							if (!m_cuesheet_loaded)
 								loadCuesheet();
 						}
@@ -2225,13 +2264,13 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 								{
 									/* toc not add if cue available */
 									if (pts == i->where && type == i->what)
-									{			
+									{
 										tocadd = false;
-										break;										
-									}			
-								}			
+										break;
+									}
+								}
 								if (tocadd)
-								{									
+								{
 									m_cue_entries.insert(cueEntry(pts, type));
 								}
 								m_cuesheet_changed = 1;
