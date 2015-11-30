@@ -29,7 +29,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-
+		self.setTitle(_("Select a network adapter"))
 		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
 		self.oktext = _("Press OK on your remote control to continue.")
@@ -218,6 +218,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		self.setTitle(_("Configure nameservers"))
 		self.backupNameserverList = iNetwork.getNameserverList()[:]
 		print "backup-list:", self.backupNameserverList
 
@@ -559,6 +560,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["HelpWindow"].hide()
 
 	def layoutFinished(self):
+		self.setTitle(_("Network setup"))
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
 		if self.ipConfigEntry.getText() is not None:
@@ -570,7 +572,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self["IP"].setText(_("N/A"))
 		if self.netmaskConfigEntry.getText() is not None:
 			if self.netmaskConfigEntry.getText() == "0.0.0.0":
-					self["Mask"].setText(_("N/A"))
+				self["Mask"].setText(_("N/A"))
 			else:
 				self["Mask"].setText(self.netmaskConfigEntry.getText())
 		else:
@@ -1001,6 +1003,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.loadDescription()
 
 	def layoutFinished(self):
+		self.setTitle(_("Network configuration"))
 		idx = 0
 		self["menulist"].moveToIndex(idx)
 		self.loadDescription()
