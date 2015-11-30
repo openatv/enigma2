@@ -404,5 +404,5 @@ def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
 
 def Plugins(**kwargs):
- 	return PluginDescriptor(name= _("Cutlist Editor"), description=_("Cutlist editor..."),
+ 	return PluginDescriptor(name= _("Cutlist editor"), description=_("Cutlist editor..."),
 		where = PluginDescriptor.WHERE_MOVIELIST, needsRestart = False, fnc=main)
