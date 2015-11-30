@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 21:54+0100\n"
-"PO-Revision-Date: 2015-10-11 14:32+0200\n"
+"POT-Creation-Date: 2015-11-26 10:44+0000\n"
+"PO-Revision-Date: 2015-11-30 15:08+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/Timo/Samzan\n"
 "Language: fi\n"
@@ -696,14 +696,6 @@ msgid ""
 msgstr ""
 "Tallennus on parhaillaan käynnissä.\n"
 "Mitä haluat tehdä?"
-
-#
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Tallennus on parhaillaan käynnissä. Pysäytä tallennus\n"
-"ennen kuin yrität muokata kääntömoottorin asetuksia."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
@@ -2761,6 +2753,10 @@ msgid "Current mode: %s \n"
 msgstr "Nykyinen tila: %s \n"
 
 #
+msgid "Current rotor position: "
+msgstr "Moottorin positio:"
+
+#
 msgid "Current settings:"
 msgstr "Käytetyt asetukset"
 
@@ -3058,8 +3054,11 @@ msgstr ""
 "tallennusvaiheessa. 'Älä pura, tallenna ECM' tallentaa salattuna, tallenteen "
 "voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
 
-msgid "Descramble http streams"
-msgstr "Pura http-streamit"
+msgid "Descramble receiving http streams"
+msgstr "Pura vastaanotettavat http-streamit"
+
+msgid "Descramble sending http streams"
+msgstr "Pura lähetettävät http-streamit"
 
 #
 msgid "Description"
@@ -3673,19 +3672,16 @@ msgid ""
 msgstr "Käytä etävastaanottimen virittimiä kun paikallisia ei ole vapaana"
 
 #
+msgid "Enable timer conflict detection"
+msgstr "Salli ajastusristiriitojen haku"
+
+#
 msgid "Enable unlinked bouquets"
 msgstr "Salli piilotetut suosikkilistat"
 
 #
 msgid "Enabled"
 msgstr "Käytössä"
-
-msgid ""
-"Enables a feature so that the receiver can decrypt streams (if the ECM data "
-"is included in the stream and a valid card is available)."
-msgstr ""
-"Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa streamejä (jos ECM-"
-"tiedot on mukana streamissä ja sopiva katselukortti on saatavilla)."
 
 msgid "Encrypted: "
 msgstr "Salattu: "
@@ -3908,6 +3904,10 @@ msgid "Exit the wizard"
 msgstr "Poistu ohjatusta asennustoiminnosta"
 
 #
+msgid "Exit/OK"
+msgstr "Poistu/OK"
+
+#
 msgid "Expert"
 msgstr "Laaja"
 
@@ -4060,6 +4060,9 @@ msgstr "Suosikit"
 msgid "Feeds status:   Stable"
 msgstr "Syötteiden tila: Stabiili"
 
+msgid "Feeds status:   Unknown"
+msgstr "Syötteiden tila: Tuntematon"
+
 msgid "Feeds status:   Unstable"
 msgstr "Syötteiden tila: Epästabiili"
 
@@ -4086,7 +4089,7 @@ msgid "Final position at"
 msgstr "Lopullinen sijainti"
 
 msgid "Final position at index"
-msgstr "Lopullinen sijainti indeksissä"
+msgstr "Lopullinen sijainti muistipaikassa"
 
 msgid "Final scroll delay"
 msgstr "Rullausviive lopussa"
@@ -4311,7 +4314,7 @@ msgstr "Mene X"
 
 #
 msgid "Goto index position"
-msgstr "Mene indeksiin"
+msgstr "Mene muistipaikkaan"
 
 #
 msgid "Goto position"
@@ -4712,7 +4715,7 @@ msgid "Increased voltage"
 msgstr "Korotettu LNB-jännite"
 
 msgid "Index allocated:"
-msgstr "Indeksi varattu:"
+msgstr "Muistipaikka varattu:"
 
 msgid "Info"
 msgstr "Tietoja"
@@ -5400,6 +5403,14 @@ msgstr "Maksimi päivien lukumäärä"
 msgid "Maximum total space used (MB)"
 msgstr "Maksimi tilankäyttö (MB)"
 
+#
+msgid ""
+"Maybe the reason that recording is currently running. Please stop the "
+"recording before trying to configure the positioner."
+msgstr ""
+"Tallennus on parhaillaan käynnissä? Pysäytä tallennus\n"
+"ennen kuin yrität muokata kääntömoottorin asetuksia."
+
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Näytä tallenteen jäljellä oleva/kulunut aika:"
 
@@ -5596,7 +5607,7 @@ msgstr "Mene sijaintiin 0"
 
 #
 msgid "Moved to position at index"
-msgstr "Siirryttiin indeksin sijaintiin"
+msgstr "Siirryttiin muistipaikan sijaintiin"
 
 #
 msgid "Movement"
@@ -5892,7 +5903,7 @@ msgstr ""
 
 #
 msgid "No free index available"
-msgstr "Ei vapaata indeksiä"
+msgstr "Ei vapaata muistipaikkaa"
 
 #
 msgid "No free tuner available!"
@@ -6263,6 +6274,9 @@ msgstr "Avaa kanavalista ja valitse edellinen kanava"
 
 msgid "Open service list and select the previous channel for PiP"
 msgstr "Avaa kanavalista ja valitse edellinen kanava PiP-kuvalle"
+
+msgid "Open setup tuner "
+msgstr "Avaa viritinasetukset"
 
 #
 msgid "Open the favourites list"
@@ -6885,7 +6899,7 @@ msgstr "Sijainti ja läpinäkyvyys"
 
 #
 msgid "Position stored at index"
-msgstr "Paikka tallennettu indeksiin"
+msgstr "Sijainti tallennettu muistipaikkaan"
 
 #
 msgid "Positioner"
@@ -6898,6 +6912,10 @@ msgstr "Kääntömoottori (satelliittien valinta)"
 #
 msgid "Positioner setup"
 msgstr "Kääntömoottorin asetukset"
+
+#
+msgid "Positioner setup log"
+msgstr "Kääntömoottorin asetusloki"
 
 msgid "Power"
 msgstr "Virta"
@@ -7047,6 +7065,9 @@ msgstr "Valitse OK-näppäimellä."
 #
 msgid "Press OK to toggle the selection."
 msgstr "Muuta valintaa OK-näppäimellä."
+
+msgid "Press OK, save and exit..."
+msgstr "Paina OK, tallenna ja poistu"
 
 #
 msgid "Press yellow to set this interface as the default interface."
@@ -7283,6 +7304,10 @@ msgstr "Haluatko silti käynnistää uudelleen?"
 #
 msgid "Really shutdown now?"
 msgstr "Haluatko silti sammuttaa?"
+
+#, python-format
+msgid "Really store at index %2d for current position?"
+msgstr "Haluatko tallentaa muistipaikkaan %2d nykyisen position?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Päivitetäänkö etuprosessori nyt ja käynnistetään uudelleen?"
@@ -8031,6 +8056,10 @@ msgstr "Valitse CAId"
 msgid "Select a wireless network"
 msgstr "Valitse WLAN-verkko"
 
+#
+msgid "Select action"
+msgstr "Valitse toiminto"
+
 #, python-format
 msgid "Select action for timer %s:"
 msgstr "Valitse toiminto ajastimelle %s:"
@@ -8124,6 +8153,10 @@ msgstr ""
 #
 msgid "Select service to add..."
 msgstr "Valitse lisättävä kanava..."
+
+#
+msgid "Select slot"
+msgstr "Valitse paikka"
 
 #
 msgid "Select sort method:"
@@ -9137,6 +9170,9 @@ msgstr "Varmuuskopioita ei löydy!"
 msgid "Sorry, no details available!"
 msgstr "Lisätietoja ei saatavilla!"
 
+msgid "Sorry, this tuner is in use."
+msgstr "Tämä viritin on käytössä"
+
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -9393,7 +9429,7 @@ msgstr "Tallennusvälineet"
 
 #
 msgid "Store at index"
-msgstr "Tallenna indeksiin"
+msgstr "Tallenna muistipaikkaan"
 
 #
 msgid "Store position"
@@ -10759,7 +10795,7 @@ msgstr "Tyyppi: "
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USALS calibration"
+msgid "USALS Calibration"
 msgstr "USALS kalibrointi"
 
 #
@@ -11524,6 +11560,17 @@ msgstr ""
 "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus pysäyttää tai "
 "jatkaa ajansiirtoa."
 
+msgid ""
+"When enabled, always descramble receiving http streams. This takes up more "
+"resources (descrambling demuxers), only enable if necessary. Individual "
+"streams are always descrambled if 0x100 is added to the service type, "
+"regardless of this setting. Default off."
+msgstr ""
+"Kun valittu, pura vastaanotettavat http-streamit. Tämä vaatii enemmän "
+"resursseja. Käytä vain jos todella tarvitset. Yksittäiset streamit puretaan "
+"aina jos 0x100 on lisätty kanavatietoihin riippumatta tästä asetuksesta. "
+"Oletus: Ei."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kun valittuna, hyväksyntä vaaditaan katsottaessa http-palveluita"
 
@@ -11575,6 +11622,13 @@ msgid ""
 "of the original color."
 msgstr ""
 "Kun päällä, DVB-tekstitys näytetään keltaisena alkuperäisen värin sijaan."
+
+msgid ""
+"When enabled, http streams are descrambled on the server side. The (remote) "
+"client receiver does not have to do descrambling. Default on."
+msgstr ""
+"Kun valittuna, http-streamit puretaan lähetys päässä. Asiakas "
+"etävastaanotimessa ei ole purkua. Oletus: Kyllä."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
 msgstr ""
@@ -11730,7 +11784,7 @@ msgid ""
 "what you're doing."
 msgstr ""
 "Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muutokset "
-"ja tallentaa ne. Valitse 'kyllä' vain jos olet täysin varma siitä mitä teet."
+"ja tallentaa ne. Valitse 'kyllä' Vain edistynemmille käyttäjille."
 
 #, python-format
 msgid ""
@@ -11747,6 +11801,16 @@ msgstr ""
 "automaattisesti uudelleen!\n"
 "\n"
 "Haluatko varmasti palauttaa tehdasasetukset?"
+
+msgid ""
+"When you use the remote fallback tuner for recording, the timer conflict "
+"detection can't properly detect conflicts. This option allows you to turn "
+"off the timer confict detection. This setting is only for advanced users; "
+"the default is 'yes'."
+msgstr ""
+"Kun käytät etävastaanotinta tallennuksiin, ajastusristiriitojen haku ei voi "
+"kunnolla havaita ristiriitoja. Tämä valinta sallii sinun ottaa haku pois "
+"päältä. Vain edistyneemmille käyttäjille. Oletus: Kyllä."
 
 #
 msgid "Where do you want to backup your settings?"
@@ -11824,6 +11888,9 @@ msgstr ""
 msgid "Write failed!"
 msgstr "Kirjoitus epäonnistui!"
 
+msgid "Write to /tmp/positionersetup.log"
+msgstr "Kirjoita /tmp/positionersetup.log:iin  "
+
 msgid "XBox 360 support"
 msgstr "XBox 360 -tuki"
 
@@ -11851,6 +11918,9 @@ msgstr "Pitkä keltainen"
 #
 msgid "Yes"
 msgstr "Kyllä"
+
+msgid "Yes (save index in setup tuner)"
+msgstr "Kyllä (tallenna muistipaikka viritinasetuksiin)"
 
 msgid "Yes to all"
 msgstr "Kyllä kaikkiin"
@@ -13607,3 +13677,10 @@ msgstr "vaihdettu"
 #~ "viritin on varattu ja lähiverkon palvelu ei ole saatavilla. Määrittele "
 #~ "URL-osoite mukaanluettuna http:// ja portin numero (normaalisti :8001), "
 #~ "esim. http://second_box:8001."
+
+#~ msgid ""
+#~ "Enables a feature so that the receiver can decrypt streams (if the ECM "
+#~ "data is included in the stream and a valid card is available)."
+#~ msgstr ""
+#~ "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa streamejä (jos ECM-"
+#~ "tiedot on mukana streamissä ja sopiva katselukortti on saatavilla)."
