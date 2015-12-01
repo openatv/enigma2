@@ -76,7 +76,7 @@ stbcheck=00
 if [ -e /proc/stb/info/subtype ]; then
    stbcheck=`cat /proc/stb/info/subtype`
 fi
-if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ]; then
+if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
 	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
 fi
 
