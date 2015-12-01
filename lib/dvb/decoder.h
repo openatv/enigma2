@@ -40,7 +40,7 @@ private:
 	int m_width, m_height, m_framerate, m_aspect, m_progressive;
 	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
 public:
-	enum { MPEG2, MPEG4_H264, MPEG1, MPEG4_Part2, VC1, VC1_SM };
+	enum { MPEG2, MPEG4_H264, MPEG1, MPEG4_Part2, VC1, VC1_SM, H265_HEVC };
 	eDVBVideo(eDVBDemux *demux, int dev);
 	void stop();
 	int startPid(int pid, int type=MPEG2);

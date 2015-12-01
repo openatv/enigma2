@@ -5,7 +5,7 @@ from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 from Tools import Notifications
 from time import localtime, time
 import Screens.InfoBar
@@ -255,6 +255,10 @@ class TryQuitMainloop(MessageBox):
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
 			quitMainloop(self.retval)
+			if getBoxType() == "vusolo4k":  #workaround for white display flash
+				f = open("/proc/stb/fp/oled_brightness", "w")
+				f.write("0")
+				f.close()
 		else:
 			MessageBox.close(self, True)
 

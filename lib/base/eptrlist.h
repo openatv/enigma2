@@ -823,7 +823,7 @@ public:
 	{
 		// added a new item to the list... in order
 		// returns a iterator to the new item
-		return insert( std::lower_bound( std::list<ePtr<T> >::begin(), e, std::list<ePtr<T> >::end()), e );
+		return this->insert( std::lower_bound( std::list<ePtr<T> >::begin(), e, std::list<ePtr<T> >::end()), e );
 	}
 
 };
