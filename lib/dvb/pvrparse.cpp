@@ -986,10 +986,10 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				int nal_unit_type = (sc >> 1);
 				if (nal_unit_type == 35) /* H265 NAL unit access delimiter */
 				{
-					unsigned long long data = sc | (pkt[4] << 8);
+					unsigned long long data = sc | (pkt[5] << 8);
 					writeStructureEntry(offset + pkt_offset, data);
 
-					if ((pkt[4] >> 5) == 0) /* check pic_type for I-frame */
+					if ((pkt[5] >> 5) == 0) /* check pic_type for I-frame */
 					{
 						if (ptsvalid)
 						{
