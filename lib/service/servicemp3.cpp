@@ -421,6 +421,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_last_seek_pos = 0; /* CVR last seek position */
 #endif
+	m_useragent = "Enigma2 Mediaplayer";
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -444,6 +445,17 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		filename_str = m_ref.path.substr(0, pos);
 		filename = filename_str.c_str();
 		m_extra_headers = m_ref.path.substr(pos + 1);
+
+		pos = m_extra_headers.find("User-Agent=");
+		if (pos != std::string::npos)
+		{
+			size_t hpos_start = pos + 11;
+			size_t hpos_end = m_extra_headers.find('&', hpos_start);
+			if (hpos_end != std::string::npos)
+				m_useragent = m_extra_headers.substr(hpos_start, hpos_end - hpos_start);
+			else
+				m_useragent = m_extra_headers.substr(hpos_start);
+		}
 	}
 	else
 		filename = m_ref.path.c_str();
@@ -516,12 +528,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 
 		std::string config_str;
-		if (eConfigManager::getConfigBoolValue("config.mediaplayer.useAlternateUserAgent"))
-		{
-			m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
-		}
-		if (m_useragent.empty())
-			m_useragent = "Enigma2 Mediaplayer";
 		if ( m_ref.getData(7) & BUFFERING_ENABLED )
 		{
 			m_use_prefillbuffer = true;

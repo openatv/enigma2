@@ -22,18 +22,13 @@ eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 	m_error = 0;
 	m_simulate = false;
 	m_recording_pipeline = 0;
+	m_useragent = "Enigma2 Mediaplayer";
 	m_extra_headers = "";
 
 	CONNECT(m_pump.recv_msg, eServiceMP3Record::gstPoll);
 	CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3Record::sourceTimeout);
 
 	std::string config_str;
-	if (eConfigManager::getConfigBoolValue("config.mediaplayer.useAlternateUserAgent"))
-	{
-		m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
-	}
-	if (m_useragent.empty())
-		m_useragent = "Enigma2 Mediaplayer";
 }
 
 eServiceMP3Record::~eServiceMP3Record()
@@ -142,6 +137,18 @@ int eServiceMP3Record::doPrepare()
 		{
 			stream_uri = m_ref.path.substr(0, pos);
 			m_extra_headers = m_ref.path.substr(pos + 1);
+
+			pos = m_extra_headers.find("User-Agent=");
+			if (pos != std::string::npos)
+			{
+				size_t hpos_start = pos + 11;
+				size_t hpos_end = m_extra_headers.find('&', hpos_start);
+				if (hpos_end != std::string::npos)
+					m_useragent = m_extra_headers.substr(hpos_start, hpos_end - hpos_start);
+				else
+					m_useragent = m_extra_headers.substr(hpos_start);
+			}
+
 		}
 		else
 		{
