@@ -33,6 +33,24 @@ except IOError:
 
 def profile(id):
 	now = time.time() - profile_start
+
+	# GML: Set the device and format here...probably more could be added?
+	#
+	box_type = getBoxType()
+	if box_type in ("odinm7", "odinm6", "xp1000s"):
+		dev_fmt = ("/dev/dbox/oled0", "%d")
+	elif box_type in ("gb800se", "gb800solo"):
+		dev_fmt = ("/dev/dbox/oled0", "%d  \n")
+	elif box_type == "mbtwin":
+		dev_fmt = ("/dev/dbox/oled0", "%d%%")
+	elif box_type == "gb800seplus":
+		dev_fmt = ("/dev/mcu", "%d  \n")
+	elif box_type == "ebox5000":
+		dev_fmt = ("/proc/progress", "%d"),
+	else:
+		dev_fmt = ("/proc/progress", "%d \n")
+	(dev, fmt) = dev_fmt
+
 	if profile_file:
 		profile_file.write("%7.3f\t%s\n" % (now, id))
 
@@ -43,21 +61,8 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if getBoxType() in ("odinm7", "odinm6", "xp1000s"):
-					f = open("/dev/dbox/oled0", "w")
-					f.write("%d" % perc)
-				elif getBoxType() in ("gb800se", "gb800solo"):
-					f = open("/dev/dbox/oled0", "w")
-					f.write("%d  \n" % perc)
-				elif getBoxType() == "gb800seplus":
-					f = open("/dev/mcu", "w")
-					f.write("%d  \n" % perc)
-				elif getBoxType() == "ebox5000":
-					f = open("/proc/progress", "w")
-					f.write("%d" % perc)
-				else:
-					f = open("/proc/progress", "w")
-					f.write("%d \n" % perc)
+				f = open(dev, "w")
+				f.write(fmt % perc)
 				f.close()
 			except IOError:
 				pass
