@@ -27,8 +27,6 @@ eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 
 	CONNECT(m_pump.recv_msg, eServiceMP3Record::gstPoll);
 	CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3Record::sourceTimeout);
-
-	std::string config_str;
 }
 
 eServiceMP3Record::~eServiceMP3Record()
