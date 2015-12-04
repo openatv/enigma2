@@ -264,39 +264,42 @@ void setAnimation_current(int a) {
 			CFile::writeStr("/proc/stb/fb/animation_current", "simplefade");
 			break;
 		case 2:
-			CFile::writeStr("/proc/stb/fb/animation_current", "growdrop");
+			CFile::writeStr("/proc/stb/fb/animation_current", "simplezoom");
 			break;
 		case 3:
-			CFile::writeStr("/proc/stb/fb/animation_current", "growfromleft");
+			CFile::writeStr("/proc/stb/fb/animation_current", "growdrop");
 			break;
 		case 4:
-			CFile::writeStr("/proc/stb/fb/animation_current", "extrudefromleft");
+			CFile::writeStr("/proc/stb/fb/animation_current", "growfromleft");
 			break;
 		case 5:
-			CFile::writeStr("/proc/stb/fb/animation_current", "popup");
+			CFile::writeStr("/proc/stb/fb/animation_current", "extrudefromleft");
 			break;
 		case 6:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidedrop");
+			CFile::writeStr("/proc/stb/fb/animation_current", "popup");
 			break;
 		case 7:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidefromleft");
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidedrop");
 			break;
 		case 8:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidelefttoright");
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidefromleft");
 			break;
 		case 9:
-			CFile::writeStr("/proc/stb/fb/animation_current", "sliderighttoleft");
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidelefttoright");
 			break;
 		case 10:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidetoptobottom");
+			CFile::writeStr("/proc/stb/fb/animation_current", "sliderighttoleft");
 			break;
 		case 11:
-			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromleft");
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidetoptobottom");
 			break;
 		case 12:
-			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromright");
+			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromleft");
 			break;
 		case 13:
+			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromright");
+			break;
+		case 14:
 			CFile::writeStr("/proc/stb/fb/animation_current", "stripes");
 			break;
 		default:

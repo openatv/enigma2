@@ -710,7 +710,7 @@ int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
 	int ret=0;
 		/* if we're using the decoding demux as data source
 		   (for example in pvr playbacks), return that one. */
-	if (m_use_decode_demux)
+	if (m_pvr_channel)
 	{
 		demux = m_demux;
 		return ret;
