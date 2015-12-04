@@ -58,10 +58,12 @@ class GUISkin:
 		return None
 
 	def addSummary(self, summary):
-		self.summaries.append(summary)
+		if summary is not None:
+			self.summaries.append(summary)
 
 	def removeSummary(self, summary):
-		self.summaries.remove(summary)
+		if summary is not None:
+			self.summaries.remove(summary)
 
 	def setTitle(self, title):
 		if self.instance:
