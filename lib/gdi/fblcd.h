@@ -6,6 +6,10 @@
 #include <lib/gdi/lcd.h>
 #include "gpixmap.h"
 
+#ifndef LCD_DEV
+# define LCD_DEV "/dev/fb1"
+#endif
+
 class eFbLCD: public eLCD
 {
 	int m_xRes, m_yRes, m_bpp;
@@ -26,7 +30,7 @@ class eFbLCD: public eLCD
 			// low level gfx stuff
 	int putCMAP();
 public:
-	eFbLCD(const char *fb="/dev/fb1");
+	eFbLCD(const char *fb=LCD_DEV);
 	~eFbLCD();
 	bool detected() { return m_available; }
 	eSize size() { return eSize(m_xRes, m_yRes); }
