@@ -40,7 +40,7 @@ class inputDevices:
 				self.name = self.name[:self.name.find("\0")]
 				os_close(self.fd)
 			except (IOError,OSError), err:
-				print '[iInputDevices] getInputDevices " + evdev + " <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
+				print '[iInputDevices] getInputDevices ' + evdev + ' <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
 				self.name = None
 
 			if self.name:
