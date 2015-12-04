@@ -303,7 +303,6 @@ private:
 	bool m_seek_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
-	bool m_user_paused;
 	/* servicemMP3 chapter TOC support CVR */
 #if GST_VERSION_MAJOR >= 1
 	bool m_use_chapter_entries;
