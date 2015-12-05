@@ -180,6 +180,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 				strncasecmp(linebuf, "location: ", 10) == 0)
 		{
 			newurl = &linebuf[10];
+			if (!extra_headers.empty())
+				newurl.append("#").append(extra_headers);
 			eDebug("[eHttpStream] %s: redirecting to: %s", __func__, newurl.c_str());
 			break;
 		}
