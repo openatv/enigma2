@@ -70,6 +70,7 @@ class FullHDTestScreen(OverscanTestScreen):
 		})
 
 class VideoFinetune(Screen):
+	skinAttributes = None
 	skin = """
 		<screen position="fill">
 			<widget source="Canvas" render="Canvas" position="fill" />
