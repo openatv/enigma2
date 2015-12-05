@@ -1322,4 +1322,28 @@
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>
+
+<!--DreamPlexPlayerSummary-->
+<screen name="DreamPlexPlayerSummary" position="0,0" size="400,240">
+    <ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,5" size="400,100" />
+    <widget source="session.CurrentService" render="RunningText" position="0,110" size="400,52" font="LCD1;55" options="movetype=running,direction=left,startpoint=150,steptime=40,startdelay=2000,noWrap">
+          <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Progress" pixmap="/usr/share/enigma2/display/progress-lcd1.png" position="0,167" size="400,14" borderWidth="1" zPosition="2" backgroundColor="oledbackground1">
+          <convert type="ServicePosition">Position</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="0,178" size="200,50" font="LCD1;52" halign="left" valign="top" foregroundColor="oled1" backgroundColor="#000000">
+          <convert type="ClockToText">Format:%H:%M:%S</convert>
+    </widget>
+        <widget source="session.CurrentService" render="Label" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
+          <convert type="ServicePosition">Remaining,Negate</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text="REC" position="200,178" size="200,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
+          <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+          <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
+          <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+</screen>
 </skin>
