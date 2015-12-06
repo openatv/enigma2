@@ -176,7 +176,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
-			eDebug("[eDboxLCD] write /proc/stb/lcd/oled_brightness failed: %m");
+			eDebug("[eDboxLCD] write /proc/stb/lcd|fp/oled_brightness failed: %m");
 		fclose(f);
 	}
 	else
