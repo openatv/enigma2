@@ -66,6 +66,7 @@ class CableScanStatus(Screen):
 
 	def __init__(self, session, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers, hdList):
 		Screen.__init__(self, session)
+		self.setTitle(_("Cable Scan"))
 		self.scanTuner = scanTuner
 		self.scanNetwork = scanNetwork
 		self.scanFrequency = scanFrequency
@@ -130,6 +131,8 @@ class CableScanScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
+		self.setTitle(_("Cable Scan"))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{

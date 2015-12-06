@@ -36,6 +36,7 @@ class EPGSelection(Screen):
 
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None):
 		Screen.__init__(self, session)
+		self.setTitle(_("EPG Selection"))
 		self.bouquetChangeCB = bouquetChangeCB
 		self.serviceChangeCB = serviceChangeCB
 		self.ask_time = -1 #now

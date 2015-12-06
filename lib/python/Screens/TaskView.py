@@ -18,6 +18,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, [])
 		self.parent = parent
 		self.job = job
+		self.setTitle(_("Job overview"))
 
 		self["job_name"] = StaticText(job.name)
 		self["job_progress"] = Progress()

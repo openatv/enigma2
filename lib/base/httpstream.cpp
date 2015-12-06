@@ -42,6 +42,26 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 
 	close();
 
+	std::string user_agent = "Enigma2";
+	std::string extra_headers = "";
+	size_t pos = uri.find('#');
+	if (pos != std::string::npos)
+	{
+		extra_headers = uri.substr(pos + 1);
+		uri = uri.substr(0, pos);
+
+		pos = extra_headers.find("User-Agent=");
+		if (pos != std::string::npos)
+		{
+			size_t hpos_start = pos + 11;
+			size_t hpos_end = extra_headers.find('&', hpos_start);
+			if (hpos_end != std::string::npos)
+				user_agent = extra_headers.substr(hpos_start, hpos_end - hpos_start);
+			else
+				user_agent = extra_headers.substr(hpos_start);
+		}
+	}
+
 	int pathindex = uri.find("/", 7);
 	if (pathindex > 0)
 	{
@@ -75,14 +95,6 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		port = 80;
 	}
 
-	std::string extra_headers = "";
-	size_t pos = uri.find('#');
-	if (pos != std::string::npos)
-	{
-		extra_headers = uri.substr(pos + 1);
-		uri = uri.substr(0, pos);
-	}
-
 	streamSocket = Connect(hostname.c_str(), port, 10);
 	if (streamSocket < 0)
 		goto error;
@@ -90,7 +102,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	request = "GET ";
 	request.append(uri).append(" HTTP/1.1\r\n");
 	request.append("Host: ").append(hostname).append("\r\n");
-	request.append("User-Agent: ").append("Enigma2").append("\r\n");
+	request.append("User-Agent: ").append(user_agent).append("\r\n");
 	if (authorizationData != "")
 	{
 		request.append("Authorization: Basic ").append(authorizationData).append("\r\n");
@@ -120,6 +132,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		}
 		if (!name.empty() && !value.empty())
 		{
+			if (name.compare("User-Agent") == 0)
+				continue;
 			eDebug("[eHttpStream] setting extra-header '%s:%s'", name.c_str(), value.c_str());
 			request.append(name).append(": ").append(value).append("\r\n");
 		}
@@ -179,6 +193,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 				strncasecmp(linebuf, "location: ", 10) == 0)
 		{
 			newurl = &linebuf[10];
+			if (!extra_headers.empty())
+				newurl.append("#").append(extra_headers);
 			eDebug("[eHttpStream] %s: redirecting to: %s", __func__, newurl.c_str());
 			break;
 		}

@@ -134,4 +134,4 @@ def DefaultServicesScannerMain(session, **kwargs):
 	session.open(DefaultServicesScannerPlugin)
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Default Services Scanner", description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DefaultServicesScannerMain)
+	return PluginDescriptor(name=_("Default Services Scanner"), description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DefaultServicesScannerMain)

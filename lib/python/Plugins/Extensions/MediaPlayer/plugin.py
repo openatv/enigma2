@@ -113,6 +113,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
+		self.setTitle(_("Media player"))
+
 		self.playlistparsers = {}
 		self.addPlaylistParser(PlaylistIOM3U, "m3u")
 		self.addPlaylistParser(PlaylistIOPLS, "pls")

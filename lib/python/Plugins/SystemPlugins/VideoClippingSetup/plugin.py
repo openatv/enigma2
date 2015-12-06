@@ -22,6 +22,8 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self.skin = VideoClippingCoordinates.skin
 		Screen.__init__(self, session)
 
+		self.setTitle(_("Video clipping setup"))
+
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
@@ -124,6 +126,6 @@ def Plugins(**kwargs):
 	from os import path
 	if path.exists("/proc/stb/vmpeg/0/clip_left"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "Video clipping setup", description = "clip overscan / letterbox borders", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
+		return [PluginDescriptor(name = _("Video clipping setup"), description = _("clip overscan / letterbox borders"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
 					PluginDescriptor(name = "Video clipping  setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
 	return []

@@ -53,7 +53,7 @@ eFbLCD::eFbLCD(const char *fb)
 
 	m_available = fix.smem_len;
 	m_phys_mem = fix.smem_start;
-	eDebug("[eFbLCD] %dk video mem", m_available / 1024);
+	eDebug("[eFbLCD] %s %dk video mem", fb, m_available / 1024);
 	_buffer=(unsigned char*)mmap(0, m_available, PROT_WRITE|PROT_READ, MAP_SHARED, lcdfd, 0);
 	if (!_buffer)
 	{
@@ -74,7 +74,7 @@ nolfb:
 		::close(lcdfd);
 		lcdfd = -1;
 	}
-	eDebug("[eFbLCD] framebuffer not available");
+	eDebug("[eFbLCD] framebuffer %s not available", fb);
 	return;
 }
 

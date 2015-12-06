@@ -144,6 +144,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
+		self.setTitle(_("Cutlist editor"))
 		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
 		InfoBarBase.__init__(self, steal_current_service = True)

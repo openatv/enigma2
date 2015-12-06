@@ -29,6 +29,8 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.skin = OSD3DSetupScreen.skin
 		Screen.__init__(self, session)
 
+		self.setTitle(_("OSD 3D setup"))
+
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
