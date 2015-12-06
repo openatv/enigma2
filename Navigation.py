@@ -1,4 +1,4 @@
-from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, eActionMap, setPreferredTuner
+from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, eActionMap, setPreferredTuner, eStreamServer
 from Components.ParentalControl import parentalControl
 from Components.SystemInfo import SystemInfo
 from Components.config import config, configfile
@@ -250,3 +250,6 @@ class Navigation:
 
 	def stopUserServices(self):
 		self.stopService()
+
+	def getClientsStreaming(self):
+		return eStreamServer.getInstance() and eStreamServer.getInstance().getConnectedClients()
