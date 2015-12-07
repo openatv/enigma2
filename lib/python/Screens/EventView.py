@@ -131,7 +131,7 @@ class EventViewBase:
 					return
 				else:
 					self.session.nav.RecordTimer.timeChanged(entry)
-		if answer is not None:
+		if answer is not None and len(answer) > 1:
 			entry = answer[1]
 			if not entry.disabled:
 				self["key_green"].setText(_("Change timer"))
