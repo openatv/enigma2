@@ -16,6 +16,7 @@ eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
+	_buffer = 0;
 	lcdfd = -1;
 	locked = 0;
 	instance = this;
