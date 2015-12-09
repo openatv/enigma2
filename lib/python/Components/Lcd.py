@@ -56,7 +56,8 @@ def InitLcd():
 	if getBoxType() in ('gb800se', 'gb800solo', 'gb800seplus', 'gbipbox', 'gbultra', 'gbultrase', 'spycat', 'quadbox2400', 'gbx1', 'gbx3'):
 		detected = False
 	else:
-		detected = eDBoxLCD.getInstance().detected()
+		detected = eDBoxLCD.getInstance() and eDBoxLCD.getInstance().detected()
+
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
 

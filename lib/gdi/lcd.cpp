@@ -16,7 +16,7 @@ eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
-	_buffer = 0;
+	_buffer = NULL;
 	lcdfd = -1;
 	locked = 0;
 	instance = this;
@@ -40,6 +40,7 @@ eLCD::~eLCD()
 {
 	if (_buffer)
 		delete [] _buffer;
+	instance = NULL;
 }
 
 int eLCD::lock()
