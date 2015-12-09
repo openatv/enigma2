@@ -177,6 +177,7 @@ def InitLcd():
 
 	ilcd = LCD()
 
+	detected = eDBoxLCD.getInstance() and eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection()
 
