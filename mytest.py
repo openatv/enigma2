@@ -344,7 +344,8 @@ class Session:
 	def popSummary(self):
 		if self.summary is not None:
 			self.summary.doClose()
-		self.summary = self.summary_stack.pop()
+		if self.summary_stack:
+			self.summary = self.summary_stack.pop()
 		if self.summary is not None:
 			self.summary.show()
 
