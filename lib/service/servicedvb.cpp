@@ -1528,7 +1528,17 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 	{
 		eDebug("[eDVBServicePlay] setFastForward setting cue skipmode to %d", skipmode);
 		if (m_cue)
-			m_cue->setSkipmode(skipmode * 90000); /* convert to 90000 per second */
+		{
+			long long _skipmode = skipmode;
+			if (!m_timeshift_active && (m_current_video_pid_type == eDVBServicePMTHandler::videoStream::vtH265_HEVC))
+			{
+				if (ratio < 0)
+					_skipmode = skipmode * 3;
+				else
+					_skipmode = skipmode * 4;
+			}
+			m_cue->setSkipmode(_skipmode * 90000); /* convert to 90000 per second */
+		}
 	}
 
 	m_skipmode = skipmode;
@@ -1998,9 +2008,9 @@ std::string eDVBServicePlay::getInfoString(int w)
 	case sLiveStreamDemuxId:
 	{
 		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
-		std::string demux;
-		demux += h.getDemuxID() + '0';
-		return demux;
+		std::stringstream demux;
+		demux << h.getDemuxID();
+		return demux.str();
 	}
 	default:
 		break;
@@ -2893,6 +2903,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
+		m_current_video_pid_type = vpidtype;
 		m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 
 		selectAudioStream();
