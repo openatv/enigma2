@@ -606,7 +606,7 @@ def activate_all(session):
 				except:
 					print "[CI_Activate_Config_CI%d] error remove damaged xml..." % ci
 		for item in ci_config:
-			if len(ci_config) > 1:
+			if len(item) > 1 and len(item[1]) > 0:
 				print "[CI_Activate] activate CI%d with following settings:" % item[0]
 				print item[0]
 				print item[1]
