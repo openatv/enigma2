@@ -98,7 +98,9 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("F2"), "f2", ""),
 	(_("F2 long"), "f2_long", ""),
 	(_("F3"), "f3", ""),
-	(_("F3 long"), "f3_long", ""),]
+	(_("F3 long"), "f3_long", ""),
+	(_("F4"), "f4", ""),
+	(_("F4 long"), "f4_long", ""),]
 
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
