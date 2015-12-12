@@ -87,10 +87,16 @@ class ChoiceBox(Screen):
 			"moveDown": self.additionalMoveDown,
 			"menu": self.setDefaultChoiceList
 		}, -1)
+		self.windowTitle = windowTitle
+		self.onLayoutFinish.append(self.layoutFinished)
 
-		if windowTitle is None:
-			windowTitle = _("Select")
-		self.setTitle(windowTitle)
+	def layoutFinished(self):
+		if self.windowTitle is None:
+			if self.getSkinTitle():
+				self.windowTitle = _("Select")
+			else:
+				self.windowTitle = ""
+		self.setTitle(self.windowTitle)
 
 	def autoResize(self):
 		orgwidth = self.instance.size().width()
