@@ -139,7 +139,7 @@ class ServiceName2(Converter, object):
 					return 'A', 'All Services'
 				return 0, 'N/A'
 			try:
-				acount = config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value or config.usage.alternative_number_mode.value
+				acount = config.usage.alternative_number_mode.value or config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value
 			except:
 				acount = False
 			rootstr = ''
