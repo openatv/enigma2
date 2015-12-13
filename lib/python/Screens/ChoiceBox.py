@@ -92,10 +92,9 @@ class ChoiceBox(Screen):
 
 	def layoutFinished(self):
 		if self.windowTitle is None:
-			if self.getSkinTitle():
-				self.windowTitle = _("Select")
-			else:
-				self.windowTitle = ""
+			self.windowTitle = _("Select")
+		if not self.getSkinTitle():
+			self.windowTitle = ""
 		self.setTitle(self.windowTitle)
 
 	def autoResize(self):

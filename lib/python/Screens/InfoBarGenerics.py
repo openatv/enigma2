@@ -1166,7 +1166,7 @@ class InfoBarEPG:
 	def showEventInfoPlugins(self):
 		pluginlist = self.getEPGPluginList()
 		if pluginlist:
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList", reorderConfig="eventinfo_order")
+			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList", reorderConfig="eventinfo_order", windowTitle=_("Events info menu"))
 		else:
 			self.openSingleServiceEPG()
 
@@ -2144,7 +2144,7 @@ class InfoBarExtensions:
 		list.extend([(x[0](), x) for x in extensionsList])
 
 		keys += [""] * len(extensionsList)
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list=list, keys=keys, skin_name="ExtensionsList", reorderConfig="extension_order")
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list=list, keys=keys, skin_name="ExtensionsList", reorderConfig="extension_order", windowTitle=_("Extensions menu"))
 
 	def extensionCallback(self, answer):
 		if answer is not None:
