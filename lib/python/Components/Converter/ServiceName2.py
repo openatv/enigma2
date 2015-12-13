@@ -116,7 +116,7 @@ class ServiceName2(Converter, object):
 		return isService 
 
 	def getServiceNumber(self, ref):
-		def searchHelper(serviceHandler, num, bouquet):
+		def searchHelper(serviceHandler, num, bouquet, is_target):
 			servicelist = serviceHandler.list(bouquet)
 			if not servicelist is None:
 				while True:
@@ -124,7 +124,7 @@ class ServiceName2(Converter, object):
 					if not s.valid(): break
 					if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
 						num += 1
-						if s == ref: return s, num
+						if s == ref and is_target: return s, num
 			return None, num
 
 		if isinstance(ref, eServiceReference):
@@ -148,13 +148,14 @@ class ServiceName2(Converter, object):
 			serviceHandler = eServiceCenter.getInstance()
 			if acount is True or not config.usage.multibouquet.value:
 				bouquet = eServiceReference(rootstr)
-				service, number = searchHelper(serviceHandler, 0, bouquet)
+				service, number = searchHelper(serviceHandler, 0, bouquet, True)
 			else:
 				if isRadioService:
 					bqrootstr = '1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
 				else:
 					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 				number = 0
+				service = None
 				cur = eServiceReference(rootstr)
 				bouquet = eServiceReference(bqrootstr)
 				bouquetlist = serviceHandler.list(bouquet)
@@ -163,7 +164,7 @@ class ServiceName2(Converter, object):
 						bouquet = bouquetlist.getNext()
 						if not bouquet.valid(): break
 						if bouquet.flags & eServiceReference.isDirectory:
-							service, number = searchHelper(serviceHandler, number, bouquet)
+							service, number = searchHelper(serviceHandler, number, bouquet, cur == bouquet)
 							if not service is None and cur == bouquet: break
 			if not service is None:
 				info = serviceHandler.info(bouquet)
