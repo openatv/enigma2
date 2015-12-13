@@ -502,10 +502,15 @@ class ServiceName2(Converter, object):
 			return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.NUMBER:
 			try:
-				service = self.source.serviceref
-				num = service and service.getChannelNum() or None
+				numservice = self.source.serviceref
+				num = numservice and numservice.getChannelNum() or None
 			except:
 				num = None
+			if not num:
+				try:
+					num = service and service.getChannelNum() or None
+				except:
+					num = None
 			if num:
 				return str(num)
 			else:
@@ -578,10 +583,15 @@ class ServiceName2(Converter, object):
 					ret += name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 				elif f == 'n':	# %n - Number
 					try:
-						service = self.source.serviceref
-						num = service and service.getChannelNum() or None
+						numservice = self.source.serviceref
+						num = numservice and numservice.getChannelNum() or None
 					except:
 						num = None
+					if not num:
+						try:
+							num = service and service.getChannelNum() or None
+						except:
+							num = None
 					if num:
 						ret += str(num)
 					else:
