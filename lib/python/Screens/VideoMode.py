@@ -553,21 +553,20 @@ class AutoVideoMode(Screen):
 						mypath = ''
 				else:
 					mypath = ''
-				if new_rate == 'multi':
-					# no frame rate information available, check if filename (or directory name) contains a hint
-					# (allow user to force a frame rate this way):
-					if   (mypath.find('p24.') >= 0) or (mypath.find('24p.') >= 0):
-						new_rate = '24'
-					elif (mypath.find('p25.') >= 0) or (mypath.find('25p.') >= 0):
-						new_rate = '25'
-					elif (mypath.find('p30.') >= 0) or (mypath.find('30p.') >= 0):
-						new_rate = '30'
-					elif (mypath.find('p50.') >= 0) or (mypath.find('50p.') >= 0):
-						new_rate = '50'
-					elif (mypath.find('p60.') >= 0) or (mypath.find('60p.') >= 0):
-						new_rate = '60'
-					else:
-						new_rate = '' # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
+				# no frame rate information available, check if filename (or directory name) contains a hint
+				# (allow user to force a frame rate this way):
+				if   (mypath.find('p24.') >= 0) or (mypath.find('24p.') >= 0):
+					new_rate = '24'
+				elif (mypath.find('p25.') >= 0) or (mypath.find('25p.') >= 0):
+					new_rate = '25'
+				elif (mypath.find('p30.') >= 0) or (mypath.find('30p.') >= 0):
+					new_rate = '30'
+				elif (mypath.find('p50.') >= 0) or (mypath.find('50p.') >= 0):
+					new_rate = '50'
+				elif (mypath.find('p60.') >= 0) or (mypath.find('60p.') >= 0):
+					new_rate = '60'
+				elif new_rate == 'multi':
+					new_rate = '' # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
 				if mypath != '':
 					if mypath.endswith('.ts'):
 						print "DEBUG VIDEOMODE/ playing .ts file"
