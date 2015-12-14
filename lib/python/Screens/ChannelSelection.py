@@ -67,7 +67,7 @@ FLAG_SERVICE_NEW_FOUND = 64  # defined in lib/dvb/idvb.h as dxNewFound = 64
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Choose Bouquet"))
+		Screen.setTitle(self, _("Choose bouquet"))
 
 		self.selectedFunc = selectedFunc
 
@@ -136,7 +136,7 @@ class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Channel Selection Context Menu"))
+		Screen.setTitle(self, _("Channel selection context menu"))
 		# raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
@@ -1099,13 +1099,13 @@ class ChannelSelectionEdit:
 		new_title = self.saved_title[:pos + 1]
 		if type == EDIT_ALTERNATIVES:
 			self.bouquet_mark_edit = EDIT_ALTERNATIVES
-			new_title += ' ' + _("[Alternative Edit]")
+			new_title += ' ' + _("[Alternative edit]")
 		else:
 			self.bouquet_mark_edit = EDIT_BOUQUET
 			if config.usage.multibouquet.value:
-				new_title += ' ' + _("[Bouquet Edit]")
+				new_title += ' ' + _("[Bouquet edit]")
 			else:
-				new_title += ' ' + _("[Favourite Edit]")
+				new_title += ' ' + _("[Favourite edit]")
 		self.setTitle(new_title)
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
@@ -1219,7 +1219,7 @@ class ChannelSelectionEdit:
 			select and self.toggleMoveMarked()
 			self.saved_title = self.getTitle()
 			pos = self.saved_title.find(')')
-			self.setTitle(self.saved_title[:pos + 1] + ' ' + _("[Move Mode]") + self.saved_title[pos + 1:])
+			self.setTitle(self.saved_title[:pos + 1] + ' ' + _("[Move mode]") + self.saved_title[pos + 1:])
 			self.servicelist.setCurrent(self.servicelist.getCurrent())
 		self["Service"].editmode = True
 
@@ -1319,7 +1319,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			"9": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(9)),
 			"0": (self.keyNumberGlobal, lambda: self._keyNumberGlobalHelp(0))
 		})
-		self.maintitle = _("Channel Selection")
+		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
 		self.onShown.append(self.applyKeyMap)
 		self.onClose.append(self.numericalTextInputCleanup)
@@ -2726,7 +2726,7 @@ class HistoryZapSelector(Screen):
 			"toggleMark": self.okbuttonClick,
 			'red': self.okbuttonClick
 		})
-		self.setTitle(_("History Zap"))
+		self.setTitle(_("History zap"))
 
 		self['key_red'] = Label(_('Zap'))
 		self['key_green'] = Label('')
