@@ -171,7 +171,7 @@ class ChannelContextMenu(Screen):
 
 		menu.append(ChoiceEntryComponent(text=(_("Settings"), boundFunction(self.openSetup))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
-			append_when_current_valid(current, menu, (_("Show transponder information"), self.showServiceInformations), level=2)
+			append_when_current_valid(current, menu, (_("Show service information"), self.showServiceInformations), level=2)
 		if csel.bouquet_mark_edit == OFF and not csel.entry_marked:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
