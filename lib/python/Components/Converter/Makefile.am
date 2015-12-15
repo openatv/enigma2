@@ -6,5 +6,5 @@ install_PYTHON = \
 	ConditionalShowHide.py ServicePosition.py ValueRange.py RdsInfo.py Streaming.py \
 	StaticMultiList.py ServiceTime.py MovieInfo.py MenuEntryCompare.py StringListSelection.py \
 	ServiceOrbitalPosition.py CryptoInfo.py TextCase.py ExtendedServiceInfo.py STBInfo.py OMMetrixWeather.py \
-	ValueBitTest.py TunerInfo.py ConfigEntryTest.py OMaclock.py TemplatedMultiContent.py ProgressToText.py \
+	ValueBitTest.py TunerInfo.py ConfigEntryTest.py ClientsStreaming.py OMaclock.py TemplatedMultiContent.py ProgressToText.py \
 	Combine.py SensorToText.py ValueToPixmap.py PliExtraInfo.py genre.py TransponderInfo.py RotorPosition.py

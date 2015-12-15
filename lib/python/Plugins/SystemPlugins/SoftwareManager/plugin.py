@@ -292,7 +292,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "plugin-backup"):
 					self.session.open(PluginBackup)
 				elif (currentEntry == "plugin-restore"):
-					if os_path.exists(self.pluginbackupfilename):
+					if os.path.exists(self.pluginbackupfilename):
 						self.session.openWithCallback(self.startPluginRestore, MessageBox, _("Are you sure you want to restore your Plugins?\nGUI will restart after the Plugins have been restored!"))
 					else:
 						self.session.open(MessageBox, _("Sorry, %s not found!\nRestore settings first.") % (self.pluginbackupfilename), MessageBox.TYPE_INFO, timeout = 10)

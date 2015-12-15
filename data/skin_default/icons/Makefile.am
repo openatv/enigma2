@@ -17,6 +17,7 @@ dist_install_DATA = \
 	faz.png \
 	folder.png \
 	fza.png \
+	hdd.png \
 	ico_mp_forward.png \
 	ico_mp_pause.png \
 	ico_mp_play.png \
@@ -105,13 +106,14 @@ dist_install_DATA = \
 	repzaprecclock_post.png \
 	repzaprecclock_pre.png \
 	repzaprecclock_prepost.png \
+	stream.png \
 	scan-c.png \
 	scan-s.png \
 	scan-t.png \
 	selectioncross.png \
 	shuffle.png \
 	timer_done.png  timer_prep.png  timer_rep.png   timer_zap.png \
-	timer_off.png   timer_rec.png   timer_wait.png \
+	timer_off.png   timer_rec.png   timer_wait.png   timer_autotimer.png \
 	trashcan.png \
 	unlock.png \
 	unlockBouquet.png \

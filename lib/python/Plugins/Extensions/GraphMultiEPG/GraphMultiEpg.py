@@ -1061,7 +1061,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			def boxAction(choice):
 				if choice:
 					choice[1]()
-			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"))
 
 	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()

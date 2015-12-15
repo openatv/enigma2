@@ -131,7 +131,7 @@ class EventViewBase:
 					return
 				else:
 					self.session.nav.RecordTimer.timeChanged(entry)
-		if answer is not None:
+		if answer is not None and len(answer) > 1:
 			entry = answer[1]
 			if not entry.disabled:
 				self["key_green"].setText(_("Change timer"))
@@ -277,7 +277,7 @@ class EventViewBase:
 					if choice:
 						choice[1]()
 				text += _(": %s") % self.event.getEventName()
-				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Event view context menu"))
 
 	def runPlugin(self, plugin):
 		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())

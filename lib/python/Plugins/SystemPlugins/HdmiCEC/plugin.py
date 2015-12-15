@@ -5,7 +5,7 @@ from Components.Sources.StaticText import StaticText
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
-	<screen position="c-300,c-250" size="600,500" title="HDMI CEC setup">
+	<screen position="c-300,c-250" size="600,500" title="HDMI-CEC setup">
 		<widget name="config" position="25,25" size="550,350" />
 		<widget source="current_address" render="Label" position="25,375" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
 		<widget source="fixed_address" render="Label" position="25,405" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
@@ -23,7 +23,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.skin = HdmiCECSetupScreen.skin
 		Screen.__init__(self, session)
 
-		self.setTitle(_("HDMI CEC setup"))
+		self.setTitle(_("HDMI-CEC setup"))
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button

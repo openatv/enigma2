@@ -11,9 +11,9 @@ from enigma import setAnimation_current, setAnimation_speed
 
 from boxbranding import getBrandOEM
 
-# default = simple fade
+# default = disabled
 g_default = {
-        "current": 1,
+        "current": 0,
         "speed"  : 20,
 }
 g_max_speed = 30
@@ -23,7 +23,7 @@ g_orig_show = None
 g_orig_doClose = None
 
 config.misc.window_animation_default = ConfigNumber(default=g_default["current"])
-config.misc.window_animation_speed = ConfigSelectionNumber(1, g_max_speed, 1, default=g_default["speed"])
+config.misc.window_animation_speed = ConfigSelectionNumber(15, g_max_speed, 1, default=g_default["speed"])
 
 class AnimationSetupConfig(ConfigListScreen, Screen):
 	skin="""

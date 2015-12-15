@@ -69,7 +69,7 @@ class ServiceInfo(Screen):
 	def __init__(self, session, serviceref=None):
 		Screen.__init__(self, session)
 
-		self.setTitle(_("Service Info"))
+		self.setTitle(_("Service info"))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
