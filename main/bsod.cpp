@@ -332,7 +332,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 	oops(uc->uc_mcontext);
 #endif
 	print_backtrace();
-	eDebug("-------FATAL SIGNAL");
+	eDebug("-------FATAL SIGNAL (%d)", signum);
 	bsodFatal("enigma2, signal");
 }
 
