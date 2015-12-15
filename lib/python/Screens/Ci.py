@@ -13,7 +13,7 @@ from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
-from boxbranding import getBrandOEM
+from boxbranding import getBrandOEM, getBoxType
 
 MAX_NUM_CI = 4
 
@@ -265,7 +265,10 @@ class CiMessageHandler:
 		self.ci = { }
 		self.dlgs = { }
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
-		SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
+		if getBoxType() in ('vuzero'):
+			SystemInfo["CommonInterface"] = False
+		else:
+			SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
 		try:
 			file = open("/proc/stb/tsmux/ci0_tsclk", "r")
 			file.close()
