@@ -64,12 +64,12 @@ public:
 	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
 //////
 	void loadBouquet(const char *path);
-	eServiceReference searchReference(int tsid, int onid, int sid);
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
 #endif
+	eServiceReference searchReference(int tsid, int onid, int sid);
 	void setNumberingMode(bool numberingMode);
 	void renumberBouquet();
 	void loadServicelist(const char *filename);
