@@ -54,7 +54,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.select_rect = None
 		self.event_rect = None
 		self.service_rect = None
-		self.widthSize = None
+		self.listSizeWidth = None
 		self.currentlyPlaying = None
 		self.showPicon = False
 		self.showServiceTitle = True
@@ -562,7 +562,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		esize = self.l.getItemSize()
 		width = esize.width()
 		height = esize.height()
-		self.widthSize = width
+		self.listSizeWidth = width
 		if self.type == EPG_TYPE_MULTI:
 			xpos = 0
 			w = width / 10 * 3
@@ -573,7 +573,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.progress_rect = Rect(xpos, int(height/4), w-10, int(height/2))
 			xpos += w
 			w = width / 10 * 5
-			self.descr_rect = Rect(xpos, 0, w, height)
+			self.descr_rect = Rect(xpos, 0, w+5, height)
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			servicew = 0
 			piconw = 0
@@ -627,7 +627,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			return None
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
@@ -669,7 +669,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
@@ -711,7 +711,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
-		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		r1 = self.service_rect
 		r2 = self.progress_rect
@@ -778,7 +778,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon):
-		if self.widthSize > self.l.getItemSize().width(): #recalc size if scrollbar is shown
+		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
 			self.recalcEntrySize()
 		r1 = self.service_rect
 		r2 = self.event_rect
@@ -1081,19 +1081,19 @@ class EPGList(HTMLComponent, GUIComponent):
 				if clock_types is not None and ewidth > 23:
 					if clock_types in (1,6,11):
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos+ewidth-17, top+height-28)
+							pos = (left+xpos+ewidth-15, top+height-26)
 						else:
 							pos = (left+xpos+ewidth-13, top+height-22)
 					elif clock_types in (5,10,15):
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos-2, top+height-28)
+							pos = (left+xpos-26, top+height-26)
 						else:
-							pos = (left+xpos-8, top+height-23)
+							pos = (left+xpos-22, top+height-22)
 					else:
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos+ewidth-29, top+height-28)
+							pos = (left+xpos+ewidth-26, top+height-26)
 						else:
-							pos = (left+xpos+ewidth-23, top+height-22)
+							pos = (left+xpos+ewidth-22, top+height-22)
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = pos, size = (25, 25),
@@ -1105,11 +1105,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					if self.wasEntryAutoTimer and clock_types in (2,7,12):
 						if self.screenwidth and self.screenwidth == 1920:
 							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-29,pos[1]), size = (25, 25),
+								pos = (pos[0]-25,pos[1]), size = (25, 25),
 								png = self.autotimericon))
 						else:
 							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-22,pos[1]), size = (21, 21),
+								pos = (pos[0]-21,pos[1]), size = (21, 21),
 								png = self.autotimericon))
 		return res
 
