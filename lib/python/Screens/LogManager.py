@@ -362,7 +362,7 @@ class LogManager(Screen):
 			ybox.setTitle(_("Additional Info"))
 		else:
 			self.sendallfiles = False
-			message = _("Are you sure you want to send this log:\n") + str(self.sel[0])
+			message = _("Are you sure you want to send this log:\n") + self.sel
 			ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Send Confirmation"))
 
