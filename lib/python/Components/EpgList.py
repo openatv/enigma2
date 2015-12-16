@@ -942,7 +942,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderPixmaps = self.borderPixmaps
 					infoPix = self.infoPix
 					bgpng = self.othEvPix
-					if clock_types is not None and clock_types == 2:
+					if clock_types is not None and clock_types in (2, 12):
 						bgpng = self.recEvPix
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapEvPix
