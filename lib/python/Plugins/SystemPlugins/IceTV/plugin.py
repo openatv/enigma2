@@ -7,7 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer, eEPGCache, eDVBDB
+from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference
 from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -262,9 +262,10 @@ class EPGFetcher(object):
                         # print "[IceTV] channel_id %s maps to" % channel_id, channels
                         db = eDVBDB.getInstance()
                         for channel in channels:
-                            serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
-                            if db.isValidService(channel[1], channel[0], channel[2]):
-                                # print "[IceTV] %s is valid" % str(serviceref), serviceref.getServiceName()
+                            serviceref = db.searchReference(channel[1], channel[0], channel[2])
+                            if serviceref.valid():
+                                serviceref = ServiceReference(eServiceReference(serviceref))
+                                # print "[IceTV] New %s is valid" % str(serviceref), serviceref.getServiceName()
                                 recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", None, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
@@ -330,8 +331,10 @@ class EPGFetcher(object):
         changed = False
         db = eDVBDB.getInstance()
         for channel in channels:
-            serviceref = ServiceReference("1:0:1:%x:%x:%x:EEEE0000:0:0:0:" % (channel[2], channel[1], channel[0]))
-            if db.isValidService(channel[1], channel[0], channel[2]):
+            serviceref = db.searchReference(channel[1], channel[0], channel[2])
+            if serviceref.valid():
+                serviceref = ServiceReference(eServiceReference(serviceref))
+                # print "[IceTV] Updated %s is valid" % str(serviceref), serviceref.getServiceName()
                 if str(timer.service_ref) != str(serviceref):
                     changed = True
                     timer.service_ref = serviceref
