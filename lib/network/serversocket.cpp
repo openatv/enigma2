@@ -144,7 +144,8 @@ eServerSocket::~eServerSocket()
 
 int eServerSocket::startListening(struct addrinfo *addr)
 {
-	struct addrinfo *ptr = addr;
+	struct addrinfo *ptr;
+
 	for (ptr = addr; ptr != NULL; ptr = ptr->ai_next)
 	{
 		if (setSocket(socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol), 1) < 0)
