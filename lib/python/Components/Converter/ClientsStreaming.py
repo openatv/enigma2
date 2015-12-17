@@ -48,12 +48,10 @@ class ClientsStreaming(Converter, Poll, object):
 			servicename = ServiceReference(x[1]).getServiceName() or ""
 			service_name = servicename
 			names.append((service_name))
-			if '::ffff:' in x[0]:
-				ip = 'ipv6'
-				ips.append((ip))
-			else:
-				ip = x[0]#[7:]
-				ips.append((ip))
+			ip = x[0]
+
+			ips.append((ip))
+
 			if int(x[2]) == 0:
 				encoder = _('NO')
 			else:
