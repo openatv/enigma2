@@ -38,6 +38,7 @@ class ClientsStreaming(Converter, Poll, object):
 	def getText(self):
 		if self.streamServer is None:
 			return ""
+
 		clients = []
 		refs = []
 		ips = []
@@ -45,7 +46,7 @@ class ClientsStreaming(Converter, Poll, object):
 		encoders = []
 		for x in self.streamServer.getConnectedClients():
 			refs.append((x[1]))
-			servicename = ServiceReference(x[1]).getServiceName() or ""
+			servicename = ServiceReference(x[1]).getServiceName() or "(unknown service)"
 			service_name = servicename
 			names.append((service_name))
 			ip = x[0]
@@ -56,15 +57,15 @@ class ClientsStreaming(Converter, Poll, object):
 				encoder = _('NO')
 			else:
 				encoder = _('YES')
+
 			encoders.append((encoder))
 			clients.append((ip, service_name, encoder))
-		if not clients:
-			return ""
+
 		if self.type == self.REF:
 			return ' '.join(refs)
 		elif self.type == self.IP:
 			return ' '.join(ips)
-		elif self.type  == self.NAME:
+		elif self.type == self.NAME:
 			return ' '.join(names)
 		elif self.type == self.ENCODER:
 			return _("Transcoding: ") + ' '.join(encoders)
