@@ -46,7 +46,7 @@ class ClientsStreaming(Converter, Poll, object):
 		for x in self.streamServer.getConnectedClients():
 			refs.append((x[1]))
 			servicename = ServiceReference(x[1]).getServiceName() or ""
-			service_name = servicename.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			service_name = servicename
 			names.append((service_name))
 			if '::ffff:' in x[0]:
 				ip = 'ipv6'
