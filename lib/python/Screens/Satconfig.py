@@ -668,7 +668,7 @@ class NimSelection(Screen):
 								 "loopthrough_external": _("External loopthrough to"),
 								 "equal": _("Equal to"),
 								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
-						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
+						text += " " + nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name
 					elif nimConfig.configMode.value == "nothing":
 						text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
