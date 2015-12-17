@@ -9,7 +9,7 @@ class ClientsStreaming(Converter, Poll, object):
 	IP = 1
 	NAME = 2
 	ENCODER = 3
-	NUMBEP = 4
+	NUMBER = 4
 	SHORT_ALL = 5
 	ALL = 6
 
@@ -26,8 +26,8 @@ class ClientsStreaming(Converter, Poll, object):
 			self.type = self.NAME
 		elif type == "ENCODER":
 			self.type = self.ENCODER
-		elif type == "NUMBEP":
-			self.type = self.NUMBEP
+		elif type == "NUMBER":
+			self.type = self.NUMBER
 		elif type == "SHORT_ALL":
 			self.type = self.SHORT_ALL
 		else:
@@ -70,7 +70,7 @@ class ClientsStreaming(Converter, Poll, object):
 			return ' '.join(names)
 		elif self.type == self.ENCODER:
 			return _("Transcoding: ") + ' '.join(encoders)
-		elif self.type == self.NUMBEP:
+		elif self.type == self.NUMBER:
 			return str(len(clients))
 		elif self.type == self.SHORT_ALL:
 			return _("Total clients streaming: %d (%s)") % (len(clients), ' '.join(names))
