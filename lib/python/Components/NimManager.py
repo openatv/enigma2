@@ -14,7 +14,6 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 
 from time import localtime, mktime
 from datetime import datetime
-from Tools.BoundFunction import boundFunction
 
 from Tools import Directories
 import xml.etree.cElementTree
