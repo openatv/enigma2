@@ -12,7 +12,13 @@ void eServerSocket::notifier(int)
 {
 	int clientfd;
 	socklen_t clientlen;
-	struct sockaddr client_addr;
+	union // ugly workaround for sizeof(sockaddr) < sizeof(sockaddr_in6) issue
+	{
+		sockaddr sock;
+		sockaddr_in sock_in;
+		sockaddr_in6 sock_in6;
+	} client_addr;
+
 	char straddr[INET6_ADDRSTRLEN];
 
 #ifdef DEBUG_SERVERSOCKET
@@ -20,21 +26,49 @@ void eServerSocket::notifier(int)
 #endif
 
 	clientlen = sizeof(client_addr);
-	clientfd = accept(getDescriptor(), &client_addr, &clientlen);
+	clientfd = accept(getDescriptor(), &client_addr.sock, &clientlen);
 	if (clientfd < 0)
 	{
 		eDebug("[eServerSocket] error on accept: %m");
 		return;
 	}
 
-	if (client_addr.sa_family == AF_LOCAL)
+	switch(client_addr.sock.sa_family)
 	{
-		strRemoteHost = "(local)";
+		case(PF_LOCAL):
+		{
+			strRemoteHost = "(local)";
+			break;
+		}
+
+		case(PF_INET):
+		{
+			strRemoteHost = inet_ntop(PF_INET, &client_addr.sock_in.sin_addr, straddr, sizeof(straddr));
+			break;
+		}
+
+		case(PF_INET6):
+		{
+			static uint8_t ipv4_mapped_pattern[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff };
+
+			if(!memcmp(&client_addr.sock_in6.sin6_addr, ipv4_mapped_pattern, sizeof(ipv4_mapped_pattern)))
+			{
+				 // ugly hack to get real ipv4 address without the ::ffff:, inet_ntop doesn't have an option for it
+				strRemoteHost = inet_ntop(PF_INET, (sockaddr_in *)&client_addr.sock_in6.sin6_addr.s6_addr[12], straddr, sizeof(straddr));
+			}
+			else
+				strRemoteHost = inet_ntop(PF_INET6, &client_addr.sock_in6.sin6_addr, straddr, sizeof(straddr));
+
+			break;
+		}
+
+		default:
+		{
+			strRemoteHost = "(error)";
+			break;
+		}
 	}
-	else
-	{
-		strRemoteHost = inet_ntop(client_addr.sa_family, client_addr.sa_data, straddr, sizeof(straddr));
-	}
+
 	newConnection(clientfd);
 }
 
@@ -110,7 +144,8 @@ eServerSocket::~eServerSocket()
 
 int eServerSocket::startListening(struct addrinfo *addr)
 {
-	struct addrinfo *ptr = addr;
+	struct addrinfo *ptr;
+
 	for (ptr = addr; ptr != NULL; ptr = ptr->ai_next)
 	{
 		if (setSocket(socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol), 1) < 0)

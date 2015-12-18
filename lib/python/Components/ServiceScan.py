@@ -19,7 +19,7 @@ class ServiceScan:
 	def scanStatusChanged(self):
 		if self.state == self.Running:
 			self.progressbar.setValue(self.scan.getProgress())
-			self.lcd_summary.updateProgress(self.scan.getProgress())
+			self.lcd_summary and self.lcd_summary.updateProgress(self.scan.getProgress())
 			if self.scan.isDone():
 				errcode = self.scan.getError()
 
@@ -192,7 +192,7 @@ class ServiceScan:
 		newServiceName = self.scan.getLastServiceName()
 		newServiceRef = self.scan.getLastServiceRef()
 		self.servicelist.addItem((newServiceName, newServiceRef))
-		self.lcd_summary.updateService(newServiceName)
+		self.lcd_summary and self.lcd_summary.updateService(newServiceName)
 
 	def destroy(self):
 		pass

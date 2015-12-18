@@ -605,6 +605,7 @@ Components.NetworkTime.AutoNTPSync()
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
+keymapparser.readKeymap(config.usage.keytrans.value)
 
 profile("Network")
 import Components.Network

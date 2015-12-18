@@ -295,6 +295,10 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			"menu": self.cancel,
 		}, -2)
 		self.onChangedEntry = []
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
 
 	# for summary:
 	def changedEntry(self):
