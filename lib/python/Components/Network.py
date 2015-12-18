@@ -164,6 +164,7 @@ class Network:
 
 	def writeNameserverConfig(self):
 		fp = file('/etc/resolv.conf', 'w')
+		fp.write("options rotate timeout:3\n")
 		for nameserver in self.nameservers:
 			fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
 		fp.close()
