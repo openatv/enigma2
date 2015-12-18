@@ -1440,10 +1440,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 6:
 				self.updEvent(+2)
 			elif number == 7:
-				if config.epgselection.graph_heightswitch.value:
-					config.epgselection.graph_heightswitch.setValue(False)
-				else:
-					config.epgselection.graph_heightswitch.setValue(True)
+				config.epgselection.graph_heightswitch.value = not config.epgselection.graph_heightswitch.value
 				self['list'].setItemsPerPage()
 				self['list'].fillGraphEPG(None)
 				self.moveTimeLines()

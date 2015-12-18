@@ -267,8 +267,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.serviceFontSizeInfobar = 20
 			self.eventFontSizeInfobar = 22
 
-		self.listHeight = None
-		self.listWidth = None
+		self.origListHeight = self.listHeight = None
+		self.origListWidth = self.listWidth = None
 		self.serviceBorderWidth = 1
 		self.serviceNamePadding = 3
 		self.eventBorderWidth = 1
@@ -280,8 +280,8 @@ class EPGList(HTMLComponent, GUIComponent):
 	def applySkin(self, desktop, screen):
 		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
-		self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
+		self.origListHeight = self.listHeight = self.instance.size().height()
+		self.origListWidth = self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
 		self.setFontsize()
 		return rc
@@ -442,35 +442,35 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setItemsPerPage(self):
 		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
-				if self.listHeight > 0:
-					itemHeight = self.listHeight / config.epgselection.graph_itemsperpage.value
+				if self.origListHeight > 0:
+					itemHeight = self.origListHeight / config.epgselection.graph_itemsperpage.value
 				else:
 					itemHeight = 54  # some default (270/5)
 				if config.epgselection.graph_heightswitch.value:
-					if ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3) >= 27:
-						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3)
-					elif ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 2) >= 27:
-						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 2)
+					if ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 3) >= 27:
+						tmp_itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 3)
+					elif ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 2) >= 27:
+						tmp_itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 2)
 					else:
 						tmp_itemHeight = 27
 					if tmp_itemHeight < itemHeight:
 						itemHeight = tmp_itemHeight
 					else:
-						if ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 3) <= 45:
-							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 3)
-						elif ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 2) <= 45:
-							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 2)
+						if ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 3) <= 45:
+							itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 3)
+						elif ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 2) <= 45:
+							itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 2)
 						else:
 							itemHeight = 45
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				if self.listHeight > 0:
-					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
+				if self.origListHeight > 0:
+					itemHeight = self.origListHeight / config.epgselection.infobar_itemsperpage.value
 				else:
 					itemHeight = 54  # some default (270/5)
 			if self.numberOfRows:
-				itemHeight = self.listHeight / self.numberOfRows
+				itemHeight = self.origListHeight / self.numberOfRows
 			self.l.setItemHeight(itemHeight)
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, self.origListHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
