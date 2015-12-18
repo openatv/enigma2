@@ -1412,8 +1412,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 		if self.time_base != time_base or self.time_epoch != time_epoch or force:
 			service_rect = l.getServiceRect()
 			time_steps = 60 if time_epoch > 180 else 30
-			num_lines = time_epoch / time_steps
-			incWidth = event_rect.w / num_lines
+			num_lines = (time_epoch + time_steps / 2) / time_steps
+			incWidth = float(event_rect.w) * time_steps / time_epoch
 			timeStepsCalc = time_steps * 60
 
 			nowTime = localtime(time())
@@ -1463,7 +1463,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 				backcolor=backColor))
 
 			bgpng = self.tlTime
-			xpos = 0  # eventLeft
 			if bgpng is not None and self.graphic:
 				backColor = None
 				backColorSel = None
@@ -1485,6 +1484,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			textScreenY = self.position[1]
 			for x in range(0, num_lines):
 				line = time_lines[x]
+				xpos = round(x * incWidth)
 				textOffset = self.textPadding
 				if self.ticksOn == "yes":
 					tickWidth, tickHeight = line.getSize()
@@ -1518,7 +1518,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 					text=timetext,
 					color=foreColor,
 					backcolor=backColor))
-				xpos += incWidth
 			for x in range(num_lines, MAX_TIMELINES):
 				time_lines[x].visible = False
 			self.l.setList([res])
