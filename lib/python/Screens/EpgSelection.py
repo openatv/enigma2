@@ -1415,19 +1415,19 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_GRAPH:
 			if number == 1:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)
-				if timeperiod > 60:
+				if timeperiod > 90:
 					timeperiod -= 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
+					config.epgselection.graph_prevtimeperiod.value = str(timeperiod)
 					self.moveTimeLines()
 			elif number == 2:
 				self.prevPage()
 			elif number == 3:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)
-				if timeperiod < 300:
+				if timeperiod < 270:
 					timeperiod += 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
+					config.epgselection.graph_prevtimeperiod.value = str(timeperiod)
 					self.moveTimeLines()
 			elif number == 4:
 				self.updEvent(-2)
