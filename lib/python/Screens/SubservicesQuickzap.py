@@ -58,10 +58,11 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
-		self.session.nav.playService(self.restoreService, False)
+		self.session.nav.stopService()
+		self.session.nav.playService(self.restoreService, checkParentalControl=False, adjust=False)
 
 	def onLayoutFinished(self):
-		self.timer.start(0,True)
+		self.timer.start(0, True)
 
 	def updateSubservices(self):
 		self.service = self.session.nav.getCurrentService()
@@ -98,9 +99,9 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 		print number, "pressed"
 		self.updateSubservices()
 		if number == 0:
-			self.playSubservice(self.lastservice)
-		elif self.n is not None and number <= self.n - 1:
-			self.playSubservice(number)
+			self.playSubservice(self.__lastservice)
+		elif self.n is not None and number <= self.n:
+			self.playSubservice(number -1)
 
 	def showSelection(self):
 		self.updateSubservices()
@@ -113,8 +114,8 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 				tlist.append((i.getName(), idx))
 				idx += 1
 
-		keys = [ "", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
-		self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = self.currentlyPlayingSubservice, keys = keys)
+		keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+		self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = self.currentlyPlayingSubservice, keys = keys, windowTitle=_("Subservices"))
 
 	def subserviceSelected(self, service):
 		print "playing subservice number", service
@@ -136,8 +137,9 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 		if newservice.valid():
 			del self.subservices
 			del self.service
-			self.lastservice = self.currentlyPlayingSubservice
-			self.session.nav.playService(newservice, False)
+			self.__lastservice = self.currentlyPlayingSubservice
+			self.session.nav.stopService()
+			self.session.nav.playService(newservice, checkParentalControl=False, adjust=False)
 			self.currentlyPlayingSubservice = number
-			self.currentSubserviceNumberLabel.setText(str(number))
+			self.currentSubserviceNumberLabel.setText(str(number+1))
 			self.doShow()
