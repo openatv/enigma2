@@ -2733,13 +2733,18 @@ class InfoBarSubserviceSelection:
 	def prevSubservice(self):
 		self.changeSubservice(-1)
 
+	def playSubservice(self, ref):
+		if ref.getUnsignedData(6) == 0:
+			ref.setName("")
+		self.session.nav.playService(ref, checkParentalControl=False, adjust=False)
+
 	def changeSubservice(self, direction):
 		service = self.session.nav.getCurrentService()
 		subservices = service and service.subServices()
 		n = subservices and subservices.getNumberOfSubservices()
 		if n and n > 0:
 			selection = -1
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			idx = 0
 			while idx < n:
 				if subservices.getSubservice(idx).toString() == ref.toString():
@@ -2749,14 +2754,14 @@ class InfoBarSubserviceSelection:
 			if selection != -1:
 				selection += direction
 				if selection >= n:
-					selection=0
+					selection = 0
 				elif selection < 0:
-					selection=n-1
+					selection = n - 1
 				newservice = subservices.getSubservice(selection)
 				if newservice.valid():
 					del subservices
 					del service
-					self.session.nav.playService(newservice, False)
+					self.playSubservice(newservice)
 
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
@@ -2765,18 +2770,21 @@ class InfoBarSubserviceSelection:
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			tlist = []
 			idx = 0
+			cnt_parent = 0
 			while idx < n:
 				i = subservices.getSubservice(idx)
 				if i.toString() == ref.toString():
 					selection = idx
 				tlist.append((i.getName(), i))
+				if i.getUnsignedData(6):
+					cnt_parent += 1
 				idx += 1
 
-			if self.bouquets and len(self.bouquets):
-				keys = ["red", "blue", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+			if cnt_parent and self.bouquets and len(self.bouquets):
+				keys = ["red", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				if config.usage.multibouquet.value:
 					tlist = [(_("Quick zap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				else:
@@ -2784,7 +2792,7 @@ class InfoBarSubserviceSelection:
 				selection += 3
 			else:
 				tlist = [(_("Quick zap"), "quickzap", service.subServices()), ("--", "")] + tlist
-				keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+				keys = ["red", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				selection += 2
 
 			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
@@ -2798,7 +2806,7 @@ class InfoBarSubserviceSelection:
 					self.session.open(SubservicesQuickzap, service[2])
 			else:
 				self["SubserviceQuickzapAction"].setEnabled(True)
-				self.session.nav.playService(service[1], False)
+				self.playSubservice(service[1])
 
 	def addSubserviceToBouquetCallback(self, service):
 		if len(service) > 1 and isinstance(service[1], eServiceReference):
@@ -2811,13 +2819,13 @@ class InfoBarSubserviceSelection:
 				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
 			elif cnt == 1: # add to only one existing bouquet
 				self.addSubserviceToBouquet(self.bouquets[0][1])
-				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
 
 	def bouquetSelClosed(self, confirmed):
 		self.bsel = None
 		del self.selectedSubservice
 		if confirmed:
-			self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO, timeout=5)
 
 	def addSubserviceToBouquet(self, dest):
 		self.servicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
