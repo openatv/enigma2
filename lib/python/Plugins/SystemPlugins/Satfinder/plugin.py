@@ -471,7 +471,9 @@ def SatfinderMain(session, close=None, **kwargs):
 			continue
 		if n.config_mode  in ("loopthrough", "satposdepends", "nothing"):
 			continue
-		if n.isCompatible("DVB-S") and n.config_mode == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
+		if n.isCompatible("DVB-S") and n.config_mode in ("advanced", "simple") len(nimmanager.getSatListForNim(n.slot)) < 1:
+			n.config_mode = "nothing"
+			n.config_mode.save()
 			continue
 		nimList.append(n)
 
