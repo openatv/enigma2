@@ -685,10 +685,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			# sanity check for empty sat list
 			if self.nimConfig.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.configMode.value = "nothing"
-		if self["config"].isChanged():
-			for x in self["config"].list:
-				x[1].save()
-			configfile.save()
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
 
 	def cancelConfirm(self, result):
 		if not result:
