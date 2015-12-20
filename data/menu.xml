@@ -65,6 +65,7 @@
 				<id val="cam" />
 				<item weight="0" level="1" text="CI" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 				<item weight="5" level="1" text="CI PIN" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
+				<item weight="7" level="1" text="CI Helper" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 			</menu>
 
 			<!-- Menu / Settings / System -->

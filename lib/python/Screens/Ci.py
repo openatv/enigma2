@@ -2,13 +2,18 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
-
-from Components.config import config, ConfigNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN
+from Components.Pixmap import Pixmap
+from Components.config import config, ConfigNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, ConfigSubList, NoSave, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN
 from Components.ConfigList import ConfigList, ConfigListScreen
-
+from Components.Console import Console
 from Components.SystemInfo import SystemInfo
+from Tools.Directories import fileExists
+import time
+from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
+
+from boxbranding import getBrandOEM, getBoxType
 
 MAX_NUM_CI = 4
 
@@ -24,7 +29,10 @@ def InitCiConfig():
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "no")
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
-			config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
+			if getBrandOEM() in ('dummy'):
+				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
+			else:
+				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
 			config.ci[slot].canHandleHighBitrates.slotid = slot
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
 
@@ -85,12 +93,16 @@ class MMIDialog(Screen):
 			list.append( (entry[1], ConfigNothing(), entry[2]) )
 		if entry[0] == "PIN":
 			pinlength = entry[1]
+			pin = config.cipin.pin1.value
+			if len(str(config.cipin.pin1.value)) == 3:
+				pin = "0" + str(config.cipin.pin1.value)
+				pinlength = 4
 			if entry[3] == 1:
 				# masked pins:
-				x = ConfigPIN(int(config.cipin.pin1.value), len = pinlength, censor = "*")
+				x = ConfigPIN(int(pin), len = pinlength, censor = "*")
 			else:
 				# unmasked pins:
-				x = ConfigPIN(int(config.cipin.pin1.value), len = pinlength)
+				x = ConfigPIN(int(pin), len = pinlength)
 			x.addEndNotifier(self.pinEntered)
 			self["subtitle"].setText(entry[2])
 			list.append( getConfigListEntry("", x) )
@@ -120,18 +132,21 @@ class MMIDialog(Screen):
 			self.handler.answerMenu(self.slotid, 0)
 			self.showWait()
 		elif self.tag == "ENQ":
+			pin = config.cipin.pin1.value
+			if len(str(config.cipin.pin1.value)) == 3:
+				pin = "0" + str(config.cipin.pin1.value)
 			cur = self["entries"].getCurrent()
 			try:
 				answer = str(cur[1].value)
 			except:
-				answer = str(config.cipin.pin1.value)
-				
+				answer = str(pin)
+
 			length = len(answer)
-			
+
 			try:
 				pinlen = cur[1].getLength()
 			except:
-				pinlen = len(str(config.cipin.pin1.value))
+				pinlen = len(str(pin))
 			while length < pinlen:
 				answer = '0'+answer
 				length+=1
@@ -253,7 +268,10 @@ class CiMessageHandler:
 		self.ci = { }
 		self.dlgs = { }
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
-		SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
+		if getBoxType() in ('dummy'):
+			SystemInfo["CommonInterface"] = False
+		else:
+			SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
 		try:
 			file = open("/proc/stb/tsmux/ci0_tsclk", "r")
 			file.close()
@@ -419,19 +437,19 @@ class CiDefaultPinSetup(ConfigListScreen, Screen):
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup"]
-			
+
 		list = []
 		list.append(getConfigListEntry(_('Default PIN for CI'), config.cipin.pin1))
 		list.append(getConfigListEntry(_('Enable auto PIN'), config.cipin.pin1autook))
 
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Save"))
-			
+
 		ConfigListScreen.__init__(self, list)
-		self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], 
+		self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'],
 		{
-			'red' : self.dontSaveAndExit,  
-			'green': self.saveAndExit, 
+			'red' : self.dontSaveAndExit,
+			'green': self.saveAndExit,
 			'cancel': self.dontSaveAndExit
 		}, -1)
 
@@ -444,6 +462,206 @@ class CiDefaultPinSetup(ConfigListScreen, Screen):
 
 	def dontSaveAndExit(self):
 		for x in self['config'].list:
-		    x[1].cancel()
+			x[1].cancel()
 		self.close()
-		
+
+class CIHelper(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("CIHelper"))
+		self.skinName = "CIHelper"
+		self.onChangedEntry = [ ]
+		self['ci0'] = Label(_("CIHelper for SLOT CI0"))
+		self['ci0active'] = Pixmap()
+		self['ci0inactive'] = Pixmap()
+		self['ci1'] = Label(_("CIHelper for SLOT CI1"))
+		self['ci1active'] = Pixmap()
+		self['ci1inactive'] = Pixmap()
+
+		self['autostart'] = Label(_("Autostart:"))
+		self['labactive'] = Label(_(_("Active")))
+		self['labdisabled'] = Label(_(_("Disabled")))
+		self['status'] = Label(_("Current Status:"))
+		self['labstop'] = Label(_("Stopped"))
+		self['labrun'] = Label(_("Running"))
+		self['key_red'] = Label(_("Restart"))
+		self['key_green'] = Label(_("Start"))
+		self['key_yellow'] = Label(_("Autostart"))
+		self['key_blue'] = Label(_("Setup"))
+		self.Console = Console()
+		self.my_cihelper_active = False
+		self.my_cihelper_run = False
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'SetupActions'], {'ok': self.setupcihelper, 'back': self.close, 'menu': self.setupcihelper, 'red': self.CIHelperRestart, 'green': self.CIHelperStartStop, 'yellow': self.CIHelperset, 'blue': self.setupcihelper})
+		self.onLayoutFinish.append(self.updateService)
+
+	def CIHelperStartStop(self):
+		if not self.my_cihelper_run:
+			self.Console.ePopen('/etc/init.d/cihelper.sh start', self.StartStopCallback)
+		elif self.my_cihelper_run:
+			self.Console.ePopen('/etc/init.d/cihelper.sh stop', self.StartStopCallback)
+
+	def CIHelperRestart(self):
+		if self.my_cihelper_run:
+			self.Console.ePopen('/etc/init.d/cihelper.sh restart', self.StartStopCallback)
+		elif not self.my_cihelper_run:
+			self.Console.ePopen('/etc/init.d/cihelper.sh start', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		time.sleep(5)
+		self.updateService()
+
+	def CIHelperset(self):
+		if fileExists('/etc/rcS.d/S50cihelper.sh'):
+			self.Console.ePopen('update-rc.d -f cihelper.sh remove', self.StartStopCallback)
+		else:
+			self.Console.ePopen('update-rc.d -f -s cihelper.sh start 50 S .', self.StartStopCallback)
+
+	def updateService(self):
+		import process
+		p = process.ProcessList()
+		cihelper_process = str(p.named('cihelper')).strip('[]')
+		self['labrun'].hide()
+		self['labstop'].hide()
+		self['labactive'].hide()
+		self['labdisabled'].hide()
+		self.my_cihelper_active = False
+		self.my_cihelper_run = False
+		if fileExists('/etc/rcS.d/S50cihelper.sh'):
+			self['labdisabled'].hide()
+			self['labactive'].show()
+			self.my_cihelper_active = True
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labactive'].text
+		else:
+			self['labactive'].hide()
+			self['labdisabled'].show()
+			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
+		if cihelper_process:
+			self.my_cihelper_run = True
+		if self.my_cihelper_run:
+			self['labstop'].hide()
+			self['labrun'].show()
+			self['key_green'].setText(_("Stop"))
+			status_summary= self['status'].text + ' ' + self['labstop'].text
+		else:
+			self['labstop'].show()
+			self['labrun'].hide()
+			self['key_green'].setText(_("Start"))
+			status_summary= self['status'].text + ' ' + self['labstop'].text
+
+		if fileExists('/etc/cihelper.conf'):
+			f = open('/etc/cihelper.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('ENABLE_CI0='):
+					if line[11:] == 'no':
+						self['ci0active'].hide()
+						self['ci0inactive'].show()
+					else:
+						self['ci0active'].show()
+						self['ci0inactive'].hide()
+				elif fileExists('/dev/ci1'):
+					if line.startswith('ENABLE_CI1='):
+						if line[11:] == 'no':
+							self['ci1active'].hide()
+							self['ci1inactive'].show()
+						else:
+							self['ci1active'].show()
+							self['ci1inactive'].hide()
+				else:
+					self['ci1active'].hide()
+					self['ci1inactive'].hide()
+					self['ci1'].hide()
+				f.close()
+		title = _("CIHelper")
+
+		for cb in self.onChangedEntry:
+			cb(title, status_summary, autostartstatus_summary)
+
+	def setupcihelper(self):
+		self.session.openWithCallback(self.updateService, CIHelperSetup)
+
+class CIHelperSetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		Screen.setTitle(self, _("CIHelper Setup"))
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
+		self['key_red'] = Label(_("Save"))
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'red': self.saveCIHelper, 'back': self.close})
+		self.updateList()
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		if item:
+			name = str(item[0])
+			desc = str(item[1].value)
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+
+	def updateList(self, ret=None):
+		self.list = []
+		self.cihelper_ci0 = NoSave(ConfigYesNo(default='True'))
+		if fileExists('/dev/ci1'):
+			self.cihelper_ci1 = NoSave(ConfigYesNo(default='True'))
+		else:
+			self.cihelper_ci1 = ConfigNothing()
+
+		if fileExists('/etc/cihelper.conf'):
+			f = open('/etc/cihelper.conf', 'r')
+			for line in f.readlines():
+				line = line.strip()
+				if line.startswith('ENABLE_CI0='):
+					if line[11:] == 'no':
+						self.cihelper_ci0.value = False
+					else:
+						self.cihelper_ci0.value = True
+					cihelper_ci0x = getConfigListEntry(_("Enable CIHelper for SLOT CI0") + ":", self.cihelper_ci0)
+					self.list.append(cihelper_ci0x)
+				elif line.startswith('ENABLE_CI1='):
+					if line[11:] == 'no':
+						self.cihelper_ci1.value = False
+					else:
+						self.cihelper_ci1.value = True
+					if fileExists('/dev/ci1'):
+						cihelper_ci1x = getConfigListEntry(_("Enable CIHelper for SLOT CI1") + ":", self.cihelper_ci1)
+						self.list.append(cihelper_ci1x)
+			f.close()
+		self['config'].list = self.list
+		self['config'].l.setList(self.list)
+
+	def saveCIHelper(self):
+		if fileExists('/etc/cihelper.conf'):
+			inme = open('/etc/cihelper.conf', 'r')
+			out = open('/etc/cihelper.conf.tmp', 'w')
+			for line in inme.readlines():
+				line = line.replace('\n', '')
+				if line.startswith('ENABLE_CI0='):
+					if not self.cihelper_ci0.value:
+						line = 'ENABLE_CI0=no'
+					else:
+						line = 'ENABLE_CI0=yes'
+				elif line.startswith('ENABLE_CI1='):
+					if not self.cihelper_ci1.value:
+						line = 'ENABLE_CI1=no'
+					else:
+						line = 'ENABLE_CI1=yes'
+				out.write((line + '\n'))
+			out.close()
+			inme.close()
+		else:
+			open('/tmp/CIHelper.log', "a").write(_("Sorry CIHelper Config is Missing") + '\n')
+			self.session.open(MessageBox, _("Sorry CIHelper Config is Missing"), MessageBox.TYPE_INFO)
+			self.close()
+		if fileExists('/etc/cihelper.conf.tmp'):
+			rename('/etc/cihelper.conf.tmp', '/etc/cihelper.conf')
+		self.myStop()
+
+	def myStop(self):
+		self.close()
+
