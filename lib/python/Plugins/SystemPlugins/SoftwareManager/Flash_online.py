@@ -623,7 +623,7 @@ class ImageDownloadTask(Task):
 		self.aborted = True
 
 	def download_progress(self, recvbytes, totalbytes):
-		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
+		if ( recvbytes - self.last_recvbytes  ) > 100000: # anti-flicker
 			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
 			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
 			self.last_recvbytes = recvbytes
