@@ -511,7 +511,7 @@ class CIHelper(Screen):
 		self.updateService()
 
 	def CIHelperset(self):
-		if fileExists('/etc/rcS.d/S50cihelper.sh'):
+		if fileExists('/etc/rcS.d/S50cihelper.sh') or fileExists('/etc/rc5.d/S50cihelper.sh'):
 			self.Console.ePopen('update-rc.d -f cihelper.sh remove', self.StartStopCallback)
 		else:
 			self.Console.ePopen('update-rc.d -f -s cihelper.sh start 50 S .', self.StartStopCallback)
@@ -526,7 +526,7 @@ class CIHelper(Screen):
 		self['labdisabled'].hide()
 		self.my_cihelper_active = False
 		self.my_cihelper_run = False
-		if fileExists('/etc/rcS.d/S50cihelper.sh'):
+		if fileExists('/etc/rcS.d/S50cihelper.sh') or fileExists('/etc/rc5.d/S50cihelper.sh'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_cihelper_active = True
