@@ -10,6 +10,10 @@ if HAVE_LIBVUGLES2
 SUBDIRS += AnimationSetup
 endif
 
+if HAVE_OSDANIMATION
+SUBDIRS += AnimationSetup
+endif
+
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
