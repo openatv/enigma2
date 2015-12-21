@@ -11,6 +11,10 @@
 #include <vuplus_gles.h>
 #endif
 
+#ifdef HAVE_OSDANIMATION
+#include <lib/base/cfile.h>
+#endif
+
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
@@ -158,6 +162,9 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	case gOpcode::sendShow:
 	{
+#ifdef HAVE_OSDANIMATION
+		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x01);
+#endif
 #ifdef USE_LIBVUGLES2
 		gles_set_buffer((unsigned int *)surface.data);
 		gles_set_animation(1, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
@@ -166,6 +173,9 @@ void gFBDC::exec(const gOpcode *o)
 	}
 	case gOpcode::sendHide:
 	{
+#ifdef HAVE_OSDANIMATION
+		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x10);
+#endif
 #ifdef USE_LIBVUGLES2
 		gles_set_buffer((unsigned int *)surface.data);
 		gles_set_animation(0, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
@@ -179,6 +189,7 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	}
 #endif
+
 	default:
 		gDC::exec(o);
 		break;
@@ -300,3 +311,59 @@ void gFBDC::reloadSettings()
 }
 
 eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
+
+#ifdef HAVE_OSDANIMATION
+void setAnimation_current(int a) {
+	switch (a) {
+		case 1:
+			CFile::writeStr("/proc/stb/fb/animation_current", "simplefade");
+			break;
+		case 2:
+			CFile::writeStr("/proc/stb/fb/animation_current", "simplezoom");
+			break;
+		case 3:
+			CFile::writeStr("/proc/stb/fb/animation_current", "growdrop");
+			break;
+		case 4:
+			CFile::writeStr("/proc/stb/fb/animation_current", "growfromleft");
+			break;
+		case 5:
+			CFile::writeStr("/proc/stb/fb/animation_current", "extrudefromleft");
+			break;
+		case 6:
+			CFile::writeStr("/proc/stb/fb/animation_current", "popup");
+			break;
+		case 7:
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidedrop");
+			break;
+		case 8:
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidefromleft");
+			break;
+		case 9:
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidelefttoright");
+			break;
+		case 10:
+			CFile::writeStr("/proc/stb/fb/animation_current", "sliderighttoleft");
+			break;
+		case 11:
+			CFile::writeStr("/proc/stb/fb/animation_current", "slidetoptobottom");
+			break;
+		case 12:
+			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromleft");
+			break;
+		case 13:
+			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromright");
+			break;
+		case 14:
+			CFile::writeStr("/proc/stb/fb/animation_current", "stripes");
+			break;
+		default:
+			CFile::writeStr("/proc/stb/fb/animation_current", "disable");
+			break;
+	}
+}
+
+void setAnimation_speed(int speed) {
+	CFile::writeInt("/proc/stb/fb/animation_speed", speed);
+}
+#endif
