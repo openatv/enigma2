@@ -27,7 +27,7 @@ config.misc.window_animation_speed = ConfigSelectionNumber(15, g_max_speed, 1, d
 
 class AnimationSetupConfig(ConfigListScreen, Screen):
 	skin="""
-		<screen position="center,center" size="600,140" title="Animation Settings">
+		<screen position="center,center" size="600,140" title="Animation Setup">
 			<widget name="config" position="0,0" size="600,100" scrollbarMode="showOnDemand" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,100" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,100" size="140,40" alphatest="on" />
@@ -233,7 +233,7 @@ def animationSetupMain(session, **kwargs):
 	session.open(AnimationSetupScreen)
 
 def startAnimationSetup(menuid):
-	if menuid != "ui_menu":
+	if menuid != "osd_menu":
 		return []
 
 	return [( _("Animations"), animationSetupMain, "animation_setup", 3)]
