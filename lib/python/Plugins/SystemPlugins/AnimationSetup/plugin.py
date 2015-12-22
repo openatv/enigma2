@@ -100,7 +100,7 @@ class AnimationSetupScreen(Screen):
 			{"idx":3, "name":_("Grow drop")},
 			{"idx":4, "name":_("Grow from left")},
 			{"idx":5, "name":_("Extrude from left")},
-			{"idx":6, "name":_("Popup")},
+			#{"idx":6, "name":_("Popup")},
 			{"idx":7, "name":_("Slide drop")},
 			{"idx":8, "name":_("Slide from left")},
 			{"idx":9, "name":_("Slide left to right")},
