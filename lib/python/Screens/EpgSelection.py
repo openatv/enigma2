@@ -449,6 +449,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['list'].recalcEntrySize()
 		self.BouquetRoot = False
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.getCurrentCursorLocation = None
 			if self.StartBouquet.toString().startswith('1:7:0'):
 				self.BouquetRoot = True
 			self.services = self.getBouquetServices(self.StartBouquet)
@@ -498,6 +499,9 @@ class EPGSelection(Screen, HelpableScreen):
 	def refreshlist(self):
 		self.refreshTimer.stop()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			if self.getCurrentCursorLocation:
+				self.ask_time = self.getCurrentCursorLocation
+				self.getCurrentCursorLocation = None
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
 		elif self.type == EPG_TYPE_MULTI:
@@ -958,6 +962,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self['key_green'].setText(_('Add Timer'))
 		self.key_green_choice = self.ADD_TIMER
+		self.getCurrentCursorLocation = self['list'].getCurrentCursorLocation()
 		self.refreshlist()
 
 	def disableTimer(self, timer):
@@ -966,6 +971,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.timeChanged(timer)
 		self['key_green'].setText(_('Add Timer'))
 		self.key_green_choice = self.ADD_TIMER
+		self.getCurrentCursorLocation = self['list'].getCurrentCursorLocation()
 		self.refreshlist()
 
 	def RecordTimerQuestion(self, manual=False):
@@ -1099,6 +1105,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
+		self.getCurrentCursorLocation = self['list'].getCurrentCursorLocation()
 		self.refreshlist()
 
 	def finishSanityCorrection(self, answer):
