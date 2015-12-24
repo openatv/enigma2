@@ -64,6 +64,8 @@ class EPGSelection(Screen, HelpableScreen):
 				graphic = True
 		elif EPGtype == 'multi':
 			self.type = EPG_TYPE_MULTI
+		elif EPGtype is None and eventid == None and isinstance(service, eServiceReference):
+			self.type = EPG_TYPE_SINGLE
 		else:
 			self.type = EPG_TYPE_SIMILAR
 		if not self.type == EPG_TYPE_SINGLE:
