@@ -317,8 +317,8 @@ fi
 
 AC_ARG_WITH(lcddev,
 	AC_HELP_STRING([--with-lcddev=devicename], [use devicename for lcd framebuffer device, e.g. /dev/fb1 ]),
-	[[with_fbdev=$withval]],
-	[[with_fbdev=no]]
+	[[with_lcddev=$withval]],
+	[[with_lcddev=no]]
 )
 if test x"$with_lcddev" != xno ; then
 	AC_DEFINE_UNQUOTED(LCD_DEV, "$withval", [Defines which device to use for lcd (e.g. /dev/fb1)])
