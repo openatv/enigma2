@@ -2550,7 +2550,7 @@ class InfoBarSeek:
 			print "[InfoBarGeneretics] error in 'def doSeekRelative'", exc_info()[:2]
 
 		seekable = self.getSeek()
-		if seekable is None and int(self.seek.getLength()[1]) < 1:
+		if seekable is None or int(seekable.getLength()[1]) < 1:
 			return
 		prevstate = self.seekstate
 
