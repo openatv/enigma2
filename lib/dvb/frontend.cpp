@@ -536,6 +536,7 @@ int eDVBFrontend::openFrontend()
 			if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) >= 0)
 			{
 				m_dvbversion = p.u.data;
+				eDebug("[eDVBFrontend] frontend %d has DVD API %02x ", m_dvbid, m_dvbversion);
 			}
 #endif
 		}
