@@ -18,7 +18,7 @@ public:
 class eFilePushThread: public eThread, public Object
 {
 public:
-	eFilePushThread(int prio_class, int prio_level, int blocksize, size_t buffersize);
+	eFilePushThread(int blocksize, size_t buffersize);
 	~eFilePushThread();
 	void thread();
 	void stop();
@@ -40,8 +40,6 @@ public:
 protected:
 	virtual void filterRecordData(const unsigned char *data, int len);
 private:
-	int prio_class;
-	int prio;
 	iFilePushScatterGather *m_sg;
 	int m_stop;
 	int m_fd_dest;
