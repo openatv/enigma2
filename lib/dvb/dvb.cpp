@@ -1474,7 +1474,7 @@ class eDVBChannelFilePush: public eFilePushThread
 {
 public:
 	eDVBChannelFilePush(int packetsize = 188):
-		eFilePushThread(IOPRIO_CLASS_BE, 0, packetsize, packetsize * 512),
+		eFilePushThread(packetsize, packetsize * 512),
 		m_iframe_search(0),
 		m_iframe_state(0),
 		m_pid(0),
