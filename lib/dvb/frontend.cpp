@@ -473,6 +473,8 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 	,m_fd(-1), m_dvbversion(0), m_rotor_mode(false), m_need_rotor_workaround(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0), m_fbc(false)
 {
+	char filename[64];
+
 	m_filename = devicenodename;
 
 	m_timeout = eTimer::create(eApp);
@@ -489,6 +491,11 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 	char fileName[32] = {0};
 	sprintf(fileName, "/proc/stb/frontend/%d/fbc_id", m_slotid);
     if (access(fileName, F_OK) == 0)
+		m_fbc = true;
+
+	sprintf(filename, "/proc/stb/frontend/%d/fbc_id", m_slotid);
+
+	if (access(filename, F_OK) == 0)
 		m_fbc = true;
 
 	ok = !openFrontend();

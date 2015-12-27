@@ -380,7 +380,7 @@ public:
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
 	int getTargetOrbitalPosition() { return m_target_orbital_position; }
-	
+
 	friend class eFBCTunerManager;
 };
 

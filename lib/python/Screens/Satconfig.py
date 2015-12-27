@@ -24,19 +24,19 @@ from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 
 def isFBCTuner(nim):
-    if nim.description.find("FBC") == -1:
-        return False
-    return True
+	if nim.description.find("FBC") == -1:
+		return False
+	return True
 
 def isFBCRoot(nim):
-    if nim.slot %8 < 2:
-        return True
-    return False
+	if nim.slot %8 < 2:
+		return True
+	return False
 
 def isFBCLink(nim):
-    if isFBCTuner(nim) and not isFBCRoot(nim):
-        return True
-    return False
+	if isFBCTuner(nim) and not isFBCRoot(nim):
+		return True
+	return False
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -107,7 +107,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("Loop through to")
 			if isFBCLink(self.nim):
-				choices = { "nothing": _("not configured"), "advanced": _("advanced")}
+				choices = { "nothing": _("not configured"),
+						"advanced": _("advanced")}
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
@@ -178,9 +179,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				if isFBCLink(self.nim):
-					if self.nimConfig.advanced.unicableconnected.value != True:
-						self.nimConfig.advanced.unicableconnected.value = True
 				self.nimConfig.connectedTo.setChoices(choices)
 				self.list.append(getConfigListEntry(_("Connected to"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "nothing":
@@ -327,7 +325,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if isFBCLink(self.nim):
 				if currLnb.lof.value != "unicable":
 					currLnb.lof.value = "unicable"
-
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
 			self.advancedLof = getConfigListEntry("LOF", currLnb.lof)
 			self.list.append(self.advancedLof)
@@ -374,6 +371,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				if len(choices):
+					if isFBCLink(self.nim):
+						if self.nimConfig.advanced.unicableconnected.value != True:
+							self.nimConfig.advanced.unicableconnected.value = True
 					self.advancedConnected = getConfigListEntry(_("connected"), self.nimConfig.advanced.unicableconnected)
 					self.list.append(self.advancedConnected)
 					if self.nimConfig.advanced.unicableconnected.value:
@@ -692,7 +692,7 @@ class NimSelection(Screen):
 			"menu": self.exit,
 		}, -2)
 		self.setTitle(_("Choose Tuner"))
-		
+
 	def loadFBCLinks(self):
 		for x in nimmanager.nim_slots:
 			slotid = x.slot
@@ -722,7 +722,8 @@ class NimSelection(Screen):
 
 		nimConfig = nimmanager.getNimConfig(nim.slot)
 		if isFBCLink(nim) and nimConfig.configMode.value == "loopthrough":
-				return
+			return
+
 		if nim is not None and not nim.empty and nim.isSupported():
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 

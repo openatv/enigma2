@@ -411,9 +411,9 @@ int getLinkedSlotID(int);
 %{
 int getLinkedSlotID(int fe)
 {
-    eFBCTunerManager *mgr = eFBCTunerManager::getInstance();
-    if (mgr) return mgr->getLinkedSlotID(fe);
-    return -1;
+	eFBCTunerManager *mgr = eFBCTunerManager::getInstance();
+	if (mgr) return mgr->getLinkedSlotID(fe);
+	return -1;
 }
 %}
 
