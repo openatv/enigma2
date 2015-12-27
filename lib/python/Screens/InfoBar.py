@@ -283,7 +283,7 @@ class InfoBar(
 
 
 class MoviePlayer(
-	InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
+	InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarEPG,
 	InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 	InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
@@ -315,7 +315,7 @@ class MoviePlayer(
 		self.allowPiP = True
 
 		for x in (
-			HelpableScreen, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
+			HelpableScreen, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarEPG,
 			InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,
 			InfoBarAudioSelection, InfoBarNotifications,
 			InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
