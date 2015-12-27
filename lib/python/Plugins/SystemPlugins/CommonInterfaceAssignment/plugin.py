@@ -183,7 +183,7 @@ class CIconfigMenu(Screen):
 
 	def cancel(self):
 		self.saveXML()
-		activate_all(self)
+		activate_all(self, editcallback=True)
 		self.close()
 
 	def setServiceListInfo(self):
@@ -610,7 +610,7 @@ class myChannelSelection(ChannelSelectionBase):
 	def cancel(self):
 		self.close(None)
 
-def activate_all(session):
+def activate_all(session, editcallback=False):
 	NUM_CI = eDVBCIInterfaces.getInstance().getNumOfSlots()
 	print "[CI_Activate] FOUND %d CI Slots " % NUM_CI
 	if NUM_CI and NUM_CI > 0:
@@ -647,7 +647,7 @@ def activate_all(session):
 						read_provider_dvbname = provider.get("dvbnamespace").encode("UTF-8")
 						read_providers.append((read_provider_name,long(read_provider_dvbname,16)))
 
-					if read_slot is not False and (read_services or read_providers or usingcaid):
+					if editcallback or (read_slot is not False and (read_services or read_providers or usingcaid)):
 						print "[CI_Activate] activate CI%d with following settings:" % int(read_slot)
 						print read_services, read_providers, usingcaid
 						try:
