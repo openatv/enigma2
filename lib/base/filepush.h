@@ -8,14 +8,6 @@
 #include <sys/types.h>
 #include <lib/base/rawfile.h>
 
-#ifndef FILEPUSH_BUFSIZE
-# define FILEPUSH_BUFSIZE 188*1024
-#endif
-
-#ifndef FILEPUSH_RECBUFSIZE
-# define FILEPUSH_RECBUFSIZE 188*1024
-#endif
-
 class iFilePushScatterGather
 {
 public:
@@ -26,7 +18,7 @@ public:
 class eFilePushThread: public eThread, public Object
 {
 public:
-	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=FILEPUSH_BUFSIZE);
+	eFilePushThread(int prio_class, int prio_level, int blocksize, size_t buffersize);
 	~eFilePushThread();
 	void thread();
 	void stop();
@@ -73,7 +65,7 @@ private:
 class eFilePushThreadRecorder: public eThread, public Object
 {
 public:
-	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize=FILEPUSH_RECBUFSIZE);
+	eFilePushThreadRecorder(unsigned char* buffer, size_t buffersize);
 	void thread();
 	void stop();
 	void start(int sourcefd);
