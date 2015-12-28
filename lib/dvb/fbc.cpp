@@ -62,11 +62,10 @@ void eFBCTunerManager::procInit()
 int eFBCTunerManager::getFBCTunerNum()
 {
 	char tmp[255];
-	int fbc_tuner_num = 2;
+	int fbc_tuner_num = 0;
 	int fd = open("/proc/stb/info/chipset", O_RDONLY);
 	if(fd < 0) {
 		eDebug("open failed, /proc/stb/info/chipset!");
-		fbc_tuner_num = 2;
 	}
 	else
 	{
