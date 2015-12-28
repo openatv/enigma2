@@ -46,6 +46,8 @@ private:
 	void connectSortedLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
 	int updateLNBSlotMask(int dest_slot, int src_slot, bool remove);
 
+	int fe_slot_id(const eDVBRegisteredFrontend *fe) const;
+
 public:
 	eFBCTunerManager();
 	virtual ~eFBCTunerManager();
