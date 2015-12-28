@@ -204,7 +204,6 @@ class CIconfigMenu(Screen):
 			ref = args[0]
 			service_ref = ServiceReference(ref)
 			service_name = service_ref.getServiceName()
-			service_name = service_name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			if find_in_list(self.servicelist, service_name, 0) == False:
 				split_ref = service_ref.ref.toString().split(":")
 				if split_ref[0] == "1":#== dvb service und nicht muell von None
@@ -219,7 +218,6 @@ class CIconfigMenu(Screen):
 				for ref in args[0]:
 					service_ref = ServiceReference(ref)
 					service_name = service_ref.getServiceName()
-					service_name = service_name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 					if len(service_name) and find_in_list(self.servicelist, service_name, 0) == False:
 						split_ref = service_ref.ref.toString().split(":")
 						if split_ref[0] == "1":
@@ -228,7 +226,6 @@ class CIconfigMenu(Screen):
 				self.setServiceListInfo()
 			else:
 				name = args[0]
-				name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 				dvbnamespace = args[1]
 				if find_in_list(self.servicelist, name, 0) == False:
 					self.servicelist.append((name, ConfigNothing(), 1, dvbnamespace))
