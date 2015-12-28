@@ -1923,10 +1923,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.delete()
 
 	def delete(self, *args):
-		if args and (not args[0]):
+		item = self.getCurrentSelection()
+		if not item or args and (not args[0]):
 			# cancelled by user (passing any arg means it's a dialog return)
 			return
-		item = self.getCurrentSelection()
 		current = item[0]
 		info = item[1]
 		cur_path = os.path.realpath(current.getPath())

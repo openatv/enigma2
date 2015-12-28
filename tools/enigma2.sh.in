@@ -46,9 +46,9 @@ sync
 
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-$(date +%Y-%m-%d_%H-%M-%S).log
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log
+		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2-$(date +%Y-%m-%d_%H-%M-%S).log
 	fi
 else
 	LD_PRELOAD=$LIBS @bindir@/enigma2

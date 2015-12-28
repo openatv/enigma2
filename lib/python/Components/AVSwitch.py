@@ -79,7 +79,7 @@ class AVSwitch:
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
-	# 	print "remove DVI-PC because of not existing modes"
+	# 	print "[VideoHardware] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
 	
 	# Machines that do not have component video (red, green and blue RCA sockets).
@@ -112,7 +112,7 @@ class AVSwitch:
 			modes = f.read()[:-1]
 			f.close()
 		except IOError:
-			print "couldn't read available videomodes."
+			print "[VideoHardware] couldn't read available videomodes."
 			self.modes_available = [ ]
 			return
 		self.modes_available = modes.split(' ')
@@ -124,7 +124,7 @@ class AVSwitch:
 			f.close()
 			self.modes_preferred = modes.split(' ')
 		except IOError:
-			print "reading preferred modes failed, using all modes"
+			print "[VideoHardware] reading preferred modes failed, using all modes"
 			self.modes_preferred = self.modes_available
 
 		if self.modes_preferred != self.last_modes_preferred:
@@ -143,7 +143,7 @@ class AVSwitch:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force = None):
-		print "[VideoMode] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
+		print "[VideoHardware] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
 
 		# config.av.videoport.setValue(port)
 		# we can ignore "port"
@@ -253,20 +253,20 @@ class AVSwitch:
 	def setConfiguredMode(self):
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
-			print "current port not available, not setting videomode"
+			print "[VideoHardware] current port not available, not setting videomode"
 			return
 
 		mode = config.av.videomode[port].value
 
 		if mode not in config.av.videorate:
-			print "current mode not available, not setting videomode"
+			print "[VideoHardware] current mode not available, not setting videomode"
 			return
 
 		rate = config.av.videorate[mode].value
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
-		print "[VideoMode] setting aspect: %s" % cfgelement.value
+		print "[VideoHardware] setting aspect: %s" % cfgelement.value
 		f = open("/proc/stb/video/aspect", "w")
 		f.write(cfgelement.value)
 		f.close()
@@ -276,20 +276,20 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		print "[VideoMode] setting wss: %s" % wss
+		print "[VideoHardware] setting wss: %s" % wss
 		f = open("/proc/stb/denc/0/wss", "w")
 		f.write(wss)
 		f.close()
 
 	def setPolicy43(self, cfgelement):
-		print "[VideoMode] setting policy: %s" % cfgelement.value
+		print "[VideoHardware] setting policy: %s" % cfgelement.value
 		f = open("/proc/stb/video/policy", "w")
 		f.write(cfgelement.value)
 		f.close()
 
 	def setPolicy169(self, cfgelement):
 		if os.path.exists("/proc/stb/video/policy2"):
-			print "[VideoMode] setting policy2: %s" % cfgelement.value
+			print "[VideoHardware] setting policy2: %s" % cfgelement.value
 			f = open("/proc/stb/video/policy2", "w")
 			f.write(cfgelement.value)
 			f.close()
@@ -298,7 +298,7 @@ class AVSwitch:
 		ret = (16,9)
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
-			print "current port not available in getOutputAspect!!! force 16:9"
+			print "[VideoHardware] current port not available in getOutputAspect!!! force 16:9"
 		else:
 			mode = config.av.videomode[port].value
 			force_widescreen = self.isWidescreenMode(port, mode)
@@ -631,7 +631,7 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:
-				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
+				print "[VideoHardware] setting scaler_sharpness to: %0.8X" % myval
 				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
 				f.write("%0.8X" % myval)
 				f.close()
@@ -639,7 +639,7 @@ def InitAVSwitch():
 				f.write("1")
 				f.close()
 			except IOError:
-				print "couldn't write pep_scaler_sharpness"
+				print "[VideoHardware] couldn't write pep_scaler_sharpness"
 
 		if getBoxType() in ('gbquad', 'gbquadplus'):
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
@@ -664,20 +664,20 @@ class VideomodeHotplug:
 		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % what
+		print "[VideoHardware] hotplug detected on port '%s'" % what
 		port = config.av.videoport.value
 		mode = config.av.videomode[port].value
 		rate = config.av.videorate[mode].value
 
 		if not iAVSwitch.isModeAvailable(port, mode, rate):
-			print "mode %s/%s/%s went away!" % (port, mode, rate)
+			print "[VideoHardware] mode %s/%s/%s went away!" % (port, mode, rate)
 			modelist = iAVSwitch.getModeList(port)
 			if not len(modelist):
-				print "sorry, no other mode is available (unplug?). Doing nothing."
+				print "[VideoHardware] sorry, no other mode is available (unplug?). Doing nothing."
 				return
 			mode = modelist[0][0]
 			rate = modelist[0][1]
-			print "setting %s/%s/%s" % (port, mode, rate)
+			print "[VideoHardware] setting %s/%s/%s" % (port, mode, rate)
 			iAVSwitch.setMode(port, mode, rate)
 
 hotplug = None

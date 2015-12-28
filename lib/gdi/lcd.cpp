@@ -16,6 +16,7 @@ eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
+	_buffer = NULL;
 	lcdfd = -1;
 	locked=0;
 	instance = this;
@@ -39,6 +40,7 @@ eLCD::~eLCD()
 {
 	if (_buffer)
 		delete [] _buffer;
+	instance = NULL;
 }
 
 int eLCD::lock()
@@ -123,6 +125,9 @@ eDBoxLCD::eDBoxLCD()
 			lcd_type = 3;
 		}
 		eDebug("[eDboxLCD] xres=%d, yres=%d, bpp=%d lcd_type=%d", xres, yres, bpp, lcd_type);
+
+		instance = this;
+		setSize(xres, yres, bpp);
 	}
 #endif
 	if (FILE * file = fopen("/proc/stb/lcd/right_half", "w"))
@@ -150,6 +155,8 @@ void eDBoxLCD::setFlipped(bool onoff)
 int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
+	if (lcdfd < 0)
+		return(0);
 
 #ifndef LCD_IOCTL_SRV
 #define LCDSET                  0x1000
@@ -174,6 +181,9 @@ int eDBoxLCD::setLCDContrast(int contrast)
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 #ifndef NO_LCD
+	if (lcdfd < 0)
+		return(0);
+
 	eDebug("[eDboxLCD] setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)

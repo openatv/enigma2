@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-16 11:53+0000\n"
-"PO-Revision-Date: 2015-11-18 20:21+0100\n"
+"POT-Creation-Date: 2015-12-23 20:30+0000\n"
+"PO-Revision-Date: 2015-12-27 09:10+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2716,9 +2716,6 @@ msgstr "Aus"
 msgid "Disable Animations"
 msgstr "Animationen deaktivieren"
 
-msgid "Disable FastZapping"
-msgstr "Deaktiviere schnelles Umschalten"
-
 msgid "Disable MiniTV"
 msgstr "Deaktiviere MiniTV"
 
@@ -3099,9 +3096,6 @@ msgstr "5V für aktive Antenne"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG aktivieren"
-
-msgid "Enable FastZapping"
-msgstr "Aktiviere schnelles Umschalten"
 
 msgid "Enable FreeSat EPG"
 msgstr "Freesat EPG aktivieren"
@@ -4917,6 +4911,9 @@ msgstr "NFS Einstellungen"
 
 msgid "NIM"
 msgstr "NIM"
+
+msgid "NO"
+msgstr "Nein"
 
 msgid "NTP"
 msgstr "NTP"
@@ -9057,6 +9054,10 @@ msgstr "gesamt"
 msgid "Total cards:"
 msgstr "Karten:"
 
+#, python-format
+msgid "Total clients streaming: %d (%s)"
+msgstr "Anzahl streamender Klienten: %d (%s)"
+
 msgid "Total handled client ecm's"
 msgstr "Insgesamt behandelte Klienten ECMs"
 
@@ -9074,6 +9075,9 @@ msgstr "Gesamt:"
 
 msgid "Track"
 msgstr "Spur"
+
+msgid "Transcoding: "
+msgstr "Transkodierung:"
 
 msgid "Translation Information"
 msgstr "Übersetzung Information"
@@ -9631,6 +9635,9 @@ msgstr "Video CD ansehen"
 msgid "Virtuosso Image Xtreme"
 msgstr "Virtuosso Image Xtreme"
 
+msgid "Visual impaired commentary"
+msgstr "Kommentar für Sehgeschädigte"
+
 msgid "Vix forum user name"
 msgstr "Username im ViX Forum"
 
@@ -10024,6 +10031,9 @@ msgstr "XBox 360 Unterstützung"
 msgid "XP1000"
 msgstr ""
 
+msgid "YES"
+msgstr "Ja"
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -10162,18 +10172,18 @@ msgstr ""
 "Es wurde gewählt die aktuelle Sendung zu speichern aber die Sendung läuft noch.\n"
 "Was soll gemacht werden?"
 
+msgid "You have not selected any logs to delete."
+msgstr "Du hast keine Logs zum Löschen gewählt."
+
+msgid "You have not selected any logs to send"
+msgstr "Du hast keine Logs zum Verschicken gewählt."
+
 msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, enter your info, and then try again"
 msgstr ""
 "Du hast deine Benutzerinformationen nicht eingegeben\n"
 "Drücke MENU und gebe die Informationen ein und dann versuche es erneut"
-
-msgid "You have selected no logs to delete."
-msgstr "Du hast keine Logs zum Löschen gewählt."
-
-msgid "You have selected no logs to send."
-msgstr "Du hast keine Logs zum Verschicken gewählt."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -11546,6 +11556,12 @@ msgstr "umgeschaltet"
 
 #~ msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
 #~ msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
+
+#~ msgid "Disable FastZapping"
+#~ msgstr "Deaktiviere schnelles Umschalten"
+
+#~ msgid "Enable FastZapping"
+#~ msgstr "Aktiviere schnelles Umschalten"
 
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."

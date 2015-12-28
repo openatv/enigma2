@@ -1235,6 +1235,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 		self.selectionChanged()
 
+	def getCurrentCursorLocation(self):
+		return self.time_base
+
 	def fillGraphEPG(self, services, stime = None):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:

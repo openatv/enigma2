@@ -151,7 +151,7 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 
 	ioctl(fbFd, FBIOGET_VSCREENINFO, &screeninfo);
 
-	if ((screeninfo.xres!=nxRes) && (screeninfo.yres!=nyRes) && (screeninfo.bits_per_pixel!=nbpp))
+	if ((screeninfo.xres!=nxRes) || (screeninfo.yres!=nyRes) || (screeninfo.bits_per_pixel!=nbpp))
 	{
 		eDebug("[fb] SetMode failed: wanted: %dx%dx%d, got %dx%dx%d",
 			nxRes, nyRes, nbpp,

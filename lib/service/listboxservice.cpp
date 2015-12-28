@@ -592,8 +592,14 @@ bool eListboxServiceContent::checkServiceIsRecorded(eServiceReference ref)
 		{
 			ePtr<iDVBChannelList> db;
 			ePtr<eDVBResourceManager> res;
-			eDVBResourceManager::getInstance(res);
-			res->getChannelList(db);
+			if (eDVBResourceManager::getInstance(res) == -1)
+			{
+				return false;
+			}
+			if (res->getChannelList(db) < 0)
+			{
+				return false;
+			}
 			eBouquet *bouquet = NULL;
 			if (!db->getBouquet(ref, bouquet))
 			{
