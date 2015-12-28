@@ -2,9 +2,9 @@
 #define __dvb_sec_h
 
 #include <lib/dvb/idvb.h>
-#include <list>
-
 #include <lib/dvb/fbc.h>
+
+#include <list>
 
 #ifndef SWIG
 class eSecCommand

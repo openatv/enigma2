@@ -1444,6 +1444,7 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 			else if (it->m_frontend->getSlotID() == tu2)
 				p2 = *it;
 		}
+
 		if (p1 && p2)
 		{
 			p1->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)p2);

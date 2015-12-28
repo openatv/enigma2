@@ -134,6 +134,7 @@ void eListboxServiceContent::getNext(eServiceReference &ref)
 	{
 		list::iterator cursor(m_cursor);
 		cursor++;
+
 		if (cursor == m_list.end())
 		{
 			cursor = m_list.begin();
