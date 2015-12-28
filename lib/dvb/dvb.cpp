@@ -4,7 +4,6 @@
 
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
-#include <lib/base/filepush.h>
 #include <lib/base/wrappers.h>
 #include <lib/base/httpstream.h>
 #include <lib/dvb/cahandler.h>
@@ -12,6 +11,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/specs.h>
+#include "filepush.h"
 
 #include <errno.h>
 #include <sys/types.h>

@@ -4,13 +4,13 @@
 #ifndef SWIG
 
 #include <lib/base/ebase.h>
-#include <lib/base/filepush.h>
 #include <lib/base/elock.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/tstools.h>
 #include <lib/dvb/esection.h>
+#include "filepush.h"
 #include <connection.h>
 
 #include <dvbsi++/service_description_section.h>
