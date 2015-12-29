@@ -13,7 +13,6 @@ base_libenigma_base_a_SOURCES = \
 	base/encoding.cpp \
 	base/estring.cpp \
 	base/freesatv2.cpp \
-	base/filepush.cpp \
 	base/init.cpp \
 	base/ioprio.cpp \
 	base/message.cpp \
@@ -40,7 +39,6 @@ baseinclude_HEADERS = \
 	base/encoding.h \
 	base/eptrlist.h \
 	base/estring.h \
-	base/filepush.h \
 	base/freesatv2.cpp \
 	base/i18n.h \
 	base/itssource.h \

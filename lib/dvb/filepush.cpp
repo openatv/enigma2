@@ -1,4 +1,4 @@
-#include <lib/base/filepush.h>
+#include "filepush.h"
 #include <lib/base/eerror.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -6,9 +6,7 @@
 
 //#define SHOW_WRITE_TIME
 
-eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
-	:prio_class(io_prio_class),
-	 prio(io_prio_level),
+eFilePushThread::eFilePushThread(int blocksize, size_t buffersize):
 	 m_sg(NULL),
 	 m_stop(1),
 	 m_send_pvr_commit(0),
@@ -47,7 +45,7 @@ void eFilePushThread::thread()
 {
 	ignore_but_report_signals();
 	hasStarted(); /* "start()" blocks until we get here */
-	setIoPrio(prio_class, prio);
+	setIoPrio(IOPRIO_CLASS_BE, 0);
 	eDebug("[eFilePushThread] START thread");
 
 	do

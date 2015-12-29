@@ -334,14 +334,14 @@ class Session:
 	def pushSummary(self):
 		if self.summary is not None:
 			self.summary.hide()
-		self.summary_stack.append(self.summary)
-		self.summary = None
+			self.summary_stack.append(self.summary)
+			self.summary = None
 
 	def popSummary(self):
-		if self.summary is not None:
+		if self.summary:
 			self.summary.doClose()
-		self.summary = self.summary_stack.pop()
-		if self.summary is not None:
+		self.summary = self.summary_stack and self.summary_stack.pop()
+		if self.summary:
 			self.summary.show()
 
 profile("Standby,PowerKey")

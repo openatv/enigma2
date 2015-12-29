@@ -2258,7 +2258,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# This unfortunately won't work with subservices
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 		else:
-			self.setCurrentSelection(playingref)
+			lastservice = eServiceReference(self.lastservice.value)
+			if lastservice.valid() and self.getCurrentSelection() == lastservice:
+				pass	# keep current selection
+			else:
+				self.setCurrentSelection(playingref)
 
 	def setStartRoot(self, root):
 		if root:
