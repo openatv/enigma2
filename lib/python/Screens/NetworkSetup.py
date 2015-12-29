@@ -246,7 +246,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		Screen.setTitle(self, _("Nameserver settings"))
 		self.backupNameserverList = iNetwork.getNameserverList()[:]
-		print "backup-list:", self.backupNameserverList
+		print "[NameserverSetup] backup-list:", self.backupNameserverList
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -306,7 +306,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cancel(self):
 		iNetwork.clearNameservers()
-		print "backup-list:", self.backupNameserverList
+		print "[NameserverSetup] backup-list:", self.backupNameserverList
 		for nameserver in self.backupNameserverList:
 			iNetwork.addNameserver(nameserver)
 		self.close()
@@ -317,7 +317,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.createSetup()
 
 	def remove(self):
-		print "currentIndex:", self["config"].getCurrentIndex()
+		print "[NameserverSetup] currentIndex:", self["config"].getCurrentIndex()
 		index = self["config"].getCurrentIndex()
 		if index < len(self.nameservers):
 			iNetwork.removeNameserver(self.nameservers[index])
@@ -836,7 +836,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
 					return False
 				else:
-					print "error: ",error_no,error_str
+					print "[AdapterSetupConfiguration] error: ",error_no,error_str
 					return True
 			else:
 				return True

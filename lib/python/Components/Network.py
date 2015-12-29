@@ -177,7 +177,7 @@ class Network:
 			interfaces = fp.readlines()
 			fp.close()
 		except:
-			print "[Network.py] interfaces - opening failed"
+			print "[Network] interfaces - opening failed"
 
 		ifaces = {}
 		currif = ""
@@ -241,7 +241,7 @@ class Network:
 			fp.close()
 			self.nameservers = []
 		except:
-			print "[Network.py] resolv.conf - opening failed"
+			print "[Network] resolv.conf - opening failed"
 
 		for line in resolv:
 			if self.regExpMatch(nameserverPattern, line) is not None:
