@@ -59,7 +59,7 @@ class Harddisk:
 		elif os.access("/dev/.devfsd", 0):
 			self.type = DEVTYPE_DEVFS
 		else:
-			print "Unable to determine structure of /dev"
+			print "[Harddisk] Unable to determine structure of /dev"
 
 		self.max_idle_time = 0
 		self.idle_running = False
@@ -94,7 +94,7 @@ class Harddisk:
 					self.disk_path = disk_path
 					break
 
-		print "new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path
+		print "[Harddisk] new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path
 		if not removable:
 			self.startIdle()
 
@@ -293,7 +293,7 @@ class Harddisk:
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
-		print "[HD] size: %s MB" % size
+		print "[Harddisk] [HD] size: %s MB" % size
 
 		task = UnmountTask(job, self)
 
@@ -338,7 +338,7 @@ class Harddisk:
 			task.args.append(self.disk_path)
 			if size > 128000:
 				# Start at sector 8 to better support 4k aligned disks
-				print "[HD] Detected >128GB disk, using 4k alignment"
+				print "[Harddisk] [HD] Detected >128GB disk, using 4k alignment"
 				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
 			else:
 				# Smaller disks (CF cards, sticks etc) don't need that
@@ -362,7 +362,7 @@ class Harddisk:
 						task.args += ["-C", "262144"]
 						big_o_options.append("bigalloc")
 				except Exception, ex:
-					print "Failed to detect Linux version:", ex
+					print "[Harddisk] Failed to detect Linux version:", ex
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
@@ -694,16 +694,16 @@ class HarddiskManager:
 		if len(netmount) > 0:
 			for fil in netmount:
 				if os.path.ismount('/media/net/' + fil):
-					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
+					print "[Harddisk] new Network Mount", fil, '->', os.path.join('/media/net/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil + '/'), description = fil))
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
 		if len(autofsmount) > 0:
 			for fil in autofsmount:
 				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
-					print "new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
+					print "[Harddisk] new Network Mount", fil, '->', os.path.join('/media/autofs/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil + '/'), description = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
-			print "new Network Mount being used as HDD replacement -> /media/hdd/"
+			print "[Harddisk] new Network Mount being used as HDD replacement -> /media/hdd/"
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
@@ -728,7 +728,7 @@ class HarddiskManager:
 				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
 			except OSError:
 				physdev = dev
-				print "couldn't determine blockdev physdev for device", device
+				print "[Harddisk] couldn't determine blockdev physdev for device", device
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
@@ -805,7 +805,7 @@ class HarddiskManager:
 		try:
 			description = readFile("/sys" + phys + "/model")
 		except IOError, s:
-			print "couldn't read model: ", s
+			print "[Harddisk] couldn't read model: ", s
 		from Tools.HardwareInfo import HardwareInfo
 		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
 			if phys.startswith(physdevprefix):
@@ -850,7 +850,7 @@ class UnmountTask(Task.LoggingTask):
 			dev = self.hdd.disk_path.split('/')[-1]
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception, e:
-			print "ERROR: Failed to create /dev/nomount file:", e
+			print "[UnmountTask] ERROR: Failed to create /dev/nomount file:", e
 		self.setTool('umount')
 		self.args.append('-f')
 		for dev in self.hdd.enumMountDevices():
@@ -858,7 +858,7 @@ class UnmountTask(Task.LoggingTask):
 			self.postconditions.append(Task.ReturncodePostcondition())
 			self.mountpoints.append(dev)
 		if not self.mountpoints:
-			print "UnmountTask: No mountpoints found?"
+			print "[UnmountTask] No mountpoints found?"
 			self.cmd = 'true'
 			self.args = [self.cmd]
 	def afterRun(self):
@@ -866,7 +866,7 @@ class UnmountTask(Task.LoggingTask):
 			try:
 				os.rmdir(path)
 			except Exception, ex:
-				print "Failed to remove path '%s':" % path, ex
+				print "[UnmountTask] Failed to remove path '%s':" % path, ex
 
 class MountTask(Task.LoggingTask):
 	def __init__(self, job, hdd):
@@ -877,7 +877,7 @@ class MountTask(Task.LoggingTask):
 			dev = self.hdd.disk_path.split('/')[-1]
 			os.unlink('/dev/nomount.%s' % dev)
 		except Exception, e:
-			print "ERROR: Failed to remove /dev/nomount file:", e
+			print "[MountTask] ERROR: Failed to remove /dev/nomount file:", e
 		# try mounting through fstab first
 		if self.hdd.mount_device is None:
 			dev = self.hdd.partitionPath("1")
@@ -906,7 +906,7 @@ class MkfsTask(Task.LoggingTask):
 	def prepare(self):
 		self.fsck_state = None
 	def processOutput(self, data):
-		print "[Mkfs]", data
+		print "[MkfsTask] [Mkfs]", data
 		if 'Writing inode tables:' in data:
 			self.fsck_state = 'inode'
 		elif 'Creating journal' in data:
@@ -922,7 +922,7 @@ class MkfsTask(Task.LoggingTask):
 						d[1] = d[1].split('\x08',1)[0]
 					self.setProgress(80*int(d[0])/int(d[1]))
 				except Exception, e:
-					print "[Mkfs] E:", e
+					print "[MkfsTask] [Mkfs] E:", e
 				return # don't log the progess
 		self.log.append(data)
 
