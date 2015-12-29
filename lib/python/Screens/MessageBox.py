@@ -69,7 +69,7 @@ class MessageBox(Screen):
 				self["ErrorPixmap"].show()
 			elif picon == self.TYPE_YESNO:
 				self["QuestionPixmap"].show()
-			elif picon == self.TYPE_INFO:
+			elif picon == self.TYPE_INFO or picon == self.TYPE_WARNING:
 				self["InfoPixmap"].show()
 
 		self.messtype = type
