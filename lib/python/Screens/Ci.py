@@ -9,7 +9,7 @@ from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import time
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
+import os
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
@@ -659,7 +659,7 @@ class CIHelperSetup(Screen, ConfigListScreen):
 			self.session.open(MessageBox, _("Sorry CIHelper Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/cihelper.conf.tmp'):
-			rename('/etc/cihelper.conf.tmp', '/etc/cihelper.conf')
+			os.rename('/etc/cihelper.conf.tmp', '/etc/cihelper.conf')
 		self.myStop()
 
 	def myStop(self):
