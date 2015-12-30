@@ -1,20 +1,19 @@
 from Components.Console import Console
-from os import listdir as os_listdir, path as os_path
-from re import compile as re_compile
+import os
+import re
 from enigma import eEnv
 
 class Keyboard:
 	def __init__(self):
 		self.keyboardmaps = []
-		self.readKeyboardMapFiles()
-
-	def readKeyboardMapFiles(self):
-		for keymapfile in os_listdir(eEnv.resolve('${datadir}/keymaps/')):
+		self.kpath = eEnv.resolve('${datadir}/keymaps')
+		eq = re.compile('^\s*(\w+)\s*=\s*(.*)\s*$')
+		for keymapfile in os.listdir(self.kpath):
 			if (keymapfile.endswith(".info")):
 				mapfile = None
 				mapname = None
-				for line in open(eEnv.resolve('${datadir}/keymaps/') + keymapfile):
-					m = re_compile('^\s*(\w+)\s*=\s*(.*)\s*$').match(line)
+				for line in open(os.path.join(self.kpath, keymapfile)):
+					m = eq.match(line)
 					if m:
 						key, val = m.groups()
 						if key == 'kmap':
@@ -22,14 +21,14 @@ class Keyboard:
 						if key == 'name':
 						    mapname = val
 						if (mapfile is not None) and (mapname is not None):
-						    self.keyboardmaps.append(( mapfile,mapname))
+						    self.keyboardmaps.append((mapfile, mapname))
 
 	def activateKeyboardMap(self, index):
 		try:
 			keymap = self.keyboardmaps[index]
 			print "Activating keymap:",keymap[1]
-			keymappath = eEnv.resolve('${datadir}/keymaps/') + keymap[0]
-			if os_path.exists(keymappath):
+			keymappath = os.path.join(self.kpath, keymap[0])
+			if os.path.exists(keymappath):
 				Console().ePopen(("loadkmap < " + str(keymappath)))
 		except:
 			print "Selected keymap does not exist!"
