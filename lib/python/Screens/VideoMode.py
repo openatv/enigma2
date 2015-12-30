@@ -635,6 +635,22 @@ class AutoVideoMode(Screen):
 								else:
 									print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, x)
 									resolutionlabel["restxt"].setText(_("Video mode: %s") % x)
+							if (write_mode == "2160p24") or (write_mode == "2160p30") or (write_mode == "2160p60"):
+								for x in values:
+									if x == "2160p":
+										try:
+											f = open("/proc/stb/video/videomode", "w")
+											f.write(x)
+											f.close()
+											changeResolution = True
+										except Exception, e:
+											print("[VideoMode] write_mode exception:" + str(e))
+								if not changeResolution:
+									print "[VideoMode] setMode - port: %s, mode: 2160p is also not available" % config_port
+									resolutionlabel["restxt"].setText(_("Video mode: 2160p also not available"))
+								else:
+									print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, x)
+									resolutionlabel["restxt"].setText(_("Video mode: %s") % x)
 						else:
 							resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 							print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
