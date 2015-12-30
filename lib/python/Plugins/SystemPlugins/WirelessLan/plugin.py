@@ -11,13 +11,11 @@ from Components.ConfigList import ConfigListScreen
 from Components.Network import iNetwork
 from Components.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from os import system, path as os_path, listdir
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
 from time import time
-from os import system
-from re import escape as re_escape
+import re
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
@@ -394,7 +392,7 @@ def configStrings(iface):
 	driver = iNetwork.detectWlanModule(iface)
 	ret = ""
 	if driver == 'madwifi' and config.plugins.wlan.hiddenessid.value:
-		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"
+		ret += "\tpre-up iwconfig " + iface + " essid \"" + re.escape(config.plugins.wlan.essid.value) + "\" || true\n"
 	ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
