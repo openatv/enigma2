@@ -1,21 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 from stat import S_IMODE
-from re import compile
 
-import enigma
-
-try:
-	from os import chmod
-	have_chmod = True
-except:
-	have_chmod = False
-
-try:
-	from os import utime
-	have_utime = True
-except:
-	have_utime = False
+from enigma import eEnv, eConsoleAppContainer
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -39,23 +27,23 @@ PATH_CREATE = 0
 PATH_DONTCREATE = 1
 PATH_FALLBACK = 2
 defaultPaths = {
-		SCOPE_TRANSPONDERDATA: (enigma.eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
-		SCOPE_SYSETC: (enigma.eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
-		SCOPE_FONTS: (enigma.eEnv.resolve("${datadir}/fonts/"), PATH_DONTCREATE),
-		SCOPE_CONFIG: (enigma.eEnv.resolve("${sysconfdir}/enigma2/"), PATH_CREATE),
-		SCOPE_PLUGINS: (enigma.eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
+		SCOPE_TRANSPONDERDATA: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
+		SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
+		SCOPE_FONTS: (eEnv.resolve("${datadir}/fonts/"), PATH_DONTCREATE),
+		SCOPE_CONFIG: (eEnv.resolve("${sysconfdir}/enigma2/"), PATH_CREATE),
+		SCOPE_PLUGINS: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
 
-		SCOPE_LANGUAGE: (enigma.eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
+		SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
 
-		SCOPE_SKIN: (enigma.eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-		SCOPE_SKIN_IMAGE: (enigma.eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+		SCOPE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+		SCOPE_SKIN_IMAGE: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
 		SCOPE_HDD: ("/hdd/movie/", PATH_DONTCREATE),
 		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
-		SCOPE_PLAYLIST: (enigma.eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
+		SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
 
-		SCOPE_METADIR: (enigma.eEnv.resolve("${datadir}/meta"), PATH_CREATE),
+		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	}
 
 FILE_COPY = 0 # copy files from fallback dir to the basedir
@@ -63,7 +51,7 @@ FILE_MOVE = 1 # move files
 PATH_COPY = 2 # copy the complete fallback dir to the basedir
 PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in paths)
 fallbackPaths = {
-		SCOPE_CONFIG: [("/home/root/", FILE_MOVE), (enigma.eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
+		SCOPE_CONFIG: [("/home/root/", FILE_MOVE), (eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
 		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)],
 		SCOPE_TIMESHIFT: [("/hdd/timeshift", PATH_MOVE)]
 	}
@@ -165,7 +153,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 						try:
 							os.link(x[0] + base, path + base)
 						except:
-							os.system("cp " + x[0] + base + " " + path + base)
+							eConsoleAppContainer().execute("cp " + x[0] + base + " " + path + base)
 						break
 				elif x[1] == FILE_MOVE:
 					if fileExists(x[0] + base):
@@ -175,7 +163,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 					if pathExists(x[0]):
 						if not pathExists(defaultPaths[scope][0]):
 							os.mkdir(path)
-						os.system("cp -a " + x[0] + "* " + path)
+						eConsoleAppContainer().execute("cp -a " + x[0] + "* " + path)
 						break
 				elif x[1] == PATH_MOVE:
 					if pathExists(x[0]):
@@ -304,7 +292,7 @@ def InitFallbackFiles():
 def crawlDirectory(directory, pattern):
 	list = []
 	if directory:
-		expression = compile(pattern)
+		expression = re.compile(pattern)
 		for root, dirs, files in os.walk(directory):
 			for file in files:
 				if expression.match(file) is not None:
@@ -324,10 +312,8 @@ def copyfile(src, dst):
 			f2.write(buf)
 		st = os.stat(src)
 		mode = S_IMODE(st.st_mode)
-		if have_chmod:
-			chmod(dst, mode)
-		if have_utime:
-			utime(dst, (st.st_atime, st.st_mtime))
+		os.chmod(dst, mode)
+		os.utime(dst, (st.st_atime, st.st_mtime))
 	except:
 		print "copy", src, "to", dst, "failed!"
 		return -1
@@ -357,10 +343,8 @@ def copytree(src, dst, symlinks=False):
 	try:
 		st = os.stat(src)
 		mode = S_IMODE(st.st_mode)
-		if have_chmod:
-			chmod(dst, mode)
-		if have_utime:
-			utime(dst, (st.st_atime, st.st_mtime))
+		os.chmod(dst, mode)
+		os.utime(dst, (st.st_atime, st.st_mtime))
 	except:
 		print "copy stats for", src, "failed!"
 
