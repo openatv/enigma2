@@ -2,8 +2,7 @@
 import os
 import re
 from stat import S_IMODE
-
-from enigma import eEnv, eConsoleAppContainer
+from enigma import eEnv
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -25,7 +24,7 @@ SCOPE_ACTIVE_SKIN = 19
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
-PATH_FALLBACK = 2
+
 defaultPaths = {
 		SCOPE_TRANSPONDERDATA: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
 		SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
@@ -44,16 +43,6 @@ defaultPaths = {
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
 
 		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
-	}
-
-FILE_COPY = 0 # copy files from fallback dir to the basedir
-FILE_MOVE = 1 # move files
-PATH_COPY = 2 # copy the complete fallback dir to the basedir
-PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in paths)
-fallbackPaths = {
-		SCOPE_CONFIG: [("/home/root/", FILE_MOVE), (eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
-		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)],
-		SCOPE_TIMESHIFT: [("/hdd/timeshift", PATH_MOVE)]
 	}
 
 def resolveFilename(scope, base = "", path_prefix = None):
@@ -143,38 +132,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 				print "resolveFilename: Couldn't create %s" % path
 				return None
 
-	fallbackPath = fallbackPaths.get(scope)
-
-	if fallbackPath and not fileExists(path + base):
-		for x in fallbackPath:
-			try:
-				if x[1] == FILE_COPY:
-					if fileExists(x[0] + base):
-						try:
-							os.link(x[0] + base, path + base)
-						except:
-							eConsoleAppContainer().execute("cp " + x[0] + base + " " + path + base)
-						break
-				elif x[1] == FILE_MOVE:
-					if fileExists(x[0] + base):
-						os.rename(x[0] + base, path + base)
-						break
-				elif x[1] == PATH_COPY:
-					if pathExists(x[0]):
-						if not pathExists(defaultPaths[scope][0]):
-							os.mkdir(path)
-						eConsoleAppContainer().execute("cp -a " + x[0] + "* " + path)
-						break
-				elif x[1] == PATH_MOVE:
-					if pathExists(x[0]):
-						os.rename(x[0], path + base)
-						break
-			except Exception, e:
-				print "[D] Failed to recover %s:" % (path+base), e
-
-	# FIXME: we also have to handle DATADIR etc. here.
 	return path + base
-	# this is only the BASE - an extension must be added later.
 
 pathExists = os.path.exists
 isMount = os.path.ismount
