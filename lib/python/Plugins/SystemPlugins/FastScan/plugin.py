@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
@@ -15,6 +13,8 @@ from Components.ServiceList import refreshServiceList
 from Components.ActionMap import ActionMap
 
 from enigma import eFastScan, eDVBFrontendParametersSatellite, eTimer
+
+import os
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
