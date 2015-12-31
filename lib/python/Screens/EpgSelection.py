@@ -1415,19 +1415,19 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_GRAPH:
 			if number == 1:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)
-				if timeperiod > 60:
+				if timeperiod > 90:
 					timeperiod -= 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
+					config.epgselection.graph_prevtimeperiod.value = str(timeperiod)
 					self.moveTimeLines()
 			elif number == 2:
 				self.prevPage()
 			elif number == 3:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)
-				if timeperiod < 300:
+				if timeperiod < 270:
 					timeperiod += 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.graph_prevtimeperiod.setValue(timeperiod)
+					config.epgselection.graph_prevtimeperiod.value = str(timeperiod)
 					self.moveTimeLines()
 			elif number == 4:
 				self.updEvent(-2)
@@ -1440,10 +1440,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 6:
 				self.updEvent(+2)
 			elif number == 7:
-				if config.epgselection.graph_heightswitch.value:
-					config.epgselection.graph_heightswitch.setValue(False)
-				else:
-					config.epgselection.graph_heightswitch.setValue(True)
+				config.epgselection.graph_heightswitch.value = not config.epgselection.graph_heightswitch.value
 				self['list'].setItemsPerPage()
 				self['list'].fillGraphEPG(None)
 				self.moveTimeLines()
