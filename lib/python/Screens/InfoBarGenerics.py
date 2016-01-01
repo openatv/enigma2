@@ -3117,15 +3117,15 @@ class InfoBarInstantRecord:
 
 		if isStandardInfoBar(self):
 			common = (
-				(_("Add recording (stop after current event)"), "event"),
-				(_("Add recording (indefinitely)"), "indefinitely"),
-				(_("Add recording (enter recording duration)"), "manualduration"),
-				(_("Add recording (enter recording endtime)"), "manualendtime")
+				(_("Record the rest of the current event"), "event"),
+				(_("Record indefinitely"), "indefinitely"),
+				(_("Record for given duration"), "manualduration"),
+				(_("Record until given time"), "manualendtime")
 			)
 
 			timeshiftcommon = (
-				(_("Timeshift save recording (stop after current event)"), "savetimeshift"),
-				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent")
+				(_("Record current timeshift event"), "savetimeshift"),
+				(_("Record selected timeshift event"), "savetimeshiftEvent")
 			)
 		else:
 			common = ()
@@ -3136,9 +3136,9 @@ class InfoBarInstantRecord:
 		if self.isInstantRecordRunning():
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			list += (
-				(_("Change recording (duration)"), "changeduration"),
-				(_("Change recording (endtime)"), "changeendtime"),
-				(_("Stop recording"), "stop")
+				(_("Change instant recording duration"), "changeduration"),
+				(_("Change instant recording end time"), "changeendtime"),
+				(_("Stop instant recording"), "stop")
 			)
 		else:
 			title = _("Start recording?")
@@ -3150,7 +3150,7 @@ class InfoBarInstantRecord:
 			list += timeshiftcommon
 
 		if isStandardInfoBar(self):
-			list += ((_("Do not record"), "no"), )
+			list += ((_("Do nothing"), "no"), )
 
 		if list:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list)
