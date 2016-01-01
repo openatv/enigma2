@@ -54,18 +54,21 @@ void eFBCTunerManager::procInit()
 
 int eFBCTunerManager::getFBCTunerNum()
 {
-	char tmp[128];
-	int fbc_tuner_num;
-
-	for(fbc_tuner_num = 0; fbc_tuner_num < 128; fbc_tuner_num++)
-	{
-		sprintf(tmp, "/proc/stb/frontend/%d/fbc_id", fbc_tuner_num);
-
-		if(access(tmp, F_OK))
-			break;
+	char tmp[255];
+	int fbc_tuner_num = 0;
+	int fd = open("/proc/stb/info/chipset", O_RDONLY);
+	if(fd < 0) {
+		eDebug("open failed, /proc/stb/info/chipset!");
 	}
+	else
+	{
+		read(fd, tmp, 255);
+		close(fd);
 
-	return fbc_tuner_num / 8;
+		if (!!strstr(tmp, "7376"))
+			fbc_tuner_num = 2;
+	}
+	return fbc_tuner_num;
 }
 
 int eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
