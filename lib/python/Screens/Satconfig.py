@@ -466,6 +466,68 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.fillListWithAdvancedSatEntrys(Sat)
 		self["config"].list = self.list
 
+	def unicableconnection(self):
+		if self.nimConfig.configMode.value == "advanced":
+			connect_count = 0
+			dvbs_slots = nimmanager.getNimListOfType('DVB-S')
+			dvbs_slots_len = len(dvbs_slots)
+
+			for x in dvbs_slots:
+				try:
+					nim_slot = nimmanager.nim_slots[x]
+					if nim_slot == self.nimConfig:
+						self_idx = x
+					if nim_slot.config.configMode.value == "advanced":
+						if nim_slot.config.advanced.unicableconnected.value == True:
+							connect_count += 1
+				except: pass
+			print "[Satconfig] connections %d %d" %(connect_count, dvbs_slots_len)
+			if connect_count >= dvbs_slots_len:
+				return False
+
+		self.slot_dest_list = []
+		def checkRecursiveConnect(slot_id):
+			if slot_id in self.slot_dest_list:
+				print slot_id
+				return False
+			self.slot_dest_list.append(slot_id)
+			slot_config = nimmanager.nim_slots[slot_id].config
+			if slot_config.configMode.value == "advanced":
+				if slot_config.advanced.unicableconnected.value == True:
+					return checkRecursiveConnect(int(slot_config.advanced.unicableconnectedTo.value))
+			return True
+
+		return checkRecursiveConnect(self.slotid)
+
+	def checkLoopthrough(self):
+		if self.nimConfig.configMode.value in "loopthrough_internal", "loopthrough_external":
+			loopthrough_count = 0
+			dvbs_slots = nimmanager.getNimListOfType('DVB-S')
+			dvbs_slots_len = len(dvbs_slots)
+
+			for x in dvbs_slots:
+				try:
+					nim_slot = nimmanager.nim_slots[x]
+					if nim_slot == self.nimConfig:
+						self_idx = x
+					if nim_slot.config.configMode.value in "loopthrough_internal", "loopthrough_external":
+						loopthrough_count += 1
+				except: pass
+			if loopthrough_count >= dvbs_slots_len:
+				return False
+
+		self.slot_dest_list = []
+		def checkRecursiveConnect(slot_id):
+			if slot_id in self.slot_dest_list:
+				return False
+			self.slot_dest_list.append(slot_id)
+			slot_config = nimmanager.nim_slots[slot_id].config
+			if slot_config.configMode.value in "loopthrough_internal", "loopthrough_external":
+				return checkRecursiveConnect(int(slot_config.connectedTo.value))
+			return True
+
+		return checkRecursiveConnect(self.slotid)
+
 	def keyOk(self):
 		if self["config"].getCurrent() == self.advancedSelectSatsEntry:
 			conf = self.nimConfig.advanced.sat[int(self.nimConfig.advanced.sats.value)].userSatellitesList
@@ -482,6 +544,13 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			conf.save()
 
 	def keySave(self):
+		if not self.unicableconnection():
+			self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."),MessageBox.TYPE_ERROR,timeout=10)
+			return
+		if not self.checkLoopthrough():
+			self.session.open(MessageBox, _("The loopthrough setting is wrong."),MessageBox.TYPE_ERROR,timeout=10)
+			return
+
 		old_configured_sats = nimmanager.getConfiguredSats()
 		if not self.run():
 			return
