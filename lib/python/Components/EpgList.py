@@ -138,7 +138,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.cur_event = None
 		self.cur_service = None
 		self.service_set = False
-		self.offs = 0
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.select_rect = None
@@ -277,6 +276,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventNameWrap = 'yes'
 		self.numberOfRows = None
 
+	# Keep old selfs.offs attribute as a do-nothing property.
+
+	def __getOffs(self):
+		return 0
+
+	def __setOffs(self, offs):
+		pass
+
+	offs = property(__getOffs, __setOffs)
+
 	def applySkin(self, desktop, screen):
 		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
@@ -307,7 +316,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setSelectableFunc(None)
 
 	def setEpoch(self, epoch):
-		self.offs = 0
 		self.time_epoch = epoch
 		self.fillGraphEPG(None)
 
@@ -1071,6 +1079,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible=True):
+
+		def newBaseTime(newBase):
+			now = time() - int(config.epg.histminutes.value) * 60
+			roundTo = int(config.epgselection.infobar_roundto.value) if self.type == EPG_TYPE_INFOBARGRAPH else int(config.epgselection.graph_roundto.value)
+			return int(max(newBase, now - now % (roundTo * 60)))
+
 		if not self.service_set:
 			return
 		cur_service = self.cur_service  # (service, service_name, events, picon)
@@ -1085,49 +1099,38 @@ class EPGList(HTMLComponent, GUIComponent):
 				if valid_event and self.cur_event + 1 < len(entries):
 					self.cur_event += 1
 				else:
-					self.offs += 1
+					self.time_base += self.time_epoch * 60
 					self.fillGraphEPG(None)  # refill
 					return True
 			elif dir == -1:  # prev
 				if valid_event and self.cur_event - 1 >= 0:
 					self.cur_event -= 1
-				elif self.offs > 0:
-					self.offs -= 1
-					self.fillGraphEPG(None)  # refill
-					return True
-				elif self.time_base > time():
-					self.time_base -= self.time_epoch * 60
-					self.fillGraphEPG(None)  # refill
-					return True
+				else:
+					newBase = newBaseTime(self.time_base - self.time_epoch * 60)
+					if newBase != self.time_base:
+						self.time_base = newBase
+						self.fillGraphEPG(None)  # refill
+						return True
 			elif dir == +2:  # next page
-				self.offs += 1
+				self.time_base += self.time_epoch * 60
 				self.fillGraphEPG(None)  # refill
 				return True
 			elif dir == -2:  # prev
-				if self.offs > 0:
-					self.offs -= 1
-					self.fillGraphEPG(None)  # refill
-					return True
-				elif self.time_base > time():
-					self.time_base -= self.time_epoch * 60
+				newBase = newBaseTime(self.time_base - self.time_epoch * 60)
+				if newBase != self.time_base:
+					self.time_base = newBase
 					self.fillGraphEPG(None)  # refill
 					return True
 			elif dir == +24:
 				self.time_base += 86400
-				self.fillGraphEPG(None, self.time_base)  # refill
+				self.fillGraphEPG(None)  # refill
 				return True
 			elif dir == -24:
-				now = time() - int(config.epg.histminutes.value) * 60
-				if self.type == EPG_TYPE_GRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.graph_roundto.value) * 60):
-						self.time_base -= 86400
-						self.fillGraphEPG(None, self.time_base)  # refill
-						return True
-				elif self.type == EPG_TYPE_INFOBARGRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.infobar_roundto.value) * 60):
-						self.time_base -= 86400
-						self.fillGraphEPG(None, self.time_base)  # refill
-						return True
+				newBase = newBaseTime(self.time_base - 86400)
+				if newBase != self.time_base:
+					self.time_base = newBase
+					self.fillGraphEPG(None)  # refill
+					return True
 
 		if cur_service and valid_event and self.cur_event < len(entries):
 			entry = entries[self.cur_event]  # (event_id, event_title, begin_time, duration)
@@ -1294,10 +1297,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		return self.time_epoch
 
 	def getTimeBase(self):
-		return self.time_base + self.offs * self.time_epoch * 60
+		return self.time_base
+
+	# self.offs no longer does anything
 
 	def resetOffset(self):
-		self.offs = 0
+		pass
 
 	def getSelectedEventId(self):
 		x = self.l.getCurrentSelection()
