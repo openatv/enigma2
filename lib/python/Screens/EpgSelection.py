@@ -292,7 +292,7 @@ class EPGSelection(Screen, HelpableScreen):
 				'4': (self.keyNumberGlobal, _('Page left')),
 				'5': (self.keyNumberGlobal, _('Jump to current time')),
 				'6': (self.keyNumberGlobal, _('Page right')),
-				'7': (self.keyNumberGlobal, _('No. of items toggle (increase/decrease)')),
+				'7': (self.keyNumberGlobal, _('No. of items toggle (increase/decrease)')) if self.type == EPG_TYPE_GRAPH else None,
 				'8': (self.keyNumberGlobal, _('Page down')),
 				'9': (self.keyNumberGlobal, _('Jump to prime time')),
 				'0': (self.keyNumberGlobal, _('Move to home of list'))
