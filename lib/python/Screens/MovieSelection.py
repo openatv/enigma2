@@ -960,7 +960,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
-			print [MovieSelection] failed to unsubscribe:", e
+			print "[MovieSelection] failed to unsubscribe:", e
 			pass
 
 	def createSummary(self):

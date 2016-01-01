@@ -23,7 +23,7 @@ class WizardLanguage(Wizard):
 		self.updateTexts()
 
 	def updateLanguageDescription(self):
-		print "[WizardLanguage] " language.getLanguageList()[language.getActiveLanguageIndex()]
+		print language.getLanguageList()[language.getActiveLanguageIndex()]
 		self["languagetext"].setText(self.getTranslation(language.getLanguageList()[language.getActiveLanguageIndex()][1][0]))
 
 	def updateTexts(self):
