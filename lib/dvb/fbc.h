@@ -45,6 +45,7 @@ private:
 	bool checkUsed(eDVBRegisteredFrontend *fe, bool a_simulate);
 	void connectSortedLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
 	int updateLNBSlotMask(int dest_slot, int src_slot, bool remove);
+	void printLinks(eDVBRegisteredFrontend *fe);
 
 public:
 	eFBCTunerManager();
