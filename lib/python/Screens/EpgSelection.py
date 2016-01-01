@@ -1438,7 +1438,9 @@ class EPGSelection(Screen, HelpableScreen):
 					self.moveTimeLines()
 			elif number == 4:
 				self.updEvent(-2)
-			elif number == 5:
+			elif number in (5, 0):
+				if number == 0:
+					self.toTop()
 				now = time() - int(config.epg.histminutes.value) * 60
 				self.ask_time = now - now % (int(roundto_conf.value) * 60)
 				self['list'].fillGraphEPG(None, self.ask_time)
@@ -1461,12 +1463,6 @@ class EPGSelection(Screen, HelpableScreen):
 					self.ask_time += 86400
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
-			elif number == 0:
-				self.toTop()
-				now = time() - int(config.epg.histminutes.value) * 60
-				self.ask_time = now - now % (int(roundto_conf.value) * 60)
-				self['list'].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines()
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
