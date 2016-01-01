@@ -1,8 +1,10 @@
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getMachineProcModel
+from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from os import path as os_path, remove, unlink, rename, chmod, access, fdopen, X_OK
 from tempfile import mkstemp
 from shutil import move
 import commands
+import skin
 import time
 
 from enigma import eTimer, eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
@@ -761,14 +763,15 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 class NetworkMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 28))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
+		font = skin.fonts["ChoiceList"]
+		self.l.setFont(0, gFont(font[0], font[1]))
+		self.l.setItemHeight(font[2])
 
 def SubNetworkMenuEntryComponent(name, item):
+	font = skin.fonts["ChoiceList"]
 	return [
 		_(item),
-		MultiContentEntryText(pos=(20, 8), size=(400, 50), font=0, text=_(name)),
+		MultiContentEntryText(pos=(20, 0), size=(400, font[2]), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_(name)),
 	]
 
 
