@@ -11,7 +11,7 @@ from Screens.ChoiceBox import ChoiceBox
 
 # Generic
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import *
+from Tools import Directories
 from Components.config import config
 import os
 
@@ -245,8 +245,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def createDirCallback(self, res):
 		if res:
 			path = os.path.join(self["filelist"].current_directory, res)
-			if not pathExists(path):
-				if not createDir(path):
+			if not os.path.exists(path):
+				if not Directories.createDir(path):
 					self.session.open(
 						MessageBox,
 						_("Creating directory %s failed.") % (path),
@@ -264,7 +264,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def removeDir(self):
 		sel = self["filelist"].getSelection()
-		if sel and pathExists(sel[0]):
+		if sel and os.path.exists(sel[0]):
 			self.session.openWithCallback(
 				boundFunction(self.removeDirCallback, sel[0]),
 				MessageBox,
@@ -281,7 +281,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def removeDirCallback(self, name, res):
 		if res:
-			if not removeDir(name):
+			if not Directories.removeDir(name):
 				self.session.open(
 					MessageBox,
 					_("Removing directory %s failed. (Maybe not empty.)") % (name),
@@ -344,13 +344,13 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
 
-				if self.filename and not pathExists(ret):
+				if self.filename and not os.path.exists(ret):
 					menu = [(_("Create new folder and exit"), "folder"), (_("Save and exit"), "exit")]
 					text = _("Select action")
 					def dirAction(choice):
 						if choice:
 							if choice[1] == "folder":
-								if not createDir(ret):
+								if not Directories.createDir(ret):
 									self.session.open(MessageBox, _("Creating directory %s failed.") % (ret), type = MessageBox.TYPE_ERROR)
 									return
 							self.close(ret)
