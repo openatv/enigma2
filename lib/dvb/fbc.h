@@ -17,6 +17,7 @@ private:
 	ePtr<eDVBResourceManager> m_res_mgr;
 	int m_fbc_tuner_num;
 	static bool isDestroyed;
+	static const int FBC_TUNER_SET = 8;
 
 	int getFBCTunerNum();
 	void procInit();

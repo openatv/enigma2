@@ -52,49 +52,47 @@ void eFBCTunerManager::procInit()
 
 int eFBCTunerManager::getFBCTunerNum()
 {
-	char tmp[255];
-	int fbc_tuner_num = 2;
-	int fd = open("/proc/stb/info/chipset", O_RDONLY);
-	if(fd < 0) {
-		eDebug("open failed, /proc/stb/info/chipset!");
-		fbc_tuner_num = 2;
-	}
-	else
-	{
-		read(fd, tmp, 255);
-		close(fd);
+	char tmp[128];
+	int fbc_tuner_num;
 
-		if (!!strstr(tmp, "7376"))
-			fbc_tuner_num = 2;
+	// FIXME
+	// This finds the number of virtual tuners even though we want to know
+	// the number of physical ("root") tuners. The calculation in the return
+	// statement is just a guess and works for now.
+
+	for(fbc_tuner_num = 0; fbc_tuner_num < 128; fbc_tuner_num++)
+	{
+		snprintf(tmp, sizeof(tmp), "/proc/stb/frontend/%d/fbc_id", fbc_tuner_num);
+
+		if(access(tmp, F_OK))
+			break;
 	}
-	return fbc_tuner_num;
+	return (fbc_tuner_num / (FBC_TUNER_SET / 2));
 }
 
 int eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 {
-	char filename[128];
-	char data[4];
-	sprintf(filename, "/proc/stb/frontend/%d/fbc_id", fe_id);
-	int fd = open(filename, O_RDWR);
-	if(fd < 0) {
-		eDebug("[*][eFBCTunerManager::setProcFBCID] open failed, %s: %m", filename);
-		return -1;
-	}
-	else
-	{
-		if(isLinkedByIndex(fe_id))
-			fbc_id += 0x10; // 0x10 : isLinked, 0x01 : fbc_id
+	char tmp[128];
+	int fd;
 
-		sprintf(data, "%x", fbc_id);
-		write(fd, data, strlen(data));
-		close(fd);
-	}
-	return 0;
+	snprintf(tmp, sizeof(tmp), "/proc/stb/frontend/%d/fbc_id", fe_id);
+
+	if((fd = open(tmp, O_RDWR)) < 0)
+		return(-1);
+
+	if(isLinkedByIndex(fe_id))
+		fbc_id += 0x10; // 0x10 mask: linked, 0x0f (?) mask: fbc_id // FIXME: shouldn't this be |=?
+
+	snprintf(tmp, sizeof(tmp), "%x", fbc_id);
+	write(fd, tmp, strlen(tmp));
+	close(fd);
+
+	return(0);
 }
 
 bool eFBCTunerManager::isRootFeSlot(int fe_slot_id)
 {
-	return (fe_slot_id%8 < m_fbc_tuner_num) ? true : false;
+	return (fe_slot_id % FBC_TUNER_SET < m_fbc_tuner_num) ? true : false;
 }
 
 bool eFBCTunerManager::isRootFe(eDVBRegisteredFrontend *fe)
@@ -104,7 +102,7 @@ bool eFBCTunerManager::isRootFe(eDVBRegisteredFrontend *fe)
 
 bool eFBCTunerManager::isSameFbcSet(int a, int b)
 {
-	return (a/8) == (b/8) ? true : false;
+	return (a / FBC_TUNER_SET) == (b / FBC_TUNER_SET) ? true : false;
 }
 
 bool eFBCTunerManager::isSupportDVBS(eDVBRegisteredFrontend *fe)
@@ -114,7 +112,7 @@ bool eFBCTunerManager::isSupportDVBS(eDVBRegisteredFrontend *fe)
 
 int eFBCTunerManager::getFBCID(int top_fe_id)
 {
-	return (((2 * top_fe_id) / 8) + (top_fe_id % 8)); /* (0,1,8,9,16,17...) -> (0,1,2,3,4,5...) */
+	return (((2 * top_fe_id) / FBC_TUNER_SET) + (top_fe_id % FBC_TUNER_SET)); /* (0,1,8,9,16,17...) -> (0,1,2,3,4,5...) */
 }
 
 int eFBCTunerManager::setDefaultFBCID(eDVBRegisteredFrontend *fe)
