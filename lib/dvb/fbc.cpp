@@ -65,7 +65,7 @@ int eFBCTunerManager::getFBCTunerNum()
 			break;
 	}
 
-	return fbc_tuner_num / 8;
+	return fbc_tuner_num / FBC_TUNER_SET;
 }
 
 int eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
@@ -92,7 +92,7 @@ int eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 
 bool eFBCTunerManager::isRootFeSlot(int fe_slot_id)
 {
-	return (fe_slot_id%8 < m_fbc_tuner_num) ? true : false;
+	return (fe_slot_id%FBC_TUNER_SET < m_fbc_tuner_num) ? true : false;
 }
 
 
@@ -103,7 +103,7 @@ bool eFBCTunerManager::isRootFe(eDVBRegisteredFrontend *fe)
 
 bool eFBCTunerManager::isSameFbcSet(int a, int b)
 {
-	return (a/8) == (b/8) ? true : false;
+	return (a/FBC_TUNER_SET) == (b/FBC_TUNER_SET) ? true : false;
 }
 
 bool eFBCTunerManager::isSupportDVBS(eDVBRegisteredFrontend *fe)
@@ -113,7 +113,7 @@ bool eFBCTunerManager::isSupportDVBS(eDVBRegisteredFrontend *fe)
 
 int eFBCTunerManager::getFBCID(int top_fe_id)
 {
-	return 2*top_fe_id/8 + top_fe_id%8; /* (0,1,8,9,16,17...) -> (0,1,2,3,4,5...)*/
+	return 2*top_fe_id/FBC_TUNER_SET + top_fe_id%FBC_TUNER_SET; /* (0,1,8,9,16,17...) -> (0,1,2,3,4,5...)*/
 }
 
 int eFBCTunerManager::setDefaultFBCID(eDVBRegisteredFrontend *fe)
