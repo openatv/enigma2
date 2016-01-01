@@ -65,7 +65,7 @@ class LanguageSelection(Screen):
 		self.close()
 
 	def run(self):
-		print "updating language..."
+		print "[LanguageSelection] updating language..."
 		lang = self["languages"].getCurrent()[0]
 		if lang != config.osd.language.value:
 			config.osd.language.setValue(lang)
@@ -73,7 +73,7 @@ class LanguageSelection(Screen):
 		return lang
 
 	def commit(self, lang):
-		print "commit language"
+		print "[LanguageSelection] commit language"
 		language.activateLanguage(lang)
 		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()

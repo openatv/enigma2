@@ -5,7 +5,7 @@ from twisted.internet.protocol import Protocol, Factory
 hotplugNotifier = []
 
 def processHotplugData(self, v):
-	print "hotplug:", v
+	print "[Hotplug] hotplug:", v
 	action = v.get("ACTION")
 	device = v.get("DEVPATH")
 	physdevpath = v.get("PHYSDEVPATH")
@@ -35,16 +35,16 @@ class Hotplug(Protocol):
 		pass
 
 	def connectionMade(self):
-		print "HOTPLUG connection!"
+		print "[Hotplug] HOTPLUG connection!"
 		self.received = ""
 
 	def dataReceived(self, data):
-		print "hotplug:", data
+		print "[Hotplug] hotplug:", data
 		self.received += data
-		print "complete", self.received
+		print "[Hotplug] complete", self.received
 
 	def connectionLost(self, reason):
-		print "HOTPLUG connection lost!"
+		print "[Hotplug] HOTPLUG connection lost!"
 		data = self.received.split('\0')[:-1]
 		v = {}
 		for x in data:
@@ -55,7 +55,7 @@ class Hotplug(Protocol):
 
 def autostart(reason, **kwargs):
 	if reason == 0:
-		print "starting hotplug handler"
+		print "[Hotplug] starting hotplug handler"
 		from twisted.internet import reactor
 		import os
 		try:

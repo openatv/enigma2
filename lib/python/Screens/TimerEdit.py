@@ -101,17 +101,17 @@ class TimerEditList(Screen):
 		if cur:
 			t = cur
 			if t.disabled:
-# 				print "try to ENABLE timer"
+# 				print "[TimerEdit] try to ENABLE timer"
 				t.enable()
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
 				if not timersanitycheck.check():
 					t.disable()
-					print "Sanity check failed"
+					print "[TimerEdit] Sanity check failed"
 					simulTimerList = timersanitycheck.getSimulTimerList()
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
 				else:
-					print "Sanity check passed"
+					print "[TimerEdit] Sanity check passed"
 					if timersanitycheck.doubleCheck():
 						t.disable()
 			else:
@@ -318,10 +318,10 @@ class TimerEditList(Screen):
 
 
 	def finishedEdit(self, answer):
-# 		print "finished edit"
+# 		print "[TimerEdit] finished edit"
 
 		if answer[0]:
-# 			print "Edited timer"
+# 			print "[TimerEdit] Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -340,16 +340,16 @@ class TimerEditList(Screen):
 			else:
 				success = True
 			if success:
-				print "Sanity check passed"
+				print "[TimerEdit] Sanity check passed"
 				self.session.nav.RecordTimer.timeChanged(entry)
 
 			self.fillTimerList()
 			self.updateState()
 # 		else:
-# 			print "Timeredit aborted"
+# 			print "[TimerEdit] Timeredit aborted"
 
 	def finishedAdd(self, answer):
-# 		print "finished add"
+# 		print "[TimerEdit] finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -363,7 +363,7 @@ class TimerEditList(Screen):
 			self.fillTimerList()
 			self.updateState()
 # 		else:
-# 			print "Timeredit aborted"
+# 			print "[TimerEdit] Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -385,7 +385,7 @@ class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer
-		print "TimerSanityConflict"
+		print "[TimerEdit] TimerSanityConflict"
 
 		self["timer1"] = TimerList(self.getTimerList(timer[0]))
 		self.list = []

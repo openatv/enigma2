@@ -74,7 +74,7 @@ class IpkgComponent:
 		self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
 	def runCmd(self, cmd):
-		print "executing", self.ipkg, cmd
+		print "[IPKG] executing", self.ipkg, cmd
 		self.cmd.appClosed.append(self.cmdFinished)
 		self.cmd.dataAvail.append(self.cmdData)
 		if self.cmd.execute(self.ipkg + " " + cmd):

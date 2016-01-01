@@ -64,23 +64,23 @@ class OscamInfo:
 						data = data.split("-")[0]
 					except:
 						try:
-							print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed, using hard-coded config dir'
+							print '[OScaminfo] oscam start-command is not as "/oscam-binary -parameter /config-folder" executed, using hard-coded config dir'
 							cmd = binary + ' -V | grep ConfigDir'
 							res = os.popen(cmd).read()
 							data = res.split(":")[1]
 						except:
-							print 'OScaminfo - oscam binary appears to be broken'
+							print '[OScaminfo] oscam binary appears to be broken'
 							return None
 					data = data.strip() + '/oscam.conf'
 					if os.path.exists(data):
-						print 'OScaminfo - config file "%s" ' % data
+						print '[OScaminfo] config file "%s" ' % data
 						return data
-					print 'OScaminfo - config file "%s" not found' % data
+					print '[OScaminfo] config file "%s" not found' % data
 					return None
 			elif int(data) > 1:
-				print 'OScaminfo - more than one(%s) oscam binarys are active'  % data
+				print '[OScaminfo] more than one(%s) oscam binarys are active'  % data
 				return None
-		print 'OScaminfo - no active oscam binarys found'
+		print '[OScaminfo] no active oscam binarys found'
 		return None
 
 	def getUserData(self):
@@ -171,7 +171,7 @@ class OscamInfo:
 			elif hasattr(e, "code"):
 				err = str(e.code)
 		if err is not False:
-			print "[openWebIF] Fehler: %s" % err
+			print "[OScaminfo] Fehler: %s" % err
 			return False, err
 		else:
 			return True, data

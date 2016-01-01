@@ -149,11 +149,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_failed.png"))
 
 	def applySkin(self, desktop, parent):
-		print 'applySkin'
 		def itemHeight(value):
 			self.itemHeight = int(value)
 		def setServiceNameFont(value):
-			print 'setServiceNameFont', value
 			self.serviceNameFont = parseFont(value, ((1,1),(1,1)))
 		def setEventNameFont(value):
 			self.eventNameFont = parseFont(value, ((1,1),(1,1)))

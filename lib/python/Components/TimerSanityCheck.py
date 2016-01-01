@@ -224,7 +224,7 @@ class TimerSanityCheck:
 					if entry[1] == timer:
 						overlaplist.remove(entry)
 			else:
-				print "Bug: unknown flag!"
+				print "[TimerSanityCheck] Bug: unknown flag!"
 			self.nrep_eventlist[idx] = (event[0],event[1],event[2],cnt,overlaplist[:]) # insert a duplicate into current overlaplist
 			idx += 1
 
@@ -266,7 +266,7 @@ class TimerSanityCheck:
 								break
 
 		if len(self.simultimer) < 2:
-			print "Possible Bug: unknown Conflict!"
+			print "[TimerSanityCheck] Possible Bug: unknown Conflict!"
 			return True
 
 		return False # conflict detected!

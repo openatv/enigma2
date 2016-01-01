@@ -436,7 +436,7 @@ class LogManager(Screen):
 			wos_pwd = base64.b64decode('elZMRFMwaFprNUdp')
 
 			try:
-				print "connecting to server: mail.oe-alliance.com"
+				print "[LogManager] connecting to server: mail.oe-alliance.com"
 				#socket.setdefaulttimeout(30)
 				s = smtplib.SMTP("mail.oe-alliance.com", 26)
 				s.login(wos_user, wos_pwd)

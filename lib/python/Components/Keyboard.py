@@ -29,12 +29,12 @@ class Keyboard:
 	def activateKeyboardMap(self, index):
 		try:
 			keymap = self.keyboardmaps[index]
-			print "Activating keymap:",keymap[1]
+			print "[Keyboard] Activating keymap:",keymap[1]
 			keymappath = eEnv.resolve('${datadir}/keymaps/') + keymap[0]
 			if os_path.exists(keymappath):
 				Console().ePopen(("loadkmap < " + str(keymappath)))
 		except:
-			print "Selected keymap does not exist!"
+			print "[Keyboard] Selected keymap does not exist!"
 
 	def getKeyboardMaplist(self):
 		return self.keyboardmaps

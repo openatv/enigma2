@@ -114,7 +114,7 @@ class ServiceScan:
 								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
 							}.get(tp.bandwidth, ""))
 					else:
-						print "unknown transponder type in scanStatusChanged"
+						print "[ServiceScan] unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
@@ -182,7 +182,7 @@ class ServiceScan:
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)
 		if not self.isDone():
-			print "*** warning *** scan was not finished!"
+			print "[ServiceScan] *** warning *** scan was not finished!"
 
 		del self.scan
 

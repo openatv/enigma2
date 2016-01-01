@@ -409,7 +409,7 @@ class VirtualKeyBoard(Screen):
 
 	def smsOK(self):
 		if self.smsChar and self.selectAsciiKey(self.smsChar):
-			print "pressing ok now"
+			print "[VirtualKeyboard] pressing ok now"
 			self.okClicked()
 
 	def keyGotAscii(self):

@@ -5,7 +5,7 @@ from Components.config import config
 
 class FactoryReset(MessageBox, ProtectedScreen):
 	def __init__(self, session):
-		MessageBox.__init__(self, session, _("When you perform a factory reset, you will lose ALL your configuration data\n"
+		MessageBox.__init__(self, session, _("When you perform a factory reset, you will lose ALL of your configuration data\n"
 			"(including bouquets, services, satellite data ...)\n"
 			"After completion of the factory reset, your %s %s will restart automatically!\n\n"
 			"Do you really want to do a factory reset?") % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO, default = False)

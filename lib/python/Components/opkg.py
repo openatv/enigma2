@@ -55,7 +55,7 @@ def listsDirPath():
 			if line.startswith('lists_dir'):
 				return line.replace('\n','').split(' ')[2]
 	except IOError:
-		print "[opkg] cannot open %s" % path
+		print "[Opkg] cannot open %s" % path
 	return '/var/lib/opkg'
 
 if __name__ == '__main__':
