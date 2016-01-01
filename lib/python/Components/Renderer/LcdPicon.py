@@ -14,15 +14,15 @@ lastLcdPiconPath = None
 def initLcdPiconPaths():
 	global searchPaths
 	searchPaths = []
-	for mp in ('/usr/share/enigma2/', '/'):
-		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
 		onMountpointAdded(part.mountpoint)
-
+	for mp in ('/usr/share/enigma2/', '/'):
+		onMountpointAdded(mp)
+		
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'sezammarvel', 'atemionemesis', 'mbultra', 'beyonwizt4', 'dm7020hd', 'dm7080') and not SystemInfo["grautec"]:
+		if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'sezammarvel', 'atemionemesis', 'mbultra', 'beyonwizt4', 'dm7020hd', 'dm7080') and not SystemInfo["grautec"] or os.path.isdir(mountpoint + 'piconlcd'):
 			path = os.path.join(mountpoint, 'piconlcd') + '/'
 		else:
 			path = os.path.join(mountpoint, 'picon') + '/'
@@ -37,7 +37,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'sezammarvel', 'atemionemesis', 'mbultra', 'beyonwizt4', 'dm7020hd', 'dm7080') and not SystemInfo["grautec"]:
+	if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'sezammarvel', 'atemionemesis', 'mbultra', 'beyonwizt4', 'dm7020hd', 'dm7080') and not SystemInfo["grautec"] or os.path.isdir(mountpoint + 'piconlcd'):
 		path = os.path.join(mountpoint, 'piconlcd') + '/'
 	else:
 		path = os.path.join(mountpoint, 'picon') + '/'
