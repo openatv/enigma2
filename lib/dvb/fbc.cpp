@@ -46,7 +46,9 @@ void eFBCTunerManager::procInit()
 			continue;
 
 		if (isRootFe(*it))
+		{
 			setProcFBCID(fe_slot_id(it), getFBCID(fe_slot_id(it)));
+		}
 	}
 }
 
@@ -211,11 +213,17 @@ int eFBCTunerManager::connectLinkByIndex(int link_fe_index, int prev_fe_index, i
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
 		if (fe_slot_id(it) == prev_fe_index)
+		{
 			prev_fe = *it;
+		}
 		else if (fe_slot_id(it) == next_fe_index)
+		{
 			next_fe = *it;
+		}
 		else if (fe_slot_id(it) == link_fe_index)
+		{
 			link_fe = *it;
+		}
 	}
 
 	if (prev_fe && next_fe && link_fe)
@@ -229,7 +237,9 @@ int eFBCTunerManager::connectLinkByIndex(int link_fe_index, int prev_fe_index, i
 		next_fe->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)link_fe);
 	}
 	else
+	{
 		return -1;
+	}
 
 	return 0;
 }
@@ -244,9 +254,13 @@ int eFBCTunerManager::connectLinkByIndex(int link_fe_index, int prev_fe_index, b
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
 		if (fe_slot_id(it) == prev_fe_index)
+		{
 			prev_fe = *it;
+		}
 		else if (fe_slot_id(it) == link_fe_index)
+		{
 			link_fe = *it;
+		}
 	}
 
 	if (prev_fe && link_fe)
@@ -257,7 +271,9 @@ int eFBCTunerManager::connectLinkByIndex(int link_fe_index, int prev_fe_index, b
 		link_fe->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)prev_fe);
 	}
 	else
+	{
 		return -1;
+	}
 
 	return 0;
 }
@@ -273,11 +289,17 @@ int eFBCTunerManager::disconnectLinkByIndex(int link_fe_index, int prev_fe_index
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
 		if (fe_slot_id(it) == prev_fe_index)
+		{
 			prev_fe = *it;
+		}
 		else if (fe_slot_id(it) == next_fe_index)
+		{
 			next_fe = *it;
+		}
 		else if (fe_slot_id(it) == link_fe_index)
+		{
 			link_fe = *it;
+		}
 	}
 
 	if (prev_fe && next_fe && link_fe)
@@ -291,7 +313,9 @@ int eFBCTunerManager::disconnectLinkByIndex(int link_fe_index, int prev_fe_index
 		link_fe->m_frontend->setEnabled(false);
 	}
 	else
+	{
 		return -1;
+	}
 
 	return 0;
 }
@@ -305,9 +329,13 @@ int eFBCTunerManager::disconnectLinkByIndex(int link_fe_index, int prev_fe_index
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 	{
 		if (fe_slot_id(it) == prev_fe_index)
+		{
 			prev_fe = *it;
+		}
 		else if (fe_slot_id(it) == link_fe_index)
+		{
 			link_fe = *it;
+		}
 	}
 
 	if (prev_fe && link_fe)
@@ -318,7 +346,9 @@ int eFBCTunerManager::disconnectLinkByIndex(int link_fe_index, int prev_fe_index
 		link_fe->m_frontend->setEnabled(false);
 	}
 	else
+	{
 		return -1;
+	}
 
 	return 0;
 }
@@ -548,13 +578,17 @@ void eFBCTunerManager::connectSortedLink(eDVBRegisteredFrontend *link_fe, eDVBRe
 	{
 		int res = connectLink(link_fe, prev_fe, next_fe, simulate);
 		if (res)
+		{
 			return;
+		}
 	}
 	else
 	{
 		int res = connectLink(link_fe, prev_fe, simulate);
 		if (res)
+		{
 			return;
+		}
 	}
 
 	setProcFBCID(link_fe_id, getFBCID(top_fe_id));
@@ -587,19 +621,25 @@ void eFBCTunerManager::unset(eDVBRegisteredFrontend *fe)
 	eDVBRegisteredFrontend *linked_next_fe = getNext(fe);
 
 	if (!linked_prev_fe)
+	{
 		return;
+	}
 
 	if (linked_next_fe)
 	{
 		int res = disconnectLink(fe, linked_prev_fe, linked_next_fe, simulate);
 		if (res)
+		{
 			return;
+		}
 	}
 	else
 	{
 		int res = disconnectLink(fe, linked_prev_fe, simulate);
 		if (res)
+		{
 			return;
+		}
 	}
 
 	updateLNBSlotMask(fe_slot_id(fe), fe_slot_id(linked_prev_fe), true);
