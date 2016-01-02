@@ -500,7 +500,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		return checkRecursiveConnect(self.slotid)
 
 	def checkLoopthrough(self):
-		if self.nimConfig.configMode.value in "loopthrough_internal", "loopthrough_external":
+		if self.nimConfig.configMode.value in ("loopthrough_internal", "loopthrough_external"):
 			loopthrough_count = 0
 			dvbs_slots = nimmanager.getNimListOfType('DVB-S')
 			dvbs_slots_len = len(dvbs_slots)
@@ -510,7 +510,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					nim_slot = nimmanager.nim_slots[x]
 					if nim_slot == self.nimConfig:
 						self_idx = x
-					if nim_slot.config.configMode.value in "loopthrough_internal", "loopthrough_external":
+					if nim_slot.config.configMode.value in ("loopthrough_internal", "loopthrough_external"):
 						loopthrough_count += 1
 				except: pass
 			if loopthrough_count >= dvbs_slots_len:
@@ -522,7 +522,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				return False
 			self.slot_dest_list.append(slot_id)
 			slot_config = nimmanager.nim_slots[slot_id].config
-			if slot_config.configMode.value in "loopthrough_internal", "loopthrough_external":
+			if slot_config.configMode.value in ("loopthrough_internal", "loopthrough_external"):
 				return checkRecursiveConnect(int(slot_config.connectedTo.value))
 			return True
 
