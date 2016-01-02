@@ -256,7 +256,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		for n in nimmanager.nim_slots:
 			if not (n.isCompatible("DVB-S") or n.isCompatible("DVB-T") or n.isCompatible("DVB-C")):
 				continue
-			if n.config_mode  in ("loopthrough", "satposdepends", "nothing"):
+			if n.config_mode  in ("loopthrough_internal", "loopthrough_external", "satposdepends", "nothing"):
 				continue
 			if n.isCompatible("DVB-S") and n.config_mode == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
 				continue
@@ -469,7 +469,7 @@ def SatfinderMain(session, close=None, **kwargs):
 	for n in nims:
 		if not (n.isCompatible("DVB-S") or n.isCompatible("DVB-T") or n.isCompatible("DVB-C")):
 			continue
-		if n.config_mode in ("loopthrough", "satposdepends", "nothing"):
+		if n.config_mode in ("loopthrough_internal", "loopthrough_external", "satposdepends", "nothing"):
 			continue
 		if n.isCompatible("DVB-S") and n.config_mode in ("advanced", "simple") and len(nimmanager.getSatListForNim(n.slot)) < 1:
 			config.Nims[n.slot].configMode.value = "nothing"

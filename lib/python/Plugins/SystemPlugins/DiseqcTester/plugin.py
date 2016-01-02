@@ -605,7 +605,7 @@ class DiseqcTesterNimSelection(NimSelection):
 	def showNim(self, nim):
 		nimConfig = nimmanager.getNimConfig(nim.slot)
 		if nim.isCompatible("DVB-S"):
-			if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends", "nothing"):
+			if nimConfig.configMode.value in ("loopthrough_internal", "loopthrough_external", "equal", "satposdepends", "nothing"):
 				return False
 			configured_sats = nimmanager.getSatListForNim(nim.slot)
 			if len(configured_sats) == 0:
