@@ -28,7 +28,10 @@ public:
 		START_TUNE_TIMEOUT,
 		SET_ROTOR_MOVING,
 		SET_ROTOR_STOPPED,
-		DELAYED_CLOSE_FRONTEND
+		DELAYED_CLOSE_FRONTEND,
+		TAKEOVER,
+		WAIT_TAKEOVER,
+		RELEASE_TAKEOVER
 	};
 	int cmd;
 	struct rotor
@@ -259,9 +262,6 @@ public:
 	int m_prio; // to override automatic tuner management ... -1 is Auto
 #endif
 public:
-#define guard_offset_min (-8000)
-#define guard_offset_max 8000
-#define guard_offset_step 8000
 #define MAX_SATCR 32
 
 #define MAX_EN50607_POSITIONS 		64
@@ -277,11 +277,7 @@ public:
 	unsigned int SatCRvco;
 	unsigned int TuningWord;
 	unsigned int UnicableConfigWord;
-	int old_frequency;
-	int old_polarisation;
-	int old_orbital_position;
-	int guard_offset_old;
-	int guard_offset;
+	long guard_frq[2]={-8000,8000};
 };
 
 class eDVBRegisteredFrontend;
@@ -331,8 +327,8 @@ public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends);
 	RESULT prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int frontend_id, unsigned int tunetimeout);
-	RESULT prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword);
-	RESULT prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword);
+	RESULT prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offest);
+	RESULT prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offset);
 	void prepareTurnOffSatCR(iDVBFrontend &frontend); // used for unicable
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id, int *highest_score_lnb=0);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
