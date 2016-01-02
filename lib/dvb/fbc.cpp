@@ -124,7 +124,7 @@ int eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 
 bool eFBCTunerManager::isRootFeSlot(int fe_slot_id)
 {
-	return (fe_slot_id % FBC_TUNER_SET < m_fbc_tuner_num) ? true : false;
+	return((fe_slot_id % FBC_TUNER_SET) < m_fbc_tuner_num);
 }
 
 bool eFBCTunerManager::isRootFe(eDVBRegisteredFrontend *fe)
@@ -134,12 +134,12 @@ bool eFBCTunerManager::isRootFe(eDVBRegisteredFrontend *fe)
 
 bool eFBCTunerManager::isSameFbcSet(int a, int b)
 {
-	return (a / FBC_TUNER_SET) == (b / FBC_TUNER_SET) ? true : false;
+	return((a / FBC_TUNER_SET) == (b / FBC_TUNER_SET));
 }
 
 bool eFBCTunerManager::isSupportDVBS(eDVBRegisteredFrontend *fe)
 {
-	return (fe->m_frontend->supportsDeliverySystem(SYS_DVBS, true) || fe->m_frontend->supportsDeliverySystem(SYS_DVBS2, true)) ? true : false;
+	return((fe->m_frontend->supportsDeliverySystem(SYS_DVBS, true) || fe->m_frontend->supportsDeliverySystem(SYS_DVBS2, true)));
 }
 
 int eFBCTunerManager::getFBCID(int top_fe_id)
@@ -210,7 +210,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::getLast(eDVBRegisteredFrontend *fe)
 
 bool eFBCTunerManager::isLinked(eDVBRegisteredFrontend *fe)
 {
-	return getPrev(fe) ? true:false;
+	return(!(getPrev(fe) == (eDVBRegisteredFrontend *)0));
 }
 
 bool eFBCTunerManager::isLinkedByIndex(int fe_idx)
@@ -231,7 +231,7 @@ bool eFBCTunerManager::isLinkedByIndex(int fe_idx)
 
 bool eFBCTunerManager::checkTop(eDVBRegisteredFrontend *fe)
 {
-	return getPrev(fe) ? false:true;
+	return(getPrev(fe) == (eDVBRegisteredFrontend *)0);
 }
 
 int eFBCTunerManager::connectLinkByIndex(int link_fe_index, int prev_fe_index, int next_fe_index, bool simulate)
@@ -460,7 +460,7 @@ bool eFBCTunerManager::checkUsed(eDVBRegisteredFrontend *fe, bool a_simulate)
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
 		if (fe_slot_id(it) == fe_slot_id(fe))
-			return (it->m_inuse >0)?true:false;
+			return(it->m_inuse > 0);
 
 	return false;
 }
