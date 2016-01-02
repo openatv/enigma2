@@ -1601,6 +1601,7 @@ class ChannelSelectionBase(Screen):
 		return False
 
 	def showAllServices(self):
+		self["key_green"].setText(_("Satellites"))
 		if not self.pathChangeDisabled:
 			refstr = '%s ORDER BY name'% self.service_types
 			if not self.preEnterPath(refstr):
@@ -1616,6 +1617,10 @@ class ChannelSelectionBase(Screen):
 	def showSatellites(self, changeMode=False):
 		if not self.pathChangeDisabled:
 			refstr = '%s FROM SATELLITES ORDER BY satellitePosition' % self.service_types
+			if self.showSatDetails:
+				self["key_green"].setText(_("Simple"))
+			else:
+				self["key_green"].setText(_("Extended"))
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
 				justSet = False
@@ -1635,6 +1640,10 @@ class ChannelSelectionBase(Screen):
 						justSet = True
 						self.clearPath()
 						self.enterPath(ref, True)
+						if self.showSatDetails:
+							self["key_green"].setText(_("Simple"))
+						else:
+							self["key_green"].setText(_("Extended"))
 				if justSet:
 					addCableAndTerrestrialLater = []
 					serviceHandler = eServiceCenter.getInstance()
@@ -1703,6 +1712,7 @@ class ChannelSelectionBase(Screen):
 								self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def showProviders(self):
+		self["key_green"].setText(_("Satellites"))
 		if not self.pathChangeDisabled:
 			refstr = '%s FROM PROVIDERS ORDER BY name'% self.service_types
 			if not self.preEnterPath(refstr):
@@ -1780,6 +1790,7 @@ class ChannelSelectionBase(Screen):
 				self.servicelist.moveDown()
 
 	def showFavourites(self):
+		self["key_green"].setText(_("Satellites"))
 		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_rootstr):
 				if self.isBasePathEqual(self.bouquet_root):
@@ -2098,6 +2109,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
+					self["key_green"].setText(_("Satellites"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
