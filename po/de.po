@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2015-12-06 21:56+0100\n"
+"PO-Revision-Date: 2016-01-02 23:39+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -3914,15 +3914,15 @@ msgstr "IMDb Suche"
 msgid "IP address"
 msgstr "IP-Adresse"
 
-#: About.py:374:383 :392 :401
+#: About.py:374:383:392:401
 msgid "IP:"
 msgstr "IP:\t"
 
-#: About.py:376:385 :394 :403
+#: About.py:376:385:394:403
 msgid "Netmask:"
 msgstr "Netmask:\t"
 
-#: About.py:378:387 :396 :405
+#: About.py:378:387:396:405
 msgid "MAC:"
 msgstr "MAC:\t"
 
@@ -4133,9 +4133,13 @@ msgstr "Erweiterungen installieren..."
 msgid "Install local extension"
 msgstr "Lokale Erweiterung installieren"
 
-#
+#: SoftwareManager/plugin.py
 msgid "Install or remove finished."
 msgstr "Installation oder Deinstallation beendet."
+
+#: SoftwareManager/plugin.py
+msgid "Do you want to reboot your receiver?"
+msgstr "Wollen Sie jetzt neu starten?"
 
 msgid "Install picons on"
 msgstr "Picons installieren auf"
