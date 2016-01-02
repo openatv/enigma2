@@ -14,10 +14,10 @@ lastLcdPiconPath = None
 def initLcdPiconPaths():
 	global searchPaths
 	searchPaths = []
-	for mp in ('/usr/share/enigma2/', '/'):
-		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
 		onMountpointAdded(part.mountpoint)
+	for mp in ('/usr/share/enigma2/', '/'):
+		onMountpointAdded(mp)
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -29,7 +29,7 @@ def onMountpointAdded(mountpoint):
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
-					#print "[LcdPicon] adding path:", path
+					print "[LcdPicon] adding path:", path
 					searchPaths.append(path)
 					break
 	except Exception, ex:
@@ -43,7 +43,7 @@ def onMountpointRemoved(mountpoint):
 		path = os.path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
-		#print "[LcdPicon] removed path:", path
+		print "[LcdPicon] removed path:", path
 	except:
 		pass
 
@@ -109,20 +109,20 @@ class PiconLCD(Renderer):
 		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
-		if os.path.isdir(mountpoint + 'piconlcd'):
+		if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'sezammarvel', 'atemionemesis', 'mbultra', 'beyonwizt4', 'dm7020hd', 'dm7080') and not SystemInfo["grautec"]:
 			pngname = findLcdPicon("lcd_picon_default")
 		else:
 			pngname = findLcdPicon("picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			if os.path.isdir(mountpoint + 'piconlcd'):
+			if getBoxType() in ('vuultimo'):
 				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 			else:
 				tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				if os.path.isdir(mountpoint + 'piconlcd'):
+				if getBoxType() in ('vuultimo'):
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
 				else:
 					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
