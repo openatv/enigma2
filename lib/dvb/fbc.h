@@ -13,6 +13,12 @@ class eDVBRegisteredFrontend;
 class eFBCTunerManager: public iObject, public Object
 {
 private:
+	typedef enum
+	{
+		link_prev,
+		link_next
+	} link_ptr_t;
+
 	DECLARE_REF(eFBCTunerManager);
 	ePtr<eDVBResourceManager> m_res_mgr;
 	int m_fbc_tuner_num;
@@ -48,6 +54,9 @@ private:
 	int updateLNBSlotMask(int dest_slot, int src_slot, bool remove);
 
 	int fe_slot_id(const eDVBRegisteredFrontend *fe) const;
+
+	long frontend_get_linkptr(const eDVBRegisteredFrontend *fe, link_ptr_t link_type) const;
+	void frontend_set_linkptr(const eDVBRegisteredFrontend *fe, link_ptr_t link_type, long data) const;
 
 public:
 	eFBCTunerManager();
