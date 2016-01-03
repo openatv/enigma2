@@ -204,7 +204,7 @@ def InitUsageConfig():
 		("127", _("No priority")) ])
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default = False);
-	config.usage.remote_fallback = ConfigText(default = "127.0.0.1", fixed_size = False);
+	config.usage.remote_fallback = ConfigText(default = "", fixed_size = False);
 	config.usage.remote_fallback_port = ConfigInteger(default = 8001, limits = (1, 65535));
 	config.usage.timer_sanity_check_enabled = ConfigYesNo(default = True);
 
