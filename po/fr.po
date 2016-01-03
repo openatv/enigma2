@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-31 15:44+0100\n"
+"POT-Creation-Date: 2016-01-02 22:37+0100\n"
 "PO-Revision-Date: 2015-10-31 16:41+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: none\n"
@@ -398,6 +398,10 @@ msgstr "(Afficher menu audio DVD optionnel)"
 msgid "* Only available if more than one interface is active."
 msgstr "* Seulement disponible si plus d'une interface est active."
 
+#, fuzzy
+msgid "* current animation"
+msgstr "Activer la configuration actuelle"
+
 msgid "/media/custom"
 msgstr "/media/custom"
 
@@ -619,6 +623,10 @@ msgstr ""
 "Que voulez-vous faire ?"
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant d'essayer de scanner."
+
+#, fuzzy
+msgid "A recording is currently running. Please stop the recording before trying to start a testing DiSEqC."
 msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant d'essayer de scanner."
 
 #, python-format
@@ -856,6 +864,10 @@ msgstr "Tous satellites 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Tous satellites 4 (USALS)"
 
+#, fuzzy
+msgid "All services provider"
+msgstr "Services/Opérateurs assignés :"
+
 msgid "Allocate"
 msgstr "Allouer"
 
@@ -921,6 +933,18 @@ msgstr "Une erreur inconnue est survenue !"
 
 msgid "And will put your receiver in standby over "
 msgstr "Et va mettre votre récepteur en veiller après"
+
+#, fuzzy
+msgid "Animation Setup"
+msgstr "Paramètres positionneur"
+
+#, fuzzy
+msgid "Animation Speed"
+msgstr "Vitesses du ralenti"
+
+#, fuzzy
+msgid "Animations"
+msgstr "Informations"
 
 msgid "Any activity"
 msgstr "Pour toute activité"
@@ -1063,6 +1087,10 @@ msgstr "Sélection de la langue audio 4"
 
 msgid "Audio options..."
 msgstr "Options Audio..."
+
+#, fuzzy
+msgid "Audio plugins"
+msgstr "Garder plugins"
 
 msgid "Audio settings"
 msgstr "Paramètres audio"
@@ -1308,11 +1336,27 @@ msgstr "CI"
 msgid "CI (Common Interface) Setup"
 msgstr "Configuration CI (Interface Commune)"
 
+msgid "CI Helper"
+msgstr ""
+
 msgid "CI PIN"
 msgstr "CI PIN"
 
 msgid "CI assignment"
 msgstr "Assignation CI"
+
+msgid "CIHelper"
+msgstr ""
+
+#, fuzzy
+msgid "CIHelper Setup"
+msgstr "Configuration Hotkey"
+
+msgid "CIHelper for SLOT CI0"
+msgstr ""
+
+msgid "CIHelper for SLOT CI1"
+msgstr ""
 
 msgid "CPU: "
 msgstr "CPU: "
@@ -1471,6 +1515,15 @@ msgstr "Chaîne absente de la liste services"
 msgid "Channel selection"
 msgstr "Sélection de la chaîne"
 
+msgid "Channel zap delay another button"
+msgstr ""
+
+msgid "Channel zap delay first button"
+msgstr ""
+
+msgid "Channel zap delay mode"
+msgstr ""
+
 msgid "Channel:"
 msgstr "Chaîne :"
 
@@ -1533,6 +1586,10 @@ msgid "Chipset: BCM%s"
 msgstr "Chipset: BCM%s"
 
 msgid "Choose Tuner"
+msgstr "Choisir le tuner"
+
+#, fuzzy
+msgid "Choose bouquet"
 msgstr "Choisir le tuner"
 
 msgid "Choose the location for crash and debuglogs."
@@ -1965,9 +2022,6 @@ msgstr "Configuration"
 msgid "Conflict not resolved!"
 msgstr "Conflit non résolu!"
 
-msgid "Conflicting timer"
-msgstr "Programmation conflictuelle"
-
 msgid "Connect"
 msgstr "Connecter"
 
@@ -2123,6 +2177,10 @@ msgstr "Comportement du curseur dans la liste des chaînes"
 msgid "Cut"
 msgstr "Couper"
 
+#, fuzzy
+msgid "Cutlist editor"
+msgstr "Éditeur monter/couper..."
+
 msgid "Cutlist editor..."
 msgstr "Éditeur monter/couper..."
 
@@ -2181,6 +2239,9 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+msgid "DVD Burn"
+msgstr ""
+
 msgid "DVD File Browser"
 msgstr "DVD Explorateur fichiers"
 
@@ -2213,6 +2274,10 @@ msgstr "Par défaut"
 
 msgid "Default PIN for CI"
 msgstr "Code PIN par défaut pour IC (Interface Commune)"
+
+#, fuzzy
+msgid "Default Services Scanner"
+msgstr "Emplacement standard films"
 
 msgid "Default movie location"
 msgstr "Emplacement standard films"
@@ -2387,6 +2452,10 @@ msgstr "DiSEqC A/B"
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
+#, fuzzy
+msgid "DiSEqC Tester"
+msgstr "Mode DiSEqC"
+
 msgid "DiSEqC mode"
 msgstr "Mode DiSEqC"
 
@@ -2422,6 +2491,10 @@ msgstr "Répertoire contient %s et %s."
 
 msgid "Disable"
 msgstr "Désactiver"
+
+#, fuzzy
+msgid "Disable Animations"
+msgstr "Désactiver programmation"
 
 msgid "Disable Picture in Picture"
 msgstr "Désactiver l'incrustation d'image"
@@ -2748,6 +2821,12 @@ msgstr "Activer le contrôle du zap du style 'neutrino'"
 msgid "Enable 5V for active antenna"
 msgstr "Autoriser 5V pour antenne active"
 
+msgid "Enable CIHelper for SLOT CI0"
+msgstr ""
+
+msgid "Enable CIHelper for SLOT CI1"
+msgstr ""
+
 msgid "Enable EIT EPG"
 msgstr "Activer EPG EIT"
 
@@ -2921,8 +3000,20 @@ msgstr "Taille de la police de l'événement (par rapport à la taille du skin)"
 msgid "Event view"
 msgstr "Programme TV"
 
+#, fuzzy
+msgid "Event view context menu"
+msgstr "Menu d'affichage de l'événement"
+
 msgid "Event view menu"
 msgstr "Menu d'affichage de l'événement"
+
+#, fuzzy
+msgid "Events info menu"
+msgstr "Menu d'affichage de l'événement"
+
+#, fuzzy
+msgid "Every known"
+msgstr "Numéro de série: inconnu"
 
 msgid "Everywhere"
 msgstr "Partout"
@@ -3017,6 +3108,10 @@ msgstr "Extensions"
 msgid "Extensions management"
 msgstr "Gestionnaire extensions"
 
+#, fuzzy
+msgid "Extensions menu"
+msgstr "Extensions"
+
 msgid "External"
 msgstr "Externe"
 
@@ -3051,6 +3146,9 @@ msgstr "Options moteur supplémentaires"
 msgid "Extra start time to ignore inactivity sleeptimer"
 msgstr "Heure de début supplémentaire pour ignorer l’arrêt automatique"
 
+msgid "Extrude from left"
+msgstr ""
+
 msgid "F1/F3"
 msgstr "F1/F3"
 
@@ -3059,6 +3157,14 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr "FEC:"
+
+#, fuzzy
+msgid "FP Upgrade"
+msgstr "Mise à jour en cours"
+
+#, fuzzy
+msgid "FP upgrade required"
+msgstr "Éditer url source mise à jour."
 
 msgid "FTA"
 msgstr "En Clair"
@@ -3077,6 +3183,10 @@ msgstr "Échoué"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Échec de l'écriture/tmp/positionersetup.log :"
+
+#, fuzzy
+msgid "Failed:"
+msgstr "Échoué"
 
 msgid "Fallback remote receiver URL"
 msgstr "URL du récepteur de repli distant"
@@ -3286,6 +3396,10 @@ msgstr "Fonction de la touche OK"
 msgid "Further Options"
 msgstr "Options supplémentaires"
 
+#, fuzzy
+msgid "Further options"
+msgstr "Options supplémentaires"
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr "GB800SOLO prends approximativement 20 mins!\n"
 
@@ -3411,6 +3525,12 @@ msgstr "Grèque"
 msgid "Green"
 msgstr "Vert"
 
+msgid "Grow drop"
+msgstr ""
+
+msgid "Grow from left"
+msgstr ""
+
 msgid "Guard interval"
 msgstr "Intervalle de garde"
 
@@ -3434,6 +3554,10 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI-CEC"
+msgstr "HDMI CEC"
+
+#, fuzzy
+msgid "HDMI-CEC setup"
 msgstr "HDMI CEC"
 
 msgid "HI-cleanup for external subtitles"
@@ -3610,6 +3734,9 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr "Si votre TV a un perfectionnement de luminosité ou de contraste, neutralisez-le. S'il y a quelque chose appelé \"dynamique\", positionnez le sur standard. Ajustez le niveau de contre-jour sur une valeur convenant à votre goût. Baissez le contraste sur votre TV autant que possible. Puis baissez les paramètres luminosité aussi bas que possible, mais assurez-vous que les deux nuances les plus plus basses de gris soient distinguable. Ne pas s'inquiéter des nuances luminosité maintenant. Elles seront fixées dans la prochaine étape. si vous êtes satisfait du résultat, pressez OK."
+
+msgid "Ignore conflict"
+msgstr ""
 
 msgid "Immediate shutdown"
 msgstr "Extinction immédiate"
@@ -4058,7 +4185,8 @@ msgstr "Verrouiller rapport"
 msgid "Lock:"
 msgstr "Verrouiller :"
 
-msgid "Log results to harddisk"
+#, fuzzy
+msgid "Log results to /tmp"
 msgstr "Sauver log sur disque dur"
 
 msgid "Logs location"
@@ -4414,6 +4542,10 @@ msgstr "Configuration NFS"
 msgid "NIM"
 msgstr "Tuner"
 
+#, fuzzy
+msgid "NO"
+msgstr "MAINTENANT"
+
 msgid "NOW"
 msgstr "MAINTENANT"
 
@@ -4462,6 +4594,10 @@ msgstr "Information réseau"
 
 msgid "Network MAC settings"
 msgstr "Paramètres réseau MAC"
+
+#, fuzzy
+msgid "Network configuration"
+msgstr "Configuration réseau..."
 
 msgid "Network configuration..."
 msgstr "Configuration réseau..."
@@ -4614,6 +4750,10 @@ msgstr "Aucun positionneur tuner détecté."
 msgid "No priority"
 msgstr "Pas de priorité"
 
+#, fuzzy
+msgid "No satellite frontend found!"
+msgstr "Aucun positionneur tuner détecté."
+
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Pas de tuner satellite, terreste ou câble configuré. Merci de vérifier la configuration de vos tuners."
 
@@ -4749,6 +4889,10 @@ msgstr ""
 "\n"
 "Quitter plugin."
 
+#, fuzzy
+msgid "Not tested:"
+msgstr "Test du réseau : "
+
 msgid "Not-Associated"
 msgstr "Non-Associé"
 
@@ -4778,6 +4922,10 @@ msgstr "Lecture en cours"
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Maintenant, utilisez les paramètres de contraste pour indiquer la luminosité du fond autant que possible, mais assurez-vous que vous pouvez toujours voir la différence entre les deux niveaux les plus lumineux des nuances. Si vous avez fait cela, pressez OK."
 
+#, fuzzy
+msgid "Number of channel number digits"
+msgstr "Utiliser la numérotation officielle des chaînes"
+
 msgid "Number of repeating text on display."
 msgstr "Nombre de texte se répétant sur l'écran."
 
@@ -4792,6 +4940,10 @@ msgstr "ONID"
 
 msgid "OSD"
 msgstr "OSD"
+
+#, fuzzy
+msgid "OSD 3D setup"
+msgstr "GUI position configuration"
 
 msgid "OSD name request"
 msgstr "Demande de nom de l'OSD"
@@ -4873,6 +5025,10 @@ msgstr "Original"
 
 msgid "Other"
 msgstr "Autre"
+
+#, fuzzy
+msgid "Overall progress:"
+msgstr "Faible progression"
 
 msgid "Overwrite Bootlogo Files ?"
 msgstr "Ecraser le fichier Bootlogo?"
@@ -5325,6 +5481,9 @@ msgstr "Polarisation"
 msgid "Polish"
 msgstr "Polonais"
 
+msgid "Popup"
+msgstr ""
+
 msgid "Port A"
 msgstr "Port A"
 
@@ -5506,6 +5665,10 @@ msgstr "Barre de progression à gauche"
 
 msgid "Progress bar right"
 msgstr "Barre de progression à droite"
+
+#, fuzzy
+msgid "Progress:"
+msgstr "Progression"
 
 msgid "Properties of current title"
 msgstr "Propriétés du titre courant"
@@ -6382,6 +6545,10 @@ msgstr "Sélectionner l'interface sans fil"
 msgid "Select your LCD clock and press OK to activate the selected clock."
 msgstr "Choisir votre horloge LCD et appuyez sur OK pour activer l’horloge sélectionnée."
 
+#, fuzzy
+msgid "Select your Skin"
+msgstr "Choisir un skin"
+
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Sélectionnez votre opérateur, et pressez OK pour lancer l'analyse"
 
@@ -6476,6 +6643,10 @@ msgstr "Remettre toutes les hotkey à la valeur par défaut?"
 msgid "Set default"
 msgstr "Définir par défaut"
 
+#, fuzzy
+msgid "Set default settings?"
+msgstr "Paramètres par défaut"
+
 msgid "Set end time"
 msgstr "Régler l'heure de fin"
 
@@ -6526,6 +6697,9 @@ msgstr "Paramètres"
 
 msgid "Setup"
 msgstr "Paramétrer"
+
+msgid "Setup delay mode to zap to channels."
+msgstr ""
 
 msgid "Setup menu"
 msgstr "Menu configuration"
@@ -6758,6 +6932,9 @@ msgstr "Afficher le navigateur de plugin…"
 msgid "Show vertical timelines"
 msgstr "Afficher les lignes de temps verticales"
 
+msgid "Show warning before set 'Ignore conflict'"
+msgstr ""
+
 msgid "Show warning when timeshift is stopped"
 msgstr "Afficher un avertissement quand le timeshift est arrêté"
 
@@ -6803,14 +6980,26 @@ msgstr "Zapper de manière transparente entres les bouquets"
 msgid "Similar"
 msgstr "Similaire"
 
+#, fuzzy
+msgid "Similar EPG"
+msgstr "Similaire"
+
 msgid "Similar broadcasts:"
 msgstr "Emissions semblables :"
 
 msgid "Simple"
 msgstr "Simple"
 
+#, fuzzy
+msgid "Simple fade"
+msgstr "Simple"
+
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Jeu titre simple (compatibilité descendante lecteurs)"
+
+#, fuzzy
+msgid "Simple zoom"
+msgstr "Simple"
 
 msgid "Simulate (no write)"
 msgstr "Simuler (pas d’écriture)"
@@ -6863,11 +7052,27 @@ msgstr "Arrêt automatique"
 msgid "Sleeptimer edit"
 msgstr "Editer le timer de veille"
 
+msgid "Slide drop"
+msgstr ""
+
+msgid "Slide from left"
+msgstr ""
+
+msgid "Slide left to right"
+msgstr ""
+
 msgid "Slide picture in loop"
 msgstr "Afficher images en boucle"
 
+msgid "Slide right to left"
+msgstr ""
+
 msgid "Slide show interval (sec.)"
 msgstr "Intervalle Diaporama (sec.)"
+
+#, fuzzy
+msgid "Slide top to bottom"
+msgstr "Haut et Bas"
 
 #, python-format
 msgid "Slot %d"
@@ -6914,6 +7119,9 @@ msgstr "Informations gestionnaire logiciel"
 
 msgid "Some plugins are not available:\n"
 msgstr "Des plugins ne sont pas disponible :\n"
+
+msgid "Sorry CIHelper Config is Missing"
+msgstr ""
 
 msgid "Sorry feeds are down for maintenance"
 msgstr "Désolé les feeds sont fermés pour maintenance"
@@ -7203,6 +7411,9 @@ msgstr "Demande de flux"
 msgid "Stream request"
 msgstr "Demande de flux"
 
+msgid "Stripes"
+msgstr ""
+
 msgid "Strongest position"
 msgstr "Meilleure position"
 
@@ -7259,6 +7470,9 @@ msgstr "Sous-titres"
 
 msgid "Subtitles Settings"
 msgstr "Configure les sous-titres"
+
+msgid "Succeeded:"
+msgstr ""
 
 msgid "Successfully restored /etc/inetd.conf!"
 msgstr "Restauration avec succès de /etc/inetd.conf!"
@@ -7370,6 +7584,13 @@ msgstr "Synchroniser l’heure du système en utilisant le transpondeur ou Inter
 
 msgid "System"
 msgstr "Système"
+
+#, fuzzy
+msgid "System Message"
+msgstr "Message"
+
+msgid "System Message Check"
+msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
@@ -7511,6 +7732,9 @@ msgstr "L’image a été téléchargée. Voulez-vous flasher maintenant?"
 msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
 msgstr "L’image ou le noyau seront flashés et le récepteur redémarré dans quelques minutes.\n"
 
+msgid "The loopthrough setting is wrong."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -7525,8 +7749,8 @@ msgstr "Le chemin %s existe déjà."
 msgid "The pin code you entered is wrong."
 msgstr "Le code pin saisi est mauvais"
 
-#, python-format
-msgid "The results have been written to %s."
+#, fuzzy, python-format
+msgid "The results have been written to %s"
 msgstr "Les résultats ont été écrit sur %s."
 
 msgid "The servicelist is reloaded."
@@ -7547,6 +7771,11 @@ msgstr ""
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Le fichier programmation (timers.xml) est corrompu et ne peut-être chargé."
+
+msgid ""
+"The unicable connection setting is wrong.\n"
+" Maybe recursive connection of tuners."
+msgstr ""
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
@@ -7608,6 +7837,9 @@ msgstr "Erreur pendant le téléchargement de la liste des mise-à-jour. Merci d
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ce support DVD RW est déjà formaté - le reformater effacera tout le contenu sur le disque."
+
+msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgstr ""
 
 msgid "This allows you to show codecs in downloads"
 msgstr "Cela permets d’afficher les codecs en téléchargement"
@@ -7937,8 +8169,16 @@ msgstr "Toneburst A/B"
 msgid "Top and bottom"
 msgstr "Haut et Bas"
 
+#, python-format
+msgid "Total clients streaming: %d (%s)"
+msgstr ""
+
 msgid "Track"
 msgstr "Piste"
+
+#, fuzzy
+msgid "Transcoding: "
+msgstr "AAC transcodage"
 
 msgid "Translation"
 msgstr "Traduction"
@@ -8283,6 +8523,12 @@ msgstr "feed url défini par l’utilisateur"
 msgid "User defined"
 msgstr "Défini par l'utilisateur"
 
+msgid "User defined delay when you press another button to zap to the channel."
+msgstr ""
+
+msgid "User defined delay when you press the first button to zap to the channel."
+msgstr ""
+
 msgid "User defined transponder"
 msgstr "Transpondeur défini par l'utilisateur"
 
@@ -8328,6 +8574,10 @@ msgid "Video PID"
 msgstr "PID Video"
 
 msgid "Video Settings"
+msgstr "Paramètres vidéo"
+
+#, fuzzy
+msgid "Video clipping setup"
 msgstr "Paramètres vidéo"
 
 msgid "Video enhancement preview"
@@ -8494,6 +8744,10 @@ msgstr "Réveil"
 msgid "Wakeup TV from standby"
 msgstr "Réveil de la TV depuis le mode veille"
 
+#, fuzzy
+msgid "Wakeup receiver for start timer"
+msgstr "Réveil du récepteur depuis le mode veille"
+
 msgid "Wakeup receiver from standby"
 msgstr "Réveil du récepteur depuis le mode veille"
 
@@ -8505,6 +8759,12 @@ msgstr "Type de réveil"
 
 msgid "Warning"
 msgstr "Avertissement"
+
+msgid ""
+"Warning!\n"
+"This is an option for advanced users.\n"
+"Really disable timer conflict detection?"
+msgstr ""
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Attention : pas de LNB; utiliser la configuration par défaut."
@@ -8809,9 +9069,6 @@ msgstr ""
 "\n"
 "Voulez-vous vraiment faire une réinitialisation usine ?"
 
-msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
-msgstr "Lorsque vous utilisez le tuner distant de repli pour effectuer l’enregistrement, la détection des conflits de programmation ne peut pas gérer à distance les tuners de repli. Cette option vous permet de désactiver la détection des conflicts de programmation."
-
 msgid "Where do you want to backup your settings?"
 msgstr "Où voulez-vous sauver vos paramètres ?"
 
@@ -8836,6 +9093,10 @@ msgstr "Configuration connexion réseau sans fil."
 msgid "Wireless network state"
 msgstr "État du réseau sans fil"
 
+#, fuzzy
+msgid "With errors:"
+msgstr "Avec %d erreur"
+
 msgid "With popup"
 msgstr "Avec le popup"
 
@@ -8859,6 +9120,9 @@ msgstr "Échec d'écriture !"
 
 msgid "Write to /tmp/positionersetup.log"
 msgstr "Écriture dans /tmp/positionersetup.log"
+
+msgid "YES"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -9207,6 +9471,12 @@ msgstr "Parcourir l’historique de zap"
 msgid "Zap-History Browser"
 msgstr "Afficher la liste de l’historique de zap"
 
+msgid "Zoom from left"
+msgstr ""
+
+msgid "Zoom from right"
+msgstr ""
+
 msgid "[Enigma2 Settings]\n"
 msgstr "[Paramètres Enigma2]\n"
 
@@ -9306,7 +9576,15 @@ msgstr "Inverser alphabet"
 msgid "alternative"
 msgstr "Alternatif"
 
+#, fuzzy
+msgid "always"
+msgstr "16:9 toujours"
+
 msgid "and never ask again this session again"
+msgstr "et ne plus demander à nouveau pendant cette session"
+
+#, fuzzy
+msgid "and never ask this again"
 msgstr "et ne plus demander à nouveau pendant cette session"
 
 msgid "and never show this message again"
@@ -9418,6 +9696,9 @@ msgstr "Circulaire à gauche"
 
 msgid "circular right"
 msgstr "Circulaire à droite"
+
+msgid "clip overscan / letterbox borders"
+msgstr ""
 
 msgid "codec"
 msgstr "codec"
@@ -9605,6 +9886,10 @@ msgstr "Extensions"
 
 msgid "external loopthrough to"
 msgstr "rebouclé en externe par"
+
+#, fuzzy
+msgid "failed"
+msgstr "Échoué"
 
 msgid "false"
 msgstr "Faux"
@@ -9870,8 +10155,15 @@ msgstr "Pas verrouillé"
 msgid "not supported"
 msgstr "Pas supporté"
 
+#, fuzzy
+msgid "not tested"
+msgstr "Pas utilisé"
+
 msgid "not used"
 msgstr "Pas utilisé"
+
+msgid "not_tested"
+msgstr ""
 
 msgid "nothing connected"
 msgstr "Rien n'est connecté"
@@ -9913,6 +10205,14 @@ msgstr "Sur support en LECTURE SEULE"
 
 msgid "once"
 msgstr "Une fois"
+
+#, fuzzy
+msgid "only from deep standby"
+msgstr "Mettre en veille profonde"
+
+#, fuzzy
+msgid "only from standby"
+msgstr "Mettre en veille"
 
 msgid "open bouquetlist"
 msgstr "ouvrir la liste des bouquets"
@@ -10207,6 +10507,9 @@ msgstr "Stéréo"
 msgid "stop using as startup service"
 msgstr "Arrêter d'utiliser comme service de démarrage"
 
+msgid "successful"
+msgstr ""
+
 msgid "switch to bookmarks"
 msgstr "Basculer vers marque page"
 
@@ -10276,11 +10579,19 @@ msgstr "Indéfini"
 msgid "unknown"
 msgstr "Inconnu"
 
+#, fuzzy
+msgid "unknown error"
+msgstr "Service inconnu"
+
 msgid "unknown service"
 msgstr "Service inconnu"
 
 msgid "unpublished"
 msgstr "Non publié"
+
+#, fuzzy
+msgid "untestable"
+msgstr "Activer"
 
 msgid "until standby/restart"
 msgstr "Jusqu'à veille/redémarrage"
@@ -10339,11 +10650,19 @@ msgid_plural "with %d errors"
 msgstr[0] "Avec %d erreur"
 msgstr[1] "Avec %d erreurs"
 
+#, fuzzy
+msgid "with errors"
+msgstr "Avec %d erreur"
+
 msgid "with text"
 msgstr "avec texte"
 
 msgid "with tuner name"
 msgstr "avec nom du tuner"
+
+#, fuzzy
+msgid "with_errors"
+msgstr "Avec %d erreur"
 
 msgid "working"
 msgstr "Travail en cours..."
@@ -10371,3 +10690,9 @@ msgstr "Zapper et enregistrer"
 
 msgid "zapped"
 msgstr "Zappé"
+
+#~ msgid "Conflicting timer"
+#~ msgstr "Programmation conflictuelle"
+
+#~ msgid "When you use the remote fallback tuner to do recording, the timer conflict detection can't handle remote fallback tuners. This option allows you to turn off the timer confict detection"
+#~ msgstr "Lorsque vous utilisez le tuner distant de repli pour effectuer l’enregistrement, la détection des conflits de programmation ne peut pas gérer à distance les tuners de repli. Cette option vous permet de désactiver la détection des conflicts de programmation."
