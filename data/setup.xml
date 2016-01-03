@@ -26,7 +26,7 @@
 		<item level="0" text="Help screen sort order" description="Choose the display order for items shown in Help windows.">config.usage.help_sortorder</item>
 		<item level="0" text="1st infobar time" description="Set the display duration time for the infobar.">config.usage.infobar_timeout</item>
 		<item level="0" text="2nd infobar" description="Enable the second infobar (press OK twice to view). The second infobar may include further information about the current service.">config.usage.show_second_infobar</item>
-		<item level="0" text="2nd infobar time" description="Set the display duration time for the second infobar. Press OK or EXIT to close all visible in‌fobars." requires="config.usage.show_second_infobar">config.usage.second_infobar_timeout</item>
+		<item level="0" text="2nd infobar time" description="Set the display duration time for the second infobar. Press OK or EXIT to close all visible infobars." requires="config.usage.show_second_infobar">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Enable infobar fade-out" description="Fade-out the infobar when the display duration time ends or when you press OK or EXIT to close all infobars.">config.usage.show_infobar_do_dimming</item>
 		<item level="0" text="Infobar fade-out speed" description="Set the infobar fade-out speed.">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Choose the method used to activate Quick EPG mode." requires="InfoBarEpg">config.vixsettings.InfoBarEpg_mode</item>
@@ -148,7 +148,7 @@
 		<item level="2" text="Show message when recording starts" description="Enable to display a pop-up message when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Show movie lengths in movie list" description="Enable to display the length of each recording in the movie list (this may result in additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show status icons in movie list" description="Choose the type of status indicator icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
-		<item level="2" text="Quit movie player with EXIT button" description="Enable to leave the movie player by pressing EXIT. If the PiP window is shown, EXIT button behaviour is determined by the 'Close PiP on EXIT' setting. When the in‌fobar is shown, press EXIT to close it.">config.usage.leave_movieplayer_onExit</item>
+		<item level="2" text="Quit movie player with EXIT button" description="Enable to leave the movie player by pressing EXIT. If the PiP window is shown, EXIT button behaviour is determined by the 'Close PiP on EXIT' setting. When the infobar is shown, press EXIT to close it.">config.usage.leave_movieplayer_onExit</item>
 		<item level="2" text="Behaviour when a movie is started" description="Choose the behaviour when movie playback is started.">config.usage.on_movie_start</item>
 		<item level="2" text="Behaviour when a movie is stopped" description="Choose the behaviour when movie playback is manually stopped.">config.usage.on_movie_stop</item>
 		<item level="2" text="Behaviour when a movie reaches the end" description="Choose the behaviour when the end of a movie is reached during playback.">config.usage.on_movie_eof</item>
