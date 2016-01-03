@@ -512,7 +512,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.slot_dest_list.append(slot_id)
 			slot_config = nimmanager.nim_slots[slot_id].config
 			if slot_config.configMode.value == "advanced":
-				if slot_config.advanced.unicableconnected.value == True:
+				try:
+					connected = slot_config.advanced.unicableconnected.value
+				except:
+					connected = False
+				if connected == True:
 					return checkRecursiveConnect(int(slot_config.advanced.unicableconnectedTo.value))
 			return True
 
