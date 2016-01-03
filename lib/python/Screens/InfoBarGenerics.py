@@ -3536,6 +3536,7 @@ class InfoBarCueSheetSupport:
 
 		self.cut_list = [ ]
 		self.is_closing = False
+		self.resume_point = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
