@@ -3209,7 +3209,7 @@ class InfoBarAudioSelection:
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
-		print "[InfoBarGenerics] ", ret
+		print "[InfoBarGenerics][audioSelected] ", ret
 
 	def audioSelectionLong(self):
 		if SystemInfo["CanDownmixAC3"]:
