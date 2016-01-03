@@ -493,7 +493,7 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
     if (access(fileName, F_OK) == 0)
 		m_fbc = true;
 
-	sprintf(filename, "/proc/stb/frontend/%d/fbc_id", m_slotid);
+	snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/fbc_id", m_slotid);
 
 	if (access(filename, F_OK) == 0)
 		m_fbc = true;
