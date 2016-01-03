@@ -690,6 +690,7 @@ int eFBCTunerManager::getLinkedSlotID(int fe_id)
 	int link;
 	long prev_ptr;
 
+	prev_fe = 0;
 	link = -1;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)

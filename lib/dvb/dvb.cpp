@@ -30,15 +30,12 @@ DEFINE_REF(eDVBAllocatedFrontend);
 
 eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe): m_fe(fe)
 {
+	eFBCTunerManager* fbcmng;
+
 	m_fe->inc_use();
-	if (m_fe->m_frontend->is_FBCTuner())
-	{
-		eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
-		if (fbcmng)
-		{
-			fbcmng->unset(m_fe);
-		}
-	}
+
+	if (m_fe->m_frontend->is_FBCTuner() && ((fbcmng = eFBCTunerManager::getInstance())))
+		fbcmng->unset(m_fe);
 }
 
 eDVBAllocatedFrontend::~eDVBAllocatedFrontend()
@@ -847,18 +844,20 @@ void eDVBResourceManager::setFrontendType(int index, const char *type)
 RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate)
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
-	eDVBRegisteredFrontend *best = NULL;
-	int bestval = 0;
-	int foundone = 0;
+	eDVBRegisteredFrontend *best, *fbc_fe, *best_fbc_fe;
+	eFBCTunerManager* fbcmng;
+	int bestval, foundone, check_fbc_linked, c;
 
-	int check_fbc_linked = 0;
-	eDVBRegisteredFrontend *fbc_fe = NULL;
-	eDVBRegisteredFrontend *best_fbc_fe = NULL;
-	eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
+	fbc_fe  = NULL;
+	best_fbc_fe = NULL;
+	fbcmng = eFBCTunerManager::getInstance();
+	best = NULL;
+	bestval = 0;
+	foundone = 0;
+	check_fbc_linked = 0;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
-		int c = 0;
 		fbc_fe = NULL;
 
 		if (!check_fbc_linked && i->m_frontend->is_FBCTuner() && fbcmng && fbcmng->canLink(*i))
@@ -1297,16 +1296,17 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	ePtr<eDVBRegisteredFrontend> best;
-	int bestval = 0;
-	int check_fbc_link = 0;
-	eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
+	int bestval, check_fbc_link, c;
+	eFBCTunerManager *fbcmng;
+
+	bestval = 0;
+	check_fbc_link = 0;
+	fbcmng = eFBCTunerManager::getInstance();
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
 		if (!i->m_inuse)
 		{
-			int c = 0;
-
 			if(fbcmng && i->m_frontend->is_FBCTuner() && fbcmng->canLink(*i) && !check_fbc_link)
 			{
 				check_fbc_link = 1;
