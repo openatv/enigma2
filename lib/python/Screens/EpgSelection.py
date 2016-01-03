@@ -308,7 +308,7 @@ class EPGSelection(Screen):
 	def runningEventCallback(self, t, state, result):
 		if result is not None and t.state == state:
 			findNextRunningEvent = True
-			findEventNext = False 
+			findEventNext = False
 			if result[1] == "nextonlystop":
 				findEventNext = True
 				t.disable()
@@ -354,7 +354,7 @@ class EPGSelection(Screen):
 			prev_state = timer.state
 			isRunning = prev_state in (1, 2)
 			title_text = isRepeat and _("Attention, this is repeated timer!\n") or ""
-			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay 
+			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay
 			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
 			buttons = ["red", "green"]
 			if not isRunning:

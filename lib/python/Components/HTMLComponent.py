@@ -2,4 +2,3 @@
 class HTMLComponent:
 	def produceHTML(self):
 		return ""
-

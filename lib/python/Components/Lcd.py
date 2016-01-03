@@ -165,4 +165,3 @@ def InitLcd():
 		config.lcd.standby.apply = lambda : doNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
-

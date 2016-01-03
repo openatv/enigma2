@@ -98,4 +98,3 @@ class MultiColorLabel(Label):
 				self.instance.setBackgroundColor(self.backColors[x])
 			else:
 				print "setBackgroundColorNum(%d) failed! defined colors:" %(x), self.backColors
-

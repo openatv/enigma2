@@ -128,4 +128,3 @@ class ClientsStreaming(Converter, Poll, object):
 
 	def doSuspend(self, suspended):
 		pass
-

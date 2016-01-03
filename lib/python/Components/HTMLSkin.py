@@ -10,4 +10,3 @@ class HTMLSkin:
 			res += self[name].produceHTML()
 		res += "</html>\n";
 		return res
-

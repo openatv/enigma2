@@ -29,4 +29,3 @@ for line, str in enumerate(source):
 del source
 del dest
 os.remove(filename + ".org")
-

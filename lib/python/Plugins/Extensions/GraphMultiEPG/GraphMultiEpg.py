@@ -1226,7 +1226,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			prev_state = timer.state
 			isRunning = prev_state in (1, 2)
 			title_text = isRepeat and _("Attention, this is repeated timer!\n") or ""
-			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay 
+			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay
 			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
 			buttons = ["red", "green"]
 			if not isRunning:

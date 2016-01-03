@@ -413,7 +413,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.results[index]["status"] = status
 
 		if self.results[index]["status"] != _("working"):
-			self.results[index]["internalstatus"] = self.results[index]["status"] 
+			self.results[index]["internalstatus"] = self.results[index]["status"]
 		self.results[index]["failed"] = failedTune + self.results[index]["failed"]
 		self.results[index]["successful"] = successfullyTune + self.results[index]["successful"]
 

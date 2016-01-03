@@ -132,7 +132,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("weekly", _("weekly")), ("daily", _("daily")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 			self.timerentry_renamerepeat = ConfigYesNo(default = rename_repeat)
 
-			self.timerentry_conflictdetection = ConfigYesNo(default = conflict_detection) 
+			self.timerentry_conflictdetection = ConfigYesNo(default = conflict_detection)
 
 			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)

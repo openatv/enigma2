@@ -30,4 +30,3 @@ class SocketMMIMessageHandler:
 	def dlgClosed(self, slot):
 		if slot in self.dlgs:
 			del self.dlgs[slot]
-

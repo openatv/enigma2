@@ -385,4 +385,3 @@ class PliExtraInfo(Poll, Converter, object):
 		elif what[0] == self.CHANGED_POLL and self.updateFEdata is not None:
 			self.updateFEdata = False
 			Converter.changed(self, what)
-

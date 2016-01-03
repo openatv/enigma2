@@ -1323,7 +1323,7 @@ class NimManager:
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
-				if dm == "positioner_select": 
+				if dm == "positioner_select":
 					userSatlist = nim.userSatellitesList.value
 					userSatlist = userSatlist.replace("]", "").replace("[", "")
 					for x in self.satList:

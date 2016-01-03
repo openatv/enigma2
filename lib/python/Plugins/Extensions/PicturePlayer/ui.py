@@ -610,4 +610,3 @@ class Pic_Full_View(Screen):
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 
 		self.close(self.lastindex + self.dirlistcount)
-

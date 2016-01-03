@@ -657,7 +657,7 @@ class InfoBarChannelSelection:
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"keyChannelUp": (self.keyChannelUpCheck, self.getKeyChannelUpHelptext),
-				"keyChannelDown": (self.keyChannelDownCheck, self.getKeyChannelDownHelptext), 	
+				"keyChannelDown": (self.keyChannelDownCheck, self.getKeyChannelDownHelptext),
 			})
 
 	def openHistoryBrowser(self):

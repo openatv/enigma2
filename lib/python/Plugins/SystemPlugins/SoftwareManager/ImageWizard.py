@@ -136,4 +136,3 @@ class ImageWizard(WizardLanguage, Rc):
 
 if config.misc.firstrun.value:
 	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
-
