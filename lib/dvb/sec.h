@@ -268,6 +268,8 @@ public:
 #define MAX_FIXED_LNB_POSITIONS		64
 #define MAX_MOVABLE_LNBS 		6
 
+#define UNICABLE_BANDWIDTH 		47000
+
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
 	int SatCR_positionnumber;
@@ -277,7 +279,7 @@ public:
 	unsigned int SatCRvco;
 	unsigned int TuningWord;
 	unsigned int UnicableConfigWord;
-	long guard_frq[2]={-8000,8000};
+	long guard_frq[2]={-1,1};
 };
 
 class eDVBRegisteredFrontend;
