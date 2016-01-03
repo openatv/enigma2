@@ -101,7 +101,6 @@ addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
 
-# Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbultraue', 'gbquad', 'gbquadplus'):
 	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
 else:
@@ -115,9 +114,6 @@ if fileExists('/usr/share/enigma2/lcd_skin/skin_lcd_default.xml'):
 		addSkin('lcd_skin/' + config.skin.lcdskin.value)
 		
 addSkin('skin_display.xml')
-if addSkin('skin_display96.xml'):
-	# Color OLED
-	display_skin_id = 2
 addSkin('skin_text.xml')
 
 addSkin('skin_subtitles.xml')

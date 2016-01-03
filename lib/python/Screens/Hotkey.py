@@ -158,7 +158,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
-	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
+	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))
 	#hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
 	if SystemInfo["LcdLiveTV"]:
 		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
@@ -336,7 +336,7 @@ class HotkeySetupSelect(Screen):
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
 		{
 			"ok": self.keyOk,
 			"cancel": self.cancel,
@@ -546,7 +546,7 @@ class InfoBarHotkey():
 				pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
-					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:	
+					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
 						if twinPaths.has_key(plugin.path[24:]):
 							twinPaths[plugin.path[24:]] += 1
 						else:

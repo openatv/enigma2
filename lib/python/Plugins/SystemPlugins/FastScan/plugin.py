@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
@@ -15,6 +13,8 @@ from Components.ServiceList import refreshServiceList
 from Components.ActionMap import ActionMap
 
 from enigma import eFastScan, eDVBFrontendParametersSatellite, eTimer
+
+import os
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default = "()")
@@ -291,7 +291,7 @@ def FastScanMain(session, **kwargs):
 				continue
 			if n.config_mode == "nothing":
 				continue
-			if n.config_mode in ("loopthrough", "satposdepends"):
+			if n.config_mode in ("loopthrough_internal", "loopthrough_external", "satposdepends"):
 				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue

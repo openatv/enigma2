@@ -19,4 +19,3 @@ class Label(VariableText, Renderer):
 			self.text = ""
 		else:
 			self.text = self.source.text
-

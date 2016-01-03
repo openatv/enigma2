@@ -1,7 +1,7 @@
 from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
-from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from Tools.Directories import pathExists
 from fcntl import ioctl
+import os
 import struct
 from boxbranding import getBoxType
 
@@ -30,15 +30,15 @@ class inputDevices:
 		self.getInputDevices()
 
 	def getInputDevices(self):
-		devices = listdir("/dev/input/")
+		devices = os.listdir("/dev/input/")
 
 		for evdev in devices:
 			try:
 				buffer = "\0"*512
-				self.fd = os_open("/dev/input/" + evdev, O_RDWR | O_NONBLOCK)
+				self.fd = os.open("/dev/input/" + evdev, os.O_RDWR | os.O_NONBLOCK)
 				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer)
 				self.name = self.name[:self.name.find("\0")]
-				os_close(self.fd)
+				os.close(self.fd)
 			except (IOError,OSError), err:
 				print '[iInputDevices] getInputDevices ' + evdev + ' <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
 				self.name = None
@@ -101,26 +101,26 @@ class inputDevices:
 		self.setDeviceAttribute(device, 'configuredName', None)
 		event_repeat = struct.pack('iihhi', 0, 0, 0x14, 0x01, 100)
 		event_delay = struct.pack('iihhi', 0, 0, 0x14, 0x00, 700)
-		fd = os_open("/dev/input/" + device, O_RDWR)
-		os_write(fd, event_repeat)
-		os_write(fd, event_delay)
-		os_close(fd)
+		fd = os.open("/dev/input/" + device, os.O_RDWR)
+		os.write(fd, event_repeat)
+		os.write(fd, event_delay)
+		os.close(fd)
 
 	def setRepeat(self, device, value): #REP_PERIOD
 		if self.getDeviceAttribute(device, 'enabled') == True:
 			print "[iInputDevices] setRepeat for device %s to %d ms" % (device,value)
 			event = struct.pack('iihhi', 0, 0, 0x14, 0x01, int(value))
-			fd = os_open("/dev/input/" + device, O_RDWR)
-			os_write(fd, event)
-			os_close(fd)
+			fd = os.open("/dev/input/" + device, os.O_RDWR)
+			os.write(fd, event)
+			os.close(fd)
 
 	def setDelay(self, device, value): #REP_DELAY
 		if self.getDeviceAttribute(device, 'enabled') == True:
 			print "[iInputDevices] setDelay for device %s to %d ms" % (device,value)
 			event = struct.pack('iihhi', 0, 0, 0x14, 0x00, int(value))
-			fd = os_open("/dev/input/" + device, O_RDWR)
-			os_write(fd, event)
-			os_close(fd)
+			fd = os.open("/dev/input/" + device, os.O_RDWR)
+			os.write(fd, event)
+			os.close(fd)
 
 
 class InitInputDevices:

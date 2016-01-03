@@ -9,4 +9,3 @@ class PVRState(Screen):
 
 class TimeshiftState(PVRState):
 	pass
-

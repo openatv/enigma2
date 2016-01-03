@@ -242,7 +242,7 @@ class PositionerSetup(Screen):
 
 		self.updateColors("tune")
 		self.statusTimer = eTimer()
-		self.rotorStatusTimer = eTimer() 
+		self.rotorStatusTimer = eTimer()
 		self.statusTimer.callback.append(self.updateStatus)
 		self.rotorStatusTimer.callback.append(self.startStatusTimer)
 		self.collectingStatistics = False
@@ -840,7 +840,7 @@ class PositionerSetup(Screen):
 			# of 5000 the interval is multiplied by 3 until 15000 which is seen
 			# as a high symbol rate. Linear interpolation elsewhere.
 			return max(int(round((3 - 1) * (symbolrate - 15000) / (5000 - 15000) + 1)), 1)
- 
+
 		self.symbolrate = tp[1]
 		self.polarisation = tp[2]
 		self.MAX_LOW_RATE_ADAPTER_COUNT = setLowRateAdapterCount(self.symbolrate)

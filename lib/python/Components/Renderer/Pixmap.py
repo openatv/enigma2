@@ -16,4 +16,3 @@ class Pixmap(Renderer):
 			if self.source and hasattr(self.source, "pixmap"):
 				if self.instance:
 					self.instance.setPixmap(self.source.pixmap)
-

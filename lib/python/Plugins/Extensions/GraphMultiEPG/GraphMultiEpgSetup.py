@@ -9,7 +9,6 @@ from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry, ConfigNumber
 from Components.ConfigList import ConfigList, ConfigListScreen
 
-from Tools.Directories import *
 addnotifier = None
 
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
