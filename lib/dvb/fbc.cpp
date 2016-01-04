@@ -8,13 +8,17 @@
 
 DEFINE_REF(eFBCTunerManager);
 
-bool eFBCTunerManager::isDestroyed = false;
+eFBCTunerManager* eFBCTunerManager::m_instance = (eFBCTunerManager*)0;
 
-eFBCTunerManager::eFBCTunerManager()
+eFBCTunerManager* eFBCTunerManager::getInstance()
 {
-	ePtr<eDVBResourceManager> res_mgr;
-	eDVBResourceManager::getInstance(res_mgr);
-	m_res_mgr = res_mgr;
+	return m_instance;
+}
+
+eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
+	:m_res_mgr(res_mgr)
+{
+	m_instance = this;
 
 	/* number of fbc tuners in one set */
 	m_fbc_tuner_num = getFBCTunerNum();
@@ -23,7 +27,7 @@ eFBCTunerManager::eFBCTunerManager()
 
 eFBCTunerManager::~eFBCTunerManager()
 {
-	isDestroyed = true;
+	m_instance = (eFBCTunerManager*)0;
 }
 
 int eFBCTunerManager::fe_slot_id(const eDVBRegisteredFrontend *fe) const
