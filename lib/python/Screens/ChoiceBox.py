@@ -90,24 +90,25 @@ class ChoiceBox(Screen):
 	def autoResize(self):
 		desktop_w = enigma.getDesktop(0).size().width()
 		desktop_h = enigma.getDesktop(0).size().height()
-		count = len(self.list)
 		itemheight = self["list"].getItemHeight()
+		count = len(self.list)
 		if count > 15:
 			count = 15
+		width = self["list"].instance.size().width()
 		if not self["text"].text:
 			# move list
-			textsize = (520, 0)
-			listsize = (520, itemheight*count)
+			textsize = (width, 0)
+			listsize = (width, itemheight*count)
 			self["list"].instance.move(enigma.ePoint(0, 0))
 			self["list"].instance.resize(enigma.eSize(*listsize))
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
 				textsize = (textsize[1],textsize[0]+10)
-			if textsize[0] > 520:
+			if textsize[0] > width:
 				textsize = (textsize[0], textsize[1]+itemheight)
 			else:
-				textsize = (520, textsize[1]+itemheight)
+				textsize = (width, textsize[1]+itemheight)
 			listsize = (textsize[0], itemheight*count)
 			# resize label
 			self["text"].instance.resize(enigma.eSize(*textsize))
