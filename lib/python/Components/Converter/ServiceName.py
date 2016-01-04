@@ -64,13 +64,18 @@ class ServiceName(Converter, object):
 					return "%s - %s" % (name, act_event.getEventName())
 			else:
 				return name
-		elif self.type == self.NUMBER and hasattr(self.source, "serviceref") and '0:0:0:0:0:0:0:0:0' not in self.source.serviceref.toString():
+		elif self.type == self.NUMBER:
+			if hasattr(self.source, "serviceref") and '0:0:0:0:0:0:0:0:0' not in self.source.serviceref.toString():
 				numservice = self.source.serviceref
-				num = numservice and numservice.getChannelNum() or None
-				if num is not None:
-					return str(num)
-				else:
-					return "  "
+			elif service is not None:
+				numservice = service
+			else:
+				numservice = None
+			num = numservice and numservice.getChannelNum() or None
+			if num is not None:
+				return str(num)
+			else:
+				return "  "
 		elif self.type == self.PROVIDER:
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE or self.type == self.EDITREFERENCE and hasattr(self.source, "editmode") and self.source.editmode:
