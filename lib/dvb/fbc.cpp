@@ -1,6 +1,7 @@
 #include <lib/dvb/fbc.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
+#include <lib/base/cfile.h>
 #include <lib/base/object.h>
 
 #include <unistd.h>
@@ -108,20 +109,13 @@ int eFBCTunerManager::getFBCTunerNum()
 
 void eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 {
-	char tmp[128];
-	int fd;
-
+	char tmp[64];
 	snprintf(tmp, sizeof(tmp), "/proc/stb/frontend/%d/fbc_id", fe_id);
-
-	if((fd = open(tmp, O_RDWR)) < 0)
-		return(-1);
 
 	if(isLinkedByIndex(fe_id))
 		fbc_id += 0x10; // 0x10 mask: linked, 0x0f (?) mask: fbc_id // FIXME: shouldn't this be |=?
 
-	snprintf(tmp, sizeof(tmp), "%x", fbc_id);
-	write(fd, tmp, strlen(tmp));
-	close(fd);
+	CFile::writeIntHex(tmp, fbc_id);
 }
 
 bool eFBCTunerManager::isRootFeSlot(int fe_slot_id)
