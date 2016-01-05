@@ -1,5 +1,5 @@
 from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
+from Tools.Directories import fileExists, fileCheck, pathExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
 
@@ -70,3 +70,4 @@ SystemInfo["Blindscan_t2_available"] = fileCheck("/proc/stb/info/vumodel")
 SystemInfo["Bootvideo"] = fileCheck("/usr/bin/bootvideo")
 SystemInfo["hasOSDAnimation"] = fileCheck("/proc/stb/fb/animation_mode")
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
+SystemInfo["RcTypeChangable"] = pathExists('/proc/stb/ir/rc/type')
