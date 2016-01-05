@@ -172,6 +172,16 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
 
+	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
+		("show_menu", _("Show shutdown menu")),
+		("shutdown", _("Immediate shutdown")),
+		("standby", _("Standby")) ] )
+
+	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
+		("show_menu", _("Show shutdown menu")),
+		("shutdown", _("Immediate shutdown")),
+		("standby", _("Standby")) ] )
+
 	choicelist = [("0", "Disabled")]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
 		if i < 60:
