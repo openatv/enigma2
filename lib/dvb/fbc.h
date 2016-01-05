@@ -61,8 +61,8 @@ private:
 public:
 	eFBCTunerManager();
 	virtual ~eFBCTunerManager();
-	int setProcFBCID(int fe_id, int fbc_id);
-	int setDefaultFBCID(eDVBRegisteredFrontend *fe);
+	void setProcFBCID(int fe_id, int fbc_id);
+	void setDefaultFBCID(eDVBRegisteredFrontend *fe);
 	void updateFBCID(eDVBRegisteredFrontend *next_fe, eDVBRegisteredFrontend *prev_fe);
 	bool isRootFeSlot(int fe_slot_id);
 	bool isRootFe(eDVBRegisteredFrontend *fe);
