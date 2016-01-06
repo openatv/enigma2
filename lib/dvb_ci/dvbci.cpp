@@ -3,6 +3,7 @@
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/cfile.h>
 #include <lib/base/ebase.h>
 
 #include <lib/base/eerror.h>
@@ -1272,18 +1273,10 @@ int eDVBCISlot::setSource(data_source source)
 int eDVBCISlot::setClockRate(int rate)
 {
 	char buf[64];
-	snprintf(buf, 64, "/proc/stb/tsmux/ci%d_tsclk", slotid);
-	FILE *ci = fopen(buf, "wb");
-	if (ci)
-	{
-		if (rate)
-			fprintf(ci, "high");
-		else
-			fprintf(ci, "normal");
-		fclose(ci);
-		return 0;
-	}
-	return -1;
+	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_tsclk", slotid);
+	if(CFile::write(buf, rate ? "high" : "normal") == -1);
+		return -1;
+	return 0;
 }
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");
