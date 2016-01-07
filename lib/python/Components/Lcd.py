@@ -173,14 +173,17 @@ def setLCDLiveTv(value):
 		open(SystemInfo["LcdLiveTV"], "w").write(value and "enable" or "disable")
 	else:
 		open(SystemInfo["LcdLiveTV"], "w").write(value and "0" or "1")
-	InfoBarInstance = InfoBar.instance
-	InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+	if not value:
+		InfoBarInstance = InfoBar.instance
+		InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
 
 def leaveStandbyLCDLiveTV():
-	setLCDLiveTv(config.lcd.showTv.value)
+	if config.lcd.showTv.value:
+		setLCDLiveTv(True)
 
 def standbyCounterChangedLCDLiveTV(dummy):
-	from Screens.Standby import inStandby
-	if leaveStandbyLCDLiveTV not in inStandby.onClose:
-		inStandby.onClose.append(leaveStandbyLCDLiveTV)
-	setLCDLiveTv(False)
+	if config.lcd.showTv.value:
+		from Screens.Standby import inStandby
+		if leaveStandbyLCDLiveTV not in inStandby.onClose:
+			inStandby.onClose.append(leaveStandbyLCDLiveTV)
+		setLCDLiveTv(False)
