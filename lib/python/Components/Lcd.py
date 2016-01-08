@@ -155,8 +155,8 @@ def InitLcd():
 			config.lcd.showTv = ConfigYesNo(default = False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 
-		if "live_enable" in SystemInfo["LcdLiveTV"]:
-			config.misc.standbyCounter.addNotifier(standbyCounterChangedLCDLiveTV, initial_call = False)
+			if "live_enable" in SystemInfo["LcdLiveTV"]:
+				config.misc.standbyCounter.addNotifier(standbyCounterChangedLCDLiveTV, initial_call = False)
 	else:
 		def doNothing():
 			pass
