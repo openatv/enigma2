@@ -65,7 +65,7 @@ class FrontendInfo(Converter, object):
 					if n.slot == self.source.slot_number:
 						string += "\c0000??00"
 					elif self.source.tuner_mask & 1 << n.slot:
-						string += "\c00????00"
+						string += "\c00??????"
 					elif len(nimmanager.nim_slots) <= self.space_for_tuners:
 						string += "\c007?7?7?"
 					else:
