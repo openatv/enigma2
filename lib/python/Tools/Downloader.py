@@ -6,7 +6,7 @@ from twisted.internet import reactor, defer, ssl
 
 class HTTPProgressDownloader(client.HTTPDownloader):
 	def __init__(self, url, outfile, headers=None):
-		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="%s %s HTTP Downloader" % (getMachineBrand(), getMachineName()))
+		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenATV;;;)")
 		self.status = None
 		self.progress_callback = None
 		self.deferred = defer.Deferred()
