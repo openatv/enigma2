@@ -1299,6 +1299,7 @@ class ConfigNumber(ConfigText):
 				self.allmarked = False
 			self.insertChar(newChar, self.marked_pos, False)
 			self.marked_pos += 1
+			self.changed()
 		else:
 			ConfigText.handleKey(self, key)
 		self.conform()
