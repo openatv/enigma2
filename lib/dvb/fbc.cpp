@@ -227,11 +227,6 @@ bool eFBCTunerManager::isLinkedByIndex(int fe_idx)
 	return linked;
 }
 
-bool eFBCTunerManager::checkTop(eDVBRegisteredFrontend *fe)
-{
-	return(getPrev(fe) == (eDVBRegisteredFrontend *)0);
-}
-
 int eFBCTunerManager::connectLinkByIndex(int link_fe_index, int prev_fe_index, int next_fe_index, bool simulate)
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_res_mgr->m_simulate_frontend : m_res_mgr->m_frontend;
@@ -639,23 +634,6 @@ void eFBCTunerManager::unset(eDVBRegisteredFrontend *fe)
 	}
 
 	updateLNBSlotMask(fe_slot_id(fe), fe_slot_id(linked_prev_fe), true);
-}
-
-bool eFBCTunerManager::canAllocateLink(eDVBRegisteredFrontend *fe, bool simulate)
-{
-	if (!isRootFe(fe))
-		return false;
-
-	if (isLinked(fe))
-		return false;
-
-	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_res_mgr->m_simulate_frontend : m_res_mgr->m_frontend;
-
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
-		if (it->m_frontend->is_FBCTuner() && !isRootFe(*it) && isSameFbcSet(fe_slot_id(fe), fe_slot_id(it)) && !it->m_frontend->getEnabled() && !isLinked(*it))
-			return true;
-
-	return false;
 }
 
 int eFBCTunerManager::updateLNBSlotMask(int dest_slot, int src_slot, bool remove)

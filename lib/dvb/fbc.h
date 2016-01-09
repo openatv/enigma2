@@ -37,7 +37,6 @@ private:
 	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
 	bool isLinked(eDVBRegisteredFrontend *fe);
 	bool isLinkedByIndex(int fe_idx);
-	bool checkTop(eDVBRegisteredFrontend *fe);
 	int connectLinkByIndex(int link_fe_index, int prev_fe_index, int next_fe_index, bool simulate);
 	int connectLinkByIndex(int link_fe_index, int prev_fe_index, bool simulate);
 	int disconnectLinkByIndex(int link_fe_index, int prev_fe_index, int next_fe_index, bool simulate);
@@ -72,7 +71,6 @@ public:
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *&fbc_fe, bool simulate);
 	void addLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
 	void unset(eDVBRegisteredFrontend *fe);
-	bool canAllocateLink(eDVBRegisteredFrontend *fe, bool simulate);
 
 	static eFBCTunerManager* getInstance()
 	{
