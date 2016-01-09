@@ -1767,6 +1767,13 @@ def InitNimManager(nimmgr, update_slots = []):
 
 				nim.advanced.unicableconnected = ConfigYesNo(default=False)
 				nim.advanced.unicableconnectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
+				if nim.advanced.unicableconnected.value == True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
+					from Tools.Notifications import AddPopup
+					from Screens.MessageBox import MessageBox
+					nim.advanced.unicableconnected.value = False
+					nim.advanced.unicableconnected.save()
+					txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
+					AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
 
 	def configDiSEqCModeChanged(configElement):
 		section = configElement.section
