@@ -1453,7 +1453,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			if not networks and config.Nims[nim.slot].configMode.value == "enabled":
 				networks = [ nim.type ]
 		elif nim.isCompatible("DVB-T"):
-			networks = nimmanager.getTerrestrialDescription(nim.slot)
+			networks = [nimmanager.getTerrestrialDescription(nim.slot)]
+			if not nimmanager.somethingConnected(nim.slot):
+				networks = []
 		elif not nim.empty:
 			networks = [ nim.type ] # "DVB-C" or "DVB-T". TODO: seperate networks for different C/T tuners, if we want to support that.
 		else:
