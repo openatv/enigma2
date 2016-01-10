@@ -284,7 +284,18 @@ class Network:
 
 	def getFriendlyAdapterDescription(self, iface):
 		if not self.isWirelessInterface(iface):
-			return _('Ethernet network interface')
+			moduledir = self.getLanModuleDir(iface)
+			print "[Network] moduledir", moduledir
+			if moduledir:
+				name = os.path.basename(os.path.realpath(moduledir))
+				if name in ('smsc75xx'):
+					name = 'GigaBlue SMSC75XX'
+				if name in ('bcmgenet'):
+					name = 'Internal'
+			else:
+				name = _('Unknown')
+
+			return name + ' ' + _('Ethernet network interface')
 
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
@@ -653,6 +664,18 @@ class Network:
 			if module == 'zd1211b':
 				return 'zydas'
 		return 'wext'
+
+	def getLanModuleDir(self, iface = None):
+		devicedir = self.sysfsPath(iface) + '/device'
+		if not os.path.isdir(devicedir):
+			return None
+		moduledir = devicedir + '/driver/module'
+		if os.path.isdir(moduledir):
+			return moduledir
+		moduledir = devicedir + '/driver'
+		if os.path.isdir(moduledir):
+			return moduledir
+		return None
 
 	def calc_netmask(self,nmask):
 		from struct import pack, unpack
