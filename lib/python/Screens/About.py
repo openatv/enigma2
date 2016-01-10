@@ -443,31 +443,95 @@ class SystemNetworkInfo(Screen):
 		self.AboutText = ""
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
+
+		def nameserver():
+			nameserver=""
+			i=0
+			for line in open('/etc/resolv.conf','r'):
+				line = line.strip()
+				if "nameserver" in line:
+					i=i+1
+					nameserver += str(i) +".Nameserver" + ":\t"  +line.strip().replace("nameserver ","")+"\n"
+			return nameserver.strip()
+
+		def domain():
+			domain=""
+			for line in open('/etc/resolv.conf','r'):
+				line = line.strip()
+				if "domain" in line:
+					domain +=line.strip().replace("domain ","")
+					return domain
+				else:
+					domain="not set"
+					return domain
+
+		def gateway():
+			gateway=""
+			for line in popen('ip route show'):
+				line = line.strip()
+				if "default via " in line:
+					line = line.split(' ')
+					line =line[2]
+					return line
+				else:
+					line = "not set"
+					return line
+
+		def netspeed():
+			netspeed=""
+			for line in popen('ethtool eth0 |grep Speed','r'):
+				line = line.strip().split(":")
+				line =line[1].replace(' ','')
+				netspeed += line
+				return str(netspeed)
+
+		def netspeed_eth1():
+			netspeed=""
+			for line in popen('ethtool eth1 |grep Speed','r'):
+				line = line.strip().split(":")
+				line =line[1].replace(' ','')
+				netspeed += line
+				return str(netspeed)
+	
 		if eth0.has_key('addr'):
 			if eth0.has_key('ifname'):
 				self.AboutText += _('Interface:\t/dev/' + eth0['ifname'] + "\n")
+			self.AboutText += _("NetSpeed:") + "\t" + netspeed() + "\n"
+			if eth0.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
 			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+			self.AboutText += _("Gateway:") + "\t" + gateway() + "\n"			
+			self.AboutText += nameserver() + "\n"
 			if eth0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('brdaddr'):
-				self.AboutText += _('Broadcast:\t' + eth0['brdaddr'] + "\n")
-			if eth0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
+				if eth0['brdaddr']=="0.0.0.0":
+					self.AboutText += _('Broadcast:\t' + eth0['brdaddr']  + " (DHCP off)" + "\n")
+				else:
+					self.AboutText += _('Broadcast:\t' + eth0['brdaddr'] + "\n")
+			self.AboutText += _("Domain:") + "\t" + domain() + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
 		if eth1.has_key('addr'):
 			if eth1.has_key('ifname'):
 				self.AboutText += _('Interface:\t/dev/' + eth1['ifname'] + "\n")
+			self.AboutText += _("NetSpeed:") + "\t" + netspeed_eth1() + "\n"
+			if eth1.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
 			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
+			self.AboutText += _("Gateway:") + "\t" + gateway() + "\n"			
+			self.AboutText += nameserver() + "\n"
 			if eth1.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
 			if eth1.has_key('brdaddr'):
-				self.AboutText += _('Broadcast:\t' + eth1['brdaddr'] + "\n")
-			if eth1.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
+				if eth1['brdaddr']=="0.0.0.0":
+					self.AboutText += _('Broadcast:\t' + eth1['brdaddr']  + " (DHCP off)" + "\n")
+				else:
+					self.AboutText += _('Broadcast:\t' + eth1['brdaddr'] + "\n")
+			self.AboutText += _("Domain:") + "\t" + domain() + "\n"
 			self.iface = 'eth1'
-		
+
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
 			if ra0.has_key('ifname'):
@@ -485,13 +549,19 @@ class SystemNetworkInfo(Screen):
 		if wlan0.has_key('addr'):
 			if wlan0.has_key('ifname'):
 				self.AboutText += _('Interface:\t/dev/' + wlan0['ifname'] + "\n")
+			if wlan0.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
 			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+			self.AboutText += _("Gateway:") + "\t" + gateway() + "\n"
+			self.AboutText += nameserver() + "\n"
 			if wlan0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('brdaddr'):
-				self.AboutText += _('Broadcast:\t' + wlan0['brdaddr'] + "\n")	
-			if wlan0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
+				if wlan0['brdaddr']=="0.0.0.0":
+					self.AboutText += _('Broadcast:\t' + wlan0['brdaddr']  + " (DHCP off)" + "\n")
+				else:
+					self.AboutText += _('Broadcast:\t' + wlan0['brdaddr'] + "\n")
+			self.AboutText += _("Domain:") + "\t" + domain() + "\n"
 			self.iface = 'wlan0'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
@@ -532,7 +602,7 @@ class SystemNetworkInfo(Screen):
 
 						quality = status[self.iface]["quality"]
 						if self.has_key("quality"):
-							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
+							self.AboutText += _('Link Quality:') + ' ' + quality + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
@@ -566,7 +636,8 @@ class SystemNetworkInfo(Screen):
 
 	def updateStatusbar(self):
 		self["IFtext"].setText(_("Network:"))
-		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
+		self["IF"].setText(iNetwork.getFriendlyAdapterDescription(self.iface)  + " - " +iNetwork.getFriendlyAdapterName(self.iface) )
+		#self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
