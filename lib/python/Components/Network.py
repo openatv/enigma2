@@ -285,13 +285,13 @@ class Network:
 	def getFriendlyAdapterDescription(self, iface):
 		if not self.isWirelessInterface(iface):
 			moduledir = self.getLanModuleDir(iface)
-			print "[Network] moduledir", moduledir
+			# print "[Network] moduledir", moduledir
 			if moduledir:
 				name = os.path.basename(os.path.realpath(moduledir))
 				if name in ('smsc75xx'):
-					name = 'GigaBlue SMSC75XX'
+					name = _('External') + ' - ' + 'SMSC75XX'
 				if name in ('bcmgenet'):
-					name = 'Internal'
+					name = _('Internal') + ' - ' + 'BCM'
 			else:
 				name = _('Unknown')
 
