@@ -240,7 +240,7 @@ class BackupSelection(Screen):
 
 	def changeSelectionState(self):
 		if self.readOnly:
-			self.session.open(MessageBox,_("The default backup selection cannot be changed.\nPlease use the 'additional' and 'excluded' backup selection."), type = MessageBox.TYPE_INFO,timeout = 2)
+			self.session.open(MessageBox,_("The default backup selection cannot be changed.\nPlease use the 'additional' and 'excluded' backup selection."), type = MessageBox.TYPE_INFO,timeout = 10)
 		else:
 			self["checkList"].changeSelectionState()
 			self.selectedFiles = self["checkList"].getSelectedList()
