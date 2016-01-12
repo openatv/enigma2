@@ -985,6 +985,16 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		default: break;
 		}
 	}
+	else if (!strcmp(m_description, "Broadcom BCM73XX") ||
+			 !strcmp(m_description, "FTS-260 (Montage RS6000)") ||
+			 !strcmp(m_description, "Panasonic MN88472") ||
+			 !strcmp(m_description, "Panasonic MN88473")) // xcore
+	{
+		ret = snr * 100 / 256;
+
+		if (!strcmp(m_description, "FTS-260 (Montage RS6000)"))
+			sat_max = 1490;
+	}
 	else if (!strcmp(m_description, "Si216x"))
 	{
 		eDVBFrontendParametersTerrestrial parm;
