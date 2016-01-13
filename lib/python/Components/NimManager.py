@@ -863,10 +863,11 @@ class NimManager:
 		InitNimManager(self)	#init config stuff
 
 	# get a list with the friendly full description
-	def nimList(self):
+	def nimList(self, showFBCTuners=True):
 		list = [ ]
 		for slot in self.nim_slots:
-			list.append(slot.friendly_full_description)
+			if showFBCTuners or not slot.isFBCLink():
+				list.append(slot.friendly_full_description)
 		return list
 
 	def getSlotCount(self):
