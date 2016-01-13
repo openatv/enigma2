@@ -24,8 +24,8 @@
 		else \
 		{ \
 			eDebugNoNewLineStart("SIMULATE:"); \
-			eDebugNoNewline(x); \
-			eDebugNoNewline("\n"); \
+			eDebugNoNewLine(x); \
+			eDebugNoNewLine("\n"); \
 		}
 #endif
 
