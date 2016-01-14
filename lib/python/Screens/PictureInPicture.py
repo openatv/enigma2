@@ -178,7 +178,7 @@ class PictureInPicture(Screen):
 		ref = self.resolveAlternatePipService(service)
 		if ref:
 			if self.isPlayableForPipService(ref):
-				print "playing pip service", ref and ref.toString()
+				print "[PictureInPicture] playing pip service", ref and ref.toString()
 			else:
 				if not config.usage.hide_zap_errors.value:
 					Notifications.AddPopup(text = _("No free tuner available!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")

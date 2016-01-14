@@ -137,13 +137,5 @@ def getPythonVersionString():
 	except:
 		return _("unknown")
 
-def getPythonVersionString():
-	try:
-		import commands
-		status, output = commands.getstatusoutput("python -V")
-		return output.split(' ')[1]
-	except:
-		return _("unknown")
-
 # For modules that do "from About import about"
 about = modules[__name__]

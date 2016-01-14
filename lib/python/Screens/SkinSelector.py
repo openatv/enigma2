@@ -82,7 +82,7 @@ class SkinSelectorBase:
 			self.skinfile = self["SkinList"].getCurrent()
 			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
 
-		print "Skinselector: Selected Skin: "+self.root+self.skinfile
+		print "[SkinSelector] Selected Skin: "+self.root+self.skinfile
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 

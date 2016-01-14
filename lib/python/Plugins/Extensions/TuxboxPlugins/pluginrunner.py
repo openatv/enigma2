@@ -17,12 +17,12 @@ class PluginRunner(Screen):
 		eDBoxLCD.getInstance().lock()
 		eRCInput.getInstance().lock()
 		fbClass.getInstance().lock()
-		print "executing:", ("pluginlauncher -x %s" % pluginname)
+		print "[Tuxbox] executing:", ("pluginlauncher -x %s" % pluginname)
 		if self.container.execute("pluginlauncher -x %s" % pluginname):
 			self.finishedExecution(None)
 
 	def finishedExecution(self, retval = 1):
-		print "PluginRunner retval:", retval
+		print "[Tuxbox] PluginRunner retval:", retval
 		fbClass.getInstance().unlock()
 		eRCInput.getInstance().unlock()
 		eDBoxLCD.getInstance().unlock()

@@ -171,7 +171,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
-		print "[TIMER]", msg
+		print "[RecordTimer]", msg
 
 	def freespace(self):
 		self.MountPath = None
@@ -347,8 +347,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					try:
 						Trashcan.instance.cleanIfIdle()
 					except Exception, e:
-						print "[TIMER] Failed to call Trashcan.instance.cleanIfIdle()"
-						print "[TIMER] Error:", e
+						print "[RecordTimer] Failed to call Trashcan.instance.cleanIfIdle()"
+						print "[RecordTimer] Error:", e
 				# fine. it worked, resources are allocated.
 				self.next_activation = self.begin
 				self.backoff = 0
@@ -480,7 +480,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
-					print '[Timer] Recording or Recording due is next 15 mins, not return to deepstandby'
+					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
@@ -672,7 +672,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return
 		# self.log(16, "record event %d" % event)
 		if event == iRecordableService.evRecordWriteError:
-			print "WRITE ERROR on recording, disk full?"
+			print "[RecordTimer] WRITE ERROR on recording, disk full?"
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
@@ -698,13 +698,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
 		if self.__record_service is not None:
-#			print "[remove callback]"
+#			print "[RecordTimer][remove callback]"
 			NavigationInstance.instance.record_event.remove(self.gotRecordEvent)
 
 		self.__record_service = service
 
 		if self.__record_service is not None:
-#			print "[add callback]"
+#			print "[RecordTimer][add callback]"
 			NavigationInstance.instance.record_event.append(self.gotRecordEvent)
 
 	record_service = property(lambda self: self.__record_service, setRecordService)
@@ -767,7 +767,7 @@ class RecordTimer(timer.Timer):
 		try:
 			self.loadTimer()
 		except IOError:
-			print "unable to load timers from file!"
+			print "[RecordTimer] unable to load timers from file!"
 
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
@@ -784,7 +784,7 @@ class RecordTimer(timer.Timer):
 		try:
 			self.timer_list.remove(w)
 		except:
-			print '[RecordTimer]: Remove list failed'
+			print '[RecordTimer] Remove list failed'
 
 		# did this timer reached the last state?
 		if w.state < RecordTimerEntry.StateEnded:
@@ -829,14 +829,14 @@ class RecordTimer(timer.Timer):
 
 			AddPopup(_("The timer file (timers.xml) is corrupt and could not be loaded."), type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
 
-			print "timers.xml failed to load!"
+			print "[RecordTimer] timers.xml failed to load!"
 			try:
 				os.rename(self.Filename, self.Filename + "_old")
 			except (IOError, OSError):
-				print "renaming broken timer failed"
+				print "[RecordTimer] renaming broken timer failed"
 			return
 		except IOError:
-			print "timers.xml not found!"
+			print "[RecordTimer] timers.xml not found!"
 			return
 
 		root = doc.getroot()
@@ -959,15 +959,15 @@ class RecordTimer(timer.Timer):
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
 			if not ignoreTSC:
-				print "timer conflict detected!"
+				print "[RecordTimer] timer conflict detected!"
 				return timersanitycheck.getSimulTimerList()
 			else:
-				print "ignore timer conflict"
+				print "[RecordTimer] ignore timer conflict"
 		elif timersanitycheck.doubleCheck():
-			print "ignore double timer"
+			print "[RecordTimer] ignore double timer"
 			return None
 		entry.timeChanged()
-		print "[Timer] Record " + str(entry)
+		print "[RecordTimer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
 		if dosave:
@@ -1140,7 +1140,7 @@ class RecordTimer(timer.Timer):
 		return returnValue
 
 	def removeEntry(self, entry):
-		print "[Timer] Remove " + str(entry)
+		print "[RecordTimer] Remove " + str(entry)
 
 		# avoid re-enqueuing
 		entry.repeated = False
@@ -1153,9 +1153,9 @@ class RecordTimer(timer.Timer):
 		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
 
-#		print "state: ", entry.state
-#		print "in processed: ", entry in self.processed_timers
-#		print "in running: ", entry in self.timer_list
+#		print "[RecordTimer]state: ", entry.state
+#		print "[RecordTimer]in processed: ", entry in self.processed_timers
+#		print "[RecordTimer]in running: ", entry in self.timer_list
 		# autoincrease instanttimer if possible
 		if not entry.dontSave:
 			for x in self.timer_list:

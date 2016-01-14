@@ -158,10 +158,10 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 		return self.__seek_position
 
 	def setSeekPosition(self, pos):
-		print "set seek position:", pos
+		print "[ServicePosition] set seek position:", pos
 		self.__seek_position = pos
 		if self.instance is not None:
-			print "set instance."
+			print "[ServicePosition] set instance."
 			self.instance.setSeekPosition(pos)
 
 	seek_pointer_position = property(getSeekPosition, setSeekPosition)

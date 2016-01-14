@@ -4,13 +4,13 @@
 
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
-#include <lib/base/filepush.h>
 #include <lib/base/wrappers.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/specs.h>
+#include "filepush.h"
 
 #include <lib/dvb/fbc.h>
 
@@ -1474,7 +1474,7 @@ class eDVBChannelFilePush: public eFilePushThread
 {
 public:
 	eDVBChannelFilePush(int packetsize = 188):
-		eFilePushThread(IOPRIO_CLASS_BE, 0, packetsize, packetsize * 512),
+		eFilePushThread(packetsize, packetsize * 512),
 		m_iframe_search(0),
 		m_iframe_state(0),
 		m_pid(0),

@@ -94,7 +94,7 @@ class SecConfigure:
 						if ("," not in orbpos and sat_str == orbpos) or ((', ' + sat_str + ',' in orbpos) or (orbpos.startswith(sat_str + ',')) or (orbpos.endswith(', ' + sat_str))):
 							user_satList.append(user_sat)
 			for x in user_satList:
-				print "Add sat " + str(x[0])
+				print "[SecConfigure] Add sat " + str(x[0])
 				self.addSatellite(sec, int(x[0]))
 				if diseqc13V:
 					sec.setVoltageMode(switchParam.HV_13)
@@ -106,7 +106,7 @@ class SecConfigure:
 		sec.setLNBSlotMask(tunermask)
 
 	def setSatposDepends(self, sec, nim1, nim2):
-		print "tuner", nim1, "depends on satpos of", nim2
+		print "[SecConfigure] tuner", nim1, "depends on satpos of", nim2
 		sec.setTunerDepends(nim1, nim2)
 
 	def linkInternally(self, slotid):
@@ -115,7 +115,7 @@ class SecConfigure:
 			nim.setInternalLink()
 
 	def linkNIMs(self, sec, nim1, nim2):
-		print "link tuner", nim1, "to tuner", nim2
+		print "[SecConfigure] link tuner", nim1, "to tuner", nim2
 		# for internally connect tuner A to B
 		if '7356' not in about.getChipSetString() and nim2 == (nim1 - 1):
 			self.linkInternally(nim1)
@@ -139,7 +139,7 @@ class SecConfigure:
 			if self.NimManager.nimInternallyConnectableTo(slotid) is not None:
 				self.NimManager.nimRemoveInternalLink(slotid)
 		sec.clear() ## this do unlinking NIMs too !!
-		print "sec config cleared"
+		print "[SecConfigure] sec config cleared"
 
 		self.linked = { }
 		self.satposdepends = { }
@@ -197,7 +197,7 @@ class SecConfigure:
 			nim = slot.config
 			hw = HardwareInfo()
 			if slot.isCompatible("DVB-S"):
-				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
+				print "[SecConfigure] slot: " + str(x) + " configmode: " + str(nim.configMode.value)
 				if nim.configMode.value in ( "loopthrough", "satposdepends", "nothing" ):
 					pass
 				else:
@@ -205,7 +205,7 @@ class SecConfigure:
 					if nim.configMode.value == "equal":
 						pass
 					elif nim.configMode.value == "simple":		#simple config
-						print "diseqcmode: ", nim.diseqcMode.value
+						print "[SecConfigure] diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
 							currentCircular = False
 							if nim.diseqcA.value in ("360", "560"): 
@@ -268,7 +268,7 @@ class SecConfigure:
 								diseqc13V = nim.diseqc13V.value)
 					elif nim.configMode.value == "advanced": #advanced config
 						self.updateAdvanced(sec, x)
-		print "sec config completed"
+		print "[SecConfigure] sec config completed"
 
 	def updateAdvanced(self, sec, slotid):
 		try:
@@ -294,7 +294,7 @@ class SecConfigure:
 			lnb = int(config.Nims[slotid].advanced.sat[x].lnb.value)
 			if lnb != 0:
 				for x in self.NimManager.satList:
-					print "add", x[0], "to", lnb
+					print "[SecConfigure] add", x[0], "to", lnb
 					lnbSat[lnb].append(x[0])
 
 		#wildcard for user satellites ( for rotor )
@@ -306,13 +306,13 @@ class SecConfigure:
 				for user_sat in self.NimManager.satList:
 					sat_str = str(user_sat[0])
 					if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))):
-						print "add", user_sat[0], "to", lnb
+						print "[SecConfigure] add", user_sat[0], "to", lnb
 						lnbSat[lnb].append(user_sat[0])
 
 		for x in self.NimManager.satList:
 			lnb = int(config.Nims[slotid].advanced.sat[x[0]].lnb.value)
 			if lnb != 0:
-				print "add", x[0], "to", lnb
+				print "[SecConfigure] add", x[0], "to", lnb
 				lnbSat[lnb].append(x[0])
 
 		for x in range(1, 71):
@@ -523,7 +523,7 @@ class NIM(object):
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", "DVB-T2", "DVB-C2", "ATSC", None):
-			print "warning: unknown NIM type %s, not using." % type
+			print "[NIM] warning: unknown NIM type %s, not using." % type
 			type = None
 
 		self.type = type
@@ -603,14 +603,14 @@ class NIM(object):
 
 	def setInternalLink(self):
 		if self.internally_connectable is not None:
-			print "setting internal link on frontend id", self.frontend_id
+			print "[NIM] setting internal link on frontend id", self.frontend_id
 			f = open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w")
 			f.write("internal")
 			f.close()
 
 	def removeInternalLink(self):
 		if self.internally_connectable is not None:
-			print "removing internal link on frontend id", self.frontend_id
+			print "[NIM] removing internal link on frontend id", self.frontend_id
 			f = open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w")
 			f.write("external")
 			f.close()
@@ -712,14 +712,14 @@ class NimManager:
 		db = eDVBDB.getInstance()
 
 		if self.hasNimType("DVB-S"):
-			print "Reading satellites.xml"
+			print "[NimManager] Reading satellites.xml"
 			db.readSatellites(self.satList, self.satellites, self.transponders)
 			self.satList.sort() # sort by orbpos
 
 		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T"):
-			print "Reading cables.xml"
+			print "[NimManager] Reading cables.xml"
 			db.readCables(self.cablesList, self.transponderscable)
-			print "Reading terrestrial.xml"
+			print "[NimManager] Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 
 	def enumerateNIMs(self):
@@ -1326,13 +1326,13 @@ def InitNimManager(nimmgr, update_slots = []):
 						sectionDict[y] = tmp
 
 				if lnb < 3:
-					print "MATRIX"
+					print "[InitNimManager] MATRIX"
 					section.unicableMatrix = ConfigSubDict()
 					section.unicableMatrixManufacturer = ConfigSelection(UnicableMatrixManufacturers, UnicableMatrixManufacturers[0])
 					fillUnicableConf(section.unicableMatrix, unicablematrixproducts, True)
 
 				if lnb < 2:
-					print "LNB"
+					print "[InitNimManager] LNB"
 					section.unicableLnb = ConfigSubDict()
 					section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, UnicableLnbManufacturers[0])
 					fillUnicableConf(section.unicableLnb, unicablelnbproducts, False)
@@ -1365,7 +1365,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			section.turningspeedH = ConfigFloat(default = [2,3], limits = [(0,9),(0,9)])
 			section.turningspeedV = ConfigFloat(default = [1,7], limits = [(0,9),(0,9)])
 			section.powerMeasurement = ConfigYesNo(default=True)
-			section.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm7025" and 50 or 15, limits=(0, 100))
+			section.powerThreshold = ConfigInteger(default=15, limits=(0, 100))
 			section.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
 			section.fastTurningBegin = ConfigDateTime(default=advanced_lnb_fast_turning_btime, formatstring = _("%H:%M"), increment = 600)
 			section.fastTurningEnd = ConfigDateTime(default=advanced_lnb_fast_turning_etime, formatstring = _("%H:%M"), increment = 600)
@@ -1503,10 +1503,12 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.cable = ConfigSubsection()
 			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
+			default_scan_type = "bands"
 			if n:
 				possible_scan_types.append(("provider", _("Provider")))
+				default_scan_type = "provider"
 				nim.cable.scan_provider = ConfigSelection(default = "0", choices = list)
-			nim.cable.scan_type = ConfigSelection(default = "bands", choices = possible_scan_types)
+			nim.cable.scan_type = ConfigSelection(default = default_scan_type, choices = possible_scan_types)
 			nim.cable.scan_band_EU_VHF_I = ConfigYesNo(default = True)
 			nim.cable.scan_band_EU_MID = ConfigYesNo(default = True)
 			nim.cable.scan_band_EU_VHF_III = ConfigYesNo(default = True)
@@ -1584,7 +1586,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			empty_slots += 1
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing")
 			if slot.type is not None:
-				print "pls add support for this frontend type!", slot.type
+				print "[InitNimManager] pls add support for this frontend type!", slot.type
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
@@ -1602,7 +1604,7 @@ def InitNimManager(nimmgr, update_slots = []):
 					f.write("0")
 					f.close()
 				except:
-					print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+					print "[InitNimManager] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 
 				frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
 				frontend.closeFrontend()
@@ -1615,10 +1617,10 @@ def InitNimManager(nimmgr, update_slots = []):
 					f.write(oldvalue)
 					f.close()
 				except:
-					print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+					print "[InitNimManager] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 				nimmgr.enumerateNIMs()
 			else:
-				print "tuner type is already already %d" %cur_type
+				print "[InitNimManager] tuner type is already already %d" %cur_type
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
