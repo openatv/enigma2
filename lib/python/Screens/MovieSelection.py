@@ -1695,6 +1695,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def do_decode(self):
 		from ServiceReference import ServiceReference
 		item = self.getCurrentSelection()
+		if item is None:
+			return
 		info = item[1]
 		serviceref = ServiceReference(None, reftype=eServiceReference.idDVB, path=item[0].getPath())
 		name = info.getName(item[0]) + ' - decoded'
@@ -1878,6 +1880,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# cancelled by user (passing any arg means it's a dialog return)
 			return
 		item = self.getCurrentSelection()
+		if item is None:
+			return
 		current = item[0]
 		info = item[1]
 		cur_path = os.path.realpath(current.getPath())
@@ -2084,8 +2088,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not confirmed:
 			return
 		item = self.getCurrentSelection()
-		current = item[0]
-		Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
+		if item is not None:
+			current = item[0]
+			Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
