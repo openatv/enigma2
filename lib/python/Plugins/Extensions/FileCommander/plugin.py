@@ -345,8 +345,10 @@ class FileCommanderScreen(Screen, key_actions):
 # ## Multiselect ###
 	def listSelect(self):
 		selectedid = self.SOURCELIST.getSelectionID()
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		if self["list_left"].getCurrentDirectory():
+			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
+		if self["list_right"].getCurrentDirectory():
+			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
 		if self.SOURCELIST == self["list_left"]:
 			leftactive = True
 		else:
@@ -726,8 +728,10 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			self.goDown()
 
 	def exit(self):
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		if self["list_left"].getCurrentDirectory():
+			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
+		if self["list_right"].getCurrentDirectory():
+			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
 		self.close()
 
 	def ok(self):
