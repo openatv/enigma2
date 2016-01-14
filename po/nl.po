@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-01 17:16+0000\n"
-"PO-Revision-Date: 2015-12-03 05:12+0100\n"
+"POT-Creation-Date: 2016-01-07 22:50+0000\n"
+"PO-Revision-Date: 2016-01-14 07:14+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -2717,9 +2717,6 @@ msgstr "Uit"
 msgid "Disable Animations"
 msgstr "Animatie uitschakelen"
 
-msgid "Disable FastZapping"
-msgstr "Snel zappen uitschakelen"
-
 msgid "Disable MiniTV"
 msgstr "Schakel mini-TV uit"
 
@@ -3102,9 +3099,6 @@ msgstr "5V voor actieve antenne inschakelen"
 msgid "Enable EIT EPG"
 msgstr "EIT EPG inschakelen"
 
-msgid "Enable FastZapping"
-msgstr "Schakel snel zappen in"
-
 msgid "Enable FreeSat EPG"
 msgstr "Freesat EPG inschakelen"
 
@@ -3424,6 +3418,9 @@ msgstr "Externe ondertitels wissel lettertype"
 msgid "Extra motor options"
 msgstr "Extra motor opties"
 
+msgid "Extrude from left"
+msgstr "Groei vanaf links"
+
 msgid "F1"
 msgstr "F1"
 
@@ -3542,7 +3539,7 @@ msgid "Final position at index"
 msgstr "Eindpositie op index"
 
 msgid "Final scroll delay"
-msgstr ""
+msgstr "Scrollvertraging"
 
 msgid "Find currently played service"
 msgstr "Vind het nu spelende kanaal"
@@ -3773,7 +3770,7 @@ msgid "Grey"
 msgstr "Grijs"
 
 msgid "Grow drop"
-msgstr ""
+msgstr "Groeien"
 
 msgid "Grow from left"
 msgstr "Groei vanaf links"
@@ -4923,6 +4920,9 @@ msgstr "NFS instellingen"
 msgid "NIM"
 msgstr "NIM"
 
+msgid "NO"
+msgstr "NO"
+
 msgid "NTP"
 msgstr "NTP"
 
@@ -5830,6 +5830,11 @@ msgstr "Configureer tuner I"
 
 msgid "Please set up tuner J"
 msgstr "Configureer tuner J"
+
+msgid "Please set up tuner K"
+msgstr ""
+"Configureer tuner A\n"
+"K"
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
@@ -7275,9 +7280,6 @@ msgstr "Voltage en 22KHz instellen"
 msgid "Sets the root folder of movie list, to remove the '..' from being shown in that folder."
 msgstr "Stelt de root-map van de opnamelijst in, om '..' niet te tonen. "
 
-msgid "Setting"
-msgstr "Instelling"
-
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -7713,6 +7715,9 @@ msgstr "Fade in/uit"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Eenvoudige titelset (compatibel met gewone spelers)"
 
+msgid "Simple zoom"
+msgstr "Eenvoudige zoom"
+
 msgid "Single"
 msgstr "Enkel"
 
@@ -7769,13 +7774,19 @@ msgid "Sleep delay"
 msgstr "Slaap vertraging"
 
 msgid "Slide drop"
-msgstr ""
+msgstr "Schuiven"
+
+msgid "Slide from left"
+msgstr "Schuif vanaf links"
 
 msgid "Slide left to right"
 msgstr "Shuif links naar rechts"
 
 msgid "Slide picture in loop"
 msgstr "Toon foto's continu"
+
+msgid "Slide right to left"
+msgstr "Schuif van rechts naar links"
 
 msgid "Slide show interval (sec.)"
 msgstr "Diavoorstelling interval (sec.)"
@@ -9075,6 +9086,10 @@ msgstr "Totaal"
 msgid "Total cards:"
 msgstr "Aantal kaarten:"
 
+#, python-format
+msgid "Total clients streaming: %d (%s)"
+msgstr "Totaal aantal streaming klanten: %d (%s)"
+
 msgid "Total handled client ecm's"
 msgstr "Total afgehandelde klant ecm's"
 
@@ -9092,6 +9107,9 @@ msgstr "Totaal:"
 
 msgid "Track"
 msgstr "Spoor"
+
+msgid "Transcoding: "
+msgstr "Transcoding"
 
 msgid "Translation Information"
 msgstr "Iinformatie over vertaling"
@@ -9966,14 +9984,14 @@ msgstr "Als uw %s %s op een kanaal is afgestemd, wordt normaal gesproken de tran
 
 #, python-format
 msgid ""
-"When you perform a factory reset, you will lose ALL your configuration data\n"
+"When you perform a factory reset, you will lose ALL of your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
 "After completion of the factory reset, your %s %s will restart automatically!\n"
 "\n"
 "Do you really want to do a factory reset?"
 msgstr ""
 "Wanneer u terug gaat naar de fabrieksinstellingen, verliest u alle gegevens van uw configuratie.\n"
-"(inclusief favorietenlijsten, zenders, satellietdata, etc ...)\n"
+"(inclusief favorietenlijsten, zenders, satelliet data, etc ...)\n"
 "Na voltooiing van de fabrieksinstellingen, zal uw %s %s automatisch herstarten!\n"
 "\n"
 "Werkelijk uitvoeren?"
@@ -10052,8 +10070,11 @@ msgstr "XBox 360 support"
 msgid "XP1000"
 msgstr "XP1000"
 
+msgid "YES"
+msgstr "JA"
+
 msgid "YPbPr"
-msgstr "Component"
+msgstr "YPbPr (Component)"
 
 msgid "Year"
 msgstr "Jaar"
@@ -10191,18 +10212,18 @@ msgstr ""
 "U wilt de huidige timeshift opslaan, maar het programma is nog niet afgelopen.\n"
 "Wat wilt u doen?"
 
+msgid "You have not selected any logs to delete."
+msgstr "U heeft geen logs geselecteerd om te verwijderen."
+
+msgid "You have not selected any logs to send"
+msgstr "U heeft geen logs geselecteerd om te verzenden."
+
 msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, enter your info, and then try again"
 msgstr ""
 "U heeft de gebruikersinfo in het instellingen scherm niet ingevuld\n"
 "Druk op MENU en vul uw gegevens in, probeer het daarna opnieuw"
-
-msgid "You have selected no logs to delete."
-msgstr "U heeft geen logs geselecteerd om te verwijderen"
-
-msgid "You have selected no logs to send."
-msgstr "U heeft geen logs geselecteerd om te verzenden."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -10436,6 +10457,12 @@ msgstr "Zoom In/Uit TV..."
 
 msgid "Zoom Off..."
 msgstr "Zoom uit..."
+
+msgid "Zoom from left"
+msgstr "Zoom vanaf links"
+
+msgid "Zoom from right"
+msgstr "Zoom vanaf rechts"
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[TimeShift] Timeshift wordt herstart!"
@@ -11677,6 +11704,9 @@ msgstr "zapte"
 #~ msgid "Dialing:"
 #~ msgstr "Bellen:"
 
+#~ msgid "Disable FastZapping"
+#~ msgstr "Snel zappen uitschakelen"
+
 #~ msgid "Disconnect"
 #~ msgstr "Verbreken"
 
@@ -11691,6 +11721,9 @@ msgstr "zapte"
 
 #~ msgid "Edit services list"
 #~ msgstr "Wijzig zenderlijst"
+
+#~ msgid "Enable FastZapping"
+#~ msgstr "Schakel snel zappen in"
 
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
@@ -11824,6 +11857,9 @@ msgstr "zapte"
 
 #~ msgid "Select what you want the TV button to activate."
 #~ msgstr "Stel in wat de TV-toets moet doen."
+
+#~ msgid "Setting"
+#~ msgstr "Instelling"
 
 #~ msgid "Show Audioselection"
 #~ msgstr "Toon audioselectie"
