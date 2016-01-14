@@ -292,7 +292,7 @@ class EPGSelection(Screen, HelpableScreen):
 				'4': (self.keyNumberGlobal, _('Page left')),
 				'5': (self.keyNumberGlobal, _('Jump to current time')),
 				'6': (self.keyNumberGlobal, _('Page right')),
-				'7': (self.keyNumberGlobal, _('No. of items toggle (increase/decrease)')),
+				'7': (self.keyNumberGlobal, _('No. of items toggle (increase/decrease)')) if self.type == EPG_TYPE_GRAPH else None,
 				'8': (self.keyNumberGlobal, _('Page down')),
 				'9': (self.keyNumberGlobal, _('Jump to prime time')),
 				'0': (self.keyNumberGlobal, _('Move to home of list'))
@@ -567,7 +567,6 @@ class EPGSelection(Screen, HelpableScreen):
 				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
-			self['list'].resetOffset()
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self.moveTimeLines(True)
 		elif self.type == EPG_TYPE_MULTI:
@@ -696,9 +695,7 @@ class EPGSelection(Screen, HelpableScreen):
 						self.ask_time -= self.ask_time % (int(config.epgselection.graph_roundto.value) * 60)
 					elif self.type == EPG_TYPE_INFOBARGRAPH:
 						self.ask_time -= self.ask_time % (int(config.epgselection.infobar_roundto.value) * 60)
-					l = self['list']
-					l.resetOffset()
-					l.fillGraphEPG(None, self.ask_time)
+					self['list'].fillGraphEPG(None, self.ask_time)
 					self.moveTimeLines(True)
 		if self.eventviewDialog and self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
@@ -1412,101 +1409,60 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close()
 
 	def keyNumberGlobal(self, number):
-		if self.type == EPG_TYPE_GRAPH:
+		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			if self.type == EPG_TYPE_INFOBARGRAPH:
+				timeperiod_conf = config.epgselection.infobar_prevtimeperiod
+				roundto_conf = config.epgselection.infobar_roundto
+				config_primetimehour = config.epgselection.infobar_primetimehour
+				config_primetimemins = config.epgselection.infobar_primetimemins
+			else:
+				timeperiod_conf = config.epgselection.graph_prevtimeperiod
+				roundto_conf = config.epgselection.graph_roundto
+				config_primetimehour = config.epgselection.graph_primetimehour
+				config_primetimemins = config.epgselection.graph_primetimemins
 			if number == 1:
-				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)
+				timeperiod = int(timeperiod_conf.value)
 				if timeperiod > 90:
 					timeperiod -= 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.graph_prevtimeperiod.value = str(timeperiod)
+					timeperiod_conf.value = str(timeperiod)
 					self.moveTimeLines()
 			elif number == 2:
 				self.prevPage()
 			elif number == 3:
-				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)
+				timeperiod = int(timeperiod_conf.value)
 				if timeperiod < 270:
 					timeperiod += 60
 					self['list'].setEpoch(timeperiod)
-					config.epgselection.graph_prevtimeperiod.value = str(timeperiod)
+					timeperiod_conf.value = str(timeperiod)
 					self.moveTimeLines()
 			elif number == 4:
 				self.updEvent(-2)
-			elif number == 5:
+			elif number in (5, 0):
+				if number == 0:
+					self.toTop()
 				now = time() - int(config.epg.histminutes.value) * 60
-				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
-				self['list'].resetOffset()
+				self.ask_time = now - now % (int(roundto_conf.value) * 60)
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 			elif number == 6:
 				self.updEvent(+2)
 			elif number == 7:
-				config.epgselection.graph_heightswitch.value = not config.epgselection.graph_heightswitch.value
-				self['list'].setItemsPerPage()
-				self['list'].fillGraphEPG(None)
-				self.moveTimeLines()
+				if self.type == EPG_TYPE_GRAPH:
+					config.epgselection.graph_heightswitch.value = not config.epgselection.graph_heightswitch.value
+					self['list'].setItemsPerPage()
+					self['list'].fillGraphEPG(None)
+					self.moveTimeLines()
 			elif number == 8:
 				self.nextPage()
 			elif number == 9:
 				basetime = localtime(self['list'].getTimeBase())
-				basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.graph_primetimehour.value), int(config.epgselection.graph_primetimemins.value), 0, basetime[6], basetime[7], basetime[8])
+				basetime = basetime[0:3] + (int(config_primetimehour.value), int(config_primetimemins.value), 0) + basetime[6:9]
 				self.ask_time = mktime(basetime)
 				if self.ask_time + 3600 < time():
 					self.ask_time += 86400
-				self['list'].resetOffset()
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
-			elif number == 0:
-				self.toTop()
-				now = time() - int(config.epg.histminutes.value) * 60
-				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
-				self['list'].resetOffset()
-				self['list'].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines()
-		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			if number == 1:
-				timeperiod = int(config.epgselection.infobar_prevtimeperiod.value)
-				if timeperiod > 60:
-					timeperiod -= 60
-					self['list'].setEpoch(timeperiod)
-					config.epgselection.infobar_prevtimeperiod.setValue(timeperiod)
-					self.moveTimeLines()
-			elif number == 2:
-				self.prevPage()
-			elif number == 3:
-				timeperiod = int(config.epgselection.infobar_prevtimeperiod.value)
-				if timeperiod < 300:
-					timeperiod += 60
-					self['list'].setEpoch(timeperiod)
-					config.epgselection.infobar_prevtimeperiod.setValue(timeperiod)
-					self.moveTimeLines()
-			elif number == 4:
-				self.updEvent(-2)
-			elif number == 5:
-				now = time() - int(config.epg.histminutes.value) * 60
-				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
-				self['list'].resetOffset()
-				self['list'].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines(True)
-			elif number == 6:
-				self.updEvent(+2)
-			elif number == 8:
-				self.nextPage()
-			elif number == 9:
-				basetime = localtime(self['list'].getTimeBase())
-				basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.infobar_primetimehour.value), int(config.epgselection.infobar_primetimemins.value), 0, basetime[6], basetime[7], basetime[8])
-				self.ask_time = mktime(basetime)
-				if self.ask_time + 3600 < time():
-					self.ask_time += 86400
-				self['list'].resetOffset()
-				self['list'].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines(True)
-			elif number == 0:
-				self.toTop()
-				now = time() - int(config.epg.histminutes.value) * 60
-				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
-				self['list'].resetOffset()
-				self['list'].fillGraphEPG(None, self.ask_time)
-				self.moveTimeLines()
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
