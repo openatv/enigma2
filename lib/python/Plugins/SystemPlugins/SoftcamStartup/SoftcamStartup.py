@@ -17,14 +17,14 @@ from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPytho
 
 NoneData = "#!/bin/sh\n"
 
-if not fileExists('/etc/init.d/softcam-1.None'):
+if not fileExists('/etc/init.d/softcam.None'):
 	fd = file('/etc/init.d/softcam.None', 'w')
 	fd.write(NoneData)
 	fd.close()
 else:
 	pass
 
-if not fileExists('/etc/init.d/softcam.None'):
+if not fileExists('/etc/init.d/cardserver.None'):
 	fd = file('/etc/init.d/cardserver.None', 'w')
 	fd.write(NoneData)
 	fd.close()
@@ -150,7 +150,7 @@ class SoftcamStartup(Screen, ConfigListScreen):
 		what = ''
 		if hasattr(self, 'softcamlistsecondary') and (self.softcamlistsecondary.value != self.softcam2.current()):
 			what = 'sc'
-		elif self.softcam1s.value != self.softcam1.current():
+		elif self.softcamlistprimary.value != self.softcam1.current():
 			what = 's'
 		if what:
 			self.restart(what)
