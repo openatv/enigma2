@@ -5,7 +5,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	DefaultServicesScanner DiseqcTester CommonInterfaceAssignment \
 	CableScan FastScan OSDPositionSetup OSD3DSetup HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard DeviceManager \
-	SwapManager
+	SwapManager SoftcamStartup
 
 if HAVE_OSDANIMATION
 SUBDIRS += AnimationSetup
