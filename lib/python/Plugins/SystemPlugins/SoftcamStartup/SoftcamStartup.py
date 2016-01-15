@@ -46,11 +46,11 @@ class ConfigAction(ConfigElement):
 class SoftcamStartup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="SoftcamStartup" position="center,center" size="560,350" >
-		<widget name="config" position="5,10" size="550,200" />
-		<ePixmap name="red" position="5,310" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap name="green" position="185,310" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<widget name="key_red" position="45,310" zPosition="2" size="140,40" valign="center" halign="leftr" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_green" position="225,310" zPosition="2" size="140,40" valign="center" halign="left" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="config" position="5,10" size="550,200"/>
+		<ePixmap name="red" position="5,310" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on"/>
+		<ePixmap name="green" position="185,310" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on"/>
+		<widget name="key_red" position="45,310" zPosition="2" size="140,40" valign="center" halign="left" font="Regular;21" transparent="1"/>
+		<widget name="key_green" position="225,310" zPosition="2" size="140,40" valign="center" halign="left" font="Regular;21" transparent="1"/>
 	</screen>"""
 	def __init__(self, session, showExtentionMenuOption):
 		Screen.__init__(self, session)
@@ -75,17 +75,14 @@ class SoftcamStartup(Screen, ConfigListScreen):
 
 		self.softcamlistprimary = ConfigSelection(choices = softcamlistprimary)
 		self.softcamlistprimary.value = self.softcam1.current()
+		self.softcamlistsecondary = ConfigSelection(choices = softcamlistsecondary)
+		self.softcamlistsecondary.value = self.softcam2.current()
 
 		self.list.append(getConfigListEntry(_("Select primary softcam"), self.softcamlistprimary))
-		if softcamlistsecondary:
-			self.softcamlistsecondary = ConfigSelection(choices = softcamlistsecondary)
-			self.softcamlistsecondary.value = self.softcam2.current()
-			self.list.append(getConfigListEntry(_("Select secondary softcam"), self.softcamlistsecondary))
-
+		self.list.append(getConfigListEntry(_("Select secondary softcam"), self.softcamlistsecondary))
 		self.list.append(getConfigListEntry(_("Restart primary softcam"), ConfigAction(self.restart, "s")))
-		if softcamlistsecondary: 
-			self.list.append(getConfigListEntry(_("Restart secondary softcam"), ConfigAction(self.restart, "c"))) 
-			self.list.append(getConfigListEntry(_("Restart both"), ConfigAction(self.restart, "sc")))
+		self.list.append(getConfigListEntry(_("Restart secondary softcam"), ConfigAction(self.restart, "c"))) 
+		self.list.append(getConfigListEntry(_("Restart both"), ConfigAction(self.restart, "sc")))
 
 		if showExtentionMenuOption:
 			self.list.append(getConfigListEntry(_("Show softcam startup in extensions menu"), config.misc.softcam_startup.extension_menu))
@@ -127,31 +124,28 @@ class SoftcamStartup(Screen, ConfigListScreen):
 	def doStart(self):
 		self.activityTimer.stop()
 		del self.activityTimer 
-		if "c" in self.what:
-			self.softcam2.select(self.softcamlistsecondary.value)
-			self.softcam2.command('start')
 		if "s" in self.what:
 			self.softcam1.select(self.softcamlistprimary.value)
 			self.softcam1.command('start')
+		if "c" in self.what:
+			self.softcam2.select(self.softcamlistsecondary.value)
+			self.softcam2.command('start')
 		if self.mbox:
 			self.mbox.close()
 		self.close()
 		self.session.nav.playService(self.oldref)
 		del self.oldref
 
-	def restartCardServer(self):
-		if hasattr(self, 'softcamlistsecondary'):
-			self.restart("c")
-	
-	def restartSoftcam(self):
-		self.restart("s")
-
 	def save(self):
 		what = ''
-		if hasattr(self, 'softcamlistsecondary') and (self.softcamlistsecondary.value != self.softcam2.current()):
+		if (self.softcamlistsecondary.value != self.softcam2.current()) and (self.softcamlistprimary.value != self.softcam1.current()):
 			what = 'sc'
-		elif self.softcamlistprimary.value != self.softcam1.current():
+		elif (self.softcamlistsecondary.value != self.softcam2.current()):
+			what = 'c'
+		elif (self.softcamlistprimary.value != self.softcam1.current()):
 			what = 's'
+		else:
+			what = ''
 		if what:
 			self.restart(what)
 		else:
