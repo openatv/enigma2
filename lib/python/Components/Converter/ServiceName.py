@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
+from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference
 from ServiceReference import resolveAlternate
 from Components.Element import cached
 
@@ -9,6 +9,7 @@ class ServiceName(Converter, object):
 	PROVIDER = 1
 	REFERENCE = 2
 	EDITREFERENCE = 3
+	NUMBER = 4
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -19,6 +20,8 @@ class ServiceName(Converter, object):
 			self.type = self.REFERENCE
 		elif type == "EditReference":
 			self.type = self.EDITREFERENCE
+		elif type == "Number":
+			self.type = self.NUMBER
 		else:
 			self.type = self.NAME
 
@@ -47,6 +50,15 @@ class ServiceName(Converter, object):
 			if nref:
 				ref = nref
 			return ref.toString()
+		elif self.type == self.NUMBER:
+			if not ref:
+				ref = eServiceReference(info.getInfoString(iServiceInformation.sServiceref))
+			num = ref and ref.getChannelNum() or None
+			if num is None:
+				num = '---'
+			else:
+				num = str(num)
+			return num
 
 	text = property(getText)
 

@@ -266,7 +266,7 @@ int main(int argc, char **argv)
 	eWidgetDesktop dsk_lcd(my_lcd_dc->size());
 
 	dsk.setStyleID(0);
-	dsk_lcd.setStyleID(my_lcd_dc->size().width() == 96 ? 2 : 1);
+	dsk_lcd.setStyleID(1);
 
 /*	if (double_buffer)
 	{

@@ -198,10 +198,9 @@ class EPGSelection(Screen):
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
 			self["Service"].newService(service.ref)
-			if self.saved_title is None:
+			if not self.saved_title:
 				self.saved_title = self.instance.getTitle()
-			title = self.saved_title + ' - ' + service.getServiceName()
-			self.instance.setTitle(title)
+			self.setTitle(self.saved_title + ' - ' + service.getServiceName())
 			l.fillSingleEPG(service)
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)

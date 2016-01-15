@@ -3,6 +3,7 @@
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/cfile.h>
 #include <lib/base/ebase.h>
 
 #include <lib/base/eerror.h>
@@ -30,44 +31,33 @@ eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
 
 eDVBCIInterfaces::eDVBCIInterfaces()
 {
-	int num_ci = 0;
+
+	char buf[64];
+	int ci_num;
+	ePtr<eDVBCISlot> cislot;
 
 	instance = this;
 
 	eDebug("[CI] scanning for common interfaces..");
 
-	while (1)
+	for(ci_num = 0; ci_num < 8; ci_num++)
 	{
-		char filename[128];
-		sprintf(filename, "/dev/ci%d", num_ci);
+		snprintf(buf, sizeof(buf), "/dev/ci%d", ci_num);
 
-		if (::access(filename, R_OK) < 0) break;
+		if(::access(buf, R_OK))
+			break;
 
-		ePtr<eDVBCISlot> cislot;
-
-		cislot = new eDVBCISlot(eApp, num_ci);
+		cislot = new eDVBCISlot(eApp, ci_num);
+		cislot->setSource(TUNER_A);
 		m_slots.push_back(cislot);
-
-		++num_ci;
 	}
 
-	for (eSmartPtrList<eDVBCISlot>::iterator it(m_slots.begin()); it != m_slots.end(); ++it)
-		it->setSource(TUNER_A);
+	setInputSource(0, TUNER_A);
+	setInputSource(1, TUNER_B);
+	setInputSource(2, TUNER_C);
+	setInputSource(3, TUNER_D);
 
-	if (num_ci > 1) // // FIXME .. we force DM8000 when more than one CI Slot is avail
-	{
-		setInputSource(0, TUNER_A);
-		setInputSource(1, TUNER_B);
-		setInputSource(2, TUNER_C);
-		setInputSource(3, TUNER_D);
-	}
-	else
-	{
-		setInputSource(0, TUNER_A);
-		setInputSource(1, TUNER_B);
-	}
-
-	eDebug("[CI] done, found %d common interface slots", num_ci);
+	eDebug("[CI] done, found %d common interface slots", ci_num);
 }
 
 eDVBCIInterfaces::~eDVBCIInterfaces()
@@ -645,87 +635,49 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 
 int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 {
-//	eDebug("[CI] !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//	eDebug("eDVBCIInterfaces::setInputSource(%d %d)", tuner_no, (int)source);
-	if (getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	char buf[64];
+	std::string value;
+
+	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
+
+	switch(source)
 	{
-		char buf[64];
-		snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
-
-		FILE *input=0;
-		if((input = fopen(buf, "wb")) == NULL) {
-			eDebug("[CI] cannot open %s", buf);
-			return 0;
-		}
-
-		if (tuner_no > 3)
-			eDebug("[CI] setInputSource(%d, %d) failed... dm8000 just have four inputs", tuner_no, (int)source);
-
-		switch(source)
-		{
-			case CI_A:
-				fprintf(input, "CI0");
-				break;
-			case CI_B:
-				fprintf(input, "CI1");
-				break;
-			case CI_C:
-				fprintf(input, "CI2");
+		case CI_A:
+			value = "CI0";
 			break;
-			case CI_D:
-				fprintf(input, "CI3");
-				break;
-			case TUNER_A:
-				fprintf(input, "A");
-				break;
-			case TUNER_B:
-				fprintf(input, "B");
-				break;
-			case TUNER_C:
-				fprintf(input, "C");
-				break;
-			case TUNER_D:
-				fprintf(input, "D");
-				break;
-			default:
-				eDebug("[CI] setInputSource for input %d failed!!!\n", (int)source);
-				break;
-		}
-
-		fclose(input);
-	}
-	else  // DM7025
-	{
-		char buf[64];
-		snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
-
-		if (tuner_no > 1)
-			eDebug("[CI] setInputSource(%d, %d) failed... dm7025 just have two inputs", tuner_no, (int)source);
-
-		FILE *input=0;
-		if((input = fopen(buf, "wb")) == NULL) {
-			eDebug("[CI] cannot open %s", buf);
+		case CI_B:
+			value = "CI1";
+			break;
+		case CI_C:
+			value = "CI2";
+			break;
+		case CI_D:
+			value = "CI3";
+			break;
+		case TUNER_A:
+			value = "A";
+			break;
+		case TUNER_B:
+			value = "B";
+			break;
+		case TUNER_C:
+			value = "C";
+			break;
+		case TUNER_D:
+			value = "D";
+			break;
+		default:
+			eDebug("[CI] setInputSource for input %d failed!", (int)source);
 			return 0;
-		}
-
-		switch(source)
-		{
-			case CI_A:
-				fprintf(input, "CI");
-				break;
-			case TUNER_A:
-				fprintf(input, "A");
-				break;
-			case TUNER_B:
-				fprintf(input, "B");
-				break;
-			default:
-				eDebug("[CI] setInputSource for input %d failed!!!\n", (int)source);
-				break;
-		}
-
-		fclose(input);
+			break;
 	}
+
+	if (CFile::write(buf, value.c_str()) == -1)
+	{
+		eDebug("[CI] cannot open %s", buf);
+		return 0;
+	}
+
 	eDebug("[CI] eDVBCIInterfaces->setInputSource(%d, %d)", tuner_no, (int)source);
 	return 0;
 }
@@ -1270,59 +1222,50 @@ void eDVBCISlot::removeService(uint16_t program_number)
 
 int eDVBCISlot::setSource(data_source source)
 {
+	char buf[64];
+	std::string value;
+
 	current_source = source;
-	if (eDVBCIInterfaces::getInstance()->getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_input", slotid);
+
+	switch(source)
 	{
-		char buf[64];
-		snprintf(buf, 64, "/proc/stb/tsmux/ci%d_input", slotid);
-		FILE *ci = fopen(buf, "wb");
-		switch(source)
-		{
-			case CI_A:
-				fprintf(ci, "CI0");
-				break;
-			case CI_B:
-				fprintf(ci, "CI1");
-				break;
-			case CI_C:
-				fprintf(ci, "CI2");
-				break;
-			case CI_D:
-				fprintf(ci, "CI3");
-				break;
-			case TUNER_A:
-				fprintf(ci, "A");
-				break;
-			case TUNER_B:
-				fprintf(ci, "B");
-				break;
-			case TUNER_C:
-				fprintf(ci, "C");
-				break;
-			case TUNER_D:
-				fprintf(ci, "D");
-				break;
-			default:
-				eDebug("[CI] Slot %d: setSource %d failed!!!\n", getSlotID(), (int)source);
-				break;
-		}
-		fclose(ci);
-	}
-	else // DM7025
-	{
-//		eDebug("[CI] !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//		eDebug("[CI] eDVBCISlot::enableTS(%d %d)", enable, (int)source);
-		FILE *ci = fopen("/proc/stb/tsmux/input2", "wb");
-		if(ci == NULL) {
-			eDebug("[CI] cannot open /proc/stb/tsmux/input2");
+		case CI_A:
+			value = "CI0";
+			break;
+		case CI_B:
+			value = "CI1";
+			break;
+		case CI_C:
+			value = "CI2";
+			break;
+		case CI_D:
+			value = "CI3";
+			break;
+		case TUNER_A:
+			value = "A";
+			break;
+		case TUNER_B:
+			value = "B";
+			break;
+		case TUNER_C:
+			value = "C";
+			break;
+		case TUNER_D:
+			value = "D";
+			break;
+		default:
+			eDebug("[CI] Slot %d: setSource %d failed!", getSlotID(), (int)source);
 			return 0;
-		}
-		if (source != TUNER_A && source != TUNER_B)
-			eDebug("[CI] Slot %d: setSource %d failed!!!\n", getSlotID(), (int)source);
-		else
-			fprintf(ci, "%s", source==TUNER_A ? "A" : "B");  // configure CI data source (TunerA, TunerB)
-		fclose(ci);
+			break;
 	}
+
+	if (CFile::write(buf, value.c_str()) == -1)
+	{
+		eDebug("[CI] cannot open %s", buf);
+		return 0;
+	}
+
 	eDebug("[CI] Slot %d setSource(%d)", getSlotID(), (int)source);
 	return 0;
 }
@@ -1330,18 +1273,10 @@ int eDVBCISlot::setSource(data_source source)
 int eDVBCISlot::setClockRate(int rate)
 {
 	char buf[64];
-	snprintf(buf, 64, "/proc/stb/tsmux/ci%d_tsclk", slotid);
-	FILE *ci = fopen(buf, "wb");
-	if (ci)
-	{
-		if (rate)
-			fprintf(ci, "high");
-		else
-			fprintf(ci, "normal");
-		fclose(ci);
-		return 0;
-	}
-	return -1;
+	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_tsclk", slotid);
+	if(CFile::write(buf, rate ? "high" : "normal") == -1);
+		return -1;
+	return 0;
 }
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");

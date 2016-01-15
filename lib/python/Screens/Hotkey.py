@@ -34,7 +34,9 @@ def getHotkeys():
 		(_("Blue"), "blue", ""),
 		("Rec", "rec", ""),
 		("Radio", "radio", ""),
+		("Radio" + " " + _("long"), "radio_long", ""),
 		("TV", "showTv", ""),
+		("TV" + " " + _("long"), "showTv_long", SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV" or ""),
 		("Teletext", "text", ""),
 		("Help", "displayHelp", ""),
 		("Help" + " " + _("long"), "displayHelp_long", ""),
@@ -86,9 +88,9 @@ def getHotkeys():
 		("Video Mode" + " " + _("long"), "vmode_long", ""),
 		("Home", "home", ""),
 		("Power", "power", ""),
-		("Power" + " " + _("long"), "power_long", "")]
-		#("HDMIin", "HDMIin", "Infobar/HDMIIn"),
-		#("HDMIin" + " " + _("long"), "HDMIin_long", SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV" or "")]
+		("Power" + " " + _("long"), "power_long", ""),
+		("HDMIin", "HDMIin", "Infobar/HDMIIn"),
+		("HDMIin" + " " + _("long"), "HDMIin_long", "")]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
@@ -159,7 +161,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
 	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))
-	#hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
+	hotkeyFunctions.append((_("Toggle HDMI In"), "Infobar/HDMIIn", "InfoBar"))
 	if SystemInfo["LcdLiveTV"]:
 		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	hotkeyFunctions.append((_("Do nothing"), "Void", "InfoBar"))

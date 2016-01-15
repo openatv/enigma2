@@ -1,5 +1,5 @@
 from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
+from Tools.Directories import fileExists, fileCheck, pathExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
 
@@ -62,7 +62,7 @@ SystemInfo["VFD_scroll_repeats"] = fileCheck("/proc/stb/lcd/scroll_repeats")
 SystemInfo["VFD_scroll_delay"] = fileCheck("/proc/stb/lcd/scroll_delay")
 SystemInfo["VFD_initial_scroll_delay"] = fileCheck("/proc/stb/lcd/initial_scroll_delay")
 SystemInfo["VFD_final_scroll_delay"] = fileCheck("/proc/stb/lcd/final_scroll_delay")
-SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach")
+SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
 SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/primary/3d")
 SystemInfo["3DZNorm"] = fileCheck("/proc/stb/fb/primary/zoffset")
 SystemInfo["IPV6"] = fileCheck("/proc/sys/net/ipv6/conf/all/disable_ipv6")
@@ -70,3 +70,4 @@ SystemInfo["Blindscan_t2_available"] = fileCheck("/proc/stb/info/vumodel")
 SystemInfo["Bootvideo"] = fileCheck("/usr/bin/bootvideo")
 SystemInfo["hasOSDAnimation"] = fileCheck("/proc/stb/fb/animation_mode")
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
+SystemInfo["RcTypeChangable"] = pathExists('/proc/stb/ir/rc/type')

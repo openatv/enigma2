@@ -374,7 +374,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.handleLeave(config.usage.on_movie_eof.value)
 
 	def up(self):
-		slist = self.servicelist
 		if self.servicelist and self.servicelist.dopipzap:
 			if config.usage.oldstyle_zap_controls.value:
 				self.zapDown()
@@ -411,66 +410,70 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 			InfoBarSeek.seekBack(self)
 
 	def channelUp(self):
-		if config.usage.zap_with_ch_buttons.value and self.servicelist.dopipzap:
+		if config.usage.zap_with_ch_buttons.value and self.servicelist and self.servicelist.dopipzap:
 			self.zapDown()
 		else:
 			return 0
 
 	def channelDown(self):
-		if config.usage.zap_with_ch_buttons.value and self.servicelist.dopipzap:
+		if config.usage.zap_with_ch_buttons.value and self.servicelist and self.servicelist.dopipzap:
 			self.zapUp()
 		else:
 			return 0
 
 	def switchChannelDown(self):
-		if "keep" not in config.usage.servicelist_cursor_behavior.value:
-			self.servicelist.moveDown()
-		self.session.execDialog(self.servicelist)
+		if self.servicelist:
+			if "keep" not in config.usage.servicelist_cursor_behavior.value:
+				self.servicelist.moveDown()
+			self.session.execDialog(self.servicelist)
 
 	def switchChannelUp(self):
-		if "keep" not in config.usage.servicelist_cursor_behavior.value:
-			self.servicelist.moveUp()
-		self.session.execDialog(self.servicelist)
+		if self.servicelist:
+			if "keep" not in config.usage.servicelist_cursor_behavior.value:
+				self.servicelist.moveUp()
+			self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
 		slist = self.servicelist
-		if slist.inBouquet():
-			prev = slist.getCurrentSelection()
-			if prev:
-				prev = prev.toString()
-				while True:
-					if config.usage.quickzap_bouquet_change.value:
-						if slist.atBegin():
-							slist.prevBouquet()
-					slist.moveUp()
-					cur = slist.getCurrentSelection()
-					if cur:
-						playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
-						if cur.toString() == prev or playable:
-							break
-		else:
-			slist.moveUp()
-		slist.zap(enable_pipzap = True)
+		if slist:
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value:
+							if slist.atBegin():
+								slist.prevBouquet()
+						slist.moveUp()
+						cur = slist.getCurrentSelection()
+						if cur:
+							playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
+							if cur.toString() == prev or playable:
+								break
+			else:
+				slist.moveUp()
+			slist.zap(enable_pipzap = True)
 
 	def zapDown(self):
 		slist = self.servicelist
-		if slist.inBouquet():
-			prev = slist.getCurrentSelection()
-			if prev:
-				prev = prev.toString()
-				while True:
-					if config.usage.quickzap_bouquet_change.value and slist.atEnd():
-						slist.nextBouquet()
-					else:
-						slist.moveDown()
-					cur = slist.getCurrentSelection()
-					if cur:
-						playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
-						if cur.toString() == prev or playable:
-							break
-		else:
-			slist.moveDown()
-		slist.zap(enable_pipzap = True)
+		if slist:
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and slist.atEnd():
+							slist.nextBouquet()
+						else:
+							slist.moveDown()
+						cur = slist.getCurrentSelection()
+						if cur:
+							playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
+							if cur.toString() == prev or playable:
+								break
+			else:
+				slist.moveDown()
+			slist.zap(enable_pipzap = True)
 
 	def showPiP(self):
 		slist = self.servicelist
@@ -480,7 +483,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 			if self.session.pipshown:
 				del self.session.pip
 				self.session.pipshown = False
-		else:
+		elif slist:
 			from Screens.PictureInPicture import PictureInPicture
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()

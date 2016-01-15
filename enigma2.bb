@@ -41,7 +41,6 @@ EXTRA_OECONF = "\
     --enable-maintainer-mode --with-target=native --with-libsdl=no --with-boxtype=${MACHINE} \
     --enable-dependency-tracking \
     ${@base_contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
-    ${@base_contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
     ${@base_contains("MACHINE_FEATURES", "osdanimation", "--with-osdanimation" , "", d)} \
     BUILD_SYS=${BUILD_SYS} \
     HOST_SYS=${HOST_SYS} \

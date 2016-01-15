@@ -47,7 +47,7 @@ class LCD:
 def leaveStandby():
 	config.lcd.bright.apply()
 
-def standbyCounterChanged(configElement):
+def standbyCounterChanged(dummy):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
@@ -150,11 +150,13 @@ def InitLcd():
 
 		if SystemInfo["LcdLiveTV"]:
 			def lcdLiveTvChanged(configElement):
-				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
-				InfoBarInstance = InfoBar.instance
-				InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+				setLCDLiveTv(configElement.value)
+				configElement.save()
 			config.lcd.showTv = ConfigYesNo(default = False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
+
+			if "live_enable" in SystemInfo["LcdLiveTV"]:
+				config.misc.standbyCounter.addNotifier(standbyCounterChangedLCDLiveTV, initial_call = False)
 	else:
 		def doNothing():
 			pass
@@ -165,3 +167,23 @@ def InitLcd():
 		config.lcd.standby.apply = lambda : doNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
+
+def setLCDLiveTv(value):
+	if "live_enable" in SystemInfo["LcdLiveTV"]:
+		open(SystemInfo["LcdLiveTV"], "w").write(value and "enable" or "disable")
+	else:
+		open(SystemInfo["LcdLiveTV"], "w").write(value and "0" or "1")
+	if not value:
+		InfoBarInstance = InfoBar.instance
+		InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+
+def leaveStandbyLCDLiveTV():
+	if config.lcd.showTv.value:
+		setLCDLiveTv(True)
+
+def standbyCounterChangedLCDLiveTV(dummy):
+	if config.lcd.showTv.value:
+		from Screens.Standby import inStandby
+		if leaveStandbyLCDLiveTV not in inStandby.onClose:
+			inStandby.onClose.append(leaveStandbyLCDLiveTV)
+		setLCDLiveTv(False)
