@@ -414,10 +414,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_prefillbuffer = false;
 	m_paused = false;
 	m_seek_paused = false;
-	m_cuesheet_loaded = false; /* cuesheet CVR */
+	m_cuesheet_loaded = false; /* cuesheet */
 #if GST_VERSION_MAJOR >= 1
-	m_use_chapter_entries = false; /* TOC chapter support CVR */
-	m_last_seek_pos = 0; /* CVR last seek position */
+	m_use_chapter_entries = false; /* TOC chapter support */
+	m_last_seek_pos = 0; /* last seek position */
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenPLi;;;)";
 	m_extra_headers = "";
@@ -1743,7 +1743,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
-					if(!m_cuesheet_loaded) /* cuesheet CVR */
+					if(!m_cuesheet_loaded) /* cuesheet */
 						loadCuesheet();
 					updateEpgCacheNowNext();
 				}	break;
@@ -1809,7 +1809,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			gchar *debug_warn = NULL;
 			GError *warn = NULL;
 			gst_message_parse_warning (msg, &warn, &debug_warn);
-			/* CVR this Warning occurs from time to time with external srt files
+			/* this Warning occurs from time to time with external srt files
 			When a new seek is done the problem off to long wait times before subtitles appears,
 			after movie was restarted with a resume position is solved. */
 			if(!strncmp(warn->message , "Internal data flow problem", 26) && !strncmp(sourceName, "subtitle_sink", 13))
@@ -1904,7 +1904,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			break;
 		}
-		/* TOC entry intercept used for chapter support CVR */
+		/* TOC entry intercept used for chapter support */
 #if GST_VERSION_MAJOR >= 1
 		case GST_MESSAGE_TOC:
 		{
@@ -2188,7 +2188,7 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	if (_this) _this->handleMessage(message);
 	return GST_BUS_DROP;
 }
-/*Processing TOC CVR */
+/*Processing TOC */
 #if GST_VERSION_MAJOR >= 1
 void eServiceMP3::HandleTocEntry(GstMessage *msg)
 {
@@ -2203,8 +2203,8 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 			GstTocEntry *entry = static_cast<GstTocEntry*>(i->data);
 			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION)
 			{
-				/* extra debug info for testing purposes CVR should_be_removed later on */
-				eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
+				/* extra debug info for testing purposes should_be_removed later on */
+				//eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
 				gint y = 0;
 				for (GList* x = gst_toc_entry_get_sub_entries (entry); x; x = x->next)
 				{
@@ -2234,9 +2234,9 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 								m_cue_entries.insert(cueEntry(pts, type));
 								m_cuesheet_changed = 1;
 								m_event((iPlayableService*)this, evCuesheetChanged);
-								/* extra debug info for testing purposes CVR should_be_removed later on */
-								eDebug("[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
-										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts);
+								/* extra debug info for testing purposes should_be_removed later on */
+								/*eDebug("[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
+										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts); */
 							}
 						}
 						y++;
@@ -2248,7 +2248,8 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 	}
 	else
 	{
-		eDebug("[eServiceMP3] TOC entry from source %s not used", GST_MESSAGE_SRC_NAME(msg));
+		//eDebug("[eServiceMP3] TOC entry from source %s not used", GST_MESSAGE_SRC_NAME(msg));
+		;
 	}
 }
 #endif
@@ -2522,11 +2523,11 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		}
 		gint64 buf_pos = GST_BUFFER_PTS(buffer);
 		size_t len = map.size;
-		eDebug("[eServiceMP3] gst_buffer_get_size %zu map.size %zu", gst_buffer_get_size(buffer), len);
+		//eDebug("[eServiceMP3] gst_buffer_get_size %zu map.size %zu", gst_buffer_get_size(buffer), len);
 #endif
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 		int subType = m_subtitleStreams[m_currentSubtitleStream].type;
-		eDebug("[eServiceMP3] pullSubtitle type=%d size=%zu", subType, len);
+		//eDebug("[eServiceMP3] pullSubtitle type=%d size=%zu", subType, len);
 		if ( subType )
 		{
 			if ( subType < stVOB )
@@ -2543,7 +2544,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 #else
 				std::string line((const char*)map.data, len);
 #endif
-				eDebug("[eServiceMP3] got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
+				//eDebug("[eServiceMP3] got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
 
 				uint32_t start_ms = ((buf_pos / 1000000ULL) * convert_fps) + (delay / 90);
 				uint32_t end_ms = start_ms + (duration_ns / 1000000ULL);
@@ -2768,7 +2769,7 @@ ePtr<iStreamBufferInfo> eServiceMP3::getBufferCharge()
 {
 	return new eStreamBufferInfo(m_bufferInfo.bufferPercent, m_bufferInfo.avgInRate, m_bufferInfo.avgOutRate, m_bufferInfo.bufferingLeft, m_buffer_size);
 }
-/* cuesheet CVR */
+/* cuesheet */
 PyObject *eServiceMP3::getCutList()
 {
 	ePyObject list = PyList_New(0);
@@ -2784,7 +2785,7 @@ PyObject *eServiceMP3::getCutList()
 
 	return list;
 }
-/* cuesheet CVR */
+/* cuesheet */
 void eServiceMP3::setCutList(ePyObject list)
 {
 	if (!PyList_Check(list))
@@ -2816,7 +2817,7 @@ void eServiceMP3::setCutList(ePyObject list)
 		pts_t pts = PyLong_AsLongLong(ppts);
 		int type = PyInt_AsLong(ptype);
 		m_cue_entries.insert(cueEntry(pts, type));
-		eDebug("[eServiceMP3] adding %08llx, %d", pts, type);
+		//eDebug("[eServiceMP3] adding %08llx, %d", pts, type);
 	}
 	m_cuesheet_changed = 1;
 	m_event((iPlayableService*)this, evCuesheetChanged);
@@ -2905,7 +2906,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		}
 	}
 }
-/* cuesheet CVR */
+/* cuesheet */
 void eServiceMP3::loadCuesheet()
 {
 	if (!m_cuesheet_loaded)
@@ -2915,12 +2916,12 @@ void eServiceMP3::loadCuesheet()
 	}
 	else
 	{
-		eDebug("[eServiceMP3] skip loading cuesheet multiple times");
+		//eDebug("[eServiceMP3] skip loading cuesheet multiple times");
 		return;
 	}
  
 	m_cue_entries.clear();
-	/* only load manual cuts if no chapter info avbl CVR */
+	/* only load manual cuts if no chapter info avbl */
 #if GST_VERSION_MAJOR >= 1
 	if (m_use_chapter_entries)
 		return;
@@ -2960,7 +2961,7 @@ void eServiceMP3::loadCuesheet()
 	m_cuesheet_changed = 0;
 	m_event((iPlayableService*)this, evCuesheetChanged);
 }
-/* cuesheet CVR */
+/* cuesheet */
 void eServiceMP3::saveCuesheet()
 {
 	std::string filename = m_ref.path;
