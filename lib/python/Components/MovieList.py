@@ -18,7 +18,7 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformat
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".wma"))
 DVD_EXTENSIONS = ('.iso', '.img')
 IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
-MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts", ".asf"))
+MOVIE_EXTENSIONS = frozenset((".mpg", ".mpeg",".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts", ".asf"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
