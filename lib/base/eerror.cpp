@@ -169,10 +169,14 @@ void eWarning(const char* fmt, ...)
 void ePythonOutput(const char *string)
 {
 #ifdef DEBUG
+	char buf[20];
+	struct timespec tp;
+	clock_gettime(CLOCK_MONOTONIC, &tp);
+	snprintf(buf, 20, "<%6lu.%06lu> ", tp.tv_sec, tp.tv_nsec/1000);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, string);
+	logOutput(lvlWarning, std::string(buf) + string);
 	if (logOutputConsole)
-		fwrite(string, 1, strlen(string), stderr);
+		fprintf(stderr, "%s%s", buf, string);
 #endif
 }
 
