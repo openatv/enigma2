@@ -877,8 +877,6 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 				best_fbc_fe = fbc_fe;
 			}
 		}
-
-		eDVBRegisteredFrontend *tmp = *i;
 	}
 
 	if (best)
