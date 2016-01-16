@@ -92,8 +92,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("Loop through to")
 			if self.nim.isFBCLink():
-				choices = { "nothing": _("not configured"),
-						"advanced": _("advanced")}
+				choices = { "nothing": _("FBC automatic loop through"), "advanced": _("FBC Unicable")}
 			self.nimConfig.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
@@ -724,12 +723,24 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
-						text = { "loopthrough": _("Loop through to"),
-								 "equal": _("Equal to"),
-								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
-						text += " " + _("Tuner") + " " + chr(ord('A')+int(nimConfig.connectedTo.value))
+						if x.isFBCLink():
+							text = "FBC automatic loop through\nlinked to"
+						else:
+							text = { "loopthrough": _("Loop through to"),
+									"equal": _("Equal to"),
+									"satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
+						text += " " + nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name
 					elif nimConfig.configMode.value == "nothing":
-						text = _("not configured")
+						if x.isFBCLink():
+							link = getLinkedSlotID(x.slot)
+							if link == -1:
+								text = _("FBC automatic loop through\ninactive")
+							else:
+								link = nimmanager.getNim(link).slot_name
+								text = _("FBC automatic loop through\nlinked to %s") % link
+							text = _("FBC automatic loop through\ninactive")
+						else:
+							text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
@@ -762,8 +773,6 @@ class NimSelection(Screen):
 							text = _("Simple")
 					elif nimConfig.configMode.value == "advanced":
 						text = _("Advanced")
-					if x.isFBCLink() and nimConfig.configMode.value != "advanced":
-						text += _("\n<This tuner is configured automatically>")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
 						text = _("Nothing connected")
