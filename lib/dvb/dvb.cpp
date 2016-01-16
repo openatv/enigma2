@@ -88,7 +88,6 @@ eDVBResourceManager::eDVBResourceManager()
 		adapter->scanDevices();
 	}
 
-	m_fbcmng = new eFBCTunerManager(instance);
 	m_sec = new eDVBSatelliteEquipmentControl(m_frontend, m_simulate_frontend);
 
 	if (adapter)
