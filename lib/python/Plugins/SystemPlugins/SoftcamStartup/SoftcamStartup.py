@@ -21,6 +21,7 @@ if not fileExists('/etc/init.d/softcam.None'):
 	fd = file('/etc/init.d/softcam.None', 'w')
 	fd.write(NoneData)
 	fd.close()
+	os.chmod("/etc/init.d/softcam.None", 0755)
 else:
 	pass
 
@@ -28,6 +29,7 @@ if not fileExists('/etc/init.d/cardserver.None'):
 	fd = file('/etc/init.d/cardserver.None', 'w')
 	fd.write(NoneData)
 	fd.close()
+	os.chmod("/etc/init.d/cardserver.None", 0755)
 else:
 	pass
 

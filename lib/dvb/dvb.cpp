@@ -76,10 +76,22 @@ eDVBResourceManager::eDVBResourceManager()
 {
 	avail = 1;
 	busy = 0;
-	m_sec = new eDVBSatelliteEquipmentControl(m_frontend, m_simulate_frontend);
 
 	if (!instance)
 		instance = this;
+
+	eDVBAdapterLinux *adapter = 0;
+
+	if (eDVBAdapterLinux::exist(0))
+	{
+		adapter = new eDVBAdapterLinux(0);
+		adapter->scanDevices();
+	}
+
+	m_sec = new eDVBSatelliteEquipmentControl(m_frontend, m_simulate_frontend);
+
+	if (adapter)
+		addAdapter(adapter, true);
 
 	int num_adapter = 1;
 	while (eDVBAdapterLinux::exist(num_adapter))
@@ -90,13 +102,6 @@ eDVBResourceManager::eDVBResourceManager()
 			addAdapter(adapter);
 		}
 		num_adapter++;
-	}
-
-	if (eDVBAdapterLinux::exist(0))
-	{
-		eDVBAdapterLinux *adapter = new eDVBAdapterLinux(0);
-		adapter->scanDevices();
-		addAdapter(adapter, true);
 	}
 
 	eDebug("[eDVBResourceManager] found %zd adapter, %zd frontends(%zd sim) and %zd demux",
