@@ -25,10 +25,7 @@ private:
 	static eFBCTunerManager* m_instance;
 	static const int FBC_TUNER_SET = 8;
 
-	int getFBCTunerNum();
-	void procInit();
 	bool isSameFbcSet(int a, int b);
-	bool isSupportDVBS(eDVBRegisteredFrontend *fe);
 	int getFBCID(int root_fe_id);
 
 	eDVBRegisteredFrontend *getPrev(eDVBRegisteredFrontend *fe);
@@ -64,7 +61,6 @@ public:
 	void setProcFBCID(int fe_id, int fbc_id);
 	void setDefaultFBCID(eDVBRegisteredFrontend *fe);
 	void updateFBCID(eDVBRegisteredFrontend *next_fe, eDVBRegisteredFrontend *prev_fe);
-	bool isRootFeSlot(int fe_slot_id);
 	bool isRootFe(eDVBRegisteredFrontend *fe);
 	bool canLink(eDVBRegisteredFrontend *fe);
 	bool isUnicable(eDVBRegisteredFrontend *fe);

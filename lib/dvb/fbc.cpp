@@ -19,11 +19,34 @@ eFBCTunerManager* eFBCTunerManager::getInstance()
 eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 	:m_res_mgr(res_mgr)
 {
+	char tmp[128];
+	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_frontend;
+
 	m_instance = this;
 
+	// FIXME
+	// This finds the number of virtual tuners even though we want to know
+	// the number of physical ("root") tuners. The calculation in the return
+	// statement is just a guess and works for now.
+
+	for(m_fbc_tuner_num = 0; m_fbc_tuner_num < 128; m_fbc_tuner_num++)
+	{
+		snprintf(tmp, sizeof(tmp), "/proc/stb/frontend/%d/fbc_id", m_fbc_tuner_num);
+
+		if(access(tmp, F_OK))
+			break;
+	}
+
 	/* number of fbc tuners in one set */
-	m_fbc_tuner_num = getFBCTunerNum();
-	procInit();
+	m_fbc_tuner_num /= (FBC_TUNER_SET / 2);
+
+	/* each FBC set has 8 tuners */
+	/* first set: 0-7 */
+	/* second set: 8-16 */
+	/* first, second frontend is top on a set */
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
+		setDefaultFBCID(*it);
 }
 
 eFBCTunerManager::~eFBCTunerManager()
@@ -68,45 +91,6 @@ void eFBCTunerManager::frontend_set_linkptr(const eDVBRegisteredFrontend *fe, li
 	fe->m_frontend->setData(data_type, data);
 }
 
-void eFBCTunerManager::procInit()
-{
-	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_frontend;
-
-	/* each FBC set has 8 tuners */
-	/* first set: 0-7 */
-	/* second set: 8-16 */
-	/* first, second frontend is top on a set */
-
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
-	{
-		if (!it->m_frontend->is_FBCTuner())
-			continue;
-
-		if (isRootFe(*it))
-			setProcFBCID(fe_slot_id(it), getFBCID(fe_slot_id(it)));
-	}
-}
-
-int eFBCTunerManager::getFBCTunerNum()
-{
-	char tmp[128];
-	int fbc_tuner_num;
-
-	// FIXME
-	// This finds the number of virtual tuners even though we want to know
-	// the number of physical ("root") tuners. The calculation in the return
-	// statement is just a guess and works for now.
-
-	for(fbc_tuner_num = 0; fbc_tuner_num < 128; fbc_tuner_num++)
-	{
-		snprintf(tmp, sizeof(tmp), "/proc/stb/frontend/%d/fbc_id", fbc_tuner_num);
-
-		if(access(tmp, F_OK))
-			break;
-	}
-	return (fbc_tuner_num / (FBC_TUNER_SET / 2));
-}
-
 void eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 {
 	char tmp[64];
@@ -118,24 +102,14 @@ void eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 	CFile::writeIntHex(tmp, fbc_id);
 }
 
-bool eFBCTunerManager::isRootFeSlot(int fe_slot_id)
-{
-	return((fe_slot_id % FBC_TUNER_SET) < m_fbc_tuner_num);
-}
-
 bool eFBCTunerManager::isRootFe(eDVBRegisteredFrontend *fe)
 {
-	return isRootFeSlot(fe_slot_id(fe));
+	return (fe_slot_id(fe) % FBC_TUNER_SET) < m_fbc_tuner_num;
 }
 
 bool eFBCTunerManager::isSameFbcSet(int a, int b)
 {
 	return((a / FBC_TUNER_SET) == (b / FBC_TUNER_SET));
-}
-
-bool eFBCTunerManager::isSupportDVBS(eDVBRegisteredFrontend *fe)
-{
-	return((fe->m_frontend->supportsDeliverySystem(SYS_DVBS, true) || fe->m_frontend->supportsDeliverySystem(SYS_DVBS2, true)));
 }
 
 int eFBCTunerManager::getFBCID(int top_fe_id)
