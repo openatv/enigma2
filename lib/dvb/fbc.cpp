@@ -680,3 +680,37 @@ int eFBCTunerManager::getLinkedSlotID(int fe_id)
 
 	return link;
 }
+
+void eFBCTunerManager::list_loop_links(void)
+{
+	long prev_ptr, next_ptr;
+	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_frontend;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
+	{
+		prev_ptr = frontend_get_linkptr(it, link_prev);
+		next_ptr = frontend_get_linkptr(it, link_next);
+
+		printf("**** tuner %d, prev_link:", it->m_frontend->getSlotID());
+
+		if(prev_ptr == 0)
+			printf("<0>");
+		else
+			if(prev_ptr == -1)
+				printf("<-1>");
+			else
+				printf("%d", ((eDVBRegisteredFrontend *)prev_ptr)->m_frontend->getSlotID());
+
+		printf(", next_link:");
+
+		if(next_ptr == 0)
+			printf("<0>");
+		else
+			if(next_ptr == -1)
+				printf("<-1>");
+			else
+				printf("%d", ((eDVBRegisteredFrontend *)next_ptr)->m_frontend->getSlotID());
+
+		printf("\n");
+	}
+}

@@ -56,6 +56,7 @@ private:
 
 	long frontend_get_linkptr(const eDVBRegisteredFrontend *fe, link_ptr_t link_type) const;
 	void frontend_set_linkptr(const eDVBRegisteredFrontend *fe, link_ptr_t link_type, long data) const;
+	void list_loop_links(void);
 
 public:
 	eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr);
