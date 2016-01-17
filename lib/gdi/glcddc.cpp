@@ -1,6 +1,7 @@
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/lcd.h>
 #include <lib/gdi/fblcd.h>
+#include <lib/gdi/epng.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
@@ -70,6 +71,7 @@ void gLCDDC::exec(const gOpcode *o)
 		break;
 #endif
 	case gOpcode::flush:
+		savePNG("/tmp/lcd.png", m_pixmap);
 		lcd->update();
 	default:
 		gDC::exec(o);
