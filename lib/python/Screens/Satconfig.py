@@ -93,7 +93,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices["loopthrough"] = _("Loop through to")
 			if self.nim.isFBCLink():
 				choices = { "nothing": _("FBC automatic loop through"), "advanced": _("FBC Unicable")}
-			self.nimConfig.configMode.setChoices(choices, default = "simple")
+			self.nimConfig.configMode.setChoices(choices, self.nim.isFBCLink() and "nothing" or "simple")
 
 	def createSetup(self):
 		print "[Satconfig] Creating setup"
@@ -659,7 +659,6 @@ class NimSelection(Screen):
 
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
-		self.loadFBCLinks()
 		self.updateList()
 
 		self.setResultClass()
@@ -677,19 +676,6 @@ class NimSelection(Screen):
 		}, -2)
 		self.setTitle(_("Choose Tuner"))
 
-	def loadFBCLinks(self):
-		for x in nimmanager.nim_slots:
-			slotid = x.slot
-			nimConfig = nimmanager.getNimConfig(x.slot)
-			configMode = nimConfig.configMode.value
-			if self.showNim(x) and x.isCompatible("DVB-S") and x.isFBCLink() and configMode != "advanced":
-				link = getLinkedSlotID(x.slot)
-				if link == -1:
-					nimConfig.configMode.value = "nothing"
-				else:
-					nimConfig.configMode.value = "loopthrough"
-					nimConfig.connectedTo.value = str(link)
-
 	def exit(self):
 		self.close(True)
 
@@ -701,14 +687,13 @@ class NimSelection(Screen):
 		nim = nim and nim[3]
 
 		nimConfig = nimmanager.getNimConfig(nim.slot)
-		if nim.isFBCLink() and nimConfig.configMode.value == "loopthrough":
+		if nim.isFBCLink() and nimConfig.configMode.value == "nothing" and not getLinkedSlotID(nim.slot) == -1:
 			return
 
 		if nim is not None and not nim.empty and nim.isSupported():
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
 	def NimSetupCB(self, index=None):
-		self.loadFBCLinks()
 		self.updateList()
 
 	def showNim(self, nim):
@@ -738,7 +723,6 @@ class NimSelection(Screen):
 							else:
 								link = nimmanager.getNim(link).slot_name
 								text = _("FBC automatic loop through\nlinked to %s") % link
-							text = _("FBC automatic loop through\ninactive")
 						else:
 							text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
