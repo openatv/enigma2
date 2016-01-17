@@ -365,9 +365,11 @@ class JobManager:
 		from Tools import Notifications
 		from Screens.MessageBox import MessageBox
 		if problems[0].RECOVERABLE:
+			print "[Task] recoverable task failure\n", job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task))
 			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			return True
 		else:
+			print "[Task] unrecoverable task failure\n", job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task))
 			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
 			return False
 
