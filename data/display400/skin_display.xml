@@ -74,18 +74,19 @@
 	</screen>
 
 <!-- movieplayer-->
-	<screen name="InfoBarMoviePlayerSummary" position="fill">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,36" font="FdLcD;16" halign="left" valign="top" >
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="400,240" >
+		<widget source="session.CurrentService" render="Label" position="0,10" size="400,148" font="FdLcD;40" halign="center" valign="center" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
+		<widget source="session.CurrentService" render="Progress" position="0,150" size="400,30" zPosition="2" borderWidth="1"  transparent="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<panel position="bottom" size="*,24" name="SummaryClockPanel">
-			<widget source="session.CurrentService" render="Label" position="4,0" size="42,12" font="FdLcD;12" halign="left" noWrap="1">
-				<convert type="ServicePosition">Position</convert>
-			</widget>
-		</panel>
+		<widget source="session.CurrentService" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="left" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
 	</screen>
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
@@ -97,18 +98,32 @@
 		</panel>
 	</screen>
 	<screen name="MovieSelectionSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="name" render="Label" position="top" size="*,32" font="FdLcD;16" halign="left" valign="top" />
-		<panel position="bottom" size="*,18">
-			<widget source="parent.Service" render="Label" position="right" size="46,*" font="FdLcD;14" halign="left" noWrap="1">
+		<widget source="parent.Title" render="Label" position="top" size="*,40" font="FdLcD;36" halign="left" valign="top" noWrap="1" />
+		<widget source="name" render="Label" position="top" size="*,75" font="FdLcD;36" halign="left" valign="top" />
+		<panel position="bottom" size="*,36">
+			<widget source="parent.Service" render="Label" position="right" size="200,*" font="FdLcD;30" halign="right" noWrap="1">
 				<convert type="MovieInfo">FileSize</convert>
 			</widget>
-			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;14" halign="left" noWrap="1">
+			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;30" halign="left" noWrap="1">
 				<convert type="MovieInfo">RecordServiceName</convert>
 			</widget>
 		</panel>
 	</screen>
-
+<!-- Mediaplayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="400,240">
+		<widget name="text1" position="0,0" size="400,32" font="FdLcD;28" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2"/>
+		<widget name="text3" position="0,35" size="400,32" font="FdLcD;28" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2"/>
+		<widget name="text4" position="0,70" size="400,32" font="FdLcD;28" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2"/>
+		<widget source="session.CurrentService" render="Progress" position="0,138" size="400,25" borderWidth="1" transparent="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="left" transparent="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+	</screen>	
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;50" halign="center" foregroundColor="#FFFF00" >
