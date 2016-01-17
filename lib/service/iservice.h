@@ -244,10 +244,10 @@ class iDVBTransponderData;
 class iServiceInfoContainer: public iObject
 {
 public:
-	virtual int getInteger(unsigned int index) const { return 0; }
-	virtual std::string getString(unsigned int index) const { return ""; }
-	virtual double getDouble(unsigned int index) const { return 0.0; }
-	virtual unsigned char *getBuffer(unsigned int &size) const { return NULL; }
+	virtual int getInteger(unsigned int index) const { (void)index; return 0; }
+	virtual std::string getString(unsigned int index) const { (void)index; return ""; }
+	virtual double getDouble(unsigned int index) const { (void)index; return 0.0; }
+	virtual unsigned char *getBuffer(unsigned int &size) const { size = 0; return NULL; }
 };
 
 class iStaticServiceInformation: public iObject
