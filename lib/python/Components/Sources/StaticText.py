@@ -11,6 +11,10 @@ class StaticText(Source):
 		self.__text = text
 		self.filter = filter
 
+	# fake Source StaticText function
+	def checkSuspend(self):
+		pass
+
 	def handleCommand(self, cmd):
 		self.text = self.filter(cmd)
 
