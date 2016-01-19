@@ -119,13 +119,14 @@ eRCInputEventDriver::eRCInputEventDriver(const char *filename): eRCDriver(eRCInp
 		::ioctl(handle, EVIOCGBIT(0, sizeof(evCaps)), evCaps);
 #if DUMPKEYS
 		int i;
-		eDebugNoNewlineStart("[eRCInputEventDriver] %s keycaps: ", filename);
+		eDebugNoNewLineStart("[eRCInputEventDriver] %s keycaps: ", filename);
 		for (i = 0; i< sizeof(keyCaps); i++)
-			eDebugNowNewline(" %02X", keyCaps[i]);
-		eDebugNoNewlineStart("\n[eRCInputEventDriver] %s evcaps: ", filename);
+			eDebugNoNewLine(" %02X", keyCaps[i]);
+		eDebugNoNewLine("\n");
+		eDebugNoNewLineStart("[eRCInputEventDriver] %s evcaps: ", filename);
 		for (i = 0; i< sizeof(evCaps); i++)
-			eDebugNowNewline(" %02X", evCaps[i]);
-		eDebugNoNewline("\n");
+			eDebugNoNewLine(" %02X", evCaps[i]);
+		eDebugNoNewLine("\n");
 #endif
 
 	}

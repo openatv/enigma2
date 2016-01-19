@@ -45,6 +45,7 @@ from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
+from Tools.Alternatives import GetWithAlternative
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
@@ -2822,6 +2823,7 @@ class HistoryZapSelector(Screen):
 
 			info = serviceHandler.info(x[-1])
 			if info:
+				orbpos = self.getOrbitalPos(ServiceReference(x[1]))
 				serviceName = info.getName(x[-1])
 				if serviceName is None:
 					serviceName = ""
@@ -2859,9 +2861,9 @@ class HistoryZapSelector(Screen):
 			if picon != "":
 				png = loadPNG(picon)
 			if self.invertItems:
-				self.list.insert(0, (x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png))
+				self.list.insert(0, (x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png, orbpos))
 			else:
-				self.list.append((x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png))
+				self.list.append((x[1], cnt == mark_item and "»" or "", x[0], eventName, descriptionName, durationTime, png, orbpos))
 			cnt += 1
 		self["menu"] = List(self.list, enableWrapAround=wrap_around)
 		self.onShown.append(self.__onShown)
@@ -2896,3 +2898,24 @@ class HistoryZapSelector(Screen):
 
 	def cancelClick(self):
 		self.close(None)
+
+	def getOrbitalPos(self, ref):
+		refstr = None
+		if hasattr(ref, 'sref'):
+			refstr = str(ref.sref)
+		else:
+			refstr = str(ref)
+		refstr = refstr and GetWithAlternative(refstr)
+		print 'refstr:',refstr
+		if '%3a//' in refstr:
+			return "%s" % _("Stream")
+		op = int(refstr.split(':', 10)[6][:-4] or "0",16)
+		if op == 0xeeee:
+			return "%s" % _("DVB-T")
+		if op == 0xffff:
+			return "%s" % _("DVB-C")
+		direction = 'E'
+		if op > 1800:
+			op = 3600 - op
+			direction = 'W'
+		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
