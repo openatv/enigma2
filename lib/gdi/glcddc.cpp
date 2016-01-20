@@ -3,6 +3,7 @@
 #include <lib/gdi/fblcd.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/gdi/epng.h>
 
 gLCDDC *gLCDDC::instance;
 
@@ -70,7 +71,59 @@ void gLCDDC::exec(const gOpcode *o)
 		break;
 #endif
 	case gOpcode::flush:
+	{
+		eDebug("[gLCDDC] LCD flush");
+		int bpp = m_pixmap->surface->bpp;
+		switch(bpp)
+		{
+			case 8:
+				eDebug("[gLCDDC] 8 bit not supported yet");
+				break;
+			case 16:
+				{
+					int lcd_width = m_pixmap->surface->x;
+					int lcd_hight = m_pixmap->surface->y;
+
+					ePtr<gPixmap> pixmap32;
+					pixmap32 = new gPixmap(eSize(lcd_width, lcd_hight), 32, gPixmap::accelAuto);
+
+					const uint8_t *srcptr = (uint8_t*)m_pixmap->surface->data;
+					uint8_t *dstptr=(uint8_t*)pixmap32->surface->data;
+
+					for (int y = lcd_hight; y != 0; --y)
+					{
+						gRGB pixel32;
+						uint16_t pixel16;
+						int x = lcd_width;
+						gRGB *dst = (gRGB *)dstptr;
+						const uint16_t *src = (const uint16_t *)srcptr;
+						while (x--)
+						{
+#if BYTE_ORDER == LITTLE_ENDIAN
+							pixel16 = bswap_16(*src++);
+#else
+							pixel16 = *src++;;
+#endif
+							pixel32.a = 0xFF;
+							pixel32.r = (pixel16 << 3) & 0xF8;
+							pixel32.g = (pixel16 >> 3) & 0xFC;
+							pixel32.b = (pixel16 >> 8) & 0xF8;
+							*dst++ = pixel32;
+						}
+						srcptr += m_pixmap->surface->stride;
+						dstptr += pixmap32->surface->stride;
+					}
+					savePNG("/tmp/lcd.png", pixmap32);
+				}
+				break;
+			case 32:
+				savePNG("/tmp/lcd.png", m_pixmap);
+				break;
+			default:
+				eDebug("[gLCDDC] %d bit not supported yet",bpp);
+		}
 		lcd->update();
+	}
 	default:
 		gDC::exec(o);
 		break;
