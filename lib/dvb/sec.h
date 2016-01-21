@@ -31,7 +31,8 @@ public:
 		DELAYED_CLOSE_FRONTEND,
 		TAKEOVER,
 		WAIT_TAKEOVER,
-		RELEASE_TAKEOVER
+		RELEASE_TAKEOVER,
+		IF_TUNER_UNLOCKED_GOTO
 	};
 	int cmd;
 	struct rotor
@@ -268,7 +269,7 @@ public:
 #define MAX_FIXED_LNB_POSITIONS		64
 #define MAX_MOVABLE_LNBS 		6
 
-#define UNICABLE_BANDWIDTH 		47000
+#define UNICABLE_BANDWIDTH 		36000
 
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
@@ -278,6 +279,7 @@ public:
 	int SatCR_format;
 	unsigned int SatCRvco;
 	unsigned int TuningWord;
+	unsigned int GuardTuningWord;
 	unsigned int UnicableConfigWord;
 	long guard_frq[2]={-1,1};
 };
