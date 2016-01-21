@@ -4,12 +4,15 @@ from time import time
 from datetime import datetime
 
 def FlashInstallTime():
-	print 'INSTALLTIME: RUNNING'
-	print 'FIRST RUN: ', config.misc.firstrun.value
-	print 'INSTAL FILE EXSITS:', fileExists('/etc/install')
 	if config.misc.firstrun.value and not fileExists('/etc/install'):
 		f = open("/etc/install", "w")
 		now = datetime.now()
-		f.write(now.strftime("%Y-%m-%d"))
+		flashdate = now.strftime("%Y-%m-%d")
+		print '[Setting Flash date]', flashdate
+		f.write()
 		f.close()
-
+	elif fileExists('/etc/install'):
+		f = open("/etc/install","r")
+		flashdate = f.read()
+		f.close()
+		print '[Image Flashed]', flashdate
