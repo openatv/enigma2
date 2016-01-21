@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-01 17:52+0000\n"
-"PO-Revision-Date: 2015-12-05 22:38+0200\n"
+"POT-Creation-Date: 2016-01-19 20:59+0000\n"
+"PO-Revision-Date: 2016-01-20 16:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -1651,7 +1651,7 @@ msgid "Cascade PiP"
 msgstr "PiP kaskaad"
 
 msgid "Center DVB subtitles"
-msgstr "DVB subtiitrid tsentris"
+msgstr "DVB subtiitrid ekraani keskel"
 
 msgid "Change PIN"
 msgstr "Muuda PIN"
@@ -2864,9 +2864,6 @@ msgstr "Keela"
 msgid "Disable Animations"
 msgstr "Keela animatsioonid"
 
-msgid "Disable FastZapping"
-msgstr "Keela kiirkanalivahetus"
-
 msgid "Disable MiniTV"
 msgstr "Keela MiniTV"
 
@@ -3250,9 +3247,6 @@ msgstr "Luba 5 V toide aktiivantennile"
 msgid "Enable EIT EPG"
 msgstr "Luba EIT EPG"
 
-msgid "Enable FastZapping"
-msgstr "Luba kiirkanalivahetus"
-
 msgid "Enable FreeSat EPG"
 msgstr "Luba FreeSat EPG"
 
@@ -3575,6 +3569,9 @@ msgstr "Väliste subtiitrite kirjatüübi vahetamine"
 
 msgid "Extra motor options"
 msgstr "Ajami lisavalikud"
+
+msgid "Extrude from left"
+msgstr "Surumine vasakult"
 
 msgid "F1"
 msgstr "F1"
@@ -5114,6 +5111,9 @@ msgstr "NFS seaded"
 
 msgid "NIM"
 msgstr "NIM"
+
+msgid "NO"
+msgstr "EI"
 
 msgid "NTP"
 msgstr "NTP"
@@ -7547,9 +7547,6 @@ msgid ""
 "that folder."
 msgstr "Määrab filmilistile juurkataloogi, et eemaldada '..' kataloogi nimest."
 
-msgid "Setting"
-msgstr "Säte"
-
 msgid "Settings"
 msgstr "Seaded"
 
@@ -7986,6 +7983,9 @@ msgstr "Lihtne hajumine"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Lihtne pealkiri (vanemate pleieritega ühilduv)"
 
+msgid "Simple zoom"
+msgstr "Suurendus"
+
 msgid "Single"
 msgstr "Üksik"
 
@@ -8047,11 +8047,17 @@ msgstr "Sulgemise viiteaeg"
 msgid "Slide drop"
 msgstr "Liuglev tilk"
 
+msgid "Slide from left"
+msgstr "Liuglemine vasakult"
+
 msgid "Slide left to right"
 msgstr "Liuglemine vasakult paremale"
 
 msgid "Slide picture in loop"
 msgstr "Vaata pilte tsüklis"
+
+msgid "Slide right to left"
+msgstr "Liuglemine vasakult paremale"
 
 msgid "Slide show interval (sec.)"
 msgstr "Piltide näitamise aeg (sekundit)"
@@ -8637,7 +8643,7 @@ msgid "Telnet setup"
 msgstr "Telneti seaded"
 
 msgid "Terrestrial"
-msgstr "Maapealne levi (DVB-T)"
+msgstr "Maapealne (DVB-T)"
 
 msgid "Terrestrial provider"
 msgstr "DVB-T levitaja"
@@ -9037,7 +9043,7 @@ msgid ""
 "This option allows you to choose how to display 2160p 25Hz on your TV. (as "
 "not all TV's support these resolutions)"
 msgstr ""
-"See valik määrab, kuidas kuvatakse 2160p 25Hzsisu teleekraanil. (Kõik "
+"See valik määrab, kuidas kuvatakse 2160p 25Hz sisu teleekraanil. (Kõik "
 "telerid seda ei toeta.)"
 
 msgid ""
@@ -9503,6 +9509,10 @@ msgstr "Kokku"
 msgid "Total cards:"
 msgstr "Kaarte kokku:"
 
+#, python-format
+msgid "Total clients streaming: %d (%s)"
+msgstr "Striimivaid kliente: %d (%s)"
+
 msgid "Total handled client ecm's"
 msgstr "Kõik käsitletud kliendi ECM-id"
 
@@ -9520,6 +9530,9 @@ msgstr "Kokku:"
 
 msgid "Track"
 msgstr "Rada"
+
+msgid "Transcoding: "
+msgstr "Transkodeerimine:"
 
 msgid "Translation Information"
 msgstr "Tõlke andmed"
@@ -10542,7 +10555,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"When you perform a factory reset, you will lose ALL your configuration data\n"
+"When you perform a factory reset, you will lose ALL of your configuration "
+"data\n"
 "(including bouquets, services, satellite data ...)\n"
 "After completion of the factory reset, your %s %s will restart "
 "automatically!\n"
@@ -10550,7 +10564,7 @@ msgid ""
 "Do you really want to do a factory reset?"
 msgstr ""
 "Algseadistuse taastamisel kaovad kõik isiklikud seaded\n"
-"(ka lemmiknimekirjad, kanalid, satelliidid, seadistusfailid jne...)\n"
+"(lemmiknimekirjad, kanalid, satelliidid, seadistusfailid jne...)\n"
 "Pärast algseadistuse taastamist taaskäivitub %s %s automaatselt!\n"
 "\n"
 "Kas soovid kindlasti taastada algseadistuse?"
@@ -10644,6 +10658,9 @@ msgstr "XBox 360 tugi"
 
 msgid "XP1000"
 msgstr "XP1000"
+
+msgid "YES"
+msgstr "JAH"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -10796,18 +10813,18 @@ msgstr ""
 "lõppenud\n"
 "Mida soovid teha?"
 
+msgid "You have not selected any logs to delete."
+msgstr "Kustutamiseks ei ole logifaile valitud."
+
+msgid "You have not selected any logs to send"
+msgstr "Saatmiseks ei ole logifaile valitud."
+
 msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, enter your info, and then try again"
 msgstr ""
 "Seadistusmenüüs on kasutaja andmed sisestamata\n"
 "Vajuta MENU, sisesta oma andmed ja proovi uuesti"
-
-msgid "You have selected no logs to delete."
-msgstr "Kustutamiseks ei ole logifaile valitud."
-
-msgid "You have selected no logs to send."
-msgstr "Saatmiseks ei ole logifaile valitud."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -11063,6 +11080,12 @@ msgstr "TV suurendus +/-"
 
 msgid "Zoom Off..."
 msgstr "Suurendus välja"
+
+msgid "Zoom from left"
+msgstr "Vasakult kasvav"
+
+msgid "Zoom from right"
+msgstr "Paremalt kasvav"
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
@@ -11527,7 +11550,7 @@ msgid "languages"
 msgstr "keeled"
 
 msgid "left"
-msgstr "vasakul"
+msgstr "vasak"
 
 msgid "leisure hobbies (general)"
 msgstr "vaba aja harrastused"
@@ -11819,7 +11842,7 @@ msgid "rewind to the previous chapter"
 msgstr "tagasi eelmisele peatükile"
 
 msgid "right"
-msgstr "paremal"
+msgstr "parem"
 
 msgid "rock/pop"
 msgstr "rock/pop"
@@ -12216,6 +12239,11 @@ msgstr "vahetatud"
 #~ "Toimub salvestamine.\n"
 #~ "Mida soovid teha?"
 
+#~ msgid ""
+#~ "A recording is currently running. Please stop the recording before trying "
+#~ "to configure the positioner."
+#~ msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
+
 #, fuzzy
 #~ msgid ""
 #~ "A recording is currently running. Please stop the recording before trying "
@@ -12408,6 +12436,9 @@ msgstr "vahetatud"
 #~ msgid "Delete..."
 #~ msgstr "Kustuta..."
 
+#~ msgid "Descramble http streams"
+#~ msgstr "Dekodeeri http vood"
+
 #~ msgid "Detected Devices:"
 #~ msgstr "Andmekandjad:"
 
@@ -12420,6 +12451,9 @@ msgstr "vahetatud"
 
 #~ msgid "Dialing:"
 #~ msgstr "Valin numbrit:"
+
+#~ msgid "Disable FastZapping"
+#~ msgstr "Keela kiirkanalivahetus"
 
 #~ msgid "Disconnect"
 #~ msgstr "Katkesta ühendus"
@@ -12486,6 +12520,9 @@ msgstr "vahetatud"
 #~ msgid "Edit services list"
 #~ msgstr "Muuda kanalinimekirja"
 
+#~ msgid "Enable FastZapping"
+#~ msgstr "Luba kiirkanalivahetus"
+
 #~ msgid "Enable debug logs"
 #~ msgstr "Silumislogide lubamine"
 
@@ -12530,6 +12567,9 @@ msgstr "vahetatud"
 
 #~ msgid "External (CF)"
 #~ msgstr "Väline (CF)"
+
+#~ msgid "Feeds status:   Unkown"
+#~ msgstr "Hoidlate olek:   Teadmata"
 
 #~ msgid "Finished restarting your network"
 #~ msgstr "Võrk on taaskäivitatud"
@@ -12879,6 +12919,9 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Määrab filmilistile juurkataloogi, et eemaldada '..' kataloogi nimest."
 
+#~ msgid "Setting"
+#~ msgstr "Säte"
+
 #~ msgid "Show Audioselection"
 #~ msgstr "Heli valiku avamine"
 
@@ -12948,6 +12991,9 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Uuendused serverites ei ole stabiilsed. Kui soovid neid kasutada luba "
 #~ "'Testimata uuendused' tarkvara uuendamise seadistustes."
+
+#~ msgid "Sorry that tuner is not available."
+#~ msgstr "See tuuner ei ole saadaval."
 
 #~ msgid "Sorry uShare Config is Missing"
 #~ msgstr "uShare on seadistamata"
@@ -13053,6 +13099,9 @@ msgstr "vahetatud"
 
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "Tagavara kaugvastuvõtja URL"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibreerimine"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC käsk"
@@ -13379,18 +13428,22 @@ msgstr "vahetatud"
 #~ msgstr "valge nimekiri"
 
 #~ msgid ""
-#~ "A recording is currently running. Please stop the recording before trying "
-#~ "to configure the positioner."
-#~ msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
+#~ "When you perform a factory reset, you will lose ALL your configuration "
+#~ "data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of the factory reset, your %s %s will restart "
+#~ "automatically!\n"
+#~ "\n"
+#~ "Do you really want to do a factory reset?"
+#~ msgstr ""
+#~ "Algseadistuse taastamisel kaovad kõik isiklikud seaded\n"
+#~ "(ka lemmiknimekirjad, kanalid, satelliidid, seadistusfailid jne...)\n"
+#~ "Pärast algseadistuse taastamist taaskäivitub %s %s automaatselt!\n"
+#~ "\n"
+#~ "Kas soovid kindlasti taastada algseadistuse?"
 
-#~ msgid "Descramble http streams"
-#~ msgstr "Dekodeeri http vood"
+#~ msgid "You have selected no logs to delete."
+#~ msgstr "Kustutamiseks ei ole logifaile valitud."
 
-#~ msgid "Feeds status:   Unkown"
-#~ msgstr "Hoidlate olek:   Teadmata"
-
-#~ msgid "USALS calibration"
-#~ msgstr "USALS kalibreerimine"
-
-#~ msgid "Sorry that tuner is not available."
-#~ msgstr "See tuuner ei ole saadaval."
+#~ msgid "You have selected no logs to send."
+#~ msgstr "Saatmiseks ei ole logifaile valitud."
