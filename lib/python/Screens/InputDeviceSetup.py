@@ -118,7 +118,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice
 		self.onChangedEntry = [ ]
-		self.setup_title = _("Input device setup")
+		self.setup_title = (_("Setup InputDevice"))
 		self.isStepSlider = None
 		self.enableEntry = None
 		self.repeatEntry = None
