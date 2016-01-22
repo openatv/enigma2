@@ -65,10 +65,19 @@ def InitOsd():
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D mode:',configElement.value
+			value = configElement.value
+			print 'Setting 3D mode:',value
 			try:
+				f = open("/proc/stb/fb/3dmode_choices", "r")
+				choices = f.readlines()
+				f.close()
+				if value not in choices:
+					if value == "sidebyside":
+						value = "sbs"
+					if value == "topandbottom":
+						value = "tab"
 				f = open("/proc/stb/fb/3dmode", "w")
-				f.write(configElement.value)
+				f.write(value)
 				f.close()
 			except:
 				pass
