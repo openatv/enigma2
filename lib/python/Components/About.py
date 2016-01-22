@@ -7,7 +7,10 @@ def getVersionString():
 
 def getFlashDateString():
 	try:
-		return time.strftime(_("%Y-%m-%d"), time.localtime(os.stat("/boot").st_ctime))
+		f = open("/etc/install","r")
+		flashdate = f.read()
+		f.close()
+		return flashdate
 	except:
 		return _("unknown")
 
