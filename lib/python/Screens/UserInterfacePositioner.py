@@ -69,7 +69,7 @@ def InitOsd():
 			print 'Setting 3D mode:',value
 			try:
 				f = open("/proc/stb/fb/3dmode_choices", "r")
-				choices = f.readlines()
+				choices = f.readlines()[0].split()
 				f.close()
 				if value not in choices:
 					if value == "sidebyside":
