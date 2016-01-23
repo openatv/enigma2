@@ -13,7 +13,6 @@ from boxbranding import getBoxType, getBrandOEM
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
-	SystemInfo["CanUse3DModeChoices"] = access('/proc/stb/fb/3dmode_choices', R_OK) and True or False
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]

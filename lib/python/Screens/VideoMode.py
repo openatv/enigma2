@@ -1,6 +1,6 @@
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
+from enigma import iPlayableService, iServiceInformation, eTimer
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
@@ -354,16 +354,17 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 	if previous != (mode, znorm):
 		try:
 			previous = (mode, znorm)
-			f = open("/proc/stb/fb/3dmode_choices", "r")
-			choices = f.readlines()[0].split()
-			f.close()
-			if mode not in choices:
-				if mode == "sidebyside":
-					mode = "sbs"
-				elif mode == "topandbottom":
-					mode = "tab"
-				elif mode == "auto":
-					mode = "off"
+			if SystemInfo["CanUse3DModeChoices"]:
+				f = open("/proc/stb/fb/3dmode_choices", "r")
+				choices = f.readlines()[0].split()
+				f.close()
+				if mode not in choices:
+					if mode == "sidebyside":
+						mode = "sbs"
+					elif mode == "topandbottom":
+						mode = "tab"
+					elif mode == "auto":
+						mode = "off"
 			open(SystemInfo["3DMode"], "w").write(mode)
 			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
 		except:
