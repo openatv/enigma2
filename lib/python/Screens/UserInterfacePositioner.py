@@ -74,8 +74,10 @@ def InitOsd():
 				if value not in choices:
 					if value == "sidebyside":
 						value = "sbs"
-					if value == "topandbottom":
+					elif value == "topandbottom":
 						value = "tab"
+					elif value == "auto":
+						value = "off"
 				f = open("/proc/stb/fb/3dmode", "w")
 				f.write(value)
 				f.close()
