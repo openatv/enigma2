@@ -88,13 +88,6 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 		from Plugins.Extensions.MultiQuickButton.plugin import *
 	except:
 		pass
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/SundtekControlCenter/plugin.pyo") is True:
-	try:
-		from Plugins.Extensions.SundtekControlCenter.SundtekControlCenter import *
-	except:
-		pass
-else:
-	from Plugins.Extensions.Infopanel.sundtek import *
 
 from Plugins.Extensions.Infopanel.CronManager import *
 from Plugins.Extensions.Infopanel.ScriptRunner import *
@@ -102,7 +95,6 @@ from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.Extensions.Infopanel.CamStart import *
 from Plugins.Extensions.Infopanel.CamCheck import *
-#from Plugins.Extensions.Infopanel.sundtek import *
 from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
@@ -502,8 +494,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
 			self.session.open(HddMount)
-		elif menu == "SundtekControlCenter":
-			self.session.open(SundtekControlCenter)
 		elif menu == "SwapManager":
 			self.session.open(Swap)
 		elif menu == "Softcam-Panel Setup":
@@ -525,7 +515,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
