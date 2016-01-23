@@ -13,6 +13,7 @@ from boxbranding import getBoxType, getBrandOEM
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
+	SystemInfo["CanUse3DModeChoices"] = access('/proc/stb/fb/3dmode_choices', R_OK) and True or False
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
@@ -68,16 +69,17 @@ def InitOsd():
 			value = configElement.value
 			print 'Setting 3D mode:',value
 			try:
-				f = open("/proc/stb/fb/3dmode_choices", "r")
-				choices = f.readlines()[0].split()
-				f.close()
-				if value not in choices:
-					if value == "sidebyside":
-						value = "sbs"
-					elif value == "topandbottom":
-						value = "tab"
-					elif value == "auto":
-						value = "off"
+				if SystemInfo["CanUse3DModeChoices"]:
+					f = open("/proc/stb/fb/3dmode_choices", "r")
+					choices = f.readlines()[0].split()
+					f.close()
+					if value not in choices:
+						if value == "sidebyside":
+							value = "sbs"
+						elif value == "topandbottom":
+							value = "tab"
+						elif value == "auto":
+							value = "off"
 				f = open("/proc/stb/fb/3dmode", "w")
 				f.write(value)
 				f.close()
