@@ -12,6 +12,10 @@ from enigma import getDesktop, iPlayableService
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
+try:
+	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
+except:
+	print "[CutListEditor] import MovieCut failed"
 
 import bisect
 
@@ -44,6 +48,7 @@ class CutListContextMenu(FixedMenu):
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
 	RET_GRABFRAME = 7
+	RET_MOVIECUT = 8
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -79,6 +84,8 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("grab this frame as bitmap"), self.grabFrame))
 
+		menu.append((_("execute cuts (requires MovieCut plugin)"), self.callMovieCut))
+
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = ["CutListContextMenu", "Menu" ]
 
@@ -105,6 +112,9 @@ class CutListContextMenu(FixedMenu):
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
+		
+	def callMovieCut(self):
+		self.close(self.RET_MOVIECUT)
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
@@ -383,6 +393,16 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
+		elif result == CutListContextMenu.RET_MOVIECUT:
+			self.inhibit_seek = True
+			self.uploadCuesheet()
+			self.inhibit_seek = False
+			self.session.nav.playService(self.old_service, forceRestart=True) #required for actually writing the .cuts file
+			self.pauseService()
+			try:
+				MovieCut(session=self.session, service=self.session.nav.getCurrentlyPlayingServiceReference())
+			except:
+				print "[CutListEditor] calling MovieCut failed"
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
