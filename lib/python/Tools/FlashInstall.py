@@ -9,7 +9,7 @@ def FlashInstallTime():
 		now = datetime.now()
 		flashdate = now.strftime("%Y-%m-%d")
 		print '[Setting Flash date]', flashdate
-		f.write()
+		f.write(flashdate)
 		f.close()
 	elif fileExists('/etc/install'):
 		f = open("/etc/install","r")
