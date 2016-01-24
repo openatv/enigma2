@@ -235,6 +235,7 @@
 		<item level="1" requires="LCDMiniTV" text="MiniTV on frontpanel" description="You can display MiniTV with or without OSD Menu">config.lcd.modeminitv</item>
 		<item level="1" requires="LCDMiniTV" text="MiniTV framerate" description="Lower Framerate save CPU Time">config.lcd.fpsminitv</item>
 		<item level="1" requires="LCDMiniTV" text="PIP on frontpanel" description="You can display PIP with or without OSD Menu">config.lcd.modepip</item>	
+		<item level="2" requires="LCDMiniTV" text="Screenshot of LCD in /tmp" description="Enable screenshot of LCD in /tmp">config.lcd.screenshot</item>
 		<item level="0" text="Scroll repeats" description="Number of repeating text on display." requires="VFD_scroll_repeats">config.usage.vfd_scroll_repeats</item>
 		<item level="2" text="Scroll delay" description="Delay in miliseconds between scrolling characters on display." requires="VFD_scroll_delay">config.usage.vfd_scroll_delay</item>
 		<item level="2" text="Initial scroll delay" description="Delay in miliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
