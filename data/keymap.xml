@@ -252,7 +252,7 @@
 		<key id="KEY_WWW" mapto="showWWW" flags="b" />
 		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
 		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="b" />
-		<key id="KEY_PVR" mapto="showMovies" flags="m" />
+		<key id="KEY_PVR" mapto="showMovies" flags="b" />
 		<key id="KEY_PROG1" mapto="HarddiskSetup" flags="b" />
 		<key id="KEY_OPEN" mapto="showMovies" flags="b" />
 		<key id="KEY_F1" mapto="showWWW" flags="b" />
@@ -953,7 +953,7 @@
 		<key id="KEY_BLUE" mapto="blue" flags="b"/>
 		<key id="KEY_BLUE" mapto="blue_long" flags="l"/>
 		<key id="KEY_RECORD" mapto="rec" flags="b"/>
-		<key id="KEY_RECORD" mapto="pvr_long" flags="l"/>
+		<key id="KEY_RECORD" mapto="rec_long" flags="l"/>
 		<key id="KEY_RADIO" mapto="radio" flags="b"/>
 		<key id="KEY_RADIO" mapto="radio_long" flags="l"/>
 		<key id="KEY_TV" mapto="showTv" flags="b"/>
@@ -994,6 +994,8 @@
 		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="m"/>
 		<key id="KEY_LIST" mapto="playlist" flags="b"/>
 		<key id="KEY_LIST" mapto="playlist_long" flags="l"/>
+		<key id="KEY_PVR" mapto="pvr" flags="b"/>
+		<key id="KEY_PVR" mapto="pvr_long" flags="l"/>
 		<key id="KEY_FILE" mapto="file" flags="b"/>
 		<key id="KEY_FILE" mapto="file_long" flags="l"/>
 		<key id="KEY_FAVORITES" mapto="favorites" flags="b"/>
@@ -1003,11 +1005,11 @@
 		<key id="KEY_OPEN" mapto="open" flags="b"/>
 		<key id="KEY_OPEN" mapto="open_long" flags="l"/>
 		<key id="KEY_WWW" mapto="www" flags="b"/>
-        	<key id="KEY_WWW" mapto="www_long" flags="l"/>
+		<key id="KEY_WWW" mapto="www_long" flags="l"/>
 		<key id="KEY_HOMEPAGE" mapto="homep" flags="b"/>
 		<key id="KEY_HOMEPAGE" mapto="homep_long" flags="l"/>
-        	<key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
-        	<key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
+		<key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
+		<key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
 		<key id="KEY_TIME" mapto="timeshift" flags="b"/>
 		<key id="KEY_SEARCH" mapto="search" flags="b"/>
 		<key id="KEY_SEARCH" mapto="search_long" flags="l"/>
