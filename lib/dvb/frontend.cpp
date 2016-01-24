@@ -1553,14 +1553,14 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				{
 					if (readFrontendData(iFrontendInformation_ENUMS::lockState))
 					{
-						eDebugNoSimulate("tuner locked .. wait %d\n");
+						eDebugNoSimulate("tuner locked .. wait");
 						if (m_timeoutCount)
 							m_timeoutCount--;
 						++m_sec_sequence.current();
 					}
 					else
 					{
-						eDebugNoSimulate("tuner unlocked .. goto %d\n", m_sec_sequence.current()->steps);
+						eDebugNoSimulate("tuner unlocked .. goto %d", m_sec_sequence.current()->steps);
 						setSecSequencePos(m_sec_sequence.current()->steps);
 					}
 				}
@@ -1850,7 +1850,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 	{
 		int type = -1;
 		oparm.getSystem(type);
-		eDebug("setting frontend %d", m_dvbid);
+		eDebug("setting frontend %d events: %s", m_dvbid, recvEvents?"on":"off");
 		if (recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events
