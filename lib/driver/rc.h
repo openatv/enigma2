@@ -35,7 +35,7 @@ public:
 	 * \param input The \ref eRCDriver where this remote gets its codes from.
 	 */
 	eRCDevice(std::string id, eRCDriver *input);
-	~eRCDevice();
+	virtual ~eRCDevice();
 	/**
 	 * \brief Handles a device specific code.
 	 *
