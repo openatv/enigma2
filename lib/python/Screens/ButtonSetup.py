@@ -511,7 +511,7 @@ class InfoBarButtonSetup():
 				return self.execButtonSetup(selected[0])
 			else:
 				key = tuple(x[0] for x in ButtonSetupKeys if x[1] == key)[0]
-				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, _("ButtonSetup") + " " + key, selected)
+				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, (_("Hotkey")) + "  " + key, selected)
 
 	def execButtonSetup(self, selected):
 		if selected:
