@@ -498,7 +498,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
 		}
 		if (m_useragent.empty())
-			m_useragent = "Enigma2 Mediaplayer";
+			m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;Beyonwiz;;;)";
 		m_extra_headers = eConfigManager::getConfigValue("config.mediaplayer.extraHeaders");
 		if ( m_ref.getData(7) & BUFFERING_ENABLED )
 		{
