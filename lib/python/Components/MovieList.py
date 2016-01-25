@@ -642,13 +642,13 @@ class MovieList(GUIComponent):
 			if this_tags == ['']:
 				# No tags? Auto tag!
 				this_tags = name.replace(',',' ').replace('.',' ').split()
-				# For auto tags, we are keeping a (tag, movies) dictionary.
-				#It will be used later to check if movies have a complete sentence in common.
-				for tag in this_tags:
-					if autotags.has_key(tag):
-						autotags[tag].append(name)
-					else:
-						autotags[tag] = [name]
+			        # For auto tags, we are keeping a (tag, movies) dictionary.
+                                # It will be used later to check if movies have a complete sentence in common.
+                                for tag in this_tags:
+				    if autotags.has_key(tag):
+				    	autotags[tag].append(name)
+				    else:
+					autotags[tag] = [name]
 			else:
 				realtags.update(this_tags)
 			# filter_tags is either None (which means no filter at all), or
@@ -709,7 +709,7 @@ class MovieList(GUIComponent):
 		# reverse the dictionary to see which unique movie each tag now references
 		rautotags = {}
 		for tag, movies in autotags.items():
-			if (len(movies) > 1):
+                        if (len(movies) > 1):
 				movies = tuple(movies) # a tuple can be hashed, but a list not
 				item = rautotags.get(movies, [])
 				if not item: rautotags[movies] = item
@@ -735,16 +735,16 @@ class MovieList(GUIComponent):
 					if m[start:end] != match:
 						match = ''
 						break
-			# Adding the longest common sentence to the tag list
+                        # Adding the longest common sentence to the tag list
 			if match:
 				self.tags[match] = set(tags)
 			else:
 				match = ' '.join(tags)
 				if len(match) > 2: #Omit small words
 					self.tags[match] = set(tags)
-		# Adding the realtags to the tag list
-		for tag in realtags:
-			self.tags[tag] = set([tag])
+                # Adding the realtags to the tag list
+                for tag in realtags:
+	    	    self.tags[tag] = set([tag])
 
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...
