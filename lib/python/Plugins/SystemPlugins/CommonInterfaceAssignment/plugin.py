@@ -358,15 +358,14 @@ class easyCIconfigMenu(CIconfigMenu):
 
 class CAidSelect(Screen):
 	skin = """
-		<screen name="CAidSelect" position="center,center" size="450,440" title="select CAId's" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="list" position="5,50" size="440,330" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,390" zPosition="1" size="450,2" />
-			<widget source="introduction" render="Label" position="0,400" size="450,40" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		</screen>"""
+		<screen name="CAidSelect" position="center,center" size="450,440" title="select CAId's">
+        	<ePixmap pixmap="skin_default/buttons/red.png" position="13,397" size="30,29" alphatest="on" />
+        	<ePixmap pixmap="skin_default/buttons/green.png" position="257,397" size="30,29" alphatest="on" />
+        	<widget source="key_red" render="Label" position="50,397" zPosition="1" size="140,30" font="Regular;20" halign="left" valign="center" backgroundColor="#9f1313" transparent="1" />
+        	<widget source="key_green" render="Label" position="292,397" zPosition="1" size="140,30" font="Regular;20" halign="left" valign="center" backgroundColor="#1f771f" transparent="1" />
+        	<widget name="list" position="4,102" size="440,275" scrollbarMode="showOnDemand" />
+        	<widget source="introduction" render="Label" position="0,8" size="450,85" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+        </screen>"""
 
 	def __init__(self, session, list, selected_caids):
 
