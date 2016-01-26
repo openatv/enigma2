@@ -939,20 +939,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 				frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
 
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +16) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 4) );  // 2 times
 
 				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +22) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +20) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +18) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +16) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +14) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 75) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +12) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +10) );
@@ -964,7 +955,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +3) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -23) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -13) );
 
 //<<<
 				switch(lnb_param.SatCR_format)
