@@ -8,7 +8,6 @@ import skin
 def ChoiceEntryComponent(key="", text=None):
 	screenwidth = getDesktop(0).size().width()
 	font = skin.fonts["ChoiceList"]
-	top = 0
 	if screenwidth:
 		if screenwidth == 1920:
 			left = 100
@@ -24,13 +23,12 @@ def ChoiceEntryComponent(key="", text=None):
 	if font:
 		if font[2] > height:
 			height = font[2]
-		top = int((height - font[2]) / 2)
 	if not text: text = ["--"]
 	res = [ text ]
 	if text[0] == "--":
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, height, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "-"*200))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, left, top, width, height, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, text[0]))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, left, 0, width, height, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, text[0]))
 		if key:
 			if screenwidth and screenwidth == 1920:
 				left = 10
