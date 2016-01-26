@@ -43,7 +43,7 @@ def InitConfig():
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
-																							+eEnv.resolve("${datadir}/enigma2/keymap.usr")]\
+																							eEnv.resolve("${datadir}/enigma2/keymap.usr")]\
 																							+eEnv_resolve_multi('/usr/bin/*cam*')\
 																							+eEnv_resolve_multi('/etc/*.emu')\
 																							+eEnv_resolve_multi('/etc/init.d/softcam*')))
