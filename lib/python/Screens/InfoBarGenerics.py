@@ -50,7 +50,7 @@ from Screens.TimerEntry import TimerEntry as TimerEntry
 from Tools import Notifications
 from Tools.Directories import pathExists, fileExists
 from Tools.KeyBindings import getKeyDescription, getKeyBindingKeys
-from Tools.ServiceReference import hdmiInServiceRef
+from Tools.ServiceReference import hdmiInServiceRef, service_types_tv_ref
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
@@ -743,6 +743,19 @@ class InfoBarNumberZap:
 		if reply:
 			self.servicelist.recallPrevService()
 
+	def _findFirstService(self, bouquet, serviceHandler):
+		self.servicelist.clearPath()
+		self.servicelist.setRoot(bouquet)
+		servicelist = serviceHandler.list(bouquet)
+		if servicelist is not None:
+			serviceIterator = servicelist.getNext()
+			while serviceIterator.valid():
+				service, bouquet2 = self.searchNumber(1)
+				if service == serviceIterator:
+					return serviceIterator
+				serviceIterator = servicelist.getNext()
+		return eServicereference()  # Invalid
+
 	def doPanicButton(self, reply):
 		if reply:
 			if self.session.pipshown:
@@ -756,37 +769,45 @@ class InfoBarNumberZap:
 			self.servicelist2.history_radio = []
 			self.servicelist2.history = self.servicelist.history_tv
 			self.servicelist2.history_pos = 0
-			if config.usage.multibouquet.value:
-				bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-			else:
-				bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
+
+			service = eServiceReference()  # Initially invalid
 			serviceHandler = eServiceCenter.getInstance()
-			rootbouquet = eServiceReference(bqrootstr)
-			bouquet = eServiceReference(bqrootstr)
-			bouquetlist = serviceHandler.list(bouquet)
-			if bouquetlist is not None:
-				while True:
+
+			if config.usage.multibouquet.value:
+				rootbouquet = eServiceReference(service_types_tv_ref)
+				rootbouquet.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+				bouquet = eServiceReference(rootbouquet)
+				bouquetlist = serviceHandler.list(bouquet)
+
+				if bouquetlist is not None:
 					bouquet = bouquetlist.getNext()
-					if bouquet.flags & eServiceReference.isDirectory:
-						self.servicelist.clearPath()
-						self.servicelist.setRoot(bouquet)
-						servicelist = serviceHandler.list(bouquet)
-						if servicelist is not None:
-							serviceIterator = servicelist.getNext()
-							while serviceIterator.valid():
-								service, bouquet2 = self.searchNumber(1)
-								if service == serviceIterator:
-									break
-								serviceIterator = servicelist.getNext()
-							if serviceIterator.valid() and service == serviceIterator:
+					while bouquet.valid():
+
+						if bouquet.flags & eServiceReference.isDirectory:
+							service = self._findFirstService(bouquet, serviceHandler)
+							if service.valid():
 								break
-				self.servicelist.enterPath(rootbouquet)
+						bouquet = bouquetlist.getNext()
+
+					self.servicelist.enterPath(rootbouquet)
+					self.servicelist2.enterPath(rootbouquet)
+			else:
+				bouquet = self.servicelist.getRoot()
+				if bouquet is not None:
+					if bouquet.valid() and bouquet.flags & eServiceReference.isDirectory:
+						service = self._findFirstService(bouquet, serviceHandler)
+				else:
+					bouquet = eServiceReference()  # Invalid
+
+			if bouquet.valid():
 				self.servicelist.enterPath(bouquet)
-				self.servicelist.saveRoot()
-				self.servicelist2.enterPath(rootbouquet)
+			self.servicelist.saveRoot()
+			if bouquet.valid():
 				self.servicelist2.enterPath(bouquet)
-				self.servicelist2.saveRoot()
-			self.selectAndStartService(service, bouquet, checkTimeshift=False)
+			self.servicelist2.saveRoot()
+
+			if bouquet.valid() and service.valid():
+				self.selectAndStartService(service, bouquet, checkTimeshift=False)
 
 	def numberEntered(self, service=None, bouquet=None):
 		if service:
