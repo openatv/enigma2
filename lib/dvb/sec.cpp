@@ -942,7 +942,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 4) );  // 2 times
 
 				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 25) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +22) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +20) );
