@@ -404,8 +404,10 @@ class eDVBFrontendParametersATSC;
 class iDVBFrontendParameters: public iObject
 {
 #ifdef SWIG
+public:
 	iDVBFrontendParameters();
 	~iDVBFrontendParameters();
+private:
 #endif
 public:
 	enum { flagOnlyFree = 1 };
