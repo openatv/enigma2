@@ -382,12 +382,9 @@ class PowerKey:
 		recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 		if recordings:
 			from Screens.MessageBox import MessageBox
-			# print "PowerOff - Recording in progress or a timer about to activate, entering standby!"
-			self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress or next recording begins in next 15 minutes!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
-		else:
-			if not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-				# print "PowerOff - Now!"
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+			self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
+		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
+			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
@@ -711,7 +708,7 @@ def runScreenTest():
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
-		if Screens.Standby.quitMainloopCode != 1:
+		if Screens.Standby.quitMainloopCode != 1 and Screens.Standby.quitMainloopCode != 45:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:

@@ -347,25 +347,23 @@ class Navigation:
 		return self.pnav and self.pnav.getRecordingsServicesAndTypes(type)
 
 	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
-		import Components.RecordingConfig
+		# only for 'real' recordings
 		rec = False
-		next_rec_time = 0
-		recordings = self.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
-		if not recordings:
-			next_rec_time = self.RecordTimer.getNextRecordingTime()
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) <= 900) or self.RecordTimer.isRecording():
+		next_rec_time = self.RecordTimer.getNextRecordingTime()
+		if self.RecordTimer.isRecording() or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			if not self.RecordTimer.isRecTimerWakeup():# if not timer wake up - enable trigger file for automatical shutdown after recording
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
 				f.close()
-			lastrecordEnd = 0
-			for timer in self.RecordTimer.timer_list:
-				if modifyTimer and (lastrecordEnd == 0 or lastrecordEnd >= timer.begin):
-					if timer.afterEvent < 2:
-						timer.afterEvent = 2
-						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
-					if timer.end > lastrecordEnd:
-						lastrecordEnd = timer.end + 900
+			if modifyTimer:
+				lastrecordEnd = 0
+				for timer in self.RecordTimer.timer_list:
+					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
+						if timer.afterEvent < 2:
+							timer.afterEvent = 2
+							print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
+						if timer.end > lastrecordEnd:
+							lastrecordEnd = timer.end + 900
 			rec = True
 		return rec
 

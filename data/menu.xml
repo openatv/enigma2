@@ -227,7 +227,7 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 if recordings:
-	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress or next recording begins in next 15 minutes!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
+	self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
 else:
 	self.session.open(TryQuitMainloop, 1)
 </code>
@@ -239,7 +239,7 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 if recordings:
-	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress or next recording begins in next 15 minutes!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
+	self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
 else:
 	self.session.open(TryQuitMainloop, 45)
 </code>
