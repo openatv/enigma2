@@ -217,9 +217,7 @@ class TryQuitMainloop(MessageBox):
 		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
 		reason = ""
-		next_rec_time = -1
-		if not recordings:
-			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
+		next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
 #		if jobs:
 #			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 #			if jobs == 1:
