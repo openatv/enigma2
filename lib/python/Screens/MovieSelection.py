@@ -2063,7 +2063,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			Tools.CopyFiles.deleteFiles(cur_path, name)
 			self["list"].removeService(current)
 			self.updateFileFolderCounts()
-			self.showActionFeedback(_("Deleted" '%s'") % name)
+			self.showActionFeedback(_("Deleted '%s'") % name)
 			return
 		except Exception, e:
 			print "[MovieSelection] Weird error moving to trash", e
