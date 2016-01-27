@@ -16,11 +16,9 @@ TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
 TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
-FLAG_IS_PARENTAL_PROTECTED_HIDDEN = 256
-
 def InitParentalControl():
 	config.ParentalControl = ConfigSubsection()
-	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("1", _("%d minutes") % 1), ("5", _("%d minutes") % 5), ("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("180", _("%d minutes") % 180), ("standby", _("until standby/restart"))])
+	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("standby", _("until standby/restart"))])
 	config.ParentalControl.configured = ConfigYesNo(default = False)
 	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
 	config.ParentalControl.retries = ConfigSubsection()
@@ -124,22 +122,15 @@ class ParentalControl:
 		else:
 			return True
 
-	def protectService(self, service, refresh=False):
+	def protectService(self, service):
 		if not self.blacklist.has_key(service):
 			self.serviceMethodWrapper(service, self.addServiceToList, self.blacklist)
 			if config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
-				if TYPE_BOUQUET not in service:
-					eDVBDB.getInstance().addFlag(eServiceReference(service), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
-					if refresh:
-						refreshServiceList()
+				eDVBDB.getInstance().addFlag(eServiceReference(service), 2)
 
-	def unProtectService(self, service, refresh=False):
+	def unProtectService(self, service):
 		if self.blacklist.has_key(service):
 			self.serviceMethodWrapper(service, self.removeServiceFromList, self.blacklist)
-			if TYPE_BOUQUET not in service:
-				eDVBDB.getInstance().removeFlag(eServiceReference(service), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
-				if refresh:
-					refreshServiceList()
 
 	def getProtectionLevel(self, service):
 		return not self.blacklist.has_key(service) and -1 or 0
@@ -273,26 +264,14 @@ class ParentalControl:
 				return getattr(self, name)
 		raise AttributeError, name
 
-	def unhideBlacklist(self):
-		if self.blacklist:
-			refresh = False
-			for ref in self.blacklist:
-				if TYPE_BOUQUET not in ref:
-					refresh = True
-					eDVBDB.getInstance().removeFlag(eServiceReference(ref), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
-			if refresh:
-				refreshServiceList()
-
 	def hideBlacklist(self):
 		if self.blacklist:
-			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and config.ParentalControl.hideBlacklist.value:
-				refresh = False
+			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
 				for ref in self.blacklist:
 					if TYPE_BOUQUET not in ref:
-						refresh = True
-						if not self.sessionPinCached:
-							eDVBDB.getInstance().addFlag(eServiceReference(ref), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
-						else:
-							eDVBDB.getInstance().removeFlag(eServiceReference(ref), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
-				if refresh:
-					refreshServiceList()
+						eDVBDB.getInstance().addFlag(eServiceReference(ref), 2)
+			else:
+				for ref in self.blacklist:
+					if TYPE_BOUQUET not in ref:
+						eDVBDB.getInstance().removeFlag(eServiceReference(ref), 2)
+			refreshServiceList()

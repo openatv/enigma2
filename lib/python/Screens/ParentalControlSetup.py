@@ -40,7 +40,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.hideBlacklist_prev_value = config.ParentalControl.hideBlacklist.value
 		self.createSetup(initial=True)
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
@@ -128,23 +127,14 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		if answer:
 			for x in self["config"].list:
 				x[1].cancel()
-			self.disableConfigHideBlacklist()
 			self.close()
 
-	def disableConfigHideBlacklist(self):
-		if config.ParentalControl.hideBlacklist.value and (not config.ParentalControl.servicepinactive.value or config.ParentalControl.storeservicepin.value == "never"):
-			config.ParentalControl.hideBlacklist.value = False
-			config.ParentalControl.hideBlacklist.save()
-
 	def keySave(self):
-		self.disableConfigHideBlacklist()
 		if self["config"].isChanged():
 			for x in self["config"].list:
 				x[1].save()
 			configfile.save()
 			from Components.ParentalControl import parentalControl
-			if self.hideBlacklist_prev_value and self.hideBlacklist_prev_value != config.ParentalControl.hideBlacklist.value:
-				parentalControl.unhideBlacklist()
 			parentalControl.hideBlacklist()
 		self.close(self.recursive)
 
@@ -183,7 +173,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def confirmNewPinEntered(self, answer1, answer2):
 		if answer2 is not None:
 			if answer1 == answer2:
-				self.session.open(MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO, timeout=3)
+				self.session.open(MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_ERROR, timeout=3)
 				config.ParentalControl.servicepin[0].value = answer1
 				config.ParentalControl.servicepin[0].save()
 				self.createSetup()
