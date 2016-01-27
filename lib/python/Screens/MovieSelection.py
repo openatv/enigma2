@@ -400,6 +400,8 @@ class MovieContextMenu(Screen, ProtectedScreen):
 						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
 					if service.getPath().endswith('.ts'):
 						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
+				elif csel.isBlurayFolderAndFile():
+					append_to_menu(menu, (_("Auto play blu-ray file"), csel.playBlurayFile))
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
@@ -1517,6 +1519,46 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		last_selected_dest.insert(0, where)
 		if len(last_selected_dest) > 5:
 			del last_selected_dest[-1]
+
+	def playBlurayFile(self):
+		if self.playfile:
+			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.autoBlurayCheckTimeshiftCallback)
+
+	def autoBlurayCheckTimeshiftCallback(self, answer):
+		if answer:
+			playRef = eServiceReference(3, 0, self.playfile)
+			self.playfile = ""
+			self.close(playRef)
+
+	def isBlurayFolderAndFile(self):
+		self.playfile = ""
+		current = self.getCurrent()
+		if current is not None:
+			path = current.getPath()
+			if current.flags & eServiceReference.mustDescent:
+				folder = path + 'STREAM/'
+				if path.endswith("BDMV/") and os.path.isdir(folder):
+					sizelist = []
+					try:
+						for name in os.listdir(folder):
+							if name.endswith(".m2ts"):
+								try:
+									st = os.stat(folder + name)
+									size = st.st_size
+									if size > 0:
+										sizelist.append((folder + name, size))
+								except:
+									print "Error calculate size file %s:" % (folder + name)
+						if sizelist:
+							sizelist.sort(key=lambda x: x[1])
+					except:
+						print "Error reading folder %s:" % folder
+					Len = len(sizelist)
+					if Len > 0:
+						index = Len - 1
+						self.playfile = sizelist[index][0]
+						return True
+		return False
 
 	def can_bookmarks(self, item):
 		return True
