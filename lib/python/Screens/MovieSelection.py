@@ -1532,23 +1532,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def isBlurayFolderAndFile(self, service):
 		self.playfile = ""
-		path = service.getPath()
-		if not path.endswith("BDMV/"):
-			path = path + "BDMV/"
-		folder = path + 'STREAM/'
-		if path.endswith("BDMV/") and os.path.isdir(folder):
-			fileSize = 0
-			try:
-				for name in os.listdir(folder):
-					if name.endswith(".m2ts"):
-						size = os.stat(folder + name).st_size
-						if size > fileSize:
-							fileSize = size
-							self.playfile = folder + name
-			except:
-				print "[ML] Error calculate size for %s" % (folder + name)
-			if self.playfile:
-				return True
+		folder = os.path.join(service.getPath(), "BDMV/STREAM/")
+		if not os.path.isdir(folder):
+			# Maybe we are in folder BDMV, cut it from string
+			folder = folder[:-12] + folder[-7:]
+			if not os.path.isdir(folder):
+				return False
+		fileSize = 0
+		try:
+			for name in os.listdir(folder):
+				if name.endswith(".m2ts"):
+					size = os.stat(folder + name).st_size
+					if size > fileSize:
+						fileSize = size
+						self.playfile = folder + name
+		except:
+			print "[ML] Error calculate size for %s" % (folder + name)
+		if self.playfile:
+			return True
 		return False
 
 	def can_bookmarks(self, item):
