@@ -1536,7 +1536,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if not os.path.isdir(folder):
 			# Maybe we are in folder BDMV, cut it from string
 			folder = folder[:-12] + folder[-7:]
-			if not os.path.isdir(folder):
+			if "BDMV/" not in folder or not os.path.isdir(folder):
 				return False
 		fileSize = 0
 		try:
