@@ -4,7 +4,7 @@
 
 ## openMips 5.2 is build using oe-alliance build-environment "next" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/3.2](https://github.com/oe-alliance/oe-alliance-core/tree/next "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/next](https://github.com/oe-alliance/oe-alliance-core/tree/next "OE-Alliance")
 > 
 > [https://github.com/openmips/stbgui/tree/master](https://github.com/openmips/stbgui/tree/master "openMips E2")
 > 
