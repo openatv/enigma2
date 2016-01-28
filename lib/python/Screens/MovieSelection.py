@@ -400,7 +400,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
 					if service.getPath().endswith('.ts'):
 						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
-				elif csel.isBlurayFolderAndFile():
+				elif csel.isBlurayFolderAndFile(service):
 					append_to_menu(menu, (_("Auto play blu-ray file"), csel.playBlurayFile))
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
 					from Components.ParentalControl import parentalControl
@@ -1530,34 +1530,25 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.playfile = ""
 			self.close(playRef)
 
-	def isBlurayFolderAndFile(self):
+	def isBlurayFolderAndFile(self, service):
 		self.playfile = ""
-		current = self.getCurrent()
-		if current is not None:
-			path = current.getPath()
-			if current.flags & eServiceReference.mustDescent:
-				folder = path + 'STREAM/'
-				if path.endswith("BDMV/") and os.path.isdir(folder):
-					sizelist = []
-					try:
-						for name in os.listdir(folder):
-							if name.endswith(".m2ts"):
-								try:
-									st = os.stat(folder + name)
-									size = st.st_size
-									if size > 0:
-										sizelist.append((folder + name, size))
-								except:
-									print "Error calculate size file %s:" % (folder + name)
-						if sizelist:
-							sizelist.sort(key=lambda x: x[1])
-					except:
-						print "Error reading folder %s:" % folder
-					Len = len(sizelist)
-					if Len > 0:
-						index = Len - 1
-						self.playfile = sizelist[index][0]
-						return True
+		path = service.getPath()
+		if not path.endswith("BDMV/"):
+			path = path + "BDMV/"
+		folder = path + 'STREAM/'
+		if path.endswith("BDMV/") and os.path.isdir(folder):
+			fileSize = 0
+			try:
+				for name in os.listdir(folder):
+					if name.endswith(".m2ts"):
+						size = os.stat(folder + name).st_size
+						if size > fileSize:
+							fileSize = size
+							self.playfile = folder + name
+			except:
+				print "[ML] Error calculate size for %s" % (folder + name)
+			if self.playfile:
+				return True
 		return False
 
 	def can_bookmarks(self, item):
