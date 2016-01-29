@@ -49,7 +49,11 @@ class CiModuleControl(Renderer, VariableText):
 							elif state == 2:
 								string += "\c0000??00"
 						else:
-							string += "\c00??2525"
+							if not self.allVisible:
+								string += ""
+								add_num = False
+							else:
+								string += "\c00??2525"
 						if add_num:
 							string += "%d" % (slot + 1)
 					if string:
