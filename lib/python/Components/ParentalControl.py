@@ -127,7 +127,7 @@ class ParentalControl:
 	def protectService(self, service):
 		if not self.blacklist.has_key(service):
 			self.serviceMethodWrapper(service, self.addServiceToList, self.blacklist)
-			if config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
+			if config.ParentalControl.hideBlacklist.value and not self.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
 				eDVBDB.getInstance().addFlag(eServiceReference(service), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
 
 	def unProtectService(self, service):

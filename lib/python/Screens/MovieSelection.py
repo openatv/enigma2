@@ -304,10 +304,13 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
+
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
+
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
@@ -397,6 +400,8 @@ class MovieContextMenu(Screen, ProtectedScreen):
 						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
 					if service.getPath().endswith('.ts'):
 						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
+				elif csel.isBlurayFolderAndFile(service):
+					append_to_menu(menu, (_("Auto play blu-ray file"), csel.playBlurayFile))
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
@@ -436,16 +441,22 @@ class MovieContextMenu(Screen, ProtectedScreen):
 
 	def do_rename(self):
 		self.close(self.csel.do_rename())
+
 	def do_copy(self):
 		self.close(self.csel.do_copy())
+
 	def do_move(self):
 		self.close(self.csel.do_move())
+
 	def do_createdir(self):
 		self.close(self.csel.do_createdir())
+
 	def do_delete(self):
 		self.close(self.csel.do_delete())
+
 	def do_configure(self):
 		self.close(self.csel.configure())
+
 	def do_showNetworkSetup(self):
 		self.close(self.csel.showNetworkSetup())
 
@@ -783,22 +794,31 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def btn_red(self):
 		self._callButton(config.movielist.btn_red.value)
+
 	def btn_green(self):
 		self._callButton(config.movielist.btn_green.value)
+
 	def btn_yellow(self):
 		self._callButton(config.movielist.btn_yellow.value)
+
 	def btn_blue(self):
 		self._callButton(config.movielist.btn_blue.value)
+
 	def btn_radio(self):
 		self._callButton(config.movielist.btn_radio.value)
+
 	def btn_tv(self):
 		self._callButton(config.movielist.btn_tv.value)
+
 	def btn_text(self):
 		self._callButton(config.movielist.btn_text.value)
+
 	def btn_F1(self):
 		self._callButton(config.movielist.btn_F1.value)
+
 	def btn_F2(self):
 		self._callButton(config.movielist.btn_F2.value)
+
 	def btn_F3(self):
 		self._callButton(config.movielist.btn_F3.value)
 
@@ -924,15 +944,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if not item:
 			return False
 		return canDelete(item) or isTrashFolder(item[0])
+
 	def can_move(self, item):
 		return canMove(item)
+
 	def can_default(self, item):
 		# returns whether item is a regular file
 		return isSimpleFile(item)
+
 	def can_sort(self, item):
 		return True
+
 	def can_listtype(self, item):
 		return True
+
 	def can_preview(self, item):
 		return isSimpleFile(item)
 
@@ -1137,12 +1162,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						for item in self.list.list:
 							p = item[0].getPath()
 							if p == path:
-							        index = len(filelist)
+								index = len(filelist)
 							if os.path.splitext(p)[1].lower() in IMAGE_EXTENSIONS:
-							        filelist.append(((p,False), None))
+								filelist.append(((p,False), None))
 						self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception, ex:
-					        print "[ML] Cannot display", str(ex)
+						print "[ML] Cannot display", str(ex)
 					return
 				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, ext, path))
 
@@ -1495,18 +1520,53 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if len(last_selected_dest) > 5:
 			del last_selected_dest[-1]
 
+	def playBlurayFile(self):
+		if self.playfile:
+			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.autoBlurayCheckTimeshiftCallback)
+
+	def autoBlurayCheckTimeshiftCallback(self, answer):
+		if answer:
+			playRef = eServiceReference(3, 0, self.playfile)
+			self.playfile = ""
+			self.close(playRef)
+
+	def isBlurayFolderAndFile(self, service):
+		self.playfile = ""
+		folder = os.path.join(service.getPath(), "BDMV/STREAM/")
+		if not os.path.isdir(folder):
+			# Maybe we are in folder BDMV, cut it from string
+			folder = folder[:-12] + folder[-7:]
+			if "BDMV/" not in folder or not os.path.isdir(folder):
+				return False
+		fileSize = 0
+		try:
+			for name in os.listdir(folder):
+				if name.endswith(".m2ts"):
+					size = os.stat(folder + name).st_size
+					if size > fileSize:
+						fileSize = size
+						self.playfile = folder + name
+		except:
+			print "[ML] Error calculate size for %s" % (folder + name)
+		if self.playfile:
+			return True
+		return False
+
 	def can_bookmarks(self, item):
 		return True
+
 	def do_bookmarks(self):
 		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.gotFilename)
 
 	def can_addbookmark(self, item):
 		return True
+
 	def exist_bookmark(self):
 		path = config.movielist.last_videodir.value
 		if path in config.movielist.videodirs.value:
 			return True
 		return False
+
 	def do_addbookmark(self):
 		path = config.movielist.last_videodir.value
 		if path in config.movielist.videodirs.value:
@@ -1516,6 +1576,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		else:
 			config.movielist.videodirs.value += [path]
 			config.movielist.videodirs.save()
+
 	def removeBookmark(self, yes):
 		if not yes:
 			return
@@ -1527,11 +1588,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def can_createdir(self, item):
 		return True
+
 	def do_createdir(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.session.openWithCallback(self.createDirCallback, VirtualKeyBoard,
 			title = _("Please enter name of the new directory"),
 			text = "")
+
 	def createDirCallback(self, name):
 		if not name:
 			return
@@ -1556,6 +1619,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def can_rename(self, item):
 		return canMove(item)
+
 	def do_rename(self):
 		item = self.getCurrentSelection()
 		if not canMove(item):
@@ -1703,6 +1767,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def can_copy(self, item):
 		return canCopy(item)
+
 	def do_copy(self):
 		item = self.getCurrentSelection()
 		if canMove(item):
@@ -1913,7 +1978,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		except Exception, ex:
 			self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
 
-
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings()
 		next_rec_time = -1
@@ -1950,10 +2014,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.diskinfo.update()
 
 	def can_gohome(self, item):
-	        return True
+		return True
 
 	def do_gohome(self):
-	        self.gotFilename(defaultMoviePath())
+		self.gotFilename(defaultMoviePath())
 
 	def do_sort(self):
 		index = 0
