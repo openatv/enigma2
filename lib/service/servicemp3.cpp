@@ -403,7 +403,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_pump(eApp, 1)
 {
 	m_subtitle_sync_timer = eTimer::create(eApp);
-	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
@@ -416,10 +415,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_prefillbuffer = false;
 	m_paused = false;
 	m_seek_paused = false;
-	m_cuesheet_loaded = false; /* cuesheet CVR */
+	m_cuesheet_loaded = false; /* cuesheet */
 #if GST_VERSION_MAJOR >= 1
-	m_use_chapter_entries = false; /* TOC chapter support CVR */
-	m_last_seek_pos = 0; /* CVR last seek position */
+	m_use_chapter_entries = false; /* TOC chapter support */
+	m_last_seek_pos = 0; /* last seek position */
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -525,8 +524,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	if ( m_sourceinfo.is_streaming )
 	{
 		uri = g_strdup_printf ("%s", filename);
-		m_streamingsrc_timeout = eTimer::create(eApp);;
-		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 
 		if ( m_ref.getData(7) & BUFFERING_ENABLED )
 		{
@@ -778,13 +775,6 @@ RESULT eServiceMP3::start()
 	return 0;
 }
 
-void eServiceMP3::sourceTimeout()
-{
-	eDebug("eServiceMP3::http source timeout! issuing eof...");
-	stop();
-	m_event((iPlayableService*)this, evEOF);
-}
-
 RESULT eServiceMP3::stop()
 {
 	if (!m_gst_playbin || m_state == stStopped)
@@ -809,8 +799,6 @@ RESULT eServiceMP3::stop()
 	saveCuesheet();
 	m_subtitles_paused = false;
 	m_nownext_timer->stop();
-	if (m_streamingsrc_timeout)
-		m_streamingsrc_timeout->stop();
 
 	return 0;
 }
@@ -1553,29 +1541,18 @@ RESULT eServiceMP3::selectChannel(int i)
 
 RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 {
- 	if (i >= m_audioStreams.size())
+	if (i >= m_audioStreams.size())
+	{
 		return -2;
-		info.m_description = m_audioStreams[i].codec;
-/*	if (m_audioStreams[i].type == atMPEG)
-		info.m_description = "MPEG";
-	else if (m_audioStreams[i].type == atMP3)
-		info.m_description = "MP3";
-	else if (m_audioStreams[i].type == atAC3)
-		info.m_description = "AC3";
-	else if (m_audioStreams[i].type == atAAC)
-		info.m_description = "AAC";
-	else if (m_audioStreams[i].type == atDTS)
-		info.m_description = "DTS";
-	else if (m_audioStreams[i].type == atPCM)
-		info.m_description = "PCM";
-	else if (m_audioStreams[i].type == atOGG)
-		info.m_description = "OGG";
-	else if (m_audioStreams[i].type == atFLAC)
-		info.m_description = "FLAC";
-	else
-		info.m_description = "???";*/
+	}
+
+	info.m_description = m_audioStreams[i].codec;
+
 	if (info.m_language.empty())
+	{
 		info.m_language = m_audioStreams[i].language_code;
+	}
+
 	return 0;
 }
 
@@ -1761,14 +1738,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
-					if(!m_cuesheet_loaded) /* cuesheet CVR */
+					if(!m_cuesheet_loaded) /* cuesheet */
 						loadCuesheet();
 					updateEpgCacheNowNext();
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
-					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
-						m_streamingsrc_timeout->stop();
 					m_paused = false;
 					if (m_seek_paused)
 					{
@@ -1818,6 +1793,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						m_event((iPlayableService*)this, evUser+10);
 				}
 			}
+			else if ( err->domain == GST_RESOURCE_ERROR )
+			{
+				if ( err->code == GST_RESOURCE_ERROR_OPEN_READ || err->code == GST_RESOURCE_ERROR_READ )
+				{
+					stop();
+				}
+			}
 			g_error_free(err);
 			break;
 		}
@@ -1827,7 +1809,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			gchar *debug_warn = NULL;
 			GError *warn = NULL;
 			gst_message_parse_warning (msg, &warn, &debug_warn);
-			/* CVR this Warning occurs from time to time with external srt files
+			/* this Warning occurs from time to time with external srt files
 			When a new seek is done the problem off to long wait times before subtitles appears,
 			after movie was restarted with a resume position is solved. */
 			if(!strncmp(warn->message , "Internal data flow problem", 26) && !strncmp(sourceName, "subtitle_sink", 13))
@@ -1922,7 +1904,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			break;
 		}
-		/* TOC entry intercept used for chapter support CVR */
+		/* TOC entry intercept used for chapter support */
 #if GST_VERSION_MAJOR >= 1
 		case GST_MESSAGE_TOC:
 		{
@@ -2148,37 +2130,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}
 			}
 			break;
-		case GST_MESSAGE_STREAM_STATUS:
-		{
-			GstStreamStatusType type;
-			GstElement *owner;
-			gst_message_parse_stream_status (msg, &type, &owner);
-			if ( type == GST_STREAM_STATUS_TYPE_CREATE && m_sourceinfo.is_streaming )
-			{
-				if ( GST_IS_PAD(source) )
-					owner = gst_pad_get_parent_element(GST_PAD(source));
-				else if ( GST_IS_ELEMENT(source) )
-					owner = GST_ELEMENT(source);
-				else
-					owner = 0;
-				if ( owner )
-				{
-					GstState state;
-					gst_element_get_state(m_gst_playbin, &state, NULL, 0LL);
-					GstElementFactory *factory = gst_element_get_factory(GST_ELEMENT(owner));
-					const gchar *name = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
-					if (!strcmp(name, "souphttpsrc") && (state == GST_STATE_READY) && !m_streamingsrc_timeout->isActive())
-					{
-						m_streamingsrc_timeout->start(HTTP_TIMEOUT*1000, true);
-						g_object_set (G_OBJECT (owner), "timeout", HTTP_TIMEOUT, NULL);
-						// eDebug("eServiceMP3::GST_STREAM_STATUS_TYPE_CREATE -> setting timeout on %s to %is", name, HTTP_TIMEOUT);
-					}
-				}
-				if ( GST_IS_PAD(source) )
-					gst_object_unref(owner);
-			}
-			break;
-		}
 		default:
 			break;
 	}
@@ -2205,7 +2156,7 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	if (_this) _this->handleMessage(message);
 	return GST_BUS_DROP;
 }
-/*Processing TOC CVR */
+/*Processing TOC */
 #if GST_VERSION_MAJOR >= 1
 void eServiceMP3::HandleTocEntry(GstMessage *msg)
 {
@@ -2220,8 +2171,8 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 			GstTocEntry *entry = static_cast<GstTocEntry*>(i->data);
 			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION)
 			{
-				/* extra debug info for testing purposes CVR should_be_removed later on */
-				eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
+				/* extra debug info for testing purposes should_be_removed later on */
+				//eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
 				gint y = 0;
 				for (GList* x = gst_toc_entry_get_sub_entries (entry); x; x = x->next)
 				{
@@ -2263,9 +2214,9 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 								}
 								m_cuesheet_changed = 1;
 								m_event((iPlayableService*)this, evCuesheetChanged);
-								/* extra debug info for testing purposes CVR should_be_removed later on */
-								eDebug("[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
-										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts);
+								/* extra debug info for testing purposes should_be_removed later on */
+								/*eDebug("[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
+										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts); */
 							}
 						}
 						y++;
@@ -2277,7 +2228,8 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 	}
 	else
 	{
-		eDebug("[eServiceMP3] TOC entry from source %s not used", GST_MESSAGE_SRC_NAME(msg));
+		//eDebug("[eServiceMP3] TOC entry from source %s not used", GST_MESSAGE_SRC_NAME(msg));
+		;
 	}
 }
 #endif
@@ -2288,6 +2240,18 @@ void eServiceMP3::playbinNotifySource(GObject *object, GParamSpec *unused, gpoin
 	g_object_get(object, "source", &source, NULL);
 	if (source)
 	{
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "timeout") != 0)
+		{
+			GstElementFactory *factory = gst_element_get_factory(source);
+			if (factory)
+			{
+				const gchar *sourcename = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
+				if (!strcmp(sourcename, "souphttpsrc"))
+				{
+					g_object_set(G_OBJECT(source), "timeout", HTTP_TIMEOUT, NULL);
+				}
+			}
+		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "ssl-strict") != 0)
 		{
 			g_object_set(G_OBJECT(source), "ssl-strict", FALSE, NULL);
@@ -2807,7 +2771,7 @@ ePtr<iStreamBufferInfo> eServiceMP3::getBufferCharge()
 {
 	return new eStreamBufferInfo(m_bufferInfo.bufferPercent, m_bufferInfo.avgInRate, m_bufferInfo.avgOutRate, m_bufferInfo.bufferingLeft, m_buffer_size);
 }
-/* cuesheet CVR */
+/* cuesheet */
 PyObject *eServiceMP3::getCutList()
 {
 	ePyObject list = PyList_New(0);
@@ -2823,7 +2787,7 @@ PyObject *eServiceMP3::getCutList()
 
 	return list;
 }
-/* cuesheet CVR */
+/* cuesheet */
 void eServiceMP3::setCutList(ePyObject list)
 {
 	if (!PyList_Check(list))
@@ -2944,7 +2908,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		}
 	}
 }
-/* cuesheet CVR */
+/* cuesheet */
 void eServiceMP3::loadCuesheet()
 {
 	if (!m_cuesheet_loaded)
@@ -2952,6 +2916,12 @@ void eServiceMP3::loadCuesheet()
 		eDebug("[eServiceMP3] loading cuesheet");
 		m_cuesheet_loaded = true;
 	}
+	else
+	{
+		//eDebug("[eServiceMP3] skip loading cuesheet multiple times");
+		return;
+	}
+ 
 	m_cue_entries.clear();
 
 	std::string filename = m_ref.path + ".cuts";
@@ -2986,7 +2956,7 @@ void eServiceMP3::loadCuesheet()
 	m_cuesheet_changed = 0;
 	m_event((iPlayableService*)this, evCuesheetChanged);
 }
-/* cuesheet CVR */
+/* cuesheet */
 void eServiceMP3::saveCuesheet()
 {
 	std::string filename = m_ref.path;
