@@ -693,7 +693,7 @@ def createTimer(xml):
 	entry.repeated = int(repeated)
 	flags = xml.get("flags")
 	if flags:
-		entry.flags = flags.encode("utf-8").split(' ')
+		entry.flags = set(flags.encode("utf-8").split(' '))
 
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
