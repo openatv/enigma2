@@ -850,11 +850,12 @@ class RecordTimer(timer.Timer):
 				}[timer.afterEvent])) + '"')
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
-			if timer.dirname is not None:
+			if timer.dirname:
 				list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
-			if timer.tags is not None:
+			if timer.tags:
 				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
-			list.append(' disabled="' + str(int(timer.disabled)) + '"')
+			if timer.disabled:
+				list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
 			list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
