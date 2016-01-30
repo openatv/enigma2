@@ -947,22 +947,18 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 				frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
 
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +16) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 4) );  // 2 times
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +12));	//skip all, if tuner unlocked
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 4) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 75) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +12) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +8) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 25) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +7));	//if tuner unlocked jump to additional 95ms sleep
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +6) );	//if timeout jump to additional 95ms sleep
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +3) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -13) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8));			//repeate until timeout
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 95));
 
 //<<<
 				switch(lnb_param.SatCR_format)
