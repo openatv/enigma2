@@ -43,7 +43,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
 		else:
 			repeatedtext = begin[0] # date
-			if "autotimer" in timer.flags:
+			# if "autotimer" in timer.flags: // right now old autotimer is still used.
+			if timer.tags and ("newAT" or "autotimer") in timer.tags:
 				self.iconAutoTimer and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconAutoTimer))
 		if timer.justplay:
 			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
