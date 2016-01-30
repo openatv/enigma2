@@ -691,6 +691,9 @@ def createTimer(xml):
 	#filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, always_zap = always_zap, zap_wakeup = zap_wakeup, rename_repeat = rename_repeat, conflict_detection = conflict_detection, isAutoTimer = isAutoTimer)
 	entry.repeated = int(repeated)
+	flags = xml.get("flags")
+	if flags:
+		entry.flags = flags.encode("utf-8").split(' ')
 
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
