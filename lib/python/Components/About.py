@@ -52,7 +52,6 @@ def getCPUSpeedString():
 				if splitted[0].startswith("cpu MHz"):
 					cpu_speed = float(splitted[1].split(' ')[0])
 					break
-
 	except IOError:
 		print "[About] getCPUSpeedString, /proc/cpuinfo not available"
 
