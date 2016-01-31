@@ -11,7 +11,7 @@ from Components.MovieList import AUDIO_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSI
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
-from Components.config import config, configfile, ConfigBoolean, ConfigClock
+from Components.config import config, configfile, ConfigBoolean, ConfigDateTime, ConfigClockTime, ConfigClockDuration
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
 from Components.VolumeControl import VolumeControl
@@ -38,7 +38,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
-from Screens.TimeDateInput import TimeDateInput
+from Screens.TimeDateInput import TimeDateDurationInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
 from Screens.AudioSelection import AudioSelection, SubtitleSelection
@@ -3049,11 +3049,11 @@ class InfoBarInstantRecord:
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
-			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
+			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime"))
 			if answer[1] == "manualduration":
 				self.changeDuration(len(self.recording) - 1)
 			elif answer[1] == "manualendtime":
-				self.setEndtime(len(self.recording) - 1)
+				self.setEndtime(len(self.recording) - 1, new=True)
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
@@ -3075,12 +3075,48 @@ class InfoBarInstantRecord:
 			# noinspection PyCallByClass
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 
-	def setEndtime(self, entry):
+	@staticmethod
+	def durationString(conf, selected=False):
+		prefix = ''
+		duration = conf.getAdjustedValue()
+		if duration < 0:
+			prefix += '-'
+			duration = -duration
+		days = duration / (24 * 60 * 60)
+		if days > 0:
+			prefix += ngettext("%d day ", "%d days ", days) % days
+		clock = conf.clock.getMulti(selected)
+		ret = clock[0], prefix + clock[1]
+		if len(clock) > 2:
+			ret += ([clock[2][0] + len(prefix)], )
+		return ret
+
+	def setEndtime(self, entry, new=False):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].end)
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
-			dlg.setTitle(_("Please change recording endtime"))
+			now = int(time())
+			recEnd = self.recording[self.selectedEntry].end
+
+			# Increment/decrement disabled until consensus
+			# can be reached about which buttons to use
+			# time_desc = _("Enter time using number keys and LEFT/RIGHT.\nVOL+/-, NEXT/PREV and FF/REW change hours.\nCH+/CH- changes minutes.")
+			# date_desc = _("RIGHT/LEFT, VOL+/-, NEXT/PREV, FF/REW and CH+/- change the date.")
+			time_desc = _("Enter time using number keys and LEFT/RIGHT.")
+			date_desc = _("RIGHT/LEFT change the date.")
+			duration_desc = '' if new else _("Duration is the remaining recording time.\n")
+			duration_desc += time_desc
+
+			minute = 60
+			hour = minute * 60
+			day = hour * 24
+
+			end_date = ConfigDateTime(default=recEnd, formatstring=_("%A %d %B %Y"), increment=day, increment1=day, base=now)
+			end_time = ConfigClockTime(default=recEnd, formatstring="", increment=hour, increment1=minute, base=now)
+			duration = ConfigClockDuration(default=recEnd, formatstring=self.durationString, increment=hour, increment1=minute, base=now)
+
+			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateDurationInput, config_time=end_time, config_date=end_date, config_duration=duration, desc_time=time_desc, desc_date=date_desc, desc_duration=duration_desc)
+
+			dlg.setTitle(_("Please set recording end time or duration"))
 
 	def TimeDateInputClosed(self, ret):
 		if len(ret) > 1:
@@ -3088,7 +3124,7 @@ class InfoBarInstantRecord:
 				# print "stopping recording at", strftime("%F %T", localtime(ret[1]))
 				if self.recording[self.selectedEntry].end != ret[1]:
 					self.recording[self.selectedEntry].autoincrease = False
-				self.recording[self.selectedEntry].end = ret[1]
+				self.recording[self.selectedEntry].end = ret[1].value
 		else:
 			if self.recording[self.selectedEntry].end != int(time()):
 				self.recording[self.selectedEntry].autoincrease = False

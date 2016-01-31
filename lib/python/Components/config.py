@@ -5,7 +5,8 @@ from Components.Harddisk import harddiskmanager
 from Tools.LoadPixmap import LoadPixmap
 from copy import copy as copy_copy
 from os import path as os_path
-from time import localtime, strftime
+from time import localtime, gmtime, strftime, mktime, time
+from calendar import timegm
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -187,6 +188,10 @@ KEY_TIMEOUT = 9
 KEY_NUMBERS = range(12, 12+10)
 KEY_0 = 12
 KEY_9 = 12+9
+KEY_PAGEUP = 12+10
+KEY_PAGEDOWN = 12+11
+KEY_PREV = 12+12
+KEY_NEXT = 12+13
 
 def getKeyNumber(key):
 	assert key in KEY_NUMBERS
@@ -504,28 +509,194 @@ class ConfigEnableDisable(ConfigBoolean):
 		ConfigBoolean.__init__(self, default = default, descriptions = enable_disable_descriptions)
 
 class ConfigDateTime(ConfigElement):
-	def __init__(self, default, formatstring, increment = 86400):
+	def __init__(self, default, formatstring, increment = 24 * 60 * 60, increment1 = 0, base = None, to_tm = localtime, from_tm = mktime):
 		ConfigElement.__init__(self)
+		self.to_tm = to_tm
+		self.from_tm = from_tm
 		self.increment = increment
+		self.increment1 = increment1
+		self.base = base
 		self.formatstring = formatstring
+		self.select_callback = None
+		self._allow_invalid = False
 		self.value = self.last_value = self.default = int(default)
 
 	def handleKey(self, key):
-		if key == KEY_LEFT:
-			self.value -= self.increment
-		elif key == KEY_RIGHT:
+		if key in (KEY_LEFT, KEY_PREV):
+			if self.base is None or self.value >= self.base + self.increment:
+				self.value -= self.increment
+		elif key in (KEY_RIGHT, KEY_NEXT):
 			self.value += self.increment
+		elif key == KEY_PAGEDOWN:
+			if self.base is None or self.value >= self.base + self.increment1:
+				self.value -= self.increment1
+		elif key == KEY_PAGEUP:
+			self.value += self.increment1
 		elif key == KEY_HOME or key == KEY_END:
 			self.value = self.default
 
+	def _timestr(self):
+		return strftime(self.formatstring, self.to_tm(self.getAdjustedValue()))
+
+	def getAllowInvalid(self):
+		return self._allow_invalid
+
+	def setAllowInvalid(self, allow):
+		update = not allow and self.allow_invalid
+		self._allow_invalid = allow
+		if update and self.base is not None and self.value < self.base:
+			self.value = self.base
+
+	allow_invalid = property(getAllowInvalid, setAllowInvalid)
+
 	def getText(self):
-		return strftime(self.formatstring, localtime(self.value))
+		if callable(self.formatstring):
+			return self.formatstring(self)
+		else:
+			return self._timestr()
 
 	def getMulti(self, selected):
-		return "text", strftime(self.formatstring, localtime(self.value))
+		return "text", self.getText()
 
 	def fromstring(self, val):
 		return int(val)
+
+	def getAdjustedValue(self):
+		return self.value
+
+	def unadjustValue(self, value):
+		return value
+
+	def setValue(self, value):
+		if (self.base is None or self.allow_invalid or value >= self.base) and (not hasattr(self, "_value") or value != self.value):
+			super(ConfigDateTime, self).setValue(value)
+
+	def onSelect(self, session):
+		if callable(self.select_callback):
+			self.select_callback(self, True)
+
+	def onDeselect(self, session):
+		if callable(self.select_callback):
+			self.select_callback(self, False)
+
+	value = property(ConfigElement.getValue, setValue)
+
+class ClockTime:
+	def __init__(self, mainclass, default, timeconv=localtime):
+		self.mainclass = mainclass
+		self.base = None
+		self._value = self.last_value = self.default = int(default)
+		self.clock = ConfigClock(default, timeconv=timeconv)
+
+	def _timeUpdate(self, conf):
+		value = self.getAdjustedValue()
+		neg = value < 0
+		if neg:
+			value = -value
+		tm = self.to_tm(value)
+		tm = tm[0:3] + tuple(self.clock.value) + tm[5:9]
+		newtime = int(self.from_tm(tm))
+		if neg:
+			newtime = -newtime
+		newtime = self.unadjustValue(newtime)
+		if newtime != self.value:
+			self.value = newtime
+
+	def handleKey(self, key):
+		if key in (KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_ASCII) or key in KEY_NUMBERS:
+			self.clock.handleKey(key)
+		else:
+			self.mainclass.handleKey(self, key)
+
+	def getText(self):
+		if callable(self.formatstring):
+			return self.formatstring(self)[1]
+		else:
+			return self._timestr() + self.clock.getText()
+
+	def getMulti(self, selected):
+		if callable(self.formatstring):
+			return self.formatstring(self, selected)
+		else:
+			clock = self.clock.getMulti(selected)
+			prefix = self._timestr()
+			ret = clock[0], prefix + clock[1]
+			if len(clock) > 2:
+				ret += ([clock[2][0] + len(prefix)], )
+			return ret
+
+	def onSelect(self, session):
+		self.clock.onSelect(session)
+		self.mainclass.onSelect(self, session)
+
+	def onDeselect(self, session):
+		self._timeUpdate(self)
+		self.clock.onDeselect(session)
+		self.mainclass.onDeselect(self, session)
+
+	def setValue(self, value):
+		self.mainclass.setValue(self, value)
+		tm = self.to_tm(abs(self.getAdjustedValue()))
+		newtime = [tm.tm_hour, tm.tm_min]
+		if newtime != self.clock.value:
+			self.clock.value = [tm.tm_hour, tm.tm_min]
+
+	value = property(ConfigElement.getValue, setValue)
+
+class ConfigClockTime(ClockTime, ConfigDateTime):
+	def __init__(self, default, formatstring, increment = 24 * 60 * 60, increment1 = 0, base = None):
+		ClockTime.__init__(self, ConfigDateTime, default)
+
+		ConfigDateTime.__init__(self, default, formatstring, increment=increment, increment1=increment1, base=base)
+
+		self.clock.addNotifier(self._timeUpdate, immediate_feedback=True)
+
+# Duration is implemented as self.value - self.base, so the time
+# conversion used is gmtime() on times near the Unix epoch.  That
+# means that some strftime conversions don't make much sense.
+# %j is hacked so that it appears to return [0-365] instead of [1-366]
+
+class ConfigDuration(ConfigDateTime):
+	def __init__(self, default, formatstring, increment=24 * 60 * 60, increment1=0, base=time()):
+		super(ConfigDuration, self).__init__(default, formatstring, increment=increment, increment1=increment1, base=base, to_tm=gmtime, from_tm=timegm)
+
+	def getAdjustedValue(self):
+		return self.value - self.base
+
+	def unadjustValue(self, value):
+		return value + self.base
+
+	def _timestr(self):
+		format = self.formatstring.replace("%j", "%%j")
+		duration = self.getAdjustedValue()
+		sign = ''
+		if duration < 0:
+			sign = '-'
+			duration = -duration
+		tm = self.to_tm(duration)
+		timestr = strftime(format, tm)
+		timestr = timestr.replace("%j", str(tm.tm_yday - 1))
+		return sign + timestr
+
+	def getText(self):
+		if callable(self.formatstring):
+			return self.formatstring(self)[1]
+		else:
+			return self._timestr()
+
+	def getMulti(self, selected):
+		return "text", self.getText()
+
+class ConfigClockDuration(ClockTime, ConfigDuration):
+	def __init__(self, default, formatstring, increment = 24 * 60 * 60, increment1 = 0, base = time()):
+		assert default > base, "initial time must not be less than base time"
+
+		ClockTime.__init__(self, ConfigDateTime, default - base, timeconv=gmtime)
+
+		ConfigDuration.__init__(self, default, formatstring, increment=increment, increment1=increment1, base=base)
+
+		self.clock.addNotifier(self._timeUpdate, immediate_feedback=True)
+
 
 # *THE* mighty config element class
 #
@@ -919,8 +1090,8 @@ class ConfigPosition(ConfigSequence):
 
 clock_limits = [(0,23),(0,59)]
 class ConfigClock(ConfigSequence):
-	def __init__(self, default):
-		t = localtime(default)
+	def __init__(self, default, timeconv=localtime):
+		t = timeconv(default)
 		ConfigSequence.__init__(self, seperator = ":", limits = clock_limits, default = [t.tm_hour, t.tm_min])
 
 	def increment(self):
