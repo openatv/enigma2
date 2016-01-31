@@ -303,13 +303,25 @@ if test x"$with_lcddev" != xno ; then
 	AC_DEFINE_UNQUOTED(LCD_DEV, "$withval", [Defines which device to use for lcd (e.g. /dev/fb1)])
 fi
 
-ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions -rdynamic -funwind-tables"
+AC_ARG_WITH(amlogic,
+	AC_HELP_STRING([--with-amlogic], [use amlogic MPEG decoder]),
+	[[with_amlogic=$withval]],
+	[[with_amlogic=no]]
+)
+AM_CONDITIONAL(HAVE_AMLOGIC, test x"$with_amlogic" = xyes)
+if test x"$with_amlogic" = xyes ; then
+	AC_DEFINE(HAVE_AMLOGIC, 1,[Enables AMLOGIC decoder support])
+	PKG_CHECK_MODULES(AMCODEC, libamcodec)
+	PKG_CHECK_MODULES(AMADEC, libamadec)
+	PKG_CHECK_MODULES(DVBCSA, libdvbcsa)
+fi
 
+ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions -rdynamic -funwind-tables"
 AC_SUBST(ENIGMA2_CFLAGS)
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS -Wall"
-CXXFLAGS="$CXXFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS"
+CXXFLAGS="$CXXFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS $AMCODEC_CFLAGS $AMADEC_CFLAGS $DVBCSA_CFLAGS"
 
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 

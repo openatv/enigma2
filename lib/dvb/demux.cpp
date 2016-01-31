@@ -6,6 +6,9 @@
 #include <signal.h>
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
+#ifdef HAVE_AMLOGIC
+#include <lib/dvb/amldecoder.h>
+#endif
 
 //#define SHOW_WRITE_TIME
 static int determineBufferCount()
@@ -44,6 +47,9 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 	adapter(adapter),
 	demux(demux),
 	source(-1),
+#ifdef HAVE_AMLOGIC
+	m_pvr_fd(-1),
+#endif
 	m_dvr_busy(0)
 {
 }
@@ -65,7 +71,12 @@ int eDVBDemux::openDVR(int flags)
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/dvr%d", adapter, demux);
 	eDebug("[eDVBDemux] open dvr %s", filename);
+#if HAVE_AMLOGIC
+	m_pvr_fd =  ::open(filename, flags);
+	return m_pvr_fd;
+#else
 	return ::open(filename, flags);
+#endif
 }
 
 DEFINE_REF(eDVBDemux)
@@ -125,7 +136,11 @@ RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsiz
 
 RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int index)
 {
+#ifdef HAVE_AMLOGIC
+	decoder = new eAMLTSMPEGDecoder(this, index);
+#else
 	decoder = new eTSMPEGDecoder(this, index);
+#endif
 	return 0;
 }
 
