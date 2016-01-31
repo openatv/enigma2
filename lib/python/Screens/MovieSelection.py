@@ -439,7 +439,7 @@ class MovieSelectionSummary(Screen):
 			if item[0].flags & eServiceReference.mustDescent:
 				if len(name) > 12:
 					name = os.path.split(os.path.normpath(name))[1]
-				name = "> '%s'" % name
+				name = "> " + name
 			self["name"].text = name
 		else:
 			self["name"].text = ""
