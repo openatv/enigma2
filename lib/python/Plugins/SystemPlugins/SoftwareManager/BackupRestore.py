@@ -21,7 +21,7 @@ from Tools.Directories import *
 from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getImageDistro
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -30,10 +30,11 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
 	box = getBoxType()
+	distro = getImageDistro()
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + box
+		return backuppath + 'backup_' + distro + '_' + box
 	else:
-		return backuppath + '/backup_' + box
+		return backuppath + '/backup_' + distro + '_' + box
 		
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
