@@ -14,6 +14,7 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <lib/dvb/decoder.h>
+#include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
 
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
@@ -34,6 +35,8 @@ eServiceFactoryWebTS::eServiceFactoryWebTS()
 		std::list<std::string> extensions;
 		sc->addServiceFactory(eServiceFactoryWebTS::id, this, extensions);
 	}
+
+	m_service_info = new eStaticServiceWebTSInfo();
 }
 
 eServiceFactoryWebTS::~eServiceFactoryWebTS()
@@ -68,7 +71,7 @@ RESULT eServiceFactoryWebTS::list(const eServiceReference &, ePtr<iListableServi
 
 RESULT eServiceFactoryWebTS::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr = 0;
+	ptr = m_service_info;
 	return -1;
 }
 
@@ -78,6 +81,69 @@ RESULT eServiceFactoryWebTS::offlineOperations(const eServiceReference &, ePtr<i
 	return -1;
 }
 
+/*
+ * eStaticServiceWebTSInfo
+ * required to in order to display name in bouquets instead of n/a
+ */
+DEFINE_REF(eStaticServiceWebTSInfo)
+
+eStaticServiceWebTSInfo::eStaticServiceWebTSInfo()
+{
+}
+
+RESULT eStaticServiceWebTSInfo::getName(const eServiceReference &ref, std::string &name)
+{
+	name = ref.name;
+	if (name.empty())
+	{
+		name = ref.path;
+		size_t n = name.rfind('/');
+		if (n != std::string::npos)
+			name = name.substr(n + 1);
+	}
+	return 0;
+}
+
+int eStaticServiceWebTSInfo::getLength(const eServiceReference &ref)
+{
+	return -1;
+}
+
+int eStaticServiceWebTSInfo::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sTimeCreate:
+	{
+		struct stat s;
+		if (!stat(ref.path.c_str(), &s))
+			return s.st_mtime;
+	}
+	break;
+	case iServiceInformation::sFileSize:
+	{
+		struct stat s;
+		if (!stat(ref.path.c_str(), &s))
+			return s.st_size;
+	}
+	break;
+	}
+	return iServiceInformation::resNA;
+}
+
+long long eStaticServiceWebTSInfo::getFileSize(const eServiceReference &ref)
+{
+	struct stat s;
+	if (!stat(ref.path.c_str(), &s))
+		return s.st_size;
+	return 0;
+}
+
+RESULT eStaticServiceWebTSInfo::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)
+{
+	evt = 0;
+	return -1;
+}
 
 /********************************************************************/
 /* TSAudioInfoWeb                                            */
@@ -98,7 +164,7 @@ void TSAudioInfoWeb::addAudio(int pid, std::string lang, std::string desc, int t
 /* eServiceWebTS                                                       */
 /********************************************************************/
 
-eServiceWebTS::eServiceWebTS(const eServiceReference &url): m_pump(eApp, 1)
+eServiceWebTS::eServiceWebTS(const eServiceReference &url): m_reference(url), m_pump(eApp, 1)
 {
 	eDebug("ServiceWebTS construct!");
 	m_filename = url.path.c_str();
@@ -422,10 +488,14 @@ RESULT eServiceWebTS::info(ePtr<iServiceInformation>&i)
 
 RESULT eServiceWebTS::getName(std::string &name)
 {
-	name = m_filename;
-	size_t n = name.rfind('/');
-	if (n != std::string::npos)
-		name = name.substr(n + 1);
+	name = m_reference.name;
+	if (name.empty())
+	{
+		name = m_reference.path;
+		size_t n = name.rfind('/');
+		if (n != std::string::npos)
+			name = name.substr(n + 1);
+	}
 	return 0;
 }
 
@@ -436,6 +506,20 @@ int eServiceWebTS::getInfo(int w)
 
 std::string eServiceWebTS::getInfoString(int w)
 {
+	switch (w)
+	{
+	case sProvider:
+		return "IPTV";
+	case sServiceref:
+	{
+		eServiceReference ref(m_reference);
+		ref.type = eServiceFactoryWebTS::id;
+		ref.path.clear();
+		return ref.toString();
+	}
+	default:
+		break;
+	}
 	return "";
 }
 
