@@ -37,6 +37,22 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
 	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
+private:
+	ePtr<eStaticServiceWebTSInfo> m_service_info;
+};
+
+class eStaticServiceWebTSInfo: public iStaticServiceInformation
+{
+	DECLARE_REF(eStaticServiceWebTSInfo);
+	friend class eServiceFactoryWebTS;
+	eStaticServiceWebTSInfo();
+public:
+	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
+	int getInfo(const eServiceReference &ref, int w);
+	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate) { return 1; }
+	long long getFileSize(const eServiceReference &ref);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 };
 
 class TSAudioInfoWeb {
@@ -117,6 +133,7 @@ public:
 
 private:
 	friend class eServiceFactoryWebTS;
+	eServiceReference m_reference;
 	std::string m_filename;
 	int m_vpid, m_apid;
 	int m_destfd;
