@@ -143,6 +143,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
 		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
+		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
