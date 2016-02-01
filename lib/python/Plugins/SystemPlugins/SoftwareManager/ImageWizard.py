@@ -11,7 +11,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from enigma import eEnv
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getImageDistro
 
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
@@ -27,13 +27,14 @@ backupfile = "enigma2settingsbackup.tar.gz"
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 	box = getBoxType()
+	distro = getImageDistro()
 	for x in parts:
 		if x[1] == '/':
 			parts.remove(x)
 	if len(parts):
 		for x in parts:
 			if x[1].endswith('/'):
-				fullbackupfile =  x[1] + 'backup_' + box + '/' + backupfile
+				fullbackupfile =  x[1] + 'backup_' + distro + '_' + box + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
@@ -46,7 +47,7 @@ def checkConfigBackup():
 					config.plugins.configurationbackup.save()
 					return x
 			else:
-				fullbackupfile =  x[1] + '/backup_' + box + '/' + backupfile
+				fullbackupfile =  x[1] + '/backup_' + distro + '_' + box + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
