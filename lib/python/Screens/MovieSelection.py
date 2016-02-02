@@ -1212,7 +1212,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 								filelist.append(((p, False), None))
 						self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception, ex:
-						print "[ML] Can't display", str(ex)
+						print "[ML] Can not display", str(ex)
 					return
 				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, ext, path))
 
@@ -1929,7 +1929,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					except Exception, e:
 						print "[MovieSelection] Weird error moving to trash", e
 						# Failed to create trash or move files.
-						msg = _("Can't move to trash") + "\n"
+						msg = _("Can not move to trash") + "\n"
 						if trash is None:
 							msg += _("Trash is missing")
 						else:
@@ -2013,7 +2013,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.showActionFeedback(_("Deleted '%s'") % name)
 					return
 				else:
-					msg = _("Can't move to trash") + "\n"
+					msg = _("Can not move to trash") + "\n"
 					are_you_sure = _("Do you really want to delete '%s'?") % name
 			else:
 				if '.Trash' in cur_path:
@@ -2075,7 +2075,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			print "[MovieSelection] Weird error moving to trash", e
 			# Failed to create trash or move files.
-			msg = _("Can't delete file!\n%s\n") % str(e)
+			msg = _("Can not delete file!\n%s\n") % str(e)
 			mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
