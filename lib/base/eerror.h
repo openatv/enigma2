@@ -107,38 +107,59 @@ void DumpUnfreed();
 
 #ifndef SWIG
 
-#define CHECKFORMAT __attribute__ ((__format__(__printf__, 1, 2)))
+#define CHECKFORMAT __attribute__ ((__format__(__printf__, 3, 4)))
 
 extern Signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
 
-void CHECKFORMAT eFatal(const char*, ...);
-enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
+/*
+ *  Default loglevel and log filter tag.
+ *  Maybe reset by setting ENIGMA_DEBUG_LVL and ENIGMA_DEBUG_TAG environmnet
+ *  variables. main() will check the environemnt to set the values.
+ */
+extern int debugLvl;
+extern char *debugTag;
+
+void CHECKFORMAT eDebugLow(int lvl, int flags, const char*, ...);
+void CHECKFORMAT eDebugLow(const char* tag, int flags, const char*, ...);
+enum { lvlDebug=4, lvlWarning=2, lvlFatal=0 };
+
+#define DEFAULT_DEBUG_LVL  4
+
+#define _DBGFLG_NONEWLINE  1
+#define _DBGFLG_NOTIME     2
+#define _DBGFLG_FATAL      4
+#define eFatal(...)			eDebugLow(lvlFatal, _DBGFLG_FATAL, __VA_ARGS__)
 
 #ifdef DEBUG
-    void CHECKFORMAT eDebug(const char*, ...);
-    void CHECKFORMAT eDebugNoNewLineStart(const char*, ...);
-    void CHECKFORMAT eDebugNoNewLine(const char*, ...);
-    void CHECKFORMAT eWarning(const char*, ...);
-    #define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
+
+# define eLog(lvl, ...)			eDebugLow(lvl,        0,                 ##__VA_ARGS__)
+# define eLogNoNewLineStart(lvl, ...)	eDebugLow(lvl,        _DBGFLG_NONEWLINE, ##__VA_ARGS__)
+# define eLogNoNewLine(lvl, ...)	eDebugLow(lvl,        _DBGFLG_NOTIME | _DBGFLG_NONEWLINE, ##__VA_ARGS__)
+
+# define eWarning(...)			eDebugLow(lvlWarning, 0,                   __VA_ARGS__)
+
+# define eDebug(...)			eDebugLow(lvlDebug,   0,                   __VA_ARGS__)
+# define eDebugNoNewLineStart(...)	eDebugLow(lvlDebug,   _DBGFLG_NONEWLINE,   __VA_ARGS__)
+# define eDebugNoNewLine(...)		eDebugLow(lvlDebug,   _DBGFLG_NOTIME | _DBGFLG_NONEWLINE, __VA_ARGS__)
+
+# define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
+
 #else  // DEBUG
-    inline void eDebug(const char* fmt, ...)
-    {
-    }
 
-    inline void eDebugNoNewLineStart(const char* fmt, ...)
-    {
-    }
+# define eLog(...)			;
+# define eLogNoNewLineStart(...)	;
+# define eLogNoNewLine(...)		;
 
-    inline void eDebugNoNewLine(const char* fmt, ...)
-    {
-    }
+# define eWarning(...)			;
 
-    inline void eWarning(const char* fmt, ...)
-    {
-    }
-    #define ASSERT(x) do { } while (0)
-#endif //DEBUG
+# define eDebug(...)			;
+# define eDebugNoNewLineStart(...)	;
+# define eDebugNoNewLine(...)		;
+
+# define ASSERT(x)			;
+
+#endif
 
 void eWriteCrashdump();
 
