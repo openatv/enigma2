@@ -917,6 +917,7 @@ class ChannelSelectionEdit:
 
 	def addAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
+		end = self.atEnd()
 		root = self.getRoot()
 		cur_root = root and ServiceReference(root)
 		mutableBouquet = cur_root.list().startEdit()
@@ -940,7 +941,7 @@ class ChannelSelectionEdit:
 					mutableAlternatives.flushChanges()
 					self.servicelist.addService(new_ref.ref, True)
 					self.servicelist.removeCurrent()
-					if not self.atEnd():
+					if not end:
 						self.servicelist.moveUp()
 					if cur_service.ref.toString() == self.lastservice.value:
 						self.saveChannel(new_ref.ref)
