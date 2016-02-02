@@ -92,9 +92,7 @@ class TimerSanityCheck:
 # now process existing timers
 		idx = 0
 		for timer in self.timerlist:
-			if (timer != self.newtimer) and (not timer.disabled):
-				if not timer.conflict_detection:
-					continue
+			if (timer != self.newtimer) and (not timer.disabled) and timer.conflict_detection:
 				if timer.repeated:
 					rflags = timer.repeated
 					rflags = ((rflags & 0x7F)>> 3)|((rflags & 0x07)<<4)
