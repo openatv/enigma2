@@ -95,6 +95,8 @@ class ChoiceBox(Screen):
 		if count > 15:
 			count = 15
 		width = self["list"].instance.size().width()
+		if width < 0 or width > desktop_w:
+			width = 520
 		if not self["text"].text:
 			# move list
 			textsize = (width, 0)
