@@ -331,6 +331,9 @@ class PliExtraInfo(Poll, Converter, object):
 	def createVideoCodec(self, info):
 		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]
 
+	def createServiceRef(self, info):
+		return info.getInfoString(iServiceInformation.sServiceref)
+
 	def createPIDInfo(self, info):
 		vpid = info.getInfo(iServiceInformation.sVideoPID)
 		apid = info.getInfo(iServiceInformation.sAudioPID)
@@ -678,6 +681,9 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "PIDInfo":
 			return self.createPIDInfo(info)
+
+		if self.type == "ServiceRef":
+			return self.createServiceRef(info)
 
 		if not feraw:
 			return ""
