@@ -1101,8 +1101,9 @@ class ChannelSelectionEdit:
 				new_title += ' ' + _("[favourite edit]")
 		self.setTitle(new_title)
 		self.__marked = self.servicelist.getRootServices()
-		for x in self.__marked:
-			self.servicelist.addMarked(eServiceReference(x))
+		if type == EDIT_ALTERNATIVES:
+			for x in self.__marked:
+				self.servicelist.addMarked(eServiceReference(x))
 		self["Service"].editmode = True
 
 	def endMarkedEdit(self, abort):
