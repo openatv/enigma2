@@ -64,14 +64,16 @@ def checkConfigBackup():
 
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.getValue()
+	box = getBoxType()
+	distro = getImageDistro()
 	if backuplocation.endswith('/'):
-		fullbackupfile =  backuplocation + 'backup/' + backupfile
+		fullbackupfile =  backuplocation + 'backup_' + distro + '_' + box + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
 			return False
 	else:
-		fullbackupfile =  backuplocation + '/backup/' + backupfile
+		fullbackupfile =  backuplocation + '/backup_' + distro + '_' + box + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
