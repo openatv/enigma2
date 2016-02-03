@@ -11,6 +11,7 @@ from Components.FileList import MultiFileSelectList
 from Screens.MessageBox import MessageBox
 from os import path, remove, walk, stat, rmdir
 from time import time
+from datetime import datetime
 from enigma import eTimer, eBackgroundFileEraser, eLabel
 from glob import glob
 
@@ -120,10 +121,18 @@ class LogManagerPoller:
 			mounts.append(parts[1])
 		f.close()
 
-		for mount in mounts:
-			if path.isdir(path.join(mount,'logs')):
-				matches.append(path.join(mount,'logs'))
-		matches.append('/home/root/logs')
+		if (datetime.now().hour == 3) or (time() - config.crash.lastfulljobtrashtime.value > 3600 * 24):
+			#full JobTrash (in all potential log file dirs) between 03:00 and 04:00 AM / every 24h
+			config.crash.lastfulljobtrashtime.setValue(int(time()))
+			config.crash.lastfulljobtrashtime.save()
+			configfile.save()
+			for mount in mounts:
+				if path.isdir(path.join(mount,'logs')):
+					matches.append(path.join(mount,'logs'))
+			matches.append('/home/root/logs')
+		else:
+			#small JobTrash (in selected log file dir only) twice a day
+			matches.append(config.crash.debug_path.value)
 
 		print "[LogManager] found following log's:", matches
 		if len(matches):
@@ -162,7 +171,12 @@ class LogManagerPoller:
 						eBackgroundFileEraser.getInstance().erase(fn)
 						bytesToRemove -= st_size
 						size -= st_size
-		self.TrashTimer.startLongTimer(43200) #twice a day
+		now = datetime.now()
+		seconds_since_0330am = (now - now.replace(hour=3, minute=30, second=0)).total_seconds()
+		if (seconds_since_0330am > 43200):
+			self.TrashTimer.startLongTimer(int(86400-seconds_since_0330am)) #at 03:30 AM
+		else:
+			self.TrashTimer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
 	def __init__(self, session):
