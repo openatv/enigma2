@@ -1500,7 +1500,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				mbox = self.session.open(
 					MessageBox,
-					_("Directory '%s' does not exist!") % res,
+					_("Directory '%s' does not exist.") % res,
 					type=MessageBox.TYPE_ERROR,
 					timeout=5)
 				mbox.setTitle(self.getTitle())
@@ -1552,7 +1552,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Movie tag filter"), list=lst, skin_name="MovieListTags")
 
 	def showTagWarning(self):
-		mbox = self.session.open(MessageBox, _("No tags are set on these movies!"), MessageBox.TYPE_ERROR)
+		mbox = self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
 		mbox.setTitle(self.getTitle())
 
 	def selectMovieLocation(self, title, callback):
@@ -1670,7 +1670,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except OSError, e:
 			print "Error %s:" % e.errno, e
 			if e.errno == 17:
-				msg = _("'%s' already exists!") % name
+				msg = _("'%s' already exists.") % name
 			else:
 				msg = _("Error\n%s") % str(e)
 		except Exception, e:
@@ -1750,7 +1750,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			except OSError, e:
 				print "Error %s:" % e.errno, e
 				if e.errno == 17:
-					msg = _("'%s' already exists!") % name
+					msg = _("'%s' already exists.") % name
 				else:
 					msg = _("Error\n%s") % str(e)
 			except Exception, e:
@@ -1977,7 +1977,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 						os.rmdir(cur_path)
 					except Exception, e:
 						print "[MovieSelection] Failed delete", e
-						self.session.open(MessageBox, _("Delete failed!\n%s") % str(e), MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox, _("Delete failed.\n%s") % str(e), MessageBox.TYPE_ERROR)
 					else:
 						self["list"].removeService(current)
 						self.updateFileFolderCounts()
@@ -2048,7 +2048,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			delResumePoint(current)
 			self.showActionFeedback(_("Deleted '%s'") % name)
 		except Exception, ex:
-			mbox = self.session.open(MessageBox, _("Delete failed!\n'%s'\n%s") % (name, str(ex)), MessageBox.TYPE_ERROR)
+			mbox = self.session.open(MessageBox, _("Delete failed.\n'%s'\n%s") % (name, str(ex)), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
 	def deleteDirConfirmed(self, confirmed):
@@ -2075,7 +2075,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			print "[MovieSelection] Weird error moving to trash", e
 			# Failed to create trash or move files.
-			msg = _("Can not delete file!\n%s\n") % str(e)
+			msg = _("Can not delete file.\n%s\n") % str(e)
 			mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
@@ -2085,7 +2085,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time.time()) < 120):
-			msg = "\n" + _("Recording(s) are in progress or coming up soon!")
+			msg = "\n" + _("Recording(s) are in progress or coming up soon.")
 		else:
 			msg = ""
 		mbox = self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in trash?") + msg)
