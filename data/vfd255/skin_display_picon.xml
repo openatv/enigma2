@@ -475,6 +475,21 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
+	<!-- VMC -->
+	<screen name="VMCBaseSummary" position="0,0" size="256,64">
+		<eLabel text="VMC" render="Label" position="0,0" size="256,21" font="FdLcD;20" halign="center" valign="top" />
+		<eLabel text="by hmmmdada" render="Label" position="0,23" size="256,21" font="FdLcD;18" halign="center" valign="top" />
+	</screen>
+	<screen name="VMCPlayerSummary" position="0,0" size="256,64">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="256,46" font="FdLcD;20" halign="center" valign="top" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,55" size="190,8" borderWidth="1">
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<panel name="SummaryClockPanel" />
+	</screen>
+	
 	<!-- ATV -->
 	<!-- Quickmenu -->
 	<screen name="QuickMenu_summary" position="0,0" size="256,64">
