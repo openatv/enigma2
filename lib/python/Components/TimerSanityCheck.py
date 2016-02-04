@@ -205,7 +205,7 @@ class TimerSanityCheck:
 						tunerType.append(feinfo.getFrontendData().get("tuner_type"))
 #GML:2 - Ensure that this is removed, otherwise we hang on to reference
 #        counts for tuners
-					feinfo = None;
+					feinfo = None
 
 				else: # tune failed.. so we must go another way to get service type (DVB-S, DVB-T, DVB-C)
 
