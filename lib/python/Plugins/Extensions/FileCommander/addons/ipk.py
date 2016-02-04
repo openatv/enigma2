@@ -5,6 +5,7 @@ from Components.config import config
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 from Screens.Console import Console
 from Tools.Directories import shellquote, fileExists
+import subprocess
 
 pname = _("File Commander - ipk Addon")
 pdesc = _("install/unpack ipk Files")
@@ -28,7 +29,12 @@ class ipkMenuScreen(ArchiverMenuScreen):
 			# communicating Popen commands can deadlock on the
 			# pipe output. Using communicate() avoids deadlock
 			# on reading stdout and stderr from the pipe.
-			cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % shellquote(self.sourceDir + self.filename)
+			file = shellquote(self.sourceDir + self.filename)
+			p = subprocess.Popen("ar -t %s > /dev/null 2>&1" % file, shell=True)
+			if p.wait():
+				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % file
+			else:
+				cmd = "ar -p %s data.tar.gz | tar -tzf -" % file
 			self.unpackPopen(cmd, UnpackInfoScreen)
 		elif id == 4:
 			self.ulist = []
