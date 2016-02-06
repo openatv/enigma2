@@ -211,14 +211,7 @@ void eStreamClient::notifier(int what)
 	request.clear();
 }
 
-void eStreamClient::streamStopped()
-{
-	ePtr<eStreamClient> ref = this;
-	rsn->stop();
-	parent->connectionLost(this);
-}
-
-void eStreamClient::tuneFailed()
+void eStreamClient::stopStream()
 {
 	ePtr<eStreamClient> ref = this;
 	rsn->stop();
@@ -276,6 +269,15 @@ void eStreamServer::connectionLost(eStreamClient *client)
 	if (it != clients.end())
 	{
 		clients.erase(it);
+	}
+}
+
+void eStreamServer::stopStream()
+{
+	eSmartPtrList<eStreamClient>::iterator it = clients.begin();
+	if (it != clients.end())
+	{
+		it->stopStream();
 	}
 }
 
