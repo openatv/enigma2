@@ -91,9 +91,14 @@ class TimerSanityCheck:
 
 ##################################################################################
 # now process existing timers
+		self.check_timerlist = []
+		for timer in self.timerlist:
+			 if not timer.disabled and timer.conflict_detection and timer.service_ref and '%3a//' not in timer.service_ref.ref.toString() and timer.state < TimerEntry.StateEnded:
+				self.check_timerlist.append(timer)
+		self.timerlist = self.check_timerlist[:]
 		idx = 0
 		for timer in self.timerlist:
-			if timer != self.newtimer and not timer.disabled and timer.conflict_detection and timer.service_ref and '%3a//' not in timer.service_ref.ref.toString():
+			if timer != self.newtimer:
 				if timer.repeated:
 					rflags = timer.repeated
 					rflags = ((rflags & 0x7F)>> 3)|((rflags & 0x07)<<4)
