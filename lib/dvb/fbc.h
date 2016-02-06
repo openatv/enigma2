@@ -37,6 +37,7 @@ private:
 	eDVBRegisteredFrontend *getNext(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *getTop(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *getSimulFe(eDVBRegisteredFrontend *fe);
 	bool isLinked(eDVBRegisteredFrontend *fe);
 	bool isLinkedByIndex(int fe_idx);
 

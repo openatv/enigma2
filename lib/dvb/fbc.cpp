@@ -186,6 +186,17 @@ eDVBRegisteredFrontend *eFBCTunerManager::getLast(eDVBRegisteredFrontend *fe)
 	return(next_fe);
 }
 
+eDVBRegisteredFrontend *eFBCTunerManager::getSimulFe(eDVBRegisteredFrontend *fe)
+{
+	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_simulate_frontend;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); it++)
+		if (fe_slot_id(it) == fe_slot_id(fe))
+			return(*it);
+
+	return((eDVBRegisteredFrontend *)0);
+}
+
 bool eFBCTunerManager::isLinked(eDVBRegisteredFrontend *fe)
 {
 	return(!(getPrev(fe) == (eDVBRegisteredFrontend *)0));
@@ -323,47 +334,79 @@ int eFBCTunerManager::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDV
 
 //FIXME: we should probably do something with simulate and simulate_frontends
 
-void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf_fe, eDVBRegisteredFrontend *root_fe, bool simulate)
+void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFrontend *root, bool simulate)
 {
 	long leaf_insert_after;
 	long leaf_insert_before;
 	long leaf_current;
 	long leaf_next;
 
-	fprintf(stderr, "\n**** addLink(leaf_fe: %d, link to top fe: %d, simulate: %d\n", fe_slot_id(leaf_fe), fe_slot_id(root_fe), simulate);
+	fprintf(stderr, "\n**** addLink(leaf: %d, link to top fe: %d, simulate: %d\n", fe_slot_id(leaf), fe_slot_id(root), simulate);
 
 	list_loop_links();
 
-	if (!isRootFe(root_fe))
+	if (!isRootFe(root))
 		return;
 
-	// find the entry where to insert the leaf, it must be between slotid(leaf_fe)-1 and slotid(leaf_fe)+1
+	// find the entry where to insert the leaf, it must be between slotid(leaf)-1 and slotid(leaf)+1
 
 	leaf_insert_after = -1;
 	leaf_insert_before = -1;
 
-	for(leaf_current = (long)root_fe; leaf_current != -1; leaf_current = leaf_next)
+	for(leaf_current = (long)root; leaf_current != -1; leaf_current = leaf_next)
 	{
 		leaf_next = frontend_get_linkptr(getPtr(leaf_current), link_next);
 
 		leaf_insert_after = leaf_current;
 		leaf_insert_before = leaf_next;
 
-		if((leaf_next != -1) && (fe_slot_id(getPtr(leaf_next)) > fe_slot_id(leaf_fe)))
+		if((leaf_next != -1) && (fe_slot_id(getPtr(leaf_next)) > fe_slot_id(leaf)))
 			break;
 	}
 
-	frontend_set_linkptr(leaf_fe, link_prev, leaf_insert_after);
-	frontend_set_linkptr(leaf_fe, link_next, leaf_insert_before);
-	frontend_set_linkptr(getPtr(leaf_insert_after), link_next, (long)leaf_fe);
+	frontend_set_linkptr(leaf, link_prev, leaf_insert_after);
+	frontend_set_linkptr(leaf, link_next, leaf_insert_before);
+	frontend_set_linkptr(getPtr(leaf_insert_after), link_next, (long)leaf);
 
 	if(leaf_insert_before != -1) // connect leaf after us in
-		frontend_set_linkptr(getPtr(leaf_insert_before), link_prev, (long)leaf_fe);
+		frontend_set_linkptr(getPtr(leaf_insert_before), link_prev, (long)leaf);
 
-	leaf_fe->m_frontend->setEnabled(true);
+	if(!simulate) // act on simulate frontends
+	{
+		eDVBRegisteredFrontend *simul_root, *simul_leaf;
 
-	setProcFBCID(fe_slot_id(leaf_fe), getFBCID(fe_slot_id(root_fe)));
-	updateLNBSlotMask(fe_slot_id(leaf_fe), fe_slot_id(root_fe), /*remove*/false);
+		simul_root = getSimulFe(root);
+		simul_leaf = getSimulFe(leaf);
+
+		if(isRootFe(simul_root))
+		{
+			leaf_insert_after = -1;
+			leaf_insert_before = -1;
+
+			for(leaf_current = (long)simul_root; leaf_current != -1; leaf_current = leaf_next)
+			{
+				leaf_next = frontend_get_linkptr(getPtr(leaf_current), link_next);
+
+				leaf_insert_after = leaf_current;
+				leaf_insert_before = leaf_next;
+
+				if((leaf_next != -1) && (fe_slot_id(getPtr(leaf_next)) > fe_slot_id(leaf)))
+					break;
+			}
+
+			frontend_set_linkptr(simul_leaf, link_prev, leaf_insert_after);
+			frontend_set_linkptr(simul_leaf, link_next, leaf_insert_before);
+			frontend_set_linkptr(getPtr(leaf_insert_after), link_next, (long)simul_leaf);
+
+			if(leaf_insert_before != -1) // connect leaf after us in
+				frontend_set_linkptr(getPtr(leaf_insert_before), link_prev, (long)simul_leaf);
+		}
+	}
+
+	leaf->m_frontend->setEnabled(true);
+
+	setProcFBCID(fe_slot_id(leaf), getFBCID(fe_slot_id(root)));
+	updateLNBSlotMask(fe_slot_id(leaf), fe_slot_id(root), /*remove*/false);
 
 	list_loop_links();
 }
@@ -372,11 +415,11 @@ void eFBCTunerManager::unlink(eDVBRegisteredFrontend *fe)
 {
 	long leaf_link_next;
 	long leaf_link_prev;
-
-//FIXME: we should probably do something with simulate and simulate_frontends
-	bool simulate = fe->m_frontend->is_simulate();
+	bool simulate;
 
 	list_loop_links();
+
+	simulate = fe->m_frontend->is_simulate();
 
 	if (isRootFe(fe) || checkUsed(fe, simulate) || isUnicable(fe))
 		return;
@@ -393,6 +436,27 @@ void eFBCTunerManager::unlink(eDVBRegisteredFrontend *fe)
 	frontend_set_linkptr(fe, link_prev, -1);
 	frontend_set_linkptr(fe, link_next, -1);
 	fe->m_frontend->setEnabled(false);
+
+	if(!simulate) // also act on the simulation frontends
+	{
+		eDVBRegisteredFrontend *simul_fe;
+
+		if((simul_fe = getSimulFe(fe)) && !isRootFe(simul_fe) && !checkUsed(simul_fe, simulate) && !isUnicable(simul_fe))
+		{
+			leaf_link_prev = frontend_get_linkptr(simul_fe, link_prev);
+			leaf_link_next = frontend_get_linkptr(simul_fe, link_next);
+
+			if(leaf_link_prev != -1)
+				frontend_set_linkptr(getPtr(leaf_link_prev), link_next, leaf_link_next);
+
+			if(leaf_link_next != -1)
+				frontend_set_linkptr(getPtr(leaf_link_next), link_prev, leaf_link_prev);
+
+			frontend_set_linkptr(simul_fe, link_prev, -1);
+			frontend_set_linkptr(simul_fe, link_next, -1);
+			simul_fe->m_frontend->setEnabled(false);
+		}
+	}
 
 	list_loop_links();
 
