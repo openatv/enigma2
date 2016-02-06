@@ -1,6 +1,6 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 12.04.5 LTS (GNU/Linux 3.2.13-grsec-xxxx-grs-ipv6-64 x86_64)
+> Ubuntu 12.04.5 LTS (GNU/Linux 3.14.32-xxxx-grs-ipv6-64 x86_64)
 
 ## openMips 5.2 is build using oe-alliance build-environment "next" and several git repositories: ##
 
