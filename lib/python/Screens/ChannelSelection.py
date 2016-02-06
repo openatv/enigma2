@@ -1493,7 +1493,7 @@ class ChannelSelectionBase(Screen):
 				if currentRoot is None or currentRoot != ref:
 					self.clearPath()
 					self.enterPath(ref)
-					playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 					if playingref:
 						self.setCurrentSelectionAlternative(playingref)
 
