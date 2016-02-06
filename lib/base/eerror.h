@@ -161,8 +161,6 @@ enum { lvlDebug=4, lvlWarning=2, lvlFatal=0 };
 
 #endif
 
-void eWriteCrashdump();
-
 #endif // SWIG
 
 void ePythonOutput(const char *);

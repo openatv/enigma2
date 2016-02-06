@@ -112,7 +112,7 @@ void eDebugOut(int lvl, int flags, const char* msg)
 void eDebugLow(const char* tag, int flags, const char* fmt, ...)
 {
 	// Only show message when the tag has been set
-	if (!debugTag || *debugTag == '\0' || strncmp(debugTag, tag, strlen(tag)) != 0)
+	if (!debugTag || strcmp(debugTag, tag) != 0)
 		return;
 
 	char buf[1024] = "";
@@ -149,9 +149,4 @@ void ePythonOutput(const char *string)
 
 	eDebugOut(lvlWarning, _DBGFLG_NONEWLINE, string);
 #endif
-}
-
-void eWriteCrashdump()
-{
-		/* implement me */
 }
