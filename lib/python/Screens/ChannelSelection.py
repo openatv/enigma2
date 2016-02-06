@@ -43,7 +43,7 @@ from Components.PluginComponent import plugins
 from Components.SystemInfo import SystemInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EventView import EventViewEPGSelect
-import os
+import os, re, unicodedata
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
@@ -860,15 +860,9 @@ class ChannelSelectionEdit:
 			return list.startEdit()
 		return None
 
-	def buildBouquetID(self, str):
-		tmp = str.lower()
-		name = ''
-		for c in tmp:
-			if (c >= 'a' and c <= 'z') or (c >= '0' and c <= '9'):
-				name += c
-			else:
-				name += '_'
-		return name
+	def buildBouquetID(self, name):
+		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		return re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 
 	def renameEntry(self):
 		self.editMode = True
