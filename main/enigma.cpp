@@ -234,8 +234,7 @@ int main(int argc, char **argv)
 	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : 4;
 	if (debugLvl < 0)
 		debugLvl = 0;
-	debugTag = getenv("ENIGMA_DEBUG_TAG");
-	printf("[Enigma2] ENIGMA2_DEBUG settings: Level=%d, Tag=%s\n", debugLvl, debugTag ? debugTag : "");
+	printf("[Enigma2] ENIGMA2_DEBUG settings: Level=%d\n", debugLvl);
 
 	bsodLogInit();
 

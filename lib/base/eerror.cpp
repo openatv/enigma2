@@ -78,16 +78,14 @@ void DumpUnfreed()
 
 Signal2<void, int, const std::string&> logOutput;
 int logOutputConsole = 1;
-int debugLvl = 4;
-char *debugTag = "";
-
+int debugLvl = lvlDebug;
 
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
 extern void bsodFatal(const char *component);
 
-void eDebugOut(int lvl, int flags, const char* msg)
+static void eDebugOut(int lvl, int flags, const char* msg)
 {
 	char buf[20] = "";
 	if (! (flags & _DBGFLG_NOTIME)) {
@@ -109,31 +107,12 @@ void eDebugOut(int lvl, int flags, const char* msg)
 	bsodFatal("enigma2");
 }
 
-void eDebugLow(const char* tag, int flags, const char* fmt, ...)
+void eDebugImpl(int lvl, int flags, const char* fmt, ...)
 {
-	// Only show message when the tag has been set
-	if (!debugTag || strcmp(debugTag, tag) != 0)
-		return;
-
-	char buf[1024] = "";
+	char buf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
-	va_end(ap);
-
-	eDebugOut(0, flags, buf); // do not rely on loglevels (yet) for tagged messages
-}
-
-void eDebugLow(int lvl, int flags, const char* fmt, ...)
-{
-	// Only show message when the debug level is low enough
-	if (lvl > debugLvl)
-		return;
-
-	char buf[1024] = "";
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(buf + strlen(buf), 1024-strlen(buf), fmt, ap);
+	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 
 	eDebugOut(lvl, flags, buf);

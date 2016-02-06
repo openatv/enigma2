@@ -113,53 +113,46 @@ extern Signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
 
 /*
- *  Default loglevel and log filter tag.
- *  Maybe reset by setting ENIGMA_DEBUG_LVL and ENIGMA_DEBUG_TAG environmnet
- *  variables. main() will check the environemnt to set the values.
+ * Current loglevel
+ * Maybe set by ENIGMA_DEBUG_LVL environment variable.
+ * main() will check the environemnt to set the values.
  */
 extern int debugLvl;
-extern char *debugTag;
 
-void CHECKFORMAT eDebugLow(int lvl, int flags, const char*, ...);
-void CHECKFORMAT eDebugLow(const char* tag, int flags, const char*, ...);
-enum { lvlDebug=4, lvlWarning=2, lvlFatal=0 };
+void CHECKFORMAT eDebugImpl(int lvl, int flags, const char*, ...);
+enum { lvlDebug=4, lvlInfo=3, lvlWarning=2, lvlError=1, lvlFatal=0 };
 
 #define DEFAULT_DEBUG_LVL  4
+
+#ifndef DEBUG
+# define MAX_DEBUG_LEVEL 0
+#else
+# ifndef MAX_DEBUG_LEVEL
+#  define MAX_DEBUG_LEVEL 4
+# endif
+#endif
+
+/* When lvl is above MAX_DEBUG_LEVEL, the compiler will optimize the whole debug
+ * statement away. If level is not active, nothing inside the debug call will be
+ * evaluated. This enables compile-time check of parameters and code. */
+#define eDebugLow(lvl, flags, ...) \
+	do { \
+		if (((lvl) <= MAX_DEBUG_LEVEL) && ((lvl) <= debugLvl)) \
+			eDebugImpl((lvl), (flags), __VA_ARGS__); \
+	} while (0)
 
 #define _DBGFLG_NONEWLINE  1
 #define _DBGFLG_NOTIME     2
 #define _DBGFLG_FATAL      4
 #define eFatal(...)			eDebugLow(lvlFatal, _DBGFLG_FATAL, __VA_ARGS__)
-
-#ifdef DEBUG
-
-# define eLog(lvl, ...)			eDebugLow(lvl,        0,                 ##__VA_ARGS__)
-# define eLogNoNewLineStart(lvl, ...)	eDebugLow(lvl,        _DBGFLG_NONEWLINE, ##__VA_ARGS__)
-# define eLogNoNewLine(lvl, ...)	eDebugLow(lvl,        _DBGFLG_NOTIME | _DBGFLG_NONEWLINE, ##__VA_ARGS__)
-
-# define eWarning(...)			eDebugLow(lvlWarning, 0,                   __VA_ARGS__)
-
-# define eDebug(...)			eDebugLow(lvlDebug,   0,                   __VA_ARGS__)
-# define eDebugNoNewLineStart(...)	eDebugLow(lvlDebug,   _DBGFLG_NONEWLINE,   __VA_ARGS__)
-# define eDebugNoNewLine(...)		eDebugLow(lvlDebug,   _DBGFLG_NOTIME | _DBGFLG_NONEWLINE, __VA_ARGS__)
-
-# define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
-
-#else  // DEBUG
-
-# define eLog(...)			;
-# define eLogNoNewLineStart(...)	;
-# define eLogNoNewLine(...)		;
-
-# define eWarning(...)			;
-
-# define eDebug(...)			;
-# define eDebugNoNewLineStart(...)	;
-# define eDebugNoNewLine(...)		;
-
-# define ASSERT(x)			;
-
-#endif
+#define eLog(lvl, ...)			eDebugLow(lvl,        0,                 ##__VA_ARGS__)
+#define eLogNoNewLineStart(lvl, ...)	eDebugLow(lvl,        _DBGFLG_NONEWLINE, ##__VA_ARGS__)
+#define eLogNoNewLine(lvl, ...)	eDebugLow(lvl,        _DBGFLG_NOTIME | _DBGFLG_NONEWLINE, ##__VA_ARGS__)
+#define eWarning(...)			eDebugLow(lvlWarning, 0,                   __VA_ARGS__)
+#define eDebug(...)			eDebugLow(lvlDebug,   0,                   __VA_ARGS__)
+#define eDebugNoNewLineStart(...)	eDebugLow(lvlDebug,   _DBGFLG_NONEWLINE,   __VA_ARGS__)
+#define eDebugNoNewLine(...)		eDebugLow(lvlDebug,   _DBGFLG_NOTIME | _DBGFLG_NONEWLINE, __VA_ARGS__)
+#define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
 
 #endif // SWIG
 
