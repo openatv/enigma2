@@ -85,47 +85,47 @@ static pthread_mutex_t DebugLock =
 
 extern void bsodFatal(const char *component);
 
-static void eDebugOut(int lvl, int flags, const char* msg)
-{
-	char buf[20] = "";
-	if (! (flags & _DBGFLG_NOTIME)) {
-		struct timespec tp;
-		clock_gettime(CLOCK_MONOTONIC, &tp);
-		snprintf(buf, 20, "<%6lu.%06lu> ", tp.tv_sec, tp.tv_nsec/1000);
-	}
-	std::string nl = (flags & _DBGFLG_NONEWLINE) ? "" : "\n";
-
-	{
-		singleLock s(DebugLock);
-		logOutput(lvl, std::string(buf) + msg + nl);
-
-		if (logOutputConsole)
-			fprintf(stderr, "%s%s%s", buf, msg, nl.c_str());
-	}
-
-	if (flags & _DBGFLG_FATAL)
-	bsodFatal("enigma2");
-}
-
 void eDebugImpl(int lvl, int flags, const char* fmt, ...)
 {
 	char buf[1024];
+	int pos = 0;
+
+	if (! (flags & _DBGFLG_NOTIME)) {
+		struct timespec tp;
+		clock_gettime(CLOCK_MONOTONIC, &tp);
+		pos = snprintf(buf, sizeof(buf), "<%6lu.%06lu> ", tp.tv_sec, tp.tv_nsec/1000);
+	}
+
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, sizeof(buf), fmt, ap);
+	pos += vsnprintf(buf + pos, sizeof(buf) - pos, fmt, ap);
 	va_end(ap);
 
-	eDebugOut(lvl, flags, buf);
+	if (!(flags & _DBGFLG_NONEWLINE)) {
+		/* buf will still be null-terminated here, so it is always safe
+		 * to do this. The remainder of this function does not rely
+		 * on buf being null terminated. */
+		buf[pos++] = '\n';
+	}
+
+	{
+		singleLock s(DebugLock);
+		logOutput(lvl, std::string(buf, pos));
+	}
+
+	if (logOutputConsole)
+		::write(2, buf, pos);
+
+	if (flags & _DBGFLG_FATAL)
+		bsodFatal("enigma2");
 }
 
 void ePythonOutput(const char *string)
 {
 #ifdef DEBUG
-	int lvl = 4; // FIXME: get level info from python
+	int lvl = lvlWarning; // FIXME: get level info from python
 	// Only show message when the debug level is low enough
-	if (lvl > debugLvl)
-		return;
-
-	eDebugOut(lvlWarning, _DBGFLG_NONEWLINE, string);
+	if (lvl <= debugLvl)
+		eDebugImpl(lvl, _DBGFLG_NONEWLINE, string);
 #endif
 }
