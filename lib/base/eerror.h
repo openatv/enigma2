@@ -107,9 +107,9 @@ void DumpUnfreed();
 
 #ifndef SWIG
 
-#define CHECKFORMAT __attribute__ ((__format__(__printf__, 3, 4)))
+#define CHECKFORMAT __attribute__ ((__format__(__printf__, 2, 3)))
 
-extern Signal2<void, int, const std::string&> logOutput;
+extern Signal2<void, const char *, unsigned int> logOutput;
 extern int logOutputConsole;
 
 /*
@@ -119,7 +119,7 @@ extern int logOutputConsole;
  */
 extern int debugLvl;
 
-void CHECKFORMAT eDebugImpl(int lvl, int flags, const char*, ...);
+void CHECKFORMAT eDebugImpl(int flags, const char*, ...);
 enum { lvlDebug=4, lvlInfo=3, lvlWarning=2, lvlError=1, lvlFatal=0 };
 
 #define DEFAULT_DEBUG_LVL  4
@@ -138,7 +138,7 @@ enum { lvlDebug=4, lvlInfo=3, lvlWarning=2, lvlError=1, lvlFatal=0 };
 #define eDebugLow(lvl, flags, ...) \
 	do { \
 		if (((lvl) <= MAX_DEBUG_LEVEL) && ((lvl) <= debugLvl)) \
-			eDebugImpl((lvl), (flags), __VA_ARGS__); \
+			eDebugImpl((flags), __VA_ARGS__); \
 	} while (0)
 
 #define _DBGFLG_NONEWLINE  1
