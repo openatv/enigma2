@@ -147,15 +147,15 @@ enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 	{
 	}
 
-	inline void eLog(int, const char* fmt, ...)
+	inline void eLog(int level, const char* fmt, ...)
 	{
 	}
 
-	inline void eLogNoNewLineStart(const char* fmt, ...)
+	inline void eLogNoNewLineStart(int level, const char* fmt, ...)
 	{
 	}
 
-	inline void eLogNoNewLine(const char* fmt, ...)
+	inline void eLogNoNewLine(int level, const char* fmt, ...)
 	{
 	}
 	#define ASSERT(x) do { } while (0)
