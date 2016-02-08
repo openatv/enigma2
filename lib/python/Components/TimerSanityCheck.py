@@ -100,13 +100,11 @@ class TimerSanityCheck:
 ##################################################################################
 # now process existing timers
 		self.check_timerlist = []
-		for timer in self.timerlist:
-			 if not timer.disabled and timer.conflict_detection and timer.service_ref and '%3a//' not in timer.service_ref.ref.toString() and timer.state < TimerEntry.StateEnded:
-				self.check_timerlist.append(timer)
-		self.timerlist = self.check_timerlist[:]
 		idx = 0
 		for timer in self.timerlist:
 			if timer != self.newtimer:
+				if timer.disabled or not timer.conflict_detection or not timer.service_ref or '%3a//' in timer.service_ref.ref.toString() or timer.state == TimerEntry.StateEnded:
+					continue
 				if timer.repeated:
 					rflags = timer.repeated
 					rflags = ((rflags & 0x7F)>> 3)|((rflags & 0x07)<<4)
@@ -122,6 +120,7 @@ class TimerSanityCheck:
 						rflags >>= 1
 				else:
 					self.nrep_eventlist.extend([(timer.begin,self.bflag,idx),(timer.end,self.eflag,idx)])
+			self.check_timerlist.append(timer)
 			idx += 1
 
 ################################################################################
@@ -139,8 +138,8 @@ class TimerSanityCheck:
 						event_begin = self.newtimer.begin
 						event_end = self.newtimer.end
 					else:
-						event_begin = self.timerlist[event[1]].begin
-						event_end = self.timerlist[event[1]].end
+						event_begin = self.check_timerlist[event[1]].begin
+						event_end = self.check_timerlist[event[1]].end
 					new_event_begin = event[0] + offset_0 + (cnt * 604800)
 					# summertime correction
 					new_lth = localtime(new_event_begin).tm_hour
@@ -150,7 +149,7 @@ class TimerSanityCheck:
 						if new_event_begin >= self.newtimer.begin: # is the soap already running?
 							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
 					else:
-						if new_event_begin >= self.timerlist[event[1]].begin: # is the soap already running?
+						if new_event_begin >= self.check_timerlist[event[1]].begin: # is the soap already running?
 							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
 		else:
 			offset_0 = 345600 # the Epoch begins on Thursday
@@ -160,8 +159,8 @@ class TimerSanityCheck:
 						event_begin = self.newtimer.begin
 						event_end = self.newtimer.end
 					else:
-						event_begin = self.timerlist[event[1]].begin
-						event_end = self.timerlist[event[1]].end
+						event_begin = self.check_timerlist[event[1]].begin
+						event_end = self.check_timerlist[event[1]].end
 					new_event_begin = event[0] + offset_0 + (cnt * 604800)
 					new_event_end = new_event_begin + (event_end - event_begin)
 					self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
@@ -184,7 +183,7 @@ class TimerSanityCheck:
 			if event[2] == -1: # new timer
 				timer = self.newtimer
 			else:
-				timer = self.timerlist[event[2]]
+				timer = self.check_timerlist[event[2]]
 			if event[1] == self.bflag:
 				tunerType = []
 				ref = timer.service_ref and timer.service_ref.ref
@@ -228,8 +227,6 @@ class TimerSanityCheck:
 					if ConflictTimer is None: # just take care of the first conflict
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
-				fakeRecService = None
-				fakeRecResult = None
 			elif event[1] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0] and fakeRec[1]:
@@ -242,6 +239,8 @@ class TimerSanityCheck:
 			else:
 				print "[TimerSanityCheck] bug: unknown flag!"
 			self.nrep_eventlist[idx] = (event[0],event[1],event[2],cnt,overlaplist[:]) # insert a duplicate into current overlaplist
+			fakeRecService = None
+			fakeRecResult = None
 			idx += 1
 
 		if ConflictTimer is None:
