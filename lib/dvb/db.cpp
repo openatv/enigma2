@@ -217,8 +217,8 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 			if (use_ci_assignment)
 			{
 				int is_ci_playable = 1;
-				PyObject pName, pModule, *pFunc;
-				PyObject pArgs, pArg, *pResult;
+				PyObject *pName, *pModule, *pFunc;
+				PyObject *pArgs, *pArg, *pResult;
 				Py_Initialize();
 				pName = PyString_FromString("Tools.CIHelper");
 				pModule = PyImport_Import(pName);
