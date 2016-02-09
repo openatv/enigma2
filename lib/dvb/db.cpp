@@ -213,7 +213,8 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		if (res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
 		{
 			std::string python_config_str;
-			if (ePythonConfigQuery::getConfigValue("config.misc.use_ci_assignment", python_config_str) > 0 || python_config_str == "True")
+			bool use_ci_assignment = eConfigManager::getConfigBoolValue("config.misc.use_ci_assignment", false);
+			if (use_ci_assignment)
 			{
 				int is_ci_playable = 1;
 				PyObject pName, pModule, *pFunc;
