@@ -602,7 +602,7 @@ class InfoBarNumberZap:
 			if bouquetlist:
 				bouquet = bouquetlist.getNext()
 				while bouquet.valid():
-					if bouquet.flags & eServiceReference.isDirectory:
+					if bouquet.flags & eServiceReference.isDirectory and not bouquet.flags & eServiceReference.isInvisible:
 						service = self.searchNumberHelper(serviceHandler, number, bouquet)
 						if service:
 							playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)

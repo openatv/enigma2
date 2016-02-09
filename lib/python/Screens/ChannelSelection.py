@@ -43,7 +43,7 @@ from Components.PluginComponent import plugins
 from Components.SystemInfo import SystemInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EventView import EventViewEPGSelect
-import os
+import os, re, unicodedata
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
@@ -860,15 +860,9 @@ class ChannelSelectionEdit:
 			return list.startEdit()
 		return None
 
-	def buildBouquetID(self, str):
-		tmp = str.lower()
-		name = ''
-		for c in tmp:
-			if (c >= 'a' and c <= 'z') or (c >= '0' and c <= '9'):
-				name += c
-			else:
-				name += '_'
-		return name
+	def buildBouquetID(self, name):
+		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		return re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 
 	def renameEntry(self):
 		self.editMode = True
@@ -923,11 +917,11 @@ class ChannelSelectionEdit:
 		mutableBouquet = cur_root.list().startEdit()
 		if mutableBouquet:
 			name = cur_service.getServiceName()
-			print "NAME", name
+			refstr = '_'.join(cur_service.ref.toString().split(':'))
 			if self.mode == MODE_TV:
-				str = '1:134:1:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(name))
+				str = '1:134:1:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.tv\" ORDER BY bouquet'%(refstr)
 			else:
-				str = '1:134:2:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(name))
+				str = '1:134:2:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.radio\" ORDER BY bouquet'%(refstr)
 			new_ref = ServiceReference(str)
 			if not mutableBouquet.addService(new_ref.ref, cur_service.ref):
 				mutableBouquet.removeService(cur_service.ref)
@@ -1207,7 +1201,7 @@ class ChannelSelectionEdit:
 			self.saved_title = None
 			self.servicelist.resetRoot()
 			self.servicelist.l.setHideNumberMarker(config.usage.hide_number_markers.value)
-			self.servicelist.setCurrent(self.servicelist.getCurrent())
+			self.setCurrentSelection(self.servicelist.getCurrent())
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
@@ -1216,7 +1210,7 @@ class ChannelSelectionEdit:
 			pos = self.saved_title.find(')')
 			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
 			self.servicelist.l.setHideNumberMarker(False)
-			self.servicelist.setCurrent(self.servicelist.getCurrent())
+			self.setCurrentSelection(self.servicelist.getCurrent())
 		self["Service"].editmode = True
 
 	def handleEditCancel(self):
@@ -1493,7 +1487,7 @@ class ChannelSelectionBase(Screen):
 				if currentRoot is None or currentRoot != ref:
 					self.clearPath()
 					self.enterPath(ref)
-					playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 					if playingref:
 						self.setCurrentSelectionAlternative(playingref)
 
@@ -1732,7 +1726,7 @@ class ChannelSelectionBase(Screen):
 			if ref:
 				if not ref.flags & eServiceReference.isMarker:
 					self.enterUserbouquet(bouquet, save_root=False)
-					self.servicelist.setCurrent(ref)
+					self.setCurrentSelection(ref)
 				self.clearNumberSelectionNumberTimer.start(1000, True)
 			else:
 				self.clearNumberSelectionNumber()
@@ -1819,7 +1813,7 @@ class ChannelSelectionBase(Screen):
 					provider = info.getInfoString(iServiceInformation.sProvider)
 					op = int(self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().split(':')[6][:-4] or "0",16)
 					refstr = '1:7:0:0:0:0:0:0:0:0:(provider == \"%s\") && (satellitePosition == %s) && %s ORDER BY name:%s' % (provider, op, self.service_types[self.service_types.rfind(':')+1:],provider)
-					self.servicelist.setCurrent(eServiceReference(refstr))
+					self.setCurrentSelection(eServiceReference(refstr))
 		elif not self.isBasePathEqual(self.bouquet_root) or self.bouquet_mark_edit == EDIT_ALTERNATIVES:
 			playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if playingref:
@@ -1982,6 +1976,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if Components.ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
 				self.enterPath(ref)
 				self.gotoCurrentServiceOrProvider(ref)
+				self.revertMode = None
 		elif self.bouquet_mark_edit != OFF:
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
@@ -2005,6 +2000,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def bouquetParentalControlCallback(self, ref):
 		self.enterPath(ref)
 		self.gotoCurrentServiceOrProvider(ref)
+		self.revertMode = None
 
 	def togglePipzap(self):
 		assert(self.session.pip)
@@ -2026,6 +2022,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			lastservice = eServiceReference(self.lastservice.value)
 			if lastservice.valid() and self.getCurrentSelection() != lastservice:
 				self.setCurrentSelection(lastservice)
+				if self.getCurrentSelection() != lastservice:
+					self.servicelist.setCurrent(lastservice)
 
 			title += _(" (TV)")
 		else:

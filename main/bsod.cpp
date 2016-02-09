@@ -86,7 +86,7 @@ static const std::string getConfigString(const std::string &key, const std::stri
 			std::string line;
 			std::getline(in, line);
 			size_t size = key.size();
-			if (!key.compare(0, size, line) && line[size] == '=') {
+			if (!line.compare(0, size, key) && line[size] == '=') {
 				value = line.substr(size + 1);
 				break;
 			}
