@@ -148,7 +148,6 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 		<menu weight="30" level="1" text="Common interface" entryID="cam_setup" requires="CommonInterface">
 			<id val="cam" />
 			<item weight="0" level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
-			<item weight="5" level="1" text="Common interface PIN Setup" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
 			<item weight="5" level="1" text="CIHelper Setup" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 		</menu>
 

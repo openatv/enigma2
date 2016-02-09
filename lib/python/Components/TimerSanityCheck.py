@@ -4,7 +4,8 @@ from ServiceReference import ServiceReference
 from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
 from timer import TimerEntry
 
-
+from Tools.CIHelper import cihelper
+from Components.config import config
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
 		self.localtimediff = 25*3600 - mktime(gmtime(25*3600))
@@ -164,7 +165,21 @@ class TimerSanityCheck:
 		newTimerTunerType = None
 		cnt = 0
 		idx = 0
+		is_ci_use = 0
+		is_ci_timer_conflict = 0
 		overlaplist = []
+
+		ci_timer = False
+		if config.misc.use_ci_assignment.value and cihelper.ServiceIsAssigned(self.newtimer.service_ref.ref):
+			ci_timer = self.newtimer
+			ci_timer_begin = ci_timer.begin
+			ci_timer_end = ci_timer.end
+			ci_timer_dur = ci_timer_end - ci_timer_begin
+			ci_timer_events = []
+			for ev in self.nrep_eventlist:
+				if ev[2] == -1:
+					ci_timer_events.append((ev[0], ev[0] + ci_timer_dur))
+
 		for event in self.nrep_eventlist:
 			cnt += event[1]
 			if event[2] == -1: # new timer
@@ -229,6 +244,24 @@ class TimerSanityCheck:
 						overlaplist.remove(entry)
 			else:
 				print "Bug: unknown flag!"
+
+			if ci_timer and cihelper.ServiceIsAssigned(timer.service_ref.ref):
+				if event[1] == self.bflag:
+					timer_begin = event[0]
+					timer_end = event[0] + (timer.end - timer.begin)
+				else:
+					timer_end = event[0]
+					timer_begin = event[0] - (timer.end - timer.begin)
+				if timer != ci_timer:
+					for ci_ev in ci_timer_events:
+						if (ci_ev[0] >= timer_begin and ci_ev[0] <= timer_end) or (ci_ev[1] >= timer_begin and ci_ev[1] <= timer_end):
+							if ci_timer.service_ref.ref != timer.service_ref.ref:
+								is_ci_timer_conflict = 1
+								break
+				if is_ci_timer_conflict == 1:
+					if ConflictTimer is None:
+						ConflictTimer = timer
+						ConflictTunerType = tunerType
 			self.nrep_eventlist[idx] = (event[0],event[1],event[2],cnt,overlaplist[:]) # insert a duplicate into current overlaplist
 			idx += 1
 
