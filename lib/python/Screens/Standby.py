@@ -86,16 +86,16 @@ class Standby2(Screen):
 			if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
-			else:
-				self.timeHandler =  eDVBLocalTimeHandler.getInstance()
-				if self.timeHandler.ready():
-					if self.session.nav.getCurrentlyPlayingServiceOrGroup():
-						self.stopService()
-					else:
-						self.standbyStopServiceTimer.startLongTimer(5)
-					self.timeHandler = None
+		if not self.paused_service:
+			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			if self.timeHandler.ready():
+				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.stopService()
 				else:
-					self.timeHandler.m_timeUpdated.get().append(self.stopService)
+					self.standbyStopServiceTimer.startLongTimer(5)
+				self.timeHandler = None
+			else:
+				self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
 		if self.session.pipshown:
 			from Screens.InfoBar import InfoBar
@@ -146,6 +146,7 @@ class Standby2(Screen):
 		return StandbySummary
 
 	def stopService(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 class Standby(Standby2):
