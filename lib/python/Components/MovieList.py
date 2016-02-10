@@ -716,7 +716,7 @@ class MovieList(GUIComponent):
 
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
-		if ref.flags & eServiceReference.mustDescent:
+		if ref.flags & eServiceReference.mustDescent and os.path.exists(ref.getPath()):
 			return 0, x[1] and -os.stat(ref.getPath()).st_mtime
 		return 1, -x[2]
 
