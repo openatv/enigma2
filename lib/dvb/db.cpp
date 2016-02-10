@@ -212,8 +212,41 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 
 		if (res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
+		{
+			std::string python_config_str;
+			bool use_ci_assignment = eConfigManager::getConfigBoolValue("config.misc.use_ci_assignment", false);
+			if (use_ci_assignment)
+			{
+				int is_ci_playable = 1;
+				PyObject *pName, *pModule, *pFunc;
+				PyObject *pArgs, *pArg, *pResult;
+				Py_Initialize();
+				pName = PyString_FromString("Tools.CIHelper");
+				pModule = PyImport_Import(pName);
+				Py_DECREF(pName);
+				if (pModule != NULL)
+				{
+					pFunc = PyObject_GetAttrString(pModule, "isPlayable");
+					if (pFunc) 
+					{
+						pArgs = PyTuple_New(1);
+						pArg = PyString_FromString(ref.toString().c_str());
+						PyTuple_SetItem(pArgs, 0, pArg);
+						pResult = PyObject_CallObject(pFunc, pArgs);
+						Py_DECREF(pArgs);
+						if (pResult != NULL)
+						{
+							is_ci_playable = PyInt_AsLong(pResult);
+							Py_DECREF(pResult);
+							return is_ci_playable;
+						}
+					}
+				}
+				eDebug("isPlayble... error in python code");
+				PyErr_Print();
+			}
 			return 1;
-
+		}
 		if (remote_fallback_enabled)
 			return 2;
 	}

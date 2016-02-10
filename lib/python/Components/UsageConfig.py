@@ -285,6 +285,7 @@ def InitUsageConfig():
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = True)
+	config.misc.use_ci_assignment = ConfigYesNo(default = True)
 	config.usage.hide_ci_messages = ConfigYesNo(default = False)
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
