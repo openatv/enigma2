@@ -533,7 +533,7 @@ class myChannelSelection(ChannelSelectionBase):
 		self["key_green"] = StaticText(_("All"))
 		self["key_yellow"] = StaticText(_("Add bouquet services"))
 		self["key_blue"] = StaticText(_("Favourites"))
-		self["introduction"] = StaticText(_("Press OK to select a provider."))
+		self["introduction"] = StaticText(_("Press OK to select a service."))
 
 	def __onExecCallback(self):
 		self.setModeTv()
