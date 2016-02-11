@@ -8,7 +8,7 @@ import skin
 class StreamingClientsInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("StreamingClientsInfo"))
+		self.setTitle(_("Streaming clients info"))
 		clients = ClientsStreaming("INFO_RESOLVE")
 		text = clients.getText()
 
