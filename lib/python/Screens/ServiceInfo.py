@@ -146,7 +146,7 @@ class ServiceInfo(Screen):
 			videomode = "-"
 			resolution = "-"
 			if self.info:
-				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "HEVC", "-")[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
 				video_height = 0
 				video_width = 0
 				video_pol = " "
