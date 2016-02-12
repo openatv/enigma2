@@ -137,6 +137,9 @@ class ParentalControl:
 	def getProtectionLevel(self, service):
 		return not self.blacklist.has_key(service) and -1 or 0
 
+	def isServiceProtectionBouquet(self, service):
+		return self.blacklist.has_key(service) and TYPE_BOUQUETSERVICE in self.blacklist[service]
+
 	def getConfigValues(self):
 		#Read all values from configuration
 		self.checkPinInterval = False
