@@ -287,7 +287,7 @@ int eFBCTunerManager::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDV
 		if (new_score > best_score)
 		{
 			best_score = new_score;
-			fbc_fe = (eDVBRegisteredFrontend *)*it;
+			fbc_fe = *it;
 		}
 
 		// now remove it again
