@@ -127,7 +127,7 @@ void eFBCTunerManager::updateFBCID(eDVBRegisteredFrontend *next_fe, eDVBRegister
 	setProcFBCID(fe_slot_id(next_fe), getFBCID(fe_slot_id(GetHead(prev_fe))));
 }
 
-eDVBRegisteredFrontend *eFBCTunerManager::getPtr(long link)
+eDVBRegisteredFrontend *eFBCTunerManager::GetFEPtr(long link)
 {
 	if(link == -1)
 		link = 0;
@@ -165,7 +165,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::GetHead(eDVBRegisteredFrontend *fe)
 
 	for(prev_fe = fe;
 			(linked_prev_ptr = frontend_get_linkptr(prev_fe, link_prev)) != -1;
-			prev_fe = (eDVBRegisteredFrontend *)linked_prev_ptr)
+			prev_fe = GetFEPtr(linked_prev_ptr))
 		(void)0;
 
 	return(prev_fe);
@@ -178,7 +178,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::GetTail(eDVBRegisteredFrontend *fe)
 
 	for(next_fe = fe;
 			(linked_next_ptr = frontend_get_linkptr(next_fe, link_next)) != -1;
-			next_fe = (eDVBRegisteredFrontend *)linked_next_ptr)
+			next_fe = GetFEPtr(linked_next_ptr))
 		(void)0;
 
 	return(next_fe);
@@ -351,21 +351,21 @@ void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFront
 
 	for(leaf_current = (long)root; leaf_current != -1; leaf_current = leaf_next)
 	{
-		leaf_next = frontend_get_linkptr(getPtr(leaf_current), link_next);
+		leaf_next = frontend_get_linkptr(GetFEPtr(leaf_current), link_next);
 
 		leaf_insert_after = leaf_current;
 		leaf_insert_before = leaf_next;
 
-		if((leaf_next != -1) && (fe_slot_id(getPtr(leaf_next)) > fe_slot_id(leaf)))
+		if((leaf_next != -1) && (fe_slot_id(GetFEPtr(leaf_next)) > fe_slot_id(leaf)))
 			break;
 	}
 
 	frontend_set_linkptr(leaf, link_prev, leaf_insert_after);
 	frontend_set_linkptr(leaf, link_next, leaf_insert_before);
-	frontend_set_linkptr(getPtr(leaf_insert_after), link_next, (long)leaf);
+	frontend_set_linkptr(GetFEPtr(leaf_insert_after), link_next, (long)leaf);
 
 	if(leaf_insert_before != -1) // connect leaf after us in
-		frontend_set_linkptr(getPtr(leaf_insert_before), link_prev, (long)leaf);
+		frontend_set_linkptr(GetFEPtr(leaf_insert_before), link_prev, (long)leaf);
 
 	if(!simulate) // act on simulate frontends
 	{
@@ -381,21 +381,21 @@ void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFront
 
 			for(leaf_current = (long)simul_root; leaf_current != -1; leaf_current = leaf_next)
 			{
-				leaf_next = frontend_get_linkptr(getPtr(leaf_current), link_next);
+				leaf_next = frontend_get_linkptr(GetFEPtr(leaf_current), link_next);
 
 				leaf_insert_after = leaf_current;
 				leaf_insert_before = leaf_next;
 
-				if((leaf_next != -1) && (fe_slot_id(getPtr(leaf_next)) > fe_slot_id(leaf)))
+				if((leaf_next != -1) && (fe_slot_id(GetFEPtr(leaf_next)) > fe_slot_id(leaf)))
 					break;
 			}
 
 			frontend_set_linkptr(simul_leaf, link_prev, leaf_insert_after);
 			frontend_set_linkptr(simul_leaf, link_next, leaf_insert_before);
-			frontend_set_linkptr(getPtr(leaf_insert_after), link_next, (long)simul_leaf);
+			frontend_set_linkptr(GetFEPtr(leaf_insert_after), link_next, (long)simul_leaf);
 
 			if(leaf_insert_before != -1) // connect leaf after us in
-				frontend_set_linkptr(getPtr(leaf_insert_before), link_prev, (long)simul_leaf);
+				frontend_set_linkptr(GetFEPtr(leaf_insert_before), link_prev, (long)simul_leaf);
 		}
 	}
 
@@ -424,10 +424,10 @@ void eFBCTunerManager::unlink(eDVBRegisteredFrontend *fe)
 	leaf_link_next = frontend_get_linkptr(fe, link_next);
 
 	if(leaf_link_prev != -1)
-		frontend_set_linkptr(getPtr(leaf_link_prev), link_next, leaf_link_next);
+		frontend_set_linkptr(GetFEPtr(leaf_link_prev), link_next, leaf_link_next);
 
 	if(leaf_link_next != -1)
-		frontend_set_linkptr(getPtr(leaf_link_next), link_prev, leaf_link_prev);
+		frontend_set_linkptr(GetFEPtr(leaf_link_next), link_prev, leaf_link_prev);
 
 	frontend_set_linkptr(fe, link_prev, -1);
 	frontend_set_linkptr(fe, link_next, -1);
@@ -443,10 +443,10 @@ void eFBCTunerManager::unlink(eDVBRegisteredFrontend *fe)
 			leaf_link_next = frontend_get_linkptr(simul_fe, link_next);
 
 			if(leaf_link_prev != -1)
-				frontend_set_linkptr(getPtr(leaf_link_prev), link_next, leaf_link_next);
+				frontend_set_linkptr(GetFEPtr(leaf_link_prev), link_next, leaf_link_next);
 
 			if(leaf_link_next != -1)
-				frontend_set_linkptr(getPtr(leaf_link_next), link_prev, leaf_link_prev);
+				frontend_set_linkptr(GetFEPtr(leaf_link_next), link_prev, leaf_link_prev);
 
 			frontend_set_linkptr(simul_fe, link_prev, -1);
 			frontend_set_linkptr(simul_fe, link_next, -1);
@@ -499,7 +499,7 @@ int eFBCTunerManager::getLinkedSlotID(int fe_id)
 		{
 			if((prev_ptr = frontend_get_linkptr(it, link_prev)) != -1)
 			{
-				prev_fe = (eDVBRegisteredFrontend *)prev_ptr;
+				prev_fe = GetFEPtr(prev_ptr);
 				link = fe_slot_id(prev_fe);
 			}
 			break;
@@ -524,8 +524,8 @@ void eFBCTunerManager::list_loop_links(void)
 
 		while(prev_ptr != -1)
 		{
-			fprintf(stderr, "%d, ", getPtr(prev_ptr)->m_frontend->getSlotID());
-			prev_ptr = frontend_get_linkptr(getPtr(prev_ptr), link_prev);
+			fprintf(stderr, "%d, ", GetFEPtr(prev_ptr)->m_frontend->getSlotID());
+			prev_ptr = frontend_get_linkptr(GetFEPtr(prev_ptr), link_prev);
 		}
 
 		fprintf(stderr, ", next_links: ");
@@ -534,8 +534,8 @@ void eFBCTunerManager::list_loop_links(void)
 
 		while(next_ptr != -1)
 		{
-			fprintf(stderr, "%d, ", getPtr(next_ptr)->m_frontend->getSlotID());
-			next_ptr = frontend_get_linkptr(getPtr(next_ptr), link_next);
+			fprintf(stderr, "%d, ", GetFEPtr(next_ptr)->m_frontend->getSlotID());
+			next_ptr = frontend_get_linkptr(GetFEPtr(next_ptr), link_next);
 		}
 
 		fprintf(stderr, "\n");

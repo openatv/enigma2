@@ -31,9 +31,9 @@ private:
 	void frontend_set_linkptr(const eDVBRegisteredFrontend *fe, link_ptr_t link_type, long data) const;
 	int fe_slot_id(const eDVBRegisteredFrontend *fe) const;
 
-	eDVBRegisteredFrontend *getPtr(long link);
 	eDVBRegisteredFrontend *getPrev(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *getNext(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *GetFEPtr(long link);
 	eDVBRegisteredFrontend *GetHead(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *GetTail(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *getSimulFe(eDVBRegisteredFrontend *fe);
