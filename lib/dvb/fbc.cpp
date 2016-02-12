@@ -135,29 +135,6 @@ eDVBRegisteredFrontend *eFBCTunerManager::GetFEPtr(long link)
 	return((eDVBRegisteredFrontend *)link);
 }
 
-eDVBRegisteredFrontend *eFBCTunerManager::getPrev(eDVBRegisteredFrontend *fe)
-{
-	long link;
-
-	if((link = frontend_get_linkptr(fe, link_prev)) == -1)
-		link = 0;
-
-	return((eDVBRegisteredFrontend *)link);
-}
-
-eDVBRegisteredFrontend *eFBCTunerManager::getNext(eDVBRegisteredFrontend *fe)
-{
-	long link;
-
-	if(!fe)
-		return((eDVBRegisteredFrontend *)0);
-
-	if((link = frontend_get_linkptr(fe, link_next)) == -1)
-		link = 0;
-
-	return((eDVBRegisteredFrontend *)link);
-}
-
 eDVBRegisteredFrontend *eFBCTunerManager::GetHead(eDVBRegisteredFrontend *fe)
 {
 	eDVBRegisteredFrontend *prev_fe;
@@ -197,7 +174,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::getSimulFe(eDVBRegisteredFrontend *fe)
 
 bool eFBCTunerManager::isLinked(eDVBRegisteredFrontend *fe)
 {
-	return(!(getPrev(fe) == (eDVBRegisteredFrontend *)0));
+	return(frontend_get_linkptr(fe, link_prev) == -1);
 }
 
 bool eFBCTunerManager::isLinkedByIndex(int fe_idx)
@@ -237,7 +214,7 @@ bool eFBCTunerManager::canLink(eDVBRegisteredFrontend *fe)
 	if(isRootFe(fe))
 		return false;
 
-	if(getPrev(fe) || getNext(fe))
+	if((frontend_get_linkptr(fe, link_prev) != -1) || (frontend_get_linkptr(fe, link_next) != -1))
 		return false;
 
 	if(isUnicable(fe))
