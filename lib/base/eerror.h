@@ -109,7 +109,6 @@ void DumpUnfreed();
 
 #define CHECKFORMAT __attribute__ ((__format__(__printf__, 2, 3)))
 
-extern Signal2<void, const char *, unsigned int> logOutput;
 extern int logOutputConsole;
 
 /*
