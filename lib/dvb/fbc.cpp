@@ -97,7 +97,7 @@ void eFBCTunerManager::setProcFBCID(int fe_id, int fbc_id)
 	snprintf(tmp, sizeof(tmp), "/proc/stb/frontend/%d/fbc_id", fe_id);
 
 	if(isLinkedByIndex(fe_id))
-		fbc_id += 0x10; // 0x10 mask: linked, 0x0f (?) mask: fbc_id // FIXME: shouldn't this be |=?
+		fbc_id |= 0x10; // 0x10 mask: linked, 0x0f (?) mask: fbc_id
 
 	CFile::writeIntHex(tmp, fbc_id);
 }
@@ -162,8 +162,6 @@ eDVBRegisteredFrontend *eFBCTunerManager::getTop(eDVBRegisteredFrontend *fe)
 {
 	eDVBRegisteredFrontend *prev_fe;
 	long linked_prev_ptr;
-
-	//FIXME: assumed sizeof(*) == sizeof(long)
 
 	for(prev_fe = fe;
 			(linked_prev_ptr = frontend_get_linkptr(prev_fe, link_prev)) != -1;
@@ -331,8 +329,6 @@ int eFBCTunerManager::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDV
 
 	return best_score;
 }
-
-//FIXME: we should probably do something with simulate and simulate_frontends
 
 void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFrontend *root, bool simulate)
 {

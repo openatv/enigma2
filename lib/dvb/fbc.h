@@ -1,7 +1,6 @@
 #ifndef __dvb_fbc_h
 #define __dvb_fbc_h
 
-/* FBC Manager */
 #include <lib/base/ebase.h>
 #include <lib/base/object.h>
 #include <lib/base/eptrlist.h>
