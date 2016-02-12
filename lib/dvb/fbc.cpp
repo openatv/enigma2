@@ -166,7 +166,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::getSimulFe(eDVBRegisteredFrontend *fe)
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_simulate_frontend;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); it++)
-		if (fe_slot_id(it) == fe_slot_id(fe))
+		if (fe_slot_id(*it) == fe_slot_id(fe))
 			return(*it);
 
 	return((eDVBRegisteredFrontend *)0);
@@ -182,7 +182,7 @@ bool eFBCTunerManager::isLinkedByIndex(int fe_idx)
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = m_res_mgr->m_frontend;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
-		if ((fe_slot_id(it) == fe_idx) && isLinked(*it))
+		if ((fe_slot_id(*it) == fe_idx) && isLinked(*it))
 			return(true);
 
 	return false;
@@ -198,7 +198,7 @@ bool eFBCTunerManager::checkUsed(eDVBRegisteredFrontend *fe, bool a_simulate)
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_res_mgr->m_simulate_frontend : m_res_mgr->m_frontend;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(frontends.begin()); it != frontends.end(); ++it)
-		if (fe_slot_id(it) == fe_slot_id(fe))
+		if (fe_slot_id(*it) == fe_slot_id(fe))
 			return(it->m_inuse > 0);
 
 	return false;
