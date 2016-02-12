@@ -2,6 +2,7 @@ from Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.Console import Console
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
