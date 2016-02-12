@@ -34,8 +34,8 @@ private:
 	eDVBRegisteredFrontend *getPtr(long link);
 	eDVBRegisteredFrontend *getPrev(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *getNext(eDVBRegisteredFrontend *fe);
-	eDVBRegisteredFrontend *getTop(eDVBRegisteredFrontend *fe);
-	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *GetHead(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *GetTail(eDVBRegisteredFrontend *fe);
 	eDVBRegisteredFrontend *getSimulFe(eDVBRegisteredFrontend *fe);
 	bool isLinked(eDVBRegisteredFrontend *fe);
 	bool isLinkedByIndex(int fe_idx);

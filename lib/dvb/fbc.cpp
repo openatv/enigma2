@@ -124,7 +124,7 @@ void eFBCTunerManager::setDefaultFBCID(eDVBRegisteredFrontend *fe)
 
 void eFBCTunerManager::updateFBCID(eDVBRegisteredFrontend *next_fe, eDVBRegisteredFrontend *prev_fe)
 {
-	setProcFBCID(fe_slot_id(next_fe), getFBCID(fe_slot_id(getTop(prev_fe))));
+	setProcFBCID(fe_slot_id(next_fe), getFBCID(fe_slot_id(GetHead(prev_fe))));
 }
 
 eDVBRegisteredFrontend *eFBCTunerManager::getPtr(long link)
@@ -158,7 +158,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::getNext(eDVBRegisteredFrontend *fe)
 	return((eDVBRegisteredFrontend *)link);
 }
 
-eDVBRegisteredFrontend *eFBCTunerManager::getTop(eDVBRegisteredFrontend *fe)
+eDVBRegisteredFrontend *eFBCTunerManager::GetHead(eDVBRegisteredFrontend *fe)
 {
 	eDVBRegisteredFrontend *prev_fe;
 	long linked_prev_ptr;
@@ -171,7 +171,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::getTop(eDVBRegisteredFrontend *fe)
 	return(prev_fe);
 }
 
-eDVBRegisteredFrontend *eFBCTunerManager::getLast(eDVBRegisteredFrontend *fe)
+eDVBRegisteredFrontend *eFBCTunerManager::GetTail(eDVBRegisteredFrontend *fe)
 {
 	eDVBRegisteredFrontend *next_fe;
 	long linked_next_ptr;
@@ -300,7 +300,7 @@ int eFBCTunerManager::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDV
 
 		// temporarily add this leaf as tail to the current chain
 
-		last_fe = getLast(*it);
+		last_fe = GetTail(*it);
 
 		frontend_set_linkptr(last_fe, link_next, (long)link_fe);
 		frontend_set_linkptr(link_fe, link_prev, (long)last_fe);
@@ -457,7 +457,7 @@ void eFBCTunerManager::unlink(eDVBRegisteredFrontend *fe)
 	list_loop_links();
 
 	setProcFBCID(fe_slot_id(fe), 0);
-	updateLNBSlotMask(fe_slot_id(fe), fe_slot_id(getTop(fe)), /*remove*/true);
+	updateLNBSlotMask(fe_slot_id(fe), fe_slot_id(GetHead(fe)), /*remove*/true);
 }
 
 int eFBCTunerManager::updateLNBSlotMask(int dest_slot, int src_slot, bool remove)
