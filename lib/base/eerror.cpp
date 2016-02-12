@@ -122,9 +122,8 @@ void eDebugImpl(int flags, const char* fmt, ...)
 void ePythonOutput(const char *string)
 {
 #ifdef DEBUG
-	int lvl = lvlWarning; // FIXME: get level info from python
-	// Only show message when the debug level is low enough
-	if (lvl <= debugLvl)
-		eDebugImpl(_DBGFLG_NONEWLINE, string);
+	// Only show message when the debug level is at least "warning"
+	if (debugLvl >= lvlWarning)
+		eDebugImpl(_DBGFLG_NONEWLINE, "%s", string);
 #endif
 }
