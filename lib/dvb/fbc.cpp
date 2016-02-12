@@ -434,7 +434,7 @@ void eFBCTunerManager::unlink(eDVBRegisteredFrontend *fe)
 	updateLNBSlotMask(fe_slot_id(fe), fe_slot_id(GetHead(fe)), /*remove*/true);
 }
 
-int eFBCTunerManager::updateLNBSlotMask(int dest_slot, int src_slot, bool remove)
+void eFBCTunerManager::updateLNBSlotMask(int dest_slot, int src_slot, bool remove)
 {
 	int idx;
 	ePtr<eDVBSatelliteEquipmentControl> sec = eDVBSatelliteEquipmentControl::getInstance();
@@ -453,8 +453,6 @@ int eFBCTunerManager::updateLNBSlotMask(int dest_slot, int src_slot, bool remove
 				lnb_param.m_slot_mask &= ~(1 << dest_slot);
 		}
 	}
-
-	return 0;
 }
 
 int eFBCTunerManager::getLinkedSlotID(int fe_id)

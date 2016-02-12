@@ -39,7 +39,7 @@ private:
 	bool isLinkedByIndex(int fe_idx);
 
 	bool checkUsed(eDVBRegisteredFrontend *fe, bool a_simulate);
-	int updateLNBSlotMask(int dest_slot, int src_slot, bool remove);
+	void updateLNBSlotMask(int dest_slot, int src_slot, bool remove);
 
 	void list_loop_links(void);
 
