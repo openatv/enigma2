@@ -339,6 +339,8 @@ void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFront
 	if(leaf_insert_before != -1) // connect leaf after us in
 		frontend_set_linkptr(GetFEPtr(leaf_insert_before), link_prev, (long)leaf);
 
+	leaf->m_frontend->setEnabled(true);
+
 	if(!simulate) // act on simulate frontends
 	{
 		eDVBRegisteredFrontend *simul_root, *simul_leaf;
@@ -368,10 +370,10 @@ void eFBCTunerManager::addLink(eDVBRegisteredFrontend *leaf, eDVBRegisteredFront
 
 			if(leaf_insert_before != -1) // connect leaf after us in
 				frontend_set_linkptr(GetFEPtr(leaf_insert_before), link_prev, (long)simul_leaf);
+
+			simul_leaf->m_frontend->setEnabled(true);
 		}
 	}
-
-	leaf->m_frontend->setEnabled(true);
 
 	setProcFBCID(fe_slot_id(leaf), getFBCID(fe_slot_id(root)));
 	updateLNBSlotMask(fe_slot_id(leaf), fe_slot_id(root), /*remove*/false);
