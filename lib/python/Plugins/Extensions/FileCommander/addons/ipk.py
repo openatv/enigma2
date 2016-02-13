@@ -29,12 +29,12 @@ class ipkMenuScreen(ArchiverMenuScreen):
 			# communicating Popen commands can deadlock on the
 			# pipe output. Using communicate() avoids deadlock
 			# on reading stdout and stderr from the pipe.
-			file = shellquote(self.sourceDir + self.filename)
-			p = subprocess.Popen("ar -t %s > /dev/null 2>&1" % file, shell=True)
+			fname = shellquote(self.sourceDir + self.filename)
+			p = subprocess.Popen("ar -t %s > /dev/null 2>&1" % fname, shell=True)
 			if p.wait():
-				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % file
+				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % fname
 			else:
-				cmd = "ar -p %s data.tar.gz | tar -tzf -" % file
+				cmd = "ar -p %s data.tar.gz | tar -tzf -" % fname
 			self.unpackPopen(cmd, UnpackInfoScreen)
 		elif id == 4:
 			self.ulist = []
