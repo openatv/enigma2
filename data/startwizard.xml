@@ -118,11 +118,11 @@ self.selectKey("RIGHT")
 			</code>
 		</step>
 		<step id="nime">
-                       <condition>
+			<condition>
 from Components.NimManager import nimmanager
 from Screens.Satconfig import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 4 and not nimmanager.nim_slots[4].empty and not isFBCLink(nimmanager.nim_slots[4])
-            </condition>
+			</condition>
 			<text value="Please set up tuner E" />
 			<displaytext value="Please set up tuner E" />
 			<config screen="NimSetup" module="Satconfig" args="4" type="ConfigList" />
@@ -130,14 +130,14 @@ self.condition = len(nimmanager.nim_slots) > 4 and not nimmanager.nim_slots[4].e
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                       </code>
-               </step>
-               <step id="nimf">
-                       <condition>
+			</code>
+		</step>
+		<step id="nimf">
+			<condition>
 from Components.NimManager import nimmanager
 from Screens.Satconfig import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].empty and not isFBCLink(nimmanager.nim_slots[5])
-            </condition>
+			</condition>
 			<text value="Please set up tuner F" />
 			<displaytext value="Please set up tuner F" />
 			<config screen="NimSetup" module="Satconfig" args="5" type="ConfigList" />
@@ -145,14 +145,14 @@ self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].e
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                       </code>
-               </step>
-               <step id="nimg">
-                       <condition>
+			</code>
+		</step>
+		<step id="nimg">
+			<condition>
 from Components.NimManager import nimmanager
 from Screens.Satconfig import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 6 and not nimmanager.nim_slots[6].empty and not isFBCLink(nimmanager.nim_slots[6])
-            </condition>
+			</condition>
 			<text value="Please set up tuner G" />
 			<displaytext value="Please set up tuner G" />
 			<config screen="NimSetup" module="Satconfig" args="6" type="ConfigList" />
@@ -160,14 +160,14 @@ self.condition = len(nimmanager.nim_slots) > 6 and not nimmanager.nim_slots[6].e
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                       </code>
-               </step>
-               <step id="nimh">
-                       <condition>
+			</code>
+		</step>
+		<step id="nimh">
+			<condition>
 from Components.NimManager import nimmanager
 from Screens.Satconfig import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 7 and not nimmanager.nim_slots[7].empty and not isFBCLink(nimmanager.nim_slots[7])
-            </condition>
+			</condition>
 			<text value="Please set up tuner H" />
 			<displaytext value="Please set up tuner H" />
 			<config screen="NimSetup" module="Satconfig" args="7" type="ConfigList" />
@@ -175,14 +175,14 @@ self.condition = len(nimmanager.nim_slots) > 7 and not nimmanager.nim_slots[7].e
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                       </code>
-               </step>
-               <step id="nimi">
-                       <condition>
+			</code>
+		</step>
+		<step id="nimi">
+			<condition>
 from Components.NimManager import nimmanager
 from Screens.Satconfig import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and not isFBCLink(nimmanager.nim_slots[8])
-            </condition>
+			</condition>
 			<text value="Please set up tuner I" />
 			<displaytext value="Please set up tuner I" />
 			<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
@@ -190,14 +190,14 @@ self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].e
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                       </code>
-               </step>
-               <step id="nimj">
-                       <condition>
+			</code>
+		</step>
+		<step id="nimj">
+			<condition>
 from Components.NimManager import nimmanager
 from Screens.Satconfig import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty and not isFBCLink(nimmanager.nim_slots[9])
-            </condition>
+			</condition>
 			<text value="Please set up tuner J" />
 			<displaytext value="Please set up tuner J" />
 			<config screen="NimSetup" module="Satconfig" args="9" type="ConfigList" />
@@ -205,8 +205,22 @@ self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].e
 self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
-                       </code>
-               </step>
+			</code>
+		</step>
+		<step id="nimk">
+			<condition>
+from Components.NimManager import nimmanager
+self.condition = len(nimmanager.nim_slots) > 10 and not nimmanager.nim_slots[10].empty and not isFBCLink(nimmanager.nim_slots[10])
+			</condition>
+			<text value="Please set up tuner K" />
+			<displaytext value="Please set up tuner K" />
+			<config screen="NimSetup" module="Satconfig" args="10" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
+			</code>
+		</step>
 <!--
 		<step id="channels">
 			<condition>
