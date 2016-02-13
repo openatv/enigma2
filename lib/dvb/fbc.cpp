@@ -174,7 +174,7 @@ eDVBRegisteredFrontend *eFBCTunerManager::getSimulFe(eDVBRegisteredFrontend *fe)
 
 bool eFBCTunerManager::isLinked(eDVBRegisteredFrontend *fe)
 {
-	return(frontend_get_linkptr(fe, link_prev) == -1);
+	return(frontend_get_linkptr(fe, link_prev) != -1);
 }
 
 bool eFBCTunerManager::isLinkedByIndex(int fe_idx)
