@@ -1558,9 +1558,6 @@ def InitNimManager(nimmgr, update_slots = []):
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
-		
-		if update_slots and (x not in update_slots):
-			continue
 
 		if slot.isCompatible("DVB-S"):
 			createSatConfig(nim, x, empty_slots)
