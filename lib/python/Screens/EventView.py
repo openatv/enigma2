@@ -249,10 +249,9 @@ class EventViewBase:
 			begindate = beginTimeString.split(' ')[0].split('.')
 		nowt = time()
 		now = localtime(nowt)
-		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
-		endtime = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration()
-		endtime = localtime(endtime)
-		self["datetime"].setText(event.getBeginTimeString() + ' - ' + strftime(_("%-H:%M"), endtime))
+		begin = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))))
+		end = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration())
+		self["datetime"].setText(strftime(_("%d.%m.   "), begin) + strftime(_("%-H:%M - "), begin) + strftime(_("%-H:%M"), end))
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
