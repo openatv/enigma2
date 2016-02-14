@@ -1365,7 +1365,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				used = index
 			menu.append((_(x[1]), x[0], "%d" % index))
 			index += 1
-		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Movie sort"), list=menu, selection=used)
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Movie sort"), list=menu, selection=used, skin_name="MovieSelectionSort")
 
 	def getPixmapSortIndex(self, which):
 		index = int(which)
@@ -1553,7 +1553,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showTagsMenu(self, tagele):
 		self.selected_tags_ele = tagele
 		lst = [(_("Show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in sorted(self.tags)]
-		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Movie tag filter"), list=lst, skin_name="MovieListTags")
+		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Movie tag filter"), list=lst, skin_name=["MovieSelectionTags", "MovieListTags"])
 
 	def showTagWarning(self):
 		mbox = self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
@@ -1583,7 +1583,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				bookmarks.append((d, d))
 		self.onMovieSelected = callback
 		self.movieSelectTitle = title
-		self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks)
+		self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks, skin_name="MovieSelectionLocations")
 
 	def gotMovieLocation(self, choice):
 		if not choice:
@@ -1814,7 +1814,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					inlist.append(d)
 			self.onMovieSelected = self.gotMoveMovieDest
 			self.movieSelectTitle = title
-			self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks)
+			self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks, skin_name="MovieSelectionLocations")
 
 	def gotMoveMovieDest(self, choice):
 		if not choice:
@@ -1997,7 +1997,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 							(_("Cancel"), None),
 							(_("Stop recording"), ("s", timer)),
 							(_("Stop recording and delete"), ("sd", timer))]
-						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=_("Recording in progress:\n'%s'") % name, list=choices)
+						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=_("Recording in progress:\n'%s'") % name, list=choices, skin_name="MovieSelectionRecordings")
 						return
 				if time.time() - st.st_mtime < 5:
 					if not args:
@@ -2189,7 +2189,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			menu.append((config.usage.on_movie_eof.getText(), x))
 		config.usage.on_movie_eof.value = current_movie_eof
 		used = config.usage.on_movie_eof.getIndex()
-		self.session.openWithCallback(self.movieoffMenuCallback, ChoiceBox, title=_("On end of movie"), list=menu, selection=used)
+		self.session.openWithCallback(self.movieoffMenuCallback, ChoiceBox, title=_("On end of movie"), list=menu, selection=used, skin_name="MovieSelectionOnEnd")
 
 	def movieoffMenuCallback(self, choice):
 		if choice is None:
