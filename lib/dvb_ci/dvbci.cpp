@@ -606,16 +606,10 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 						data_source tuner_source = TUNER_A;
 						switch (tunernum)
 						{
-#ifdef TUNER_VUSOLO4K
-							case 0 ... 10:
-								tuner_source = (data_source)tunernum;
-								break;
-#else
 							case 0: tuner_source = TUNER_A; break;
 							case 1: tuner_source = TUNER_B; break;
 							case 2: tuner_source = TUNER_C; break;
 							case 3: tuner_source = TUNER_D; break;
-#endif
 							default:
 								eDebug("[CI] try to get source for tuner %d!!\n", tunernum);
 								break;
@@ -763,10 +757,6 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 	return slot->getMMIState();
 }
 
-#ifdef TUNER_VUSOLO4K
-static const char *tuner_source[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "CI0", "CI1", "CI2", "CI3"};
-#endif
-
 int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 {
 //	eDebug("[CI] !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -787,11 +777,6 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 
 		switch(source)
 		{
-#ifdef TUNER_VUSOLO4K
-			case TUNER_A ... CI_D:
-				fprintf(input, tuner_source[(int)source]);
-				break;
-#else
 			case CI_A:
 				fprintf(input, "CI0");
 				break;
@@ -816,7 +801,6 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case TUNER_D:
 				fprintf(input, "D");
 				break;
-#endif
 			default:
 				eDebug("[CI] setInputSource for input %d failed!!!\n", (int)source);
 				break;
@@ -840,11 +824,6 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 
 		switch(source)
 		{
-#ifdef TUNER_VUSOLO4K
-			case TUNER_A ... CI_D:
-				fprintf(input, tuner_source[(int)source]);
-				break;
-#else
 			case CI_A:
 				fprintf(input, "CI");
 				break;
@@ -854,7 +833,6 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case TUNER_B:
 				fprintf(input, "B");
 				break;
-#endif
 			default:
 				eDebug("[CI] setInputSource for input %d failed!!!\n", (int)source);
 				break;
@@ -1414,11 +1392,6 @@ int eDVBCISlot::setSource(data_source source)
 		FILE *ci = fopen(buf, "wb");
 		switch(source)
 		{
-#ifdef TUNER_VUSOLO4K
-			case TUNER_A ... CI_D:
-				fprintf(ci, tuner_source[(int)source]);
-				break;
-#else
 			case CI_A:
 				fprintf(ci, "CI0");
 				break;
@@ -1443,7 +1416,6 @@ int eDVBCISlot::setSource(data_source source)
 				case TUNER_D:
 				fprintf(ci, "D");
 				break;
-#endif
 			default:
 				eDebug("[CI] Slot %d: setSource %d failed!!!\n", getSlotID(), (int)source);
 				break;
