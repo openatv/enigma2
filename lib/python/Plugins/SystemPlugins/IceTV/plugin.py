@@ -490,8 +490,11 @@ def sessionstart_main(reason, session, **kwargs):
 
 def plugin_main(session, **kwargs):
     global _session
+    global fetcher
     if _session is None:
         _session = session
+    if fetcher is None:
+        fetcher = EPGFetcher()
     session.open(IceTVMain)
 
 def Plugins(**kwargs):
@@ -501,7 +504,8 @@ def Plugins(**kwargs):
             name="IceTV",
             where=PluginDescriptor.WHERE_SESSIONSTART,
             description=_("IceTV"),
-            fnc=sessionstart_main
+            fnc=sessionstart_main,
+            needsRestart=True
         ))
     res.append(
         PluginDescriptor(
