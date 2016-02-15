@@ -19,14 +19,15 @@ class Language:
 		self.langlistselection = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
+		self.addLanguage("English",     "en", "EN", "ISO-8859-15")
+		self.addLanguage("Deutsch",     "de", "DE", "ISO-8859-15")
+		self.addLanguage("Türkçe",      "tr", "TR", "ISO-8859-15")
 		self.addLanguage("Arabic",      "ar", "AE", "ISO-8859-15")
 		self.addLanguage("Български",   "bg", "BG", "ISO-8859-15")
 		self.addLanguage("Català",      "ca", "AD", "ISO-8859-15")
 		self.addLanguage("Česky",       "cs", "CZ", "ISO-8859-15")
 		self.addLanguage("Dansk",       "da", "DK", "ISO-8859-15")
-		self.addLanguage("Deutsch",     "de", "DE", "ISO-8859-15")
 		self.addLanguage("Ελληνικά",    "el", "GR", "ISO-8859-7")
-		self.addLanguage("English",     "en", "EN", "ISO-8859-15")
 		self.addLanguage("Español",     "es", "ES", "ISO-8859-15")
 		self.addLanguage("Eesti",       "et", "EE", "ISO-8859-15")
 		self.addLanguage("Persian",     "fa", "IR", "ISO-8859-15")
@@ -53,7 +54,6 @@ class Language:
 		self.addLanguage("Srpski",      "sr", "YU", "ISO-8859-15")
 		self.addLanguage("Svenska",     "sv", "SE", "ISO-8859-15")
 		self.addLanguage("ภาษาไทย",     "th", "TH", "ISO-8859-15")
-		self.addLanguage("Türkçe",      "tr", "TR", "ISO-8859-15")
 		self.addLanguage("Ukrainian",   "uk", "UA", "ISO-8859-15")
 
 	def addLanguage(self, name, lang, country, encoding):
