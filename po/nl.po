@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -562,6 +562,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ":%s"
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Huidige opnamelijstlocatie>"
 
@@ -880,10 +883,6 @@ msgstr "Alle satellieten 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Alle satellieten 4 (USALS)"
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Toegewezen zenders/providers"
-
 msgid "Allocate"
 msgstr "Toewijzen"
 
@@ -1148,6 +1147,9 @@ msgstr "Starten van de auto focus..."
 msgid "Auto language selection"
 msgstr "Automatische taalkeuzeselectie"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Automatisch scart schakelen"
 
@@ -1382,15 +1384,12 @@ msgstr "Common Interface"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Nieuwe pincode"
-
 msgid "CI assignment"
 msgstr "CI toewijzing"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "Geen CI slots gevonden"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -2112,6 +2111,10 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr "Met deze optie stelt u traploos de snelheid van de ventilator in."
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Stel de breedtegraad van uw locatie in."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 "Met deze optie stelt u de vertraging van de ondertitels in indien er geen timinginformatie beschikbaar is.\n"
@@ -2255,6 +2258,13 @@ msgstr "Verbonden satellieten"
 msgid "Connected to"
 msgstr "Verbonden met"
 
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI toewijzing"
+
+msgid "Console"
+msgstr ""
+
 msgid "Constellation"
 msgstr "Constellatie"
 
@@ -2377,9 +2387,6 @@ msgstr "Huidige transponder"
 msgid "Current value: "
 msgstr "Huidige waarde:"
 
-msgid "Current version:"
-msgstr "Huidige versie:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "Op dit moment kan het commitlog niet bereikt worden - probeer het later opnieuw"
 
@@ -2498,9 +2505,6 @@ msgstr "Volledig uitschakelen"
 
 msgid "Default"
 msgstr "Standaard"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2913,6 +2917,9 @@ msgstr "Wilt u de ontvanger updaten?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een upgrade van dit pakket:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "deze opname"
@@ -3111,10 +3118,6 @@ msgid "Enable Wake On LAN"
 msgstr "Activeer Wake On LAN"
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "Viasat EPG inschakelen"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Activeer auto fastscan"
 
@@ -3148,6 +3151,9 @@ msgid "Enable parental protection"
 msgstr "Zender op kinderslot zetten"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3215,8 +3221,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Voer nieuwe pincode nogmaals in"
+
 msgid "Enter main menu..."
 msgstr "Ga naar hoofdmenu..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Voer pincode in"
 
 msgid "Enter pin code"
 msgstr "Voer pincode in"
@@ -3427,7 +3441,28 @@ msgstr "Tijdsduur hoe lang de inactiviteitssleeptimer genegeerd wordt"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3435,14 +3470,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Bezig met update"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Upgrade url bewerken."
 
 msgid "FTA"
 msgstr "FTA"
@@ -3678,6 +3705,9 @@ msgstr "Extra opties"
 msgid "Further options"
 msgstr "Extra opties"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3704,6 +3734,10 @@ msgstr ""
 "de nieuwe skin te activeren. Nu herstarten?"
 
 msgid "Gateway"
+msgstr "Gateway"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Gateway"
 
 msgid "General AC3 delay"
@@ -3816,10 +3850,14 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Guard interval"
 
+#, fuzzy
+msgid "H"
+msgstr "CH"
+
 msgid "HD list"
 msgstr "HD lijst"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3888,9 +3926,6 @@ msgstr "Helpt u uw schotel in te stellen"
 
 msgid "Hidden network"
 msgstr "Verborgen netwerk"
-
-msgid "Hide CI messages"
-msgstr "Verberg CI meldingen"
 
 msgid "Hide channel list in radio mode"
 msgstr "Verberg de zenderlijst gedurende radiomodus"
@@ -3984,6 +4019,10 @@ msgstr "Tint"
 
 msgid "Hungarian"
 msgstr "Hongaars"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 msgid "IP address"
 msgstr "IP-adres"
@@ -4287,6 +4326,9 @@ msgstr "Items per pagina"
 
 msgid "Items per page for list screen"
 msgstr "Aantal regels in de lijstmode"
+
+msgid "J"
+msgstr ""
 
 msgid "Job overview"
 msgstr "Voortgang"
@@ -4667,6 +4709,12 @@ msgstr "Minimumleeftijd %d jaar"
 msgid "Minimum send interval"
 msgstr "Minimum verzend interval"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Ontbrekend"
 
@@ -4911,6 +4959,9 @@ msgstr "Instellingen van de nameserver"
 msgid "Namespace"
 msgstr "Ruimte voor naam"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -4982,9 +5033,6 @@ msgstr "Nieuw"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Nieuwe versie:"
 
 msgid "News Current Affairs"
 msgstr "nieuws / actualiteiten"
@@ -5760,6 +5808,34 @@ msgstr "Instellingen voor Tuner C"
 msgid "Please set up tuner D"
 msgstr "Instellingen voor Tuner D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Stel aub Tuner A in"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Stel aub Tuner A in"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Stel aub Tuner A in"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Stel aub Tuner A in"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Stel aub Tuner A in"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Stel aub Tuner A in"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Stel aub Tuner A in"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5802,6 +5878,17 @@ msgstr "Een ogenblik geduld aub terwijl uw netwerk getest wordt..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Een ogenblik geduld aub terwijl uw netwerk wordt herstart..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Even geduld... (de softcam wordt gedownload)"
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Even geduld... (de softcam wordt gedownload)"
 
 msgid "Please wait..."
 msgstr "Even geduld aub..."
@@ -5976,6 +6063,10 @@ msgid "Press OK to scan"
 msgstr "Druk OK om te zoeken."
 
 msgid "Press OK to select a provider."
+msgstr "Druk op OK om een provider te kiezen."
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Druk op OK om een provider te kiezen."
 
 msgid "Press OK to select satellites"
@@ -6232,6 +6323,10 @@ msgstr "Terug naar laatste zender"
 msgid "Reception Settings"
 msgstr "Ontvangstinstellingen"
 
+#, fuzzy
+msgid "Reception lists"
+msgstr "Ontvangstinstellingen"
+
 msgid "Reception settings"
 msgstr "Ontvangstinstellingen"
 
@@ -6287,6 +6382,10 @@ msgstr "Rode toets..."
 
 msgid "Red colored"
 msgstr "Rood gekleurd"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Voer nieuwe pincode nogmaals in"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6440,6 +6539,10 @@ msgstr "Herstel"
 msgid "Reset and renumerate title names"
 msgstr "Herstel en renumerate titel namen"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Toets de oude pincode in aub."
+
 msgid "Reset playback position"
 msgstr "Zet afspeelpunt terug naar begin"
 
@@ -6462,11 +6565,21 @@ msgstr "Herstart test"
 msgid "Restart GUI now?"
 msgstr "Herstart Enigma2 nu?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Herstart test"
+
 msgid "Restart enigma"
 msgstr "Herstart enigma"
 
 msgid "Restart network"
 msgstr "Netwerk herstarten"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Herstart test"
@@ -6635,9 +6748,6 @@ msgstr "Satellietapparatuur instellingen"
 msgid "Satellite longitude:"
 msgstr "Lengtegraad satelliet:"
 
-msgid "Satellites"
-msgstr "Satellieten"
-
 msgid "Satfinder"
 msgstr "Signaalzoeker"
 
@@ -6770,6 +6880,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 #, fuzzy
@@ -6919,8 +7032,16 @@ msgstr "Kies invoerapparaat."
 msgid "Select interface"
 msgstr "Selecteer interface"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Maak uw keuze"
+
 msgid "Select movie"
 msgstr "Kies een film"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Kies de bron om te upgraden"
 
 msgid "Select provider to add..."
 msgstr "Selecteer provider om toe te voegen..."
@@ -6930,6 +7051,9 @@ msgstr "Selecteer herhalingsfrequentie"
 
 msgid "Select satellites"
 msgstr "Kies de satellieten"
+
+msgid "Select secondary softcam"
+msgstr ""
 
 msgid "Select service to add..."
 msgstr "Selecteer zender om toe te voegen..."
@@ -7069,6 +7193,10 @@ msgstr ""
 msgid "Services"
 msgstr "Kanalen"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "Stel pincode in"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -7093,6 +7221,9 @@ msgstr "Stel deze interface in als standaard"
 
 msgid "Set limits"
 msgstr "Zet de limieten"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -7172,6 +7303,10 @@ msgstr "Korte bestandsnamen"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Naar audioselectie"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Verberg CI meldingen"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Toon EIT nu / straks in informatiebalk"
@@ -7370,6 +7505,10 @@ msgstr "Afsluitmenu weergeven"
 msgid "Show single service EPG"
 msgstr "Toon de EPG van een enkel kanaal"
 
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Toon softcam instelling in uitbreidings menu"
+
 msgid "Show status icons in movie list"
 msgstr "Laat de statusiconen in opnamelijst zien"
 
@@ -7562,11 +7701,22 @@ msgstr "Slowmotion snelheden"
 msgid "Small progress"
 msgstr "Kleine stapjes voorwaarts"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Sociaal / politiek / economisch"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Softcamtype"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Softcamtype"
 
 msgid "Software"
 msgstr "Software"
@@ -7893,6 +8043,9 @@ msgstr "Stream"
 msgid "Stream request"
 msgstr "Stream verzoek"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -8077,13 +8230,6 @@ msgstr ""
 msgid "System"
 msgstr "Systeem"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Bericht"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -8098,6 +8244,9 @@ msgstr "TS bestand is te groot voor ISO9660 level1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TV fysiek adres overzicht"
@@ -8191,6 +8340,10 @@ msgstr "De WiFi plugin is niet geïnstalleerd. Deze plugin eerst installeren aub
 msgid "The PIN code has been changed successfully."
 msgstr "De pincode is gewijzigd."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "De pincode is gewijzigd."
+
 msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes zijn niet gelijk."
 
@@ -8248,6 +8401,9 @@ msgstr "De ingevoerde pincode is onjuist."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "De resultaten zijn bewaard op %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 #, fuzzy
 msgid "The servicelist is reloaded."
@@ -8637,6 +8793,9 @@ msgstr "Vandaag"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8935,6 +9094,9 @@ msgstr "Instellingen"
 
 msgid "Use"
 msgstr "Gebruik"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
@@ -9469,9 +9631,6 @@ msgstr "Indien geactiveerd, dan wordt de EIT nu / straks informatie in de inform
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Indien geactiveerd, dan wordt de gebruikte kaartlezer + de coderingsinfo getoond in de informatiebalk."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Indien geactiveerd, dan worden de Common Interface gerelateerde meldingen niet meer weergegeven. "
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Indien geactiveerd, dan worden fouten a.g.v. zappen niet meer weergegeven."
 
@@ -9662,6 +9821,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Zonder popup"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
 
@@ -9735,6 +9898,9 @@ msgstr "Ja, terug naar de opname lijst"
 
 msgid "Yesterday"
 msgstr "Gisteren"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -9870,13 +10036,6 @@ msgstr "Uw verzameling is groter dan wat erop een single layer medium past, u he
 
 msgid "Your current collection will get lost!"
 msgstr "Uw huidige collectie zal verloren gaan!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"De frontprocessor firmware moet vernieuwd worden.\n"
-"Druk op OK, om dit proces te starten."
 
 #, fuzzy, python-format
 msgid ""
@@ -10299,6 +10458,10 @@ msgstr "detective / thriller"
 msgid "disable"
 msgstr "deactiveren"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Picture In Picture uitschakelen"
+
 msgid "disable move mode"
 msgstr "Verplaatsmode deactiveren"
 
@@ -10352,6 +10515,10 @@ msgstr "Bouquet bewerken activeren"
 
 msgid "enable favourite edit"
 msgstr "Favorieten bewerken activeren"
+
+#, fuzzy
+msgid "enable intro screen"
+msgstr "Activeer auto fastscan"
 
 msgid "enable move mode"
 msgstr "Verplaatsmodus activeren"
@@ -10410,6 +10577,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10954,6 +11124,10 @@ msgstr "serieuse / klassieke muziek"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "serieuze / klassiek / religieus / historische film / drama"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "Verwijder kinderslot"
+
 msgid "set as startup service"
 msgstr "kanaal kiezen bij opstarten"
 
@@ -11136,10 +11310,6 @@ msgstr "geen gedefinieerd"
 msgid "unknown"
 msgstr "onbekend"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "onbekende zender"
-
 msgid "unknown service"
 msgstr "onbekende zender"
 
@@ -11161,9 +11331,6 @@ msgstr "variété / show"
 
 msgid "vertical"
 msgstr "verticaal"
-
-msgid "wait for ci..."
-msgstr "wacht op CI..."
 
 msgid "wait for mmi..."
 msgstr "wacht op mmi..."
@@ -11268,6 +11435,10 @@ msgstr "zapte"
 #~ msgid "All satellites"
 #~ msgstr "Alle satellieten"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Toegewezen zenders/providers"
+
 #~ msgid "And will shutdown your receiver over "
 #~ msgstr "En sluit uw ontvanger af na"
 
@@ -11285,6 +11456,10 @@ msgstr "zapte"
 
 #~ msgid "Blue boost"
 #~ msgstr "Blauwe impuls"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Nieuwe pincode"
 
 #~ msgid "Change pin code"
 #~ msgstr "Verander pincode"
@@ -11333,6 +11508,9 @@ msgstr "zapte"
 
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Extra informatie toevoegen aan het crashlog"
+
+#~ msgid "Current version:"
+#~ msgstr "Huidige versie:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Huidig geïnstalleerde image"
@@ -11386,11 +11564,23 @@ msgstr "zapte"
 #~ msgid "Edit services list"
 #~ msgstr "Wijzig zenderlijst"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Viasat EPG inschakelen"
+
 #~ msgid "Enable neutrino style zap controlling"
 #~ msgstr "Kies voor de 'neutrino' manier van zappen"
 
 #~ msgid "Enable parental control"
 #~ msgstr "Kinderslot inschakelen"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Bezig met update"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Upgrade url bewerken."
 
 #~ msgid "Fan %d PWM"
 #~ msgstr "Ventilator %d PWM"
@@ -11454,6 +11644,9 @@ msgstr "zapte"
 #~ msgid "New PIN"
 #~ msgstr "Nieuwe pincode"
 
+#~ msgid "New version:"
+#~ msgstr "Nieuwe versie:"
+
 #~ msgid "No details for this image file"
 #~ msgstr "Geen details voor dit bestand:"
 
@@ -11499,9 +11692,6 @@ msgstr "zapte"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Kies een NFI bestand en druk op de groene toets om het flashproces te starten!"
 
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Even geduld... (de softcam wordt gedownload)"
-
 #~ msgid "Polarisation:"
 #~ msgstr "Polarisatie:"
 
@@ -11514,9 +11704,6 @@ msgstr "zapte"
 #~ msgid "Reboot"
 #~ msgstr "Herstarten"
 
-#~ msgid "Reenter new PIN"
-#~ msgstr "Voer nieuwe pincode nogmaals in"
-
 #~ msgid "Remember these settings for each folder"
 #~ msgstr "Onthoud deze instellingen voor elke map"
 
@@ -11526,6 +11713,9 @@ msgstr "zapte"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Herstellen wordt uitgevoerd..."
+
+#~ msgid "Satellites"
+#~ msgstr "Satellieten"
 
 #~ msgid "Select Network Adapter"
 #~ msgstr "Selecteer Netwerk Adapter"
@@ -11553,9 +11743,6 @@ msgstr "zapte"
 
 #~ msgid "Show services beginning with"
 #~ msgstr "Laat zenders zien die beginnen met"
-
-#~ msgid "Show softcam setup in extensions menu"
-#~ msgstr "Toon softcam instelling in uitbreidings menu"
 
 #~ msgid "Show status icons in Movielist"
 #~ msgstr "Toon de statusiconen in de opnamelijst"
@@ -11585,9 +11772,6 @@ msgstr "zapte"
 #~ msgid "SoftCam / CI"
 #~ msgstr "Softcam / CI"
 
-#~ msgid "Softcam type"
-#~ msgstr "Softcamtype"
-
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Standby Ventilator %d PWM"
 
@@ -11602,6 +11786,10 @@ msgstr "zapte"
 
 #~ msgid "Switch to HDMI in mode"
 #~ msgstr "Schakel naar de HDMI in modus"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Bericht"
 
 #~ msgid "Temperature and fan control"
 #~ msgstr "Temperatuur- en ventilatorcontrole"
@@ -11697,6 +11885,9 @@ msgstr "zapte"
 #~ msgid "When enabled you get the channel selection list via the OK button, the infobar toggle is then transfered to the CH+/-, B+/-, P+/- buttons"
 #~ msgstr "Indien geactiveerd, dan kan met de OK toets de zenderlijst geopend worden. Met de CH +/-, B +/-, P +/- toetsen kan dan de informatiebalk getoond worden."
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Indien geactiveerd, dan worden de Common Interface gerelateerde meldingen niet meer weergegeven. "
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Indien geactiveerd, dan worden de originele CR verwijderd vanuit de teletext ondertitels."
 
@@ -11712,6 +11903,13 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "U heeft een PC nodig die met uw ontvanger verbonden is. Voor verdere instructies brengt u een bezoek aan de website http://openpli.org/wiki/HomePage.\n"
 #~ "Uw ontvanger stopt nu. Zodra u de juiste update instructies van de website gevolgd hebt zal uw nieuwe firmware u vragen of uw voormalige settings teruggeplaatst moeten worden. "
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "De frontprocessor firmware moet vernieuwd worden.\n"
+#~ "Druk op OK, om dit proces te starten."
 
 #~ msgid "Your receiver will shutdown due to inactivity."
 #~ msgstr "Uw ontvanger wordt vanwege inaktiviteit, uitgeschakeld."
@@ -11764,9 +11962,6 @@ msgstr "zapte"
 #~ msgid "service PIN"
 #~ msgstr "service pincode"
 
-#~ msgid "setup PIN"
-#~ msgstr "Stel pincode in"
-
 #~ msgid "show extended description"
 #~ msgstr "toon de uitgebreide omschrijving"
 
@@ -11778,6 +11973,13 @@ msgstr "zapte"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "tuner wordt niet ondersteund"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "onbekende zender"
+
+#~ msgid "wait for ci..."
+#~ msgstr "wacht op CI..."
 
 #~ msgid "whitelist"
 #~ msgstr "witte lijst"

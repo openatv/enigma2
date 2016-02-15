@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
-"PO-Revision-Date: 2016-01-03 13:58+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
+"PO-Revision-Date: 2016-02-15 15:18+0100\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -553,6 +553,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ": %s"
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Aktuelles Filmlisten Verzeichnis>"
 
@@ -863,9 +866,6 @@ msgstr "Alle Satelliten 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Alle Satelliten 4 (USALS)"
 
-msgid "All services provider"
-msgstr "Alle Kanäle des Providers:"
-
 msgid "Allocate"
 msgstr "Zuweisen"
 
@@ -1113,6 +1113,9 @@ msgstr "Auto-Fokusierung beginnt ..."
 msgid "Auto language selection"
 msgstr "Automatische Sprachauswahl"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Automatische Scart-Umschaltung"
 
@@ -1332,14 +1335,11 @@ msgstr "CI (Common Interface) Einstellungen"
 msgid "CI Helper"
 msgstr ""
 
-msgid "CI PIN"
-msgstr "CI PIN"
-
 msgid "CI assignment"
 msgstr "CI Zuweisung"
 
-msgid "CIHelper"
-msgstr ""
+msgid "CI slot: "
+msgstr "CI Slot: "
 
 msgid "CIHelper Setup"
 msgstr "Einstellungen CIHelper"
@@ -1926,6 +1926,9 @@ msgstr "Schnelligkeit des Hintergrund-Löschprozesses. Ein längsamerer Löschvo
 msgid "Configure the speed of the fan"
 msgstr "Lüftergeschwindigkeit konfigurieren"
 
+msgid "Configure the startup of your softcams"
+msgstr "Konfiguriere das Startverhalten der Softcams"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Verzögerung des Untertitels wenn zeitliche Informationen nicht zur Verfügung stehen."
 
@@ -2024,6 +2027,12 @@ msgstr "Angeschlossene Satelliten"
 
 msgid "Connected to"
 msgstr "Verbunden mit"
+
+msgid "Consider CI assignment"
+msgstr "Berücksichtige CI Zuweisung"
+
+msgid "Console"
+msgstr "Konsole"
 
 msgid "Constellation"
 msgstr "Konstellation"
@@ -2144,9 +2153,6 @@ msgstr "Aktueller Transponder"
 msgid "Current value: "
 msgstr "Aktueller Wert:"
 
-msgid "Current version:"
-msgstr "Derzeitige Version:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "Derzeit kann die Liste der Code-Veränderungen nicht geladen werden - Bitte versuchen Sie es später erneut."
 
@@ -2261,9 +2267,6 @@ msgstr "Tiefschlaf / Ausschalten"
 
 msgid "Default"
 msgstr "Standard"
-
-msgid "Default PIN for CI"
-msgstr "Standard PIN für CI"
 
 msgid "Default Services Scanner"
 msgstr "Standard Kanal Sucher"
@@ -2657,6 +2660,9 @@ msgstr "Wollen Sie Ihren Receiver aktualisieren?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wollen Sie das Paket aktualisieren:\n"
 
+msgid "Domain:"
+msgstr "Domäne:"
+
 msgid "Don't add this recording"
 msgstr "Diese Aufnahme nicht hinzufügen"
 
@@ -2841,9 +2847,6 @@ msgstr "Aktiviere Virgin EPG"
 msgid "Enable Wake On LAN"
 msgstr "Aktiviere Wake on LAN"
 
-msgid "Enable auto PIN"
-msgstr "Aktiviere automatische PIN"
-
 msgid "Enable auto cable scan"
 msgstr "Autom. schnellen Kabel Suchlauf aktivieren"
 
@@ -2875,6 +2878,9 @@ msgid "Enable parental protection"
 msgstr "Jugendschutz anschalten"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -2937,8 +2943,14 @@ msgstr "Enigma2 Build: %s"
 msgid "Enigma2 Version: %s"
 msgstr "Enigma2 Version: %s"
 
+msgid "Enter PIN"
+msgstr "PIN eingeben"
+
 msgid "Enter main menu..."
 msgstr "Öffne Hauptmenü..."
+
+msgid "Enter persistent PIN code"
+msgstr "Festen PIN eingeben"
 
 msgid "Enter pin code"
 msgstr "PIN-Code eingeben"
@@ -3132,22 +3144,38 @@ msgstr "Startzeit zum Ignorieren des Inaktivität-Sleeptimers"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
 msgstr ""
+
+msgid "FBC Unicable"
+msgstr ""
+
+msgid "FBC automatic loop through"
+msgstr "FBC automatisch durchgeschleift"
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+"FBC automatisch durchschleifen\n"
+"nicht aktiv"
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
+msgstr ""
+"FBC automatisch durchgeschleift\n"
+"verbunden mit %s"
 
 msgid "FEC"
 msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Aktualisiere"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Update Quell-URL bearbeiten."
 
 msgid "FTA"
 msgstr "FTA"
@@ -3376,6 +3404,9 @@ msgstr "Weitere Optionen"
 msgid "Further options"
 msgstr "Weitere Optionen"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3403,6 +3434,9 @@ msgstr ""
 
 msgid "Gateway"
 msgstr "Gateway"
+
+msgid "Gateway:"
+msgstr ""
 
 msgid "General AC3 delay"
 msgstr "Allgemeine AC3 Verzögerung"
@@ -3512,10 +3546,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Guard Intervall"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD Liste"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3577,9 +3614,6 @@ msgstr "Hilfe zur Einrichtung der Antenne"
 
 msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
-
-msgid "Hide CI messages"
-msgstr "Verberge CI Nachrichten"
 
 msgid "Hide channel list in radio mode"
 msgstr "Verberge Senderliste im Radio-Modus"
@@ -3668,6 +3702,9 @@ msgstr "Farbton"
 msgid "Hungarian"
 msgstr "Ungarisch"
 
+msgid "I"
+msgstr ""
+
 msgid "IP address"
 msgstr "IP-Adresse"
 
@@ -3738,9 +3775,8 @@ msgstr "%s einschliessen"
 msgid "Include AIT in http streams"
 msgstr "Integriere AIT in HTTP-Streams"
 
-#, fuzzy
 msgid "Include AIT in recordings"
-msgstr "Integriere AIT in HTTP-Streams"
+msgstr "Integriere AIT in Aufnahmen"
 
 msgid "Include ECM in http streams"
 msgstr "Integriere ECM in HTTP-Streams"
@@ -3889,9 +3925,8 @@ msgstr "Sofortaufnahme-Verzeichnis"
 msgid "Instant recording..."
 msgstr "Sofortaufnahme..."
 
-#, fuzzy
 msgid "Interface:\t/dev/"
-msgstr "Interface: "
+msgstr ""
 
 msgid "Interface: "
 msgstr "Interface: "
@@ -3953,6 +3988,9 @@ msgstr "Objekte pro Seite"
 
 msgid "Items per page for list screen"
 msgstr "Objekte pro Seite für Listen Modus"
+
+msgid "J"
+msgstr ""
 
 msgid "Job overview"
 msgstr "Jobansicht"
@@ -4319,6 +4357,12 @@ msgstr "Mindestalter %d Jahre"
 msgid "Minimum send interval"
 msgstr "Sendeintervall Mininum"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Fehlend"
 
@@ -4552,6 +4596,9 @@ msgstr "DNS-Einstellungen"
 msgid "Namespace"
 msgstr "Namensraum"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Netzmaske"
 
@@ -4618,9 +4665,6 @@ msgstr "Neu"
 
 msgid "New Packages"
 msgstr "Neue Pakete"
-
-msgid "New version:"
-msgstr "Neue Version:"
 
 msgid "News Current Affairs"
 msgstr "Nachrichten/Aktuelles Tagesgeschehen"
@@ -5355,6 +5399,27 @@ msgstr "Einstellungen für Tuner C."
 msgid "Please set up tuner D"
 msgstr "Einstellungen für Tuner D."
 
+msgid "Please set up tuner E"
+msgstr "Einstellungen für Tuner E."
+
+msgid "Please set up tuner F"
+msgstr "Einstellungen für Tuner F."
+
+msgid "Please set up tuner G"
+msgstr "Einstellungen für Tuner G."
+
+msgid "Please set up tuner H"
+msgstr "Einstellungen für Tuner H."
+
+msgid "Please set up tuner I"
+msgstr "Einstellungen für Tuner I."
+
+msgid "Please set up tuner J"
+msgstr "Einstellungen für Tuner J."
+
+msgid "Please set up tuner K"
+msgstr "Einstellungen für Tuner K."
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5396,6 +5461,15 @@ msgstr "Bitte warten Sie, das Netzwerk wird überprüft."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Bitte warten Sie, das Netzwerk wird neu gestartet."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr "Bitte warten, starte primäre und sekundäre Softcam."
+
+msgid "Please wait, restarting primary softcam."
+msgstr "Bitte warten, starte primäre Softcam."
+
+msgid "Please wait, restarting secondary softcam."
+msgstr "Bitte warten, starte sekundäre Softcam."
 
 msgid "Please wait..."
 msgstr "Bitte warten..."
@@ -5562,6 +5636,9 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Press OK to select a provider."
 msgstr "Drücken Sie OK um einen Provider auszuwählen."
 
+msgid "Press OK to select a service."
+msgstr "Drücken Sie OK um einen Kanal auszuwählen."
+
 msgid "Press OK to select satellites"
 msgstr "Drücke OK zur Auswahl der Satelliten"
 
@@ -5689,9 +5766,8 @@ msgstr "Python frontend für /tmp/mmi.socket"
 msgid "Python version: "
 msgstr "Python Version: "
 
-#, fuzzy
 msgid "Question"
-msgstr "Auflösung"
+msgstr "Frage"
 
 msgid "Quick"
 msgstr "Schnell"
@@ -5795,11 +5871,11 @@ msgstr "Zurück zum letzten Service"
 msgid "Reception Settings"
 msgstr "Empfangseinstellungen"
 
-msgid "Reception settings"
-msgstr "Empfangseinstellungen"
-
 msgid "Reception lists"
 msgstr "Empfangslisten"
+
+msgid "Reception settings"
+msgstr "Empfangseinstellungen"
 
 msgid "Record"
 msgstr "Aufnahme"
@@ -5849,6 +5925,9 @@ msgstr "Rote Taste..."
 
 msgid "Red colored"
 msgstr "Rot gefärbte"
+
+msgid "Reenter PIN"
+msgstr ""
 
 msgid "Reflash recommended!"
 msgstr "Neuflash empfohlen!"
@@ -5998,6 +6077,9 @@ msgstr "Zurücksetzen"
 msgid "Reset and renumerate title names"
 msgstr "Titelnamen zurücksetzen und neu nummerieren"
 
+msgid "Reset persistent PIN code"
+msgstr "Festen PIN zurücksetzen"
+
 msgid "Reset playback position"
 msgstr "Wiedergabeposition zurücksetzen"
 
@@ -6020,11 +6102,20 @@ msgstr "%s %s neustarten"
 msgid "Restart GUI now?"
 msgstr "Benutzeroberfläche jetzt neu starten?"
 
+msgid "Restart both"
+msgstr "Beide neustarten"
+
 msgid "Restart enigma"
 msgstr "Benutzeroberfläche neu starten"
 
 msgid "Restart network"
 msgstr "Netzwerk neu starten"
+
+msgid "Restart primary softcam"
+msgstr "Primäre Softcam neustarten"
+
+msgid "Restart secondary softcam"
+msgstr "Sekundäre Softcam neustarten"
 
 msgid "Restart test"
 msgstr "Test wiederholen"
@@ -6184,9 +6275,6 @@ msgstr "Satellitenausrüstungseinstellungen"
 msgid "Satellite longitude:"
 msgstr "Satelliten Längengrad:"
 
-msgid "Satellites"
-msgstr "Satelliten"
-
 msgid "Satfinder"
 msgstr "Signal suchen"
 
@@ -6312,6 +6400,9 @@ msgstr "Geplantes laden der epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Geplantes speichern der epg.dat"
+
+msgid "Screenshot of LCD in /tmp"
+msgstr ""
 
 msgid "Scroll delay"
 msgstr ""
@@ -6453,8 +6544,14 @@ msgstr "Eingabegerät auswählen."
 msgid "Select interface"
 msgstr "Netzwerkkarte auswählen"
 
+msgid "Select location"
+msgstr "Ort wählen"
+
 msgid "Select movie"
 msgstr "Filmauswahl"
+
+msgid "Select primary softcam"
+msgstr "Wähle primäre Softcam"
 
 msgid "Select provider to add..."
 msgstr "Wählen Sie einen Provider zum Hinzufügen"
@@ -6464,6 +6561,9 @@ msgstr "Wählen Sie eine Bildwiederholfrequenz"
 
 msgid "Select satellites"
 msgstr "Wähle Satelliten"
+
+msgid "Select secondary softcam"
+msgstr "Wähle sekundäre Softcam"
 
 msgid "Select service to add..."
 msgstr "Wählen Sie einen Kanal zum Hinzufügen"
@@ -6595,6 +6695,9 @@ msgstr ""
 msgid "Services"
 msgstr "Kanäle"
 
+msgid "Set PIN"
+msgstr "PIN setzen"
+
 msgid "Set all hotkey to default?"
 msgstr "Alle Tastenbelegungen auf Voreinstellungen zurücksetzen?"
 
@@ -6618,6 +6721,9 @@ msgstr "Netzwerkadapter als Standard festlegen"
 
 msgid "Set limits"
 msgstr "Limits setzen"
+
+msgid "Set pin code persistent"
+msgstr "Festen PIN setzen"
 
 msgid "Set startup service"
 msgstr "Anschalt-Kanal setzen"
@@ -6688,6 +6794,9 @@ msgstr "Kurze Dateinamen"
 msgid "Show Audioselection"
 msgstr "Zeige Ton-Auswahl"
 
+msgid "Show CI messages"
+msgstr "Zeige CI Nachrichten"
+
 msgid "Show EIT now/next in infobar"
 msgstr "Zeige EIT Now/Next in Infoleiste"
 
@@ -6701,13 +6810,13 @@ msgid "Show Games show"
 msgstr "Zeige Spielsendungen"
 
 msgid "Show InfoBar"
-msgstr ""
+msgstr "Zeige Infobar"
 
 msgid "Show Log"
 msgstr "Log zeigen"
 
 msgid "Show PIP"
-msgstr ""
+msgstr "Zeige PIP"
 
 msgid "Show SNR percentage instead of dB value"
 msgstr "Zeige SNR Prozentsatz anstelle von dB-Wert"
@@ -6719,7 +6828,7 @@ msgid "Show WLAN status"
 msgstr "Zeige WLAN-Status"
 
 msgid "Show Weather Widget"
-msgstr ""
+msgstr "Zeige Wetter Widget"
 
 msgid "Show animation while busy"
 msgstr "Zeige Animation bei Beschäftigung"
@@ -6782,7 +6891,7 @@ msgid "Show favourites list"
 msgstr ""
 
 msgid "Show help"
-msgstr ""
+msgstr "Zeige Hilfe"
 
 msgid "Show icon for new/unseen items"
 msgstr "Zeige Symbol für neue/ungesehene Einträge"
@@ -6867,6 +6976,9 @@ msgstr "Ausschaltmenü anzeigen"
 
 msgid "Show single service EPG"
 msgstr "Zeige Einzel-Kanal-EPG"
+
+msgid "Show softcam startup in extensions menu"
+msgstr "Softcam Startup in Erweiterungsmenü anzeigen"
 
 msgid "Show status icons in movie list"
 msgstr "Zeige Status-Symbole in der Filmliste"
@@ -7046,11 +7158,20 @@ msgstr "Zeitlupen-Geschwindigkeiten"
 msgid "Small progress"
 msgstr "Geringer Fortschritt"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Soziales/Politik/Wirtschaft"
+
+msgid "Softcam startup"
+msgstr ""
+
+msgid "Softcam startup..."
+msgstr ""
 
 msgid "Software"
 msgstr "Software"
@@ -7362,6 +7483,9 @@ msgstr "Stream"
 msgid "Stream request"
 msgstr "Stream Anfrage"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -7536,12 +7660,6 @@ msgstr ""
 msgid "System"
 msgstr "System"
 
-msgid "System Message"
-msgstr "System Nachricht"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "ÜBERSETZER INFO"
@@ -7551,6 +7669,9 @@ msgstr "TS-Datei ist zu groß für ISO9660 level 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TV physikalischer Adressenverkündung"
@@ -7637,6 +7758,9 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "Der PIN-Code wurde erfolgreich geändert."
 
+msgid "The PIN code has been saved successfully."
+msgstr "Der PIN-Code wurde erfolgreich gespeichert."
+
 msgid "The PIN codes you entered are different."
 msgstr "Die eingegebenen PIN-Codes sind unterschiedlich."
 
@@ -7692,6 +7816,9 @@ msgstr "Der eingegebene PIN-Code ist falsch"
 #, python-format
 msgid "The results have been written to %s"
 msgstr "Die Ergebnisse wurden in der Datei %s gespeichert."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "Listen neu geladen!"
@@ -8080,6 +8207,9 @@ msgstr "Heute"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8360,6 +8490,9 @@ msgstr ""
 
 msgid "Use"
 msgstr "Benutzen"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
@@ -8874,9 +9007,6 @@ msgstr "EIT jetzt/danach Sendungsdaten in Infoleiste anzeigen. Bei Deaktivierung
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Verschlüsselungsinformationen in der Infoleiste anzeigen, wenn vom Skin unterstützt."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Fehlermeldungen des allgemeinen Schnittstellen Modules (CI) werden nicht angezeigt."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Zapping-Fehler nicht anzeigen."
 
@@ -9043,6 +9173,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "ohne Popup"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
 
@@ -9114,6 +9248,9 @@ msgstr "Ja, zurück zur Filmauswahl"
 
 msgid "Yesterday"
 msgstr "Gestern"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9241,13 +9378,6 @@ msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums,
 
 msgid "Your current collection will get lost!"
 msgstr "Ihre aktuelle Zusammenstellung geht dabei verloren!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
-"Drücken Sie OK, um das Upgrade zu starten."
 
 #, python-format
 msgid ""
@@ -9661,6 +9791,9 @@ msgstr "Krimi/Thriller"
 msgid "disable"
 msgstr "Deaktivieren"
 
+msgid "disable intro screen"
+msgstr "deaktiviere Intro Anzeige"
+
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
@@ -9714,6 +9847,9 @@ msgstr "Bouquet Bearbeitung anschalten"
 
 msgid "enable favourite edit"
 msgstr "Favoriteneditor anschalten"
+
+msgid "enable intro screen"
+msgstr "aktiviere Intro Anzeige"
 
 msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
@@ -9770,6 +9906,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10303,6 +10442,9 @@ msgstr "Ernste Musik/Klassische Musik"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "Ernst/Klassisch/Religiös/Historischer Film/Drama"
 
+msgid "service is in bouquet parental protection"
+msgstr "Sender ist in Bouquet mit Jugendschutz"
+
 msgid "set as startup service"
 msgstr "Als Anschalt-Kanal setzen"
 
@@ -10477,9 +10619,6 @@ msgstr "Nicht bekannt"
 msgid "unknown"
 msgstr "Unbekannt"
 
-msgid "unknown error"
-msgstr "unbekannter Fehler"
-
 msgid "unknown service"
 msgstr "Unbekannter Kanal"
 
@@ -10500,9 +10639,6 @@ msgstr "Abwechslungsreiche Sendung"
 
 msgid "vertical"
 msgstr "Vertikal"
-
-msgid "wait for ci..."
-msgstr "Warte auf CI..."
 
 msgid "wait for mmi..."
 msgstr "Warte auf mmi..."
@@ -10594,11 +10730,56 @@ msgstr "umgeschaltet"
 #~ msgid "Add more details to the crash log"
 #~ msgstr "Erzeuge detailierteren Fehlerbericht"
 
+#~ msgid "All services provider"
+#~ msgstr "Alle Kanäle des Providers:"
+
 #~ msgid "Conflicting timer"
 #~ msgstr "In Konflikt stehender Timer"
+
+#~ msgid "Current version:"
+#~ msgstr "Derzeitige Version:"
+
+#~ msgid "Default PIN for CI"
+#~ msgstr "Standard PIN für CI"
+
+#~ msgid "Enable auto PIN"
+#~ msgstr "Aktiviere automatische PIN"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Aktualisiere"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Update Quell-URL bearbeiten."
+
+#~ msgid "New version:"
+#~ msgstr "Neue Version:"
 
 #~ msgid "Polarisation:"
 #~ msgstr "Polarisation:"
 
+#~ msgid "Satellites"
+#~ msgstr "Satelliten"
+
+#~ msgid "System Message"
+#~ msgstr "System Nachricht"
+
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Fehlermeldungen des allgemeinen Schnittstellen Modules (CI) werden nicht angezeigt."
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
+#~ "Drücken Sie OK, um das Upgrade zu starten."
+
 #~ msgid "open device manager"
 #~ msgstr "Datenträger Verwaltung öffnen"
+
+#~ msgid "unknown error"
+#~ msgstr "unbekannter Fehler"
+
+#~ msgid "wait for ci..."
+#~ msgstr "Warte auf CI..."

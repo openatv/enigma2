@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2010-03-09 21:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -533,6 +533,9 @@ msgstr ""
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr ""
 
@@ -858,10 +861,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Incarca durata filmelor in lista cu filme"
-
 msgid "Allocate"
 msgstr ""
 
@@ -1135,6 +1134,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr ""
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Auto scart switching"
 
@@ -1371,14 +1373,12 @@ msgstr "Common Interface"
 msgid "CI Helper"
 msgstr ""
 
-msgid "CI PIN"
-msgstr ""
-
 msgid "CI assignment"
 msgstr "Asignarea CI"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "niciun slot CI gasit"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1981,6 +1981,10 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Mod configurare"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
@@ -2082,6 +2086,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Conectat la"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "Asignarea CI"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Constelatie"
@@ -2208,9 +2219,6 @@ msgstr "Transponderul curent"
 msgid "Current value: "
 msgstr ""
 
-msgid "Current version:"
-msgstr "Versiunea curenta:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
 
@@ -2336,9 +2344,6 @@ msgid "Deep standby"
 msgstr "Oprire completa"
 
 msgid "Default"
-msgstr ""
-
-msgid "Default PIN for CI"
 msgstr ""
 
 #, fuzzy
@@ -2755,6 +2760,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "Doriti actualizarea pachetului:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "aceasta inregistrare"
@@ -2946,9 +2954,6 @@ msgstr ""
 msgid "Enable Wake On LAN"
 msgstr ""
 
-msgid "Enable auto PIN"
-msgstr ""
-
 #, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Activeaza controlul parental"
@@ -2984,6 +2989,9 @@ msgid "Enable parental protection"
 msgstr "adauga la protectie parentala"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3050,8 +3058,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Canal"
+
 msgid "Enter main menu..."
 msgstr "Intrati in meniul principal..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Va rugam introduceti codul pin corect"
 
 msgid "Enter pin code"
 msgstr ""
@@ -3266,7 +3282,28 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3274,14 +3311,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Upgradare"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Alege sursa de actualizare"
 
 msgid "FTA"
 msgstr ""
@@ -3516,6 +3545,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3537,6 +3569,10 @@ msgid ""
 msgstr "Interfata grafica necesita repornirea pentru aplicarea noilor decoratiuniDoriti repornirea interfetei grafice acum?"
 
 msgid "Gateway"
+msgstr "Gateway"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Gateway"
 
 #, fuzzy
@@ -3657,10 +3693,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr ""
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3727,9 +3766,6 @@ msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Hidden network"
-msgstr ""
-
-msgid "Hide CI messages"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -3825,6 +3861,10 @@ msgstr ""
 
 msgid "Hungarian"
 msgstr "Maghiara"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 #, fuzzy
 msgid "IP address"
@@ -4130,6 +4170,9 @@ msgid "Items per page "
 msgstr ""
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 #, fuzzy
@@ -4530,6 +4573,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr ""
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -4775,6 +4824,9 @@ msgstr "Configurare nume server"
 msgid "Namespace"
 msgstr ""
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -4849,9 +4901,6 @@ msgstr "Nou"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Versiune noua:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -5626,6 +5675,34 @@ msgstr "Va rugam configurati tuner-ul C"
 msgid "Please set up tuner D"
 msgstr "Va rugam configurati tuner-ul D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Va rugam configurati tuner-ul B"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Va rugam configurati tuner-ul B"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Va rugam configurati tuner-ul B"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Va rugam configurati tuner-ul B"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Va rugam configurati tuner-ul B"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Va rugam configurati tuner-ul B"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Va rugam configurati tuner-ul B"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5670,6 +5747,17 @@ msgstr ""
 
 msgid "Please wait while your network is restarting..."
 msgstr "Va rugam asteptati pana cand reteaua se va restarta..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Va rugam asteptati... Se incarca lista..."
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Va rugam asteptati... Se incarca lista..."
 
 msgid "Please wait..."
 msgstr "Va rugam asteptati..."
@@ -5839,6 +5927,10 @@ msgstr "Apasati OK pentru scanare"
 
 #, fuzzy
 msgid "Press OK to select a provider."
+msgstr "Apasati OK pentru scanare"
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Apasati OK pentru scanare"
 
 msgid "Press OK to select satellites"
@@ -6097,6 +6189,10 @@ msgid "Reception Settings"
 msgstr "Setari receptie"
 
 #, fuzzy
+msgid "Reception lists"
+msgstr "Setari receptie"
+
+#, fuzzy
 msgid "Reception settings"
 msgstr "Setari receptie"
 
@@ -6153,6 +6249,9 @@ msgstr ""
 #, fuzzy
 msgid "Red colored"
 msgstr "textcolor"
+
+msgid "Reenter PIN"
+msgstr ""
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6310,6 +6409,10 @@ msgstr "Resetare"
 msgid "Reset and renumerate title names"
 msgstr "Resetare si renumarare nume titluri"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Va rugam introduceti codul pin corect"
+
 msgid "Reset playback position"
 msgstr ""
 
@@ -6332,11 +6435,21 @@ msgstr "Test restart"
 msgid "Restart GUI now?"
 msgstr "Restart GUI acum?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Test restart"
+
 msgid "Restart enigma"
 msgstr ""
 
 msgid "Restart network"
 msgstr "Restart retea"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Test restart"
@@ -6506,9 +6619,6 @@ msgstr "Configurare Echipament Satelit"
 msgid "Satellite longitude:"
 msgstr ""
 
-msgid "Satellites"
-msgstr "Sateliti"
-
 msgid "Satfinder"
 msgstr "Satfinder"
 
@@ -6644,6 +6754,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -6805,8 +6918,16 @@ msgid "Select interface"
 msgstr ""
 
 #, fuzzy
+msgid "Select location"
+msgstr "Alege locatia copiei de siguranta"
+
+#, fuzzy
 msgid "Select movie"
 msgstr "Alegeti un film"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Alege sursa de actualizare"
 
 msgid "Select provider to add..."
 msgstr "Alegeti furnizor pentru a fi adaugat..."
@@ -6815,6 +6936,9 @@ msgid "Select refresh rate"
 msgstr "Selectati rata de reimprospatare"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -6960,6 +7084,9 @@ msgstr ""
 msgid "Services"
 msgstr "Servicii"
 
+msgid "Set PIN"
+msgstr ""
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -6984,6 +7111,9 @@ msgid "Set interface as default Interface"
 msgstr "Setare interfata ca interfata implicita"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set pin code persistent"
 msgstr ""
 
 #, fuzzy
@@ -7062,6 +7192,9 @@ msgstr ""
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Selectare subtitrare"
+
+msgid "Show CI messages"
+msgstr ""
 
 msgid "Show EIT now/next in infobar"
 msgstr ""
@@ -7271,6 +7404,9 @@ msgstr "arata meniul de shutdown"
 msgid "Show single service EPG"
 msgstr ""
 
+msgid "Show softcam startup in extensions menu"
+msgstr ""
+
 msgid "Show status icons in movie list"
 msgstr ""
 
@@ -7470,11 +7606,22 @@ msgstr "Viteza imagine cu incetinitorul"
 msgid "Small progress"
 msgstr "In curs de desfasurare"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Software"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Software"
 
 msgid "Software"
 msgstr "Software"
@@ -7808,6 +7955,9 @@ msgstr ""
 msgid "Stream request"
 msgstr ""
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -8004,13 +8154,6 @@ msgstr ""
 msgid "System"
 msgstr "Sistem"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Mesaj"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "TRANSLATOR_INFO"
@@ -8019,6 +8162,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Fisierul TS este prea mare pentru standardul ISO9660 nivelul 1!"
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNER:"
 msgstr ""
 
 msgid "TV physical address report"
@@ -8111,6 +8257,9 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr ""
 
+msgid "The PIN code has been saved successfully."
+msgstr ""
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -8169,6 +8318,9 @@ msgstr "Codul pin introdus este gresit."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Rezultatele au fost scrise in %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8561,6 +8713,9 @@ msgstr "Astazi"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8858,6 +9013,9 @@ msgstr "Configurare"
 
 msgid "Use"
 msgstr "Foloseste"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Foloseste DHCP"
@@ -9395,9 +9553,6 @@ msgstr ""
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr ""
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr ""
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr ""
 
@@ -9564,6 +9719,10 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Inregistrare esusta. Disk plin?\n"
 
@@ -9635,6 +9794,9 @@ msgid "Yes, returning to movie list"
 msgstr "Da, rintoarcere la lista filme"
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
 msgstr ""
 
 #, python-format
@@ -9762,13 +9924,6 @@ msgstr "Colectia ta excede marimea unui sigle layer medium, vei avea nevoie de u
 
 msgid "Your current collection will get lost!"
 msgstr ""
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Firmware-ul de la procesor trebuie upgradat.\n"
-"Apasa OK pentru a incepe."
 
 #, python-format
 msgid ""
@@ -10170,6 +10325,10 @@ msgstr ""
 msgid "disable"
 msgstr "dezactiveaza"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Dezactiveaza PiP (Imagine in Imagine)"
+
 msgid "disable move mode"
 msgstr "dezactiveaza mod mutare"
 
@@ -10223,6 +10382,9 @@ msgstr "activeaza editare bouquet"
 
 msgid "enable favourite edit"
 msgstr "activeaza editare favorite"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "activeaza mod mutare"
@@ -10281,6 +10443,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10827,6 +10992,10 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "elimina din protectie parentala"
+
 msgid "set as startup service"
 msgstr ""
 
@@ -11009,10 +11178,6 @@ msgstr ""
 msgid "unknown"
 msgstr "necunoscut"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "serviciu necunoscut"
-
 msgid "unknown service"
 msgstr "serviciu necunoscut"
 
@@ -11034,9 +11199,6 @@ msgstr ""
 
 msgid "vertical"
 msgstr "vertical"
-
-msgid "wait for ci..."
-msgstr "asteapta ci..."
 
 msgid "wait for mmi..."
 msgstr "asteapta mmi..."
@@ -11127,6 +11289,10 @@ msgstr "zapped"
 #~ msgid "All satellites"
 #~ msgstr "Toti Sateliti"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Incarca durata filmelor in lista cu filme"
+
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -11148,6 +11314,9 @@ msgstr "zapped"
 
 #~ msgid "Conflicting timer"
 #~ msgstr "Programare aflata in conflict"
+
+#~ msgid "Current version:"
+#~ msgstr "Versiunea curenta:"
 
 #, fuzzy
 #~ msgid "Delete..."
@@ -11173,6 +11342,14 @@ msgstr "zapped"
 #~ msgstr "Activeaza controlul parental"
 
 #, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Upgradare"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Alege sursa de actualizare"
+
+#, fuzzy
 #~ msgid "Fan %d voltage"
 #~ msgstr "Voltaj marit"
 
@@ -11186,6 +11363,9 @@ msgstr "zapped"
 
 #~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
 #~ msgstr "Flashing complet pentru imaginea NFI. Apasati butonul galben pentru reboot!"
+
+#~ msgid "New version:"
+#~ msgstr "Versiune noua:"
 
 #~ msgid "No details for this image file"
 #~ msgstr "Nu exista detalii despre acest fisier imagine"
@@ -11214,16 +11394,15 @@ msgstr "zapped"
 #~ msgid "Please check your network settings!"
 #~ msgstr "Va rugam verificati setarile de retea!"
 
-#, fuzzy
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Va rugam asteptati... Se incarca lista..."
-
 #~ msgid "Reboot"
 #~ msgstr "Repornire sistem"
 
 #, fuzzy
 #~ msgid "Restart STB"
 #~ msgstr "Restart"
+
+#~ msgid "Satellites"
+#~ msgstr "Sateliti"
 
 #, fuzzy
 #~ msgid "Service searching"
@@ -11243,8 +11422,8 @@ msgstr "zapped"
 #~ msgstr "Transponder individual"
 
 #, fuzzy
-#~ msgid "Softcam type"
-#~ msgstr "Software"
+#~ msgid "System Message"
+#~ msgstr "Mesaj"
 
 #, fuzzy
 #~ msgid "Temperature and fan control"
@@ -11284,6 +11463,13 @@ msgstr "zapped"
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "Ai ales sa creezi un usb stick .NFI flasher bootabil. Acesta va repartitiona stickul usb asadar datele de pe el vor fi sterse."
 
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Firmware-ul de la procesor trebuie upgradat.\n"
+#~ "Apasa OK pentru a incepe."
+
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "Treci inapoi la serviciul inainte de satfinder?"
 
@@ -11298,6 +11484,13 @@ msgstr "zapped"
 
 #~ msgid "select movie"
 #~ msgstr "selecteaza film"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "serviciu necunoscut"
+
+#~ msgid "wait for ci..."
+#~ msgstr "asteapta ci..."
 
 #~ msgid "whitelist"
 #~ msgstr "lista alba"

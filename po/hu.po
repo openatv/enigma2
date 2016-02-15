@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -563,6 +563,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Fájllista aktuális tárhelye>"
 
@@ -881,10 +884,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "hozzárendelt szolgáltató:"
-
 msgid "Allocate"
 msgstr "Hozzárendelés"
 
@@ -1148,6 +1147,9 @@ msgstr "Autofókusz kezdődik..."
 msgid "Auto language selection"
 msgstr "Automatikus nyelvválasztás"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Automatikus SCART átkapcsolás"
 
@@ -1382,15 +1384,12 @@ msgstr "CI modulfogadó"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Új PIN"
-
 msgid "CI assignment"
 msgstr "CI hozzárendelés"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "nincs található CI foglalat"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1983,6 +1982,10 @@ msgstr "A törléshez szükséges sebesség korlátozása. Alacsonyabb törlési
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Az antenna telepítés helyének földrajzi szélessége."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "A felirat késleltetése, ha nincs benne időzítési információ."
 
@@ -2084,6 +2087,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Csatlakoztatva ehhez: "
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI hozzárendelés"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Együttállás"
@@ -2207,9 +2217,6 @@ msgstr "Aktuális transzponder"
 msgid "Current value: "
 msgstr "Aktuális érték:"
 
-msgid "Current version:"
-msgstr "Aktuális verzió:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
 
@@ -2328,9 +2335,6 @@ msgstr "Mély-készenlét"
 
 msgid "Default"
 msgstr "Alapértelmezett"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2742,6 +2746,9 @@ msgstr "Szeretné frissíteni a készülék szoftverét?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Biztos benne, hogy frissíteni szeretné ezt a csomagot:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "ez a felvétel"
@@ -2934,10 +2941,6 @@ msgid "Enable Wake On LAN"
 msgstr ""
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "ViaSat EPG engedélyezése"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Gyermekzár engedélyezése"
 
@@ -2971,6 +2974,9 @@ msgid "Enable parental protection"
 msgstr "hozzáadás a gyermekzár védelemhez"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3035,8 +3041,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Új PIN-kód mégegyszer"
+
 msgid "Enter main menu..."
 msgstr "Belépés a főmenübe..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "PIN-Kód:"
 
 msgid "Enter pin code"
 msgstr "PIN-Kód:"
@@ -3246,7 +3260,28 @@ msgstr "Inaktivitás figyelmen kívül hagyása ettől:"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable fej"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3254,14 +3289,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Frissítés"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "A frissítési forrás URL-jének szerkesztése."
 
 msgid "FTA"
 msgstr "FTA"
@@ -3497,6 +3524,9 @@ msgstr ""
 msgid "Further options"
 msgstr "továbboktatás"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3523,6 +3553,10 @@ msgstr ""
 "Megtörténhet ez most azonnal?"
 
 msgid "Gateway"
+msgstr "Átjáró IP címe"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Átjáró IP címe"
 
 msgid "General AC3 delay"
@@ -3635,10 +3669,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Védelmi intervallum"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD csatornák"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3705,9 +3742,6 @@ msgstr "Segítség az antenna beállításhoz"
 
 msgid "Hidden network"
 msgstr "Rejtett hálózat"
-
-msgid "Hide CI messages"
-msgstr "CI-üzenetek elrejtése"
 
 msgid "Hide channel list in radio mode"
 msgstr "A csatornalista elrejtése rádió módban"
@@ -3801,6 +3835,10 @@ msgstr "Színárnyalat"
 
 msgid "Hungarian"
 msgstr "Magyar"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 msgid "IP address"
 msgstr "IP cím"
@@ -4100,6 +4138,9 @@ msgstr "elem oldalanként"
 
 msgid "Items per page for list screen"
 msgstr "Elemek oldalanként Listanézetben"
+
+msgid "J"
+msgstr ""
 
 msgid "Job overview"
 msgstr "Folyamat nézet"
@@ -4479,6 +4520,12 @@ msgstr "Minimális korhatár %d év"
 msgid "Minimum send interval"
 msgstr "Minimális ismétlési időköz"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Hiányzó"
 
@@ -4722,6 +4769,9 @@ msgstr "Névszerver beállítások"
 msgid "Namespace"
 msgstr "Névköz"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Alhál. maszk"
 
@@ -4793,9 +4843,6 @@ msgstr "Új"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Új verzió:"
 
 msgid "News Current Affairs"
 msgstr "Hírek/Gazdaság"
@@ -5567,6 +5614,34 @@ msgstr "Állítsa be a C tunert"
 msgid "Please set up tuner D"
 msgstr "Állítsa be a D tunert"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Állítsa be a B tunert"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Állítsa be a B tunert"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Állítsa be a B tunert"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Állítsa be a B tunert"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Állítsa be a B tunert"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Állítsa be a B tunert"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Állítsa be a B tunert"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5609,6 +5684,17 @@ msgstr "Kérem, várjon, ameddig a hálózati teszt lezajlik..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Kérem, várjon, ameddig a hálózati konfiguráció újraindul..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Kérem, várjon... Lista betöltése..."
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Kérem, várjon... Lista betöltése..."
 
 msgid "Please wait..."
 msgstr "Kérem, várjon"
@@ -5780,6 +5866,10 @@ msgid "Press OK to scan"
 msgstr "Az OK gombbal indíthatja a keresést"
 
 msgid "Press OK to select a provider."
+msgstr "Nyomja le az OK gombot egy szolgáltató kiválasztásához."
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Nyomja le az OK gombot egy szolgáltató kiválasztásához."
 
 msgid "Press OK to select satellites"
@@ -6036,6 +6126,10 @@ msgstr "Visszatérés az előző csatornához"
 msgid "Reception Settings"
 msgstr "Vételi beállítások"
 
+#, fuzzy
+msgid "Reception lists"
+msgstr "Vételi beállítások"
+
 msgid "Reception settings"
 msgstr "Vételi beállítások"
 
@@ -6092,6 +6186,10 @@ msgstr "Piros gomb..."
 #, fuzzy
 msgid "Red colored"
 msgstr "szöveg színe"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Új PIN-kód mégegyszer"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6245,6 +6343,10 @@ msgstr "Visszaállítás"
 msgid "Reset and renumerate title names"
 msgstr "A tételek újraszámozása"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Régi PIN kód"
+
 msgid "Reset playback position"
 msgstr "Lejátszási pozíció nullázása"
 
@@ -6267,11 +6369,21 @@ msgstr "Teszt újraindítása"
 msgid "Restart GUI now?"
 msgstr "Indítsam újra most a kezelő felületet?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Teszt újraindítása"
+
 msgid "Restart enigma"
 msgstr "A kezelő felület újraindítása"
 
 msgid "Restart network"
 msgstr "Hálózat újraindítása"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Teszt újraindítása"
@@ -6438,9 +6550,6 @@ msgstr "Műholdvevö eszköz beállítása"
 msgid "Satellite longitude:"
 msgstr "Műhold pozíció:"
 
-msgid "Satellites"
-msgstr "Műholdak"
-
 msgid "Satfinder"
 msgstr "Műholdkereső"
 
@@ -6573,6 +6682,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 #, fuzzy
@@ -6722,8 +6834,16 @@ msgstr "Válasszon beviteli eszközt."
 msgid "Select interface"
 msgstr "Interfész kiválasztása"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Válasszon mentés-helyet"
+
 msgid "Select movie"
 msgstr "Felvétel kiválasztása"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Válasszon szerkesztendő frissítési forrást"
 
 msgid "Select provider to add..."
 msgstr "Válasszon hozzáadandó szolgáltatót..."
@@ -6732,6 +6852,9 @@ msgid "Select refresh rate"
 msgstr "Válassza ki a frissítési arányt"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -6872,6 +6995,10 @@ msgstr ""
 msgid "Services"
 msgstr "Csatornák"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "PIN-kód beállítása"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -6896,6 +7023,9 @@ msgstr "Jelölje meg mint alapértelmezett interfészt"
 
 msgid "Set limits"
 msgstr "Limitek beállítása"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -6970,6 +7100,10 @@ msgstr "Rövid fájlnevek"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Hangcsatorna kiválasztása"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "CI-üzenetek elrejtése"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Most/Következik információ EIT-ből származzon"
@@ -7169,6 +7303,10 @@ msgstr "kikapcsolási menü"
 msgid "Show single service EPG"
 msgstr "Egy csatorna EPG-jének megjelenítése"
 
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Megjelenítés a bővítmények menüjében"
+
 msgid "Show status icons in movie list"
 msgstr "Állapot-jelző ikonok megjelenítése a felvétel-listában"
 
@@ -7361,11 +7499,22 @@ msgstr "Lassítási sebességek"
 msgid "Small progress"
 msgstr "Folyamatban"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Szociális/Politika/Gazdaság"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Szoftver"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Szoftver"
 
 msgid "Software"
 msgstr "Szoftver"
@@ -7692,6 +7841,9 @@ msgstr "Adatfolyam"
 msgid "Stream request"
 msgstr "Adatfolyam kérés"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -7876,13 +8028,6 @@ msgstr ""
 msgid "System"
 msgstr "Rendszer"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Üzenet"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -7896,6 +8041,9 @@ msgstr "A TS fájl túl nagy az 'ISO9660 level 1' szabvány szerint!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TV fizikai port-cím"
@@ -7990,6 +8138,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "A PIN-kódot sikeresen megváltoztatta."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "A PIN-kódot sikeresen megváltoztatta."
+
 msgid "The PIN codes you entered are different."
 msgstr "A megadott PIN-kódok eltérnek egymástól."
 
@@ -8049,6 +8201,9 @@ msgstr "A megadott PIN kód helytelen."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Az eredmények ide lettek kiírva: %s"
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8439,6 +8594,9 @@ msgstr "Ma"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8735,6 +8893,9 @@ msgstr "Beállítások"
 
 msgid "Use"
 msgstr "Használ"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "DHCP használata"
@@ -9267,9 +9428,6 @@ msgstr "Az információs sávba közvetlenül az EIT-jelfolyamból származzon a
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "A kódolási információ jelenjen-e meg vagy sem az információs sávban (amennyiben a skin támogatja)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "A CI-modullal kapcsolatos hibaüzenetek ne jelenjenek meg a képernyőn."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "A csatornaváltással kapcsolatos hibaüzenetek ne jelenjenek meg a képernyőn."
 
@@ -9436,6 +9594,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Figyelmeztetés nélkül"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Felvétel közben írási hiba történt. Megtelt a lemez?\n"
 
@@ -9509,6 +9671,9 @@ msgstr "Igen, térjen vissza a felvételek listájához"
 
 msgid "Yesterday"
 msgstr "Tegnap"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -9644,13 +9809,6 @@ msgstr "A gyüjteményének mérete meghaladja egy sima rétegű DVD kapacitás�
 
 msgid "Your current collection will get lost!"
 msgstr "Az aktuális kapcsolata meg fog szűnni!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Az előlapi processzor firmware-jét frissíteni kell.\n"
-"Az OK gombbal indíthatja a frissítést."
 
 #, fuzzy, python-format
 msgid ""
@@ -10074,6 +10232,10 @@ msgstr "dekektív/thriller"
 msgid "disable"
 msgstr "letiltás"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Kép-a-Képben kikapcsolása"
+
 msgid "disable move mode"
 msgstr "mozgatási mód letiltása"
 
@@ -10127,6 +10289,9 @@ msgstr "bouquet módosítás engedélyezése"
 
 msgid "enable favourite edit"
 msgstr "kedvencek módosításának engedélyezése"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "mozgatási mód engedélyezése"
@@ -10185,6 +10350,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10731,6 +10899,10 @@ msgstr "komolyzene"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "komolyzene/klasszikus/vallási/történelmi/dráma"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "eltávolítás a gyermekzár védelem alól"
+
 msgid "set as startup service"
 msgstr "beállítás indítási csatornának"
 
@@ -10913,10 +11085,6 @@ msgstr "nincs meghatározva"
 msgid "unknown"
 msgstr "ismeretlen"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "ismeretlen csatorna"
-
 msgid "unknown service"
 msgstr "ismeretlen csatorna"
 
@@ -10938,9 +11106,6 @@ msgstr "varieté"
 
 msgid "vertical"
 msgstr "vertikális"
-
-msgid "wait for ci..."
-msgstr "várakozás modulra..."
 
 msgid "wait for mmi..."
 msgstr "várakozás mmi-re..."
@@ -11045,6 +11210,10 @@ msgstr "ugrott"
 #~ msgid "All satellites"
 #~ msgstr "Összes műhold"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "hozzárendelt szolgáltató:"
+
 #~ msgid "And will shutdown your receiver over "
 #~ msgstr "Kikapcsolás:"
 
@@ -11059,6 +11228,10 @@ msgstr "ugrott"
 
 #~ msgid "Blue boost"
 #~ msgstr "Kék erősítés"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Új PIN"
 
 #~ msgid "Change pin code"
 #~ msgstr "PIN kód megváltoztatása"
@@ -11101,6 +11274,9 @@ msgstr "ugrott"
 
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Részletesebb hibanapló generálása"
+
+#~ msgid "Current version:"
+#~ msgstr "Aktuális verzió:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "A telepített image"
@@ -11151,8 +11327,20 @@ msgstr "ugrott"
 #~ msgid "Edit services list"
 #~ msgstr "Csatornalista szerkesztése"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "ViaSat EPG engedélyezése"
+
 #~ msgid "Enable parental control"
 #~ msgstr "Gyermekzár engedélyezése"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Frissítés"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "A frissítési forrás URL-jének szerkesztése."
 
 #~ msgid "Fan %d PWM"
 #~ msgstr "%d. Ventilátor PWM"
@@ -11210,6 +11398,9 @@ msgstr "ugrott"
 #~ msgid "New PIN"
 #~ msgstr "Új PIN"
 
+#~ msgid "New version:"
+#~ msgstr "Új verzió:"
+
 #~ msgid "No details for this image file"
 #~ msgstr "Ehhez az image fájlhoz nincs leírás"
 
@@ -11261,9 +11452,6 @@ msgstr "ugrott"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Kérem, válasszon egy NFI fájlt, majd nyomja meg a Zöld gombot a flash-eléshez!"
 
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Kérem, várjon... Lista betöltése..."
-
 #~ msgid "Polarisation:"
 #~ msgstr "Polarizáció:"
 
@@ -11276,9 +11464,6 @@ msgstr "ugrott"
 #~ msgid "Reboot"
 #~ msgstr "Újraindítás"
 
-#~ msgid "Reenter new PIN"
-#~ msgstr "Új PIN-kód mégegyszer"
-
 #~ msgid "Remember these settings for each folder"
 #~ msgstr "Beállítások megtartása minden mappára"
 
@@ -11288,6 +11473,9 @@ msgstr "ugrott"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Visszaállítás folyamatban..."
+
+#~ msgid "Satellites"
+#~ msgstr "Műholdak"
 
 #~ msgid "Select an image to be downloaded"
 #~ msgstr "Válasszon egy letöltendő image-t"
@@ -11335,14 +11523,15 @@ msgstr "ugrott"
 #~ msgid "SoftCam / CI"
 #~ msgstr "SoftCam/CI"
 
-#~ msgid "Softcam type"
-#~ msgstr "Szoftver"
-
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "%d. Vent. készenlét PWM"
 
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "%d. Vent. készenlét feszültség"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Üzenet"
 
 #~ msgid "Temperature and fan control"
 #~ msgstr "Hőmérséklet és ventilátor beállításai"
@@ -11422,6 +11611,9 @@ msgstr "ugrott"
 #~ msgid "Welcome…"
 #~ msgstr "Üdvözlöm..."
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "A CI-modullal kapcsolatos hibaüzenetek ne jelenjenek meg a képernyőn."
+
 #~ msgid "When enabled, numbered markers will be hiden."
 #~ msgstr "A csatornalistában esetleg lévő, sorszámozott elválasztó elemek elrejtése."
 
@@ -11433,6 +11625,13 @@ msgstr "ugrott"
 
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "Azt választotta hogy létrehoz egy új .NFI flasher bootolható USB sticket. Ez az USB sticket újra fogja partícionálni, ezért az azon található összes adat el fog veszni."
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Az előlapi processzor firmware-jét frissíteni kell.\n"
+#~ "Az OK gombbal indíthatja a frissítést."
 
 #~ msgid "Your receiver will shutdown due to inactivity."
 #~ msgstr "A készülék most kikapcsol inaktivitás miatt."
@@ -11470,9 +11669,6 @@ msgstr "ugrott"
 #~ msgid "service PIN"
 #~ msgstr "szerviz-PIN"
 
-#~ msgid "setup PIN"
-#~ msgstr "PIN-kód beállítása"
-
 #~ msgid "show extended description"
 #~ msgstr "részletes leírás megjelenítése"
 
@@ -11484,6 +11680,13 @@ msgstr "ugrott"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "nem támogatott tuner"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "ismeretlen csatorna"
+
+#~ msgid "wait for ci..."
+#~ msgstr "várakozás modulra..."
 
 #~ msgid "whitelist"
 #~ msgstr "engedélyezett lista"

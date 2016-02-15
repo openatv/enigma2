@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -613,6 +613,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 #
 msgid "<Current movielist location>"
 msgstr "<Trenutna lokacija liste filmova>"
@@ -1005,11 +1008,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "All services provider"
-msgstr "Dodeljeni kanali/Provajder:"
-
 msgid "Allocate"
 msgstr ""
 
@@ -1321,6 +1319,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr ""
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 #
 msgid "Auto scart switching"
 msgstr "Automatsko uključenje skarta"
@@ -1602,16 +1603,14 @@ msgstr "Opšti interfejs"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Novi PIN"
-
 #
 msgid "CI assignment"
 msgstr "CI dodela"
 
-msgid "CIHelper"
-msgstr ""
+#
+#, fuzzy
+msgid "CI slot: "
+msgstr "CI otvor nije nađen"
 
 #
 #, fuzzy
@@ -2290,6 +2289,11 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Mod konfiguracije"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
@@ -2403,6 +2407,14 @@ msgstr ""
 #
 msgid "Connected to"
 msgstr "Povezan sa"
+
+#
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI dodela"
+
+msgid "Console"
+msgstr ""
 
 #
 msgid "Constellation"
@@ -2549,10 +2561,6 @@ msgstr "Trenutni transponder"
 #
 msgid "Current value: "
 msgstr "Trenutna vrednost:"
-
-#
-msgid "Current version:"
-msgstr "Trenutna verzija:"
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
@@ -2703,9 +2711,6 @@ msgstr "Isključi Drimbox"
 
 msgid "Default"
 msgstr "Standardno"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #
 #, fuzzy
@@ -3187,6 +3192,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "Da li želite da nadogradite paket:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Don't add this recording"
@@ -3409,9 +3417,6 @@ msgstr ""
 msgid "Enable Wake On LAN"
 msgstr ""
 
-msgid "Enable auto PIN"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Enable auto cable scan"
@@ -3452,6 +3457,9 @@ msgid "Enable parental protection"
 msgstr "dodaj u roditeljsku zaštitu"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3528,9 +3536,18 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Ponovo unesi novi PIN"
+
 #
 msgid "Enter main menu..."
 msgstr "Uđi u glavni meni"
+
+#
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Unesi PIN kod"
 
 #
 msgid "Enter pin code"
@@ -3786,7 +3803,29 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unikabl LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 #
@@ -3795,16 +3834,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Nadograđujem"
-
-#
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Uredi url izvora nadogradnje."
 
 msgid "FTA"
 msgstr ""
@@ -4072,6 +4101,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -4100,6 +4132,11 @@ msgstr ""
 
 #
 msgid "Gateway"
+msgstr "Mrežni čvor"
+
+#
+#, fuzzy
+msgid "Gateway:"
 msgstr "Mrežni čvor"
 
 #
@@ -4237,10 +4274,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Zaštitni interval"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -4314,9 +4354,6 @@ msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Hidden network"
-msgstr ""
-
-msgid "Hide CI messages"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -4426,6 +4463,11 @@ msgstr "Nijansa"
 #
 msgid "Hungarian"
 msgstr "Mađarski"
+
+#
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 #
 #, fuzzy
@@ -4792,6 +4834,9 @@ msgid "Items per page "
 msgstr ""
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 #
@@ -5273,6 +5318,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr "Zaštitni interval"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -5556,6 +5607,9 @@ msgstr "Postavke nejmservera"
 msgid "Namespace"
 msgstr "Prostor za ime"
 
+msgid "NetSpeed:"
+msgstr ""
+
 #
 msgid "Netmask"
 msgstr "Mrežna maska"
@@ -5648,10 +5702,6 @@ msgstr "Novo"
 
 msgid "New Packages"
 msgstr ""
-
-#
-msgid "New version:"
-msgstr "Nova verzija:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -6572,6 +6622,41 @@ msgid "Please set up tuner D"
 msgstr "Molim podesite tuner D"
 
 #
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Molim podesite tuner B"
+
+#
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Molim podesite tuner B"
+
+#
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Molim podesite tuner B"
+
+#
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Molim podesite tuner B"
+
+#
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Molim podesite tuner B"
+
+#
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Molim podesite tuner B"
+
+#
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Molim podesite tuner B"
+
+#
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6626,6 +6711,19 @@ msgstr "Molim sačekajte dok testiramo vašu mrežu..."
 #
 msgid "Please wait while your network is restarting..."
 msgstr "Molim sačekajte dok se vaša mreža ponovo startuje"
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Molim pričekajte... Učitavam listu..."
+
+#
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Molim pričekajte... Učitavam listu..."
 
 #
 msgid "Please wait..."
@@ -6825,6 +6923,11 @@ msgstr "Pritisnite OK za skeniranje"
 #
 #, fuzzy
 msgid "Press OK to select a provider."
+msgstr "Pritisnite OK da izaberete provajdera."
+
+#
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Pritisnite OK da izaberete provajdera."
 
 msgid "Press OK to select satellites"
@@ -7138,6 +7241,11 @@ msgstr "Postavke prijema"
 
 #
 #, fuzzy
+msgid "Reception lists"
+msgstr "Postavke prijema"
+
+#
+#, fuzzy
 msgid "Reception settings"
 msgstr "Postavke prijema"
 
@@ -7205,6 +7313,10 @@ msgstr ""
 #, fuzzy
 msgid "Red colored"
 msgstr "Boja teksta"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Ponovo unesi novi PIN"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -7392,6 +7504,10 @@ msgstr "Resetujte"
 msgid "Reset and renumerate title names"
 msgstr "Resetujte i prebrojte imena naslova"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Molim unesite stari PIN kod"
+
 msgid "Reset playback position"
 msgstr ""
 
@@ -7420,12 +7536,23 @@ msgstr "Ponovite test"
 msgid "Restart GUI now?"
 msgstr "Restart GUI sada?"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Ponovite test"
+
 msgid "Restart enigma"
 msgstr ""
 
 #
 msgid "Restart network"
 msgstr "Restartujte mrežu"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 #
 msgid "Restart test"
@@ -7628,10 +7755,6 @@ msgid "Satellite longitude:"
 msgstr ""
 
 #
-msgid "Satellites"
-msgstr "Sateliti"
-
-#
 msgid "Satfinder"
 msgstr "Sat tražitelj"
 
@@ -7790,6 +7913,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -7982,8 +8108,18 @@ msgstr "Izaberite interfejs "
 
 #
 #, fuzzy
+msgid "Select location"
+msgstr "Izaberite snimljenu lokaciju"
+
+#
+#, fuzzy
 msgid "Select movie"
 msgstr "Odaberi film"
+
+#
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Izaberi izvor nadodradnje za uređivanje."
 
 #
 msgid "Select provider to add..."
@@ -7994,6 +8130,9 @@ msgid "Select refresh rate"
 msgstr "Izaberi vreme osvežavanja"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 #
@@ -8172,6 +8311,10 @@ msgstr ""
 msgid "Services"
 msgstr "Kanali"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "podesi PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -8199,6 +8342,9 @@ msgid "Set interface as default Interface"
 msgstr "Postavi interfejs kao osnovni interfejs"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set pin code persistent"
 msgstr ""
 
 #
@@ -8290,6 +8436,9 @@ msgstr "Kratka imena datoteka"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Izbor subtitlova"
+
+msgid "Show CI messages"
+msgstr ""
 
 msgid "Show EIT now/next in infobar"
 msgstr ""
@@ -8534,6 +8683,9 @@ msgstr "prikaži meni isključivanja"
 msgid "Show single service EPG"
 msgstr ""
 
+msgid "Show softcam startup in extensions menu"
+msgstr ""
+
 msgid "Show status icons in movie list"
 msgstr ""
 
@@ -8773,11 +8925,24 @@ msgstr "Brzine usporene reprodukcije"
 msgid "Small progress"
 msgstr "U toku"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Softver"
+
+#
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Softver"
 
 #
 msgid "Software"
@@ -9161,6 +9326,9 @@ msgstr ""
 msgid "Stream request"
 msgstr ""
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -9389,14 +9557,6 @@ msgid "System"
 msgstr "Sistem "
 
 #
-#, fuzzy
-msgid "System Message"
-msgstr "Poruka"
-
-msgid "System Message Check"
-msgstr ""
-
-#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "PREVODILAC_INFO"
@@ -9407,6 +9567,9 @@ msgstr "TS datoteka je prevelika za ISO9660 nivo 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr ""
@@ -9515,6 +9678,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN kod je uspešno promenjen."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN kod je uspešno promenjen."
+
 msgid "The PIN codes you entered are different."
 msgstr "PIN kodovi koji ste uneli su različiti. "
 
@@ -9584,6 +9751,9 @@ msgstr "Uneti pin kod je pogrešan."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Rezultati su zapisani u %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -10033,6 +10203,9 @@ msgstr "Danas"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -10387,6 +10560,9 @@ msgstr "Podešavanje"
 #
 msgid "Use"
 msgstr "Koristi"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -10998,9 +11174,6 @@ msgstr ""
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr ""
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr ""
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr ""
 
@@ -11174,6 +11347,10 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 #
 msgid "Write error while recording. Disk full?\n"
 msgstr "Greška tokom snimanja. Disk Pun?\n"
@@ -11260,6 +11437,9 @@ msgid "Yes, returning to movie list"
 msgstr "Da,vratiti se na listu filmova"
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
 msgstr ""
 
 #, python-format
@@ -11398,14 +11578,6 @@ msgstr "Vaša kolekcija prelazi veličinu jednoslojnog medija,trebate prazan dvo
 #
 msgid "Your current collection will get lost!"
 msgstr "Vaša aktuelna kolekcija će biti izgubljena!"
-
-#
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Vaš softver frontprocesora mora biti nadograđen.\n"
-"Pritisnite OK za početak nadogradnje."
 
 #, python-format
 msgid ""
@@ -11879,6 +12051,11 @@ msgid "disable"
 msgstr "onemogući"
 
 #
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Isključi Sliku u Slici"
+
+#
 msgid "disable move mode"
 msgstr "onemoguće mod premeštanja"
 
@@ -11941,6 +12118,9 @@ msgstr "omogući uređivanje paketa"
 #
 msgid "enable favourite edit"
 msgstr "omogući uređivanje favorita"
+
+msgid "enable intro screen"
+msgstr ""
 
 #
 msgid "enable move mode"
@@ -12008,6 +12188,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 #
@@ -12655,6 +12838,11 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "obriši iz roditeljske zaštite"
+
 msgid "set as startup service"
 msgstr ""
 
@@ -12869,11 +13057,6 @@ msgid "unknown"
 msgstr "Nepoznato"
 
 #
-#, fuzzy
-msgid "unknown error"
-msgstr "Nepoznat kanal"
-
-#
 msgid "unknown service"
 msgstr "Nepoznat kanal"
 
@@ -12899,10 +13082,6 @@ msgstr ""
 #
 msgid "vertical"
 msgstr "vertikalno"
-
-#
-msgid "wait for ci..."
-msgstr "čekaj ci..."
 
 #
 msgid "wait for mmi..."
@@ -13015,6 +13194,11 @@ msgstr "prebačen"
 #~ msgstr "Svi sateliti"
 
 #
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Dodeljeni kanali/Provajder:"
+
+#
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -13029,6 +13213,10 @@ msgstr "prebačen"
 #
 #~ msgid "Blue boost"
 #~ msgstr "Plavo pojačanje"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Novi PIN"
 
 #
 #~ msgid "Change pin code"
@@ -13059,6 +13247,10 @@ msgstr "prebačen"
 #
 #~ msgid "Connected!"
 #~ msgstr "Povezano!"
+
+#
+#~ msgid "Current version:"
+#~ msgstr "Trenutna verzija:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Aktuelno instalirani imidž"
@@ -13113,6 +13305,16 @@ msgstr "prebačen"
 #~ msgstr "Uključi roditeljsku zaštitu"
 
 #
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Nadograđujem"
+
+#
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Uredi url izvora nadogradnje."
+
+#
 #~ msgid "Fan %d PWM"
 #~ msgstr "Ventil. %d PWM"
 
@@ -13159,6 +13361,10 @@ msgstr "prebačen"
 #~ msgstr "Novi PIN"
 
 #
+#~ msgid "New version:"
+#~ msgstr "Nova verzija:"
+
+#
 #~ msgid "No details for this image file"
 #~ msgstr "Nema detalja za ovu imidž datoteku"
 
@@ -13201,20 +13407,12 @@ msgstr "prebačen"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Molim izaberite NFI datoteku i pritisnite zeleno dugme da flešujete!"
 
-#
-#, fuzzy
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Molim pričekajte... Učitavam listu..."
-
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Pripremi drugi USB stik za flešovanje imidža"
 
 #
 #~ msgid "Reboot"
 #~ msgstr "Podići"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Ponovo unesi novi PIN"
 
 #
 #, fuzzy
@@ -13224,6 +13422,10 @@ msgstr "prebačen"
 #
 #~ msgid "Restore is running..."
 #~ msgstr "Vraćanje u toku..."
+
+#
+#~ msgid "Satellites"
+#~ msgstr "Sateliti"
 
 #, fuzzy
 #~ msgid "Select an image to be downloaded"
@@ -13260,11 +13462,6 @@ msgstr "prebačen"
 
 #
 #, fuzzy
-#~ msgid "Softcam type"
-#~ msgstr "Softver"
-
-#
-#, fuzzy
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Ventilator spreman %d PWM"
 
@@ -13272,6 +13469,11 @@ msgstr "prebačen"
 #, fuzzy
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "Ventilator spreman %d Voltage"
+
+#
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Poruka"
 
 #
 #, fuzzy
@@ -13341,6 +13543,14 @@ msgstr "prebačen"
 #~ msgstr "Izabrali ste da kreirate novi .NFI flešer butabilni USB stik.Ovo će ponovo particirati USB stik i svi podaci će biti izbrisani.i "
 
 #
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Vaš softver frontprocesora mora biti nadograđen.\n"
+#~ "Pritisnite OK za početak nadogradnje."
+
+#
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "Prebaciti natrag na kanal pre sat. tražitelja?"
 
@@ -13366,15 +13576,21 @@ msgstr "prebačen"
 #~ msgid "service PIN"
 #~ msgstr "PIN kanala"
 
-#~ msgid "setup PIN"
-#~ msgstr "podesi PIN"
-
 #
 #~ msgid "special characters"
 #~ msgstr "posebni karakteri"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "tjuner nije podržan"
+
+#
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "Nepoznat kanal"
+
+#
+#~ msgid "wait for ci..."
+#~ msgstr "čekaj ci..."
 
 #
 #~ msgid "whitelist"

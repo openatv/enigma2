@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -557,6 +557,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ": %s"
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Τρέχουσα τοποθεσία καταλόγου ταινιών>"
 
@@ -867,10 +870,6 @@ msgstr "Όλοι οι δορυφόροι 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Όλοι οι δορυφόροι 4 (USALS)"
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Ορισμένες υπηρεσίες/πάροχοι:"
-
 msgid "Allocate"
 msgstr "Κατανομή"
 
@@ -1131,6 +1130,9 @@ msgstr "Έναρξη αυτόματης εστίασης..."
 msgid "Auto language selection"
 msgstr "Αυτόματη επιλογή γλώσσας"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Αυτόματη αλλαγή scart"
 
@@ -1365,15 +1367,12 @@ msgstr "Κοινή Διεπαφή"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Νέο PIN"
-
 msgid "CI assignment"
 msgstr "Ορισμός CI"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "δεν βρέθηκαν κοινές διεπαφές (CI)"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1966,6 +1965,10 @@ msgstr "Ρύθμιση της ταχύτητας της διαδικασίας �
 msgid "Configure the speed of the fan"
 msgstr "Ρύθμιση της ταχύτητας του ανεμιστήρα"
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Ρύθμιση του γεωγραφικού πλάτους της τοποθεσίας σας."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Ρύθμιση της καθυστέρησης των υποτίτλων, όταν η πληροφορία χρονισμού δεν είναι διαθέσιμη."
 
@@ -2067,6 +2070,13 @@ msgstr "Συνδεδεμένοι δορυφόροι"
 
 msgid "Connected to"
 msgstr "Συνδέθηκε με"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "Ορισμός CI"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Αστερισμός"
@@ -2190,9 +2200,6 @@ msgstr "Tρέχων αναμεταδότης"
 msgid "Current value: "
 msgstr "Τρέχουσα τιμή: "
 
-msgid "Current version:"
-msgstr "Τρέχουσα έκδοση:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "Αυτή τη στιγμή είναι αδύνατη η ανάκτηση του καταγραφολογίου - δοκιμάστε αργότερα"
 
@@ -2311,9 +2318,6 @@ msgstr "Βαθιά αναμονή"
 
 msgid "Default"
 msgstr "Προεπιλογή"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2726,6 +2730,9 @@ msgstr "Θέλετε να ενημερώσετε το δέκτη σας;"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Θέλετε να αναβαθμίσετε το πακέτο:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "αυτή η εγγραφή"
@@ -2920,10 +2927,6 @@ msgid "Enable Wake On LAN"
 msgstr "Ενεργοποίηση Αφύπνισης Σε LAN"
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "Ενεργοποίηση ViaSat EPG"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
 
@@ -2957,6 +2960,9 @@ msgid "Enable parental protection"
 msgstr "προσθήκη στο γονικό έλεγχο"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3022,8 +3028,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Εισαγωγή PIN ξανά"
+
 msgid "Enter main menu..."
 msgstr "Είσοδος στο κύριο μενού..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Εισαγωγή κωδικού pin"
 
 msgid "Enter pin code"
 msgstr "Εισαγωγή κωδικού pin"
@@ -3234,7 +3248,28 @@ msgstr "Έναρξη χρόνου αγνόησης της αδράνειας τ�
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3242,14 +3277,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Εκτελείται αναβάθμιση"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Επιλέξτε πηγή αναβάθμισης για επεξεργασία"
 
 msgid "FTA"
 msgstr "FTA"
@@ -3485,6 +3512,9 @@ msgstr "Περαιτέρω Επιλογές"
 msgid "Further options"
 msgstr "Περαιτέρω Επιλογές"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3507,6 +3537,10 @@ msgid ""
 msgstr "Πρέπει να γίνει  επανεκκίνηση του enigma2 για να ενεργοποιηθεί το νέο θέμα. Να γίνει τώρα;"
 
 msgid "Gateway"
+msgstr "Πύλη δικτύου"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Πύλη δικτύου"
 
 msgid "General AC3 delay"
@@ -3619,10 +3653,14 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Διάστημα φύλαξης"
 
+#, fuzzy
+msgid "H"
+msgstr "Κ. "
+
 msgid "HD list"
 msgstr "Λίστα HD"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3691,9 +3729,6 @@ msgstr "Βοήθός ρύθμισης του κατόπτρου σας"
 
 msgid "Hidden network"
 msgstr "Κρυφό δίκτυο"
-
-msgid "Hide CI messages"
-msgstr "Απόκρυψη μηνυμάτων CI"
 
 msgid "Hide channel list in radio mode"
 msgstr "Απόκρυψη της λίστα καναλιών σε λειτουργία ραδιοφώνου"
@@ -3787,6 +3822,10 @@ msgstr "Απόχρωση"
 
 msgid "Hungarian"
 msgstr "Ουγγρικά"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 msgid "IP address"
 msgstr "Διεύθυνση IP"
@@ -4086,6 +4125,9 @@ msgstr "Αντικείμενα ανά σελίδα "
 
 msgid "Items per page for list screen"
 msgstr "Αντικείμενα ανά σελίδα για λίστα οθόνης"
+
+msgid "J"
+msgstr ""
 
 msgid "Job overview"
 msgstr "Επισκόπηση εργασιών"
@@ -4466,6 +4508,12 @@ msgstr "Ελάχιστη ηλικία %d"
 msgid "Minimum send interval"
 msgstr "Ελάχιστο διάστημα αποστολής"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Λείπει "
 
@@ -4709,6 +4757,9 @@ msgstr "Ρύθμιση Nameserver"
 msgid "Namespace"
 msgstr "Χώρος ονόματος"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Μάσκα δικτύου"
 
@@ -4780,9 +4831,6 @@ msgstr "Νέο"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Νέα έκδοση:"
 
 msgid "News Current Affairs"
 msgstr "Ειδήσεις & Επικαιρότητα"
@@ -5557,6 +5605,34 @@ msgstr "Παρακαλώ ρυθμίστε το tuner C"
 msgid "Please set up tuner D"
 msgstr "Παρακαλώ ρυθμίστε το tuner D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Παρακαλώ ρυθμίστε το tuner A"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5599,6 +5675,17 @@ msgstr "Παρακαλώ περιμένετε, έλεγχος δικτύου..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Παρακαλώ περιμένετε, επανεκκίνηση δικτύου..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Παρακαλώ περιμένετε (λήψη softcam)"
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Παρακαλώ περιμένετε (λήψη softcam)"
 
 msgid "Please wait..."
 msgstr "Παρακαλώ περιμένετε..."
@@ -5773,6 +5860,10 @@ msgid "Press OK to scan"
 msgstr "Πιέστε OK για ανίχνευση"
 
 msgid "Press OK to select a provider."
+msgstr "Πιέστε ΟΚ για επιλογή παρόχου"
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Πιέστε ΟΚ για επιλογή παρόχου"
 
 msgid "Press OK to select satellites"
@@ -6029,6 +6120,10 @@ msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
 msgid "Reception Settings"
 msgstr "Ρυθμίσεις λήψης"
 
+#, fuzzy
+msgid "Reception lists"
+msgstr "Ρυθμίσεις λήψης"
+
 msgid "Reception settings"
 msgstr "Ρυθμίσεις λήψης"
 
@@ -6085,6 +6180,10 @@ msgstr "Κόκκινο κουμπί..."
 #, fuzzy
 msgid "Red colored"
 msgstr "Χρώμα κειμένου"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Εισαγωγή PIN ξανά"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6238,6 +6337,10 @@ msgstr "Μηδενισμός"
 msgid "Reset and renumerate title names"
 msgstr "Μηδενισμός και επαναρίθμηση των τίτλων"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Εισάγετε το παλιό PIN"
+
 msgid "Reset playback position"
 msgstr "Επαναφορά σημείου αναπαραγωγής"
 
@@ -6260,11 +6363,21 @@ msgstr "Eπανεκκίνηση ελέγχου"
 msgid "Restart GUI now?"
 msgstr "Επανεκκίνηση του enigma2 τώρα;"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Eπανεκκίνηση ελέγχου"
+
 msgid "Restart enigma"
 msgstr "Επανεκκίνηση enigma"
 
 msgid "Restart network"
 msgstr "Eπανεκκίνηση δικτύου"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Eπανεκκίνηση ελέγχου"
@@ -6431,9 +6544,6 @@ msgstr "Ρύθμιση δορυφορικού εξοπλισμού"
 msgid "Satellite longitude:"
 msgstr "Γεωγραφικό μήκος δορυφόρου:"
 
-msgid "Satellites"
-msgstr "Δορυφόροι"
-
 msgid "Satfinder"
 msgstr "Έλεγχος σήματος (Satfinder)"
 
@@ -6566,6 +6676,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 #, fuzzy
@@ -6715,8 +6828,16 @@ msgstr "Επιλογή συσκευής εισόδου."
 msgid "Select interface"
 msgstr "Επιλογή διεπαφής"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Επιλογή ενέργειας"
+
 msgid "Select movie"
 msgstr "Επιλογή ταινίας"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Επιλογή πηγής αναβαθμίσεων"
 
 msgid "Select provider to add..."
 msgstr "Επιλογή παρόχου για προσθήκη..."
@@ -6726,6 +6847,9 @@ msgstr "Επιλογή ρυθμού ανανέωσης"
 
 msgid "Select satellites"
 msgstr "Επιλογή δορυφόρων"
+
+msgid "Select secondary softcam"
+msgstr ""
 
 msgid "Select service to add..."
 msgstr "Επιλογή υπηρεσίας για προσθήκη..."
@@ -6865,6 +6989,10 @@ msgstr ""
 msgid "Services"
 msgstr "Υπηρεσίες"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "ρύθμιση PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -6889,6 +7017,9 @@ msgstr "Ορισμός διεπαφής ως προεπιλεγμένης"
 
 msgid "Set limits"
 msgstr "Καθορισμός ορίων"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -6963,6 +7094,10 @@ msgstr "Σύντομα ονόματα"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Στην επιλογή ήχου"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Απόκρυψη μηνυμάτων CI"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Εμφάνιση ΕΙΤ τρέχον/επόμενο στη μπάρα πληροφοριών"
@@ -7162,6 +7297,10 @@ msgstr "Εμφάνιση μενού τερματισμού"
 msgid "Show single service EPG"
 msgstr "Εμφάνιση EPG μίας μόνο υπηρεσίας"
 
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Εμφάνιση στο μενού επεκτάσεων"
+
 msgid "Show status icons in movie list"
 msgstr "Εμφάνιση εικονιδίων κατάστασης στη λίστα ταινιών"
 
@@ -7354,11 +7493,22 @@ msgstr "Ταχύτητες αργής κίνησης"
 msgid "Small progress"
 msgstr "Μικρή πρόοδος"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Κοινωνία/Πολιτική/Οικονομία"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Τύπος softcam"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Τύπος softcam"
 
 msgid "Software"
 msgstr "Λογισμικό"
@@ -7685,6 +7835,9 @@ msgstr "Ροή"
 msgid "Stream request"
 msgstr "Αίτηση ροής"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -7869,13 +8022,6 @@ msgstr ""
 msgid "System"
 msgstr "Σύστημα"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Μήνυμα"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "SatDreamGR"
@@ -7885,6 +8031,9 @@ msgstr "Το αρχείο TS είναι πολύ μεγάλο για το ISO966
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "Φυσική διεύθυνση τηλεόρασης"
@@ -7980,6 +8129,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "Το PIN άλλαξε με επιτυχία."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "Το PIN άλλαξε με επιτυχία."
+
 msgid "The PIN codes you entered are different."
 msgstr "Τα PIN που εισάγατε είναι διαφορετικά."
 
@@ -8039,6 +8192,9 @@ msgstr "Το pin που εισάγατε είναι λάθος."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Τα αποτελέσματα γράφτηκαν στο %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8427,6 +8583,9 @@ msgstr "Σήμερα"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8723,6 +8882,9 @@ msgstr "Εγκατάσταση"
 
 msgid "Use"
 msgstr "Χρήση"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Χρήση DHCP"
@@ -9255,9 +9417,6 @@ msgstr "Όταν είναι ενεργό, οι πληροφορίες ΕΙΤ τ�
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Όταν είναι ενεργό, οι πληροφορίες κρυπτογράφησης θα εμφανίζονται στην μπάρα πληροφοριών (όταν υποστηρίζεται από το θέμα)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Όταν είναι ενεργό, δεν θα εμφανίζονται τα μηνύματα σφάλματος από την Κοινή Διεπαφή."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Όταν είναι ενεργό, δεν θα εμφανίζονται τα μηνύματα σφάλματος κατά το ζάπινγκ."
 
@@ -9424,6 +9583,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Χωρίς αναδυόμενο παράθυρο"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Σφάλμα κατά την εγγραφή. Δίσκος γεμάτος;\n"
 
@@ -9497,6 +9660,9 @@ msgstr "Ναι, επιστροφή στη λίστα ταινιών"
 
 msgid "Yesterday"
 msgstr "Χθες"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -9632,13 +9798,6 @@ msgstr "Η συλλογή σας υπερβαίνει το μέγεθος ενό
 
 msgid "Your current collection will get lost!"
 msgstr "Η τρέχουσα συλλογή σας θα χαθεί!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Το λογισμικό του frontprocessor πρέπει να αναβαθμιστεί\n"
-"Πιέστε ΟΚ για την αναβάθμιση."
 
 #, fuzzy, python-format
 msgid ""
@@ -10059,6 +10218,10 @@ msgstr "αστυνομικά/θρίλερ"
 msgid "disable"
 msgstr "απενεργοποίηση"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Απενεργοποίηση Εικόνας σε Εικόνα"
+
 msgid "disable move mode"
 msgstr "απενεργοποίηση κατάστασης μεταφοράς"
 
@@ -10112,6 +10275,10 @@ msgstr "ενεργοποίηση επεξεργασίας μπουκέτων"
 
 msgid "enable favourite edit"
 msgstr "ενεργοποίηση επεξεργασίας αγαπημένων"
+
+#, fuzzy
+msgid "enable intro screen"
+msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
 
 msgid "enable move mode"
 msgstr "ενεργοποίηση κατάστασης μεταφοράς"
@@ -10170,6 +10337,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10714,6 +10884,10 @@ msgstr "σοβαρή μουσική/κλασική μουσική"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "σοβαρή/κλασική/θρησκευτική/ιστορική ταινία/δράμα"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "διαγραφή από γονικό έλεγχο"
+
 msgid "set as startup service"
 msgstr "ορισμός ως υπηρεσία εκκίνησης"
 
@@ -10896,10 +11070,6 @@ msgstr "απροσδιόριστο"
 msgid "unknown"
 msgstr "άγνωστο"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "άγνωστη υπηρεσία"
-
 msgid "unknown service"
 msgstr "άγνωστη υπηρεσία"
 
@@ -10921,9 +11091,6 @@ msgstr "βαριετέ"
 
 msgid "vertical"
 msgstr "κάθετη"
-
-msgid "wait for ci..."
-msgstr "αναμονή γα κοινή διεπαφή (ci)..."
 
 msgid "wait for mmi..."
 msgstr "αναμονή για mmi..."
@@ -11028,6 +11195,10 @@ msgstr "έγινε μετάβαση"
 #~ msgid "All satellites"
 #~ msgstr "Όλοι οι δορυφόροι"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Ορισμένες υπηρεσίες/πάροχοι:"
+
 #~ msgid "And will shutdown your receiver over "
 #~ msgstr "Και θα κλείσει το δέκτη σας μετά από "
 
@@ -11042,6 +11213,10 @@ msgstr "έγινε μετάβαση"
 
 #~ msgid "Blue boost"
 #~ msgstr "Ενίσχυση του μπλε"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Νέο PIN"
 
 #~ msgid "Change pin code"
 #~ msgstr "Αλλαγή κωδικού pin:"
@@ -11087,6 +11262,9 @@ msgstr "έγινε μετάβαση"
 
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Δημιουργία λεπτομερέστερου καταγραφολογίου"
+
+#~ msgid "Current version:"
+#~ msgstr "Τρέχουσα έκδοση:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Τρέχον εγκατεστημένο λογισμικό"
@@ -11146,11 +11324,23 @@ msgstr "έγινε μετάβαση"
 #~ msgid "Edit services list"
 #~ msgstr "Επεξεργασία λίστας υπηρεσιών"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Ενεργοποίηση ViaSat EPG"
+
 #~ msgid "Enable neutrino style zap controlling"
 #~ msgstr "Ενεργοποίηση στυλ ελέγχου ζάπινγκ neutrino"
 
 #~ msgid "Enable parental control"
 #~ msgstr "Ενεργοποίηση γονικού έλεγχου"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Εκτελείται αναβάθμιση"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Επιλέξτε πηγή αναβάθμισης για επεξεργασία"
 
 #~ msgid "Fan %d PWM"
 #~ msgstr "Ανεμιστήρας %d PWM"
@@ -11208,6 +11398,9 @@ msgstr "έγινε μετάβαση"
 #~ msgid "New PIN"
 #~ msgstr "Νέο PIN"
 
+#~ msgid "New version:"
+#~ msgstr "Νέα έκδοση:"
+
 #~ msgid "No details for this image file"
 #~ msgstr "Δεν υπάρχουν λεπτομέρειες για αυτό το αρχείο"
 
@@ -11259,9 +11452,6 @@ msgstr "έγινε μετάβαση"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Παρακαλώ επιλέξτε αρχείο NFI και πιέστε το πράσινο κουμπί για εγκατάσταση!"
 
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Παρακαλώ περιμένετε (λήψη softcam)"
-
 #~ msgid "Polarisation:"
 #~ msgstr "Πόλωση:"
 
@@ -11274,9 +11464,6 @@ msgstr "έγινε μετάβαση"
 #~ msgid "Reboot"
 #~ msgstr "Επανεκκίνηση"
 
-#~ msgid "Reenter new PIN"
-#~ msgstr "Εισαγωγή PIN ξανά"
-
 #~ msgid "Remember these settings for each folder"
 #~ msgstr "Αποθήκευση αυτών των ρυθμίσεων για κάθε φάκελο"
 
@@ -11286,6 +11473,9 @@ msgstr "έγινε μετάβαση"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Επαναφορά σε εκτέλεση..."
+
+#~ msgid "Satellites"
+#~ msgstr "Δορυφόροι"
 
 #~ msgid "Select an image to be downloaded"
 #~ msgstr "Επιλογή λογισμικού για λήψη"
@@ -11336,9 +11526,6 @@ msgstr "έγινε μετάβαση"
 #~ msgid "SoftCam / CI"
 #~ msgstr "SoftCam / CI"
 
-#~ msgid "Softcam type"
-#~ msgstr "Τύπος softcam"
-
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Αναμονή ανεμιστήρα %d PWM"
 
@@ -11353,6 +11540,10 @@ msgstr "έγινε μετάβαση"
 
 #~ msgid "Switch to HDMI in mode"
 #~ msgstr "Αλλαγή σε HDMI σε λειτουργία"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Μήνυμα"
 
 #~ msgid "Temperature and fan control"
 #~ msgstr "Έλεγχος θερμοκρασίας και ανεμιστήρα"
@@ -11445,6 +11636,9 @@ msgstr "έγινε μετάβαση"
 #~ msgid "When enabled the arrow buttons around the OK button will follow the neutrino style zap controls instead of the enigma2 style."
 #~ msgstr "Όταν είναι ενεργό, τα πλήκτρα βέλη γύρω από το ΟΚ θα ακολουθούν το στυλ ελέγχου ζάπινγκ του neutrino αντί του enigma2."
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Όταν είναι ενεργό, δεν θα εμφανίζονται τα μηνύματα σφάλματος από την Κοινή Διεπαφή."
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Όταν είναι ενεργό, οι αρχικές αλλαγές γραμμής θα αφαιρούνται από τους υπότιτλους τηλεκειμένου."
 
@@ -11458,6 +11652,13 @@ msgstr "έγινε μετάβαση"
 #~ "You need a PC connected to your receiver. If you need further instructions, please visit the website http://www.dm7025.de.\n"
 #~ "Your receiver will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 #~ msgstr "Απαιτείται ένα PC συνδεδεμένο με το δέκτη. Αν χρειάζεστε περισσότερες οδηγίες, παρακαλούμε επισκεφτείτε τον ιστότοπο http://www.dm7025.de. Ο δέκτης σας τώρα θα σταματήσει. Αν έχετε ακολουθήσει τις οδηγίες από τον ιστότοπο, το νέο υλικολογισμικό θα ζητήσει να επαναφέρετε τις ρυθμίσεις σας."
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Το λογισμικό του frontprocessor πρέπει να αναβαθμιστεί\n"
+#~ "Πιέστε ΟΚ για την αναβάθμιση."
 
 #~ msgid "Your receiver will shutdown due to inactivity."
 #~ msgstr "Ο δέκτη σας θα κλείσει εξαιτίας της αδράνειας."
@@ -11507,9 +11708,6 @@ msgstr "έγινε μετάβαση"
 #~ msgid "service PIN"
 #~ msgstr "PIN υπηρεσίας"
 
-#~ msgid "setup PIN"
-#~ msgstr "ρύθμιση PIN"
-
 #~ msgid "show extended description"
 #~ msgstr "εμφάνισης εκτεταμάνης περιγραφής"
 
@@ -11521,6 +11719,13 @@ msgstr "έγινε μετάβαση"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "το tuner δεν υποστηρίζεται"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "άγνωστη υπηρεσία"
+
+#~ msgid "wait for ci..."
+#~ msgstr "αναμονή γα κοινή διεπαφή (ci)..."
 
 #~ msgid "whitelist"
 #~ msgstr "λευκή λίστα"

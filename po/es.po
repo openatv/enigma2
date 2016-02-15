@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-02-09 16:12+0100\n"
 "Last-Translator: jrodzar <jrodzar@gmail.com>\n"
 "Language-Team: none\n"
@@ -609,6 +609,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 #
 msgid "<Current movielist location>"
 msgstr "<Localización actual de la lista de películas>"
@@ -1002,12 +1005,6 @@ msgstr "Todos satélites 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Todos satélites 4 (USALS)"
 
-#
-#
-#, fuzzy
-msgid "All services provider"
-msgstr "Canales/Proveedor asignados:"
-
 msgid "Allocate"
 msgstr "Ubicar"
 
@@ -1318,6 +1315,9 @@ msgstr "Empezando auto foco..."
 msgid "Auto language selection"
 msgstr "Selección automática de idioma"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 #
 msgid "Auto scart switching"
 msgstr "Intercambio a euroconector auto"
@@ -1587,15 +1587,14 @@ msgstr "Interface común"
 msgid "CI Helper"
 msgstr ""
 
-msgid "CI PIN"
-msgstr "PIN CI"
-
 #
 msgid "CI assignment"
 msgstr "Asignación CI"
 
-msgid "CIHelper"
-msgstr ""
+#
+#, fuzzy
+msgid "CI slot: "
+msgstr "no hay slots CI"
 
 #
 #, fuzzy
@@ -2262,6 +2261,10 @@ msgstr "Configurar la velocidad del proceso de eliminación de fondo. La velocid
 msgid "Configure the speed of the fan"
 msgstr "Configurar la velocidad del ventilador"
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Configurar la latitud de su ubicación."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Configurar el retardo de subtítulos cuando no está disponible información de tiempo."
 
@@ -2371,6 +2374,14 @@ msgstr "Satélites conectados"
 #
 msgid "Connected to"
 msgstr "Conectado a"
+
+#
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "Asignación CI"
+
+msgid "Console"
+msgstr ""
 
 #
 msgid "Constellation"
@@ -2516,10 +2527,6 @@ msgstr "Transponder actual"
 #
 msgid "Current value: "
 msgstr "Valor actual:"
-
-#
-msgid "Current version:"
-msgstr "Versión actual:"
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "Actualmente el registro de confirmación no puede ser obtenido - Inténtalo más tarde otra vez"
@@ -2668,9 +2675,6 @@ msgstr "Reposo profundo"
 #
 msgid "Default"
 msgstr "Por defecto"
-
-msgid "Default PIN for CI"
-msgstr "PIN por defecto CI"
 
 #
 #, fuzzy
@@ -3151,6 +3155,9 @@ msgstr "¿Quiere actualizar su receptor?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Quiere actualizar el paquete:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #
 msgid "Don't add this recording"
 msgstr "No añadir esta grabación"
@@ -3372,9 +3379,6 @@ msgstr "Habilitar Virgin EPG"
 msgid "Enable Wake On LAN"
 msgstr "Habilitar Wake On LAN"
 
-msgid "Enable auto PIN"
-msgstr "Activar auto PIN"
-
 #
 msgid "Enable auto cable scan"
 msgstr "Activar búsqueda auto cable"
@@ -3414,6 +3418,9 @@ msgstr "añadir a protección de adultos"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Habilita receptor remoto enigma2 ser usado para sintonizar con servicios que no pueden sintonizarse en localmente (por ejemplo ocupa el sintonizador o tipo de servicio no está disponible en el sintonizador local. Especificar la dirección URL completa incluyendo http:// y número de puerto (normalmente...: 8001), por ejemplo http://second_box:8001."
+
+msgid "Enable screenshot of LCD in /tmp"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Activar cache de teletexto"
@@ -3489,9 +3496,17 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Volver a introducir el nuevo PIN"
+
 #
 msgid "Enter main menu..."
 msgstr "Entre al menú principal..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Introduzca código pin"
 
 msgid "Enter pin code"
 msgstr "Introduzca código pin"
@@ -3738,8 +3753,30 @@ msgstr "Hora de inicio de ignorar temporizador de inactividad"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
 msgstr "F1/F3"
+
+#
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "LNB Unicable"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
+msgstr ""
 
 #
 msgid "FEC"
@@ -3747,16 +3784,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Actualizando"
-
-#
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Editar url de fuente de actualización."
 
 msgid "FTA"
 msgstr "FTA"
@@ -4027,6 +4054,9 @@ msgstr "Más opciones"
 msgid "Further options"
 msgstr "Más opciones"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr "GB800SOLO toma aproximadamente 20 minutos!!\n"
 
@@ -4056,6 +4086,11 @@ msgstr ""
 
 #
 msgid "Gateway"
+msgstr "Puerta de enlace"
+
+#
+#, fuzzy
+msgid "Gateway:"
 msgstr "Puerta de enlace"
 
 #
@@ -4188,10 +4223,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Intervalo de guarda"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "Lista de HD"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -4266,9 +4304,6 @@ msgstr "Ayuda a configurar la antena"
 
 msgid "Hidden network"
 msgstr "Red oculta"
-
-msgid "Hide CI messages"
-msgstr "Ocultar mensajes de CI"
 
 msgid "Hide channel list in radio mode"
 msgstr "Ocultar lista de canales en el modo de radio"
@@ -4371,6 +4406,11 @@ msgstr "Hue"
 #
 msgid "Hungarian"
 msgstr "Húngaro"
+
+#
+#, fuzzy
+msgid "I"
+msgstr "CI"
 
 #
 #
@@ -4725,6 +4765,9 @@ msgstr "Elementos por página"
 
 msgid "Items per page for list screen"
 msgstr "Elementos por página para la pantalla de la lista"
+
+msgid "J"
+msgstr ""
 
 #
 msgid "Job overview"
@@ -5184,6 +5227,12 @@ msgstr "Edad mínima %d años"
 msgid "Minimum send interval"
 msgstr "Intervalo mínimo de envío"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "No existente"
 
@@ -5460,6 +5509,9 @@ msgstr "Configuración servidor de nombres"
 msgid "Namespace"
 msgstr "Espacio de nombres"
 
+msgid "NetSpeed:"
+msgstr ""
+
 #
 msgid "Netmask"
 msgstr "Máscara"
@@ -5551,10 +5603,6 @@ msgstr "Nuevo"
 
 msgid "New Packages"
 msgstr "Nuevos paquetes"
-
-#
-msgid "New version:"
-msgstr "Nueva versión:"
 
 msgid "News Current Affairs"
 msgstr "Noticias actualidad"
@@ -6462,6 +6510,41 @@ msgid "Please set up tuner D"
 msgstr "Por favor configure el sintonizador D"
 
 #
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Por favor configure sintonizador A"
+
+#
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Por favor configure sintonizador A"
+
+#
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Por favor configure sintonizador A"
+
+#
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Por favor configure sintonizador A"
+
+#
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Por favor configure sintonizador A"
+
+#
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Por favor configure sintonizador A"
+
+#
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Por favor configure sintonizador A"
+
+#
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6513,6 +6596,21 @@ msgstr "Espere mientras testeamos su red..."
 #
 msgid "Please wait while your network is restarting..."
 msgstr "Espere mientras su red está reiniciando..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Espere... Cargando lista..."
+
+#
+#
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Espere... Cargando lista..."
 
 #
 msgid "Please wait..."
@@ -6719,6 +6817,12 @@ msgstr "Pulse OK para buscar"
 #
 #
 msgid "Press OK to select a provider."
+msgstr "Pulse OK para seleccionar un Proveedor."
+
+#
+#
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Pulse OK para seleccionar un Proveedor."
 
 msgid "Press OK to select satellites"
@@ -7029,6 +7133,12 @@ msgstr "Configuración de recepción"
 
 #
 #
+#, fuzzy
+msgid "Reception lists"
+msgstr "Configuración de Recepción"
+
+#
+#
 msgid "Reception settings"
 msgstr "Configuración de Recepción"
 
@@ -7092,6 +7202,10 @@ msgstr "Botón rojo..."
 #
 msgid "Red colored"
 msgstr "Color rojo"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Volver a introducir el nuevo PIN"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -7274,6 +7388,10 @@ msgstr "Resetear"
 msgid "Reset and renumerate title names"
 msgstr "Reinicia y renumera los nombre de títulos"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Por favor, introduca el PIN anterior"
+
 msgid "Reset playback position"
 msgstr "Restablecer posición de reproducción"
 
@@ -7302,12 +7420,23 @@ msgstr "Reiniciar test"
 msgid "Restart GUI now?"
 msgstr "¿Reiniciar el GUI ahora?"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Reiniciar test"
+
 msgid "Restart enigma"
 msgstr "Reinicio enigma"
 
 #
 msgid "Restart network"
 msgstr "Reiniciar Red"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 #
 msgid "Restart test"
@@ -7498,10 +7627,6 @@ msgid "Satellite longitude:"
 msgstr "Longitud satélite:"
 
 #
-msgid "Satellites"
-msgstr "Satélites"
-
-#
 msgid "Satfinder"
 msgstr "Buscador de satélites"
 
@@ -7657,6 +7782,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -7835,10 +7963,19 @@ msgstr "Seleccione dispositivo de entrada."
 msgid "Select interface"
 msgstr "Seleccione interfaz"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Seleccionar acción"
+
 #
 #
 msgid "Select movie"
 msgstr "Seleccionar una película"
+
+#
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Seleccione la fuente de actualización"
 
 #
 msgid "Select provider to add..."
@@ -7850,6 +7987,9 @@ msgstr "Seleccionar la velocidad de refresco"
 
 msgid "Select satellites"
 msgstr "Seleccionar satélites"
+
+msgid "Select secondary softcam"
+msgstr ""
 
 #
 msgid "Select service to add..."
@@ -8020,6 +8160,10 @@ msgstr ""
 msgid "Services"
 msgstr "Canales"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "configurar PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -8047,6 +8191,9 @@ msgstr "Poner Interface como por defecto"
 
 msgid "Set limits"
 msgstr "Establecer límites"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -8128,6 +8275,10 @@ msgstr "Nombres de ficheros cortos"
 #
 msgid "Show Audioselection"
 msgstr "Selección de audio"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Ocultar mensajes de CI"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Mostrar EIT ahora/siguiente en la barra de información"
@@ -8350,6 +8501,10 @@ msgstr "Mostrar menú de apagado"
 
 msgid "Show single service EPG"
 msgstr "Mostrar EPG mono-canal"
+
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Mostrar en el menú de extensiones"
 
 msgid "Show status icons in movie list"
 msgstr "Mostrar iconos de estado en lista de películas"
@@ -8581,11 +8736,26 @@ msgstr "Velocidades lentas"
 msgid "Small progress"
 msgstr "Pequeño progreso"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr "Suave"
 
 msgid "Social/Political/Economics"
 msgstr "Social/Política/Economía"
+
+#
+#
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Software"
+
+#
+#
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Software"
 
 #
 msgid "Software"
@@ -8962,6 +9132,9 @@ msgstr "Stream"
 msgid "Stream request"
 msgstr "Solicitud de stream"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -9176,14 +9349,6 @@ msgid "System"
 msgstr "Sistema"
 
 #
-#, fuzzy
-msgid "System Message"
-msgstr "Mensaje"
-
-msgid "System Message Check"
-msgstr ""
-
-#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "jrodzar@gmail.com"
@@ -9193,6 +9358,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "El fichero TS es demasiado grande para el nivel 1 ISO9660."
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNER:"
 msgstr ""
 
 msgid "TV physical address report"
@@ -9298,6 +9466,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "El código PIN ha sido cambiado correctamente."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "El código PIN ha sido cambiado correctamente."
+
 msgid "The PIN codes you entered are different."
 msgstr "Los códigos PIN escritos son diferentes."
 
@@ -9363,6 +9535,9 @@ msgstr "El pin introducido no es correcto."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Los resultados han sido escritos a %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "La lista de servicios ha sido recargada"
@@ -9815,6 +9990,9 @@ msgstr "Hoy"
 msgid "Toggle Extra Keys"
 msgstr "Activar teclas adicionales"
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -10168,6 +10346,9 @@ msgstr "Configuración de uso"
 #
 msgid "Use"
 msgstr "Uso"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -10774,9 +10955,6 @@ msgstr "Cuando está activado, Mostrar el IET ahora/siguiente eventdata en barra
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Cuando está activada, se mostrará información de cifrado en la barra de información (cuando está apoyado por la piel)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Cuando está activada, no se mostrarán mensajes de error relacionados con el módulo de interfaz común."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Cuando está activada, no se mostrarán mensajes de error relacionados con zapping."
 
@@ -10954,6 +11132,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Sin ventana emergente"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 #
 msgid "Write error while recording. Disk full?\n"
 msgstr "Error mientras grababa. ¿Disco lleno?\n"
@@ -11041,6 +11223,9 @@ msgstr "Si, vuelve a la lista de películas"
 
 msgid "Yesterday"
 msgstr "Ayer"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -11192,14 +11377,6 @@ msgstr "Su colección excede el tamaño de un medio de capa simple, necesitará 
 
 msgid "Your current collection will get lost!"
 msgstr "¡Su colección actual se perdió!"
-
-#
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"El firmware del frontprocessor debe ser actualizado.\n"
-"Pulse OK para comenzar la actualización."
 
 #, python-format
 msgid ""
@@ -11690,6 +11867,11 @@ msgid "disable"
 msgstr "desactivar"
 
 #
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Desactivar PiP"
+
+#
 msgid "disable move mode"
 msgstr "quitar modo movimiento"
 
@@ -11752,6 +11934,10 @@ msgstr "habilitar edición de lista"
 #
 msgid "enable favourite edit"
 msgstr "habilitar edición de favoritos"
+
+#, fuzzy
+msgid "enable intro screen"
+msgstr "Activar búsqueda auto rápida"
 
 #
 msgid "enable move mode"
@@ -11820,6 +12006,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 #
@@ -12462,6 +12651,11 @@ msgstr "música seria / música clásica"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "seria / película / histórica clásica / religioso / teatro"
 
+#
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "eliminar lista de la protección parental"
+
 msgid "set as startup service"
 msgstr "establecer como servicio de inicio"
 
@@ -12674,11 +12868,6 @@ msgid "unknown"
 msgstr "desconocido"
 
 #
-#, fuzzy
-msgid "unknown error"
-msgstr "servicio desconocido"
-
-#
 msgid "unknown service"
 msgstr "servicio desconocido"
 
@@ -12703,10 +12892,6 @@ msgstr "programa de variedades"
 #
 msgid "vertical"
 msgstr "vertical"
-
-#
-msgid "wait for ci..."
-msgstr "esperar al ci..."
 
 #
 msgid "wait for mmi..."
@@ -12828,6 +13013,12 @@ msgstr "zapeado"
 #~ msgstr "Todos satélites"
 
 #
+#
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Canales/Proveedor asignados:"
+
+#
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -12842,6 +13033,9 @@ msgstr "zapeado"
 #
 #~ msgid "Blue boost"
 #~ msgstr "Impulso azul"
+
+#~ msgid "CI PIN"
+#~ msgstr "PIN CI"
 
 #
 #~ msgid "Change pin code"
@@ -12876,8 +13070,15 @@ msgstr "zapeado"
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Añadir más detalles al log de error"
 
+#
+#~ msgid "Current version:"
+#~ msgstr "Versión actual:"
+
 #~ msgid "Currently installed image"
 #~ msgstr "Imagen actualmente instalada"
+
+#~ msgid "Default PIN for CI"
+#~ msgstr "PIN por defecto CI"
 
 #
 #
@@ -12923,9 +13124,22 @@ msgstr "zapeado"
 #~ msgid "Edit services list"
 #~ msgstr "Editar la lista de canales"
 
+#~ msgid "Enable auto PIN"
+#~ msgstr "Activar auto PIN"
+
 #
 #~ msgid "Enable parental control"
 #~ msgstr "Activar el control de adultos"
+
+#
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Actualizando"
+
+#
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Editar url de fuente de actualización."
 
 #
 #~ msgid "Fan %d PWM"
@@ -12969,6 +13183,10 @@ msgstr "zapeado"
 
 #~ msgid "New PIN"
 #~ msgstr "Nuevo PIN"
+
+#
+#~ msgid "New version:"
+#~ msgstr "Nueva versión:"
 
 #
 #~ msgid "No details for this image file"
@@ -13016,11 +13234,6 @@ msgstr "zapeado"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Por favor, ¡seleccione un fichero NFI y pulse la tecla verde para flashear!"
 
-#
-#
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Espere... Cargando lista..."
-
 #~ msgid "Polarisation:"
 #~ msgstr "Polarización:"
 
@@ -13031,9 +13244,6 @@ msgstr "zapeado"
 #~ msgid "Reboot"
 #~ msgstr "Reiniciar"
 
-#~ msgid "Reenter new PIN"
-#~ msgstr "Volver a introducir el nuevo PIN"
-
 #
 #~ msgid "Restart STB"
 #~ msgstr "Reinicio STB"
@@ -13041,6 +13251,10 @@ msgstr "zapeado"
 #
 #~ msgid "Restore is running..."
 #~ msgstr "Restauración está ejecutándose..."
+
+#
+#~ msgid "Satellites"
+#~ msgstr "Satélites"
 
 #
 #~ msgid "Select an image to be downloaded"
@@ -13078,11 +13292,6 @@ msgstr "zapeado"
 #~ msgstr "Transponder único"
 
 #
-#
-#~ msgid "Softcam type"
-#~ msgstr "Software"
-
-#
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Ventilador en reposo %d PWM"
 
@@ -13092,6 +13301,11 @@ msgstr "zapeado"
 
 #~ msgid "Switch to HDMI in mode"
 #~ msgstr "Cambiar a modo HDMI"
+
+#
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Mensaje"
 
 #
 #
@@ -13155,6 +13369,9 @@ msgstr "zapeado"
 #~ msgid "Welcome…"
 #~ msgstr "Bienvenido..."
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Cuando está activada, no se mostrarán mensajes de error relacionados con el módulo de interfaz común."
+
 #
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "Ha elegido crear un nuevo .NFI flasher autoarrancable memoria USB. Esto reparticiona la memoria USB y todos los datos serán borrados."
@@ -13167,6 +13384,14 @@ msgstr "zapeado"
 #~ "Es necesario establecer un código PIN y ocultarlo de sus hijos.\n"
 #~ "\n"
 #~ "¿Desea configurar el pin ahora?"
+
+#
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "El firmware del frontprocessor debe ser actualizado.\n"
+#~ "Pulse OK para comenzar la actualización."
 
 #
 #~ msgid "Zap back to service before satfinder?"
@@ -13209,14 +13434,20 @@ msgstr "zapeado"
 #~ msgid "service PIN"
 #~ msgstr "PIN del canal"
 
-#~ msgid "setup PIN"
-#~ msgstr "configurar PIN"
-
 #~ msgid "special characters"
 #~ msgstr "caracteres especiales"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "tuner no soportado"
+
+#
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "servicio desconocido"
+
+#
+#~ msgid "wait for ci..."
+#~ msgstr "esperar al ci..."
 
 #
 #~ msgid "whitelist"

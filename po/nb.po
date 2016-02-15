@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-08-25 18:31+0100\n"
 "Last-Translator: andy1 <dmmm8000pvr@gmail.com>\n"
 "Language-Team: none\n"
@@ -601,6 +601,9 @@ msgstr ""
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Gjeldende opptaks lokasjon>"
 
@@ -957,10 +960,6 @@ msgstr "Alle satellitt posisjoner 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Alle satellitt posisjoner 4 (USALS)"
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Tildelte kanaler/distributører:"
-
 msgid "Allocate"
 msgstr "Tildel"
 
@@ -1253,6 +1252,9 @@ msgstr "Auto fokusering begynner ..."
 msgid "Auto language selection"
 msgstr "Språk innstilling"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 #
 msgid "Auto scart switching"
 msgstr "Auto scart bytte"
@@ -1520,16 +1522,14 @@ msgstr "CI (Common Interface) Oppsett"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Endre PIN"
-
 #
 msgid "CI assignment"
 msgstr "CI tildeling"
 
-msgid "CIHelper"
-msgstr ""
+#
+#, fuzzy
+msgid "CI slot: "
+msgstr "ingen CI slot er funnet"
 
 #
 #, fuzzy
@@ -2171,6 +2171,10 @@ msgstr "Still inn hastighetsprosessen for bakgrunnssletting. Lavere hastighet vi
 msgid "Configure the speed of the fan"
 msgstr "Still inn turtallet på kjølevifte."
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Still inn breddegraden for mottakerens plassering."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Still inn forsinkelse på undertekst når tidtakingsinformasjon mangler."
 
@@ -2277,6 +2281,14 @@ msgstr "Tilkoblede satellitter"
 #
 msgid "Connected to"
 msgstr "Koblet til"
+
+#
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI tildeling"
+
+msgid "Console"
+msgstr ""
 
 #
 msgid "Constellation"
@@ -2418,10 +2430,6 @@ msgstr "Nåværende transponder"
 msgid "Current value: "
 msgstr "Nåværende verdi:"
 
-#
-msgid "Current version:"
-msgstr "Nåværende versjon:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "Oppdateringsloggen er for øyeblikket utilgjengelig. Prøv igjen senere"
 
@@ -2557,9 +2565,6 @@ msgstr "Slå helt av"
 #
 msgid "Default"
 msgstr "Standard"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -3018,6 +3023,9 @@ msgstr "Vil du oppdatere mottakeren?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Vil du oppdatere pakken:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "dette opptaket"
@@ -3228,10 +3236,6 @@ msgstr "Aktiver Virgin EPG"
 msgid "Enable Wake On LAN"
 msgstr "Slå på med LAN"
 
-#, fuzzy
-msgid "Enable auto PIN"
-msgstr "Aktiver ViaSat EPG"
-
 msgid "Enable auto cable scan"
 msgstr "Aktiver automatisk kabel TV skanning"
 
@@ -3270,6 +3274,9 @@ msgstr "Aktiver foreldrekontroll"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Aktiver ekstern enigma2 mottaker som kan brukes til å søke opp kanaler/tjenester som ikke kan nåes lokalt (eks.tuner er opptatt eller kanal/tjeneste er utenfor rekkevidde for lokal tuner). Tast inn komplett URL inkludert http:// og port nummer (normalt ...:8001), eks. http://andre_boks:8001."
+
+msgid "Enable screenshot of LCD in /tmp"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Aktiver tekst-TV mellomlagring"
@@ -3341,9 +3348,18 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr "Enigma2 skin velger"
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Endre PIN"
+
 #
 msgid "Enter main menu..."
 msgstr "Åpne hovedmenyen"
+
+#
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Tast inn pin kode"
 
 #
 msgid "Enter pin code"
@@ -3584,7 +3600,29 @@ msgstr "Ekstra start tid til ignorering av inaktiv innsovings tidtaker"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unikabel LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 #
@@ -3593,15 +3631,6 @@ msgstr ""
 
 msgid "FEC:"
 msgstr ""
-
-#
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Oppdaterer"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Rediger kilden til internettadresse."
 
 msgid "FTA"
 msgstr ""
@@ -3859,6 +3888,9 @@ msgstr "Flere innstillinger"
 msgid "Further options"
 msgstr "Flere innstillinger"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3886,6 +3918,9 @@ msgstr ""
 
 #
 msgid "Gateway"
+msgstr ""
+
+msgid "Gateway:"
 msgstr ""
 
 msgid "General AC3 delay"
@@ -4010,10 +4045,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Guard interval"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD liste"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -4081,9 +4119,6 @@ msgstr "Hjelp for antenne oppsett"
 
 msgid "Hidden network"
 msgstr "Skjult nettverk"
-
-msgid "Hide CI messages"
-msgstr "Skjul CI beskjeder"
 
 msgid "Hide channel list in radio mode"
 msgstr "Skjul kanalliste i radiomodus"
@@ -4187,6 +4222,9 @@ msgstr "Fargetone"
 #
 msgid "Hungarian"
 msgstr "Ungarsk"
+
+msgid "I"
+msgstr ""
 
 #
 msgid "IP address"
@@ -4529,6 +4567,9 @@ msgstr "Kanaler pr. side"
 
 msgid "Items per page for list screen"
 msgstr "Kanaler pr. side på skjermmeny"
+
+msgid "J"
+msgstr ""
 
 #
 msgid "Job overview"
@@ -4972,6 +5013,12 @@ msgstr "Minimumsalder %d år"
 msgid "Minimum send interval"
 msgstr "Minimum sendings intervall"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Savnet"
 
@@ -5244,6 +5291,9 @@ msgstr "Oppsett for navneserver"
 msgid "Namespace"
 msgstr "Navneområde"
 
+msgid "NetSpeed:"
+msgstr ""
+
 #
 msgid "Netmask"
 msgstr "Nettverksmaske"
@@ -5330,10 +5380,6 @@ msgstr "Ny"
 
 msgid "New Packages"
 msgstr ""
-
-#
-msgid "New version:"
-msgstr "Ny versjon:"
 
 msgid "News Current Affairs"
 msgstr "Nyheter aktuelle saker"
@@ -6190,6 +6236,41 @@ msgstr "Still inn tuner C"
 msgid "Please set up tuner D"
 msgstr "Still inn tuner D"
 
+#
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Still inn tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Still inn tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Still inn tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Still inn tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Still inn tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Still inn tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Still inn tuner A"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6240,6 +6321,19 @@ msgstr "Vennligst vent mens vi tester nettverket..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Vennligst vent mens nettverket starter på nytt ..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Vennligst vent (laster ned softcam)"
+
+#
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Vennligst vent (laster ned softcam)"
 
 #
 msgid "Please wait..."
@@ -6432,6 +6526,10 @@ msgid "Press OK to scan"
 msgstr "Trykk OK for å søke."
 
 msgid "Press OK to select a provider."
+msgstr "Trykk OK for å velge distributør "
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Trykk OK for å velge distributør "
 
 msgid "Press OK to select satellites"
@@ -6711,6 +6809,11 @@ msgid "Reception Settings"
 msgstr "Innstilling for mottakerforhold"
 
 #
+#, fuzzy
+msgid "Reception lists"
+msgstr "Mottakerfohold"
+
+#
 msgid "Reception settings"
 msgstr "Mottakerfohold"
 
@@ -6766,6 +6869,9 @@ msgstr "Rød knapp..."
 
 msgid "Red colored"
 msgstr "Rød farget"
+
+msgid "Reenter PIN"
+msgstr ""
 
 msgid "Reflash recommended!"
 msgstr "Flashe på nytt anbefales!"
@@ -6943,6 +7049,10 @@ msgstr "Tilbakestill"
 msgid "Reset and renumerate title names"
 msgstr "Tilbakestill og nummerer navn på nytt"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Vennligst tast inn den nye PIN koden"
+
 msgid "Reset playback position"
 msgstr "Tilbakestill avspillingsposisjon"
 
@@ -6968,11 +7078,21 @@ msgstr "Start på nytt- test"
 msgid "Restart GUI now?"
 msgstr "Start GUI på nytt?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Start på nytt- test"
+
 msgid "Restart enigma"
 msgstr "Start enigma2 på nytt"
 
 msgid "Restart network"
 msgstr "Start nettverk på nytt"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Start på nytt- test"
@@ -7159,9 +7279,6 @@ msgstr "DiSEqC oppsett"
 msgid "Satellite longitude:"
 msgstr "Satellitt lengdegrad:"
 
-msgid "Satellites"
-msgstr "Leverandørliste"
-
 msgid "Satfinder"
 msgstr "Satellittsøker"
 
@@ -7300,6 +7417,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -7471,8 +7591,17 @@ msgstr "Velg enhet."
 msgid "Select interface"
 msgstr "Velg grensesnitt"
 
+#
+#, fuzzy
+msgid "Select location"
+msgstr "Velg handling"
+
 msgid "Select movie"
 msgstr "Velg opptak"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Velg oppdateringssted"
 
 #
 msgid "Select provider to add..."
@@ -7484,6 +7613,9 @@ msgstr "Still inn oppfriskningsrate"
 
 msgid "Select satellites"
 msgstr "Velg satellitter"
+
+msgid "Select secondary softcam"
+msgstr ""
 
 #
 msgid "Select service to add..."
@@ -7639,6 +7771,10 @@ msgstr ""
 msgid "Services"
 msgstr "Kanaler"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "Endre PIN"
+
 msgid "Set all hotkey to default?"
 msgstr "Sette alle snarveistaster til standard?"
 
@@ -7666,6 +7802,9 @@ msgstr "Bruk dette som standard"
 
 msgid "Set limits"
 msgstr "Sett grenser"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 msgid "Set startup service"
 msgstr "Sett denne som oppstartskanal"
@@ -7741,6 +7880,10 @@ msgstr "Korte filnavn"
 
 msgid "Show Audioselection"
 msgstr "Vis lydvalg"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Skjul CI beskjeder"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Vis EIT nå/neste på informasjonslinjen"
@@ -7950,6 +8093,11 @@ msgstr "Vis av/på meny"
 
 msgid "Show single service EPG"
 msgstr "Vis enkel EPG"
+
+#
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Vis i utvidet meny"
 
 msgid "Show status icons in movie list"
 msgstr "Vis avspillings indikator i opptaksliste"
@@ -8166,11 +8314,22 @@ msgstr "Saktefilm hastighet"
 msgid "Small progress"
 msgstr "Liten framdriftsbar"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "sosial/politisk/økonomisk"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Softcam type"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Softcam type"
 
 #
 msgid "Software"
@@ -8521,6 +8680,9 @@ msgstr "Datastrøm"
 msgid "Stream request"
 msgstr "Datastrøm forespørsel"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -8727,13 +8889,6 @@ msgstr ""
 msgid "System"
 msgstr "System"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Beskjed"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "Norsk bokmålsoversettelse.26.08.2015."
@@ -8744,6 +8899,9 @@ msgstr "TS filen er for stor for ISO9660 nivå 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TVs fysiske adresse"
@@ -8844,6 +9002,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN-koden har blitt endret."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN-koden har blitt endret."
+
 msgid "The PIN codes you entered are different."
 msgstr "Du har tastet inn feil PIN kode"
 
@@ -8908,6 +9070,9 @@ msgstr "Pin koden er feil."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Resultatene har blitt skrevet til %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 #
 #, fuzzy
@@ -9350,6 +9515,9 @@ msgstr "Idag"
 msgid "Toggle Extra Keys"
 msgstr "Skru av/på Extra Keys"
 
+msgid "Toggle HDMI In"
+msgstr "Skru av/på HDMI inn"
+
 msgid "Toggle LCD LiveTV"
 msgstr "Skru av/på LiveTV"
 
@@ -9689,6 +9857,9 @@ msgstr "Bruker innstilling"
 #
 msgid "Use"
 msgstr "Bruk"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -10260,9 +10431,6 @@ msgstr "Når aktivert, vises EIT nå/neste programdata på informasjonslinjen. H
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Når aktivert, vises krypteringsinfo på informasjonslinjen (når det støttes av skin)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Når aktivert, vises ikke feilmeldinger knyttet til Common Interface modulen."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Når aktivert, vises ikke feilmeldinger knyttet til kanalbytte."
 
@@ -10434,6 +10602,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Uten popup varsel"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Skrivefeil under opptak. Er disken full?\n"
 
@@ -10514,6 +10686,9 @@ msgstr "Ja, returnerer til opptaksliste"
 
 msgid "Yesterday"
 msgstr "I går"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -10656,13 +10831,6 @@ msgstr "Samlingen din overstiger plass du har tilgjengelig på enkeltlagsplaten,
 #
 msgid "Your current collection will get lost!"
 msgstr "Din nåværende samling vil gå tapt!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Frontprosessorens programvare må oppdateres.\n"
-"Trykk OK for å starte oppdatering."
 
 #, fuzzy, python-format
 msgid ""
@@ -11128,6 +11296,10 @@ msgstr "detektime/spenning"
 msgid "disable"
 msgstr "deaktiver"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Stopp bilde i bilde funksjon"
+
 msgid "disable move mode"
 msgstr "slå av flytte modus"
 
@@ -11190,6 +11362,10 @@ msgstr "aktiver kanalliste redigering"
 #
 msgid "enable favourite edit"
 msgstr "aktiver favorittliste redigering"
+
+#, fuzzy
+msgid "enable intro screen"
+msgstr "Aktiver automatisk hurtigsøk"
 
 #
 msgid "enable move mode"
@@ -11254,6 +11430,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 #
@@ -11868,6 +12047,10 @@ msgstr "seriøs musikk/klassisk musikk"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "seriøs/klassisk/religiøs/historisk film/drama"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "slett kanalliste i foreldrekontrollen"
+
 msgid "set as startup service"
 msgstr "bruk denne som oppstartskanal"
 
@@ -12067,11 +12250,6 @@ msgid "unknown"
 msgstr "ukjent"
 
 #
-#, fuzzy
-msgid "unknown error"
-msgstr "ukjent kanal"
-
-#
 msgid "unknown service"
 msgstr "ukjent kanal"
 
@@ -12096,10 +12274,6 @@ msgstr "varieté show"
 #
 msgid "vertical"
 msgstr "vertikal"
-
-#
-msgid "wait for ci..."
-msgstr "vent på ci..."
 
 #
 msgid "wait for mmi..."
@@ -12202,6 +12376,10 @@ msgstr "gått til"
 #~ msgid "AC3 downmix"
 #~ msgstr "AC3 nedskalering"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Tildelte kanaler/distributører:"
+
 #
 #~ msgid "Blue boost"
 #~ msgstr "Blå boost"
@@ -12218,6 +12396,10 @@ msgstr "gått til"
 
 #~ msgid "Could not connect to receiver .NFI image feed server:"
 #~ msgstr "Kunne ikke koble til mottakeren. NFI programvare feed server:"
+
+#
+#~ msgid "Current version:"
+#~ msgstr "Nåværende versjon:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Installert operativsystem"
@@ -12246,6 +12428,19 @@ msgstr "gått til"
 #
 #~ msgid "Downloadable new plugins"
 #~ msgstr "Nye programtillegg klare for nedlasting"
+
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Aktiver ViaSat EPG"
+
+#
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Oppdaterer"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Rediger kilden til internettadresse."
 
 #
 #~ msgid "Fan %d PWM"
@@ -12276,6 +12471,10 @@ msgstr "gått til"
 #~ msgstr "NFI programvare installasjon er ferdig. Trykk Gul knapp for å starte på nytt!"
 
 #
+#~ msgid "New version:"
+#~ msgstr "Ny versjon:"
+
+#
 #~ msgid "No details for this image file"
 #~ msgstr "Ingen detaljer for denne bilde fil"
 
@@ -12293,10 +12492,6 @@ msgstr "gått til"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Vennligst velg en NFI fil og trykk grønn knapp for å flashe!"
 
-#
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Vennligst vent (laster ned softcam)"
-
 #~ msgid "Polarisation:"
 #~ msgstr "Polarisasjon:"
 
@@ -12309,6 +12504,9 @@ msgstr "gått til"
 #
 #~ msgid "Restore is running..."
 #~ msgstr "Gjenopprettingen er igang..."
+
+#~ msgid "Satellites"
+#~ msgstr "Leverandørliste"
 
 #~ msgid "Select an image to be downloaded"
 #~ msgstr "Velg et operativsystem som skal lastes ned"
@@ -12326,9 +12524,6 @@ msgstr "gått til"
 #~ msgid "Show the tv player..."
 #~ msgstr "Vis TV spilleren..."
 
-#~ msgid "Softcam type"
-#~ msgstr "Softcam type"
-
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Standby kjølevifte %d PWM"
 
@@ -12340,6 +12535,10 @@ msgstr "gått til"
 
 #~ msgid "Startup to Standby"
 #~ msgstr "Start mottakeren fra avslått modus"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Beskjed"
 
 #
 #~ msgid "Temperature and fan control"
@@ -12416,9 +12615,6 @@ msgstr "gått til"
 #~ "2) Slå strøm på igjen og hold NED-knappen på frontpanelet inne i 10 sekunder.\n"
 #~ "3) Vent til oppstart og følg instruksjonen i veiviseren."
 
-#~ msgid "Toggle HDMI In"
-#~ msgstr "Skru av/på HDMI inn"
-
 #~ msgid "Tuner configuration"
 #~ msgstr "Tuneroppsett"
 
@@ -12437,6 +12633,9 @@ msgstr "gått til"
 #~ msgid "When enabled the set top box is able to wakeup on LAN"
 #~ msgstr "Når aktivert kan mottakeren slås på ved ved hjelp av LAN"
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Når aktivert, vises ikke feilmeldinger knyttet til Common Interface modulen."
+
 #~ msgid "Would you like to install a softcam?"
 #~ msgstr "Vil du installere en softcam?"
 
@@ -12451,9 +12650,25 @@ msgstr "gått til"
 #~ "Du må ha en PC tilkoblet din mottaker. Hvis du trenger ytterligere opplysninger, gå til websiden http://www.dm7025.de.\n"
 #~ "Mottakeren vil nå bli stoppet. Etter å ha gjennomført oppdaterings instruksene fra websiden, vil den nye firmwaren gjenopprette dine innstillinger."
 
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Frontprosessorens programvare må oppdateres.\n"
+#~ "Trykk OK for å starte oppdatering."
+
 #
 #~ msgid "continue"
 #~ msgstr "fortsett"
 
 #~ msgid "currently installed image: %s"
 #~ msgstr "nåværende installert programvare: %s"
+
+#
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "ukjent kanal"
+
+#
+#~ msgid "wait for ci..."
+#~ msgstr "vent på ci..."

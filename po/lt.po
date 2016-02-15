@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -539,6 +539,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Dabartinė filmų sąrašo vieta>"
 
@@ -867,10 +870,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "paskirtos Kanalai/Tiekėjai:"
-
 msgid "Allocate"
 msgstr ""
 
@@ -1143,6 +1142,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr ""
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Automatinis skarto perjungimas"
 
@@ -1380,15 +1382,12 @@ msgstr "Įstatomi moduliai"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Naujas PIN"
-
 msgid "CI assignment"
 msgstr "CI nustatymas"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "jokie CI skaitytuvai nesurasti"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1998,6 +1997,10 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Konfigūravimo būdas"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
@@ -2101,6 +2104,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Prisijungta prie"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI nustatymas"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Žvaigždynas"
@@ -2226,9 +2236,6 @@ msgstr "Dabartinis transponderis"
 
 msgid "Current value: "
 msgstr "Einamoji reikšmė: "
-
-msgid "Current version:"
-msgstr "Dabartinė versija:"
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
@@ -2356,9 +2363,6 @@ msgstr "Visiškai išjungti"
 
 msgid "Default"
 msgstr "Numatyta"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2776,6 +2780,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "Jūs norite atnaujinti paketą:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "tai įrašyta"
@@ -2969,10 +2976,6 @@ msgid "Enable Wake On LAN"
 msgstr ""
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "Įjungti ViaSat EPG"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Įjungti tėvų kontrolę"
 
@@ -3007,6 +3010,9 @@ msgid "Enable parental protection"
 msgstr "pridėti į tėvų kontrolę"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3073,8 +3079,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Iš naujo įrašykite naują PIN"
+
 msgid "Enter main menu..."
 msgstr "Eiti į pagrindinį meniu..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Įrašykite pin kodą"
 
 msgid "Enter pin code"
 msgstr "Įrašykite pin kodą"
@@ -3290,7 +3304,28 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3298,14 +3333,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Atnaujinama"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Suredaguokite atnaujinimo šaltinio url."
 
 msgid "FTA"
 msgstr ""
@@ -3541,6 +3568,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3566,6 +3596,10 @@ msgstr ""
 "Jūs norite paleisti iš naujo Enigma2 dabar?"
 
 msgid "Gateway"
+msgstr "Šliuzas"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Šliuzas"
 
 #, fuzzy
@@ -3686,10 +3720,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Apsaugos intervalas"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3757,9 +3794,6 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "Paslėptas tinklas"
-
-msgid "Hide CI messages"
-msgstr "Slėpti CI pranešimus"
 
 msgid "Hide channel list in radio mode"
 msgstr ""
@@ -3855,6 +3889,10 @@ msgstr "Atspalvis"
 
 msgid "Hungarian"
 msgstr "Vengrų"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 #, fuzzy
 msgid "IP address"
@@ -4168,6 +4206,9 @@ msgid "Items per page "
 msgstr ""
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 #, fuzzy
@@ -4572,6 +4613,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr "Apsaugos intervalas"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -4817,6 +4864,9 @@ msgstr "Serverio nustatymas"
 msgid "Namespace"
 msgstr "Pavadinimnų erdvė"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Potinklio kaukė"
 
@@ -4892,9 +4942,6 @@ msgstr "Naujas"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Nauja versija:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -5688,6 +5735,34 @@ msgstr "Prašome nustatyti imtuvą C"
 msgid "Please set up tuner D"
 msgstr "Prašome nustatyti imtuvą D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Prašome nustatyti imtuvą B"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Prašome nustatyti imtuvą B"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Prašome nustatyti imtuvą B"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Prašome nustatyti imtuvą B"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Prašome nustatyti imtuvą B"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Prašome nustatyti imtuvą B"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Prašome nustatyti imtuvą B"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5732,6 +5807,17 @@ msgstr "Prašome laukti kol testuojamas jūsų tinklas..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Prašome laukti kol paleidžiamas iš naujo jūsų tinklas..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Prašome laukti... Užkraunamas sąrašas..."
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Prašome laukti... Užkraunamas sąrašas..."
 
 msgid "Please wait..."
 msgstr "Prašome laukti..."
@@ -5905,6 +5991,10 @@ msgstr "Spauskite OK paieškai."
 
 #, fuzzy
 msgid "Press OK to select a provider."
+msgstr "Spauskite OK, kad pasirinkti tiekėją."
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Spauskite OK, kad pasirinkti tiekėją."
 
 msgid "Press OK to select satellites"
@@ -6163,6 +6253,10 @@ msgid "Reception Settings"
 msgstr "Priėmimo nustatymai"
 
 #, fuzzy
+msgid "Reception lists"
+msgstr "Priėmimo nustatymai"
+
+#, fuzzy
 msgid "Reception settings"
 msgstr "Priėmimo nustatymai"
 
@@ -6219,6 +6313,10 @@ msgstr ""
 #, fuzzy
 msgid "Red colored"
 msgstr "teksto spalva"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Iš naujo įrašykite naują PIN"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6379,6 +6477,10 @@ msgstr "Perjungti"
 msgid "Reset and renumerate title names"
 msgstr "Perjungti ir pernumeruoti antraštės pavadinimus"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Prašome įrašyti seną PIN kodą"
+
 msgid "Reset playback position"
 msgstr ""
 
@@ -6401,11 +6503,21 @@ msgstr "Paleisti iš naujo testą"
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo GUI dabar?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Paleisti iš naujo testą"
+
 msgid "Restart enigma"
 msgstr "Paleisti iš naujo Enigma2"
 
 msgid "Restart network"
 msgstr "Paleisti iš naujo tinklą"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Paleisti iš naujo testą"
@@ -6575,9 +6687,6 @@ msgstr "Palydovinės įrangos nustatymas"
 msgid "Satellite longitude:"
 msgstr ""
 
-msgid "Satellites"
-msgstr "Palydovai"
-
 msgid "Satfinder"
 msgstr "Palydovų paieška"
 
@@ -6713,6 +6822,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -6874,8 +6986,16 @@ msgid "Select interface"
 msgstr "Išsrinkite sąsają"
 
 #, fuzzy
+msgid "Select location"
+msgstr "Išsirinkite atsarginės kopijos vietą"
+
+#, fuzzy
 msgid "Select movie"
 msgstr "Išsirinkite filmą"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Išsirinkite atnaujinimo šaltinį dėl redagavimo."
 
 msgid "Select provider to add..."
 msgstr "Išsirinkite tiekėją, kurį norite pridėti..."
@@ -6884,6 +7004,9 @@ msgid "Select refresh rate"
 msgstr "Išsirinkite atnujinimo normą"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -7030,6 +7153,10 @@ msgstr ""
 msgid "Services"
 msgstr "Kanalai"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "valdymo PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -7054,6 +7181,9 @@ msgid "Set interface as default Interface"
 msgstr "Nustatykite sąsają, kaip numatytą sąsają"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set pin code persistent"
 msgstr ""
 
 #, fuzzy
@@ -7133,6 +7263,10 @@ msgstr "Trumpi failų pavadinimai"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Subtitrų pasirinkimas"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Slėpti CI pranešimus"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Rodyti EIT dabar/kitas infojuostoje"
@@ -7343,6 +7477,9 @@ msgstr "išjungimo meniu"
 msgid "Show single service EPG"
 msgstr ""
 
+msgid "Show softcam startup in extensions menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show status icons in movie list"
 msgstr "Rodyti statuso ikonas filmų sąraše"
@@ -7546,11 +7683,22 @@ msgstr "Palėtinto judėjimo greitis"
 msgid "Small progress"
 msgstr "Vykdymas"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Programinė įranga"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Programinė įranga"
 
 msgid "Software"
 msgstr "Programinė įranga"
@@ -7884,6 +8032,9 @@ msgstr ""
 msgid "Stream request"
 msgstr ""
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -8080,13 +8231,6 @@ msgstr ""
 msgid "System"
 msgstr "Sistema"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Pranešimas"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "Audronis Grincevičius (ADGA) Pasvalys, Lietuva"
@@ -8096,6 +8240,9 @@ msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr ""
@@ -8192,6 +8339,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN kodas buvo pakeistas sėkmingai."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN kodas buvo pakeistas sėkmingai."
+
 msgid "The PIN codes you entered are different."
 msgstr "Jūsų įvesti PIN kodai yra skirtingi."
 
@@ -8252,6 +8403,9 @@ msgstr "Surinktas PIN kodas neteisingas."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Rezultatai buvo įrašyti į %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8648,6 +8802,9 @@ msgstr "Šiandien"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8945,6 +9102,9 @@ msgstr "Nustatymai"
 
 msgid "Use"
 msgstr "Naudoti"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Naudoti DHCP"
@@ -9483,9 +9643,6 @@ msgstr ""
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr ""
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr ""
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr ""
 
@@ -9652,6 +9809,10 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Įrašymo klaida. Diskas pilnas?\n"
 
@@ -9723,6 +9884,9 @@ msgid "Yes, returning to movie list"
 msgstr "Taip, grįžti į filmų sąrašą"
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
 msgstr ""
 
 #, python-format
@@ -9850,13 +10014,6 @@ msgstr "Jūsų kolekcija viršyja vieno sluoksnio DVD disko dydį, jums reikės 
 
 msgid "Your current collection will get lost!"
 msgstr "Jūsų dabartinė kolekcija bus prarasta!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Reikalingas priekinio procesoriaus atnaujinimas.\n"
-"Spauskite OK, kad pradėti atnaujinimą."
 
 #, python-format
 msgid ""
@@ -10271,6 +10428,10 @@ msgstr ""
 msgid "disable"
 msgstr "išjungti"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Išjungti paveikslėlį paveikslėlyje"
+
 msgid "disable move mode"
 msgstr "išjungti perkėlimą"
 
@@ -10324,6 +10485,9 @@ msgstr "įjungti paketo redagavimą"
 
 msgid "enable favourite edit"
 msgstr "įjungti mėgstamiausių redagavimą"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "įjungti perkėlimą"
@@ -10382,6 +10546,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10929,6 +11096,10 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "panaikinti tėvų kontrolę"
+
 msgid "set as startup service"
 msgstr "nustatyti kaip paleidimo kanalą"
 
@@ -11111,10 +11282,6 @@ msgstr ""
 msgid "unknown"
 msgstr "nežinoma"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "nežinomas kanalas"
-
 msgid "unknown service"
 msgstr "nežinomas kanalas"
 
@@ -11136,9 +11303,6 @@ msgstr ""
 
 msgid "vertical"
 msgstr "vertikali"
-
-msgid "wait for ci..."
-msgstr "laukite atsakymo iš CI..."
 
 msgid "wait for mmi..."
 msgstr "laukite atsakymo iš mmi..."
@@ -11236,6 +11400,10 @@ msgstr "įjungta"
 #~ msgid "All satellites"
 #~ msgstr "Visi palydovai"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "paskirtos Kanalai/Tiekėjai:"
+
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -11247,6 +11415,10 @@ msgstr "įjungta"
 
 #~ msgid "Blue boost"
 #~ msgstr "Daugiau mėlynos"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Naujas PIN"
 
 #~ msgid "Change pin code"
 #~ msgstr "Keisti PIN kodą"
@@ -11272,6 +11444,9 @@ msgstr "įjungta"
 
 #~ msgid "Connected!"
 #~ msgstr "Prisijungta!"
+
+#~ msgid "Current version:"
+#~ msgstr "Dabartinė versija:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Šiuo metu įdiegtas atvaizdas"
@@ -11313,8 +11488,20 @@ msgstr "įjungta"
 #~ msgid "Edit services list"
 #~ msgstr "Redaguoti kanalų sąrašą"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Įjungti ViaSat EPG"
+
 #~ msgid "Enable parental control"
 #~ msgstr "Įjungti tėvų kontrolę"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Atnaujinama"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Suredaguokite atnaujinimo šaltinio url."
 
 #~ msgid "Fan %d PWM"
 #~ msgstr "Aušintuvo %d PWM"
@@ -11354,6 +11541,9 @@ msgstr "įjungta"
 #~ msgid "New PIN"
 #~ msgstr "Naujas PIN"
 
+#~ msgid "New version:"
+#~ msgstr "Nauja versija:"
+
 #~ msgid "No details for this image file"
 #~ msgstr "Nėra informacijos apie šį atvaizdą"
 
@@ -11392,18 +11582,11 @@ msgstr "įjungta"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Prašome išsirinkti NFI failą ir spauskite žalią mygtuką atvaizdo užkrovumui!"
 
-#, fuzzy
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Prašome laukti... Užkraunamas sąrašas..."
-
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Paruoškite kitą USB laikmeną atvaizdo užkrovimui"
 
 #~ msgid "Reboot"
 #~ msgstr "Paleisti iš naujo"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Iš naujo įrašykite naują PIN"
 
 #, fuzzy
 #~ msgid "Restart STB"
@@ -11411,6 +11594,9 @@ msgstr "įjungta"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Vyksta atkūrimas..."
+
+#~ msgid "Satellites"
+#~ msgstr "Palydovai"
 
 #, fuzzy
 #~ msgid "Select an image to be downloaded"
@@ -11443,16 +11629,16 @@ msgstr "įjungta"
 #~ msgstr "EMU / Įstatomi moduliai"
 
 #, fuzzy
-#~ msgid "Softcam type"
-#~ msgstr "Programinė įranga"
-
-#, fuzzy
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Aušintuvo budėjimo %d PWM"
 
 #, fuzzy
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "Aušintuvo budėjimo %d įtampa"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Pranešimas"
 
 #, fuzzy
 #~ msgid "Temperature and fan control"
@@ -11511,6 +11697,13 @@ msgstr "įjungta"
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "Jūs nusprendėte sukurti naują .NFI diegėją USB rakte. Tada bus perdalintas USB raktas ir visi duomenys jame bus ištrinti."
 
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Reikalingas priekinio procesoriaus atnaujinimas.\n"
+#~ "Spauskite OK, kad pradėti atnaujinimą."
+
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "Perjungti atgal į kanalą po palydovo paieškos?"
 
@@ -11532,14 +11725,18 @@ msgstr "įjungta"
 #~ msgid "service PIN"
 #~ msgstr "kanalo PIN"
 
-#~ msgid "setup PIN"
-#~ msgstr "valdymo PIN"
-
 #~ msgid "special characters"
 #~ msgstr "ypatingi požymiai"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "imtuvas nepalaikomas"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "nežinomas kanalas"
+
+#~ msgid "wait for ci..."
+#~ msgstr "laukite atsakymo iš CI..."
 
 #~ msgid "whitelist"
 #~ msgstr "baltas sąrašas"
