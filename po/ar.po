@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -606,6 +606,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 #
 msgid "<Current movielist location>"
 msgstr "<موقع قائمه الافلام الحاليه>"
@@ -970,11 +973,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "All services provider"
-msgstr "تحميل طول الفيلم فى قائمة الافلام"
-
 msgid "Allocate"
 msgstr ""
 
@@ -1256,6 +1254,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr ""
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "التحول الآلى الى السكارت"
 
@@ -1512,14 +1513,11 @@ msgstr "وحده النفاذ المشروط"
 msgid "CI Helper"
 msgstr ""
 
-msgid "CI PIN"
-msgstr ""
-
 #
 msgid "CI assignment"
 msgstr ""
 
-msgid "CIHelper"
+msgid "CI slot: "
 msgstr ""
 
 #, fuzzy
@@ -2143,6 +2141,10 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "نسق التكوين"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
@@ -2245,6 +2247,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "متصل بـ"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "تحديد وحدة النفاذ المشروط"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "كوكبه"
@@ -2378,9 +2387,6 @@ msgstr "التردد الحالى"
 msgid "Current value: "
 msgstr "القيمه الحاليه:"
 
-msgid "Current version:"
-msgstr "الاصدار الحالى:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
 
@@ -2504,9 +2510,6 @@ msgstr "وضع الاستعداد العميق"
 
 msgid "Default"
 msgstr "الافتراضى"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2947,6 +2950,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "هل تريد ترقية الحزمه \n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "هذا التسجيل"
@@ -3150,9 +3156,6 @@ msgstr ""
 msgid "Enable Wake On LAN"
 msgstr ""
 
-msgid "Enable auto PIN"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Enable auto cable scan"
@@ -3192,6 +3195,9 @@ msgid "Enable parental protection"
 msgstr "أضف حمايه أبويه"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3263,8 +3269,17 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Enter PIN"
+msgstr "قناه"
+
 msgid "Enter main menu..."
 msgstr "دخول القائمه الرئيسيه"
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "أدخل الرقم السرى:"
 
 msgid "Enter pin code"
 msgstr "أدخل الرقم السرى:"
@@ -3486,7 +3501,27 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+msgid "FBC Unicable"
+msgstr ""
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3494,16 +3529,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "جارى الترقيه"
-
-#
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "تحرير عنوان مصدر الترقيه"
 
 msgid "FTA"
 msgstr ""
@@ -3754,6 +3779,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3782,6 +3810,9 @@ msgstr ""
 
 #
 msgid "Gateway"
+msgstr ""
+
+msgid "Gateway:"
 msgstr ""
 
 msgid "General AC3 delay"
@@ -3906,10 +3937,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr ""
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3978,9 +4012,6 @@ msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Hidden network"
-msgstr ""
-
-msgid "Hide CI messages"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -4078,6 +4109,10 @@ msgstr "درجة لون"
 #
 msgid "Hungarian"
 msgstr "مجرى"
+
+#, fuzzy
+msgid "I"
+msgstr "سى"
 
 #
 #, fuzzy
@@ -4410,6 +4445,9 @@ msgid "Items per page "
 msgstr ""
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 msgid "Job overview"
@@ -4862,6 +4900,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr ""
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -5128,6 +5172,9 @@ msgstr "ضبط أسم الخادم"
 msgid "Namespace"
 msgstr ""
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "قناع الشبكه"
 
@@ -5207,10 +5254,6 @@ msgstr "جديد"
 
 msgid "New Packages"
 msgstr ""
-
-#
-msgid "New version:"
-msgstr "إصدار جديد:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -6046,6 +6089,34 @@ msgstr "من فضلك أضبط الموالف C"
 msgid "Please set up tuner D"
 msgstr "من فضلك أضبط الموالف D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "من فضلك أضبط الموالف B"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "من فضلك أضبط الموالف B"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "من فضلك أضبط الموالف B"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "من فضلك أضبط الموالف B"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "من فضلك أضبط الموالف B"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "من فضلك أضبط الموالف B"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "من فضلك أضبط الموالف B"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6090,6 +6161,17 @@ msgstr "رجاء الانتظار.... جارى إختبار الشبكه"
 
 msgid "Please wait while your network is restarting..."
 msgstr "رجاء الانتظار.... جارى إعادة تشغيل الشبكه"
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
 
 msgid "Please wait..."
 msgstr "رجاء الانتظار...."
@@ -6279,6 +6361,10 @@ msgstr "اضغط موافق للبحث"
 
 #, fuzzy
 msgid "Press OK to select a provider."
+msgstr "أضغط موافق لتختار مزود"
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "أضغط موافق لتختار مزود"
 
 msgid "Press OK to select satellites"
@@ -6549,6 +6635,11 @@ msgstr "إعدادات الاستقبال"
 
 #
 #, fuzzy
+msgid "Reception lists"
+msgstr "إعدادات الاستقبال"
+
+#
+#, fuzzy
 msgid "Reception settings"
 msgstr "إعدادات الاستقبال"
 
@@ -6612,6 +6703,9 @@ msgstr ""
 #, fuzzy
 msgid "Red colored"
 msgstr "لون النص"
+
+msgid "Reenter PIN"
+msgstr ""
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6780,6 +6874,10 @@ msgstr "إعاده الضبط"
 msgid "Reset and renumerate title names"
 msgstr ""
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "من فضلك أدخل الرقم السرى الصحيح"
+
 msgid "Reset playback position"
 msgstr ""
 
@@ -6804,11 +6902,21 @@ msgstr "إعادة الاختبار"
 msgid "Restart GUI now?"
 msgstr "هل تريد إعادة تشغيل الاينجما2 الان ؟"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "إعادة الاختبار"
+
 msgid "Restart enigma"
 msgstr ""
 
 msgid "Restart network"
 msgstr "إعادة تشغيل الشبكه"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "إعادة الاختبار"
@@ -6992,10 +7100,6 @@ msgstr "ضبط معدات القمر"
 msgid "Satellite longitude:"
 msgstr ""
 
-#
-msgid "Satellites"
-msgstr "اقمار صناعيه"
-
 msgid "Satfinder"
 msgstr "الباحث عن الأقمار"
 
@@ -7146,6 +7250,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -7315,10 +7422,18 @@ msgstr ""
 msgid "Select interface"
 msgstr "أختار واجهه"
 
+#, fuzzy
+msgid "Select location"
+msgstr "اختار مكان النسخه الإحتياطيه "
+
 #
 #, fuzzy
 msgid "Select movie"
 msgstr "اختار الفيلم"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "أختار مصدر الترقيه المراد تحريره"
 
 msgid "Select provider to add..."
 msgstr "أختار مزود ليتم إضافته..."
@@ -7327,6 +7442,9 @@ msgid "Select refresh rate"
 msgstr "أختار معدل الأنعاش"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -7484,6 +7602,9 @@ msgstr ""
 msgid "Services"
 msgstr "القنوات/الخدمات"
 
+msgid "Set PIN"
+msgstr ""
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -7510,6 +7631,9 @@ msgid "Set interface as default Interface"
 msgstr "أبط واجهه لتكون واجهه إفتراضيه"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set pin code persistent"
 msgstr ""
 
 #
@@ -7593,6 +7717,9 @@ msgstr ""
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "إختيار العناوين الفرعيه"
+
+msgid "Show CI messages"
+msgstr ""
 
 msgid "Show EIT now/next in infobar"
 msgstr ""
@@ -7814,6 +7941,9 @@ msgid "Show shutdown menu"
 msgstr "إظهار قائمة الاغلاق"
 
 msgid "Show single service EPG"
+msgstr ""
+
+msgid "Show softcam startup in extensions menu"
 msgstr ""
 
 msgid "Show status icons in movie list"
@@ -8044,11 +8174,22 @@ msgstr "سرعات العرض البطئ"
 msgid "Small progress"
 msgstr "جارى التقدم"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "برنامج تشغيلى"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "برنامج تشغيلى"
 
 msgid "Software"
 msgstr "برنامج تشغيلى"
@@ -8413,6 +8554,9 @@ msgstr ""
 msgid "Stream request"
 msgstr ""
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -8635,14 +8779,6 @@ msgid "System"
 msgstr "النـظام"
 
 #
-#, fuzzy
-msgid "System Message"
-msgstr "رسـاله"
-
-msgid "System Message Check"
-msgstr ""
-
-#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -8652,6 +8788,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNER:"
 msgstr ""
 
 msgid "TV physical address report"
@@ -8751,6 +8890,9 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr ""
 
+msgid "The PIN code has been saved successfully."
+msgstr ""
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -8813,6 +8955,9 @@ msgstr "الرقم السرى الذى ادخلته خطأ"
 
 #, python-format
 msgid "The results have been written to %s"
+msgstr ""
+
+msgid "The saved PIN was cleared."
 msgstr ""
 
 msgid "The servicelist is reloaded."
@@ -9231,6 +9376,9 @@ msgstr "اليوم"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -9560,6 +9708,9 @@ msgstr "الضبـط"
 #
 msgid "Use"
 msgstr "استخدم"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -10120,9 +10271,6 @@ msgstr ""
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr ""
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr ""
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr ""
 
@@ -10290,6 +10438,10 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "خطأ اثناء التسجيل. القرص ممتلئ ؟ \n"
 
@@ -10363,6 +10515,9 @@ msgid "Yes, returning to movie list"
 msgstr "نعم، العوده الى قائمة الافلام"
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
 msgstr ""
 
 #, python-format
@@ -10491,12 +10646,6 @@ msgstr "هذه المجموعه تزيد عن حجم وسيط ذو طبقه وا
 
 msgid "Your current collection will get lost!"
 msgstr "سوف تفقد المجموعه الحاليه !"
-
-#
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -10932,6 +11081,11 @@ msgstr ""
 msgid "disable"
 msgstr "تعطيل"
 
+#
+#, fuzzy
+msgid "disable intro screen"
+msgstr "تعطيل صوره داخل صوره"
+
 msgid "disable move mode"
 msgstr "تعطيل وضع التحريك"
 
@@ -10987,6 +11141,9 @@ msgstr "تفعيل تحرير الباقه"
 #
 msgid "enable favourite edit"
 msgstr "تفعيل تحرير المفضله"
+
+msgid "enable intro screen"
+msgstr ""
 
 #
 msgid "enable move mode"
@@ -11047,6 +11204,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -11624,6 +11784,10 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "حذف من الحمايه الابويه"
+
 msgid "set as startup service"
 msgstr ""
 
@@ -11811,11 +11975,6 @@ msgid "unknown"
 msgstr "غير معروف"
 
 #
-#, fuzzy
-msgid "unknown error"
-msgstr "قناه غير معروفه"
-
-#
 msgid "unknown service"
 msgstr "قناه غير معروفه"
 
@@ -11841,10 +12000,6 @@ msgstr ""
 #
 msgid "vertical"
 msgstr "رأسى"
-
-#
-msgid "wait for ci..."
-msgstr "ci فى إنتظار"
 
 #
 msgid "wait for mmi..."
@@ -11954,6 +12109,11 @@ msgstr "تم الانتقال"
 #~ msgstr "كل الاقمار"
 
 #
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "تحميل طول الفيلم فى قائمة الافلام"
+
+#
 #~ msgid "BA"
 #~ msgstr "ب أ"
 
@@ -11969,15 +12129,14 @@ msgstr "تم الانتقال"
 #~ msgid "Change pin code"
 #~ msgstr "تغيير الرقم السرى"
 
-#, fuzzy
-#~ msgid "Common Interface assignment"
-#~ msgstr "تحديد وحدة النفاذ المشروط"
-
 #~ msgid "Conflicting timer"
 #~ msgstr "مؤقت متعارض"
 
 #~ msgid "Connected!"
 #~ msgstr "تم الاتصال !"
+
+#~ msgid "Current version:"
+#~ msgstr "الاصدار الحالى:"
 
 #
 #, fuzzy
@@ -12013,6 +12172,16 @@ msgstr "تم الانتقال"
 
 #
 #, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "جارى الترقيه"
+
+#
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "تحرير عنوان مصدر الترقيه"
+
+#
+#, fuzzy
 #~ msgid "Fan %d voltage"
 #~ msgstr "مروحه %d فولتيه"
 
@@ -12039,6 +12208,10 @@ msgstr "تم الانتقال"
 #~ msgstr "تم النتهاء من شحن صوره NFI، رجاء الضغط على الذر الاصفر لاعادة التشغيل !"
 
 #
+#~ msgid "New version:"
+#~ msgstr "إصدار جديد:"
+
+#
 #~ msgid "No details for this image file"
 #~ msgstr "لا يوجد تفاصيل لملف الصوره هذا"
 
@@ -12057,10 +12230,6 @@ msgstr "تم الانتقال"
 #~ msgid "Please check your network settings!"
 #~ msgstr "من فضلك أفحص إعدادات الشبكه!"
 
-#, fuzzy
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
-
 #~ msgid "Reboot"
 #~ msgstr "إعادة التشغيل"
 
@@ -12071,6 +12240,10 @@ msgstr "تم الانتقال"
 
 #~ msgid "Restore is running..."
 #~ msgstr "الاستعاده قيد التنفيذ"
+
+#
+#~ msgid "Satellites"
+#~ msgstr "اقمار صناعيه"
 
 #
 #, fuzzy
@@ -12094,14 +12267,15 @@ msgstr "تم الانتقال"
 #~ msgid "Single transponder"
 #~ msgstr "تردد واحد"
 
-#, fuzzy
-#~ msgid "Softcam type"
-#~ msgstr "برنامج تشغيلى"
-
 #
 #, fuzzy
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "مروحه %d فولتيه"
+
+#
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "رسـاله"
 
 #, fuzzy
 #~ msgid "Temperature and fan control"
@@ -12159,6 +12333,15 @@ msgstr "تم الانتقال"
 
 #~ msgid "special characters"
 #~ msgstr "حروف خاصه"
+
+#
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "قناه غير معروفه"
+
+#
+#~ msgid "wait for ci..."
+#~ msgstr "ci فى إنتظار"
 
 #~ msgid "whitelist"
 #~ msgstr "القائمه البيضاء"

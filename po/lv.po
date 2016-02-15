@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -574,6 +574,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Tekošā filmu saraksta atrašanās vieta>"
 
@@ -892,10 +895,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Piešķirtie servisi/operatori:"
-
 msgid "Allocate"
 msgstr "Iedalīt"
 
@@ -1161,6 +1160,9 @@ msgstr "Automātisks fokuss sākas ..."
 msgid "Auto language selection"
 msgstr "Automātiska valodas izvēle"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Automātiska SCART pārslēgšana"
 
@@ -1395,15 +1397,12 @@ msgstr "Common interfeiss"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Jauns PIN"
-
 msgid "CI assignment"
 msgstr "CI piešķiršana"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "nav atrasti CI sloti"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1996,6 +1995,10 @@ msgstr "Uzstāda ātrumu fona dzēšanai. Zemāks ātrums patērē mazāk cietā
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Uzstāda Jūsu atrašanās vietas platumu."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Uzstāda subtitru parādīšanas laika aizturi kad laika aiztures informācija nav pieejama."
 
@@ -2097,6 +2100,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Pieslēgts"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI piešķiršana"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Modulācijas veids"
@@ -2220,9 +2230,6 @@ msgstr "Pašreizējais transponderis"
 msgid "Current value: "
 msgstr "Pašreizējā vērtība: "
 
-msgid "Current version:"
-msgstr "Pašreizējā versija:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
 
@@ -2341,9 +2348,6 @@ msgstr "Dziļā gaidstāve"
 
 msgid "Default"
 msgstr "Noklusējuma"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2756,6 +2760,9 @@ msgstr "Vai vēlaties atjaunot uztvērēju?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Vai vēlaties atjaunināt pakotni:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "šim ierakstam"
@@ -2949,10 +2956,6 @@ msgid "Enable Wake On LAN"
 msgstr ""
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "Aktivizēt ViaSat EPG"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Aktivizēt vecāku kontroli"
 
@@ -2986,6 +2989,9 @@ msgid "Enable parental protection"
 msgstr "pievienot vecāku kontrolei"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3050,8 +3056,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Atkārtoti ievadiet jauno PIN kodu"
+
 msgid "Enter main menu..."
 msgstr "Atvērt galveno izvēlni..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Ievadiet pin kodu"
 
 msgid "Enter pin code"
 msgstr "Ievadiet pin kodu"
@@ -3261,7 +3275,28 @@ msgstr "Sākuma laiks pēc kura ignorēt neaktivitātes miega taimeri"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Vienkabeļa LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3269,14 +3304,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Atjaunošana"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Rediģēt atjaunināšanas avota adresi."
 
 msgid "FTA"
 msgstr "FTA"
@@ -3512,6 +3539,9 @@ msgstr ""
 msgid "Further options"
 msgstr "tālākizglītība"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3538,6 +3568,10 @@ msgstr ""
 "vai vēlaties pārstartēt GUI tagad?"
 
 msgid "Gateway"
+msgstr "Vārteja"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Vārteja"
 
 msgid "General AC3 delay"
@@ -3650,10 +3684,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Guard intervāls"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD saraksts"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3720,9 +3757,6 @@ msgstr "Palīdzēs ietstīt jūsu antenu"
 
 msgid "Hidden network"
 msgstr "Neredzams tīkls"
-
-msgid "Hide CI messages"
-msgstr "Slēpt CI paziņojumus"
 
 msgid "Hide channel list in radio mode"
 msgstr "Slēpt kanālu sarakstu radio režīmā"
@@ -3816,6 +3850,10 @@ msgstr "Tonis"
 
 msgid "Hungarian"
 msgstr "Ungāru"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 msgid "IP address"
 msgstr "IP adrese"
@@ -4115,6 +4153,9 @@ msgstr "Daudzums lapā"
 
 msgid "Items per page for list screen"
 msgstr "Daudzums lapā saraksta logā"
+
+msgid "J"
+msgstr ""
 
 msgid "Job overview"
 msgstr "Darbu skats"
@@ -4496,6 +4537,12 @@ msgstr "Minimālais vecums %d gadi"
 msgid "Minimum send interval"
 msgstr "Minimālais sūtīšanas intervāls"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Trūkst"
 
@@ -4739,6 +4786,9 @@ msgstr "DNS iestatīšana"
 msgid "Namespace"
 msgstr "Namespace"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Tīkla maska"
 
@@ -4810,9 +4860,6 @@ msgstr "Jauns"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Jauna versija:"
 
 msgid "News Current Affairs"
 msgstr "Jaunumi Aktualitātes"
@@ -5584,6 +5631,34 @@ msgstr "Lūdzu iestatiet uztvērēju C"
 msgid "Please set up tuner D"
 msgstr "Lūdzu iestatiet uztvērēju D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Lūdzu iestatiet uztvērēju A"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5626,6 +5701,17 @@ msgstr "Lūdzu uzgaidiet kamēr pārbauda tīklu..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Lūdzu uzgaidiet kamēr tīkls tiek pārstartēts..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Lūdzu uzgaidiet (ielādē softcam.)"
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Lūdzu uzgaidiet (ielādē softcam.)"
 
 msgid "Please wait..."
 msgstr "Lūdzu uzgaidiet..."
@@ -5797,6 +5883,10 @@ msgid "Press OK to scan"
 msgstr "Spiediet OK, lai meklētu"
 
 msgid "Press OK to select a provider."
+msgstr "Spiediet OK, lai izvēlētos operatoru."
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Spiediet OK, lai izvēlētos operatoru."
 
 msgid "Press OK to select satellites"
@@ -6053,6 +6143,10 @@ msgstr "Atgriezties uz iepriekšējo kanālu"
 msgid "Reception Settings"
 msgstr "Uztveršanas iestatījumi"
 
+#, fuzzy
+msgid "Reception lists"
+msgstr "Uztveršanas iestatījumi"
+
 msgid "Reception settings"
 msgstr "Uztveršanas iestatījumi"
 
@@ -6109,6 +6203,10 @@ msgstr "Sarkanā poga..."
 #, fuzzy
 msgid "Red colored"
 msgstr "Teksta krāsa"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Atkārtoti ievadiet jauno PIN kodu"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6262,6 +6360,10 @@ msgstr "Atstatīt"
 msgid "Reset and renumerate title names"
 msgstr "Atstatīt un pārnumurēt virsrakstu nosaukumus"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Lūdzu ievadiet iepriekšējo PIN kodu"
+
 msgid "Reset playback position"
 msgstr "Atstatīt atskaņošanas pozīciju"
 
@@ -6284,11 +6386,21 @@ msgstr "Atkārtot testu"
 msgid "Restart GUI now?"
 msgstr "Pārstartēt GUI tagad?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Atkārtot testu"
+
 msgid "Restart enigma"
 msgstr "Pārstartēt enigmu"
 
 msgid "Restart network"
 msgstr "Pārstartēt tīklu"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Atkārtot testu"
@@ -6455,9 +6567,6 @@ msgstr "Satelīta iekārtu iestatījumi"
 msgid "Satellite longitude:"
 msgstr "Pavadoņa garuma pozīcija:"
 
-msgid "Satellites"
-msgstr "Pavadoņi"
-
 msgid "Satfinder"
 msgstr "Sat-meklētājs"
 
@@ -6592,6 +6701,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 #, fuzzy
@@ -6741,8 +6853,16 @@ msgstr "Izvēlieties ievades ierīci."
 msgid "Select interface"
 msgstr "Izvēlieties interfeisu"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Izvēlieties dublējumkopijas atrašanās vietu"
+
 msgid "Select movie"
 msgstr "Izvēlieties filmu"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Izvēlieties atjaunināšanas avotu"
 
 msgid "Select provider to add..."
 msgstr "Izvēlieties operatoru kuru pievienot..."
@@ -6751,6 +6871,9 @@ msgid "Select refresh rate"
 msgstr "Izvēlieties atsvaidzināšanas biežumu"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -6891,6 +7014,10 @@ msgstr ""
 msgid "Services"
 msgstr "Kanāli"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "iestatījumu PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -6915,6 +7042,9 @@ msgstr "Iestatīt interfeisu kā noklusēto"
 
 msgid "Set limits"
 msgstr "Iestatīt limitus"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -6989,6 +7119,10 @@ msgstr "Īsie failu nosaukumi"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Uz audio iestatīšanu"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Slēpt CI paziņojumus"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Rādīt EIT pašreiz/nākošais infojoslā"
@@ -7188,6 +7322,10 @@ msgstr "Rādīt izslēgšanas izvēlni"
 msgid "Show single service EPG"
 msgstr "Rādīt atsevišķa kanāla EPG"
 
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Rādīt paplašinājumu izvēlnē"
+
 msgid "Show status icons in movie list"
 msgstr "Statusa ikona filmu sarakstā"
 
@@ -7380,11 +7518,22 @@ msgstr "Palēninātās kustības ātrumi"
 msgid "Small progress"
 msgstr "Izpilda"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Sociālie/Politika/Ekonomika"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Softcam tips"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Softcam tips"
 
 msgid "Software"
 msgstr "Programmatūra"
@@ -7711,6 +7860,9 @@ msgstr "Plūsma"
 msgid "Stream request"
 msgstr "Plūsmas pieprasījums"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -7895,13 +8047,6 @@ msgstr ""
 msgid "System"
 msgstr "Sistēma"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Paziņojums"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "Taapat, Madars Auns Latvija, Talsi"
@@ -7911,6 +8056,9 @@ msgstr "TS fails ir par lielu priekš ISO9660 level 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TV fiziskās adreses ziņojums"
@@ -8005,6 +8153,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN kods nomainīts veiksmīgi."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN kods nomainīts veiksmīgi."
+
 msgid "The PIN codes you entered are different."
 msgstr "Ievadītie PIN kodi atšķiras."
 
@@ -8064,6 +8216,9 @@ msgstr "Jūsu ievadītais PIN kods ir nepareizs."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Rezultāti saglabāti %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8454,6 +8609,9 @@ msgstr "Šodien"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8751,6 +8909,9 @@ msgstr "Iestatījumi"
 
 msgid "Use"
 msgstr "Lietot"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Lietot DHCP"
@@ -9284,9 +9445,6 @@ msgstr "Ja iespējots, attēlos pašreiz/nākošais EIT notikumus infojoslā. Ja
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Ja iespējots, infojoslā tiks attēlota kodēšanas informācija (ja to uztur ādiņa)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Ja iespējots, netiks parādītas kļūdas no common interfeisa moduļa."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Ja iespējots, netiks parādītas kļūdas pārslēdzoties kanāliem."
 
@@ -9453,6 +9611,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Bez uznirstošā loga"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Rakstīšanas kļūda ieraksta laikā. Vai disks ir pilns?\n"
 
@@ -9526,6 +9688,9 @@ msgstr "Jā, atgriezties uz filmu sarakstu"
 
 msgid "Yesterday"
 msgstr "Vakar"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -9661,13 +9826,6 @@ msgstr "Jūsu kolekcija pārsniedz diska lielumu, jums ir nepieciešams tukšs d
 
 msgid "Your current collection will get lost!"
 msgstr "Jūsu pašreizējā kolekcija zudīs!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Jūsu fronprocesora programmatūru nepieciešams atjaunināt.\n"
-"Spiediet OK, lai sāktu atjaunināšanu."
 
 #, fuzzy, python-format
 msgid ""
@@ -10091,6 +10249,10 @@ msgstr "detektīvs/trilleris"
 msgid "disable"
 msgstr "izslēgt"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Izslēgt Atēls Atēlā"
+
 msgid "disable move mode"
 msgstr "izslēgt pārvietošanas režīmu"
 
@@ -10144,6 +10306,9 @@ msgstr "aktivizēt buķešu rediģēšanu"
 
 msgid "enable favourite edit"
 msgstr "aktivizēt favorītu rediģēšanu"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "aktivizēt pārvietošanas režīmu"
@@ -10202,6 +10367,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10748,6 +10916,10 @@ msgstr "nopietnā mūzika/klasiskā mūzika"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "nopietnā/klasiskā/reliģiskā/vēsturiskā filma/drāma"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "dzēst no vecāku kontroles"
+
 msgid "set as startup service"
 msgstr "uzstādīt kā starta kanālu"
 
@@ -10930,10 +11102,6 @@ msgstr "nedefināts"
 msgid "unknown"
 msgstr "nezināms"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "nezināms kanāls"
-
 msgid "unknown service"
 msgstr "nezināms kanāls"
 
@@ -10955,9 +11123,6 @@ msgstr "varietē šovi"
 
 msgid "vertical"
 msgstr "vertikālā"
-
-msgid "wait for ci..."
-msgstr "gaidiet atbildi no CI..."
 
 msgid "wait for mmi..."
 msgstr "gaidiet atbildi no mmi..."
@@ -11063,6 +11228,10 @@ msgstr "pārslēgts"
 #~ msgid "All satellites"
 #~ msgstr "Visi pavadoņi"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Piešķirtie servisi/operatori:"
+
 #~ msgid "And will shutdown your receiver over "
 #~ msgstr "Un izslēgt uztvērēju pēc "
 
@@ -11077,6 +11246,10 @@ msgstr "pārslēgts"
 
 #~ msgid "Blue boost"
 #~ msgstr "Zilā piesātinājums"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Jauns PIN"
 
 #~ msgid "Change pin code"
 #~ msgstr "Mainīt PIN kodu"
@@ -11116,6 +11289,9 @@ msgstr "pārslēgts"
 
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Izveidot detalizētāku avārijas logu"
+
+#~ msgid "Current version:"
+#~ msgstr "Pašreizējā versija:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Pašreiz uzstādītais imidžs"
@@ -11169,8 +11345,20 @@ msgstr "pārslēgts"
 #~ msgid "Edit services list"
 #~ msgstr "Rediģēt kanālu sarakstu"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Aktivizēt ViaSat EPG"
+
 #~ msgid "Enable parental control"
 #~ msgstr "Aktivizēt vecāku kontroli"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Atjaunošana"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Rediģēt atjaunināšanas avota adresi."
 
 #~ msgid "Fan %d PWM"
 #~ msgstr "Ventilatora apgriezieni %d"
@@ -11225,6 +11413,9 @@ msgstr "pārslēgts"
 #~ msgid "New PIN"
 #~ msgstr "Jauns PIN"
 
+#~ msgid "New version:"
+#~ msgstr "Jauna versija:"
+
 #~ msgid "No details for this image file"
 #~ msgstr "Nav informācijas par šo imidža failu"
 
@@ -11276,9 +11467,6 @@ msgstr "pārslēgts"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Lūdzu izvēlieties NFI failu un spiediet zaļo taustiņu lai pāršūtu!"
 
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Lūdzu uzgaidiet (ielādē softcam.)"
-
 #~ msgid "Polarisation:"
 #~ msgstr "Polarizācija:"
 
@@ -11291,9 +11479,6 @@ msgstr "pārslēgts"
 #~ msgid "Reboot"
 #~ msgstr "Pārstartēt"
 
-#~ msgid "Reenter new PIN"
-#~ msgstr "Atkārtoti ievadiet jauno PIN kodu"
-
 #~ msgid "Remember these settings for each folder"
 #~ msgstr "Atcerēties šos iestatījumus katrai mapei."
 
@@ -11303,6 +11488,9 @@ msgstr "pārslēgts"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Notiek atjaunošana..."
+
+#~ msgid "Satellites"
+#~ msgstr "Pavadoņi"
 
 #~ msgid "Select an image to be downloaded"
 #~ msgstr "Izvēlieties  imidžu, ko lejuplādēt"
@@ -11350,14 +11538,15 @@ msgstr "pārslēgts"
 #~ msgid "SoftCam / CI"
 #~ msgstr "SoftCam / CI"
 
-#~ msgid "Softcam type"
-#~ msgstr "Softcam tips"
-
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Ventilatora apgriezieni %d gaidstāvē"
 
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "Ventilatora spriegums %d gaidstāvē"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Paziņojums"
 
 #~ msgid "Temperature and fan control"
 #~ msgstr "Temperatūras un ventilatora kontrole"
@@ -11448,6 +11637,9 @@ msgstr "pārslēgts"
 #~ msgid "Welcome…"
 #~ msgstr "Sveicināti..."
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Ja iespējots, netiks parādītas kļūdas no common interfeisa moduļa."
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Ja iespējots, teletekstu subtitos netiks ņemti vērā oriģinālie rindu dalījumi."
 
@@ -11463,6 +11655,13 @@ msgstr "pārslēgts"
 #~ msgstr ""
 #~ "Jūsu datoram jābū savienotam ar uztvērēju. Ja jums nepieciešama papildus informācija, lūdzu apmeklējiet http://openpli.org/.\n"
 #~ "Jūsu uztvērējs tagad tiks apturēts. Pēc tam, kad ir veiktas atjaunināšanas instrukcijas no mājas lapas, jūsu jaunā programmatūra piedāvās jums atjaunot iestatījumus."
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Jūsu fronprocesora programmatūru nepieciešams atjaunināt.\n"
+#~ "Spiediet OK, lai sāktu atjaunināšanu."
 
 #~ msgid "Your receiver will shutdown due to inactivity."
 #~ msgstr "Jūsu uztvērējs izslēgsies jo nav aktivitātes."
@@ -11497,9 +11696,6 @@ msgstr "pārslēgts"
 #~ msgid "service PIN"
 #~ msgstr "kanāla PIN"
 
-#~ msgid "setup PIN"
-#~ msgstr "iestatījumu PIN"
-
 #~ msgid "show extended description"
 #~ msgstr "rādīt paplašināto aprakstu"
 
@@ -11511,6 +11707,13 @@ msgstr "pārslēgts"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "uztvērējs netiek atbalstīts"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "nezināms kanāls"
+
+#~ msgid "wait for ci..."
+#~ msgstr "gaidiet atbildi no CI..."
 
 #~ msgid "whitelist"
 #~ msgstr "baltais saraksts"

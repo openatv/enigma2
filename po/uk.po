@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -574,6 +574,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Поточне місце списку відео>"
 
@@ -892,10 +895,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Призначено канали / провайдери:"
-
 msgid "Allocate"
 msgstr "Виділити"
 
@@ -1158,6 +1157,9 @@ msgstr "Автофокусування почалося ..."
 msgid "Auto language selection"
 msgstr "Авто вибір мови"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Автоматичне перемикання SCART"
 
@@ -1392,15 +1394,12 @@ msgstr "Інтерфейс модулів"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Новий PIN-код"
-
 msgid "CI assignment"
 msgstr "Призначення CI"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "не знайдено модуль"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1998,6 +1997,10 @@ msgstr "Налаштування швидкості процесу видале�
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Встановіть довготу вашого місця розташування."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Налаштуйте затримку субтитрів, коли Информація про час недоступна."
 
@@ -2099,6 +2102,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Підключено до"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "Призначення CI"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Сузір'я"
@@ -2224,9 +2234,6 @@ msgstr "Поточний транспондер"
 msgid "Current value: "
 msgstr "Поточне значення: "
 
-msgid "Current version:"
-msgstr "Поточна версія:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
 
@@ -2345,9 +2352,6 @@ msgstr "Глубокий Режим очікування"
 
 msgid "Default"
 msgstr "За замовчуванням"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2759,6 +2763,9 @@ msgstr "Ви хочете оновити ваш ресивер?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Ви хочете оновити пакети:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "це записано"
@@ -2953,10 +2960,6 @@ msgid "Enable Wake On LAN"
 msgstr ""
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "Увімкнути ViaSat EPG"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Включити батьківський контроль"
 
@@ -2990,6 +2993,9 @@ msgid "Enable parental protection"
 msgstr "Додати в батьківський контроль"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3054,8 +3060,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Повторіть новий PIN-код"
+
 msgid "Enter main menu..."
 msgstr "Увійти в головне меню..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Змінити PIN-код"
 
 msgid "Enter pin code"
 msgstr "Змінити PIN-код"
@@ -3265,7 +3279,29 @@ msgstr "Початок періоду ігнорування таймера не
 msgid "Extrude from left"
 msgstr ""
 
+#, fuzzy
+msgid "F"
+msgstr "Пт"
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3273,14 +3309,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Оновлення:"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Змінити URL-адресу джерела оновлення"
 
 msgid "FTA"
 msgstr "FTA"
@@ -3519,6 +3547,9 @@ msgstr ""
 msgid "Further options"
 msgstr "дальнейшее образование"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3545,6 +3576,10 @@ msgstr ""
 "Ви хочете зробити це зараз?"
 
 msgid "Gateway"
+msgstr "Шлюз"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Шлюз"
 
 msgid "General AC3 delay"
@@ -3657,10 +3692,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Інтервал захисту"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD лист"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3731,9 +3769,6 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "Прихована мережа"
-
-msgid "Hide CI messages"
-msgstr "Приховати повідомлення CI"
 
 msgid "Hide channel list in radio mode"
 msgstr "Приховати список каналів в режимі радіо"
@@ -3827,6 +3862,10 @@ msgstr "Відтінок"
 
 msgid "Hungarian"
 msgstr "Угорський"
+
+#, fuzzy
+msgid "I"
+msgstr "С"
 
 msgid "IP address"
 msgstr "IP адреса"
@@ -4124,6 +4163,9 @@ msgstr "Кількість сервісів на сторінку "
 
 msgid "Items per page for list screen"
 msgstr "Кількість сервісів на сторінку в режимі списку"
+
+msgid "J"
+msgstr ""
 
 msgid "Job overview"
 msgstr "Перегляд завдання"
@@ -4505,6 +4547,12 @@ msgstr "Категорія мінімум %d років"
 msgid "Minimum send interval"
 msgstr "Мінімальний інтервал відправки"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Відсутній "
 
@@ -4747,6 +4795,9 @@ msgstr ""
 msgid "Namespace"
 msgstr "Namespace"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Маска підмережі"
 
@@ -4818,9 +4869,6 @@ msgstr "Новий"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Нова версія:"
 
 msgid "News Current Affairs"
 msgstr "Новини поточної події"
@@ -5596,6 +5644,34 @@ msgstr "Налаштуйте тюнер C"
 msgid "Please set up tuner D"
 msgstr "Налаштуйте тюнер D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Налаштуйте тюнер А"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Налаштуйте тюнер А"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Налаштуйте тюнер А"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Налаштуйте тюнер А"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Налаштуйте тюнер А"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Налаштуйте тюнер А"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Налаштуйте тюнер А"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5638,6 +5714,18 @@ msgstr "Зачекайте поки йде перевірка вашої мер�
 
 msgid "Please wait while your network is restarting..."
 msgstr "Будь ласка почекайте, поки йде перезавантаження мережі..."
+
+#, fuzzy
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr "Чекайте, перезапускається %s"
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Чекайте, перезапускається %s"
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Чекайте, перезапускається %s"
 
 msgid "Please wait..."
 msgstr "Будь ласка зачекайте..."
@@ -5812,6 +5900,10 @@ msgid "Press OK to scan"
 msgstr "Натисніть OK для пошуку."
 
 msgid "Press OK to select a provider."
+msgstr "Натисніть ОК для вибору провайдера."
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Натисніть ОК для вибору провайдера."
 
 msgid "Press OK to select satellites"
@@ -6068,6 +6160,10 @@ msgstr "Повернутися на попередній сервіс"
 msgid "Reception Settings"
 msgstr "Налаштування колекції"
 
+#, fuzzy
+msgid "Reception lists"
+msgstr "Налаштування колекції"
+
 msgid "Reception settings"
 msgstr ""
 
@@ -6124,6 +6220,10 @@ msgstr "Червона кнопка..."
 #, fuzzy
 msgid "Red colored"
 msgstr "Колір текста"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Повторіть новий PIN-код"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6277,6 +6377,10 @@ msgstr "Скидання"
 msgid "Reset and renumerate title names"
 msgstr "Скинути і перенумерувати імена назв"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Будь ласка, введіть старий PIN-код"
+
 msgid "Reset playback position"
 msgstr "Скидання позиції відтворення"
 
@@ -6299,11 +6403,23 @@ msgstr "Перезапустити тест"
 msgid "Restart GUI now?"
 msgstr "Рестарт GUI почати?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Перезапуск"
+
 msgid "Restart enigma"
 msgstr "Рестарт E2"
 
 msgid "Restart network"
 msgstr "Перезапустити мережу"
+
+#, fuzzy
+msgid "Restart primary softcam"
+msgstr "Перезапуск Емулятора"
+
+#, fuzzy
+msgid "Restart secondary softcam"
+msgstr "Перезапуск Емулятора"
 
 msgid "Restart test"
 msgstr "Перезапустити тест"
@@ -6471,9 +6587,6 @@ msgstr "Налаштування супутн. обладнання"
 msgid "Satellite longitude:"
 msgstr "Довгота супутника:"
 
-msgid "Satellites"
-msgstr "Супутники"
-
 msgid "Satfinder"
 msgstr "Пошук супутника"
 
@@ -6612,6 +6725,9 @@ msgstr "Перезав. epg.dat"
 #, fuzzy
 msgid "Scheduled save of epg.dat"
 msgstr "Вибір шляху збереження epg.dat"
+
+msgid "Screenshot of LCD in /tmp"
+msgstr ""
 
 #, fuzzy
 msgid "Scroll delay"
@@ -6760,8 +6876,16 @@ msgstr "Вибір пристрою введення"
 msgid "Select interface"
 msgstr "Виберіть інтерфейс"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Вибрати розташування бекапа"
+
 msgid "Select movie"
 msgstr "Вибір відео"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Вибір джерела оновлення"
 
 msgid "Select provider to add..."
 msgstr "Вибір провайдера для додавання..."
@@ -6770,6 +6894,9 @@ msgid "Select refresh rate"
 msgstr "Виберіть частоту оновлення"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -6910,6 +7037,10 @@ msgstr ""
 msgid "Services"
 msgstr "Сервиси"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "Змінити PIN-код налаштувань"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -6934,6 +7065,9 @@ msgstr "Встановити інтерфейс як дефолтний"
 
 msgid "Set limits"
 msgstr "Набір обмежень"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -7008,6 +7142,10 @@ msgstr "Коротка назва"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Вибір звуку"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Приховати повідомлення CI"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Показати EIT зараз/далі в інфобарі"
@@ -7207,6 +7345,10 @@ msgstr "показати меню вимкнення"
 msgid "Show single service EPG"
 msgstr ""
 
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Показати плагіни в меню доповнень"
+
 msgid "Show status icons in movie list"
 msgstr "Показати іконку статусу в списку відео"
 
@@ -7399,11 +7541,22 @@ msgstr "Низька швидкість"
 msgid "Small progress"
 msgstr "Маленький прогресс"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "Соціальне/Політика/Економіка"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Емулятор перезавантажений"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Емулятор перезавантажений"
 
 msgid "Software"
 msgstr "Софт"
@@ -7729,6 +7882,9 @@ msgstr "Порт стрімінгу"
 msgid "Stream request"
 msgstr "Порт стрімінгу"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -7914,13 +8070,6 @@ msgstr ""
 msgid "System"
 msgstr "Система"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Повідомлення"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "Irkoff <irkoff@gmail.com>"
@@ -7930,6 +8079,9 @@ msgstr "TS файл занадто великий для ISO9660 level 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "Оповіщення фізичної адреси ТВ"
@@ -8024,6 +8176,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN-код успішно змінений."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN-код успішно змінений."
+
 msgid "The PIN codes you entered are different."
 msgstr "Введений PIN код не вірний"
 
@@ -8083,6 +8239,9 @@ msgstr "Введений PIN-код невірний."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Результати були записані в %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8477,6 +8636,9 @@ msgstr "Сьогодні"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8781,6 +8943,9 @@ msgstr "Налаштування"
 
 msgid "Use"
 msgstr "Використовувати"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Використовувати DHCP"
@@ -9314,9 +9479,6 @@ msgstr "Якщо увімкнено, події зараз/далі з DVB EPG �
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Показати інформацію про декодуванні в інфобарі (якщо це підтримується скіном)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Приховати повідомлення про помилки від CI модуля."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Не показувати будь-які повідомлення про помилки при перемиканні каналів."
 
@@ -9485,6 +9647,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Без повідомлення"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Помилка під час запису. Диск переповнений?\n"
 
@@ -9558,6 +9724,9 @@ msgstr "Так,повернутися до списку записів"
 
 msgid "Yesterday"
 msgstr "Вчора"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -9693,13 +9862,6 @@ msgstr "Ваша колекція перевищує розмір одношар
 
 msgid "Your current collection will get lost!"
 msgstr "Ваша поточна колекція буде загублена!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Потрібне оновлення фронтпроцессора.\n"
-"Натисніть OK для початку поновлення."
 
 #, fuzzy, python-format
 msgid ""
@@ -10126,6 +10288,10 @@ msgstr "детектив/трилер"
 msgid "disable"
 msgstr "вимкнути"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Відключити картинку в картинці"
+
 msgid "disable move mode"
 msgstr "вимкнути режим переміщення"
 
@@ -10179,6 +10345,9 @@ msgstr "увімкнути редагування фаворита"
 
 msgid "enable favourite edit"
 msgstr "увімкнути редагування фаворитів"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "увімкнути режим переміщення"
@@ -10237,6 +10406,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10783,6 +10955,10 @@ msgstr "класична музика"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "серйозний/класичний/релігійний/історичний фільм/драма"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "видалити з батьківського контролю"
+
 msgid "set as startup service"
 msgstr "зробити сервіс стартовим"
 
@@ -10967,10 +11143,6 @@ msgstr "визначений користувачем"
 msgid "unknown"
 msgstr "<невідомий>"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "Невідома помилка!"
-
 msgid "unknown service"
 msgstr "невідомий сервіс"
 
@@ -10992,9 +11164,6 @@ msgstr "шоу вар'єте"
 
 msgid "vertical"
 msgstr "вертикальна"
-
-msgid "wait for ci..."
-msgstr "очікування ci..."
 
 msgid "wait for mmi..."
 msgstr "очікування mmi..."
@@ -11307,6 +11476,10 @@ msgstr "переключено"
 #~ msgid "All satellites"
 #~ msgstr "Всі супутники"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Призначено канали / провайдери:"
+
 #~ msgid "Allready running %s"
 #~ msgstr "Вже запущено %s"
 
@@ -11451,6 +11624,10 @@ msgstr "переключено"
 
 #~ msgid "CCcam configpath"
 #~ msgstr "CCсam шлях до конфігурації"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Новий PIN-код"
 
 #~ msgid "Canada"
 #~ msgstr "Канада"
@@ -11630,6 +11807,9 @@ msgstr "переключено"
 
 #~ msgid "Current poster and info"
 #~ msgstr "Поточний постер і опис"
+
+#~ msgid "Current version:"
+#~ msgstr "Поточна версія:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Поточний встановлений імідж"
@@ -11854,6 +12034,10 @@ msgstr "переключено"
 #~ msgid "Enable action after inactivity:"
 #~ msgstr "Дозволити заходи після бездіяльності:"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Увімкнути ViaSat EPG"
+
 #~ msgid "Enable automatic power off in standby:"
 #~ msgstr "Дозволити авто. відкл. живлення в режимі очікування: "
 
@@ -11889,6 +12073,14 @@ msgstr "переключено"
 
 #~ msgid "F i l e l i s t"
 #~ msgstr "Список файлів"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Оновлення:"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Змінити URL-адресу джерела оновлення"
 
 #~ msgid "Failed to download the update from the site! Manually download the archive from the site and install it yourself!"
 #~ msgstr "Не вдалося завантажити оновлення з сайту! Вручну скачайте архів з сайту івстановіть його самостійно!"
@@ -11929,9 +12121,6 @@ msgstr "переключено"
 
 #~ msgid "Forced Install"
 #~ msgstr "Примусова установка"
-
-#~ msgid "Fr"
-#~ msgstr "Пт"
 
 #~ msgid "France"
 #~ msgstr "Франція"
@@ -12387,6 +12576,9 @@ msgstr "переключено"
 #~ msgid "New Zealand"
 #~ msgstr "Нова Зеландія"
 
+#~ msgid "New version:"
+#~ msgstr "Нова версія:"
+
 #~ msgid "Next: %s"
 #~ msgstr "Далі: %s"
 
@@ -12576,9 +12768,6 @@ msgstr "переключено"
 #~ msgid "Please wait, downloading epg.dat"
 #~ msgstr "Очікуйте, завантажується epg.dat"
 
-#~ msgid "Please wait, restarting %s"
-#~ msgstr "Чекайте, перезапускається %s"
-
 #~ msgid "Please wait, starting %s"
 #~ msgstr "Чекайте, запускається %s"
 
@@ -12644,14 +12833,8 @@ msgstr "переключено"
 #~ msgid "ReStart"
 #~ msgstr "Перезапуск"
 
-#~ msgid "ReStart Both"
-#~ msgstr "Перезапуск"
-
 #~ msgid "Reboot"
 #~ msgstr "Перезавантаження"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Повторіть новий PIN-код"
 
 #~ msgid "Remember these settings for each folder"
 #~ msgstr "Пам'ятати ці налаштування для кожної папки"
@@ -12692,9 +12875,6 @@ msgstr "переключено"
 #, fuzzy
 #~ msgid "Restart STB"
 #~ msgstr "Перезавантаження"
-
-#~ msgid "Restart Softcam"
-#~ msgstr "Перезапуск Емулятора"
 
 #~ msgid "Restarting %s service"
 #~ msgstr "Перезапуск сервіса %s"
@@ -12737,6 +12917,9 @@ msgstr "переключено"
 
 #~ msgid "Satellite configuration mode Mode"
 #~ msgstr "Режим"
+
+#~ msgid "Satellites"
+#~ msgstr "Супутники"
 
 #~ msgid "Save as background"
 #~ msgstr "Зберегти як фон"
@@ -13025,9 +13208,6 @@ msgstr "переключено"
 #~ msgid "SoftCam/CardServer Panel"
 #~ msgstr "Панель управління емуляторами і кардсервером"
 
-#~ msgid "Softcam Restarted"
-#~ msgstr "Емулятор перезавантажений"
-
 #~ msgid "Softcam type"
 #~ msgstr "Тип емулятора"
 
@@ -13163,6 +13343,10 @@ msgstr "переключено"
 
 #~ msgid "System Info"
 #~ msgstr "Системна інформація"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Повідомлення"
 
 #~ msgid "System Tools"
 #~ msgstr "Системні утиліти"
@@ -13482,6 +13666,9 @@ msgstr "переключено"
 #~ msgid "What exactly do you want to delete?"
 #~ msgstr "Що саме ви хочете видалити?"
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Приховати повідомлення про помилки від CI модуля."
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Якщо увімкнено, оригінальні розриви рядків будуть видалені з телетексту субтитрів."
 
@@ -13549,6 +13736,13 @@ msgstr "переключено"
 
 #~ msgid "Your current version: %s"
 #~ msgstr "Ваша версія: %s"
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Потрібне оновлення фронтпроцессора.\n"
+#~ "Натисніть OK для початку поновлення."
 
 #~ msgid "Your receiver will shutdown due to inactivity."
 #~ msgstr "Ваш ресивер буде вимкнений через бездіяльність."
@@ -13779,9 +13973,6 @@ msgstr "переключено"
 #~ msgid "set of utilities for enigma2"
 #~ msgstr "набір утиліт для enigma2"
 
-#~ msgid "setup PIN"
-#~ msgstr "Змінити PIN-код налаштувань"
-
 # start HDD version
 #~ msgid "sh '/usr/lib/enigma2/python/Plugins/Extensions/BackupSuite-HDD/backup.sh' en_EN"
 #~ msgstr "sh '/usr/lib/enigma2/python/Plugins/Extensions/BackupSuite-HDD/backup.sh' ru_RU"
@@ -13814,6 +14005,10 @@ msgstr "переключено"
 #~ msgid "tuner is not supported"
 #~ msgstr "Невідома"
 
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "Невідома помилка!"
+
 #~ msgid "update Softcam.key from internet"
 #~ msgstr "Завантаження SoftCam.Key з інтернету"
 
@@ -13825,6 +14020,9 @@ msgstr "переключено"
 
 #~ msgid "view system settings"
 #~ msgstr "перегляд установок системи"
+
+#~ msgid "wait for ci..."
+#~ msgstr "очікування ci..."
 
 #~ msgid "whitelist"
 #~ msgstr "білий список"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -563,6 +563,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Salvestusnimekirja hetkeasukoht >"
 
@@ -881,10 +884,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "Määratud kanalid/levitajad:"
-
 msgid "Allocate"
 msgstr "Eralda"
 
@@ -1148,6 +1147,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr "Automaatsed keele valikud"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Autom. SCART ümberlülitus"
 
@@ -1382,15 +1384,12 @@ msgstr "CI liides"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Uus PIN"
-
 msgid "CI assignment"
 msgstr "CI määrangud"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "moodulit ei leitud"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1981,6 +1980,10 @@ msgstr "Määra taustal kustutamise kiirus. Madal kiirus mõjutab kõvaketta jõ
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Määra oma asukoha laiuskraad."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Määra subtiitrite viiteaeg ajastuse puudumisel."
 
@@ -2082,6 +2085,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Ühendatud"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI määrangud"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Konstellatsioon"
@@ -2205,9 +2215,6 @@ msgstr "Hetke transponder"
 msgid "Current value: "
 msgstr "Praegune väärtus: "
 
-msgid "Current version:"
-msgstr "Hetke versioon:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
 
@@ -2326,9 +2333,6 @@ msgstr "Sügav ooterežiim"
 
 msgid "Default"
 msgstr "Vaikimisi"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2740,6 +2744,9 @@ msgstr "Kas uuendad vastuvõtja tarkvara?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Kas uuendad paketti:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "see salvestis"
@@ -2931,10 +2938,6 @@ msgid "Enable Wake On LAN"
 msgstr ""
 
 #, fuzzy
-msgid "Enable auto PIN"
-msgstr "Luba ViaSat EPG"
-
-#, fuzzy
 msgid "Enable auto cable scan"
 msgstr "Luba lapselukk"
 
@@ -2968,6 +2971,9 @@ msgid "Enable parental protection"
 msgstr "lisa lapselukk"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3032,8 +3038,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Korda uut PIN-i"
+
 msgid "Enter main menu..."
 msgstr "Mine peamenüüsse"
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Sisesta pin kood"
 
 msgid "Enter pin code"
 msgstr "Sisesta pin kood"
@@ -3241,7 +3255,28 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3249,14 +3284,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Uuendan"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Muuda uuenduste allika url."
 
 msgid "FTA"
 msgstr "FTA"
@@ -3491,6 +3518,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3516,6 +3546,10 @@ msgstr ""
 "uue välimuse aktiveerimiseks?"
 
 msgid "Gateway"
+msgstr "Lüüs"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Lüüs"
 
 msgid "General AC3 delay"
@@ -3628,10 +3662,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr ""
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD kanalid"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3697,9 +3734,6 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "Varjatud võrk"
-
-msgid "Hide CI messages"
-msgstr "Peida CI teated"
 
 msgid "Hide channel list in radio mode"
 msgstr "Peida raadiorežiimis kanalinimekiri"
@@ -3793,6 +3827,10 @@ msgstr "Värvitoon"
 
 msgid "Hungarian"
 msgstr "Ungari"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 msgid "IP address"
 msgstr "IP aadress"
@@ -4090,6 +4128,9 @@ msgid "Items per page "
 msgstr "Kirjet lehel"
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 msgid "Job overview"
@@ -4471,6 +4512,12 @@ msgstr "Väikseim vanus %d aastat"
 msgid "Minimum send interval"
 msgstr "Väikseim vanus %d aastat"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Puudub"
 
@@ -4712,6 +4759,9 @@ msgstr "Nimeserveri seaded"
 msgid "Namespace"
 msgstr "Nimeruum"
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Võrgumask"
 
@@ -4783,9 +4833,6 @@ msgstr "Uus"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "Uus versioon:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -5556,6 +5603,34 @@ msgstr "Häälesta tuuner C"
 msgid "Please set up tuner D"
 msgstr "Häälesta tuuner D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Häälesta tuuner A"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Häälesta tuuner A"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Häälesta tuuner A"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Häälesta tuuner A"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Häälesta tuuner A"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Häälesta tuuner A"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Häälesta tuuner A"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5598,6 +5673,17 @@ msgstr "Oota, testin võrku."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Oota kuni võrk taaskäivitub."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Oota (EMU hankimine)"
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Oota (EMU hankimine)"
 
 msgid "Please wait..."
 msgstr "Oota..."
@@ -5769,6 +5855,10 @@ msgid "Press OK to scan"
 msgstr "Otsingu alustamiseks vajuta OK"
 
 msgid "Press OK to select a provider."
+msgstr "Levitaja valimiseks vajuta OK."
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Levitaja valimiseks vajuta OK."
 
 msgid "Press OK to select satellites"
@@ -6025,6 +6115,10 @@ msgstr "Tagasi eelmisele kanalile"
 msgid "Reception Settings"
 msgstr "Vastuvõtu seaded"
 
+#, fuzzy
+msgid "Reception lists"
+msgstr "Vastuvõtu seaded"
+
 msgid "Reception settings"
 msgstr "Vastuvõtu seaded"
 
@@ -6081,6 +6175,10 @@ msgstr "Punane nupp..."
 #, fuzzy
 msgid "Red colored"
 msgstr "Teksti värv"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Korda uut PIN-i"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6234,6 +6332,10 @@ msgstr "Lähtesta"
 msgid "Reset and renumerate title names"
 msgstr "Sisesta uus faili nimi"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Sisesta vana PIN kood"
+
 msgid "Reset playback position"
 msgstr "Nulli taasesituse algpunkt"
 
@@ -6256,11 +6358,21 @@ msgstr "Taaskäivituse test"
 msgid "Restart GUI now?"
 msgstr "Käivitame Enigma2 kohe uuesti?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Taaskäivituse test"
+
 msgid "Restart enigma"
 msgstr "Taaskäivita enigma2"
 
 msgid "Restart network"
 msgstr "Taaskäivita võrk "
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "Taaskäivituse test"
@@ -6427,9 +6539,6 @@ msgstr "Satelliidiseadmete seaded"
 msgid "Satellite longitude:"
 msgstr "Satelliidi pikkuskraad:"
 
-msgid "Satellites"
-msgstr "Satelliidid"
-
 msgid "Satfinder"
 msgstr "Satelliidiotsija"
 
@@ -6561,6 +6670,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 #, fuzzy
@@ -6710,8 +6822,16 @@ msgstr "Vali sisendseade."
 msgid "Select interface"
 msgstr "Vali liides"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Varukoopia asukoht"
+
 msgid "Select movie"
 msgstr "Vali film"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Vali uuenduste allikas"
 
 msgid "Select provider to add..."
 msgstr "Vali levitaja lisamiseks"
@@ -6720,6 +6840,9 @@ msgid "Select refresh rate"
 msgstr "Vali värskendussagedus"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -6860,6 +6983,10 @@ msgstr ""
 msgid "Services"
 msgstr "Kanalid"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "seadete PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -6884,6 +7011,9 @@ msgstr "Määra vaikimisi võrguliideseks"
 
 msgid "Set limits"
 msgstr "Määra piirid"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -6958,6 +7088,10 @@ msgstr "Lühikesed failinimed"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Heli valik"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Peida CI teated"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Näita nüüd/järgmine inforibal"
@@ -7157,6 +7291,10 @@ msgstr "Kuva seiskamismenüü"
 msgid "Show single service EPG"
 msgstr ""
 
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "näita tarkvarahaldurit seadistusmenüüs"
+
 msgid "Show status icons in movie list"
 msgstr "Oleku tähistus salvestiste nimekirjas"
 
@@ -7349,11 +7487,22 @@ msgstr "Aeglustuskiirused"
 msgid "Small progress"
 msgstr "Väike edenemisriba"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "EMU tüüp"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "EMU tüüp"
 
 msgid "Software"
 msgstr "Tarkvara"
@@ -7676,6 +7825,9 @@ msgstr ""
 msgid "Stream request"
 msgstr "Striimi päring"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -7860,13 +8012,6 @@ msgstr ""
 msgid "System"
 msgstr "Süsteem"
 
-#, fuzzy
-msgid "System Message"
-msgstr "Teade"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "TÕLKE_INFO"
@@ -7876,6 +8021,9 @@ msgstr "TS fail on liiga suur ISO9660/1-le!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TV füüsilise aadressi raport"
@@ -7970,6 +8118,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN kood on muudetud."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN kood on muudetud."
+
 msgid "The PIN codes you entered are different."
 msgstr "Sisestatud PIN koodid on erinevad."
 
@@ -8029,6 +8181,9 @@ msgstr "Vale kood."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Tulemused on salvestatud %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8417,6 +8572,9 @@ msgstr "Täna"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8713,6 +8871,9 @@ msgstr "Seadistamine"
 
 msgid "Use"
 msgstr "Kasuta"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Kasuta DHCP:d"
@@ -9245,9 +9406,6 @@ msgstr "Määrates 'jah', näidatakse inforibal EIT nüüd/järgmine saateinfot.
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Määrates 'jah', näidatakse salastatust inforibal (kui teema seda toetab)."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Määrates 'jah', ei näidata CI mooduliga seotud veateateid."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Määrates 'jah', ei näidata kanalivahetusega seotud veateateid."
 
@@ -9414,6 +9572,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Ilma popup aknata"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Kirjutamise viga. Kõvaketas täis?\n"
 
@@ -9487,6 +9649,9 @@ msgstr "Jah, tagasi salvestiste nimekirja"
 
 msgid "Yesterday"
 msgstr "Eile"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -9622,13 +9787,6 @@ msgstr "Kogu valik ei mahu ühekihilisele plaadile, vaja on tühja kahekihilist 
 
 msgid "Your current collection will get lost!"
 msgstr "Praegune valik kustutatakse!"
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Frontprotsessori tarkvara tuleb uuendada.\n"
-"Uuendamiseks vajuta OK."
 
 #, fuzzy, python-format
 msgid ""
@@ -10050,6 +10208,10 @@ msgstr "detektiiv/triller"
 msgid "disable"
 msgstr "keela"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Sulge pilt-pildis"
+
 msgid "disable move mode"
 msgstr "keela move mode"
 
@@ -10103,6 +10265,9 @@ msgstr "luba nimekirjade muutmine"
 
 msgid "enable favourite edit"
 msgstr "luba lemmikute muutmine"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "luba liigutamine menüüdes"
@@ -10161,6 +10326,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10709,6 +10877,10 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "eemalda lapselukk"
+
 msgid "set as startup service"
 msgstr "käivita vastuvõtja sellel kanalil"
 
@@ -10891,10 +11063,6 @@ msgstr "määramata"
 msgid "unknown"
 msgstr "tundmatu"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "tundmatu kanal"
-
 msgid "unknown service"
 msgstr "tundmatu kanal"
 
@@ -10916,9 +11084,6 @@ msgstr ""
 
 msgid "vertical"
 msgstr "vertikaal"
-
-msgid "wait for ci..."
-msgstr "ci ootel..."
 
 msgid "wait for mmi..."
 msgstr "mmi ootel..."
@@ -11022,6 +11187,10 @@ msgstr "vahetatud"
 #~ msgid "All satellites"
 #~ msgstr "Kõik satelliidid"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Määratud kanalid/levitajad:"
+
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -11033,6 +11202,10 @@ msgstr "vahetatud"
 
 #~ msgid "Blue boost"
 #~ msgstr "Sinine boost"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Uus PIN"
 
 #~ msgid "Change pin code"
 #~ msgstr "Vaheta PIN"
@@ -11066,6 +11239,9 @@ msgstr "vahetatud"
 
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Loo üksikasjalikum vealogi"
+
+#~ msgid "Current version:"
+#~ msgstr "Hetke versioon:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Praegu paigaldatud tarkvara"
@@ -11110,8 +11286,20 @@ msgstr "vahetatud"
 #~ msgid "Edit services list"
 #~ msgstr "Muuda kanalite listi"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Luba ViaSat EPG"
+
 #~ msgid "Enable parental control"
 #~ msgstr "Luba lapselukk"
+
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Uuendan"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Muuda uuenduste allika url."
 
 #~ msgid "Fan %d PWM"
 #~ msgstr "Ventilaatori %d PWM"
@@ -11153,6 +11341,9 @@ msgstr "vahetatud"
 
 #~ msgid "New PIN"
 #~ msgstr "Uus PIN"
+
+#~ msgid "New version:"
+#~ msgstr "Uus versioon:"
 
 #~ msgid "No details for this image file"
 #~ msgstr "Pole täpsemat informatsiooni sellele tarkvarale"
@@ -11202,9 +11393,6 @@ msgstr "vahetatud"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Palun vali NFI fail ja vajuta flashimiseks rohelist nuppu!"
 
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Oota (EMU hankimine)"
-
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Valmista ette teine USB pulk image flashimiseks"
 
@@ -11213,9 +11401,6 @@ msgstr "vahetatud"
 
 #~ msgid "Reboot"
 #~ msgstr "Taaskäivitus"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Korda uut PIN-i"
 
 #~ msgid "Remember these settings for each folder"
 #~ msgstr "Pea iga kataloogi valikud meeles"
@@ -11226,6 +11411,9 @@ msgstr "vahetatud"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Taastamine..."
+
+#~ msgid "Satellites"
+#~ msgstr "Satelliidid"
 
 #~ msgid "Select an image to be downloaded"
 #~ msgstr "Vali tarkvara allalaadimiseks"
@@ -11261,14 +11449,15 @@ msgstr "vahetatud"
 #~ msgid "SoftCam / CI"
 #~ msgstr "EMU / CI"
 
-#~ msgid "Softcam type"
-#~ msgstr "EMU tüüp"
-
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Ventilaatori %d PWM ooterežiimil"
 
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "Ventilaatori %d pinge ooterežiimil"
+
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Teade"
 
 #~ msgid "Temperature and fan control"
 #~ msgstr "Temp. ja ventilaatori seaded"
@@ -11359,6 +11548,9 @@ msgstr "vahetatud"
 #~ msgid "Welcome…"
 #~ msgstr "Tere tulemast"
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Määrates 'jah', ei näidata CI mooduliga seotud veateateid."
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Määrates 'jah', kasutakse teleteksti subtiitritel parandamata reamurdmist."
 
@@ -11374,6 +11566,13 @@ msgstr "vahetatud"
 #~ msgstr ""
 #~ "Vastuvõtja tuleb ühendada arvutiga. Kui on vaja abi, siis vaata : http://www.dm7025.de.\n"
 #~ "Vastuvõtja on nüüd peatatud.Kui on täidetud uuendamise juhised veebilehelt, siis uus tarkvara palub taastada seadeid."
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Frontprotsessori tarkvara tuleb uuendada.\n"
+#~ "Uuendamiseks vajuta OK."
 
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "Tagasi vaadatud kanalile?"
@@ -11396,11 +11595,15 @@ msgstr "vahetatud"
 #~ msgid "service PIN"
 #~ msgstr "kanali PIN"
 
-#~ msgid "setup PIN"
-#~ msgstr "seadete PIN"
-
 #~ msgid "special characters"
 #~ msgstr "erimärgid"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "tuuner pole toetatud"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "tundmatu kanal"
+
+#~ msgid "wait for ci..."
+#~ msgstr "ci ootel..."

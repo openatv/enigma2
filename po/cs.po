@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -633,6 +633,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 #
 msgid "<Current movielist location>"
 msgstr "<současný seznam souborů>"
@@ -1016,11 +1019,6 @@ msgstr "Všechny satelity 3 (USALS)"
 msgid "All satellites 4 (USALS)"
 msgstr "Všechny satelity 4 (USALS)"
 
-#
-#, fuzzy
-msgid "All services provider"
-msgstr "Přiřazený program/poskytovatel:"
-
 msgid "Allocate"
 msgstr "Přidělit"
 
@@ -1329,6 +1327,9 @@ msgstr "Auto fokus zahájen ..."
 msgid "Auto language selection"
 msgstr "Automatický výběr jazyka"
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 #
 msgid "Auto scart switching"
 msgstr "Automatické přepínání scart"
@@ -1603,16 +1604,14 @@ msgstr "CI (Common Interface)"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Nový PIN"
-
 #
 msgid "CI assignment"
 msgstr "CI přiřazení"
 
-msgid "CIHelper"
-msgstr ""
+#
+#, fuzzy
+msgid "CI slot: "
+msgstr "žádný CI slot nenalezen"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -2276,6 +2275,10 @@ msgstr "Nastavuje rychlost mazání na pozadí. Nižší rychlost spotřebuje m�
 msgid "Configure the speed of the fan"
 msgstr "Nastavit rychlost ventilátoru"
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Nastavuje zeměpisnou šířku Vašeho místa."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Nastavuje zpoždění titulků pro případ, kdy není časování dostupné."
 
@@ -2387,6 +2390,14 @@ msgstr "Připojené satelity"
 #
 msgid "Connected to"
 msgstr "Připojeno k"
+
+#
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI přiřazení"
+
+msgid "Console"
+msgstr ""
 
 #
 msgid "Constellation"
@@ -2531,10 +2542,6 @@ msgstr "Aktuální transponder"
 msgid "Current value: "
 msgstr "Aktuální hodnota: "
 
-#
-msgid "Current version:"
-msgstr "Aktuální verze:"
-
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "V současné době není možné získat aktuální seznam změn - prosím, zkuste to později"
 
@@ -2678,9 +2685,6 @@ msgstr "Hluboký spánek"
 #
 msgid "Default"
 msgstr "Defaultní"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #
 #, fuzzy
@@ -3167,6 +3171,9 @@ msgstr "Chcete zaktualizovat Váš přijímač?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Chcete aktualizovat balíček:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Don't add this recording"
@@ -3396,10 +3403,6 @@ msgstr "Povolit Virgin EPG"
 msgid "Enable Wake On LAN"
 msgstr "Povolit Wake On LAN"
 
-#, fuzzy
-msgid "Enable auto PIN"
-msgstr "Povolit ViaSat EPG"
-
 msgid "Enable auto cable scan"
 msgstr "Povolit automatické prohledání kabelu"
 
@@ -3438,6 +3441,9 @@ msgstr "přidat do rodičovské ochrany"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Na vzdáleném přijímač se bude zkoušet naladit služby, které nelze naladit lokálně (např. tuner je obsazený nebo typ služby není k dispozici na místním tuneru). Zadejte úplnou URL adresu včetně http: // a číslo portu (normálně ...: 8001 ), například http: //druhy_box: 8001."
+
+msgid "Enable screenshot of LCD in /tmp"
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Povolit caching teletextu"
@@ -3510,9 +3516,18 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Zopakujte nový PIN"
+
 #
 msgid "Enter main menu..."
 msgstr "Hlavní menu..."
+
+#
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Zadejte pin kód"
 
 #
 msgid "Enter pin code"
@@ -3763,7 +3778,27 @@ msgstr "Začátek ignorování časovače neaktivity"
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+msgid "FBC Unicable"
+msgstr ""
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 #
@@ -3772,16 +3807,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Aktualizace"
-
-#
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Upravit url zdroje aktualizací."
 
 msgid "FTA"
 msgstr ""
@@ -4054,6 +4079,9 @@ msgstr "Další možnosti"
 msgid "Further options"
 msgstr "Další možnosti"
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -4082,6 +4110,11 @@ msgstr ""
 
 #
 msgid "Gateway"
+msgstr "Brána"
+
+#
+#, fuzzy
+msgid "Gateway:"
 msgstr "Brána"
 
 #
@@ -4207,10 +4240,14 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Ochranný interval"
 
+#, fuzzy
+msgid "H"
+msgstr "K"
+
 msgid "HD list"
 msgstr "Seznam HD"
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -4286,9 +4323,6 @@ msgstr "Pomáhá nastavit parabolu"
 
 msgid "Hidden network"
 msgstr "Skrytá síť"
-
-msgid "Hide CI messages"
-msgstr "Skrýt CI zprávy"
 
 msgid "Hide channel list in radio mode"
 msgstr "Skrýt seznam programů v radio módu"
@@ -4392,6 +4426,9 @@ msgstr "Odstín"
 #
 msgid "Hungarian"
 msgstr "Maďarsky"
+
+msgid "I"
+msgstr ""
 
 msgid "IP address"
 msgstr "IP adresa"
@@ -4752,6 +4789,9 @@ msgstr "Položek na stránku"
 
 msgid "Items per page for list screen"
 msgstr "Položek na stránku pro seznam"
+
+msgid "J"
+msgstr ""
 
 #
 msgid "Job overview"
@@ -5211,6 +5251,12 @@ msgstr "minimální věk %d roků"
 msgid "Minimum send interval"
 msgstr "Minimální interval posílání"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr "Chybí"
 
@@ -5494,6 +5540,9 @@ msgstr "Nastavení DNS"
 msgid "Namespace"
 msgstr ""
 
+msgid "NetSpeed:"
+msgstr ""
+
 #
 msgid "Netmask"
 msgstr "Síťová maska"
@@ -5583,10 +5632,6 @@ msgstr "Nové programy"
 
 msgid "New Packages"
 msgstr ""
-
-#
-msgid "New version:"
-msgstr "Nová verze:"
 
 msgid "News Current Affairs"
 msgstr "zpravodajství, publicistika "
@@ -6485,6 +6530,41 @@ msgid "Please set up tuner D"
 msgstr "Prosím, nastavte tuner D"
 
 #
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Prosím, nastavte tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Prosím, nastavte tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Prosím, nastavte tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Prosím, nastavte tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Prosím, nastavte tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Prosím, nastavte tuner A"
+
+#
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Prosím, nastavte tuner A"
+
+#
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6537,6 +6617,19 @@ msgstr "Čekejte prosím, zatímco my testujeme Vaši síť..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Čekejte, dokud není síť restartována..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Prosím, čekejte (nahrává se softcam)"
+
+#
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Prosím, čekejte (nahrává se softcam)"
 
 #
 msgid "Please wait..."
@@ -6748,6 +6841,11 @@ msgstr "Stiskněte OK pro prohledávání"
 
 #
 msgid "Press OK to select a provider."
+msgstr "Stiskněte OK k vybrání poskytovatele."
+
+#
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Stiskněte OK k vybrání poskytovatele."
 
 #
@@ -7055,6 +7153,11 @@ msgid "Reception Settings"
 msgstr "Nastavení příjmu"
 
 #
+#, fuzzy
+msgid "Reception lists"
+msgstr "Nastavení příjmu"
+
+#
 msgid "Reception settings"
 msgstr "Nastavení příjmu"
 
@@ -7119,6 +7222,10 @@ msgstr "Červené tlačítko"
 
 msgid "Red colored"
 msgstr "Červeně zbarvený"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Zopakujte nový PIN"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -7300,6 +7407,10 @@ msgstr "Reset"
 msgid "Reset and renumerate title names"
 msgstr "Zresetovat a přečíslovat názvy"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Zadejte starý PIN kód"
+
 #
 msgid "Reset playback position"
 msgstr "resetovat pozici přehrávání"
@@ -7330,12 +7441,23 @@ msgid "Restart GUI now?"
 msgstr "Restartovat GUI nyní?"
 
 #
+#, fuzzy
+msgid "Restart both"
+msgstr "Restart testu"
+
+#
 msgid "Restart enigma"
 msgstr "Restart enigma"
 
 #
 msgid "Restart network"
 msgstr "Restartovat síť"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 #
 msgid "Restart test"
@@ -7538,10 +7660,6 @@ msgid "Satellite longitude:"
 msgstr "Zeměpisná délka satelitu:"
 
 #
-msgid "Satellites"
-msgstr "Satelity"
-
-#
 msgid "Satfinder"
 msgstr "Satfinder"
 
@@ -7696,6 +7814,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 #
@@ -7880,8 +8001,18 @@ msgid "Select interface"
 msgstr "Vyberte interface"
 
 #
+#, fuzzy
+msgid "Select location"
+msgstr "Zvolte akci"
+
+#
 msgid "Select movie"
 msgstr "Vyberte film"
+
+#
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Vyberte zdroje pro aktualizaci"
 
 #
 msgid "Select provider to add..."
@@ -7894,6 +8025,9 @@ msgstr "Vyberte obnovovací frekvenci"
 #
 msgid "Select satellites"
 msgstr "Vyberte satelity"
+
+msgid "Select secondary softcam"
+msgstr ""
 
 #
 msgid "Select service to add..."
@@ -8066,6 +8200,10 @@ msgstr ""
 msgid "Services"
 msgstr "Programy"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "nastavit PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -8094,6 +8232,9 @@ msgstr "Nastavit interface jako standardní"
 
 msgid "Set limits"
 msgstr "Nastavit meze"
+
+msgid "Set pin code persistent"
+msgstr ""
 
 #, fuzzy
 msgid "Set startup service"
@@ -8173,6 +8314,10 @@ msgstr "krátké názvy souborů"
 
 msgid "Show Audioselection"
 msgstr "Nastavení zvuku"
+
+#, fuzzy
+msgid "Show CI messages"
+msgstr "Skrýt CI zprávy"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Zobrazovat EIT nyní/další v infobaru"
@@ -8387,6 +8532,10 @@ msgstr "Zobrazit shutdown menu"
 
 msgid "Show single service EPG"
 msgstr "Zobrazovat EPG jednoho kanálu"
+
+#, fuzzy
+msgid "Show softcam startup in extensions menu"
+msgstr "Zobrazovat v menu rozšíření"
 
 msgid "Show status icons in movie list"
 msgstr "Zobrazovat ikony stavu v seznamu filmů"
@@ -8609,11 +8758,22 @@ msgstr "Rychlosti zpomaleného přehrávání"
 msgid "Small progress"
 msgstr "Průběh"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr "sociální/politická ekonomika"
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Typ softcamu"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Typ softcamu"
 
 #
 msgid "Software"
@@ -8994,6 +9154,9 @@ msgstr ""
 msgid "Stream request"
 msgstr "požadavek streamu"
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -9204,14 +9367,6 @@ msgid "System"
 msgstr "Systém"
 
 #
-#, fuzzy
-msgid "System Message"
-msgstr "Zpráva"
-
-msgid "System Message Check"
-msgstr ""
-
-#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "(# Autor: ims <ims21@users.sourceforge.net> 2012-2014)"
@@ -9221,6 +9376,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS soubor je příliš velký pro ISO9660 level 1!"
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNER:"
 msgstr ""
 
 msgid "TV physical address report"
@@ -9324,6 +9482,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN kód byl úspěšně změněn."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "PIN kód byl úspěšně změněn."
+
 msgid "The PIN codes you entered are different."
 msgstr "PIN kód, který jste zadali, je odlišný."
 
@@ -9388,6 +9550,9 @@ msgstr "Zadaný PIN kód je chybný."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Výsledky byly zapsány do %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 #, fuzzy
 msgid "The servicelist is reloaded."
@@ -9830,6 +9995,9 @@ msgstr "Dnes"
 msgid "Toggle Extra Keys"
 msgstr "Přepnout na další"
 
+msgid "Toggle HDMI In"
+msgstr "Přepínat HDMI vstup"
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -10178,6 +10346,9 @@ msgstr "Přizpůsobení"
 #
 msgid "Use"
 msgstr "Použít"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -10783,9 +10954,6 @@ msgstr "Jestliže je povoleno, zobrazují se EIT nyní/další data události v 
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr "Jestliže je povoleno, informace o kódování budou zobrazovány v infobaru ( umožňuje-li to skin )."
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr "Jestliže je povoleno, pak nejsou zobrazovány chyby Common Interface modulu."
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr "Jestliže je povoleno, nebudou zobrazovány chyby související s přepínáním."
 
@@ -10964,6 +11132,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "bez dialogu"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 #
 msgid "Write error while recording. Disk full?\n"
 msgstr "Chyba zápisu během nahrávání. Plný disk?\n"
@@ -11053,6 +11225,9 @@ msgstr "Ano, vrátit se na seznam filmů"
 #
 msgid "Yesterday"
 msgstr "Včera"
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -11199,14 +11374,6 @@ msgstr "Vaše kompilace přesahuje kapacitu jednovrstvého DVD. Budete potřebov
 #
 msgid "Your current collection will get lost!"
 msgstr "Vaše současná kompilace bude ztracena!"
-
-#
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Firmware Vašeho frontprocesoru musí být aktualizován.\n"
-"Stiskněte OK pro aktualizaci."
 
 #, fuzzy, python-format
 msgid ""
@@ -11691,6 +11858,11 @@ msgid "disable"
 msgstr "zakázat"
 
 #
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Vypnout obraz v obraze"
+
+#
 msgid "disable move mode"
 msgstr "zakázat přesun"
 
@@ -11754,6 +11926,10 @@ msgstr "povolit úpravu přehledu"
 #
 msgid "enable favourite edit"
 msgstr "Povolit úpravu oblíbených"
+
+#, fuzzy
+msgid "enable intro screen"
+msgstr "Povolit automatický Fast scan"
 
 #
 msgid "enable move mode"
@@ -11820,6 +11996,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 #
@@ -12464,6 +12643,10 @@ msgstr "vážná hudba/klasická muzika"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "závažný/klasický/náboženský/historický film/drama"
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "odstranit přehled z rodičovské ochrany"
+
 msgid "set as startup service"
 msgstr "nastavit jako program po spuštění"
 
@@ -12682,11 +12865,6 @@ msgid "unknown"
 msgstr "neznámý"
 
 #
-#, fuzzy
-msgid "unknown error"
-msgstr "neznámý program"
-
-#
 msgid "unknown service"
 msgstr "neznámý program"
 
@@ -12712,10 +12890,6 @@ msgstr "varieté"
 #
 msgid "vertical"
 msgstr "vertikální"
-
-#
-msgid "wait for ci..."
-msgstr "čekat na CI..."
 
 #
 msgid "wait for mmi..."
@@ -12823,8 +12997,17 @@ msgstr "přepnutý"
 #~ msgstr "Přidávat více podrobností do crash logu."
 
 #
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "Přiřazený program/poskytovatel:"
+
+#
 #~ msgid "Blue boost"
 #~ msgstr "Zesílení modré"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Nový PIN"
 
 #
 #~ msgid "Change pin code"
@@ -12864,6 +13047,10 @@ msgstr "přepnutý"
 #
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Vytvářet podrobnější crash log"
+
+#
+#~ msgid "Current version:"
+#~ msgstr "Aktuální verze:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Nainstalované image"
@@ -12938,9 +13125,23 @@ msgstr "přepnutý"
 #~ msgid "Edit services list"
 #~ msgstr "Upravit seznam programů"
 
+#, fuzzy
+#~ msgid "Enable auto PIN"
+#~ msgstr "Povolit ViaSat EPG"
+
 #
 #~ msgid "Enable parental control"
 #~ msgstr "Povolit rodičovský zámek"
+
+#
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Aktualizace"
+
+#
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Upravit url zdroje aktualizací."
 
 #
 #~ msgid "Fan %d PWM"
@@ -13005,6 +13206,10 @@ msgstr "přepnutý"
 #~ msgstr "Nový PIN"
 
 #
+#~ msgid "New version:"
+#~ msgstr "Nová verze:"
+
+#
 #~ msgid "No details for this image file"
 #~ msgstr "Žádné detaily o tomto image souboru"
 
@@ -13059,10 +13264,6 @@ msgstr "přepnutý"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Zvolte NFI soubor a stiskněte zelené tlačítko pro naprogramování!"
 
-#
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Prosím, čekejte (nahrává se softcam)"
-
 #~ msgid "Polarisation:"
 #~ msgstr "Polarizace:"
 
@@ -13072,9 +13273,6 @@ msgstr "přepnutý"
 #
 #~ msgid "Reboot"
 #~ msgstr "Restartovat"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Zopakujte nový PIN"
 
 #
 #~ msgid "Remember these settings for each folder"
@@ -13088,6 +13286,10 @@ msgstr "přepnutý"
 #
 #~ msgid "Restore is running..."
 #~ msgstr "Probíhá obnova..."
+
+#
+#~ msgid "Satellites"
+#~ msgstr "Satelity"
 
 #~ msgid "Select an image to be downloaded"
 #~ msgstr "Vyberte image ke stažení"
@@ -13139,9 +13341,6 @@ msgstr "přepnutý"
 #~ msgid "SoftCam / CI"
 #~ msgstr "SoftCam / CI"
 
-#~ msgid "Softcam type"
-#~ msgstr "Typ softcamu"
-
 #
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "PWM ventilátoru %d ve standby"
@@ -13161,6 +13360,11 @@ msgstr "přepnutý"
 #
 #~ msgid "Switch to HDMI in mode"
 #~ msgstr "Přepnout na HDMI v módu"
+
+#
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Zpráva"
 
 #
 #~ msgid "Temperature and fan control"
@@ -13239,9 +13443,6 @@ msgstr "přepnutý"
 #~ "2) zapněte hlavní vypínač a držte 10s stisknuté tlačítko DOWN na předním panelu.\n"
 #~ "3) počkejte, až zařízení nabootuje a následujte instrukce průvodce."
 
-#~ msgid "Toggle HDMI In"
-#~ msgstr "Přepínat HDMI vstup"
-
 # ims
 #~ msgid "Trashcan silent mode"
 #~ msgstr "Tichý mód pro koš"
@@ -13274,6 +13475,9 @@ msgstr "přepnutý"
 #~ msgid "Welcome…"
 #~ msgstr "Vítejte..."
 
+#~ msgid "When enabled, error messages related to the Common Interface module will not be shown."
+#~ msgstr "Jestliže je povoleno, pak nejsou zobrazovány chyby Common Interface modulu."
+
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Jestliže je povoleno, původní odřádkování bude z teletextových titulků odstraněno."
 
@@ -13290,6 +13494,14 @@ msgstr "přepnutý"
 #~ msgstr ""
 #~ "Potřebujete PC připojené k Vašemu přijímači. Pokud potřebujete další informace, navštivte stránku http://www.dm7025.de.\n"
 #~ "Váš přijímač bude nyní zastaven. Poté, co provedete aktualizaci pomocí instrukcí popsaných na zmíněné stránce, se Vás přijímač zeptá na obnovu nastavení."
+
+#
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Firmware Vašeho frontprocesoru musí být aktualizován.\n"
+#~ "Stiskněte OK pro aktualizaci."
 
 #
 #~ msgid "complex"
@@ -13335,9 +13547,6 @@ msgstr "přepnutý"
 #~ msgid "service PIN"
 #~ msgstr "programový PIN"
 
-#~ msgid "setup PIN"
-#~ msgstr "nastavit PIN"
-
 #~ msgid "show extended description"
 #~ msgstr "zobrazovat rozšířený popis"
 
@@ -13347,6 +13556,15 @@ msgstr "přepnutý"
 #
 #~ msgid "special characters"
 #~ msgstr "speciální znaky"
+
+#
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "neznámý program"
+
+#
+#~ msgid "wait for ci..."
+#~ msgstr "čekat na CI..."
 
 #
 #~ msgid "whitelist"

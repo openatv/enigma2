@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -536,6 +536,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr ""
 
@@ -861,10 +864,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#, fuzzy
-msgid "All services provider"
-msgstr "กำหนดบริการ/ผู้ให้บริการr:"
-
 msgid "Allocate"
 msgstr ""
 
@@ -1136,6 +1135,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr ""
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "เปลี่ยน scart อัตโนมัติ"
 
@@ -1372,14 +1374,12 @@ msgstr "อินเตอร์เฟซพื้นฐาน"
 msgid "CI Helper"
 msgstr ""
 
-msgid "CI PIN"
-msgstr ""
-
 msgid "CI assignment"
 msgstr "CI assignment"
 
-msgid "CIHelper"
-msgstr ""
+#, fuzzy
+msgid "CI slot: "
+msgstr "ไม่พบ CI"
 
 #, fuzzy
 msgid "CIHelper Setup"
@@ -1986,6 +1986,10 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "โหมดการตั้งค่า"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
@@ -2088,6 +2092,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "เชื่อมต่อแล้วกับ"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI assignment"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Constellation"
@@ -2213,9 +2224,6 @@ msgstr "ทรานสปอนเดอร์ปัจจุบัน"
 
 msgid "Current value: "
 msgstr "ค่าปัจจุบัน:"
-
-msgid "Current version:"
-msgstr "เวอร์ชั่นปัจจุบัน:"
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
@@ -2343,9 +2351,6 @@ msgstr "Deep Standby"
 
 msgid "Default"
 msgstr "ค่าเริ่มต้น"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2761,6 +2766,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "ยืนยันจะปรับปรุงส่วนประกอบนี้:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #, fuzzy
 msgid "Don't add this recording"
 msgstr "กำลังถูกบันทึก"
@@ -2952,9 +2960,6 @@ msgstr ""
 msgid "Enable Wake On LAN"
 msgstr ""
 
-msgid "Enable auto PIN"
-msgstr ""
-
 #, fuzzy
 msgid "Enable auto cable scan"
 msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
@@ -2990,6 +2995,9 @@ msgid "Enable parental protection"
 msgstr "เพิ่มรายการเข้าสู่กลุ่มจำกัดอายุ"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3056,8 +3064,16 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "ช่อง"
+
 msgid "Enter main menu..."
 msgstr "เข้าสู่เมนูหลัก..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "กรุณาป้อนรหัสที่ถูกต้องด้วย"
 
 msgid "Enter pin code"
 msgstr ""
@@ -3272,7 +3288,28 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 msgid "FEC"
@@ -3280,14 +3317,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "กำลังอัพเกรด"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "แก้ไข URL ของเซอร์พเวอร์เพื่อปรับปรุง"
 
 msgid "FTA"
 msgstr ""
@@ -3522,6 +3551,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3547,6 +3579,10 @@ msgstr ""
 "ต้องการเริ่มโปรแกรมใหม่หรือไม่?"
 
 msgid "Gateway"
+msgstr "Gateway"
+
+#, fuzzy
+msgid "Gateway:"
 msgstr "Gateway"
 
 #, fuzzy
@@ -3667,10 +3703,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr ""
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -3737,9 +3776,6 @@ msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Hidden network"
-msgstr ""
-
-msgid "Hide CI messages"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -3836,6 +3872,10 @@ msgstr "Hue"
 
 msgid "Hungarian"
 msgstr "ภาษาฮังการี่"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 #, fuzzy
 msgid "IP address"
@@ -4148,6 +4188,9 @@ msgid "Items per page "
 msgstr ""
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 #, fuzzy
@@ -4551,6 +4594,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr ""
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -4796,6 +4845,9 @@ msgstr "ตั้งค่า Nameserver"
 msgid "Namespace"
 msgstr ""
 
+msgid "NetSpeed:"
+msgstr ""
+
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -4870,9 +4922,6 @@ msgstr "ใหม่"
 
 msgid "New Packages"
 msgstr ""
-
-msgid "New version:"
-msgstr "เวอร์ชั่นใหม่:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -5658,6 +5707,34 @@ msgstr "กรุณาตั้งค่า Tuner C"
 msgid "Please set up tuner D"
 msgstr "กรุณาตั้งค่า Tuner D"
 
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "กรุณาตั้งค่า Tuner B"
+
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "กรุณาตั้งค่า Tuner B"
+
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "กรุณาตั้งค่า Tuner B"
+
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "กรุณาตั้งค่า Tuner B"
+
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "กรุณาตั้งค่า Tuner B"
+
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "กรุณาตั้งค่า Tuner B"
+
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "กรุณาตั้งค่า Tuner B"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -5702,6 +5779,17 @@ msgstr "กรุณารอสักครู่... กำลังตรว�
 
 msgid "Please wait while your network is restarting..."
 msgstr "กรุณารอสักครู่... กำลังเริ่มระบบเครือข่าย..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "กำลังโหลด... รอสักครู่..."
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "กำลังโหลด... รอสักครู่..."
 
 msgid "Please wait..."
 msgstr "กรุณารอสักครู่..."
@@ -5871,6 +5959,10 @@ msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
 
 #, fuzzy
 msgid "Press OK to select a provider."
+msgstr "กดปุ่ม OK เพื่อเลือกผู้ให้บริการ"
+
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "กดปุ่ม OK เพื่อเลือกผู้ให้บริการ"
 
 msgid "Press OK to select satellites"
@@ -6129,6 +6221,10 @@ msgid "Reception Settings"
 msgstr "ตั้งค่าการรับ"
 
 #, fuzzy
+msgid "Reception lists"
+msgstr "ตั้งค่าการรับ"
+
+#, fuzzy
 msgid "Reception settings"
 msgstr "ตั้งค่าการรับ"
 
@@ -6185,6 +6281,9 @@ msgstr ""
 #, fuzzy
 msgid "Red colored"
 msgstr "สีตัวอักษร"
+
+msgid "Reenter PIN"
+msgstr ""
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -6343,6 +6442,10 @@ msgstr "ตั้งค่าใหม่"
 msgid "Reset and renumerate title names"
 msgstr "ยกเลิกและเรียงลำดับชื่อเรื่องใหม่"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "กรุณาป้อนรหัสที่ถูกต้องด้วย"
+
 msgid "Reset playback position"
 msgstr ""
 
@@ -6365,11 +6468,21 @@ msgstr "เริ่มทดสอบใหม่"
 msgid "Restart GUI now?"
 msgstr "เริ่มทำงานใหม่ (GUI) ตอนนี้หรือไม่?"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "เริ่มทดสอบใหม่"
+
 msgid "Restart enigma"
 msgstr ""
 
 msgid "Restart network"
 msgstr "เริ่มการทำงานเครือข่ายใหม่"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 msgid "Restart test"
 msgstr "เริ่มทดสอบใหม่"
@@ -6539,9 +6652,6 @@ msgstr "ตั้งค่าอุปกรณ์ดาวเทียม"
 msgid "Satellite longitude:"
 msgstr ""
 
-msgid "Satellites"
-msgstr "ดาวเทียม"
-
 msgid "Satfinder"
 msgstr "ค้นหาดาวเทียม"
 
@@ -6677,6 +6787,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -6838,8 +6951,16 @@ msgid "Select interface"
 msgstr "เลือกอินเตอร์เฟซ"
 
 #, fuzzy
+msgid "Select location"
+msgstr "เลือกที่ที่จะสำรอง"
+
+#, fuzzy
 msgid "Select movie"
 msgstr "เลือกภาพยนต์"
+
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "เลือกที่มาเพื่อปรับปรุง"
 
 msgid "Select provider to add..."
 msgstr "เลือกผู้ให้บริการที่ต้องการเพิ่ม..."
@@ -6848,6 +6969,9 @@ msgid "Select refresh rate"
 msgstr "เลือกอัตราการปรับหน้าจอ"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 msgid "Select service to add..."
@@ -6994,6 +7118,9 @@ msgstr ""
 msgid "Services"
 msgstr "บริการต่างๆ"
 
+msgid "Set PIN"
+msgstr ""
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -7018,6 +7145,9 @@ msgid "Set interface as default Interface"
 msgstr "ตั้งให้อินเตอร์เฟซนี้เป็นค่าเริ่มต้น"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set pin code persistent"
 msgstr ""
 
 #, fuzzy
@@ -7096,6 +7226,9 @@ msgstr ""
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "เลือกซับไตเติ้ล"
+
+msgid "Show CI messages"
+msgstr ""
 
 msgid "Show EIT now/next in infobar"
 msgstr ""
@@ -7306,6 +7439,9 @@ msgstr "แสดงเมนูปิดเครื่อง"
 msgid "Show single service EPG"
 msgstr ""
 
+msgid "Show softcam startup in extensions menu"
+msgstr ""
+
 msgid "Show status icons in movie list"
 msgstr ""
 
@@ -7507,11 +7643,22 @@ msgstr "ระดับของความช้า"
 msgid "Small progress"
 msgstr "กำลังทำงาน"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam startup"
+msgstr "ซอพท์แวร์"
+
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "ซอพท์แวร์"
 
 msgid "Software"
 msgstr "ซอพท์แวร์"
@@ -7845,6 +7992,9 @@ msgstr ""
 msgid "Stream request"
 msgstr ""
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -8041,13 +8191,6 @@ msgstr ""
 msgid "System"
 msgstr "ระบบ"
 
-#, fuzzy
-msgid "System Message"
-msgstr "ข้อความ"
-
-msgid "System Message Check"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "TRANSLATOR_INFO"
@@ -8056,6 +8199,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "ชื่อไฟล์ TS ยาวเกินไปสำหรับ ISO9660 level 1!"
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNER:"
 msgstr ""
 
 msgid "TV physical address report"
@@ -8149,6 +8295,9 @@ msgstr "ยังไม่ได้ติดตั้งปลั๊กอิน
 msgid "The PIN code has been changed successfully."
 msgstr ""
 
+msgid "The PIN code has been saved successfully."
+msgstr ""
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -8201,6 +8350,9 @@ msgstr "รหัสที่ป้อนผิด"
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "ผลลัพธ์ถูกเขียนลง %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -8593,6 +8745,9 @@ msgstr "วันนี้"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -8890,6 +9045,9 @@ msgstr "ตั้งค่า"
 
 msgid "Use"
 msgstr "ใช้"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "เลือกใช้ DHCP"
@@ -9427,9 +9585,6 @@ msgstr ""
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr ""
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr ""
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr ""
 
@@ -9596,6 +9751,10 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "เกิดข้อผิดพลาดในการบันทึกรายการ ไดรฟ์เต็มหรือไม่?\n"
 
@@ -9667,6 +9826,9 @@ msgid "Yes, returning to movie list"
 msgstr "ใช่ - กลับไปที่สารบัญ Movie"
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
 msgstr ""
 
 #, python-format
@@ -9794,13 +9956,6 @@ msgstr "ข้อมูลที่เลือกใหญ่กว่าดี
 
 msgid "Your current collection will get lost!"
 msgstr ""
-
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"เครื่องของท่านต้องการการปรับปรุง\n"
-"กดปุ่ม OK เพิ่มเริ่มการปรับปรุง"
 
 #, python-format
 msgid ""
@@ -10210,6 +10365,10 @@ msgstr ""
 msgid "disable"
 msgstr "ไม่ใช้"
 
+#, fuzzy
+msgid "disable intro screen"
+msgstr "ไม่ใช้งานภาพซ้อนภาพ"
+
 msgid "disable move mode"
 msgstr "เลิกโหมดเคลื่อนย้าย"
 
@@ -10263,6 +10422,9 @@ msgstr "แก้ไขกลุ่มรายการ"
 
 msgid "enable favourite edit"
 msgstr "แก้ไขรายการโปรด"
+
+msgid "enable intro screen"
+msgstr ""
 
 msgid "enable move mode"
 msgstr "ทำการเคลื่อนย้าย"
@@ -10321,6 +10483,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -10868,6 +11033,10 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "ยกเลิกข้อจำกัดอายุ"
+
 msgid "set as startup service"
 msgstr ""
 
@@ -11050,10 +11219,6 @@ msgstr ""
 msgid "unknown"
 msgstr "ไม่มีข้อมูล"
 
-#, fuzzy
-msgid "unknown error"
-msgstr "ไม่ทราบชนิดบริการ"
-
 msgid "unknown service"
 msgstr "ไม่ทราบชนิดบริการ"
 
@@ -11075,9 +11240,6 @@ msgstr ""
 
 msgid "vertical"
 msgstr "แนวตั้ง (V)"
-
-msgid "wait for ci..."
-msgstr "รอ CI"
 
 msgid "wait for mmi..."
 msgstr "รอ MMI..."
@@ -11174,6 +11336,10 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgid "All satellites"
 #~ msgstr "ดาวเทียมทั้งหมด"
 
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "กำหนดบริการ/ผู้ให้บริการr:"
+
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -11201,6 +11367,9 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 #~ msgid "Connected!"
 #~ msgstr "เชื่อมต่อแล้ว!"
+
+#~ msgid "Current version:"
+#~ msgstr "เวอร์ชั่นปัจจุบัน:"
 
 #, fuzzy
 #~ msgid "Delete..."
@@ -11232,6 +11401,14 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
 
 #, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "กำลังอัพเกรด"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "แก้ไข URL ของเซอร์พเวอร์เพื่อปรับปรุง"
+
+#, fuzzy
 #~ msgid "Fan %d voltage"
 #~ msgstr "เพิ่ม Voltage"
 
@@ -11248,6 +11425,9 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 #~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
 #~ msgstr "ลงอิมเมจ NFI เรียบร้อยแล้ว กดปุ่มเหลืองเพื่อเริ่มระบบใหม่ (Reboot)"
+
+#~ msgid "New version:"
+#~ msgstr "เวอร์ชั่นใหม่:"
 
 #~ msgid "No details for this image file"
 #~ msgstr "ไม่มีรายละเอียดของอิมเมจนี้"
@@ -11282,10 +11462,6 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgid "Please check your network settings!"
 #~ msgstr "กรุณตรวจสอบการตั้งค่าเครือข่าย"
 
-#, fuzzy
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "กำลังโหลด... รอสักครู่..."
-
 #~ msgid "Reboot"
 #~ msgstr "เริ่มระบบใหม่ (Reboot)"
 
@@ -11295,6 +11471,9 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 #~ msgid "Restore is running..."
 #~ msgstr "กำลังนำสำรองกลับมาใช้..."
+
+#~ msgid "Satellites"
+#~ msgstr "ดาวเทียม"
 
 #, fuzzy
 #~ msgid "Service searching"
@@ -11314,8 +11493,8 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgstr "ทรานสปอนเดอร์เดียว"
 
 #, fuzzy
-#~ msgid "Softcam type"
-#~ msgstr "ซอพท์แวร์"
+#~ msgid "System Message"
+#~ msgstr "ข้อความ"
 
 #, fuzzy
 #~ msgid "Temperature and fan control"
@@ -11361,6 +11540,13 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "ท่าได้เลือก สร้างไฟล์ .NFI ที่ USB ซึ่งระบบสร้างพาร์ทิชั่นใหม่ทำให้ข้อมูลทั้งหมดหายไป"
 
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "เครื่องของท่านต้องการการปรับปรุง\n"
+#~ "กดปุ่ม OK เพิ่มเริ่มการปรับปรุง"
+
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "ย้ายไปยังช่องบริกการก่อนที่ค้นหาดาวเทียม"
 
@@ -11375,6 +11561,13 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 #~ msgid "select movie"
 #~ msgstr "เลือกภาพยนต์"
+
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "ไม่ทราบชนิดบริการ"
+
+#~ msgid "wait for ci..."
+#~ msgstr "รอ CI"
 
 #~ msgid "whitelist"
 #~ msgstr "รายการที่อนุญาต"

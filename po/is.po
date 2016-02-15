@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 openMips\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-02 22:37+0100\n"
+"POT-Creation-Date: 2016-02-15 14:56+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -595,6 +595,9 @@ msgstr "9"
 msgid ": %s"
 msgstr ""
 
+msgid ": 0000 - default (disabled)"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Núverandi staður bíómyndalista>"
 
@@ -960,11 +963,6 @@ msgstr ""
 msgid "All satellites 4 (USALS)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "All services provider"
-msgstr "úthlutaðar rásir/sendendur:"
-
 msgid "Allocate"
 msgstr ""
 
@@ -1247,6 +1245,9 @@ msgstr ""
 msgid "Auto language selection"
 msgstr ""
 
+msgid "Auto play blu-ray file"
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Sjálfvirk skipting á scarti"
 
@@ -1490,15 +1491,13 @@ msgstr "Afruglara tengi"
 msgid "CI Helper"
 msgstr ""
 
-#, fuzzy
-msgid "CI PIN"
-msgstr "Nýtt PIN númer"
-
 msgid "CI assignment"
 msgstr "CI stillingar"
 
-msgid "CIHelper"
-msgstr ""
+#
+#, fuzzy
+msgid "CI slot: "
+msgstr "fann engin CI tengi"
 
 #
 #, fuzzy
@@ -2120,6 +2119,10 @@ msgstr ""
 msgid "Configure the speed of the fan"
 msgstr ""
 
+#, fuzzy
+msgid "Configure the startup of your softcams"
+msgstr "Stillinga hamur"
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 
@@ -2224,6 +2227,13 @@ msgstr ""
 
 msgid "Connected to"
 msgstr "Tengd við"
+
+#, fuzzy
+msgid "Consider CI assignment"
+msgstr "CI stillingar"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Constellation"
@@ -2351,9 +2361,6 @@ msgstr "Núverandi sendir"
 
 msgid "Current value: "
 msgstr "Núverandi val:"
-
-msgid "Current version:"
-msgstr "Núverandi útgáfa:"
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
@@ -2491,9 +2498,6 @@ msgstr "Djúp biðstaða"
 #
 msgid "Default"
 msgstr "Venjulegt"
-
-msgid "Default PIN for CI"
-msgstr ""
 
 #, fuzzy
 msgid "Default Services Scanner"
@@ -2968,6 +2972,9 @@ msgstr ""
 msgid "Do you want to upgrade the package:\n"
 msgstr "Viltu uppfæra pakkann:\n"
 
+msgid "Domain:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Don't add this recording"
@@ -3178,9 +3185,6 @@ msgstr ""
 msgid "Enable Wake On LAN"
 msgstr ""
 
-msgid "Enable auto PIN"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Enable auto cable scan"
@@ -3221,6 +3225,9 @@ msgid "Enable parental protection"
 msgstr "bæta við foreldra lás"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgstr ""
+
+msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -3295,9 +3302,17 @@ msgstr ""
 msgid "Enigma2 Version: %s"
 msgstr ""
 
+#, fuzzy
+msgid "Enter PIN"
+msgstr "Sláðu aftur inn nýtt PIN"
+
 #
 msgid "Enter main menu..."
 msgstr "Fara í aðal valmynd..."
+
+#, fuzzy
+msgid "Enter persistent PIN code"
+msgstr "Slá inn kóða"
 
 msgid "Enter pin code"
 msgstr "Slá inn kóða"
@@ -3538,7 +3553,29 @@ msgstr ""
 msgid "Extrude from left"
 msgstr ""
 
+msgid "F"
+msgstr ""
+
 msgid "F1/F3"
+msgstr ""
+
+#
+#, fuzzy
+msgid "FBC Unicable"
+msgstr "Unicable LNB"
+
+msgid "FBC automatic loop through"
+msgstr ""
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr ""
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
 msgstr ""
 
 #
@@ -3547,15 +3584,6 @@ msgstr "FEC"
 
 msgid "FEC:"
 msgstr ""
-
-#
-#, fuzzy
-msgid "FP Upgrade"
-msgstr "Uppfæri"
-
-#, fuzzy
-msgid "FP upgrade required"
-msgstr "Breyta uppfærslu uppruna slóð."
 
 msgid "FTA"
 msgstr ""
@@ -3819,6 +3847,9 @@ msgstr ""
 msgid "Further options"
 msgstr ""
 
+msgid "G"
+msgstr ""
+
 msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr ""
 
@@ -3847,6 +3878,11 @@ msgstr ""
 
 #
 msgid "Gateway"
+msgstr "Beinir"
+
+#
+#, fuzzy
+msgid "Gateway:"
 msgstr "Beinir"
 
 #
@@ -3982,10 +4018,13 @@ msgstr ""
 msgid "Guard interval"
 msgstr "Guard interval"
 
+msgid "H"
+msgstr ""
+
 msgid "HD list"
 msgstr ""
 
-msgid "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/et7x00/et8500"
 msgstr ""
 
 msgid "HD2400"
@@ -4060,9 +4099,6 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "Falið netkerfi"
-
-msgid "Hide CI messages"
-msgstr ""
 
 msgid "Hide channel list in radio mode"
 msgstr ""
@@ -4170,6 +4206,10 @@ msgstr "Litatónn"
 #
 msgid "Hungarian"
 msgstr "Ungverska"
+
+#, fuzzy
+msgid "I"
+msgstr "C"
 
 #
 #, fuzzy
@@ -4526,6 +4566,9 @@ msgid "Items per page "
 msgstr ""
 
 msgid "Items per page for list screen"
+msgstr ""
+
+msgid "J"
 msgstr ""
 
 #
@@ -5000,6 +5043,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr "Guard interval"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+
 msgid "Missing "
 msgstr ""
 
@@ -5280,6 +5329,9 @@ msgstr "Uppsetning nafnaþjóns"
 msgid "Namespace"
 msgstr "Nafnabox"
 
+msgid "NetSpeed:"
+msgstr ""
+
 #
 msgid "Netmask"
 msgstr "Netmaski"
@@ -5371,10 +5423,6 @@ msgstr "Nýtt"
 
 msgid "New Packages"
 msgstr ""
-
-#
-msgid "New version:"
-msgstr "Ný útgáfa:"
 
 msgid "News Current Affairs"
 msgstr ""
@@ -6281,6 +6329,41 @@ msgid "Please set up tuner D"
 msgstr "Vinsamlega settu upp móttakara D"
 
 #
+#, fuzzy
+msgid "Please set up tuner E"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
+#, fuzzy
+msgid "Please set up tuner F"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
+#, fuzzy
+msgid "Please set up tuner G"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
+#, fuzzy
+msgid "Please set up tuner H"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
+#, fuzzy
+msgid "Please set up tuner I"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
+#, fuzzy
+msgid "Please set up tuner J"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
+#, fuzzy
+msgid "Please set up tuner K"
+msgstr "Vinsamlega settu upp móttakara B"
+
+#
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -6334,6 +6417,17 @@ msgstr "Vinsamlega bíðið á meðan við prufum net tengingu..."
 #
 msgid "Please wait while your network is restarting..."
 msgstr "Vinsamlega bíðið á meðan netkerfið er endurræst..."
+
+msgid "Please wait, restarting primary and secondary softcam."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting primary softcam."
+msgstr "Vinsamlega bíðið.. les inn lista..."
+
+#, fuzzy
+msgid "Please wait, restarting secondary softcam."
+msgstr "Vinsamlega bíðið.. les inn lista..."
 
 #
 msgid "Please wait..."
@@ -6526,6 +6620,11 @@ msgstr "Ýtið á OK til að leita"
 #
 #, fuzzy
 msgid "Press OK to select a provider."
+msgstr "Ýttu á OK til að velja sendanda."
+
+#
+#, fuzzy
+msgid "Press OK to select a service."
 msgstr "Ýttu á OK til að velja sendanda."
 
 msgid "Press OK to select satellites"
@@ -6835,6 +6934,11 @@ msgstr "Stilling móttöku"
 
 #
 #, fuzzy
+msgid "Reception lists"
+msgstr "Stilling móttöku"
+
+#
+#, fuzzy
 msgid "Reception settings"
 msgstr "Stilling móttöku"
 
@@ -6903,6 +7007,10 @@ msgstr ""
 #, fuzzy
 msgid "Red colored"
 msgstr "textalitur"
+
+#, fuzzy
+msgid "Reenter PIN"
+msgstr "Sláðu aftur inn nýtt PIN"
 
 msgid "Reflash recommended!"
 msgstr ""
@@ -7087,6 +7195,10 @@ msgstr "Endursetja"
 msgid "Reset and renumerate title names"
 msgstr "Endursetja og endurnúmera nöfn titla"
 
+#, fuzzy
+msgid "Reset persistent PIN code"
+msgstr "Sláðu inn gamla PIN kóðann þinn"
+
 msgid "Reset playback position"
 msgstr ""
 
@@ -7115,12 +7227,23 @@ msgstr "Prufa aftur"
 msgid "Restart GUI now?"
 msgstr "Endurræsa gluggakerfi núna?"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Prufa aftur"
+
 msgid "Restart enigma"
 msgstr ""
 
 #
 msgid "Restart network"
 msgstr "Endurræsi netkort"
+
+msgid "Restart primary softcam"
+msgstr ""
+
+msgid "Restart secondary softcam"
+msgstr ""
 
 #
 msgid "Restart test"
@@ -7318,10 +7441,6 @@ msgid "Satellite longitude:"
 msgstr ""
 
 #
-msgid "Satellites"
-msgstr "Gervihnettir"
-
-#
 msgid "Satfinder"
 msgstr "Gervihnattaleit"
 
@@ -7476,6 +7595,9 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
 msgid "Scroll delay"
@@ -7663,10 +7785,19 @@ msgstr "Veldu inntaks tæki."
 msgid "Select interface"
 msgstr "Veldu netkort"
 
+#, fuzzy
+msgid "Select location"
+msgstr "Veldu stað fyrir afrit"
+
 #
 #, fuzzy
 msgid "Select movie"
 msgstr "Veldu mynd"
+
+#
+#, fuzzy
+msgid "Select primary softcam"
+msgstr "Veldu upphafs slóð til að breyta."
 
 #
 msgid "Select provider to add..."
@@ -7676,6 +7807,9 @@ msgid "Select refresh rate"
 msgstr "Veldu hressingar tíðni"
 
 msgid "Select satellites"
+msgstr ""
+
+msgid "Select secondary softcam"
 msgstr ""
 
 #
@@ -7852,6 +7986,10 @@ msgstr ""
 msgid "Services"
 msgstr "Rásir"
 
+#, fuzzy
+msgid "Set PIN"
+msgstr "valmynda PIN"
+
 msgid "Set all hotkey to default?"
 msgstr ""
 
@@ -7878,6 +8016,9 @@ msgid "Set interface as default Interface"
 msgstr "Gera að sjálfgefnu korti"
 
 msgid "Set limits"
+msgstr ""
+
+msgid "Set pin code persistent"
 msgstr ""
 
 #
@@ -7966,6 +8107,9 @@ msgstr "Stutt skráarnöfn"
 #, fuzzy
 msgid "Show Audioselection"
 msgstr "Velja undirtexta"
+
+msgid "Show CI messages"
+msgstr ""
 
 msgid "Show EIT now/next in infobar"
 msgstr ""
@@ -8201,6 +8345,9 @@ msgid "Show shutdown menu"
 msgstr "sýna slökkva valmynd"
 
 msgid "Show single service EPG"
+msgstr ""
+
+msgid "Show softcam startup in extensions menu"
 msgstr ""
 
 msgid "Show status icons in movie list"
@@ -8439,11 +8586,24 @@ msgstr "Hraði hægspilunar"
 msgid "Small progress"
 msgstr "Í vinnslu"
 
+msgid "Smartcard PIN"
+msgstr ""
+
 msgid "Smooth"
 msgstr ""
 
 msgid "Social/Political/Economics"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Softcam startup"
+msgstr "Hugbúnaður"
+
+#
+#, fuzzy
+msgid "Softcam startup..."
+msgstr "Hugbúnaður"
 
 #
 msgid "Software"
@@ -8825,6 +8985,9 @@ msgstr ""
 msgid "Stream request"
 msgstr ""
 
+msgid "Streaming clients info"
+msgstr ""
+
 msgid "Stripes"
 msgstr ""
 
@@ -9052,14 +9215,6 @@ msgid "System"
 msgstr "Kerfi"
 
 #
-#, fuzzy
-msgid "System Message"
-msgstr "Skilaboð"
-
-msgid "System Message Check"
-msgstr ""
-
-#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -9076,6 +9231,9 @@ msgstr "TS skrá er of stór fyrir ISO9660 level 1!"
 
 msgid "TSID"
 msgstr "TSID"
+
+msgid "TUNER:"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr ""
@@ -9184,6 +9342,10 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "Það tókst að breyta PIN kóðanum."
 
+#, fuzzy
+msgid "The PIN code has been saved successfully."
+msgstr "Það tókst að breyta PIN kóðanum."
+
 msgid "The PIN codes you entered are different."
 msgstr "PIN númerin sem að þú slóst inn eru ekki eins."
 
@@ -9250,6 +9412,9 @@ msgstr "Kóðinn sem þú slóst inn er rangur."
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Útkoman hefur verið skrifuð á %s."
+
+msgid "The saved PIN was cleared."
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -9687,6 +9852,9 @@ msgstr "Í dag"
 msgid "Toggle Extra Keys"
 msgstr ""
 
+msgid "Toggle HDMI In"
+msgstr ""
+
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
@@ -10031,6 +10199,9 @@ msgstr "Uppsetning"
 #
 msgid "Use"
 msgstr "Nota"
+
+msgid "Use CI assignment for detection of available services."
+msgstr ""
 
 #
 msgid "Use DHCP"
@@ -10638,9 +10809,6 @@ msgstr ""
 msgid "When enabled, encryption info will be shown in the infobar (when supported by the skin)."
 msgstr ""
 
-msgid "When enabled, error messages related to the Common Interface module will not be shown."
-msgstr ""
-
 msgid "When enabled, error messages related to zapping will not be shown."
 msgstr ""
 
@@ -10812,6 +10980,10 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr ""
+
 #
 msgid "Write error while recording. Disk full?\n"
 msgstr "Villla við upptöku. Diskur fullur?\n"
@@ -10897,6 +11069,9 @@ msgid "Yes, returning to movie list"
 msgstr "Já, fara til baka á mynda lista"
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "You PIN code is 0000. This is the default PIN code and it disable parental control!\n"
 msgstr ""
 
 #, python-format
@@ -11032,14 +11207,6 @@ msgstr "Safn þitt er of stórt fyrir disk með einfalt lag. Þú þarft tóman 
 
 msgid "Your current collection will get lost!"
 msgstr "Núverandi safn þitt mun glatast!"
-
-#
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Það þarf að uppfæra heila í framtölvu.\n"
-"Ýtið á OK til að byrja uppfærslu."
 
 #, python-format
 msgid ""
@@ -11504,6 +11671,11 @@ msgid "disable"
 msgstr "óvirkt"
 
 #
+#, fuzzy
+msgid "disable intro screen"
+msgstr "Gera Mynd í Mynd óvirka"
+
+#
 msgid "disable move mode"
 msgstr "hætta í færslu stöðu"
 
@@ -11565,6 +11737,9 @@ msgstr "byrja féttu breytingu"
 
 msgid "enable favourite edit"
 msgstr "virkja breytingu eftirlætis lista"
+
+msgid "enable intro screen"
+msgstr ""
 
 #
 msgid "enable move mode"
@@ -11631,6 +11806,9 @@ msgid "et9000/et9100"
 msgstr ""
 
 msgid "et9200/9500/6500"
+msgstr ""
+
+msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
 #
@@ -12276,6 +12454,11 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
+#
+#, fuzzy
+msgid "service is in bouquet parental protection"
+msgstr "taka foreldralæsingu af"
+
 msgid "set as startup service"
 msgstr ""
 
@@ -12486,11 +12669,6 @@ msgid "unknown"
 msgstr "óþekktur"
 
 #
-#, fuzzy
-msgid "unknown error"
-msgstr "óþekkt rás"
-
-#
 msgid "unknown service"
 msgstr "óþekkt rás"
 
@@ -12515,10 +12693,6 @@ msgstr ""
 #
 msgid "vertical"
 msgstr "lóðrétt"
-
-#
-msgid "wait for ci..."
-msgstr "bíð eftir afruglara.."
 
 #
 msgid "wait for mmi..."
@@ -12627,6 +12801,11 @@ msgstr "stokkið"
 #~ msgid "All satellites"
 #~ msgstr "Allir gervihnettir"
 
+#
+#, fuzzy
+#~ msgid "All services provider"
+#~ msgstr "úthlutaðar rásir/sendendur:"
+
 #~ msgid "BA"
 #~ msgstr "BA"
 
@@ -12638,6 +12817,10 @@ msgstr "stokkið"
 
 #~ msgid "Blue boost"
 #~ msgstr "Auka bláan"
+
+#, fuzzy
+#~ msgid "CI PIN"
+#~ msgstr "Nýtt PIN númer"
 
 #~ msgid "Change pin code"
 #~ msgstr "Breyta aðgangskóða"
@@ -12663,6 +12846,9 @@ msgstr "stokkið"
 
 #~ msgid "Connected!"
 #~ msgstr "Tengdur!"
+
+#~ msgid "Current version:"
+#~ msgstr "Núverandi útgáfa:"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Núverandi stýrikerfi"
@@ -12714,6 +12900,15 @@ msgstr "stokkið"
 #~ msgid "Enable parental control"
 #~ msgstr "Virkja foreldra stýringu"
 
+#
+#, fuzzy
+#~ msgid "FP Upgrade"
+#~ msgstr "Uppfæri"
+
+#, fuzzy
+#~ msgid "FP upgrade required"
+#~ msgstr "Breyta uppfærslu uppruna slóð."
+
 #~ msgid "Fan %d PWM"
 #~ msgstr "Vifta %d PWM"
 
@@ -12757,6 +12952,10 @@ msgstr "stokkið"
 #~ msgstr "Nýtt PIN númer"
 
 #
+#~ msgid "New version:"
+#~ msgstr "Ný útgáfa:"
+
+#
 #~ msgid "No details for this image file"
 #~ msgstr "Engar upplýsingar um þetta stýrikerfi"
 
@@ -12797,19 +12996,12 @@ msgstr "stokkið"
 #~ msgid "Please select an NFI file and press green key to flash!"
 #~ msgstr "Vinsamlega veldu NFI stýrikerfi og ýttu á græna takkann til að setja inn!"
 
-#, fuzzy
-#~ msgid "Please wait (downloading softcam)"
-#~ msgstr "Vinsamlega bíðið.. les inn lista..."
-
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Undirbúa annan USB staut fyrir stýrikerfis forritun"
 
 #
 #~ msgid "Reboot"
 #~ msgstr "Endurræsi"
-
-#~ msgid "Reenter new PIN"
-#~ msgstr "Sláðu aftur inn nýtt PIN"
 
 #
 #, fuzzy
@@ -12819,6 +13011,10 @@ msgstr "stokkið"
 #
 #~ msgid "Restore is running..."
 #~ msgstr "Set inn afrit..."
+
+#
+#~ msgid "Satellites"
+#~ msgstr "Gervihnettir"
 
 #, fuzzy
 #~ msgid "Select an image to be downloaded"
@@ -12851,11 +13047,6 @@ msgstr "stokkið"
 #~ msgid "Single transponder"
 #~ msgstr "Einn sendir"
 
-#
-#, fuzzy
-#~ msgid "Softcam type"
-#~ msgstr "Hugbúnaður"
-
 #, fuzzy
 #~ msgid "Standby fan %d PWM"
 #~ msgstr "Vifta í biðstöðu %d PWM"
@@ -12863,6 +13054,11 @@ msgstr "stokkið"
 #, fuzzy
 #~ msgid "Standby fan %d voltage"
 #~ msgstr "%d Volt á viftu í biðstöðu "
+
+#
+#, fuzzy
+#~ msgid "System Message"
+#~ msgstr "Skilaboð"
 
 #, fuzzy
 #~ msgid "Temperature and fan control"
@@ -12931,6 +13127,14 @@ msgstr "stokkið"
 #~ msgstr "Þú hefur valið að búa til nýjan keyranlegan .NFI USB staut. Þetta veldur því að öllum gögnum af USB stautum verður eytt."
 
 #
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Það þarf að uppfæra heila í framtölvu.\n"
+#~ "Ýtið á OK til að byrja uppfærslu."
+
+#
 #~ msgid "Zap back to service before satfinder?"
 #~ msgstr "Fara aftur á rás fyrir rásaleitun?"
 
@@ -12956,14 +13160,20 @@ msgstr "stokkið"
 #~ msgid "service PIN"
 #~ msgstr "rása PIN"
 
-#~ msgid "setup PIN"
-#~ msgstr "valmynda PIN"
-
 #~ msgid "special characters"
 #~ msgstr "sérstafir"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "móttakari er ekki studdur"
+
+#
+#, fuzzy
+#~ msgid "unknown error"
+#~ msgstr "óþekkt rás"
+
+#
+#~ msgid "wait for ci..."
+#~ msgstr "bíð eftir afruglara.."
 
 #
 #~ msgid "whitelist"
