@@ -405,10 +405,8 @@ class iDVBFrontendParameters: public iObject
 {
 public:
 #ifdef SWIG
-public:
 	iDVBFrontendParameters();
 	~iDVBFrontendParameters();
-private:
 #endif
 	enum { flagOnlyFree = 1 };
 	virtual SWIG_VOID(RESULT) getSystem(int &SWIG_OUTPUT) const = 0;
