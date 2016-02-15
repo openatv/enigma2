@@ -81,7 +81,7 @@ class ParentalControl:
 			method( sRef , TYPE_SERVICE , *args )
 
 	def isProtected(self, ref):
-		if not config.ParentalControl.servicepinactive.value or not ref:
+		if not config.ParentalControl.servicepin[0].value or not config.ParentalControl.servicepinactive.value or not ref:
 			return False
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration
@@ -136,6 +136,9 @@ class ParentalControl:
 
 	def getProtectionLevel(self, service):
 		return not self.blacklist.has_key(service) and -1 or 0
+
+	def isServiceProtectionBouquet(self, service):
+		return self.blacklist.has_key(service) and TYPE_BOUQUETSERVICE in self.blacklist[service]
 
 	def getConfigValues(self):
 		#Read all values from configuration

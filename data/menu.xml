@@ -20,6 +20,7 @@
 			<item weight="0" level="0" text="About" entryID="about_screen"><screen module="About" /></item>
 			<item weight="5" level="0" text="Network" entryID="network_info_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
 			<item weight="10" level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
+			<item weight="15" level="2" text="Streaming clients info" entryID="streaming_clients_info_screen"><screen module="StreamingClientsInfo"/></item>
 		</menu>
 
 		<menu weight="5" level="0" text="Timer" entryID="timer_menu">

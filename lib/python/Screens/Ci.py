@@ -2,7 +2,9 @@ from Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.Console import Console
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigText, ConfigYesNo, NoSave
 from Components.SystemInfo import SystemInfo
