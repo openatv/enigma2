@@ -89,6 +89,7 @@ private:
 	DECLARE_REF(eDVBFrontend);
 	bool m_simulate;
 	bool m_enabled;
+	bool m_fbc;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
 	int m_dvbid;
 	int m_slotid;
@@ -195,6 +196,9 @@ public:
 
 	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
 
+	bool is_FBCTuner() { return m_fbc; }
+	bool getEnabled() { return m_enabled; }
+	void setEnabled(bool enable) { m_enabled = enable; }
 };
 
 #endif // SWIG

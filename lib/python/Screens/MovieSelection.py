@@ -237,9 +237,6 @@ def buildMovieLocationList(bookmarks):
 		else:
 			bookmarks.append((p.tabbedDescription(), d))
 		inlist.append(d)
-	for d in last_selected_dest:
-		if d not in inlist:
-			bookmarks.append((d,d))
 
 class MovieBrowserConfiguration(ConfigListScreen,Screen):
 	skin = """
@@ -271,6 +268,7 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 			getConfigListEntry(_("Show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
 			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory),
+			getConfigListEntry(_("Allow quit movieplayer with exit"), config.usage.leave_movieplayer_onExit),
 			getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof),
 			getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service),
 			getConfigListEntry(_("Load length of movies in movie list"), config.usage.load_length_of_movies_in_moviellist),

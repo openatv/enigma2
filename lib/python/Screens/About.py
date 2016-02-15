@@ -140,7 +140,7 @@ class About(Screen):
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 		AboutText += "\n" + _("Detected NIMs:") + "\n"
 
-		nims = nimmanager.nimList()
+		nims = nimmanager.nimList(showFBCTuners=False)
 		for count in range(len(nims)):
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
@@ -253,7 +253,7 @@ class CommitInfo(Screen):
 			#("organisation",  "repository",           "readable name",                "branch"),
 			("openmips",      "stbgui",               "openMips Enigma2",             "master"),
 			("openmips",      "skin-pax",             "openMips Skin GigaBlue Pax",   "master"),
-			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "next"),
+			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "3.3"),
 			("oe-alliance",   "oe-alliance-plugins",  "OE Alliance Plugins",          "2.3"),
 			("oe-alliance",   "enigma2-plugins",      "OE Alliance Enigma2 Plugins",  "2.3")
 		]
