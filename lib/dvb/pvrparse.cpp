@@ -987,6 +987,23 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					}
 				}
 			}
+			if (m_streamtype == 6) /* H.265 */
+			{
+				int nal_unit_type = (sc >> 1);
+				if (nal_unit_type == 35) /* H265 NAL unit access delimiter */
+				{
+					unsigned long long data = sc | (pkt[4] << 8);
+					writeStructureEntry(offset + pkt_offset, data);
+
+					if ((pkt[4] >> 5) == 0) /* check pic_type for I-frame */
+					{
+						if (ptsvalid)
+						{
+							addAccessPoint(offset, pts);
+						}
+					}
+				}
+			}
 			else /* (m_streamtype == 1) means H.264 */
 			{
 				if (sc == 0x09)

@@ -29,7 +29,7 @@ class Console(Screen):
 		}, -2)
 
 		self.cmdlist = cmdlist
-		self.newtitle = title
+		self.newtitle = title == "Console" and _("Console") or title
 
 		self.onShown.append(self.updateTitle)
 

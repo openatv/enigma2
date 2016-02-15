@@ -187,6 +187,16 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.getCurrent(r)
 		return r
 
+	def getPrev(self):
+		r = eServiceReference()
+		self.l.getPrev(r)
+		return r
+
+	def getNext(self):
+		r = eServiceReference()
+		self.l.getNext(r)
+		return r
+
 	def atBegin(self):
 		return self.instance.atBegin()
 

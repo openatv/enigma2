@@ -6,6 +6,7 @@
 #include <lib/base/ebase.h>
 #include <lib/base/elock.h>
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/fbc.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/tstools.h>
@@ -26,11 +27,7 @@ class eDVBRegisteredFrontend: public iObject, public Object
 {
 	DECLARE_REF(eDVBRegisteredFrontend);
 	ePtr<eTimer> disable;
-	void closeFrontend()
-	{
-		if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
-			disable->start(60000, true);  // retry close in 60secs
-	}
+	void closeFrontend();
 public:
 	Signal0<void> stateChanged;
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
@@ -74,7 +71,7 @@ class eDVBAllocatedFrontend
 	DECLARE_REF(eDVBAllocatedFrontend);
 public:
 
-	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe);
+	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe, eFBCTunerManager *fbcmng);
 	~eDVBAllocatedFrontend();
 	eDVBFrontend &get() { return *m_fe->m_frontend; }
 	operator eDVBRegisteredFrontend*() { return m_fe; }
@@ -82,6 +79,7 @@ public:
 
 private:
 	eDVBRegisteredFrontend *m_fe;
+	eFBCTunerManager *m_fbcmng;
 };
 
 class eDVBAllocatedDemux
@@ -182,6 +180,8 @@ class eDVBResourceManager: public iObject, public Object
 	static eDVBResourceManager *instance;
 
 	friend class eDVBChannel;
+	friend class eFBCTunerManager;
+	ePtr<eFBCTunerManager> m_fbcmng;
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
 
