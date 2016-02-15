@@ -179,7 +179,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			if answer1 == answer2:
 				warning_text = ""
 				if not answer2:
-					warning_text = _("You PIN code is 0000. This is the default PIN code and it disable parental control!\n")
+					warning_text = _("Your PIN code is 0000. This is the default PIN code and it disable parental control!\n")
 				self.session.open(MessageBox, warning_text + _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO, timeout=7)
 				config.ParentalControl.servicepin[0].value = answer1
 				config.ParentalControl.servicepin[0].save()
