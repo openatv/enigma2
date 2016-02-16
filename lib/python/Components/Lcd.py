@@ -277,7 +277,10 @@ def InitLcd():
 
 		if SystemInfo["LcdLiveTV"]:
 			def lcdLiveTvChanged(configElement):
-				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
+				if "live_enable" in SystemInfo["LcdLiveTV"]:
+					open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "enable" or "disable")
+				else:
+					open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
 				from Screens.InfoBar import InfoBar
 				InfoBarInstance = InfoBar.instance
 				InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
