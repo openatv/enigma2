@@ -12,7 +12,7 @@ class StreamingClientsInfo(Screen):
 		clients = ClientsStreaming("INFO_RESOLVE")
 		text = clients.getText()
 
-		self["ScrollLabel"] = ScrollLabel(text or _("No stream clients"))
+		self["ScrollLabel"] = ScrollLabel(text or _("No clients streaming"))
 
 		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 		{
