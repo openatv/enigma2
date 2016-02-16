@@ -123,10 +123,11 @@
 		<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1"/>
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 	</screen>
-	<!-- Streaming Clients Info screen -->
+	<!-- Streaming Clients Info screen 
 	<screen name="StreamingClientsInfo" position="center,center" size="540,490" title="Streaming clients info">
 		<widget name="ScrollLabel" font="Regular;20" position="0,00" size="540,490" zPosition="2" halign="left"/>
 	</screen>
+	-->
 	<!-- Audio selection -->
 	<screen name="AudioSelection" position="center,center" size="485,330" title="Audio">
 		<widget name="config" position="50,10" size="425,110" scrollbarMode="showOnDemand"/>
