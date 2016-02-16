@@ -8,7 +8,6 @@ from Tools import Notifications
 from GlobalActions import globalActionMap
 import RecordTimer
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
-from os import path, system
 import Screens.InfoBar
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 from time import time, localtime

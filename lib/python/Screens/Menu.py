@@ -114,8 +114,6 @@ class Menu(Screen, ProtectedScreen):
 			return
 		item_text = node.get("text", "").encode("UTF-8")
 		entryID = node.get("entryID", "undefined")
-		if entryID == "streaming_clients_info_screen" and not self.session.nav.getClientsStreaming():
-			return
 		weight = node.get("weight", 50)
 		for x in node:
 			if x.tag == 'screen':
