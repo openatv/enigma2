@@ -2,9 +2,9 @@
 
 > Ubuntu 12.04.5 LTS (GNU/Linux 3.14.32-xxxx-grs-ipv6-64 x86_64)
 
-## openMips 5.2 is build using oe-alliance build-environment "next" and several git repositories: ##
+## openMips 5.2 is build using oe-alliance build-environment "3.3" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/next](https://github.com/oe-alliance/oe-alliance-core/tree/next "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/3.3](https://github.com/oe-alliance/oe-alliance-core/tree/3.3 "OE-Alliance")
 > 
 > [https://github.com/openmips/stbgui/tree/master](https://github.com/openmips/stbgui/tree/master "openMips E2")
 > 
@@ -56,7 +56,7 @@
 ----------
 8 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b next
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 3.3
 
 ----------
 9 - Switch to folder build-enviroment
