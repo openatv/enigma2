@@ -17,6 +17,7 @@
 #include <string>
 #include <new>
 #include <cxxabi.h>
+
 typedef struct
 {
 	unsigned int address;
@@ -120,9 +121,12 @@ enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 #ifdef DEBUG
 	void _eDebug(const char *file, int line, const char *function, const char* fmt, ...);
 #define eDebug(args ...) _eDebug(__FILE__, __LINE__, __FUNCTION__, args)
+#define eLog(level, args ...) _eDebug(__FILE__, __LINE__, __FUNCTION__, args)
 	void _eDebugNoNewLineStart(const char *file, int line, const char *function, const char* fmt, ...);
 #define eDebugNoNewLineStart(args ...) _eDebugNoNewLineStart(__FILE__, __LINE__, __FUNCTION__, args)
+#define eLogNoNewLineStart(level, args ...) _eDebugNoNewLineStart(__FILE__, __LINE__, __FUNCTION__, args)
 	void CHECKFORMAT eDebugNoNewLine(const char*, ...);
+#define eLogNoNewLine(level, args ...) eDebugNoNewLine(args)
 	void CHECKFORMAT eDebugNoNewLineEnd(const char*, ...);
 	void _eWarning(const char *file, int line, const char *function, const char* fmt, ...);
 #define eWarning(args ...) _eWarning(__FILE__, __LINE__, __FUNCTION__, args)
@@ -141,6 +145,18 @@ enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 	}
 
 	inline void eWarning(const char* fmt, ...)
+	{
+	}
+
+	inline void eLog(int level, const char* fmt, ...)
+	{
+	}
+
+	inline void eLogNoNewLineStart(int level, const char* fmt, ...)
+	{
+	}
+
+	inline void eLogNoNewLine(int level, const char* fmt, ...)
 	{
 	}
 	#define ASSERT(x) do { } while (0)
