@@ -6,12 +6,12 @@ import gettext
 from Components.Sources.StaticText import StaticText
 
 class StreamingClientsInfo(Screen):
-		skin ="""<screen name="StreamingClientsInfo" position="0,0" size="1280,720" flags="wfNoBorder" backgroundColor="#90000000">
-	<eLabel position="center,117" zPosition="-2" size="600,500" backgroundColor="layer-a-background" />
-	<widget source="Title" render="Label" position="center,126" size="580,44" font="Regular; 35" transparent="1" valign="top" zPosition="0" backgroundColor="layer-b-background" halign="center" />
-	<widget source="total" render="Label" position="center,174" size="580,50" zPosition="1" font="Regular; 22" halign="left" backgroundColor="layer-a-background" transparent="1" valign="center" />
-	<widget source="liste" render="Label" position="center,234" size="580,370" zPosition="1" transparent="1" noWrap="1" font="Regular; 20" valign="top" />
-</screen>"""
+		skin ="""<screen name="StreamingClientsInfo" position="center,center" size="600,500">
+		<eLabel position="center,117" zPosition="-2" size="600,500" backgroundColor="#25062748" />
+		<widget source="Title" render="Label" position="center,126" size="580,44" font="Regular; 35" valign="top" zPosition="0" backgroundColor="#25062748" halign="center" />
+		<widget source="total" render="Label" position="center,174" size="580,50" zPosition="1" font="Regular; 22" halign="left" backgroundColor="#25062748" valign="center" />
+		<widget source="liste" render="Label" position="center,234" size="580,370" zPosition="1" noWrap="1" font="Regular; 20" valign="top" />
+	</screen>"""
 		def __init__(self, session):
 			Screen.__init__(self, session)
 			self.setTitle(_("Streaming clients info"))
