@@ -1424,22 +1424,55 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				sec_fe->setTone(m_sec_sequence.current()++->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
-				sec_fe->sendDiseqc(m_sec_sequence.current()->diseqc);
-				eDebugNoSimulateNoNewLineStart("[SEC] tuner %d sendDiseqc: ", m_dvbid);
-				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
-				    eDebugNoSimulateNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
-			 	if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
-					eDebugNoSimulateNoNewLineEnd("(DiSEqC reset)");
-				else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
-					eDebugNoSimulateNoNewLineEnd("(DiSEqC peripherial power on)");
-				else
-					eDebugNoSimulateNoNewLineEnd("");
+				if (!m_simulate)
+				{
+					struct timeval start, end;
+					int duration, duration_est;
+					gettimeofday(&start, NULL);
+					sec_fe->sendDiseqc(m_sec_sequence.current()->diseqc);
+					gettimeofday(&end, NULL);
+					eDebugNoSimulateNoNewLineStart("[SEC] tuner %d sendDiseqc: ", m_dvbid);
+					for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
+					eDebugNoSimulateNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
+					if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
+						eDebugNoSimulateNoNewLineEnd("(DiSEqC reset)");
+					else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
+						eDebugNoSimulateNoNewLineEnd("(DiSEqC peripherial power on)");
+					else
+						eDebugNoSimulateNoNewLineEnd("");
+					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
+					duration_est = (m_sec_sequence.current()->diseqc.len * 14) + 10;
+					eDebugNoSimulateNoNewLineStart("[SEC] diseqc ioctl duration: %d ms", duration);
+					if (duration < duration_est)
+						delay = duration_est - duration;
+					if (delay > 94) delay = 94;
+					if (delay)
+						eDebugNoSimulateNoNewLineEnd(" -> extra guard delay %d ms",delay);
+				}
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
-				eDebugNoSimulate("[SEC] tuner %d sendToneburst: %d", m_dvbid, m_sec_sequence.current()->toneburst);
-				sec_fe->sendToneburst(m_sec_sequence.current()++->toneburst);
+			{
+				if (!m_simulate)
+				{
+					struct timeval start, end;
+					int duration, duration_est;
+					eDebugNoSimulate("[SEC] tuner %d sendToneburst: %d", m_dvbid, m_sec_sequence.current()->toneburst);
+					gettimeofday(&start, NULL);
+					sec_fe->sendToneburst(m_sec_sequence.current()->toneburst);
+					gettimeofday(&end, NULL);
+					eDebugNoSimulateNoNewLineStart("[SEC] toneburst ioctl duration: %d ms",(end.tv_usec - start.tv_usec)/1000);
+					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
+					duration_est = 24;
+					if (duration < duration_est)
+						delay = duration_est - duration;
+					if (delay > 24) delay = 24;
+					if (delay)
+						eDebugNoSimulateNoNewLineEnd(" -> extra quard delay %d ms",delay);
+				}
+				++m_sec_sequence.current();
 				break;
+			}
 			case eSecCommand::SET_FRONTEND:
 			{
 				int enableEvents = (m_sec_sequence.current()++)->val;
