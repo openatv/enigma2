@@ -115,13 +115,15 @@ void eListboxServiceContent::getCurrent(eServiceReference &ref)
 
 void eListboxServiceContent::getPrev(eServiceReference &ref)
 {
+	list::iterator cursor;
+
 	if (cursorValid())
 	{
-		list::iterator cursor(m_cursor);
+		cursor = m_cursor;
+
 		if (cursor == m_list.begin())
-		{
 			cursor = m_list.end();
-		}
+
 		ref = *(--cursor);
 	}
 	else
@@ -130,15 +132,18 @@ void eListboxServiceContent::getPrev(eServiceReference &ref)
 
 void eListboxServiceContent::getNext(eServiceReference &ref)
 {
+	list::iterator cursor;
+
 	if (cursorValid())
 	{
-		list::iterator cursor(m_cursor);
+		cursor = m_cursor;
+
 		cursor++;
+
 		if (cursor == m_list.end())
-		{
 			cursor = m_list.begin();
-		}
- 		ref = *(cursor);
+
+		ref = *(cursor);
 	}
 	else
 		ref = eServiceReference();

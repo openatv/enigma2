@@ -2,9 +2,9 @@
 #define __dvb_sec_h
 
 #include <lib/dvb/idvb.h>
-#include <list>
-
 #include <lib/dvb/fbc.h>
+
+#include <list>
 
 #ifndef SWIG
 class eSecCommand
@@ -380,7 +380,7 @@ public:
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
 	int getTargetOrbitalPosition() { return m_target_orbital_position; }
-	
+
 	friend class eFBCTunerManager;
 };
 

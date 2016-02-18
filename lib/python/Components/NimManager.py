@@ -1,7 +1,7 @@
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
-from os import path
+import os
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -629,6 +629,15 @@ class NIM(object):
 	def getMultiTypeList(self):
 		return self.multi_type
 
+	def isFBCTuner(self):
+		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+
+	def isFBCRoot(self):
+		return self.isFBCTuner() and (self.slot % 8 < 2)
+
+	def isFBCLink(self):
+		return self.isFBCTuner() and not (self.slot % 8 < 2)
+
 	slot_id = property(getSlotID)
 
 	def getFriendlyType(self):
@@ -802,7 +811,7 @@ class NimManager:
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
 			if entry.has_key("frontend_device"): # check if internally connectable
-				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]):
+				if os.path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]):
 					entry["internally_connectable"] = entry["frontend_device"] - 1
 				else:
 					entry["internally_connectable"] = None
@@ -854,10 +863,11 @@ class NimManager:
 		InitNimManager(self)	#init config stuff
 
 	# get a list with the friendly full description
-	def nimList(self):
+	def nimList(self, showFBCTuners=True):
 		list = [ ]
 		for slot in self.nim_slots:
-			list.append(slot.friendly_full_description)
+			if showFBCTuners or not slot.isFBCLink():
+				list.append(slot.friendly_full_description)
 		return list
 
 	def getSlotCount(self):
@@ -1448,7 +1458,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	def toneAmplitudeChanged(configElement):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
-		if path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
+		if os.path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
 			f = open("/proc/stb/frontend/%d/tone_amplitude" % fe_id, "w")
 			f.write(configElement.value)
 			f.close()
@@ -1548,9 +1558,6 @@ def InitNimManager(nimmgr, update_slots = []):
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
-		
-		if update_slots and (x not in update_slots):
-			continue
 
 		if slot.isCompatible("DVB-S"):
 			createSatConfig(nim, x, empty_slots)
@@ -1562,7 +1569,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			if len(nimmgr.canConnectTo(x)) > 0:
 				config_mode_choices.append(("loopthrough", _("loopthrough to")))
 			nim.advanced = ConfigNothing()
-			tmp = ConfigSelection(config_mode_choices, "simple")
+			tmp = ConfigSelection(config_mode_choices, slot.isFBCLink() and "nothing" or "simple")
 			tmp.slot_id = x
 			tmp.addNotifier(configModeChanged, initial_call = False)
 			nim.configMode = tmp
@@ -1593,7 +1600,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
-		if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
+		if os.path.exists("/proc/stb/frontend/%d/mode" % fe_id):
 			cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
 			if cur_type != int(configElement.value):
 				print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
@@ -1646,6 +1653,9 @@ def InitNimManager(nimmgr, update_slots = []):
 		x = slot.slot
 		nim = config.Nims[x]
 		empty = True
+
+		if update_slots and (x not in update_slots):
+			continue
 
 		if slot.canBeCompatible("DVB-S"):
 			createSatConfig(nim, x, empty_slots)

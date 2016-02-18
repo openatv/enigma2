@@ -137,10 +137,8 @@ class iCryptoInfo : public iObject
 {
 public:
 #ifdef SWIG
-public:
 	iCryptoInfo();
 	~iCryptoInfo();
-private:
 #endif
 	PSignal1<void, const char*> clientname;
 	PSignal1<void, const char*> clientinfo;
