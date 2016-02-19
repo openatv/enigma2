@@ -766,6 +766,7 @@ class QuickMenuDevices(Screen):
 			self['lab1'].hide()
 
 	def buildMy_rec(self, device):
+		device2 = ''
 		try:
 			if device.find('1') > 0:
 				device2 = device.replace('1', '')
