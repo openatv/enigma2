@@ -56,8 +56,8 @@ static void stringFromFile(FILE* f, const char* context, const char* filename)
 
 	if (in.good()) {
 		std::string line;
-		std::getline(in, line);
-		fprintf(f, "%s=%s\n", context, line.c_str());
+		while(std::getline(in, line))
+		fprintf(f, "%s = %s\n\n", context, line.c_str());
 	}
 }
 
@@ -123,29 +123,19 @@ void bsodFatal(const char *component)
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
 		fprintf(f,
-			"OpenViX Enigma2 crashlog\n\n"
-			"crashdate=%s\n"
-			"compiledate=%s\n"
-			"skin=%s\n"
-			"sourcedate=%s\n"
-			"branch=%s\n"
-			"rev=%s\n"
-			"component=%s\n\n",
+			"OpenViX Enigma2 Crashlog\n"
+			"Crashdate = %s\n\n"
+			stringFromFile(f, "Image Version", "/etc/image-version");
+			"Compiled = %s\n"
+			"Skin = %s\n"
+			"Component = %s\n\n",
 			tm_str,
 			__DATE__,
 			getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
-			enigma2_date,
-			enigma2_branch,
-			enigma2_rev,
 			component);
 
-		stringFromFile(f, "stbmodel", "/proc/stb/info/boxtype");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/vumodel");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/model");
-		stringFromFile(f, "kernelcmdline", "/proc/cmdline");
-		stringFromFile(f, "nimsockets", "/proc/bus/nim_sockets");
-		stringFromFile(f, "imageversion", "/etc/image-version");
-		stringFromFile(f, "imageissue", "/etc/issue.net");
+		stringFromFile(f, "Kernel CMDline", "/proc/cmdline");
+		stringFromFile(f, "Nim Sockets", "/proc/bus/nim_sockets");
 
 		/* dump the log ringbuffer */
 		fprintf(f, "\n\n");
