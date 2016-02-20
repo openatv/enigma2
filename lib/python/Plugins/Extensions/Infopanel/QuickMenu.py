@@ -766,27 +766,7 @@ class QuickMenuDevices(Screen):
 			self['lab1'].hide()
 
 	def buildMy_rec(self, device):
-		device2 = ''
-		try:
-			if device.find('1') > 0:
-				device2 = device.replace('1', '')
-		except:
-			device2 = ''
-		try:
-			if device.find('2') > 0:
-				device2 = device.replace('2', '')
-		except:
-			device2 = ''
-		try:
-			if device.find('3') > 0:
-				device2 = device.replace('3', '')
-		except:
-			device2 = ''
-		try:
-			if device.find('4') > 0:
-				device2 = device.replace('4', '')
-		except:
-			device2 = ''
+		device2 = device[:-1]	#strip device number
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
