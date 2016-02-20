@@ -68,3 +68,9 @@ class TemplatedMultiContent(StringList):
 			self.selectionEnabled = selectionEnabled
 			self.scrollbarMode = scrollbarMode
 			self.active_style = style
+
+	def setSelectionEnabled(self, enabled):
+		self.__selectionEnabled = enabled
+		self.downstream_elements.changed((self.CHANGED_SPECIFIC, "style"))
+
+	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)

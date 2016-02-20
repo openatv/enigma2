@@ -9,7 +9,7 @@ class eServiceFactoryFS: public iServiceHandler
 public:
 	eServiceFactoryFS();
 	virtual ~eServiceFactoryFS();
-	enum { id = 0x2 };
+	enum { id = eServiceReference::idFile };
 
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
@@ -43,4 +43,51 @@ public:
 	RESULT startEdit(ePtr<iMutableServiceList> &);
 };
 
+// Mainly a placekeeper for its service types
+
+class eServiceReferenceFS: public eServiceReference
+{
+public:
+	// Service types (data[ref_service_type])
+	enum {
+		invalid   = -1,
+		file      = 0,
+		directory = 1,
+	};
+	eServiceReferenceFS()
+		: eServiceReference()
+	{
+	}
+	eServiceReferenceFS(int type, int flags)
+		: eServiceReference(type, flags)
+	{
+	}
+	eServiceReferenceFS(int type, int flags, int data0)
+		: eServiceReference(type, flags, data0)
+	{
+	}
+	eServiceReferenceFS(int type, int flags, int data0, int data1)
+		: eServiceReference(type, flags, data0, data1)
+	{
+	}
+	eServiceReferenceFS(int type, int flags, int data0, int data1, int data2)
+		: eServiceReference(type, flags, data0, data1, data2)
+	{
+	}
+	eServiceReferenceFS(int type, int flags, int data0, int data1, int data2, int data3)
+		: eServiceReference(type, flags, data0, data1, data2, data3)
+	{
+	}
+	eServiceReferenceFS(int type, int flags, int data0, int data1, int data2, int data3, int data4)
+		: eServiceReference(type, flags, data0, data1, data2, data3, data4)
+	{
+	}
+	eServiceReferenceFS(int type, int flags, const std::string &path)
+		: eServiceReference(type, flags, path)
+	{
+	}
+#ifdef SWIG
+	eServiceReferenceFS(const eServiceReferenceFS &ref);
+#endif
+};
 #endif

@@ -266,10 +266,7 @@ class InfoBar(
 
 	def showWWW(self):
 		try:
-			try:
-				from Plugins.Extensions.HbbTV.plugin import OperaBrowser
-			except:
-				from Plugins.Extensions.IniHbbTV.plugin import OperaBrowser
+			from Plugins.Extensions.HbbTV.plugin import OperaBrowser
 
 			self.session.open(OperaBrowser)
 			no_plugin = False
@@ -286,7 +283,7 @@ class InfoBar(
 
 
 class MoviePlayer(
-	InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
+	InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarEPG,
 	InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 	InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
@@ -318,7 +315,7 @@ class MoviePlayer(
 		self.allowPiP = True
 
 		for x in (
-			HelpableScreen, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
+			HelpableScreen, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarEPG,
 			InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,
 			InfoBarAudioSelection, InfoBarNotifications,
 			InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
@@ -523,9 +520,7 @@ class MoviePlayer(
 			return
 		if not playing:
 			return
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref:
-			delResumePoint(ref)
+		setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_eof.value)
 
 	def up(self):

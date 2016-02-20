@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[3.0.0],[enigma2-devel@lists.elitedvb.net])
+AC_INIT([enigma2],[3.0.0],[support@beyonwiz.com.au])
 AM_INIT_AUTOMAKE([foreign dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -439,7 +439,6 @@ lib/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/Skins/Classic/1280x720/Makefile
 lib/python/Plugins/Extensions/IniEcasa/Makefile
 lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
-lib/python/Plugins/Extensions/IniHbbTV/Makefile
 lib/python/Plugins/Extensions/IniMyTube/Makefile
 lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
 lib/python/Plugins/Extensions/IniLastFM/Makefile

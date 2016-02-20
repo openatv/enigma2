@@ -6,11 +6,12 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 from Components.Renderer.Picon import getPiconName
-from skin import parseColor, parseFont
+from skin import parseFont
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 from Components.config import config
 from ServiceReference import ServiceReference
+from Tools.ExtraAttributes import applyExtraSkinAttributes
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 
@@ -62,48 +63,6 @@ def _loadPixmapsToAttrs(obj, map):
 	pixmaps = _loadPixmaps(map.values())
 	for (attr, pixmap) in zip(attrNames, pixmaps):
 		setattr(obj, attr, pixmap)
-
-def _applySkinAttributes(obj, skinAttrs, attribMap, callerApplyMap=None):
-	def applyStrAttrib(obj, objAttrs, value):
-		setattr(obj, objAttrs[0], value)
-
-	def applyIntAttrib(obj, objAttrs, value):
-		setattr(obj, objAttrs[0], int(value))
-
-	def applyFontAttrib(obj, objAttrs, value):
-		font = parseFont(value, ((1, 1), (1, 1)))
-		setattr(obj, objAttrs[0], font.family)
-		setattr(obj, objAttrs[1], font.pointSize)
-
-	def applyColorAttrib(obj, objAttrs, value):
-		setattr(obj, objAttrs[0], parseColor(value).argb())
-
-	applyMap = {
-		"str": applyStrAttrib,
-		"int": applyIntAttrib,
-		"font": applyFontAttrib,
-		"color": applyColorAttrib,
-	}
-
-	# Callers can override/extend function map
-	if callerApplyMap is not None:
-		applyMap = dict(applyMap.items() + callerApplyMap.items())
-
-	if skinAttrs is not None:
-		attribs = []
-		for (attrib, value) in skinAttrs:
-			if attrib in attribMap:
-				mapEnt = attribMap[attrib]
-				type = mapEnt[0]
-				if type in applyMap:
-					applyMap[type](obj, mapEnt[1:], value)
-				else:
-					print "[EPGList]", "Unknown type %s in attribute map for skin attribute %s" % (type, attrib)
-			else:
-				attribs.append((attrib, value))
-		return attribs
-	else:
-		return None
 
 def _makeBorder(rect, borderWidth, pixmaps):
 	size = (
@@ -179,7 +138,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.cur_event = None
 		self.cur_service = None
 		self.service_set = False
-		self.offs = 0
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.select_rect = None
@@ -308,8 +266,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.serviceFontSizeInfobar = 20
 			self.eventFontSizeInfobar = 22
 
-		self.listHeight = None
-		self.listWidth = None
+		self.origListHeight = self.listHeight = None
+		self.origListWidth = self.listWidth = None
 		self.serviceBorderWidth = 1
 		self.serviceNamePadding = 3
 		self.eventBorderWidth = 1
@@ -318,11 +276,21 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.eventNameWrap = 'yes'
 		self.numberOfRows = None
 
+	# Keep old selfs.offs attribute as a do-nothing property.
+
+	def __getOffs(self):
+		return 0
+
+	def __setOffs(self, offs):
+		pass
+
+	offs = property(__getOffs, __setOffs)
+
 	def applySkin(self, desktop, screen):
-		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
-		self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
+		self.origListHeight = self.listHeight = self.instance.size().height()
+		self.origListWidth = self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
 		self.setFontsize()
 		return rc
@@ -348,7 +316,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setSelectableFunc(None)
 
 	def setEpoch(self, epoch):
-		self.offs = 0
 		self.time_epoch = epoch
 		self.fillGraphEPG(None)
 
@@ -483,35 +450,35 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setItemsPerPage(self):
 		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
-				if self.listHeight > 0:
-					itemHeight = self.listHeight / config.epgselection.graph_itemsperpage.value
+				if self.origListHeight > 0:
+					itemHeight = self.origListHeight / config.epgselection.graph_itemsperpage.value
 				else:
 					itemHeight = 54  # some default (270/5)
 				if config.epgselection.graph_heightswitch.value:
-					if ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3) >= 27:
-						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 3)
-					elif ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 2) >= 27:
-						tmp_itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) / 2)
+					if ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 3) >= 27:
+						tmp_itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 3)
+					elif ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 2) >= 27:
+						tmp_itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) / 2)
 					else:
 						tmp_itemHeight = 27
 					if tmp_itemHeight < itemHeight:
 						itemHeight = tmp_itemHeight
 					else:
-						if ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 3) <= 45:
-							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 3)
-						elif ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 2) <= 45:
-							itemHeight = ((self.listHeight / config.epgselection.graph_itemsperpage.value) * 2)
+						if ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 3) <= 45:
+							itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 3)
+						elif ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 2) <= 45:
+							itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 2)
 						else:
 							itemHeight = 45
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				if self.listHeight > 0:
-					itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
+				if self.origListHeight > 0:
+					itemHeight = self.origListHeight / config.epgselection.infobar_itemsperpage.value
 				else:
 					itemHeight = 54  # some default (270/5)
 			if self.numberOfRows:
-				itemHeight = self.listHeight / self.numberOfRows
+				itemHeight = self.origListHeight / self.numberOfRows
 			self.l.setItemHeight(itemHeight)
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, self.origListHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
@@ -983,7 +950,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderPixmaps = self.borderPixmaps
 					infoPix = self.infoPix
 					bgpng = self.othEvPix
-					if clock_types is not None and clock_types == 2:
+					if clock_types is not None and clock_types in (2, 12):
 						bgpng = self.recEvPix
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapEvPix
@@ -1112,6 +1079,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible=True):
+
+		def newBaseTime(newBase):
+			now = time() - int(config.epg.histminutes.value) * 60
+			roundTo = int(config.epgselection.infobar_roundto.value) if self.type == EPG_TYPE_INFOBARGRAPH else int(config.epgselection.graph_roundto.value)
+			return int(max(newBase, now - now % (roundTo * 60)))
+
 		if not self.service_set:
 			return
 		cur_service = self.cur_service  # (service, service_name, events, picon)
@@ -1126,49 +1099,38 @@ class EPGList(HTMLComponent, GUIComponent):
 				if valid_event and self.cur_event + 1 < len(entries):
 					self.cur_event += 1
 				else:
-					self.offs += 1
+					self.time_base += self.time_epoch * 60
 					self.fillGraphEPG(None)  # refill
 					return True
 			elif dir == -1:  # prev
 				if valid_event and self.cur_event - 1 >= 0:
 					self.cur_event -= 1
-				elif self.offs > 0:
-					self.offs -= 1
-					self.fillGraphEPG(None)  # refill
-					return True
-				elif self.time_base > time():
-					self.time_base -= self.time_epoch * 60
-					self.fillGraphEPG(None)  # refill
-					return True
+				else:
+					newBase = newBaseTime(self.time_base - self.time_epoch * 60)
+					if newBase != self.time_base:
+						self.time_base = newBase
+						self.fillGraphEPG(None)  # refill
+						return True
 			elif dir == +2:  # next page
-				self.offs += 1
+				self.time_base += self.time_epoch * 60
 				self.fillGraphEPG(None)  # refill
 				return True
 			elif dir == -2:  # prev
-				if self.offs > 0:
-					self.offs -= 1
-					self.fillGraphEPG(None)  # refill
-					return True
-				elif self.time_base > time():
-					self.time_base -= self.time_epoch * 60
+				newBase = newBaseTime(self.time_base - self.time_epoch * 60)
+				if newBase != self.time_base:
+					self.time_base = newBase
 					self.fillGraphEPG(None)  # refill
 					return True
 			elif dir == +24:
 				self.time_base += 86400
-				self.fillGraphEPG(None, self.time_base)  # refill
+				self.fillGraphEPG(None)  # refill
 				return True
 			elif dir == -24:
-				now = time() - int(config.epg.histminutes.value) * 60
-				if self.type == EPG_TYPE_GRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.graph_roundto.value) * 60):
-						self.time_base -= 86400
-						self.fillGraphEPG(None, self.time_base)  # refill
-						return True
-				elif self.type == EPG_TYPE_INFOBARGRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.infobar_roundto.value) * 60):
-						self.time_base -= 86400
-						self.fillGraphEPG(None, self.time_base)  # refill
-						return True
+				newBase = newBaseTime(self.time_base - 86400)
+				if newBase != self.time_base:
+					self.time_base = newBase
+					self.fillGraphEPG(None)  # refill
+					return True
 
 		if cur_service and valid_event and self.cur_event < len(entries):
 			entry = entries[self.cur_event]  # (event_id, event_title, begin_time, duration)
@@ -1335,10 +1297,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		return self.time_epoch
 
 	def getTimeBase(self):
-		return self.time_base + self.offs * self.time_epoch * 60
+		return self.time_base
+
+	# self.offs no longer does anything
 
 	def resetOffset(self):
-		self.offs = 0
+		pass
 
 	def getSelectedEventId(self):
 		x = self.l.getCurrentSelection()
@@ -1399,7 +1363,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def applySkin(self, desktop, screen):
-		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		if self.skinAttributes is not None:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
@@ -1453,8 +1417,8 @@ class TimelineText(HTMLComponent, GUIComponent):
 		if self.time_base != time_base or self.time_epoch != time_epoch or force:
 			service_rect = l.getServiceRect()
 			time_steps = 60 if time_epoch > 180 else 30
-			num_lines = time_epoch / time_steps
-			incWidth = event_rect.w / num_lines
+			num_lines = (time_epoch + time_steps / 2) / time_steps
+			incWidth = float(event_rect.w) * time_steps / time_epoch
 			timeStepsCalc = time_steps * 60
 
 			nowTime = localtime(time())
@@ -1504,7 +1468,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 				backcolor=backColor))
 
 			bgpng = self.tlTime
-			xpos = 0  # eventLeft
 			if bgpng is not None and self.graphic:
 				backColor = None
 				backColorSel = None
@@ -1526,6 +1489,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			textScreenY = self.position[1]
 			for x in range(0, num_lines):
 				line = time_lines[x]
+				xpos = round(x * incWidth)
 				textOffset = self.textPadding
 				if self.ticksOn == "yes":
 					tickWidth, tickHeight = line.getSize()
@@ -1544,14 +1508,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 						textOffset += tickWidth + tickXOffset
 				else:
 					line.visible = False
-				ttime = localtime(time_base + (x * timeStepsCalc))
+				ttime = localtime(time_base + x * timeStepsCalc)
 				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
-					timetext = strftime("%H:%M", localtime(time_base + x * timeStepsCalc))
+					timetext = strftime("%H:%M", ttime)
 				else:
-					if int(strftime("%H", ttime)) > 12:
-						timetext = strftime("%-I:%M", ttime) + _('pm')
-					else:
-						timetext = strftime("%-I:%M", ttime) + _('am')
+					timetext = strftime("%-I:%M%P", ttime)
 				res.append(MultiContentEntryText(
 					pos=(service_rect.width() + xpos + textOffset, 0),
 					size=(incWidth, self.listHeight),
@@ -1559,7 +1520,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 					text=timetext,
 					color=foreColor,
 					backcolor=backColor))
-				xpos += incWidth
 			for x in range(num_lines, MAX_TIMELINES):
 				time_lines[x].visible = False
 			self.l.setList([res])
@@ -1625,7 +1585,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.bouquetNameWrap = 'no'
 
 	def applySkin(self, desktop, screen):
-		self.skinAttributes = _applySkinAttributes(self, self.skinAttributes, self.attribMap)
+		self.skinAttributes = applyExtraSkinAttributes(self, self.skinAttributes, self.attribMap)
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()

@@ -92,6 +92,7 @@ class Setup(ConfigListScreen, Screen):
 		self.skinName = ["setup_" + setup, "Setup"]
 
 		self['footnote'] = Label(_("* = Restart Required"))
+		self['footnote'].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Pixmap()
@@ -128,6 +129,8 @@ class Setup(ConfigListScreen, Screen):
 			self.onExecBegin.append(self.ShowHelp)
 		if self.HideHelp not in self.onExecEnd:
 			self.onExecEnd.append(self.HideHelp)
+		if self.showHideFootnote not in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.showHideFootnote)
 
 	def createSetup(self):
 		list = []
@@ -152,6 +155,12 @@ class Setup(ConfigListScreen, Screen):
 
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
+
+	def showHideFootnote(self):
+		if self["config"].getCurrent()[0].endswith("*"):
+			self['footnote'].show()
+		else:
+			self['footnote'].hide()
 
 	# for summary:
 	def changedEntry(self):

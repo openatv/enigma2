@@ -705,11 +705,11 @@ class SHOUTcastWidget(Screen):
 			except:
 				pass
 		self.stopReloadStationListTimer()
-		self.session.nav.playService(self.CurrentService)
 		self.session.nav.event.remove(self.__event)
 		self.currPlay = None
 		containerStreamripper.dataAvail.remove(self.streamripperDataAvail)
 		containerStreamripper.appClosed.remove(self.streamripperClosed)
+		self.session.nav.playService(self.CurrentService)
 
 	def GoogleImageCallback(self, result):
 		global coverfiles
@@ -801,7 +801,7 @@ class SHOUTcastWidget(Screen):
 		self.session.nav.stopService()
 		if config.plugins.shoutcast.showcover.value:
 			self["cover"].doHide()
-		sref = eServiceReference(eServiceReference.idServiceMP3, 0, url)
+		sref = eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, url)
 		try:
 			self.session.nav.playService(sref)
 		except:

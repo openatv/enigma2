@@ -62,13 +62,13 @@ pname = _("File Commander")
 pdesc = _("manage local Files")
 
 config.plugins.filecommander = ConfigSubsection()
-config.plugins.filecommander.savedir_left = ConfigYesNo(default=True)
-config.plugins.filecommander.savedir_right = ConfigYesNo(default=True)
+config.plugins.filecommander.savedir_left = ConfigYesNo(default=False)
+config.plugins.filecommander.savedir_right = ConfigYesNo(default=False)
 config.plugins.filecommander.add_mainmenu_entry = ConfigYesNo(default=False)
 config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default=False)
-config.plugins.filecommander.path_default = ConfigText(default="/")
-config.plugins.filecommander.path_left = ConfigText(default="/")
-config.plugins.filecommander.path_right = ConfigText(default="/")
+config.plugins.filecommander.path_default = ConfigText(default="")
+config.plugins.filecommander.path_left = ConfigText(default="")
+config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
 config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My Extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
@@ -168,22 +168,30 @@ class FileCommanderScreen(Screen, key_actions):
 		</screen>"""
 
 	def __init__(self, session, path_left=None):
+		# path_left == "" means device list, whereas path_left == None means saved or default value
 		if path_left is None:
-			if os_path_isdir(config.plugins.filecommander.path_left.value) and config.plugins.filecommander.savedir_left:
+			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and os_path_isdir(config.plugins.filecommander.path_left.value):
 				path_left = config.plugins.filecommander.path_left.value
-			else:
+			elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
 				path_left = config.plugins.filecommander.path_default.value
 
-		if os_path_isdir(config.plugins.filecommander.path_right.value) and config.plugins.filecommander.savedir_right:
+		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and os_path_isdir(config.plugins.filecommander.path_right.value):
 			path_right = config.plugins.filecommander.path_right.value
-		else:
+		elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
 			path_right = config.plugins.filecommander.path_default.value
+		else:
+			path_right = None
 
-		if os_path_isdir(path_left) and path_left[-1] != "/":
+		if path_left and os_path_isdir(path_left) and path_left[-1] != "/":
 			path_left += "/"
 
-		if os_path_isdir(path_right) and path_right[-1] != "/":
+		if path_right and os_path_isdir(path_right) and path_right[-1] != "/":
 			path_right += "/"
+
+		if path_left == "":
+			path_left = None
+		if path_right == "":
+			path_right = None
 
 		self.session = session
 		Screen.__init__(self, session)
@@ -337,8 +345,10 @@ class FileCommanderScreen(Screen, key_actions):
 # ## Multiselect ###
 	def listSelect(self):
 		selectedid = self.SOURCELIST.getSelectionID()
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		if self["list_left"].getCurrentDirectory():
+			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
+		if self["list_right"].getCurrentDirectory():
+			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
 		if self.SOURCELIST == self["list_left"]:
 			leftactive = True
 		else:
@@ -402,6 +412,8 @@ class FileCommanderScreen(Screen, key_actions):
 			if result[1]:
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
+				if sourceDir is None:
+					return
 				if sourceDir not in filename:
 					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=(("rm", sourceDir + filename),))
 				else:
@@ -429,6 +441,8 @@ class FileCommanderScreen(Screen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
+				if (filename is None) or (sourceDir is None) or (targetDir is None):
+					return
 				dst_file = targetDir
 				if dst_file.endswith("/"):
 					targetDir = dst_file[:-1]
@@ -460,6 +474,8 @@ class FileCommanderScreen(Screen, key_actions):
 		if newname:
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			if (filename is None) or (sourceDir is None):
+				return
 			if sourceDir not in filename:
 				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=(("mv", sourceDir + filename, sourceDir + newname),))
 			else:
@@ -478,9 +494,10 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def doMakesym(self, newname):
 		if newname:
-			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
+			if (sourceDir is None) or (targetDir is None):
+				return
 			try:
 				symlink(sourceDir, targetDir + newname)
 			except OSError as oe:
@@ -495,12 +512,13 @@ class FileCommanderScreen(Screen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if (filename is None) or (sourceDir is None) or (targetDir is None):
+			return
 		if sourceDir not in filename:
 			movetext = _("Create symlink to file")
 		else:
 			movetext = _("Symlink to ")
 		testfile = filename[:-1]
-		test = path.islink(testfile)
 		if (filename is None) or (sourceDir is None):
 			return
 		if path.islink(testfile):
@@ -513,6 +531,8 @@ class FileCommanderScreen(Screen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
+				if (filename is None) or (sourceDir is None) or (targetDir is None):
+					return
 				if sourceDir not in filename:
 					return
 					# self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=["mv \"" + sourceDir + filename + "\" \"" + sourceDir + newname + "\""])
@@ -531,8 +551,9 @@ class FileCommanderScreen(Screen, key_actions):
 
 	def doMakedir(self, newname):
 		if newname:
-			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			if sourceDir is None:
+				return
 			# self.session.openWithCallback(self.doMakedirCB, Console, title = _("create folder"), cmdlist=["mkdir \"" + sourceDir + newname + "\""])
 			try:
 				os.mkdir(sourceDir + newname)
@@ -547,8 +568,9 @@ class FileCommanderScreen(Screen, key_actions):
 	def downloadSubtitles(self):
 		testFileName = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
+		if (testFileName is None) or (sourceDir is None):
+			return
 		subFile = sourceDir + testFileName
-		fps = 0
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
 			print "[FileCommander] Downloading subtitle for: ", subFile
 			# For Future USE
@@ -706,8 +728,10 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			self.goDown()
 
 	def exit(self):
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		if self["list_left"].getCurrentDirectory():
+			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
+		if self["list_right"].getCurrentDirectory():
+			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
 		self.close()
 
 	def ok(self):

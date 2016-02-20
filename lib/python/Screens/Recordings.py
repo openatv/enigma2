@@ -16,7 +16,7 @@ from Components.SystemInfo import SystemInfo
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
@@ -35,10 +35,10 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription"):
+		if hasattr(self.parent, "getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
 
-class RecordingSettings(Screen,ConfigListScreen):
+class RecordingSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):
 		config.usage.setup_level.notifiers.remove(self.levelChanged)
 
@@ -69,14 +69,13 @@ class RecordingSettings(Screen,ConfigListScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label(_(""))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup = "recording"
 		list = []
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
-		{
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"], {
 			"green": self.keySave,
 			"red": self.keyCancel,
 			"cancel": self.keyCancel,
@@ -86,7 +85,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def checkReadWriteDir(self, configele):
-# 		print "checkReadWrite: ", configele.value
+		# print "checkReadWrite: ", configele.value
 		if configele.value in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
 			configele.last_value = configele.value
 			return True
@@ -95,35 +94,35 @@ class RecordingSettings(Screen,ConfigListScreen):
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
-				type = MessageBox.TYPE_ERROR
-				)
+				_("The directory %s is not writable.\nMake sure you select a writable directory instead.") % dir,
+				type=MessageBox.TYPE_ERROR
+			)
 			return False
 
 	def createSetup(self):
-		self.styles = [ ("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>")) ]
+		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>"))]
 		styles_keys = [x[0] for x in self.styles]
 		tmp = config.movielist.videodirs.value
 		default = config.usage.default_path.value
 		if default not in tmp:
 			tmp = tmp[:]
 			tmp.append(default)
-# 		print "DefaultPath: ", default, tmp
-		self.default_dirname = ConfigSelection(default = default, choices = tmp)
+		# print "DefaultPath: ", default, tmp
+		self.default_dirname = ConfigSelection(default=default, choices=tmp)
 		tmp = config.movielist.videodirs.value
 		default = config.usage.timer_path.value
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
-# 		print "TimerPath: ", default, tmp
-		self.timer_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
+		# print "TimerPath: ", default, tmp
+		self.timer_dirname = ConfigSelection(default=default, choices=self.styles + tmp)
 		tmp = config.movielist.videodirs.value
 		default = config.usage.instantrec_path.value
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
 # 		print "InstantrecPath: ", default, tmp
-		self.instantrec_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
+		self.instantrec_dirname = ConfigSelection(default=default, choices=self.styles + tmp)
 		self.default_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.timer_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.instantrec_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
@@ -152,24 +151,33 @@ class RecordingSettings(Screen,ConfigListScreen):
 	# for summary:
 	def changedEntry(self):
 		self.item = self["config"].getCurrent()
-		if self["config"].getCurrent()[0] == _("Default movie location") or self["config"].getCurrent()[0] == _("Timer record location") or self["config"].getCurrent()[0] == _("Instant record location") or self["config"].getCurrent()[0] == _("Movie location"):
-			self.checkReadWriteDir(self["config"].getCurrent()[1])
+		if self.item[0] in (_("Default movie location"), _("Timer record location"), _("Instant record location"), _("Movie location")):
+			self.checkReadWriteDir(self.item[1])
 		for x in self.onChangedEntry:
 			x()
+		if self.item[1] is self.default_dirname:
+			config.usage.default_path.value = self.default_dirname.value
+		elif self.item[1] is self.timer_dirname:
+			config.usage.timer_path.value = self.timer_dirname.value
+		elif self.item[1] is self.instantrec_dirname:
+			config.usage.instantrec_path.value = self.instantrec_dirname.value
 		try:
-			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
+			if isinstance(self.item[1], ConfigYesNo) or isinstance(self.item[1], ConfigSelection):
 				self.createSetup()
 		except:
 			pass
 
 	def getCurrentEntry(self):
-		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+		currentry = self["config"].getCurrent()
+		return currentry and currentry[0] or ""
 
 	def getCurrentValue(self):
-		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
+		currentry = self["config"].getCurrent()
+		return currentry and str(currentry[1].getText()) or ""
 
 	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+		currentry = self["config"].getCurrent()
+		return currentry and len(currentry) > 2 and currentry[2] or ""
 
 	def ok(self):
 		currentry = self["config"].getCurrent()
@@ -220,13 +228,13 @@ class RecordingSettings(Screen,ConfigListScreen):
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
-				self.timer_dirname.setChoices(self.styles+tmp, default=default)
+				self.timer_dirname.setChoices(self.styles + tmp, default=default)
 				tmp = config.movielist.videodirs.value
 				default = self.instantrec_dirname.value
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
-				self.instantrec_dirname.setChoices(self.styles+tmp, default=default)
+				self.instantrec_dirname.setChoices(self.styles + tmp, default=default)
 				self.entrydirname.value = res
 			if self.entrydirname.last_value != res:
 				self.checkReadWriteDir(self.entrydirname)
@@ -258,7 +266,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
 
@@ -272,7 +280,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 
-				if not self.levelChanged in config.usage.setup_level.notifiers:
+				if self.levelChanged not in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
@@ -295,10 +303,9 @@ class RecordingSettings(Screen,ConfigListScreen):
 				b = eval(x.text or "")
 				if b == "":
 					continue
-				#add to configlist
+				# add to configlist
 				item = b
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
 					list.append((item_text, item, item_description))
-

@@ -185,12 +185,12 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 		if (S_ISDIR(s.st_mode) || S_ISLNK(s.st_mode))
 		{
 			filename += "/";
-			eServiceReference service(eServiceFactoryFS::id,
-				eServiceReference::isDirectory|
-				eServiceReference::canDescent|eServiceReference::mustDescent|
-				eServiceReference::shouldSort|eServiceReference::sort1,
+			eServiceReferenceFS service(eServiceFactoryFS::id,
+				eServiceReferenceFS::isDirectory|
+				eServiceReferenceFS::canDescent|eServiceReference::mustDescent|
+				eServiceReferenceFS::shouldSort|eServiceReference::sort1,
 				filename);
-			service.data[0] = 1;
+			service.data[0] = eServiceReferenceFS::directory;
 			list.push_back(service);
 		} else
 		{
@@ -208,10 +208,10 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 
 				if (type != -1)
 				{
-					eServiceReference service(type,
-						0,
+					eServiceReferenceFS service(type,
+						eServiceReferenceFS::noFlags,
 						filename);
-					service.data[0] = 0;
+					service.data[0] = eServiceReferenceFS::file;
 					list.push_back(service);
 				}
 			}
