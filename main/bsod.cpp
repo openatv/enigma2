@@ -50,15 +50,25 @@ static const std::string getConfigString(const std::string &key, const std::stri
 	return value;
 }
 
-static void stringFromFile(FILE* f, const char* context, const char* filename)
+static const std::string stringFromFile(const char* filename)
 {
+	std::string retval = "";
+	std::string newline = "";
 	std::ifstream in(filename);
 
 	if (in.good()) {
-		std::string line;
-		while(std::getline(in, line))
-		fprintf(f, "%s = %s\n\n", context, line.c_str());
+		do {
+			std::string line;
+			std::getline(in, line);
+			if(line.length() > 0) {
+				retval += newline;
+				newline = '\n';
+				retval += line.c_str();
+			}
+		} while (in.good());
+		in.close();
 	}
+	return retval;
 }
 
 static bool bsodhandled = false;
@@ -123,19 +133,22 @@ void bsodFatal(const char *component)
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
 		fprintf(f,
-			"OpenViX Enigma2 Crashlog\n"
-			"Crashdate = %s\n\n"
-			stringFromFile(f, "Image Version", "/etc/image-version");
-			"Compiled = %s\n"
-			"Skin = %s\n"
-			"Component = %s\n\n",
-			tm_str,
-			__DATE__,
-			getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
-			component);
-
-		stringFromFile(f, "Kernel CMDline", "/proc/cmdline");
-		stringFromFile(f, "Nim Sockets", "/proc/bus/nim_sockets");
+					"OpenViX Enigma2 Crashlog\n\n"
+					"Crashdate = %s\n\n"
+					"%s\n"
+					"Compiled = %s\n"
+					"Skin = %s\n"
+					"Component = %s\n\n"
+					"Kernel CMDline = %s\n"
+					"Nim Sockets = %s\n",
+					tm_str,
+					stringFromFile("/etc/image-version").c_str(),
+					__DATE__,
+					getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
+					component,
+					stringFromFile("/proc/cmdline").c_str(),
+					stringFromFile("/proc/bus/nim_sockets").c_str()
+				);
 
 		/* dump the log ringbuffer */
 		fprintf(f, "\n\n");
