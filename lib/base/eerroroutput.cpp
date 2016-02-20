@@ -63,8 +63,8 @@ void eErrorOutput::gotMessage( const Message &msg )
 
 void eErrorOutput::thread_finished()
 {
-	printout_timer->stop();
 	threadrunning=false;
+	printout_timer->stop();
 	printout();
 }
 
