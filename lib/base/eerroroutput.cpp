@@ -63,6 +63,7 @@ void eErrorOutput::gotMessage( const Message &msg )
 
 void eErrorOutput::thread_finished()
 {
+	printout_timer->stop();
 	threadrunning=false;
 	printout();
 }
@@ -104,8 +105,11 @@ void eErrorOutput::printout()
 	//	printtime(timebuffer, sizeof(timebuffer));
 //	fprintf(stderr, "%s [eErrorOutput] error: read= %dbyte(s) write= %dbyte(s) \n",timebuffer, r, w);
 
-	if(r == PIPE_BUF)
-		printout_timer->start(25, true);
-	else
-		printout_timer->start(100, true);
+	if(threadrunning)
+	{
+		if(r == PIPE_BUF)
+			printout_timer->start(25, true);
+		else
+			printout_timer->start(100, true);
+	}
 }
