@@ -1,16 +1,19 @@
+import os
+from time import time, localtime
+
+import RecordTimer
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
+from Components.Console import Console
 from Components.Harddisk import internalHDDNotSleeping
 from Components.SystemInfo import SystemInfo
 from Tools import Notifications
 from GlobalActions import globalActionMap
-import RecordTimer, os
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 import Screens.InfoBar
 from boxbranding import getMachineBrand, getMachineName, getBoxType
-from time import time, localtime
 
 inStandby = None
 
@@ -30,9 +33,9 @@ class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
 		if os.path.exists("/usr/script/Standby.sh"):
-			os.system("/usr/script/Standby.sh on")
+			Console().ePopen("/usr/script/Standby.sh on")
 		if os.path.exists("/usr/script/standby_leave.sh"):
-			os.system("/usr/script/standby_leave.sh")
+			Console().ePopen("/usr/script/standby_leave.sh")
 
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
@@ -64,9 +67,9 @@ class Standby2(Screen):
 
 		print "[Standby] enter standby"
 		if os.path.exists("/usr/script/Standby.sh"):
-			os.system("/usr/script/Standby.sh off")
+			Console().ePopen("/usr/script/Standby.sh off")
 		if os.path.exists("/usr/script/standby_enter.sh"):
-			os.system("/usr/script/standby_enter.sh")
+			Console().ePopen("/usr/script/standby_enter.sh")
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
@@ -148,9 +151,9 @@ class Standby2(Screen):
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
 		if os.path.exists("/usr/script/Standby.sh"):
-			os.system("/usr/script/Standby.sh on")
+			Console().ePopen("/usr/script/Standby.sh on")
 		if os.path.exists("/usr/script/standby_leave.sh"):
-			os.system("/usr/script/standby_leave.sh")
+			Console().ePopen("/usr/script/standby_leave.sh")
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -223,6 +226,7 @@ from Screens.MessageBox import MessageBox
 from time import time
 from Components.Task import job_manager
 
+
 class QuitMainloopScreen(Screen):
 
 	def __init__(self, session, retvalue=1):
@@ -242,6 +246,7 @@ class QuitMainloopScreen(Screen):
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
+
 
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = False):
@@ -315,9 +320,9 @@ class TryQuitMainloop(MessageBox):
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
 				if os.path.exists("/usr/script/Standby.sh"):
-					os.system("/usr/script/Standby.sh off")
+					Console().ePopen("/usr/script/Standby.sh off")
 				if os.path.exists("/usr/script/standby_enter.sh"):
-					os.system("/usr/script/standby_enter.sh")
+					Console().ePopen("/usr/script/standby_enter.sh")
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
