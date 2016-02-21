@@ -314,7 +314,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			x(False)
 
 	def toggleSecondInfoBar(self):
-		if self.actualSecondInfoBarScreen and self.secondInfoBarScreenSimple.skinAttributes and self.secondInfoBarScreen.skinAttributes:
+		if self.actualSecondInfoBarScreen and not self.shown and not self.actualSecondInfoBarScreen.shown and self.secondInfoBarScreenSimple.skinAttributes and self.secondInfoBarScreen.skinAttributes:
 			self.actualSecondInfoBarScreen.hide()
 			config.usage.show_simple_second_infobar.value = not config.usage.show_simple_second_infobar.value
 			config.usage.show_simple_second_infobar.save()
