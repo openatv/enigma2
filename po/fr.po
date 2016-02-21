@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-02 22:15+0100\n"
-"PO-Revision-Date: 2016-02-02 22:23+0100\n"
+"POT-Creation-Date: 2016-02-21 09:50+0100\n"
+"PO-Revision-Date: 2016-02-21 10:06+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -215,6 +215,9 @@ msgstr " et"
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
+msgid "%-H:%M - "
+msgstr "%-H:%M - "
+
 #, python-format
 msgid "%.0f GB"
 msgstr "%.0f GB"
@@ -358,6 +361,9 @@ msgstr "%d-%m"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+msgid "%d.%m.   "
+msgstr "%d.%m.   "
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
@@ -1146,6 +1152,9 @@ msgstr "Ajouter un zap pour l'évènement suivant"
 
 msgid "Add bookmark"
 msgstr "Ajouter un marque page"
+
+msgid "Add bouquet services"
+msgstr "Ajouter les services du bouquet"
 
 msgid "Add directory to playlist"
 msgstr "Ajouter le répertoire à la liste de lecture"
@@ -2004,7 +2013,7 @@ msgid "CI (Common Interface) Setup"
 msgstr "Configuration CI (Interface Commune)"
 
 msgid "CI assignment"
-msgstr "Assignation CI"
+msgstr "Affectation CI"
 
 msgid "CI slot: "
 msgstr "Slot IC: "
@@ -2476,16 +2485,13 @@ msgid "Common Interface"
 msgstr "Interface Commune"
 
 msgid "Common Interface Assignment"
-msgstr "Assignation Interface Commune"
+msgstr "Affectation Interface Commune"
 
 msgid "Common Interface assignment"
-msgstr "Assignation Interface Commune"
+msgstr "Affectation Interface Commune"
 
 msgid "Common interface"
 msgstr "Interface commune"
-
-msgid "Common interface PIN Setup"
-msgstr "Code PIN pour l’Interface Commune"
 
 msgid "Communication"
 msgstr "Communication"
@@ -3164,9 +3170,6 @@ msgstr "Défaut (Enregistrement direct)"
 
 msgid "Default (Timeshift)"
 msgstr "Défaut (PauseDirect)"
-
-msgid "Default PIN for CI"
-msgstr "Code PIN par défaut pour IC (Interface Commune)"
 
 msgid "Default files/folders to backup"
 msgstr "Fichiers/dossiers par défaut à sauvegarder"
@@ -3962,9 +3965,6 @@ msgstr "Activer le réveil sur réseau (WOL)"
 msgid "Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service."
 msgstr "Active et défini la durée en seconde de la seconde barre d’info (en appuyant 2 fois sur OK) cela peut inclure plus d’information sur le service en cours."
 
-msgid "Enable auto PIN"
-msgstr "Activer auto PIN"
-
 msgid "Enable auto cable scan"
 msgstr "Activer le scan auto du câble"
 
@@ -4061,8 +4061,14 @@ msgstr ""
 msgid "Enigma2 skin selector"
 msgstr "Sélectionneur de thème (skin) Enigma2"
 
+msgid "Enter PIN"
+msgstr "Saisir le PIN"
+
 msgid "Enter main menu..."
 msgstr "Entrer dans le menu principal..."
+
+msgid "Enter persistent PIN code"
+msgstr "Saisir code le PIN code persistant"
 
 msgid "Enter pin code"
 msgstr "Saisir code PIN"
@@ -4870,14 +4876,8 @@ msgstr "Vous pouvez choisir quels fichiers additionnels seront pris par la sauve
 msgid "Hidden network"
 msgstr "Réseau caché"
 
-msgid "Hide CI messages"
-msgstr "Masquer les messages CI"
-
 msgid "Hide any zap error messages."
 msgstr "Cacher n’importe quel message d’erreur de zap."
-
-msgid "Hide error messages from the Common Interface module."
-msgstr "Masquer les messages d'erreur du module d'Interface Commune."
 
 msgid "Hide known extensions"
 msgstr "Cacher les extensions connues"
@@ -5143,6 +5143,9 @@ msgstr "Inclure AIT dans les flux HTTP"
 
 msgid "Include AIT in recordings"
 msgstr "Inclure AIT dans les enregistrements"
+
+msgid "Include CI assignment"
+msgstr "Inclure l’affectation CI"
 
 msgid "Include ECM in http streams"
 msgstr "Inclure ECM dans les flux HTTP"
@@ -7597,6 +7600,9 @@ msgstr "Pressez OK pour analyser"
 msgid "Press OK to select a provider."
 msgstr "Pressez OK pour sélectionner un opérateur."
 
+msgid "Press OK to select a service."
+msgstr "Pressez OK pour sélectionner un service."
+
 msgid "Press OK to select satellites"
 msgstr "Pressez OK pour sélectionner des satellites."
 
@@ -7978,6 +7984,9 @@ msgstr "Réduire la taille des picons des services pour un interlignage plus gra
 msgid "Reduce time scale"
 msgstr "Reduite l’échelle de temps"
 
+msgid "Reenter PIN"
+msgstr "Re-saisir le PIN"
+
 #, python-format
 msgid ""
 "Reflash in progress\n"
@@ -8166,6 +8175,9 @@ msgstr "Réinitialiser"
 
 msgid "Reset and renumerate title names"
 msgstr "Réinitialiser et renuméroter les titres"
+
+msgid "Reset persistent PIN code"
+msgstr "Réinitialiser le code PIN persistante"
 
 msgid "Reset playback position"
 msgstr "Réinitialiser la position de reprise de lecture"
@@ -8962,6 +8974,9 @@ msgstr "Services"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Les services peuvent être regroupé en bouquets. Lorsque c’est activé, vous pouvez utiliser plus d’un bouquet."
 
+msgid "Set CI assignment for detection of available services."
+msgstr "Définir l’affectation VI pour la détection des services disponibles."
+
 msgid "Set Framerate for MiniTV"
 msgstr "Régler le fps pour MiniTV"
 
@@ -8985,6 +9000,9 @@ msgstr "Utiliser l’interface comme interface par défaut"
 
 msgid "Set limits"
 msgstr "Définir les limites"
+
+msgid "Set pin code persistent"
+msgstr "Définir le code PIN permanant"
 
 msgid "Set startup service"
 msgstr "Choisir comme service de démarrage"
@@ -9329,6 +9347,9 @@ msgstr "Afficher CCcam dans les extensions?"
 
 msgid "Show CCcamInfo in Extensions Menu"
 msgstr "Afficher CCcamInfo dans le menu extension"
+
+msgid "Show CI messages"
+msgstr "Afficher les messages CI"
 
 msgid "Show Clients"
 msgstr "Afficher les clients"
@@ -9906,6 +9927,9 @@ msgstr "Vitesses du ralenti"
 
 msgid "Small progress"
 msgstr "Petit progrès"
+
+msgid "Smartcard PIN"
+msgstr "PIN de la carte à puce"
 
 msgid "Smooth"
 msgstr "Doux"
@@ -10508,7 +10532,7 @@ msgstr ""
 "Traduction Française\n"
 "Enigma2 - OpenATV\n"
 "Support: www.opena.tv\n"
-"Dernière MAJ: 19 janvier 2016"
+"Dernière MAJ: 21 février 2016"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Fichier TS trop grand pour le niveau 1 ISO9660!"
@@ -10688,6 +10712,9 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "Le code PIN a été changé avec succès."
 
+msgid "The PIN code has been saved successfully."
+msgstr "Le code PIN a été sauvegardé avec succès."
+
 msgid "The PIN codes you entered are different."
 msgstr "Les codes PIN saisis sont différents."
 
@@ -10798,6 +10825,9 @@ msgstr "Le code pin saisi est mauvais"
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Les résultats ont été écrit sur %s."
+
+msgid "The saved PIN was cleared."
+msgstr "Le PIN sauvegardé a été effacé."
 
 msgid "The servicelist is reloaded."
 msgstr "La liste des services a été rechargée."
@@ -12662,6 +12692,10 @@ msgstr "Avec cette option vous pouvez cacher Job Tasks du menu des extensions (a
 
 msgid "Without popup"
 msgstr "sans message"
+
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr "Voulez-vous sauvegarder le PIN persistant %s?"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Erreur d'écriture lors de l'enregistrement. Disque plein?\n"
@@ -14545,9 +14579,6 @@ msgstr "voir les extensions..."
 
 msgid "vix"
 msgstr "vix"
-
-msgid "wait for ci..."
-msgstr "attente pour ci..."
 
 msgid "wait for mmi..."
 msgstr "attente pour mmi..."
