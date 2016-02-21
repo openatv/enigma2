@@ -227,10 +227,14 @@ int main(int argc, char **argv)
 
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
-	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
-	printf("DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
+	printf("[Enigma2] PYTHONPATH: %s\n", getenv("PYTHONPATH"));
+	printf("[Enigma2] DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
-	bsodLogInit();
+	// get enigma2 debug level
+	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : 4;
+	if (debugLvl < 0)
+		debugLvl = 0;
+	printf("[Enigma2] ENIGMA2_DEBUG settings: Level=%d\n", debugLvl);
 
 	ePython python;
 	eMain main;

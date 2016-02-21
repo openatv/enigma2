@@ -24,12 +24,12 @@ try:
 		total_time = t
 		profile_data[id] = t
 except:
-	print "no profile data available"
+	print "[Profile] no profile data available"
 
 try:
 	profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
 except IOError:
-	print "WARNING: couldn't open profile file!"
+	print "[Profile] WARNING: couldn't open profile file!"
 
 def profile(id):
 	now = time.time() - profile_start
