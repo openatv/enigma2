@@ -161,7 +161,8 @@ class ServiceScan:
 	def updatePass(self):
 		size = len(self.scanList)
 		if size > 1:
-			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("Tuner") + " " + str(self.scanList[self.run]["feid"]) + ")")
+			txt = "%s %s/%s (%s)" % (_("pass"), self.run + 1, size, nimmgr.getNim(self.scanList[self.run]["feid"]).slot_name)
+			self.passNumber.setText(txt)
 
 	def execBegin(self):
 		self.doRun()

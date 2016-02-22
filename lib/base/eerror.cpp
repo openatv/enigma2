@@ -196,8 +196,9 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "FATAL: %s%s\n", header, ncbuf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "FATAL: %s%s\n", header, ncbuf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -216,8 +217,9 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "FATAL: %s%s\n"ANSI_RESET, header , buf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "FATAL: %s%s\n"ANSI_RESET, header , buf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -266,8 +268,9 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s\n", header, ncbuf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s\n", header, ncbuf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -286,8 +289,9 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s\n"ANSI_RESET, header, buf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s\n"ANSI_RESET, header, buf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -335,8 +339,9 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s", header, ncbuf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s", header, ncbuf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -354,8 +359,9 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s", header, buf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s", header, buf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -382,8 +388,9 @@ void eDebugNoNewLine(const char* fmt, ...)
 		if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 		{
 			int n;
-			snprintf(ncbuf, sizeof(ncbuf), "%s", logOutputColors? buf : ncbuf);
-			n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+			char obuf[1024];
+			snprintf(obuf, sizeof(obuf), "%s", logOutputColors? buf : ncbuf);
+			n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 			if(n<0)
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
@@ -410,8 +417,9 @@ void eDebugNoNewLineEnd(const char* fmt, ...)
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s\n", ncbuf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s\n", ncbuf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -423,8 +431,9 @@ void eDebugNoNewLineEnd(const char* fmt, ...)
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s\n"ANSI_RESET, buf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s\n"ANSI_RESET, buf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -457,8 +466,9 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s\n", header, ncbuf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s\n", header, ncbuf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -477,8 +487,9 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s\n"ANSI_RESET, header, buf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s\n"ANSI_RESET, header, buf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -534,8 +545,9 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s", header, ncbuf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s", header, ncbuf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
@@ -566,8 +578,9 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 			if(m_erroroutput && m_erroroutput->eErrorOutput::pipe_fd[1] && m_erroroutput->eErrorOutput::threadrunning)
 			{
 				int n;
-				snprintf(ncbuf, sizeof(ncbuf), "%s%s"ANSI_RESET, header, buf);
-				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], ncbuf, strlen(ncbuf));
+				char obuf[1024];
+				snprintf(obuf, sizeof(obuf), "%s%s"ANSI_RESET, header, buf);
+				n=write(m_erroroutput->eErrorOutput::pipe_fd[1], obuf, strlen(obuf));
 				if(n<0)
 					fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 			}
