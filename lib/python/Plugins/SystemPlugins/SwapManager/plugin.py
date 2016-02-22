@@ -68,7 +68,7 @@ class StartSwap:
 							print "[SwapManager] Found a swapfile on ", swap_place
 
 		f = file('/proc/swaps').read()
-		if '-1' in f: 		#if f.find(swap_place) == -1:
+		if f.find(swap_place) == -1:
 			print "[SwapManager] Starting swapfile on ", swap_place
 			system('swapon ' + swap_place)
 		else:
