@@ -39,7 +39,7 @@ from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateDurationInput
-from Screens.TimerEdit import TimerEditList
+from Screens.TimerEdit import TimerEditList, TimerStopChangeList
 from Screens.UnhandledKey import UnhandledKey
 from Screens.AudioSelection import AudioSelection, SubtitleSelection
 from ServiceReference import ServiceReference, isPlayableForCur
@@ -3022,7 +3022,7 @@ class InfoBarInstantRecord:
 		# print "pre:\n", self.recording
 
 		# print 'test1'
-		if answer is None or answer[1] == "no":
+		if answer is None:
 			# print 'test2'
 			return
 		list = []
@@ -3033,26 +3033,12 @@ class InfoBarInstantRecord:
 			elif x.dontSave and x.isRunning():
 				list.append((x, False))
 
-		if answer[1] == "changeduration":
-			if len(self.recording) == 1:
-				self.changeDuration(0)
-			else:
-				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
-		elif answer[1] == "changeendtime":
-			if len(self.recording) == 1:
-				self.setEndtime(0)
-			else:
-				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
-		elif answer[1] == "timerstop":
+		if answer[1] == "timerstopchange":
 			import TimerEdit
-			self.session.open(TimerEdit.TimerStopList)
-		elif answer[1] == "stop":
-			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
-		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
-			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime"))
-			if answer[1] == "manualduration":
-				self.changeDuration(len(self.recording) - 1)
-			elif answer[1] == "manualendtime":
+			self.session.open(TimerStopChangeList)
+		elif answer[1] in ("manualendtime", "event"):
+			self.startInstantRecording(limitEvent=True)
+			if answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording) - 1, new=True)
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
@@ -3069,7 +3055,10 @@ class InfoBarInstantRecord:
 			# print 'test4'
 			# noinspection PyCallByClass
 			InfoBarTimeshift.saveTimeshiftEventPopup(self)
-
+		elif answer[1] == "cancelsavetimeshift":
+			Notifications.AddNotification(MessageBox, _("Cancelled timeshift save"), MessageBox.TYPE_INFO, timeout=5)
+			self.save_current_timeshift = False
+			config.timeshift.isRecording.value = False
 		elif answer[1].startswith("pts_livebuffer") is True:
 			# print 'test2'
 			# noinspection PyCallByClass
@@ -3100,9 +3089,9 @@ class InfoBarInstantRecord:
 			# Increment/decrement disabled until consensus
 			# can be reached about which buttons to use
 			# time_desc = _("Enter time using number keys and LEFT/RIGHT.\nVOL+/-, NEXT/PREV and FF/REW change hours.\nCH+/CH- changes minutes.")
-			# date_desc = _("RIGHT/LEFT, VOL+/-, NEXT/PREV, FF/REW and CH+/- change the date.")
+			# date_desc = _("LEFT/RIGHT, VOL+/-, NEXT/PREV, FF/REW and CH+/- change the date.")
 			time_desc = _("Enter time using number keys and LEFT/RIGHT.")
-			date_desc = _("RIGHT/LEFT change the date.")
+			date_desc = _("LEFT/RIGHT change the date.")
 			duration_desc = '' if new else _("Duration is the remaining recording time.\n")
 			duration_desc += time_desc
 
@@ -3172,45 +3161,41 @@ class InfoBarInstantRecord:
 			)
 			return
 
+		list = []
+
+		isrecording = self.session.nav.RecordTimer.isRecording()
+		issavingtimeshift = isStandardInfoBar(self) and self.save_current_timeshift
+		title = (
+			_("Start recording?"),
+			_("A recording is currently running.\nWhat do you want to do?"),
+			_("Timeshift is marked to be saved.\nWhat do you want to do?"),
+			_("A recording is running and timeshift will be saved.\nWhat do you want to do?"),
+		)[int(isrecording) + 2 * int(issavingtimeshift)]
+
 		if isStandardInfoBar(self):
-			common = (
-				(_("Record the rest of the current event"), "event"),
-				(_("Record indefinitely"), "indefinitely"),
-				(_("Record for given duration"), "manualduration"),
-				(_("Record until given time"), "manualendtime")
-			)
-
-			timeshiftcommon = (
-				(_("Record current timeshift event"), "savetimeshift"),
-				(_("Record selected timeshift event"), "savetimeshiftEvent")
-			)
-		else:
-			common = ()
-			timeshiftcommon = ()
-
-		list = common
-
-		if self.isInstantRecordRunning():
-			title = _("A recording is currently running.\nWhat do you want to do?")
-			list += (
-				(_("Change instant recording duration"), "changeduration"),
-				(_("Change instant recording end time"), "changeendtime"),
-				(_("Stop instant recording"), "stop")
-			)
-		else:
-			title = _("Start recording?")
-
-		if self.isTimerRecordRunning():
-			list += ((_("Stop timer recording"), "timerstop"), )
+			list += [
+				# (_("Record for default duration"), "event"),
+				(_("Create instant recording..."), "manualendtime")
+			]
 
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
-			list += timeshiftcommon
+			list += [
+				# (_("Save event currently being viewed"), "savetimeshift"),
+				(_("Select an event to save..."), "savetimeshiftEvent")
+			]
 
-		if isStandardInfoBar(self):
-			list += ((_("Do nothing"), "no"), )
+		if isrecording:
+			list += [
+				(_("Stop or change active recording..."), "timerstopchange")
+			]
+
+		if issavingtimeshift:
+			list += [
+				(_("Cancel timeshift save"), "cancelsavetimeshift"),
+			]
 
 		if list:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list)
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list, skin_name="InfoBarInstantRecord")
 		else:
 			return 0
 
@@ -3419,7 +3404,6 @@ class InfoBarTimerButton:
 		}, description=_("Timer control"))
 
 	def timerSelection(self):
-		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
 class InfoBarVmodeButton:

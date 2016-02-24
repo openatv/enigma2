@@ -628,11 +628,15 @@ class InfoBarTimeshift:
 	def saveTimeshiftEventPopup(self):
 		dprint("saveTimeshiftEventPopup")
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
+		choice = 0
 
 		filelist = [f for f in os.listdir(config.usage.timeshift_path.value) if f.startswith("pts_livebuffer_") and f[15:].isdigit()]
 
 		if filelist:
 			filelist.sort(key=lambda f: int(f[15:]), reverse=True)
+
+			current_livebuffer = "pts_livebuffer_%s" % self.pts_currplaying
+			buffer_num = 1
 
 			for filename in filelist:
 				# print "TRUE"
@@ -650,8 +654,11 @@ class InfoBarTimeshift:
 
 					# Add Event to list
 					entrylist.append(("%s - %s" % (strftime("%H:%M", localtime(int(begintime))), eventname), "%s" % filename))
+					if current_livebuffer == filename:
+						choice = buffer_num
+					buffer_num += 1
 
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save?"), list=entrylist)
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save?"), list=entrylist, selection=choice, skin_name="InfoBarTimeshift")
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		dprint("saveTimeshiftActions")

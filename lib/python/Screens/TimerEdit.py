@@ -172,7 +172,7 @@ class TimerEditList(Screen, TimerListButtons):
 							(_("Stop current event and disable future events"), "stopall"),
 							(_("Don't stop current event but disable future events"), "stoponlyfuture")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list, skin_name="TimerEditListRepeat")
 				else:
 					t.disable()
 			self.session.nav.RecordTimer.timeChanged(t)
@@ -475,6 +475,37 @@ class TimerStopList(TimerEditList):
 	def fillTimerTest(self, timer):
 		# Only include running timers
 		return timer.isRunning()
+
+class TimerStopChangeList(TimerStopList):
+
+	DELETE = 1
+	STOP = 2
+	EDIT = 3
+
+	def __init__(self, session):
+		TimerEditList.__init__(self, session)
+
+                self.skinName = ["TimerEditList"]
+
+		self.buttonActions = (
+			(None,                      ""),  # EMPTY = 0
+			(self.removeTimerQuestion,  _("Delete")),  # DELETE = 1
+			(self.stopRecording,        _("Stop recording")),  # STOP = 2
+			(self.openEdit,             _("Change recording")),  # EDIT = 3
+		)
+
+		self.setTitle(_("Stop or Change Recordings"))
+
+	def updateGreenState(self, cur):
+		col = "green"
+		if cur and cur.isRunning():
+			self.assignButton(col, self.EDIT)
+		else:
+			self.assignButton(col, self.EMPTY)
+
+
+	def updateBlueState(self, cur):
+		pass
 
 class TimerSanityConflict(Screen, TimerListButtons):
 
