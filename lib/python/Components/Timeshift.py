@@ -91,6 +91,15 @@ def notifyActivateActionsUpDown(setting):
 	if InfoBar.instance is not None:
 		InfoBar.instance.setEnableTimeshiftActivateActions()
 
+# Opens metafile and returns the tuple
+# (servicerefname, eventname, description, begintime, tags)
+
+def readMetafile(filename):
+	readmetafile = open(filename, "r")
+	t = tuple((readmetafile.readline().rstrip('\n') for x in range(5)))
+	readmetafile.close()
+	return t
+
 class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
@@ -645,12 +654,7 @@ class InfoBarTimeshift:
 
 				if os.path.exists(metafile) and statinfo.st_mtime < (time() - 5.0):
 					# Get Event Info from meta file
-					readmetafile = open(metafile, "r")
-					servicerefname = readmetafile.readline().strip()
-					eventname = readmetafile.readline().strip()
-					description = readmetafile.readline().strip()
-					begintime = readmetafile.readline().strip()
-					readmetafile.close()
+					(__, eventname, __, begintime, __) = readMetafile(metafile)
 
 					# Add Event to list
 					entrylist.append(("%s - %s" % (strftime("%H:%M", localtime(int(begintime))), eventname), "%s" % filename))
@@ -744,12 +748,7 @@ class InfoBarTimeshift:
 					self.ptsCreateEITFile(fullname)
 				elif timeshiftfile.startswith("pts_livebuffer"):
 					# Save stored timeshift by creating hardlink to ts file
-					readmetafile = open("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "r")
-					servicerefname = readmetafile.readline()[0:-1]
-					eventname = readmetafile.readline()[0:-1]
-					description = readmetafile.readline()[0:-1]
-					begintime = readmetafile.readline()[0:-1]
-					readmetafile.close()
+					(__, eventname, description, begintime, __) = readMetafile("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile))
 
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(int(begintime))), self.pts_curevent_station, eventname)
 					try:
@@ -829,10 +828,7 @@ class InfoBarTimeshift:
 
 						# Get Event Info from meta file
 						if os.path.exists("%s.ts.meta" % fullname):
-							readmetafile = open("%s.ts.meta" % fullname, "r")
-							servicerefname = readmetafile.readline()[0:-1]
-							eventname = readmetafile.readline()[0:-1]
-							readmetafile.close()
+							(__, eventname, __, __, __) = readMetafile("%s.ts.meta" % fullname)
 						else:
 							eventname = ""
 
@@ -1018,13 +1014,7 @@ class InfoBarTimeshift:
 		for filename in filelist:
 			if filename.endswith(".meta"):
 				# Get Event Info from meta file
-				readmetafile = open("%s%s" % (config.usage.default_path.value, filename), "r")
-				servicerefname = readmetafile.readline()[0:-1]
-				eventname = readmetafile.readline()[0:-1]
-				eventtitle = readmetafile.readline()[0:-1]
-				eventtime = readmetafile.readline()[0:-1]
-				eventtag = readmetafile.readline()[0:-1]
-				readmetafile.close()
+				(servicerefname, eventname, eventtitle, eventtime, eventtag) = readMetafile("%s%s" % (config.usage.default_path.value, filename))
 
 				if ptsgetnextfile:
 					ptsgetnextfile = False
@@ -1063,7 +1053,7 @@ class InfoBarTimeshift:
 
 					# Rewrite Meta File to get rid of pts_merge tag
 					metafile = open("%s%s.meta" % (config.usage.default_path.value, ptsmergeDEST), "w")
-					metafile.write("%s\n%s\n%s\n%i\n" % (servicerefname, eventname.replace("\n", ""), eventtitle.replace("\n", ""), int(eventtime)))
+					metafile.write("%s\n%s\n%s\n%i\n" % (servicerefname, eventname, eventtitle, int(eventtime)))
 					metafile.close()
 
 		# Merging failed :(
@@ -1075,10 +1065,7 @@ class InfoBarTimeshift:
 		if fileExists(filename, 'r'):
 			if fileExists(filename + ".meta", 'r'):
 				# Get Event Info from meta file
-				readmetafile = open(filename + ".meta", "r")
-				servicerefname = readmetafile.readline()[0:-1]
-				eventname = readmetafile.readline()[0:-1]
-				readmetafile.close()
+				(__, eventname, __, __, __) = readMetafile(filename + ".meta")
 			else:
 				eventname = ""
 			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\"" % filename, eventname))
