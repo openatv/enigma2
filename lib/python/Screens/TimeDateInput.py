@@ -24,8 +24,7 @@ class TimeDateInputBase(ConfigListScreen, Screen):
 		self.timeinput_date = None
 		self.save_mask = 0
 
-		self["actions"] = NumberActionMap(["SetupActions"],
-		{
+		self["actions"] = NumberActionMap(["SetupActions"], {
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
@@ -76,11 +75,11 @@ class TimeDateInput(TimeDateInputBase):
 		if conf_time:
 			self.save_mask |= self.TIME_MASK
 		else:
-			conf_time = ConfigClock(default = time.time())
+			conf_time = ConfigClock(default=time.time())
 		if conf_date:
 			self.save_mask |= self.DATE_MASK
 		else:
-			conf_date = ConfigDateTime(default = time.time(), formatstring = _("%A %d %B %Y"), increment = 86400)
+			conf_date = ConfigDateTime(default=time.time(), formatstring=_("%A %d %B %Y"), increment=24 * 60 * 60)
 		self.timeinput_date = conf_date
 		self.timeinput_time = conf_time
 
@@ -155,7 +154,7 @@ class TimeDateDurationInput(TimeDateInputBase):
 			if conf_date:
 				self.save_mask |= self.DATE_MASK
 			else:
-				conf_date = ConfigDateTime(default = time.time(), formatstring = _("%A %d %B %Y"), increment = 86400)
+				conf_date = ConfigDateTime(default=time.time(), formatstring=_("%A %d %B %Y"), increment=24 * 60 * 60)
 		else:
 			conf_date = None
 		if self.show_entries & self.DURATION_MASK:
