@@ -686,6 +686,52 @@ class InfoBarTimeshift:
 		# print 'action returnFunction'
 		returnFunction(action and action != "no")
 
+	def checkSaveTimeshift(self, timeshiftfile=None, mergelater=False):
+		if timeshiftfile is not None:
+			filepath = config.usage.timeshift_path.value + timeshiftfile
+			if os.path.isfile(filepath):
+				statinfo = os.stat(filepath)
+				if statinfo.st_nlink > 1:
+					metafile = filepath + '.meta'
+					eventname = ''
+					begintime = ''
+					if os.path.exists(metafile):
+						(__, eventname, __, begintime, __) = readMetafile(metafile)
+						if begintime:
+							begintime = strftime("%H:%M", localtime(int(begintime)))
+					if not begintime:
+						begintime = strftime(_("Ended %H:%M"), localtime(int(statinfo.st_mtime)))
+					if not eventname:
+						eventname = _("Unknown event name")
+					message = _("You have already saved %s (%s).\nDo you want to save another copy?") % (eventname, begintime)
+					self.session.openWithCallback(boundFunction(self.checkSaveTimeshiftCallback, timeshiftfile=timeshiftfile, mergelater=mergelater), MessageBox, message, simple=True, default=False, timeout=15)
+					return
+
+		self.SaveTimeshift(timeshiftfile=timeshiftfile, mergelater=mergelater)
+
+	def checkSaveTimeshiftCallback(self, answer, timeshiftfile=None, mergelater=False):
+		if answer:
+			self.SaveTimeshift(timeshiftfile=timeshiftfile, mergelater=mergelater)
+
+	def checkSavingCurrentTimeshift(self):
+		if self.save_current_timeshift:
+			message = _("Timeshift of %s already being saved.\nWhat do you want to do?") % self.pts_curevent_name
+			choice = [
+				(_("Continue saving timeshift"), "continue"),
+				(_("Cancel save timeshift"), "cancel"),
+			]
+			self.session.openWithCallback(self.checkSavingCurrentTimeshiftCallback, MessageBox, message, simple=True, list=choice, timeout=15, timeout_default="continue")
+		else:
+			Notifications.AddNotification(MessageBox, _("%s will be saved at end of event.") % self.pts_curevent_name, MessageBox.TYPE_INFO, timeout=5)
+			self.save_current_timeshift = True
+			config.timeshift.isRecording.value = True
+
+	def checkSavingCurrentTimeshiftCallback(self, answer):
+		if answer == "cancel":
+			Notifications.AddNotification(MessageBox, _("Cancelled timeshift save."), MessageBox.TYPE_INFO, timeout=5)
+			self.save_current_timeshift = False
+			config.timeshift.isRecording.value = False
+
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
 		dprint("SaveTimeshift")
 		self.save_current_timeshift = False

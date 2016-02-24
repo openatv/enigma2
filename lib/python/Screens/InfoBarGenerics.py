@@ -3037,20 +3037,16 @@ class InfoBarInstantRecord:
 			import TimerEdit
 			self.session.open(TimerStopChangeList)
 		elif answer[1] in ("manualendtime", "event"):
-			self.startInstantRecording(limitEvent=True)
-			if answer[1] == "manualendtime":
-				self.setEndtime(len(self.recording) - 1, new=True)
+			self.checkRecordingRunning(answer[1], new=True, limitEvent=True)
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
 				# print 'test2'
 				# noinspection PyCallByClass
-				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
+				InfoBarTimeshift.checkSaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
-				Notifications.AddNotification(MessageBox, _("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
-				self.save_current_timeshift = True
-				config.timeshift.isRecording.value = True
+				self.checkSavingCurrentTimeshift()
 		elif answer[1] == "savetimeshiftEvent":
 			# print 'test4'
 			# noinspection PyCallByClass
@@ -3062,7 +3058,30 @@ class InfoBarInstantRecord:
 		elif answer[1].startswith("pts_livebuffer") is True:
 			# print 'test2'
 			# noinspection PyCallByClass
-			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
+			InfoBarTimeshift.checkSaveTimeshift(self, timeshiftfile=answer[1])
+
+	def checkRecordingRunning(self, action, new=False, limitEvent=False):
+		service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if service and service.valid():
+			for timer in self.session.nav.RecordTimer.timer_list:
+				if timer.isRunning() and not timer.justplay and timer.service_ref.ref == service:
+					message = _("Recording already running on %s\nWhat do you want to do?") % timer.service_ref.getServiceName()
+					choice = [
+						(_("Cancel new recording"), "dontrecord"),
+						(_("Record anyway"), "record"),
+						(_("Review running recordings"), "review"),
+					]
+					self.session.openWithCallback(boundFunction(self.checkRecordingRunningCallback, action, new=new, limitEvent=limitEvent), MessageBox, message, simple=True, list=choice, timeout=15, timeout_default="dontrecord")
+					return
+		self.checkRecordingRunningCallback(action, "record", new, limitEvent)
+
+	def checkRecordingRunningCallback(self, action, answer, new=False, limitEvent=True):
+		if answer == "record":
+			self.startInstantRecording(limitEvent=True)
+			if action == "manualendtime":
+				self.setEndtime(len(self.recording) - 1, new=True)
+		elif answer == "review":
+			self.recordQuestionCallback((_("Stop or change active recording..."), "timerstopchange"))
 
 	@staticmethod
 	def durationString(conf, selected=False):
