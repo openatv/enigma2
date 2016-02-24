@@ -52,6 +52,8 @@ from Tools.Directories import pathExists, fileExists
 from Tools.KeyBindings import getKeyDescription, getKeyBindingKeys
 from Tools.ServiceReference import hdmiInServiceRef, service_types_tv_ref
 
+import NavigationInstance
+
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
 from keyids import KEYFLAGS, KEYIDS, invertKeyIds
@@ -3122,22 +3124,44 @@ class InfoBarInstantRecord:
 			end_time = ConfigClockTime(default=recEnd, formatstring="", increment=hour, increment1=minute, base=now)
 			duration = ConfigClockDuration(default=recEnd, formatstring=self.durationString, increment=hour, increment1=minute, base=now)
 
-			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateDurationInput, config_time=end_time, config_date=end_date, config_duration=duration, desc_time=time_desc, desc_date=date_desc, desc_duration=duration_desc)
+			dlg = self.session.openWithCallback(lambda ret: self.TimeDateInputClosed(ret, new), TimeDateDurationInput, config_time=end_time, config_date=end_date, config_duration=duration, desc_time=time_desc, desc_date=date_desc, desc_duration=duration_desc)
 
 			dlg.setTitle(_("Please set recording end time or duration"))
 
-	def TimeDateInputClosed(self, ret):
+	def deleteCancelledRecording(self, entry):
+		if not hasattr(entry, "Filename"):
+			return
+		recSrec = eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, entry.Filename + '.ts')
+
+		serviceHandler = eServiceCenter.getInstance()
+		offline = serviceHandler.offlineOperations(recSrec)
+		try:
+			if offline is None:
+				from enigma import eBackgroundFileEraser
+				eBackgroundFileEraser.getInstance().erase(os.path.realpath(recSrec.getPath()))
+			else:
+				if offline.deleteFromDisk(0):
+					raise Exception("Offline delete failed")
+			delResumePoint(recSrec)
+		except Exception, ex:
+			mbox = self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)
+			mbox.setTitle(self.getTitle())
+
+	def TimeDateInputClosed(self, ret, new=False):
+		entry = self.recording[self.selectedEntry]
+
 		if len(ret) > 1:
 			if ret[0]:
 				# print "stopping recording at", strftime("%F %T", localtime(ret[1]))
-				if self.recording[self.selectedEntry].end != ret[1]:
-					self.recording[self.selectedEntry].autoincrease = False
-				self.recording[self.selectedEntry].end = ret[1].value
-		else:
-			if self.recording[self.selectedEntry].end != int(time()):
-				self.recording[self.selectedEntry].autoincrease = False
-			self.recording[self.selectedEntry].end = int(time())
-		self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+				if entry.end != ret[1]:
+					entry.autoincrease = False
+				entry.end = ret[1].value
+				self.session.nav.RecordTimer.timeChanged(entry)
+		elif new:
+			entry.afterEvent = AFTEREVENT.NONE
+			NavigationInstance.instance.RecordTimer.removeEntry(entry)
+			self.deleteCancelledRecording(entry)
+			Notifications.RemovePopup("RecStart" + getattr(entry, "Filename", ''))
 
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
