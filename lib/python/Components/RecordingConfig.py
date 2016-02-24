@@ -5,6 +5,7 @@ def InitRecordingConfig():
 	# actually this is "recordings always have priority". "Yes" does mean: don't ask. The RecordTimer will ask when value is 0.
 	config.recording.asktozap = ConfigYesNo(default=True)
 	config.recording.margin_before = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 1, default = 3, wraparound = True)
+	config.recording.instant_recording_length = ConfigSelection(default = "paddedevent", choices = [("paddedevent", _("padded event")), ("5", "5"), ("10", "10"), ("15", "15"), ("30", "30"), ("60", "60"), ("90", "90"), ("120", "120"), ("180", "180")])
 	config.recording.margin_after = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 1, default = 5, wraparound = True)
 	config.recording.ascii_filenames = ConfigYesNo(default = False)
 	config.recording.keep_timers = ConfigSelectionNumber(min = 1, max = 120, stepwidth = 1, default = 7, wraparound = True)

@@ -2971,13 +2971,17 @@ class InfoBarInstantRecord:
 
 		self.getProgramInfoAndEvent(info, name)
 		serviceref = info["serviceref"]
-		event = info["event"]
 
-		if event is not None:
-			if limitEvent:
+		default_length = config.recording.instant_recording_length.value
+
+		if limitEvent:
+			event = info["event"]
+			if default_length != "paddedevent":
+				end = begin + int(default_length) * 60
+			elif event is not None:
 				end = info["end"]
-		else:
-			if limitEvent:
+			else:
+				limitEvent = False
 				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
 
 		if isinstance(serviceref, eServiceReference):
@@ -2986,7 +2990,7 @@ class InfoBarInstantRecord:
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], dirname=preferredInstantRecordPath())
 		recording.dontSave = True
 
-		if event is None or not limitEvent:
+		if not limitEvent:
 			recording.autoincrease = True
 			recording.setAutoincreaseEnd()
 
