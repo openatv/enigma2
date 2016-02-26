@@ -37,10 +37,6 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/standby_leave.sh"):
 			Console().ePopen("/usr/script/standby_leave.sh")
 
-		#set input to encoder
-		self.avswitch.setInput("ENCODER")
-		#restart last played service
-		#unmute adc
 		self.leaveMute()
 		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
@@ -88,7 +84,6 @@ class Standby2(Screen):
 		self.standbyStopServiceTimer.callback.append(self.stopService)
 		self.timeHandler = None
 
-		#mute adc
 		self.setMute()
 
 		# set LCDminiTV off
@@ -101,7 +96,7 @@ class Standby2(Screen):
 		service = self.prev_running_service and self.prev_running_service.toString()
 		if service:
 			if service.rsplit(":", 1)[1].startswith("/"):
-				self.paused_service = self.session.current_dialog
+				self.paused_service = hasattr(self.session.current_dialog, "pauseService") and hasattr(self.session.current_dialog, "unPauseService") and self.session.current_dialog or self.infoBarInstance
 				self.paused_service.pauseService()
 		if not self.paused_service:
 			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
@@ -117,7 +112,6 @@ class Standby2(Screen):
 		if self.session.pipshown:
 			self.infoBarInstance and hasattr(self.infoBarInstance, "showPiP") and self.infoBarInstance.showPiP()
 
-		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
 			self.avswitch.setInput("SCART")
 		else:
@@ -150,6 +144,7 @@ class Standby2(Screen):
 		globalActionMap.setEnabled(True)
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
+		self.avswitch.setInput("ENCODER")
 		if os.path.exists("/usr/script/Standby.sh"):
 			Console().ePopen("/usr/script/Standby.sh on")
 		if os.path.exists("/usr/script/standby_leave.sh"):
@@ -228,7 +223,6 @@ from Components.Task import job_manager
 
 
 class QuitMainloopScreen(Screen):
-
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
@@ -246,7 +240,6 @@ class QuitMainloopScreen(Screen):
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
-
 
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = False):
