@@ -109,8 +109,6 @@ void DumpUnfreed();
 
 #define CHECKFORMAT __attribute__ ((__format__(__printf__, 2, 3)))
 
-extern int logOutputConsole;
-
 /*
  * Current loglevel
  * Maybe set by ENIGMA_DEBUG_LVL environment variable.
