@@ -49,11 +49,11 @@ class inputDevices:
 				self.name = None
 
 			if self.name:
-				type = self.getInputDeviceType(self.name)
-				print "[InputDevice] Found: evdev='%s', name='%s', type='%s'" % (evdev, self.name, type)
+				devtype = self.getInputDeviceType(self.name)
+				print "[InputDevice] Found: evdev='%s', name='%s', type='%s'" % (evdev, self.name, devtype)
 				self.Devices[evdev] = {
 					'name': self.name,
-					'type': type,
+					'type': devtype,
 					'enabled': False,
 					'configuredName': None
 				}
