@@ -43,7 +43,7 @@ from Components.PluginComponent import plugins
 from Components.SystemInfo import SystemInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EventView import EventViewEPGSelect
-import os, re, unicodedata
+import os, unicodedata
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
@@ -864,8 +864,11 @@ class ChannelSelectionEdit:
 		return None
 
 	def buildBouquetID(self, name):
-		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-		return re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore').translate(None, '<>:"/\|?*() ')
+		while os.path.isfile((self.mode == MODE_TV and "/etc/enigma2/userbouquet.%s.tv" or "/etc/enigma2/userbouquet.%s.radio") % name):
+			name = name.rsplit("_", 1)
+			name = "_".join((name[0], len(name) == 2 and name[1].isdigit() and str(int(name[1]) + 1) or "1"))
+		return name
 
 	def renameEntry(self):
 		self.editMode = True
@@ -955,13 +958,8 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
-			if self.mode == MODE_TV:
-				bName += _(" (TV)")
-				str = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
-			else:
-				bName += _(" (Radio)")
-				str = '1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
-			new_bouquet_ref = eServiceReference(str)
+			bName = self.buildBouquetID(bName)
+			new_bouquet_ref = eServiceReference((self.mode == MODE_TV and '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.%s.tv" ORDER BY bouquet' or '1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.%s.radio" ORDER BY bouquet') % bName)
 			if not mutableBouquetList.addService(new_bouquet_ref):
 				mutableBouquetList.flushChanges()
 				eDVBDB.getInstance().reloadBouquets()

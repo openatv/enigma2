@@ -1,16 +1,19 @@
+import os
+from time import time, localtime
+
+import RecordTimer
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
+from Components.Console import Console
 from Components.Harddisk import internalHDDNotSleeping
 from Components.SystemInfo import SystemInfo
 from Tools import Notifications
 from GlobalActions import globalActionMap
-import RecordTimer, os
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 import Screens.InfoBar
 from boxbranding import getMachineBrand, getMachineName, getBoxType
-from time import time, localtime
 
 inStandby = None
 
@@ -30,14 +33,10 @@ class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
 		if os.path.exists("/usr/script/Standby.sh"):
-			os.system("/usr/script/Standby.sh on")
+			Console().ePopen("/usr/script/Standby.sh on")
 		if os.path.exists("/usr/script/standby_leave.sh"):
-			os.system("/usr/script/standby_leave.sh")
+			Console().ePopen("/usr/script/standby_leave.sh")
 
-		#set input to encoder
-		self.avswitch.setInput("ENCODER")
-		#restart last played service
-		#unmute adc
 		self.leaveMute()
 		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
@@ -64,9 +63,9 @@ class Standby2(Screen):
 
 		print "[Standby] enter standby"
 		if os.path.exists("/usr/script/Standby.sh"):
-			os.system("/usr/script/Standby.sh off")
+			Console().ePopen("/usr/script/Standby.sh off")
 		if os.path.exists("/usr/script/standby_enter.sh"):
-			os.system("/usr/script/standby_enter.sh")
+			Console().ePopen("/usr/script/standby_enter.sh")
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
@@ -85,7 +84,6 @@ class Standby2(Screen):
 		self.standbyStopServiceTimer.callback.append(self.stopService)
 		self.timeHandler = None
 
-		#mute adc
 		self.setMute()
 
 		# set LCDminiTV off
@@ -98,8 +96,8 @@ class Standby2(Screen):
 		service = self.prev_running_service and self.prev_running_service.toString()
 		if service:
 			if service.rsplit(":", 1)[1].startswith("/"):
-				self.paused_service = True
-				self.infoBarInstance.pauseService()
+				self.paused_service = hasattr(self.session.current_dialog, "pauseService") and hasattr(self.session.current_dialog, "unPauseService") and self.session.current_dialog or self.infoBarInstance
+				self.paused_service.pauseService()
 		if not self.paused_service:
 			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
 			if self.timeHandler.ready():
@@ -114,7 +112,6 @@ class Standby2(Screen):
 		if self.session.pipshown:
 			self.infoBarInstance and hasattr(self.infoBarInstance, "showPiP") and self.infoBarInstance.showPiP()
 
-		#set input to vcr scart
 		if SystemInfo["ScartSwitch"]:
 			self.avswitch.setInput("SCART")
 		else:
@@ -134,7 +131,7 @@ class Standby2(Screen):
 		self.standbyStopServiceTimer.stop()
 		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.paused_service:
-			self.infoBarInstance.unPauseService()
+			self.paused_service.unPauseService()
 		elif self.prev_running_service:
 			service = self.prev_running_service.toString()
 			if config.servicelist.startupservice_onstandby.value:
@@ -147,10 +144,11 @@ class Standby2(Screen):
 		globalActionMap.setEnabled(True)
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
+		self.avswitch.setInput("ENCODER")
 		if os.path.exists("/usr/script/Standby.sh"):
-			os.system("/usr/script/Standby.sh on")
+			Console().ePopen("/usr/script/Standby.sh on")
 		if os.path.exists("/usr/script/standby_leave.sh"):
-			os.system("/usr/script/standby_leave.sh")
+			Console().ePopen("/usr/script/standby_leave.sh")
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -223,8 +221,8 @@ from Screens.MessageBox import MessageBox
 from time import time
 from Components.Task import job_manager
 
-class QuitMainloopScreen(Screen):
 
+class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=1):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 			<ePixmap pixmap="skin_default/icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
@@ -315,9 +313,9 @@ class TryQuitMainloop(MessageBox):
 			if self.retval == 1:
 				config.misc.DeepStandby.value = True
 				if os.path.exists("/usr/script/Standby.sh"):
-					os.system("/usr/script/Standby.sh off")
+					Console().ePopen("/usr/script/Standby.sh off")
 				if os.path.exists("/usr/script/standby_enter.sh"):
-					os.system("/usr/script/standby_enter.sh")
+					Console().ePopen("/usr/script/standby_enter.sh")
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()

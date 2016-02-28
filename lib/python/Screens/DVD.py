@@ -7,9 +7,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
@@ -134,30 +132,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		</widget>
 	</screen>"""
 
-	def save_infobar_seek_config(self):
-		self.saved_config_speeds_forward = config.seek.speeds_forward.value
-		self.saved_config_speeds_backward = config.seek.speeds_backward.value
-		self.saved_config_enter_forward = config.seek.enter_forward.value
-		self.saved_config_enter_backward = config.seek.enter_backward.value
-		self.saved_config_seek_on_pause = config.seek.on_pause.value
-		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.value
-
-	def change_infobar_seek_config(self):
-		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
-		config.seek.speeds_backward.value = [2, 4, 6, 8, 16, 32, 64]
-		config.seek.speeds_slowmotion.value = [ 2, 3, 4, 6 ]
-		config.seek.enter_forward.value = "2"
-		config.seek.enter_backward.value = "2"
-		config.seek.on_pause.value = "play"
-
-	def restore_infobar_seek_config(self):
-		config.seek.speeds_forward.value = self.saved_config_speeds_forward
-		config.seek.speeds_backward.value = self.saved_config_speeds_backward
-		config.seek.speeds_slowmotion.value = self.saved_config_seek_speeds_slowmotion
-		config.seek.enter_forward.value = self.saved_config_enter_forward
-		config.seek.enter_backward.value = self.saved_config_enter_backward
-		config.seek.on_pause.value = self.saved_config_seek_on_pause
-
 	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
@@ -173,6 +147,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		InfoBarPVRState.__init__(self)
 
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.dvdScreen = None
 		self.session.nav.stopService()
 		self["audioLabel"] = Label("n/a")
 		self["subtitleLabel"] = Label("")
@@ -190,6 +165,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
+				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evStopped: self.__serviceStopped,
 				iPlayableService.evUser: self.__timeUpdated,
 				iPlayableService.evUser+1: self.__statePlay,
@@ -231,7 +207,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			{
 				"ok": self.keyOk,
 				"cancel": self.keyCancel,
-			})
+			}, -2)
 
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "DVDPlayerActions",
 			{
@@ -287,6 +263,30 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				open("/proc/stb/fb/dst_height", "w").write("0000000240")
 				self.onClose.append(self.__restoreOSDSize)
 
+	def save_infobar_seek_config(self):
+		self.saved_config_speeds_forward = config.seek.speeds_forward.value
+		self.saved_config_speeds_backward = config.seek.speeds_backward.value
+		self.saved_config_enter_forward = config.seek.enter_forward.value
+		self.saved_config_enter_backward = config.seek.enter_backward.value
+		self.saved_config_seek_on_pause = config.seek.on_pause.value
+		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.value
+
+	def change_infobar_seek_config(self):
+		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
+		config.seek.speeds_backward.value = [2, 4, 6, 8, 16, 32, 64]
+		config.seek.speeds_slowmotion.value = [ 2, 3, 4, 6 ]
+		config.seek.enter_forward.value = "2"
+		config.seek.enter_backward.value = "2"
+		config.seek.on_pause.value = "play"
+
+	def restore_infobar_seek_config(self):
+		config.seek.speeds_forward.value = self.saved_config_speeds_forward
+		config.seek.speeds_backward.value = self.saved_config_speeds_backward
+		config.seek.speeds_slowmotion.value = self.saved_config_seek_speeds_slowmotion
+		config.seek.enter_forward.value = self.saved_config_enter_forward
+		config.seek.enter_backward.value = self.saved_config_enter_backward
+		config.seek.on_pause.value = self.saved_config_seek_on_pause
+
 	def __restoreOSDSize(self):
 		open("/proc/stb/fb/dst_left", "w").write(self.left)
 		open("/proc/stb/fb/dst_width", "w").write(self.width)
@@ -294,7 +294,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		open("/proc/stb/fb/dst_height", "w").write(self.height)
 
 	def chapterZap(self):
-		self.session.openWithCallback(self.numberEntered, ChapterZap)
+		if not self.in_menu:
+			self.session.openWithCallback(self.numberEntered, ChapterZap)
 
 	def numberEntered(self, retval):
 		if retval:
@@ -309,13 +310,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		return None
 
 	def __serviceStopped(self):
-		self.dvdScreen.hide()
+		if self.in_menu:
+			self.in_menu = False
+		self.dvdScreen and self.dvdScreen.hide()
 		subs = self.getServiceInterface("subtitle")
 		if subs:
 			subs.disableSubtitles(self.session.current_dialog.instance)
 
 	def serviceStarted(self): #override InfoBarShowHide function
-		self.dvdScreen.show()
+		self.dvdScreen and self.dvdScreen.show()
 
 	def doEofInternal(self, playing):
 		if self.in_menu:
@@ -330,15 +333,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.in_menu = False
 
 	def setChapterLabel(self):
-		chapterLCD = "Menu"
-		chapterOSD = "DVD Menu"
+		chapterLCD = _("Menu")
+		chapterOSD = _("DVD Menu")
 		if self.currentTitle > 0:
 			chapterLCD = "%s %d" % (_("Chap."), self.currentChapter)
 			chapterOSD = "DVD %s %d/%d" % (_("Chapter"), self.currentChapter, self.totalChapters)
 			chapterOSD += " (%s %d/%d)" % (_("Title"), self.currentTitle, self.totalTitles)
 		self["chapterLabel"].setText(chapterOSD)
 		try:
-			self.session.summary.updateChapter(chapterLCD)
+			self.session.summary and self.session.summary.updateChapter(chapterLCD)
 		except:
 			pass
 
@@ -348,32 +351,32 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def toggleInfo(self):
 		if not self.in_menu:
 			self.toggleShow()
-			print "toggleInfo"
+			print "[DVD] toggleInfo"
 
 	def __timeUpdated(self):
-		print "timeUpdated"
+		print "[DVD] timeUpdated"
 
 	def __statePlay(self):
-		print "statePlay"
+		print "[DVD] statePlay"
 
 	def __statePause(self):
-		print "statePause"
+		print "[DVD] statePause"
 
 	def __osdFFwdInfoAvail(self):
 		self.setChapterLabel()
-		print "FFwdInfoAvail"
+		print "[DVD] FFwdInfoAvail"
 
 	def __osdFBwdInfoAvail(self):
 		self.setChapterLabel()
-		print "FBwdInfoAvail"
+		print "[DVD] FBwdInfoAvail"
 
 	def __osdStringAvail(self):
-		print "StringAvail"
+		print "[DVD] StringAvail"
 
 	def __osdAudioInfoAvail(self):
 		info = self.getServiceInterface("info")
 		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
-		print "AudioInfoAvail ", repr(audioTuple)
+		print "[DVD] AudioInfoAvail ", repr(audioTuple)
 		if audioTuple:
 			audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
 			self["audioLabel"].setText(audioString)
@@ -384,7 +387,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def __osdSubtitleInfoAvail(self):
 		info = self.getServiceInterface("info")
 		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser+7)
-		print "SubtitleInfoAvail ", repr(subtitleTuple)
+		print "[DVD] SubtitleInfoAvail ", repr(subtitleTuple)
 		if subtitleTuple:
 			subtitleString = ""
 			if subtitleTuple[0] is not 0:
@@ -397,7 +400,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def __osdAngleInfoAvail(self):
 		info = self.getServiceInterface("info")
 		angleTuple = info and info.getInfoObject(iServiceInformation.sUser+8)
-		print "AngleInfoAvail ", repr(angleTuple)
+		print "[DVD] AngleInfoAvail ", repr(angleTuple)
 		if angleTuple:
 			angleString = ""
 			if angleTuple[1] > 1:
@@ -416,7 +419,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.currentChapter = info.getInfo(iServiceInformation.sCurrentChapter)
 			self.totalChapters = info.getInfo(iServiceInformation.sTotalChapters)
 			self.setChapterLabel()
-			print "__chapterUpdated: %d/%d" % (self.currentChapter, self.totalChapters)
+			print "[DVD] __chapterUpdated: %d/%d" % (self.currentChapter, self.totalChapters)
 
 	def __titleUpdated(self):
 		info = self.getServiceInterface("info")
@@ -424,19 +427,19 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.currentTitle = info.getInfo(iServiceInformation.sCurrentTitle)
 			self.totalTitles = info.getInfo(iServiceInformation.sTotalTitles)
 			self.setChapterLabel()
-			print "__titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
+			print "[DVD] __titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
 			if not self.in_menu:
 				self.doShow()
 
 	def askLeavePlayer(self):
 		if self.autoplay:
-			self.exitCB((None,"exit"))
+			self.exitCB((None, "exit"))
 			return
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
+				choices.insert(0,(_("Play DVD"), "playPhysical"))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list = choices)
 
 	def sendKey(self, key):
@@ -488,7 +491,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if self.service:
 			seekable = self.getSeek()
 			if seekable:
-				print "seek to chapter %d" % number
+				print "[DVD] seek to chapter %d" % number
 				seekable.seekChapter(number)
 
 #	MENU ACTIONS
@@ -506,7 +509,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def keyOk(self):
 		if self.sendKey(iServiceKeys.keyOk) and not self.in_menu:
+			print "[DVD] keyOk"
 			self.toggleInfo()
+			if not self.in_menu:
+				self.toggleShow()
 
 	def keyCancel(self):
 		self.askLeavePlayer()
@@ -528,7 +534,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def FileBrowserClosed(self, val):
 		curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		print "FileBrowserClosed", val
+		print "[DVD] FileBrowserClosed", val
 		if val is None:
 			self.askLeavePlayer()
 		else:
@@ -536,15 +542,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			if os.path.exists(val + isopathname):
 				val += isopathname
 			newref = eServiceReference(4369, 0, val)
-			print "play", newref.toString()
+			print "[DVD] play", newref.toString()
 			if curref is None or curref != newref:
+				self.service = None
 				if newref.toString().endswith("/VIDEO_TS") or newref.toString().endswith("/"):
 					names = newref.toString().rsplit("/",3)
 					if names[2].startswith("Disk ") or names[2].startswith("DVD "):
 						name = str(names[1]) + " - " + str(names[2])
 					else:
 						name = names[2]
-					print "setting name to: ", self.service
 					newref.setName(str(name))
 
 #				Construct a path for the IFO header assuming it exists
@@ -553,9 +559,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 					ifofilename += "/VIDEO_TS"
 				files = [("/VIDEO_TS.IFO", 0x100), ("/VTS_01_0.IFO", 0x100), ("/VTS_01_0.IFO", 0x200)] # ( filename, offset )
 				for name in files:
-					(status, isNTSC, isLowResolution) = self.readVideoAtributes( ifofilename, name )
+					(status, isNTSC, isLowResolution) = self.readVideoAtributes(ifofilename, name)
 					if status:
-						 break
+						break
 				height = getDesktop(0).size().height()
 				print "[DVD] height:", height
 				if isNTSC:
@@ -564,13 +570,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				if isLowResolution:
 					height *= 2
 					print "[DVD] LowResolution:", height
-				self.dvdScreen = self.session.instantiateDialog(DVDOverlay, height=height)
+				if self.dvdScreen is None:
+					self.dvdScreen = self.session.instantiateDialog(DVDOverlay, height=height)
 				self.session.nav.playService(newref)
 				self.service = self.session.nav.getCurrentService()
-				print "self.service", self.service
-				print "cur_dlg", self.session.current_dialog
+				print "[DVD] cur_dlg", self.session.current_dialog
 				subs = self.getServiceInterface("subtitle")
-				if subs:
+				if subs and self.dvdScreen:
 					subs.enableSubtitles(self.dvdScreen.instance, None)
 
 	def readVideoAtributes(self, isofilename, checked_file):
@@ -602,7 +608,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		finally:
 			if ifofile is not None:
 				ifofile.close()
-		return ( status, isNTSC, isLowResolution )
+		return status, isNTSC, isLowResolution
 
 	def exitCB(self, answer):
 		if answer is not None:
@@ -627,7 +633,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			pass
 
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
-		print "playLastCB", answer, self.resume_point
+		print "[DVD] playLastCB", answer, self.resume_point
 		if self.service:
 			if answer == True:
 				self.resumeDvd()
@@ -653,7 +659,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		return 0
 
 	def hotplugCB(self, dev, media_state):
-		print "[hotplugCB]", dev, media_state
+		print "[DVD] hotplugCB", dev, media_state
 		if dev == harddiskmanager.getCD():
 			if media_state == "1":
 				self.scanHotplug()
@@ -669,9 +675,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			if list:
 				(desc, scanner, files, session) = list[0]
 				for file in files:
-					print file
 					if file.mimetype == "video/x-dvd":
-						print "physical dvd found:", devicepath
+						print "[DVD] physical dvd found:", devicepath
 						self.physicalDVD = True
 						return
 		self.physicalDVD = False
