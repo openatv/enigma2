@@ -35,7 +35,7 @@ class PU_Restore(Screen,ConfigListScreen):
         self.setTitle(self.setup_title)
         
         self["key_red"] = StaticText(_("Exit"))
-        self["key_green"] = StaticText("Restore")
+        self["key_green"] = StaticText(_("Restore"))
         self["key_yellow"] = StaticText(_("Delete"))
 
 
