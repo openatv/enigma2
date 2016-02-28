@@ -53,11 +53,11 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         self.skinName = "Programmlisten_Updater"
         self.setup_title = _("Programmlisten-Updater from DXAndy")
         self.setTitle(self.setup_title)
-        self["description"] = Label(_("Current") + ": " + "n/a")
+        self["description"] = Label(_("Current") + ":\n" + "n/a")
         self["update"] = Label(_("disabled"))
 
         self["key_red"] = StaticText(_("Exit"))
-        self["key_green"] = StaticText("Install")
+        self["key_green"] = StaticText(_("Install"))
         self["key_yellow"] = StaticText(_("AutoUpdate"))
 
 
@@ -114,9 +114,9 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         else:
             self['update'].setText(_("disabled"))
         if config.pud.lastdate.value == '':
-            self["description"].setText(_("Current") + ": " + "n/a")
+            self["description"].setText(_("Current") + ":\n" + "n/a")
         else:
-            self["description"].setText(_("Current") + ": " + config.pud.satname.value + " " + config.pud.lastdate.value)
+            self["description"].setText(_("Current") + ":\n" + config.pud.satname.value + " " + config.pud.lastdate.value)
 
     def ListEntryMenuSettings(self, name, date, link, name1, date1):
         res = [(name, date, link, name1, date1)]
@@ -153,6 +153,6 @@ def Main(session, **kwargs):
 
 def Plugins(**kwargs):
     return [
-    PluginDescriptor(name="Programmlisten-Updater V" + Version, description="Programmlisten-Updater from DXAndy", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=Main),
+    PluginDescriptor(name="Programmlisten-Updater V" + Version, description=_("Programmlisten-Updater from DXAndy"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=Main),
     PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=SessionStart),
     PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, fnc=AutoStart)]
