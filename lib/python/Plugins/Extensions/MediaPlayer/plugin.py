@@ -27,7 +27,7 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST
 from Tools.BoundFunction import boundFunction
-from settings import MediaPlayerSettings
+from settings import MediaPlayerSettings, Load_defaults
 
 
 class MyPlayList(PlayList):
@@ -124,7 +124,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
 		# 'None' is magic to start at the list of mountpoints
-		defaultDir = config.mediaplayer.defaultDir.value
+		try:
+			defaultDir = config.mediaplayer.defaultDir.value
+		except:
+			Load_defaults()
+			defaultDir = config.mediaplayer.defaultDir.value
 		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(mp2|mp3|ogg|ts|trp|mts|m2ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|m4v|mkv|mp4|m4a|dat|flac|flv|mov|dts|3gp|3g2|asf|wmv|wma)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 

@@ -8,14 +8,18 @@ from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 
-config.mediaplayer = ConfigSubsection()
-config.mediaplayer.repeat = ConfigYesNo(default=False)
-config.mediaplayer.savePlaylistOnExit = ConfigYesNo(default=True)
-config.mediaplayer.saveDirOnExit = ConfigYesNo(default=False)
-config.mediaplayer.defaultDir = ConfigDirectory()
-config.mediaplayer.sortPlaylists = ConfigYesNo(default=False)
-config.mediaplayer.alwaysHideInfoBar = ConfigYesNo(default=True)
-config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
+
+def Load_defaults():
+	config.mediaplayer = ConfigSubsection()
+	config.mediaplayer.repeat = ConfigYesNo(default=False)
+	config.mediaplayer.savePlaylistOnExit = ConfigYesNo(default=True)
+	config.mediaplayer.saveDirOnExit = ConfigYesNo(default=False)
+	config.mediaplayer.defaultDir = ConfigDirectory()
+	config.mediaplayer.sortPlaylists = ConfigYesNo(default=False)
+	config.mediaplayer.alwaysHideInfoBar = ConfigYesNo(default=True)
+	config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
+
+Load_defaults()
 
 class DirectoryBrowser(Screen, HelpableScreen):
 
