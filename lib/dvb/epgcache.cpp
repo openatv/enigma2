@@ -1585,6 +1585,35 @@ void eEPGCache::channel_data::startEPG()
 	mask.pid = 0x12;
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
+	std::ifstream pid_file ("/etc/enigma2/epgpids.custom");
+	if (pid_file.is_open())
+	{
+		std::string line;
+		eDVBChannelID chid = channel->getChannelID();
+		int ns = chid.dvbnamespace.get();
+		int tsid = chid.transport_stream_id.get();
+		int onid = chid.original_network_id.get();
+		int a, b, c, d;
+		char dvbns [8];
+		sprintf (dvbns,"%x", ns);
+		dvbns [strlen(dvbns) - 4] = '\0';
+		sscanf (dvbns,"%x", &ns);
+		while (!pid_file.eof())
+		{
+			std::getline(pid_file,line);
+			if (line[0] == '#' ||
+				line.empty() ||
+				sscanf(line.c_str(), "%i %i %i %i", &a, &b, &c, &d) != 4) continue;
+			if (a < 0) a += 3600;
+			if (a == ns && b == tsid && c == onid && d != 0)
+			{
+				mask.pid = d;
+				eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
+				break;
+			}
+		}
+		pid_file.close();
+	}
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NOWNEXT)
 	{
 		mask.data[0] = 0x4E;
