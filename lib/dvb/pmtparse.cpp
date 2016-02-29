@@ -302,6 +302,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 											video.type = videoStream::vtVC1_SM; // simple main
 										isvideo = 1;
 									}
+									break;
 								}
 								case 0x48455643: /*HEVC */
 									isvideo = 1;
