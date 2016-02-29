@@ -295,6 +295,9 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			if self.timer.end < self.timer.begin:
 				self.timer.end += 86400
 
+		self.timer.origbegin = self.timer.begin
+		self.timer.origend = self.timer.end
+
 		self.saveTimer()
 		self.close((True, self.timer))
 

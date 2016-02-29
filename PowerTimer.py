@@ -70,6 +70,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.autosleepdelay = 60
 		self.autosleeprepeat = 'once'
 
+		self.origbegin = self.begin
+		self.origend = self.end
+
 		self.log_entries = []
 		self.resetState()
 
@@ -323,6 +326,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 	def timeChanged(self):
 		old_prepare = self.start_prepare
 		self.start_prepare = self.begin - self.prepare_time
+		self.begin = self.origbegin
+		self.end = self.origend
 		self.backoff = 0
 
 		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
@@ -402,6 +407,9 @@ class PowerTimer(timer.Timer):
 			# No, sort it into active list
 			insort(self.timer_list, w)
 		else:
+			# Reset begin/end times
+			w.begin = w.origbegin
+			w.end = w.origend
 			# Yes. Process repeat if necessary, and re-add.
 			if w.repeated:
 				w.processRepeated()
@@ -466,8 +474,8 @@ class PowerTimer(timer.Timer):
 				TIMERTYPE.REBOOT: "reboot",
 				TIMERTYPE.RESTART: "restart"
 			}[timer.timerType])) + '"')
-			list.append(' begin="' + str(int(timer.begin)) + '"')
-			list.append(' end="' + str(int(timer.end)) + '"')
+			list.append(' begin="' + str(int(timer.origbegin)) + '"')
+			list.append(' end="' + str(int(timer.origend)) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' afterevent="' + str(stringToXML({
 				AFTEREVENT.NONE: "nothing",
