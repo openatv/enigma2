@@ -20,9 +20,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 	def __init__(self, session, sourcelist, targetlist):
 		super(RarMenuScreen, self).__init__(session, sourcelist, targetlist)
 
-		self.unrar = "/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/addons/unrar"
-		self.unrarName = "unrar"
-		self.unrar = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FileCommander/addons/" + self.unrarName)
+		self.unrar = "unrar"
 		self.defaultPW = "2D1U3MP!"
 
 		self.list.append((_("Show contents of rar file"), 1))
@@ -76,7 +74,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 			cmd = (self.unrar, "lb", "-p" + self.defaultPW, self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen)
 		elif 2 <= id <= 4:
-			cmd = [self.unrarName, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+"]
+			cmd = [self.unrar, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+"]
 			if id == 2:
 				cmd.append(self.sourceDir)
 			elif id == 3:

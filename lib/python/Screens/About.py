@@ -250,7 +250,7 @@ class Devices(AboutBase):
 			try:
 				stat(mountpoint)
 			except:
-				return ""
+				return ()
 			part = Partition(mountpoint)
 			mounttotal = part.total()
 			if mounttotal is None:
@@ -278,7 +278,7 @@ class Devices(AboutBase):
 			else:
 				return (self.makeFilesystemEntry(name, kind, sizeinfo, freeinfo),)
 		else:
-			return (self.makeInfoEntry(name, ''),)
+			return (self.makeWideNetworkEntry(name),)
 
 	def populate(self):
 		scanning = _("Please wait while scanning for devices...")
