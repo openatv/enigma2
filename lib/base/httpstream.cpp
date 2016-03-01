@@ -97,7 +97,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	request = "GET ";
 	request.append(uri).append(" HTTP/1.1\r\n");
 	request.append("Host: ").append(hostname).append("\r\n");
-	request.append("User-Agent: ").append("Enigma2").append("\r\n");
+	request.append("User-Agent: ").append("Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;Beyonwiz;;;)").append("\r\n");
 	if (authorizationData != "")
 	{
 		request.append("Authorization: Basic ").append(authorizationData).append("\r\n");

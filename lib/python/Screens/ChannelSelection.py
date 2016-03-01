@@ -1491,15 +1491,11 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		return prev
 
 	def isBasePathEqual(self, ref):
-		if len(self.servicePath) > 1 and self.servicePath[0] == ref:
-			return True
-		return False
+		return len(self.servicePath) > 0 and self.servicePath[0] == ref
 
 	def isPrevPathEqual(self, ref):
 		length = len(self.servicePath)
-		if length > 1 and self.servicePath[length - 2] == ref:
-			return True
-		return False
+		return length > 1 and self.servicePath[length - 2] == ref
 
 	def preEnterPath(self, refstr):
 		return False

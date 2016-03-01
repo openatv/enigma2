@@ -1745,7 +1745,7 @@ class NetworkFtp(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("FTP Setup"))
 		self.onChangedEntry = []
-		self['lab1'] = Label(_("Ftpd service type: Vsftpd server"))
+		self['lab1'] = Label(_("vsftpd in inetd"))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
