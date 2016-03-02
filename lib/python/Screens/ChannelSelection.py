@@ -290,8 +290,8 @@ class ChannelContextMenu(Screen):
 	def removeEntry(self):
 		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
 			if self.csel.confirmRemove:
-				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
-				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?"), list=list)
+				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and do not ask again this session"), "never")]
+				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure you want to remove this entry?"), list=list)
 			else:
 				self.removeFunction(True)
 		else:
@@ -1062,7 +1062,7 @@ class ChannelSelectionEdit:
 				direction = _("W")
 			else:
 				direction = _("E")
-			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos / 10, unsigned_orbpos % 10, "\xc2\xb0", direction)
+			messageText = _("Are you sure you want to remove all %d.%d%s%s services?") % (unsigned_orbpos / 10, unsigned_orbpos % 10, "\xc2\xb0", direction)
 		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
 
 	def removeSatelliteServicesCallback(self, answer):
@@ -1157,8 +1157,8 @@ class ChannelSelectionEdit:
 
 	def removeCurrentEntry(self, bouquet=False):
 		if self.confirmRemove:
-			list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
-			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure to remove this entry?"), list=list)
+			list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and do not ask again this session"), "never")]
+			self.session.openWithCallback(boundFunction(self.removeCurrentEntryCallback, bouquet), MessageBox, _("Are you sure you want to remove this entry?"), list=list)
 		else:
 			self.removeCurrentEntryCallback(bouquet, True)
 
