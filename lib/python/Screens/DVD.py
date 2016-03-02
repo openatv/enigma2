@@ -378,7 +378,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
 		print "[DVD] AudioInfoAvail ", repr(audioTuple)
 		if audioTuple:
-			audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
+			audioString = "%s (%s)" % (audioTuple[1],audioTuple[2])
 			self["audioLabel"].setText(audioString)
 			if audioTuple != self.last_audioTuple and not self.in_menu:
 				self.doShow()
@@ -391,7 +391,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if subtitleTuple:
 			subtitleString = ""
 			if subtitleTuple[0] is not 0:
-				subtitleString = "%d: %s" % (subtitleTuple[0],subtitleTuple[1])
+				subtitleString = "%s" % subtitleTuple[1]
 			self["subtitleLabel"].setText(subtitleString)
 			if subtitleTuple != self.last_subtitleTuple and not self.in_menu:
 				self.doShow()
@@ -509,6 +509,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def keyOk(self):
 		if self.sendKey(iServiceKeys.keyOk) and not self.in_menu:
+			self.okButton()
 			print "[DVD] keyOk"
 			self.toggleInfo()
 			if not self.in_menu:

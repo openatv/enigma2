@@ -90,14 +90,15 @@ class Standby2(Screen):
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV("0")
 
-		self.paused_service = None
+		self.paused_service = self.paused_action = False
 
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
 		if service:
 			if service.rsplit(":", 1)[1].startswith("/"):
 				self.paused_service = hasattr(self.session.current_dialog, "pauseService") and hasattr(self.session.current_dialog, "unPauseService") and self.session.current_dialog or self.infoBarInstance
-				self.paused_service.pauseService()
+				self.paused_action = hasattr(self.paused_service, "seekstate") and hasattr(self.paused_service, "SEEK_STATE_PLAY") and self.paused_service.seekstate == self.paused_service.SEEK_STATE_PLAY
+				self.paused_action and self.paused_service.pauseService()
 		if not self.paused_service:
 			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
 			if self.timeHandler.ready():
@@ -131,7 +132,7 @@ class Standby2(Screen):
 		self.standbyStopServiceTimer.stop()
 		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.paused_service:
-			self.paused_service.unPauseService()
+			self.paused_action and self.paused_service.unPauseService()
 		elif self.prev_running_service:
 			service = self.prev_running_service.toString()
 			if config.servicelist.startupservice_onstandby.value:
