@@ -4,13 +4,15 @@ def InitRecordingConfig():
 	config.recording = ConfigSubsection()
 	# actually this is "recordings always have priority". "Yes" does mean: don't ask. The RecordTimer will ask when value is 0.
 	config.recording.asktozap = ConfigYesNo(default=True)
-	config.recording.margin_before = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 1, default = 3, wraparound = True)
-	config.recording.margin_after = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 1, default = 5, wraparound = True)
-	config.recording.ascii_filenames = ConfigYesNo(default = False)
-	config.recording.keep_timers = ConfigSelectionNumber(min = 1, max = 120, stepwidth = 1, default = 7, wraparound = True)
-	config.recording.filename_composition = ConfigSelection(default = "standard", choices = [
+	config.recording.margin_before = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=3, wraparound=True)
+	config.recording.instant_recording_length = ConfigSelection(default="paddedevent", choices=[("paddedevent", _("padded event")), ("5", "5"), ("10", "10"), ("15", "15"), ("30", "30"), ("60", "60"), ("90", "90"), ("120", "120"), ("180", "180")])
+	config.recording.margin_after = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=5, wraparound=True)
+	config.recording.ascii_filenames = ConfigYesNo(default=False)
+	config.recording.keep_timers = ConfigSelectionNumber(min=1, max=120, stepwidth=1, default=7, wraparound=True)
+	config.recording.filename_composition = ConfigSelection(default="standard", choices=[
 		("standard", _("standard")),
 		("short", _("Short filenames")),
-		("long", _("Long filenames")) ] )
-	config.recording.offline_decode_delay = ConfigSelectionNumber(min = 1, max = 10000, stepwidth = 10, default = 1000, wraparound = True)
-	config.recording.ecm_data = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = "normal")
+		("long", _("Long filenames"))
+	])
+	config.recording.offline_decode_delay = ConfigSelectionNumber(min=1, max=10000, stepwidth=10, default=1000, wraparound=True)
+	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default="normal")

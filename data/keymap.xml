@@ -835,7 +835,21 @@
 			<key id="KEY_NEXTSONG" mapto="next" flags="m"/>
 		</device-->
 	</map>
-	
+
+	<!--
+	Disabled until consensus can be reached about which
+	buttons to use
+
+	<map context="TimeDateDurationInput">
+		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr"/>
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr"/>
+		<key id="KEY_FASTFORWARD" mapto="fastforward" flags="mr"/>
+		<key id="KEY_REWIND" mapto="rewind" flags="mr"/>
+		<key id="KEY_NEXT" mapto="next" flags="mr"/>
+		<key id="KEY_PREVIOUS" mapto="previous" flags="mr"/>
+	</map>
+	-->
+
 	<map context="ButtonSetupActions">
 		<key id="KEY_RED" mapto="red" flags="b"/>
 		<key id="KEY_RED" mapto="red_long" flags="l"/>

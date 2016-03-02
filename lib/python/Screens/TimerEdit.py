@@ -25,10 +25,10 @@ class TimerListButtons:
 	def __init__(self):
 
 		self.key_choice = {
-			"red"    : self.EMPTY,
-			"green"  : self.EMPTY,
-			"yellow" : self.EMPTY,
-			"blue"   : self.EMPTY
+			"red": self.EMPTY,
+			"green": self.EMPTY,
+			"yellow": self.EMPTY,
+			"blue": self.EMPTY
 		}
 
 		self["key_red"] = Button()
@@ -37,7 +37,7 @@ class TimerListButtons:
 		self["key_blue"] = Button()
 
 		self.buttonActions = (
-			(None,                      ""),     # EMPTY = 0
+			(None, ""),  # EMPTY = 0
 		)
 
 	def removeAction(self, descr):
@@ -51,8 +51,8 @@ class TimerListButtons:
 			if act[0] is None:
 				self.removeAction(colour)
 			else:
-				self["actions"].actions.update({colour:act[0]})
-			self["key_"+colour].setText(act[1])
+				self["actions"].actions.update({colour: act[0]})
+			self["key_" + colour].setText(act[1])
 			self.key_choice[colour] = act
 
 	def updateRedState(self, cur):
@@ -88,36 +88,35 @@ class TimerEditList(Screen, TimerListButtons):
 		Screen.setTitle(self, _("Timer List"))
 		TimerListButtons.__init__(self)
 
-		self.onChangedEntry = [ ]
-		list = [ ]
+		self.onChangedEntry = []
+		list = []
 		self.list = list
 		self.fillTimerList()
 
 		self["timerlist"] = TimerList(list)
 
 		self.buttonActions = (
-			(None,                      ""),                  # EMPTY = 0
-			(self.removeTimerQuestion,  _("Delete")),         # DELETE = 1
-			(self.addCurrentTimer,      _("Add")),            # ADD = 2
-			(self.toggleDisabledState,  _("Enable")),         # ENABLE = 3
-			(self.toggleDisabledState,  _("Disable")),        # DISABLE = 4
-			(self.toggleDisabledState,  _("Stop/Disable")),   # STOPDISABLE = 5
-			(self.stopRecording,        _("Stop recording")), # STOP = 6
-			(self.cleanupQuestion,      _("Cleanup")),        # CLEANUP = 7
+			(None, ""),  # EMPTY = 0
+			(self.removeTimerQuestion, _("Delete")),  # DELETE = 1
+			(self.addCurrentTimer, _("Add")),  # ADD = 2
+			(self.toggleDisabledState, _("Enable")),  # ENABLE = 3
+			(self.toggleDisabledState, _("Disable")),  # DISABLE = 4
+			(self.toggleDisabledState, _("Stop/Disable")),  # STOPDISABLE = 5
+			(self.stopRecording, _("Stop recording")),  # STOP = 6
+			(self.cleanupQuestion, _("Cleanup")),  # CLEANUP = 7
 		)
 
 		self["description"] = Label()
 
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
-			{
-				"ok": self.openEdit,
-				"cancel": self.leave,
-				"log": self.showLog,
-				"left": self.left,
-				"right": self.right,
-				"up": self.up,
-				"down": self.down
-			}, -1)
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], {
+			"ok": self.openEdit,
+			"cancel": self.leave,
+			"log": self.showLog,
+			"left": self.left,
+			"right": self.right,
+			"up": self.up,
+			"down": self.down
+		}, -1)
 		self.setTitle(_("Timer overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
@@ -142,16 +141,16 @@ class TimerEditList(Screen, TimerListButtons):
 		self.updateState()
 
 	def stopRecording(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.runningEventCallback(cur, (_("Stop current event"), "stoponlycurrent"))
 
 	def toggleDisabledState(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			t = cur
 			if t.disabled:
-# 				print "try to ENABLE timer"
+				# print "try to ENABLE timer"
 				t.enable()
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
 				if not timersanitycheck.check():
@@ -172,7 +171,7 @@ class TimerEditList(Screen, TimerListButtons):
 							(_("Stop current event and disable future events"), "stopall"),
 							(_("Don't stop current event but disable future events"), "stoponlyfuture")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list, skin_name="TimerEditListRepeat")
 				else:
 					t.disable()
 			self.session.nav.RecordTimer.timeChanged(t)
@@ -183,7 +182,7 @@ class TimerEditList(Screen, TimerListButtons):
 		if result is not None:
 			if result[1] == "stoponlycurrent" or result[1] == "stopall":
 				t.enable()
-				t.processRepeated(findRunningEvent = False)
+				t.processRepeated(findRunningEvent=False)
 				self.session.nav.RecordTimer.doActivate(t)
 			if result[1] == "stoponlyfuture" or result[1] == "stopall":
 				t.disable()
@@ -222,7 +221,7 @@ class TimerEditList(Screen, TimerListButtons):
 		col = "blue"
 		showCleanup = True
 		for x in self.list:
-			if (not x[0].disabled) and (x[1] == True):
+			if not x[0].disabled and x[1]:
 				break
 		else:
 			showCleanup = False
@@ -286,7 +285,7 @@ class TimerEditList(Screen, TimerListButtons):
 		return True
 
 	def fillTimerList(self):
-		#helper function to move finished timers to end of list
+		# helper function to move finished timers to end of list
 		def eol_compare(x, y):
 			if x[0].state != y[0].state and x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded:
 				return cmp(x[0].state, y[0].state)
@@ -296,18 +295,18 @@ class TimerEditList(Screen, TimerListButtons):
 		del list[:]
 		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list if self.fillTimerTest(timer)])
 		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers if self.fillTimerTest(timer)])
-		if config.usage.timerlist_finished_timer_position.index: #end of list
-			list.sort(cmp = eol_compare)
+		if config.usage.timerlist_finished_timer_position.index:  # end of list
+			list.sort(cmp=eol_compare)
 		else:
-			list.sort(key = lambda x: x[0].begin)
+			list.sort(key=lambda x: x[0].begin)
 
 	def showLog(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.session.openWithCallback(self.finishedEdit, TimerLog, cur)
 
 	def openEdit(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
@@ -325,7 +324,7 @@ class TimerEditList(Screen, TimerListButtons):
 		if not cur:
 			return
 
-		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % cur.name, default = False)
+		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % cur.name, default=False)
 
 	def removeTimer(self, result):
 		if not result:
@@ -338,7 +337,6 @@ class TimerEditList(Screen, TimerListButtons):
 			self.session.nav.RecordTimer.removeEntry(timer)
 			self.refill()
 			self.updateState()
-
 
 	def refill(self):
 		oldsize = len(self.list)
@@ -365,19 +363,18 @@ class TimerEditList(Screen, TimerListButtons):
 		if event is None:
 			data = (int(time()), int(time() + 60), "", "", None)
 		else:
-			data = parseEvent(event, description = False)
+			data = parseEvent(event, description=False)
 
-		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *data))
+		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *data))
 
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 
-
 	def finishedEdit(self, answer):
-# 		print "finished edit"
+		# print "finished edit"
 
 		if answer[0]:
-# 			print "Edited timer"
+			# print "Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -401,11 +398,11 @@ class TimerEditList(Screen, TimerListButtons):
 
 			self.fillTimerList()
 			self.updateState()
-# 		else:
-# 			print "Timeredit aborted"
+		# else:
+		# 	print "Timeredit aborted"
 
 	def finishedAdd(self, answer):
-# 		print "finished add"
+		# print "finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -418,8 +415,8 @@ class TimerEditList(Screen, TimerListButtons):
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
 			self.updateState()
-# 		else:
-# 			print "Timeredit aborted"
+		# else:
+		# 	print "Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -441,14 +438,14 @@ class TimerStopList(TimerEditList):
 	def __init__(self, session):
 		TimerEditList.__init__(self, session)
 
-                self.skinName = ["TimerEditList"]
+		self.skinName = ["TimerEditList"]
 		Screen.setTitle(self, _("Timer List"))
 
 		self.buttonActions = (
-			(None,                      ""),                  # EMPTY = 0
-			(self.removeTimerQuestion,  _("Delete")),         # DELETE = 1
-			(self.stopRecording,        _("Stop recording")), # STOP = 2
-			(self.openTimerEdit,        _("Timer overview")), # MORE = 3
+			(None, ""),  # EMPTY = 0
+			(self.removeTimerQuestion, _("Delete")),  # DELETE = 1
+			(self.stopRecording, _("Stop recording")),  # STOP = 2
+			(self.openTimerEdit, _("Timer overview")),  # MORE = 3
 		)
 
 		self.setTitle(_("Stop Recordings"))
@@ -475,6 +472,36 @@ class TimerStopList(TimerEditList):
 	def fillTimerTest(self, timer):
 		# Only include running timers
 		return timer.isRunning()
+
+class TimerStopChangeList(TimerStopList):
+
+	DELETE = 1
+	STOP = 2
+	EDIT = 3
+
+	def __init__(self, session):
+		TimerEditList.__init__(self, session)
+
+		self.skinName = ["TimerEditList"]
+
+		self.buttonActions = (
+			(None, ""),  # EMPTY = 0
+			(self.removeTimerQuestion, _("Delete")),  # DELETE = 1
+			(self.stopRecording, _("Stop recording")),  # STOP = 2
+			(self.openEdit, _("Change recording")),  # EDIT = 3
+		)
+
+		self.setTitle(_("Stop or Change Recordings"))
+
+	def updateGreenState(self, cur):
+		col = "green"
+		if cur and cur.isRunning():
+			self.assignButton(col, self.EDIT)
+		else:
+			self.assignButton(col, self.EMPTY)
+
+	def updateBlueState(self, cur):
+		pass
 
 class TimerSanityConflict(Screen, TimerListButtons):
 
@@ -506,23 +533,22 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self["timer2"] = TimerList(self.list2)
 
 		self.buttonActions = (
-			(None,              ""),                  # EMPTY = 0
-			(self.editTimer1,   _("Edit")),           # EDIT1 = 1
-			(self.editTimer2,   _("Edit")),           # EDIT2 = 2
-			(self.toggleTimer,  _("Enable")),         # ENABLE = 3
-			(self.toggleTimer,  _("Disable")),        # DISABLE = 4
-			(self.toggleTimer,  _("Stop & Disable")), # STOPDISABLE = 5
+			(None, ""),  # EMPTY = 0
+			(self.editTimer1, _("Edit")),  # EDIT1 = 1
+			(self.editTimer2, _("Edit")),  # EDIT2 = 2
+			(self.toggleTimer, _("Enable")),  # ENABLE = 3
+			(self.toggleTimer, _("Disable")),  # DISABLE = 4
+			(self.toggleTimer, _("Stop & Disable")),  # STOPDISABLE = 5
 		)
 
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
-			{
-				"ok": self.leave_ok,
-				"cancel": self.leave_cancel,
-				"left": self.left,
-				"right": self.right,
-				"up": self.up,
-				"down": self.down
-			}, -1)
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], {
+			"ok": self.leave_ok,
+			"cancel": self.leave_cancel,
+			"left": self.left,
+			"right": self.right,
+			"up": self.up,
+			"down": self.down
+		}, -1)
 		self.setTitle(_("Timer sanity error"))
 		self.onShown.append(self.updateState)
 
@@ -536,20 +562,20 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer2"].getCurrent())
 
 	def toggleTimer(self):
-		x = self["timer2"].getCurrentIndex() + 1 # the first is the new timer so we do +1 here
+		x = self["timer2"].getCurrentIndex() + 1  # the first is the new timer so we do +1 here
 		if self.timer[x].disabled:
 			self.timer[x].enable()
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 			if self.timer[0].isRunning():
 				self.timer[0].enable()
-				self.timer[0].processRepeated(findRunningEvent = False)
+				self.timer[0].processRepeated(findRunningEvent=False)
 				self.session.nav.RecordTimer.doActivate(self.timer[0])
 				self.timer[0].disable()
 			self.session.nav.RecordTimer.timeChanged(self.timer[0])
 		else:
 			if self.timer[x].isRunning():
 				self.timer[x].enable()
-				self.timer[x].processRepeated(findRunningEvent = False)
+				self.timer[x].processRepeated(findRunningEvent=False)
 				self.session.nav.RecordTimer.doActivate(self.timer[x])
 			self.timer[x].disable()
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
@@ -610,17 +636,17 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		self.updateRedState(None)
 
 		if len(self.timer) > 1:
-			x = self["timer2"].getCurrentIndex() + 1 # the first is the new timer so we do +1 here
+			x = self["timer2"].getCurrentIndex() + 1  # the first is the new timer so we do +1 here
 			self.updateYellowState(self.timer[x])
 			self.updateBlueState(self.timer[x])
 		else:
-#FIXME.... this doesnt hide the buttons self.... just the text
+			# FIXME.... this doesnt hide the buttons self.... just the text
 			self.updateYellowState(None)
 			self.updateBlueState(None)
 
 class TimerEditListSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["name"] = StaticText("")
 		self["service"] = StaticText("")
 		self["time"] = StaticText("")
@@ -642,4 +668,3 @@ class TimerEditListSummary(Screen):
 		self["time"].text = time
 		self["duration"].text = duration
 		self["state"].text = state
-
