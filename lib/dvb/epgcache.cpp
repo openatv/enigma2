@@ -398,22 +398,22 @@ eEPGCache::eEPGCache()
 	std::ifstream pid_file ("/etc/enigma2/epgpids.custom");
 	if (pid_file.is_open())
 	{
-		eDebug("[eEPGCache] Found custom pidfile, parsing...");
+		eDebug("[eEPGCache] Custom pidfile found, parsing...");
 		std::string line;
-		char nstsidonid[12];
-		int ns, tsid, onid, eitpid;
+		char optsidonid[12];
+		int op, tsid, onid, eitpid;
 		while (!pid_file.eof())
 		{
-			std::getline(pid_file,line);
+			getline(pid_file, line);
 			if (line[0] == '#' ||
 				line.empty() ||
-				sscanf(line.c_str(), "%i %i %i %i", &ns, &tsid, &onid, &eitpid) != 4) continue;
-			if (ns < 0) ns += 3600;
+				sscanf(line.c_str(), "%i %i %i %i", &op, &tsid, &onid, &eitpid) != 4) continue;
+			if (op < 0) op += 3600;
 			if (eitpid != 0)
 			{
-				sprintf (nstsidonid, "%x%04x%04x", ns, tsid, onid);
-				customeitpid[std::string(nstsidonid)] = eitpid;
-				eDebug("[eEPGCache] %s --> %#x", nstsidonid, eitpid);
+				sprintf (optsidonid, "%x%04x%04x", op, tsid, onid);
+				customeitpids[std::string(optsidonid)] = eitpid;
+				eDebug("[eEPGCache] %s --> %#x", optsidonid, eitpid);
 			}
 		}
 		pid_file.close();
@@ -1600,15 +1600,12 @@ void eEPGCache::channel_data::startEPG()
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
 	eDVBChannelID chid = channel->getChannelID();
-	int ns = chid.dvbnamespace.get();
-	int tsid = chid.transport_stream_id.get();
-	int onid = chid.original_network_id.get();
-	char nstsidonid[8];
-	sprintf (nstsidonid,"%x", ns);
-	nstsidonid [strlen(nstsidonid) - 4] = '\0';
-	sprintf (nstsidonid, "%s%04x%04x", nstsidonid, tsid, onid);
-	std::map<std::string,int>::iterator it = cache->customeitpid.find(std::string(nstsidonid));
-	if (it != cache->customeitpid.end())
+	char optsidonid[8];
+	sprintf (optsidonid, "%x", chid.dvbnamespace.get());
+	optsidonid [strlen(optsidonid) - 4] = '\0';
+	sprintf (optsidonid, "%s%04x%04x", optsidonid, chid.transport_stream_id.get(), chid.original_network_id.get());
+	std::map<std::string,int>::iterator it = cache->customeitpids.find(std::string(optsidonid));
+	if (it != cache->customeitpids.end())
 	{
 		mask.pid = it->second;
 		eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
