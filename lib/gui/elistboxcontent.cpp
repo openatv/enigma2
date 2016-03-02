@@ -467,7 +467,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
-						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + 5, width, height-10));
+						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + 5, valueWidth, height-10));
 						
 							/* draw text value at the end of the slider*/
 						std::ostringstream sin;
