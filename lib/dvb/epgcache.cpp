@@ -398,6 +398,7 @@ eEPGCache::eEPGCache()
 	std::ifstream pid_file ("/etc/enigma2/epgpids.custom");
 	if (pid_file.is_open())
 	{
+		eDebug("[eEPGCache] Found custom pidfile, parsing...");
 		std::string line;
 		char nstsidonid[12];
 		int ns, tsid, onid, eitpid;
@@ -410,11 +411,13 @@ eEPGCache::eEPGCache()
 			if (ns < 0) ns += 3600;
 			if (eitpid != 0)
 			{
-				sprintf (nstsidonid, "%04x%04x%04x", ns, tsid, onid);
+				sprintf (nstsidonid, "%x%04x%04x", ns, tsid, onid);
 				customeitpid[std::string(nstsidonid)] = eitpid;
+				eDebug("[eEPGCache] %s --> %#x", nstsidonid, eitpid);
 			}
 		}
 		pid_file.close();
+		eDebug("[eEPGCache] Done");
 	}
 
 	ePtr<eDVBResourceManager> res_mgr;
@@ -1612,7 +1615,7 @@ void eEPGCache::channel_data::startEPG()
 	int tsid = chid.transport_stream_id.get();
 	int onid = chid.original_network_id.get();
 	char nstsidonid[8];
-	sprintf (nstsidonid,"%08x", ns);
+	sprintf (nstsidonid,"%x", ns);
 	nstsidonid [strlen(nstsidonid) - 4] = '\0';
 	sprintf (nstsidonid, "%s%04x%04x", nstsidonid, tsid, onid);
 	std::map<std::string,int>::iterator it = cache->customeitpid.find(std::string(nstsidonid));
