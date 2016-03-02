@@ -395,6 +395,28 @@ eEPGCache::eEPGCache()
 	         onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
 	onid_file.close();
 
+	std::ifstream pid_file ("/etc/enigma2/epgpids.custom");
+	if (pid_file.is_open())
+	{
+		std::string line;
+		char nstsidonid[12];
+		int ns, tsid, onid, eitpid;
+		while (!pid_file.eof())
+		{
+			std::getline(pid_file,line);
+			if (line[0] == '#' ||
+				line.empty() ||
+				sscanf(line.c_str(), "%i %i %i %i", &ns, &tsid, &onid, &eitpid) != 4) continue;
+			if (ns < 0) ns += 3600;
+			if (eitpid != 0)
+			{
+				sprintf (nstsidonid, "%04x%04x%04x", ns, tsid, onid);
+				customeitpid[std::string(nstsidonid)] = eitpid;
+			}
+		}
+		pid_file.close();
+	}
+
 	ePtr<eDVBResourceManager> res_mgr;
 	eDVBResourceManager::getInstance(res_mgr);
 	if (!res_mgr)
@@ -1585,35 +1607,21 @@ void eEPGCache::channel_data::startEPG()
 	mask.pid = 0x12;
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
-	std::ifstream pid_file ("/etc/enigma2/epgpids.custom");
-	if (pid_file.is_open())
+	eDVBChannelID chid = channel->getChannelID();
+	int ns = chid.dvbnamespace.get();
+	int tsid = chid.transport_stream_id.get();
+	int onid = chid.original_network_id.get();
+	char nstsidonid[8];
+	sprintf (nstsidonid,"%08x", ns);
+	nstsidonid [strlen(nstsidonid) - 4] = '\0';
+	sprintf (nstsidonid, "%s%04x%04x", nstsidonid, tsid, onid);
+	std::map<std::string,int>::iterator it = cache->customeitpid.find(std::string(nstsidonid));
+	if (it != cache->customeitpid.end())
 	{
-		std::string line;
-		eDVBChannelID chid = channel->getChannelID();
-		int ns = chid.dvbnamespace.get();
-		int tsid = chid.transport_stream_id.get();
-		int onid = chid.original_network_id.get();
-		int a, b, c, d;
-		char dvbns [8];
-		sprintf (dvbns,"%x", ns);
-		dvbns [strlen(dvbns) - 4] = '\0';
-		sscanf (dvbns,"%x", &ns);
-		while (!pid_file.eof())
-		{
-			std::getline(pid_file,line);
-			if (line[0] == '#' ||
-				line.empty() ||
-				sscanf(line.c_str(), "%i %i %i %i", &a, &b, &c, &d) != 4) continue;
-			if (a < 0) a += 3600;
-			if (a == ns && b == tsid && c == onid && d != 0)
-			{
-				mask.pid = d;
-				eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
-				break;
-			}
-		}
-		pid_file.close();
+		mask.pid = it->second;
+		eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
 	}
+	
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NOWNEXT)
 	{
 		mask.data[0] = 0x4E;
