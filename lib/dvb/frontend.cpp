@@ -11,6 +11,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#include <sstream>
+
 #ifndef I2C_SLAVE_FORCE
 #define I2C_SLAVE_FORCE	0x0706
 #endif
@@ -2801,4 +2803,54 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 		next_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
 	}
 	return next_fe;
+}
+
+bool eDVBFrontend::is_multistream()
+{
+#if defined FE_CAN_MULTISTREAM
+	return fe_info.caps & FE_CAN_MULTISTREAM;
+#else
+	return false;
+#endif
+}
+
+std::string eDVBFrontend::getCapabilities()
+{
+	std::stringstream ss;
+
+	if (fe_info.caps == FE_IS_STUPID)			ss << "stupid FE" << std::endl;
+	if (fe_info.caps &  FE_CAN_INVERSION_AUTO)		ss << "auto inversion" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_1_2)			ss << "FEC 1/2" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_2_3)			ss << "FEC 2/3" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_3_4)			ss << "FEC 3/4" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_4_5)			ss << "FEC 4/5" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_5_6)			ss << "FEC 5/6" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_6_7)			ss << "FEC 6/7" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_7_8)			ss << "FEC 7/8" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_8_9)			ss << "FEC 8/9" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_AUTO)			ss << "FEC AUTO" << std::endl;
+	if (fe_info.caps &  FE_CAN_QPSK)			ss << "QPSK" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_16)			ss << "QAM 16" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_32)			ss << "QAM 32" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_64)			ss << "QAM 64" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_128)			ss << "QAM 128" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_256)			ss << "QAM 256" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_AUTO)			ss << "QAM AUTO" << std::endl;
+	if (fe_info.caps &  FE_CAN_TRANSMISSION_MODE_AUTO)	ss << "auto transmission mode" << std::endl;
+	if (fe_info.caps &  FE_CAN_BANDWIDTH_AUTO)             	ss << "auto bandwidth" << std::endl;
+	if (fe_info.caps &  FE_CAN_GUARD_INTERVAL_AUTO)		ss << "auto guard interval" << std::endl;
+	if (fe_info.caps &  FE_CAN_HIERARCHY_AUTO)		ss << "auto hierarchy" << std::endl;
+	if (fe_info.caps &  FE_CAN_8VSB)			ss << "FE_CAN_8VSB" << std::endl;
+	if (fe_info.caps &  FE_CAN_16VSB)			ss << "FE_CAN_16VSB" << std::endl;
+	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << "FE_HAS_EXTENDED_CAPS" << std::endl;
+#if defined FE_CAN_MULTISTREAM
+	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << "FE_CAN_MULTISTREAM" << std::endl;
+#endif
+	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << "FE_CAN_TURBO_FEC" << std::endl;
+	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << "FE_CAN_2G_MODULATION" << std::endl;
+	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << "FE_NEEDS_BENDING" << std::endl;
+	if (fe_info.caps &  FE_CAN_RECOVER)			ss << "FE_CAN_RECOVER" << std::endl;
+	if (fe_info.caps &  FE_CAN_MUTE_TS)			ss << "FE_CAN_MUTE_TS" << std::endl;
+
+	return ss.str();
 }
