@@ -145,6 +145,7 @@
 		<item level="1" text="Recordings always have priority" description="Enable to allow a recording to interrupt live TV when there are no free tuners.">config.recording.asktozap</item>
 		<item level="0" text="Margin before recording (minutes)" description="Set to a non-zero value to begin a recording earlier than the start time shown in the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="Set to a non-zero value to stop a recording later than the end time shown in the EPG.">config.recording.margin_after</item>
+		<item level="0" text="Default length of instant recording (minutes)" description="Set the default length of an instant recording in minutes. 'padded event' makes the default length the remainder of the event currently being broadcast plus the 'after' margin set above.">config.recording.instant_recording_length</item>
 		<item level="2" text="Show message when recording starts" description="Enable to display a pop-up message when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Show movie lengths in movie list" description="Enable to display the length of each recording in the movie list (this may result in additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show status icons in movie list" description="Choose the type of status indicator icons shown in the movie list.">config.usage.show_icons_in_movielist</item>

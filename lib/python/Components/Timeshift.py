@@ -91,6 +91,15 @@ def notifyActivateActionsUpDown(setting):
 	if InfoBar.instance is not None:
 		InfoBar.instance.setEnableTimeshiftActivateActions()
 
+# Opens metafile and returns the tuple
+# (servicerefname, eventname, description, begintime, tags)
+
+def readMetafile(filename):
+	readmetafile = open(filename, "r")
+	t = tuple((readmetafile.readline().rstrip('\n') for x in range(5)))
+	readmetafile.close()
+	return t
+
 class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
@@ -628,11 +637,15 @@ class InfoBarTimeshift:
 	def saveTimeshiftEventPopup(self):
 		dprint("saveTimeshiftEventPopup")
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
+		choice = 0
 
 		filelist = [f for f in os.listdir(config.usage.timeshift_path.value) if f.startswith("pts_livebuffer_") and f[15:].isdigit()]
 
 		if filelist:
 			filelist.sort(key=lambda f: int(f[15:]), reverse=True)
+
+			current_livebuffer = "pts_livebuffer_%s" % self.pts_currplaying
+			buffer_num = 1
 
 			for filename in filelist:
 				# print "TRUE"
@@ -641,17 +654,15 @@ class InfoBarTimeshift:
 
 				if os.path.exists(metafile) and statinfo.st_mtime < (time() - 5.0):
 					# Get Event Info from meta file
-					readmetafile = open(metafile, "r")
-					servicerefname = readmetafile.readline().strip()
-					eventname = readmetafile.readline().strip()
-					description = readmetafile.readline().strip()
-					begintime = readmetafile.readline().strip()
-					readmetafile.close()
+					(__, eventname, __, begintime, __) = readMetafile(metafile)
 
 					# Add Event to list
 					entrylist.append(("%s - %s" % (strftime("%H:%M", localtime(int(begintime))), eventname), "%s" % filename))
+					if current_livebuffer == filename:
+						choice = buffer_num
+					buffer_num += 1
 
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save?"), list=entrylist)
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save?"), list=entrylist, selection=choice, skin_name="InfoBarTimeshift")
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		dprint("saveTimeshiftActions")
@@ -674,6 +685,52 @@ class InfoBarTimeshift:
 
 		# print 'action returnFunction'
 		returnFunction(action and action != "no")
+
+	def checkSaveTimeshift(self, timeshiftfile=None, mergelater=False):
+		if timeshiftfile is not None:
+			filepath = config.usage.timeshift_path.value + timeshiftfile
+			if os.path.isfile(filepath):
+				statinfo = os.stat(filepath)
+				if statinfo.st_nlink > 1:
+					metafile = filepath + '.meta'
+					eventname = ''
+					begintime = ''
+					if os.path.exists(metafile):
+						(__, eventname, __, begintime, __) = readMetafile(metafile)
+						if begintime:
+							begintime = strftime("%H:%M", localtime(int(begintime)))
+					if not begintime:
+						begintime = strftime(_("Ended %H:%M"), localtime(int(statinfo.st_mtime)))
+					if not eventname:
+						eventname = _("Unknown event name")
+					message = _("You have already saved %s (%s).\nDo you want to save another copy?") % (eventname, begintime)
+					self.session.openWithCallback(boundFunction(self.checkSaveTimeshiftCallback, timeshiftfile=timeshiftfile, mergelater=mergelater), MessageBox, message, simple=True, default=False, timeout=15)
+					return
+
+		self.SaveTimeshift(timeshiftfile=timeshiftfile, mergelater=mergelater)
+
+	def checkSaveTimeshiftCallback(self, answer, timeshiftfile=None, mergelater=False):
+		if answer:
+			self.SaveTimeshift(timeshiftfile=timeshiftfile, mergelater=mergelater)
+
+	def checkSavingCurrentTimeshift(self):
+		if self.save_current_timeshift:
+			message = _("Timeshift of %s already being saved.\nWhat do you want to do?") % self.pts_curevent_name
+			choice = [
+				(_("Continue saving timeshift"), "continue"),
+				(_("Cancel save timeshift"), "cancel"),
+			]
+			self.session.openWithCallback(self.checkSavingCurrentTimeshiftCallback, MessageBox, message, simple=True, list=choice, timeout=15, timeout_default="continue")
+		else:
+			Notifications.AddNotification(MessageBox, _("%s will be saved at end of event.") % self.pts_curevent_name, MessageBox.TYPE_INFO, timeout=5)
+			self.save_current_timeshift = True
+			config.timeshift.isRecording.value = True
+
+	def checkSavingCurrentTimeshiftCallback(self, answer):
+		if answer == "cancel":
+			Notifications.AddNotification(MessageBox, _("Cancelled timeshift save."), MessageBox.TYPE_INFO, timeout=5)
+			self.save_current_timeshift = False
+			config.timeshift.isRecording.value = False
 
 	def SaveTimeshift(self, timeshiftfile=None, mergelater=False):
 		dprint("SaveTimeshift")
@@ -737,12 +794,7 @@ class InfoBarTimeshift:
 					self.ptsCreateEITFile(fullname)
 				elif timeshiftfile.startswith("pts_livebuffer"):
 					# Save stored timeshift by creating hardlink to ts file
-					readmetafile = open("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "r")
-					servicerefname = readmetafile.readline()[0:-1]
-					eventname = readmetafile.readline()[0:-1]
-					description = readmetafile.readline()[0:-1]
-					begintime = readmetafile.readline()[0:-1]
-					readmetafile.close()
+					(__, eventname, description, begintime, __) = readMetafile("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile))
 
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(int(begintime))), self.pts_curevent_station, eventname)
 					try:
@@ -822,10 +874,7 @@ class InfoBarTimeshift:
 
 						# Get Event Info from meta file
 						if os.path.exists("%s.ts.meta" % fullname):
-							readmetafile = open("%s.ts.meta" % fullname, "r")
-							servicerefname = readmetafile.readline()[0:-1]
-							eventname = readmetafile.readline()[0:-1]
-							readmetafile.close()
+							(__, eventname, __, __, __) = readMetafile("%s.ts.meta" % fullname)
 						else:
 							eventname = ""
 
@@ -1011,13 +1060,7 @@ class InfoBarTimeshift:
 		for filename in filelist:
 			if filename.endswith(".meta"):
 				# Get Event Info from meta file
-				readmetafile = open("%s%s" % (config.usage.default_path.value, filename), "r")
-				servicerefname = readmetafile.readline()[0:-1]
-				eventname = readmetafile.readline()[0:-1]
-				eventtitle = readmetafile.readline()[0:-1]
-				eventtime = readmetafile.readline()[0:-1]
-				eventtag = readmetafile.readline()[0:-1]
-				readmetafile.close()
+				(servicerefname, eventname, eventtitle, eventtime, eventtag) = readMetafile("%s%s" % (config.usage.default_path.value, filename))
 
 				if ptsgetnextfile:
 					ptsgetnextfile = False
@@ -1056,7 +1099,7 @@ class InfoBarTimeshift:
 
 					# Rewrite Meta File to get rid of pts_merge tag
 					metafile = open("%s%s.meta" % (config.usage.default_path.value, ptsmergeDEST), "w")
-					metafile.write("%s\n%s\n%s\n%i\n" % (servicerefname, eventname.replace("\n", ""), eventtitle.replace("\n", ""), int(eventtime)))
+					metafile.write("%s\n%s\n%s\n%i\n" % (servicerefname, eventname, eventtitle, int(eventtime)))
 					metafile.close()
 
 		# Merging failed :(
@@ -1068,10 +1111,7 @@ class InfoBarTimeshift:
 		if fileExists(filename, 'r'):
 			if fileExists(filename + ".meta", 'r'):
 				# Get Event Info from meta file
-				readmetafile = open(filename + ".meta", "r")
-				servicerefname = readmetafile.readline()[0:-1]
-				eventname = readmetafile.readline()[0:-1]
-				readmetafile.close()
+				(__, eventname, __, __, __) = readMetafile(filename + ".meta")
 			else:
 				eventname = ""
 			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\"" % filename, eventname))
