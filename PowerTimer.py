@@ -23,6 +23,14 @@ def parseEvent(ev):
 	end = begin + ev.getDuration()
 	return begin, end
 
+def recordingsActive(margin):
+	recordTimer = NavigationInstance.instance.RecordTimer
+	return (
+		recordTimer.isRecording() or
+		abs(recordTimer.getNextRecordingTime() - time()) <= margin or
+		abs(recordTimer.getNextZapTime() - time()) <= margin
+	)
+
 class AFTEREVENT:
 	def __init__(self):
 		pass
@@ -108,7 +116,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
-		if next_state == 1 and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
+		if next_state == self.StatePrepared and self.timerType in (TIMERTYPE.AUTOSTANDBY, TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
 			self.begin = time() + int(self.autosleepdelay) * 60
 			if self.end <= self.begin:
@@ -123,7 +131,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateRunning:
 			self.wasPowerTimerWakeup = False
 			if os.path.exists("/tmp/was_powertimer_wakeup"):
-				self.wasPowerTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
+				self.wasPowerTimerWakeup = bool(int(open("/tmp/was_powertimer_wakeup", "r").read()))
 				os.remove("/tmp/was_powertimer_wakeup")
 			# If this timer has been cancelled or has failed,
 			# just go to "end" state.
@@ -162,7 +170,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if (NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or (self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping()):
+				if recordingsActive(900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or (self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping()):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -187,7 +195,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasPowerTimerWakeup:
-				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if recordingsActive(900):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -202,7 +210,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.REBOOT:
-				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if recordingsActive(900):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -217,7 +225,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.RESTART:
-				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if recordingsActive(900):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -237,7 +245,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby:  # Not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
-				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+				if recordingsActive(900):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -297,7 +305,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			self.end = self.begin
 
 	def getNextActivation(self):
-		if self.state == self.StateEnded or self.state == self.StateFailed:
+		if self.state in (self.StateEnded, self.StateFailed):
 			return self.end
 
 		next_state = self.state + 1
@@ -309,13 +317,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		}[next_state]
 
 	def getNextWakeup(self):
-		if self.state == self.StateEnded or self.state == self.StateFailed:
+		if self.state in (self.StateEnded, self.StateFailed):
 			return self.end
 
-		if self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and not self.afterEvent:
-			return -1
-		elif self.timerType != TIMERTYPE.WAKEUP and self.timerType != TIMERTYPE.WAKEUPTOSTANDBY and self.afterEvent:
-			return self.end
+		if self.timerType not in (TIMERTYPE.WAKEUP, TIMERTYPE.WAKEUPTOSTANDBY):
+			return self.end if self.afterEvent else -1
 		next_state = self.state + 1
 		return {
 			self.StatePrepared: self.start_prepare,
@@ -521,7 +527,7 @@ class PowerTimer(timer.Timer):
 	def getNextPowerManagerTimeOld(self):
 		now = time()
 		for timer in self.timer_list:
-			if timer.timerType != TIMERTYPE.AUTOSTANDBY and timer.timerType != TIMERTYPE.AUTODEEPSTANDBY:
+			if timer.timerType not in (TIMERTYPE.AUTOSTANDBY, TIMERTYPE.AUTODEEPSTANDBY):
 				next_act = timer.getNextWakeup()
 				if next_act < now:
 					continue
@@ -572,7 +578,7 @@ class PowerTimer(timer.Timer):
 # 		print "in processed: ", entry in self.processed_timers
 # 		print "in running: ", entry in self.timer_list
 		# Disable timer first
-		if entry.state != 3:
+		if entry.state != entry.StateEnded:
 			entry.disable()
 		# Autoincrease instanttimer if possible
 		if not entry.dontSave:
