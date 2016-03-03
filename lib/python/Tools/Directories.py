@@ -288,9 +288,6 @@ def fileExists(f, mode='r'):
 def fileCheck(f, mode='r'):
 	return fileExists(f, mode) and f
 
-def fileCheck(f, mode='r'):
-	return fileExists(f, mode) and f
-
 def getRecordingFilename(basename, dirname=None):
 	# filter out non-allowed characters
 	non_allowed_characters = "/.\\:*?<>|\""
