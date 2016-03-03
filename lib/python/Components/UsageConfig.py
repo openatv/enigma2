@@ -290,6 +290,8 @@ def InitUsageConfig():
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default=False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default=False)
+	config.usage.on_short_recpress = ConfigSelection(default="menu", choices=[])
+	config.usage.on_long_recpress = ConfigSelection(default="menu", choices=[])
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default=True)
 	config.usage.show_icons_in_movielist = ConfigSelection(default='i', choices=[

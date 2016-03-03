@@ -2919,9 +2919,77 @@ class InfoBarPiP:
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""
+
+	_instantRecLookup = None
+
+	_instantRecActionGroups = {
+		"common": (
+			# "event",
+			"manualendtime",
+		),
+		"timeshift": (
+			# "savetimeshift",
+			"savetimeshiftEvent",
+		),
+		"isrecording": (
+			"timerstopchange",
+		),
+		"issavingtimeshift": (
+			"cancelsavetimeshift",
+		),
+		"buttoncommon": (
+			"event",
+		),
+		"buttontimeshift": (
+			"savetimeshift",
+		),
+	}
+
+	# User feedback on single-press instant record actions where
+	# there isn't some other form of feedback
+
+	_instantRecordButtonMessage = {
+		"event": _("Recording started: %s\n%s"),
+		"savetimeshift": _("Saving event currently being viewed"),
+	}
+
+	@staticmethod
+	def doInstantRecSetup():
+		instantRecOptions = [
+			("menu", _("Instant recording menu...")),
+			("event", _("Instant recording: %s") % config.recording.instant_recording_length.getText()),
+			("manualendtime", _("Create instant recording...")),
+			("savetimeshift", _("Save event currently being viewed")),
+			("savetimeshiftEvent", _("Select an event to save...")),
+			("timerstopchange", _("Stop or change active recording...")),
+			("cancelsavetimeshift", _("Cancel timeshift save")),
+		]
+
+		buttonExclusions = ("cancelsavetimeshift", )
+
+		InfoBarInstantRecord._instantRecLookup = dict(instantRecOptions)
+		saveConfigFile = False
+		buttonOptions = [(action, desc) for action, desc in instantRecOptions if action not in buttonExclusions]
+		for buttonConf, default in ((config.usage.on_short_recpress, "menu"), (config.usage.on_long_recpress, "menu")):
+			buttonConf.setChoices(default=default, choices=buttonOptions)
+			buttonConf.load()
+
+			if buttonConf.value != buttonConf.saved_value and buttonConf.saved_value is not None:
+				buttonConf.save()
+				saveConfigFile = True
+
+		if saveConfigFile:
+			configfile.save()
+
 	def __init__(self):
+		if self._instantRecLookup is None:
+			self.doInstantRecSetup()
+			config.recording.instant_recording_length.addNotifier(lambda conf: self.doInstantRecSetup(), initial_call=False, immediate_feedback=False)
+
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord", {
-			"instantRecord": (self.instantRecord, _("Instant Record...")),
+			"instantRecord": (self.instantRecord, _("Instant recording menu...")),
+			"ShortRecord": (lambda: self.instantRecordButton(config.usage.on_short_recpress.value), lambda: self.instantRecordButtonHelp(config.usage.on_short_recpress.value)),
+			"LongRecord": (lambda: self.instantRecordButton(config.usage.on_long_recpress.value), lambda: self.instantRecordButtonHelp(config.usage.on_long_recpress.value)),
 		}, description=_("Instant recording"))
 		self.SelectedInstantServiceRef = None
 		if isStandardInfoBar(self):
@@ -3044,6 +3112,7 @@ class InfoBarInstantRecord:
 			self.session.open(TimerStopChangeList)
 		elif answer[1] in ("manualendtime", "event"):
 			self.checkRecordingRunning(answer[1], new=True, limitEvent=True)
+			return
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
@@ -3053,6 +3122,7 @@ class InfoBarInstantRecord:
 			else:
 				# print 'test3'
 				self.checkSavingCurrentTimeshift()
+			return
 		elif answer[1] == "savetimeshiftEvent":
 			# print 'test4'
 			# noinspection PyCallByClass
@@ -3065,6 +3135,10 @@ class InfoBarInstantRecord:
 			# print 'test2'
 			# noinspection PyCallByClass
 			InfoBarTimeshift.checkSaveTimeshift(self, timeshiftfile=answer[1])
+
+		message = self._instantRecordButtonMessage.get(answer[1])
+		if message:
+			Notifications.AddNotification(MessageBox, message, timeout=3, type=MessageBox.TYPE_INFO)
 
 	def checkRecordingRunning(self, action, new=False, limitEvent=False):
 		service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -3086,6 +3160,14 @@ class InfoBarInstantRecord:
 			self.startInstantRecording(limitEvent=True)
 			if action == "manualendtime":
 				self.setEndtime(len(self.recording) - 1, new=True)
+			recording = self.recording[-1] if len(self.recording) > 0 else None
+			message = self._instantRecordButtonMessage.get(action)
+			if message:
+				if message.count("%s") == 2:
+					name = recording.name if recording else _("Unknown recording name")
+					message = message % (config.recording.instant_recording_length.getText(), name)
+				id = "RecStart" + (getattr(recording, "Filename", '') if recording else '')
+				Notifications.AddPopup(text=message, type=MessageBox.TYPE_INFO, timeout=3, id=id)
 		elif answer == "review":
 			self.recordQuestionCallback((_("Stop or change active recording..."), "timerstopchange"))
 
@@ -3196,6 +3278,18 @@ class InfoBarInstantRecord:
 							identical += 1
 		return timers > identical
 
+	def _isValidInstantRecordAction(self, group, action="any"):
+		if action != "any" and action not in self._instantRecActionGroups[group]:
+			return False
+		return {
+			"common": lambda: isStandardInfoBar(self),
+			"timeshift": lambda: isStandardInfoBar(self) and self.timeshiftEnabled(),
+			"isrecording": self.session.nav.RecordTimer.isRecording,
+			"issavingtimeshift": lambda: isStandardInfoBar(self) and self.save_current_timeshift,
+			"buttoncommon": lambda: isStandardInfoBar(self),
+			"buttontimeshift": lambda: isStandardInfoBar(self) and self.timeshiftEnabled(),
+		}[group]()
+
 	def instantRecord(self, serviceRef=None):
 		self.SelectedInstantServiceRef = serviceRef
 		pirr = preferredInstantRecordPath()
@@ -3208,41 +3302,39 @@ class InfoBarInstantRecord:
 			)
 			return
 
+		def getActions(actionGroup):
+			return tuple((self._instantRecLookup[k], k) for k in self._instantRecActionGroups[actionGroup])
+
 		list = []
 
-		isrecording = self.session.nav.RecordTimer.isRecording()
-		issavingtimeshift = isStandardInfoBar(self) and self.save_current_timeshift
-		title = (
-			_("Start recording?"),
-			_("A recording is currently running.\nWhat do you want to do?"),
-			_("Timeshift is marked to be saved.\nWhat do you want to do?"),
-			_("A recording is running and timeshift will be saved.\nWhat do you want to do?"),
-		)[int(isrecording) + 2 * int(issavingtimeshift)]
-
-		if isStandardInfoBar(self):
-			list += [
-				# (_("Record for default duration"), "event"),
-				(_("Create instant recording..."), "manualendtime")
-			]
-
-		if isStandardInfoBar(self) and self.timeshiftEnabled():
-			list += [
-				# (_("Save event currently being viewed"), "savetimeshift"),
-				(_("Select an event to save..."), "savetimeshiftEvent")
-			]
-
-		if isrecording:
-			list += [
-				(_("Stop or change active recording..."), "timerstopchange")
-			]
-
-		if issavingtimeshift:
-			list += [
-				(_("Cancel timeshift save"), "cancelsavetimeshift"),
-			]
+		for section in ("common", "timeshift", "isrecording", "issavingtimeshift"):
+			if self._isValidInstantRecordAction(section):
+				list += getActions(section)
 
 		if list:
+			isrecording = self._isValidInstantRecordAction("isrecording")
+			issavingtimeshift = self._isValidInstantRecordAction("issavingtimeshift")
+			title = (
+				_("Start recording?"),
+				_("A recording is currently running.\nWhat do you want to do?"),
+				_("Timeshift is marked to be saved.\nWhat do you want to do?"),
+				_("A recording is running and timeshift will be saved.\nWhat do you want to do?"),
+			)[int(isrecording) + 2 * int(issavingtimeshift)]
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list, skin_name="InfoBarInstantRecord")
+		else:
+			return 0
+
+	def _validCurrentAction(self, action):
+		return action == "menu" or any(map(lambda item: self._isValidInstantRecordAction(item[0], action=action), self._instantRecActionGroups.items()))
+
+	def instantRecordButtonHelp(self, action):
+		return self._instantRecLookup[action] + ("" if self._validCurrentAction(action) else _(": currently inactive"))
+
+	def instantRecordButton(self, action, serviceRef=None):
+		if action == "menu":
+			return self.instantRecord(serviceRef)
+		if self._validCurrentAction(action):
+			self.recordQuestionCallback((self._instantRecLookup[action], action))
 		else:
 			return 0
 
