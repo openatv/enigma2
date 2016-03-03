@@ -66,7 +66,8 @@ class ServiceScan:
 						if tp_text == "DVB-S2":
 							tp_text = ("%s %s") % ( tp_text,
 								{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
-									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16" }.get(tp.modulation, ""))
+									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16",
+									tp.Modulation_16APSK : "16APSK", tp.Modulation_32APSK : "32APSK" }.get(tp.modulation, ""))
 						tp_text = ("%s %d%c / %d / %s") % ( tp_text, tp.frequency/1000,
 							{ tp.Polarisation_Horizontal : 'H', tp.Polarisation_Vertical : 'V', tp.Polarisation_CircularLeft : 'L',
 								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
