@@ -2957,6 +2957,7 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 		next_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
 	}
 	return next_fe;
+}
 
 bool eDVBFrontend::is_multistream()
 {
