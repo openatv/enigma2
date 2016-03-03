@@ -959,69 +959,87 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 					continue;
 			}
 
-			if (m_streamtype == 0) /* mpeg2 */
+			switch(m_streamtype)
 			{
-				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
+				case(0): // mpeg2
 				{
-					if ((sc == 0xb3) && m_enable_accesspoints) /* sequence header */
+					if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
 					{
-						if (ptsvalid)
+						if ((sc == 0xb3) && m_enable_accesspoints) /* sequence header */
 						{
-							addAccessPoint(offset, pts);
-							//eDebug("[eMPEGStreamParserTS] Sequence header at %llx, pts %llx", offset, pts);
+							if (ptsvalid)
+							{
+								addAccessPoint(offset, pts);
+								//eDebug("[eMPEGStreamParserTS] Sequence header at %llx, pts %llx", offset, pts);
+							}
+						}
+						if (pkt <= (end - 6))
+						{
+							unsigned long long data = sc | ((unsigned)pkt[4] << 8) | ((unsigned)pkt[5] << 16);
+							if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
+								data |= (pts << 31) | 0x1000000;
+							writeStructureEntry(offset + pkt_offset, data);
+						}
+						else
+						{
+							// Returning non-zero suggests we need more data. This does not
+							// work, and never has, so we should make this a void function
+							// or fix that...
+							return 1;
 						}
 					}
-					if (pkt <= (end - 6))
+
+					break;
+				}
+
+				case(1): // h.264 */
+				{
+					if (sc == 0x09)
 					{
-						unsigned long long data = sc | ((unsigned)pkt[4] << 8) | ((unsigned)pkt[5] << 16);
+						/* store image type */
+						unsigned long long data = sc | (pkt[4] << 8);
 						if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
 							data |= (pts << 31) | 0x1000000;
 						writeStructureEntry(offset + pkt_offset, data);
+						if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
+							(pkt[4] >> 5) == 0) /* and I-frame */
+						{
+							if (ptsvalid && m_enable_accesspoints)
+							{
+								addAccessPoint(offset, pts);
+								// eDebug("[eMPEGStreamParserTS] MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+							}
+						}
 					}
-					else
-					{
-						// Returning non-zero suggests we need more data. This does not
-						// work, and never has, so we should make this a void function
-						// or fix that...
-						return 1;
-					}
-				}
-			}
-			if (m_streamtype == 6) /* H.265 */
-			{
-				int nal_unit_type = (sc >> 1);
-				if (nal_unit_type == 35) /* H265 NAL unit access delimiter */
-				{
-					unsigned long long data = sc | (pkt[4] << 8);
-					writeStructureEntry(offset + pkt_offset, data);
 
-					if ((pkt[4] >> 5) == 0) /* check pic_type for I-frame */
-					{
-						if (ptsvalid)
-						{
-							addAccessPoint(offset, pts);
-						}
-					}
+					break;
 				}
-			}
-			else /* (m_streamtype == 1) means H.264 */
-			{
-				if (sc == 0x09)
+
+				case(6): // h.265
 				{
-					/* store image type */
-					unsigned long long data = sc | (pkt[4] << 8);
-					if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
-						data |= (pts << 31) | 0x1000000;
-					writeStructureEntry(offset + pkt_offset, data);
-					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
-						 (pkt[4] >> 5) == 0) /* and I-frame */
+					int nal_unit_type = (sc >> 1);
+					if (nal_unit_type == 35) /* H265 NAL unit access delimiter */
 					{
-						if (ptsvalid && m_enable_accesspoints)
+						unsigned long long data = sc | (pkt[4] << 8);
+						writeStructureEntry(offset + pkt_offset, data);
+
+						if ((pkt[4] >> 5) == 0) /* check pic_type for I-frame */
 						{
-							addAccessPoint(offset, pts);
-							// eDebug("[eMPEGStreamParserTS] MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+							if (ptsvalid)
+							{
+								addAccessPoint(offset, pts);
+							}
 						}
 					}
+
+					break;
+				}
+
+				default:
+				{
+					eDebug("[eMPEGStreamParserTS]: unknown streamtype: %d ", m_streamtype);
+
+					break;
 				}
 			}
 		}
