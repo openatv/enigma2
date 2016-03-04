@@ -1499,6 +1499,8 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					if (delay > 24) delay = 24;
 					if (delay)
 						eDebugNoSimulateNoNewLineEnd(" -> extra quard delay %d ms",delay);
+					else
+						eDebugNoSimulateNoNewLineEnd("");
 				}
 				++m_sec_sequence.current();
 				break;
