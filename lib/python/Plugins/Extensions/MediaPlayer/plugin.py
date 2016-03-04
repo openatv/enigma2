@@ -110,7 +110,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		InfoBarSubtitleSupport.__init__(self)
 		HelpableScreen.__init__(self)
 		self.summary = None
-		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.oldService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 		self.setTitle(_("Media player"))
