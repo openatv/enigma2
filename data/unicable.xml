@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
-<unicable version="20151023">
+<unicable version="20160304">
 <!--
-structur of tree
+structure of tree
 unicable (version)
   |
   |\
@@ -19,7 +19,7 @@ unicable (version)
   |  |  |\
   |  |  | \
   |  |  | product
-  |  |  
+  |  |
   |  |\
   |  | \
   |  | manufacturer
@@ -45,7 +45,7 @@ unicable (version)
      |  |\
      |  | \
      |  | product
-     |  
+     |
      |\
      | \
      | manufacturer
@@ -61,6 +61,7 @@ unicable (version)
 
 	<lnb>
 		<manufacturer name="Dura-Sat(DUR-line)">
+			<product name="Unicable LNB" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 			<product name="UK101" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 			<product name="UK102" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 			<product name="UK124" format="EN50607"
@@ -176,6 +177,9 @@ unicable (version)
 			<product name="UCP18" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="UCP20" scr1="1210" scr2="1420"/>
 			<product name="UCP30" positions="2" scr1="1210" scr2="1420" scr3="1680"/>
+			<product name="DCR 5-1-8" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790" scr7="1892" scr8="1994"/>
+			<product name="DCR 5-2-4" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
+			<product name="VDU518NT" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
 			<product name="VDU543NT" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="VDU563NT" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="VDU583NT" scr1="1280" scr2="1382" scr3="1484"/>
@@ -314,10 +318,11 @@ unicable (version)
 			<product name="DPA 524 L" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
 		</manufacturer>
 		<manufacturer name="Spaun">
+			<product name="SUS 212" scr1="1076" scr2="1178"/>
 			<product name="SUS 21 F" format="EN50494" positions="2" scr1="1076" scr2="1178"/>
 			<product name="SUS 21 FI" format="EN50494" positions="2" scr1="1210" scr2="1420"/>
 			<product name="SUS 4441 F" format="EN50494" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
-			<product name="SUS 5541 F-NFA" format="EN 50494" scr1="0974" scr2="1076" scr3="1178" scr4="1280"/>
+			<product name="SUS 5541 F-NFA" format="EN50494" scr1="0974" scr2="1076" scr3="1178" scr4="1280"/>
 			<product name="SUS 5581 F-NFA" format="UniSEqC" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688"/>
 			<product name="SUS 5581 NF 1x8" format="UniSEqC" scr1="1068" scr2="1284" scr3="1400" scr4="1516" scr5="1632" scr6="1748" scr7="1864" scr8="1980"/>
 			<product name="SUS 5581 NF 3x3 1" format="UniSEqC" scr1="1068" scr2="1284" scr3="1400"/>
