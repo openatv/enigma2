@@ -199,6 +199,8 @@ public:
 	bool is_FBCTuner() { return m_fbc; }
 	bool getEnabled() { return m_enabled; }
 	void setEnabled(bool enable) { m_enabled = enable; }
+	bool is_multistream();
+	std::string getCapabilities();
 };
 
 #endif // SWIG
