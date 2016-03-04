@@ -1386,7 +1386,9 @@ class TunerScreen(ConfigListScreen, Screen):
 			(eDVBFrontendParametersSatellite.FEC_9_10, "9/10")])
 		self.scan_sat.modulation = ConfigSelection(default = defaultSat["modulation"], choices = [
 			(eDVBFrontendParametersSatellite.Modulation_QPSK, "QPSK"),
-			(eDVBFrontendParametersSatellite.Modulation_8PSK, "8PSK")])
+			(eDVBFrontendParametersSatellite.Modulation_8PSK, "8PSK"),
+			(eDVBFrontendParametersSatellite.Modulation_16APSK, "16APSK"),
+			(eDVBFrontendParametersSatellite.Modulation_32APSK, "32APSK")])
 		self.scan_sat.rolloff = ConfigSelection(default = defaultSat.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35), choices = [
 			(eDVBFrontendParametersSatellite.RollOff_alpha_0_35, "0.35"),
 			(eDVBFrontendParametersSatellite.RollOff_alpha_0_25, "0.25"),

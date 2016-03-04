@@ -99,7 +99,7 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		orbital_position = 3600 - orbital_position;
 	system = descriptor.getModulationSystem();
 	modulation = descriptor.getModulation();
-	if (system == System_DVB_S && modulation == Modulation_8PSK)
+	if (system == System_DVB_S && modulation != Modulation_QPSK)
 	{
 		eDebug("[eDVBFrontendParametersSatellite] satellite_delivery_descriptor invalid modulation type.. force QPSK");
 		modulation = Modulation_QPSK;
@@ -1952,6 +1952,8 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				case eDVBFrontendParametersSatellite::Modulation_QPSK: modulation = QPSK; break;
 				case eDVBFrontendParametersSatellite::Modulation_8PSK: modulation = PSK_8; break;
 				case eDVBFrontendParametersSatellite::Modulation_QAM16: modulation = QAM_16; break;
+				case eDVBFrontendParametersSatellite::Modulation_16APSK: modulation = APSK_16; break;
+				case eDVBFrontendParametersSatellite::Modulation_32APSK: modulation = APSK_32; break;
 			}
 			switch (parm.pilot)
 			{
