@@ -1052,6 +1052,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 75);
 		ter_max = 1700;
 	}
+	else if(!strcmp(m_description, "TBS-5925"))
+	{
+		ret = (snr * 2000) / 0xFFFF;
+		sat_max = 2000;
+	}
 
 	signalqualitydb = ret;
 	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
