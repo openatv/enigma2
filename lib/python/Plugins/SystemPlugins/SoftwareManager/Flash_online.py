@@ -27,7 +27,7 @@ global imagesCounter
 imagesCounter = 0
 images.append(["openMips 5.2", "http://image.openmips.com/5.2", "%s/index.php?open=%s"])
 images.append(["openMips 4.3", "http://image.openmips.com/4.3", "%s/index.php?open=%s"])
-images.append(["openATV 5.2", "http://images.mynonpublic.com/openatv/5.1", "%s/index.php?open=%s"])
+images.append(["openATV 5.2", "http://images.mynonpublic.com/openatv/5.2", "%s/index.php?open=%s"])
 images.append(["openHDF 5.3", "http://v53.hdfreaks.cc", "%s/%s"])
 
 imagePath = '/media/hdd/images'
