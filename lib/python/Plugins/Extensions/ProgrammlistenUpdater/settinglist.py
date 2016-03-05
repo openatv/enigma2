@@ -52,7 +52,7 @@ def InstallSettings(name, link, date):
     # copy current settings
     if not os.path.exists(Directory + '/Settings/enigma2'):
         os.system('mkdir -p ' + Directory + '/Settings/enigma2')
-    #os.system('cp -r /etc/enigma2/ ' + Directory + '/Settings/enigma2')
+
     now = time.time()
     ttime = time.localtime(now)
     tt = str(ttime[0])[2:] + str('{0:02d}'.format(ttime[1])) + str('{0:02d}'.format(ttime[2])) + '_' + str('{0:02d}'.format(ttime[3])) + str('{0:02d}'.format(ttime[4])) + str('{0:02d}'.format(ttime[5]))
@@ -162,7 +162,7 @@ class CheckTimer:
                             self.startDownload(self.name, self.link, ConverDate(self.date))
                         else:
                             # Auto update with confrimation
-                            self.session.openWithCallback(self.CBupdate, MessageBox, _('New Setting DXAndy ') + name + _(' of ') + ConverDate(date) + _(' available !!' + "\n\n" + "Do you want to install the new settingslist?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=15)
+                            self.session.openWithCallback(self.CBupdate, MessageBox, _('New Setting DXAndy ') + name + _(' of ') + ConverDate(date) + _(' available !!' + "\n\n" + "Do you want to install the new settingslist?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
                     else:
                         print "Programmlisten-Updater: NO NEW UPDATE AVAILBLE"
                     break
