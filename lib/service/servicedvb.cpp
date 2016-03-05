@@ -132,7 +132,7 @@ ePtr<iDVBTransponderData> eStaticServiceDVBInformation::getTransponderData(const
 							{
 								eDVBFrontendParametersSatellite s;
 								feparm->getDVBS(s);
-								retval = new eDVBSatelliteTransponderData(NULL, 0, s, 0, true);
+								retval = new eDVBSatelliteTransponderData(NULL, 0, s, 0, 0, true);
 								break;
 							}
 							case iDVBFrontend::feTerrestrial:

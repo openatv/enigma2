@@ -515,12 +515,14 @@ public:
 #ifndef SWIG
 	virtual RESULT setSEC(iDVBSatelliteEquipmentControl *sec)=0;
 	virtual RESULT setSecSequence(eSecCommandList &list)=0;
+	virtual RESULT setSecSequence(eSecCommandList &list, iDVBFrontend *fe)=0;
 #endif
 	virtual int readFrontendData(int type)=0;
 	virtual void getFrontendStatus(ePtr<iDVBFrontendStatus> &dest)=0;
 	virtual void getTransponderData(ePtr<iDVBTransponderData> &dest, bool original)=0;
 	virtual void getFrontendData(ePtr<iDVBFrontendData> &dest)=0;
 #ifndef SWIG
+	virtual int getDVBID() = 0;
 	virtual RESULT getData(int num, long &data)=0;
 	virtual RESULT setData(int num, long val)=0;
 		/* 0 means: not compatible. other values are a priority. */
@@ -534,7 +536,7 @@ class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
 	virtual RESULT prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int frontend_id, unsigned int timeout)=0;
-	virtual void prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr)=0;
+	virtual void prepareTurnOffSatCR(iDVBFrontend &frontend)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id, int *highest_score_lnb=0)=0;
 	virtual void setRotorMoving(int slotid, bool)=0;
 };
