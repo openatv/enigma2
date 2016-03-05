@@ -13,6 +13,7 @@ from downloader import DownloadSetting, ConverDate
 from settinglist import *
 from restore import *
 from history import *
+import os
 
 
 config.pud = ConfigSubsection()
@@ -82,7 +83,8 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         config.pud.showmessage.value = True
 
     def keyMenu(self):
-        self.session.open(PU_Restore)
+        if os.path.exists(Directory + '/Settings/enigma2'):
+            self.session.open(PU_Restore)
 
     def keyHistory(self):
         self.session.open(PU_History)
@@ -122,6 +124,9 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         
 
     def Info(self):
+        if not os.path.exists(Directory + '/Settings/enigma2'):
+            os.system('mkdir -p ' + Directory + '/Settings/enigma2')
+
         if config.pud.autocheck.value:
             if config.pud.just_update.value:
                 self['update'].setText(_("update"))
