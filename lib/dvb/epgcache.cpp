@@ -405,10 +405,10 @@ eEPGCache::eEPGCache()
 		while (!pid_file.eof())
 		{
 			getline(pid_file, line);
-			if (line[0] == '#' ||
-				line.empty() ||
-				sscanf(line.c_str(), "%i %i %i %i", &op, &tsid, &onid, &eitpid) != 4) continue;
-			if (op < 0) op += 3600;
+			if (line[0] == '#' || sscanf(line.c_str(), "%i %i %i %i", &op, &tsid, &onid, &eitpid) != 4)
+				continue;
+			if (op < 0)
+				op += 3600;
 			if (eitpid != 0)
 			{
 				sprintf (optsidonid, "%x%04x%04x", op, tsid, onid);
