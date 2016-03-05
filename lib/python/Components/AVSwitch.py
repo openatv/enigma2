@@ -178,13 +178,13 @@ class AVSwitch:
 			except IOError:
 				print "[AVSwitch] setting videomode failed."
 
-		try:
-			# use 50Hz mode (if available) for booting
-			f = open("/etc/videomode", "w")
-			f.write(mode_50)
-			f.close()
-		except IOError:
-			print "[AVSwitch] writing initial videomode to /etc/videomode failed."
+#		try:
+#			# use 50Hz mode (if available) for booting
+#			f = open("/etc/videomode", "w")
+#			f.write(mode_50)
+#			f.close()
+#		except IOError:
+#			print "[AVSwitch] writing initial videomode to /etc/videomode failed."
 
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		self.setColorFormat(map[config.av.colorformat.value])
