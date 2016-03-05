@@ -474,7 +474,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						sin << value;
 						std::string cvalue = sin.str();
 						painter.setFont(fnt2);
-						painter.renderText(eRect(offset, m_itemsize), cvalue, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
+						painter.renderText(eRect(offset, m_itemsize), cvalue, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT | gPainter::RT_VALIGN_CENTER);
  
 
 							/* pvalue is borrowed */
