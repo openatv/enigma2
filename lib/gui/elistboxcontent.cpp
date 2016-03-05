@@ -2,6 +2,9 @@
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
+#include <sstream>
+
+using namespace std;
 
 /*
     The basic idea is to have an interface which gives all relevant list
@@ -458,13 +461,21 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						valueWidth = (itemsize.width() - m_seperation) * value / size;
+						valueWidth = (itemsize.width() - m_seperation -40) * value / size;
 						int height = itemsize.height();
 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
 						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + height/6, valueWidth, height*2/3));
+						
+							/* draw text value at the end of the slider*/
+						std::ostringstream sin;
+						sin << value;
+						std::string cvalue = sin.str();
+						painter.setFont(fnt2);
+						painter.renderText(eRect(offset, m_itemsize), cvalue, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT | gPainter::RT_VALIGN_CENTER);
+ 
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))

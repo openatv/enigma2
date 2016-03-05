@@ -13,22 +13,27 @@ eErrorOutput::eErrorOutput():
 	messages(this,1),
 	printout_timer(eTimer::create(this))
 {
-	threadrunning=true;
 	fprintf(stderr, "[eErrorOutput] Constructor\n");
 	fprintf(stderr, "[eErrorOutput] PIPE_BUF: %d\n", PIPE_BUF);
-	pipe2(pipe_fd, O_NONBLOCK);
+	if(!pipe2(pipe_fd, O_NONBLOCK))
 	{
 		int max_pipe_size;
 		CFile f("/proc/sys/fs/pipe-max-size", "r");
 		if (f)
 			if (fscanf(f, "%d", &max_pipe_size) == 1)
 				fprintf(stderr, "[eErrorOutput] F_SETPIPE_SZ: %d\n", fcntl(pipe_fd[0], F_SETPIPE_SZ, max_pipe_size));
+		fprintf(stderr, "[eErrorOutput] F_GETPIPE_SZ 0: %d\n", fcntl(pipe_fd[0], F_GETPIPE_SZ, 0));
 	}
-	fcntl(2, F_SETFL, O_NONBLOCK);
+	else
+	{
+		pipe_fd[0]=0;
+		pipe_fd[1]=0;
+	}
+	fcntl(fileno(stderr), F_SETFL, O_NONBLOCK);
 	CONNECT(messages.recv_msg, eErrorOutput::gotMessage);
 	CONNECT(printout_timer->timeout, eErrorOutput::printout);
 	printout_timer->start(100, true);
-	fprintf(stderr, "[eErrorOutput] F_GETPIPE_SZ 0: %d\n", fcntl(pipe_fd[0], F_GETPIPE_SZ, 0));
+	threadrunning=true;
 }
 
 eErrorOutput::~eErrorOutput()
@@ -88,22 +93,13 @@ void eErrorOutput::printout()
 
 	if(cnt)
 	{
-		w = write(2, &c[pos] , cnt);
+		w = write(fileno(stderr), &c[pos] , cnt);
 		if(w > 0)
 		{
 			cnt -= w;
 			pos += w;
 		}
-//		{
-//			usleep(10000);
-//			fprintf(stderr, "[eErrorOutput] error: read= %dbyte(s) write= %dbyte(s) %s\n", r, w, strerror(errno));
-//		}
-//		else
-//			fprintf(stderr, "error: %s\n",strerror(errno));
 	}
-
-	//	printtime(timebuffer, sizeof(timebuffer));
-//	fprintf(stderr, "%s [eErrorOutput] error: read= %dbyte(s) write= %dbyte(s) \n",timebuffer, r, w);
 
 	if(threadrunning)
 	{
