@@ -2,6 +2,9 @@
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
+#include <sstream>
+
+using namespace std;
 
 /*
     The basic idea is to have an interface which gives all relevant list
