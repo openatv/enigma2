@@ -1229,9 +1229,18 @@ void eEPGCache::load()
 {
 	if (m_filename.empty())
 		m_filename = "/hdd/epg.dat";
-	const char* EPGDAT = m_filename.c_str();
+
+	std::vector<char> vEPGDAT(m_filename.begin(), m_filename.end());
+	vEPGDAT.push_back('\0');
+	const char* EPGDAT = &vEPGDAT[0];
+
 	std::string filenamex = m_filename + ".loading";
-	const char* EPGDATX = filenamex.c_str();
+	std::vector<char> vEPGDATX(filenamex.begin(), filenamex.end());
+	vEPGDATX.push_back('\0');
+	const char* EPGDATX = &vEPGDATX[0];
+
+	eDebug("[adenin] EPGDAT:>%s<",EPGDAT);
+
 	FILE *f = fopen(EPGDAT, "rb");
 	int renameResult;
 	if (f == NULL)
@@ -1355,12 +1364,15 @@ void eEPGCache::save()
 	bool save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
 	if (save_epg)
 	{
-		const char* EPGDAT = m_filename.c_str();
 		if (eventData::isCacheCorrupt)
 			return;
 		// only save epg.dat if it's worth the trouble...
 		if (eventData::CacheSize < 10240)
 			return;
+
+		std::vector<char> vEPGDAT(m_filename.begin(), m_filename.end());
+		vEPGDAT.push_back('\0');
+		const char* EPGDAT = &vEPGDAT[0];
 	
 		/* create empty file */
 		FILE *f = fopen(EPGDAT, "wb");
