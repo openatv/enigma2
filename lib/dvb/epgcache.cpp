@@ -1239,8 +1239,6 @@ void eEPGCache::load()
 	vEPGDATX.push_back('\0');
 	const char* EPGDATX = &vEPGDATX[0];
 
-	eDebug("[adenin] EPGDAT:>%s<",EPGDAT);
-
 	FILE *f = fopen(EPGDAT, "rb");
 	int renameResult;
 	if (f == NULL)
