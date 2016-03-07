@@ -1235,7 +1235,7 @@ void eEPGCache::load()
 	std::vector<char> vEPGDATX(filenamex.begin(), filenamex.end());
 	vEPGDATX.push_back('\0');
 	const char* EPGDATX = &vEPGDATX[0];
-	eDebug("[eEPGCache] EPGDAT:>%s<",EPGDAT);
+	// eDebug("[eEPGCache] EPGDAT:>%s<",EPGDAT);
 	FILE *f = fopen(EPGDAT, "rb");
 	int renameResult;
 	if (f == NULL)

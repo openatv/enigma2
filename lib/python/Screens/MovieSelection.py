@@ -1013,9 +1013,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def playAsDVD(self, path):
 		try:
 			from Screens import DVD
-			if path.endswith('VIDEO_TS/'):
-				# strip away VIDEO_TS/ part
-				path = os.path.split(path.rstrip('/'))[0]
 			self.session.open(DVD.DVDPlayer, dvd_filelist=[path])
 			return True
 		except Exception, e:
@@ -1135,7 +1132,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
-				if path.endswith("VIDEO_TS/") or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
+				if os.path.isdir(os.path.join(path, 'VIDEO_TS/')) or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
 					#force a DVD extention
 					Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, ".iso", path))
 					return
