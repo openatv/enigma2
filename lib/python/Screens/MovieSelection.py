@@ -1560,7 +1560,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		mbox.setTitle(self.getTitle())
 
 	def selectMovieLocation(self, title, callback):
-		bookmarks = [_("(Other...)", None)]
+		bookmarks = [(_("(Other...)"), None)]
 		inlist = []
 		for d in config.movielist.videodirs.value:
 			d = os.path.normpath(d)
@@ -1785,7 +1785,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# show a more limited list of destinations, no point
 			# in showing mountpoints.
 			title = _("Choose destination: '%s'") % name
-			bookmarks = [_("(Other...)", None)]
+			bookmarks = [(_("(Other...)"), None)]
 			inlist = []
 			# Subdirs
 			try:
