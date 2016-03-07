@@ -616,16 +616,16 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 					eDebug("[eEPGCache] remove channel %p", chan);
 					if (it->second->state >= 0)
 						messages.send(Message(Message::leaveChannel, chan));
-					pthread_mutex_lock(&it->second->channel_active);
+					channel_data* cd = it->second;
+					pthread_mutex_lock(&cd->channel_active);
 					{
 						singleLock s(channel_map_lock);
 						m_knownChannels.erase(it);
 					}
-					pthread_mutex_unlock(&it->second->channel_active);
-					delete it->second;
-					it->second = 0;
+					pthread_mutex_unlock(&cd->channel_active);
+					delete cd;
 					// -> gotMessage -> abortEPG
-					break;
+					return;
 				}
 				default: // ignore all other events
 					return;
