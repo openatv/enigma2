@@ -829,7 +829,7 @@ class NimManager:
 			return []
 
 	def getTranspondersCable(self, nim):
-		nimConfig = config.Nims[NimManager]
+		nimConfig = config.Nims[nim]
 		if nimConfig.configMode.value != "nothing" and nimConfig.cable.scan_type.value == "provider":
 			return self.transponderscable[self.cablesList[nimConfig.cable.scan_provider.index][0]]
 		return [ ]
@@ -838,16 +838,16 @@ class NimManager:
 		return self.transpondersterrestrial[region]
 
 	def getCableDescription(self, nim):
-		return self.cablesList[config.Nims[NimManager].scan_provider.index][0]
+		return self.cablesList[config.Nims[nim].scan_provider.index][0]
 
 	def getCableFlags(self, nim):
-		return self.cablesList[config.Nims[NimManager].scan_provider.index][1]
+		return self.cablesList[config.Nims[nim].scan_provider.index][1]
 
 	def getTerrestrialDescription(self, nim):
-		return self.terrestrialsList[config.Nims[NimManager].terrestrial.index][0]
+		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
 
 	def getTerrestrialFlags(self, nim):
-		return self.terrestrialsList[config.Nims[NimManager].terrestrial.index][1]
+		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
