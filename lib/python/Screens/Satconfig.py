@@ -481,7 +481,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						if nim_slot.config.advanced.unicableconnected.value == True:
 							connect_count += 1
 				except: pass
-			print "adenin conections %d %d" %(connect_count, dvbs_slots_len)
+			print "[Satconfig] %d %d" %(connect_count, dvbs_slots_len)
 			if connect_count >= dvbs_slots_len:
 				return False
 

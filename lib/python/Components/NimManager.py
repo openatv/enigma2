@@ -570,11 +570,11 @@ class SecConfigure:
 			SDict = val.get('unicableMatrix', None)
 		else:
 			return
-		print "[reconstructUnicableDate] SDict %s" % SDict
+		print "[NimManager] SDict %s" % SDict
 		if SDict is None:
 			return
 
-		print "ManufacturerName %s" % ManufacturerName
+		print "[NimManager] Manufacturer name = %s" % ManufacturerName
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data
 		if PDict is None:
 			return
@@ -588,7 +588,7 @@ class SecConfigure:
 			if PN in tmp.product.choices.choices:
 				return
 		else:								#if manufacture not in list, then generate new ConfigSubsection
-			print "[reconstructUnicableDate] Manufacturer %s not in unicable.xml" % ManufacturerName
+			print "[NimManager] Manufacturer %s is not in your unicable.xml" % ManufacturerName
 			tmp = ConfigSubsection()
 			tmp.scr = ConfigSubDict()
 			tmp.vco = ConfigSubDict()
@@ -599,7 +599,7 @@ class SecConfigure:
 			tmp.product = ConfigSelection(choices = [], default = None)
 
 		if PN not in tmp.product.choices.choices:
-			print "[reconstructUnicableDate] Product %s not in unicable.xml" % PN
+			print "[NimManager] Product %s is not in your unicable.xml" % PN
 			scrlist = []
 			SatCR = int(PDict.get('scr', {PN,1}).get(PN,1)) - 1
 			vco = int(PDict.get('vco', {PN,0}).get(PN,0).get(str(SatCR),1))
@@ -618,7 +618,7 @@ class SecConfigure:
 					scrlist.append(("%d" %(cnt+1),"SCR %d " %(cnt+1) +_("not used")))
 				else:
 					scrlist.append(("%d" %(cnt+1),"SCR %d" %(cnt+1)))
-				print "vcofreq %d" % vcofreq
+				print "[NimManager] vcofreq %d" % vcofreq
 				tmp.vco[PN].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
 
 			tmp.scr[PN] = ConfigSelection(choices = scrlist, default = scrlist[SatCR][0])
@@ -661,7 +661,7 @@ class NIM(object):
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", "DVB-T2", "DVB-C2", "ATSC", None):
-			print "[NIM] warning: unknown NIM type %s, not using." % type
+			print "[NimManager] warning: unknown NIM type %s, not using." % type
 			type = None
 
 		self.type = type
@@ -741,14 +741,14 @@ class NIM(object):
 
 	def setInternalLink(self):
 		if self.internally_connectable is not None:
-			print "[NIM] setting internal link on frontend id", self.frontend_id
+			print "[NimManager] setting internal link on frontend id", self.frontend_id
 			f = open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w")
 			f.write("internal")
 			f.close()
 
 	def removeInternalLink(self):
 		if self.internally_connectable is not None:
-			print "[NIM] removing internal link on frontend id", self.frontend_id
+			print "[NimManager] removing internal link on frontend id", self.frontend_id
 			f = open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w")
 			f.write("external")
 			f.close()
@@ -829,7 +829,7 @@ class NimManager:
 			return []
 
 	def getTranspondersCable(self, nim):
-		nimConfig = config.Nims[nim]
+		nimConfig = config.Nims[NimManager]
 		if nimConfig.configMode.value != "nothing" and nimConfig.cable.scan_type.value == "provider":
 			return self.transponderscable[self.cablesList[nimConfig.cable.scan_provider.index][0]]
 		return [ ]
@@ -838,16 +838,16 @@ class NimManager:
 		return self.transpondersterrestrial[region]
 
 	def getCableDescription(self, nim):
-		return self.cablesList[config.Nims[nim].scan_provider.index][0]
+		return self.cablesList[config.Nims[NimManager].scan_provider.index][0]
 
 	def getCableFlags(self, nim):
-		return self.cablesList[config.Nims[nim].scan_provider.index][1]
+		return self.cablesList[config.Nims[NimManager].scan_provider.index][1]
 
 	def getTerrestrialDescription(self, nim):
-		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
+		return self.terrestrialsList[config.Nims[NimManager].terrestrial.index][0]
 
 	def getTerrestrialFlags(self, nim):
-		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
+		return self.terrestrialsList[config.Nims[NimManager].terrestrial.index][1]
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]

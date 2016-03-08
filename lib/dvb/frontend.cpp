@@ -641,7 +641,7 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 {
 	bool isLinked = false;
 	bool isUnicable = m_data[SATCR] != -1;
-	eDebugNoSimulate("try to close frontend %d", m_dvbid);
+	eDebugNoSimulate("[eDVBFrontend] try to close frontend %d", m_dvbid);
 
 	eDVBFrontend *sec_fe = this;
 
@@ -701,7 +701,7 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
 		if (linked_fe->m_inuse)
 		{
-			eDebugNoSimulate("dont close frontend %d until the linked frontend %d in slot %d is still in use",
+			eDebugNoSimulate("[eDVBFrontend] dont close frontend %d until the linked frontend %d in slot %d is still in use",
 				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
 			m_sn->stop();
 			m_state = stateIdle;
@@ -1520,7 +1520,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 						delay = duration_est - duration;
 					if (delay > 24) delay = 24;
 					if (delay)
-						eDebugNoNewLine(" -> extra quard delay %d ms\n",delay);
+						eDebugNoNewLine("[eDVBFrontend] -> extra quard delay %d ms\n",delay);
 				}
 				++m_sec_sequence.current();
 				break;
@@ -1638,14 +1638,14 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				{
 					if (readFrontendData(iFrontendInformation_ENUMS::lockState))
 					{
-						eDebugNoSimulate("tuner locked .. wait");
+						eDebugNoSimulate("[eDVBFrontend] tuner locked .. wait");
 						if (m_timeoutCount)
 							m_timeoutCount--;
 						++m_sec_sequence.current();
 					}
 					else
 					{
-						eDebugNoSimulate("tuner unlocked .. goto %d", m_sec_sequence.current()->steps);
+						eDebugNoSimulate("[eDVBFrontend] tuner unlocked .. goto %d", m_sec_sequence.current()->steps);
 						setSecSequencePos(m_sec_sequence.current()->steps);
 					}
 				}
