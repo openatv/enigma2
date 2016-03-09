@@ -558,20 +558,9 @@ RESULT eAMLTSMPEGDecoder::getPTS(int what, pts_t &pts)
 {
 	unsigned int aml_pts;
 
-	if (what == 0) /* auto */
-		what = (m_vpid >= 0 && m_vpid < 0x1FFF) ? 1 : 2;
-
-	if (what == 1) /* video */
-	{               
-		if (::ioctl(aml_fd, AMSTREAM_IOC_VPTS, (unsigned long)&aml_pts) >= 0) 
-		{
-			pts = aml_pts;
-			return 0;
-		}
-	}
-	if (what == 2) /* audio */
+	if (aml_fd >= 0)
 	{                       
-		if (::ioctl(aml_fd, AMSTREAM_IOC_APTS, (unsigned long)&aml_pts) >= 0) 
+		if (::ioctl(aml_fd, AMSTREAM_IOC_PCRSCR, (unsigned long)&aml_pts) >= 0) 
 		{
 			pts = aml_pts;
 			return 0;
