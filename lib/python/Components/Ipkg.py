@@ -127,12 +127,14 @@ class IpkgComponent:
 					self.parseLine(mydata)
 
 	def parseLine(self, data):
-		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
-			item = data.split(' - ', 2)
-			self.fetchedList.append(item)
-			self.callCallbacks(self.EVENT_LISTITEM, item)
-			return
 		try:
+			if data.startswith('Not selecting'):
+				return
+			if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
+				item = data.split(' - ', 2)
+				self.fetchedList.append(item)
+				self.callCallbacks(self.EVENT_LISTITEM, item)
+				return
 			if data.startswith('Downloading'):
 				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
 			elif data.startswith('Upgrading'):
