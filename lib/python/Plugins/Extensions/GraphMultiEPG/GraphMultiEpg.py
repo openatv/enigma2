@@ -1054,14 +1054,11 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			if menu:
 				text += _(": %s") % event.getEventName()
 		menu.append((_("Timer Overview"), self.openTimerOverview))
-		menu.append((_("Setup menu"), self.showSetup))
-		if len(menu) == 1:
-			menu and menu[0][1]()
-		elif len(menu) > 1:
-			def boxAction(choice):
-				if choice:
-					choice[1]()
-			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"))
+		menu.append((_("Setup menu"), self.showSetup, "menu"))
+		def boxAction(choice):
+			if choice:
+				choice[1]()
+		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"))
 
 	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()

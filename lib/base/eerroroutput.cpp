@@ -81,8 +81,6 @@ void eErrorOutput::printout()
 	static int pos = 0;
 	static int cnt = 0;
 
-	char timebuffer[32];
-
 	if(!cnt)
 	{
 		pos = 0;
