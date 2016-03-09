@@ -1046,6 +1046,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 
 	def furtherOptions(self):
 		menu = []
+		keys = ["blue", "menu"]
 		text = _("Select action")
 		event = self["list"].getCurrent()[0]
 		if event:
@@ -1053,12 +1054,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				if 'selectedevent' in p.__call__.func_code.co_varnames]
 			if menu:
 				text += _(": %s") % event.getEventName()
+			keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow"][:len(menu)] + (len(menu) - 13) * [""] + keys
 		menu.append((_("Timer Overview"), self.openTimerOverview))
 		menu.append((_("Setup menu"), self.showSetup, "menu"))
 		def boxAction(choice):
 			if choice:
 				choice[1]()
-		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"))
+		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"), keys=keys)
 
 	def runPlugin(self, plugin):
 		event = self["list"].getCurrent()
