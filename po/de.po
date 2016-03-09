@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-20 14:52+0000\n"
-"PO-Revision-Date: 2016-02-20 22:18+0100\n"
+"POT-Creation-Date: 2016-03-06 09:26+0000\n"
+"PO-Revision-Date: 2016-03-09 15:41+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1595,6 +1595,9 @@ msgstr "Kann kein Signal finden..., Abbruch!"
 msgid "Cannot move to the trash can"
 msgstr "Die Datei konnte nicht in den Mülleimer verschoben werden"
 
+msgid "Capabilities: "
+msgstr "Fähigkeiten: "
+
 msgid "Capacity: "
 msgstr "Kapazität: "
 
@@ -2670,6 +2673,9 @@ msgstr "DiSEqC Port %s: %s"
 
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-Tester Einstellungen"
+
+msgid "Diction"
+msgstr "Schreibweise"
 
 msgid "Digital contour removal"
 msgstr "Entfernen digitaler Konturen"
@@ -4691,6 +4697,14 @@ msgstr "Minuten"
 
 msgid "Mins Secs"
 msgstr "Minuten Sekunden"
+
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+"Falsche Konfiguration Unicable-Verbindung von Tuner %s nach Tuner %s!\n"
+"Tuner %s Einstellung \"verbunden mit\" ist jetzt deaktiviert."
 
 msgid "Missing "
 msgstr "Fehlend"
@@ -8450,6 +8464,13 @@ msgstr "Die Timer-Datei (pm_timers.xml) ist kaputt und konnte nicht geladen werd
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
 
+msgid ""
+"The unicable connection setting is wrong.\n"
+" Maybe recursive connection of tuners."
+msgstr ""
+"Die Unicable-Einstellungen sind falsch.\n"
+"Vielleicht rekursive Verbindung der Tuner."
+
 #, python-format
 msgid "The user interface of your %s %s is restarting"
 msgstr "Die Benutzeroberfläche der %s %s startet neu"
@@ -9132,8 +9153,8 @@ msgstr "Unverschlüsselt"
 msgid "Unhide parental control services"
 msgstr "Geschützte Sender sichtbar machen"
 
-msgid "Unicable"
-msgstr "Unicable"
+msgid "Unicable / JESS"
+msgstr "Unicable / JESS"
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
