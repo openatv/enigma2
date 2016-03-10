@@ -205,6 +205,8 @@ class ChoiceBox(Screen):
 		if self.reorderConfig:
 			if len(self.list) > 0 and self.config_type.value != "":
 				self.session.openWithCallback(self.setDefaultChoiceListCallback, MessageBox, _("Sort list to default and exit?"), MessageBox.TYPE_YESNO)
+		elif self.keymap.has_key("menu"):
+			self.goKey("menu")
 		else:
 			self.cancel()
 
