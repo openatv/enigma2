@@ -24,24 +24,18 @@ ImageVersion = getImageVersion()
 ROOTFSBIN = getMachineRootFile()
 KERNELBIN = getMachineKernelFile()
 
-ImageVersion3 = ''
-if getMachineBrand() == "Vu+":
-	ImageVersion3= os.popen("cat /etc/opkg/mips32el-feed.conf | grep -o -e 4.2gl -e 4.2-old").read().rstrip()
-
 #############################################################################################################
 image = 0 # 0=openATV / 1=openMips
 if distro.lower() == "openmips":
 	image = 1
 elif distro.lower() == "openatv":
 	image = 0
-if ImageVersion3 == '':
-	feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
-else:
-	feedurl_atv = 'http://images2.mynonpublic.com/openatv/%s' %ImageVersion3
-if ImageVersion == '4.1' or ImageVersion == '4.0' or ImageVersion == '4.2' or ImageVersion == '4.3' or ImageVersion == '5.1':
-	ImageVersion2= '5.2'
-else:
+feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
+
+if ImageVersion == '5.2':
 	ImageVersion2= '5.1'
+else:
+	ImageVersion2= '5.2'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
 feedurl_om = 'http://image.openmips.com/4.3'
 imagePath = '/media/hdd/images'
