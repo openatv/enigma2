@@ -15,7 +15,7 @@
 #include <lib/base/ebase.h>
 
 static int fb_fd;
-static int exec_list(void);
+// static int exec_list(void);
 
 int stmfb_accel_init(void)
 {

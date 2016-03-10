@@ -93,7 +93,10 @@ eData eDVBCISlot::sendData(unsigned char* data, int len)
 			d[0] = getSlotID();
 			d[1] = connection_id;
 			d[2] = T_DATA_LAST;
-			d[3] = len + 1; 		/* len */
+			if (len > 127)
+				d[3] = 4;	/* pointer to next length */
+			else
+				d[3] = len + 1;	/* len */
 			d[4] = connection_id; 	/* transport connection identifier*/
 			len += 5;
 		}
@@ -104,8 +107,8 @@ eData eDVBCISlot::sendData(unsigned char* data, int len)
 		d[0] = getSlotID();
 		d[1] = connection_id;
 		d[2] = T_DATA_LAST;
-		d[3] = len + 1; 		/* len */
-		d[4] = connection_id; 	/* transport connection identifier*/
+		d[3] = len + 1;		/* len */
+		d[4] = connection_id;	/* transport connection identifier*/
 		len = 5;
 	}
 
