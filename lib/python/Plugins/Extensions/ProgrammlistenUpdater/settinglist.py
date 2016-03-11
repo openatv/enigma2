@@ -1,6 +1,5 @@
 from enigma import eTimer
 import re, glob, shutil, os, urllib2, urllib, time, sys
-#from os import statvfs
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox
