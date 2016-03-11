@@ -24,7 +24,7 @@ config.pud.satname = ConfigText(visible_width = 200, default='Enigma2 D 19E FTA'
 config.pud.update_question = ConfigYesNo(default=False)
 config.pud.just_update = ConfigYesNo(default=False)
 
-URL = 'http://www.sattechnik.de/programmlisten-updater/asd.php'
+URL = 'http://www.sattechnik.de/programmlisten-update/asd.php'
 Version = '1.1'
 
 class MenuListSetting(MenuList):
