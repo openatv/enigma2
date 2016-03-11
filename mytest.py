@@ -791,6 +791,22 @@ if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', '
 	except:
 		print "Error disable enable_clock for ini5000 boxes"
 
+if boxtype in ('dm7080', 'dm820'):
+	f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+	check=f.read()
+	f.close()
+	if check.startswith("on"):
+		f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+		f.write("off")
+		f.close()
+	f=open("/proc/stb/audio/hdmi_rx_monitor","r")
+	check=f.read()
+	f.close()
+	if check.startswith("on"):
+		f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+		f.write("off")
+		f.close()
+
 profile("UserInterface")
 import Screens.UserInterfacePositioner
 Screens.UserInterfacePositioner.InitOsd()
