@@ -760,7 +760,7 @@ class NimSelection(Screen):
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
 	def NimSetupCB(self, index=None):
-		self.updateList()
+		self.updateList(index)
 
 	def showNim(self, nim):
 		return True
