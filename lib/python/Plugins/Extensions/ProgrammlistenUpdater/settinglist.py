@@ -1,6 +1,6 @@
 from enigma import eTimer
 import re, glob, shutil, os, urllib2, urllib, time, sys
-from os import statvfs
+#from os import statvfs
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox
@@ -58,14 +58,32 @@ def InstallSettings(name, link, date):
     tt = str(ttime[0])[2:] + str('{0:02d}'.format(ttime[1])) + str('{0:02d}'.format(ttime[2])) + '_' + str('{0:02d}'.format(ttime[3])) + str('{0:02d}'.format(ttime[4])) + str('{0:02d}'.format(ttime[5]))
     os.system("tar -czvf " + Directory + "/Settings/enigma2/" + tt + "_enigma2settingsbackup.tar.gz" + " -C / /etc/enigma2/*.tv /etc/enigma2/*.radio /etc/enigma2/lamedb")
 
+    def getRemoveList():
+        RemoveList = []
+        inhaltfile = Directory + '/Settings/tmp/setting/inhalt.lst'
+        if os.path.isfile(inhaltfile):
+            with open(inhaltfile, 'r') as f:
+                data = f.read().decode("utf-8-sig").encode("utf-8")
+            RemoveList = data.splitlines()
+
+        return RemoveList
+
     if not DownloadSetting(link):
-        # copy new settings
+        RemoveList = getRemoveList()
+        if RemoveList:
+            for file in RemoveList:
+               nFile = '/etc/enigma2/'+ file
+               if os.path.isfile(nFile) and not nFile == '/etc/enigma2/lamedb':
+                    os.system('rm -rf %s' %nFile)
+
+        os.system('rm -rf /etc/enigma2/*.del')
         os.system('rm -rf /etc/enigma2/lamedb')
-        os.system('rm -rf /etc/enigma2/*.radio')
-        os.system('rm -rf /etc/enigma2/*.tv')
+
+        # copy new settings
         os.system('cp -rf ' + Directory + '/Settings/tmp/setting/*.tv  /etc/enigma2/')
         os.system('cp -rf ' + Directory + '/Settings/tmp/setting/*.radio  /etc/enigma2/')
         os.system('cp -rf ' + Directory + '/Settings/tmp/setting/lamedb  /etc/enigma2/')
+
         # remove /tmp folder
         if os.path.exists(Directory + '/Settings/tmp'):
             os.system('rm -rf ' + Directory + '/Settings/tmp')

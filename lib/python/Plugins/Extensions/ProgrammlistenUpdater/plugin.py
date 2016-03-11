@@ -25,7 +25,7 @@ config.pud.update_question = ConfigYesNo(default=False)
 config.pud.just_update = ConfigYesNo(default=False)
 
 URL = 'http://www.sattechnik.de/programmlisten-update/asd.php'
-Version = '1.1'
+Version = '1.2'
 
 class MenuListSetting(MenuList):
 
