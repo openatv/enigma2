@@ -45,7 +45,7 @@ class Rc:
 			self.pixmaps = []
 			for actYpos, pixmap in zip(activeYPos, pixmaps):
 				pm = self.KeyIndicatorPixmap(actYpos, pixmap)
-				print "[KeyIndicator]", actYpos, pixmap
+				# print "[KeyIndicator]", actYpos, pixmap
 				owner[pixmap] = pm
 				self.pixmaps.append(pm)
 			self.pixmaps.sort(key=lambda x: x.activeYPos)
