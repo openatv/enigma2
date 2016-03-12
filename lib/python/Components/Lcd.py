@@ -161,7 +161,7 @@ def leaveStandby():
 		config.lcd.ledbrightness.apply()
 		config.lcd.ledbrightnessdeepstandby.apply()
 
-def standbyCounterChanged(configElement):
+def standbyCounterChanged(dummy):
 	from Screens.Standby import inStandby
 	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
@@ -277,12 +277,13 @@ def InitLcd():
 
 		if SystemInfo["LcdLiveTV"]:
 			def lcdLiveTvChanged(configElement):
-				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
-				from Screens.InfoBar import InfoBar
-				InfoBarInstance = InfoBar.instance
-				InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+				setLCDLiveTv(configElement.value)
+				configElement.save()
 			config.lcd.showTv = ConfigYesNo(default = False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
+
+			if "live_enable" in SystemInfo["LcdLiveTV"]:
+				config.misc.standbyCounter.addNotifier(standbyCounterChangedLCDLiveTV, initial_call = False)
 
 		if SystemInfo["LCDMiniTV"]:
 			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
@@ -358,3 +359,24 @@ def InitLcd():
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
+
+def setLCDLiveTv(value):
+	if "live_enable" in SystemInfo["LcdLiveTV"]:
+		open(SystemInfo["LcdLiveTV"], "w").write(value and "enable" or "disable")
+	else:
+		open(SystemInfo["LcdLiveTV"], "w").write(value and "0" or "1")
+	if not value:
+		from Screens.InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+
+def leaveStandbyLCDLiveTV():
+	if config.lcd.showTv.value:
+		setLCDLiveTv(True)
+
+def standbyCounterChangedLCDLiveTV(dummy):
+	if config.lcd.showTv.value:
+		from Screens.Standby import inStandby
+		if leaveStandbyLCDLiveTV not in inStandby.onClose:
+			inStandby.onClose.append(leaveStandbyLCDLiveTV)
+		setLCDLiveTv(False)

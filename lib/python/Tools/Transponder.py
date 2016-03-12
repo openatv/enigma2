@@ -86,7 +86,9 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersSatellite.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersSatellite.Modulation_QPSK : "QPSK",
 			eDVBFrontendParametersSatellite.Modulation_QAM16 : "QAM16",
-			eDVBFrontendParametersSatellite.Modulation_8PSK : "8PSK"}.get(tp.get("modulation"))
+			eDVBFrontendParametersSatellite.Modulation_8PSK : "8PSK",
+			eDVBFrontendParametersSatellite.Modulation_16APSK : "16APSK",
+			eDVBFrontendParametersSatellite.Modulation_32APSK : "32APSK"}.get(tp.get("modulation"))
 		ret["orbital_position"] = nimmanager.getSatName(int(tp.get("orbital_position")))
 		ret["orb_pos"] = orbpos(int(tp.get("orbital_position")))
 		ret["polarization"] = {
@@ -142,7 +144,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["system"] = {
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
+		ret["frequency"] = (tp.get("frequency") and ('%i MHz' % int(round(tp.get("frequency"), -3)/1000))) or '0 MHz'
+		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {

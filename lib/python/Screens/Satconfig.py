@@ -1,4 +1,4 @@
-from enigma import eDVBDB
+from enigma import eDVBDB, getLinkedSlotID, eDVBResourceManager
 from Screens.Screen import Screen
 from Components.SystemInfo import SystemInfo
 from Components.ActionMap import ActionMap
@@ -22,21 +22,6 @@ from os import path
 
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
-
-def isFBCTuner(nim):
-    if nim.description.find("FBC") == -1:
-        return False
-    return True
-
-def isFBCRoot(nim):
-    if nim.slot %8 < 2:
-        return True
-    return False
-
-def isFBCLink(nim):
-    if isFBCTuner(nim) and not isFBCRoot(nim):
-        return True
-    return False
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -106,9 +91,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("Loop through to")
-			if isFBCLink(self.nim):
-				choices = { "nothing": _("not configured"), "advanced": _("advanced")}
-			self.nimConfig.configMode.setChoices(choices, default = "simple")
+			if self.nim.isFBCLink():
+				choices = { "nothing": _("FBC automatic loop through"), "advanced": _("FBC Unicable")}
+			self.nimConfig.configMode.setChoices(choices, self.nim.isFBCLink() and "nothing" or "simple")
 
 	def createSetup(self):
 		print "[Satconfig] Creating setup"
@@ -136,6 +121,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedType = None
 		self.advancedManufacturer = None
 		self.advancedSCR = None
+		self.advancedDiction = None
 		self.advancedConnected = None
 		self.showAdditionalMotorOptions = None
 		self.selectSatsEntry = None
@@ -178,9 +164,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				if isFBCLink(self.nim):
-					if self.nimConfig.advanced.unicableconnected.value != True:
-						self.nimConfig.advanced.unicableconnected.value = True
 				self.nimConfig.connectedTo.setChoices(choices)
 				self.list.append(getConfigListEntry(_("Connected to"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "nothing":
@@ -258,7 +241,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
-					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
+					 self.advancedType, self.advancedSCR, self.advancedDiction, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
 					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
 					 self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
@@ -316,6 +299,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		lnbnum = int(Sat.lnb.value)
 		currLnb = self.nimConfig.advanced.lnb[lnbnum]
 
+		diction = None
 		if isinstance(currLnb, ConfigNothing):
 			currLnb = None
 
@@ -324,10 +308,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.list.append(self.advancedLnbsEntry)
 
 		if currLnb:
-			if isFBCLink(self.nim):
+			if self.nim.isFBCLink():
 				if currLnb.lof.value != "unicable":
 					currLnb.lof.value = "unicable"
-
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
 			self.advancedLof = getConfigListEntry("LOF", currLnb.lof)
 			self.list.append(self.advancedLof)
@@ -340,52 +323,70 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
-					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
+					self.advancedDiction = getConfigListEntry(_("Diction"), currLnb.dictionuser)
+					self.list.append(self.advancedDiction)
+					if currLnb.dictionuser.value == "EN50494":
+						satcr = currLnb.satcruserEN50494
+						stcrvco = currLnb.satcrvcouserEN50494[currLnb.satcruserEN50494.index]
+					elif currLnb.dictionuser.value == "EN50607":
+						satcr = currLnb.satcruserEN50607
+						stcrvco = currLnb.satcrvcouserEN50607[currLnb.satcruserEN50607.index]
+					self.advancedSCR = getConfigListEntry(_("Channel"), satcr)
 					self.list.append(self.advancedSCR)
-					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
+					self.list.append(getConfigListEntry(_("Frequency"), stcrvco))
 					self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
 					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 				elif currLnb.unicable.value == "unicable_matrix":
+					nimmanager.sec.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 					manufacturer_name = currLnb.unicableMatrixManufacturer.value
 					manufacturer = currLnb.unicableMatrix[manufacturer_name]
 					product_name = manufacturer.product.value
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableMatrixManufacturer)
-					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
-					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
 					self.list.append(self.advancedManufacturer)
-					self.list.append(self.advancedType)
-					self.list.append(self.advancedSCR)
-					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
+					if product_name in manufacturer.scr:
+						diction = manufacturer.diction[product_name].value
+						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+						self.list.append(self.advancedType)
+						self.list.append(self.advancedSCR)
+						self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
 				elif currLnb.unicable.value == "unicable_lnb":
+					nimmanager.sec.reconstructUnicableDate(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
 					manufacturer_name = currLnb.unicableLnbManufacturer.value
 					manufacturer = currLnb.unicableLnb[manufacturer_name]
 					product_name = manufacturer.product.value
 					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableLnbManufacturer)
-					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
-					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
 					self.list.append(self.advancedManufacturer)
-					self.list.append(self.advancedType)
-					self.list.append(self.advancedSCR)
-					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
+					if product_name in manufacturer.scr:
+						diction = manufacturer.diction[product_name].value
+						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+						self.list.append(self.advancedType)
+						self.list.append(self.advancedSCR)
+						self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index]))
 
 				choices = []
 				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				if len(choices):
+					if self.nim.isFBCLink():
+						if self.nimConfig.advanced.unicableconnected.value != True:
+							self.nimConfig.advanced.unicableconnected.value = True
 					self.advancedConnected = getConfigListEntry(_("connected"), self.nimConfig.advanced.unicableconnected)
 					self.list.append(self.advancedConnected)
 					if self.nimConfig.advanced.unicableconnected.value:
 						self.nimConfig.advanced.unicableconnectedTo.setChoices(choices)
 						self.list.append(getConfigListEntry(_("Connected to"),self.nimConfig.advanced.unicableconnectedTo))
+				print "[Satconfig] unicableconnectedTo choices : ", choices
 
 			else:	#kein Unicable
 				self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
 				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
 				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
 
-			if lnbnum < 65:
+			if lnbnum < 65 and diction !="EN50607":
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
@@ -465,6 +466,43 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.fillListWithAdvancedSatEntrys(Sat)
 		self["config"].list = self.list
 
+	def unicableconnection(self):
+		if self.nimConfig.configMode.value == "advanced":
+			connect_count = 0
+			dvbs_slots = nimmanager.getNimListOfType('DVB-S')
+			dvbs_slots_len = len(dvbs_slots)
+
+			for x in dvbs_slots:
+				try:
+					nim_slot = nimmanager.nim_slots[x]
+					if nim_slot == self.nimConfig:
+						self_idx = x
+					if nim_slot.config.configMode.value == "advanced":
+						if nim_slot.config.advanced.unicableconnected.value == True:
+							connect_count += 1
+				except: pass
+			print "[Satconfig] %d %d" %(connect_count, dvbs_slots_len)
+			if connect_count >= dvbs_slots_len:
+				return False
+
+		self.slot_dest_list = []
+		def checkRecursiveConnect(slot_id):
+			if slot_id in self.slot_dest_list:
+				print slot_id
+				return False
+			self.slot_dest_list.append(slot_id)
+			slot_config = nimmanager.nim_slots[slot_id].config
+			if slot_config.configMode.value == "advanced":
+				try:
+					connected = slot_config.advanced.unicableconnected.value
+				except:
+					connected = False
+				if connected == True:
+					return checkRecursiveConnect(int(slot_config.advanced.unicableconnectedTo.value))
+			return True
+
+		return checkRecursiveConnect(self.slotid)
+
 	def checkLoopthrough(self):
 		if self.nimConfig.configMode.value == "loopthrough":
 			loopthrough_count = 0
@@ -510,6 +548,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			conf.save()
 
 	def keySave(self):
+		if not self.unicableconnection():
+			self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."),MessageBox.TYPE_ERROR,timeout=10)
+			return
 		if not self.checkLoopthrough():
 			self.session.open(MessageBox, _("The loopthrough setting is wrong."),MessageBox.TYPE_ERROR,timeout=10)
 			return
@@ -591,7 +632,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.setTitle(_("Reception Settings"))
 
 	def keyLeft(self):
-		if isFBCLink(self.nim):
+		if self.nim.isFBCLink():
 			checkList = (self.advancedLof, self.advancedConnected)
 			curEntry = self["config"].getCurrent()
 			if curEntry in checkList:
@@ -608,7 +649,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self["key_blue"].setText(_("Set default"))
 
 	def keyRight(self):
-		if isFBCLink(self.nim):
+		if self.nim.isFBCLink():
 			checkList = (self.advancedLof, self.advancedConnected)
 			curEntry = self["config"].getCurrent()
 			if curEntry in checkList:
@@ -675,7 +716,6 @@ class NimSelection(Screen):
 
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
-		self.loadFBCLinks()
 		self.updateList()
 
 		self.setResultClass()
@@ -683,32 +723,17 @@ class NimSelection(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions", "ChannelSelectEPGActions"],
 		{
 			"ok": self.okbuttonClick,
+			"info": self.extraInfo,
+			"epg": self.extraInfo,
 			"cancel": self.close,
 			"red": self.close,
 			"green": self.okbuttonClick,
 			"menu": self.exit,
 		}, -2)
 		self.setTitle(_("Choose Tuner"))
-		
-	def loadFBCLinks(self):
-		for x in nimmanager.nim_slots:
-			slotid = x.slot
-			nimConfig = nimmanager.getNimConfig(x.slot)
-			configMode = nimConfig.configMode.value
-			if self.showNim(x):
-				if x.isCompatible("DVB-S"):
-					if isFBCLink(x) and configMode != "advanced":
-						from enigma import getLinkedSlotID
-						link = getLinkedSlotID(x.slot)
-
-						if link == -1:
-							nimConfig.configMode.value = "nothing"
-						else:
-							nimConfig.configMode.value = "loopthrough"
-							nimConfig.connectedTo.value = str(link)
 
 	def exit(self):
 		self.close(True)
@@ -716,19 +741,26 @@ class NimSelection(Screen):
 	def setResultClass(self):
 		self.resultclass = NimSetup
 
+	def extraInfo(self):
+		nim = self["nimlist"].getCurrent()
+		nim = nim and nim[3]
+		if config.usage.setup_level.index >= 2 and nim is not None:
+			text = _("Capabilities: ") + ",".join(eDVBResourceManager.getInstance().getFrontendCapabilities(nim.slot).splitlines())
+			self.session.open(MessageBox, text, MessageBox.TYPE_INFO, simple=True)
+
 	def okbuttonClick(self):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 
 		nimConfig = nimmanager.getNimConfig(nim.slot)
-		if isFBCLink(nim) and nimConfig.configMode.value == "loopthrough":
-				return
+		if nim.isFBCLink() and nimConfig.configMode.value == "nothing" and not getLinkedSlotID(nim.slot) == -1:
+			return
+
 		if nim is not None and not nim.empty and nim.isSupported():
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
 	def NimSetupCB(self, index=None):
-		self.loadFBCLinks()
-		self.updateList()
+		self.updateList(index)
 
 	def showNim(self, nim):
 		return True
@@ -742,12 +774,23 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
-						text = { "loopthrough": _("Loop through to"),
-								 "equal": _("Equal to"),
-								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
-						text += " " + _("Tuner") + " " + chr(ord('A')+int(nimConfig.connectedTo.value))
+						if x.isFBCLink():
+							text = "FBC automatic loop through\nlinked to"
+						else:
+							text = { "loopthrough": _("Loop through to"),
+									"equal": _("Equal to"),
+									"satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
+						text += " " + nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name
 					elif nimConfig.configMode.value == "nothing":
-						text = _("not configured")
+						if x.isFBCLink():
+							link = getLinkedSlotID(x.slot)
+							if link == -1:
+								text = _("FBC automatic loop through\ninactive")
+							else:
+								link = nimmanager.getNim(link).slot_name
+								text = _("FBC automatic loop through\nlinked to %s") % link
+						else:
+							text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
@@ -780,8 +823,6 @@ class NimSelection(Screen):
 							text = _("Simple")
 					elif nimConfig.configMode.value == "advanced":
 						text = _("Advanced")
-					if isFBCLink(x) and nimConfig.configMode.value != "advanced":
-						text += _("\n<This tuner is configured automatically>")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
 						text = _("Nothing connected")
@@ -803,10 +844,10 @@ class SelectSatsEntryScreen(Screen):
 		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
 			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
-			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
-			<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
-			<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 			<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 			<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 			<widget name="list" position="10,40" size="540,330" scrollbarMode="showNever" />

@@ -12,6 +12,8 @@
 
 #include <linux/dvb/frontend.h>
 
+extern int roundMulti(int value, int m);//round value to multiple of m
+
 struct eDVBFrontendParametersSatellite
 {
 #ifndef SWIG
@@ -35,7 +37,7 @@ struct eDVBFrontendParametersSatellite
 	};
 
 	enum {
-		Modulation_Auto, Modulation_QPSK, Modulation_8PSK, Modulation_QAM16
+		Modulation_Auto, Modulation_QPSK, Modulation_8PSK, Modulation_QAM16, Modulation_16APSK, Modulation_32APSK
 	};
 
 	// dvb-s2
@@ -216,9 +218,10 @@ class eDVBSatelliteTransponderData : public eDVBTransponderData
 
 	eDVBFrontendParametersSatellite transponderParameters;
 	int frequencyOffset;
+	long spectinvCnt;
 
 public:
-	eDVBSatelliteTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersSatellite &transponderparms, int frequencyoffset, bool original);
+	eDVBSatelliteTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, eDVBFrontendParametersSatellite &transponderparms, int frequencyoffset, long spectinvcnt, bool original);
 
 	std::string getTunerType() const;
 	int getInversion() const;

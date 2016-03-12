@@ -122,6 +122,9 @@ import Screens.Rc
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
+from Tools.FlashInstall import FlashInstallTime
+FlashInstallTime()
+
 profile("misc")
 had = dict()
 

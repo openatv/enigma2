@@ -4,6 +4,8 @@ from time import localtime, mktime, gmtime
 from ServiceReference import ServiceReference
 from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
 from timer import TimerEntry
+from time import time
+
 
 
 class TimerSanityCheck:
@@ -72,6 +74,19 @@ class TimerSanityCheck:
 		self.nrep_eventlist = []
 		if ext_timer != 1:
 			self.newtimer = ext_timer
+
+#GML:1 - A timer which has already ended (happens during start-up check) can't clash!!
+#
+#      NOTE: that when adding a timer it also cannot clash with:
+#       o any timers which run before the latest period of no timers running
+#         before the timer to be added starts
+#       o any timers which run after the first period of no timers running
+#         after the timer to be added ends
+#      Code to handle this needs to be added (it is *NOT* here yet!)
+#
+		if (self.newtimer is not None) and (self.newtimer.end < time()): # does not conflict
+			return True
+
 		if (self.newtimer is not None) and (not self.newtimer.disabled):
 			if not self.newtimer.service_ref.ref.valid():
 				return False
@@ -188,6 +203,10 @@ class TimerSanityCheck:
 					feinfo = fakeRecService.frontendInfo()
 					if feinfo:
 						tunerType.append(feinfo.getFrontendData().get("tuner_type"))
+#GML:2 - Ensure that this is removed, otherwise we hang on to reference
+#        counts for tuners
+					feinfo = None
+
 				else: # tune failed.. so we must go another way to get service type (DVB-S, DVB-T, DVB-C)
 
 					def getServiceType(ref): # helper function to get a service type of a service reference
@@ -214,6 +233,11 @@ class TimerSanityCheck:
 					if ConflictTimer is None: # just take care of the first conflict
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
+#GML:2 - These also need to be freed, to prevent them hanging on to
+#        reference counts .
+				fakeRecService = None
+				fakeRecResult = None
+
 			elif event[1] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0] and fakeRec[1]:

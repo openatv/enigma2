@@ -132,7 +132,7 @@ ePtr<iDVBTransponderData> eStaticServiceDVBInformation::getTransponderData(const
 							{
 								eDVBFrontendParametersSatellite s;
 								feparm->getDVBS(s);
-								retval = new eDVBSatelliteTransponderData(NULL, 0, s, 0, true);
+								retval = new eDVBSatelliteTransponderData(NULL, 0, s, 0, 0, true);
 								break;
 							}
 							case iDVBFrontend::feTerrestrial:
@@ -2096,6 +2096,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "DTS";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTSHD)
 		info.m_description = "DTS-HD";
+	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atLPCM)
+		info.m_description = "LPCM";
 	else
 		info.m_description = "???";
 

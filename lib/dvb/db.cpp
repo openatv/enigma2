@@ -824,7 +824,10 @@ void eDVBDB::loadBouquet(const char *path)
 				bouquet.flushChanges();
 			}
 			else
-				file_path = "";
+			{
+				eDebug("[eDVBDB] can't load bouquet %s",path);
+				return;
+			}
 		}
 	}
 

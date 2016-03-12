@@ -3,12 +3,15 @@ from enigma import ePythonOutput
 
 class EnigmaOutput:
 	def __init__(self):
-		pass
+		self.line = ''
 
 	def write(self, data):
 		if isinstance(data, unicode):
 			data = data.encode("UTF-8")
-		ePythonOutput(data)
+		self.line += data
+		if '\n' in data:
+			ePythonOutput(self.line)
+			self.line = ''
 
 	def flush(self):
 		pass
