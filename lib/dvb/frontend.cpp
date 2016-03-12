@@ -966,7 +966,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		else
 			ret = 2700;
 	}
-	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
+	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4506 (internal)") || strstr(m_description, "BCM4505") || strstr(m_description, "Si2166B"))
 	{
 		ret = (snr * 100) >> 8;
 	}
