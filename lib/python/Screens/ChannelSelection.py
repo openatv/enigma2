@@ -2211,10 +2211,20 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastservice.save()
 
 	def setCurrentServicePath(self, path, doZap=True):
-		if self.history:
+		hlen = len(self.history)
+		if not hlen:
+			self.history.append(path)
+			self.history_pos = 0
+		if hlen == 1:
 			self.history[self.history_pos] = path
 		else:
-			self.history.append(path)
+			if path in self.history:
+				self.history.remove(path)
+				self.history_pos -= 1
+			tmp = self.history[self.history_pos][:]
+			self.history.append(tmp)
+			self.history_pos += 1
+			self.history[self.history_pos] = path
 		self.setHistoryPath(doZap)
 
 	def getCurrentServicePath(self):
