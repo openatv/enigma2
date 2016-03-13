@@ -73,6 +73,13 @@ l_moviesort = [
 	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A'),
 	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"),  'Z1 A2 A1')]
 
+try:
+	from Plugins.Extensions import BlurayPlayer
+except Exception as e:
+	print "[ML] BlurayPlayer not installed:", e
+	BlurayPlayer = None
+	
+
 def defaultMoviePath():
 	result = config.usage.default_path.value
 	if not os.path.isdir(result):
@@ -1102,7 +1109,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		try:
 			os.rmdir(extra_args)
 		except Exception as e:
-			print '[BlurayPlayer] Cannot remove', extra_args, e
+			print "[ML] Cannot remove", extra_args, e
 		self.itemSelectedCheckTimeshiftCallback('.img', extra_args, True)
 
 	def playAsBLURAY(self, path):
@@ -1320,24 +1327,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def itemSelectedCheckTimeshiftCallback(self, ext, path, answer):
 		if answer:
-			if ext == '.iso':
-				# Mount iso for blu-ray check only if BlurayPlayer installed
-				try:
-					from Plugins.Extensions.BlurayPlayer import BlurayUi
-				except Exception as e:
-					print "[ML] BlurayPlayer not installed:", e
+			if ext == '.iso' and BlurayPlayer is not None:
+				iso_path = path.replace(' ', '\ ')
+				mount_path = '/media/Bluray_%s' % os.path.splitext(iso_path)[0].rsplit('/', 1)[1]
+				if os.path.exists(mount_path):
+					Console().ePopen('umount -f %s' % mount_path)
 				else:
-					iso_path = path.replace(' ', '\ ')
-					mount_path = '/media/Bluray_%s' % os.path.splitext(iso_path)[0].rsplit('/', 1)[1]
-					if os.path.exists(mount_path):
-						Console().ePopen('umount -f %s' % mount_path)
-					else:
-						try:
-							os.mkdir(mount_path)
-						except Exception as e:
-							print '[BlurayPlayer] Cannot create', mount_path, e
-					Console().ePopen('mount -r %s %s' % (iso_path, mount_path), self.mountIsoCallback, (mount_path, 0))
-					return
+					try:
+						os.mkdir(mount_path)
+					except Exception as e:
+						print '[BlurayPlayer] Cannot create', mount_path, e
+				Console().ePopen('mount -r %s %s' % (iso_path, mount_path), self.mountIsoCallback, (mount_path, 0))
+				return
 			elif ext == 'bluray':
 				if self.playAsBLURAY(path):
 					return
