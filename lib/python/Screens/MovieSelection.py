@@ -1088,6 +1088,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			del self.remountTimer
 		if os.path.isdir(os.path.join(extra_args[0], 'BDMV/STREAM/')):
 			self.itemSelectedCheckTimeshiftCallback('bluray', extra_args[0], True)
+		elif os.path.isdir(os.path.join(extra_args[0], 'VIDEO_TS/')):
+			Console().ePopen('umount -f %s' % extra_args[0], self.umountIsoCallback, extra_args[0])
 		elif remount < 5:
 			remount += 1
 			self.remountTimer = eTimer()
