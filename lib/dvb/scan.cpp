@@ -1041,7 +1041,11 @@ void eDVBScan::channelDone()
 							m_pmt_in_progress->first);
 					snprintf(pname, 255, "%s %s %d%c %d.%d°%c",
 						parm.system ? "DVB-S2" : "DVB-S",
-						parm.modulation == 1 ? "QPSK" : "8PSK",
+						parm.modulation == eDVBFrontendParametersSatellite::Modulation_Auto ? "AUTO" :
+							eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
+							eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
+							eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
+							eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
 						parm.frequency/1000,
 						parm.polarisation ? 'V' : 'H',
 						parm.orbital_position/10,

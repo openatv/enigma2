@@ -11,6 +11,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#include <sstream>
+
 #ifndef I2C_SLAVE_FORCE
 #define I2C_SLAVE_FORCE	0x0706
 #endif
@@ -97,7 +99,7 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		orbital_position = 3600 - orbital_position;
 	system = descriptor.getModulationSystem();
 	modulation = descriptor.getModulation();
-	if (system == System_DVB_S && modulation == Modulation_8PSK)
+	if (system == System_DVB_S && modulation != Modulation_QPSK)
 	{
 		eDebug("satellite_delivery_descriptor invalid modulation type.. force QPSK");
 		modulation = Modulation_QPSK;
@@ -1063,6 +1065,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			default: break;
 		}
 	}
+	else if(!strcmp(m_description, "TBS-5925"))
+	{
+		ret = (snr * 2000) / 0xFFFF;
+		sat_max = 2000;
+	}
 
 	signalqualitydb = ret;
 	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
@@ -1120,13 +1127,43 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			break;
 		case iFrontendInformation_ENUMS::signalQuality:
-		case iFrontendInformation_ENUMS::signalQualitydB: /* this will move into the driver */
+		case iFrontendInformation_ENUMS::signalQualitydB: /* this moved into the driver on DVB API 5.10 */
 			if (m_state == stateLock)
 			{
-				int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
 				int signalquality = 0;
 				int signalqualitydb = 0;
-				calculateSignalQuality(snr, signalquality, signalqualitydb);
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
+				if (m_dvbversion >= DVB_VERSION(5, 10))
+				{
+					dtv_property prop[1];
+					prop[0].cmd = DTV_STAT_CNR;
+					dtv_properties props;
+					props.props = prop;
+					props.num = 1;
+
+					if (::ioctl(m_fd, FE_GET_PROPERTY, &props) < 0 && errno != ERANGE)
+					{
+						eDebug("[eDVBFrontend] DTV_STAT_CNR failed: %m");
+					}
+					else
+					{
+						for(unsigned int i=0; i<prop[0].u.st.len; i++)
+						{
+							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
+								signalqualitydb = prop[0].u.st.stat[i].svalue / 10;
+							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+								signalquality = prop[0].u.st.stat[i].svalue;
+						}
+					}
+				}
+#endif
+				// fallback to old DVB API
+				if(!signalquality && !signalqualitydb)
+				{
+					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+					calculateSignalQuality(snr, signalquality, signalqualitydb);
+				}
+
 				if (type == iFrontendInformation_ENUMS::signalQuality)
 				{
 					return signalquality;
@@ -1143,7 +1180,31 @@ int eDVBFrontend::readFrontendData(int type)
 				uint16_t strength=0;
 				if (!m_simulate)
 				{
-					if (ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
+					if (m_dvbversion >= DVB_VERSION(5, 10))
+					{
+						dtv_property prop[1];
+						prop[0].cmd = DTV_STAT_SIGNAL_STRENGTH;
+						dtv_properties props;
+						props.props = prop;
+						props.num = 1;
+
+						if (::ioctl(m_fd, FE_GET_PROPERTY, &props) < 0 && errno != ERANGE)
+						{
+							eDebug("[eDVBFrontend] DTV_STAT_SIGNAL_STRENGTH failed: %m");
+						}
+						else
+						{
+							for(unsigned int i=0; i<prop[0].u.st.len; i++)
+							{
+								if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+									strength = prop[0].u.st.stat[i].uvalue;
+							}
+						}
+					}
+#endif
+					// fallback to old DVB API
+					if (!strength && ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
 						eDebug("FE_READ_SIGNAL_STRENGTH failed (%m)");
 				}
 				return strength;
@@ -1928,6 +1989,8 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				case eDVBFrontendParametersSatellite::Modulation_QPSK: modulation = QPSK; break;
 				case eDVBFrontendParametersSatellite::Modulation_8PSK: modulation = PSK_8; break;
 				case eDVBFrontendParametersSatellite::Modulation_QAM16: modulation = QAM_16; break;
+				case eDVBFrontendParametersSatellite::Modulation_16APSK: modulation = APSK_16; break;
+				case eDVBFrontendParametersSatellite::Modulation_32APSK: modulation = APSK_32; break;
 			}
 			switch (parm.pilot)
 			{
@@ -2932,4 +2995,48 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 		next_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
 	}
 	return next_fe;
+}
+
+bool eDVBFrontend::is_multistream()
+{
+	return fe_info.caps & FE_CAN_MULTISTREAM;
+}
+
+std::string eDVBFrontend::getCapabilities()
+{
+	std::stringstream ss;
+
+	if (fe_info.caps == FE_IS_STUPID)			ss << "stupid FE" << std::endl;
+	if (fe_info.caps &  FE_CAN_INVERSION_AUTO)		ss << "auto inversion" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_1_2)			ss << "FEC 1/2" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_2_3)			ss << "FEC 2/3" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_3_4)			ss << "FEC 3/4" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_4_5)			ss << "FEC 4/5" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_5_6)			ss << "FEC 5/6" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_6_7)			ss << "FEC 6/7" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_7_8)			ss << "FEC 7/8" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_8_9)			ss << "FEC 8/9" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_AUTO)			ss << "FEC AUTO" << std::endl;
+	if (fe_info.caps &  FE_CAN_QPSK)			ss << "QPSK" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_16)			ss << "QAM 16" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_32)			ss << "QAM 32" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_64)			ss << "QAM 64" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_128)			ss << "QAM 128" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_256)			ss << "QAM 256" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_AUTO)			ss << "QAM AUTO" << std::endl;
+	if (fe_info.caps &  FE_CAN_TRANSMISSION_MODE_AUTO)	ss << "auto transmission mode" << std::endl;
+	if (fe_info.caps &  FE_CAN_BANDWIDTH_AUTO)             	ss << "auto bandwidth" << std::endl;
+	if (fe_info.caps &  FE_CAN_GUARD_INTERVAL_AUTO)		ss << "auto guard interval" << std::endl;
+	if (fe_info.caps &  FE_CAN_HIERARCHY_AUTO)		ss << "auto hierarchy" << std::endl;
+	if (fe_info.caps &  FE_CAN_8VSB)			ss << "FE_CAN_8VSB" << std::endl;
+	if (fe_info.caps &  FE_CAN_16VSB)			ss << "FE_CAN_16VSB" << std::endl;
+	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << "FE_HAS_EXTENDED_CAPS" << std::endl;
+	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << "FE_CAN_MULTISTREAM" << std::endl;
+	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << "FE_CAN_TURBO_FEC" << std::endl;
+	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << "FE_CAN_2G_MODULATION" << std::endl;
+	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << "FE_NEEDS_BENDING" << std::endl;
+	if (fe_info.caps &  FE_CAN_RECOVER)			ss << "FE_CAN_RECOVER" << std::endl;
+	if (fe_info.caps &  FE_CAN_MUTE_TS)			ss << "FE_CAN_MUTE_TS" << std::endl;
+
+	return ss.str();
 }
