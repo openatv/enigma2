@@ -71,7 +71,7 @@ class eDVBServiceBase: public iFrontendInformation
 {
 protected:
 	static bool tryFallbackTuner(eServiceReferenceDVB &service,
-			bool &is_stream, bool is_pvr, bool simulate, bool is_recording=false);
+			bool &is_stream, bool is_pvr, bool simulate);
 
 	eDVBServicePMTHandler m_service_handler;
 public:
