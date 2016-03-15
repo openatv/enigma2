@@ -266,6 +266,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.onShowHideNotifiers = []
 
 		self.actualSecondInfoBarScreen = None
+		self.secondInfoBarScreen = None
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar, "SecondInfoBar")
 			self.secondInfoBarScreen.show()
