@@ -96,7 +96,6 @@ self.session.open(RemoteControlCode)
 				<item weight="50" level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 			</menu>
 			<item weight="70" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
-			<item weight="80" level="0" entryID="dvdplayer_setup"><setup id="dvdplayer" /></item>
 		</menu>
 
 		<!-- Menu / Settings / EPG -->
