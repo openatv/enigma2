@@ -120,6 +120,9 @@
 	</screen>
 	<!-- Q -->
 	<!-- R -->
+	<screen name="RdsInfoDisplaySummary" position="fill">
+		<widget source="message" render="Label" position="0,0" size="220,176" font="RegularLCD;30" halign="center" valign="center" />
+	</screen>
 	<!-- S -->
 	<screen name="ServiceScanSummary" position="fill">
 		<widget name="Title" position="0,0" size="220,30" font="RegularLCD;20" halign="left" noWrap="1" />
