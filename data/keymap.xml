@@ -1,5 +1,9 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
+	<map context="2ndInfobarActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+	</map>
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
