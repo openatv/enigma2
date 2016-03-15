@@ -175,5 +175,9 @@
 		<widget name="Service" position="0,50" size="400,150" font="RegularLCD;40" halign="center" valign="center"/>
 		<widget name="scan_progress" position="0,200" size="400,30" borderWidth="3" />
 	</screen>
+
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="400,240">
+		<widget source="message" render="Label" position="0,0" size="400,240" font="RegularLCD;30" halign="center" valign="center" />
+	</screen>
 	<!-- COMMON */-->
 </skin>
