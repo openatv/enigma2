@@ -792,8 +792,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y() + (or
 		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23"/>
 	</screen>
 	<!-- BufferIndicator -->
-	<screen name="BufferIndicator" title="Channel" position="c-100,45" size="200,35" backgroundColor="transparent" flags="wfNoBorder" zPosition="100">
-		<widget name="status" position="0,0" size="200,35" backgroundColor="transparent" transparent="1" font="Regular;26" borderColor="black" borderWidth="2" valign="center" halign="center"/>
+	<screen name="BufferIndicator" title="Channel" position="c-150,45" size="300,35" backgroundColor="transparent" flags="wfNoBorder" zPosition="100">
+		<widget name="status" position="0,0" size="300,35" backgroundColor="transparent" transparent="1" font="Regular;26" borderColor="black" borderWidth="2" valign="center" halign="center"/>
 	</screen>
 	<!-- Numerical help dialog -->
 	<screen name="NumericalTextInputHelpDialog" position="190,400" zPosition="2" size="394,124" backgroundColor="#202020" flags="wfNoBorder">
