@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-12 14:43+0200\n"
-"PO-Revision-Date: 2016-03-14 19:37+0200\n"
+"PO-Revision-Date: 2016-03-16 00:49+0200\n"
 "Last-Translator: Audronis Grincevicius <adga@zebra.lt>\n"
 "Language-Team: adga (c) <adga@zebra.lt>\n"
 "Language: lt\n"
@@ -214,7 +214,7 @@ msgstr ""
 "Tikrinkite Emu konfigūracijos failą"
 
 msgid " and"
-msgstr " e "
+msgstr "ir"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -305,13 +305,13 @@ msgstr "%d MB"
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d minutės"
-msgstr[1] "%d Minuti"
-msgstr[2] "%d minutės"
+msgstr[0] "%d min."
+msgstr[1] "%d min."
+msgstr[2] "%d min."
 
 #, python-format
 msgid "%d Mins"
-msgstr "%d Mins"
+msgstr "%d Min."
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1081,7 +1081,7 @@ msgid "Activate HbbTV (Redbutton)"
 msgstr "Aktyvuoti HbbTV (Raudonas mygtukas)"
 
 msgid "Activate MAC-address configuration"
-msgstr "Aktyvuoti MAC adreso konfigūraciją"
+msgstr "Aktyvuoti MAC-adreso konfigūraciją"
 
 msgid "Activate Picture in Picture"
 msgstr "Įjungti vaizdą vaizde"
@@ -2942,13 +2942,13 @@ msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Disko talpa įrašų rezervavimui (GB)"
 
 msgid "Display 16:9 content as"
-msgstr "Rodyti kaip 16:9"
+msgstr "Rodyti turinį kaip 16:9"
 
 msgid "Display 4:3 content as"
-msgstr "Rodyti kaip 4:3 "
+msgstr "Rodyti turinį kaip 4:3 "
 
 msgid "Display >16:9 content as"
-msgstr "Monitorius >16:9 turinys kaip"
+msgstr ">16:9 formato turinį rodyti, kaip"
 
 msgid "Display Settings"
 msgstr "Ekrano nustatymai"
@@ -3340,7 +3340,7 @@ msgid "Elapsed & Remaining"
 msgstr "Praėjo ir liko"
 
 msgid "Electronic Program Guide"
-msgstr "Elektroninis programų gidas"
+msgstr "Elektroninis programų vadovas"
 
 msgid "Enable"
 msgstr "Įjungti"
@@ -4468,7 +4468,7 @@ msgid "Initializing storage device..."
 msgstr "Įrenginio inicializavimas..."
 
 msgid "Inotify Monitoring"
-msgstr "Inotify stebėsena"
+msgstr "Pranešimai pokyčius"
 
 msgid "Input"
 msgstr "Įėjimas"
@@ -5006,13 +5006,13 @@ msgid "Message"
 msgstr "Pranešimas"
 
 msgid "MiniDLNA"
-msgstr "MiniDLNA žurnalas"
+msgstr "MiniDLNA"
 
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA žurnalas"
 
 msgid "MiniDLNA Setup"
-msgstr "MiniDLNA žurnalo valdymas"
+msgstr "MiniDLNA valdymas"
 
 msgid "MiniTV"
 msgstr "MiniTV"
@@ -5028,10 +5028,10 @@ msgid "Minimum send interval"
 msgstr "Minimalus siuntimo intervalas"
 
 msgid "Mins"
-msgstr "Min."
+msgstr "Min"
 
 msgid "Mins Secs"
-msgstr "Min. Sek."
+msgstr "Min. sek."
 
 #, python-format
 msgid ""
@@ -6175,7 +6175,7 @@ msgid "Playlist long"
 msgstr "Grojaraštis ilgai"
 
 msgid "Playpause"
-msgstr "Pauzė"
+msgstr "Groti pauzę"
 
 msgid "Please add titles to the compilation."
 msgstr "Prašome pridėti pavadinimus į kompiliaciją."
@@ -6701,7 +6701,7 @@ msgid "QuickMenu/Extensions"
 msgstr "Greitasis meniu/Išplėtimai"
 
 msgid "RAM"
-msgstr "RAM"
+msgstr "Operatyvinė atmintis"
 
 msgid "REC Symbol"
 msgstr "Simbolis REC"
@@ -7305,7 +7305,7 @@ msgid "Scaler vertical dejagging"
 msgstr "Vertikalių smailumų pašalinimas"
 
 msgid "Scaling mode"
-msgstr "Formato keitimo režimas"
+msgstr "Mastelio keitimo režimas"
 
 msgid "Scan"
 msgstr "Paieška"
@@ -7357,9 +7357,9 @@ msgstr[2] "Skenavimas -% d %% baigtas"
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Skenavimas baigtas,% d kanalų nerasta"
-msgstr[1] "Skenavimas baigtas,% d kanalų nerasta"
-msgstr[2] "Skenavimas baigtas,% d kanalų nerasta"
+msgstr[0] "Skenavimas baigtas, %d kanalai(s) rasti"
+msgstr[1] "Skenavimas baigtas, %d kanalai(s) rasti"
+msgstr[2] "Skenavimas baigtas, %d kanalai(s) rasti"
 
 msgid "Scanning failed!"
 msgstr "Skenavimas nepavyko!"
@@ -7602,7 +7602,7 @@ msgid "Send"
 msgstr "Siųsti"
 
 msgid "Send Confirmation"
-msgstr "Siuntimo patvirtinimas"
+msgstr "Siųsti patvirtinimą"
 
 msgid "Send DiSEqC"
 msgstr "Siųskite DiSEqC"
@@ -7623,7 +7623,7 @@ msgid "Serial No"
 msgstr "Serijos Nr"
 
 msgid "Serv.Name"
-msgstr "Serv.Pavadinimas"
+msgstr "Serv.pavadinimas"
 
 msgid "Server:"
 msgstr "Serveris:"
@@ -8278,7 +8278,7 @@ msgid "Show the radio player..."
 msgstr "Rodyti radijo grotuvą..."
 
 msgid "Show the tv player..."
-msgstr "Rodyti TV grotuvą ..."
+msgstr "Rodyti tv grotuvą ..."
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Rodyti priedų naršyklę. Čia galite tvarkyti įdiegtus priedus"
@@ -8468,13 +8468,13 @@ msgid "Softcam Setup"
 msgstr "Emuliatoriaus tvarkyklė"
 
 msgid "Softcam-Panel"
-msgstr "Emuliatorių skydas"
+msgstr "Emuliatorių-skydas"
 
 msgid "Softcam-Panel Setup"
 msgstr "Emuliatoriaus skydo valdymas"
 
 msgid "Softcam-Panel..."
-msgstr "Emuliatorių skydas..."
+msgstr "Emuliatorių-skydas..."
 
 msgid "SoftcamPanel"
 msgstr "Emuliatorių skydas"
@@ -10873,7 +10873,7 @@ msgid "Www"
 msgstr "Www"
 
 msgid "Www long"
-msgstr "www ilgai"
+msgstr "Www ilgai"
 
 msgid "XBox 360 support"
 msgstr "Xbox 360 palaikymas"
@@ -11387,7 +11387,7 @@ msgid "alpha then oldest"
 msgstr "alpha seniausia"
 
 msgid "alphabetic"
-msgstr "abėcėlės tvarka"
+msgstr "abėcėlinis"
 
 msgid "alphabetic reverse"
 msgstr "ne abėcėlės tvarka"
@@ -11468,7 +11468,7 @@ msgid "back"
 msgstr "atgal"
 
 msgid "background image"
-msgstr "foninis atvaizdas"
+msgstr "fono atvaizdas"
 
 msgid "backupstick or backupstick.txt"
 msgstr "backupstick arba backupstick.txt"
@@ -11706,7 +11706,7 @@ msgid "end favourites edit"
 msgstr "baigti mėgstamiausių redagavimą"
 
 msgid "enigma2 and network"
-msgstr "Enigma2 ir tinklas"
+msgstr "enigma2 ir tinklas"
 
 msgid "enter number to jump to channel."
 msgstr "įrašykite skaičių, kad pereitumėte prie kanalo."
@@ -11908,7 +11908,7 @@ msgid "insert mark here"
 msgstr "įterpkite žymeklį čia"
 
 msgid "internally loopthrough to"
-msgstr "ciklas į"
+msgstr "vidinis ciklas į"
 
 msgid "invalid type"
 msgstr "neteisingas tipas"
@@ -11995,7 +11995,7 @@ msgid "menu"
 msgstr "meniu"
 
 msgid "mins"
-msgstr "min (ių)"
+msgstr "min"
 
 msgid "minute"
 msgstr "minutė"
@@ -12079,7 +12079,7 @@ msgid "no CI slots found"
 msgstr "jokie CI skaitytuvai nesurasti"
 
 msgid "no cam"
-msgstr "Emu nėra"
+msgstr "emu nėra"
 
 msgid "no channel list"
 msgstr "nėra kanalų sąrašo"
@@ -12803,7 +12803,7 @@ msgid "Display"
 msgstr "Ekranas"
 
 msgid "EPG"
-msgstr "EPG"
+msgstr "Elektroninis programų vadovas"
 
 msgid "Extended GUI"
 msgstr "Išplėstas GUI"
@@ -12892,7 +12892,7 @@ msgid "12V output."
 msgstr "12V išėjimas."
 
 msgid "1st Infobar timeout"
-msgstr "Timeout prima infobar"
+msgstr "1 info juosta išsijungs už"
 
 msgid "2nd Infobar timeout"
 msgstr "2 info juosta išsijungs už"
@@ -14403,10 +14403,10 @@ msgid "Show HDD progress"
 msgstr "Rodyti HDD pažangą"
 
 msgid "Show HDMI Output Resulution"
-msgstr "Rodyti HDMI išvestis"
+msgstr "Rodyti HDMI išvesties rezoliuciją"
 
 msgid "Show HDMI-Output Res"
-msgstr "Rodyti HDMI išvestis"
+msgstr "Rodyti HDMI išvesties rez"
 
 msgid "Show Log Manager in extensions list ?"
 msgstr "Rodyti žurnalo tvarkyklę išplėtimų sąraše?"
@@ -15163,7 +15163,7 @@ msgid "Yellow DVB subtitles"
 msgstr "Geltoni DVB subtitrai"
 
 msgid "You can Display MiniTV with or without OSD Menu"
-msgstr "Galite rodyti Mini TV su arba be OSD meniu"
+msgstr "MiniTV galite rodyti su arba be OSD meniu"
 
 msgid "You can Display PIP with or without OSD Menu"
 msgstr "Galite rodyti PIP su arba be OSD meniu"
