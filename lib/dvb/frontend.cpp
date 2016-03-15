@@ -3002,7 +3002,7 @@ bool eDVBFrontend::is_multistream()
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
 	return fe_info.caps & FE_CAN_MULTISTREAM;
 #else //if DVB_API_VERSION < 5
-	return fe_info.caps & false;
+	return 0;
 #endif
 }
 
