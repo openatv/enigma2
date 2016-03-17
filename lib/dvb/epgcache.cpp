@@ -1600,7 +1600,7 @@ void eEPGCache::channel_data::startEPG()
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
 	eDVBChannelID chid = channel->getChannelID();
-	char optsidonid[8];
+	char optsidonid[12];
 	sprintf (optsidonid, "%x", chid.dvbnamespace.get());
 	optsidonid [strlen(optsidonid) - 4] = '\0';
 	sprintf (optsidonid, "%s%04x%04x", optsidonid, chid.transport_stream_id.get(), chid.original_network_id.get());
