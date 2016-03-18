@@ -28,7 +28,7 @@
 #include <lib/service/event.h>
 #include <lib/python/python.h>
 
-#define MjdToEpochTime(x) (((x##_hi << 8 | x##_lo)-40587)*86400)  
+define MjdToEpochTime(x) (((x##_hi << 8 | x##_lo)-40587)*86400)  
 #define BcdTimeToSeconds(x) ((3600 * ((10*((x##_h & 0xF0)>>4)) + (x##_h & 0xF))) + \  
 				(60 * ((10*((x##_m & 0xF0)>>4)) + (x##_m & 0xF))) + \  
 				((10*((x##_s & 0xF0)>>4)) + (x##_s & 0xF)))
@@ -48,7 +48,7 @@ typedef struct epg_replay {
 	u_char replay_time_h                          :8;
 	u_char replay_time_m                          :8;
 	u_char replay_time_s                          :8;
-	u_char reserv1                                :8;
+	u_char reserv1				 :8;
 #if BYTE_ORDER == BIG_ENDIAN  
 	u_char last                                   :1;
 	u_char                                        :1;
@@ -65,7 +65,7 @@ typedef struct epg_replay {
 	u_char last                                   :1;
 #endif  
 	} epg_replay_t;
-
+	
 typedef struct {  
 	u_char original_nid_hi;
 	u_char original_nid_lo;
