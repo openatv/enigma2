@@ -481,7 +481,7 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 #endif
 #ifdef ENABLE_MHW_EPG
 		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 Movistar+
-		if (maxdays < 4){
+		if (maxdays < 7){
 			data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 Movistar+
 			data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 Movistar+
 		} else {
