@@ -3864,7 +3864,7 @@ void eEPGCache::channel_data::readPrivateData( const uint8_t *data)
 
 #endif // ENABLE_PRIVATE_EPG
 
-#ifdef ENABLE_MHW_EPG
+ifdef ENABLE_MHW_EPG
 static FILE *log_file = NULL;
 __u32 nbr_summary;
 std::map<__u32, __u32> m_titlesID;
