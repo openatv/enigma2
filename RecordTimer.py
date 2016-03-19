@@ -429,6 +429,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 							if not bouquetlist is None:
 								while True:
 									bouquet = bouquetlist.getNext()
+									if bouquet.type < 0:    # Reached end of bouquets
+										print "[RecordTimer] Reached end of bouquets..??"
+										break
 									if bouquet.flags & eServiceReference.isDirectory:
 										ChannelSelectionInstance.clearPath()
 										ChannelSelectionInstance.setRoot(bouquet)
