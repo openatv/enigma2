@@ -974,66 +974,36 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 100) >> 8;
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)")) // VU+Ultimo/VU+Uno DVB-S2 NIM
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)"))
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1600) + 0.2100) * 100);
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")) // VU+ DVB-S2 Dual NIM
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")
+		|| !strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")
+		|| !strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")
+		)
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")) // VU+ DVB-S2 Dual NIM
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")) // VU+DUO DVB-S2 NIM
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
+	else if (!strcmp(m_description, "BCM7346 (internal)"))
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // Gigablue
+	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
+		)
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")) // GigaBlue
-	{
-		ret = (int)(snr / 75);
-		ter_max = 1700;
-	}
-	else if (strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")) // GigaBlue
-	{
-		ret = (int)(snr / 75);
-		ter_max = 1700;
-	}
-	else if (strstr(m_description, "GIGA DVB-C/T2 NIM (SI4768)")) // GigaBlue
-	{
-		ret = (int)(snr / 75);
-		ter_max = 1700;
-	}
-	else if (strstr(m_description, "GIGA DVB-C/T NIM (SI41652)")) // GigaBlue
+	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
+		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
+		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4768)")
+		|| strstr(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
+		)
 	{
 		ret = (int)(snr / 75);
 		ter_max = 1700;
