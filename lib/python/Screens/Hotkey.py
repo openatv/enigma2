@@ -29,7 +29,7 @@ def getHotkeys():
 		("F4", "f4", ""),
 		("F4" + " " + _("long"), "f4_long", ""),
 		(_("Red"), "red", ""),
-		(_("Green"), "green", ""),
+		(_("Green"), "green", "Module/Screens.PluginBrowser/PluginBrowser"),
 		(_("Yellow"), "yellow", ""),
 		(_("Blue"), "blue", ""),
 		("Rec", "rec", ""),
