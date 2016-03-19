@@ -1,4 +1,5 @@
 #include <lib/gdi/lcd.h>
+#include <lib/gdi/epng.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -71,6 +72,7 @@ eDBoxLCD::eDBoxLCD()
 {
 	int xres=132, yres=64, bpp=8;
 	flipped = false;
+	dump = false;
 	inverted = 0;
 	lcd_type = 0;
 	FILE *boxtype_file;
@@ -201,6 +203,12 @@ void eDBoxLCD::setFlipped(bool onoff)
 	update();
 }
 
+void eDBoxLCD::setDump(bool onoff)
+ {
+ 	dump = onoff;
+ 	dumpLCD2PNG();
+ }
+ 
 int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
@@ -290,6 +298,61 @@ eDBoxLCD::~eDBoxLCD()
 	}
 }
 
+void eDBoxLCD::dumpLCD2PNG(void)
+ {
+ 		if (dump)
+ 		{
+ 			int bpp =( _stride *8)/res.width();
+ 			int lcd_width = res.width();
+ 			int lcd_hight = res.height();
+ 			ePtr<gPixmap> pixmap32;
+ 			pixmap32 = new gPixmap(eSize(lcd_width, lcd_hight), 32, gPixmap::accelAuto);
+ 			const uint8_t *srcptr = (uint8_t*)_buffer;
+ 			uint8_t *dstptr=(uint8_t*)pixmap32->surface->data;
+ 
+ 			switch(bpp)
+ 			{
+ 				case 8:
+ 					eDebug(" 8 bit not supportet yet");
+ 					break;
+ 				case 16:
+ 					{
+ 
+ 						for (int y = lcd_hight; y != 0; --y)
+ 						{
+ 							gRGB pixel32;
+ 							uint16_t pixel16;
+ 							int x = lcd_width;
+ 							gRGB *dst = (gRGB *)dstptr;
+ 							const uint16_t *src = (const uint16_t *)srcptr;
+ 							while (x--)
+ 							{
+ #if BYTE_ORDER == LITTLE_ENDIAN
+ 								pixel16 = bswap_16(*src++);
+ #else
+ 								pixel16 = *src++;;
+ #endif
+ 								pixel32.a = 0xFF;
+ 								pixel32.r = (pixel16 << 3) & 0xF8;
+ 								pixel32.g = (pixel16 >> 3) & 0xFC;
+ 								pixel32.b = (pixel16 >> 8) & 0xF8;
+ 								*dst++ = pixel32;
+ 							}
+ 							srcptr += _stride;
+ 							dstptr += pixmap32->surface->stride;
+ 						}
+ 						savePNG("/tmp/lcd.png", pixmap32);
+ 					}
+ 					break;
+ 				case 32:
+ 					eDebug(" 32 bit not supportet yet");
+ 					break;
+ 				default:
+ 					eDebug("%d bit not supportet yet",bpp);
+ 			}
+ 		}
+ }
+ 
 void eDBoxLCD::update()
 {
 #ifndef HAVE_TEXTLCD
@@ -420,5 +483,6 @@ void eDBoxLCD::update()
 			write(lcdfd, raw, 64*64);
 		}
 	}
+	dumpLCD2PNG();
 #endif
 }
