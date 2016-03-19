@@ -150,7 +150,7 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() in ('gbquad', 'gbquadplus', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase', 'spycat', 'gbx1', 'gbx3'):
+	if getBoxType() in ('gbultraquad', 'gbquad', 'gbquadplus', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase', 'spycat', 'gbx1', 'gbx3'):
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
@@ -314,7 +314,7 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		if getBoxType() in ('gbquad', 'gbquadplus'):
+		if getBoxType() in ('gbultraquad', 'gbquad', 'gbquadplus'):
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
