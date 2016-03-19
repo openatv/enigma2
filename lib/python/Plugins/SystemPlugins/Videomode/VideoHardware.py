@@ -93,6 +93,10 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		# modes["DVI"] = ["720p", "1080p", "2160p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
+	elif chipset in ('bcm7252'):
+		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		modes["DVI"] = ["720p", "1080i", "1080p", "2160p", "576p", "480p", "576i", "480i"]
+		widescreen_modes = set(["720p", "1080i", "1080p", "2160p"])
 	else:
 		modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
