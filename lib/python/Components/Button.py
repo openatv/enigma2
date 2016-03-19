@@ -1,15 +1,22 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from VariableText import VariableText
+from Label import DummySource
 
 from enigma import eButton
 
-class Button(VariableText, HTMLComponent, GUIComponent):
+class Button(DummySource, VariableText, HTMLComponent, GUIComponent):
 	def __init__(self, text="", onClick=None):
-		if not onClick: onClick = []
+		if not onClick:
+			onClick = []
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
-		self.setText(text)
+
+		# Use DummySource to allow Label to be used in a
+		# <widget source= ... /> screen skin element, but
+		# without displaying anything through that element
+
+		DummySource.__init__(self, text)
 		self.onClick = onClick
 
 	def push(self):
@@ -21,16 +28,6 @@ class Button(VariableText, HTMLComponent, GUIComponent):
 		pass
 
 	def enable(self):
-		pass
-
-# fake Source methods:
-	def connectDownstream(self, downstream):
-		pass
-
-	def checkSuspend(self):
-		pass
-
-	def disconnectDownstream(self, downstream):
 		pass
 
 # html:
