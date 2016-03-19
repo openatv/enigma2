@@ -45,7 +45,7 @@ class HardwareInfo:
 			self.device_model = self.device_name
 
 		# HDMI capbility
-		if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultrase', 'gbquad', 'gbquadplus', 'spycat', 'quadbox2400', 'gbx1', 'gbx3'):
+		if getMachineBuild() in ('gb7325', 'gb7358', 'gb7356', 'gb7252', 'xc7362', 'hd2400'):
 			self.device_hdmi = True
 		else:
 			self.device_hdmi = False
