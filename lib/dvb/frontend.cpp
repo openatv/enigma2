@@ -820,7 +820,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	int sat_max = 1600; // we assume a max of 16db here
 	int ter_max = 2900; // we assume a max of 29db here
 	int cab_max = 4200; // we assume a max of 42db here
-	int atsc_max = 4200, // we assume a max of 42db here
+	int atsc_max = 4200; // we assume a max of 42db here
 
 	if (!strcmp(m_description, "AVL2108")) // ET9000
 	{
