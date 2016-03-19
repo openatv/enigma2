@@ -1014,7 +1014,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
 		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
-		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4768)")
+		|| strstr(m_description, "GIGA DVB-C/T NIM (SI41652)")
 		|| strstr(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
 		) // Gigablue
 	{
