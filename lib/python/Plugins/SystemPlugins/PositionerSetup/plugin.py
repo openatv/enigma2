@@ -697,16 +697,17 @@ class PositionerSetup(Screen):
 						for sat in self.availablesats:
 							usals = self.advancedsats[sat].usals.value
 							if not usals:
-								self.allocatedIndices.append(int(self.advancedsats[sat].rotorposition.value))
+								current_index = int(self.advancedsats[sat].rotorposition.value)
+								if current_index not in self.allocatedIndices:
+									self.allocatedIndices.append(current_index)
 						if len(self.allocatedIndices) == self.rotorPositions:
 							self.statusMsg(_("No free index available"), timeout = self.STATUS_MSG_TIMEOUT)
 							break
 					index = 1
-					if len(self.allocatedIndices):
-						for i in sorted(self.allocatedIndices):
-							if i != index:
-								break
-							index += 1
+					for i in sorted(self.allocatedIndices):
+						if i != index:
+							break
+						index += 1
 					if index <= self.rotorPositions:
 						self.positioner_storage.value = index
 						self["list"].invalidateCurrent()
