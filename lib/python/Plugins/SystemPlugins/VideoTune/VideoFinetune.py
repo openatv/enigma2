@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Components.Sources.CanvasSource import CanvasSource
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
@@ -331,14 +332,17 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_overscan(self):
-		self.next = self.testpic_fullhd
+		self.next = SystemInfo["HasFullHDSkinSupport"] and self.testpic_fullhd or self.testpic_brightness
 		self.hide()
 		self.session.openWithCallback(self.testpicCallback, OverscanTestScreen)
 
 	def testpic_fullhd(self):
-		self.next = self.testpic_brightness
-		self.hide()
-		self.session.openWithCallback(self.testpicCallback, FullHDTestScreen)
+		if SystemInfo["HasFullHDSkinSupport"]:
+			self.next = self.testpic_brightness
+			self.hide()
+			self.session.openWithCallback(self.testpicCallback, FullHDTestScreen)
+		else:
+			return 0
 
 	def testpicCallback(self, key):
 		if key:
