@@ -555,7 +555,7 @@ int eDVBTerrestrialTransponderData::getHierarchyInformation() const
 
 int eDVBTerrestrialTransponderData::getPlpId() const
 {
-	if (originalValues) return transponderParameters.plpid;
+	if (originalValues) return transponderParameters.plp_id;
 
 #if defined DTV_STREAM_ID
 	return getProperty(DTV_STREAM_ID);

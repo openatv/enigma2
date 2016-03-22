@@ -727,7 +727,7 @@ void eDVBScan::channelDone()
 							{
 								T2 = true;
 								t2transponder.system = eDVBFrontendParametersTerrestrial::System_DVB_T2;
-								t2transponder.plpid = (int)d.getSelectorBytes()->at(0);
+								t2transponder.plp_id = (int)d.getSelectorBytes()->at(0);
 								t2transponder.code_rate_HP = t2transponder.code_rate_LP = eDVBFrontendParametersTerrestrial::FEC_Auto;
 								t2transponder.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
 								t2transponder.modulation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
