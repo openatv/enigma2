@@ -834,6 +834,25 @@ class HarddiskManager:
 				SystemInfo["Harddisk"] = True
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
+	def addHotplugAudiocd(self, device, physdev = None):
+		# device is the device name, without /dev
+		# physdev is the physical device path, which we (might) use to determine the userfriendly name
+		if not physdev:
+			dev, part = self.splitDeviceName(device)
+			try:
+				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
+			except OSError:
+				physdev = dev
+				print "couldn't determine blockdev physdev for device", device
+		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
+		if not blacklisted and medium_found:
+			description = self.getUserfriendlyDeviceName(device, physdev)
+			p = Partition(mountpoint = "/media/audiocd", description = description, force_mounted = True, device = device)
+			self.partitions.append(p)
+			self.on_partition_list_change("add", p)
+			SystemInfo["Harddisk"] = False
+		return error, blacklisted, removable, is_cdrom, partitions, medium_found
+
 	def removeHotplugPartition(self, device):
 		for x in self.partitions[:]:
 			if x.device == device:

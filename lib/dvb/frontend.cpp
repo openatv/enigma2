@@ -815,6 +815,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 {
 	int sat_max = 1600; // for stv0288 / bsbe2
 	int ret = 0x12345678;
+	int ter_max = 2900;
 	if (!strcmp(m_description, "AVL2108")) // ET9000
 	{
 		ret = (int)(snr / 40.5);
@@ -968,7 +969,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		else
 			ret = 2700;
 	}
-	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4506 (internal)") || strstr(m_description, "BCM4505"))
+	else if (strstr(m_description, "BCM4506")
+		|| strstr(m_description, "BCM4506 (internal)")
+		|| strstr(m_description, "BCM4505")
+		)
 	{
 		ret = (snr * 100) >> 8;
 	}
@@ -980,15 +984,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1600) + 0.2100) * 100);
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")) // VU+ DVB-S2 Dual NIM
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
-	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")) // VU+ DVB-S2 Dual NIM
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")) // VU+DUO DVB-S2 NIM
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")
+		|| !strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")
+		|| !strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")
+		) // VU+
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 	}
@@ -996,21 +995,32 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
 	}
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(7376 FBC)")) // VU+ Solo4k
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1850) - 0.3500) * 100);
+	}
 	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")) // Gigablue
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")) // Gigablue
+	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
+		) // Gigablue
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
+	}
+	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
+		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
+		|| strstr(m_description, "GIGA DVB-C/T NIM (SI41652)")
+		|| strstr(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
+		) // Gigablue
+	{
+		ret = (int)(snr / 75);
+		ter_max = 1700;
 	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
@@ -1043,10 +1053,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			break;
 		}
 	}
-	else if (!strcmp(m_description, "Broadcom BCM73XX") ||
-			 !strcmp(m_description, "FTS-260 (Montage RS6000)") ||
-			 !strcmp(m_description, "Panasonic MN88472") ||
-			 !strcmp(m_description, "Panasonic MN88473")) // xcore
+	else if (!strcmp(m_description, "Broadcom BCM73XX")
+		|| !strcmp(m_description, "FTS-260 (Montage RS6000)")
+		|| !strcmp(m_description, "Panasonic MN88472")
+		|| !strcmp(m_description, "Panasonic MN88473")
+		) // xcore
 	{
 		ret = snr * 100 / 256;
 
@@ -1089,7 +1100,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			signalquality = (ret >= 4200 ? 65536 : ret * 65536 / 4200);
 			break;
 		case feTerrestrial: // we assume a max of 29db here
-			signalquality = (ret >= 2900 ? 65536 : ret * 65536 / 2900);
+			signalquality = (ret >= ter_max ? 65536 : ret * 65536 / ter_max);
 			break;
 		case feATSC: // we assume a max of 42db here
 			signalquality = (ret >= 4200 ? 65536 : ret * 65536 / 4200);
@@ -2999,7 +3010,11 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 
 bool eDVBFrontend::is_multistream()
 {
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
 	return fe_info.caps & FE_CAN_MULTISTREAM;
+#else //if DVB_API_VERSION < 5
+	return 0;
+#endif
 }
 
 std::string eDVBFrontend::getCapabilities()
@@ -3031,7 +3046,9 @@ std::string eDVBFrontend::getCapabilities()
 	if (fe_info.caps &  FE_CAN_8VSB)			ss << "FE_CAN_8VSB" << std::endl;
 	if (fe_info.caps &  FE_CAN_16VSB)			ss << "FE_CAN_16VSB" << std::endl;
 	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << "FE_HAS_EXTENDED_CAPS" << std::endl;
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
 	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << "FE_CAN_MULTISTREAM" << std::endl;
+#endif
 	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << "FE_CAN_TURBO_FEC" << std::endl;
 	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << "FE_CAN_2G_MODULATION" << std::endl;
 	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << "FE_NEEDS_BENDING" << std::endl;
