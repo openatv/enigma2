@@ -217,8 +217,8 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 		modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_T;
-	plpid = 0;
-	eDebug("Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
+	plp_id = 0;
+	eDebug("[eDVBFrontendParametersTerrestrial] Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
 		frequency, bandwidth, code_rate_HP, code_rate_LP, transmission_mode,
 		guard_interval, hierarchy, modulation);
 }
@@ -256,14 +256,14 @@ void eDVBFrontendParametersTerrestrial::set(const T2DeliverySystemDescriptor &de
 		case 6: guard_interval = GuardInterval_19_256; break;
 		case 7: guard_interval = GuardInterval_Auto; break;
 	}
-	plpid = descriptor.getPlpId();
+	plp_id = descriptor.getPlpId();
 	code_rate_HP = code_rate_LP = FEC_Auto;
 	hierarchy = Hierarchy_Auto;
 	modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_T2;
 	eDebug("[eDVBFrontendParametersTerrestrial] T2 bw %d, tm_mode %d, guard %d, plp_id %d",
-		bandwidth, transmission_mode, guard_interval, plpid);
+		bandwidth, transmission_mode, guard_interval, plp_id);
 }
 
 eDVBFrontendParameters::eDVBFrontendParameters()
@@ -450,7 +450,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 				oterrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto &&
 				terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto)
 				diff = 1 << 30;
-			else if (oterrestrial.plpid != terrestrial.plpid)
+			else if (oterrestrial.plp_id != terrestrial.plp_id)
 				diff = 1 << 27;
 			else if (oterrestrial.system != terrestrial.system)
 				diff = 1 << 30;
@@ -2486,9 +2486,9 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				if (m_dvbversion >= DVB_VERSION(5, 3))
 				{
 #if defined DTV_STREAM_ID
-					p[cmdseq.num].cmd = DTV_STREAM_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
+					p[cmdseq.num].cmd = DTV_STREAM_ID, p[cmdseq.num].u.data = parm.plp_id, cmdseq.num++;
 #elif defined DTV_DVBT2_PLP_ID
-					p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
+					p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plp_id, cmdseq.num++;
 #endif
 				}
 			}
@@ -2694,7 +2694,7 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 //	feparm.hierarchy,
 	feparm.inversion
 //	feparm.system,
-//	feparm.plpid,
+//	feparm.plp_id,
 	);
 	oparm.setDVBT(feparm);
 	return 0;
