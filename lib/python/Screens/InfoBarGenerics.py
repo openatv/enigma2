@@ -1421,7 +1421,11 @@ class InfoBarSeek:
 
 	def showAfterSeek(self):
 		if isinstance(self, InfoBarShowHide):
-			self.doShow()
+			if isStandardInfoBar(self) and self.timeshiftEnabled():
+				for c in self.onPlayStateChanged:
+					c(self.seekstate)
+			else:
+				self.doShow()
 
 	def up(self):
 		pass
@@ -1750,10 +1754,11 @@ class TimeshiftLive(Screen):
 
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
-		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
+		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show=True)
 		self.timeshiftLiveScreen = self.session.instantiateDialog(TimeshiftLive)
 		self.onHide.append(self.timeshiftLiveScreen.hide)
 		self.secondInfoBarScreen and self.secondInfoBarScreen.onShow.append(self.timeshiftLiveScreen.hide)
+		self.secondInfoBarScreenSimple and self.secondInfoBarScreenSimple.onShow.append(self.timeshiftLiveScreen.hide)
 		self.timeshiftLiveScreen.hide()
 		self.__hideTimer = eTimer()
 		self.__hideTimer.callback.append(self.__hideTimeshiftState)
@@ -1763,6 +1768,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		if self.timeshiftEnabled():
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
+			if self.secondInfoBarScreenSimple and self.secondInfoBarScreenSimple.shown:
+				self.secondInfoBarScreenSimple.hide()
 			if self.timeshiftActivated():
 				self.pvrStateDialog.show()
 				self.timeshiftLiveScreen.hide()
@@ -2830,7 +2837,7 @@ class InfoBarSubserviceSelection:
 				self.playSubservice(service[1])
 
 	def addSubserviceToBouquetCallback(self, service):
-		if len(service) > 1 and isinstance(service[1], eServiceReference):
+		if service and len(service) > 1 and isinstance(service[1], eServiceReference):
 			self.selectedSubservice = service
 			if self.bouquets is None:
 				cnt = 0

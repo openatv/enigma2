@@ -195,7 +195,7 @@ class Standby(Standby2):
 		self.session.nav.stopService()
 
 class StandbySummary(Screen):
-	if getBoxType() in ('gbquadplus', 'gbquad', 'gbultraue', 'gb800ueplus', 'gb800ue'):
+	if getBoxType() in ('gbuhdquad', 'gbquadplus', 'gbquad', 'gbultraue', 'gb800ueplus', 'gb800ue'):
 		def __init__(self, session, what = None):
 			root = "/usr/share/enigma2/lcd_skin/"
 			try:

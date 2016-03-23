@@ -14,6 +14,7 @@ from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
 from boxbranding import getBoxType
+# from Components.SystemInfo import SystemInfo
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
@@ -80,6 +81,8 @@ def skin_user_skinname():
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
 DEFAULT_SKIN = "GigabluePax/skin.xml"
+# DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"
+# on SD hardware, PLi-HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	DEFAULT_SKIN = "om-black/skin.xml"
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
@@ -101,7 +104,7 @@ addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
 
-if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbultraue', 'gbquad', 'gbquadplus'):
+if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbultraue', 'gbquad', 'gbquadplus', 'gbuhdquad'):
 	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
 else:
 	config.skin.lcdskin = ConfigNothing()

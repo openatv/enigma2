@@ -409,7 +409,7 @@ class InetdRecovery(Screen, ConfigListScreen):
 			inetdData += "#netbios-ns	dgram	" + sockTypeudp + "	wait	root	/usr/sbin/nmbd	nmbd\n"
 		if fileExists('/usr/bin/streamproxy'):
 			inetdData += "#8001	stream	" + sockTypetcp + "	nowait	root	/usr/bin/streamproxy	streamproxy\n"
-		if getBoxType() in ('gbquad', 'gbquadplus'):
+		if getBoxType() in ('gbuhdquad', 'gbquad', 'gbquadplus'):
 			inetdData += "8002	stream	" + sockTypetcp + "	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 			
 		fd = file("/etc/inetd.conf", 'w')
