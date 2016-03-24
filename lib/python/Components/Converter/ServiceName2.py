@@ -132,11 +132,11 @@ class ServiceName2(Converter, object):
 			lastpath = isRadioService and config.radio.lastroot.value or config.tv.lastroot.value
 			if 'FROM BOUQUET' not in lastpath:
 				if 'FROM PROVIDERS' in lastpath:
-					return 'P', 'Provider'
+					return 'P', _("Provider")
 				if 'FROM SATELLITES' in lastpath:
-					return 'S', 'Satellites'
+					return 'S', _("Satellites")
 				if ') ORDER BY name' in lastpath:
-					return 'A', 'All Services'
+					return 'A', _("All Services")
 				return 0, 'N/A'
 			try:
 				acount = config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value or config.usage.alternative_number_mode.value
@@ -382,7 +382,7 @@ class ServiceName2(Converter, object):
 		elif 'udp/238.0.' in refstr or 'udp/233.191.' in refstr:
 			return "Triolan"
 		elif '%3a8208' in refstr:
-			return "MovieStar"
+			return "MOVISTAR+"
 		elif 'udp/239.0.0.' in refstr:
 			return "Trinity"
 		elif '.cn.ru' in refstr or 'novotelecom' in refstr:
