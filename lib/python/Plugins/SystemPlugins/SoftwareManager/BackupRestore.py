@@ -41,6 +41,7 @@ def InitConfig():
 																							'/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
 																							'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
 																							'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
+																							'/usr/share/enigma2/MetrixHD/skinparts/',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
