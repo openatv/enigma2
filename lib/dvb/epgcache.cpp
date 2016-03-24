@@ -2023,7 +2023,7 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 #endif
 			default: eDebugNoNewLine("unknown");break;
 		}
-		eDebugNoNewLine("[EPGC] finished(%ld)\n", ::time(0));
+		eDebugNoNewLine(" finished (%ld)", ::time(0));
 		if ( reader )
 			reader->stop();
 		isRunning &= ~source;
