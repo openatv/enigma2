@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
@@ -79,10 +79,11 @@ class ChoiceBox(Screen):
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,
-			"right": self.right
-		}, -1)
+			"right": self.right,
+			"back": lambda: 0,  # drop through to self["cancelaction"]
+		}, -2)
 
-		self["cancelaction"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
+		self["cancelaction"] = ActionMap(["WizardActions"],
 		{
 			"back": self.cancel,
 		}, -1)
