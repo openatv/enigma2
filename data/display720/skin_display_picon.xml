@@ -176,7 +176,7 @@
 		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,420" foregroundColor="#ff0000" size="140,70" font="FdLcD;65" halign="center" valign="center" zPosition="22">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget noWrap="1" font="FdLcD;75" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="center" >
+		<widget noWrap="1" font="FdLcD;45" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="center" >
 			<convert type="MSNWeather">temperature_current</convert>
 		</widget>
 		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
