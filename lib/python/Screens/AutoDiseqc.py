@@ -191,7 +191,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 				self.raw_channel.requestTsidOnid()
 			self.tuner.tune(self.sat_frequencies[self.index])
 
-			self["statusbar"].setText(_("Checking tuner %d\nDiSEqC port %s for %s") % (self.feid, self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
+			self["statusbar"].setText(_("Checking tuner %s\nDiSEqC port %s for %s") % (chr(self.feid+65), self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
 			self["tunerstatusbar"].setText(" ")
 
 			self.count = 0
