@@ -1521,7 +1521,7 @@ void eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
-		eDebug("[eEPGCache] stop caching events(%ld)", ::time(0));
+		eDebug("[eEPGCache] stop caching events");
 		zapTimer->start(UPDATE_INTERVAL, 1);
 		eDebug("[eEPGCache] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
@@ -1542,7 +1542,7 @@ void eEPGCache::channel_data::finishEPG()
 
 void eEPGCache::channel_data::startEPG()
 {
-	eDebug("[eEPGCache] start caching events(%ld)", ::time(0));
+	eDebug("[eEPGCache] start caching events");
 	state=0;
 	haveData=0;
 	for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
@@ -2023,7 +2023,7 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 #endif
 			default: eDebugNoNewLine("unknown");break;
 		}
-		eDebugNoNewLine("[EPGC] finished(%ld)\n", ::time(0));
+		eDebugNoNewLine(" finished");
 		if ( reader )
 			reader->stop();
 		isRunning &= ~source;

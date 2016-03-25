@@ -174,7 +174,7 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	FT_Done_Face(face);
 
 	n->next=font;
-	eDebugNoNewLine(" -> %s\n", n->face.c_str());
+	eDebugNoNewLine(" -> %s", n->face.c_str());
 	font=n;
 
 	return n->face;
