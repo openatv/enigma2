@@ -16,7 +16,8 @@ class Button(DummySource, VariableText, HTMLComponent, GUIComponent):
 		# <widget source= ... /> screen skin element, but
 		# without displaying anything through that element
 
-		DummySource.__init__(self, text)
+		DummySource.__init__(self)
+		self.text = text
 		self.onClick = onClick
 
 	def push(self):
