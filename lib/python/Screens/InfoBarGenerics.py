@@ -2920,6 +2920,11 @@ class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""
 
+	# Fallback recording length for "padded event" when EPG
+	# info can't be found for the event.
+
+	PADDED_LEN_FALLBACK = 2 * 60 * 60
+
 	_instantRecLookup = None
 
 	_instantRecActionGroups = {
@@ -3049,8 +3054,7 @@ class InfoBarInstantRecord:
 			elif event is not None:
 				end = info["end"]
 			else:
-				limitEvent = False
-				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
+				end = begin + self.PADDED_LEN_FALLBACK
 
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
@@ -3165,7 +3169,13 @@ class InfoBarInstantRecord:
 			if message:
 				if message.count("%s") == 2:
 					name = recording.name if recording else _("Unknown recording name")
-					message = message % (config.recording.instant_recording_length.getText(), name)
+
+					info = {}
+					self.getProgramInfoAndEvent(info, name)
+					length = config.recording.instant_recording_length.getText()
+					if config.recording.instant_recording_length.value == "paddedevent" and info["event"] is None:
+						length = ngettext("%d minute", "%d minutes", self.PADDED_LEN_FALLBACK) % (self.PADDED_LEN_FALLBACK / 60)
+					message = message % (length, name)
 				id = "RecStart" + (getattr(recording, "Filename", '') if recording else '')
 				Notifications.AddPopup(text=message, type=MessageBox.TYPE_INFO, timeout=3, id=id)
 		elif answer == "review":
