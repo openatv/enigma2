@@ -173,6 +173,8 @@ class LogManagerPoller:
 						size -= st_size
 		now = datetime.now()
 		seconds_since_0330am = (now - now.replace(hour=3, minute=30, second=0)).total_seconds()
+		if (seconds_since_0330am <= 0):
+			seconds_since_0330am += 86400
 		if (seconds_since_0330am > 43200):
 			self.TrashTimer.startLongTimer(int(86400-seconds_since_0330am)) #at 03:30 AM
 		else:
