@@ -29,7 +29,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import CompareWithAlternatives
 from Tools import Notifications
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER,\
-	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
+	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG, eServiceReference
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime, mktime
 from Components.PluginComponent import plugins
@@ -1295,6 +1295,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 							entry.end -= 30
 							change_time = True
 						elif entry.begin == conflict_end:
+							entry.begin += 30
+							change_time = True
+						elif entry.begin == conflict_begin and (entry.service_ref and entry.service_ref.ref and entry.service_ref.ref.flags & eServiceReference.isGroup):
 							entry.begin += 30
 							change_time = True
 						if change_time:
