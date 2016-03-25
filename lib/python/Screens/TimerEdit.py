@@ -398,12 +398,22 @@ class TimerSanityConflict(Screen):
 	def editTimerCallBack(self, answer=None):
 		if answer and len(answer) > 1 and answer[0] is True:
 			self.session.nav.RecordTimer.timeChanged(answer[1])
+			if not answer[1].disabled:
+				if not self.isResolvedConflict(answer[1]):
+					self.session.open(MessageBox, _("Conflict not resolved!"), MessageBox.TYPE_INFO, timeout=3)
+					return
 			self.leave_ok()
 
 	def toggleTimer(self):
 		selected_timer = self["timerlist"].getCurrent()
-		if selected_timer and self["key_yellow"].getText() != " ":
+		if selected_timer and self["key_yellow"].getText() != " " and not selected_timer.isRunning():
 			selected_timer.disabled = not selected_timer.disabled
+			if not selected_timer.disabled:
+				if not self.isResolvedConflict(selected_timer):
+					timer_text = _("\nTimer '%s' disabled!") % selected_timer.name
+					selected_timer.disabled = True
+					self.session.open(MessageBox, _("Conflict not resolved!") + timer_text, MessageBox.TYPE_INFO, timeout=3)
+					return
 			self.session.nav.RecordTimer.timeChanged(selected_timer)
 			self.leave_ok()
 
@@ -431,10 +441,15 @@ class TimerSanityConflict(Screen):
 		if self.isResolvedConflict():
 			self.close((True, self.timer[0]))
 		else:
-			self.timer[0].disabled = True
-			self.session.nav.RecordTimer.timeChanged(self.timer[0])
+			timer_text = ""
+			selected_timer = self["timerlist"].getCurrent()
+			if selected_timer and selected_timer == self.timer[0]:
+				if not self.timer[0].isRunning() and not self.timer[0].disabled:
+					self.timer[0].disabled = True
+					self.session.nav.RecordTimer.timeChanged(self.timer[0])
+					timer_text = _("\nTimer '%s' disabled!") % self.timer[0].name
 			self.updateState()
-			self.session.open(MessageBox, _("Conflict not resolved!"), MessageBox.TYPE_ERROR, timeout=3)
+			self.session.open(MessageBox, _("Conflict not resolved!") + timer_text, MessageBox.TYPE_ERROR, timeout=3)
 
 	def leave_cancel(self):
 		isTimerSave = self.timer[0] in self.session.nav.RecordTimer.timer_list
@@ -442,7 +457,7 @@ class TimerSanityConflict(Screen):
 			self.close((False, self.timer[0]))
 		else:
 			timer_text = ""
-			if not self.timer[0].isRunning():
+			if not self.timer[0].isRunning() and not self.timer[0].disabled:
 				self.timer[0].disabled = True
 				self.session.nav.RecordTimer.timeChanged(self.timer[0])
 				timer_text = _("\nTimer '%s' disabled!") % self.timer[0].name
@@ -451,14 +466,15 @@ class TimerSanityConflict(Screen):
 	def canceling(self, answer=None):
 		self.close((False, self.timer[0]))
 
-	def isResolvedConflict(self):
-		timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, self.timer[0])
+	def isResolvedConflict(self, checktimer=None):
+		timer = checktimer or self.timer[0]
+		timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, timer)
 		success = False
 		if not timersanitycheck.check():
 			simulTimerList = timersanitycheck.getSimulTimerList()
 			if simulTimerList is not None:
 				for x in simulTimerList:
-					if x.setAutoincreaseEnd(self.timer[0]):
+					if x.setAutoincreaseEnd(timer):
 						self.session.nav.RecordTimer.timeChanged(x)
 				if timersanitycheck.check():
 					success = True
