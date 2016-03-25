@@ -1,0 +1,27 @@
+<screen position="0,0" size="220,176">
+	<!--clock background-->
+	<ePixmap pixmap="lcd_skin/clock_lcd_digital_flipClock_bg.png" position="0,0" size="220,176" zPosition="0" />
+	<!--time line-->
+	<ePixmap pixmap="lcd_skin/clock_lcd_digital_flipClock_split.png" position="22,67" size="76,5" zPosition="10" transparent="1" alphatest="on" />
+	<ePixmap pixmap="lcd_skin/clock_lcd_digital_flipClock_split.png" position="123,67" size="76,5" zPosition="10" transparent="1" alphatest="on" />
+	<!--date line-->
+	<ePixmap pixmap="lcd_skin/clock_lcd_digital_flipClock_split.png" position="47,146" size="128,2" zPosition="11" transparent="1" alphatest="on" />
+	<!--rad center-->
+	<ePixmap pixmap="lcd_skin/clock_lcd_digital_flipClock_rad.png" position="103,8" size="14,114" zPosition="12" transparent="1" alphatest="on" />
+	<!--TIME-->
+	<widget source="global.CurrentTime" render="Label" position="23,21" size="76,134" font="RegularLCD;70" halign="center" valign="top" noWrap="1" zPosition="1" transparent="1" foregroundColor="#ffffff">
+		<convert type="ClockToText">Format:%H</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="123,21" size="76,134" font="RegularLCD;70" halign="center" valign="top" noWrap="1" zPosition="1" transparent="1" foregroundColor="#ffffff">
+		<convert type="ClockToText">Format:%M</convert>
+	</widget>
+	<!--DATE-->
+	<widget source="global.CurrentTime" render="Label" position="center,122" size="220,50" font="RegularLCD;32" halign="center" valign="center" zPosition="1" foregroundColor="#ffffff" transparent="1">
+		<convert type="ClockToText">ShortDate</convert>
+	</widget>
+	<!--RECORD LED-->
+	<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/buttons/button_red.png" position="192,142" size="14,15" zPosition="10" transparent="1" alphatest="on" >
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+<!--END-->
+</screen>
