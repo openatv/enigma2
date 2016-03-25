@@ -1965,6 +1965,14 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			fe_delivery_system_t system = SYS_DVBS;
 			oparm.getDVBS(parm);
 
+			switch (parm.system)
+			{
+				default:
+				case eDVBFrontendParametersSatellite::System_DVB_S: system = SYS_DVBS; break;
+				case eDVBFrontendParametersSatellite::System_DVB_S2: system = SYS_DVBS2; break;
+			}
+			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM, p[cmdseq.num].u.data = system, cmdseq.num++;
+
 			p[cmdseq.num].cmd = DTV_INVERSION;
 			switch (parm.inversion)
 			{
@@ -1975,12 +1983,6 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			}
 			cmdseq.num++;
 
-			switch (parm.system)
-			{
-				default:
-				case eDVBFrontendParametersSatellite::System_DVB_S: system = SYS_DVBS; break;
-				case eDVBFrontendParametersSatellite::System_DVB_S2: system = SYS_DVBS2; break;
-			}
 			switch (parm.modulation)
 			{
 				case eDVBFrontendParametersSatellite::Modulation_QPSK: modulation = QPSK; break;
@@ -2005,7 +2007,6 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				case eDVBFrontendParametersSatellite::RollOff_auto: rolloff = ROLLOFF_AUTO; break;
 			}
 			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = satfrequency, cmdseq.num++;
-			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM, p[cmdseq.num].u.data = system, cmdseq.num++;
 			p[cmdseq.num].cmd = DTV_MODULATION, p[cmdseq.num].u.data = modulation, cmdseq.num++;
 			p[cmdseq.num].cmd = DTV_SYMBOL_RATE, p[cmdseq.num].u.data = parm.symbol_rate, cmdseq.num++;
 
@@ -2037,17 +2038,6 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		{
 			eDVBFrontendParametersCable parm;
 			oparm.getDVBC(parm);
-			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = parm.frequency * 1000, cmdseq.num++;
-
-			p[cmdseq.num].cmd = DTV_INVERSION;
-			switch (parm.inversion)
-			{
-				case eDVBFrontendParametersCable::Inversion_Off: p[cmdseq.num].u.data = INVERSION_OFF; break;
-				case eDVBFrontendParametersCable::Inversion_On: p[cmdseq.num].u.data = INVERSION_ON; break;
-				default:
-				case eDVBFrontendParametersCable::Inversion_Unknown: p[cmdseq.num].u.data = INVERSION_AUTO; break;
-			}
-			cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM;
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
@@ -2067,6 +2057,18 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 #else
 			p[cmdseq.num].u.data = SYS_DVBC_ANNEX_AC;
 #endif
+			cmdseq.num++;
+
+			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = parm.frequency * 1000, cmdseq.num++;
+
+			p[cmdseq.num].cmd = DTV_INVERSION;
+			switch (parm.inversion)
+			{
+				case eDVBFrontendParametersCable::Inversion_Off: p[cmdseq.num].u.data = INVERSION_OFF; break;
+				case eDVBFrontendParametersCable::Inversion_On: p[cmdseq.num].u.data = INVERSION_ON; break;
+				default:
+				case eDVBFrontendParametersCable::Inversion_Unknown: p[cmdseq.num].u.data = INVERSION_AUTO; break;
+			}
 			cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_SYMBOL_RATE, p[cmdseq.num].u.data = parm.symbol_rate, cmdseq.num++;
