@@ -3059,6 +3059,11 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
+		if info["name"] == name:
+			servicename = serviceref.getServiceName()
+			if servicename:
+				info["name"] = servicename
+
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], dirname=preferredInstantRecordPath())
 		recording.dontSave = True
 
