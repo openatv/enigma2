@@ -19,7 +19,7 @@ from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
-		hierarchy = 4, system = 0, plpid = 0):
+		hierarchy = 4, system = 0, plp_id = 0):
 #	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy
 	parm = eDVBFrontendParametersTerrestrial()
 	parm.frequency = frequency
@@ -32,7 +32,7 @@ def buildTerTransponder(frequency,
 	parm.guard_interval = guard
 	parm.hierarchy = hierarchy
 	parm.system = system
-	parm.plpid = plpid
+	parm.plp_id = plp_id
 	return parm
 
 def getInitialTransponderList(tlist, pos):
@@ -397,7 +397,7 @@ class TerrestrialTransponderSearchSupport:
 						parm.guard_interval = parm.GuardInterval_Auto
 						parm.hierarchy = parm.Hierarchy_Auto
 						parm.system = 'DVB-T2' in data[1] and parm.System_DVB_T_T2 or parm.System_DVB_T
-						parm.plpid = 0
+						parm.plp_id = 0
 						self.__tlist.append(parm)
 					tmpstr = _("Try to find used transponders in terrestrial network... please wait...")
 					tmpstr += "\n\n"
@@ -429,7 +429,7 @@ class TerrestrialTransponderSearchSupport:
 					parm.guard_interval = parm.GuardInterval_Auto
 					parm.hierarchy = parm.Hierarchy_Auto
 					parm.system = parm.System_DVB_T
-					parm.plpid = 0
+					parm.plp_id = 0
 					self.__tlist.append(parm)
 				else:
 					plp_list = data[5:]
@@ -451,7 +451,7 @@ class TerrestrialTransponderSearchSupport:
 						parm.guard_interval = parm.GuardInterval_Auto
 						parm.hierarchy = parm.Hierarchy_Auto
 						parm.system = parm.System_DVB_T2
-						parm.plpid = int(plp_id)
+						parm.plp_id = int(plp_id)
 						self.__tlist.append(parm)
 				tmpstr = _("Try to find used transponders in terrestrial network... please wait...")
 				tmpstr += "\n\n"
@@ -1247,7 +1247,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 						guard = self.scan_ter.guard.value,
 						hierarchy = self.scan_ter.hierarchy.value,
 						system = self.scan_ter.system.value,
-						plpid = self.scan_ter.plp_id.value)
+						plp_id = self.scan_ter.plp_id.value)
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "predefined_transponder":
 				if self.TerrestrialTransponders is not None:

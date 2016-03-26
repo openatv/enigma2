@@ -14,7 +14,7 @@ struct CFile
 	{
 #ifdef DEBUG
 		if (!handle)
-			eDebug("error %s [%m]",filename);
+			eDebug("[CFile] information %s [%m]",filename);
 #endif
 	}
 	CFile(const std::string &filename, const char *mode)

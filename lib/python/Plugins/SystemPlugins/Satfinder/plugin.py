@@ -361,8 +361,9 @@ class Satfinder(ScanSetup, ServiceScan):
 				tps = nimmanager.getTranspondersTerrestrial(region)
 				if len(tps) > self.TerrestrialTransponders.index :
 					transponder = tps[self.TerrestrialTransponders.index]
-					# frequency 1, inversion 9, bandwidth 2, fechigh 4, feclow 5, modulation 3, transmission 7, guard 6, hierarchy 8, system 10, plpid 11
-					self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
+					# frequency 1, inversion 9, bandwidth 2, fechigh 4, feclow 5, modulation 3, transmission 7, guard 6, hierarchy 8, system 10, plp_id 11
+					if self.initcomplete:
+						self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
 					self.transponder = transponder
 
 	def retuneSat(self):
@@ -429,7 +430,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.transponder[6],  # guard
 				self.transponder[8],  # hierarchy
 				self.transponder[10], # system
-				self.transponder[11]  # plpid
+				self.transponder[11]  # plp_id
 			)
 			tlist.append(parm)
 		else: # DVB-C

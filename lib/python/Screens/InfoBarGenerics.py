@@ -3213,7 +3213,7 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-			print "upload failed, no cuesheet interface"
+			print "no cue available to upload, no cuesheet interface"
 			return
 		cue.setCutList(self.cut_list)
 
@@ -3221,7 +3221,7 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-			print "download failed, no cuesheet interface"
+			print "no cue available for download, no cuesheet interface"
 			self.cut_list = [ ]
 		else:
 			self.cut_list = cue.getCutList()
