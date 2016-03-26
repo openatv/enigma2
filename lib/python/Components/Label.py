@@ -8,22 +8,22 @@ from enigma import eLabel
 
 # Fake Source mixin
 # Allows a getText()/setText() Component widget to
-# be references in a <widget source= /> screen skin element
+# be referenced in a <widget source= /> screen skin element
 # without crashing and without displaying anything.
 
-# To do that it must defer setting any constructor text argument
-# or any <widget ... text= .../> text assignment until after applySkin()
-# has attached any Converters or Renderers, because they call back
-# to getText() when they attach, so at that time getText() must
-# return an empty string.
+# To do that it must save the widget text value and set the widget text to ""
+# when the connection to a downstream is Converter or Renderer is made
+# so that the initial displayed text in the Renderer when it
+# connects is "".
 
 class DummySource(object):
-	def __init__(self, text=""):
-		# defer setting text until applySkin() has connected any Elements
-		self.__initText = text
-
 	def connectDownstream(self, downstream):
-		pass
+		# intercept the connection to the downstream and save
+		# and clear the widget text
+		# hasattr(self, "_DummySource__initText") tests for self.__initText.
+		if not hasattr(self, "_DummySource__initText"):
+			self.__initText = self.text
+			self.text = ""
 
 	def checkSuspend(self):
 		pass
@@ -32,23 +32,25 @@ class DummySource(object):
 		pass
 
 	# This applySkin intercepts any <widget ... text= .../> assignment
-	# and defers calls of the main object's setText() until the underlying
-	# GUIComponent.applySkin() has been called.
+	# so that it's properly applied and restores the correct text value
+	# after any Converter or Renderer connections have been made.
 
 	def applySkin(self, desktop, screen):
-		# defer any "text" attribute setting until any Elements have been connected
+		# catch any "text" attribute setting so that it's properly applied
 		if self.skinAttributes is not None and "text" in self.skinAttributes:
 			self.__initText = _(self.skinAttributes["text"])
 			del self.skinAttributes["text"]
 		retval = GUIComponent.applySkin(self, desktop, screen)
 
-		# Test for whether self.__initText exists with a deferred
-		# initial text value. If it does, now use it to set
-		# the instance's text value.
-		# hasattr(self, "_DummySource__initText") tests for self.__initText.
+		# Test for whether self.__initText exists with a saved
+		# initial ot skin text value. If it does, now use it to set
+		# the instance's text value back to its intended value.
+
+		# hasattr(self, "_DummySource__initText") tests
+		# for self.__initText.
 
 		if hasattr(self, "_DummySource__initText"):
-			self.setText(self.__initText)
+			self.text = self.__initText
 			del self.__initText
 
 		return retval
@@ -62,7 +64,8 @@ class Label(DummySource, VariableText, HTMLComponent, GUIComponent):
 		# <widget source= ... /> screen skin element, but
 		# without displaying anything through that element
 
-		DummySource.__init__(self, text)
+		DummySource.__init__(self)
+		self.text = text
 
 # html:
 	def produceHTML(self):
