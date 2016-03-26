@@ -25,9 +25,12 @@ class eErrorOutput: public eMainloop, public eThread, public Object
 	void gotMessage(const Message &message);
 	void thread_finished();
 	void printout();
-public:
+	bool waitPrintout;
 	bool threadrunning;
 	int pipe_fd[2];
+public:
+	bool isErrorOututActive(){return (threadrunning &&  pipe_fd[1]);};
+	int getPipe(){return pipe_fd[1];};
 #ifndef SWIG
 	eErrorOutput();
 	~eErrorOutput();
