@@ -1187,7 +1187,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y() + (or
 		<widget name="apply" position="10,240" size="250,35"/>
 	</screen>
 	<!-- Timer edit list -->
-	<screen name="TimerEditList" position="center,center" size="560,430" title="Timer editor">
+	<screen name="TimerEditList" position="center,center" size="560,450" title="Timer overview">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on"/>
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on"/>
@@ -1196,7 +1196,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y() + (or
 		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
 		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1"/>
-		<widget name="timerlist" position="0,60" size="560,350" scrollbarMode="showOnDemand"/>
+		<widget name="timerlist" position="0,60" size="560,300" scrollbarMode="showOnDemand"/>
+		<widget name="description" position="0,370" zPosition="1" size="560,80" font="Regular;18" transparent="1"/>
 	</screen>
 	<!-- Timer entry -->
 	<screen name="TimerEntry" position="center,center" size="560,440" title="Timer entry">
