@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-12 14:43+0200\n"
-"PO-Revision-Date: 2016-03-19 15:03+0200\n"
+"PO-Revision-Date: 2016-03-27 02:42+0200\n"
 "Last-Translator: Audronis Grincevicius <adga@zebra.lt>\n"
 "Language-Team: adga (c) <adga@zebra.lt>\n"
 "Language: lt\n"
@@ -85,7 +85,7 @@ msgid ""
 "Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Ipriedų valdymas jūsų imtuve %s %s"
+"Išplėtimų ir priedų valdymas jūsų imtuve %s %s"
 
 #, python-format
 msgid ""
@@ -211,7 +211,7 @@ msgstr ""
 "Nepradėta!\n"
 "\n"
 "Emuliatorius turi būti pradinėje komandinėje eilutėje\n"
-"Tikrinkite Emu konfigūracijos failą"
+"Tikrinkite emu konfigūracijos failą"
 
 msgid " and"
 msgstr "ir"
@@ -721,7 +721,7 @@ msgid "32 Mb"
 msgstr "32 Mb"
 
 msgid "3D Mode"
-msgstr "Modalità 3D"
+msgstr "3D režimas"
 
 msgid "3D Surround"
 msgstr "3D erdvinis garsas"
@@ -733,7 +733,7 @@ msgid "3X"
 msgstr "3X"
 
 msgid "3d mode"
-msgstr "Modalità 3D"
+msgstr "3D režimas"
 
 msgid "3s"
 msgstr "3s"
@@ -1081,7 +1081,7 @@ msgid "Activate HbbTV (Redbutton)"
 msgstr "Aktyvuoti HbbTV (Raudonas mygtukas)"
 
 msgid "Activate MAC-address configuration"
-msgstr "Aktyvuoti MAC-adreso konfigūraciją"
+msgstr "Aktyvuokite MAC adreso konfigūraciją"
 
 msgid "Activate Picture in Picture"
 msgstr "Įjungti vaizdą vaizde"
@@ -1270,7 +1270,7 @@ msgid "All satellites 4 (USALS)"
 msgstr "Visi palydovai 4 (USALS)"
 
 msgid "Allocate"
-msgstr "Nustatyti"
+msgstr "Paskirti"
 
 msgid "Allocate unused memory index"
 msgstr "Nustatyti nenaudojamos atminties indeksą"
@@ -1767,7 +1767,7 @@ msgid "Buffering %d%%"
 msgstr "Buferizuojama %d%%"
 
 msgid "Buffers:"
-msgstr "Rezervai:"
+msgstr "Buferiai:"
 
 #, python-format
 msgid "Build:\t%s"
@@ -1805,7 +1805,7 @@ msgid "ButtonSetup"
 msgstr "Mygtukų valdymas"
 
 msgid "By openATV Image Team"
-msgstr "OpenATV atvaizdų komanda"
+msgstr "OpenATV atvaizdo komanda"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Praleisti HDMI EDID tikrinimą"
@@ -2764,7 +2764,7 @@ msgid "Delete Confirmation"
 msgstr "Pašalinimo patvirtinimas"
 
 msgid "Delete Language"
-msgstr "Pašalinti kalbą"
+msgstr "Trinti kalbą"
 
 msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
@@ -2779,13 +2779,13 @@ msgid "Delete failed!"
 msgstr "Ištrinti nepavyko!"
 
 msgid "Delete file"
-msgstr "Pašalinti failą"
+msgstr "Trinti failą"
 
 msgid "Delete playlist entry"
 msgstr "Šalinti grojaraščio įrašą"
 
 msgid "Delete saved playlist"
-msgstr "Pašalinti išsaugotą grojaraštį"
+msgstr "Trinti išsaugotą grojaraštį"
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr ""
@@ -3741,13 +3741,13 @@ msgid "Favourites"
 msgstr "Geriausi"
 
 msgid "Feeds status:   Stable"
-msgstr "Šaltinio stovis: stabilus"
+msgstr "Šaltinių stovis:   Stabilus"
 
 msgid "Feeds status:   Unstable"
-msgstr "Šaltinio stovis: nestabilus"
+msgstr "Šaltinių stovis:   Nestabilus"
 
 msgid "Feeds status:   Updating"
-msgstr "Šaltinio stovis: naujinama"
+msgstr "Šaltinių stovis:   Naujinama"
 
 msgid "File"
 msgstr "Failas"
@@ -4648,7 +4648,7 @@ msgstr "Tiesiog pakeisti kanalus"
 #. "nonlinear": _("Nonlinear"),
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
-msgstr "Tiesiog mastas"
+msgstr "Tiesiog skalė"
 
 msgid "Just zap"
 msgstr "Tiesiog perjungti"
@@ -4713,7 +4713,7 @@ msgid "Last Req."
 msgstr "Paskutinė užkl."
 
 msgid "Last config"
-msgstr "Paskutinė konfig."
+msgstr "Paskutinė konfig"
 
 msgid "Last speed"
 msgstr "Paskutinis greitis"
@@ -5698,7 +5698,7 @@ msgid "Not mounted"
 msgstr "Nepajungta"
 
 msgid "Not-Associated"
-msgstr "Ne-Asocijuotas"
+msgstr "Nesusieta"
 
 msgid "Nothing"
 msgstr "Nieko"
@@ -7717,7 +7717,7 @@ msgstr "Nustatykite kaip paleidimo kanalą"
 
 #, python-format
 msgid "Set the MAC-address of your %s %s.\n"
-msgstr "Nustatykite MAC adresą savo %s%s.\n"
+msgstr "Nustatykite MAC adresą savo %s %s.\n"
 
 msgid "Set the channel for this timer."
 msgstr "Nustatykite kanalą šiam laikmačiui."
@@ -7932,7 +7932,7 @@ msgid "Setup your Harddisk"
 msgstr "Kieto disko valdymas"
 
 msgid "Setup your LCD"
-msgstr "Nustatykite savo OSD"
+msgstr "Nustatykite savo LCD"
 
 msgid "Setup your OSD"
 msgstr "Nustatykite savo OSD"
@@ -8143,13 +8143,13 @@ msgid "Show bouquet selection menu"
 msgstr "Rodyti paketus pasirinkimo meniu"
 
 msgid "Show default backup files"
-msgstr "Numatyti atsarginės kopijos failai."
+msgstr "Numatyti atsarginės kopijos failai"
 
 msgid "Show detailed event info"
 msgstr "Rodyti išsamią įvykio informaciją"
 
 msgid "Show epg"
-msgstr "Rodyti EPG"
+msgstr "Rodyti epg"
 
 msgid "Show event details"
 msgstr "Rodyti įvykio detales"
@@ -8468,13 +8468,13 @@ msgid "Softcam Setup"
 msgstr "Emuliatoriaus tvarkyklė"
 
 msgid "Softcam-Panel"
-msgstr "Emuliatorių-skydas"
+msgstr "Emuliatorių skydas"
 
 msgid "Softcam-Panel Setup"
 msgstr "Emuliatoriaus skydo valdymas"
 
 msgid "Softcam-Panel..."
-msgstr "Emuliatorių-skydas..."
+msgstr "Emuliatorių skydas..."
 
 msgid "SoftcamPanel"
 msgstr "Emuliatorių skydas"
@@ -8723,7 +8723,7 @@ msgid "Stop current event but not coming events"
 msgstr "Sustabdyti dabartinę užduotį, nevykdant sekančių užduočių"
 
 msgid "Stop entry"
-msgstr "Nutraukti įrašą"
+msgstr "Sustabdyti įrašą"
 
 msgid "Stop playing this movie?"
 msgstr "Sustabdyti šio filmo žiūrėjimą ?"
@@ -8732,7 +8732,7 @@ msgid "Stop previous broadcasted service on return to movielist."
 msgstr "Sustabdyti ankstesnį transliuojamą kanalą grįžus į filmų sąrašą."
 
 msgid "Stop recording"
-msgstr "Nutraukti įrašymą"
+msgstr "Sustabdyti įrašymą"
 
 msgid "Stop recording and delete"
 msgstr "Stabdyti įrašymą ir trinti"
@@ -8920,7 +8920,7 @@ msgid "Switch to radio mode"
 msgstr "Perjungti į radijo režimą"
 
 msgid "Switchable tuner types:"
-msgstr "Perjungiamų imtuvą tipai:"
+msgstr "Perjungiamų imtuvų tipai: "
 
 msgid "Switching to live TV - timeshift is still active!"
 msgstr "Pereiti prie TV transliacijos - laiko poslinkis vis dar veikia!"
@@ -9276,7 +9276,7 @@ msgstr ""
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
-msgstr "Jūsų %s %s vartotojo sąsaja paleidžiama iš naujo"
+msgstr "Jūsų %s %s grafinė aplinka paleidžiama iš naujo"
 
 #, python-format
 msgid ""
@@ -10457,7 +10457,7 @@ msgid "Video enhancement preview"
 msgstr "Vaizdo gerinimo peržiūra"
 
 msgid "Video enhancement setup"
-msgstr "Vaizdo pakėlimo valdymas"
+msgstr "Vaizdo gerinimo valdymas"
 
 #, python-format
 msgid "Video mode: %s"
@@ -11158,7 +11158,7 @@ msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
-"Jūsų config failas netinkamai suformuotas:\n"
+"Jūsų konfigūracinis failas netinkamai suformuotas:\n"
 "%s"
 
 msgid "Your current collection will get lost!"
@@ -12292,7 +12292,7 @@ msgid "remove entry"
 msgstr "pašalinti"
 
 msgid "remove from parental protection"
-msgstr "panaikinti tėvų kontrolę"
+msgstr "pašalinti iš tėvų kontrolės"
 
 msgid "remove new found flag"
 msgstr "šalinti žymeklį 'naujas'"
@@ -12762,7 +12762,7 @@ msgid "yes"
 msgstr "taip"
 
 msgid "yes (keep feeds)"
-msgstr "taip (saugoti feeds)"
+msgstr "taip (saugoti šaltinius)"
 
 #, python-format
 msgid ""
@@ -13100,7 +13100,7 @@ msgid ""
 msgstr ""
 "Tikrinkite su alternatyviu metodu (keli imtuvai nesuteikia signalo kai "
 "startuoja iš laikmačio) jei laikmatis yra prasidėjęs per kitas 10 min (ne "
-"užkrova), tada bus įkelti jūsų imtuvą budėjimo režimu."
+"užkrova), tada jūsų imtuvas bus įkeltas į budėjimo režimą."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Pasirinkite gedimų ir klaidų žurnalų vietą."
@@ -13578,9 +13578,8 @@ msgid ""
 "Defines which fast forward speeds are using normal cueing. All other forward "
 "speeds and all rewind speeds use time jumps."
 msgstr ""
-"Apibrėžia, kurie greitai persukti į priekį greičiai naudoja įprastą cueing. "
-"Visi kiti pirmyn greičiai ir visi atsukti atgal greičiai naudoja laiko "
-"šuolius."
+"Apibrėžia, kurie persukimo į priekį greičiai naudoja įprastą signalą. Visi "
+"kiti pirmyn greičiai ir visi atsukti atgal greičiai naudoja laiko šuolius."
 
 msgid "Delay for external subtitles"
 msgstr "Vėlavimas išoriniams subtitrams"
@@ -13819,19 +13818,19 @@ msgstr ""
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
 msgstr ""
-"Jei pasirinkta 'taip', tai paketų sąrašas bus rodomas kiekvieną kartą "
+"Jei nustatyta \"taip\", tai paketų sąrašas bus rodomas kiekvieną kartą "
 "atidarant EPG."
 
 msgid ""
 "If set to 'yes' the channel list will be shown after switching between radio "
 "and TV modes."
 msgstr ""
-"Jei pasirinkta 'taip', tai kanalų sąrašas bus rodomas po perjungimo tarp "
+"Jei nustatyta \"taip\", tai kanalų sąrašas bus rodomas po perjungimo tarp "
 "radijo ir TV režimų."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
 msgstr ""
-"Jei nustatyta  \"taip\" kanalo numeris bus rodomas informacinėje juostoje."
+"Jei nustatyta \"taip\" kanalo numeris bus rodomas informacinėje juostoje."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr ""
@@ -13858,21 +13857,21 @@ msgid ""
 "If set to 'yes', allows you use the seekbar to jump to a point within the "
 "event."
 msgstr ""
-"Jei nustatyti į \"taip\", leidžia jums naudotis ir seekbar šokti iki įvykio "
+"Jei nustatyta \"taip\", leidžia jums naudotis ir seekbar šokti iki įvykio "
 "taško."
 
 msgid ""
 "If set to 'yes', enable autorecord for automatically background timeshift"
 msgstr ""
-"Jei renkatės \"taip\", įjungiamas auto įrašymas dėl automatinio laiko "
+"Jei nustatyta \"taip\", įjungiamas auto įrašymas dėl automatinio laiko "
 "poslinkio fone"
 
 msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
-"Jei nustatyta \"taip; informacinėje juostoje bus rodomi, kai greitai "
-"persukama arba atsukama medijos atkūrimo metu."
+"Jei nustatyta \"taip\" informacinėje juostoje bus rodomi, kai greitai "
+"persukama arba atsukama medija atkūrimo metu."
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -14333,8 +14332,8 @@ msgid ""
 "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd "
 "infobar Lite or event info."
 msgstr ""
-"Nustatyti ekrano tipą jums paspaudus 'OK' kai informacijos juosta rodo 2 "
-"infojuostas Lite arba įvykio informacija."
+"Nustatykite ekrano tipą, jums paspaudus 'OK', kai informacijos juosta rodo 2 "
+"paprastas info juostas arba įvykio informaciją."
 
 msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
@@ -15247,7 +15246,7 @@ msgid "Message..."
 msgstr "Pranešimas..."
 
 msgid "Mute"
-msgstr "Nutildyti"
+msgstr "Išjungti garsą"
 
 msgid "NEXT"
 msgstr "KITAS"
@@ -15274,7 +15273,7 @@ msgid "Parental control services editor"
 msgstr "Tėvų kontrolės kanalų redaktorius"
 
 msgid "PiP-Zap"
-msgstr "PiP-jungti"
+msgstr "PiP jungti"
 
 msgid "PiPSetup"
 msgstr "PiP valdymas"
@@ -15358,7 +15357,7 @@ msgid "Volume"
 msgstr "Garsumas"
 
 msgid "config menu"
-msgstr "konfigūruoti meniu"
+msgstr "konfigūruoti"
 
 msgid "help..."
 msgstr "pagalba..."
