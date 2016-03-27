@@ -28,6 +28,7 @@ class TimerEditList(Screen):
 	DISABLE = 2
 	CLEANUP = 3
 	DELETE = 4
+	STOP = 5
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -150,10 +151,10 @@ class TimerEditList(Screen):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
 				self.key_yellow_choice = self.ENABLE
-			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
-				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
+			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.STOP):
+				self["actions"].actions.update({"yellow":self.removeTimerQuestion})
+				self["key_yellow"].setText(_("Stop"))
+				self.key_yellow_choice = self.STOP
 			elif ((not cur.isRunning())or cur.repeated ) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
