@@ -19,13 +19,13 @@ def FuzzyTime(t, inPast = False):
 		# same year
 		if inPast:
 			# I want the day in the movielist
-			date = "%s %02d.%02d." % (dayOfWeek[d[6]], d[2], d[1])
+			date = _("%s %02d.%02d.") % (dayOfWeek[d[6]], d[2], d[1])
 		else:
-			date = "%02d.%02d." % (d[2], d[1])
+			date = _("%02d.%02d.") % (d[2], d[1])
 	else:
-		date = "%02d.%02d.%d" % (d[2], d[1], d[0])
+		date = _("%02d.%02d.%d") % (d[2], d[1], d[0])
 
-	timeres = "%02d:%02d" % (d[3], d[4])
+	timeres = _("%02d:%02d") % (d[3], d[4])
 
 	return date, timeres
 
