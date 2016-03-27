@@ -174,6 +174,7 @@ public:
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
 	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
 	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist);
+	bool setDeliverySystem(const char *type);
 
 	void reopenFrontend();
 	int openFrontend();
