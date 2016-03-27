@@ -37,7 +37,7 @@ if ImageVersion == '5.3':
 else:
 	ImageVersion2= '5.3'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
-feedurl_om = 'http://image.openmips.com/4.3'
+feedurl_om = 'http://image.openmips.com/5.3'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
