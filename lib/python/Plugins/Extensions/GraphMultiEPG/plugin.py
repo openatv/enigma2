@@ -1,6 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from GraphMultiEpg import GraphMultiEPG
-from Screens.ChannelSelection import BouquetSelector
+from Screens.ChannelSelection import SimpleChannelSelection
 import Screens.InfoBar
 from enigma import eServiceCenter, eServiceReference
 from ServiceReference import ServiceReference
@@ -14,55 +14,6 @@ Servicelist = None
 bouquetSel = None
 epg_bouquet = None
 epg = None
-
-class SelectBouquet(Screen):
-	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Select a bouquet">
-		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
-	</screen>"""
-
-	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick,
-				"nextBouquet": self.up,
-				"prevBouquet": self.down
-			})
-		entrys = [ (x[0], x[1]) for x in bouquets ]
-		self["menu"] = MenuList(entrys, enableWrapAround)
-		idx = 0
-		for x in bouquets:
-			if x[1] == curbouquet:
-				break
-			idx += 1
-		self.idx = idx
-		self.dir = direction
-		self.onShow.append(self.__onShow)
-
-	def __onShow(self):
-		self["menu"].moveToIndex(self.idx)
-		if self.dir == -1:
-			self.down()
-		else:
-			self.up()
-
-	def getCurrent(self):
-		cur = self["menu"].getCurrent()
-		return cur and cur[1]
-
-	def okbuttonClick(self):
-		self.close(self.getCurrent())
-
-	def up(self):
-		self["menu"].up()
-
-	def down(self):
-		self["menu"].down()
-
-	def cancelClick(self):
-		self.close(None)
 
 def zapToService(service, preview = False, zapback = False):
 	if Servicelist.startServiceRef is None:
@@ -112,30 +63,20 @@ def cleanup():
 def closed(ret=False):
 	cleanup()
 
-def onSelectBouquetClose(bouquet):
-	if bouquet:
-		services = getBouquetServices(bouquet)
+def onSelectBouquetClose(*args):
+	if args and len(args) == 2:
+		serviceref, bouquetref = args[:2]
+		services = getBouquetServices(bouquetref)
 		global epg_bouquet
-		epg_bouquet = bouquet
+		epg_bouquet = bouquetref
 		epg.setServices(services)
 		epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
+		epg["list"].moveToService(serviceref)
 
 def changeBouquetCB(direction, epgcall):
 	global epg
 	epg = epgcall
-	if config.misc.graph_mepg.silent_bouquet_change.value:
-		idx = 0
-		for x in bouquets:
-			if x[1] == epg_bouquet:
-				break
-			idx += 1
-		if direction > 0:
-			idx = (idx + 1) % len(bouquets)
-		else:
-			idx = (idx - 1) % len(bouquets)
-		onSelectBouquetClose(bouquets[idx][1])
-	else:
-		Session.openWithCallback(onSelectBouquetClose, SelectBouquet, bouquets, epg_bouquet, direction)
+	Session.openWithCallback(onSelectBouquetClose, SimpleChannelSelection, _("Select channel"), True, True, epg["list"].getCurrent()[1].ref)
 
 def main(session, servicelist = None, **kwargs):
 	global Session

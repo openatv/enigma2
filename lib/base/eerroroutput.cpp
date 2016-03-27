@@ -10,10 +10,10 @@ DEFINE_REF(eErrorOutput)
 extern char *printtime(char buffer[], int size);
 
 eErrorOutput::eErrorOutput():
-	messages(this,1),
-	printout_timer(eTimer::create(this))
+	messages(this,1)
 {
-	fprintf(stderr, "[eErrorOutput] Constructor\n");
+	printout_timer = eTimer::create(this);
+//	fprintf(stderr, "[eErrorOutput] Constructor\n");
 	fprintf(stderr, "[eErrorOutput] PIPE_BUF: %d\n", PIPE_BUF);
 	if(!pipe2(pipe_fd, O_NONBLOCK))
 	{
@@ -38,7 +38,7 @@ eErrorOutput::eErrorOutput():
 
 eErrorOutput::~eErrorOutput()
 {
-	fprintf(stderr, "[eErrorOutput] Destructor\n");
+//	fprintf(stderr, "[eErrorOutput] Destructor\n");
 	printout_timer->stop();
 	messages.send(Message::quit);
 	kill();
@@ -46,16 +46,16 @@ eErrorOutput::~eErrorOutput()
 
 void eErrorOutput::thread()
 {
-	fprintf(stderr, "[eErrorOutput] start thread\n");
+//	fprintf(stderr, "[eErrorOutput] start thread\n");
 	hasStarted();
 	nice(4);
 	runLoop();
-	fprintf(stderr, "[eErrorOutput] behind runloop\n");
+//	fprintf(stderr, "[eErrorOutput] behind runloop\n");
 }
 
 void eErrorOutput::gotMessage( const Message &msg )
 {
-	fprintf(stderr, "[eErrorOutput] message %d\n" ,msg.type);
+//	fprintf(stderr, "[eErrorOutput] message %d\n" ,msg.type);
 	switch (msg.type)
 	{
 		case  Message::quit:
@@ -71,6 +71,9 @@ void eErrorOutput::thread_finished()
 	threadrunning=false;
 	printout_timer->stop();
 	printout();
+
+	while(waitPrintout)
+		usleep(10000); // wait 10 milliseconds
 }
 
 void eErrorOutput::printout()
@@ -80,24 +83,39 @@ void eErrorOutput::printout()
 	static char c[PIPE_BUF] = "";
 	static int pos = 0;
 	static int cnt = 0;
-
-	if(!cnt)
+	do
 	{
-		pos = 0;
-		r = read(pipe_fd[0], c, PIPE_BUF);
-		if(r > 0)
-			cnt = r;
-	}
-
-	if(cnt)
-	{
-		w = write(fileno(stderr), &c[pos] , cnt);
-		if(w > 0)
+		if(!cnt)
 		{
-			cnt -= w;
-			pos += w;
+			pos = 0;
+			r = read(pipe_fd[0], c, PIPE_BUF);
+			if(r > 0)
+				cnt = r;
+			else
+			{
+				if(!threadrunning)
+				{
+					waitPrintout = false;
+					break;
+				}
+			}
 		}
-	}
+
+		if(cnt)
+		{
+			w = write(fileno(stderr), &c[pos] , cnt);
+			if(w > 0)
+			{
+				cnt -= w;
+				pos += w;
+			}
+		}
+		if(!threadrunning)
+		{
+			waitPrintout = true;
+			usleep(25000);
+		}
+	}while(!threadrunning);
 
 	if(threadrunning)
 	{

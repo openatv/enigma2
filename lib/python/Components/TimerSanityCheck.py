@@ -280,7 +280,7 @@ class TimerSanityCheck:
 			idx += 1
 
 		if ConflictTimer is None:
-			print "[TimerSanityCheck] conflict not found!"
+			print "[TimerSanityCheck] no conflict found."
 			return True
 
 ##################################################################################

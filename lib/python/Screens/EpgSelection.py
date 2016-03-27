@@ -425,6 +425,9 @@ class EPGSelection(Screen):
 						elif entry.begin == conflict_end:
 							entry.begin += 30
 							change_time = True
+						elif entry.begin == conflict_begin and (entry.service_ref and entry.service_ref.ref and entry.service_ref.ref.flags & eServiceReference.isGroup):
+							entry.begin += 30
+							change_time = True
 						if change_time:
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:

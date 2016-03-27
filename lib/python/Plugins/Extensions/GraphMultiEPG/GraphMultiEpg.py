@@ -29,7 +29,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import CompareWithAlternatives
 from Tools import Notifications
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER,\
-	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
+	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG, eServiceReference
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime, mktime
 from Components.PluginComponent import plugins
@@ -67,8 +67,7 @@ possibleAlignmentChoices = [
 config.misc.graph_mepg.event_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
 config.misc.graph_mepg.show_timelines = ConfigSelection(default = "all", choices = [("nothing", _("no")), ("all", _("all")), ("now", _("actual time only"))])
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
-config.misc.graph_mepg.extension_menu = ConfigYesNo(default = True)
-config.misc.graph_mepg.silent_bouquet_change = ConfigYesNo(default = True)
+config.misc.graph_mepg.extension_menu = ConfigYesNo(default = False)
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
@@ -1295,6 +1294,9 @@ class GraphMultiEPG(Screen, HelpableScreen):
 							entry.end -= 30
 							change_time = True
 						elif entry.begin == conflict_end:
+							entry.begin += 30
+							change_time = True
+						elif entry.begin == conflict_begin and (entry.service_ref and entry.service_ref.ref and entry.service_ref.ref.flags & eServiceReference.isGroup):
 							entry.begin += 30
 							change_time = True
 						if change_time:

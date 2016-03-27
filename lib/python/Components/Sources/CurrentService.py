@@ -29,6 +29,9 @@ class CurrentService(PerServiceBase, Source):
 	def getCurrentService(self):
 		return self.navcore.getCurrentService()
 
+	def getCurrentServiceReference(self):
+		return self.navcore.getCurrentlyPlayingServiceReference()
+
 	service = property(getCurrentService)
 
 	@cached
