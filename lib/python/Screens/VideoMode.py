@@ -89,7 +89,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		# if we have modes for this port:
 		if (config.av.videoport.value in config.av.videomode and config.av.autores.value == 'disabled') or config.av.videoport.value == 'Scart':
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
+			self.list.append(getConfigListEntry(pgettext(_("Video output mode"), _("Mode")), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
 				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
 			elif config.av.videoport.value != 'Scart':
