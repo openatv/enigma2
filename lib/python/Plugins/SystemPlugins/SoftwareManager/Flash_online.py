@@ -32,10 +32,10 @@ elif distro.lower() == "openatv":
 	image = 0
 feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
 
-if ImageVersion == '5.2':
-	ImageVersion2= '5.1'
-else:
+if ImageVersion == '5.3':
 	ImageVersion2= '5.2'
+else:
+	ImageVersion2= '5.3'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
 feedurl_om = 'http://image.openmips.com/4.3'
 imagePath = '/media/hdd/images'
