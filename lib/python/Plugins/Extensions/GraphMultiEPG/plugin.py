@@ -76,7 +76,7 @@ def onSelectBouquetClose(*args):
 def changeBouquetCB(direction, epgcall):
 	global epg
 	epg = epgcall
-	Session.openWithCallback(onSelectBouquetClose, SimpleChannelSelection, _("Select channel"), True, True)
+	Session.openWithCallback(onSelectBouquetClose, SimpleChannelSelection, _("Select channel"), True, True, epg["list"].getCurrent()[1].ref )
 
 def main(session, servicelist = None, **kwargs):
 	global Session

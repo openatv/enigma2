@@ -2506,7 +2506,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.channelSelected()
 
 class SimpleChannelSelection(ChannelSelectionBase, SelectionEventInfo):
-	def __init__(self, session, title, currentBouquet=False, returnBouquet=False):
+	def __init__(self, session, title, currentBouquet=False, returnBouquet=False, setService=None):
 		ChannelSelectionBase.__init__(self, session)
 		SelectionEventInfo.__init__(self)
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
@@ -2520,6 +2520,7 @@ class SimpleChannelSelection(ChannelSelectionBase, SelectionEventInfo):
 		self.title = title
 		self.currentBouquet = currentBouquet
 		self.returnBouquet = returnBouquet
+		self.setService = setService
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -2529,6 +2530,8 @@ class SimpleChannelSelection(ChannelSelectionBase, SelectionEventInfo):
 			if ref:
 				self.enterPath(ref)
 				self.gotoCurrentServiceOrProvider(ref)
+		if self.setService:
+			self.setCurrentSelection(self.setService)
 
 	def saveRoot(self):
 		pass
