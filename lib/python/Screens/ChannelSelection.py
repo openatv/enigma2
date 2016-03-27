@@ -2505,8 +2505,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def zapBack(self):
 		self.channelSelected()
 
-class SimpleChannelSelection(ChannelSelectionBase):
-	def __init__(self, session, title, currentBouquet=False):
+class SimpleChannelSelection(ChannelSelectionBase, SelectionEventInfo):
+	def __init__(self, session, title, currentBouquet=False, returnBouquet=False):
 		ChannelSelectionBase.__init__(self, session)
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
@@ -2518,6 +2518,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		self.bouquet_mark_edit = OFF
 		self.title = title
 		self.currentBouquet = currentBouquet
+		self.returnBouquet = returnBouquet
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -2541,7 +2542,10 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			self.gotoCurrentServiceOrProvider(ref)
 		elif not (ref.flags & eServiceReference.isMarker):
 			ref = self.getCurrentSelection()
-			self.close(ref)
+			if self.returnBouquet and len(self.servicePath):
+				self.close(ref, self.servicePath[-1])
+			else:
+				self.close(ref)
 
 	def setModeTv(self):
 		self.setTvMode()
