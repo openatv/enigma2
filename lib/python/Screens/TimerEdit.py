@@ -64,9 +64,9 @@ class TimerEditList(Screen):
 				"down": self.down
 			}, -1)
 		self.setTitle(_("Timer overview"))
-		# Disable for test because it crashes on some boxes with SSD #############
+		# Disabled because it crashes on some boxes with SSD ######################
 		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
-		##########################################################################
+		# #########################################################################
 		self.onShown.append(self.updateState)
 
 	def createSummary(self):
@@ -390,10 +390,7 @@ class TimerEditList(Screen):
 
 
 	def finishedEdit(self, answer):
-# 		print "finished edit"
-
 		if answer[0]:
-# 			print "Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -417,11 +414,8 @@ class TimerEditList(Screen):
 
 			self.fillTimerList()
 			self.updateState()
-# 		else:
-# 			print "Timeredit aborted"
 
 	def finishedAdd(self, answer):
-# 		print "finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -434,16 +428,14 @@ class TimerEditList(Screen):
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
 			self.updateState()
-# 		else:
-# 			print "Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
 	def leave(self):
-		# Disable for test because it crashes on some boxes with SSD #############
-		#self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
-		##########################################################################
+		# Disabled because it crashes on some boxes with SSD ######################
+		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# #########################################################################
 		self.close()
 
 	def onStateChange(self, entry):
