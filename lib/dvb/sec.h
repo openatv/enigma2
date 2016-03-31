@@ -269,14 +269,13 @@ public:
 #define MAX_FIXED_LNB_POSITIONS		64
 #define MAX_MOVABLE_LNBS 		6
 
-#define UNICABLE_BANDWIDTH 		36000
-
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
 	int SatCR_positionnumber;
 	int SatCR_positions;
 	int SatCR_idx;
 	int SatCR_format;
+	int SatCR_switch_reliable;
 	unsigned int SatCRvco;
 	unsigned int TuningWord;
 	unsigned int GuardTuningWord;
@@ -368,6 +367,7 @@ public:
 	RESULT getMaxMovableLnbNum() {return MAX_MOVABLE_LNBS;}
 /* Unicable Specific Parameters */
 	RESULT setLNBSatCRpositionnumber(int UnicablePositionNumber);
+	RESULT setLNBSatCRTuningAlgo(int SatCR_switch_reliable);
 	RESULT setLNBSatCRformat(int SatCR_format);	//DiSEqc or JESS (or ...)
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);

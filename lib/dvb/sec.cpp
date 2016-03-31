@@ -910,62 +910,65 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				long pin = 0;
 //<<<
 //>>> TODO optimize this
-				switch(lnb_param.SatCR_format)
+				if(lnb_param.SatCR_switch_reliable)
 				{
-					case 1: //JESS
-						if(pin < 1)
-						{
-							diseqc.len = diseqc_a.len = 4;
-							diseqc.data[0] = diseqc_a.data[0] = 0x70;
-						}
-						else
-						{
-							diseqc.len = diseqc_a.len = 5;
-							diseqc.data[0] = diseqc_a.data[0] = 0x71;
-							diseqc.data[4] = diseqc_a.data[4] = pin;
-						}
-						diseqc.data[1] = lnb_param.GuardTuningWord >> 16;
-						diseqc.data[2] = lnb_param.GuardTuningWord >> 8;
-						diseqc.data[3] = lnb_param.GuardTuningWord;
+					switch(lnb_param.SatCR_format)
+					{
+						case 1: //JESS
+							if(pin < 1)
+							{
+								diseqc.len = diseqc_a.len = 4;
+								diseqc.data[0] = diseqc_a.data[0] = 0x70;
+							}
+							else
+							{
+								diseqc.len = diseqc_a.len = 5;
+								diseqc.data[0] = diseqc_a.data[0] = 0x71;
+								diseqc.data[4] = diseqc_a.data[4] = pin;
+							}
+							diseqc.data[1] = lnb_param.GuardTuningWord >> 16;
+							diseqc.data[2] = lnb_param.GuardTuningWord >> 8;
+							diseqc.data[3] = lnb_param.GuardTuningWord;
 
-						diseqc_a.data[1] = lnb_param.GuardTuningWord_a >> 16;
-						diseqc_a.data[2] = lnb_param.GuardTuningWord_a >> 8;
-						diseqc_a.data[3] = lnb_param.GuardTuningWord_a;
-						break;
-					case 0: //DiSEqC
-					default:
-						if(pin < 1)
-						{
-							diseqc.len = diseqc_a.len = 5;
-							diseqc.data[2] = diseqc_a.data[2] = 0x5A;
-						}
-						else
-						{
-							diseqc.len = diseqc_a.len = 6;
-							diseqc.data[2] = diseqc_a.data[2] = 0x5C;
-							diseqc.data[5] = diseqc_a.data[5] = pin;
-						}
-						diseqc.data[0] = diseqc_a.data[0] = 0xE0;
-						diseqc.data[1] = diseqc_a.data[1] = 0x10;
-						diseqc.data[3] = lnb_param.GuardTuningWord >> 8;
-						diseqc.data[4] = lnb_param.GuardTuningWord;
-						diseqc_a.data[3] = lnb_param.GuardTuningWord_a >> 8;
-						diseqc_a.data[4] = lnb_param.GuardTuningWord_a;
+							diseqc_a.data[1] = lnb_param.GuardTuningWord_a >> 16;
+							diseqc_a.data[2] = lnb_param.GuardTuningWord_a >> 8;
+							diseqc_a.data[3] = lnb_param.GuardTuningWord_a;
+							break;
+						case 0: //DiSEqC
+						default:
+							if(pin < 1)
+							{
+								diseqc.len = diseqc_a.len = 5;
+								diseqc.data[2] = diseqc_a.data[2] = 0x5A;
+							}
+							else
+							{
+								diseqc.len = diseqc_a.len = 6;
+								diseqc.data[2] = diseqc_a.data[2] = 0x5C;
+								diseqc.data[5] = diseqc_a.data[5] = pin;
+							}
+							diseqc.data[0] = diseqc_a.data[0] = 0xE0;
+							diseqc.data[1] = diseqc_a.data[1] = 0x10;
+							diseqc.data[3] = lnb_param.GuardTuningWord >> 8;
+							diseqc.data[4] = lnb_param.GuardTuningWord;
+							diseqc_a.data[3] = lnb_param.GuardTuningWord_a >> 8;
+							diseqc_a.data[4] = lnb_param.GuardTuningWord_a;
+					}
+					frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
+
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +12));	//skip all, if tuner unlocked
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 4));
+					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc));
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 25) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)));
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]));
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)));
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]));
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +4));	//skip all, if tuner unlocked
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +3));	//skip all, if tuner unlocked
+					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc_a));
+					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8));			//repeate until timeout
 				}
-				frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
-
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +12));	//skip all, if tuner unlocked
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 4));
-				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc));
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 25) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)));
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]));
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)));
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]));
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +4));	//skip all, if tuner unlocked
-				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_UNLOCKED_GOTO, +3));	//skip all, if tuner unlocked
-				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc_a));
-				sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8));			//repeate until timeout
 //<<<
 				switch(lnb_param.SatCR_format)
 				{
@@ -1478,6 +1481,18 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCRpositionnumber(int SatCR_positi
 //		return -EPERM;
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].SatCR_positionnumber = SatCR_positionnumber;
+	else
+		return -ENOENT;
+	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(int SatCR_switch_reliable)
+{
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(%d)", SatCR_switch_reliable);
+	if(!((SatCR_switch_reliable >= 0) && (SatCR_switch_reliable <= 1)))
+		return -EPERM;
+	if ( currentLNBValid() )
+		m_lnbs[m_lnbidx].SatCR_switch_reliable = SatCR_switch_reliable;
 	else
 		return -ENOENT;
 	return 0;
