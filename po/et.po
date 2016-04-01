@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-18 07:14+0200\n"
-"PO-Revision-Date: 2016-03-22 22:46+0200\n"
+"PO-Revision-Date: 2016-04-01 15:28+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et_EE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 msgid ""
 "\n"
@@ -3094,7 +3094,7 @@ msgstr "Kas eemaldad paketi:\n"
 
 #
 msgid "Do you want to restart now?"
-msgstr "Kas taaskäivitad kohe?"
+msgstr "Kas taaskäivitada kohe?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Kas taastad seaded?"
@@ -7043,42 +7043,42 @@ msgid "Resolution"
 msgstr "Lahutus"
 
 msgid "Restart"
-msgstr "Taaskäivita"
+msgstr "Taaskäivitus"
 
 #, python-format
 msgid "Restart %s %s."
-msgstr "Taaskäivita %s %s"
+msgstr "Taaskäivita %s %s."
 
 msgid "Restart GUI"
-msgstr "Taaskäivita enigma2"
+msgstr "Enigma2 taaskäivitus"
 
 msgid "Restart GUI now?"
 msgstr "Kas taaskäivitad kasutajaliidese?"
 
 #
 msgid "Restart Network"
-msgstr "Taaskäivita võrk "
+msgstr "Võrgu taaskäivitus"
 
 msgid "Restart Network Adapter"
 msgstr "Taaskäivita võrgukaart"
 
 msgid "Restart enigma"
-msgstr "Taaskäivita enigma2"
+msgstr "Enigma2 taaskäivitus"
 
 msgid "Restart network"
-msgstr "Võrgu taaskäivitamine"
+msgstr "Võrgu taaskäivitus"
 
 msgid "Restart network and remount connections"
-msgstr "Taaskäivita võrk ja haagi ühendused uuesti"
+msgstr "Võrgu taaskäivitus ja ühenduste uuesti haakimine"
 
 msgid "Restart network to with current setup"
-msgstr "Taaskäivita võrk kasutades aktiivseid seadeid"
+msgstr "Võrgu taaskäivitus kasutades aktiivseid seadeid"
 
 msgid "Restart test"
 msgstr "Taaskäivita test"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Taaskäivita võrguühendus ja -liidesed.\n"
+msgstr "Võrguühenduse ja võrgukaartide taaskäivitus.\n"
 
 msgid "Restore"
 msgstr "Taasta"
@@ -8678,7 +8678,7 @@ msgid "Stepped west"
 msgstr "Astuti läände"
 
 msgid "Stop"
-msgstr "Stopp"
+msgstr "Peata"
 
 # UsageConfig.py:117
 msgid "Stop PiP"
@@ -12687,7 +12687,7 @@ msgid "Remote Control Code"
 msgstr "Puldi kood"
 
 msgid "Restart Gui"
-msgstr "Taaskäivita enigma2"
+msgstr "Enigma2 taaskäivitus"
 
 msgid "Save EPG"
 msgstr "EPG talletamine"
@@ -13981,7 +13981,7 @@ msgstr "Kuva PVR olek inforibal"
 
 # setup.xml
 msgid "Show Restart Network in Extensions list *"
-msgstr "Kuva 'Taaskäivita võrk' laienduste menüüs *"
+msgstr "Kuva 'Võrgu taaskäivitus' laienduste menüüs *"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Jäänud/kulunud aja näit"
@@ -14264,7 +14264,7 @@ msgid "This option allows you to choose what the first button press jumps to in 
 msgstr "See valik määrab, kuhu kursor esimesel nupuvajutusel liigub 'Kiirtegevustes' määratud juhtudel (vajutades '2' liigub kõigepealt 'A' või '2' peale)."
 
 msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Siin saab keelata 'Taaskäivita võrk' kuvamise laienduste menüüs."
+msgstr "Siin saab keelata 'Võrgu taaskäivitus' kuvamise laienduste menüüs."
 
 # Menue Anpassungen OSD
 msgid "This option allows you to disable sorting of the Extensions list."
@@ -15105,3 +15105,16 @@ msgstr "%s %s lülitub välja. Oota..."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Varukoopia valmis. Jätkame selgitamist edasisest uuenduse käigust."
+
+msgid ""
+"GUI needs a restart to apply a new skin.\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+"Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada.\n"
+"Kas teed seda kohe?"
+
+msgid "Maximum number of days in EPG"
+msgstr "Suurim EPG kuvatav päevade arv"
+
+msgid "Use for load only x days in EPG"
+msgstr "Määra saatekavas kuvatavate päevade arv"
