@@ -167,7 +167,11 @@ keyDescriptions = [
 		KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
 		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
 		KEYIDS["KEY_FAVORITES"]: ("FAV",),
-		KEYIDS["KEY_SCREEN"]: ("SCREEN",)
+		KEYIDS["KEY_SCREEN"]: ("SCREEN",),
+		# Discrete power codes
+		KEYIDS["KEY_POWER2"]: ("POWER2",),
+		KEYIDS["KEY_SUSPEND"]: ("SUSPEND",),
+		KEYIDS["KEY_WAKEUP"]: ("WAKEUP",),
 	},
 	{       # XP1000
 		KEYIDS["BTN_0"]: ("UP", "fp"),
