@@ -14,17 +14,23 @@ from os import path
 from gettext import dgettext
 
 inStandby = None
+powerKey = None
 
 class Standby2(Screen):
 	def Power(self):
 		print "leave standby"
-		# set input to encoder
-		self.avswitch.setInput("ENCODER")
+		self.videoOn()
 		# restart last played service
 		# unmute adc
 		self.leaveMute()
 		# kill me
 		self.close(True)
+
+	def deepStandby(self):
+		saveAllowSuspend = Standby2.ALLOW_SUSPEND
+		Standby2.ALLOW_SUSPEND = True
+		powerKey.shutdown()
+		Standby2.ALLOW_SUSPEND = saveAllowSuspend
 
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
@@ -37,6 +43,17 @@ class Standby2(Screen):
 	def leaveMute(self):
 		if self.wasMuted == 0:
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
+
+	def videoOff(self):
+		# set input to vcr scart
+		if SystemInfo["ScartSwitch"]:
+			self.avswitch.setInput("SCART")
+		else:
+			self.avswitch.setInput("AUX")
+
+	def videoOn(self):
+		# set input to encoder
+		self.avswitch.setInput("ENCODER")
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -74,7 +91,8 @@ class Standby2(Screen):
 
 		self["actions"] = ActionMap(["StandbyActions"], {
 			"power": self.Power,
-			"discrete_on": self.Power
+			"discrete_on": self.Power,
+			"deepstandby": self.deepStandby,
 		}, -1)
 
 		globalActionMap.setEnabled(False)
@@ -102,11 +120,7 @@ class Standby2(Screen):
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
-		# set input to vcr scart
-		if SystemInfo["ScartSwitch"]:
-			self.avswitch.setInput("SCART")
-		else:
-			self.avswitch.setInput("AUX")
+		self.videoOff()
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 

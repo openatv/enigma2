@@ -44,6 +44,9 @@ from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS,
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigSubsection
 InitFallbackFiles()
 
+profile("LOAD:RecordTimer")
+import RecordTimer
+
 profile("config.misc")
 config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_ACTIVE_SKIN, "black.mvi"))
 radiopic = resolveFilename(SCOPE_ACTIVE_SKIN, "radio.mvi")
@@ -358,11 +361,13 @@ class PowerKey:
 
 	def __init__(self, session):
 		self.session = session
+		globalActionMap.actions["conditional_power_down"] = self.conditional_powerdown
+		globalActionMap.actions["conditional_power_up"] = self.conditional_powerup
+		globalActionMap.actions["power_long"] = self.powerlong
+		globalActionMap.actions["deepstandby"] = self.shutdown
+		globalActionMap.actions["discrete_off"] = self.standby
 		globalActionMap.actions["power_down"] = self.powerdown
 		globalActionMap.actions["power_up"] = self.powerup
-		globalActionMap.actions["power_long"] = self.powerlong
-		globalActionMap.actions["deepstandby"] = self.shutdown  # frontpanel long power button press
-		globalActionMap.actions["discrete_off"] = self.standby
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
@@ -385,16 +390,32 @@ class PowerKey:
 				for timer in self.session.nav.RecordTimer.timer_list:
 					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
 						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
-						timer.afterEvent = 2
+						timer.afterEvent = RecordTimer.AFTEREVENT.DEEPSTANDBY
 						if timer.end > lastrecordEnd:
 							lastrecordEnd = timer.end + 900
+
+				if Screens.Standby.inStandby:
+					# If already in standby, turn on the
+					# video so the message can be seen if
+					# the screen is on
+					Screens.Standby.inStandby.videoOn()
+
+					msg = _(
+						"Shutdown while recording in progress!\n"
+						"Remaining in standby. When recording ends, the box will shut down."
+					)
+				else:
+					msg = _(
+						"Shutdown while recording in progress!\n"
+						"Entering standby. When recording ends, the box will shut down."
+					)
+
 				from Screens.MessageBox import MessageBox
+
 				self.session.openWithCallback(
 					self.gotoStandby,
-					MessageBox, _(
-						"PowerOff while Recording in progress!\n"
-						"Entering standby, after recording the box will shutdown."
-					),
+					MessageBox,
+					msg,
 					type=MessageBox.TYPE_INFO,
 					timeout=10
 				)
@@ -429,8 +450,18 @@ class PowerKey:
 		elif action == "standby":
 			self.standby()
 
+	def conditional_powerdown(self):
+		if not config.usage.short_power_enable.value:
+			return 0
+		self.powerdown()
+
 	def powerdown(self):
 		self.standbyblocked = 0
+
+	def conditional_powerup(self):
+		if not config.usage.short_power_enable.value:
+			return 0
+		self.powerup()
 
 	def powerup(self):
 		if self.standbyblocked == 0:
@@ -441,7 +472,10 @@ class PowerKey:
 
 	def standby(self):
 		# if not Screens.Standby.inStandby and self.session.current_dialog and self.session.in_exec:
-		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:  # I am still not sure if it is good idea...
+		# If already in standby, just turn the video (back) off
+		if Screens.Standby.inStandby:
+			Screens.Standby.inStandby.videoOff()
+		elif self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:  # I am still not sure if it is good idea...
 			self.session.open(Screens.Standby.Standby)
 
 profile("Scart")
@@ -517,7 +551,8 @@ def runScreenTest():
 	profile("Init:VolumeControl")
 	vol = VolumeControl(session)
 	profile("Init:PowerKey")
-	power = PowerKey(session)
+	global Screens
+	Screens.Standby.powerKey = power = PowerKey(session)
 
 	if getBoxType() in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone') or getMachineBuild() in ('inihde', 'inihdx'):
 		profile("VFDSYMBOLS")
