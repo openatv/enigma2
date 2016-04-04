@@ -3274,61 +3274,63 @@ PyObject *eEPGCache::search(ePyObject arg)
 							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
-					singleLock s(cache_lock);
-					std::string title;
-					for (DescriptorMap::iterator it(eventData::descriptors.begin());
-						it != eventData::descriptors.end(); ++it)
 					{
-						uint8_t *data = it->second.data;
-						if ( data[0] == 0x4D ) // short event descriptor
+						singleLock s(cache_lock);
+						std::string title;
+						for (DescriptorMap::iterator it(eventData::descriptors.begin());
+							it != eventData::descriptors.end(); ++it)
 						{
-							const char *titleptr = (const char*)&data[6];
-							int title_len = data[5];
-							if (data[6] < 0x20)
+							uint8_t *data = it->second.data;
+							if ( data[0] == 0x4D ) // short event descriptor
 							{
-								/* custom encoding */
-								title = convertDVBUTF8((unsigned char*)titleptr, title_len, 0x40, 0);
-								titleptr = title.data();
-								title_len = title.length();
-							}
-							if (title_len < textlen)
-								/*Doesn't fit, so cannot match anything */
-								continue;
-							if (querytype == 1)
-							{
-								/* require exact title match */
-								if (title_len != textlen)
-									continue;
-							}
-							else if (querytype == 3)
-							{
-								/* Do a "startswith" match by pretending the text isn't that long */
-								title_len = textlen;
-							}
-							if (casetype)
-							{
-								while (title_len >= textlen)
+								const char *titleptr = (const char*)&data[6];
+								int title_len = data[5];
+								if (data[6] < 0x20)
 								{
-									if (!strncasecmp(titleptr, str, textlen))
-									{
-										descr.push_back(it->first);
-										break;
-									}
-									title_len--;
-									titleptr++;
+									/* custom encoding */
+									title = convertDVBUTF8((unsigned char*)titleptr, title_len, 0x40, 0);
+									titleptr = title.data();
+									title_len = title.length();
 								}
-							}
-							else
-							{
-								while (title_len >= textlen)
+								if (title_len < textlen)
+									/*Doesn't fit, so cannot match anything */
+									continue;
+								if (querytype == 1)
 								{
-									if (!memcmp(titleptr, str, textlen))
+									/* require exact title match */
+									if (title_len != textlen)
+										continue;
+								}
+								else if (querytype == 3)
+								{
+									/* Do a "startswith" match by pretending the text isn't that long */
+									title_len = textlen;
+								}
+								if (casetype)
+								{
+									while (title_len >= textlen)
 									{
-										descr.push_back(it->first);
-										break;
+										if (!strncasecmp(titleptr, str, textlen))
+										{
+											descr.push_back(it->first);
+											break;
+										}
+										title_len--;
+										titleptr++;
 									}
-									title_len--;
-									titleptr++;
+								}
+								else
+								{
+									while (title_len >= textlen)
+									{
+										if (!memcmp(titleptr, str, textlen))
+										{
+											descr.push_back(it->first);
+											break;
+										}
+										title_len--;
+										titleptr++;
+									}
 								}
 							}
 						}
