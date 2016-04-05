@@ -226,11 +226,13 @@
 <!-- 		<item level="1" text="Allow unstable (experimental) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item> -->
 	</setup>
 	<setup key="buttonsetup" title="Button setup">
-		<item level="1" text="Action on long POWER" description="Map the function assigned to a long press of the POWER button.">config.usage.on_long_powerpress</item>
-		<item level="1" text="Action on short POWER" description="Map the function assigned to a short press of the POWER button.">config.usage.on_short_powerpress</item>
+		<item level="2" text="Enable remote control short POWER button" description="When disabled, short press of the POWER button on the remote control will not shut down your %s %s. Use a programmable remote control to send a discrete power off or standby code instead.">config.usage.short_power_enable</item>
+		<item level="1" text="Action on short POWER" description="Map the function assigned to a short press of the POWER button on the remote or the front panel." requires="config.usage.short_power_enable">config.usage.on_short_powerpress</item>
+		<item level="1" text="Action on front panel short POWER" description="Map the function assigned to a short press of the POWER button on the front panel." requires="config.usage.short_power_disable">config.usage.on_short_powerpress</item>
+		<item level="1" text="Action on long POWER" description="Map the function assigned to a long press of the POWER button on the remote.">config.usage.on_long_powerpress</item>
 		<item level="2" text="Behaviour of PLAY/PAUSE when paused" description="Specify the behaviour of the PLAY/PAUSE button when playback is paused. 'Play' resumes normal play, 'Single step' steps forward and 'Last speed' reverts to the play mode you were in when you paused. Pressing OK resumes playback except in 'Play' mode, when it shows infobars.">config.seek.on_pause</item>
-		<item level="1" text="Action on long REC" description="The instant recording function assigned to a long press of the REC button.">config.usage.on_long_recpress</item>
 		<item level="1" text="Action on short REC" description="The instant recording function assigned to a short press of the REC button.">config.usage.on_short_recpress</item>
+		<item level="1" text="Action on long REC" description="The instant recording function assigned to a long press of the REC button.">config.usage.on_long_recpress</item>
 		<item level="1" text="Skip time for LEFT" description="Set the number of seconds to skip backward when the LEFT button is pressed.">config.seek.selfdefined_left</item>
 		<item level="1" text="Skip time for RIGHT" description="Set the number of seconds to skip forward when the RIGHT button is pressed.">config.seek.selfdefined_right</item>
 		<item level="1" text="Enable skip on UP/DOWN" description="Enable to use the UP/DOWN navigation buttons for skips. Enabling this disables other UP/DOWN functions in contexts where skipping is possible.">config.seek.updown_skips</item>
