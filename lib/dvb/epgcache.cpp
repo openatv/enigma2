@@ -3378,7 +3378,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 		bool first = ref.valid() ? true : false;
 		singleLock s(cache_lock);
 		eventCache::iterator cit(ref.valid() ? eventDB.find(ref) : eventDB.begin());
-		eDebug("[EPGC] eEPGCache::search enter while loop...");
 		while(cit != eventDB.end() && maxcount)
 		{
 			if ( ref.valid() && !first && cit->first == ref )
