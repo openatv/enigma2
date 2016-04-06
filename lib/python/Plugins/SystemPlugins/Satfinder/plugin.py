@@ -219,10 +219,14 @@ class Satfinder(ScanSetup, ServiceScan):
 				continue
 			if n.isCompatible("DVB-S") and len(nimmanager.getSatListForNim(n.slot)) < 1:
 				continue
+			if n.isCompatible("DVB-S") and n.isFBCTuner() and not n.isFBCRoot():
+				continue
 			satfinder_nim_list.append((str(n.slot), n.friendly_full_description))
 		self.satfinder_scan_nims = ConfigSelection(choices = satfinder_nim_list)
 		if self.frontendData is not None and len(satfinder_nim_list) > 0: # open the plugin with the currently active NIM as default
-			self.satfinder_scan_nims.setValue(str(self.frontendData.get("tuner_number", satfinder_nim_list[0][0])))
+			active_nim = self.frontendData.get("tuner_number", satfinder_nim_list[0][0])
+			if not nimmanager.nim_slots[active_nim].isFBCLink():
+				self.satfinder_scan_nims.setValue(str(active_nim))
 
 		self.feid = int(self.satfinder_scan_nims.value)
 
