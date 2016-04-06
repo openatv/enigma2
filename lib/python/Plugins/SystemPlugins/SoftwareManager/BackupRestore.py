@@ -710,8 +710,10 @@ class RestorePlugins(Screen):
 		if len(pluginlist) > 0:
 			if len(self.myipklist) > 0:
 				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+				print "[Restore Plugins] local cmdlist:", cmdlist
 			else:
 				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+				print "[Restore Plugins] online cmdlist:", cmdlist
 		elif len(self.myipklist) > 0:
 			self.installLocalIPK()
 
