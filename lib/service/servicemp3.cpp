@@ -259,15 +259,6 @@ int eStaticServiceMP3Info::getInfo(const eServiceReference &ref, int w)
 			}
 		}
 		break;
-	case iServiceInformation::sFileSize:
-		{
-			struct stat s;
-			if (stat(ref.path.c_str(), &s) == 0)
-			{
-				return s.st_size;
-			}
-		}
-		break;
 	}
 	return iServiceInformation::resNA;
 }

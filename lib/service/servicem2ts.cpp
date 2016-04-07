@@ -110,8 +110,6 @@ int eStaticServiceM2TSInformation::getInfo(const eServiceReference &ref, int w)
 		return iServiceInformation::resIsString;
 	case iServiceInformation::sServiceref:
 		return iServiceInformation::resIsString;
-	case iServiceInformation::sFileSize:
-		return m_parser.m_filesize;
 	case iServiceInformation::sTimeCreate:
 		if (m_parser.m_time_create)
 			return m_parser.m_time_create;
