@@ -18,7 +18,7 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 5.1 openATV"
+VERSION = "Version 5.3 openATV"
 
 HaveGZkernel = True
 if getBrandOEM() in ("fulan") or getBoxType() in ("vusolo4k"):
@@ -284,6 +284,8 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' %self.MAINDEST)
 		elif self.MODEL in ("vuzero" , "vusolose"):
 			cmdlist.append('echo "This file forces the update." > %s/force.update' %self.MAINDEST)
+		elif self.MODEL in ("zgemmai55" , "sf98", "xpeedlxpro"):
+			cmdlist.append('echo "This file forces the update." > %s/force' %self.MAINDEST)
 		else:
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 
