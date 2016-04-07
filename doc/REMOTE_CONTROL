@@ -1,0 +1,103 @@
+Beyonwiz T series discrete POWER codes
+======================================
+
+The Beyonwiz T series supports the use of the discrete power codes
+KEY_POWER2 ("power off" key), KEY_SUSPEND ("standby" key) and
+KEY_WAKEUP ("wake from standby" key).
+
+The config option config.usage.short_power_enable (MENU>Setup>System>Button
+settings>Enable remote control short POWER button) controls whether
+the T series can be shut down, put into standby or activate the
+Power / Restart menu on a short press of POWER.
+
+If that config option is disabled, short-POWER is inactive when the
+T series is running, and acts as a discrete power-on command.
+
+State transition table for power/standby codes
+==============================================
+
+[KEY_POWER] (standard remote control "power" button code)
+    OFF -> ON
+    STANDBY -> ON
+    STANDBY_REC -> ON_REC
+    ON -> OFF if config.usage.short_power_enable.value else ON
+    ON_REC -> ON_REC
+
+[KEY_POWER2] ("power off" code)
+    OFF -> OFF
+    STANDBY -> OFF
+    STANDBY_REC -> STANDBY_REC
+    ON -> OFF
+    ON_REC -> STANDBY_REC
+
+[KEY_SUSPEND] ("standby" code)
+    OFF -> OFF
+    STANDBY -> STANDBY
+    STANDBY_REC -> STANDBY_REC
+    ON -> STANDBY
+    ON_REC -> STANDBY_REC
+
+[KEY_WAKEUP] ("wake from standby" code)
+    OFF -> OFF
+    STANDBY -> ON
+    STANDBY_REC -> ON_REC
+    ON -> ON
+    ON_REC -> ON_REC
+
+[(timer) recording(s) start]
+    OFF -> STANDBY_REC
+    STANDBY -> STANDBY_REC
+    STANDBY_REC -> STANDBY_REC
+    ON -> ON_REC
+    ON_REC -> ON_REC
+
+[recordings (all) end]
+    {OFF -> OFF} (unreachable transition)
+    {STANDBY -> STANDBY} (unreachable transition)
+    STANDBY_REC -> OFF
+    {ON -> ON} (unreachable transition)
+    ON_REC -> ON
+
+Items in square brackets are events, including button presses. Plain
+all-capitals are states. Unreachable transitions are in braces and commented.
+
+The state transition table doesn't show all possible transitions,
+and assumes that the "After event" for timers is "auto".
+
+It doesn't reflect some of the anomalous behaviour of the recording
+state transitions, like:
+
+ON_REC - [STANDBY] -> STANDBY_REC
+
+sets running timers' "After event" to "go to deep standby", but
+
+STANDBY_REC - [WAKEUP or POWER] -> ON_REC
+
+does not set the timers back to "auto", and that
+
+OFF - [(timer) recording(s) start] -> STANDBY_REC ->
+    [WAKEUP or POWER] -> ON_REC
+
+does
+
+ON_REC - [recordings (all) end] -> OFF (though with a popup question)
+
+rather than the transition diagram's
+
+ON_REC - [recordings (all) end] -> ON
+
+Beyonwiz T series power/standby remote control codes
+====================================================
+
+Remote name in Beyonwiz setup   Vendor  POWER POWER2 WAKEUP SUSPEND
+                                Prefix
+			       
+Beyonwiz T3 (0xABCD)            0xABCD   0x0A   0xFC   0xFB    0xFA
+Beyonwiz T3 alternate (0xAE97)  0xAE97   0x0A   0xFC   0xFB    0xFA
+Beyonwiz (0x02F2)               0x02F2   0x3C   0xFC   0xFB    0xFA
+Beyonwiz (0x02F3)               0x02F3   0x3C   0xFC   0xFB    0xFA
+Beyonwiz (0x02F4)               0x02F4   0x3C   0xFC   0xFB    0xFA
+HDx                             0x0933   0x17   0xFC   0xFB    0xFA
+
+Enigma2 internal code (hex)     ------  0x074  0x164  0x08F   0x0CD
+                      (decimal) ------    116    356    143     205

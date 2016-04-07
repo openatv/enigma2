@@ -420,15 +420,6 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
-lib/python/Plugins/Extensions/AccuWeather/Makefile
-lib/python/Plugins/Extensions/AccuWeather/acuwheathericons/Makefile
-lib/python/Plugins/Extensions/AccuWeather/image/Makefile
-lib/python/Plugins/Extensions/AccuWeather/locale/Makefile
-lib/python/Plugins/Extensions/AccuWeather/locale/es/Makefile
-lib/python/Plugins/Extensions/AccuWeather/locale/es/LC_MESSAGES/Makefile
-lib/python/Plugins/Extensions/AccuWeather/wheathericons/Makefile
-lib/python/Plugins/Extensions/AccuWeather/xbmcweather/Makefile
-lib/python/Plugins/Extensions/AccuWeather/xbmcweather/small/Makefile
 lib/python/Plugins/Extensions/IniGmailReader/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/Makefile
 lib/python/Plugins/Extensions/IniAirPlayer/lib/Makefile

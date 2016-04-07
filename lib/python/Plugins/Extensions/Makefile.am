@@ -11,7 +11,6 @@ SUBDIRS = TuxboxPlugins \
 	IniSHOUTcast \
 	IniLastFM \
 	IniZapHistoryBrowser \
-	AccuWeather \
 	IniGmailReader \
 	FileCommander \
 	IniEcasa \

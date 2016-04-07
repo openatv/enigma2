@@ -206,6 +206,16 @@ def InitUsageConfig():
 		("flat+remotepos", _("Flat by position on remote")),
 		("flat+remotegroups", _("Flat by key group on remote"))])
 
+	config.usage.short_power_enable = ConfigYesNo(default=True)
+
+	# Only intended for use in "requires" attributes in setup.xml
+	config.usage.short_power_disable = NoSave(ConfigBoolean(default=not config.usage.short_power_enable.value))
+
+	def doDisableShortPower(configElement):
+		config.usage.short_power_disable.value = not configElement.value
+
+	config.usage.short_power_enable.addNotifier(doDisableShortPower)
+
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=[
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
