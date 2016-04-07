@@ -18,7 +18,7 @@ public:
 	time_t m_time_create;
 	pts_t m_length;
 	std::string m_name, m_description, m_tags, m_service_data;
-	long long m_filesize;
+	off_t m_filesize;
 };
 
 #endif
