@@ -32,7 +32,7 @@ class VolumeControl:
 		self.hideVolTimer.callback.append(self.volHide)
 
 		self.stepVolTimer = eTimer()
-		self.repeat = 300
+		self.repeat = 500
 		self.delay = 3000
 
 		vol = config.audio.volume.value
@@ -48,19 +48,37 @@ class VolumeControl:
 		config.audio.volume.save()
 
 	def volUp(self):
-		vol = self.volctrl.getVolume() + self.stepVolume()
-		self.setVolume(vol)
+		vol = self.volctrl.getVolume()
+		step = self.stepVolume()
+		if vol < 3:
+			step = 1
+		elif vol < 9:
+			if step > 2: step = 2
+		elif vol < 18:
+			if step > 3: step = 3
+		elif vol < 30:
+			if step > 4: step = 4
+		self.setVolume(vol+step)
 
 	def volDown(self):
-		vol = self.volctrl.getVolume() - self.stepVolume()
-		self.setVolume(vol)
+		vol = self.volctrl.getVolume()
+		step = self.stepVolume()
+		if vol <= 3:
+			step = 1
+		elif vol <= 9:
+			if step > 2: step = 2
+		elif vol <= 18:
+			if step > 3: step = 3
+		elif vol <= 30:
+			if step > 4: step = 4
+		self.setVolume(vol-step)
 
 	def stepVolume(self):
 		if self.stepVolTimer.isActive():
-			step = 3
+			step = config.usage.volume_step_fast.value
 		else:
 			self.getInputConfig()
-			step = 1
+			step = config.usage.volume_step_slow.value
 		self.stepVolTimer.start(self.repeat,True)
 		return step
 
