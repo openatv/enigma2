@@ -14,7 +14,8 @@ public:
 	int updateMeta(const std::string &basename);
 
 	eServiceReferenceDVB m_ref;
-	int m_data_ok, m_time_create, m_packet_size, m_scrambled;
+	int m_data_ok, m_packet_size, m_scrambled;
+	time_t m_time_create;
 	pts_t m_length;
 	std::string m_name, m_description, m_tags, m_service_data;
 	long long m_filesize;
