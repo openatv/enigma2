@@ -395,11 +395,6 @@ class PowerKey:
 							lastrecordEnd = timer.end + 900
 
 				if Screens.Standby.inStandby:
-					# If already in standby, turn on the
-					# video so the message can be seen if
-					# the screen is on
-					Screens.Standby.inStandby.videoOn()
-
 					msg = _(
 						"Shutdown while recording in progress!\n"
 						"Remaining in standby. When recording ends, the box will shut down."
@@ -472,10 +467,7 @@ class PowerKey:
 
 	def standby(self):
 		# if not Screens.Standby.inStandby and self.session.current_dialog and self.session.in_exec:
-		# If already in standby, just turn the video (back) off
-		if Screens.Standby.inStandby:
-			Screens.Standby.inStandby.videoOff()
-		elif self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:  # I am still not sure if it is good idea...
+		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:  # I am still not sure if it is good idea...
 			self.session.open(Screens.Standby.Standby)
 
 profile("Scart")
