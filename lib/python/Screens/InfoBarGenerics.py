@@ -3221,7 +3221,7 @@ class InfoBarInstantRecord:
 			hour = minute * 60
 			day = hour * 24
 
-			end_date = ConfigDateTime(default=recEnd, formatstring=_("%A %d %B %Y"), increment=day, increment1=day, base=now)
+			end_date = ConfigDateTime(default=recEnd, formatstring=_("%a %d %b %Y"), increment=day, increment1=day, base=now)
 			end_time = ConfigClockTime(default=recEnd, formatstring="", increment=hour, increment1=minute, base=now)
 			duration = ConfigClockDuration(default=recEnd, formatstring=self.durationString, increment=hour, increment1=minute, base=now)
 

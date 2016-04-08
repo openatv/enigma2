@@ -364,4 +364,4 @@ class Cam:
 		self.longitude = element.findtext("longitude", 0)
 
 		datex = datetime.fromtimestamp(int(element.findtext("last_update", 0)))
-		self.last_update = datex.strftime("%d.%m.%Y %H:%M:%S")
+		self.last_update = datex.strftime("%d %b %Y %H:%M:%S")

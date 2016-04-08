@@ -178,7 +178,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		], default=repeated)
 		self.timerentry_renamerepeat = ConfigYesNo(default=rename_repeat)
 
-		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%d %B %Y"), increment=86400)
+		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%a %d %b %Y"), increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
 		self.timerentry_showendtime = ConfigSelection(default=((self.timer.end - self.timer.begin) > 4), choices=[(True, _("yes")), (False, _("no"))])
@@ -189,7 +189,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			tmp.append(default)
 		self.timerentry_dirname = ConfigSelection(default=default, choices=tmp)
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=_("%d.%B %Y"), increment=86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=_("%a %d %b %Y"), increment=86400)
 
 		self.timerentry_weekday = ConfigSelection(default=weekday_table[weekday], choices=[
 			("mon", _("Monday")),
@@ -615,7 +615,7 @@ class TimerLog(Screen):
 		self.updateText()
 
 	def fillLogList(self):
-		self.list = [(str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
+		self.list = [(str(strftime("%a %d %b %Y %H:%M", localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
 
 	def clearLog(self):
 		self.log_entries = []
