@@ -497,7 +497,10 @@ def autorestoreLoop():
 	count = 0
 	if os.path.exists("/media/hdd/images/config/autorestore"):
 		f = open("/media/hdd/images/config/autorestore", "r")
-		count = int(f.read())
+		try:
+			count = int(f.read())
+		except:
+			count = 0;
 		f.close()
 		if count >= 3:
 			return False
