@@ -14,7 +14,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	]
 
 	sat_frequencies = [
-		# astra 282 S4C
+		# astra 282 Sony TV Asia
 		( 12051, 27500,
 		  eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_2_3,
 		  eDVBFrontendParametersSatellite.Inversion_Off, 282,
