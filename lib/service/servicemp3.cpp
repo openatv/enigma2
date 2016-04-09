@@ -1771,6 +1771,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 #else
 				GstCaps* caps = gst_pad_get_current_caps(pad);
 #endif
+				gst_object_unref(pad);
 				if (!caps)
 					continue;
 				GstStructure* str = gst_caps_get_structure(caps, 0);
@@ -1835,6 +1836,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					g_signal_connect (G_OBJECT (pad), "notify::caps", G_CALLBACK (gstTextpadHasCAPS), this);
 
 				subs.type = getSubtitleType(pad, g_codec);
+				gst_object_unref(pad);
 				g_free(g_codec);
 				m_subtitleStreams.push_back(subs);
 			}
@@ -2257,6 +2259,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 					g_free(g_lang);
 				}
 			}
+			gst_tag_list_free(tags);
 
 			if (m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
 				m_subtitleStreams[m_currentSubtitleStream] = subs;
