@@ -38,9 +38,10 @@ def InitConfig():
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
 																							'/etc/tuxbox/config/', '/etc/auto.network', '/etc/enigma2/automounts.xml', '/etc/passwd', '/etc/shadow',
-																							'/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+																							'/etc/dropbear/', '/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
 																							'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
 																							'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
+																							'/etc/epgimport/',
 																							'/usr/share/enigma2/MetrixHD/skinparts/',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
