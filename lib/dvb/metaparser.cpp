@@ -14,7 +14,7 @@ eDVBMetaParser::eDVBMetaParser()
 	m_scrambled = 0;
 }
 
-static int getctime(const std::string &basename)
+static time_t getctime(const std::string &basename)
 {
 	struct stat s;
 	if (::stat(basename.c_str(), &s) == 0)
@@ -24,9 +24,9 @@ static int getctime(const std::string &basename)
 	return 0;
 }
 
-static long long fileSize(const std::string &basename)
+static off_t fileSize(const std::string &basename)
 {
-	long long filesize = 0;
+	off_t filesize = 0;
 	char buf[8];
 	std::string splitname;
 	struct stat64 s;
@@ -103,7 +103,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			m_description = line;
 			break;
 		case 3:
-			m_time_create = atoi(line);
+			m_time_create = atol(line);
 			if (m_time_create == 0)
 			{
 				m_time_create = getctime(tsname);
@@ -113,7 +113,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			m_tags = line;
 			break;
 		case 5:
-			m_length = atoi(line);  //movielength in pts
+			m_length = atoll(line);  //movielength in pts
 			break;
 		case 6:
 			m_filesize = atoll(line);
@@ -215,6 +215,6 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	CFile f(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
-	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
+	fprintf(f, "%s\n%s\n%s\n%ld\n%s\n%lld\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
 	return 0;
 }

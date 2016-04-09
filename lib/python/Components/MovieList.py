@@ -51,8 +51,6 @@ class StubInfo:
 		try:
 			if w == iServiceInformation.sTimeCreate:
 				return os.stat(serviceref.getPath()).st_ctime
-			if w == iServiceInformation.sFileSize:
-				return os.stat(serviceref.getPath()).st_size
 			if w == iServiceInformation.sDescription:
 				return serviceref.getPath()
 		except:
