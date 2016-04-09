@@ -1915,7 +1915,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			{
 				GstBufferingMode mode;
 				gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));
-				eDebug("Buffering %u percent done", m_bufferInfo.bufferPercent);
+				// eDebug("Buffering %u percent done", m_bufferInfo.bufferPercent);
 				gst_message_parse_buffering_stats(msg, &mode, &(m_bufferInfo.avgInRate), &(m_bufferInfo.avgOutRate), &(m_bufferInfo.bufferingLeft));
 				m_event((iPlayableService*)this, evBuffering);
 				/*
@@ -2289,11 +2289,11 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		}
 		gint64 buf_pos = GST_BUFFER_PTS(buffer);
 		size_t len = map.size;
-		eDebug("gst_buffer_get_size %zu map.size %zu", gst_buffer_get_size(buffer), len);
+		// eDebug("gst_buffer_get_size %zu map.size %zu", gst_buffer_get_size(buffer), len);
 #endif
 		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 		int subType = m_subtitleStreams[m_currentSubtitleStream].type;
-		eDebug("pullSubtitle type=%d size=%zu", subType, len);
+		// eDebug("pullSubtitle type=%d size=%zu", subType, len);
 		if ( subType )
 		{
 			if ( subType < stVOB )
@@ -2310,7 +2310,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 #else
 				std::string line((const char*)map.data, len);
 #endif
-				eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
+				// eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
 
 				uint32_t start_ms = ((buf_pos / 1000000ULL) * convert_fps) + delay;
 				uint32_t end_ms = start_ms + (duration_ns / 1000000ULL);
@@ -2526,7 +2526,7 @@ RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 		}
 		stream_idx++;
 	}
-	eDebug("eServiceMP3::getSubtitleList finished");
+	// eDebug("eServiceMP3::getSubtitleList finished");
 	return 0;
 }
 
