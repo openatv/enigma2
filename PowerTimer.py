@@ -332,12 +332,26 @@ class PowerTimerEntry(timer.TimerEntry, object):
 	def timeChanged(self):
 		old_prepare = self.start_prepare
 		self.start_prepare = self.begin - self.prepare_time
-		self.begin = self.origbegin
-		self.end = self.origend
+		if self.origbegin is not None:
+			self.begin = self.origbegin
+		if self.origend is not None:
+			self.end = self.origend
 		self.backoff = 0
 
 		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, "time changed, start prepare is now: %s" % ctime(self.start_prepare))
+
+	def processRepeated(self, findRunningEvent=True, findNextEvent=False):
+		# Reset begin/end times
+		self.begin = self.origbegin
+		self.end = self.origend
+		# Prevent timeChanged() from resetting updated times
+		self.origbegin = None
+		self.origend = None
+		timer.TimerEntry.processRepeated(self, findRunningEvent, findNextEvent)
+		# Update "original" begin/end times
+		self.origbegin = self.begin
+		self.origend = self.end
 
 def createTimer(xml):
 	timertype = str(xml.get("timertype") or "wakeup")
@@ -413,15 +427,15 @@ class PowerTimer(timer.Timer):
 			# No, sort it into active list
 			insort(self.timer_list, w)
 		else:
-			# Reset begin/end times
-			w.begin = w.origbegin
-			w.end = w.origend
 			# Yes. Process repeat if necessary, and re-add.
 			if w.repeated:
 				w.processRepeated()
 				w.state = PowerTimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
+				# Reset begin/end times
+				w.begin = w.origbegin
+				w.end = w.origend
 				# Remove old timers as set in config
 				self.cleanupDaily(config.recording.keep_timers.value)
 				insort(self.processed_timers, w)
