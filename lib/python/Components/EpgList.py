@@ -1424,7 +1424,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
 			serviceWidth = service_rect.w
-			if nowTime[2] != begTime[2]:
+			if nowTime.tm_year == begTime.tm_year and nowTime.tm_yday == begTime.tm_yday:
+				datestr = _("Today")
+			else:
 				if serviceWidth > 179:
 					datestr = strftime("%A %d %B", begTime)
 				elif serviceWidth > 139:
@@ -1437,8 +1439,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 					datestr = strftime("%A", begTime)
 				else:
 					datestr = strftime("%a", begTime)
-			else:
-				datestr = '%s' % (_("Today"))
 
 			foreColor = self.foreColor
 			backColor = self.backColor
