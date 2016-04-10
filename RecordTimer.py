@@ -236,6 +236,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				filename = self.name + " - " + begin_date
 			elif config.recording.filename_composition.value == "short":
 				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + self.name
+			elif config.recording.filename_composition.value == "shortwithtime":
+				filename = strftime("%Y%m%d %H%M", localtime(self.begin)) + " - " + self.name
 			elif config.recording.filename_composition.value == "long":
 				filename += " - " + self.name + " - " + self.description
 			else:
