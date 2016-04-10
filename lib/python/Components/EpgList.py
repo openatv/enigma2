@@ -1426,17 +1426,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 			serviceWidth = service_rect.w
 			if nowTime[2] != begTime[2]:
 				if serviceWidth > 179:
-					datestr = strftime("%A %d %B", localtime(time_base))
+					datestr = strftime("%A %d %B", begTime)
 				elif serviceWidth > 139:
-					datestr = strftime("%a %d %B", localtime(time_base))
+					datestr = strftime("%a %d %B", begTime)
 				elif serviceWidth > 129:
-					datestr = strftime("%a %d %b", localtime(time_base))
+					datestr = strftime("%a %d %b", begTime)
 				elif serviceWidth > 119:
-					datestr = strftime("%a %d", localtime(time_base))
+					datestr = strftime("%a %d", begTime)
 				elif serviceWidth > 109:
-					datestr = strftime("%A", localtime(time_base))
+					datestr = strftime("%A", begTime)
 				else:
-					datestr = strftime("%a", localtime(time_base))
+					datestr = strftime("%a", begTime)
 			else:
 				datestr = '%s' % (_("Today"))
 
