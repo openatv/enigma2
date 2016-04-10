@@ -1424,21 +1424,21 @@ class TimelineText(HTMLComponent, GUIComponent):
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
 			serviceWidth = service_rect.w
-			if nowTime[2] != begTime[2]:
-				if serviceWidth > 179:
-					datestr = strftime("%A %d %B", localtime(time_base))
-				elif serviceWidth > 139:
-					datestr = strftime("%a %d %B", localtime(time_base))
-				elif serviceWidth > 129:
-					datestr = strftime("%a %d %b", localtime(time_base))
-				elif serviceWidth > 119:
-					datestr = strftime("%a %d", localtime(time_base))
-				elif serviceWidth > 109:
-					datestr = strftime("%A", localtime(time_base))
-				else:
-					datestr = strftime("%a", localtime(time_base))
+			if nowTime.tm_year == begTime.tm_year and nowTime.tm_yday == begTime.tm_yday:
+				datestr = _("Today")
 			else:
-				datestr = '%s' % (_("Today"))
+				if serviceWidth > 179:
+					datestr = strftime("%A %d %B", begTime)
+				elif serviceWidth > 139:
+					datestr = strftime("%a %d %B", begTime)
+				elif serviceWidth > 129:
+					datestr = strftime("%a %d %b", begTime)
+				elif serviceWidth > 119:
+					datestr = strftime("%a %d", begTime)
+				elif serviceWidth > 109:
+					datestr = strftime("%A", begTime)
+				else:
+					datestr = strftime("%a", begTime)
 
 			foreColor = self.foreColor
 			backColor = self.backColor

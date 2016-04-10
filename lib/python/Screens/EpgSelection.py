@@ -1263,10 +1263,10 @@ class EPGSelection(Screen, HelpableScreen):
 				beg = event.getBeginTime()
 				nowTime = localtime(now)
 				begTime = localtime(beg)
-				if nowTime[2] != begTime[2]:
-					datestr = strftime(_('%a %d %b'), begTime)
+				if nowTime.tm_year == begTime.tm_year and nowTime.tm_yday == begTime.tm_yday:
+					datestr = _("Today")
 				else:
-					datestr = '%s' % _('Today')
+					datestr = strftime(_('%a %d %b'), begTime)
 			self['date'].setText(datestr)
 		if cur[1] is None or cur[1].getServiceName() == '':
 			if self.key_green_choice != self.EMPTY:
