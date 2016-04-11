@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-22 22:13+0000\n"
-"PO-Revision-Date: 2016-01-24 04:55+0100\n"
+"POT-Creation-Date: 2016-04-04 21:29+0100\n"
+"PO-Revision-Date: 2016-04-11 06:08+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -14,13 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 1.8.6\n"
-
-msgid ""
-"\n"
-"<This tuner is configured automatically>"
-msgstr ""
-"\n"
-"<Deze tuner is automatisch geconfigureerd>"
 
 msgid ""
 "\n"
@@ -1603,6 +1596,9 @@ msgstr "Kan geen signaal vinden..., breek af!!"
 msgid "Cannot move to the trash can"
 msgstr "Kan bestanden niet naar de prullenbak verplaatsen"
 
+msgid "Capabilities: "
+msgstr "Mogelijkheden:"
+
 msgid "Capacity: "
 msgstr "Capaciteit: "
 
@@ -1656,9 +1652,6 @@ msgstr "Wijzig timer"
 
 msgid "Change to bouquet"
 msgstr "Verander in favorietenlijst"
-
-msgid "Changelog"
-msgstr "Veranderingslogboek"
 
 msgid "Channel"
 msgstr "Kanaal"
@@ -2288,10 +2281,6 @@ msgstr "Kopieert bestanden"
 msgid "Cores:\t%s\n"
 msgstr "Kernen:\t%s\n"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Kon geen verbinding maken met de %s %s.NFI feed Server:"
-
 msgid "Could not find installed channel list."
 msgstr "Kon geen geïnstalleerde kanaallijst vinden."
 
@@ -2384,9 +2373,6 @@ msgstr "Huidige waarde:"
 
 msgid "Current version:"
 msgstr "Actuele versie:"
-
-msgid "Currently installed image"
-msgstr "Huidig geïnstalleerd image"
 
 msgid "Custom"
 msgstr "Aanpassen"
@@ -2689,6 +2675,9 @@ msgstr "DiSEqC poort %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-tester instellingen"
 
+msgid "Diction"
+msgstr "Woordkeus"
+
 msgid "Digital contour removal"
 msgstr "Digitale contour verwijderen"
 
@@ -2713,9 +2702,6 @@ msgstr "Uit"
 
 msgid "Disable Animations"
 msgstr "Animatie uitschakelen"
-
-msgid "Disable MiniTV"
-msgstr "Schakel mini-TV uit"
 
 msgid "Disable Picture in Picture"
 msgstr "Beeld-in-beeld uitschakelen"
@@ -2860,10 +2846,6 @@ msgstr "Wilt u nu zenders zoeken?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Wilt u opnieuw handmatig zoeken?"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Wilt u het image downloaden naar %s ?"
-
 msgid "Do you want to install the package:\n"
 msgstr "Wilt u het volgende pakket installeren:\n"
 
@@ -2939,16 +2921,6 @@ msgstr[1] "Klaar - %d pakketten geïnstalleerd, vervangen of verwijderd (%s)"
 
 msgid "Down"
 msgstr "Omlaag"
-
-msgid "Download"
-msgstr "Downloaden"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Download %s van server"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Download .NFI-Bestanden naar USB-Flasher"
 
 msgid "Download plugins"
 msgstr "Download plugins"
@@ -3101,9 +3073,6 @@ msgstr "Freesat EPG inschakelen"
 
 msgid "Enable MHW EPG"
 msgstr "MHW EPG inschakelen"
-
-msgid "Enable MiniTV"
-msgstr "Schakel mini-TV in"
 
 msgid "Enable Netmed EPG"
 msgstr "Netmed EPG inschakelen"
@@ -3445,6 +3414,23 @@ msgstr "F3 lang"
 msgid "FAILED"
 msgstr "MISLUKT"
 
+msgid "FBC Unicable"
+msgstr "FBC Unicable"
+
+msgid "FBC automatic loop through"
+msgstr "FBC automatische loopthrough"
+
+msgid ""
+"FBC automatic loop through\n"
+"inactive"
+msgstr "FBC automatische loopthrough inactief"
+
+#, python-format
+msgid ""
+"FBC automatic loop through\n"
+"linked to %s"
+msgstr "FBC automatische loopthrough verbonden met %s"
+
 msgid "FEC"
 msgstr "FEC"
 
@@ -3559,14 +3545,8 @@ msgstr "Fins"
 msgid "Fixed"
 msgstr "Vast"
 
-msgid "Flash"
-msgstr "Flash"
-
 msgid "Flashing"
 msgstr "Bezig met flashen"
-
-msgid "Flashing failed"
-msgstr "Flashen mislukt"
 
 msgid "Following tasks will be done after you press OK!"
 msgstr "Nadat u op OK drukt worden de volgende taken uitgevoerd!"
@@ -3675,12 +3655,6 @@ msgstr "Genre"
 
 msgid "German"
 msgstr "Duits"
-
-msgid "Get latest experimental image"
-msgstr "Ontvang het laatste experimentele image"
-
-msgid "Get latest release image"
-msgstr "Ontvang het laatste release image"
 
 msgid "Getting Event Info failed!"
 msgstr "Geen eventinfo gevonden!"
@@ -4727,6 +4701,14 @@ msgstr "min"
 msgid "Mins Secs"
 msgstr "Minuten seconden"
 
+#, python-format
+msgid ""
+"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+"Tuner %s option \"connected to\" are disabled now"
+msgstr ""
+"Verkeerd geconfigureerde Unicable verbinding van tuner %s naar tuner %s!\n"
+"Tuner %s optie \"verbonden met\" is nu uitgeschakeld."
+
 msgid "Missing "
 msgstr "Ontbrekend"
 
@@ -4902,12 +4884,6 @@ msgstr "N"
 msgid "N/A"
 msgstr "Niet beschikbaar"
 
-msgid "NFI image flashing"
-msgstr "NFI image schrijven"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image schrijven is gereed. Druk op gele toets om te herstarten!"
-
 msgid "NFS Setup"
 msgstr "NFS Instellingen"
 
@@ -5054,6 +5030,9 @@ msgstr "Geen kabeltuner gevonden!"
 msgid "No card inserted!"
 msgstr "Geen kaart geplaatst!"
 
+msgid "No clients streaming"
+msgstr "Geen streaming klanten"
+
 msgid "No connection"
 msgstr "Geen verbinding"
 
@@ -5069,9 +5048,6 @@ msgstr "Geen vertraging"
 
 msgid "No description available."
 msgstr "Geen beschrijving beschikbaar."
-
-msgid "No details for this image file"
-msgstr "Geen details voor dit bestand:"
 
 msgid "No displayable files on this medium found!"
 msgstr "Geen weer te geven bestanden op dit medium gevonden!"
@@ -5667,9 +5643,6 @@ msgstr "Gelieve titels aan de compilatie toe te voegen."
 msgid "Please change the recording end time"
 msgstr "Wijzig de eindtijd van de opname"
 
-msgid "Please check your network settings!"
-msgstr "Controleer uw netwerkinstellingen!"
-
 msgid "Please choose CCcam reader"
 msgstr "Kies de CCcam-lezer"
 
@@ -5765,9 +5738,6 @@ msgstr "Selecteer een subzender voor opname a.u.b..."
 msgid "Please select a subservice..."
 msgstr "Selecteer een subzender..."
 
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Selecteer een NFI-bestand en druk op de groene toets om te flashen!"
-
 msgid "Please select medium to be scanned"
 msgstr "Selecteer het te scannen medium..."
 
@@ -5827,6 +5797,9 @@ msgstr "Configureer tuner I"
 
 msgid "Please set up tuner J"
 msgstr "Configureer tuner J"
+
+msgid "Please set up tuner K"
+msgstr "Configureer tuner K"
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
@@ -6029,9 +6002,6 @@ msgstr "Voorkeurs DVB-T tuner voor opnames"
 
 msgid "Preferred tuner for recordings"
 msgstr "Voorkeurstuner voor opnames"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Maak een andere USB-stick klaar voor het flashen"
 
 msgid "Preparing... Please wait"
 msgstr "Voorbereiden... Een ogenblik geduld a.u.b."
@@ -6608,9 +6578,6 @@ msgstr "Backups terugzetten"
 msgid "Restore deleted user bouquets"
 msgstr "Herstel verwijderde favorietenlijsten"
 
-msgid "Restore is running..."
-msgstr "Bezig terug te zetten...."
-
 msgid "Restore system settings"
 msgstr "Instellingen terugzetten"
 
@@ -6946,9 +6913,6 @@ msgstr "Kies bestemming voor %s:"
 msgid "Select all"
 msgstr "Selecteer alle"
 
-msgid "Select an image to be downloaded"
-msgstr "Kies bestand om te downloaden"
-
 msgid "Select audio track"
 msgstr "Kies audiospoor"
 
@@ -6963,9 +6927,6 @@ msgstr "Selecteer een zender voor opname"
 
 msgid "Select copy destination for:"
 msgstr "Selecteer kopiëer bestemming voor:"
-
-msgid "Select desired image from feed list"
-msgstr "Selecteer het gewenste bestand van de feed-lijst"
 
 msgid "Select destination for:"
 msgstr "Selecteer bestemming voor:"
@@ -7304,11 +7265,6 @@ msgstr "Satellietapparatuur instellen"
 
 msgid "Setup your timezone."
 msgstr "Tijdzone instellen"
-
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Zal de USB-stick wizard verder gaan en het bestand %s in het flash-geheugen wegschrijven?"
 
 msgid "Share Folder's"
 msgstr "Deel mappen"
@@ -8120,6 +8076,9 @@ msgstr "Stream-tv"
 msgid "Streaming"
 msgstr "Streaming"
 
+msgid "Streaming clients info"
+msgstr "Streaming klantinfo"
+
 msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
 msgstr "Poort van de remote ontvanger. Standaard is dat '08001'."
 
@@ -8453,13 +8412,6 @@ msgstr "De pincode is succesvol gewijzigd."
 msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes komen niet overeen."
 
-msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"De USB-stick is voorbereid om op te starten.\n"
-"Nu kunt nu een NFI-bestand downloaden!"
-
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backup is mislukt. Kies een andere backup lokatie a.u.b."
 
@@ -8483,28 +8435,11 @@ msgstr ""
 "De map %s is niet beschrijfbaar.\n"
 "Zorg ervoor dat u een beschrijfbare map selecteert."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Het volgende medium is gevonden:\n"
-"\n"
-"%s\n"
-"\n"
-"Wenst u de USB flasher op deze stick te schrijven?"
-
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
 
 msgid "The loopthrough setting is wrong."
 msgstr "De loopthrough-instelling is verkeerd."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "De md5sum-validatie is mislukt, het bestand is misschien beschadigd!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -8543,6 +8478,13 @@ msgstr "Het timer-bestand (pm-timer.xml) is beschadigd en kan niet worden gelade
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Het timer-bestand (timer.xml) is beschadigd en kan niet worden geladen."
 
+msgid ""
+"The unicable connection setting is wrong.\n"
+" Maybe recursive connection of tuners."
+msgstr ""
+"De Unicableinstelling is verkeerd.\n"
+"Wellicht een omgekeerde verbinding van de tuners."
+
 #, python-format
 msgid "The user interface of your %s %s is restarting"
 msgstr "De gebruikersinterface van uw %s %s wordt herstart"
@@ -8569,10 +8511,6 @@ msgstr "De WiFi-plugin is niet geïnstalleerd.Deze plugin eerst installeren a.u.
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "De wizard kan uw huidige settings opslaan. Wilt u nu een backup maken?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "De wizard vond een configuratiebackup. Wilt u uw oude instellingen van %s herstellen?"
 
 msgid "The wizard is finished now."
 msgstr "De wizard is nu gereed."
@@ -8796,18 +8734,6 @@ msgstr "Hiermee stelt u de onderdrukking in van valse digitale contouren, die he
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Hiermee stelt u de beeldscherpte in als het beeld moet worden opgeschaald."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Deze plugin creëert een USB-stick die kan worden gebruikt om de software van uw %s %s te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
-"Eerst moet de stick bootaable gemaakt worden.\n"
-"In de volgende stap kan een BFI-bestand worden gedownload van de update server en op de stick worden opgeslagen.\n"
-"Als u al een geschikte stick heeft, kunt u die nu inpluggen. Anders een stick met minimaal 64MB gebruiken!"
-
 msgid "This plugin is installed."
 msgstr "Deze plugin is geïnstalleerd."
 
@@ -9015,18 +8941,6 @@ msgstr "Titel instellingen"
 msgid "Titleset mode"
 msgstr "Titelset modus"
 
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Om de firmware van uw %s %s te upgraden, voert u de volgende stappen uit:\n"
-"1) Schakel uw box uit met de schakelaar en zorg dat er een bootable USB stick is ingeplugd.\n"
-"2) Schakel de box in en houdt de DOWN-toets op het front paneel 10 seconden ingedrukt .\n"
-"3) Wacht op het opstarten en volg de instructies van de wizard."
-
 msgid "Today"
 msgstr "Vandaag"
 
@@ -9233,9 +9147,6 @@ msgstr "USALS"
 msgid "USALS Calibration"
 msgstr "USALS kalibratie"
 
-msgid "USB stick wizard"
-msgstr "USB-stick wizard"
-
 msgid "Ukrainian"
 msgstr "Oekraïens "
 
@@ -9258,8 +9169,8 @@ msgstr "Niet-encrypted"
 msgid "Unhide parental control services"
 msgstr "Kinderslot uitschakelen"
 
-msgid "Unicable"
-msgstr "Unicable"
+msgid "Unicable / JESS"
+msgstr "Unicable / JESS"
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
@@ -10191,9 +10102,6 @@ msgstr "U heeft dit log al verstuurd; wiilt u het nogmaals verzenden?\n"
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "U heeft gekozen een backup van uw instellingen te maken. Druk op OK om te beginnen."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. Alle data op de USB stick gaat onherroepelijk verloren."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "U heeft gekozen om uw instellingen te herstellen. Enigma2 zal herstarten na het herstel. Druk op OK om te beginnen met het herstel."
 
@@ -10634,9 +10542,6 @@ msgstr "bevestigd"
 msgid "connected"
 msgstr "verbonden"
 
-msgid "continue"
-msgstr "doorgaan"
-
 msgid "cooking"
 msgstr "koken"
 
@@ -10645,10 +10550,6 @@ msgstr "kopiëer"
 
 msgid "create directory"
 msgstr "pap aanmaken"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "huidig geïnstalleerd image: %s"
 
 msgid "daily"
 msgstr "dagelijks"
@@ -11592,6 +11493,13 @@ msgstr "zapte"
 
 #~ msgid ""
 #~ "\n"
+#~ "<This tuner is configured automatically>"
+#~ msgstr ""
+#~ "\n"
+#~ "<Deze tuner is automatisch geconfigureerd>"
+
+#~ msgid ""
+#~ "\n"
 #~ "A recording is in progress."
 #~ msgstr ""
 #~ "\n"
@@ -11660,6 +11568,9 @@ msgstr "zapte"
 #~ msgid "Change sort by..."
 #~ msgstr "Sorteer volgens..."
 
+#~ msgid "Changelog"
+#~ msgstr "Veranderingslogboek"
+
 #~ msgid "Channel +/- button mode"
 #~ msgstr "Kanaal +/- mode"
 
@@ -11684,8 +11595,14 @@ msgstr "zapte"
 #~ msgid "Copy to other directory"
 #~ msgstr "Kopieer naar andere map"
 
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Kon geen verbinding maken met de %s %s.NFI feed Server:"
+
 #~ msgid "Create more detailed crash log"
 #~ msgstr "Crash logs met extra informatie"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Huidig geïnstalleerd image"
 
 #~ msgid "DVB_C"
 #~ msgstr "DVB_C"
@@ -11702,11 +11619,26 @@ msgstr "zapte"
 #~ msgid "Disable FastZapping"
 #~ msgstr "Snel zappen uitschakelen"
 
+#~ msgid "Disable MiniTV"
+#~ msgstr "Schakel mini-TV uit"
+
 #~ msgid "Disconnect"
 #~ msgstr "Verbreken"
 
 #~ msgid "Display"
 #~ msgstr "Display"
+
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Wilt u het image downloaden naar %s ?"
+
+#~ msgid "Download"
+#~ msgstr "Downloaden"
+
+#~ msgid "Download %s from server"
+#~ msgstr "Download %s van server"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Download .NFI-Bestanden naar USB-Flasher"
 
 #~ msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
 #~ msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
@@ -11719,6 +11651,9 @@ msgstr "zapte"
 
 #~ msgid "Enable FastZapping"
 #~ msgstr "Schakel snel zappen in"
+
+#~ msgid "Enable MiniTV"
+#~ msgstr "Schakel mini-TV in"
 
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Inschakelen remote ontvanger voor kanalen die niet beschikbaar zijn op deze ontvanger (b.v. omdat de tuner bezet is door een opname). Geef de komplete URL inclusief http:// en poortnummer (normaal ...:8001), b.v. http://IP-tweede-ontvanger:8001."
@@ -11738,11 +11673,23 @@ msgstr "zapte"
 #~ msgid "Finished restarting your network"
 #~ msgstr "Herstarten van uw netwerk is voltooid"
 
+#~ msgid "Flash"
+#~ msgstr "Flash"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Flashen mislukt"
+
 #~ msgid "Free Memory:"
 #~ msgstr "Vrij:"
 
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "Ftpd service type: Vsftpd server"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Ontvang het laatste experimentele image"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Ontvang het laatste release image"
 
 #~ msgid "Harddisk Setup"
 #~ msgstr "Harde schijf instellingen"
@@ -11765,8 +11712,17 @@ msgstr "zapte"
 #~ msgid "Move to other directory"
 #~ msgstr "Verplaats naar andere map"
 
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI image schrijven"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI image schrijven is gereed. Druk op gele toets om te herstarten!"
+
 #~ msgid "New PIN"
 #~ msgstr "Nieuwe pincode"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Geen details voor dit bestand:"
 
 #~ msgid "No updates available. Please try again later."
 #~ msgstr "Geen updates beschikbaar. Probeer het later nog eens."
@@ -11807,10 +11763,11 @@ msgstr "zapte"
 #~ msgid "Phone number"
 #~ msgstr "Telefoonnummer"
 
-#~ msgid "Please set up tuner K"
-#~ msgstr ""
-#~ "Configureer tuner A\n"
-#~ "K"
+#~ msgid "Please check your network settings!"
+#~ msgstr "Controleer uw netwerkinstellingen!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Selecteer een NFI-bestand en druk op de groene toets om te flashen!"
 
 #~ msgid "Please wait for activation of your network configuration..."
 #~ msgstr "Een ogenblikje geduld terwijl we uw netwerk activeren..."
@@ -11824,6 +11781,9 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "Vooringestelde transponderscans zijn alleen mogelijk als in \n"
 #~ "\"Service scan type\"  \"Provider\" in \"Tuner configuratie\" is ingesteld."
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Maak een andere USB-stick klaar voor het flashen"
 
 #~ msgid "Re-enter new PIN"
 #~ msgstr "Voer nieuwe pincode nogmaals in."
@@ -11840,11 +11800,20 @@ msgstr "zapte"
 #~ msgid "Restart enigma"
 #~ msgstr "De gebruikersinterface opnieuw starten"
 
+#~ msgid "Restore is running..."
+#~ msgstr "Bezig terug te zetten...."
+
 #~ msgid "Samba Network File System"
 #~ msgstr "Samba netwerk file systeem"
 
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Kies bestand om te downloaden"
+
 #~ msgid "Select default EPG type..."
 #~ msgstr "Kies het standaard EPG-type..."
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Selecteer het gewenste bestand van de feed-lijst"
 
 #~ msgid "Select if you want the Subservice mode to be activated."
 #~ msgstr "Kies hiervoor als u het gebruik van sub-kanalen wilt activeren"
@@ -11860,6 +11829,10 @@ msgstr "zapte"
 
 #~ msgid "Setting"
 #~ msgstr "Instelling"
+
+#
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Zal de USB-stick wizard verder gaan en het bestand %s in het flash-geheugen wegschrijven?"
 
 #~ msgid "Show Audioselection"
 #~ msgstr "Toon audioselectie"
@@ -11903,6 +11876,54 @@ msgstr "zapte"
 #~ msgid "TV button mode"
 #~ msgstr "TV toets functie"
 
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "De USB-stick is voorbereid om op te starten.\n"
+#~ "Nu kunt nu een NFI-bestand downloaden!"
+
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Het volgende medium is gevonden:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Wenst u de USB flasher op deze stick te schrijven?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "De md5sum-validatie is mislukt, het bestand is misschien beschadigd!"
+
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "De wizard vond een configuratiebackup. Wilt u uw oude instellingen van %s herstellen?"
+
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Deze plugin creëert een USB-stick die kan worden gebruikt om de software van uw %s %s te updaten zonder dat u een LAN of WLAN verbinding nodig heeft.\n"
+#~ "Eerst moet de stick bootaable gemaakt worden.\n"
+#~ "In de volgende stap kan een BFI-bestand worden gedownload van de update server en op de stick worden opgeslagen.\n"
+#~ "Als u al een geschikte stick heeft, kunt u die nu inpluggen. Anders een stick met minimaal 64MB gebruiken!"
+
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Om de firmware van uw %s %s te upgraden, voert u de volgende stappen uit:\n"
+#~ "1) Schakel uw box uit met de schakelaar en zorg dat er een bootable USB stick is ingeplugd.\n"
+#~ "2) Schakel de box in en houdt de DOWN-toets op het front paneel 10 seconden ingedrukt .\n"
+#~ "3) Wacht op het opstarten en volg de instructies van de wizard."
+
 #~ msgid "Toggle Extra Keys"
 #~ msgstr "Wissel Extra Keys"
 
@@ -11911,6 +11932,9 @@ msgstr "zapte"
 
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "URL van de fallback-ontvanger"
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB-stick wizard"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
@@ -11939,8 +11963,17 @@ msgstr "zapte"
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "U kunt de telnetserver uitschakelen en ssh gebruiken om in te loggen."
 
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. Alle data op de USB stick gaat onherroepelijk verloren."
+
 #~ msgid "complex"
 #~ msgstr "complex"
+
+#~ msgid "continue"
+#~ msgstr "doorgaan"
+
+#~ msgid "currently installed image: %s"
+#~ msgstr "huidig geïnstalleerd image: %s"
 
 #~ msgid "default"
 #~ msgstr "standaard"
