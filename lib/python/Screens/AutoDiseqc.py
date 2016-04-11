@@ -14,37 +14,69 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	]
 
 	sat_frequencies = [
-		# astra 282 Sony TV Asia
-		( 12051, 27500,
-		  eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_2_3,
-		  eDVBFrontendParametersSatellite.Inversion_Off, 282,
-		  eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto,
-		  eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown,
-		  2018, 2, "Astra 2 28.2e"),
+		# astra 282 EPG Background Radio
+		( 
+			11778,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_2_3,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			282,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			2004,
+			2,
+			"Astra 2 28.2e"),
 
 		# astra 235 astra ses
-		( 12168, 27500,
-		  eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_3_4,
-		  eDVBFrontendParametersSatellite.Inversion_Off, 235,
-		  eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto,
-		  eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown,
-		  3224, 3, "Astra 3 23.5e"),
+		( 
+			12168,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			235,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			3224,
+			3,
+			"Astra 3 23.5e"),
 
 		# astra 192 zdf
-		( 11953, 27500,
-		  eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4,
-		  eDVBFrontendParametersSatellite.Inversion_Off, 192,
-		  eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto,
-		  eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown,
-		  1079, 1, "Astra 1 19.2e"),
+		( 
+			11953,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			192,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			1079,
+			1,
+			"Astra 1 19.2e"),
 
 		# hotbird 130 rai
-		( 10992, 27500,
-		  eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_2_3,
-		  eDVBFrontendParametersSatellite.Inversion_Off, 130,
-		  eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto,
-		  eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown,
-		  12400, 318, "Hotbird 13.0e"),
+		(
+			10992,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_2_3,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			130,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			12400,
+			318,
+			"Hotbird 13.0e"),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
