@@ -1639,20 +1639,27 @@ class InfoBarTimeshift:
 			self.switchToLive = False
 			self.stopTimeshiftcheckTimeshiftRunningCallback(True)
 
-		# Restart Timeshift when all records stopped
-		if timer.state == TimerEntry.StateEnded and not self.timeshiftEnabled() and not self.pts_record_running:
-			self.autostartAutorecordTimeshift()
-
-		# Restart Merge-Timer when all records stopped
-		if timer.state == TimerEntry.StateEnded and self.pts_mergeRecords_timer.isActive():
-			self.pts_mergeRecords_timer.stop()
-			self.pts_mergeRecords_timer.start(15000, True)
-
-		# Restart FrontPanel LED when still copying or merging files
-		# ToDo: Only do this on PTS Events and not events from other jobs
-		if timer.state == TimerEntry.StateEnded and (len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeRecords_timer.isActive()):
-			self.ptsFrontpanelActions("start")
-			config.timeshift.isRecording.value = True
+		if timer.state == TimerEntry.StateEnded:
+			# Restart Timeshift when all records stopped
+			if not self.timeshiftEnabled() and not self.pts_record_running:
+				self.autostartAutorecordTimeshift()
+			if self.pts_mergeRecords_timer.isActive():
+				# Restart Merge-Timer when all records stopped
+				self.pts_mergeRecords_timer.stop()
+				self.pts_mergeRecords_timer.start(15000, True)
+				# Restart FrontPanel LED when still copying or merging files
+				self.ptsFrontpanelActions("start")
+				config.timeshift.isRecording.value = True
+			else:
+				# Restart FrontPanel LED when still copying or merging files
+				jobs = JobManager.getPendingJobs()
+				if len(jobs) >= 1:
+					for job in jobs:
+						jobname = str(job.name)
+						if jobname == _("Saving Timeshift files") or jobname == _("Creating AP and SC Files") or jobname == _("Merging Timeshift files"):# or jobname != _("Cleaning Trashes"):
+							self.ptsFrontpanelActions("start")
+							config.timeshift.isRecording.value = True
+							break
 
 	def ptsLiveTVStatus(self):
 		service = self.session.nav.getCurrentService()
