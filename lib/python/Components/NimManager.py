@@ -1738,6 +1738,18 @@ def InitNimManager(nimmgr, update_slots = []):
 				tmp.lnb = lnb
 				nim.advanced.sat[x] = tmp
 
+	def ForceLNBPowerChanged(configElement):
+		if path.exists("/proc/stb/frontend/fbc/force_lnbon"):
+			f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
+			f.write(configElement.value)
+			f.close()
+ 
+	def ForceToneBurstChanged(configElement):
+		if path.exists("/proc/stb/frontend/fbc/force_toneburst"):
+			f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
+			f.write(configElement.value)
+			f.close()
+
 	def toneAmplitudeChanged(configElement):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
@@ -1754,6 +1766,10 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.toneAmplitude.fe_id = x - empty_slots
 			nim.toneAmplitude.slot_id = x
 			nim.toneAmplitude.addNotifier(toneAmplitudeChanged)
+			nim.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
+			nim.forceLnbPower.addNotifier(ForceLNBPowerChanged)
+			nim.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
+			nim.forceToneBurst.addNotifier(ForceToneBurstChanged)
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
