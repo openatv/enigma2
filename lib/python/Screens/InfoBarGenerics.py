@@ -1083,9 +1083,7 @@ class InfoBarChannelSelection:
 				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
 				return
 
-			from Screens.ChannelSelection import ChannelSelection
-			ChannelSelectionInstance = ChannelSelection.instance
-			ChannelSelectionInstance.dopipzap = True
+			self.servicelist2.dopipzap = True
 			if self.servicelist2.inBouquet():
 				prev = self.servicelist2.getCurrentSelection()
 				if prev:
@@ -1097,7 +1095,7 @@ class InfoBarChannelSelection:
 						self.servicelist2.moveUp()
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
-							if ChannelSelectionInstance.dopipzap:
+							if self.servicelist2.dopipzap:
 								isPlayable = self.session.pip.isPlayableForPipService(cur)
 							else:
 								isPlayable = isPlayableForCur(cur)
@@ -1106,7 +1104,7 @@ class InfoBarChannelSelection:
 			else:
 				self.servicelist2.moveUp()
 			self.servicelist2.zap(enable_pipzap=True)
-			ChannelSelectionInstance.dopipzap = False
+			self.servicelist2.dopipzap = False
 
 	def openFavouritesList(self):
 		self.servicelist.showFavourites()
@@ -1149,9 +1147,7 @@ class InfoBarChannelSelection:
 				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
 				return
 
-			from Screens.ChannelSelection import ChannelSelection
-			ChannelSelectionInstance = ChannelSelection.instance
-			ChannelSelectionInstance.dopipzap = True
+			self.servicelist2.dopipzap = True
 			if self.servicelist2.inBouquet():
 				prev = self.servicelist2.getCurrentSelection()
 				if prev:
@@ -1163,7 +1159,7 @@ class InfoBarChannelSelection:
 							self.servicelist2.moveDown()
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
-							if ChannelSelectionInstance.dopipzap:
+							if self.servicelist2.dopipzap:
 								isPlayable = self.session.pip.isPlayableForPipService(cur)
 							else:
 								isPlayable = isPlayableForCur(cur)
@@ -1172,7 +1168,7 @@ class InfoBarChannelSelection:
 			else:
 				self.servicelist2.moveDown()
 			self.servicelist2.zap(enable_pipzap=True)
-			ChannelSelectionInstance.dopipzap = False
+			self.servicelist2.dopipzap = False
 
 
 class InfoBarMenu:
