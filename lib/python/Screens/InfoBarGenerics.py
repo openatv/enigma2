@@ -902,6 +902,7 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActionsUpDown"].setEnabled(not config.seek.updown_skips.value)
 		config.seek.updown_skips.addNotifier(notifyChannelSelectionUpDown, initial_call=False, immediate_feedback=False)
+		self.longPressToggle = False
 
 	def reCallService(self):
 		if len(self.servicelist.history) > 1:
@@ -1045,6 +1046,12 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
+		if self.longPressToggle:
+			self.longPressToggle = False
+			return
+
+		self.longPressToggle = self.LongButtonPressed
+
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
@@ -1072,6 +1079,7 @@ class InfoBarChannelSelection:
 
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
+				self.longPressToggle = False
 				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
 				return
 
@@ -1105,6 +1113,12 @@ class InfoBarChannelSelection:
 		self.openServiceList()
 
 	def zapDown(self):
+		if self.longPressToggle:
+			self.longPressToggle = False
+			return
+
+		self.longPressToggle = self.LongButtonPressed
+
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
@@ -1131,6 +1145,7 @@ class InfoBarChannelSelection:
 			self.servicelist.zap(enable_pipzap=True)
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
+				self.longPressToggle = False
 				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
 				return
 
