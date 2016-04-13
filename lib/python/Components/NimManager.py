@@ -371,20 +371,14 @@ class SecConfigure:
 							diction = manufacturer.diction[product_name].value
 							positionsoffset = manufacturer.positionsoffset[product_name][0].value
 							if diction !="EN50607" or ((posnum <= (positionsoffset + manufacturer_positions_value) and (posnum > positionsoffset) and x <= maxFixedLnbPositions)): #for every allowed position
-								if diction =="EN50607":
-									sec.setLNBSatCRformat(1)	#JESS
-								else:
-									sec.setLNBSatCRformat(0)	#DiSEqC
+								sec.setLNBSatCRformat(diction =="EN50607" and 1 or 0)
 								sec.setLNBSatCR(manufacturer_scr[product_name].index)
 								sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer_scr[product_name].index].value*1000)
 								sec.setLNBSatCRpositions(manufacturer_positions_value)
 								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
 								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
-								if currLnb.unicableTuningAlgo.value == "reliable":
-									sec.setLNBSatCRTuningAlgo(1)
-								else:
-									sec.setLNBSatCRTuningAlgo(0)
+								sec.setLNBSatCRTuningAlgo(currLnb.unicableTuningAlgo.value == "reliable" and 1 or 0)
 								configManufacturer.save_forced = True
 								manufacturer.product.save_forced = True
 								manufacturer.vco[product_name][manufacturer_scr[product_name].index].save_forced = True
